@@ -1,0 +1,69 @@
+.btn,
+button {
+	font: inherit;
+	display: inline-block;
+	padding: 0 15px;
+	min-width: 80px;
+	min-height: 33px;
+	margin: 0;
+	font-size: 15px;
+	line-height: 1.4;
+	font-weight: 400;
+	height: auto;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: default;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+	color: var(--color-text);
+	background: var(--color-info);
+	transition: background-color var(--animation-speed) ease-out, border-color var(--animation-speed) ease-out, box-shadow var(--animation-speed) ease-out;
+}
+
+.btn:hover,
+button:hover {
+	text-decoration: none;
+}
+
+.btn:focus,
+button:focus {
+	border-color: var(--color-accent);
+	box-shadow: 0 0 2px 1px var(--color-accent);
+	outline: none;
+}
+
+.btn:active,
+button:active {
+	outline: none;
+	box-shadow: none;
+	transform: translateY(1px);
+	filter: brightness(0.85);
+}
+
+.btn.success,
+button.success {
+	background: var(--color-success);
+}
+
+.btn.warning,
+button.warning {
+	background: var(--color-warning);
+}
+
+.btn.danger,
+button.danger {
+	background: var(--color-danger);
+}
+
+.btn.text-icon,
+button.text-icon {
+	font-size: 20px;
+	padding: 0;
+}

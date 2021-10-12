@@ -1,0 +1,76 @@
+.btn.icon.text,
+.icon.text,
+.btn.text,
+.text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    box-shadow: none;
+    color: var(--color-text);
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 5px 10px;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.btn.icon.text:focus,
+.icon.text:focus,
+.btn.text:focus,
+.text:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 2px 1px var(--color-accent);
+    opacity: 1;
+    outline: 0;
+}
+
+.btn.icon.text:active,
+.icon.text:active,
+.btn.text:active,
+.text:active {
+    outline: none;
+    box-shadow: none;
+    filter: brightness(0.85);
+}
+
+.btn.icon.text:hover,
+.icon.text:hover,
+.btn.text:hover,
+.text:hover {
+    background: var(--color-background-alt);
+    opacity: 1;
+}
+
+.btn.icon.text:hover.success,
+.icon.text:hover.success,
+.btn.text:hover.success,
+.text:hover.success {
+    background: var(--color-success);
+}
+
+.btn.icon.text:hover.warning,
+.icon.text:hover.warning,
+.btn.text:hover.warning,
+.text:hover.warning {
+    background: var(--color-warning);
+}
+
+.btn.icon.text:hover.danger,
+.icon.text:hover.danger,
+.btn.text:hover.danger,
+.text:hover.danger {
+    background: var(--color-danger);
+}
+
+.btn.icon.text svg,
+.icon.text svg,
+.btn.text svg,
+.text svg {
+    margin-right: 5px;
+}

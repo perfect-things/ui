@@ -1,0 +1,111 @@
+.select-wrap,
+textarea,
+input[type=text],
+input[type="color"],
+input[type="number"],
+input[type="search"],
+input[type="password"] {
+	font: inherit;
+	height: 34px;
+	border: 1px solid transparent;
+	background-color: var(--color-background-input);
+	color: var(--color-text);
+	transition: background-color var(--animation-speed) ease-out, border-color var(--animation-speed) ease-out, box-shadow var(--animation-speed) ease-out;
+	border-radius: 5px;
+}
+
+.select-wrap:disabled,
+textarea:disabled,
+input[type=text]:disabled,
+input[type="color"]:disabled,
+input[type="number"]:disabled,
+input[type="search"]:disabled,
+input[type="password"]:disabled {
+	opacity: 0.5;
+}
+
+.select-wrap:focus,
+textarea:focus,
+input[type=text]:focus,
+input[type="color"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus,
+.select-wrap:focus-within,
+textarea:focus-within,
+input[type=text]:focus-within,
+input[type="color"]:focus-within,
+input[type="number"]:focus-within,
+input[type="search"]:focus-within,
+input[type="password"]:focus-within {
+	border-color: var(--color-accent);
+	box-shadow: 0 0 2px 1px var(--color-accent);
+	outline: 0;
+}
+
+.select-wrap:invalid,
+textarea:invalid,
+input[type=text]:invalid,
+input[type="color"]:invalid,
+input[type="number"]:invalid,
+input[type="search"]:invalid,
+input[type="password"]:invalid {
+	border-color: var(--color-danger);
+	box-shadow: 0 0 2px 1px var(--color-danger);
+	outline: 0;
+}
+
+textarea,
+input[type=text],
+input[type=number],
+input[type=search],
+input[type=password] {
+	line-height: 16px;
+	padding: 0 10px;
+}
+
+textarea {
+	min-height: 4em;
+	resize: vertical;
+	flex: 1;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	vertical-align: inherit;
+	transform: scale(1.4);
+	filter: hue-rotate(-12deg) saturate(0.4);
+	margin-right: 6px;
+}
+
+input[type="color"] {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+input[type="number"] {
+	text-align: center;
+}
+
+input[type=file] {
+	position: absolute;
+	right: -500px;
+}
+
+.label {
+	display: block;
+	height: 34px;
+	line-height: 16px;
+	padding: 9px 5px 0;
+}
+
+.label.disabled {
+	opacity: 0.3;
+}

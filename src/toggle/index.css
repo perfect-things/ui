@@ -1,0 +1,51 @@
+:root {
+	--color-accent: orange;
+	--handle-size: 24px;
+	--handle-highlight: rgb(49, 84, 166);
+}
+
+.toggle {
+	display: inline-block;
+	vertical-align: middle;
+	width: 50px;
+	border: 1px solid #eee;
+	border-radius: 25px;
+	background: #333;
+	user-select: none;
+	-webkit-user-select: none;
+	cursor: pointer;
+}
+
+.toggle[disabled] {
+	pointer-events: none;
+	opacity: 0.6;
+}
+
+.toggle:focus {
+	outline: none;
+	box-shadow: 0 0 2px 1px  var(--color-accent);
+}
+
+
+.toggle-input {
+	display: none;
+}
+
+.toggle-label {
+	background: var(--handle-highlight);
+	width: var(--handle-size);
+	display: block;
+	border-radius: inherit;
+	cursor: inherit;
+	transition: width .2s;
+}
+
+.toggle-handle {
+	width: var(--handle-size);
+	height: var(--handle-size);
+	background: #eee;
+	border: 1px solid #333;
+	display: block;
+	border-radius: inherit;
+	margin: 0 0 0 auto;
+}
