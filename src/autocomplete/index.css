@@ -5,6 +5,7 @@
 	width: 300px;
 	background: #ccc;
 	border-radius: 4px;
+	position: relative;
 }
 .autocomplete * { box-sizing: border-box; }
 .autocomplete .autocomplete-input {
@@ -22,12 +23,15 @@
 	box-shadow: none;
 }
 .autocomplete-list {
-	position: relative;
+	position: absolute;
+	top: 42px;
 	width: 100%;
 	overflow-y: auto;
 	z-index: 99;
+    background-color: inherit;
 	padding: 10px 0;
 	border-top: 1px solid #888;
+    min-height: calc(1 * (1em + 10px) + 15px);
 	max-height: calc(10 * (1em + 10px) + 15px);
 	user-select: none;
 }
