@@ -10,6 +10,7 @@
 	</label>
 </div>
 <script>
+import './index.css';
 import { onMount } from 'svelte';
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();

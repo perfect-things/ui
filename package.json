@@ -3,16 +3,17 @@
 	"version": "1.0.0",
 	"scripts": {
 		"lint": "eslint src/**",
-		"build": "rollup -c",
-		"watch": "rollup -cw",
-		"serve": "http-server -so ./",
-		"start": "run-p serve watch"
+		"start": "parcel src/index.html",
+		"build": "parcel build src/index.html"
 	},
 	"devDependencies": {
+		"@parcel/resolver-glob": "^2.0.0",
 		"eslint": "^8.0.0",
 		"eslint-plugin-svelte3": "^3.2.1",
 		"http-server": "^13.0.2",
 		"npm-run-all": "^4.1.5",
+		"parcel": "^2.0.0",
+		"parcel-transformer-svelte": "^1.1.2",
 		"rollup": "^2.57.0",
 		"rollup-plugin-commonjs": "^10.1.0",
 		"rollup-plugin-node-resolve": "^5.2.0",
