@@ -1,4 +1,3 @@
-.select-wrap,
 textarea,
 input[type=text],
 input[type="color"],
@@ -14,7 +13,6 @@ input[type="password"] {
 	border-radius: 5px;
 }
 
-.select-wrap:disabled,
 textarea:disabled,
 input[type=text]:disabled,
 input[type="color"]:disabled,
@@ -24,14 +22,12 @@ input[type="password"]:disabled {
 	opacity: 0.5;
 }
 
-.select-wrap:focus,
 textarea:focus,
 input[type=text]:focus,
 input[type="color"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
 input[type="password"]:focus,
-.select-wrap:focus-within,
 textarea:focus-within,
 input[type=text]:focus-within,
 input[type="color"]:focus-within,
@@ -43,7 +39,6 @@ input[type="password"]:focus-within {
 	outline: 0;
 }
 
-.select-wrap:invalid,
 textarea:invalid,
 input[type=text]:invalid,
 input[type="color"]:invalid,

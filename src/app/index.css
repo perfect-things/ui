@@ -6,7 +6,6 @@
 	--color-danger: #943737;
 	--animation-speed: .3s;
 	color-scheme: dark light;
-;
 	--color-border: #000;
 	--color-background: #333;
 	--color-background-alt: #444;
@@ -16,24 +15,42 @@
 	--color-warning: #af8a1a;
 }
 
+html,
+body {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+body * { box-sizing: inherit; }
+
 body {
 	background: #444;
 	color: #eee;
-	margin: 0;
-	padding: 20px;
 	font: normal 15px sans-serif;
 	box-sizing: border-box;
 	touch-action: none;
 }
 
-body * { box-sizing: inherit; }
-
-.text-fit-div {
-	border: 1px solid red;
-	height: 100px;
+#app {
+	width: 100%;
+	height: 100%;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	resize: horizontal;
+	flex-flow: row;
 }
+
+h2 {
+	margin: 0;
+}
+
+aside {
+	padding: 20px;
+	border-right: 1px solid var(--color-border);
+}
+
+main {
+	flex: 1;
+	padding: 20px;
+}
+
+main h2 { margin-bottom: 20px; }
