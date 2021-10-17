@@ -23,6 +23,7 @@
 
 
 <script>
+import './index.css';
 import { deepCopy, emphasize, fuzzy } from './util';
 export let data = [];
 export let value = null;

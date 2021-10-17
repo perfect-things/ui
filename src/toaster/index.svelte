@@ -17,6 +17,7 @@
 
 
 <script context="module">
+import './index.css';
 import { writable } from 'svelte/store';
 import { scale } from 'svelte/transition';
 

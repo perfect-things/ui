@@ -3,7 +3,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	width: 300px;
-	background: #ccc;
+	background: var(--color-background);
 	border-radius: 4px;
 	position: relative;
 }
@@ -15,7 +15,7 @@
 	padding: 3px 7px;
 	margin: 5px 0;
 	outline: none;
-	color: #222;
+	color: var(--color-text);
 	background-color: transparent;
 }
 .autocomplete input.autocomplete-input:focus {
@@ -30,13 +30,14 @@
 	z-index: 99;
     background-color: inherit;
 	padding: 10px 0;
-	border-top: 1px solid #888;
+	border-top: 1px solid var(--color-border);
     min-height: calc(1 * (1em + 10px) + 15px);
 	max-height: calc(10 * (1em + 10px) + 15px);
 	user-select: none;
 }
 .autocomplete-list:empty { padding: 0;  }
-.autocomplete-list-item { padding: 5px 20px; color: #333; cursor: pointer; line-height: 1;  }
+.autocomplete-list-item { padding: 5px 20px; color: var(--color-text); cursor: pointer; line-height: 1;  }
+
 .autocomplete-list-item:hover,
-.autocomplete-list-item.selected { background-color: #2e69e2; color: #fff; }
+.autocomplete-list-item.selected { background-color: var(--color-highlight); }
 .autocomplete-list.hidden { display: none; }
