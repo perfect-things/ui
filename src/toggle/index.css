@@ -1,9 +1,3 @@
-:root {
-	--color-accent: orange;
-	--handle-size: 24px;
-	--handle-highlight: rgb(49, 84, 166);
-}
-
 .toggle {
 	display: inline-block;
 	vertical-align: middle;
@@ -24,6 +18,7 @@
 .toggle:focus {
 	outline: none;
 	box-shadow: 0 0 2px 1px  var(--color-accent);
+	border-color: var(--color-accent);
 }
 
 
@@ -32,8 +27,8 @@
 }
 
 .toggle-label {
-	background: var(--handle-highlight);
-	width: var(--handle-size);
+	background: var(--color-highlight);
+	width: 24px;
 	display: block;
 	border-radius: inherit;
 	cursor: inherit;
@@ -41,8 +36,8 @@
 }
 
 .toggle-handle {
-	width: var(--handle-size);
-	height: var(--handle-size);
+	width: 24px;
+	height: 24px;
 	background: #eee;
 	border: 1px solid #333;
 	display: block;

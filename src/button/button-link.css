@@ -1,0 +1,18 @@
+.button.link {
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: var(--color-text);
+    cursor: pointer;
+    min-width: 0;
+    font: inherit;
+    font-weight: 400;
+    text-decoration: underline;
+    vertical-align: baseline;
+}
+
+.button.link:focus { outline: 1px solid var(--color-accent); }
+.button.link:hover { background: var(--color-info); text-decoration: none; }
+.button.link:hover.success { background: var(--color-success); }
+.button.link:hover.warning { background: var(--color-warning); }
+.button.link:hover.danger { background: var(--color-danger); }

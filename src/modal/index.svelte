@@ -9,6 +9,7 @@
 	</div>
 </div>
 <script>
+import './index.css';
 export let title = '';
 let backdropEl, contentEl, triggerEl, opened = false;
 
