@@ -36,6 +36,7 @@ import Icon from '../components/icon';
 import Select from '../components/select';
 import TextFit from '../components/text-fit';
 import Toaster from '../components/toaster';
+import Table from '../components/table';
 import Toggle from '../components/toggle';
 
 const components = {
@@ -44,6 +45,7 @@ const components = {
 	Toggle,
 	Select,
 	Autocomplete,
+	Table,
 	Modal,
 	Toaster,
 	TextFit,
