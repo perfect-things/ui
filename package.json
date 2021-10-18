@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"scripts": {
 		"lint": "eslint src/**",
-		"start": "parcel src/index.html --open --no-cache",
-		"build": "parcel build src/index.html"
+		"start": "parcel docs/index.html --open --no-cache",
+		"build": "parcel build docs/index.html"
 	},
 	"devDependencies": {
 		"@parcel/resolver-glob": "^2.0.0",
