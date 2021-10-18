@@ -1,0 +1,53 @@
+
+.button.icon.text,
+.button.text {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: transparent;
+	border-radius: 6;
+	box-shadow: none;
+	color: var(--color-text);
+	cursor: pointer;
+	opacity: .7;
+	padding: 5px 10px;
+	font: inherit;
+	font-size: 15px;
+	line-height: 1.4;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.button.icon.text:focus,
+.button.text:focus {
+	border-color: var(--color-accent);
+	box-shadow: 0 0 2px 1px var(--color-accent);
+	opacity: 1;
+	outline: 0;
+}
+
+.button.icon.text:active,
+.button.text:active {
+		outline: none;
+		box-shadow: none;
+		filter: brightness(0.85);
+}
+
+.button.icon.text:hover,
+.button.text:hover {
+		background: var(--color-background);
+		opacity: 1;
+}
+
+.button.icon.text:hover.success,
+.button.text:hover.success { background: var(--color-success); }
+
+.button.icon.text:hover.warning,
+.button.text:hover.warning { background: var(--color-warning); }
+
+.button.icon.text:hover.danger,
+.button.text:hover.danger { background: var(--color-danger); }
+
+.button.icon.text svg,
+.button.text svg { margin-right: 5px; }

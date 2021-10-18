@@ -41,13 +41,13 @@
 	filter: brightness(0.85);
 }
 
-.button.success:not(.link):not(.text) {
+.button.success:not(.link):not(.text):not(.icon) {
 	background: var(--color-success);
 }
-.button.warning:not(.link):not(.text) {
+.button.warning:not(.link):not(.text):not(.icon) {
 	background: var(--color-warning);
 }
-.button.danger:not(.link):not(.text) {
+.button.danger:not(.link):not(.text):not(.icon) {
 	background: var(--color-danger);
 }
 

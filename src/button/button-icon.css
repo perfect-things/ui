@@ -1,5 +1,5 @@
 .button.icon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     background: none;
@@ -23,7 +23,7 @@
 }
 
 .button.icon:hover {
-    background: var(--color-background-alt);
+    background: var(--color-background);
     opacity: 1;
 }
 
@@ -32,3 +32,12 @@
     min-width: 20px;
     width: auto;
 }
+
+.button.icon:hover.success,
+.button:hover.success { background: var(--color-success); }
+
+.button.icon:hover.warning,
+.button:hover.warning { background: var(--color-warning); }
+
+.button.icon:hover.danger,
+.button:hover.danger { background: var(--color-danger); }

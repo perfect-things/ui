@@ -28,10 +28,11 @@ nav a.active { background-color: var(--color-highlight); }
 </nav>
 <svelte:window on:hashchange="{() => active = location.hash.substr(1) }" />
 <script>
+import Autocomplete from '../components/autocomplete';
 import Button from '../components/button';
 import Input from '../components/input';
-import Autocomplete from '../components/autocomplete';
 import Modal from '../components/modal';
+import Icon from '../components/icon';
 import Select from '../components/select';
 import TextFit from '../components/text-fit';
 import Toaster from '../components/toaster';
@@ -40,12 +41,13 @@ import Toggle from '../components/toggle';
 const components = {
 	Button,
 	Input,
+	Toggle,
+	Select,
 	Autocomplete,
 	Modal,
-	Select,
-	TextFit,
 	Toaster,
-	Toggle
+	TextFit,
+	Icon,
 };
 let active = location.hash.substr(1) || 'Button';
 export let component = components[active];

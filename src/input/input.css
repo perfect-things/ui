@@ -85,10 +85,6 @@ input[type="color"] {
 	cursor: pointer;
 }
 
-input[type="number"] {
-	text-align: center;
-}
-
 input[type=file] {
 	position: absolute;
 	right: -500px;
