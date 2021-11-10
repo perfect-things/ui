@@ -1,4 +1,10 @@
-<div class="modal-backdrop {opened ? 'visible' : ''}" bind:this="{backdropEl}" on:click="{onBackdropClick}">
+<div aria-modal="true"
+	aria-label="{title}"
+	class="modal-backdrop {cssClass}"
+	class:visible="{opened}"
+	bind:this="{backdropEl}"
+	on:click="{onBackdropClick}">
+
 	<div class="modal">
 		<h1>{title}</h1>
 		<div class="modal-content" bind:this="{contentEl}">
@@ -8,10 +14,14 @@
 		</div>
 	</div>
 </div>
+<svelte:options accessors={true}/>
+
 <script>
 import './index.css';
 export let title = '';
-let backdropEl, contentEl, triggerEl, opened = false;
+export let opened = false;
+export let cssClass = '';
+let backdropEl, contentEl, triggerEl;
 
 function focusFirst () {
 	const focusable = getFocusableElements().shift();
@@ -28,22 +38,29 @@ function getFocusableElements () {
 }
 
 function onBackdropClick (e) {
-	if (!e.target.closest('.modal')) close();
+	if (!e.target.closest('.modal')) {
+		e.stopPropagation();
+		close();
+	}
 }
 
 function onDocKeydown (e) {
-	if (e.key === 'Escape' && opened) close();
+	const hasFocus = document.activeElement.closest('.modal-backdrop') === backdropEl;
+	if (e.key === 'Escape' && opened && hasFocus) {
+		e.stopPropagation();
+		close();
+	}
 }
 
 
-export function open () {
+export function open (openedBy) {
 	if (opened) return;
-	triggerEl = document.activeElement;
+	triggerEl = openedBy || document.activeElement;
 	backdropEl.style.display = 'flex';
 	setTimeout(() => {
 		opened = true;
 		focusFirst();
-		document.addEventListener('keydown', onDocKeydown);
+		document.addEventListener('keydown', onDocKeydown, true);
 	}, 100);
 }
 
@@ -54,8 +71,7 @@ export function close () {
 		backdropEl.style.display = 'none';
 		if (triggerEl) triggerEl.focus();
 		document.removeEventListener('keydown', onDocKeydown);
-	}, 300);
-
+	}, 250);
 }
 
 </script>
