@@ -1,8 +1,8 @@
 {
 	"extends": "eslint:recommended",
 	"env": {
-		"commonjs": true,
 		"browser": true,
+		"commonjs": true,
 		"node": true,
 		"es2021": true
 	},
@@ -15,9 +15,13 @@
 		{ "files": "*.svelte", "processor": "svelte3/svelte3" }
 	],
 	"rules": {
+		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
 		"indent": [ 2, "tab" ],
 		"quotes": [ 2, "single", "avoid-escape" ],
 		"semi": [ 2, "always" ],
+		"func-call-spacing": ["error", "never"],
+		"space-before-function-paren": ["error", "always"],
+		"newline-per-chained-call": ["error", { "ignoreChainWithDepth": 3 }],
 		"no-undef": 2,
 		"no-mixed-spaces-and-tabs": 2,
 		"no-unused-vars": 2,
