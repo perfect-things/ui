@@ -1,9 +1,5 @@
 textarea,
-input[type=text],
-input[type="color"],
-input[type="number"],
-input[type="search"],
-input[type="password"] {
+input:not([type=radio], [type=checkbox]) {
 	font: inherit;
 	height: 34px;
 	border: 1px solid transparent;
@@ -11,53 +7,42 @@ input[type="password"] {
 	color: var(--color-text);
 	transition: background-color var(--animation-speed) ease-out, border-color var(--animation-speed) ease-out, box-shadow var(--animation-speed) ease-out;
 	border-radius: 5px;
+	line-height: 16px;
+	padding: 0 10px;
+	width: 25ex;
 }
 
-textarea:disabled,
-input[type=text]:disabled,
-input[type="color"]:disabled,
-input[type="number"]:disabled,
-input[type="search"]:disabled,
-input[type="password"]:disabled {
-	opacity: 0.5;
-}
 
 textarea:focus,
-input[type=text]:focus,
-input[type="color"]:focus,
-input[type="number"]:focus,
-input[type="search"]:focus,
-input[type="password"]:focus,
-textarea:focus-within,
-input[type=text]:focus-within,
-input[type="color"]:focus-within,
-input[type="number"]:focus-within,
-input[type="search"]:focus-within,
-input[type="password"]:focus-within {
+input:not([type=radio], [type=checkbox]):focus {
 	border-color: var(--color-accent);
 	box-shadow: 0 0 2px 1px var(--color-accent);
 	outline: 0;
 }
 
+input:is([type=checkbox], [type=radio]):focus {
+	outline: 2px solid var(--color-accent);
+}
+
+
 textarea:invalid,
-input[type=text]:invalid,
-input[type="color"]:invalid,
-input[type="number"]:invalid,
-input[type="search"]:invalid,
-input[type="password"]:invalid {
+input:not([type=radio], [type=checkbox]):invalid {
 	border-color: var(--color-danger);
 	box-shadow: 0 0 2px 1px var(--color-danger);
 	outline: 0;
 }
 
-textarea,
-input[type=text],
-input[type=number],
-input[type=search],
-input[type=password] {
-	line-height: 16px;
-	padding: 0 10px;
+
+input:is([type=checkbox], [type=radio]) {
+	vertical-align: inherit;
+	transform: scale(1.4);
+	filter: hue-rotate(-12deg) saturate(0.4);
+	margin-right: 6px;
 }
+
+
+:is(textarea, input):disabled { opacity: 0.5; }
+
 
 textarea {
 	min-height: 4em;
@@ -67,15 +52,9 @@ textarea {
 	padding-bottom: 10px;
 }
 
-input[type=checkbox],
-input[type=radio] {
-	vertical-align: inherit;
-	transform: scale(1.4);
-	filter: hue-rotate(-12deg) saturate(0.4);
-	margin-right: 6px;
-}
 
-input[type="color"] {
+
+input[type=color] {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;

@@ -11,4 +11,8 @@ The perfect UI written in svelte.
   - [ ] https://github.com/tborychowski/svelte-text-fit
   - [ ] https://github.com/tborychowski/svelte-toaster
   - [ ] https://github.com/tborychowski/svelte-toggle
-- [ ] create a proper site
+- [x] create a proper site
+
+
+## Resources
+- icons: https://tablericons.com

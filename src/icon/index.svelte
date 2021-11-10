@@ -2,7 +2,9 @@
 
 <script context="module">
 // from: https://tablericons.com
+import adjustments from 'bundle-text:../../icons/adjustments.svg';
 import alert from 'bundle-text:../../icons/alert.svg';
+import apps from 'bundle-text:../../icons/apps.svg';
 import arrowLeft from 'bundle-text:../../icons/arrow-left.svg';
 import arrowRight from 'bundle-text:../../icons/arrow-right.svg';
 import bell from 'bundle-text:../../icons/bell.svg';
@@ -26,6 +28,7 @@ import meatballs from 'bundle-text:../../icons/meatballs.svg';
 import pluscircle from 'bundle-text:../../icons/plus-circle.svg';
 import plus from 'bundle-text:../../icons/plus.svg';
 import restore from 'bundle-text:../../icons/restore.svg';
+import report from 'bundle-text:../../icons/report.svg';
 import search from 'bundle-text:../../icons/search.svg';
 import shared from 'bundle-text:../../icons/shared.svg';
 import tag from 'bundle-text:../../icons/tag.svg';
@@ -33,7 +36,9 @@ import trash from 'bundle-text:../../icons/trash.svg';
 import user from 'bundle-text:../../icons/user.svg';
 
 export const icons = {
+	adjustments,
 	alert,
+	apps,
 	arrowLeft,
 	arrowRight,
 	bell,
@@ -57,6 +62,7 @@ export const icons = {
 	plus,
 	pluscircle,
 	restore,
+	report,
 	search,
 	shared,
 	tag,

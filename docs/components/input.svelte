@@ -18,6 +18,18 @@
 <h3>Search</h3>
 <input type="search" />
 
+<h3>Checkbox</h3>
+<input type="checkbox" />
+<input type="checkbox" disabled />
+
+<h3>Radio button</h3>
+<input name="radio-group" type="radio" disabled />
+<input name="radio-group" type="radio" />
+<input name="radio-group" type="radio" />
+
+<h3>Textarea</h3>
+<textarea>Hello!</textarea>
+
 <script>
 import '../../src/input';
 import Number from '../../src/input-number';
