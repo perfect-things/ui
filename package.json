@@ -1,5 +1,5 @@
 {
-	"name": "svelte-toggle",
+	"name": "the-ui",
 	"version": "1.0.0",
 	"scripts": {
 		"lint": "eslint src/**",
