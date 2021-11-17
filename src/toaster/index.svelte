@@ -1,17 +1,17 @@
 <div class="toaster toaster-{position}">
 	{#each toasts as toast (toast.id)}
 		<div class="toast toast-{toast.type}" transition:scale="{{ start: 0.5 }}">
-				<div class="toast-msg">{@html toast.msg}</div>
-				{#if toast.btn}
-					<button on:click|preventDefault="{() => toast.cb(toast.id)}">{toast.btn}</button>
-				{/if}
-				<button class="toast-close" on:click|stopPropagation="{() => hideToast(toast.id)}">&times;</button>
-				{#if toast.showProgress}
-					<div class="toast-progressbar">
-						<div class="toast-progress" style="width: {progress[toast.id]}%"></div>
-					</div>
-				{/if}
-			</div>
+			<div class="toast-msg">{@html toast.msg}</div>
+			{#if toast.btn}
+				<button on:click|preventDefault="{() => toast.cb(toast.id)}">{toast.btn}</button>
+			{/if}
+			<button class="toast-close" on:click|stopPropagation="{() => hideToast(toast.id)}">&times;</button>
+			{#if toast.showProgress}
+				<div class="toast-progressbar">
+					<div class="toast-progress" style="width: {progress[toast.id]}%"></div>
+				</div>
+			{/if}
+		</div>
 	{/each}
 </div>
 

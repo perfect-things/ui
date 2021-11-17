@@ -38,6 +38,7 @@ import TextFit from '../components/text-fit';
 import Toaster from '../components/toaster';
 import Table from '../components/table';
 import Toggle from '../components/toggle';
+import ContextMenu from '../components/context-menu';
 
 const components = {
 	Button,
@@ -47,6 +48,7 @@ const components = {
 	Autocomplete,
 	Table,
 	Modal,
+	ContextMenu,
 	Toaster,
 	TextFit,
 	Icon,
