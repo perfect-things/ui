@@ -1,10 +1,14 @@
-The UI
+Mini UI
 =============
 
-The perfect UI written in svelte.
+The perfect minimalist & minimal UI written in svelte.
 
 
 ## TODO
+- [ ] expandable sidebar
+- [ ] [prevent-scroll-chaining](https://ishadeed.com/article/prevent-scroll-chaining-overscroll-behavior/)
+- [ ] make it into an npm module?
+- [ ] add code samples
 - [ ] archive & redirect
   - [ ] https://github.com/tborychowski/svelte-autocomplete
   - [ ] https://github.com/tborychowski/svelte-modal
