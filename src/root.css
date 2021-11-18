@@ -1,0 +1,16 @@
+:root {
+	--color-highlight: #1e6dc6;
+	--color-accent: orange;
+	--color-info: #666d7b;
+	--color-success: #3e795e;
+	--color-danger: #943737;
+	--animation-speed: .3s;
+	--color-border: #1b1b1b;
+	--color-background: #2f2f2f;
+	--color-background-alt: #535353;
+	--color-background-input: #222;
+	--color-text: #d6d6d6;
+	--color-text-dimmed: #aaa;
+	--color-warning: #af8a1a;
+	color-scheme: dark light;
+}

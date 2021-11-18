@@ -1,37 +1,47 @@
 .context-menu {
-	position: absolute;
-	padding: 5px 0;
+	position: fixed;
+	padding: 2px 3px;
 	margin: 0;
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
 	list-style: none;
-	z-index: 20;
 	background: var(--color-background);
+	border: 1px solid var(--color-background-alt);
 	color: var(--color-text);
-	border-radius: 3px;
+	border-radius: 8px;
 	overflow: hidden;
 	cursor: default;
-	box-shadow:
-		0 4px 8px rgba(0,0,0, 0.4),
-		0 0 0 0.5px rgba(0,0,0, 0.5);
+	z-index: 999;
+	backdrop-filter: blur(5px);
+	box-shadow: 0 0 0 0.5px var(--color-border),
+		0 1px 5px rgb(0 0 0 / 30%),
+		0 4px 10px rgb(0 0 0 / 10%),
+		0 10px 25px rgb(0 0 0 / 8%);
 }
 
 .context-menu.hidden { display: none; }
 
-.context-menu-item {
-	padding: 10px 15px;
-	position: relative;
-	overflow: hidden;
+.context-menu-item { padding: 1px 0; position: relative; overflow: hidden; }
+
+.context-menu-button {
+	border: 0;
+	background: 0;
+	color: inherit;
+	width: 100%;
+	padding: 3px 8px;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
 	white-space: nowrap;
 	cursor: pointer;
 }
-
-.context-menu-item:hover { background-color:  var(--color-highlight); }
+.context-menu-button:hover { background-color: var(--color-highlight); }
 
 .context-menu-separator {
 	height: 0;
-	margin: 5px 0;
+	margin: 4px 11px;
 	padding: 0;
-	border-bottom: 0.5px solid var(--color-border);
+	border-bottom: 1px solid var(--color-background-alt);
 }

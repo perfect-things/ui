@@ -5,6 +5,9 @@
 <svelte:window on:click={onDocumentClick} on:contextmenu="{onContextMenu}" />
 
 <script>
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+
 let menuEl, el, opened = false;
 export let targetSelector = 'body';
 
@@ -52,14 +55,20 @@ export function open () {
 		setTimeout(() => {
 			// needs to finish rendering first
 			updatePosition();
-			requestAnimationFrame(resolve);
+			requestAnimationFrame(() => {
+				resolve();
+				dispatch('open');
+			});
 		});
 	});
 }
 
 export function close () {
 	opened = false;
-	return new Promise(resolve => requestAnimationFrame(resolve));
+	return new Promise(resolve => requestAnimationFrame(() => {
+		resolve();
+		dispatch('close');
+	}));
 }
 
 

@@ -15,7 +15,7 @@
 <div class="div div1">Tab</div>
 <div class="div div2">Window</div>
 
-<Menu targetSelector=".div1" bind:this="{menu1}">
+<Menu targetSelector=".div1" bind:this="{menu1}" on:close="{onMenu1close}">
 	<Item on:click="{newTab}">New Tab</Item>
 	<Item on:click="{newPrivateTab}">New Private Tab</Item>
 	<Separator />
@@ -33,7 +33,7 @@
 import { Menu, Item, Separator } from '../../src/context-menu';
 let menu1, menu2;
 let closeTabsText = 'Close all tabs';
-
+let menu1timer;
 function newTab () {
 	menu1.close().then(() => alert('New Tab clicked'));
 }
@@ -41,11 +41,21 @@ function newPrivateTab () {
 	menu1.close().then(() => alert('New Private Tab clicked'));
 }
 function closeTabs () {
-	if (closeTabsText === 'Close all tabs') closeTabsText = 'Confirm Closing';
+	const initial = 'Close all tabs';
+	const confrm = 'Confirm Closing';
+
+	if (closeTabsText === initial) {
+		closeTabsText = confrm;
+		menu1timer = setTimeout(() => closeTabsText = initial, 2000);
+	}
 	else {
 		menu1.close().then(() => alert('Closed all tabs!'));
-		closeTabsText = 'Close all tabs';
 	}
+}
+
+function onMenu1close () {
+	closeTabsText = 'Close all tabs';
+	if (menu1timer) clearTimeout(menu1timer);
 }
 
 function newWindow () {

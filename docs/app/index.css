@@ -1,20 +1,3 @@
-:root {
-	--color-highlight: #19a2d7;
-	--color-accent: orange;
-	--color-info: #666d7b;
-	--color-success: #3e795e;
-	--color-danger: #943737;
-	--animation-speed: .3s;
-	--color-border: #000;
-	--color-background: #333;
-	--color-background-alt: #444;
-	--color-background-input: #222;
-	--color-text: #fff;
-	--color-text-dimmed: #aaa;
-	--color-warning: #af8a1a;
-	color-scheme: dark light;
-}
-
 html,
 body {
 	box-sizing: border-box;

@@ -1,5 +1,7 @@
-<li class="context-menu-item" on:click="{e => dispatch('click', e)}">
-	<slot />
+<li class="context-menu-item">
+	<button class="context-menu-button" on:click="{e => dispatch('click', e)}">
+		<slot />
+	</button>
 </li>
 
 <script>
