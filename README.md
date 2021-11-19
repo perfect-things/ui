@@ -6,7 +6,7 @@ The perfect minimalist & minimal UI written in svelte.
 
 ## TODO
 - [ ] expandable sidebar
-- [ ] [prevent-scroll-chaining](https://ishadeed.com/article/prevent-scroll-chaining-overscroll-behavior/)
+- [ ] [prevent-scroll-chaining](https://ishadeed.com/article/prevent-scroll-chaining-overscroll-behavior/) for dialogs & tables
 - [ ] make it into an npm module?
 - [ ] add code samples
 - [ ] archive & redirect

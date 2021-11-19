@@ -34,7 +34,9 @@ function focusLast () {
 }
 
 function getFocusableElements () {
-	return Array.from(contentEl.querySelectorAll('a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[contentEditable]'));
+	const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
+		'select:not([disabled]),textarea:not([disabled]),[contentEditable]';
+	return Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 }
 
 function onBackdropClick (e) {

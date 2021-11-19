@@ -3,6 +3,7 @@
 </ul>
 
 <svelte:window on:click={onDocumentClick} on:contextmenu="{onContextMenu}" />
+<svelte:options accessors={true}/>
 
 <script>
 import { createEventDispatcher } from 'svelte';
