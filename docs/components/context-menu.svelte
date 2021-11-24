@@ -16,10 +16,10 @@
 <div class="div div2">Window</div>
 
 <Menu targetSelector=".div1" bind:this="{menu1}" on:close="{onMenu1close}">
-	<Item on:click="{newTab}">New Tab</Item>
-	<Item on:click="{newPrivateTab}">New Private Tab</Item>
+	<Item on:click="{newTab}"><Icon name="plus"/> New Tab</Item>
+	<Item on:click="{newPrivateTab}"><Icon name=""/> New Private Tab</Item>
 	<Separator />
-	<Item on:click="{closeTabs}">{closeTabsText}</Item>
+	<Item on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</Item>
 </Menu>
 
 <Menu targetSelector=".div2" bind:this="{menu2}">
@@ -30,6 +30,7 @@
 </Menu>
 
 <script>
+import Icon from '../../src/icon';
 import { Menu, Item, Separator } from '../../src/context-menu';
 let menu1, menu2;
 let closeTabsText = 'Close all tabs';

@@ -1,6 +1,6 @@
 .context-menu {
 	position: fixed;
-	padding: 2px 3px;
+	padding: 3px 4px;
 	margin: 0;
 	display: flex;
 	flex-flow: column;
@@ -22,14 +22,26 @@
 
 .context-menu.hidden { display: none; }
 
-.context-menu-item { padding: 1px 0; position: relative; overflow: hidden; }
+.context-menu-item {
+	padding: 2px 0;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.context-menu-item svg {
+	width: 20px;
+	margin-right: 10px;
+}
 
 .context-menu-button {
 	border: 0;
 	background: 0;
 	color: inherit;
 	width: 100%;
-	padding: 3px 8px;
+	padding: 5px 10px;
 	text-align: left;
 	display: flex;
 	align-items: center;
@@ -41,7 +53,7 @@
 
 .context-menu-separator {
 	height: 0;
-	margin: 4px 11px;
+	margin: 5px 10px;
 	padding: 0;
 	border-bottom: 1px solid var(--color-background-alt);
 }

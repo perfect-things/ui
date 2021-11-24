@@ -72,5 +72,5 @@ export const icons = {
 </script>
 <script>
 export let name = '';
-$:svg = icons[name] || '';
+$:svg = icons[name] || '<svg width="20" height="20"></svg>';
 </script>
