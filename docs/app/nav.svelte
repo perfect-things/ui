@@ -31,7 +31,7 @@ nav a.active { background-color: var(--color-highlight); }
 import Autocomplete from '../components/autocomplete';
 import Button from '../components/button';
 import Input from '../components/input';
-import Modal from '../components/modal';
+import Dialog from '../components/dialog';
 import Icon from '../components/icon';
 import Select from '../components/select';
 import TextFit from '../components/text-fit';
@@ -41,17 +41,17 @@ import Toggle from '../components/toggle';
 import ContextMenu from '../components/context-menu';
 
 const components = {
-	Button,
-	Input,
-	Toggle,
-	Select,
 	Autocomplete,
-	Table,
-	Modal,
+	Button,
 	ContextMenu,
-	Toaster,
-	TextFit,
+	Dialog,
 	Icon,
+	Input,
+	Select,
+	Table,
+	TextFit,
+	Toaster,
+	Toggle,
 };
 let active = location.hash.substr(1) || 'Button';
 export let component = components[active];

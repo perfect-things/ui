@@ -1,13 +1,13 @@
 <div aria-modal="true"
 	aria-label="{title}"
-	class="modal-backdrop {cssClass}"
+	class="dialog-backdrop {cssClass}"
 	class:visible="{opened}"
 	bind:this="{backdropEl}"
 	on:click="{onBackdropClick}">
 
-	<div class="modal">
+	<div class="dialog">
 		<h1>{title}</h1>
-		<div class="modal-content" bind:this="{contentEl}">
+		<div class="dialog-content" bind:this="{contentEl}">
 			<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 			<slot></slot>
 			<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
@@ -40,14 +40,14 @@ function getFocusableElements () {
 }
 
 function onBackdropClick (e) {
-	if (!e.target.closest('.modal')) {
+	if (!e.target.closest('.dialog')) {
 		e.stopPropagation();
 		close();
 	}
 }
 
 function onDocKeydown (e) {
-	const hasFocus = document.activeElement.closest('.modal-backdrop') === backdropEl;
+	const hasFocus = document.activeElement.closest('.dialog-backdrop') === backdropEl;
 	if (e.key === 'Escape' && opened && hasFocus) {
 		e.stopPropagation();
 		close();

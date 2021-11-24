@@ -1,4 +1,4 @@
-.modal-backdrop {
+.dialog-backdrop {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -11,9 +11,9 @@
 	background-color: rgba(0,0,0,0);
 	transition: background-color .3s ease-out;
 }
-.modal-backdrop.visible { background-color: rgba(0,0,0,.6); }
+.dialog-backdrop.visible { background-color: rgba(0,0,0,.6); }
 
-.modal {
+.dialog {
 	background: #333;
 	border-radius: 3px;
 	margin-top: -100px;
@@ -22,18 +22,18 @@
 	transition: opacity .3s ease-out, transform .3s ease-out;
 	color: #eee;
 }
-.visible .modal { opacity: 1; transform: scale(1); }
+.visible .dialog { opacity: 1; transform: scale(1); }
 
-.modal h1 {
+.dialog h1 {
 	font-size: 18px;
 	margin: 0 0 10px;
 	padding: 12px 20px 10px;
 	border-bottom: 1px solid #111;
 }
-.modal h1:empty { display: none }
-.modal-content { padding: 0 20px; min-width: 200px;}
+.dialog h1:empty { display: none }
+.dialog-content { padding: 0 20px; min-width: 200px;}
 
-.modal .buttons {
+.dialog .buttons {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -42,4 +42,4 @@
 	border-top: 1px solid #111;
 }
 
-.modal .buttons .button { margin-left: 10px; }
+.dialog .buttons .button { margin-left: 10px; }
