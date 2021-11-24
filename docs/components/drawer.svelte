@@ -13,7 +13,7 @@
 
 <script>
 import Button from '../../src/button';
-import Drawer from '../../src/side-drawer';
+import Drawer from '../../src/drawer';
 let drawer;
 
 </script>
