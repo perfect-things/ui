@@ -5,8 +5,8 @@ The perfect minimalist & minimal UI written in svelte.
 
 
 ## TODO
-- [ ] make it into an npm module?
 - [ ] add code samples
+- [ ] make it into an npm module?
 - [ ] archive & redirect
   - [ ] https://github.com/tborychowski/svelte-autocomplete
   - [ ] https://github.com/tborychowski/svelte-modal
