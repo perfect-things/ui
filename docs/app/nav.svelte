@@ -32,6 +32,7 @@ import Autocomplete from '../components/autocomplete';
 import Button from '../components/button';
 import Input from '../components/input';
 import Dialog from '../components/dialog';
+import Drawer from '../components/drawer';
 import Icon from '../components/icon';
 import Select from '../components/select';
 import TextFit from '../components/text-fit';
@@ -45,6 +46,7 @@ const components = {
 	Button,
 	ContextMenu,
 	Dialog,
+	Drawer,
 	Icon,
 	Input,
 	Select,
