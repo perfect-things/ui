@@ -1,0 +1,40 @@
+.panel {
+	margin: 0 0 -1px;
+	overflow: hidden;
+	border: 1px solid var(--color-border);
+}
+.panel-header {
+	padding: 10px 16px 10px 20px;
+	height: 45px;
+	text-align: left;
+	background: var(--color-info);
+	border-top: var(--color-border);
+	border-bottom: var(--color-border);
+	color: var(--color-text);
+	filter: saturate(.5);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: 300;
+}
+
+.panel-header:focus {
+	outline: none;
+	color: var(--color-accent);
+}
+
+.chevron {
+	height: 24px;
+	transform: rotate(0deg);
+	transition: transform var(--animation-speed) ease-out;
+}
+
+.panel.collapsed .chevron {
+	transform: rotate(-90deg);
+}
+
+.panel-content {
+	padding: 15px 20px 10px;
+}

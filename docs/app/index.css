@@ -40,4 +40,4 @@ main {
 	overflow-y: auto;
 }
 
-main h2 { margin-bottom: 20px; }
+main > h2 { margin-bottom: 20px; }

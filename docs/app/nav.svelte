@@ -30,16 +30,17 @@ nav a.active { background-color: var(--color-highlight); }
 <script>
 import Autocomplete from '../components/autocomplete';
 import Button from '../components/button';
-import Input from '../components/input';
+import ContextMenu from '../components/context-menu';
 import Dialog from '../components/dialog';
 import Drawer from '../components/drawer';
 import Icon from '../components/icon';
+import Input from '../components/input';
+import Panel from '../components/panel';
 import Select from '../components/select';
+import Table from '../components/table';
 import TextFit from '../components/text-fit';
 import Toaster from '../components/toaster';
-import Table from '../components/table';
 import Toggle from '../components/toggle';
-import ContextMenu from '../components/context-menu';
 
 const components = {
 	Autocomplete,
@@ -49,6 +50,7 @@ const components = {
 	Drawer,
 	Icon,
 	Input,
+	Panel,
 	Select,
 	Table,
 	TextFit,
