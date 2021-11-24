@@ -24,13 +24,17 @@ export let cssClass = '';
 let backdropEl, contentEl, triggerEl;
 
 function focusFirst () {
-	const focusable = getFocusableElements().shift();
-	if (focusable) focusable.focus();
+	const first = getFocusableElements().shift();
+	const last = getFocusableElements().pop();
+	if (last) last.scrollIntoView({ block: 'end' });
+	if (first) first.focus();
 }
 
 function focusLast () {
-	const focusable = getFocusableElements().pop();
-	if (focusable) focusable.focus();
+	const first = getFocusableElements().shift();
+	const last = getFocusableElements().pop();
+	if (first) first.scrollIntoView({ block: 'end' });
+	if (last) last.focus();
 }
 
 function getFocusableElements () {

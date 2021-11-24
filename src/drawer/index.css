@@ -8,9 +8,10 @@
 	min-height: 300px;
 	box-shadow: -2px 0 5px #0008;
 	z-index: 11;
-	overflow-y: auto;
 	color: var(--color-text);
 	padding: 0;
+	overflow-y: auto;
+	overscroll-behavior-y: contain;
 }
 
 .drawer:focus { outline: none; }
@@ -20,6 +21,7 @@
 .drawer-header {
 	position: sticky;
 	position: -webkit-sticky;
+	background-color: var(--color-background-alt);
 	top: 0;
 	width: 100%;
 	margin: 0 0 -1px;
