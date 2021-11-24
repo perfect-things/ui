@@ -16,6 +16,7 @@ const selectItems = [
 	{id: 'Iota', name: 'Iota'},
 	{id: 'Kappa', name: 'Kappa'},
 	{id: 'Lambda', name: 'Lambda'},
+	{id: 'long-one', name: 'A very long text'},
 ];
 
 </script>
