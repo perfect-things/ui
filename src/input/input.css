@@ -14,6 +14,9 @@ input:not([type=radio], [type=checkbox]) {
 
 
 textarea:focus,
+input:focus { outline: 0; }
+
+textarea:focus,
 input:not([type=radio], [type=checkbox]):focus {
 	border-color: var(--color-accent);
 	box-shadow: 0 0 2px 1px var(--color-accent);
@@ -21,7 +24,7 @@ input:not([type=radio], [type=checkbox]):focus {
 }
 
 input:is([type=checkbox], [type=radio]):focus {
-	outline: 2px solid var(--color-accent);
+	box-shadow: 0 0 0 1px var(--color-accent), 0 0 2px 1px var(--color-accent);
 }
 
 
@@ -35,8 +38,8 @@ input:not([type=radio], [type=checkbox]):invalid {
 
 input:is([type=checkbox], [type=radio]) {
 	vertical-align: inherit;
-	transform: scale(1.4);
-	filter: hue-rotate(-12deg) saturate(0.4);
+	transform: scale(1.6);
+	filter: saturate(0.8);
 	margin-right: 6px;
 }
 
