@@ -2,8 +2,8 @@
 	<div class="drawer" tabindex="-1"
 		use:docclick
 		bind:this="{el}"
-		in:fly="{{ x: 300, duration: 200 }}"
-		out:fly="{{ x: 300, duration: 300 }}"
+		in:fly="{{ x: 380, duration: 200 }}"
+		out:fly="{{ x: 380, duration: 300 }}"
 	>
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<header class="drawer-header" bind:this="{headerEl}" >

@@ -6,6 +6,8 @@
 		display: inline-grid;
 		place-items: center;
 		margin: 0 10px 10px 0;
+		-webkit-user-select: none;
+		user-select: none;
 	}
 	small {display: block; margin: 5px 0 15px; }
 </style>

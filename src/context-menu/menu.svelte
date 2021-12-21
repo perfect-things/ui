@@ -2,7 +2,6 @@
 	<slot></slot>
 </ul>
 
-<svelte:window on:click={onDocumentClick} on:contextmenu="{onContextMenu}" />
 <svelte:options accessors={true}/>
 
 <script>
@@ -12,12 +11,14 @@ const dispatch = createEventDispatcher();
 let menuEl, el, opened = false;
 export let targetSelector = 'body';
 
+document.addEventListener('click', onDocumentClick);
+document.addEventListener('contextmenu', onContextMenu);
 document.addEventListener('wheel', onscroll);
 
 function updatePosition (e)  {
 	if (e) {	// update position to pointer
-		menuEl.style.left = e.pageX + 'px';
-		menuEl.style.top = e.pageY + 'px';
+		menuEl.style.left = e.x + 'px';
+		menuEl.style.top = e.y + 'px';
 	}
 	else {		// make sure it stays on screen
 		let {x, y, width, height} = menuEl.getBoundingClientRect();

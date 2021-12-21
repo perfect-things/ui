@@ -1,9 +1,10 @@
 .toggle {
+	--size: 1.5em;
 	display: inline-block;
 	vertical-align: middle;
-	width: 50px;
-	border: 1px solid #eee;
-	border-radius: 25px;
+	width: calc(var(--size) * 2.3);
+	border: calc(var(--size) / 15) solid #eee;
+	border-radius: 2em;
 	background: #333;
 	user-select: none;
 	-webkit-user-select: none;
@@ -28,7 +29,7 @@
 
 .toggle-label {
 	background: var(--color-highlight);
-	width: 24px;
+	width: var(--size);
 	display: block;
 	border-radius: inherit;
 	cursor: inherit;
@@ -36,11 +37,17 @@
 }
 
 .toggle-handle {
-	width: 24px;
-	height: 24px;
+	width: var(--size);
+	height: var(--size);
 	background: #eee;
 	border: 1px solid #333;
 	display: block;
 	border-radius: inherit;
 	margin: 0 0 0 auto;
+}
+
+@media (max-width:980px){
+	.toggle {
+		--size: 2.1em;
+	}
 }
