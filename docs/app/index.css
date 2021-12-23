@@ -48,4 +48,7 @@ main > h2 {
 	body {
 		font: normal 200% sans-serif;
 	}
+	aside {
+		padding: 2em 0.5em;
+	}
 }
