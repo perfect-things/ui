@@ -1,11 +1,11 @@
 Mini UI
 =============
 
-The perfect minimalist & minimal UI written in svelte.
+A set of perfect UI components, in svelte.
 
 
 ## TODO
-- [ ] [replace accordion with details-summary](https://css-tricks.com/exploring-what-the-details-and-summary-elements-can-do/)
+- [x] [replace accordion with details-summary](https://css-tricks.com/exploring-what-the-details-and-summary-elements-can-do/)
 - [ ] add code samples
 - [ ] make it into an npm module?
 - [ ] archive & redirect
