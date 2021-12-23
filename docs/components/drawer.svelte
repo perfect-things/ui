@@ -28,8 +28,7 @@
 
 
 <script>
-import Button from '../../src/button';
-import Drawer from '../../src/drawer';
+import { Button, Drawer } from '../../src';
 let drawer;
 
 </script>

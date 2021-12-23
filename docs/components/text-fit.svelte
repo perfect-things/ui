@@ -18,7 +18,7 @@
 
 
 <script>
-import TextFit from '../../src/text-fit';
+import { TextFit } from '../../src';
 let textFitText = 'My Lovely Text';
 
 </script>

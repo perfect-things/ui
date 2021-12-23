@@ -24,5 +24,5 @@
 {/each}
 
 <script>
-import Icon, { icons } from '../../src/icon';
+import { Icon, icons } from '../../src';
 </script>

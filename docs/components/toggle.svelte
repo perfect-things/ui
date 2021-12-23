@@ -4,7 +4,7 @@
 <Toggle value="{toggleValue}" disabled /> (disabled)
 
 <script>
-import Toggle from '../../src/toggle';
+import { Toggle } from '../../src';
 
 let toggleValue = false;
 </script>

@@ -100,6 +100,6 @@
 </div>
 
 <script>
-import Table from '../../src/table';
+import { Table } from '../../src';
 
 </script>

@@ -28,8 +28,7 @@
 
 
 <script>
-import Button from '../../src/button';
-import Dialog from '../../src/dialog';
+import { Button, Dialog } from '../../src';
 let dialog;
 
 </script>

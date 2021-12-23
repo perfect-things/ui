@@ -32,8 +32,7 @@
 </Menu>
 
 <script>
-import Icon from '../../src/icon';
-import { Menu, Item, Separator } from '../../src/context-menu';
+import { Menu, Item, Separator, Icon } from '../../src';
 let menu1, menu2;
 let closeTabsText = 'Close all tabs';
 let menu1timer;

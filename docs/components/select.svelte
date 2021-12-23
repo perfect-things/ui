@@ -2,7 +2,7 @@
 <Select items="{selectItems}"/>
 
 <script>
-import Select from '../../src/select';
+import { Select } from '../../src';
 
 const selectItems = [
 	{id: 'Alpha', name: 'Alpha'},

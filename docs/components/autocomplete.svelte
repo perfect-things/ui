@@ -4,7 +4,7 @@
 Selected value: {autocompleteValue.name || ''}
 
 <script>
-import Autocomplete from '../../src/autocomplete';
+import { Autocomplete } from '../../src';
 
 let autocompleteValue = [];
 const autocompleteData = [
