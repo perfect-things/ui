@@ -3,9 +3,8 @@
 	overflow: hidden;
 	border: 1px solid var(--color-border);
 }
+
 .panel-header {
-	padding: 10px 16px 10px 20px;
-	height: 45px;
 	text-align: left;
 	background: var(--color-info);
 	border-top: var(--color-border);
@@ -16,8 +15,11 @@
 	align-items: center;
 	justify-content: space-between;
 	cursor: pointer;
-	font-size: 18px;
 	font-weight: 300;
+	font-size: 1em;
+	padding: 0 0.6em 0 1em;
+	height: 2.6em;
+	user-select: none;
 }
 
 .panel-header:focus {
@@ -26,9 +28,14 @@
 }
 
 .chevron {
-	height: 24px;
+	height: 1.2em;
 	transform: rotate(0deg);
 	transition: transform var(--animation-speed) ease-out;
+}
+
+.chevron svg {
+	width: 1.2em;
+	height: 1.2em;
 }
 
 .panel.collapsed .chevron {
@@ -36,5 +43,5 @@
 }
 
 .panel-content {
-	padding: 15px 20px 10px;
+	padding: 0.5em 1em 0.5em;
 }

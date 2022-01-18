@@ -1,14 +1,14 @@
 textarea,
 input:not([type=radio], [type=checkbox]) {
 	font: inherit;
-	height: 34px;
+	height: 2.2em;
 	border: 1px solid transparent;
 	background-color: var(--color-background-input);
 	color: var(--color-text);
 	transition: background-color var(--animation-speed) ease-out, border-color var(--animation-speed) ease-out, box-shadow var(--animation-speed) ease-out;
-	border-radius: 5px;
-	line-height: 16px;
-	padding: 0 10px;
+	border-radius: 0.3em;
+	line-height: 1.6;
+	padding: 0 0.6em;
 	width: 25ex;
 }
 
@@ -40,7 +40,7 @@ input:is([type=checkbox], [type=radio]) {
 	vertical-align: inherit;
 	transform: scale(1.6);
 	filter: saturate(0.8);
-	margin-right: 6px;
+	margin-right: 1em;
 }
 
 
@@ -51,8 +51,8 @@ textarea {
 	min-height: 4em;
 	resize: vertical;
 	flex: 1;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 
@@ -74,11 +74,20 @@ input[type=file] {
 
 .label {
 	display: block;
-	height: 34px;
-	line-height: 16px;
+	height: 2.2em;
+	line-height: 1.6;
 	padding: 9px 5px 0;
 }
 
 .label.disabled {
 	opacity: 0.3;
+}
+
+
+
+@media (max-width:980px){
+	input:is([type=checkbox], [type=radio]) {
+		transform: scale(3.4);
+		margin-right: 4em;
+	}
 }

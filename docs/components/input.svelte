@@ -10,7 +10,7 @@
 <input type="number" />
 
 <h3>Better Number</h3>
-<Number />
+<InputNumber />
 
 <h3>Maths (allow +-*/)</h3>
 
@@ -32,7 +32,7 @@
 
 <script>
 import '../../src/input';
-import Number from '../../src/input-number';
+import { InputNumber } from '../../src';
 
 function oninput (e) {
 	console.log(e);

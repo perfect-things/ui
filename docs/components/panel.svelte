@@ -17,6 +17,6 @@
 </div>
 
 <script>
-import Panel from '../../src/panel';
+import { Panel } from '../../src';
 
 </script>

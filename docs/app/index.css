@@ -10,7 +10,7 @@ body * { box-sizing: inherit; }
 body {
 	background: #444;
 	color: #eee;
-	font: normal 15px sans-serif;
+	font: normal 100% sans-serif;
 	box-sizing: border-box;
 	touch-action: none;
 }
@@ -27,7 +27,7 @@ h2 {
 }
 
 aside {
-	padding: 20px;
+	padding: 2em;
 	border-right: 1px solid var(--color-border);
 	height: 100%;
 	overflow-y: auto;
@@ -35,9 +35,20 @@ aside {
 
 main {
 	flex: 1;
-	padding: 20px 20px 100px;
+	padding: 2em 2em 10em;
 	height: 100%;
 	overflow-y: auto;
 }
 
-main > h2 { margin-bottom: 20px; }
+main > h2 {
+	margin-bottom: 2em;
+}
+
+@media (max-width:980px){
+	body {
+		font: normal 200% sans-serif;
+	}
+	aside {
+		padding: 2em 0.5em;
+	}
+}

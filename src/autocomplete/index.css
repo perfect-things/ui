@@ -2,9 +2,9 @@
 	flex: 1;
 	display: flex;
 	flex-wrap: wrap;
-	width: 300px;
+	width: 20em;
 	background: var(--color-background);
-	border-radius: 4px;
+	border-radius: 0.3em;
 	position: relative;
 }
 .autocomplete * { box-sizing: border-box; }
@@ -12,8 +12,8 @@
 	font: inherit;
 	width: 100%;
 	border: none;
-	padding: 3px 7px;
-	margin: 5px 0;
+	padding: 0.3em 1.1em;
+	margin: 0.4em 0;
 	outline: none;
 	color: var(--color-text);
 	background-color: transparent;
@@ -24,19 +24,19 @@
 }
 .autocomplete-list {
 	position: absolute;
-	top: 42px;
+	top: 2.6em;
 	width: 100%;
 	overflow-y: auto;
 	z-index: 99;
     background-color: inherit;
-	padding: 10px 0;
-	border-top: 1px solid var(--color-border);
-    min-height: calc(1 * (1em + 10px) + 15px);
-	max-height: calc(10 * (1em + 10px) + 15px);
+	padding: 0.2em 0;
+	border-radius: 0 0 0.3em 0.3em;
+    min-height: 0;
+	max-height: calc(10 * 2.2em);
 	user-select: none;
 }
 .autocomplete-list:empty { padding: 0;  }
-.autocomplete-list-item { padding: 5px 20px; color: var(--color-text); cursor: pointer; line-height: 1;  }
+.autocomplete-list-item { padding: 0.6em 1.2em; color: var(--color-text); cursor: pointer; line-height: 1;  }
 
 .autocomplete-list-item:hover,
 .autocomplete-list-item.selected { background-color: var(--color-highlight); }

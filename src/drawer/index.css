@@ -4,8 +4,8 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	width: 300px;
-	min-height: 300px;
+	width: 24em;
+	min-height: 20em;
 	box-shadow: -2px 0 5px #0008;
 	z-index: 11;
 	color: var(--color-text);
@@ -16,7 +16,7 @@
 
 .drawer:focus { outline: none; }
 
-.drawer	.btn-close { max-width: 32px; }
+.drawer	.btn-close { max-width: 1.4em; }
 
 .drawer-header {
 	position: sticky;
@@ -25,12 +25,12 @@
 	top: 0;
 	width: 100%;
 	margin: 0 0 -1px;
-	padding: 0 10px 0 15px;
+	padding: 0 1em 0 1.4em;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
 .drawer-content {
-	padding: 0 15px;
+	padding: 0 1.4em;
 }

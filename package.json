@@ -1,18 +1,19 @@
 {
 	"name": "mini-ui",
 	"version": "1.0.0",
+	"main": "src/index.js",
 	"scripts": {
-		"lint": "eslint src/**",
+		"lint": "eslint {src,docs}/**/*.{js,svelte}",
 		"start": "parcel docs/index.html --open --no-cache",
 		"build": "parcel build docs/index.html"
 	},
 	"devDependencies": {
 		"@parcel/resolver-glob": "^2.0.1",
 		"@parcel/transformer-inline-string": "^2.0.1",
-		"eslint": "^8.2.0",
+		"eslint": "^8.5.0",
 		"eslint-plugin-svelte3": "^3.2.1",
 		"parcel": "^2.0.1",
 		"parcel-transformer-svelte": "^1.2.3",
-		"svelte": "^3.44.1"
+		"svelte": "^3.44.3"
 	}
 }

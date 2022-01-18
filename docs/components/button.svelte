@@ -36,7 +36,6 @@
 <Button icon text danger><Icon name="trash"/> Delete</Button>
 
 <script>
-import Button from '../../src/button';
-import Icon from '../../src/icon';
+import { Button, Icon } from '../../src';
 
 </script>

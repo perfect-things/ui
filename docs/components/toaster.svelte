@@ -7,7 +7,7 @@
 
 
 <script>
-import Toaster, { showToast, hideToast } from '../../src/toaster';
+import { Toaster, showToast, hideToast } from '../../src';
 
 function cb (id) {
 	console.log(id);

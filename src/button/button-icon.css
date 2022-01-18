@@ -1,18 +1,19 @@
 .button.icon {
+	--size: 1.4em;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background: none;
     border: 1px solid transparent;
-    border-radius: 25px;
     box-shadow: none;
     color: var(--color-text);
     cursor: pointer;
-    padding: 5px;
+    padding: 0.2em;
     opacity: 0.7;
-    min-width: 32px;
-    min-height: 32px;
-    height: 32px;
+	border-radius: 5em;
+    min-width: calc(var(--size) + 0.2em);
+    min-height: calc(var(--size) + 0.2em);
+    height: calc(var(--size) + 0.2em);
 }
 
 .button.icon:focus {
@@ -29,7 +30,7 @@
 
 .button.icon svg {
     height: 100%;
-    min-width: 20px;
+    min-width: var(--size);
     width: auto;
 }
 
@@ -41,3 +42,10 @@
 
 .button.icon:hover.danger,
 .button:hover.danger { background: var(--color-danger); }
+
+
+@media (max-width:980px){
+	.button.icon {
+		--size: 1.6em;
+	}
+}

@@ -1,9 +1,10 @@
 <h2>Autocomplete</h2>
 <Autocomplete data="{autocompleteData}" bind:value="{autocompleteValue}" />
+<br>
 Selected value: {autocompleteValue.name || ''}
 
 <script>
-import Autocomplete from '../../src/autocomplete';
+import { Autocomplete } from '../../src';
 
 let autocompleteValue = [];
 const autocompleteData = [

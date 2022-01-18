@@ -1,11 +1,12 @@
 .button {
+	--size: 1.05em;
 	font: inherit;
 	display: inline-block;
-	padding: 0 15px;
-	min-width: 80px;
-	min-height: 33px;
+	padding: 0 var(--size);
+	min-width: calc(var(--size) * 4);
+	min-height: calc(var(--size) * 2);
 	margin: 0;
-	font-size: 15px;
+	font-size: calc(var(--size) * 0.9);
 	line-height: 1.4;
 	font-weight: 400;
 	height: auto;
@@ -14,7 +15,7 @@
 	vertical-align: middle;
 	text-decoration: none;
 	border: 1px solid transparent;
-	border-radius: 3px;
+	border-radius: 0.3em;
 	-webkit-user-select: none;
 	user-select: none;
 	cursor: default;
@@ -51,4 +52,14 @@
 	background: var(--color-danger);
 }
 
-.button[disabled] { pointer-events: none; opacity: 0.6; }
+.button[disabled] {
+	pointer-events: none;
+	opacity: 0.6;
+	box-shadow: none;
+}
+
+@media (max-width:980px){
+	.button {
+		--size: 1.2em;
+	}
+}

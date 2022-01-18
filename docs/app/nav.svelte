@@ -11,7 +11,7 @@ nav a {
 	text-decoration: none;
 	display: block;
 	margin: 0 -10px;
-	padding: 10px 20px;
+	padding: 0.7em 1.2em;
 	border-radius: 20px;
 }
 nav a:hover { background-color: var(--color-background); }
