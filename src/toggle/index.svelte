@@ -19,7 +19,7 @@ const dispatch = createEventDispatcher();
 const isTouchDevice = 'ontouchstart' in document.documentElement;
 const getMouseX = e => (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
 const outerWidth = el => el.getBoundingClientRect().width;
-const getElemWidth = el => {
+const innerWidth = el => {
 	const css = getComputedStyle(el);
 	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
 	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
