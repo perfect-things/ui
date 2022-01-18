@@ -8,6 +8,8 @@
 	user-select: none;
 	-webkit-user-select: none;
 	cursor: pointer;
+	overflow: hidden;
+	padding: 2px;
 }
 
 .toggle[disabled] {
@@ -29,17 +31,19 @@
 .toggle-label {
 	background: var(--color-highlight);
 	width: 24px;
-	display: block;
 	border-radius: inherit;
 	cursor: inherit;
-	transition: width .2s;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	transition: width .2s cubic-bezier(.85, .05, .18, 1.4);
 }
 
 .toggle-handle {
 	width: 24px;
 	height: 24px;
 	background: #eee;
-	border: 1px solid #333;
+	border: 1px solid #fff;
 	display: block;
 	border-radius: inherit;
 	margin: 0 0 0 auto;

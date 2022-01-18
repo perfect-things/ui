@@ -16,10 +16,12 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 const getMouseX = e => (e.type === 'touchmove') ? e.touches[0].clientX : e.clientX;
-const getElemWidth = el => {
+const outerWidth = el => el.getBoundingClientRect().width;
+const innerWidth = el => {
 	const css = getComputedStyle(el);
 	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
-	return el.getBoundingClientRect().width - borders;
+	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
+	return el.getBoundingClientRect().width - borders - padding;
 };
 
 export let id = undefined;
@@ -29,8 +31,8 @@ let el, label, handle, startX, maxX, minX, currentX = 0;
 let isClick = false, isDragging = false;
 
 onMount(() => {
-	maxX = getElemWidth(el);
-	minX = getElemWidth(handle);
+	maxX = innerWidth(el);
+	minX = outerWidth(handle);
 	setValue(undefined, true);
 });
 
