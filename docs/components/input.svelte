@@ -13,6 +13,7 @@
 <InputNumber />
 
 <h3>Maths (allow +-*/)</h3>
+<InputNumberPlus />
 
 
 <h3>Search</h3>
@@ -32,7 +33,7 @@
 
 <script>
 import '../../src/input';
-import { InputNumber } from '../../src';
+import { InputNumber, InputNumberPlus } from '../../src';
 
 function oninput (e) {
 	console.log(e);

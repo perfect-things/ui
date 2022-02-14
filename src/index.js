@@ -5,6 +5,7 @@ import Drawer from './drawer/index.svelte';
 import Icon, { icons } from './icon/index.svelte';
 import Input from './input/index.svelte';
 import InputNumber from './input-number/index.svelte';
+import InputNumberPlus from './input-number-plus/index.svelte';
 import Panel from './panel/index.svelte';
 import Select from './select/index.svelte';
 import Table from './table/index.svelte';
@@ -22,6 +23,7 @@ export {
 	icons,
 	Input,
 	InputNumber,
+	InputNumberPlus,
 	Panel,
 	Select,
 	Table,
