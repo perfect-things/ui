@@ -31,7 +31,12 @@
 
 .toggle-label {
 	background: var(--color-highlight);
+<<<<<<< HEAD
+	width: 24px;
+=======
 	width: var(--size);
+	display: block;
+>>>>>>> af97e43e7d411ddb57719a7c7754d67095af3076
 	border-radius: inherit;
 	cursor: inherit;
 	display: flex;

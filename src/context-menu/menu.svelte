@@ -53,23 +53,19 @@ function onscroll () {
 
 export function open () {
 	opened = true;
-	return new Promise(resolve => {
-		setTimeout(() => {
-			// needs to finish rendering first
-			updatePosition();
-			requestAnimationFrame(() => {
-				resolve();
-				dispatch('open');
-			});
-		});
-	});
+	return new Promise(resolve => requestAnimationFrame(() => {
+		// needs to finish rendering first
+		updatePosition();
+		dispatch('open');
+		requestAnimationFrame(() => resolve());
+	}));
 }
 
 export function close () {
 	opened = false;
 	return new Promise(resolve => requestAnimationFrame(() => {
-		resolve();
 		dispatch('close');
+		requestAnimationFrame(() => resolve());
 	}));
 }
 
