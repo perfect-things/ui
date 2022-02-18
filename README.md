@@ -9,6 +9,7 @@ A set of perfect UI components, in svelte.
 - [ ] resizable text area
 	- https://css-tricks.com/auto-growing-inputs-textareas/
 	- https://codepen.io/shshaw/pen/bGNJJBE
+  - [ ] context-menu [tweaks](https://height.app/blog/guide-to-build-context-menus)
 - [ ] add code samples
 - [ ] make it into an npm module?
 - [ ] archive & redirect
