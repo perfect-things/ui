@@ -1,6 +1,6 @@
 .context-menu {
 	position: fixed;
-	padding: 3px 4px;
+	padding: 1px 4px;
 	margin: 0;
 	display: flex;
 	flex-flow: column;
@@ -38,6 +38,7 @@
 }
 
 .context-menu-button {
+	font-size: 0.86em;
 	border: 0;
 	background: 0;
 	color: inherit;
