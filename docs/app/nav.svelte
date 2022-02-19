@@ -31,6 +31,7 @@ nav a.active { background-color: var(--color-highlight); }
 import Autocomplete from '../components/autocomplete';
 import Button from '../components/button';
 import ContextMenu from '../components/context-menu';
+import Datepicker from '../components/datepicker';
 import Dialog from '../components/dialog';
 import Drawer from '../components/drawer';
 import Icon from '../components/icon';
@@ -47,6 +48,7 @@ const components = {
 	Button,
 	ContextMenu,
 	Dialog,
+	Datepicker,
 	Drawer,
 	Icon,
 	Input,

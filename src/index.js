@@ -1,6 +1,7 @@
 import Autocomplete from './autocomplete/index.svelte';
 import Button from './button/index.svelte';
 import Dialog from './dialog/index.svelte';
+import Datepicker from './datepicker/index.svelte';
 import Drawer from './drawer/index.svelte';
 import Icon, { icons } from './icon/index.svelte';
 import Input from './input/index.svelte';
@@ -18,6 +19,7 @@ export {
 	Autocomplete,
 	Button,
 	Dialog,
+	Datepicker,
 	Drawer,
 	Icon,
 	icons,

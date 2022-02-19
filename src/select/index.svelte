@@ -5,8 +5,16 @@
 		on:change="{onChange}">
 
 		<option value="">None</option>
-		{#each items as item}
-			<option value="{item.id}">{item.name}</option>
+		{#each groups as group}
+			{#if group.items}
+				<optgroup label="{group.name}">
+					{#each group.items as item}
+						<option value="{item.id}">{item.name}</option>
+					{/each}
+				</optgroup>
+			{:else}
+				<option value="{group.id}">{group.name}</option>
+			{/if}
 		{/each}
 	</select>
 </div>
@@ -16,8 +24,18 @@ import './index.css';
 export let value = undefined;
 export let name = undefined;
 export let items = [];
-let el;
+let el, groups = [];
 
+$:{
+	let nogroup = [];
+	const _groups = {};
+	items.forEach(item => {
+		if (!item.group) return nogroup.push(item);
+		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
+		_groups[item.group].items.push(item);
+	});
+	groups = [...nogroup, ...Object.values(_groups)];
+}
 
 function onChange () {
 	console.log(value);

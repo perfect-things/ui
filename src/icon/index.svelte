@@ -7,9 +7,11 @@ import alert from 'bundle-text:./icons/alert.svg';
 import apps from 'bundle-text:./icons/apps.svg';
 import arrowLeft from 'bundle-text:./icons/arrow-left.svg';
 import arrowRight from 'bundle-text:./icons/arrow-right.svg';
+import bank from 'bundle-text:./icons/bank.svg';
 import bell from 'bundle-text:./icons/bell.svg';
 import book from 'bundle-text:./icons/book.svg';
 import bookmark from 'bundle-text:./icons/bookmark.svg';
+import cash from 'bundle-text:./icons/cash.svg';
 import check from 'bundle-text:./icons/check.svg';
 import checkboxChecked from 'bundle-text:./icons/checkbox-checked.svg';
 import checkbox from 'bundle-text:./icons/checkbox.svg';
@@ -24,26 +26,35 @@ import home from 'bundle-text:./icons/home.svg';
 import info from 'bundle-text:./icons/info.svg';
 import link from 'bundle-text:./icons/link.svg';
 import list from 'bundle-text:./icons/list.svg';
+import logout from 'bundle-text:./icons/logout.svg';
 import meatballs from 'bundle-text:./icons/meatballs.svg';
+import minuscircle from 'bundle-text:./icons/minus-circle.svg';
 import pluscircle from 'bundle-text:./icons/plus-circle.svg';
 import plus from 'bundle-text:./icons/plus.svg';
+import receipt from 'bundle-text:./icons/receipt.svg';
 import restore from 'bundle-text:./icons/restore.svg';
-import report from 'bundle-text:./icons/report.svg';
+import reset from 'bundle-text:./icons/reset.svg';
+import reportAnalytics from 'bundle-text:./icons/report-analytics.svg';
+import reportMoney from 'bundle-text:./icons/report-money.svg';
 import search from 'bundle-text:./icons/search.svg';
 import shared from 'bundle-text:./icons/shared.svg';
 import tag from 'bundle-text:./icons/tag.svg';
 import trash from 'bundle-text:./icons/trash.svg';
 import user from 'bundle-text:./icons/user.svg';
+import users from 'bundle-text:./icons/users.svg';
 
 export const icons = {
 	adjustments,
 	alert,
+	add: plus,
 	apps,
 	arrowLeft,
 	arrowRight,
+	bank,
 	bell,
 	book,
 	bookmark,
+	cash,
 	check,
 	checkboxChecked,
 	checkbox,
@@ -58,16 +69,23 @@ export const icons = {
 	info,
 	link,
 	list,
+	logout,
 	meatballs,
+	minuscircle,
 	plus,
 	pluscircle,
+	receipt,
 	restore,
-	report,
+	reset,
+	report: reportAnalytics,
+	reportAnalytics,
+	reportMoney,
 	search,
 	shared,
 	tag,
 	trash,
 	user,
+	users,
 };
 </script>
 <script>

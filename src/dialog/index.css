@@ -8,10 +8,13 @@
 	align-items: center;
 	justify-content: center;
 	z-index: 99;
-	background-color: rgba(0,0,0,0);
+	background-color: rgba(0 0 0 / 0);
 	transition: background-color .3s ease-out;
 }
-.dialog-backdrop.visible { background-color: rgba(0,0,0,.6); }
+
+.dialog-backdrop.visible {
+	background-color: rgba(0 0 0 / .6);
+}
 
 .dialog {
 	background: var(--color-background);
@@ -24,8 +27,13 @@
 	max-width: 95vw;
 	overflow-y: auto;
 	overscroll-behavior-y: contain;
+	box-shadow: 0 5px 20px #0006;
 }
-.visible .dialog { opacity: 1; transform: scale(1); }
+
+.visible .dialog {
+	opacity: 1;
+	transform: scale(1);
+}
 
 .dialog h1 {
 	background: var(--color-background);
@@ -36,8 +44,15 @@
 	position: sticky;
 	top: 0;
 }
-.dialog h1:empty { display: none }
-.dialog-content { padding: 0 20px; min-width: 200px; }
+
+.dialog h1:empty {
+	display: none;
+}
+
+.dialog-content {
+	padding: 0 20px;
+	min-width: 200px;
+}
 
 .dialog .buttons {
 	position: sticky;
@@ -46,9 +61,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	flex-direction: row-reverse;
 	margin: 20px -20px 0;
 	padding: 15px;
 	border-top: 1px solid #111;
 }
 
-.dialog .buttons .button { margin-left: 10px; }
+.dialog .buttons .button {
+	margin-left: 10px;
+}
