@@ -9,7 +9,7 @@
 	justify-content: center;
 	z-index: 99;
 	background-color: rgba(0 0 0 / 0);
-	transition: background-color .3s ease-out;
+	transition: background-color var(--ui-animation-speed) ease-out;
 }
 
 .dialog-backdrop.visible {
@@ -17,17 +17,20 @@
 }
 
 .dialog {
-	background: var(--color-background);
-	border-radius: 3px;
 	opacity: 0;
 	transform: scale(0.8);
-	transition: opacity .3s ease-out, transform .3s ease-out;
-	color: #eee;
+	transition:
+		opacity var(--ui-animation-speed) ease-out,
+		transform var(--ui-animation-speed) ease-out;
 	max-height: 90vh;
 	max-width: 95vw;
 	overflow-y: auto;
 	overscroll-behavior-y: contain;
-	box-shadow: 0 5px 20px #0006;
+	color: var(--ui-color-text);
+	border-radius: var(--ui-popup-border-radius);
+	border: var(--ui-popup-border);
+	background: var(--ui-popup-background);
+	box-shadow: var(--ui-shadow-large);
 }
 
 .visible .dialog {
@@ -36,13 +39,13 @@
 }
 
 .dialog h1 {
-	background: var(--color-background);
-	font-size: 18px;
-	margin: 0 0 10px;
-	padding: 12px 20px 10px;
-	border-bottom: 1px solid #111;
 	position: sticky;
 	top: 0;
+	font-size: 18px;
+	margin: 0;
+	padding: 12px 20px 10px;
+	background: var(--ui-color-background);
+	border-bottom: var(--ui-popup-border);
 }
 
 .dialog h1:empty {
@@ -50,22 +53,23 @@
 }
 
 .dialog-content {
-	padding: 0 20px;
+	padding: 20px 20px 0;
 	min-width: 200px;
 }
 
 .dialog .buttons {
 	position: sticky;
 	bottom: 0;
-	background: var(--color-background);
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
-	flex-direction: row-reverse;
+	justify-content: space-between;
+	flex-flow: row-reverse;
 	margin: 20px -20px 0;
 	padding: 15px;
-	border-top: 1px solid #111;
+	background: var(--ui-color-background);
+	border-top: var(--ui-popup-border);
 }
+
 
 .dialog .buttons .button {
 	margin-left: 10px;
