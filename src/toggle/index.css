@@ -1,32 +1,26 @@
 .toggle {
 	display: inline-block;
 	vertical-align: middle;
-	width: calc(var(--ui-toggle-size) * 2.3);
-	border: calc(var(--ui-toggle-size) / 15) solid #eee;
-	border-radius: 2em;
-	background: #333;
 	user-select: none;
 	-webkit-user-select: none;
 	cursor: pointer;
 	overflow: hidden;
-	padding: 2px;
+	width: calc(var(--ui-toggle-size) * 2.3);
+	border: calc(var(--ui-toggle-size) / 15) solid var(--ui-color-text-light-1);
+	border-radius: var(--ui-border-radius-xl);
+	background: var(--ui-color-background-input);
+	padding: var(--ui-margin-s);
 }
 
-.toggle[disabled] {
-	pointer-events: none;
-	opacity: 0.6;
-}
+.toggle[disabled] { pointer-events: none; opacity: 0.6; }
 
 .toggle:focus {
 	outline: none;
-	box-shadow: 0 0 2px 1px  var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
 	border-color: var(--ui-color-accent);
 }
 
-
-.toggle-input {
-	display: none;
-}
+.toggle-input { display: none; }
 
 .toggle-label {
 	background: var(--ui-color-highlight);
@@ -42,9 +36,13 @@
 .toggle-handle {
 	width: var(--ui-toggle-size);
 	height: var(--ui-toggle-size);
-	background: #eee;
-	border: 1px solid #fff;
+	background: var(--ui-color-text-light-1);
+	border: 1px solid var(--ui-color-text-light-2);
 	display: block;
 	border-radius: inherit;
 	margin: 0 0 0 auto;
+}
+
+@media (max-width: 980px) {
+	.toggle { --ui-toggle-size: 2.1em; }
 }

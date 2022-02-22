@@ -3,60 +3,61 @@
 	width: 30em;
 	left: 50%;
 	transform: translateX(-50%);
-	padding-top: 1em;
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
 	user-select: none;
 	z-index: 90;
+	padding-top: var(--ui-margin-l);
 }
 .toaster-top { top: 0; }
 .toaster-bottom { bottom: 0; }
+
 .toast {
+	font-size: 1em;
 	position: relative;
 	overflow: hidden;
 	flex: 1;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
 	text-align: center;
-	box-shadow: 0 10px 20px 2px rgba(0,0,0,0.2);
 	z-index: 10;
-	font-size: 1em;
 	display: flex;
 	align-items: stretch;
 	justify-content: space-between;
 	min-height: 2em;
-	border-radius: 5em;
+	margin-top: var(--ui-margin);
+	margin-bottom: var(--ui-margin);
+	box-shadow: var(--ui-shadow-fancy);
+	border-radius: var(--ui-border-radius-xl);
 }
 .toast button {
 	background: none;
 	border: none;
-	color: #eee;
+	color: var(--ui-color-text);
 	height: auto;
 	font-size: inherit;
-	min-width: 38px;
-	padding: 0 0.5em;
+	min-width: 1.6em;
+	padding: 0 var(--ui-margin-m);
 	margin: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: background-color .2s;
 }
-.toast button:hover { color: #fff; background: #3338; }
-.toast button:active { color: #bbb; background: #0008; }
+.toast button:hover  { color: var(--ui-color-text-light-2); background: #3338; }
+.toast button:active { color: var(--ui-color-text-dark-2); background: #0008; }
 
 .toast .toast-close {
 	font-size: 1.4em;
 	font-weight: 200;
-	border-radius: 0 5em 5em 0;
+	border-radius: 0 var(--ui-border-radius-xl) var(--ui-border-radius-xl) 0;
 	position: relative;
 	padding-bottom: 0.15em;
 }
 
 .toast,
-.toast-info { background: #666d7b; }
-.toast-warning { background: #af8a1a; }
-.toast-error { background: #8b4848; }
+.toast-info    { background-color: var(--ui-color-info); }
+.toast-success { background-color: var(--ui-color-success); }
+.toast-warning { background-color: var(--ui-color-warning); }
+.toast-error   { background-color: var(--ui-color-danger); }
 .toast-msg {
 	color: #eee;
 	flex: 1;
@@ -66,27 +67,24 @@
 }
 .toast-progressbar {
 	position: absolute;
-	bottom: 1px;
-	left: 1px;
-	right: 1px;
-	top: 1px;
-	border-radius: 5em;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	border-radius: var(--ui-border-radius-xl);
 	overflow: hidden;
 	z-index: -1;
 }
 .toast-progress {
 	height: 100%;
-	border-radius: 5em;
-	background-color: #fff1;
+	border-radius: var(--ui-border-radius-xl);
+	background-color: #ffffff15;
+	border: 1px solid #ffffff25;
 	width: 0;
-	transition: width 0.2s;
+	transition: width 0.3s;
 }
 
 
-
-@media (max-width:980px){
-	.toaster {
-		font-size: 1.5em;
-		width: 98vw;
-	}
+@media (max-width: 980px) {
+	.toaster { font-size: 1.5em; width: 98vw; }
 }

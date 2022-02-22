@@ -1,5 +1,6 @@
-<div class="select-wrap">
-	<select name="{name}"
+<div class="select-wrap" class:disabled>
+	<select {disabled}
+		name="{name}"
 		bind:value="{value}"
 		bind:this="{el}"
 		on:change="{onChange}">
@@ -24,6 +25,7 @@ import './index.css';
 export let value = undefined;
 export let name = undefined;
 export let items = [];
+export let disabled = undefined;
 let el, groups = [];
 
 $:{

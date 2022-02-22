@@ -19,7 +19,7 @@ onMount(() => {
 	picker = new Datepicker(elem, {
 		autohide: true,
 		format: 'yyyy-mm-dd',
-		buttonClass: 'button text icon link',
+		buttonClass: 'button button-text',
 		todayBtn: true,
 		todayBtnMode: 1,
 		todayHighlight: true,

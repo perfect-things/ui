@@ -1,0 +1,18 @@
+.button-text {
+	padding: 0 var(--ui-button-size);
+	min-width: calc(var(--ui-button-size) * 4);
+	min-height: calc(var(--ui-button-size) * 2);
+	height: auto;
+	border-radius: var(--ui-border-radius);
+	border: none;
+	background: transparent;
+}
+
+.button-text:focus,
+.button-text:hover { background-color: var(--ui-color-info-semi); text-decoration: none; }
+.button-text.success:focus,
+.button-text.success:hover { background-color: var(--ui-color-success-semi); }
+.button-text.warning:focus,
+.button-text.warning:hover { background-color: var(--ui-color-warning-semi); }
+.button-text.danger:focus,
+.button-text.danger:hover { background-color: var(--ui-color-danger-semi); }

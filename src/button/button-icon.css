@@ -1,23 +1,18 @@
 .button-icon {
-	--button-size: 2em;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+	--ui-button-size: 1.5em;
 	background: none;
 	border: 1px solid transparent;
 	box-shadow: none;
-	color: var(--ui-color-text);
-	cursor: pointer;
 	padding: 0.3em 0.2em;
-	border-radius: 5em;
-	min-width: calc(var(--button-size) + 0.2em);
-	min-height: calc(var(--button-size) + 0.2em);
-	height: calc(var(--button-size) + 0.6em);
+	border-radius: var(--ui-border-radius-xl);
+	min-width: calc(var(--ui-button-size) * 2);
+	min-height: calc(var(--ui-button-size) * 2);
+	height: calc(var(--ui-button-size) * 2);
 }
 
 .button-icon svg {
 	height: 100%;
-	min-width: var(--button-size);
+	min-width: var(--ui-button-size);
 	width: auto;
 }
 
@@ -28,7 +23,7 @@
 }
 
 .button-icon:focus,
-.button-icon:hover { background: var(--ui-color-info); opacity: 1; }
+.button-icon:hover { background: var(--ui-color-info); }
 .button-icon.success:focus,
 .button-icon.success:hover { background: var(--ui-color-success); }
 .button-icon.warning:focus,
@@ -36,12 +31,12 @@
 .button-icon.danger:focus,
 .button-icon.danger:hover { background: var(--ui-color-danger); }
 
-.button-icon:active { background: var(--ui-color-info-semi); opacity: 1; }
+.button-icon:active { background: var(--ui-color-info-semi); }
 .button-icon.success:active { background: var(--ui-color-success-semi); }
 .button-icon.warning:active { background: var(--ui-color-warning-semi); }
 .button-icon.danger:active { background: var(--ui-color-danger-semi); }
 
 
 @media (max-width: 980px) {
-	.button-icon { --button-size: 3.2em; }
+	.button-icon { --ui-button-size: 3.2em; }
 }

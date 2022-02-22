@@ -4,27 +4,23 @@
 	border: 1px solid transparent;
 	background-color: var(--ui-color-background-input);
 	color: var(--ui-color-text);
-	transition:
-		background-color var(--ui-animation-speed) ease-out,
-		border-color var(--ui-animation-speed) ease-out,
-		box-shadow var(--ui-animation-speed) ease-out;
-	border-radius: 0.3em;
+	border-radius: var(--ui-border-radius);
 	position: relative;
 	display: inline-block;
 }
 
-.select-wrap:disabled { opacity: 0.5; }
+.select-wrap.disabled { opacity: 0.7; cursor: default; }
 
 .select-wrap:focus,
 .select-wrap:focus-within {
 	border-color: var(--ui-color-accent);
-	box-shadow: 0 0 2px 1px var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
 	outline: 0;
 }
 
-.select-wrap:invalid {
+.select-wrap.invalid {
 	border-color: var(--ui-color-danger);
-	box-shadow: 0 0 2px 1px var(--ui-color-danger);
+	box-shadow: var(--ui-shadow-invalid);
 	outline: 0;
 }
 
@@ -46,11 +42,11 @@ select {
 	font: inherit;
 	color: inherit;
 	border: none;
-	border-radius: 0.3em;
 	background: none;
 	background-color: inherit;
 	line-height: 1.6;
-	padding: 0.3em 2em 0.3em 0.5em;
+	border-radius: var(--ui-border-radius);
+	padding: var(--ui-margin) var(--ui-margin-xl) var(--ui-margin) var(--ui-margin-m);
 	width: 100%;
 	height: 100%;
 	-moz-appearance: none;
@@ -59,5 +55,3 @@ select {
 }
 
 select:focus { outline: none; }
-
-select :disabled { opacity: 0.5; }

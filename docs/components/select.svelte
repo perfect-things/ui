@@ -1,6 +1,8 @@
 <h2>Select</h2>
 <Select items="{selectItems}"/>
 
+<Select items="{[{name:'Disabled'}]}" disabled/>
+
 <script>
 import { Select } from '../../src';
 
