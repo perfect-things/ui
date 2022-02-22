@@ -7,15 +7,15 @@ nav {
 }
 
 nav a {
-	color: var(--color-text);
+	color: var(--ui-color-text);
 	text-decoration: none;
 	display: block;
 	margin: 0 -10px;
 	padding: 0.7em 1.2em;
 	border-radius: 20px;
 }
-nav a:hover { background-color: var(--color-background); }
-nav a.active { background-color: var(--color-highlight); }
+nav a:hover { background-color: var(--ui-color-background); }
+nav a.active { background-color: var(--ui-color-highlight); }
 </style>
 
 <nav>
@@ -28,6 +28,7 @@ nav a.active { background-color: var(--color-highlight); }
 </nav>
 <svelte:window on:hashchange="{() => active = location.hash.substr(1) }" />
 <script>
+import ColorPalette from '../components/color-palette';
 import Autocomplete from '../components/autocomplete';
 import Button from '../components/button';
 import ContextMenu from '../components/context-menu';
@@ -58,6 +59,7 @@ const components = {
 	TextFit,
 	Toaster,
 	Toggle,
+	ColorPalette,
 };
 let active = location.hash.substr(1) || 'Button';
 export let component = components[active];

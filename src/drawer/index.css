@@ -1,14 +1,14 @@
 .drawer {
 	position: fixed;
-	background-color: var(--color-background-alt);
+	background-color: var(--ui-color-background-light-2);
 	top: 0;
 	right: 0;
 	bottom: 0;
 	width: 24em;
 	min-height: 20em;
-	box-shadow: -2px 0 5px #0008;
+	box-shadow: var(--ui-shadow-large);
 	z-index: 11;
-	color: var(--color-text);
+	color: var(--ui-color-text);
 	padding: 0;
 	overflow-y: auto;
 	overscroll-behavior-y: contain;
@@ -21,7 +21,7 @@
 .drawer-header {
 	position: sticky;
 	position: -webkit-sticky;
-	background-color: var(--color-background-alt);
+	background-color: inherit;
 	top: 0;
 	width: 100%;
 	margin: 0 0 -1px;

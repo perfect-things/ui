@@ -6,10 +6,10 @@
 
 .table {
 	border-radius: 10px;
-	border: 2px solid var(--color-border);
+	border: 2px solid var(--ui-color-border);
 	border-spacing: 0;
 	width: 100%;
-	background: var(--color-background-input);
+	background: var(--ui-color-background-input);
 }
 
 .table thead,
@@ -23,15 +23,15 @@
 	font-weight: 300;
 	text-align: left;
 	vertical-align: middle;
-	background: var(--color-background-input);
+	background: var(--ui-color-background-input);
 }
 
-.table tbody tr { background-color: var(--color-background-alt); }
-.table tbody tr:hover { background-color: var(--color-highlight); }
+.table tbody tr { background-color: var(--ui-color-background-light-2); }
+.table tbody tr:hover { background-color: var(--ui-color-highlight); }
 
 .table tbody td {
 	padding: 0.3em 0.5em;
-	border-bottom: 1px solid var(--color-border);
+	border-bottom: 1px solid var(--ui-color-border);
 	vertical-align: middle;
 	line-height: 1.5em;
 }

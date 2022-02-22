@@ -12,9 +12,7 @@
 				<Icon name="close"/>
 			</Button>
 		</header>
-		<div class="drawer-content">
-			<slot></slot>
-		</div>
+		<div class="drawer-content"><slot></slot></div>
 		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
 	</div>
 {/if}

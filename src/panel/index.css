@@ -1,15 +1,15 @@
 .panel {
 	margin: 0 0 -1px;
 	overflow: hidden;
-	border: 1px solid var(--color-border);
+	border: 1px solid var(--ui-color-border);
 }
 
 .panel-header {
 	text-align: left;
-	background: var(--color-info);
-	border-top: var(--color-border);
-	border-bottom: var(--color-border);
-	color: var(--color-text);
+	background: var(--ui-color-info);
+	border-top: var(--ui-color-border);
+	border-bottom: var(--ui-color-border);
+	color: var(--ui-color-text);
 	filter: saturate(.5);
 	display: flex;
 	align-items: center;
@@ -25,12 +25,12 @@
 
 .panel-header::-webkit-details-marker { display: none; }
 
-.panel-header:focus { outline: none; color: var(--color-accent); }
+.panel-header:focus { outline: none; color: var(--ui-color-accent); }
 
 .chevron {
 	height: 1.2em;
 	transform: rotate(0deg);
-	transition: transform var(--animation-speed) ease-out;
+	transition: transform var(--ui-animation-speed) ease-out;
 }
 
 .chevron svg { width: 1.2em; height: 1.2em; }

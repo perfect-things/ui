@@ -8,8 +8,8 @@ body {
 body * { box-sizing: inherit; }
 
 body {
-	background: #444;
-	color: #eee;
+	background-color: var(--ui-color-background);
+	color: var(--ui-color-text);
 	font: normal 100% sans-serif;
 	box-sizing: border-box;
 	touch-action: none;
@@ -28,7 +28,7 @@ h2 {
 
 aside {
 	padding: 2em;
-	border-right: 1px solid var(--color-border);
+	border-right: 1px solid var(--ui-color-border);
 	height: 100%;
 	overflow-y: auto;
 }

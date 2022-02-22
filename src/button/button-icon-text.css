@@ -8,7 +8,7 @@
 	background: none;
 	border: transparent;
 	box-shadow: none;
-	color: var(--color-text);
+	color: var(--ui-color-text);
 	cursor: pointer;
 	opacity: .7;
 	border-radius: 0.3em;
@@ -38,7 +38,7 @@
 
 .button.icon.text:hover,
 .button.text:hover {
-	background: var(--color-background);
+	background: var(--ui-color-background);
 	opacity: 1;
 }
 

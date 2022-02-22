@@ -11,6 +11,12 @@
 <Button disabled warning>Warning</Button>
 <Button disabled danger>Danger</Button>
 
+<h3>Outline button</h3>
+<Button outline>Hello</Button>
+<Button outline success>Success</Button>
+<Button outline warning>Warning</Button>
+<Button outline danger>Danger</Button>
+
 <h3>Link button</h3>
 <Button link>Hello</Button>
 <Button link success>Success</Button>
@@ -24,18 +30,19 @@
 <Button text danger>Danger</Button>
 
 <h3>Icon button</h3>
-<Button icon><Icon name="info"/></Button>
-<Button icon success><Icon name="check"/></Button>
-<Button icon warning><Icon name="alert"/></Button>
-<Button icon danger><Icon name="trash"/></Button>
+<Button icon="info"></Button>
+<Button icon="check" success></Button>
+<Button icon="alert" warning></Button>
+<Button icon="trash" danger></Button>
 
-<h3>Icon button with text</h3>
-<Button icon text><Icon name="info"/> Info</Button>
-<Button icon text success><Icon name="check"/> Success</Button>
-<Button icon text warning><Icon name="alert"/> Warning</Button>
-<Button icon text danger><Icon name="trash"/> Delete</Button>
+<h3>Button with icon</h3>
+<Button text icon="info">Info</Button>
+<Button text success icon="check">Success</Button>
+<Button text warning icon="alert">Warning</Button>
+<Button text danger icon="trash">Delete</Button>
+
 
 <script>
-import { Button, Icon } from '../../src';
+import { Button } from '../../src';
 
 </script>

@@ -1,14 +1,5 @@
 :root {
 	/* NEW PALETTE*/
-	--ui-animation-speed: .3s;
-	--ui-shadow-small: 0 0 0 0.5px #ffffff44, 0 3px 10px #00000066;
-	--ui-shadow-large: 0 5px 20px #000000aa;
-	--ui-shadow-fancy:
-			0 0 0 0.5px #111111,
-			0 1px 5px rgb(0 0 0 / 30%),
-			0 4px 10px rgb(0 0 0 / 10%),
-			0 10px 25px rgb(0 0 0 / 8%);
-
 	--ui-border-radius: 0.3em;
 	--ui-border-radius-1: 0.5em;
 	--ui-border-radius-2: 0.7em;
@@ -18,6 +9,7 @@
 	--ui-color-accent-semi: #ffa50066;
 
 	--ui-color-info: #627bae;
+	--ui-color-info-semi: #627bae66;
 
 	--ui-color-success: #3e795e;
 	--ui-color-success-semi: #3e795e66;
@@ -66,53 +58,54 @@
 	/* popup vars */
 	--ui-popup-border: 1px solid var(--ui-color-background-light-2);
 	--ui-popup-border-radius: var(--ui-border-radius);
-	--ui-popup-background: var(--color-background);
+	--ui-popup-background: var(--ui-color-background);
 	--ui-popup-shadow: var(--ui-shadow-fancy);
 
+	/* shadows */
+	--ui-animation-speed: .3s;
+	--ui-shadow-button: 0 1px 0 #000000cc;
+	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);
+	--ui-shadow-small: 0 0 0 0.5px #ffffff44, 0 3px 10px #00000066;
+	--ui-shadow-large: 0 5px 20px #000000aa;
+	--ui-shadow-fancy:
+			0 0 0 0.5px #111111,
+			0 1px 5px rgb(0 0 0 / 30%),
+			0 4px 10px rgb(0 0 0 / 10%),
+			0 10px 25px rgb(0 0 0 / 8%);
+
+
+
+	--button-size: 1.05em;
+	--ui-toggle-size: 1.5em;
 
 	color-scheme: dark light;
+}
+
+@media (max-width: 980px) {
+	.button { --button-size: 1.2em; }
+	.toggle { --ui-toggle-size: 2.1em; }
+}
+
+
+
+body, body * { box-sizing: border-box; }
 
 
 /*
-:: system color names ::
-Canvas
-CanvasText
-LinkText
-VisitedText
-ActiveText
-ButtonFace
-ButtonText
-ButtonBorder
-Field
-FieldText
-Highlight
-HighlightText
-Mark
-MarkText
-GrayText
+	:: system color names ::
+	Canvas
+	CanvasText
+	LinkText
+	VisitedText
+	ActiveText
+	ButtonFace
+	ButtonText
+	ButtonBorder
+	Field
+	FieldText
+	Highlight
+	HighlightText
+	Mark
+	MarkText
+	GrayText
 */
-
-
-	/* OLD PALETTE*/
-	--color-accent: orange;
-	--color-info: #666d7b;
-	--color-success: #3e795e;
-	--color-warning: #af8a1a;
-	--color-danger: #943737;
-	--animation-speed: .3s;
-
-	--color-highlight: #1e6dc6;
-
-
-	--color-border: #1b1b1b;
-
-	--color-background: #2f2f2f;
-	--color-background-alt: #535353;
-	--color-background-input: #222;
-
-	--color-text: #d6d6d6;
-	--color-text-dimmed: #aaa;
-
-}
-
-body, body * { box-sizing: border-box; }

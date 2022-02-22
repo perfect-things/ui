@@ -3,9 +3,9 @@ input:not([type=radio], [type=checkbox]) {
 	font: inherit;
 	height: 2.2em;
 	border: 1px solid transparent;
-	background-color: var(--color-background-input);
-	color: var(--color-text);
-	transition: background-color var(--animation-speed) ease-out, border-color var(--animation-speed) ease-out, box-shadow var(--animation-speed) ease-out;
+	background-color: var(--ui-color-background-input);
+	color: var(--ui-color-text);
+	transition: background-color var(--ui-animation-speed) ease-out, border-color var(--ui-animation-speed) ease-out, box-shadow var(--ui-animation-speed) ease-out;
 	border-radius: 0.3em;
 	line-height: 1.6;
 	padding: 0 0.6em;
@@ -18,20 +18,20 @@ input:focus { outline: 0; }
 
 textarea:focus,
 input:not([type=radio], [type=checkbox]):focus {
-	border-color: var(--color-accent);
-	box-shadow: 0 0 2px 1px var(--color-accent);
+	border-color: var(--ui-color-accent);
+	box-shadow: 0 0 2px 1px var(--ui-color-accent);
 	outline: 0;
 }
 
 input:is([type=checkbox], [type=radio]):focus {
-	box-shadow: 0 0 0 1px var(--color-accent), 0 0 2px 1px var(--color-accent);
+	box-shadow: 0 0 0 1px var(--ui-color-accent), 0 0 2px 1px var(--ui-color-accent);
 }
 
 
 textarea:invalid,
 input:not([type=radio], [type=checkbox]):invalid {
-	border-color: var(--color-danger);
-	box-shadow: 0 0 2px 1px var(--color-danger);
+	border-color: var(--ui-color-danger);
+	box-shadow: 0 0 2px 1px var(--ui-color-danger);
 	outline: 0;
 }
 

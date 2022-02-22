@@ -1,46 +1,58 @@
 <div aria-modal="true"
 	aria-label="{title}"
 	class="dialog-backdrop {cssClass}"
-	class:visible="{opened}"
+	class:opened
+	class:draw-borders="{drawborders === 'true' || drawborders === true}"
 	bind:this="{backdropEl}"
 	on:click="{onBackdropClick}">
 
-	<div class="dialog">
-		<h1>{title}</h1>
-		<div class="dialog-content" bind:this="{contentEl}">
-			<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
-			<slot></slot>
-			<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
-		</div>
+	<div class="dialog" bind:this="{dialogEl}">
+		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
+		<h1 class="dialog-header">{title}</h1>
+		<div class="dialog-content" bind:this="{contentEl}"><slot></slot></div>
+		<div class="dialog-footer" bind:this="{footerEl}"><slot name="footer"></slot></div>
+		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
 	</div>
 </div>
 <svelte:options accessors={true}/>
 
 <script>
 import './index.css';
+import { ANIMATION_SPEED } from '../util';
 export let title = '';
 export let opened = false;
+export let drawborders = false;
 export let cssClass = '';
-let backdropEl, contentEl, triggerEl;
+let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
 
 function focusFirst () {
-	const first = getFocusableElements().shift();
+	let first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
+	if (!first && !last) {
+		contentEl.setAttribute('tabindex', 0);
+		first = contentEl;
+	}
 	if (last) last.scrollIntoView({ block: 'end' });
 	if (first) first.focus();
 }
 
 function focusLast () {
 	const first = getFocusableElements().shift();
-	const last = getFocusableElements().pop();
+	let last = getFocusableElements().pop();
+	if (!first && !last) {
+		contentEl.setAttribute('tabindex', 0);
+		last = contentEl;
+	}
 	if (first) first.scrollIntoView({ block: 'end' });
 	if (last) last.focus();
 }
 
 function getFocusableElements () {
 	const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
-		'select:not([disabled]),textarea:not([disabled]),[contentEditable]';
-	return Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
+		'select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]';
+	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
+	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
+	return [...contentElements, ...footerElements];
 }
 
 function onBackdropClick (e) {
@@ -63,8 +75,10 @@ export function open (openedBy) {
 	if (opened) return;
 	triggerEl = openedBy || document.activeElement;
 	backdropEl.style.display = 'flex';
-	setTimeout(() => {
+	if (openTimer) clearTimeout(openTimer);
+	openTimer = setTimeout(() => {
 		opened = true;
+		backdropEl.style.display = 'flex';
 		focusFirst();
 		document.addEventListener('keydown', onDocKeydown, true);
 	}, 100);
@@ -72,12 +86,15 @@ export function open (openedBy) {
 
 export function close () {
 	if (!opened) return;
-	setTimeout(() => opened = false);
-	setTimeout(() => {
+	opened = false;
+	if (triggerEl) triggerEl.focus();
+	if (closeTimer) clearTimeout(closeTimer);
+	closeTimer = setTimeout(() => {
+		opened = false;
 		backdropEl.style.display = 'none';
-		if (triggerEl) triggerEl.focus();
 		document.removeEventListener('keydown', onDocKeydown);
-	}, 250);
+		if (triggerEl) triggerEl.focus();
+	}, ANIMATION_SPEED);
 }
 
 </script>

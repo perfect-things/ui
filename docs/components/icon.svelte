@@ -8,7 +8,7 @@
 	flex-flow: column;
 	align-items: center;
 	justify-content: space-between;
-	background-color: var(--color-background);
+	background-color: var(--ui-color-background);
 	padding: 0 10px 10px;
 	border-radius: 5px;
 }

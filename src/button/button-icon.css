@@ -1,51 +1,47 @@
-.button.icon {
-	--size: 1.4em;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: 1px solid transparent;
-    box-shadow: none;
-    color: var(--color-text);
-    cursor: pointer;
-    padding: 0.2em;
-    opacity: 0.7;
+.button-icon {
+	--button-size: 2em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: 1px solid transparent;
+	box-shadow: none;
+	color: var(--ui-color-text);
+	cursor: pointer;
+	padding: 0.3em 0.2em;
 	border-radius: 5em;
-    min-width: calc(var(--size) + 0.2em);
-    min-height: calc(var(--size) + 0.2em);
-    height: calc(var(--size) + 0.2em);
+	min-width: calc(var(--button-size) + 0.2em);
+	min-height: calc(var(--button-size) + 0.2em);
+	height: calc(var(--button-size) + 0.6em);
 }
 
-.button.icon:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 2px 1px var(--color-accent);
-    opacity: 1;
-    outline: 0;
+.button-icon svg {
+	height: 100%;
+	min-width: var(--button-size);
+	width: auto;
 }
 
-.button.icon:hover {
-    background: var(--color-background);
-    opacity: 1;
+.button-icon:focus {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+	outline: 0;
 }
 
-.button.icon svg {
-    height: 100%;
-    min-width: var(--size);
-    width: auto;
-}
+.button-icon:focus,
+.button-icon:hover { background: var(--ui-color-info); opacity: 1; }
+.button-icon.success:focus,
+.button-icon.success:hover { background: var(--ui-color-success); }
+.button-icon.warning:focus,
+.button-icon.warning:hover { background: var(--ui-color-warning); }
+.button-icon.danger:focus,
+.button-icon.danger:hover { background: var(--ui-color-danger); }
 
-.button.icon:hover.success,
-.button:hover.success { background: var(--color-success); }
-
-.button.icon:hover.warning,
-.button:hover.warning { background: var(--color-warning); }
-
-.button.icon:hover.danger,
-.button:hover.danger { background: var(--color-danger); }
+.button-icon:active { background: var(--ui-color-info-semi); opacity: 1; }
+.button-icon.success:active { background: var(--ui-color-success-semi); }
+.button-icon.warning:active { background: var(--ui-color-warning-semi); }
+.button-icon.danger:active { background: var(--ui-color-danger-semi); }
 
 
-@media (max-width:980px){
-	.button.icon {
-		--size: 1.6em;
-	}
+@media (max-width: 980px) {
+	.button-icon { --button-size: 3.2em; }
 }
