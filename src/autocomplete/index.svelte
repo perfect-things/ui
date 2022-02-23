@@ -1,4 +1,5 @@
 <div class="autocomplete" bind:this="{el}">
+	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input"
 		{required}
 		value="{text}"
@@ -40,6 +41,7 @@
 import './index.css';
 import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy } from './util';
+import Icon from '../icon';
 export let data = [];
 export let value = null;
 export let text = '';

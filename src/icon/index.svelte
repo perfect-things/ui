@@ -11,6 +11,7 @@ import bank from 'bundle-text:./icons/bank.svg';
 import bell from 'bundle-text:./icons/bell.svg';
 import book from 'bundle-text:./icons/book.svg';
 import bookmark from 'bundle-text:./icons/bookmark.svg';
+import calendar from 'bundle-text:./icons/calendar.svg';
 import cash from 'bundle-text:./icons/cash.svg';
 import check from 'bundle-text:./icons/check.svg';
 import checkboxChecked from 'bundle-text:./icons/checkbox-checked.svg';
@@ -20,6 +21,7 @@ import chevronLeft from 'bundle-text:./icons/chevron-left.svg';
 import chevronRight from 'bundle-text:./icons/chevron-right.svg';
 import close from 'bundle-text:./icons/close.svg';
 import cog from 'bundle-text:./icons/cog.svg';
+import dots from 'bundle-text:./icons/dots.svg';
 import edit from 'bundle-text:./icons/edit.svg';
 import folder from 'bundle-text:./icons/folder.svg';
 import home from 'bundle-text:./icons/home.svg';
@@ -54,6 +56,7 @@ export const icons = {
 	bell,
 	book,
 	bookmark,
+	calendar,
 	cash,
 	check,
 	checkboxChecked,
@@ -63,6 +66,7 @@ export const icons = {
 	chevronRight,
 	close,
 	cog,
+	dots,
 	edit,
 	folder,
 	home,

@@ -1,12 +1,27 @@
 .autocomplete {
-	display: flex;
+	display: inline-flex;
 	flex-wrap: wrap;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
 	position: relative;
 	user-select: none;
 	border-radius: var(--ui-border-radius);
+	width: 25ex;
 }
 
-.autocomplete .autocomplete-input { width: 100%; }
+.autocomplete > .icon {
+	position: absolute;
+	right: 5px;
+	width: 22px;
+	height: 22px;
+	pointer-events: none;
+	color: var(--ui-color-text-dark-1);
+}
+.autocomplete .autocomplete-input {
+	width: 100%;
+	padding-right: 28px;
+}
 
 .autocomplete-list {
 	position: absolute;

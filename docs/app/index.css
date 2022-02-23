@@ -41,14 +41,10 @@ main {
 }
 
 main > h2 {
-	margin-bottom: 2em;
+	margin-bottom: 1.2em;
 }
 
-@media (max-width:980px){
-	body {
-		font: normal 200% sans-serif;
-	}
-	aside {
-		padding: 2em 0.5em;
-	}
+@media (max-width: 980px) {
+	body { font: normal 200% sans-serif; }
+	aside { padding: 2em 0.5em; }
 }

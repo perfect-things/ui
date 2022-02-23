@@ -1,22 +1,25 @@
-<input name="foo"
-	{placeholder}
-	on:changeDate="{onchange}"
-	on:input="{oninput}"
-	bind:value="{value}">
+<div class="datepicker-wrapper">
+	<input
+		{placeholder}
+		on:changeDate="{onchange}"
+		on:input="{oninput}"
+		bind:this="{inputEl}"
+		bind:value="{value}">
+	<Icon name="calendar"/>
+</div>
 
 <script>
 import './index.css';
 import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
-import { icons } from '../icon';
-let picker;
+import Icon, { icons } from '../icon';
+let picker, inputEl;
 export let value = '';
 export let placeholder = undefined;
 
 
 onMount(() => {
-	const elem = document.querySelector('input[name="foo"]');
-	picker = new Datepicker(elem, {
+	picker = new Datepicker(inputEl, {
 		autohide: true,
 		format: 'yyyy-mm-dd',
 		buttonClass: 'button button-text',

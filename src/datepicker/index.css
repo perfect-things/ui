@@ -1,3 +1,27 @@
+.datepicker-wrapper {
+	width: 25ex;
+	position: relative;
+	display: inline-flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.datepicker-wrapper > .icon {
+	position: absolute;
+	right: 5px;
+	width: 22px;
+	height: 22px;
+	pointer-events: none;
+	color: var(--ui-color-text-dark-1);
+}
+
+.datepicker-wrapper .datepicker-input {
+	width: 100%;
+	padding-right: 28px;
+	cursor: pointer;
+}
+
 .datepicker { display: none; }
 .datepicker.active { display: block; }
 
