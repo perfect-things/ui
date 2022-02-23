@@ -1,6 +1,6 @@
 .context-menu {
 	position: fixed;
-	padding: 1px 4px;
+	padding: 0.0626em 0.25em;
 	margin: 0;
 	display: flex;
 	flex-flow: column;
@@ -21,7 +21,7 @@
 .context-menu.hidden { display: none; }
 
 .context-menu-item {
-	padding: 2px 0;
+	padding: 0.1em 0;
 	position: relative;
 	overflow: hidden;
 	display: flex;
@@ -30,9 +30,9 @@
 }
 
 .context-menu-item svg {
-	width: 20px;
-	height: 20px;
-	margin: -2px 10px -2px 0;
+	width: 1.3em;
+	height: 1.3em;
+	margin: -0.1em 0.727em -0.1em 0;
 }
 
 .context-menu-button {
@@ -41,21 +41,22 @@
 	background: 0;
 	color: inherit;
 	width: 100%;
-	padding: 5px 10px;
 	text-align: left;
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
 	cursor: pointer;
+	padding: 0.3637em 0.727em;
 	border-radius: var(--ui-border-radius);
 }
-.context-menu-button:hover {
-	background-color: var(--ui-color-highlight);
-}
+
+.context-menu-button:focus { outline: none; }
+.context-menu-button:focus,
+.context-menu-button:hover { background-color: var(--ui-color-highlight); }
 
 .context-menu-separator {
 	height: 0;
-	margin: 5px 10px;
 	padding: 0;
+	margin: var(--ui-margin) var(--ui-margin-m);
 	border-bottom: var(--ui-popup-border);
 }

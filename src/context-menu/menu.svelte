@@ -1,19 +1,23 @@
-<ul class="context-menu" class:hidden="{!opened}" bind:this="{menuEl}">
+<ul class="context-menu"
+	class:hidden="{!opened}"
+	bind:this="{menuEl}">
+
 	<slot></slot>
 </ul>
 
 <svelte:options accessors={true}/>
 
 <script>
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, onMount } from 'svelte';
 const dispatch = createEventDispatcher();
 
-let menuEl, el, opened = false;
+let menuEl, targetEl, focusedEl, opened = false;
 export let targetSelector = 'body';
 
-document.addEventListener('click', onDocumentClick);
-document.addEventListener('contextmenu', onContextMenu);
-document.addEventListener('wheel', onscroll);
+onMount(() => {
+	document.addEventListener('contextmenu', onContextMenu);
+});
+
 
 function updatePosition (e)  {
 	if (e) {	// update position to pointer
@@ -34,8 +38,8 @@ function updatePosition (e)  {
 
 function onContextMenu (e) {
 	close();
-	el = e.target.closest(targetSelector);
-	if (!el) return;
+	targetEl = e.target.closest(targetSelector);
+	if (!targetEl) return;
 	e.stopPropagation();
 	e.preventDefault();
 	updatePosition(e);
@@ -51,13 +55,47 @@ function onscroll () {
 	if (opened) close();
 }
 
+function onmousemove () {
+	if (focusedEl) {
+		focusedEl.blur();
+		focusedEl = null;
+	}
+}
+
+function onKeydown (e) {
+	if (e.key === 'Escape') close();
+	else if (e.key === 'ArrowDown') focusNext();
+	else if (e.key === 'ArrowUp') focusPrev();
+}
+
+
+function focusNext () {
+	const buttons = Array.from(menuEl.querySelectorAll('.context-menu-button'));
+	let idx = -1;
+	if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
+	if (idx >= buttons.length - 1) return;
+	focusedEl = buttons[idx + 1];
+	if (focusedEl) focusedEl.focus();
+}
+
+function focusPrev () {
+	const buttons = Array.from(menuEl.querySelectorAll('.context-menu-button'));
+	let idx = buttons.length;
+	if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
+	if (idx <= 0) return;
+	focusedEl = buttons[idx - 1];
+	if (focusedEl) focusedEl.focus();
+}
+
 export function open () {
 	opened = true;
+	focusedEl = null;
 	return new Promise(resolve => requestAnimationFrame(() => {
 		// needs to finish rendering first
 		updatePosition();
 		dispatch('open');
-		requestAnimationFrame(() => resolve());
+		addEventListeners();
+		requestAnimationFrame(resolve);
 	}));
 }
 
@@ -65,9 +103,25 @@ export function close () {
 	opened = false;
 	return new Promise(resolve => requestAnimationFrame(() => {
 		dispatch('close');
-		requestAnimationFrame(() => resolve());
+		removeEventListeners();
+		requestAnimationFrame(resolve);
 	}));
 }
 
+
+function addEventListeners () {
+	document.addEventListener('click', onDocumentClick);
+	document.addEventListener('keydown', onKeydown);
+	document.addEventListener('wheel', onscroll);
+	document.addEventListener('mousemove', onmousemove);
+}
+
+
+function removeEventListeners () {
+	document.removeEventListener('click', onDocumentClick);
+	document.removeEventListener('keydown', onKeydown);
+	document.removeEventListener('wheel', onscroll);
+	document.removeEventListener('mousemove', onmousemove);
+}
 
 </script>
