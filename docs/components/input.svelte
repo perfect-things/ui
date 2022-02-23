@@ -28,8 +28,6 @@
 <input name="radio-group" type="radio" />
 <input name="radio-group" type="radio" />
 
-<h3>Textarea</h3>
-<textarea>Hello!</textarea>
 
 <script>
 import '../../src/input';

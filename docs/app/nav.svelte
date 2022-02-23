@@ -40,6 +40,7 @@ import Input from '../components/input';
 import Panel from '../components/panel';
 import Select from '../components/select';
 import Table from '../components/table';
+import Textarea from '../components/textarea';
 import TextFit from '../components/text-fit';
 import Toaster from '../components/toaster';
 import Toggle from '../components/toggle';
@@ -56,6 +57,7 @@ const components = {
 	Panel,
 	Select,
 	Table,
+	Textarea,
 	TextFit,
 	Toaster,
 	Toggle,

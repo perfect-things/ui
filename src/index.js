@@ -10,6 +10,7 @@ import InputNumberPlus from './input-number-plus/index.svelte';
 import Panel from './panel/index.svelte';
 import Select from './select/index.svelte';
 import Table from './table/index.svelte';
+import Textarea from './textarea/index.svelte';
 import TextFit from './text-fit/index.svelte';
 import Toaster, { showToast, hideToast } from './toaster/index.svelte';
 import Toggle from './toggle/index.svelte';
@@ -29,6 +30,7 @@ export {
 	Panel,
 	Select,
 	Table,
+	Textarea,
 	TextFit,
 	Toaster,
 	showToast,
