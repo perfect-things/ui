@@ -21,7 +21,7 @@ onMount(() => {
 	picker = new Datepicker(inputEl, {
 		autohide: true,
 		format: 'yyyy-mm-dd',
-		buttonClass: 'button button-text',
+		buttonClass: 'button button-normal button-text',
 		todayBtn: true,
 		todayBtnMode: 1,
 		todayHighlight: true,

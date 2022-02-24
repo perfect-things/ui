@@ -1,4 +1,5 @@
 .toggle {
+	--ui-toggle-size: 1.2em;
 	display: inline-block;
 	vertical-align: middle;
 	user-select: none;
@@ -44,5 +45,5 @@
 }
 
 @media (max-width: 980px) {
-	.toggle { --ui-toggle-size: 2.1em; }
+	.toggle { --ui-toggle-size: 1.8em; }
 }

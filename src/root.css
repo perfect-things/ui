@@ -5,8 +5,8 @@
 	--ui-border-radius-l: 1em;
 	--ui-border-radius-xl: 5em;
 
-	--ui-color-accent: #ffa500;
-	--ui-color-accent-semi: #ffa50066;
+	--ui-color-accent: #bb7a00;
+	--ui-color-accent-semi: #bb7a0066;
 
 	--ui-color-info: #61738a;
 	--ui-color-info-semi: #61738a66;
@@ -75,10 +75,6 @@
 		0 1px 5px rgb(0 0 0 / 30%),
 		0 4px 10px rgb(0 0 0 / 10%),
 		0 10px 25px rgb(0 0 0 / 8%);
-
-
-	--ui-button-size: 1.05em;
-	--ui-toggle-size: 1.5em;
 
 	color-scheme: dark light;
 }

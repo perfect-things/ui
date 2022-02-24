@@ -1,19 +1,23 @@
 .button-icon {
 	--ui-button-size: 1.5em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
 	background: none;
 	border: 1px solid transparent;
 	box-shadow: none;
-	padding: 0.3em 0.2em;
+	padding: 0.3em;
 	border-radius: var(--ui-border-radius-xl);
-	min-width: calc(var(--ui-button-size) * 2);
-	min-height: calc(var(--ui-button-size) * 2);
+	width: calc(var(--ui-button-size) * 2);
 	height: calc(var(--ui-button-size) * 2);
+	overflow: hidden;
 }
 
 .button-icon svg {
 	height: 100%;
+	width: 100%;
 	min-width: var(--ui-button-size);
-	width: auto;
 }
 
 .button-icon:focus {
@@ -31,11 +35,7 @@
 .button-icon.danger:focus,
 .button-icon.danger:hover { background: var(--ui-color-danger); }
 
-.button-icon:active { background: var(--ui-color-info-semi); }
-.button-icon.success:active { background: var(--ui-color-success-semi); }
-.button-icon.warning:active { background: var(--ui-color-warning-semi); }
-.button-icon.danger:active { background: var(--ui-color-danger-semi); }
-
+.button-icon:active { transform: translateY(1px); filter: brightness(0.85); }
 
 @media (max-width: 980px) {
 	.button-icon { --ui-button-size: 3.2em; }

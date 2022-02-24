@@ -1,8 +1,10 @@
 .button {
+	--ui-button-size: 1em;
+
 	font: inherit;
 	line-height: 1.4;
 	font-weight: 400;
-	font-size: calc(var(--ui-button-size) * 0.9);
+	font-size: var(--ui-button-size);
 
 	display: inline-flex;
 	align-items: center;
@@ -17,7 +19,6 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	vertical-align: middle;
-	text-decoration: none;
 }
 
 .button:focus {

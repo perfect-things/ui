@@ -5,8 +5,8 @@
 	margin: 0 20px 20px 0;
 	display: flex;
 	flex-flow: column;
-	align-items: center;
-	justify-content: space-between;
+	align-items: stretch;
+	justify-content: stretch;
 	background-color: var(--ui-color-background);
 	padding: 0 10px 10px;
 	border-radius: 5px;
@@ -19,6 +19,12 @@
 	justify-content: center;
 }
 
+.icon-block-icon svg {
+	width: 32px;
+	height: 32px;
+}
+
 .icon-block-name {
 	height: 20px;
+	text-align: center;
 }

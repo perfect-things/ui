@@ -1,7 +1,5 @@
 <h2>Autocomplete</h2>
-<Autocomplete data="{autocompleteData}" bind:value="{autocompleteValue}" />
-<br>
-Selected value: {autocompleteValue.name || ''}
+<Autocomplete data="{autocompleteData}" bind:value="{autocompleteValue}" /> Selected value: {autocompleteValue.name || ''}
 
 <script>
 import { Autocomplete } from '../../src';

@@ -5,8 +5,8 @@ A set of perfect UI components, in svelte.
 
 
 ## TODO
-- [ ] add code samples
 - [ ] make it into an npm module
+- [ ] add code samples
 - [ ] archive & redirect
   - [ ] https://github.com/tborychowski/svelte-autocomplete
   - [ ] https://github.com/tborychowski/svelte-modal
