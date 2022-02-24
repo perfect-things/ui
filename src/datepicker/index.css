@@ -83,7 +83,13 @@
 .datepicker-header .datepicker-controls,
 .datepicker-footer .datepicker-controls { padding: 0.2em; }
 
-.datepicker-controls .button { padding: 0; width: 2.5rem; min-width: 2.5rem; text-align: center; }
+.datepicker-controls .button {
+	padding: 0;
+	width: 2.5rem;
+	min-width: 2.5rem;
+	text-align: center;
+}
+
 .datepicker-controls .button svg { margin: 0; height: 1.4rem; }
 .datepicker-controls .button.disabled { visibility: hidden; }
 
