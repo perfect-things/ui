@@ -1,11 +1,9 @@
 .button-outline {
-	padding: 0 var(--ui-button-size);
+	background: transparent;
+	border: 0.1em solid var(--ui-color-info);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
-	height: auto;
-	border-radius: var(--ui-border-radius);
-	border: 0.1em solid var(--ui-color-info);
-	background: transparent;
+	padding: 0 var(--ui-button-size);
 }
 
 .button-outline:hover { text-decoration: none; }

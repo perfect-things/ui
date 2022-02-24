@@ -1,24 +1,13 @@
 .button-normal {
-	padding: 0 var(--ui-margin-l);
+	background: var(--ui-color-info);
+	border: 1px solid transparent;
+	box-shadow: var(--ui-shadow-button);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
-	height: auto;
-	border: 1px solid transparent;
-	border-radius: var(--ui-border-radius);
-	background: var(--ui-color-info);
-	box-shadow: var(--ui-shadow-button);
+	padding: 0 var(--ui-margin-l);
 }
 
 .button-normal:hover { text-decoration: none; }
-
-.button-normal svg {
-	margin-left: calc(var(--ui-margin-m) * -1);
-	margin-right: 0.4em;
-	height: calc(var(--ui-button-size) * 1.2);
-	min-width: var(--ui-button-size);
-	width: auto;
-}
-
 .button-normal.success { background: var(--ui-color-success); }
 .button-normal.warning { background: var(--ui-color-warning); }
 .button-normal.danger { background: var(--ui-color-danger); }

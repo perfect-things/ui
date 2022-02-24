@@ -1,15 +1,16 @@
 .button-link {
-	display: inline;
 	background: none;
 	border: none;
+	cursor: pointer;
+	display: inline;
+	margin: -0.2em 0;
 	min-width: 0;
 	padding: 0.2em;
-	margin: -0.2em 0;
 	text-decoration: underline;
 	vertical-align: baseline;
-	cursor: pointer;
-	border-radius: var(--ui-border-radius);
 }
+
+.button-has-text.button-link svg { margin-left: 0; }
 
 .button-link:focus,
 .button-link:hover {

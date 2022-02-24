@@ -43,6 +43,6 @@ const components = {
 	Toggle,
 	ColorPalette,
 };
-let active = location.hash.substr(1) || 'Button';
+let active = location.hash.substr(1) || Object.keys(components)[0];
 export let component = components[active];
 </script>
