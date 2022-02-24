@@ -1,21 +1,21 @@
-import Autocomplete from './autocomplete/index.svelte';
-import Button from './button/index.svelte';
-import Dialog from './dialog/index.svelte';
-import Datepicker from './datepicker/index.svelte';
-import Drawer from './drawer/index.svelte';
-import Icon, { icons } from './icon/index.svelte';
-import Input from './input/index.svelte';
-import InputNumber from './input-number/index.svelte';
-import InputNumberPlus from './input-number-plus/index.svelte';
-import Panel from './panel/index.svelte';
-import Select from './select/index.svelte';
-import Table from './table/index.svelte';
-import Textarea from './textarea/index.svelte';
-import TextFit from './text-fit/index.svelte';
-import Toaster, { showToast, hideToast } from './toaster/index.svelte';
-import Toggle from './toggle/index.svelte';
+import Autocomplete from './autocomplete';
+import Button from './button';
+import Dialog from './dialog';
+import Datepicker from './datepicker';
+import Drawer from './drawer';
+import Icon, { icons } from './icon';
+import InputNumber from './input-number';
+import InputNumberPlus from './input-number-plus';
+import Panel from './panel';
+import Select from './select';
+import Table from './table';
+import Textarea from './textarea';
+import TextFit from './text-fit';
+import Toaster, { showToast, hideToast } from './toaster';
+import Toggle from './toggle';
 
 export * from './context-menu/index.js';
+
 export {
 	Autocomplete,
 	Button,
@@ -24,7 +24,6 @@ export {
 	Drawer,
 	Icon,
 	icons,
-	Input,
 	InputNumber,
 	InputNumberPlus,
 	Panel,

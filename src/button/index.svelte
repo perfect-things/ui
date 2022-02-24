@@ -16,12 +16,6 @@
 	<slot></slot>
 </button>
 <script>
-import './button.css';
-import './button-normal.css';
-import './button-link.css';
-import './button-outline.css';
-import './button-text.css';
-import './button-icon.css';
 import { createEventDispatcher } from 'svelte';
 import Icon from '../icon';
 export let disabled = false;

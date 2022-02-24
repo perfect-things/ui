@@ -1,6 +1,3 @@
-<style>
-	p { line-height: 1.6; }
-</style>
 <h2>Drawer</h2>
 
 <Button on:click="{() => drawer.toggle()}">Toggle drawer</Button>

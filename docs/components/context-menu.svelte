@@ -1,16 +1,3 @@
-<style>
-	.div {
-		border: 1px dashed red;
-		height: 100px;
-		width: 200px;
-		display: inline-grid;
-		place-items: center;
-		margin: 0 10px 10px 0;
-		-webkit-user-select: none;
-		user-select: none;
-	}
-	small {display: block; margin: 5px 0 15px; }
-</style>
 <h2>Context menu</h2>
 <small>(Right-click on the boxes below)</small>
 
@@ -36,6 +23,8 @@ import { Menu, Item, Separator, Icon } from '../../src';
 let menu1, menu2;
 let closeTabsText = 'Close all tabs';
 let menu1timer;
+
+
 function newTab () {
 	menu1.close().then(() => alert('New Tab clicked'));
 }

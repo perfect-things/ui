@@ -30,7 +30,6 @@
 
 
 <script>
-import '../../src/input';
 import { InputNumber, InputNumberPlus } from '../../src';
 
 function oninput (e) {

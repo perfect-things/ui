@@ -1,0 +1,24 @@
+{
+	"extends": "stylelint-config-standard",
+	"rules": {
+		"indentation": "tab",
+		"number-leading-zero": null,
+		"property-no-vendor-prefix": null,
+		"max-empty-lines": null,
+		"declaration-empty-line-before": null,
+		"custom-property-empty-line-before": null,
+		"rule-empty-line-before": null,
+		"alpha-value-notation": null,
+		"selector-attribute-quotes": null,
+		"value-no-vendor-prefix": null,
+		"number-max-precision": 10,
+		"comment-empty-line-before": null,
+		"color-hex-length": null,
+		"declaration-block-single-line-max-declarations": [
+			3,
+			{
+				"severity": "warning"
+			}
+		]
+	}
+}

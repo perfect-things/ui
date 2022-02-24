@@ -1,6 +1,3 @@
-<style>
-	p { line-height: 1.6; }
-</style>
 <h2>Dialog</h2>
 
 <Button on:click="{() => dialog1.open()}">Show dialog 1</Button>
@@ -24,7 +21,7 @@
 	<p>Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut. </p>
 
 	<div slot="footer">
-		<Button class="button" on:click="{() => dialog1.close()}">Close</Button>
+		<Button on:click="{() => dialog1.close()}">Close</Button>
 	</div>
 </Dialog>
 
@@ -36,8 +33,8 @@
 <Dialog bind:this="{dialog3}">
 	Are you sure?
 	<div slot="footer">
-		<Button class="button" on:click="{() => dialog3.close()}">Yes</Button>
-		<Button class="button" on:click="{() => dialog3.close()}">No</Button>
+		<Button on:click="{() => dialog3.close()}">Yes</Button>
+		<Button on:click="{() => dialog3.close()}">No</Button>
 	</div>
 </Dialog>
 

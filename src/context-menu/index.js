@@ -1,7 +1,6 @@
-import './index.css';
-import Menu from './menu.svelte';
-import Item from './menu-item.svelte';
-import Separator from './menu-separator.svelte';
+import Menu from './menu';
+import Item from './menu-item';
+import Separator from './menu-separator';
 
 export {
 	Menu,

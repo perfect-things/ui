@@ -15,7 +15,6 @@
 
 
 <script>
-import './index.css';
 import { slide } from 'svelte/transition';
 export let title = '';
 export let collapsed = false;

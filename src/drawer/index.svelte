@@ -19,7 +19,6 @@
 <svelte:options accessors={true}/>
 
 <script>
-import './index.css';
 import { fly } from 'svelte/transition';
 import Icon from '../icon';
 import Button from '../button';

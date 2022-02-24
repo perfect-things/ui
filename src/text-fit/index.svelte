@@ -3,7 +3,6 @@
 </span>
 
 <script>
-import './index.css';
 import {onMount, onDestroy} from 'svelte';
 const MARGIN = 15;
 const DEBOUNCE_RESIZE = 10;

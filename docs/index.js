@@ -1,8 +1,2 @@
-import App from './app/index.svelte';
+import App from './app';
 export default new App({ target: document.querySelector('#app') });
-
-if (module.hot) {
-	module.hot.accept(function () {
-		location.reload();
-	});
-}

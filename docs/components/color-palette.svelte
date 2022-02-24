@@ -1,13 +1,3 @@
-<style>
-	.group {
-		background: #222;
-		padding: 10px;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-		grid-gap: 10px;
-	}
-	.group-light { background: #eee; }
-</style>
 <h2>Color Palette</h2>
 
 <h3>Special colors</h3>

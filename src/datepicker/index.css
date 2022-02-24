@@ -83,13 +83,13 @@
 .datepicker-header .datepicker-controls,
 .datepicker-footer .datepicker-controls { padding: 0.2em; }
 
-.datepicker-footer .datepicker-controls .button { width: 100%; }
-
 .datepicker-controls .view-switch { flex: auto; }
 
 .datepicker-controls .button { padding: 0; width: 1.6rem; text-align: center; }
 .datepicker-controls .button svg { margin: 0; }
 .datepicker-controls .button.disabled { visibility: hidden; }
+
+.datepicker-footer .datepicker-controls .button { width: 100%; }
 
 .datepicker-view .dow { height: 1.5rem; line-height: 1.5rem; font-size: 0.875rem; }
 .datepicker-view .week { width: 2.25rem; font-size: 0.75rem; }

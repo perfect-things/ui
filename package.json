@@ -1,20 +1,35 @@
 {
-	"name": "mini-ui",
+	"name": "perfect-blocks",
 	"version": "1.1.0",
+	"type": "module",
 	"main": "src/index.js",
 	"scripts": {
-		"lint": "eslint {src,docs}/**/*.{js,svelte}",
-		"start": "parcel docs/index.html --open --no-cache",
-		"build": "parcel build docs/index.html"
+		"dist": "gulp prod",
+		"lint": "gulp lint",
+		"start": "gulp"
 	},
 	"devDependencies": {
-		"@parcel/resolver-glob": "^2.0.1",
-		"@parcel/transformer-inline-string": "^2.0.1",
+		"@ffaubert/gulp-stylelint": "^14.0.0",
+		"@rollup/plugin-commonjs": "^21.0.2",
+		"@rollup/plugin-node-resolve": "^13.1.3",
+		"del": "^6.0.0",
 		"eslint": "^8.5.0",
 		"eslint-plugin-svelte3": "^3.2.1",
-		"parcel": "^2.0.1",
-		"parcel-transformer-svelte": "^1.2.3",
+		"gulp": "^4.0.2",
+		"gulp-clean-css": "^4.3.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-eslint-new": "^1.4.0",
+		"gulp-livereload": "^4.0.2",
+		"gulp-sourcemaps": "^3.0.0",
+		"rollup": "^2.68.0",
+		"rollup-plugin-inline-svg": "^2.0.0",
+		"rollup-plugin-svelte": "^7.1.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"stylelint": "^14.5.3",
+		"stylelint-config-standard": "^25.0.0",
 		"svelte": "^3.44.3",
-		"vanillajs-datepicker": "^1.2.0"
+		"through2": "^4.0.2",
+		"vanillajs-datepicker": "^1.2.0",
+		"vinyl-source-stream": "^2.0.0"
 	}
 }

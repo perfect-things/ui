@@ -2,8 +2,6 @@
 	<textarea class="textarea-input" {disabled} {placeholder} bind:value="{value}"></textarea>
 </div>
 <script>
-import './index.css';
-
 export let disabled = undefined;
 export let placeholder = undefined;
 export let value = '';

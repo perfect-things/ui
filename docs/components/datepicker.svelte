@@ -3,7 +3,6 @@
 <Datepicker placeholder="Select date" />
 
 <script>
-import '../../src/input';
 import { Datepicker } from '../../src';
 
 </script>

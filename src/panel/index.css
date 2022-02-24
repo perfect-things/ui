@@ -35,4 +35,4 @@
 
 .chevron svg { width: 1.2em; height: 1.2em; }
 .panel.collapsed .chevron { transform: rotate(-90deg); }
-.panel-content { padding: 0.5em 1em 0.5em; }
+.panel-content { padding: 0.5em 1em; }

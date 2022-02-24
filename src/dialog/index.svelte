@@ -17,7 +17,6 @@
 <svelte:options accessors={true}/>
 
 <script>
-import './index.css';
 import { ANIMATION_SPEED } from '../util';
 export let title = '';
 export let opened = false;

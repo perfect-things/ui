@@ -1,23 +1,3 @@
-<style>
-nav {
-	width: 100%;
-	display: flex;
-	flex-flow: column;
-	margin-top: 20px;
-}
-
-nav a {
-	color: var(--ui-color-text);
-	text-decoration: none;
-	display: block;
-	margin: 0 -10px;
-	padding: 0.7em 1.2em;
-	border-radius: 20px;
-}
-nav a:hover { background-color: var(--ui-color-background); }
-nav a.active { background-color: var(--ui-color-highlight); }
-</style>
-
 <nav>
 	{#each Object.entries(components) as [name, item]}
 		<a
@@ -28,7 +8,6 @@ nav a.active { background-color: var(--ui-color-highlight); }
 </nav>
 <svelte:window on:hashchange="{() => active = location.hash.substr(1) }" />
 <script>
-import ColorPalette from '../components/color-palette';
 import Autocomplete from '../components/autocomplete';
 import Button from '../components/button';
 import ContextMenu from '../components/context-menu';
@@ -44,13 +23,14 @@ import Textarea from '../components/textarea';
 import TextFit from '../components/text-fit';
 import Toaster from '../components/toaster';
 import Toggle from '../components/toggle';
+import ColorPalette from '../components/color-palette';
 
 const components = {
 	Autocomplete,
 	Button,
 	ContextMenu,
-	Dialog,
 	Datepicker,
+	Dialog,
 	Drawer,
 	Icon,
 	Input,

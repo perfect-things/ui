@@ -42,7 +42,7 @@
 	align-items: center;
 	justify-content: center;
 }
-.toast button:hover  { color: var(--ui-color-text-light-2); background: #3338; }
+.toast button:hover { color: var(--ui-color-text-light-2); background: #3338; }
 .toast button:active { color: var(--ui-color-text-dark-2); background: #0008; }
 
 .toast .toast-close {
@@ -54,10 +54,10 @@
 }
 
 .toast,
-.toast-info    { background-color: var(--ui-color-info); }
+.toast-info { background-color: var(--ui-color-info); }
 .toast-success { background-color: var(--ui-color-success); }
 .toast-warning { background-color: var(--ui-color-warning); }
-.toast-error   { background-color: var(--ui-color-danger); }
+.toast-error { background-color: var(--ui-color-danger); }
 .toast-msg {
 	color: #eee;
 	flex: 1;

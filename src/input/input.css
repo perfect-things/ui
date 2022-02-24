@@ -15,6 +15,11 @@ input:not([type=radio], [type=checkbox]):focus {
 	box-shadow: var(--ui-shadow-focus);
 }
 
+input:focus { outline: 0; }
+
+.label.disabled,
+input:disabled { opacity: 0.5; }
+
 input:not([type=radio], [type=checkbox]):invalid {
 	border-color: var(--ui-color-danger);
 	box-shadow: var(--ui-shadow-invalid);
@@ -28,16 +33,10 @@ input:is([type=checkbox], [type=radio]) {
 	margin-right: 1em;
 }
 
+
 input:is([type=checkbox], [type=radio]):focus {
 	box-shadow: 0 0 0 1px var(--ui-color-accent), var(--ui-shadow-focus);
 }
-
-
-input:focus { outline: 0; }
-
-.label.disabled,
-input:disabled { opacity: 0.5; }
-
 
 input[type=color] {
 	-moz-appearance: none;

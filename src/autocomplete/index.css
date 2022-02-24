@@ -1,6 +1,5 @@
 .autocomplete {
 	display: inline-flex;
-	flex-wrap: wrap;
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-between;

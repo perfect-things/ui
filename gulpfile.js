@@ -1,0 +1,119 @@
+import gulp from 'gulp';
+import del from 'del';
+import livereload from 'gulp-livereload';
+import commonjs from '@rollup/plugin-commonjs';
+import source from 'vinyl-source-stream';
+import svelte from 'rollup-plugin-svelte';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { terser } from 'rollup-plugin-terser';
+import { default as throught2 } from 'through2';
+import inlineSvg from 'rollup-plugin-inline-svg';
+import sourcemap from 'gulp-sourcemaps';
+import concat from 'gulp-concat';
+import gulpEslint from 'gulp-eslint-new';
+import stream from 'stream';
+import * as rollup from 'rollup';
+import gulpStylelint from '@ffaubert/gulp-stylelint';
+import cleanCSS from 'gulp-clean-css';
+
+const { series, parallel, src, dest, watch } = gulp;
+const noop = throught2.obj;
+const DIST_PATH = 'dist/';
+let isProd = false;
+
+const setProd = (done) => { isProd = true; done(); };
+
+
+export function cleanup () {
+	return del([DIST_PATH + '/*']);
+}
+
+export function html () {
+	return src('docs/index.html').pipe(dest(DIST_PATH));
+}
+
+export function eslint () {
+	return src(['{src,docs}/**/*.{js,svelte}', '*.js'])
+		.pipe(gulpEslint())
+		.pipe(gulpEslint.format())
+		.pipe(gulpEslint.results(results => {
+			if (results.errorCount) console.log('\x07');    // beep
+		}));
+}
+
+
+function rollupBuild (inputOptions = {}, outputOptions = {}) {
+	const readable = new stream.Readable();
+	readable._read = function () { };
+	rollup
+		.rollup(inputOptions)
+		.then(bundle => bundle.generate(outputOptions))
+		.then(out => {
+			if (!out.code) out = out.output[0];
+			readable.push(out.code);
+			if (outputOptions.output.sourcemap) {
+				readable.push('\n//# sourceMappingURL=');
+				readable.push(out.map.toUrl());
+			}
+			readable.push(null);
+		})
+		.catch(error => setTimeout(() => readable.emit('error', error)));
+	return readable;
+}
+
+
+export function js () {
+	const inputOptions = {
+		input: './docs/index.js',
+		plugins: [
+			commonjs(),
+			nodeResolve({
+				extensions: ['.mjs', '.js', '.svelte', '.json'],
+				dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
+			}),
+			inlineSvg(),
+			svelte({ compilerOptions: {dev: !isProd, css: false }}),
+			isProd && terser()
+		]
+	};
+	const outputOptions = {output: { name: 'index.js', format: 'esm', sourcemap: !isProd }};
+	return rollupBuild(inputOptions, outputOptions)
+		.pipe(source('index.js'))	// will become the output file
+		.pipe(dest(DIST_PATH))
+		.pipe(livereload());
+}
+
+
+export function stylelint () {
+	return src(['{src,docs}/**/*.css'])
+		.pipe(gulpStylelint({ reporters: [{ formatter: 'string', console: true}] }))
+		.on('error', function () {
+			console.log('\x07');    // beep
+			this.emit('end');
+		});
+}
+
+export function css () {
+	return src(['{src,docs}/**/*.css'])
+		.pipe(isProd ? noop() : sourcemap.init())
+		.pipe(concat('index.css'))
+		.pipe(isProd ? noop() : sourcemap.write())
+		.pipe(isProd ? cleanCSS() : noop())
+		.pipe(dest(DIST_PATH))
+		.pipe(livereload());
+}
+
+function watchTask (done) {
+	if (isProd) return done();
+	livereload.listen();
+	watch('{src,docs}/**/*.css', parallel(stylelint, css));
+	watch('{src,docs}/**/*.{js,svelte}', parallel(eslint, js));
+
+}
+
+const _build = parallel(eslint, js, stylelint, css, html);
+
+export default series(_build, watchTask);
+export const lint = parallel(eslint, stylelint);
+export const build = series(cleanup, _build);
+export const prod = series(setProd, _build);

@@ -38,7 +38,6 @@
 	on:resize="{recalculateListHeight}"/>
 
 <script>
-import './index.css';
 import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy } from './util';
 import Icon from '../icon';

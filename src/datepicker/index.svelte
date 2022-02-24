@@ -9,7 +9,6 @@
 </div>
 
 <script>
-import './index.css';
 import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import Icon, { icons } from '../icon';

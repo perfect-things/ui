@@ -16,7 +16,7 @@
 
 .drawer:focus { outline: none; }
 
-.drawer	.btn-close { max-width: 1.4em; }
+.drawer .btn-close { max-width: 1.4em; }
 
 .drawer-header {
 	position: sticky;

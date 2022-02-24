@@ -7,8 +7,6 @@
 </main>
 
 <script>
-import './index.css';
-import '../../src/root.css';
 import Nav from './nav';
 
 

@@ -21,7 +21,6 @@
 </div>
 
 <script>
-import './index.css';
 export let value = undefined;
 export let name = undefined;
 export let items = [];

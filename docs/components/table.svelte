@@ -1,6 +1,3 @@
-<style>
-	.viewport { width: 50%; height: 500px; border: 1px dashed red; }
-</style>
 <h2>Table</h2>
 
 <div class="viewport">

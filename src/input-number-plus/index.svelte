@@ -8,7 +8,6 @@
 	on:blur="{onblur}">
 
 <script>
-import './index.css';
 import { createEventDispatcher } from 'svelte';
 
 export let value = '';

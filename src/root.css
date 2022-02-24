@@ -71,10 +71,10 @@
 	--ui-shadow-small: 0 0 0 0.5px #ffffff44, 0 3px 10px #00000066;
 	--ui-shadow-large: 0 5px 20px #000000aa;
 	--ui-shadow-fancy:
-			0 0 0 0.5px #111111,
-			0 1px 5px rgb(0 0 0 / 30%),
-			0 4px 10px rgb(0 0 0 / 10%),
-			0 10px 25px rgb(0 0 0 / 8%);
+		0 0 0 0.5px #111111,
+		0 1px 5px rgb(0 0 0 / 30%),
+		0 4px 10px rgb(0 0 0 / 10%),
+		0 10px 25px rgb(0 0 0 / 8%);
 
 
 	--ui-button-size: 1.05em;
@@ -84,7 +84,8 @@
 }
 
 
-body, body * { box-sizing: border-box; }
+body,
+body * { box-sizing: border-box; }
 
 
 /*

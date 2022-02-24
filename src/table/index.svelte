@@ -3,5 +3,4 @@
 </div>
 
 <script>
-import './index.css';
 </script>
