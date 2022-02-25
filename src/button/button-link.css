@@ -17,6 +17,7 @@
 	text-decoration-thickness: 0.2em;
 	text-underline-offset: 0.2em;
 	text-decoration-color: var(--ui-color-info);
+	text-decoration-skip: none;
 }
 .button-link.success:focus,
 .button-link.success:hover { text-decoration-color: var(--ui-color-success); }
