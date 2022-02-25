@@ -55,14 +55,14 @@ function getFocusableElements () {
 }
 
 function onBackdropClick (e) {
-	if (!e.target.closest('.dialog')) {
+	if (!dialogEl.contains(e.target)) {
 		e.stopPropagation();
 		close();
 	}
 }
 
 function onDocKeydown (e) {
-	const hasFocus = document.activeElement.closest('.dialog-backdrop') === backdropEl;
+	const hasFocus = backdropEl.contains(document.activeElement);
 	if (e.key === 'Escape' && opened && hasFocus) {
 		e.stopPropagation();
 		close();

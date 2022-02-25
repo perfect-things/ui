@@ -48,7 +48,7 @@ function onContextMenu (e) {
 
 function onDocumentClick (e) {
 	if (e.button !== 0) return;
-	if (!e.target.closest('.context-menu')) close();
+	if (!menuEl.contains(e.target)) close();
 }
 
 function onscroll () {

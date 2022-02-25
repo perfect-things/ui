@@ -35,7 +35,7 @@ function docclick () {
 }
 
 function onDocClick (e) {
-	if (e.target.closest('.dialog-backdrop,.drawer')) return;
+	if (el.contains(e.target)) return;
 	if (!isVisible) return;
 	e.preventDefault();
 	e.stopPropagation();

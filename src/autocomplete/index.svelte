@@ -32,10 +32,9 @@
 		{/if}
 	</div>
 </div>
-<svelte:window on:click={onDocumentClick} on:resize="{recalculateListHeight}"/>
 
 <script>
-import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+import { createEventDispatcher } from 'svelte';
 import { deepCopy, emphasize, fuzzy } from './util';
 import Icon from '../icon';
 export let data = [];
@@ -53,15 +52,6 @@ let highlightIndex = 0;
 let input, list, filteredData = [], groupedData = [];
 const dispatch = createEventDispatcher();
 
-
-
-onMount(() => document.addEventListener('scroll', recalculateListHeight, true));
-onDestroy(() => document.removeEventListener('scroll', recalculateListHeight, true));
-
-function onDocumentClick (e) {
-	const target = e.target.closest('.autocomplete');
-	if (!target || target != el) close();
-}
 
 
 function selectItem () {
@@ -220,6 +210,7 @@ function open () {
 	opened = true;
 	hasEdited = false;
 	if (input.value !== text) input.value = text;
+	addEventListeners();
 	filter();
 	requestAnimationFrame(() => input.select());
 }
@@ -227,14 +218,14 @@ function open () {
 
 function close () {
 	if (!opened) return;
+	removeEventListeners();
 	opened = false;
 }
 
 
 function recalculateListHeight (e) {
 	if (!opened) return;
-	const t = e && e.target;
-	if (t && (t == document || t.closest('.autocomplete-list'))) return;
+	if (e && e.type === 'scroll') return;
 
 	list.style.top = (input.offsetHeight + 2) + 'px';
 	list.style.height = 'auto';
@@ -247,5 +238,23 @@ function recalculateListHeight (e) {
 		list.style.height = maxH + 'px';
 	}
 }
+
+
+function onDocumentClick (e) {
+	if (!el.contains(e.target)) close();
+}
+
+function addEventListeners () {
+	document.addEventListener('click', onDocumentClick);
+	window.addEventListener('resize', recalculateListHeight);
+	document.addEventListener('scroll', recalculateListHeight, true);
+}
+
+function removeEventListeners () {
+	document.removeEventListener('click', onDocumentClick);
+	window.removeEventListener('resize', recalculateListHeight);
+	document.removeEventListener('scroll', recalculateListHeight, true);
+}
+
 
 </script>
