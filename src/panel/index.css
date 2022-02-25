@@ -1,14 +1,14 @@
-.panel {
+.panel-wrap {
 	margin: 0 0 -1px;
 	overflow: hidden;
 	border: 1px solid var(--ui-color-border);
+	will-change: height;
 }
 
 .panel-header {
 	text-align: left;
 	background: var(--ui-color-info);
-	border-top: var(--ui-color-border);
-	border-bottom: var(--ui-color-border);
+	border: none;
 	color: var(--ui-color-text);
 	filter: saturate(.5);
 	display: flex;
@@ -22,17 +22,11 @@
 	-webkit-user-select: none;
 	user-select: none;
 }
-
 .panel-header::-webkit-details-marker { display: none; }
-
 .panel-header:focus { outline: none; color: var(--ui-color-accent); }
 
-.chevron {
-	height: 1.2em;
-	transform: rotate(0deg);
-	transition: transform var(--ui-animation-speed) ease-out;
-}
+.panel-content { border-top: 1px solid var(--ui-color-border); padding: 0.5em 1em; }
 
+.chevron { height: 1.2em; transform: rotate(0deg); transition: transform var(--ui-animation-speed) ease-out; }
 .chevron svg { width: 1.2em; height: 1.2em; }
-.panel.collapsed .chevron { transform: rotate(-90deg); }
-.panel-content { padding: 0.5em 1em; }
+.expanded .chevron { transform: rotate(90deg); }

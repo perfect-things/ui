@@ -2,16 +2,18 @@
 
 <div class="accordion">
 
-	<Panel title="Hello" collapsed>
+	<Panel title="Hello">
 		<p>This is panel contents</p>
 		<p>Hello world!</p>
 		<p>This is panel contents</p>
+		<a href="#some">a link</a>
 	</Panel>
 
-	<Panel title="Panel 2">
+	<Panel title="Panel 2" open>
 		<p>This is panel contents</p>
 		<p>Hello world!</p>
 		<p>This is panel contents</p>
+		<button>Asdasd</button>
 	</Panel>
 
 </div>
