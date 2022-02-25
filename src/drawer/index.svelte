@@ -8,9 +8,7 @@
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<header class="drawer-header" bind:this="{headerEl}" >
 			<h1>{title}</h1>
-			<Button icon cssClass="btn-close" title="Close" on:click="{close}">
-				<Icon name="close"/>
-			</Button>
+			<Button round text icon="close" cssClass="btn-close" title="Close" on:click="{close}"/>
 		</header>
 		<div class="drawer-content"><slot></slot></div>
 		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
@@ -20,7 +18,6 @@
 
 <script>
 import { fly } from 'svelte/transition';
-import Icon from '../icon';
 import Button from '../button';
 
 export let title = 'Drawer';

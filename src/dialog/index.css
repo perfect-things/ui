@@ -62,8 +62,8 @@
 	justify-content: center;
 	flex-flow: row-reverse;
 	padding: 0.7em 1em;
+	gap: 0.3em;
 }
-.dialog-footer .button { margin: 0 0.3em; }
 
 .draw-borders .dialog-header { border-bottom: var(--ui-popup-border); padding: 0.4em 0.5em; }
 .draw-borders .dialog-footer { border-top: var(--ui-popup-border); }

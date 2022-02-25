@@ -16,8 +16,6 @@
 
 .drawer:focus { outline: none; }
 
-.drawer .btn-close { max-width: 1.4em; }
-
 .drawer-header {
 	position: sticky;
 	position: -webkit-sticky;
@@ -31,6 +29,4 @@
 	justify-content: space-between;
 }
 
-.drawer-content {
-	padding: 0 1.4em;
-}
+.drawer-content { padding: 0 1.4em; }
