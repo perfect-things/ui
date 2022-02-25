@@ -1,0 +1,10 @@
+.docs-autocomplete-row {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.docs-autocomplete-value {
+	padding: 0.2em;
+}

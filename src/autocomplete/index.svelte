@@ -11,19 +11,17 @@
 		on:keypress="{onkeypress}"
 	>
 	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{list}">
-		{#if filteredData.length}
-			{#each filteredData as item, i}
-				{#if typeof item === 'string' && hasItemsAfter(filteredData, i)}
-					<div class="autocomplete-list-header">{item}</div>
-				{:else if typeof item !== 'string'}
+		{#if groupedData.length}
+			{#each groupedData as group}
+				<div class="autocomplete-list-header">{group.name}</div>
+				{#each group.items as item}
 					<div
 						class="autocomplete-list-item"
-						class:selected="{i === highlightIndex}"
+						class:selected="{item.idx === highlightIndex}"
 						on:click="{() => onclick(item)}">
-
 						{@html item.highlightedName || item.name}
 					</div>
-				{/if}
+				{/each}
 			{/each}
 
 		{:else if allowNew === true || allowNew === 'true' }
@@ -34,8 +32,7 @@
 		{/if}
 	</div>
 </div>
-<svelte:window on:click={onDocumentClick}
-	on:resize="{recalculateListHeight}"/>
+<svelte:window on:click={onDocumentClick} on:resize="{recalculateListHeight}"/>
 
 <script>
 import { createEventDispatcher, onDestroy, onMount } from 'svelte';
@@ -53,29 +50,17 @@ let el;
 let opened = false;
 let hasEdited = false;
 let highlightIndex = 0;
-let input, list, filteredData = [];
+let input, list, filteredData = [], groupedData = [];
 const dispatch = createEventDispatcher();
 
-onMount(() => {
-	document.addEventListener('scroll', recalculateListHeight, true);
-});
 
-onDestroy(() => {
-	document.removeEventListener('scroll', recalculateListHeight, true);
-});
+
+onMount(() => document.addEventListener('scroll', recalculateListHeight, true));
+onDestroy(() => document.removeEventListener('scroll', recalculateListHeight, true));
 
 function onDocumentClick (e) {
 	const target = e.target.closest('.autocomplete');
 	if (!target || target != el) close();
-}
-
-
-function hasItemsAfter (items, i) {
-	for (let idx = i, item; item = items[++idx] ;) {
-		if (typeof item !== 'string') return true;
-		if (typeof item === 'string') return false;
-	}
-	return false;
 }
 
 
@@ -93,9 +78,9 @@ function selectItem () {
 function up () {
 	open();
 	let idx = highlightIndex - 1;
-	while (idx > 0 && typeof filteredData[idx] !== 'object') idx -= 1;
-	if (idx !== highlightIndex && typeof filteredData[idx] === 'object') {
-		highlightIndex = idx;
+	while (idx > 0 && !filteredData[idx]) idx -= 1;
+	if (idx !== highlightIndex && filteredData[idx]) {
+		highlightIndex = filteredData[idx].idx;
 		highlight();
 	}
 }
@@ -104,9 +89,9 @@ function up () {
 function down () {
 	open();
 	let idx = highlightIndex + 1;
-	while (idx < filteredData.length - 1 && typeof filteredData[idx] !== 'object') idx += 1;
-	if (idx !== highlightIndex && typeof filteredData[idx] === 'object') {
-		highlightIndex = idx;
+	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
+	if (idx !== highlightIndex && filteredData[idx]) {
+		highlightIndex = filteredData[idx].idx;
 		highlight();
 	}
 }
@@ -149,19 +134,31 @@ function filter () {
 		filtered = filtered
 			.filter(item => typeof item === 'string' || fuzzy(item.name, q))
 			.map(item => {
-				if (typeof item === 'string') return item;
 				item.highlightedName = emphasize(item.name, q);
-				item.score = 1;
-				if (item.name.toLowerCase().includes(q)) item.score = 2;
-				if (item.name.includes(text)) item.score = 3;
-				if (item.name.toLowerCase() === q) item.score = 4;
-				if (item.name === text) item.score = 5;
+				// item.score = 1;
+				// if (item.name.toLowerCase().includes(q)) item.score = 2;
+				// if (item.name.includes(text)) item.score = 3;
+				// if (item.name.toLowerCase() === q) item.score = 4;
+				// if (item.name === text) item.score = 5;
 				return item;
-			})
-			.sort((a, b) => b.score - a.score);
+			});
+		// .sort((a, b) => b.score - a.score);
 	}
+
+	filtered.forEach((item, idx) => item.idx = idx);
 	filteredData = filtered;
-	highlightIndex = -1;
+
+	let nogroup = [];
+	const _groups = {};
+	filtered.forEach(item => {
+		if (!item.group) return nogroup.push(item);
+		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
+		_groups[item.group].items.push(item);
+	});
+	const groups = Object.values(_groups).filter(g => !!g.items.length);
+	groupedData = [...nogroup, ...groups];
+
+	highlightIndex = (value && value.id ? value.idx : 0) - 1;
 	hasEdited = true;
 	requestAnimationFrame(recalculateListHeight);
 	down();
@@ -236,7 +233,8 @@ function close () {
 
 function recalculateListHeight (e) {
 	if (!opened) return;
-	if (e?.target?.closest('.autocomplete-list')) return;
+	const t = e && e.target;
+	if (t && (t == document || t.closest('.autocomplete-list'))) return;
 
 	list.style.top = (input.offsetHeight + 2) + 'px';
 	list.style.height = 'auto';
