@@ -11,6 +11,7 @@ import bank from './icons/bank.svg';
 import bell from './icons/bell.svg';
 import book from './icons/book.svg';
 import bookmark from './icons/bookmark.svg';
+import calculator from './icons/calculator.svg';
 import calendar from './icons/calendar.svg';
 import cash from './icons/cash.svg';
 import check from './icons/check.svg';
@@ -29,6 +30,7 @@ import info from './icons/info.svg';
 import link from './icons/link.svg';
 import list from './icons/list.svg';
 import logout from './icons/logout.svg';
+import math from './icons/math.svg';
 import meatballs from './icons/meatballs.svg';
 import minuscircle from './icons/minus-circle.svg';
 import pluscircle from './icons/plus-circle.svg';
@@ -56,6 +58,7 @@ export const icons = {
 	bell,
 	book,
 	bookmark,
+	calculator,
 	calendar,
 	cash,
 	check,
@@ -74,6 +77,7 @@ export const icons = {
 	link,
 	list,
 	logout,
+	math,
 	meatballs,
 	minuscircle,
 	plus,

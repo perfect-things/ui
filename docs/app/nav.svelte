@@ -16,6 +16,7 @@ import Dialog from '../components/dialog';
 import Drawer from '../components/drawer';
 import Icon from '../components/icon';
 import Input from '../components/input';
+import InputMath from '../components/input-math';
 import Panel from '../components/panel';
 import Select from '../components/select';
 import Table from '../components/table';
@@ -34,6 +35,7 @@ const components = {
 	Drawer,
 	Icon,
 	Input,
+	InputMath,
 	Panel,
 	Select,
 	Table,

@@ -5,7 +5,7 @@ import Datepicker from './datepicker';
 import Drawer from './drawer';
 import Icon, { icons } from './icon';
 import InputNumber from './input-number';
-import InputNumberPlus from './input-number-plus';
+import InputMath from './input-math';
 import Panel from './panel';
 import Select from './select';
 import Table from './table';
@@ -25,7 +25,7 @@ export {
 	Icon,
 	icons,
 	InputNumber,
-	InputNumberPlus,
+	InputMath,
 	Panel,
 	Select,
 	Table,

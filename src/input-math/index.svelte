@@ -1,47 +1,28 @@
-<input
-	class="input-number-plus"
-	type="text"
-	placeholder="{placeholder}"
-	bind:value="{value}"
-	on:keydown="{onkeydown}"
-	on:change="{onchange}"
-	on:blur="{onblur}">
-
+<div class="input-math-wrapper">
+	<Icon name="calculator"/>
+	<input
+		class="input-math"
+		type="text"
+		{title}
+		placeholder="{placeholder}"
+		bind:value="{value}"
+		on:keydown="{onkeydown}"
+		on:change="{onchange}"
+		on:blur="{onblur}">
+</div>
 <script>
 import { createEventDispatcher } from 'svelte';
+import Icon from '../icon';
 
 export let value = '';
+export let title = undefined;
 export let placeholder = '';
 
 const dispatch = createEventDispatcher();
 const DECIMAL_SEPARATOR = '.';
-const allowedKeys = [
-	'0',
-	'1',
-	'2',
-	'3',
-	'4',
-	'5',
-	'6',
-	'7',
-	'8',
-	'9',
-	'+',
-	'-',
-	'/',
-	'*',
-	'ArrowLeft',
-	'ArrowDown',
-	'ArrowUp',
-	'ArrowRight',
-	'Backspace',
-	'Delete',
-	'Tab',
-	'Meta',
-	'Ctrl',
-	'Enter',
+const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '/', '*', 'Meta',
+	'ArrowLeft', 'ArrowDown', 'ArrowUp', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Ctrl'
 ];
-
 
 function onkeydown (e) {
 	dispatch('keydown', e);
@@ -66,8 +47,7 @@ function onblur (e) {
 	dispatch('blur', e);
 }
 
-// https://rollupjs.org/guide/en/#eval2--eval
-const save_eval = eval;
+const save_eval = eval;	// https://rollupjs.org/guide/en/#eval2--eval
 function parseAmount (amount) {
 	amount = ('' + amount).replace(/[\s,]/g, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
@@ -76,7 +56,6 @@ function parseAmount (amount) {
 		catch (e) { amount = 0; }
 	}
 	let num = parseFloat(amount);
-	if (num === Infinity || isNaN(num)) return 0;
-	return num;
+	return (num === Infinity || isNaN(num)) ? 0 : num;
 }
 </script>

@@ -1,0 +1,23 @@
+.input-math-wrapper {
+	width: 25ex;
+	position: relative;
+	display: inline-flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.input-math-wrapper > .icon {
+	position: absolute;
+	left: 5px;
+	width: 22px;
+	height: 22px;
+	pointer-events: none;
+	color: var(--ui-color-text-dark-1);
+}
+
+.input-math-wrapper .input-math {
+	width: 100%;
+	padding-left: 28px;
+	text-align: right;
+}

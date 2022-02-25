@@ -12,10 +12,6 @@
 <h3>Better Number</h3>
 <InputNumber />
 
-<h3>Maths (allow +-*/)</h3>
-<InputNumberPlus />
-
-
 <h3>Search</h3>
 <input type="search" />
 
@@ -30,7 +26,7 @@
 
 
 <script>
-import { InputNumber, InputNumberPlus } from '../../src';
+import { InputNumber } from '../../src';
 
 function oninput (e) {
 	console.log(e);
