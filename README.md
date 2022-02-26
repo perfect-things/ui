@@ -1,11 +1,36 @@
-Mini UI
-=============
+simple-ui-components-in-svelte (or "ui" for short)
+==================================================
 
-A set of perfect UI components, in svelte.
+A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).
+
+## Install & Setup
+
+### Firstly, install the module as a dev dependency:
+```sh
+npm i -D simple-ui-components-in-svelte
+```
+
+### Importing the CSS
+You need to import the `dist/index.css` into your bundle.
+There are many ways to do that. I specifically didn't use any css-to-js imports as these restrict the tools & the setup you may want to have.
+
+The easiest way is probably to add a `postinstall` script into your `package.json` that will just copy the file into your `dist` folder:
+```sh
+...
+"postinstall": "cp node_modules/simple-ui-components-in-svelte/dist/index.css ./dist/ui.css"
+...
+```
+From there - you can just add it directly to the `index.html`.
+
+### Svelte components
+Just `import` them from the module, as normal:
+```js
+import { Button } from 'simple-ui-components-in-svelte';
+```
 
 
 ## TODO
-- [ ] make it into an npm module
+- [ ] rename the repo & make it into an npm module
 - [ ] add code samples
 - [ ] archive & redirect
   - [ ] https://github.com/tborychowski/svelte-autocomplete
