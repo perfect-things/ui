@@ -231,15 +231,17 @@ function recalculateListHeight (e) {
 	if (!opened) return;
 	if (e && e.type === 'scroll') return;
 
-	list.style.top = (input.offsetHeight + 2) + 'px';
-	list.style.height = 'auto';
-	const listBox = list.getBoundingClientRect();
-	const listT = listBox.top;
-	const listH = listBox.height;
-	const winH = window.innerHeight;
-	if (listT + listH + 10 > winH) {
-		const maxH = winH - listT - 10;
-		list.style.height = maxH + 'px';
+	if (list && list.style) {
+		list.style.top = (input.offsetHeight + 2) + 'px';
+		list.style.height = 'auto';
+		const listBox = list.getBoundingClientRect();
+		const listT = listBox.top;
+		const listH = listBox.height;
+		const winH = window.innerHeight;
+		if (listT + listH + 10 > winH) {
+			const maxH = winH - listT - 10;
+			list.style.height = maxH + 'px';
+		}
 	}
 }
 

@@ -1,3 +1,5 @@
+input::placeholder { color: var(--ui-color-text-semi); }
+
 input:not([type=radio], [type=checkbox]) {
 	font: inherit;
 	height: 2.2em;
