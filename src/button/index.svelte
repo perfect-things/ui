@@ -1,4 +1,7 @@
-<button {disabled} {title}
+<button
+	{disabled}
+	{form}
+	{title}
 	type="{submit ? 'submit' : 'button'}"
 	class="button {cssClass}"
 
@@ -34,6 +37,7 @@ export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button
 
 export let title = undefined;
+export let form = undefined;
 export let cssClass = '';
 
 const dispatch = createEventDispatcher();
