@@ -1,13 +1,13 @@
 {
 	"name": "simple-ui-components-in-svelte",
 	"description": "Simple UI components written in Svelte",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"type": "module",
 	"main": "src/index.js",
 	"scripts": {
 		"dist": "gulp prod",
-        "serve": "http-server ./dist --silent --port 3123 -oa localhost",
-        "watch": "gulp",
+		"serve": "http-server ./dist --silent --port 3123 -oa localhost",
+		"watch": "gulp",
 		"lint": "gulp lint",
 		"start": "run-p serve watch"
 	},
