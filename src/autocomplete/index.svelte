@@ -13,15 +13,19 @@
 	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{list}">
 		{#if groupedData.length}
 			{#each groupedData as group}
-				<div class="autocomplete-list-header">{group.name}</div>
-				{#each group.items as item}
-					<div
-						class="autocomplete-list-item"
-						class:selected="{item.idx === highlightIndex}"
-						on:click="{() => onclick(item)}">
-						{@html item.highlightedName || item.name}
-					</div>
-				{/each}
+				{#if group.name}
+					<div class="autocomplete-list-header">{group.name}</div>
+				{/if}
+				{#if group.items}
+					{#each group.items as item}
+						<div
+							class="autocomplete-list-item"
+							class:selected="{item.idx === highlightIndex}"
+							on:click="{() => onclick(item)}">
+							{@html item.highlightedName || item.name}
+						</div>
+					{/each}
+				{/if}
 			{/each}
 
 		{:else if allowNew === true || allowNew === 'true' }
@@ -146,7 +150,7 @@ function filter () {
 		_groups[item.group].items.push(item);
 	});
 	const groups = Object.values(_groups).filter(g => !!g.items.length);
-	groupedData = [...nogroup, ...groups];
+	groupedData = [{ items: nogroup }, ...groups];
 
 	highlightIndex = (value && value.id ? value.idx : 0) - 1;
 	hasEdited = true;
@@ -241,7 +245,7 @@ function recalculateListHeight (e) {
 
 
 function onDocumentClick (e) {
-	if (!el.contains(e.target)) close();
+	if (el && !el.contains(e.target)) close();
 }
 
 function addEventListeners () {
