@@ -49,6 +49,9 @@
 	line-height: 1;
 	font-weight: 600;
 	cursor: default;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
 }
 
 .autocomplete-list-header:last-child { display: none; }
@@ -58,6 +61,9 @@
 	color: var(--ui-color-text);
 	cursor: pointer;
 	line-height: 1;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
 }
 
 .autocomplete-list-item:hover,

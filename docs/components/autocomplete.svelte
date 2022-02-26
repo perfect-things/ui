@@ -30,12 +30,12 @@ const autocompleteData = [
 	{ id: 4, name: 'Delta', group: 'Group 1' },
 	{ id: 4, name: 'Epsilon', group: 'Group 1' },
 
-	{ id: 5, name: 'Zeta', group: 'Group 2' },
-	{ id: 6, name: 'Eta', group: 'Group 2' },
-	{ id: 7, name: 'Theta', group: 'Group 2' },
-	{ id: 8, name: 'Iota', group: 'Group 2' },
-	{ id: 9, name: 'Kappa', group: 'Group 2' },
-	{ id: 10, name: 'Lambda', group: 'Group 2' },
+	{ id: 5, name: 'Zeta', group: '😀 Group 2 has a very long name' },
+	{ id: 6, name: 'Eta', group: '😀 Group 2 has a very long name' },
+	{ id: 7, name: 'Theta', group: '😀 Group 2 has a very long name' },
+	{ id: 8, name: 'Iota', group: '😀 Group 2 has a very long name' },
+	{ id: 9, name: 'Kappa', group: '😀 Group 2 has a very long name' },
+	{ id: 10, name: 'Lambda is the last item in Group 2', group: '😀 Group 2 has a very long name' },
 
 	{ id: 11, name: 'Zeta', group: 'Group 3' },
 	{ id: 12, name: 'Eta', group: 'Group 3' },
