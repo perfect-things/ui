@@ -32,6 +32,7 @@
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: stretch;
+	overflow: hidden;
 }
 
 .opened .dialog { opacity: 1; transform: scale(1); }
