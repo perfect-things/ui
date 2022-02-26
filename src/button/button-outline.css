@@ -4,6 +4,7 @@
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
 	padding: 0 var(--ui-button-size);
+	text-decoration: none;
 }
 
 .button-outline:hover { text-decoration: none; }
