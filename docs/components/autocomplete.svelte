@@ -2,7 +2,7 @@
 
 <h3>Normal</h3>
 <div class="docs-autocomplete-row">
-	<Autocomplete data="{autocompleteData}" bind:text="{text}" bind:value="{autocompleteValue}" />
+	<Autocomplete data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
 	<div class="docs-autocomplete-value">Selected value: {autocompleteValue.name || ''}</div>
 </div>
@@ -13,7 +13,6 @@
 		data="{autocompleteData}"
 		placeholder="Type to filter"
 		allowNew="true"
-		bind:text="{text}"
 		bind:value="{autocompleteValue}" />
 
 	<div class="docs-autocomplete-value">Selected value: {autocompleteValue.name || ''}</div>
@@ -43,6 +42,6 @@ const autocompleteData = [
 	{ id: 16, name: 'Kappa', group: 'Group 3' },
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
-let autocompleteValue = autocompleteData[1], text = autocompleteData[1].name;
+let autocompleteValue = autocompleteData[1];
 
 </script>

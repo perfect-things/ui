@@ -1,19 +1,16 @@
 html,
 body {
 	box-sizing: border-box;
+	touch-action: none;
 	height: 100%;
 	width: 100%;
 	margin: 0;
-}
-body * { box-sizing: inherit; }
-
-body {
+	font: normal 100% sans-serif;
 	background-color: var(--ui-color-background);
 	color: var(--ui-color-text);
-	font: normal 100% sans-serif;
-	box-sizing: border-box;
-	touch-action: none;
 }
+
+body * { box-sizing: inherit; }
 
 #app {
 	width: 100%;

@@ -2,14 +2,14 @@
 	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input"
 		{required}
-		value="{text}"
+		value="{value.name}"
 		placeholder="{placeholder}"
 		bind:this="{input}"
 		on:input="{filter}"
 		on:focus="{open}"
 		on:keydown="{onkeydown}"
-		on:keypress="{onkeypress}"
-	>
+		on:keypress="{onkeypress}">
+
 	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{list}">
 		{#if groupedData.length}
 			{#each groupedData as group}
@@ -58,64 +58,6 @@ const dispatch = createEventDispatcher();
 
 
 
-function selectItem () {
-	if (filteredData[highlightIndex]) {
-		value = filteredData[highlightIndex];
-		text = value.name;
-	}
-	// should create a new item
-	else value = { id: null, name: text };
-	close();
-}
-
-function up () {
-	open();
-	let idx = highlightIndex - 1;
-	while (idx > 0 && !filteredData[idx]) idx -= 1;
-	if (idx !== highlightIndex && filteredData[idx]) {
-		highlightIndex = filteredData[idx].idx;
-		highlight();
-	}
-}
-
-
-function down () {
-	open();
-	let idx = highlightIndex + 1;
-	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
-	if (idx !== highlightIndex && filteredData[idx]) {
-		highlightIndex = filteredData[idx].idx;
-		highlight();
-	}
-}
-
-
-function highlight () {
-	const selectedEl = list.querySelector('.selected');
-	if (!selectedEl) return;
-	const listEl = selectedEl.parentNode;
-
-	// scrollIntoView doesn't work consistently, especially in safari
-	// el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-	// going up
-	if (listEl.scrollTop > selectedEl.offsetTop - selectedEl.offsetHeight) {
-		listEl.scrollTo({
-			top: selectedEl.offsetTop - selectedEl.offsetHeight,
-			behavior: 'smooth'
-		});
-	}
-
-	// going down
-	else if (listEl.scrollTop < selectedEl.offsetTop + selectedEl.offsetHeight * 2 - listEl.offsetHeight) {
-		listEl.scrollTo({
-			top: selectedEl.offsetTop + selectedEl.offsetHeight * 2 - listEl.offsetHeight,
-			behavior: 'smooth'
-		});
-	}
-
-}
-
 
 function filter () {
 	text = input.value || '';
@@ -158,6 +100,28 @@ function filter () {
 }
 
 
+
+function highlight () {
+	const selectedEl = list.querySelector('.selected');
+	if (!selectedEl) return;
+	const listEl = selectedEl.parentNode;
+
+	// going up
+	if (listEl.scrollTop > selectedEl.offsetTop) {
+		listEl.scrollTo({ top: selectedEl.offsetTop, behavior: 'smooth' });
+	}
+
+	// going down
+	else if (listEl.scrollTop < selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight) {
+		listEl.scrollTo({
+			top: selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight,
+			behavior: 'smooth'
+		});
+	}
+
+}
+
+
 function onclick (item) {
 	value = item;
 	text = item.name;
@@ -197,6 +161,41 @@ function onEsc (e) {
 		close();
 	}
 	else dispatch('keydown', e);
+}
+
+
+
+
+function selectItem () {
+	if (filteredData[highlightIndex]) {
+		value = filteredData[highlightIndex];
+		text = value.name;
+	}
+	// should create a new item
+	else value = { id: null, name: text };
+	close();
+}
+
+
+function up () {
+	if (!opened) return open();
+	let idx = highlightIndex - 1;
+	while (idx > 0 && !filteredData[idx]) idx -= 1;
+	if (idx !== highlightIndex && filteredData[idx]) {
+		highlightIndex = filteredData[idx].idx;
+		requestAnimationFrame(highlight);
+	}
+}
+
+
+function down () {
+	if (!opened) return open();
+	let idx = highlightIndex + 1;
+	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
+	if (idx !== highlightIndex && filteredData[idx]) {
+		highlightIndex = filteredData[idx].idx;
+		requestAnimationFrame(highlight);
+	}
 }
 
 
