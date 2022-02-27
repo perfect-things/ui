@@ -66,9 +66,11 @@
 	overflow-x: hidden;
 }
 
-.autocomplete-list-item:hover,
 .autocomplete-list-item.selected {
 	background-color: var(--ui-color-highlight);
+}
+.autocomplete-list-item:hover {
+	background-color: var(--ui-color-highlight-dark-2);
 }
 
 .autocomplete-list-item b {

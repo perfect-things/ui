@@ -5,6 +5,7 @@
 	min-height: calc(var(--ui-button-size) * 2);
 	padding: 0 var(--ui-button-size);
 	text-decoration: none;
+	box-shadow: none;
 }
 
 .button-text:focus,

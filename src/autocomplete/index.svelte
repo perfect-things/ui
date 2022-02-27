@@ -68,7 +68,6 @@ function selectItem () {
 	close();
 }
 
-
 function up () {
 	open();
 	let idx = highlightIndex - 1;
@@ -152,7 +151,7 @@ function filter () {
 	const groups = Object.values(_groups).filter(g => !!g.items.length);
 	groupedData = [{ items: nogroup }, ...groups];
 
-	highlightIndex = (value && value.id ? value.idx : 0) - 1;
+	highlightIndex = -1;
 	hasEdited = true;
 	requestAnimationFrame(recalculateListHeight);
 	down();
@@ -213,10 +212,17 @@ function open () {
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
-	if (input.value !== text) input.value = text;
 	addEventListeners();
 	filter();
-	requestAnimationFrame(() => input.select());
+	if (value !== null && value.id && filteredData && filteredData.length) {
+		highlightIndex = filteredData.findIndex(i => i.id === value.id);
+		if (text === '') text = filteredData[highlightIndex].name;
+	}
+	if (input.value !== text) input.value = text;
+	requestAnimationFrame(() => {
+		input.select();
+		highlight();
+	});
 }
 
 
