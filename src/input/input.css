@@ -53,10 +53,11 @@ input[type=color] {
 input[type=file] { position: absolute; right: -500px; }
 
 .label {
-	display: block;
 	height: 2.2em;
 	line-height: 1.6;
-	padding: 9px 5px 0;
+	padding: 0 var(--ui-margin-s);
+	display: inline-flex;
+	align-items: center;
 }
 
 
