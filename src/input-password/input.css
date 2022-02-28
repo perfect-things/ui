@@ -1,0 +1,23 @@
+.input-password-wrapper {
+	width: 25ex;
+	position: relative;
+	display: inline-flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.input-password-wrapper .input-password {
+	font-family: verdana, sans-serif;
+	width: 100%;
+	padding-right: 28px;
+}
+
+.input-password-wrapper > .button {
+	position: absolute;
+	right: 5px;
+	width: 22px;
+	height: 22px;
+}
+
+.input-password-wrapper.visible .input-password { font-family: inherit; }

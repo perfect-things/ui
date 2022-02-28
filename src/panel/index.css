@@ -1,15 +1,16 @@
 .panel-wrap {
 	margin: 0 0 -1px;
 	overflow: hidden;
-	border: 1px solid var(--ui-color-border);
+	border: 2px solid var(--ui-color-border);
 	will-change: height;
+	position: relative;
 }
 
 .panel-header {
-	text-align: left;
-	background: var(--ui-color-info);
-	border: none;
+	background: var(--ui-color-background-light-2);
 	color: var(--ui-color-text);
+	text-align: left;
+	border: none;
 	filter: saturate(.5);
 	display: flex;
 	align-items: center;
@@ -23,10 +24,16 @@
 	user-select: none;
 }
 .panel-header::-webkit-details-marker { display: none; }
-.panel-header:focus { outline: none; color: var(--ui-color-accent); }
-
 .panel-content { border-top: 1px solid var(--ui-color-border); padding: 0.5em 1em; }
 
 .chevron { height: 1.2em; transform: rotate(0deg); transition: transform var(--ui-animation-speed) ease-out; }
 .chevron svg { width: 1.2em; height: 1.2em; }
 .expanded .chevron { transform: rotate(90deg); }
+
+
+.panel-header:focus { outline: none; }
+.panel-wrap:focus-within {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+	z-index: 2;
+}

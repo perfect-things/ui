@@ -1,0 +1,20 @@
+nav {
+	width: 100%;
+	display: flex;
+	flex-flow: column;
+}
+
+nav h3 { margin: 0 -1em; padding: 0.5em 1em; }
+nav h3:not(:first-child) { margin-top: 1em; }
+
+nav a {
+	color: var(--ui-color-text);
+	text-decoration: none;
+	display: block;
+	margin: 0.1em 0;
+	padding: 0.5em 1.4em;
+	border-radius: var(--ui-border-radius-s);
+}
+
+nav a:hover { background-color: var(--ui-color-highlight-dark-2); }
+nav a.active { background-color: var(--ui-color-highlight); }

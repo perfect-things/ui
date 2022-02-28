@@ -24,6 +24,8 @@ import close from './icons/close.svg';
 import cog from './icons/cog.svg';
 import dots from './icons/dots.svg';
 import edit from './icons/edit.svg';
+import eye from './icons/eye.svg';
+import eyeOff from './icons/eye-off.svg';
 import folder from './icons/folder.svg';
 import home from './icons/home.svg';
 import info from './icons/info.svg';
@@ -71,6 +73,8 @@ export const icons = {
 	cog,
 	dots,
 	edit,
+	eye,
+	eyeOff,
 	folder,
 	home,
 	info,

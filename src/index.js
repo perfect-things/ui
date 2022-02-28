@@ -6,6 +6,7 @@ import Drawer from './drawer';
 import Icon, { icons } from './icon';
 import InputNumber from './input-number';
 import InputMath from './input-math';
+import InputPassword from './input-password';
 import Panel from './panel';
 import Select from './select';
 import Table from './table';
@@ -26,6 +27,7 @@ export {
 	icons,
 	InputNumber,
 	InputMath,
+	InputPassword,
 	Panel,
 	Select,
 	Table,
