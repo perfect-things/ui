@@ -1,5 +1,9 @@
 <h2>Dialog</h2>
 
+- simple, small, no dependencies
+- accessible (full keyboard support, focus trap)
+
+
 <Button on:click="{() => dialog1.open()}">Show dialog 1</Button>
 <Button on:click="{() => dialog2.open()}">Show dialog 2</Button>
 <Button on:click="{() => dialog3.open()}">Show dialog 3</Button>
