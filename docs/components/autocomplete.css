@@ -1,10 +1,10 @@
-.docs-autocomplete-row {
-	display: inline-flex;
-	align-items: center;
+.docs-autocomplete-layout {
+	display: flex;
+	flex-flow: row;
+	align-items: flex-start;
 	justify-content: space-between;
 	gap: 20px;
 }
 
-.docs-autocomplete-value {
-	padding: 0.2em;
-}
+.docs-autocomplete-column { flex: 1; }
+.docs-autocomplete-column pre { line-height: 1.6; }

@@ -5,7 +5,7 @@
 	<NavItem name="Datepicker" {active} />
 	<NavItem name="Input" {active} />
 	<NavItem name="Input Math" {active} />
-	<NavItem name="Password" {active} />
+	<NavItem name="Password" hash="InputPassword" {active} />
 	<NavItem name="Select" {active} />
 	<NavItem name="Textarea" {active} />
 	<NavItem name="Toggle" {active} />

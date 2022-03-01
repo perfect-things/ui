@@ -23,7 +23,7 @@ h2 { margin: 0; }
 
 aside {
 	padding: 1em 2em 4em 1em;
-	border-right: 1px solid var(--ui-color-border);
+	border-right: 1px solid var(--ui-color-border-dark-2);
 	height: 100%;
 	overflow-y: auto;
 }
@@ -38,6 +38,15 @@ main {
 main > h2 { margin-bottom: 1.2em; }
 
 p { line-height: 1.6; }
+em { color: var(--ui-color-accent); font-style: normal; }
+
+hr {
+	width: 100%;
+	height: 0;
+	border: 0;
+	border-top: 2px solid var(--ui-color-border-dark-2);
+	margin: 3em 0 2em;
+}
 
 @media (max-width: 980px) {
 	body { font: normal 200% sans-serif; }

@@ -1,21 +1,19 @@
 <h2>Autocomplete</h2>
+<div class="docs-autocomplete-layout">
+	<div class="docs-autocomplete-column">
+		<h3>Normal</h3>
+		<Autocomplete data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-<h3>Normal</h3>
-<div class="docs-autocomplete-row">
-	<Autocomplete data="{autocompleteData}" bind:value="{autocompleteValue}" />
+		<h3>Disabled</h3>
+		<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-	<div class="docs-autocomplete-value">Selected value: {autocompleteValue.name || ''}</div>
-</div>
-
-<h3>Allow arbitrary values</h3>
-<div class="docs-autocomplete-row">
-	<Autocomplete
-		data="{autocompleteData}"
-		placeholder="Type to filter"
-		allowNew="true"
-		bind:value="{autocompleteValue}" />
-
-	<div class="docs-autocomplete-value">Selected value: {autocompleteValue.name || ''}</div>
+		<h3>Allow arbitrary values</h3>
+		<Autocomplete data="{autocompleteData}" placeholder="Type to filter" allowNew="true" bind:value="{autocompleteValue}" />
+	</div>
+	<div class="docs-autocomplete-column">
+		<h2>Selected value: </h2>
+		<pre>{JSON.stringify(autocompleteValue || {}, null, 2)}</pre>
+	</div>
 </div>
 
 <script>

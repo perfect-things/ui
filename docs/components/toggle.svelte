@@ -1,11 +1,13 @@
 <h2>Toggle</h2>
 
 The perfect toggle component in Svelte:
-- allows `click` as well as `drag` to toggle
-- keyboard support: press `Enter` or `Space` to toggle
-- accessible (based on a checkbox input)
-- no bloat, no dependencies
-
+<ul>
+	<li>allows <em>click</em> as well as <em>drag</em> to toggle
+	<li>keyboard support: press <em>Enter</em> or <em>Space</em> to toggle
+	<li>accessible (based on a checkbox input)
+	<li>no bloat, no dependencies
+</ul>
+<br>
 
 <Toggle on:change="{e => toggleValue = e.detail}" value="{toggleValue}" /> {toggleValue}
 <br><br><br>

@@ -2,6 +2,7 @@
 	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input"
 		{required}
+		{disabled}
 		value="{value && value.name || ''}"
 		placeholder="{placeholder}"
 		bind:this="{input}"
@@ -11,7 +12,7 @@
 		on:keypress="{onkeypress}">
 
 	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{list}">
-		{#if groupedData.length}
+		{#if filteredData.length}
 			{#each groupedData as group}
 				{#if group.name}
 					<div class="autocomplete-list-header">{group.name}</div>
@@ -27,7 +28,6 @@
 					{/each}
 				{/if}
 			{/each}
-
 		{:else if allowNew === true || allowNew === 'true' }
 			<div class="autocomplete-list-item selected"
 				on:click="{() => onclick({ name: text })}">
@@ -49,6 +49,7 @@ export let showAllInitially = true;
 export let clearOnEsc = false;
 export let placeholder = '';
 export let required = false;
+export let disabled = undefined;
 let el;
 let opened = false;
 let hasEdited = false;
