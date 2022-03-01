@@ -9,7 +9,7 @@
 }
 
 .button-text:focus,
-.button-text:hover { background-color: var(--ui-color-info-semi); text-decoration: none; }
+.button-text:hover { background-color: var(--ui-color-highlight-dark-2); text-decoration: none; }
 .button-text.success:focus,
 .button-text.success:hover { background-color: var(--ui-color-success-semi); }
 .button-text.warning:focus,

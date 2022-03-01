@@ -3,7 +3,7 @@
 	<input type="text" class="autocomplete-input"
 		{required}
 		{disabled}
-		value="{value && value.name || ''}"
+		value="{value && value.name || text || ''}"
 		placeholder="{placeholder}"
 		bind:this="{input}"
 		on:input="{filter}"
