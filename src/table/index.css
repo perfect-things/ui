@@ -9,7 +9,6 @@
 	border: 2px solid var(--ui-color-border);
 	border-spacing: 0;
 	width: 100%;
-	background: var(--ui-color-background-input);
 }
 
 
@@ -27,8 +26,7 @@
 	background: var(--ui-color-background-dark-1);
 }
 
-.table tbody tr { background-color: var(--ui-color-background-light-2); }
-.table tbody tr:hover { background-color: var(--ui-color-highlight); }
+.table tbody tr:hover { background-color: var(--ui-color-highlight-dark-2); }
 
 .table tbody td {
 	padding: var(--ui-margin) var(--ui-margin-m);
