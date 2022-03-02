@@ -20,7 +20,7 @@
 .table thead th,
 .table tfoot td {
 	padding: var(--ui-margin-m);
-	font-weight: 300;
+	font-weight: 400;
 	text-align: left;
 	vertical-align: middle;
 	background: var(--ui-color-background-dark-1);
