@@ -5,14 +5,14 @@
 		{disabled}
 		value="{value && value.name || text || ''}"
 		placeholder="{placeholder}"
-		bind:this="{input}"
+		bind:this="{inputEl}"
 		on:input="{filter}"
 		on:focus="{open}"
 		on:change="{onchange}"
 		on:keydown="{onkeydown}"
 		on:keypress="{onkeypress}">
 
-	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{list}">
+	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{listEl}">
 		{#if filteredData.length}
 			{#each groupedData as group}
 				{#if group.name}
@@ -51,18 +51,17 @@ export let clearOnEsc = false;
 export let placeholder = '';
 export let required = false;
 export let disabled = undefined;
-let el;
+let el, inputEl, listEl;
 let opened = false;
 let hasEdited = false;
 let highlightIndex = 0;
-let input, list, filteredData = [], groupedData = [];
+let filteredData = [], groupedData = [];
+let originalText = '';
 const dispatch = createEventDispatcher();
 
 
-
-
 function filter () {
-	text = input.value || '';
+	text = inputEl.value || '';
 	open({ type: 'filter' });
 	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
 	const q = showAll ? '' : text.toLowerCase().trim();
@@ -104,9 +103,8 @@ function filter () {
 
 
 function highlight () {
-	const selectedEl = list.querySelector('.selected');
+	const selectedEl = listEl.querySelector('.selected');
 	if (!selectedEl) return;
-	const listEl = selectedEl.parentNode;
 
 	// going up
 	if (listEl.scrollTop > selectedEl.offsetTop) {
@@ -165,7 +163,7 @@ function onEsc (e) {
 	if (clearOnEsc && text) return clear();
 	if (opened) {
 		revert();
-		input.focus();
+		inputEl.focus();
 		close();
 	}
 	else dispatch('keydown', e);
@@ -211,16 +209,17 @@ function down () {
 
 
 function revert () {
-	text = value.name;
-	if (input.value !== text) input.value = text;
+	if (originalText && originalText !== text) text = originalText;
+	else if (value.name) text = value.name;
+	if (inputEl.value !== text) inputEl.value = text;
 }
 
 
 function clear () {
 	text = '';
-	input.value = '';
+	inputEl.value = '';
 	filter();
-	requestAnimationFrame(() => input.focus());
+	requestAnimationFrame(() => inputEl.focus());
 }
 
 
@@ -228,6 +227,7 @@ function open (e) {
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
+	originalText = text;
 	addEventListeners();
 	filter();
 	const id = value && typeof value === 'number' ? value : value.id;
@@ -235,9 +235,9 @@ function open (e) {
 		highlightIndex = filteredData.findIndex(i => i.id === id);
 		if (!text) text = filteredData[highlightIndex].name;
 	}
-	if (input.value !== text) input.value = text;
+	if (inputEl.value !== text) inputEl.value = text;
 	requestAnimationFrame(() => {
-		if (e && e.type === 'focus') input.select();
+		if (e && e.type === 'focus') inputEl.select();
 		highlight();
 	});
 }
@@ -254,16 +254,16 @@ function recalculateListHeight (e) {
 	if (!opened) return;
 	if (e && e.type === 'scroll') return;
 
-	if (list && list.style) {
-		list.style.top = (input.offsetHeight + 2) + 'px';
-		list.style.height = 'auto';
-		const listBox = list.getBoundingClientRect();
+	if (listEl && listEl.style) {
+		listEl.style.top = (inputEl.offsetHeight + 2) + 'px';
+		listEl.style.height = 'auto';
+		const listBox = listEl.getBoundingClientRect();
 		const listT = listBox.top;
 		const listH = listBox.height;
 		const winH = window.innerHeight;
 		if (listT + listH + 10 > winH) {
 			const maxH = winH - listT - 10;
-			list.style.height = maxH + 'px';
+			listEl.style.height = maxH + 'px';
 		}
 	}
 }
