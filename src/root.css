@@ -83,6 +83,7 @@
 body,
 body * { box-sizing: border-box; }
 
+svg { width: 24px; height: 24px; }
 
 /*
 	:: system color names ::
