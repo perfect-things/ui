@@ -8,6 +8,7 @@
 		bind:this="{input}"
 		on:input="{filter}"
 		on:focus="{open}"
+		on:change="{onchange}"
 		on:keydown="{onkeydown}"
 		on:keypress="{onkeypress}">
 
@@ -62,7 +63,7 @@ const dispatch = createEventDispatcher();
 
 function filter () {
 	text = input.value || '';
-	open();
+	open({ type: 'filter' });
 	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
 	const q = showAll ? '' : text.toLowerCase().trim();
 	let filtered = deepCopy(data);
@@ -130,6 +131,11 @@ function onclick (item) {
 }
 
 
+function onchange () {
+	selectItem();
+}
+
+
 function onkeydown (e) {
 	let key = e.key;
 	if (key === 'Tab') return close();
@@ -158,6 +164,7 @@ function onEsc (e) {
 	e.stopPropagation();
 	if (clearOnEsc && text) return clear();
 	if (opened) {
+		revert();
 		input.focus();
 		close();
 	}
@@ -173,13 +180,16 @@ function selectItem () {
 		text = value.name;
 	}
 	// should create a new item
-	else value = { id: null, name: text };
+	else if (allowNew) {
+		value = { id: null, name: text };
+	}
+	else revert();
 	close();
 }
 
 
 function up () {
-	if (!opened) return open();
+	if (!opened) return open({ type: 'up' });
 	let idx = highlightIndex - 1;
 	while (idx > 0 && !filteredData[idx]) idx -= 1;
 	if (idx !== highlightIndex && filteredData[idx]) {
@@ -190,13 +200,19 @@ function up () {
 
 
 function down () {
-	if (!opened) return open();
+	if (!opened) return open({ type: 'down' });
 	let idx = highlightIndex + 1;
 	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
 	if (idx !== highlightIndex && filteredData[idx]) {
 		highlightIndex = filteredData[idx].idx;
 		requestAnimationFrame(highlight);
 	}
+}
+
+
+function revert () {
+	text = value.name;
+	if (input.value !== text) input.value = text;
 }
 
 
@@ -208,7 +224,7 @@ function clear () {
 }
 
 
-function open () {
+function open (e) {
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
@@ -221,7 +237,7 @@ function open () {
 	}
 	if (input.value !== text) input.value = text;
 	requestAnimationFrame(() => {
-		input.select();
+		if (e && e.type === 'focus') input.select();
 		highlight();
 	});
 }
