@@ -230,7 +230,7 @@ function open (e) {
 	originalText = text;
 	addEventListeners();
 	filter();
-	const id = value && typeof value === 'number' ? value : value.id;
+	const id = value && typeof value === 'object' && value.id ? value.id : value;
 	if (id && filteredData && filteredData.length) {
 		highlightIndex = filteredData.findIndex(i => i.id === id);
 		if (!text) text = filteredData[highlightIndex].name;
