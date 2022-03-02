@@ -14,8 +14,8 @@
 
 .table thead,
 .table tfoot { position: sticky; }
-.table thead { z-index: 2; top: 0; }
-.table tfoot { z-index: 1; bottom: 0; }
+.table thead { top: 0; }
+.table tfoot { bottom: 0; }
 
 .table thead th,
 .table tfoot td {

@@ -17,10 +17,11 @@
 			<tr><td>2021</td><td>June</td><td>$80</td></tr>
 		</tbody>
 		<tbody class="row-group">
-			<tr><td>2021</td><td>April</td><td>$80</td></tr>
-			<tr><td>2021</td><td>May</td><td>$80</td></tr>
+			<tr><td>2021</td><td>April 1</td><td>$80</td></tr>
+			<tr><td>2021</td><td>April 2</td><td>$80</td></tr>
 		</tbody>
 		<tbody>
+			<tr><td>2021</td><td>May</td><td>$80</td></tr>
 			<tr><td>2021</td><td>July</td><td>$80</td></tr>
 			<tr><td>2021</td><td>August</td><td>$80</td></tr>
 			<tr><td>2021</td><td>September</td><td>$80</td></tr>
