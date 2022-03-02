@@ -27,6 +27,7 @@
 }
 
 .table tr:hover,
+.table .row-group:focus-within,
 .table .row-group:hover { background-color: var(--ui-color-highlight-dark-2); }
 .table .row-group tr:hover { background-color: transparent; }
 
