@@ -4,5 +4,5 @@
 
 <script>
 export let cssClass = '';
-export let node;
+export let node = undefined;
 </script>
