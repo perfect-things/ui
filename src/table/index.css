@@ -26,10 +26,7 @@
 	background: var(--ui-color-background-dark-1);
 }
 
-.table tr:hover,
-.table .row-group:focus-within,
-.table .row-group:hover { background-color: var(--ui-color-highlight-dark-2); }
-.table .row-group tr:hover { background-color: transparent; }
+.table .row-group:focus-within { background-color: var(--ui-color-highlight-dark-2); }
 
 .table tbody td {
 	padding: var(--ui-margin) var(--ui-margin-m);

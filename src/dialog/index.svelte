@@ -17,7 +17,7 @@
 <svelte:options accessors={true}/>
 
 <script>
-import { ANIMATION_SPEED } from '../util';
+import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 export let title = '';
 export let opened = false;
 export let drawborders = false;
@@ -47,8 +47,6 @@ function focusLast () {
 }
 
 function getFocusableElements () {
-	const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
-		'select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]';
 	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	return [...contentElements, ...footerElements];

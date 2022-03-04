@@ -2,8 +2,8 @@
 	<div class="drawer" tabindex="-1"
 		use:docclick
 		bind:this="{el}"
-		in:fly="{{ x: 380, duration: 200 }}"
-		out:fly="{{ x: 380, duration: 300 }}"
+		in:fly="{{ x: ANIMATION_SPEED, duration: 200 }}"
+		out:fly="{{ x: ANIMATION_SPEED, duration: 300 }}"
 	>
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<header class="drawer-header" bind:this="{headerEl}" >
@@ -18,6 +18,7 @@
 
 <script>
 import { fly } from 'svelte/transition';
+import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 import Button from '../button';
 
 export let title = 'Drawer';
@@ -71,8 +72,6 @@ function focusLast () {
 }
 
 function getFocusableElements () {
-	const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
-		'select:not([disabled]),textarea:not([disabled]),[contentEditable]';
 	return Array.from(el.querySelectorAll(FOCUSABLE_SELECTOR));
 }
 

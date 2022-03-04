@@ -20,7 +20,11 @@ function animate (el, from, to, _options = {}) {
 }
 
 
+const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
+	'select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]';
+
 export {
 	ANIMATION_SPEED,
 	animate,
+	FOCUSABLE_SELECTOR,
 };

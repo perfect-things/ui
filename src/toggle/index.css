@@ -31,7 +31,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	transition: width .2s cubic-bezier(.85, .05, .18, 1.4);
+	transition: width .1s cubic-bezier(.85, .05, .18, 1.4);
 }
 
 .toggle-handle {
