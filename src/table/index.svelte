@@ -1,5 +1,5 @@
-<div class="table-wrapper {cssClass}">
-	<table class="table" bind:this="{node}"><slot /></table>
+<div class="table-wrapper {cssClass}" bind:this="{node}">
+	<table class="table"><slot /></table>
 </div>
 
 <script>
