@@ -38,6 +38,12 @@ input:is([type=checkbox], [type=radio]) {
 
 input:is([type=checkbox], [type=radio]):focus {
 	box-shadow: 0 0 0 1px var(--ui-color-accent), var(--ui-shadow-focus);
+	filter:
+		saturate(0.8)
+		drop-shadow(0 1px 0 var(--ui-color-accent))
+		drop-shadow(0 -1px 0 var(--ui-color-accent))
+		drop-shadow(1px 0 0 var(--ui-color-accent))
+		drop-shadow(-1px 0 0 var(--ui-color-accent));
 }
 
 input[type=color] {
