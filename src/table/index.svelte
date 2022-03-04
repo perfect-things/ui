@@ -1,7 +1,8 @@
 <div class="table-wrapper {cssClass}">
-	<table class="table"><slot /></table>
+	<table class="table" bind:this="{node}"><slot /></table>
 </div>
 
 <script>
 export let cssClass = '';
+export let node;
 </script>
