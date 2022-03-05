@@ -20,6 +20,7 @@ body * { box-sizing: inherit; }
 }
 
 h2 { margin: 0; }
+a { color: inherit; }
 
 aside {
 	padding: 1em 2em 4em 1em;

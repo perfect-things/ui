@@ -1,4 +1,4 @@
-let ANIMATION_SPEED = 300;
+let ANIMATION_SPEED = 200;
 
 // Grab the prefers reduced media query.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

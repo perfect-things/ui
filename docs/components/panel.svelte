@@ -6,7 +6,7 @@
 		<p>This is panel contents</p>
 		<p>Hello world!</p>
 		<p>This is panel contents</p>
-		<a href="#some">a link</a>
+		<a href="#Panel">a link</a>
 	</Panel>
 
 	<Panel title="Panel 2" open>

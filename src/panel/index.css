@@ -1,5 +1,4 @@
 .panel-wrap {
-	margin: 0 0 -1px;
 	overflow: hidden;
 	border: 2px solid var(--ui-color-border);
 	will-change: height;
