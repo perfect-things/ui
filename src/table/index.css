@@ -5,12 +5,8 @@
 	overscroll-behavior-y: contain;
 }
 
-.table {
-	border: 2px solid var(--ui-color-border);
-	border-spacing: 0;
-	width: 100%;
-}
-
+.table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
+.table { border: 2px solid var(--ui-color-border); border-spacing: 0; width: 100%; }
 
 .table thead,
 .table tfoot { position: sticky; }
@@ -26,7 +22,8 @@
 	background: var(--ui-color-background-dark-1);
 }
 
-.table .row-group:focus-within { background-color: var(--ui-color-highlight-dark-2); }
+.table tbody:focus,
+.table tr:focus { outline: none; background-color: var(--ui-color-highlight-dark-2); }
 
 .table tbody td {
 	padding: var(--ui-margin) var(--ui-margin-m);
