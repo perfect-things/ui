@@ -14,6 +14,7 @@ const dispatch = createEventDispatcher();
 export let cssClass = '';
 export let node = undefined;
 export let selectable = true;
+export let scrollCorrectionOffset = 0;
 // useful for when row-groups are needed.
 // then tbody.row-selector can be set to allow highlighting whole groups
 export let rowSelector = 'tbody tr';
@@ -58,7 +59,7 @@ function selectPrev (skipEvent = false) {
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
 
-	const top = rowEl.offsetTop - headerHeight;
+	const top = rowEl.offsetTop - headerHeight + parseFloat(scrollCorrectionOffset);
 	if (node.scrollTop > top) node.scrollTo({ top, behavior: 'smooth' });
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
@@ -70,7 +71,8 @@ function selectNext (skipEvent = false) {
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
 
-	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight;
+	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight
+		+ parseFloat(scrollCorrectionOffset);
 	if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
