@@ -27,7 +27,7 @@ onMount(() => {
 	if (selectable) {
 		document.addEventListener('keydown', onKeyDown);
 		makeRowsSelectable();
-		measureHeader();
+		requestAnimationFrame(() => headerHeight = node.querySelector('thead').offsetHeight);
 	}
 });
 
@@ -71,45 +71,51 @@ function selectNext (skipEvent = false) {
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
 
-	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight
-		+ parseFloat(scrollCorrectionOffset);
+	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight	+ parseFloat(scrollCorrectionOffset);
 	if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
+function selectClicked (skipEvent = false) {
+	const rows = getSelectableItems();
+	const rowEl = rows[selectedIdx];
+	if (!rowEl) return;
+	rowEl.focus();
 
-function measureHeader () {
-	requestAnimationFrame(() => {
-		headerHeight = node.querySelector('thead').offsetHeight;
-	});
+	let top = rowEl.offsetTop - headerHeight + parseFloat(scrollCorrectionOffset);
+	if (node.scrollTop > top) node.scrollTo({ top, behavior: 'smooth' });
+	else {
+		top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight + parseFloat(scrollCorrectionOffset);
+		if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
+	}
+
+	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
+
 
 function onClick (e) {
-	if (clickTimer) clearTimeout(clickTimer);
-	clickTimer = setTimeout(() => _onClick(e), 200);
-}
+	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
+	if (skipEventFor.includes(e.target.tagName)) return;
 
-function _onClick (e) {
-	const row = e.target.closest(rowSelector);
-	if (!row) return;
+	// debounce, so to not duplicate events when dblclicking
+	if (clickTimer) clearTimeout(clickTimer);
+	clickTimer = setTimeout(() => dispatch('select', { event: e, selectedItem: rowEl }), 300);
+
+	const rowEl = e.target.closest(rowSelector);
+	if (!rowEl) return;
 	const rows = getSelectableItems();
-	const idx = rows.findIndex(item => item == row);
-	if (idx < rows.length) {
-		selectedIdx = idx - 1;
-		selectNext(true);
-	}
-	else if (idx >= 0) {
-		selectedIdx = idx + 1;
-		selectPrev(true);
-	}
-	const rowEl = getSelectableItems()[selectedIdx];
-	dispatch('select', { selectedItem: rowEl });
+	selectedIdx = rows.findIndex(item => item == rowEl);
+	selectClicked(true);
+	dispatch('click', { event: e, selectedItem: rowEl });
 }
 
 function onDblClick (e) {
+	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
+	if (skipEventFor.includes(e.target.tagName)) return;
+
 	if (clickTimer) clearTimeout(clickTimer);
-	_onClick(e);
+	onClick(e);
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems()[selectedIdx];
 		dispatch('dblclick', { selectedItem });
@@ -118,6 +124,9 @@ function onDblClick (e) {
 
 
 function onKeyDown (e) {
+	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
+	if (skipEventFor.includes(e.target.tagName)) return;
+
 	if (e.key === 'ArrowUp' || e.key === 'k') {
 		e.preventDefault();
 		selectPrev();
