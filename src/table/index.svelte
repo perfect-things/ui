@@ -58,7 +58,7 @@ function selectPrev (skipEvent = false) {
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
 
-	const top = rowEl.offsetTop;
+	const top = rowEl.offsetTop - headerHeight;
 	if (node.scrollTop > top) node.scrollTo({ top, behavior: 'smooth' });
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
@@ -70,7 +70,7 @@ function selectNext (skipEvent = false) {
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
 
-	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight - 10;
+	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight;
 	if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
@@ -79,7 +79,7 @@ function selectNext (skipEvent = false) {
 
 function measureHeader () {
 	requestAnimationFrame(() => {
-		headerHeight = node.querySelector('thead').getBoundingClientRect().top;
+		headerHeight = node.querySelector('thead').offsetHeight;
 	});
 }
 

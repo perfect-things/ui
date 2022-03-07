@@ -1,1 +1,5 @@
-.table-viewport { width: 50%; height: 500px; border: 1px dashed red; }
+.table-viewport {
+	width: 50%;
+	height: 500px;
+	border: 1px dashed red;
+}
