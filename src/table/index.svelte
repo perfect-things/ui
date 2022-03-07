@@ -18,7 +18,7 @@ export let selectable = true;
 // then tbody.row-selector can be set to allow highlighting whole groups
 export let rowSelector = 'tbody tr';
 let selectedIdx = -1;
-let headerAndFooterHeight = 0;
+let headerHeight = 0;
 let clickTimer;
 
 
@@ -26,7 +26,7 @@ onMount(() => {
 	if (selectable) {
 		document.addEventListener('keydown', onKeyDown);
 		makeRowsSelectable();
-		measureHeaderAndFooter();
+		measureHeader();
 	}
 });
 
@@ -56,10 +56,10 @@ function selectPrev (skipEvent = false) {
 	if (selectedIdx <= 0) return;
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
-
-	const top = rowEl.offsetTop - headerAndFooterHeight;
-	if (node.scrollTop > top) node.scrollTo({ top, behavior: 'smooth' });
 	rowEl.focus();
+
+	const top = rowEl.offsetTop;
+	if (node.scrollTop > top) node.scrollTo({ top, behavior: 'smooth' });
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
@@ -68,17 +68,18 @@ function selectNext (skipEvent = false) {
 	if (selectedIdx >= rows.length - 1) return;
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
-
-	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerAndFooterHeight;
-	if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
 	rowEl.focus();
+
+	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight - 10;
+	if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
+
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
 
-function measureHeaderAndFooter () {
+function measureHeader () {
 	requestAnimationFrame(() => {
-		headerAndFooterHeight = node.querySelector('thead').offsetHeight;
+		headerHeight = node.querySelector('thead').getBoundingClientRect().top;
 	});
 }
 
