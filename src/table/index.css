@@ -26,7 +26,7 @@
 .table tr:focus { outline: none; background-color: var(--ui-color-highlight-dark-2); }
 
 .table tbody td {
-	padding: var(--ui-margin) var(--ui-margin-m);
+	padding: var(--ui-margin) var(--ui-margin-m) calc(var(--ui-margin) + 1px);
 	border-bottom: 1px solid var(--ui-color-border);
 	vertical-align: middle;
 	line-height: 1.5em;
