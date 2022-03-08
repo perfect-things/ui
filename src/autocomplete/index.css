@@ -57,7 +57,7 @@
 .autocomplete-list-header:last-child { display: none; }
 
 .autocomplete-list-item {
-	padding: 0.6em 1.5em;
+	padding: 0.6em 1em;
 	color: var(--ui-color-text);
 	cursor: pointer;
 	line-height: 1;
