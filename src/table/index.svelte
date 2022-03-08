@@ -118,7 +118,7 @@ function onDblClick (e) {
 	onClick(e);
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems()[selectedIdx];
-		dispatch('dblclick', { selectedItem });
+		dispatch('dblclick', { event: e, selectedItem });
 	});
 }
 
