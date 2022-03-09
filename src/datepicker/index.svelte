@@ -5,20 +5,24 @@
 		{placeholder}
 		on:changeDate="{onchange}"
 		on:input="{oninput}"
+		on:keydown="{onkeydown}"
 		bind:this="{inputEl}"
 		bind:value="{value}">
 	<Icon name="calendar"/>
 </div>
 
 <script>
-import { onMount } from 'svelte';
+import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import Icon, { icons } from '../icon';
-let picker, inputEl;
+
 export let value = '';
 export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;
+
+const dispatch = createEventDispatcher();
+let picker, inputEl;
 
 
 onMount(() => {
@@ -37,6 +41,10 @@ onMount(() => {
 
 });
 
+function onkeydown (e) {
+	dispatch('keydown', e);
+}
+
 function oninput () {
 	requestAnimationFrame(() => {
 		if (/^\d{4}-\d{2}-\d{2}$/g.test(value))	{
@@ -48,6 +56,7 @@ function oninput () {
 
 function onchange () {
 	value = picker.getDate('yyyy-mm-dd');
+	dispatch('change', value);
 }
 
 </script>
