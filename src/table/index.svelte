@@ -28,7 +28,7 @@ onMount(() => {
 	if (selectable) {
 		document.addEventListener('keydown', onKeyDown);
 		makeRowsSelectable();
-		requestAnimationFrame(() => headerHeight = node.querySelector('thead').offsetHeight);
+		requestAnimationFrame(() => headerHeight = _this.querySelector('thead').offsetHeight);
 	}
 });
 
@@ -40,7 +40,7 @@ onDestroy(() => {
 });
 
 function getSelectableItems () {
-	const rows = node.querySelectorAll(rowSelector);
+	const rows = _this.querySelectorAll(rowSelector);
 	if (rows && rows.length) return Array.from(rows);
 	return [];
 }
@@ -61,7 +61,7 @@ function selectPrev (skipEvent = false) {
 	rowEl.focus();
 
 	const top = rowEl.offsetTop - headerHeight + parseFloat(scrollCorrectionOffset);
-	if (node.scrollTop > top) node.scrollTo({ top, behavior: 'smooth' });
+	if (_this.scrollTop > top) _this.scrollTo({ top, behavior: 'smooth' });
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
@@ -72,8 +72,8 @@ function selectNext (skipEvent = false) {
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
 
-	const top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight	+ parseFloat(scrollCorrectionOffset);
-	if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
+	const top = rowEl.offsetTop + rowEl.offsetHeight - _this.offsetHeight + headerHeight	+ parseFloat(scrollCorrectionOffset);
+	if (_this.scrollTop < top) _this.scrollTo({ top, behavior: 'smooth' });
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
@@ -85,10 +85,10 @@ function selectClicked (skipEvent = false) {
 	rowEl.focus();
 
 	let top = rowEl.offsetTop - headerHeight + parseFloat(scrollCorrectionOffset);
-	if (node.scrollTop > top) node.scrollTo({ top, behavior: 'smooth' });
+	if (_this.scrollTop > top) _this.scrollTo({ top, behavior: 'smooth' });
 	else {
-		top = rowEl.offsetTop + rowEl.offsetHeight - node.offsetHeight + headerHeight + parseFloat(scrollCorrectionOffset);
-		if (node.scrollTop < top) node.scrollTo({ top, behavior: 'smooth' });
+		top = rowEl.offsetTop + rowEl.offsetHeight - _this.offsetHeight + headerHeight + parseFloat(scrollCorrectionOffset);
+		if (_this.scrollTop < top) _this.scrollTo({ top, behavior: 'smooth' });
 	}
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
