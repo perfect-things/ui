@@ -1,8 +1,6 @@
 <div class="input-math-wrapper">
 	<Icon name="calculator"/>
-	<input
-		class="input-math"
-		type="text"
+	<input type="text" class="input-math" autocomplete="off"
 		{name}
 		{title}
 		{placeholder}

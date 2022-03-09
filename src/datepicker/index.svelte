@@ -1,5 +1,5 @@
 <div class="datepicker-wrapper">
-	<input
+	<input type="text" autocomplete="off"
 		{name}
 		{title}
 		{placeholder}

@@ -1,7 +1,5 @@
 <div class="input-password-wrapper" class:visible>
-	<input
-		class="input-password"
-		type="password"
+	<input type="password" class="input-password" autocomplete="off"
 		{id}
 		{name}
 		{title}

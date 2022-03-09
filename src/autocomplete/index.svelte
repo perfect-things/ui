@@ -1,6 +1,6 @@
 <div class="autocomplete" bind:this="{el}">
 	<Icon name="dots"/>
-	<input type="text" class="autocomplete-input"
+	<input type="text" class="autocomplete-input" autocomplete="off"
 		{name}
 		{title}
 		{placeholder}

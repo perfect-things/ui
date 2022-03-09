@@ -1,4 +1,4 @@
-<input type="text"
+<input type="text" autocomplete="off"
 	{name}
 	{title}
 	{placeholder}
