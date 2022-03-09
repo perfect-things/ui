@@ -8,8 +8,8 @@
 	padding: 0.2em 0;
 	text-decoration: underline;
 	vertical-align: baseline;
-	border-radius: 0;
 }
+.button.button-link { border-radius: 0; }
 
 .button-has-text.button-link svg { margin-left: 0; }
 
