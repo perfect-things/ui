@@ -5,9 +5,10 @@
 	display: inline;
 	margin: -0.2em 0;
 	min-width: 0;
-	padding: 0.2em;
+	padding: 0.2em 0;
 	text-decoration: underline;
 	vertical-align: baseline;
+	border-radius: 0;
 }
 
 .button-has-text.button-link svg { margin-left: 0; }
