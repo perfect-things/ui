@@ -5,6 +5,7 @@
 	type="{submit ? 'submit' : 'button'}"
 	class="button {cssClass}"
 
+	bind:this="{_this}"
 	class:button-normal="{!link && !text && !outline}"
 	class:button-outline="{outline}"
 	class:button-link="{link}"
@@ -24,6 +25,9 @@
 	//class:button-icon="{icon && !$$slots.default}"
 import { createEventDispatcher } from 'svelte';
 import Icon from '../icon';
+
+export let _this = undefined;
+
 export let disabled = false;
 export let success = false;
 export let warning = false;

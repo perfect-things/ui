@@ -1,6 +1,6 @@
 <div class="table-wrapper {cssClass}"
 	class:selectable
-	bind:this="{node}"
+	bind:this="{_this}"
 	on:click="{onClick}"
 	on:dblclick="{onDblClick}">
 
@@ -12,7 +12,7 @@ import { onDestroy, onMount, createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 export let cssClass = '';
-export let node = undefined;
+export let _this = undefined;
 export let selectable = true;
 export let scrollCorrectionOffset = 0;
 // useful for when row-groups are needed.
