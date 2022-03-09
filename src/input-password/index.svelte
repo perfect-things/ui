@@ -4,6 +4,7 @@
 		type="password"
 		{id}
 		{name}
+		{title}
 		{placeholder}
 		bind:this="{inputEl}"
 		bind:value="{value}"
@@ -19,7 +20,9 @@ import Button from '../button';
 export let value = '';
 export let id = undefined;
 export let name = undefined;
+export let title = undefined;
 export let placeholder = undefined;
+
 let visible = false, inputEl;
 const dispatch = createEventDispatcher();
 

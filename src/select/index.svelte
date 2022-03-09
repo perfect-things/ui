@@ -1,11 +1,15 @@
 <div class="select-wrap" class:disabled>
-	<select {disabled}
-		name="{name}"
+	<select
+		{name}
+		{title}
+		{disabled}
 		bind:value="{value}"
 		bind:this="{el}"
 		on:change="{onChange}">
 
-		<option value="">None</option>
+		{#if placeholder}
+			<option>{placeholder}</option>
+		{/if}
 		{#each groups as group}
 			{#if group.items}
 				<optgroup label="{group.name}">
@@ -23,6 +27,8 @@
 <script>
 export let value = undefined;
 export let name = undefined;
+export let title = undefined;
+export let placeholder = undefined;
 export let items = [];
 export let disabled = undefined;
 let el, groups = [];

@@ -1,7 +1,9 @@
 <h2>Select</h2>
-<Select items="{selectItems}"/>
+<Select placeholder="None" items="{selectItems}"/>
 
 <Select items="{[{name:'Disabled'}]}" disabled/>
+
+<Select placeholder="Select something" items="{[]}" />
 
 <script>
 import { Select } from '../../src';

@@ -1,10 +1,12 @@
 <div class="autocomplete" bind:this="{el}">
 	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input"
+		{name}
+		{title}
+		{placeholder}
 		{required}
 		{disabled}
 		value="{value && value.name || text || ''}"
-		placeholder="{placeholder}"
 		bind:this="{inputEl}"
 		on:input="{filter}"
 		on:focus="{open}"
@@ -48,9 +50,12 @@ export let text = '';
 export let allowNew = false;
 export let showAllInitially = true;
 export let clearOnEsc = false;
-export let placeholder = '';
+export let name = undefined;
+export let title = undefined;
+export let placeholder = undefined;
 export let required = false;
 export let disabled = undefined;
+
 let el, inputEl, listEl;
 let opened = false;
 let hasEdited = false;

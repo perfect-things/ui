@@ -1,5 +1,7 @@
 <div class="datepicker-wrapper">
 	<input
+		{name}
+		{title}
 		{placeholder}
 		on:changeDate="{onchange}"
 		on:input="{oninput}"
@@ -14,6 +16,8 @@ import { Datepicker } from 'vanillajs-datepicker';
 import Icon, { icons } from '../icon';
 let picker, inputEl;
 export let value = '';
+export let name = undefined;
+export let title = undefined;
 export let placeholder = undefined;
 
 

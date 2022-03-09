@@ -1,6 +1,16 @@
-<input type="text" bind:value="{value}" on:keydown="{onkeydown}" on:change="{onchange}">
+<input type="text"
+	{name}
+	{title}
+	{placeholder}
+	bind:value="{value}"
+	on:keydown="{onkeydown}"
+	on:change="{onchange}">
 <script>
-let value = '';
+export let value = '';
+export let name = undefined;
+export let title = undefined;
+export let placeholder = undefined;
+
 const DECIMAL_SEPARATOR = '.';
 const allowedKeys = [
 	'0',

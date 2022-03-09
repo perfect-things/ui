@@ -3,8 +3,9 @@
 	<input
 		class="input-math"
 		type="text"
+		{name}
 		{title}
-		placeholder="{placeholder}"
+		{placeholder}
 		bind:value="{value}"
 		on:keydown="{onkeydown}"
 		on:change="{onchange}"
@@ -15,8 +16,9 @@ import { createEventDispatcher } from 'svelte';
 import Icon from '../icon';
 
 export let value = '';
+export let name = undefined;
 export let title = undefined;
-export let placeholder = '';
+export let placeholder = undefined;
 
 const dispatch = createEventDispatcher();
 const DECIMAL_SEPARATOR = '.';
