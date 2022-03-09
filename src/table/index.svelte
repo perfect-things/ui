@@ -21,6 +21,7 @@ export let rowSelector = 'tbody tr';
 let selectedIdx = -1;
 let headerHeight = 0;
 let clickTimer;
+let previousKey;
 
 
 onMount(() => {
@@ -95,8 +96,7 @@ function selectClicked (skipEvent = false) {
 
 
 function onClick (e) {
-	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
-	if (skipEventFor.includes(e.target.tagName)) return;
+	if (shouldSkipNav(e)) return;
 
 	// debounce, so to not duplicate events when dblclicking
 	if (clickTimer) clearTimeout(clickTimer);
@@ -111,8 +111,7 @@ function onClick (e) {
 }
 
 function onDblClick (e) {
-	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
-	if (skipEventFor.includes(e.target.tagName)) return;
+	if (shouldSkipNav(e)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
 	onClick(e);
@@ -124,8 +123,7 @@ function onDblClick (e) {
 
 
 function onKeyDown (e) {
-	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
-	if (skipEventFor.includes(e.target.tagName)) return;
+	if (shouldSkipNav(e)) return;
 
 	if (e.key === 'ArrowUp' || e.key === 'k') {
 		e.preventDefault();
@@ -135,8 +133,25 @@ function onKeyDown (e) {
 		e.preventDefault();
 		selectNext();
 	}
+	if (e.key === 'ArrowLeft' || (e.key === 'g' && previousKey === 'g')) {
+		e.preventDefault();
+		selectedIdx = -1;
+		selectNext();
+	}
+	if (e.key === 'ArrowRight' || e.key === 'G') {
+		e.preventDefault();
+		const rows = getSelectableItems();
+		selectedIdx = rows && rows.length - 2;
+		selectNext();
+	}
+	previousKey = e.key;
 	const selectedItem = getSelectableItems()[selectedIdx];
-	dispatch('key', { event: e, selectedItem });
+	dispatch('key', { event: e, key: e.key, selectedItem });
 }
 
+
+function shouldSkipNav (e) {
+	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
+	return skipEventFor.includes(e.target.tagName);
+}
 </script>
