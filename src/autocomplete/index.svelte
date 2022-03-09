@@ -215,7 +215,7 @@ function down () {
 
 function revert () {
 	if (originalText && originalText !== text) text = originalText;
-	else if (value.name) text = value.name;
+	else if (value && value.name) text = value.name;
 	if (inputEl.value !== text) inputEl.value = text;
 }
 
