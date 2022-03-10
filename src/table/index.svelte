@@ -152,6 +152,8 @@ function onKeyDown (e) {
 
 function shouldSkipNav (e) {
 	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
-	return skipEventFor.includes(e.target.tagName);
+	if (skipEventFor.includes(e.target.tagName)) return true;
+	if (e.target.closest('.dialog,.drawer')) return true;
+	return false;
 }
 </script>
