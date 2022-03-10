@@ -1,5 +1,6 @@
 <div class="select-wrap" class:disabled>
 	<select
+		{id}
 		{name}
 		{title}
 		{disabled}
@@ -26,6 +27,7 @@
 
 <script>
 export let value = undefined;
+export let id = undefined;
 export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;

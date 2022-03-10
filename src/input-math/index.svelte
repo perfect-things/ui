@@ -1,6 +1,7 @@
 <div class="input-math-wrapper">
 	<Icon name="calculator"/>
 	<input type="text" class="input-math" autocomplete="off"
+		{id}
 		{name}
 		{title}
 		{placeholder}
@@ -14,6 +15,7 @@ import { createEventDispatcher } from 'svelte';
 import Icon from '../icon';
 
 export let value = '';
+export let id = undefined;
 export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;

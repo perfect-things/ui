@@ -1,5 +1,6 @@
 <div class="datepicker-wrapper">
 	<input type="text" autocomplete="off"
+		{id}
 		{name}
 		{title}
 		{placeholder}
@@ -17,6 +18,7 @@ import { Datepicker } from 'vanillajs-datepicker';
 import Icon, { icons } from '../icon';
 
 export let value = '';
+export let id = undefined;
 export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;

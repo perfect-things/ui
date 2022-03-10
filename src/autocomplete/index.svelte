@@ -1,6 +1,7 @@
 <div class="autocomplete" bind:this="{el}">
 	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input" autocomplete="off"
+		{id}
 		{name}
 		{title}
 		{placeholder}
@@ -50,6 +51,7 @@ export let text = '';
 export let allowNew = false;
 export let showAllInitially = true;
 export let clearOnEsc = false;
+export let id = undefined;
 export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;
@@ -236,9 +238,9 @@ function open (e) {
 	originalText = text;
 	addEventListeners();
 	filter();
-	const id = value && typeof value === 'object' && value.id ? value.id : value;
-	if (id && filteredData && filteredData.length) {
-		highlightIndex = filteredData.findIndex(i => i.id === id);
+	const itemId = value && typeof value === 'object' && value.id ? value.id : value;
+	if (itemId && filteredData && filteredData.length) {
+		highlightIndex = filteredData.findIndex(i => i.id === itemId);
 		if (!text) text = filteredData[highlightIndex].name;
 	}
 	if (inputEl.value !== text) inputEl.value = text;

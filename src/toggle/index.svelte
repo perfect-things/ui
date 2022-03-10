@@ -1,4 +1,7 @@
-<div class="toggle" class:checked="{value}" disabled="{disabled}" bind:this="{el}"
+<div class="toggle"
+	class:checked="{value}"
+	disabled="{disabled}"
+	bind:this="{el}"
 	tabIndex="{disabled ? undefined : 0}"
 	on:keydown="{onKey}"
 	on:touchstart={dragStart}
