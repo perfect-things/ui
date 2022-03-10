@@ -94,7 +94,6 @@ export function close () {
 		opened = false;
 		backdropEl.style.display = 'none';
 		document.removeEventListener('keydown', onDocKeydown);
-		if (triggerEl) triggerEl.focus();
 		dispatch('close');
 	}, ANIMATION_SPEED);
 }
