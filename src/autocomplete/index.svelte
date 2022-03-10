@@ -162,18 +162,19 @@ function onkeypress (e) {
 	}
 }
 
-
 function onEsc (e) {
-	e.stopPropagation();
-	if (clearOnEsc && text) return clear();
+	if (clearOnEsc && text) {
+		e.stopPropagation();
+		return clear();
+	}
 	if (opened) {
+		e.stopPropagation();
 		revert();
 		inputEl.focus();
-		close();
+		return close();
 	}
-	else dispatch('keydown', e);
+	dispatch('keydown', e);
 }
-
 
 
 
