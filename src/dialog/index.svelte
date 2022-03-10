@@ -17,11 +17,14 @@
 <svelte:options accessors={true}/>
 
 <script>
+import { createEventDispatcher } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 export let title = '';
 export let opened = false;
 export let drawborders = false;
 export let cssClass = '';
+
+const dispatch = createEventDispatcher();
 let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
 
 function focusFirst () {
@@ -78,6 +81,7 @@ export function open (openedBy) {
 		backdropEl.style.display = 'flex';
 		focusFirst();
 		document.addEventListener('keydown', onDocKeydown, true);
+		dispatch('open');
 	}, 100);
 }
 
@@ -91,6 +95,7 @@ export function close () {
 		backdropEl.style.display = 'none';
 		document.removeEventListener('keydown', onDocKeydown);
 		if (triggerEl) triggerEl.focus();
+		dispatch('close');
 	}, ANIMATION_SPEED);
 }
 
