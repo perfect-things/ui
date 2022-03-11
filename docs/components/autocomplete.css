@@ -8,3 +8,10 @@
 
 .docs-autocomplete-column { flex: 1; }
 .docs-autocomplete-column pre { line-height: 1.6; }
+
+
+.docs-autocomplete-overflow {
+	background-color: var(--ui-color-background-light-1);
+	padding: 20px;
+	overflow: hidden;
+}

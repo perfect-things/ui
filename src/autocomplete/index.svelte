@@ -42,7 +42,7 @@
 </div>
 
 <script>
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy } from './util';
 import Icon from '../icon';
 export let data = [];
@@ -57,14 +57,26 @@ export let title = undefined;
 export let placeholder = undefined;
 export let required = false;
 export let disabled = undefined;
+export let elevate = false;
 
+const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
 let opened = false;
 let hasEdited = false;
 let highlightIndex = 0;
 let filteredData = [], groupedData = [];
 let originalText = '';
-const dispatch = createEventDispatcher();
+
+
+onMount(() => {
+	if (elevate === 'true' || elevate === true) {
+		document.body.appendChild(listEl);
+	}
+});
+
+onDestroy(() => {
+	listEl.remove();
+});
 
 
 function filter () {
@@ -78,14 +90,8 @@ function filter () {
 			.filter(item => typeof item === 'string' || fuzzy(item.name, q))
 			.map(item => {
 				item.highlightedName = emphasize(item.name, q);
-				// item.score = 1;
-				// if (item.name.toLowerCase().includes(q)) item.score = 2;
-				// if (item.name.includes(text)) item.score = 3;
-				// if (item.name.toLowerCase() === q) item.score = 4;
-				// if (item.name === text) item.score = 5;
 				return item;
 			});
-		// .sort((a, b) => b.score - a.score);
 	}
 
 	filtered.forEach((item, idx) => item.idx = idx);
@@ -103,10 +109,9 @@ function filter () {
 
 	highlightIndex = -1;
 	hasEdited = true;
-	requestAnimationFrame(recalculateListHeight);
+	requestAnimationFrame(recalculateListPosition);
 	down();
 }
-
 
 
 function highlight () {
@@ -115,14 +120,13 @@ function highlight () {
 
 	// going up
 	if (listEl.scrollTop > selectedEl.offsetTop) {
-		listEl.scrollTo({ top: selectedEl.offsetTop, behavior: 'smooth' });
+		listEl.scrollTo({ top: selectedEl.offsetTop });
 	}
 
 	// going down
 	else if (listEl.scrollTop < selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight) {
 		listEl.scrollTo({
-			top: selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight,
-			behavior: 'smooth'
+			top: selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight
 		});
 	}
 
@@ -258,21 +262,28 @@ function close () {
 }
 
 
-function recalculateListHeight (e) {
+function recalculateListPosition (e) {
 	if (!opened) return;
-	if (e && e.type === 'scroll') return;
+	if (!listEl || !listEl.style) return;
+	if (e.type === 'scroll' && e.target == listEl) return;
 
-	if (listEl && listEl.style) {
-		listEl.style.top = (inputEl.offsetHeight + 2) + 'px';
-		listEl.style.height = 'auto';
-		const listBox = listEl.getBoundingClientRect();
-		const listT = listBox.top;
-		const listH = listBox.height;
-		const winH = window.innerHeight;
-		if (listT + listH + 10 > winH) {
-			const maxH = winH - listT - 10;
-			listEl.style.height = maxH + 'px';
-		}
+	const inputBox = inputEl.getBoundingClientRect();
+	if (elevate) {
+		listEl.style.top = (inputBox.top + inputBox.height + 2) + 'px';
+		listEl.style.left = inputBox.left + 'px';
+	}
+	else {
+		listEl.style.top = (inputBox.height + 2) + 'px';
+	}
+	listEl.style.width = inputBox.width + 'px';
+	listEl.style.height = 'auto';
+	const listBox = listEl.getBoundingClientRect();
+	const listT = listBox.top;
+	const listH = listBox.height;
+	const winH = window.innerHeight;
+	if (listT + listH + 10 > winH) {
+		const maxH = Math.max(winH - listT - 10, 100);
+		listEl.style.height = maxH + 'px';
 	}
 }
 
@@ -282,15 +293,15 @@ function onDocumentClick (e) {
 }
 
 function addEventListeners () {
+	window.addEventListener('resize', recalculateListPosition);
+	document.addEventListener('scroll', recalculateListPosition, true);
 	document.addEventListener('click', onDocumentClick);
-	window.addEventListener('resize', recalculateListHeight);
-	document.addEventListener('scroll', recalculateListHeight, true);
 }
 
 function removeEventListeners () {
+	window.removeEventListener('resize', recalculateListPosition);
+	document.removeEventListener('scroll', recalculateListPosition, true);
 	document.removeEventListener('click', onDocumentClick);
-	window.removeEventListener('resize', recalculateListHeight);
-	document.removeEventListener('scroll', recalculateListHeight, true);
 }
 
 

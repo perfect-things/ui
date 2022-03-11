@@ -9,6 +9,17 @@
 
 		<h3>Allow arbitrary values</h3>
 		<Autocomplete data="{autocompleteData}" placeholder="Type to filter" allowNew="true" bind:value="{autocompleteValue}" />
+
+		<h3>In a container with <em>overflow: hidden</em></h3>
+		<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em> property must be set on the component.</p>
+		<div class="docs-autocomplete-overflow">
+			<small>overflow: hidden</small>
+			<Autocomplete data="{autocompleteData}" elevate="true" bind:value="{autocompleteValue}" />
+		</div>
+		<p>* It is a little bit more costly and should be used only when necessary (e.g. when component is used inside dialogs/popups).<br>
+			The performance cost comes from the position recalculation function, which is running in document's <em>scroll</em> event handler.
+		</p>
+
 	</div>
 	<div class="docs-autocomplete-column">
 		<h2>Selected value: </h2>
