@@ -93,7 +93,7 @@ export function close () {
 	closeTimer = setTimeout(() => {
 		opened = false;
 		backdropEl.style.display = 'none';
-		document.removeEventListener('keydown', onDocKeydown);
+		document.removeEventListener('keydown', onDocKeydown, true);
 		dispatch('close');
 	}, ANIMATION_SPEED);
 }
