@@ -1,6 +1,6 @@
 .textarea {
 	position: relative;
-	width: 25ex;
+	width: 25ch;
 	vertical-align: top;
 	display: inline-grid;
 	align-items: stretch;

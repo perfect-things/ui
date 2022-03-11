@@ -9,7 +9,7 @@ input:not([type=radio], [type=checkbox]) {
 	background-color: var(--ui-color-background-input);
 	border-radius: var(--ui-border-radius);
 	padding: 0 var(--ui-margin-m);
-	width: 25ex;
+	width: 25ch;
 }
 
 input:not([type=radio], [type=checkbox]):focus {

@@ -6,7 +6,7 @@
 	position: relative;
 	user-select: none;
 	border-radius: var(--ui-border-radius);
-	width: 25ex;
+	width: 25ch;
 }
 
 .autocomplete > .icon {
