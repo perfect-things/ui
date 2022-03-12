@@ -29,6 +29,7 @@ let picker, inputEl;
 
 
 onMount(() => {
+	elevate = (elevate === true || elevate === 'true');
 	picker = new Datepicker(inputEl, {
 		autohide: true,
 		format: 'yyyy-mm-dd',
