@@ -82,6 +82,7 @@ function onmousemove () {
 }
 
 function onKeydown (e) {
+	if (menuEl.contains(e.target)) e.preventDefault();
 	if (e.key === 'Escape') close();
 	else if (e.key === 'ArrowDown') focusNext();
 	else if (e.key === 'ArrowUp') focusPrev();
@@ -115,6 +116,7 @@ export function open (e) {
 		dispatch('open');
 		addEventListeners();
 		requestAnimationFrame(resolve);
+		focusNext();
 	}));
 }
 
