@@ -47,6 +47,7 @@
 	height: calc(var(--ui-button-size) * 1.2);
 	min-width: var(--ui-button-size);
 	width: auto;
+	pointer-events: none;
 }
 
 .button-has-text svg { margin-left: calc(var(--ui-margin-m) * -1); margin-right: 0.4em; }
