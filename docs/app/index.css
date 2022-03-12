@@ -20,6 +20,7 @@ body * { box-sizing: inherit; }
 }
 
 h2 { margin: 0; }
+h3:not(:first-of-type) { margin-top: 50px; }
 a { color: inherit; }
 
 aside {

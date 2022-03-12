@@ -9,3 +9,9 @@
 	user-select: none;
 }
 small { display: block; margin: 5px 0 15px; }
+
+.docs-menu-overflow {
+	background-color: var(--ui-color-background-light-1);
+	padding: 20px;
+	overflow: hidden;
+}

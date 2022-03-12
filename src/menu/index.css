@@ -10,7 +10,6 @@
 	cursor: default;
 	z-index: 999;
 
-	backdrop-filter: blur(5px);
 	color: var(--ui-color-text);
 	border: var(--ui-popup-border);
 	border-radius: var(--ui-popup-border-radius);
