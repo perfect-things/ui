@@ -1,17 +1,30 @@
-<h2>Context menu</h2>
+<h2>Menu</h2>
+
+<h3>Normal menu</h3>
+<Button on:click="{menu0.open}">Show menu</Button>
+
+
+<h3>Context menu</h3>
 <small>(Right-click on the boxes below)</small>
 
 <div class="div div1">Tab</div>
 <div class="div div2">Window</div>
 
-<Menu targetSelector=".div1" bind:this="{menu1}" on:close="{onMenu1close}">
+<Menu bind:this="{menu0}">
+	<Item on:click="{newTab}"><Icon name="plus"/> New Tab</Item>
+	<Item on:click="{newPrivateTab}"><Icon name=""/> New Private Tab</Item>
+	<Separator />
+	<Item on:click="{Menu0closeTabs}"><Icon name="close"/> {closeTabsText}</Item>
+</Menu>
+
+<Menu type="context" targetSelector=".div1" bind:this="{menu1}" on:close="{onMenu1close}">
 	<Item on:click="{newTab}"><Icon name="plus"/> New Tab</Item>
 	<Item on:click="{newPrivateTab}"><Icon name=""/> New Private Tab</Item>
 	<Separator />
 	<Item on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</Item>
 </Menu>
 
-<Menu targetSelector=".div2" bind:this="{menu2}">
+<Menu type="context" targetSelector=".div2" bind:this="{menu2}">
 	<Item on:click="{newWindow}">New window</Item>
 	<Item on:click="{newPrivateWindow}">New private window</Item>
 	<Separator />
@@ -19,8 +32,8 @@
 </Menu>
 
 <script>
-import { Menu, Item, Separator, Icon } from '../../src';
-let menu1, menu2;
+import { Button, Menu, Item, Separator, Icon } from '../../src';
+let menu0, menu1, menu2;
 let closeTabsText = 'Close all tabs';
 let menu1timer;
 
@@ -31,7 +44,23 @@ function newTab () {
 function newPrivateTab () {
 	menu1.close().then(() => alert('New Private Tab clicked'));
 }
-function closeTabs () {
+
+function Menu0closeTabs (e) {
+	if (e && e.detail) e.detail.stopPropagation();
+	const initial = 'Close all tabs';
+	const confrm = 'Confirm Closing';
+
+	if (closeTabsText === initial) {
+		closeTabsText = confrm;
+		menu1timer = setTimeout(() => closeTabsText = initial, 2000);
+	}
+	else {
+		menu0.close().then(() => alert('Closed all tabs!'));
+	}
+}
+
+function closeTabs (e) {
+	if (e && e.detail) e.detail.stopPropagation();
 	const initial = 'Close all tabs';
 	const confrm = 'Confirm Closing';
 
@@ -50,13 +79,13 @@ function onMenu1close () {
 }
 
 function newWindow () {
-	menu2.close().then(() => alert('New Window clicked'));
+	menu1.close().then(() => alert('New Window clicked'));
 }
 function newPrivateWindow () {
-	menu2.close().then(() => alert('New Private Window clicked'));
+	// menu1.close().then(() => alert('New Private Window clicked'));
 }
 function closeWindows () {
-	menu2.close().then(() => alert('Windows closed!'));
+	menu1.close().then(() => alert('Windows closed!'));
 }
 
 

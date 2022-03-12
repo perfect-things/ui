@@ -1,39 +1,50 @@
-<ul class="context-menu"
-	class:hidden="{!opened}"
-	bind:this="{menuEl}">
-
+<ul class="menu" class:hidden="{!opened}" bind:this="{menuEl}">
 	<slot></slot>
 </ul>
 
 <svelte:options accessors={true}/>
 
 <script>
-import { createEventDispatcher, onMount } from 'svelte';
+import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 const dispatch = createEventDispatcher();
 
+export let type = undefined;          // can be undefined or 'context'
+export let targetSelector = 'body';   // target element for context menu
+export let closeOnClick = true;
+
 let menuEl, targetEl, focusedEl, opened = false;
-export let targetSelector = 'body';
 
 onMount(() => {
-	document.addEventListener('contextmenu', onContextMenu);
+	if (type === 'context') document.addEventListener('contextmenu', onContextMenu);
 });
 
+onDestroy(() => {
+	if (type === 'context') document.removeEventListener('contextmenu', onContextMenu);
+});
 
 function updatePosition (e)  {
-	if (e) {	// update position to pointer
-		menuEl.style.left = e.x + 'px';
+	if (e && e.detail && e.detail instanceof Event) e = e.detail;
+
+	const etype = e && e.type;
+	// context menu
+	if (etype === 'contextmenu' && type === 'context') {	// update position to pointer
 		menuEl.style.top = e.y + 'px';
+		menuEl.style.left = e.x + 'px';
 	}
-	else {		// make sure it stays on screen
-		let {x, y, width, height} = menuEl.getBoundingClientRect();
-		const winH = window.innerHeight;
-		const winW = window.innerWidth;
-		const padding = 10;
-		if (winH - height - y < padding) y = winH - height - padding;
-		if (winW - width - x < padding) x = winW - width - padding;
-		menuEl.style.left = x + 'px';
-		menuEl.style.top = y + 'px';
+	// regular menu
+	else if (etype === 'click' && type !== 'context') {
+		const btnBox = e.target.getBoundingClientRect();
+		menuEl.style.top = (btnBox.top + btnBox.height + 3) + 'px';
+		menuEl.style.left = btnBox.left + 'px';
 	}
+	// ensure it stays on screen
+	let {x, y, width, height} = menuEl.getBoundingClientRect();
+	const winH = window.innerHeight;
+	const winW = window.innerWidth;
+	const padding = 10;
+
+	if (winH - height - y < padding) menuEl.style.top = (winH - height - padding) + 'px';
+	if (winW - width - x < padding) menuEl.style.left = (winW - width - padding) + 'px';
 }
 
 function onContextMenu (e) {
@@ -47,8 +58,13 @@ function onContextMenu (e) {
 }
 
 function onDocumentClick (e) {
-	if (e.button !== 0) return;
+	// if (type === 'context' && e.button !== 0) return;
 	if (!menuEl.contains(e.target)) close();
+	else {
+		const shouldClose = closeOnClick === true || closeOnClick === 'true';
+		const clickedOnItem = e.target.closest('.menu-item:not(.menu-separator)');
+		if (shouldClose && clickedOnItem) close();
+	}
 }
 
 function onscroll () {
@@ -70,7 +86,7 @@ function onKeydown (e) {
 
 
 function focusNext () {
-	const buttons = Array.from(menuEl.querySelectorAll('.context-menu-button'));
+	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
 	let idx = -1;
 	if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
 	if (idx >= buttons.length - 1) return;
@@ -79,7 +95,7 @@ function focusNext () {
 }
 
 function focusPrev () {
-	const buttons = Array.from(menuEl.querySelectorAll('.context-menu-button'));
+	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
 	let idx = buttons.length;
 	if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
 	if (idx <= 0) return;
@@ -87,12 +103,12 @@ function focusPrev () {
 	if (focusedEl) focusedEl.focus();
 }
 
-export function open () {
+export function open (e) {
 	opened = true;
 	focusedEl = null;
 	return new Promise(resolve => requestAnimationFrame(() => {
 		// needs to finish rendering first
-		updatePosition();
+		updatePosition(e);
 		dispatch('open');
 		addEventListeners();
 		requestAnimationFrame(resolve);

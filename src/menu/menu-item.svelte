@@ -1,5 +1,5 @@
-<li class="context-menu-item">
-	<button class="context-menu-button" on:click="{e => dispatch('click', e)}">
+<li class="menu-item">
+	<button class="menu-button" on:click|capture="{e => dispatch('click', e)}">
 		<slot />
 	</button>
 </li>

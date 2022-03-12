@@ -12,12 +12,12 @@
 
 	<h3>Containers</h3>
 	<NavItem name="Drawer" {active} />
+	<NavItem name="Menu" {active} />
 	<NavItem name="Panel" {active} />
 	<NavItem name="Dialog" {active} />
 	<NavItem name="Table" {active} />
 
 	<h3>Generic</h3>
-	<NavItem name="Context Menu" {active} />
 	<NavItem name="Icon" {active} />
 	<NavItem name="TextFit" {active} />
 	<NavItem name="Toaster" {active} />
@@ -29,7 +29,7 @@
 import NavItem from './nav-item';
 
 import Button from '../components/button';
-import ContextMenu from '../components/context-menu';
+import Menu from '../components/menu';
 import Icon from '../components/icon';
 import TextFit from '../components/text-fit';
 import Toaster from '../components/toaster';
@@ -51,7 +51,6 @@ import Table from '../components/table';
 
 const components = {
 	Button,
-	ContextMenu,
 	Icon,
 	TextFit,
 	Toaster,
@@ -61,6 +60,7 @@ const components = {
 	Input,
 	InputMath,
 	InputPassword,
+	Menu,
 	Select,
 	Textarea,
 	Toggle,

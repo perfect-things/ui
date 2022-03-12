@@ -1,4 +1,4 @@
-.context-menu {
+.menu {
 	position: fixed;
 	padding: 0.0626em 0.25em;
 	margin: 0;
@@ -18,10 +18,11 @@
 	box-shadow: var(--ui-popup-shadow);
 }
 
-.context-menu.hidden { display: none; }
+.menu.hidden { display: none; }
 
-.context-menu-item {
+.menu-item {
 	padding: 0.1em 0;
+	margin: 2px 0;
 	position: relative;
 	overflow: hidden;
 	display: flex;
@@ -29,16 +30,17 @@
 	justify-content: space-between;
 }
 
-.context-menu-item svg {
+.menu-item svg {
 	width: 1.3em;
 	height: 1.3em;
 	margin: -0.1em 0.727em -0.1em 0;
 }
 
-.context-menu-button {
+.menu-button {
 	font-size: 0.86em;
 	border: 0;
-	background: 0;
+	margin: 0;
+	background: none;
 	color: inherit;
 	width: 100%;
 	text-align: left;
@@ -50,11 +52,11 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.context-menu-button:focus { outline: none; }
-.context-menu-button:focus,
-.context-menu-button:hover { background-color: var(--ui-color-highlight); }
+.menu-button:focus { outline: none; }
+.menu-button:focus,
+.menu-button:hover { background-color: var(--ui-color-highlight); }
 
-.context-menu-separator {
+.menu-separator {
 	height: 0;
 	padding: 0;
 	margin: var(--ui-margin) var(--ui-margin-m);

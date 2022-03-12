@@ -15,7 +15,7 @@ import TextFit from './text-fit';
 import Toaster, { showToast, hideToast } from './toaster';
 import Toggle from './toggle';
 
-export * from './context-menu/index.js';
+export * from './menu/index.js';
 
 export {
 	Autocomplete,
