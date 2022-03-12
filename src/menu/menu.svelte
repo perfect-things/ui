@@ -82,12 +82,22 @@ function onmousemove () {
 }
 
 function onKeydown (e) {
-	if (menuEl.contains(e.target)) e.preventDefault();
+	if (!menuEl.contains(e.target)) return;
+
 	if (e.key === 'Escape') close();
-	else if (e.key === 'ArrowDown') focusNext();
-	else if (e.key === 'ArrowUp') focusPrev();
+	else if (e.key === 'ArrowDown') {
+		e.preventDefault();
+		focusNext();
+	}
+	else if (e.key === 'ArrowUp') {
+		e.preventDefault();
+		focusPrev();
+	}
 }
 
+function focusTarget () {
+	if (targetEl && targetEl.focus) targetEl.focus();
+}
 
 function focusNext () {
 	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
@@ -110,6 +120,10 @@ function focusPrev () {
 export function open (e) {
 	opened = true;
 	focusedEl = null;
+
+	if (e && e.detail && e.detail instanceof Event) e = e.detail;
+	if (type !== 'context') targetEl = e.target;
+
 	return new Promise(resolve => requestAnimationFrame(() => {
 		// needs to finish rendering first
 		updatePosition(e);
@@ -126,6 +140,7 @@ export function close () {
 		dispatch('close');
 		removeEventListeners();
 		requestAnimationFrame(resolve);
+		focusTarget();
 	}));
 }
 
