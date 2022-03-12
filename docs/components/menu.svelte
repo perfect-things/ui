@@ -11,16 +11,32 @@
 
 
 <h3>In a container with <em>overflow: hidden</em></h3>
+<p>Where parent container has <em>overflow: hidden</em>, and/or another container is covering the menu,
+	<em>elevate="true"</em> property must be set on the component.</p>
 <div class="docs-menu-overflow">
-	<small>overflow: hidden</small>
-	<Button on:click="{someMenu.open}">Show menu</Button>
-	<Menu bind:this="{someMenu}">
+	<small>parent: <em>overflow: hidden</em></small>
+	<Button on:click="{someMenu1.open}">Regular Menu</Button>
+	<Menu bind:this="{someMenu1}">
 		<Item><Icon name="plus"/> Add some</Item>
 		<Item><Icon name=""/> Add some more</Item>
 		<Separator />
 		<Item><Icon name="close"/> Close something</Item>
 	</Menu>
+
+	<Button on:click="{someMenu2.open}">Elevated Menu</Button>
+	<Menu bind:this="{someMenu2}" elevate="true">
+		<Item><Icon name="plus"/> Add some</Item>
+		<Item><Icon name=""/> Add some more</Item>
+		<Separator />
+		<Item><Icon name="close"/> Close something</Item>
+	</Menu>
+
 </div>
+<div class="another-element-with-z-index">
+	<small>parent's sibling with <em>z-index</em> higher than parent</small>
+</div>
+<p>This option should only be used when absolutely necessary, because it makes the component less accessible
+	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
 
 
 <h3>Context menu</h3>
@@ -45,7 +61,7 @@
 
 <script>
 import { Button, Menu, Item, Separator, Icon } from '../../src';
-let someMenu, thingsMenu, tabsMenu, windowsMenu;
+let someMenu1, someMenu2, thingsMenu, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;

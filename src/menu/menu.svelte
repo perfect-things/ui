@@ -11,15 +11,18 @@ const dispatch = createEventDispatcher();
 export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
-
+export let elevate = false;
+$:elevated = elevate === 'true' || elevate === true;
 let menuEl, targetEl, focusedEl, opened = false;
 
 onMount(() => {
 	if (type === 'context') document.addEventListener('contextmenu', onContextMenu);
+	if (elevated) document.body.appendChild(menuEl);
 });
 
 onDestroy(() => {
 	if (type === 'context') document.removeEventListener('contextmenu', onContextMenu);
+	if (elevated) menuEl.remove();
 });
 
 function updatePosition (e)  {

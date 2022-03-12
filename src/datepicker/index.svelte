@@ -24,12 +24,13 @@ export let title = undefined;
 export let placeholder = undefined;
 export let elevate = false;
 
+$:elevated = elevate === true || elevate === 'true';
+
 const dispatch = createEventDispatcher();
 let picker, inputEl;
 
 
 onMount(() => {
-	elevate = (elevate === true || elevate === 'true');
 	picker = new Datepicker(inputEl, {
 		autohide: true,
 		format: 'yyyy-mm-dd',
@@ -38,7 +39,7 @@ onMount(() => {
 		todayBtnMode: 1,
 		todayHighlight: true,
 		updateOnBlur: false,
-		container: elevate ? document.body : undefined,
+		container: elevated ? document.body : undefined,
 		weekStart: 1,
 		prevArrow: icons.chevronLeft,
 		nextArrow: icons.chevronRight,

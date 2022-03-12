@@ -59,6 +59,7 @@ export let required = false;
 export let disabled = undefined;
 export let elevate = false;
 
+$:elevated = elevate === 'true' || elevate === true;
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
 let opened = false;
@@ -69,13 +70,11 @@ let originalText = '';
 
 
 onMount(() => {
-	if (elevate === 'true' || elevate === true) {
-		document.body.appendChild(listEl);
-	}
+	if (elevated) document.body.appendChild(listEl);
 });
 
 onDestroy(() => {
-	listEl.remove();
+	if (elevated) listEl.remove();
 });
 
 
@@ -267,7 +266,7 @@ function recalculateListPosition () {
 	if (!listEl || !listEl.style) return;
 
 	const inputBox = inputEl.getBoundingClientRect();
-	if (elevate) {
+	if (elevated) {
 		listEl.style.top = (inputBox.top + inputBox.height + 2) + 'px';
 		listEl.style.left = inputBox.left + 'px';
 	}
