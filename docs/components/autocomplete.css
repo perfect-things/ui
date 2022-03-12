@@ -6,7 +6,8 @@
 	gap: 20px;
 }
 
-.docs-autocomplete-column { flex: 1; }
+.docs-autocomplete-column:first-of-type { flex: 1; }
+.docs-autocomplete-column:last-of-type { width: 240px; }
 .docs-autocomplete-column pre { line-height: 1.6; }
 
 

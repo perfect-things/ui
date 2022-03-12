@@ -262,10 +262,9 @@ function close () {
 }
 
 
-function recalculateListPosition (e) {
+function recalculateListPosition () {
 	if (!opened) return;
 	if (!listEl || !listEl.style) return;
-	if (e.type === 'scroll' && e.target == listEl) return;
 
 	const inputBox = inputEl.getBoundingClientRect();
 	if (elevate) {
@@ -287,20 +286,26 @@ function recalculateListPosition (e) {
 	}
 }
 
+function onScrollOrResize (e) {
+	if (!opened) return;
+	if (e.target == listEl) return;
+	inputEl.blur();
+	return close();
+}
 
 function onDocumentClick (e) {
 	if (el && !el.contains(e.target)) close();
 }
 
 function addEventListeners () {
-	window.addEventListener('resize', recalculateListPosition);
-	document.addEventListener('scroll', recalculateListPosition, true);
+	window.addEventListener('resize', onScrollOrResize);
+	document.addEventListener('scroll', onScrollOrResize, true);
 	document.addEventListener('click', onDocumentClick);
 }
 
 function removeEventListeners () {
-	window.removeEventListener('resize', recalculateListPosition);
-	document.removeEventListener('scroll', recalculateListPosition, true);
+	window.removeEventListener('resize', onScrollOrResize);
+	document.removeEventListener('scroll', onScrollOrResize, true);
 	document.removeEventListener('click', onDocumentClick);
 }
 
