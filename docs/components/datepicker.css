@@ -1,0 +1,5 @@
+.docs-datepicker-overflow {
+	background-color: var(--ui-color-background-light-1);
+	padding: 20px;
+	overflow: hidden;
+}

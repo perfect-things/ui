@@ -272,7 +272,7 @@ function recalculateListPosition () {
 		listEl.style.left = inputBox.left + 'px';
 	}
 	else {
-		listEl.style.top = (inputBox.height + 2) + 'px';
+		listEl.style.top = (inputBox.height + 3) + 'px';
 	}
 	listEl.style.width = inputBox.width + 'px';
 	listEl.style.height = 'auto';

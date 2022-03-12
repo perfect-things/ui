@@ -22,6 +22,7 @@ export let id = undefined;
 export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;
+export let elevate = false;
 
 const dispatch = createEventDispatcher();
 let picker, inputEl;
@@ -36,6 +37,7 @@ onMount(() => {
 		todayBtnMode: 1,
 		todayHighlight: true,
 		updateOnBlur: false,
+		container: elevate ? document.body : undefined,
 		weekStart: 1,
 		prevArrow: icons.chevronLeft,
 		nextArrow: icons.chevronRight,
