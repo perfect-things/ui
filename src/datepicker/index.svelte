@@ -6,7 +6,7 @@
 		{placeholder}
 		on:changeDate="{onchange}"
 		on:input="{oninput}"
-		on:keydown="{onkeydown}"
+		on:keydown|capture="{onkeydown}"
 		bind:this="{inputEl}"
 		bind:value="{value}">
 	<Icon name="calendar"/>
@@ -44,10 +44,14 @@ onMount(() => {
 		prevArrow: icons.chevronLeft,
 		nextArrow: icons.chevronRight,
 	});
-
 });
 
+
 function onkeydown (e) {
+	if (e.key === 'Escape') {
+		if (picker.active) e.stopPropagation();
+		requestAnimationFrame(() => picker.hide());
+	}
 	dispatch('keydown', e);
 }
 
