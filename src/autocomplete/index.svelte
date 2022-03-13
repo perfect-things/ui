@@ -12,7 +12,7 @@
 		on:input="{filter}"
 		on:focus="{open}"
 		on:change="{onchange}"
-		on:keydown="{onkeydown}"
+		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
 
 	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{listEl}">

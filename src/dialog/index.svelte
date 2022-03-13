@@ -80,7 +80,7 @@ export function open (openedBy) {
 		opened = true;
 		backdropEl.style.display = 'flex';
 		focusFirst();
-		document.addEventListener('keydown', onDocKeydown, true);
+		document.addEventListener('keydown', onDocKeydown);
 		dispatch('open');
 	}, 100);
 }
@@ -93,7 +93,7 @@ export function close () {
 	closeTimer = setTimeout(() => {
 		opened = false;
 		backdropEl.style.display = 'none';
-		document.removeEventListener('keydown', onDocKeydown, true);
+		document.removeEventListener('keydown', onDocKeydown);
 		dispatch('close');
 	}, ANIMATION_SPEED);
 }
