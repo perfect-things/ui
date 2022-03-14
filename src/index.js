@@ -1,5 +1,6 @@
 import Autocomplete from './autocomplete';
 import Button from './button';
+import ButtonToggle from './button-toggle';
 import Dialog from './dialog';
 import Datepicker from './datepicker';
 import Drawer from './drawer';
@@ -21,7 +22,7 @@ export * from './menu/index.js';
 export {
 	Autocomplete,
 	Button,
-	PushButton,
+	ButtonToggle,
 	Dialog,
 	Datepicker,
 	Drawer,
@@ -31,6 +32,7 @@ export {
 	InputMath,
 	InputPassword,
 	Panel,
+	PushButton,
 	Select,
 	Table,
 	Textarea,

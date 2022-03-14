@@ -2,6 +2,7 @@
 	<h3>Form Controls</h3>
 	<NavItem name="Autocomplete" {active} />
 	<NavItem name="Button" {active} />
+	<NavItem name="Button Toggle" {active} />
 	<NavItem name="Push Button" {active} />
 	<NavItem name="Datepicker" {active} />
 	<NavItem name="Input" {active} />
@@ -30,6 +31,7 @@
 import NavItem from './nav-item';
 
 import Button from '../components/button';
+import ButtonToggle from '../components/button-toggle';
 import PushButton from '../components/push-button';
 import Menu from '../components/menu';
 import Icon from '../components/icon';
@@ -53,6 +55,7 @@ import Table from '../components/table';
 
 const components = {
 	Button,
+	ButtonToggle,
 	PushButton,
 	Icon,
 	TextFit,

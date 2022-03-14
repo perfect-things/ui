@@ -16,6 +16,7 @@
 	class:success
 	class:warning
 	class:danger
+	on:keydown="{e => dispatch('keydown', e)}"
 	on:mousedown="{e => dispatch('mousedown', e)}"
 	on:click="{e => dispatch('click', e)}"
 	>
