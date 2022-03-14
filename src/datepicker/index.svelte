@@ -52,6 +52,10 @@ function onkeydown (e) {
 		if (picker.active) e.stopPropagation();
 		requestAnimationFrame(() => picker.hide());
 	}
+	else if (e.key === 'Enter') {
+		if (picker.active) e.preventDefault();
+		requestAnimationFrame(() => picker.hide());
+	}
 	dispatch('keydown', e);
 }
 
