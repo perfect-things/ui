@@ -18,12 +18,7 @@
 	opacity: 0.6;
 }
 
-.datepicker-wrapper .datepicker-input {
-	width: 100%;
-	padding-right: 28px;
-	cursor: pointer;
-}
-
+.datepicker-wrapper .datepicker-input { width: 100%; padding-right: 28px; }
 .datepicker { display: none; }
 .datepicker.active { display: block; }
 
