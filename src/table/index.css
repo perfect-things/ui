@@ -9,7 +9,7 @@
 .table { border: 2px solid var(--ui-color-border); border-spacing: 0; width: 100%; }
 
 .table thead,
-.table tfoot { position: sticky; z-index: 1; }
+.table tfoot { position: sticky; z-index: 2; }
 .table thead { top: 0; }
 .table tfoot { bottom: 0; }
 
