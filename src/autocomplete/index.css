@@ -17,6 +17,7 @@
 	pointer-events: none;
 	color: var(--ui-color-text-dark-1);
 	z-index: 1;
+	opacity: 0.6;
 }
 .autocomplete .autocomplete-input {
 	width: 100%;
