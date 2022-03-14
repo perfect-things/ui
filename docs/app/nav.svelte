@@ -2,6 +2,7 @@
 	<h3>Form Controls</h3>
 	<NavItem name="Autocomplete" {active} />
 	<NavItem name="Button" {active} />
+	<NavItem name="Push Button" {active} />
 	<NavItem name="Datepicker" {active} />
 	<NavItem name="Input" {active} />
 	<NavItem name="Input Math" {active} />
@@ -29,6 +30,7 @@
 import NavItem from './nav-item';
 
 import Button from '../components/button';
+import PushButton from '../components/push-button';
 import Menu from '../components/menu';
 import Icon from '../components/icon';
 import TextFit from '../components/text-fit';
@@ -51,6 +53,7 @@ import Table from '../components/table';
 
 const components = {
 	Button,
+	PushButton,
 	Icon,
 	TextFit,
 	Toaster,

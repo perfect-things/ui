@@ -8,6 +8,7 @@ import InputNumber from './input-number';
 import InputMath from './input-math';
 import InputPassword from './input-password';
 import Panel from './panel';
+import PushButton from './push-button';
 import Select from './select';
 import Table from './table';
 import Textarea from './textarea';
@@ -20,6 +21,7 @@ export * from './menu/index.js';
 export {
 	Autocomplete,
 	Button,
+	PushButton,
 	Dialog,
 	Datepicker,
 	Drawer,

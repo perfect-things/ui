@@ -16,6 +16,7 @@
 	class:success
 	class:warning
 	class:danger
+	on:mousedown="{e => dispatch('mousedown', e)}"
 	on:click="{e => dispatch('click', e)}"
 	>
 	{#if icon}<Icon name="{icon}"/>{/if}

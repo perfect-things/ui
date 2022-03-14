@@ -1,0 +1,5 @@
+.push-button.pressed {
+	filter: brightness(0.85);
+	transform: translateY(1px);
+	box-shadow: none;
+}
