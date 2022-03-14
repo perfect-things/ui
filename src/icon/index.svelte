@@ -41,6 +41,7 @@ import plus from './icons/plus.svg';
 import receipt from './icons/receipt.svg';
 import restore from './icons/restore.svg';
 import reset from './icons/reset.svg';
+import repeat from './icons/repeat.svg';
 import reportAnalytics from './icons/report-analytics.svg';
 import reportMoney from './icons/report-money.svg';
 import search from './icons/search.svg';
@@ -91,6 +92,7 @@ export const icons = {
 	receipt,
 	restore,
 	reset,
+	repeat,
 	report: reportAnalytics,
 	reportAnalytics,
 	reportMoney,
