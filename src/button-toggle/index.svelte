@@ -1,4 +1,4 @@
-<div class="button-toggle {cssClass}" {disabled} class:round>
+<div class="button-toggle {cssClass}" {disabled} class:round bind:this="{el}">
 	<input type="hidden" {id} {name} {disabled} value="{value}"/>
 
 	{#each items as item}
@@ -35,15 +35,35 @@ export let name = '';
 export let value = '';
 
 const dispatch = createEventDispatcher();
-
-function onKeyDown (e, button) {
-	if (e && e.detail) e = e.detail;
-	if (value !== button && (e.key === ' ' || e.key === 'Enter')) value = button.value;
-	dispatch('keydown', e);
-}
+let el;
 
 function onMouseDown (e, button) {
 	value = button.value;
 	dispatch('click', e);
+	dispatch('change', value);
 }
+
+function onKeyDown (e, button) {
+	if (e && e.detail) e = e.detail;
+	if (value !== button && (e.key === ' ' || e.key === 'Enter')) value = button.value;
+	else if (e.key === 'ArrowRight') focusNext(e.target);
+	else if (e.key === 'ArrowLeft') focusPrev(e.target);
+	dispatch('keydown', e);
+}
+
+
+function focusPrev (btn) {
+	const buttons = Array.from(el.querySelectorAll('button'));
+	const idx = buttons.indexOf(btn);
+	if (idx <= 0) return;
+	buttons[idx - 1].focus();
+}
+
+function focusNext (btn) {
+	const buttons = Array.from(el.querySelectorAll('button'));
+	const idx = buttons.indexOf(btn);
+	if (idx >= buttons.length - 1) return;
+	buttons[idx + 1].focus();
+}
+
 </script>
