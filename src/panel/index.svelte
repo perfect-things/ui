@@ -24,6 +24,7 @@ function calcHeights () {
 	const wasOpen = open;
 	open = true;
 	requestAnimationFrame(() => {
+		if (!wrapEl) return;
 		const wrapCss = getComputedStyle(wrapEl);
 		const borderTop = parseInt(wrapCss.borderTopWidth || 0, 10);
 		const borderBottom = parseInt(wrapCss.borderTopWidth || 0, 10);
