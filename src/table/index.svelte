@@ -28,7 +28,10 @@ onMount(() => {
 	if (selectable) {
 		document.addEventListener('keydown', onKeyDown);
 		makeRowsSelectable();
-		requestAnimationFrame(() => headerHeight = _this.querySelector('thead').offsetHeight);
+		requestAnimationFrame(() => {
+			const head = _this && _this.querySelector('thead');
+			if (head) headerHeight = head.offsetHeight;
+		});
 	}
 });
 
