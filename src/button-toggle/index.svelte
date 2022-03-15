@@ -1,4 +1,6 @@
 <div class="button-toggle {cssClass}" {disabled} class:round>
+	<input type="hidden" {id} {name} {disabled} value="{value}"/>
+
 	{#each items as item}
 		{#if item.name}
 			<Button
@@ -27,25 +29,16 @@ import Button from '../button';
 export let disabled = false;
 export let round = undefined;	// round button
 export let cssClass = '';
-export let icons = '';
-export let buttons = '';
+export let items = '';
+export let id = '';
+export let name = '';
 export let value = '';
 
 const dispatch = createEventDispatcher();
 
-$:buttonArray = buttons.split(',').filter(i => !!i);
-$:iconArray = icons.split(',').filter(i => !!i);
-$:items = new Array(buttonArray.length || iconArray.length)
-	.fill({})
-	.map((_, i) => ({
-		name: buttonArray[i],
-		icon: iconArray[i],
-		value: buttonArray[i] || iconArray[i],
-	}));
-
 function onKeyDown (e, button) {
 	if (e && e.detail) e = e.detail;
-	if (value !== button && (e.key === ' ' || e.key === 'Enter')) value = button;
+	if (value !== button && (e.key === ' ' || e.key === 'Enter')) value = button.value;
 	dispatch('keydown', e);
 }
 

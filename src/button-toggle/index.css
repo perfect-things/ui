@@ -1,25 +1,35 @@
-.button-toggle { display: inline-block; }
+.button-toggle { display: inline-block; padding: 1px; }
 
-.button-toggle .button { border-radius: 0; border-right-color: var(--ui-color-border-semi); }
+.button-toggle .button {
+	border-radius: 0;
+	position: relative;
+}
 
-.button-toggle .button:first-child {
+.button-toggle .button:not(:first-of-type,:last-of-type) {
+	border-left-color: var(--ui-color-border-semi);
+	border-right-color: var(--ui-color-border-semi);
+}
+
+.button-toggle .button:focus { z-index: 1; }
+
+.button-toggle .button:first-of-type {
 	border-top-left-radius: var(--ui-border-radius);
 	border-bottom-left-radius: var(--ui-border-radius);
 }
 
-.button-toggle .button:last-child {
+.button-toggle .button:last-of-type {
 	border-top-right-radius: var(--ui-border-radius);
 	border-bottom-right-radius: var(--ui-border-radius);
-	border-right-color: transparent;
+	/* border-right-color: transparent; */
 }
 
 
-.button-toggle.round .button:first-child {
+.button-toggle.round .button:first-of-type {
 	border-top-left-radius: var(--ui-border-radius-xl);
 	border-bottom-left-radius: var(--ui-border-radius-xl);
 }
 
-.button-toggle.round .button:last-child {
+.button-toggle.round .button:last-of-type {
 	border-top-right-radius: var(--ui-border-radius-xl);
 	border-bottom-right-radius: var(--ui-border-radius-xl);
 }
