@@ -15,7 +15,10 @@
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
 
-	<div class="autocomplete-list {opened ? '' : 'hidden'}" bind:this="{listEl}">
+	<div class="autocomplete-list {opened ? '' : 'hidden'}"
+		on:mouseenter|capture="{() => mouseOverList = true}"
+		on:mouseleave|capture="{() => mouseOverList = false}"
+		bind:this="{listEl}">
 		{#if filteredData.length}
 			{#each groupedData as group}
 				{#if group.name}
@@ -64,6 +67,7 @@ const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
 let opened = false;
 let hasEdited = false;
+let mouseOverList = false;
 let highlightIndex = 0;
 let filteredData = [], groupedData = [];
 let originalText = '';
@@ -257,6 +261,7 @@ function open (e) {
 function close () {
 	if (!opened) return;
 	removeEventListeners();
+	mouseOverList = false;
 	opened = false;
 }
 
@@ -287,7 +292,7 @@ function recalculateListPosition () {
 
 function onScrollOrResize (e) {
 	if (!opened) return;
-	if (e.target == listEl) return;
+	if (e.target == listEl || mouseOverList) return;
 	inputEl.blur();
 	return close();
 }

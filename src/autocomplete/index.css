@@ -45,8 +45,10 @@
 .autocomplete-list.hidden { display: none; }
 
 .autocomplete-list-header {
-	padding: 0.8em 1em;
-	color: var(--ui-color-text-dark-1);
+	padding: 0.8em 0.6em;
+	margin: 0;
+	color: var(--ui-color-accent);
+	background-color: var(--ui-color-background-light-2);
 	line-height: 1;
 	font-weight: 600;
 	cursor: default;
@@ -58,7 +60,7 @@
 .autocomplete-list-header:last-child { display: none; }
 
 .autocomplete-list-item {
-	padding: 0.6em 1em;
+	padding: 0.6em 1.2em;
 	color: var(--ui-color-text);
 	cursor: pointer;
 	line-height: 1;
