@@ -149,7 +149,7 @@ function onKeyDown (e) {
 	}
 	previousKey = e.key;
 	const selectedItem = getSelectableItems()[selectedIdx];
-	dispatch('key', { event: e, key: e.key, selectedItem });
+	dispatch('keydown', { event: e, key: e.key, selectedItem });
 }
 
 
