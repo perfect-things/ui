@@ -298,19 +298,22 @@ function onScrollOrResize (e) {
 }
 
 function onDocumentClick (e) {
-	if (el && !el.contains(e.target)) close();
+	if (el && !el.contains(e.target)) {
+		e.stopPropagation();
+		close();
+	}
 }
 
 function addEventListeners () {
 	window.addEventListener('resize', onScrollOrResize);
 	document.addEventListener('scroll', onScrollOrResize, true);
-	document.addEventListener('click', onDocumentClick);
+	document.addEventListener('click', onDocumentClick, true);
 }
 
 function removeEventListeners () {
 	window.removeEventListener('resize', onScrollOrResize);
 	document.removeEventListener('scroll', onScrollOrResize, true);
-	document.removeEventListener('click', onDocumentClick);
+	document.removeEventListener('click', onDocumentClick, true);
 }
 
 
