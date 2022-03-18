@@ -11,7 +11,7 @@
 		bind:this="{inputEl}"
 		on:input="{filter}"
 		on:focus="{open}"
-		on:change="{onchange}"
+		on:change="{selectItem}"
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
 
@@ -88,6 +88,10 @@ function filter () {
 	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
 	const q = showAll ? '' : text.toLowerCase().trim();
 	let filtered = deepCopy(data);
+	if (filtered.length && typeof filtered[0] === 'string') {
+		filtered = filtered.map(item => ({ name: item }));
+	}
+
 	if (text) {
 		filtered = filtered
 			.filter(item => typeof item === 'string' || fuzzy(item.name, q))
@@ -132,57 +136,35 @@ function highlight () {
 			top: selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight
 		});
 	}
-
 }
 
 
-function onclick (item) {
-	value = item;
-	text = item.name;
-	close();
-}
 
-
-function onchange () {
-	selectItem();
-}
-
-
-function onkeydown (e) {
-	let key = e.key;
-	if (key === 'Tab') return close();
-	const fnmap = {
-		ArrowDown: down.bind(this),
-		ArrowUp: up.bind(this),
-		Escape: onEsc.bind(this),
-	};
-	const fn = fnmap[key];
-	if (typeof fn === 'function') {
-		e.preventDefault();
-		fn(e);
+function open (e) {
+	if (opened) return;
+	opened = true;
+	hasEdited = false;
+	originalText = text;
+	addEventListeners();
+	filter();
+	const itemId = value && typeof value === 'object' && value.id ? value.id : value;
+	if (itemId && filteredData && filteredData.length) {
+		highlightIndex = filteredData.findIndex(i => i.id === itemId);
+		if (!text) text = filteredData[highlightIndex].name;
 	}
+	if (inputEl.value !== text) inputEl.value = text;
+	requestAnimationFrame(() => {
+		if (e && e.type === 'focus') inputEl.select();
+		highlight();
+	});
 }
 
 
-function onkeypress (e) {
-	if (e.key === 'Enter') {
-		e.preventDefault();
-		selectItem();
-	}
-}
-
-function onEsc (e) {
-	if (clearOnEsc && text) {
-		e.stopPropagation();
-		return clear();
-	}
-	if (opened) {
-		e.stopPropagation();
-		revert();
-		inputEl.focus();
-		return close();
-	}
-	dispatch('keydown', e);
+function close () {
+	if (!opened) return;
+	removeEventListeners();
+	mouseOverList = false;
+	opened = false;
 }
 
 
@@ -238,34 +220,6 @@ function clear () {
 }
 
 
-function open (e) {
-	if (opened) return;
-	opened = true;
-	hasEdited = false;
-	originalText = text;
-	addEventListeners();
-	filter();
-	const itemId = value && typeof value === 'object' && value.id ? value.id : value;
-	if (itemId && filteredData && filteredData.length) {
-		highlightIndex = filteredData.findIndex(i => i.id === itemId);
-		if (!text) text = filteredData[highlightIndex].name;
-	}
-	if (inputEl.value !== text) inputEl.value = text;
-	requestAnimationFrame(() => {
-		if (e && e.type === 'focus') inputEl.select();
-		highlight();
-	});
-}
-
-
-function close () {
-	if (!opened) return;
-	removeEventListeners();
-	mouseOverList = false;
-	opened = false;
-}
-
-
 function recalculateListPosition () {
 	if (!opened) return;
 	if (!listEl || !listEl.style) return;
@@ -290,6 +244,56 @@ function recalculateListPosition () {
 	}
 }
 
+
+
+
+/*** EVENT LISTENERS ******************************************************************************/
+
+function onclick (item) {
+	value = item;
+	text = item.name;
+	close();
+}
+
+
+function onkeydown (e) {
+	let key = e.key;
+	if (key === 'Tab') return close();
+	const fnmap = {
+		ArrowDown: down.bind(this),
+		ArrowUp: up.bind(this),
+		Escape: onEsc.bind(this),
+	};
+	const fn = fnmap[key];
+	if (typeof fn === 'function') {
+		e.preventDefault();
+		fn(e);
+	}
+}
+
+
+function onkeypress (e) {
+	if (e.key === 'Enter') {
+		e.preventDefault();
+		selectItem();
+	}
+}
+
+function onEsc (e) {
+	if (clearOnEsc && text) {
+		e.stopPropagation();
+		return clear();
+	}
+	if (opened) {
+		e.stopPropagation();
+		revert();
+		inputEl.focus();
+		return close();
+	}
+	dispatch('keydown', e);
+}
+
+
 function onScrollOrResize (e) {
 	if (!opened) return;
 	if (e.target == listEl || mouseOverList) return;
@@ -298,7 +302,9 @@ function onScrollOrResize (e) {
 }
 
 function onDocumentClick (e) {
-	if (el && !el.contains(e.target)) {
+	const notEl = el && !el.contains(e.target);
+	const notList = listEl && !listEl.contains(e.target);
+	if (open && notEl && notList) {
 		e.stopPropagation();
 		close();
 	}
@@ -315,6 +321,6 @@ function removeEventListeners () {
 	document.removeEventListener('scroll', onScrollOrResize, true);
 	document.removeEventListener('click', onDocumentClick, true);
 }
-
+/*** EVENT LISTENERS ******************************************************************************/
 
 </script>

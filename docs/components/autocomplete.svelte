@@ -10,6 +10,14 @@
 		<h3>Allow arbitrary values</h3>
 		<Autocomplete data="{autocompleteData}" placeholder="Type to filter" allowNew="true" bind:value="{autocompleteValue}" />
 
+		<h3>Simpler data (no ID, just 'name')</h3>
+		<Autocomplete data="{autocompleteDataSimple}" placeholder="Type to filter"
+			bind:value="{autocompleteValueSimple}" />
+
+		<h3>Simplest data (just an array of strings)</h3>
+		<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter"
+			bind:value="{autocompleteValueSimplest}" />
+
 		<h3>In a container with <em>overflow: hidden</em></h3>
 		<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
 			property must be set on the component.</p>
@@ -53,5 +61,37 @@ const autocompleteData = [
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
 let autocompleteValue = autocompleteData[1];
+
+
+const autocompleteDataSimple = [
+	{ name: 'Alpha', group: 'Group 1' },
+	{ name: 'Beta', group: 'Group 1' },
+	{ name: 'Gamma', group: 'Group 1' },
+	{ name: 'Delta', group: 'Group 1' },
+	{ name: 'Epsilon', group: 'Group 1' },
+
+	{ name: 'Zeta', group: '😀 Group 2 has a very long name' },
+	{ name: 'Eta', group: '😀 Group 2 has a very long name' },
+	{ name: 'Theta', group: '😀 Group 2 has a very long name' },
+	{ name: 'Iota', group: '😀 Group 2 has a very long name' },
+	{ name: 'Kappa', group: '😀 Group 2 has a very long name' },
+	{ name: 'Lambda is the last item in Group 2', group: '😀 Group 2 has a very long name' },
+];
+let autocompleteValueSimple = 'Gamma';
+
+const autocompleteDataSimplest = [
+	'Alpha',
+	'Beta',
+	'Gamma',
+	'Delta',
+	'Epsilon',
+	'Zeta',
+	'Eta',
+	'Theta',
+	'Iota',
+	'Kappa',
+	'Lambda is the last item in Group 2',
+];
+let autocompleteValueSimplest = 'Gamma';
 
 </script>
