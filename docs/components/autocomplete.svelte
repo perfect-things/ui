@@ -77,7 +77,7 @@ const autocompleteDataSimple = [
 	{ name: 'Kappa', group: '😀 Group 2 has a very long name' },
 	{ name: 'Lambda is the last item in Group 2', group: '😀 Group 2 has a very long name' },
 ];
-let autocompleteValueSimple = 'Gamma';
+let autocompleteValueSimple = autocompleteDataSimple[3];
 
 const autocompleteDataSimplest = [
 	'Alpha',

@@ -7,9 +7,9 @@
 		{placeholder}
 		{required}
 		{disabled}
-		value="{value && value.name || text || ''}"
+		value="{value && value.name || ''}"
 		bind:this="{inputEl}"
-		on:input="{filter}"
+		on:input="{oninput}"
 		on:focus="{open}"
 		on:change="{selectItem}"
 		on:keydown|capture="{onkeydown}"
@@ -37,20 +37,19 @@
 			{/each}
 		{:else if allowNew === true || allowNew === 'true' }
 			<div class="autocomplete-list-item selected"
-				on:click="{() => onclick({ name: text })}">
-					Create: <b>{text}</b>
+				on:click="{() => onclick({ name: inputEl && inputEl.value || '' })}">
+					Create: <b>{inputEl && inputEl.value || ''}</b>
 			</div>
 		{/if}
 	</div>
 </div>
 
 <script>
-import { createEventDispatcher, onDestroy, onMount } from 'svelte';
-import { deepCopy, emphasize, fuzzy } from './util';
+import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
+import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './util';
 import Icon from '../icon';
 export let data = [];
 export let value = null;
-export let text = '';
 export let allowNew = false;
 export let showAllInitially = true;
 export let clearOnEsc = false;
@@ -65,6 +64,7 @@ export let elevate = false;
 $:elevated = elevate === 'true' || elevate === true;
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
+let initial = true;
 let opened = false;
 let hasEdited = false;
 let mouseOverList = false;
@@ -81,61 +81,35 @@ onDestroy(() => {
 	if (elevated) listEl.remove();
 });
 
+afterUpdate(() => {
+	if (!opened && data.length) {
+		if (data.length && typeof data[0] === 'string') {
+			data = data.map(item => ({ name: item }));
+		}
+		filter();
+		initial = false;
+		setInitialValue();
+	}
+});
+
 
 function filter () {
-	text = inputEl.value || '';
-	open({ type: 'filter' });
-	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
-	const q = showAll ? '' : text.toLowerCase().trim();
 	let filtered = deepCopy(data);
-	if (filtered.length && typeof filtered[0] === 'string') {
-		filtered = filtered.map(item => ({ name: item }));
-	}
-
-	if (text) {
-		filtered = filtered
-			.filter(item => typeof item === 'string' || fuzzy(item.name, q))
-			.map(item => {
-				item.highlightedName = emphasize(item.name, q);
-				return item;
-			});
+	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
+	if (!showAll && inputEl.value) {
+		const q = inputEl.value.toLowerCase().trim();
+		filtered = filtered.filter(item => fuzzy(item.name, q));
+		filtered.forEach(item => {
+			item.highlightedName = emphasize(item.name, q);
+		});
 	}
 
 	filtered.forEach((item, idx) => item.idx = idx);
 	filteredData = filtered;
+	groupedData = groupData(filtered);
 
-	let nogroup = [];
-	const _groups = {};
-	filtered.forEach(item => {
-		if (!item.group) return nogroup.push(item);
-		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
-		_groups[item.group].items.push(item);
-	});
-	const groups = Object.values(_groups).filter(g => !!g.items.length);
-	groupedData = [{ items: nogroup }, ...groups];
-
-	highlightIndex = -1;
-	hasEdited = true;
-	requestAnimationFrame(recalculateListPosition);
-	down();
-}
-
-
-function highlight () {
-	const selectedEl = listEl.querySelector('.selected');
-	if (!selectedEl) return;
-
-	// going up
-	if (listEl.scrollTop > selectedEl.offsetTop) {
-		listEl.scrollTo({ top: selectedEl.offsetTop });
-	}
-
-	// going down
-	else if (listEl.scrollTop < selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight) {
-		listEl.scrollTo({
-			top: selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight
-		});
-	}
+	highlightIndex = 0;
+	if (!initial) highlight(listEl);
 }
 
 
@@ -144,18 +118,13 @@ function open (e) {
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
-	originalText = text;
+	originalText = inputEl.value;
 	addEventListeners();
-	filter();
-	const itemId = value && typeof value === 'object' && value.id ? value.id : value;
-	if (itemId && filteredData && filteredData.length) {
-		highlightIndex = filteredData.findIndex(i => i.id === itemId);
-		if (!text) text = filteredData[highlightIndex].name;
-	}
-	if (inputEl.value !== text) inputEl.value = text;
+	recalculateListPosition(listEl, inputEl, elevated);
+
+	highlight(listEl);
 	requestAnimationFrame(() => {
 		if (e && e.type === 'focus') inputEl.select();
-		highlight();
 	});
 }
 
@@ -172,102 +141,92 @@ function close () {
 function selectItem () {
 	if (filteredData[highlightIndex]) {
 		value = filteredData[highlightIndex];
-		text = value.name;
 	}
 	// should create a new item
 	else if (allowNew) {
-		value = { id: null, name: text };
+		value = { name: inputEl.value };
 	}
 	else revert();
 	close();
 }
 
 
+function setInitialValue () {
+	if (filteredData && filteredData.length) {
+		let itemId = value;
+		if (typeof value === 'object' && value !== null) {
+			itemId = value.id || value.name;
+		}
+		highlightIndex = filteredData.findIndex(i => i.id === itemId || i.name === itemId);
+		if (highlightIndex > -1) inputEl.value = filteredData[highlightIndex].name;
+		highlight(listEl);
+	}
+}
+
+
 function up () {
-	if (!opened) return open({ type: 'up' });
+	if (!opened) return open();
 	let idx = highlightIndex - 1;
 	while (idx > 0 && !filteredData[idx]) idx -= 1;
 	if (idx !== highlightIndex && filteredData[idx]) {
 		highlightIndex = filteredData[idx].idx;
-		requestAnimationFrame(highlight);
+		highlight(listEl);
 	}
 }
 
 
 function down () {
-	if (!opened) return open({ type: 'down' });
+	if (!opened) return open();
 	let idx = highlightIndex + 1;
 	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
 	if (idx !== highlightIndex && filteredData[idx]) {
 		highlightIndex = filteredData[idx].idx;
-		requestAnimationFrame(highlight);
+		highlight(listEl);
 	}
 }
 
 
 function revert () {
-	if (originalText && originalText !== text) text = originalText;
-	else if (value && value.name) text = value.name;
-	if (inputEl.value !== text) inputEl.value = text;
+	if (originalText && originalText !== inputEl.value) inputEl.value = originalText;
+	else if (value && value.name) inputEl.value = value.name;
 }
 
 
 function clear () {
-	text = '';
 	inputEl.value = '';
 	filter();
 	requestAnimationFrame(() => inputEl.focus());
 }
 
 
-function recalculateListPosition () {
-	if (!opened) return;
-	if (!listEl || !listEl.style) return;
 
-	const inputBox = inputEl.getBoundingClientRect();
-	if (elevated) {
-		listEl.style.top = (inputBox.top + inputBox.height + 2) + 'px';
-		listEl.style.left = inputBox.left + 'px';
-	}
-	else {
-		listEl.style.top = (inputBox.height + 3) + 'px';
-	}
-	listEl.style.width = inputBox.width + 'px';
-	listEl.style.height = 'auto';
-	const listBox = listEl.getBoundingClientRect();
-	const listT = listBox.top;
-	const listH = listBox.height;
-	const winH = window.innerHeight;
-	if (listT + listH + 10 > winH) {
-		const maxH = Math.max(winH - listT - 10, 100);
-		listEl.style.height = maxH + 'px';
-	}
+/*** EVENT LISTENERS ******************************************************************************/
+function oninput () {
+	open();
+	filter();
+	recalculateListPosition(listEl, inputEl, elevated);
+	hasEdited = true;
 }
 
 
-
-
-/*** EVENT LISTENERS ******************************************************************************/
-
 function onclick (item) {
 	value = item;
-	text = item.name;
+	inputEl.value = item.name;
+	highlightIndex = item.idx;
 	close();
 }
 
 
 function onkeydown (e) {
-	let key = e.key;
-	if (key === 'Tab') return close();
+	if (e.key === 'Tab') return close();
 	const fnmap = {
-		ArrowDown: down.bind(this),
-		ArrowUp: up.bind(this),
-		Escape: onEsc.bind(this),
+		ArrowDown: down,
+		ArrowUp: up,
+		Escape: onEsc,
 	};
-	const fn = fnmap[key];
-	if (typeof fn === 'function') {
+	if (typeof fnmap[e.key] === 'function') {
 		e.preventDefault();
-		fn(e);
+		fnmap[e.key](e);
 	}
 }
 
@@ -280,7 +239,7 @@ function onkeypress (e) {
 }
 
 function onEsc (e) {
-	if (clearOnEsc && text) {
+	if (clearOnEsc && inputEl.value) {
 		e.stopPropagation();
 		return clear();
 	}

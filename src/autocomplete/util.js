@@ -1,3 +1,61 @@
+export function groupData (items) {
+	let nogroup = [];
+	const _groups = {};
+	items.forEach(item => {
+		if (!item.group) return nogroup.push(item);
+		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
+		_groups[item.group].items.push(item);
+	});
+	const groups = Object.values(_groups).filter(g => !!g.items.length);
+	if (nogroup.length) groups.unshift({ items: nogroup });
+	return groups;
+}
+
+export function highlight (listEl) {
+	requestAnimationFrame(() => {
+		const selectedEl = listEl.querySelector('.selected');
+		if (!selectedEl) return;
+
+		// going up
+		let top = selectedEl.offsetTop;
+		if (listEl.scrollTop > top) listEl.scrollTo({ top });
+
+		// going down
+		else {
+			top = selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight;
+			if (listEl.scrollTop < top) listEl.scrollTo({ top });
+		}
+	});
+}
+
+
+export function recalculateListPosition (listEl, inputEl, elevated) {
+	requestAnimationFrame(() => {
+		if (!listEl || !listEl.style) return;
+
+		const inputBox = inputEl.getBoundingClientRect();
+		if (elevated) {
+			listEl.style.top = (inputBox.top + inputBox.height + 3) + 'px';
+			listEl.style.left = inputBox.left + 'px';
+		}
+		else {
+			listEl.style.top = (inputBox.height + 3) + 'px';
+		}
+		listEl.style.width = inputBox.width + 'px';
+		listEl.style.height = 'auto';
+		const listBox = listEl.getBoundingClientRect();
+		const listT = listBox.top;
+		const listH = listBox.height;
+		const winH = window.innerHeight;
+		if (listT + listH + 10 > winH) {
+			const maxH = Math.max(winH - listT - 10, 100);
+			listEl.style.height = maxH + 'px';
+		}
+	});
+}
+
+
+
 // Handles arrays, objects, null, strings, numbers, (no Date)
 export function deepCopy (o) {
 	if (typeof o !== 'object'||o === null) return o;
