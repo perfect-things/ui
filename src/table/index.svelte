@@ -109,6 +109,7 @@ function selectFocusedRow (rowEl) {
 
 function onFocus (e) {
 	if (shouldSkipNav(e)) return;
+	if (e.target.tagName !== 'TR') return;
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
 		selectFocusedRow(rowEl);
