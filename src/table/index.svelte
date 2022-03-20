@@ -27,6 +27,7 @@ let previousKey;
 onMount(() => {
 	if (selectable) {
 		document.addEventListener('keydown', onKeyDown);
+		document.addEventListener('focus', onFocus, true);
 		makeRowsSelectable();
 		requestAnimationFrame(() => {
 			const head = _this && _this.querySelector('thead');
@@ -38,6 +39,7 @@ onMount(() => {
 onDestroy(() => {
 	if (selectable) {
 		document.removeEventListener('keydown', onKeyDown);
+		document.removeEventListener('focus', onFocus, true);
 		makeRowsNotSelectable();
 	}
 });
@@ -98,6 +100,22 @@ function selectClicked (skipEvent = false) {
 }
 
 
+function selectFocusedRow (rowEl) {
+	if (!rowEl) return;
+	const rows = getSelectableItems();
+	selectedIdx = rows.findIndex(item => item == rowEl);
+	selectClicked(true);
+}
+
+function onFocus (e) {
+	if (shouldSkipNav(e)) return;
+	const rowEl = e.target.closest(rowSelector);
+	if (rowEl) {
+		selectFocusedRow(rowEl);
+		dispatch('click', { event: e, selectedItem: rowEl });
+	}
+}
+
 function onClick (e) {
 	if (shouldSkipNav(e)) return;
 
@@ -106,11 +124,10 @@ function onClick (e) {
 	clickTimer = setTimeout(() => dispatch('select', { event: e, selectedItem: rowEl }), 300);
 
 	const rowEl = e.target.closest(rowSelector);
-	if (!rowEl) return;
-	const rows = getSelectableItems();
-	selectedIdx = rows.findIndex(item => item == rowEl);
-	selectClicked(true);
-	dispatch('click', { event: e, selectedItem: rowEl });
+	if (rowEl) {
+		selectFocusedRow(rowEl);
+		dispatch('click', { event: e, selectedItem: rowEl });
+	}
 }
 
 function onDblClick (e) {
