@@ -64,9 +64,6 @@ function selectPrev (skipEvent = false) {
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-
-	const top = rowEl.offsetTop - headerHeight + parseFloat(scrollCorrectionOffset);
-	if (_this.scrollTop > top) _this.scrollTo({ top, behavior: 'smooth' });
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
@@ -76,10 +73,6 @@ function selectNext (skipEvent = false) {
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-
-	const top = rowEl.offsetTop + rowEl.offsetHeight - _this.offsetHeight + headerHeight	+ parseFloat(scrollCorrectionOffset);
-	if (_this.scrollTop < top) _this.scrollTo({ top, behavior: 'smooth' });
-
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
@@ -90,10 +83,10 @@ function selectClicked (skipEvent = false) {
 	rowEl.focus();
 
 	let top = rowEl.offsetTop - headerHeight + parseFloat(scrollCorrectionOffset);
-	if (_this.scrollTop > top) _this.scrollTo({ top, behavior: 'smooth' });
+	if (_this.scrollTop > top) _this.scrollTo({ top });
 	else {
 		top = rowEl.offsetTop + rowEl.offsetHeight - _this.offsetHeight + headerHeight + parseFloat(scrollCorrectionOffset);
-		if (_this.scrollTop < top) _this.scrollTo({ top, behavior: 'smooth' });
+		if (_this.scrollTop < top) _this.scrollTo({ top });
 	}
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
@@ -109,7 +102,8 @@ function selectFocusedRow (rowEl) {
 
 function onFocus (e) {
 	if (shouldSkipNav(e)) return;
-	if (e.target.tagName !== 'TR') return;
+	if (!e.target.matches(rowSelector)) return;
+
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
 		selectFocusedRow(rowEl);
