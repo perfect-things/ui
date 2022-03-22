@@ -4,7 +4,7 @@ input:not([type=radio], [type=checkbox]) {
 	font: inherit;
 	height: 2.2em;
 	border: 1px solid transparent;
-	line-height: 1.6;
+	line-height: 1;
 	color: var(--ui-color-text);
 	background-color: var(--ui-color-background-input);
 	border-radius: var(--ui-border-radius);
