@@ -9,7 +9,6 @@
 	text-decoration: underline;
 	vertical-align: baseline;
 }
-.button.button-link { border-radius: 0; }
 
 .button-has-text.button-link svg { margin-left: 0; }
 
