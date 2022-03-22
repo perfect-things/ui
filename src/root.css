@@ -1,24 +1,47 @@
 :root {
+	color-scheme: dark light;
+
 	--ui-border-radius: 0.3em;
 	--ui-border-radius-s: 0.5em;
 	--ui-border-radius-m: 0.7em;
 	--ui-border-radius-l: 1em;
 	--ui-border-radius-xl: 5em;
 
+	/* margins & padding values */
+	--ui-margin: 0.3em;
+	--ui-margin-s: 0.1em;
+	--ui-margin-m: 0.5em;
+	--ui-margin-l: 1em;
+	--ui-margin-xl: 2em;
+
+
+
 	--ui-color-accent: #bb7a00;
 	--ui-color-accent-semi: #bb7a0066;
+	--ui-color-accent-light-1: #d69214;
+	--ui-color-accent-light-2: #ffb325;
+	--ui-color-accent-dark-1: #79520b;
+	--ui-color-accent-dark-2: #694d13;
 
 	--ui-color-info: #61738a;
 	--ui-color-info-semi: #61738a66;
+	--ui-color-info-dark-1: #515d6d;
+	--ui-color-info-dark-2: #363e46;
 
 	--ui-color-success: #3e795e;
 	--ui-color-success-semi: #3e795e66;
+	--ui-color-success-dark-1: #33654e;
+	--ui-color-success-dark-2: #2e453a;
 
 	--ui-color-warning: #916f0a;
 	--ui-color-warning-semi: #916f0a66;
+	--ui-color-warning-dark-1: #6d550e;
+	--ui-color-warning-dark-2: #56481c;
 
 	--ui-color-danger: #943737;
 	--ui-color-danger-semi: #94373766;
+	--ui-color-danger-dark-1: #792f2f;
+	--ui-color-danger-dark-2: #5b3134;
 
 	--ui-color-highlight: #1e6dc6;
 	--ui-color-highlight-semi: #1e6dc666;
@@ -50,12 +73,6 @@
 	--ui-color-text-dark-1: #aaaaaa;
 	--ui-color-text-dark-2: #888888;
 
-	/* margins & padding values */
-	--ui-margin: 0.3em;
-	--ui-margin-s: 0.1em;
-	--ui-margin-m: 0.5em;
-	--ui-margin-l: 1em;
-	--ui-margin-xl: 2em;
 
 	/* popup vars */
 	--ui-popup-border: 1px solid var(--ui-color-background-light-2);
@@ -75,8 +92,6 @@
 		0 1px 5px rgb(0 0 0 / 30%),
 		0 4px 10px rgb(0 0 0 / 10%),
 		0 10px 25px rgb(0 0 0 / 8%);
-
-	color-scheme: dark light;
 }
 
 
@@ -84,22 +99,3 @@ body,
 body * { box-sizing: border-box; }
 
 svg { width: 24px; height: 24px; }
-
-/*
-	:: system color names ::
-	Canvas
-	CanvasText
-	LinkText
-	VisitedText
-	ActiveText
-	ButtonFace
-	ButtonText
-	ButtonBorder
-	Field
-	FieldText
-	Highlight
-	HighlightText
-	Mark
-	MarkText
-	GrayText
-*/
