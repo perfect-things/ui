@@ -23,6 +23,7 @@ export let title = '';
 export let opened = false;
 export let drawborders = false;
 export let cssClass = '';
+export let skipFirstFocus = false;
 
 const dispatch = createEventDispatcher();
 let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
@@ -79,7 +80,7 @@ export function open (openedBy) {
 	openTimer = setTimeout(() => {
 		opened = true;
 		backdropEl.style.display = 'flex';
-		focusFirst();
+		if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
 		document.addEventListener('keydown', onDocKeydown);
 		dispatch('open');
 	}, 100);
