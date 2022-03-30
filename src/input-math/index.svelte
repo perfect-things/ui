@@ -5,6 +5,7 @@
 		{name}
 		{title}
 		{placeholder}
+		bind:this="{_this}"
 		bind:value="{value}"
 		on:keydown="{onkeydown}"
 		on:change="{onchange}"
@@ -14,6 +15,7 @@
 import { createEventDispatcher } from 'svelte';
 import Icon from '../icon';
 
+export let _this = undefined;
 export let value = '';
 export let id = undefined;
 export let name = undefined;
