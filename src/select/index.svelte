@@ -1,4 +1,4 @@
-<div class="select-wrap" class:disabled>
+<div class="select-wrapper" class:disabled>
 	<select
 		{id}
 		{name}
