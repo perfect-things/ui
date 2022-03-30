@@ -28,8 +28,15 @@ export function highlight (listEl) {
 	});
 }
 
+// quick and instant recalc to minimise visual flyover of the dropdown across the screen
+export function quickPositionRecalc (listEl, inputEl) {
+	const inputBox = inputEl.getBoundingClientRect();
+	listEl.style.top = (inputBox.top + inputBox.height + 3) + 'px';
+	listEl.style.left = inputBox.left + 'px';
+}
 
 export function recalculateListPosition (listEl, inputEl, elevated) {
+	if (elevated) quickPositionRecalc(listEl, inputEl);
 	requestAnimationFrame(() => {
 		if (!listEl || !listEl.style) return;
 

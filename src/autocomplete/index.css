@@ -26,6 +26,7 @@
 
 .autocomplete-list {
 	position: absolute;
+	top: 2em;
 	z-index: 99;
 	overflow-y: auto;
 	overscroll-behavior-y: contain;
