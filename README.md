@@ -34,15 +34,13 @@ You need node & npm (obviously). Run these:
 ```sh
 git clone git@github.com:tborychowski/simple-ui-components-in-svelte.git
 cd simple-ui-components-in-svelte
-npm i
-npm start
+npm i && npm start
 ```
 A browser window should open with the demo of the components.
 
-Deprecated in favour of [simple-ui-components-in-svelte](https://github.com/tborychowski/simple-ui-components-in-svelte).
-
 
 ## TODO
+- [ ] add description & API/options/parameters/etc.
 - [ ] add code samples
 
 

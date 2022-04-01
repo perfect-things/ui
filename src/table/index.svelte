@@ -45,7 +45,7 @@ onDestroy(() => {
 });
 
 function getSelectableItems () {
-	const rows = _this.querySelectorAll(rowSelector);
+	const rows = _this.parentNode.querySelectorAll(`.table ${rowSelector}`);
 	if (rows && rows.length) return Array.from(rows);
 	return [];
 }
@@ -138,6 +138,7 @@ function onDblClick (e) {
 
 
 function onKeyDown (e) {
+	if (!_this.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	if (e.key === 'ArrowUp' || e.key === 'k') {

@@ -20,7 +20,7 @@ input:not([type=radio], [type=checkbox]):focus {
 input:focus { outline: 0; }
 
 .label.disabled,
-input:disabled { opacity: 0.5; }
+input:disabled { opacity: 0.75; }
 
 input:not([type=radio], [type=checkbox]):invalid {
 	border-color: var(--ui-color-danger);

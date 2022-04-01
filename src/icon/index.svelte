@@ -45,6 +45,8 @@ import repeat from './icons/repeat.svg';
 import reportAnalytics from './icons/report-analytics.svg';
 import reportMoney from './icons/report-money.svg';
 import search from './icons/search.svg';
+import sidebarLeft from './icons/sidebar-left.svg';
+import sidebarRight from './icons/sidebar-right.svg';
 import shared from './icons/shared.svg';
 import tag from './icons/tag.svg';
 import trash from './icons/trash.svg';
@@ -97,6 +99,8 @@ export const icons = {
 	reportAnalytics,
 	reportMoney,
 	search,
+	sidebarLeft,
+	sidebarRight,
 	shared,
 	tag,
 	trash,
