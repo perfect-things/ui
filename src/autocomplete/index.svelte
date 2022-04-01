@@ -11,6 +11,7 @@
 		bind:this="{inputEl}"
 		on:input="{oninput}"
 		on:focus="{showOnFocusFn}"
+		on:click="{open}"
 		on:change="{selectItem}"
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
