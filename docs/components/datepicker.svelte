@@ -3,6 +3,9 @@
 <h3>Normal</h3>
 <Datepicker placeholder="Select date" />
 
+<h3>Show on focus</h3>
+<Datepicker showOnFocus="true" placeholder="Select date" />
+
 
 <h3>In a container with <em>overflow: hidden</em></h3>
 <p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>

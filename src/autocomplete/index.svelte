@@ -10,7 +10,7 @@
 		value="{value && value.name || ''}"
 		bind:this="{inputEl}"
 		on:input="{oninput}"
-		on:focus="{open}"
+		on:focus="{showOnFocusFn}"
 		on:change="{selectItem}"
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
@@ -60,8 +60,11 @@ export let placeholder = undefined;
 export let required = false;
 export let disabled = undefined;
 export let elevate = false;
+export let showOnFocus = false;
 
 $:elevated = elevate === 'true' || elevate === true;
+$:showOnFocusFn = (showOnFocus === true || showOnFocus === 'true') ? open : null;
+
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
 let initial = true;

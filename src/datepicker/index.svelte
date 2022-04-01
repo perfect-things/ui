@@ -23,6 +23,7 @@ export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;
 export let elevate = false;
+export let showOnFocus = false;
 
 $:elevated = elevate === true || elevate === 'true';
 
@@ -33,16 +34,17 @@ let picker, inputEl;
 onMount(() => {
 	picker = new Datepicker(inputEl, {
 		autohide: true,
-		format: 'yyyy-mm-dd',
 		buttonClass: 'button button-normal button-text',
+		container: elevated ? document.body : undefined,
+		format: 'yyyy-mm-dd',
 		todayBtn: true,
 		todayBtnMode: 1,
 		todayHighlight: true,
-		updateOnBlur: false,
-		container: elevated ? document.body : undefined,
-		weekStart: 1,
+		showOnFocus: (showOnFocus === 'true' || showOnFocus === true),
 		prevArrow: icons.chevronLeft,
 		nextArrow: icons.chevronRight,
+		updateOnBlur: false,
+		weekStart: 1,
 	});
 });
 
