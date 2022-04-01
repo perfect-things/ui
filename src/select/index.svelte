@@ -1,4 +1,4 @@
-<div class="select-wrap" class:disabled>
+<div class="select-wrapper" class:disabled>
 	<select
 		{id}
 		{name}
@@ -9,7 +9,7 @@
 		on:change="{onChange}">
 
 		{#if placeholder}
-			<option>{placeholder}</option>
+			<option value="">{placeholder}</option>
 		{/if}
 		{#each groups as group}
 			{#if group.items}
