@@ -13,10 +13,11 @@
 	<NavItem name="Toggle" {active} />
 
 	<h3>Containers</h3>
+	<NavItem name="Dialog" {active} />
 	<NavItem name="Drawer" {active} />
 	<NavItem name="Menu" {active} />
 	<NavItem name="Panel" {active} />
-	<NavItem name="Dialog" {active} />
+	<NavItem name="Splitter" {active} />
 	<NavItem name="Table" {active} />
 
 	<h3>Generic</h3>
@@ -48,32 +49,34 @@ import Select from '../components/select';
 import Textarea from '../components/textarea';
 import Toggle from '../components/toggle';
 
+import Dialog from '../components/dialog';
 import Drawer from '../components/drawer';
 import Panel from '../components/panel';
-import Dialog from '../components/dialog';
+import Splitter from '../components/splitter';
 import Table from '../components/table';
 
 const components = {
+	Autocomplete,
 	Button,
 	ButtonToggle,
-	PushButton,
-	Icon,
-	TextFit,
-	Toaster,
 	ColorPalette,
-	Autocomplete,
 	Datepicker,
+	Dialog,
+	Drawer,
+	Icon,
 	Input,
 	InputMath,
 	InputPassword,
 	Menu,
-	Select,
-	Textarea,
-	Toggle,
-	Drawer,
 	Panel,
-	Dialog,
+	PushButton,
+	Select,
+	Splitter,
 	Table,
+	Textarea,
+	TextFit,
+	Toaster,
+	Toggle,
 };
 
 let active = location.hash.substr(1) || 'Button';

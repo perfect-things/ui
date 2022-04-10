@@ -1,0 +1,18 @@
+.splitter {
+	position: absolute;
+	height: 100%;
+	width: 10px;
+	z-index: 5;
+	cursor: ew-resize;
+}
+
+.splitter.vertical {
+	width: 100%;
+	height: 10px;
+	cursor: ns-resize;
+}
+
+.splitter.is-dragging,
+.splitter:hover {
+	background-color: var(--ui-color-highlight-dark-2);
+}

@@ -11,6 +11,7 @@ import InputPassword from './input-password';
 import Panel from './panel';
 import PushButton from './push-button';
 import Select from './select';
+import Splitter from './splitter';
 import Table from './table';
 import Textarea from './textarea';
 import TextFit from './text-fit';
@@ -34,6 +35,7 @@ export {
 	Panel,
 	PushButton,
 	Select,
+	Splitter,
 	Table,
 	Textarea,
 	TextFit,
