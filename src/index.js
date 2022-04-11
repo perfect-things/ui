@@ -17,6 +17,7 @@ import Textarea from './textarea';
 import TextFit from './text-fit';
 import Toaster, { showToast, hideToast } from './toaster';
 import Toggle from './toggle';
+import Tree from './tree';
 
 export * from './menu/index.js';
 
@@ -43,4 +44,5 @@ export {
 	showToast,
 	hideToast,
 	Toggle,
+	Tree,
 };

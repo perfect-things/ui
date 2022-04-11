@@ -19,6 +19,7 @@
 	<NavItem name="Panel" {active} />
 	<NavItem name="Splitter" {active} />
 	<NavItem name="Table" {active} />
+	<NavItem name="Tree" {active} />
 
 	<h3>Generic</h3>
 	<NavItem name="Icon" {active} />
@@ -54,6 +55,7 @@ import Drawer from '../components/drawer';
 import Panel from '../components/panel';
 import Splitter from '../components/splitter';
 import Table from '../components/table';
+import Tree from '../components/tree';
 
 const components = {
 	Autocomplete,
@@ -77,6 +79,7 @@ const components = {
 	TextFit,
 	Toaster,
 	Toggle,
+	Tree,
 };
 
 let active = location.hash.substr(1) || 'Button';
