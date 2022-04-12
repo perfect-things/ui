@@ -8,11 +8,16 @@
 	align-items: flex-start;
 	overflow: hidden;
 	position: relative;
-	margin: .3em;
+	margin: 0;
+	padding: .3em;
+	border-radius: var(--ui-border-radius);
+}
+.tree:focus {
+	outline: 0;
+	box-shadow: 0 0 0 1px var(--ui-color-accent), var(--ui-shadow-focus);
 }
 
-.tree-folder,
-.tree-file {
+.tree-node {
 	cursor: pointer;
 	display: flex;
 	align-items: center;
@@ -20,12 +25,10 @@
 	padding: 0 0.5em;
 }
 
-.tree-folder:hover,
-.tree-file:hover { background-color: var(--ui-color-highlight); }
+.tree-node.selected { background-color: var(--ui-color-highlight-dark-2); }
+.tree-node:hover { background-color: var(--ui-color-highlight); }
 
-
-.tree-folder-icon,
-.tree-file-icon {
+.tree-icon {
 	display: inline-block;
 	width: 1.4em;
 	height: 1.4em;

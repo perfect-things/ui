@@ -1,12 +1,17 @@
 <h2>Tree</h2>
 
-<div style="border: 1px solid red; display: inline-block; width: 200px; overflow-x: auto;">
-	<Tree {items}/>
+<div style="display: inline-block; width: 200px;">
+	<Tree {items} on:select="{onSelect}"/>
 </div>
 
 
 <script>
 import { Tree } from '../../src';
+
+function onSelect (e) {
+	console.log(e.detail);
+}
+
 
 const items = [
 	{ id: 1, name: 'One' },
