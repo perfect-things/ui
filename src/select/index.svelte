@@ -6,7 +6,7 @@
 		{disabled}
 		bind:value="{value}"
 		bind:this="{el}"
-		on:change="{onChange}">
+		on:change>
 
 		{#if placeholder}
 			<option value="">{placeholder}</option>
@@ -44,10 +44,6 @@ $:{
 		_groups[item.group].items.push(item);
 	});
 	groups = [...nogroup, ...Object.values(_groups)];
-}
-
-function onChange () {
-	console.log(value);
 }
 
 </script>
