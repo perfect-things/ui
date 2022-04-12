@@ -1,4 +1,4 @@
-<ul class="tree">
+<ul class="tree" tabindex="0">
 	{#each items as item}
 		<TreeRow {item} />
 	{/each}

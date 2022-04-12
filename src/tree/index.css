@@ -1,6 +1,5 @@
 .tree,
 .tree ul { padding: 0; margin: 0; list-style: none; }
-
 .tree li { display: block; width: 100%; padding: 0; }
 
 .tree {
@@ -20,12 +19,9 @@
 	border-radius: var(--ui-border-radius);
 	padding: 0 0.5em;
 }
-.tree-folder { font-weight: bold; }
 
 .tree-folder:hover,
-.tree-file:hover {
-	background-color: var(--ui-color-highlight);
-}
+.tree-file:hover { background-color: var(--ui-color-highlight); }
 
 
 .tree-folder-icon,
@@ -46,14 +42,13 @@
 .expanded .tree-folder-icon { mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpY29uIGljb24tdGFibGVyIGljb24tdGFibGVyLWZvbGRlci1taW51cyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KPHBhdGggc3Ryb2tlPSJub25lIiBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik01IDRoNGwzIDNoN2EyIDIgMCAwIDEgMiAydjhhMiAyIDAgMCAxIC0yIDJoLTE0YTIgMiAwIDAgMSAtMiAtMnYtMTFhMiAyIDAgMCAxIDIgLTIiIC8+CjxsaW5lIHgxPSI5IiB5MT0iMTMiIHgyPSIxNSIgeTI9IjEzIiAvPgo8L3N2Zz4K"); }
 
 .tree-label { line-height: 1.8; }
+
 .tree-indent {
 	display: block;
-	width: 14px;
+	width: 12px;
 	margin-right: 14px;
 	height: 1.8em;
 	border-right: 1px solid transparent;
 	transition: border-color var(--ui-animation-speed);
 }
-.tree .tree-indent {
-	border-right-color: var(--ui-color-border);
-}
+.tree .tree-indent { border-right-color: var(--ui-color-border); }
