@@ -14,5 +14,5 @@
 
 .splitter.is-dragging,
 .splitter:hover {
-	background-color: var(--ui-color-highlight-dark-2);
+	background-color: var(--ui-color-background-light-2);
 }
