@@ -2,7 +2,7 @@
 	position: absolute;
 	height: 100%;
 	width: 10px;
-	z-index: 5;
+	z-index: 100;
 	cursor: ew-resize;
 }
 
