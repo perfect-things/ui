@@ -5,6 +5,7 @@
 import adjustments from './icons/adjustments.svg';
 import alert from './icons/alert.svg';
 import apps from './icons/apps.svg';
+import archive from './icons/archive.svg';
 import arrowLeft from './icons/arrow-left.svg';
 import arrowRight from './icons/arrow-right.svg';
 import bank from './icons/bank.svg';
@@ -58,6 +59,7 @@ export const icons = {
 	alert,
 	add: plus,
 	apps,
+	archive,
 	arrowLeft,
 	arrowRight,
 	bank,
