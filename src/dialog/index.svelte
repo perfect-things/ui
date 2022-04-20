@@ -17,7 +17,7 @@
 <svelte:options accessors={true}/>
 
 <script>
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 export let title = '';
 export let opened = false;
@@ -27,6 +27,14 @@ export let skipFirstFocus = false;
 
 const dispatch = createEventDispatcher();
 let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
+
+onMount(() => {
+	document.body.appendChild(backdropEl);
+});
+
+onDestroy(() => {
+	backdropEl.remove();
+});
 
 function focusFirst () {
 	let first = getFocusableElements().shift();
@@ -89,7 +97,7 @@ export function open (openedBy) {
 export function close () {
 	if (!opened) return;
 	opened = false;
-	if (triggerEl) triggerEl.focus();
+	if (triggerEl && triggerEl.focus) triggerEl.focus();
 	if (closeTimer) clearTimeout(closeTimer);
 	closeTimer = setTimeout(() => {
 		opened = false;
