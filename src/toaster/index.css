@@ -7,7 +7,7 @@
 	flex-flow: column;
 	align-items: stretch;
 	user-select: none;
-	z-index: 90;
+	z-index: 999;
 	padding-top: var(--ui-margin-l);
 }
 .toaster-top { top: 0; }
@@ -19,7 +19,7 @@
 	overflow: hidden;
 	flex: 1;
 	text-align: center;
-	z-index: 10;
+	z-index: 999;
 	display: flex;
 	align-items: stretch;
 	justify-content: space-between;
