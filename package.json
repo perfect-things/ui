@@ -16,6 +16,9 @@
     "lint": "gulp lint",
     "start": "run-p serve watch"
   },
+  "dependencies": {
+    "vanillajs-datepicker": "^1.2.0"
+  },
   "devDependencies": {
     "@ffaubert/gulp-stylelint": "^14.0.0",
     "@rollup/plugin-commonjs": "^21.0.2",
@@ -39,7 +42,6 @@
     "stylelint-config-standard": "^25.0.0",
     "svelte": "^3.46.4",
     "through2": "^4.0.2",
-    "vanillajs-datepicker": "^1.2.0",
     "vinyl-source-stream": "^2.0.0"
   }
 }
