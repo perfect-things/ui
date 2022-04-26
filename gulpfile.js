@@ -81,7 +81,7 @@ export function js () {
 				extensions: ['.mjs', '.js', '.svelte'],
 				dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 			}),
-			inlineSvg(),
+			inlineSvg({ include: ['src/**/*.svg'] }),
 			svelte({ compilerOptions: { dev: !isProd, css: false }}),
 			isProd && terser()
 		]
