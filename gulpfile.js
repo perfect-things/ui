@@ -1,7 +1,6 @@
 import gulp from 'gulp';
 import del from 'del';
 import livereload from 'gulp-livereload';
-import source from 'vinyl-source-stream';
 import svelte from 'rollup-plugin-svelte';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
@@ -10,10 +9,9 @@ import inlineSvg from 'rollup-plugin-inline-svg';
 import sourcemap from 'gulp-sourcemaps';
 import concat from 'gulp-concat';
 import gulpEslint from 'gulp-eslint-new';
-import stream from 'stream';
-import * as rollup from 'rollup';
 import gulpStylelint from '@ffaubert/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
+import rollup from 'gulp-rollup-plugin';
 
 const { series, parallel, src, dest, watch } = gulp;
 const noop = throught2.obj;
@@ -49,51 +47,31 @@ export function stylelint () {
 		});
 }
 
-let rollupCache;
-function rollupBuild (inputOptions = {}, outputOptions = {}) {
-	const readable = new stream.Readable();
-	readable._read = function () { };
-	inputOptions.cache = rollupCache;
-	rollup
-		.rollup(inputOptions)
-		.then(bundle => {
-			rollupCache = bundle.cache;
-			return bundle.generate(outputOptions);
-		})
-		.then(out => {
-			if (!out.code) out = out.output[0];
-			readable.push(out.code);
-			if (outputOptions.output.sourcemap) {
-				readable.push('\n//# sourceMappingURL=');
-				readable.push(out.map.toUrl());
-			}
-			readable.push(null);
-		})
-		.catch(error => setTimeout(() => readable.emit('error', error)));
-	return readable;
-}
 
 export function js () {
-	const inputOptions = {
-		input: './docs/index.js',
-		plugins: [
-			nodeResolve({
-				extensions: ['.mjs', '.js', '.svelte'],
-				dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
-			}),
-			inlineSvg({ include: ['src/**/*.svg'] }),
-			svelte({ compilerOptions: { dev: !isProd, css: false }}),
-			isProd && terser()
-		]
-	};
-	const outputOptions = {output: {
-		name: 'docs.js', format: 'esm', sourcemap: !isProd
-	}};
-	return rollupBuild(inputOptions, outputOptions)
-		.pipe(source('docs.js'))	// will become the output file
+	return src('./docs/index.js')
+		.pipe(isProd ? noop() : sourcemap.init())
+		.pipe(rollup({
+			plugins: [
+				nodeResolve({
+					extensions: ['.mjs', '.js', '.svelte'],
+					dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
+				}),
+				inlineSvg({ include: ['src/**/*.svg'] }),
+				svelte({ compilerOptions: { dev: !isProd, css: false }}),
+				isProd && terser()
+			],
+		}, {
+			file: 'docs.js',
+			format: 'esm',
+		}))
+		.pipe(isProd ? noop() : sourcemap.write(''))
 		.pipe(dest(DIST_PATH))
 		.pipe(livereload());
 }
+
+
+
 
 export function libCSS () {
 	return src('src/**/*.css')
