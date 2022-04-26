@@ -12959,8 +12959,8 @@ function instance$r($$self, $$props, $$invalidate) {
 		const winH = window.innerHeight;
 		const winW = window.innerWidth;
 		const padding = 10;
-		if (winH - height - y < padding) $$invalidate(0, menuEl.style.top = winH - height - padding + 'px', menuEl);
-		if (winW - width - x < padding) $$invalidate(0, menuEl.style.left = winW - width - padding + 'px', menuEl);
+		if (y > winH - height - padding) $$invalidate(0, menuEl.style.top = winH - height - padding + 'px', menuEl);
+		if (x > winW - width - padding) $$invalidate(0, menuEl.style.left = winW - width - padding + 'px', menuEl);
 	}
 
 	function onContextMenu(e) {
@@ -13956,7 +13956,7 @@ function create_default_slot_28(ctx) {
 }
 
 // (40:0) <Button outline icon="info">
-function create_default_slot_27(ctx) {
+function create_default_slot_27$1(ctx) {
 	let t;
 
 	const block = {
@@ -13973,7 +13973,7 @@ function create_default_slot_27(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_27.name,
+		id: create_default_slot_27$1.name,
 		type: "slot",
 		source: "(40:0) <Button outline icon=\\\"info\\\">",
 		ctx
@@ -13983,7 +13983,7 @@ function create_default_slot_27(ctx) {
 }
 
 // (41:0) <Button outline icon="check" success>
-function create_default_slot_26(ctx) {
+function create_default_slot_26$1(ctx) {
 	let t;
 
 	const block = {
@@ -14000,7 +14000,7 @@ function create_default_slot_26(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_26.name,
+		id: create_default_slot_26$1.name,
 		type: "slot",
 		source: "(41:0) <Button outline icon=\\\"check\\\" success>",
 		ctx
@@ -14010,7 +14010,7 @@ function create_default_slot_26(ctx) {
 }
 
 // (42:0) <Button outline icon="alert" warning>
-function create_default_slot_25(ctx) {
+function create_default_slot_25$1(ctx) {
 	let t;
 
 	const block = {
@@ -14027,7 +14027,7 @@ function create_default_slot_25(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_25.name,
+		id: create_default_slot_25$1.name,
 		type: "slot",
 		source: "(42:0) <Button outline icon=\\\"alert\\\" warning>",
 		ctx
@@ -14037,7 +14037,7 @@ function create_default_slot_25(ctx) {
 }
 
 // (43:0) <Button outline icon="trash" danger>
-function create_default_slot_24(ctx) {
+function create_default_slot_24$1(ctx) {
 	let t;
 
 	const block = {
@@ -14054,7 +14054,7 @@ function create_default_slot_24(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_24.name,
+		id: create_default_slot_24$1.name,
 		type: "slot",
 		source: "(43:0) <Button outline icon=\\\"trash\\\" danger>",
 		ctx
@@ -14064,7 +14064,7 @@ function create_default_slot_24(ctx) {
 }
 
 // (50:0) <Button text>
-function create_default_slot_23(ctx) {
+function create_default_slot_23$1(ctx) {
 	let t;
 
 	const block = {
@@ -14081,7 +14081,7 @@ function create_default_slot_23(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_23.name,
+		id: create_default_slot_23$1.name,
 		type: "slot",
 		source: "(50:0) <Button text>",
 		ctx
@@ -15126,7 +15126,7 @@ function create_fragment$o(ctx) {
 			props: {
 				outline: true,
 				icon: "info",
-				$$slots: { default: [create_default_slot_27] },
+				$$slots: { default: [create_default_slot_27$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -15137,7 +15137,7 @@ function create_fragment$o(ctx) {
 				outline: true,
 				icon: "check",
 				success: true,
-				$$slots: { default: [create_default_slot_26] },
+				$$slots: { default: [create_default_slot_26$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -15148,7 +15148,7 @@ function create_fragment$o(ctx) {
 				outline: true,
 				icon: "alert",
 				warning: true,
-				$$slots: { default: [create_default_slot_25] },
+				$$slots: { default: [create_default_slot_25$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -15159,7 +15159,7 @@ function create_fragment$o(ctx) {
 				outline: true,
 				icon: "trash",
 				danger: true,
-				$$slots: { default: [create_default_slot_24] },
+				$$slots: { default: [create_default_slot_24$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -15168,7 +15168,7 @@ function create_fragment$o(ctx) {
 	button24 = new Button({
 			props: {
 				text: true,
-				$$slots: { default: [create_default_slot_23] },
+				$$slots: { default: [create_default_slot_23$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -18101,7 +18101,7 @@ class Push_button extends SvelteComponentDev {
 const file$l = "docs/components/menu.svelte";
 
 // (4:0) <Button on:click="{thingsMenu.open}">
-function create_default_slot_22(ctx) {
+function create_default_slot_27(ctx) {
 	let t;
 
 	const block = {
@@ -18118,7 +18118,7 @@ function create_default_slot_22(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_22.name,
+		id: create_default_slot_27.name,
 		type: "slot",
 		source: "(4:0) <Button on:click=\\\"{thingsMenu.open}\\\">",
 		ctx
@@ -18128,7 +18128,7 @@ function create_default_slot_22(ctx) {
 }
 
 // (6:1) <Item>
-function create_default_slot_21(ctx) {
+function create_default_slot_26(ctx) {
 	let icon;
 	let t;
 	let current;
@@ -18162,7 +18162,7 @@ function create_default_slot_21(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_21.name,
+		id: create_default_slot_26.name,
 		type: "slot",
 		source: "(6:1) <Item>",
 		ctx
@@ -18172,7 +18172,7 @@ function create_default_slot_21(ctx) {
 }
 
 // (7:1) <Item>
-function create_default_slot_20(ctx) {
+function create_default_slot_25(ctx) {
 	let icon;
 	let t;
 	let current;
@@ -18206,7 +18206,7 @@ function create_default_slot_20(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_20.name,
+		id: create_default_slot_25.name,
 		type: "slot",
 		source: "(7:1) <Item>",
 		ctx
@@ -18216,7 +18216,7 @@ function create_default_slot_20(ctx) {
 }
 
 // (9:1) <Item on:click="{menuCloseThings}">
-function create_default_slot_19(ctx) {
+function create_default_slot_24(ctx) {
 	let icon;
 	let t0;
 	let t1;
@@ -18227,7 +18227,7 @@ function create_default_slot_19(ctx) {
 		c: function create() {
 			create_component(icon.$$.fragment);
 			t0 = space();
-			t1 = text(/*closeThingsText*/ ctx[5]);
+			t1 = text(/*closeThingsText*/ ctx[6]);
 		},
 		m: function mount(target, anchor) {
 			mount_component(icon, target, anchor);
@@ -18236,7 +18236,7 @@ function create_default_slot_19(ctx) {
 			current = true;
 		},
 		p: function update(ctx, dirty) {
-			if (!current || dirty & /*closeThingsText*/ 32) set_data_dev(t1, /*closeThingsText*/ ctx[5]);
+			if (!current || dirty & /*closeThingsText*/ 64) set_data_dev(t1, /*closeThingsText*/ ctx[6]);
 		},
 		i: function intro(local) {
 			if (current) return;
@@ -18256,7 +18256,7 @@ function create_default_slot_19(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_19.name,
+		id: create_default_slot_24.name,
 		type: "slot",
 		source: "(9:1) <Item on:click=\\\"{menuCloseThings}\\\">",
 		ctx
@@ -18266,6 +18266,284 @@ function create_default_slot_19(ctx) {
 }
 
 // (5:0) <Menu bind:this="{thingsMenu}">
+function create_default_slot_23(ctx) {
+	let item0;
+	let t0;
+	let item1;
+	let t1;
+	let separator;
+	let t2;
+	let item2;
+	let current;
+
+	item0 = new Menu_item({
+			props: {
+				$$slots: { default: [create_default_slot_26] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	item1 = new Menu_item({
+			props: {
+				$$slots: { default: [create_default_slot_25] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	separator = new Menu_separator({ $$inline: true });
+
+	item2 = new Menu_item({
+			props: {
+				$$slots: { default: [create_default_slot_24] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	item2.$on("click", /*menuCloseThings*/ ctx[8]);
+
+	const block = {
+		c: function create() {
+			create_component(item0.$$.fragment);
+			t0 = space();
+			create_component(item1.$$.fragment);
+			t1 = space();
+			create_component(separator.$$.fragment);
+			t2 = space();
+			create_component(item2.$$.fragment);
+		},
+		m: function mount(target, anchor) {
+			mount_component(item0, target, anchor);
+			insert_dev(target, t0, anchor);
+			mount_component(item1, target, anchor);
+			insert_dev(target, t1, anchor);
+			mount_component(separator, target, anchor);
+			insert_dev(target, t2, anchor);
+			mount_component(item2, target, anchor);
+			current = true;
+		},
+		p: function update(ctx, dirty) {
+			const item0_changes = {};
+
+			if (dirty & /*$$scope*/ 16777216) {
+				item0_changes.$$scope = { dirty, ctx };
+			}
+
+			item0.$set(item0_changes);
+			const item1_changes = {};
+
+			if (dirty & /*$$scope*/ 16777216) {
+				item1_changes.$$scope = { dirty, ctx };
+			}
+
+			item1.$set(item1_changes);
+			const item2_changes = {};
+
+			if (dirty & /*$$scope, closeThingsText*/ 16777280) {
+				item2_changes.$$scope = { dirty, ctx };
+			}
+
+			item2.$set(item2_changes);
+		},
+		i: function intro(local) {
+			if (current) return;
+			transition_in(item0.$$.fragment, local);
+			transition_in(item1.$$.fragment, local);
+			transition_in(separator.$$.fragment, local);
+			transition_in(item2.$$.fragment, local);
+			current = true;
+		},
+		o: function outro(local) {
+			transition_out(item0.$$.fragment, local);
+			transition_out(item1.$$.fragment, local);
+			transition_out(separator.$$.fragment, local);
+			transition_out(item2.$$.fragment, local);
+			current = false;
+		},
+		d: function destroy(detaching) {
+			destroy_component(item0, detaching);
+			if (detaching) detach_dev(t0);
+			destroy_component(item1, detaching);
+			if (detaching) detach_dev(t1);
+			destroy_component(separator, detaching);
+			if (detaching) detach_dev(t2);
+			destroy_component(item2, detaching);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_23.name,
+		type: "slot",
+		source: "(5:0) <Menu bind:this=\\\"{thingsMenu}\\\">",
+		ctx
+	});
+
+	return block;
+}
+
+// (18:1) <Button on:click="{someMenu1.open}">
+function create_default_slot_22(ctx) {
+	let t;
+
+	const block = {
+		c: function create() {
+			t = text("Regular Menu");
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, t, anchor);
+		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_22.name,
+		type: "slot",
+		source: "(18:1) <Button on:click=\\\"{someMenu1.open}\\\">",
+		ctx
+	});
+
+	return block;
+}
+
+// (20:2) <Item>
+function create_default_slot_21(ctx) {
+	let icon;
+	let t;
+	let current;
+	icon = new Icon({ props: { name: "plus" }, $$inline: true });
+
+	const block = {
+		c: function create() {
+			create_component(icon.$$.fragment);
+			t = text(" Add some");
+		},
+		m: function mount(target, anchor) {
+			mount_component(icon, target, anchor);
+			insert_dev(target, t, anchor);
+			current = true;
+		},
+		p: noop,
+		i: function intro(local) {
+			if (current) return;
+			transition_in(icon.$$.fragment, local);
+			current = true;
+		},
+		o: function outro(local) {
+			transition_out(icon.$$.fragment, local);
+			current = false;
+		},
+		d: function destroy(detaching) {
+			destroy_component(icon, detaching);
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_21.name,
+		type: "slot",
+		source: "(20:2) <Item>",
+		ctx
+	});
+
+	return block;
+}
+
+// (21:2) <Item>
+function create_default_slot_20(ctx) {
+	let icon;
+	let t;
+	let current;
+	icon = new Icon({ props: { name: "" }, $$inline: true });
+
+	const block = {
+		c: function create() {
+			create_component(icon.$$.fragment);
+			t = text(" Add some more");
+		},
+		m: function mount(target, anchor) {
+			mount_component(icon, target, anchor);
+			insert_dev(target, t, anchor);
+			current = true;
+		},
+		p: noop,
+		i: function intro(local) {
+			if (current) return;
+			transition_in(icon.$$.fragment, local);
+			current = true;
+		},
+		o: function outro(local) {
+			transition_out(icon.$$.fragment, local);
+			current = false;
+		},
+		d: function destroy(detaching) {
+			destroy_component(icon, detaching);
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_20.name,
+		type: "slot",
+		source: "(21:2) <Item>",
+		ctx
+	});
+
+	return block;
+}
+
+// (23:2) <Item>
+function create_default_slot_19(ctx) {
+	let icon;
+	let t;
+	let current;
+	icon = new Icon({ props: { name: "close" }, $$inline: true });
+
+	const block = {
+		c: function create() {
+			create_component(icon.$$.fragment);
+			t = text(" Close something");
+		},
+		m: function mount(target, anchor) {
+			mount_component(icon, target, anchor);
+			insert_dev(target, t, anchor);
+			current = true;
+		},
+		p: noop,
+		i: function intro(local) {
+			if (current) return;
+			transition_in(icon.$$.fragment, local);
+			current = true;
+		},
+		o: function outro(local) {
+			transition_out(icon.$$.fragment, local);
+			current = false;
+		},
+		d: function destroy(detaching) {
+			destroy_component(icon, detaching);
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_19.name,
+		type: "slot",
+		source: "(23:2) <Item>",
+		ctx
+	});
+
+	return block;
+}
+
+// (19:1) <Menu bind:this="{someMenu1}">
 function create_default_slot_18(ctx) {
 	let item0;
 	let t0;
@@ -18302,8 +18580,6 @@ function create_default_slot_18(ctx) {
 			$$inline: true
 		});
 
-	item2.$on("click", /*menuCloseThings*/ ctx[7]);
-
 	const block = {
 		c: function create() {
 			create_component(item0.$$.fragment);
@@ -18327,21 +18603,21 @@ function create_default_slot_18(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope, closeThingsText*/ 4194336) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -18377,20 +18653,20 @@ function create_default_slot_18(ctx) {
 		block,
 		id: create_default_slot_18.name,
 		type: "slot",
-		source: "(5:0) <Menu bind:this=\\\"{thingsMenu}\\\">",
+		source: "(19:1) <Menu bind:this=\\\"{someMenu1}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (18:1) <Button on:click="{someMenu1.open}">
+// (26:1) <Button on:click="{someMenu2.open}">
 function create_default_slot_17(ctx) {
 	let t;
 
 	const block = {
 		c: function create() {
-			t = text("Regular Menu");
+			t = text("Elevated Menu");
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, t, anchor);
@@ -18404,14 +18680,14 @@ function create_default_slot_17(ctx) {
 		block,
 		id: create_default_slot_17.name,
 		type: "slot",
-		source: "(18:1) <Button on:click=\\\"{someMenu1.open}\\\">",
+		source: "(26:1) <Button on:click=\\\"{someMenu2.open}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (20:2) <Item>
+// (28:2) <Item>
 function create_default_slot_16(ctx) {
 	let icon;
 	let t;
@@ -18448,14 +18724,14 @@ function create_default_slot_16(ctx) {
 		block,
 		id: create_default_slot_16.name,
 		type: "slot",
-		source: "(20:2) <Item>",
+		source: "(28:2) <Item>",
 		ctx
 	});
 
 	return block;
 }
 
-// (21:2) <Item>
+// (29:2) <Item>
 function create_default_slot_15(ctx) {
 	let icon;
 	let t;
@@ -18492,14 +18768,14 @@ function create_default_slot_15(ctx) {
 		block,
 		id: create_default_slot_15.name,
 		type: "slot",
-		source: "(21:2) <Item>",
+		source: "(29:2) <Item>",
 		ctx
 	});
 
 	return block;
 }
 
-// (23:2) <Item>
+// (31:2) <Item>
 function create_default_slot_14(ctx) {
 	let icon;
 	let t;
@@ -18536,14 +18812,14 @@ function create_default_slot_14(ctx) {
 		block,
 		id: create_default_slot_14.name,
 		type: "slot",
-		source: "(23:2) <Item>",
+		source: "(31:2) <Item>",
 		ctx
 	});
 
 	return block;
 }
 
-// (19:1) <Menu bind:this="{someMenu1}">
+// (27:1) <Menu bind:this="{someMenu2}" elevate="true">
 function create_default_slot_13(ctx) {
 	let item0;
 	let t0;
@@ -18603,21 +18879,21 @@ function create_default_slot_13(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -18653,20 +18929,20 @@ function create_default_slot_13(ctx) {
 		block,
 		id: create_default_slot_13.name,
 		type: "slot",
-		source: "(19:1) <Menu bind:this=\\\"{someMenu1}\\\">",
+		source: "(27:1) <Menu bind:this=\\\"{someMenu2}\\\" elevate=\\\"true\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (26:1) <Button on:click="{someMenu2.open}">
+// (34:1) <Button cssClass="docs-menu-align-right" on:click="{someMenu3.open}">
 function create_default_slot_12(ctx) {
 	let t;
 
 	const block = {
 		c: function create() {
-			t = text("Elevated Menu");
+			t = text("Right edge");
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, t, anchor);
@@ -18680,14 +18956,14 @@ function create_default_slot_12(ctx) {
 		block,
 		id: create_default_slot_12.name,
 		type: "slot",
-		source: "(26:1) <Button on:click=\\\"{someMenu2.open}\\\">",
+		source: "(34:1) <Button cssClass=\\\"docs-menu-align-right\\\" on:click=\\\"{someMenu3.open}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (28:2) <Item>
+// (36:2) <Item>
 function create_default_slot_11(ctx) {
 	let icon;
 	let t;
@@ -18697,7 +18973,7 @@ function create_default_slot_11(ctx) {
 	const block = {
 		c: function create() {
 			create_component(icon.$$.fragment);
-			t = text(" Add some");
+			t = text(" A very long text");
 		},
 		m: function mount(target, anchor) {
 			mount_component(icon, target, anchor);
@@ -18724,14 +19000,14 @@ function create_default_slot_11(ctx) {
 		block,
 		id: create_default_slot_11.name,
 		type: "slot",
-		source: "(28:2) <Item>",
+		source: "(36:2) <Item>",
 		ctx
 	});
 
 	return block;
 }
 
-// (29:2) <Item>
+// (37:2) <Item>
 function create_default_slot_10(ctx) {
 	let icon;
 	let t;
@@ -18741,7 +19017,7 @@ function create_default_slot_10(ctx) {
 	const block = {
 		c: function create() {
 			create_component(icon.$$.fragment);
-			t = text(" Add some more");
+			t = text(" Another very long text");
 		},
 		m: function mount(target, anchor) {
 			mount_component(icon, target, anchor);
@@ -18768,14 +19044,14 @@ function create_default_slot_10(ctx) {
 		block,
 		id: create_default_slot_10.name,
 		type: "slot",
-		source: "(29:2) <Item>",
+		source: "(37:2) <Item>",
 		ctx
 	});
 
 	return block;
 }
 
-// (31:2) <Item>
+// (39:2) <Item>
 function create_default_slot_9(ctx) {
 	let icon;
 	let t;
@@ -18785,7 +19061,7 @@ function create_default_slot_9(ctx) {
 	const block = {
 		c: function create() {
 			create_component(icon.$$.fragment);
-			t = text(" Close something");
+			t = text(" Probably the longest text in the world!");
 		},
 		m: function mount(target, anchor) {
 			mount_component(icon, target, anchor);
@@ -18812,14 +19088,14 @@ function create_default_slot_9(ctx) {
 		block,
 		id: create_default_slot_9.name,
 		type: "slot",
-		source: "(31:2) <Item>",
+		source: "(39:2) <Item>",
 		ctx
 	});
 
 	return block;
 }
 
-// (27:1) <Menu bind:this="{someMenu2}" elevate="true">
+// (35:1) <Menu bind:this="{someMenu3}" elevate="true">
 function create_default_slot_8$1(ctx) {
 	let item0;
 	let t0;
@@ -18879,21 +19155,21 @@ function create_default_slot_8$1(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -18929,14 +19205,14 @@ function create_default_slot_8$1(ctx) {
 		block,
 		id: create_default_slot_8$1.name,
 		type: "slot",
-		source: "(27:1) <Menu bind:this=\\\"{someMenu2}\\\" elevate=\\\"true\\\">",
+		source: "(35:1) <Menu bind:this=\\\"{someMenu3}\\\" elevate=\\\"true\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (49:1) <Item on:click="{newTab}">
+// (57:1) <Item on:click="{newTab}">
 function create_default_slot_7$1(ctx) {
 	let icon;
 	let t;
@@ -18973,14 +19249,14 @@ function create_default_slot_7$1(ctx) {
 		block,
 		id: create_default_slot_7$1.name,
 		type: "slot",
-		source: "(49:1) <Item on:click=\\\"{newTab}\\\">",
+		source: "(57:1) <Item on:click=\\\"{newTab}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (50:1) <Item on:click="{newPrivateTab}">
+// (58:1) <Item on:click="{newPrivateTab}">
 function create_default_slot_6$1(ctx) {
 	let icon;
 	let t;
@@ -19017,14 +19293,14 @@ function create_default_slot_6$1(ctx) {
 		block,
 		id: create_default_slot_6$1.name,
 		type: "slot",
-		source: "(50:1) <Item on:click=\\\"{newPrivateTab}\\\">",
+		source: "(58:1) <Item on:click=\\\"{newPrivateTab}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (52:1) <Item on:click="{closeTabs}">
+// (60:1) <Item on:click="{closeTabs}">
 function create_default_slot_5$1(ctx) {
 	let icon;
 	let t0;
@@ -19036,7 +19312,7 @@ function create_default_slot_5$1(ctx) {
 		c: function create() {
 			create_component(icon.$$.fragment);
 			t0 = space();
-			t1 = text(/*closeTabsText*/ ctx[6]);
+			t1 = text(/*closeTabsText*/ ctx[7]);
 		},
 		m: function mount(target, anchor) {
 			mount_component(icon, target, anchor);
@@ -19045,7 +19321,7 @@ function create_default_slot_5$1(ctx) {
 			current = true;
 		},
 		p: function update(ctx, dirty) {
-			if (!current || dirty & /*closeTabsText*/ 64) set_data_dev(t1, /*closeTabsText*/ ctx[6]);
+			if (!current || dirty & /*closeTabsText*/ 128) set_data_dev(t1, /*closeTabsText*/ ctx[7]);
 		},
 		i: function intro(local) {
 			if (current) return;
@@ -19067,14 +19343,14 @@ function create_default_slot_5$1(ctx) {
 		block,
 		id: create_default_slot_5$1.name,
 		type: "slot",
-		source: "(52:1) <Item on:click=\\\"{closeTabs}\\\">",
+		source: "(60:1) <Item on:click=\\\"{closeTabs}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (48:0) <Menu type="context" targetSelector=".div1" bind:this="{tabsMenu}" on:close="{onTabsMenuClose}">
+// (56:0) <Menu type="context" targetSelector=".div1" bind:this="{tabsMenu}" on:close="{onTabsMenuClose}">
 function create_default_slot_4$2(ctx) {
 	let item0;
 	let t0;
@@ -19093,7 +19369,7 @@ function create_default_slot_4$2(ctx) {
 			$$inline: true
 		});
 
-	item0.$on("click", /*newTab*/ ctx[8]);
+	item0.$on("click", /*newTab*/ ctx[9]);
 
 	item1 = new Menu_item({
 			props: {
@@ -19103,7 +19379,7 @@ function create_default_slot_4$2(ctx) {
 			$$inline: true
 		});
 
-	item1.$on("click", /*newPrivateTab*/ ctx[9]);
+	item1.$on("click", /*newPrivateTab*/ ctx[10]);
 	separator = new Menu_separator({ $$inline: true });
 
 	item2 = new Menu_item({
@@ -19114,7 +19390,7 @@ function create_default_slot_4$2(ctx) {
 			$$inline: true
 		});
 
-	item2.$on("click", /*closeTabs*/ ctx[10]);
+	item2.$on("click", /*closeTabs*/ ctx[11]);
 
 	const block = {
 		c: function create() {
@@ -19139,21 +19415,21 @@ function create_default_slot_4$2(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope, closeTabsText*/ 4194368) {
+			if (dirty & /*$$scope, closeTabsText*/ 16777344) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -19189,14 +19465,14 @@ function create_default_slot_4$2(ctx) {
 		block,
 		id: create_default_slot_4$2.name,
 		type: "slot",
-		source: "(48:0) <Menu type=\\\"context\\\" targetSelector=\\\".div1\\\" bind:this=\\\"{tabsMenu}\\\" on:close=\\\"{onTabsMenuClose}\\\">",
+		source: "(56:0) <Menu type=\\\"context\\\" targetSelector=\\\".div1\\\" bind:this=\\\"{tabsMenu}\\\" on:close=\\\"{onTabsMenuClose}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (56:1) <Item on:click="{newWindow}">
+// (64:1) <Item on:click="{newWindow}">
 function create_default_slot_3$2(ctx) {
 	let t;
 
@@ -19216,14 +19492,14 @@ function create_default_slot_3$2(ctx) {
 		block,
 		id: create_default_slot_3$2.name,
 		type: "slot",
-		source: "(56:1) <Item on:click=\\\"{newWindow}\\\">",
+		source: "(64:1) <Item on:click=\\\"{newWindow}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (57:1) <Item on:click="{newPrivateWindow}">
+// (65:1) <Item on:click="{newPrivateWindow}">
 function create_default_slot_2$4(ctx) {
 	let t;
 
@@ -19243,14 +19519,14 @@ function create_default_slot_2$4(ctx) {
 		block,
 		id: create_default_slot_2$4.name,
 		type: "slot",
-		source: "(57:1) <Item on:click=\\\"{newPrivateWindow}\\\">",
+		source: "(65:1) <Item on:click=\\\"{newPrivateWindow}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (59:1) <Item on:click="{closeWindows}">
+// (67:1) <Item on:click="{closeWindows}">
 function create_default_slot_1$5(ctx) {
 	let t;
 
@@ -19270,14 +19546,14 @@ function create_default_slot_1$5(ctx) {
 		block,
 		id: create_default_slot_1$5.name,
 		type: "slot",
-		source: "(59:1) <Item on:click=\\\"{closeWindows}\\\">",
+		source: "(67:1) <Item on:click=\\\"{closeWindows}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (55:0) <Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
+// (63:0) <Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
 function create_default_slot$6(ctx) {
 	let item0;
 	let t0;
@@ -19296,7 +19572,7 @@ function create_default_slot$6(ctx) {
 			$$inline: true
 		});
 
-	item0.$on("click", /*newWindow*/ ctx[12]);
+	item0.$on("click", /*newWindow*/ ctx[13]);
 
 	item1 = new Menu_item({
 			props: {
@@ -19306,7 +19582,7 @@ function create_default_slot$6(ctx) {
 			$$inline: true
 		});
 
-	item1.$on("click", /*newPrivateWindow*/ ctx[13]);
+	item1.$on("click", /*newPrivateWindow*/ ctx[14]);
 	separator = new Menu_separator({ $$inline: true });
 
 	item2 = new Menu_item({
@@ -19317,7 +19593,7 @@ function create_default_slot$6(ctx) {
 			$$inline: true
 		});
 
-	item2.$on("click", /*closeWindows*/ ctx[14]);
+	item2.$on("click", /*closeWindows*/ ctx[15]);
 
 	const block = {
 		c: function create() {
@@ -19342,21 +19618,21 @@ function create_default_slot$6(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -19392,7 +19668,7 @@ function create_default_slot$6(ctx) {
 		block,
 		id: create_default_slot$6.name,
 		type: "slot",
-		source: "(55:0) <Menu type=\\\"context\\\" targetSelector=\\\".div2\\\" bind:this=\\\"{windowsMenu}\\\">",
+		source: "(63:0) <Menu type=\\\"context\\\" targetSelector=\\\".div2\\\" bind:this=\\\"{windowsMenu}\\\">",
 		ctx
 	});
 
@@ -19432,53 +19708,57 @@ function create_fragment$l(ctx) {
 	let t20;
 	let menu2;
 	let t21;
+	let button3;
+	let t22;
+	let menu3;
+	let t23;
 	let div1;
 	let small1;
-	let t22;
-	let em4;
 	let t24;
-	let t25;
-	let p1;
+	let em4;
 	let t26;
-	let em5;
+	let t27;
+	let p1;
 	let t28;
-	let t29;
-	let h32;
+	let em5;
+	let t30;
 	let t31;
-	let small2;
+	let h32;
 	let t33;
-	let div2;
+	let small2;
 	let t35;
-	let div3;
+	let div2;
 	let t37;
-	let menu3;
-	let t38;
+	let div3;
+	let t39;
 	let menu4;
+	let t40;
+	let menu5;
 	let current;
 
 	button0 = new Button({
 			props: {
-				$$slots: { default: [create_default_slot_22] },
+				$$slots: { default: [create_default_slot_27] },
 				$$scope: { ctx }
 			},
 			$$inline: true
 		});
 
 	button0.$on("click", function () {
-		if (is_function(/*thingsMenu*/ ctx[2].open)) /*thingsMenu*/ ctx[2].open.apply(this, arguments);
+		if (is_function(/*thingsMenu*/ ctx[3].open)) /*thingsMenu*/ ctx[3].open.apply(this, arguments);
 	});
 
 	let menu0_props = {
-		$$slots: { default: [create_default_slot_18] },
+		$$slots: { default: [create_default_slot_23] },
 		$$scope: { ctx }
 	};
 
 	menu0 = new Menu({ props: menu0_props, $$inline: true });
-	/*menu0_binding*/ ctx[15](menu0);
+	/*menu0_binding*/ ctx[16](menu0);
 
 	button1 = new Button({
 			props: {
-				$$slots: { default: [create_default_slot_17] },
+				$$slots: { default: [create_default_slot_22] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -19489,16 +19769,16 @@ function create_fragment$l(ctx) {
 	});
 
 	let menu1_props = {
-		$$slots: { default: [create_default_slot_13] },
+		$$slots: { default: [create_default_slot_18] },
 		$$scope: { ctx }
 	};
 
 	menu1 = new Menu({ props: menu1_props, $$inline: true });
-	/*menu1_binding*/ ctx[16](menu1);
+	/*menu1_binding*/ ctx[17](menu1);
 
 	button2 = new Button({
 			props: {
-				$$slots: { default: [create_default_slot_12] },
+				$$slots: { default: [create_default_slot_17] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -19510,33 +19790,55 @@ function create_fragment$l(ctx) {
 
 	let menu2_props = {
 		elevate: "true",
-		$$slots: { default: [create_default_slot_8$1] },
+		$$slots: { default: [create_default_slot_13] },
 		$$scope: { ctx }
 	};
 
 	menu2 = new Menu({ props: menu2_props, $$inline: true });
-	/*menu2_binding*/ ctx[17](menu2);
+	/*menu2_binding*/ ctx[18](menu2);
+
+	button3 = new Button({
+			props: {
+				cssClass: "docs-menu-align-right",
+				$$slots: { default: [create_default_slot_12] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	button3.$on("click", function () {
+		if (is_function(/*someMenu3*/ ctx[2].open)) /*someMenu3*/ ctx[2].open.apply(this, arguments);
+	});
 
 	let menu3_props = {
+		elevate: "true",
+		$$slots: { default: [create_default_slot_8$1] },
+		$$scope: { ctx }
+	};
+
+	menu3 = new Menu({ props: menu3_props, $$inline: true });
+	/*menu3_binding*/ ctx[19](menu3);
+
+	let menu4_props = {
 		type: "context",
 		targetSelector: ".div1",
 		$$slots: { default: [create_default_slot_4$2] },
 		$$scope: { ctx }
 	};
 
-	menu3 = new Menu({ props: menu3_props, $$inline: true });
-	/*menu3_binding*/ ctx[18](menu3);
-	menu3.$on("close", /*onTabsMenuClose*/ ctx[11]);
+	menu4 = new Menu({ props: menu4_props, $$inline: true });
+	/*menu4_binding*/ ctx[20](menu4);
+	menu4.$on("close", /*onTabsMenuClose*/ ctx[12]);
 
-	let menu4_props = {
+	let menu5_props = {
 		type: "context",
 		targetSelector: ".div2",
 		$$slots: { default: [create_default_slot$6] },
 		$$scope: { ctx }
 	};
 
-	menu4 = new Menu({ props: menu4_props, $$inline: true });
-	/*menu4_binding*/ ctx[19](menu4);
+	menu5 = new Menu({ props: menu5_props, $$inline: true });
+	/*menu5_binding*/ ctx[21](menu5);
 
 	const block = {
 		c: function create() {
@@ -19578,34 +19880,38 @@ function create_fragment$l(ctx) {
 			t20 = space();
 			create_component(menu2.$$.fragment);
 			t21 = space();
+			create_component(button3.$$.fragment);
+			t22 = space();
+			create_component(menu3.$$.fragment);
+			t23 = space();
 			div1 = element("div");
 			small1 = element("small");
-			t22 = text("parent's sibling with ");
+			t24 = text("parent's sibling with ");
 			em4 = element("em");
 			em4.textContent = "z-index";
-			t24 = text(" higher than parent");
-			t25 = space();
+			t26 = text(" higher than parent");
+			t27 = space();
 			p1 = element("p");
-			t26 = text("This option should only be used when absolutely necessary, because it makes the component less accessible\n\t(the list container is rendered directly in the ");
+			t28 = text("This option should only be used when absolutely necessary, because it makes the component less accessible\n\t(the list container is rendered directly in the ");
 			em5 = element("em");
 			em5.textContent = "<body>";
-			t28 = text(", and not next to the input).");
-			t29 = space();
+			t30 = text(", and not next to the input).");
+			t31 = space();
 			h32 = element("h3");
 			h32.textContent = "Context menu";
-			t31 = space();
+			t33 = space();
 			small2 = element("small");
 			small2.textContent = "(Right-click on the boxes below)";
-			t33 = space();
+			t35 = space();
 			div2 = element("div");
 			div2.textContent = "Tab";
-			t35 = space();
+			t37 = space();
 			div3 = element("div");
 			div3.textContent = "Window";
-			t37 = space();
-			create_component(menu3.$$.fragment);
-			t38 = space();
+			t39 = space();
 			create_component(menu4.$$.fragment);
+			t40 = space();
+			create_component(menu5.$$.fragment);
 			add_location(h2, file$l, 0, 0, 0);
 			add_location(h30, file$l, 2, 0, 15);
 			add_location(em0, file$l, 12, 24, 347);
@@ -19617,18 +19923,18 @@ function create_fragment$l(ctx) {
 			add_location(small0, file$l, 16, 1, 584);
 			attr_dev(div0, "class", "docs-menu-overflow");
 			add_location(div0, file$l, 15, 0, 550);
-			add_location(em4, file$l, 35, 30, 1245);
-			add_location(small1, file$l, 35, 1, 1216);
+			add_location(em4, file$l, 43, 30, 1590);
+			add_location(small1, file$l, 43, 1, 1561);
 			attr_dev(div1, "class", "another-element-with-z-index");
-			add_location(div1, file$l, 34, 0, 1172);
-			add_location(em5, file$l, 38, 49, 1454);
-			add_location(p1, file$l, 37, 0, 1296);
-			add_location(h32, file$l, 41, 0, 1511);
-			add_location(small2, file$l, 42, 0, 1533);
+			add_location(div1, file$l, 42, 0, 1517);
+			add_location(em5, file$l, 46, 49, 1799);
+			add_location(p1, file$l, 45, 0, 1641);
+			add_location(h32, file$l, 49, 0, 1856);
+			add_location(small2, file$l, 50, 0, 1878);
 			attr_dev(div2, "class", "div div1");
-			add_location(div2, file$l, 44, 0, 1582);
+			add_location(div2, file$l, 52, 0, 1927);
 			attr_dev(div3, "class", "div div2");
-			add_location(div3, file$l, 45, 0, 1614);
+			add_location(div3, file$l, 53, 0, 1959);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -19665,89 +19971,107 @@ function create_fragment$l(ctx) {
 			mount_component(button2, div0, null);
 			append_dev(div0, t20);
 			mount_component(menu2, div0, null);
-			insert_dev(target, t21, anchor);
+			append_dev(div0, t21);
+			mount_component(button3, div0, null);
+			append_dev(div0, t22);
+			mount_component(menu3, div0, null);
+			insert_dev(target, t23, anchor);
 			insert_dev(target, div1, anchor);
 			append_dev(div1, small1);
-			append_dev(small1, t22);
-			append_dev(small1, em4);
 			append_dev(small1, t24);
-			insert_dev(target, t25, anchor);
+			append_dev(small1, em4);
+			append_dev(small1, t26);
+			insert_dev(target, t27, anchor);
 			insert_dev(target, p1, anchor);
-			append_dev(p1, t26);
-			append_dev(p1, em5);
 			append_dev(p1, t28);
-			insert_dev(target, t29, anchor);
-			insert_dev(target, h32, anchor);
+			append_dev(p1, em5);
+			append_dev(p1, t30);
 			insert_dev(target, t31, anchor);
-			insert_dev(target, small2, anchor);
+			insert_dev(target, h32, anchor);
 			insert_dev(target, t33, anchor);
-			insert_dev(target, div2, anchor);
+			insert_dev(target, small2, anchor);
 			insert_dev(target, t35, anchor);
-			insert_dev(target, div3, anchor);
+			insert_dev(target, div2, anchor);
 			insert_dev(target, t37, anchor);
-			mount_component(menu3, target, anchor);
-			insert_dev(target, t38, anchor);
+			insert_dev(target, div3, anchor);
+			insert_dev(target, t39, anchor);
 			mount_component(menu4, target, anchor);
+			insert_dev(target, t40, anchor);
+			mount_component(menu5, target, anchor);
 			current = true;
 		},
 		p: function update(new_ctx, [dirty]) {
 			ctx = new_ctx;
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const menu0_changes = {};
 
-			if (dirty & /*$$scope, closeThingsText*/ 4194336) {
+			if (dirty & /*$$scope, closeThingsText*/ 16777280) {
 				menu0_changes.$$scope = { dirty, ctx };
 			}
 
 			menu0.$set(menu0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const menu1_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				menu1_changes.$$scope = { dirty, ctx };
 			}
 
 			menu1.$set(menu1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
 			button2.$set(button2_changes);
 			const menu2_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope*/ 16777216) {
 				menu2_changes.$$scope = { dirty, ctx };
 			}
 
 			menu2.$set(menu2_changes);
+			const button3_changes = {};
+
+			if (dirty & /*$$scope*/ 16777216) {
+				button3_changes.$$scope = { dirty, ctx };
+			}
+
+			button3.$set(button3_changes);
 			const menu3_changes = {};
 
-			if (dirty & /*$$scope, closeTabsText*/ 4194368) {
+			if (dirty & /*$$scope*/ 16777216) {
 				menu3_changes.$$scope = { dirty, ctx };
 			}
 
 			menu3.$set(menu3_changes);
 			const menu4_changes = {};
 
-			if (dirty & /*$$scope*/ 4194304) {
+			if (dirty & /*$$scope, closeTabsText*/ 16777344) {
 				menu4_changes.$$scope = { dirty, ctx };
 			}
 
 			menu4.$set(menu4_changes);
+			const menu5_changes = {};
+
+			if (dirty & /*$$scope*/ 16777216) {
+				menu5_changes.$$scope = { dirty, ctx };
+			}
+
+			menu5.$set(menu5_changes);
 		},
 		i: function intro(local) {
 			if (current) return;
@@ -19757,8 +20081,10 @@ function create_fragment$l(ctx) {
 			transition_in(menu1.$$.fragment, local);
 			transition_in(button2.$$.fragment, local);
 			transition_in(menu2.$$.fragment, local);
+			transition_in(button3.$$.fragment, local);
 			transition_in(menu3.$$.fragment, local);
 			transition_in(menu4.$$.fragment, local);
+			transition_in(menu5.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -19768,8 +20094,10 @@ function create_fragment$l(ctx) {
 			transition_out(menu1.$$.fragment, local);
 			transition_out(button2.$$.fragment, local);
 			transition_out(menu2.$$.fragment, local);
+			transition_out(button3.$$.fragment, local);
 			transition_out(menu3.$$.fragment, local);
 			transition_out(menu4.$$.fragment, local);
+			transition_out(menu5.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -19779,7 +20107,7 @@ function create_fragment$l(ctx) {
 			if (detaching) detach_dev(t3);
 			destroy_component(button0, detaching);
 			if (detaching) detach_dev(t4);
-			/*menu0_binding*/ ctx[15](null);
+			/*menu0_binding*/ ctx[16](null);
 			destroy_component(menu0, detaching);
 			if (detaching) detach_dev(t5);
 			if (detaching) detach_dev(h31);
@@ -19788,29 +20116,32 @@ function create_fragment$l(ctx) {
 			if (detaching) detach_dev(t14);
 			if (detaching) detach_dev(div0);
 			destroy_component(button1);
-			/*menu1_binding*/ ctx[16](null);
+			/*menu1_binding*/ ctx[17](null);
 			destroy_component(menu1);
 			destroy_component(button2);
-			/*menu2_binding*/ ctx[17](null);
+			/*menu2_binding*/ ctx[18](null);
 			destroy_component(menu2);
-			if (detaching) detach_dev(t21);
+			destroy_component(button3);
+			/*menu3_binding*/ ctx[19](null);
+			destroy_component(menu3);
+			if (detaching) detach_dev(t23);
 			if (detaching) detach_dev(div1);
-			if (detaching) detach_dev(t25);
+			if (detaching) detach_dev(t27);
 			if (detaching) detach_dev(p1);
-			if (detaching) detach_dev(t29);
-			if (detaching) detach_dev(h32);
 			if (detaching) detach_dev(t31);
-			if (detaching) detach_dev(small2);
+			if (detaching) detach_dev(h32);
 			if (detaching) detach_dev(t33);
-			if (detaching) detach_dev(div2);
+			if (detaching) detach_dev(small2);
 			if (detaching) detach_dev(t35);
-			if (detaching) detach_dev(div3);
+			if (detaching) detach_dev(div2);
 			if (detaching) detach_dev(t37);
-			/*menu3_binding*/ ctx[18](null);
-			destroy_component(menu3, detaching);
-			if (detaching) detach_dev(t38);
-			/*menu4_binding*/ ctx[19](null);
+			if (detaching) detach_dev(div3);
+			if (detaching) detach_dev(t39);
+			/*menu4_binding*/ ctx[20](null);
 			destroy_component(menu4, detaching);
+			if (detaching) detach_dev(t40);
+			/*menu5_binding*/ ctx[21](null);
+			destroy_component(menu5, detaching);
 		}
 	};
 
@@ -19828,7 +20159,7 @@ function create_fragment$l(ctx) {
 function instance$l($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Menu', slots, []);
-	let someMenu1, someMenu2, thingsMenu, tabsMenu, windowsMenu;
+	let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
 	let closeThingsText = 'Close all things';
 	let closeTabsText = 'Close all tabs';
 	let thingsMenuTimer, tabsMenutimer;
@@ -19839,11 +20170,11 @@ function instance$l($$self, $$props, $$invalidate) {
 		const confrm = 'Confirm Closing';
 
 		if (closeThingsText === initial) {
-			$$invalidate(5, closeThingsText = confrm);
-			thingsMenuTimer = setTimeout(() => $$invalidate(5, closeThingsText = initial), 2000);
+			$$invalidate(6, closeThingsText = confrm);
+			thingsMenuTimer = setTimeout(() => $$invalidate(6, closeThingsText = initial), 2000);
 		} else {
 			thingsMenu.close().then(() => {
-				$$invalidate(5, closeThingsText = initial);
+				$$invalidate(6, closeThingsText = initial);
 				if (thingsMenuTimer) clearTimeout(thingsMenuTimer);
 				alert('Closed all things!');
 			});
@@ -19865,13 +20196,13 @@ function instance$l($$self, $$props, $$invalidate) {
 		const confrm = 'Confirm Closing';
 
 		if (closeTabsText === initial) {
-			$$invalidate(6, closeTabsText = confrm);
-			tabsMenutimer = setTimeout(() => $$invalidate(6, closeTabsText = initial), 2000);
+			$$invalidate(7, closeTabsText = confrm);
+			tabsMenutimer = setTimeout(() => $$invalidate(7, closeTabsText = initial), 2000);
 		} else tabsMenu.close().then(() => alert('Closed all tabs!'));
 	}
 
 	function onTabsMenuClose() {
-		$$invalidate(6, closeTabsText = 'Close all tabs');
+		$$invalidate(7, closeTabsText = 'Close all tabs');
 		if (tabsMenutimer) clearTimeout(tabsMenutimer);
 	}
 
@@ -19897,7 +20228,7 @@ function instance$l($$self, $$props, $$invalidate) {
 	function menu0_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			thingsMenu = $$value;
-			$$invalidate(2, thingsMenu);
+			$$invalidate(3, thingsMenu);
 		});
 	}
 
@@ -19917,15 +20248,22 @@ function instance$l($$self, $$props, $$invalidate) {
 
 	function menu3_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
-			tabsMenu = $$value;
-			$$invalidate(3, tabsMenu);
+			someMenu3 = $$value;
+			$$invalidate(2, someMenu3);
 		});
 	}
 
 	function menu4_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			tabsMenu = $$value;
+			$$invalidate(4, tabsMenu);
+		});
+	}
+
+	function menu5_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			windowsMenu = $$value;
-			$$invalidate(4, windowsMenu);
+			$$invalidate(5, windowsMenu);
 		});
 	}
 
@@ -19937,6 +20275,7 @@ function instance$l($$self, $$props, $$invalidate) {
 		Icon,
 		someMenu1,
 		someMenu2,
+		someMenu3,
 		thingsMenu,
 		tabsMenu,
 		windowsMenu,
@@ -19957,11 +20296,12 @@ function instance$l($$self, $$props, $$invalidate) {
 	$$self.$inject_state = $$props => {
 		if ('someMenu1' in $$props) $$invalidate(0, someMenu1 = $$props.someMenu1);
 		if ('someMenu2' in $$props) $$invalidate(1, someMenu2 = $$props.someMenu2);
-		if ('thingsMenu' in $$props) $$invalidate(2, thingsMenu = $$props.thingsMenu);
-		if ('tabsMenu' in $$props) $$invalidate(3, tabsMenu = $$props.tabsMenu);
-		if ('windowsMenu' in $$props) $$invalidate(4, windowsMenu = $$props.windowsMenu);
-		if ('closeThingsText' in $$props) $$invalidate(5, closeThingsText = $$props.closeThingsText);
-		if ('closeTabsText' in $$props) $$invalidate(6, closeTabsText = $$props.closeTabsText);
+		if ('someMenu3' in $$props) $$invalidate(2, someMenu3 = $$props.someMenu3);
+		if ('thingsMenu' in $$props) $$invalidate(3, thingsMenu = $$props.thingsMenu);
+		if ('tabsMenu' in $$props) $$invalidate(4, tabsMenu = $$props.tabsMenu);
+		if ('windowsMenu' in $$props) $$invalidate(5, windowsMenu = $$props.windowsMenu);
+		if ('closeThingsText' in $$props) $$invalidate(6, closeThingsText = $$props.closeThingsText);
+		if ('closeTabsText' in $$props) $$invalidate(7, closeTabsText = $$props.closeTabsText);
 		if ('thingsMenuTimer' in $$props) thingsMenuTimer = $$props.thingsMenuTimer;
 		if ('tabsMenutimer' in $$props) tabsMenutimer = $$props.tabsMenutimer;
 	};
@@ -19973,6 +20313,7 @@ function instance$l($$self, $$props, $$invalidate) {
 	return [
 		someMenu1,
 		someMenu2,
+		someMenu3,
 		thingsMenu,
 		tabsMenu,
 		windowsMenu,
@@ -19990,7 +20331,8 @@ function instance$l($$self, $$props, $$invalidate) {
 		menu1_binding,
 		menu2_binding,
 		menu3_binding,
-		menu4_binding
+		menu4_binding,
+		menu5_binding
 	];
 }
 

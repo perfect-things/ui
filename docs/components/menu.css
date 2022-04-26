@@ -24,3 +24,7 @@ small { display: block; margin: 5px 0 15px; }
 	position: relative;
 	z-index: 5;
 }
+
+.docs-menu-align-right {
+	float: right;
+}

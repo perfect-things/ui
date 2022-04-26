@@ -31,6 +31,14 @@
 		<Item><Icon name="close"/> Close something</Item>
 	</Menu>
 
+	<Button cssClass="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
+	<Menu bind:this="{someMenu3}" elevate="true">
+		<Item><Icon name="plus"/> A very long text</Item>
+		<Item><Icon name=""/> Another very long text</Item>
+		<Separator />
+		<Item><Icon name="close"/> Probably the longest text in the world!</Item>
+	</Menu>
+
 </div>
 <div class="another-element-with-z-index">
 	<small>parent's sibling with <em>z-index</em> higher than parent</small>
@@ -61,7 +69,7 @@
 
 <script>
 import { Button, Menu, Item, Separator, Icon } from '../../src';
-let someMenu1, someMenu2, thingsMenu, tabsMenu, windowsMenu;
+let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;
