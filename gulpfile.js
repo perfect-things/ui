@@ -50,13 +50,17 @@ export function stylelint () {
 		});
 }
 
-
+let rollupCache;
 function rollupBuild (inputOptions = {}, outputOptions = {}) {
 	const readable = new stream.Readable();
 	readable._read = function () { };
+	inputOptions.cache = rollupCache;
 	rollup
 		.rollup(inputOptions)
-		.then(bundle => bundle.generate(outputOptions))
+		.then(bundle => {
+			rollupCache = bundle.cache;
+			return bundle.generate(outputOptions);
+		})
 		.then(out => {
 			if (!out.code) out = out.output[0];
 			readable.push(out.code);
@@ -72,7 +76,10 @@ function rollupBuild (inputOptions = {}, outputOptions = {}) {
 
 export function js () {
 	const inputOptions = {
-		input: './docs/index.js',
+		input: [
+			'./docs/index.js',
+			'./src/index.js',
+		],
 		plugins: [
 			commonjs(),
 			nodeResolve({
@@ -84,7 +91,9 @@ export function js () {
 			isProd && terser()
 		]
 	};
-	const outputOptions = {output: { name: 'docs.js', format: 'esm', sourcemap: !isProd }};
+	const outputOptions = {output: {
+		name: 'docs.js', format: 'esm', sourcemap: !isProd
+	}};
 	return rollupBuild(inputOptions, outputOptions)
 		.pipe(source('docs.js'))	// will become the output file
 		.pipe(dest(DIST_PATH))
