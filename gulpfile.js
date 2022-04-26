@@ -49,15 +49,15 @@ export function stylelint () {
 		});
 }
 
-
-function rollupBuild (inputOptions = {}, outputOptions = {}, cache) {
+let rollupCache;
+function rollupBuild (inputOptions = {}, outputOptions = {}) {
 	const readable = new stream.Readable();
 	readable._read = function () { };
-	inputOptions.cache = cache;
+	inputOptions.cache = rollupCache;
 	rollup
 		.rollup(inputOptions)
 		.then(bundle => {
-			cache = bundle.cache;
+			rollupCache = bundle.cache;
 			return bundle.generate(outputOptions);
 		})
 		.then(out => {
@@ -73,7 +73,6 @@ function rollupBuild (inputOptions = {}, outputOptions = {}, cache) {
 	return readable;
 }
 
-let rollupCache;
 export function js () {
 	const inputOptions = {
 		input: './docs/index.js',
@@ -90,7 +89,7 @@ export function js () {
 	const outputOptions = {output: {
 		name: 'docs.js', format: 'esm', sourcemap: !isProd
 	}};
-	return rollupBuild(inputOptions, outputOptions, rollupCache)
+	return rollupBuild(inputOptions, outputOptions)
 		.pipe(source('docs.js'))	// will become the output file
 		.pipe(dest(DIST_PATH))
 		.pipe(livereload());
@@ -119,9 +118,9 @@ export function docsCSS () {
 function watchTask (done) {
 	if (isProd) return done();
 	livereload.listen();
-	watch('src/**/*.css', parallel(stylelint, libCSS));
-	watch('docs/**/*.css', parallel(stylelint, docsCSS));
-	watch('{src,docs}/**/*.{js,svelte}', parallel(eslint, js));
+	watch('src/**/*.css', series(libCSS, stylelint));
+	watch('docs/**/*.css', series(docsCSS, stylelint));
+	watch('{src,docs}/**/*.{js,svelte}', series(js, eslint));
 
 }
 
