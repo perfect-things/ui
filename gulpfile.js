@@ -1,7 +1,6 @@
 import gulp from 'gulp';
 import del from 'del';
 import livereload from 'gulp-livereload';
-import commonjs from '@rollup/plugin-commonjs';
 import source from 'vinyl-source-stream';
 import svelte from 'rollup-plugin-svelte';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -50,15 +49,15 @@ export function stylelint () {
 		});
 }
 
-let rollupCache;
-function rollupBuild (inputOptions = {}, outputOptions = {}) {
+
+function rollupBuild (inputOptions = {}, outputOptions = {}, cache) {
 	const readable = new stream.Readable();
 	readable._read = function () { };
-	inputOptions.cache = rollupCache;
+	inputOptions.cache = cache;
 	rollup
 		.rollup(inputOptions)
 		.then(bundle => {
-			rollupCache = bundle.cache;
+			cache = bundle.cache;
 			return bundle.generate(outputOptions);
 		})
 		.then(out => {
@@ -74,27 +73,24 @@ function rollupBuild (inputOptions = {}, outputOptions = {}) {
 	return readable;
 }
 
+let rollupCache;
 export function js () {
 	const inputOptions = {
-		input: [
-			'./docs/index.js',
-			'./src/index.js',
-		],
+		input: './docs/index.js',
 		plugins: [
-			commonjs(),
 			nodeResolve({
-				extensions: ['.mjs', '.js', '.svelte', '.json'],
+				extensions: ['.mjs', '.js', '.svelte'],
 				dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 			}),
 			inlineSvg(),
-			svelte({ compilerOptions: {dev: !isProd, css: false }}),
+			svelte({ compilerOptions: { dev: !isProd, css: false }}),
 			isProd && terser()
 		]
 	};
 	const outputOptions = {output: {
 		name: 'docs.js', format: 'esm', sourcemap: !isProd
 	}};
-	return rollupBuild(inputOptions, outputOptions)
+	return rollupBuild(inputOptions, outputOptions, rollupCache)
 		.pipe(source('docs.js'))	// will become the output file
 		.pipe(dest(DIST_PATH))
 		.pipe(livereload());
@@ -103,7 +99,7 @@ export function js () {
 export function libCSS () {
 	return src('src/**/*.css')
 		.pipe(isProd ? noop() : sourcemap.init())
-		.pipe(concat('index.css'))
+		.pipe(concat('ui.css'))
 		.pipe(isProd ? noop() : sourcemap.write())
 		.pipe(isProd ? cleanCSS() : noop())
 		.pipe(dest(DIST_PATH))

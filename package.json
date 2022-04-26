@@ -14,14 +14,13 @@
     "serve": "http-server ./dist --silent --port 3123 -oa localhost",
     "watch": "gulp",
     "lint": "gulp lint",
-    "start": "run-p serve watch"
+    "start": "run-p watch serve"
   },
   "dependencies": {
     "vanillajs-datepicker": "^1.2.0"
   },
   "devDependencies": {
     "@ffaubert/gulp-stylelint": "^14.0.0",
-    "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "del": "^6.0.0",
     "eslint": "^8.10.0",
