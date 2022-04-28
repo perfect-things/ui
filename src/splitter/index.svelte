@@ -54,7 +54,7 @@ function init () {
 	targetEl.style.overflow = 'auto';
 	if (isVertical) el.style.height = size + 'px';
 	else el.style.width = size + 'px';
-	el.nextElementSibling.style.overflow = 'auto';
+	if (el && el.nextElementSibling) el.nextElementSibling.style.overflow = 'auto';
 }
 
 function updateSize (box, withAnimation = false) {
