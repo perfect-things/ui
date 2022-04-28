@@ -46,8 +46,8 @@ function updatePosition (e)  {
 	const winW = window.innerWidth;
 	const padding = 10;
 
-	if (winH - height - y < padding) menuEl.style.top = (winH - height - padding) + 'px';
-	if (winW - width - x < padding) menuEl.style.left = (winW - width - padding) + 'px';
+	if (y > winH - height - padding) menuEl.style.top = (winH - height - padding) + 'px';
+	if (x > winW - width - padding) menuEl.style.left = (winW - width - padding) + 'px';
 }
 
 function onContextMenu (e) {

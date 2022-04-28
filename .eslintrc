@@ -2,8 +2,6 @@
 	"extends": "eslint:recommended",
 	"env": {
 		"browser": true,
-		"commonjs": true,
-		"node": true,
 		"es2021": true
 	},
 	"parserOptions": {
