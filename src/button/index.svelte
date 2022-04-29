@@ -16,17 +16,14 @@
 	class:success
 	class:warning
 	class:danger
-	on:focus="{e => dispatch('focus', e)}"
-	on:keydown="{e => dispatch('keydown', e)}"
-	on:mousedown="{e => dispatch('mousedown', e)}"
-	on:click="{e => dispatch('click', e)}"
-	>
+	on:focus
+	on:keydown
+	on:mousedown
+	on:click>
 	{#if icon}<Icon name="{icon}"/>{/if}
 	<slot></slot>
 </button>
 <script>
-	//class:button-icon="{icon && !$$slots.default}"
-import { createEventDispatcher } from 'svelte';
 import Icon from '../icon';
 
 export let _this = undefined;
@@ -46,6 +43,4 @@ export let round = undefined;	// round button
 export let title = undefined;
 export let form = undefined;
 export let cssClass = '';
-
-const dispatch = createEventDispatcher();
 </script>

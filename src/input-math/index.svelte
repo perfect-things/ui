@@ -9,7 +9,7 @@
 		bind:value="{value}"
 		on:keydown="{onkeydown}"
 		on:change="{onchange}"
-		on:blur="{onblur}">
+		on:blur>
 </div>
 <script>
 import { createEventDispatcher } from 'svelte';
@@ -45,10 +45,6 @@ function onchange (e) {
 	const num = parseAmount(value);
 	value = isNaN(num) ? '' : num;
 	dispatch('change', e);
-}
-
-function onblur (e) {
-	dispatch('blur', e);
 }
 
 const save_eval = eval;	// https://rollupjs.org/guide/en/#eval2--eval
