@@ -5,12 +5,8 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
-- [x] Enter on autocomplete does not submit form
-- [ ] dbl-click on a table row should execute the "Enter" action too
-- [ ] Make tables sortable (with events bubbling, so in `Budget` sorting 1 table - sorts others)
-- [ ] Drag & Drop categories & Groups to reorder
-- [ ] Drag & Drop Accounts & Payees to reorder (Sort: A-Z, Z-A, Custom)
-
+- [ ] Make tables sortable (with events bubbling)
+- [ ] Drag & Drop table rows
 
 
 
