@@ -83,8 +83,3 @@
 	width: 0;
 	transition: width 0.3s;
 }
-
-
-@media (max-width: 980px) {
-	.toaster { font-size: 1.5em; width: 98vw; }
-}

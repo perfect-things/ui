@@ -65,11 +65,3 @@ input[type=file] { position: absolute; right: -500px; }
 	display: inline-flex;
 	align-items: center;
 }
-
-
-@media (max-width: 980px) {
-	input:is([type=checkbox], [type=radio]) {
-		transform: scale(3.4);
-		margin-right: 4em;
-	}
-}

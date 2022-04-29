@@ -57,7 +57,3 @@
 
 
 .button.round { padding: var(--ui-margin); border-radius: var(--ui-border-radius-xl); }
-
-@media (max-width: 980px) {
-	.button { --ui-button-size: 1.2em; }
-}
