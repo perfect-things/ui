@@ -27,8 +27,10 @@ import dots from './icons/dots.svg';
 import edit from './icons/edit.svg';
 import eye from './icons/eye.svg';
 import eyeOff from './icons/eye-off.svg';
+import error from './icons/error.svg';
 import filter from './icons/filter.svg';
 import folder from './icons/folder.svg';
+import help from './icons/help.svg';
 import home from './icons/home.svg';
 import info from './icons/info.svg';
 import link from './icons/link.svg';
@@ -81,8 +83,10 @@ export const icons = {
 	edit,
 	eye,
 	eyeOff,
+	error,
 	filter,
 	folder,
+	help,
 	home,
 	info,
 	link,
