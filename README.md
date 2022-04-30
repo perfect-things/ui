@@ -10,6 +10,12 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 
+### DOCS TODO
+- [ ] add description & API/options/parameters/etc.
+- [ ] add code samples
+
+
+
 
 ## Install & Setup
 
@@ -46,10 +52,6 @@ npm i && npm start
 ```
 A browser window should open with the demo of the components.
 
-
-## TODO
-- [ ] add description & API/options/parameters/etc.
-- [ ] add code samples
 
 
 ## Resources
