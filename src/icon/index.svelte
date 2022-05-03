@@ -8,6 +8,8 @@ import apps from './icons/apps.svg';
 import archive from './icons/archive.svg';
 import arrowLeft from './icons/arrow-left.svg';
 import arrowRight from './icons/arrow-right.svg';
+import arrowNarrowDown from './icons/arrow-narrow-down.svg';
+import arrowNarrowUp from './icons/arrow-narrow-up.svg';
 import bank from './icons/bank.svg';
 import bell from './icons/bell.svg';
 import book from './icons/book.svg';
@@ -51,6 +53,8 @@ import search from './icons/search.svg';
 import sidebarLeft from './icons/sidebar-left.svg';
 import sidebarRight from './icons/sidebar-right.svg';
 import shared from './icons/shared.svg';
+import sortAsc from './icons/sort-asc.svg';
+import sortDesc from './icons/sort-desc.svg';
 import tag from './icons/tag.svg';
 import trash from './icons/trash.svg';
 import user from './icons/user.svg';
@@ -64,6 +68,8 @@ export const icons = {
 	archive,
 	arrowLeft,
 	arrowRight,
+	arrowNarrowDown,
+	arrowNarrowUp,
 	bank,
 	bell,
 	book,
@@ -108,6 +114,8 @@ export const icons = {
 	sidebarLeft,
 	sidebarRight,
 	shared,
+	sortAsc,
+	sortDesc,
 	tag,
 	trash,
 	user,
