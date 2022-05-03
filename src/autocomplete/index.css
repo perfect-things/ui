@@ -19,10 +19,7 @@
 	z-index: 1;
 	opacity: 0.6;
 }
-.autocomplete .autocomplete-input {
-	width: 100%;
-	padding-right: 28px;
-}
+.autocomplete .autocomplete-input { width: 100%; padding-right: 28px; }
 
 .autocomplete-list {
 	position: absolute;
@@ -49,7 +46,7 @@
 	padding: 0.8em 0.6em;
 	margin: 0;
 	color: var(--ui-color-accent);
-	background-color: var(--ui-color-background-light-2);
+	background-color: var(--ui-color-background-dark-2);
 	line-height: 1;
 	font-weight: 600;
 	cursor: default;

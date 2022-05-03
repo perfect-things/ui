@@ -6,7 +6,15 @@
 }
 
 .table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
-.table { border: 2px solid var(--ui-color-border); border-spacing: 0; width: 100%; }
+.table {
+	border: 2px solid var(--ui-color-border);
+	border-spacing: 0;
+	width: 100%;
+	/* this enables table scrolling to be gpu accelerated */
+	/* and helps with the performance with large numbers of rows */
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
 
 .table thead,
 .table tfoot { position: sticky; z-index: 2; }

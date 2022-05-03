@@ -5,12 +5,6 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
-- [ ] Make tables sortable (with events bubbling)
-- [ ] Drag & Drop table rows
-
-
-
-### DOCS TODO
 - [ ] add description & API/options/parameters/etc.
 - [ ] add code samples
 
