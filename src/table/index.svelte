@@ -18,6 +18,8 @@ export let scrollCorrectionOffset = 0;
 // useful for when row-groups are needed.
 // then tbody.row-selector can be set to allow highlighting whole groups
 export let rowSelector = 'tbody tr';
+export let data = {};
+
 let selectedIdx = -1;
 let headerHeight = 0;
 let clickTimer;
@@ -25,6 +27,7 @@ let previousKey;
 
 
 onMount(() => {
+	Object.assign(_this.dataset, data);
 	if (selectable) {
 		document.addEventListener('keydown', onKeyDown);
 		document.addEventListener('focus', onFocus, true);
