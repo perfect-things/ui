@@ -1,4 +1,5 @@
 .toaster {
+	--toaster-border-radius: var(--ui-border-radius);
 	position: fixed;
 	width: 30em;
 	left: 50%;
@@ -18,7 +19,6 @@
 	position: relative;
 	overflow: hidden;
 	flex: 1;
-	text-align: center;
 	z-index: 999;
 	display: flex;
 	align-items: stretch;
@@ -27,7 +27,7 @@
 	margin-top: var(--ui-margin);
 	margin-bottom: var(--ui-margin);
 	box-shadow: var(--ui-shadow-fancy);
-	border-radius: var(--ui-border-radius-xl);
+	border-radius: var(--toaster-border-radius);
 }
 .toast button {
 	background: none;
@@ -48,7 +48,6 @@
 .toast .toast-close {
 	font-size: 1.4em;
 	font-weight: 200;
-	border-radius: 0 var(--ui-border-radius-xl) var(--ui-border-radius-xl) 0;
 	position: relative;
 	padding-bottom: 0.15em;
 }
@@ -63,7 +62,9 @@
 	flex: 1;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
+	padding: 0.5em 0.5em 0.5em 1.5em;
+	line-height: 1.4;
 }
 .toast-progressbar {
 	position: absolute;
@@ -71,15 +72,16 @@
 	left: 0;
 	right: 0;
 	top: 0;
-	border-radius: var(--ui-border-radius-xl);
+	border-radius: var(--toaster-border-radius);
 	overflow: hidden;
 	z-index: -1;
 }
 .toast-progress {
 	height: 100%;
-	border-radius: var(--ui-border-radius-xl);
+	border-radius: var(--toaster-border-radius);
 	background-color: #ffffff15;
 	border: 1px solid #ffffff25;
 	width: 0;
 	transition: width 0.3s;
+	will-change: width;
 }
