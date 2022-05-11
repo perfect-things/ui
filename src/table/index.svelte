@@ -170,6 +170,7 @@ function onKeyDown (e) {
 
 
 function shouldSkipNav (e) {
+	if (!e || !e.target || e.target == document) return false;
 	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT'];
 	if (skipEventFor.includes(e.target.tagName)) return true;
 	if (e.target.closest('.dialog,.drawer')) return true;
