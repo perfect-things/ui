@@ -104,7 +104,8 @@ function selectFocusedRow (rowEl) {
 }
 
 function onFocus (e) {
-	if (shouldSkipNav(e)) return;
+	if (!e || !e.target || shouldSkipNav(e)) return;
+	if (e.target == document) return;
 	if (!e.target.matches(rowSelector)) return;
 
 	const rowEl = e.target.closest(rowSelector);
