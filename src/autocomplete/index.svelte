@@ -102,7 +102,18 @@ function filter () {
 	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
 	if (!showAll && inputEl.value) {
 		const q = inputEl.value.toLowerCase().trim();
-		filtered = filtered.filter(item => fuzzy(item.name, q));
+		filtered = filtered
+			.filter(item => fuzzy(item.name, q))
+			.map(item => {
+				item.highlightedName = emphasize(item.name, q);
+				item.score = 1;
+				if (item.name.toLowerCase().includes(q)) item.score = 2;
+				if (item.name.includes(q)) item.score = 3;
+				if (item.name.toLowerCase() === q) item.score = 4;
+				if (item.name === q) item.score = 5;
+				return item;
+			});
+		filtered = filtered.sort((a, b) => b.score - a.score);
 		filtered.forEach(item => {
 			item.highlightedName = emphasize(item.name, q);
 		});
@@ -210,7 +221,7 @@ function clear () {
 /*** EVENT LISTENERS ******************************************************************************/
 function oninput () {
 	open();
-	filter();
+	requestAnimationFrame(filter);
 	recalculateListPosition(listEl, inputEl, elevated);
 	hasEdited = true;
 }
