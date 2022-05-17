@@ -16,6 +16,8 @@ import book from './icons/book.svg';
 import bookmark from './icons/bookmark.svg';
 import calculator from './icons/calculator.svg';
 import calendar from './icons/calendar.svg';
+import chartLine from './icons/chart-line.svg';
+import chartPie from './icons/chart-pie.svg';
 import cash from './icons/cash.svg';
 import check from './icons/check.svg';
 import checkboxChecked from './icons/checkbox-checked.svg';
@@ -77,6 +79,8 @@ export const icons = {
 	calculator,
 	calendar,
 	cash,
+	chartLine,
+	chartPie,
 	check,
 	checkboxChecked,
 	checkbox,
