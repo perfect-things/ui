@@ -118,7 +118,10 @@ function filter () {
 			item.highlightedName = emphasize(item.name, q);
 		});
 	}
-
+	const hasGroups = filtered.find(f => !!f.group);
+	if (hasGroups) {
+		filtered = filtered.sort((a, b) => ('' + a.group).localeCompare('' + b.group));
+	}
 	filtered.forEach((item, idx) => item.idx = idx);
 	filteredData = filtered;
 	groupedData = groupData(filtered);
