@@ -176,12 +176,15 @@ function setInitialValue () {
 		if (typeof value === 'object' && value !== null) {
 			itemId = value.id || value.name;
 		}
-		const idx = filteredData.findIndex(i => i.id === itemId || i.name === itemId);
-		if (idx > -1) {
-			highlightIndex = idx;
-			inputEl.value = filteredData[highlightIndex].name;
+		if (itemId) {
+			const idx = filteredData.findIndex(i => i.id === itemId || i.name === itemId);
+			if (idx > -1) {
+				highlightIndex = idx;
+				inputEl.value = filteredData[highlightIndex].name;
+			}
+			highlight(listEl);
 		}
-		highlight(listEl);
+		else inputEl.value = '';
 	}
 }
 
