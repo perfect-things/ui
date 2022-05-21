@@ -21,7 +21,7 @@
 	on:mousedown
 	on:click>
 	{#if icon}<Icon name="{icon}"/>{/if}
-	<span><slot></slot></span>
+	<slot></slot>
 </button>
 <script>
 import Icon from '../icon';
