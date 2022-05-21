@@ -58,9 +58,3 @@
 
 
 .button.round { padding: var(--ui-margin); border-radius: var(--ui-border-radius-xl); }
-
-
-/* vertical text alignment in firefox sucks, so need to push it down a bit */
-@supports (-moz-appearance: none) {
-	.button span { padding-top: 2px; }
-}
