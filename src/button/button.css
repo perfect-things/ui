@@ -9,6 +9,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	gap: 0.4em;
 
 	height: auto;
 	margin: 0;
@@ -50,7 +51,7 @@
 	pointer-events: none;
 }
 
-.button-has-text svg { margin-left: calc(var(--ui-margin-m) * -1); margin-right: 0.4em; }
+.button-has-text svg { margin-left: calc(var(--ui-margin-m) / -2); }
 
 .button:not(.button-has-text) { min-width: 30px; padding: 0 var(--ui-margin-m); }
 .button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
