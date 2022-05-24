@@ -1,4 +1,4 @@
-<div class="autocomplete" bind:this="{el}">
+<div class="autocomplete {className}" bind:this="{el}">
 	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input" autocomplete="off"
 		{id}
@@ -62,6 +62,7 @@ export let required = false;
 export let disabled = undefined;
 export let elevate = false;
 export let showOnFocus = false;
+export let className = '';
 
 $:elevated = elevate === 'true' || elevate === true;
 $:showOnFocusFn = (showOnFocus === true || showOnFocus === 'true') ? open : null;
