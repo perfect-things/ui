@@ -48,7 +48,7 @@ export function recalculateListPosition (listEl, inputEl, elevated) {
 		else {
 			listEl.style.top = (inputBox.height + 3) + 'px';
 		}
-		listEl.style.width = inputBox.width + 'px';
+		listEl.style.minWidth = inputBox.width + 'px';
 		listEl.style.height = 'auto';
 		const listBox = listEl.getBoundingClientRect();
 		const listT = listBox.top;
