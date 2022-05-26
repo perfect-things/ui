@@ -13,11 +13,8 @@
 .button-has-text.button-link svg { margin-left: 0; }
 
 .button-link:focus,
-.button-link:hover {
-	text-decoration-thickness: 0.2em;
-	text-underline-offset: 0.2em;
-	text-decoration-color: var(--ui-color-info);
-}
+.button-link:hover { text-underline-offset: 0.2em; }
+
 .button-link.success:focus,
 .button-link.success:hover { text-decoration-color: var(--ui-color-success); }
 

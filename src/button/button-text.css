@@ -9,10 +9,10 @@
 }
 
 .button-text:focus,
-.button-text:hover { background-color: var(--ui-color-highlight-dark-2); text-decoration: none; }
+.button-text:hover { background-color: var(--ui-color-info); text-decoration: none; }
 .button-text.success:focus,
-.button-text.success:hover { background-color: var(--ui-color-success-semi); }
+.button-text.success:hover { background-color: var(--ui-color-success); }
 .button-text.warning:focus,
-.button-text.warning:hover { background-color: var(--ui-color-warning-semi); }
+.button-text.warning:hover { background-color: var(--ui-color-warning); }
 .button-text.danger:focus,
-.button-text.danger:hover { background-color: var(--ui-color-danger-semi); }
+.button-text.danger:hover { background-color: var(--ui-color-danger); }
