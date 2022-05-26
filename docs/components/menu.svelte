@@ -102,7 +102,7 @@ function newPrivateTab () {
 	tabsMenu.close().then(() => alert('New Private Tab clicked'));
 }
 function closeTabs (e) {
-	if (e && e.detail) e.detail.stopPropagation();
+	if (e) e.stopPropagation();
 	const initial = 'Close all tabs';
 	const confrm = 'Confirm Closing';
 

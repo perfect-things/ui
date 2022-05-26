@@ -1,16 +1,16 @@
 .toggle {
-	--ui-toggle-size: 1.2em;
+	--ui-toggle-size: 1.25em;
 	display: inline-block;
 	vertical-align: middle;
 	user-select: none;
 	-webkit-user-select: none;
 	cursor: pointer;
 	overflow: hidden;
-	width: calc(var(--ui-toggle-size) * 2.3);
+	width: calc(var(--ui-toggle-size) * 2.5);
 	border: calc(var(--ui-toggle-size) / 15) solid var(--ui-color-text-light-1);
 	border-radius: var(--ui-border-radius-xl);
 	background: var(--ui-color-background-input);
-	padding: var(--ui-margin-s);
+	padding: 1.5px;
 }
 
 .toggle[disabled] { pointer-events: none; opacity: 0.6; }

@@ -17,7 +17,7 @@
 <svelte:options accessors={true}/>
 
 <script>
-import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+import { createEventDispatcher, onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 export let title = '';
 export let opened = false;
@@ -30,10 +30,6 @@ let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
 
 onMount(() => {
 	document.body.appendChild(backdropEl);
-});
-
-onDestroy(() => {
-	backdropEl.remove();
 });
 
 function focusFirst () {

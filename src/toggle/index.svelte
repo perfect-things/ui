@@ -43,7 +43,7 @@ onMount(() => {
 function setValue (v, skipEvent = false) {
 	if (typeof v !== 'undefined') value = v;
 	startX = currentX = value ? maxX : minX;
-	label.style.width = `${currentX}px`;
+	label.style.width = `${Math.round(currentX)}px`;
 	if (!skipEvent) dispatch('change', value);
 }
 
@@ -90,6 +90,6 @@ function drag (e) {
 	currentX = getMouseX(e) - startX;
 	if (currentX > maxX) currentX = maxX;
 	if (currentX < minX) currentX = minX;
-	label.style.width = `${currentX}px`;
+	label.style.width = `${Math.round(currentX)}px`;
 }
 </script>

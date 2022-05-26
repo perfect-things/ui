@@ -6,7 +6,7 @@
 }
 
 .panel-header {
-	background: var(--ui-color-background-light-2);
+	background: var(--ui-color-background-dark-2);
 	color: var(--ui-color-text);
 	text-align: left;
 	border: none;

@@ -51,9 +51,7 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.menu-button:focus { outline: none; }
-.menu-button:focus,
-.menu-button:hover { background-color: var(--ui-color-highlight); }
+.menu-button:focus { outline: none; background-color: var(--ui-color-highlight); }
 
 .menu-separator {
 	height: 0;

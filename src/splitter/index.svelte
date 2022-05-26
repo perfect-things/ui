@@ -86,6 +86,7 @@ function updateSize (box, withAnimation = false) {
 function mousedown (e) {
 	if (isDragging) return;
 	isDragging = true;
+	e.preventDefault();
 	document.addEventListener('mouseup', mouseup);
 	document.addEventListener('mousemove', mousemove);
 	bodyCursor = document.body.style.cursor;
@@ -101,6 +102,7 @@ function mousedown (e) {
 
 function mousemove (e) {
 	e.preventDefault();
+	e.stopPropagation();
 	if (isVertical) {
 		let height = mousedownTargetBox.height + getMouseY(e) - startY;
 		if (height < initialTargetBox.minHeight) height = initialTargetBox.minHeight;

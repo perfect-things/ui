@@ -4198,10 +4198,6 @@ function instance$I($$self, $$props, $$invalidate) {
 		document.body.appendChild(backdropEl);
 	});
 
-	onDestroy(() => {
-		backdropEl.remove();
-	});
-
 	function focusFirst() {
 		let first = getFocusableElements().shift();
 		const last = getFocusableElements().pop();
@@ -4330,7 +4326,6 @@ function instance$I($$self, $$props, $$invalidate) {
 
 	$$self.$capture_state = () => ({
 		createEventDispatcher,
-		onDestroy,
 		onMount,
 		ANIMATION_SPEED,
 		FOCUSABLE_SELECTOR,
@@ -10299,6 +10294,7 @@ function instance$z($$self, $$props, $$invalidate) {
 	function mousedown(e) {
 		if (isDragging) return;
 		$$invalidate(2, isDragging = true);
+		e.preventDefault();
 		document.addEventListener('mouseup', mouseup);
 		document.addEventListener('mousemove', mousemove);
 		bodyCursor = document.body.style.cursor;
@@ -10310,6 +10306,7 @@ function instance$z($$self, $$props, $$invalidate) {
 
 	function mousemove(e) {
 		e.preventDefault();
+		e.stopPropagation();
 
 		if (isVertical) {
 			let height = mousedownTargetBox.height + getMouseY(e) - startY;
@@ -11911,7 +11908,7 @@ function instance$u($$self, $$props, $$invalidate) {
 	function setValue(v, skipEvent = false) {
 		if (typeof v !== 'undefined') $$invalidate(0, value = v);
 		startX = currentX = value ? maxX : minX;
-		$$invalidate(4, label.style.width = `${currentX}px`, label);
+		$$invalidate(4, label.style.width = `${Math.round(currentX)}px`, label);
 		if (!skipEvent) dispatch('change', value);
 	}
 
@@ -11957,7 +11954,7 @@ function instance$u($$self, $$props, $$invalidate) {
 		currentX = getMouseX(e) - startX;
 		if (currentX > maxX) currentX = maxX;
 		if (currentX < minX) currentX = minX;
-		$$invalidate(4, label.style.width = `${currentX}px`, label);
+		$$invalidate(4, label.style.width = `${Math.round(currentX)}px`, label);
 	}
 
 	const writable_props = ['id', 'value', 'disabled'];
@@ -13098,17 +13095,20 @@ function instance$r($$self, $$props, $$invalidate) {
 		if (opened) close();
 	}
 
-	function onmousemove() {
-		if (focusedEl) {
-			focusedEl.blur();
-			focusedEl = null;
+	function onmousemove(e) {
+		const btn = e.target.closest('.menu-button');
+
+		if (btn) {
+			focusedEl = btn;
+			focusedEl.focus();
 		}
 	}
 
 	function onKeydown(e) {
+		if (e.key === 'Escape') close();
 		if (!menuEl.contains(e.target)) return;
 
-		if (e.key === 'Escape') close(); else if (e.key === 'ArrowDown') {
+		if (e.key === 'ArrowDown') {
 			e.preventDefault();
 			focusNext();
 		} else if (e.key === 'ArrowUp') {
@@ -20304,7 +20304,7 @@ function instance$l($$self, $$props, $$invalidate) {
 	}
 
 	function closeTabs(e) {
-		if (e && e.detail) e.detail.stopPropagation();
+		if (e) e.stopPropagation();
 		const initial = 'Close all tabs';
 		const confrm = 'Confirm Closing';
 

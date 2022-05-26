@@ -1,6 +1,7 @@
 .drawer {
 	position: fixed;
-	background-color: var(--ui-color-background-light-2);
+	background-color: var(--ui-color-background-dark-1);
+	border-left: var(--ui-popup-border);
 	top: 0;
 	right: 0;
 	bottom: 0;

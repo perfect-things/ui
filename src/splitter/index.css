@@ -1,18 +1,22 @@
 .splitter {
 	position: absolute;
 	height: 100%;
-	width: 10px;
+	width: 16px;
 	z-index: 90;
 	cursor: ew-resize;
 }
 
-.splitter.vertical {
-	width: 100%;
-	height: 10px;
-	cursor: ns-resize;
+.splitter::after {
+	content: " ";
+	display: block;
+	width: 6px;
+	height: 100%;
+	margin: 0 auto;
 }
 
-.splitter.is-dragging,
-.splitter:hover {
-	background-color: var(--ui-color-background-light-2);
-}
+.splitter.vertical { width: 100%; height: 16px; cursor: ns-resize; }
+
+.splitter.vertical::after { width: 100%; height: 6px; margin: auto 0; }
+
+.splitter.is-dragging::after,
+.splitter:hover::after { background-color: var(--ui-color-background-light-2); }

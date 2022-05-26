@@ -15,15 +15,19 @@ export let elevate = false;
 $:elevated = elevate === 'true' || elevate === true;
 let menuEl, targetEl, focusedEl, opened = false;
 
+
 onMount(() => {
 	if (type === 'context') document.addEventListener('contextmenu', onContextMenu);
 	if (elevated) document.body.appendChild(menuEl);
 });
 
+
 onDestroy(() => {
 	if (type === 'context') document.removeEventListener('contextmenu', onContextMenu);
 	if (elevated) menuEl.remove();
 });
+
+
 
 function updatePosition (e)  {
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
@@ -50,6 +54,7 @@ function updatePosition (e)  {
 	if (x > winW - width - padding) menuEl.style.left = (winW - width - padding) + 'px';
 }
 
+
 function onContextMenu (e) {
 	close();
 	targetEl = e.target.closest(targetSelector);
@@ -59,6 +64,7 @@ function onContextMenu (e) {
 	updatePosition(e);
 	open();
 }
+
 
 function onDocumentClick (e) {
 	// if (type === 'context' && e.button !== 0) return;
@@ -70,22 +76,27 @@ function onDocumentClick (e) {
 	}
 }
 
+
 function onscroll () {
 	if (opened) close();
 }
 
-function onmousemove () {
-	if (focusedEl) {
-		focusedEl.blur();
-		focusedEl = null;
+
+function onmousemove (e) {
+	const btn = e.target.closest('.menu-button');
+	if (btn) {
+		focusedEl = btn;
+		focusedEl.focus();
 	}
 }
 
+
 function onKeydown (e) {
+	if (e.key === 'Escape') close();
+
 	if (!menuEl.contains(e.target)) return;
 
-	if (e.key === 'Escape') close();
-	else if (e.key === 'ArrowDown') {
+	if (e.key === 'ArrowDown') {
 		e.preventDefault();
 		focusNext();
 	}
@@ -95,9 +106,11 @@ function onKeydown (e) {
 	}
 }
 
+
 function focusTarget () {
 	if (targetEl && targetEl.focus) targetEl.focus();
 }
+
 
 function focusNext () {
 	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
@@ -108,6 +121,7 @@ function focusNext () {
 	if (focusedEl) focusedEl.focus();
 }
 
+
 function focusPrev () {
 	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
 	let idx = buttons.length;
@@ -116,6 +130,7 @@ function focusPrev () {
 	focusedEl = buttons[idx - 1];
 	if (focusedEl) focusedEl.focus();
 }
+
 
 export function open (e) {
 	opened = true;
@@ -133,6 +148,7 @@ export function open (e) {
 		focusNext();
 	}));
 }
+
 
 export function close () {
 	opened = false;

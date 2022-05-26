@@ -23,28 +23,29 @@
 	--ui-color-accent-dark-1: #79520b;
 	--ui-color-accent-dark-2: #694d13;
 
-	--ui-color-info: #61738a;
-	--ui-color-info-semi: #61738a66;
-	--ui-color-info-dark-1: #515d6d;
-	--ui-color-info-dark-2: #363e46;
+	--ui-color-info: #49596d;
+	--ui-color-info-semi: #49596d66;
+	--ui-color-info-dark-1: #3b495a;
+	--ui-color-info-dark-2: #2f3946;
 
-	--ui-color-success: #3e795e;
-	--ui-color-success-semi: #3e795e66;
-	--ui-color-success-dark-1: #33654e;
-	--ui-color-success-dark-2: #2e453a;
 
-	--ui-color-warning: #916f0a;
-	--ui-color-warning-semi: #916f0a66;
-	--ui-color-warning-dark-1: #6d550e;
-	--ui-color-warning-dark-2: #56481c;
+	--ui-color-success: #376651;
+	--ui-color-success-semi: #37665166;
+	--ui-color-success-dark-1: #2f5443;
+	--ui-color-success-dark-2: #274537;
+
+	--ui-color-warning: #71580d;
+	--ui-color-warning-semi: #71580d66;
+	--ui-color-warning-dark-1: #57440b;
+	--ui-color-warning-dark-2: #433407;
 
 	--ui-color-danger: #943737;
 	--ui-color-danger-semi: #94373766;
 	--ui-color-danger-dark-1: #792f2f;
 	--ui-color-danger-dark-2: #5b3134;
 
-	--ui-color-highlight: #1e6dc6;
-	--ui-color-highlight-semi: #1e6dc666;
+	--ui-color-highlight: #1b5ca6;
+	--ui-color-highlight-semi: ##1b5ca666;
 	--ui-color-highlight-light-1: #267bdc;
 	--ui-color-highlight-light-2: #499eff;
 	--ui-color-highlight-dark-1: #2262aa;
@@ -66,8 +67,8 @@
 
 	--ui-color-background-input: #222222;
 
-	--ui-color-text: #d6d6d6;
-	--ui-color-text-semi: #d6d6d666;
+	--ui-color-text: #dad9d9;
+	--ui-color-text-semi: #dad9d966;
 	--ui-color-text-light-1: #e3e3e3;
 	--ui-color-text-light-2: #fefefe;
 	--ui-color-text-dark-1: #aaaaaa;

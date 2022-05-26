@@ -120,7 +120,7 @@
 .datepicker-cell.highlighted:not(.selected):not(.range):not(.today).focused { background-color: #e8e8e8; }
 
 .datepicker-cell.today:not(.selected) { background-color: var(--ui-color-success); }
-.datepicker-cell.today.focused:not(.selected) { background-color: #00c4a7; }
+.datepicker-cell.today.focused:not(.selected) { background-color: var(--ui-color-success); }
 
 .datepicker-cell:not(.disabled):hover {
 	background-color: var(--ui-color-highlight-dark-2);
