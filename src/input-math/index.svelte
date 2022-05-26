@@ -37,7 +37,7 @@ function onkeydown (e) {
 	}
 	if (allowedKeys.includes(e.key)) return;
 	if (e.metaKey || e.ctrlKey) return;
-	if (e.key === DECIMAL_SEPARATOR && !('' + value).includes(DECIMAL_SEPARATOR)) return;
+	if (e.key === DECIMAL_SEPARATOR) return;
 	e.preventDefault();
 }
 
