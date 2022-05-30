@@ -231,6 +231,7 @@ function clear () {
 function oninput () {
 	open();
 	requestAnimationFrame(filter);
+	recalculateListPosition(listEl, inputEl, elevated);
 	hasEdited = true;
 }
 
