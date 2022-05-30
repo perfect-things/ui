@@ -100,7 +100,6 @@ function selectClicked (skipEvent = false) {
 	let topMargin = (scrlCont == _this ? 0 : _this.offsetTop);
 
 	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
-	console.log(scrlCont.scrollTop, top);
 
 	if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top });
 	else {
