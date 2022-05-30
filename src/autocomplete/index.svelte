@@ -12,7 +12,6 @@
 		on:input="{oninput}"
 		on:focus="{showOnFocusFn}"
 		on:click="{open}"
-		on:change="{selectItem}"
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
 
@@ -65,7 +64,7 @@ export let showOnFocus = false;
 export let className = '';
 
 $:elevated = elevate === 'true' || elevate === true;
-$:showOnFocusFn = (showOnFocus === true || showOnFocus === 'true') ? open : null;
+$:showOnFocusFn = (showOnFocus === true || showOnFocus === 'true') ? open : undefined;
 
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
@@ -232,7 +231,6 @@ function clear () {
 function oninput () {
 	open();
 	requestAnimationFrame(filter);
-	recalculateListPosition(listEl, inputEl, elevated);
 	hasEdited = true;
 }
 
@@ -249,6 +247,7 @@ function onclick (item) {
 
 function onkeydown (e) {
 	if (e.key === 'Tab') return close();
+
 	const fnmap = {
 		ArrowDown: down,
 		ArrowUp: up,
@@ -268,6 +267,7 @@ function onkeypress (e) {
 	}
 }
 
+
 function onEsc (e) {
 	if (clearOnEsc && inputEl.value) {
 		e.stopPropagation();
@@ -285,7 +285,7 @@ function onEsc (e) {
 
 function onScrollOrResize (e) {
 	if (!opened) return;
-	if (e.target == listEl || mouseOverList) return;
+	if (e.target == listEl || e.target == inputEl || mouseOverList) return;
 	inputEl.blur();
 	return close();
 }

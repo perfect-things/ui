@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["index.js"],"sourcesContent":["import App from './app';\nexport default new App({ target: document.querySelector('#app') });\n"],"file":"index.js"}
