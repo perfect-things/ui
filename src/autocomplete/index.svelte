@@ -159,6 +159,7 @@ function close () {
 
 
 function selectItem () {
+	const oldValue = value;
 	if (filteredData[highlightIndex]) {
 		value = filteredData[highlightIndex];
 	}
@@ -167,6 +168,7 @@ function selectItem () {
 		value = { name: inputEl.value };
 	}
 	else revert();
+	dispatch('change', { value, oldValue });
 	close();
 }
 
@@ -236,9 +238,11 @@ function oninput () {
 
 
 function onclick (item) {
+	const oldValue = value;
 	value = item;
 	inputEl.value = item.name;
 	highlightIndex = item.idx;
+	dispatch('change', { value, oldValue });
 	close();
 }
 

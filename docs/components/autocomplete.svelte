@@ -2,7 +2,9 @@
 <div class="docs-autocomplete-layout">
 	<div class="docs-autocomplete-column">
 		<h3>Normal</h3>
-		<Autocomplete data="{autocompleteData}" bind:value="{autocompleteValue}" />
+		<Autocomplete data="{autocompleteData}"
+			on:change="{onChange}"
+			bind:value="{autocompleteValue}" />
 
 		<h3>Disabled</h3>
 		<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
@@ -97,4 +99,9 @@ const autocompleteDataSimplest = [
 ];
 let autocompleteValueSimplest = 'Gamma';
 
+
+function onChange (e) {
+	const { value, oldValue } = e.detail;
+	console.log({ value, oldValue });
+}
 </script>
