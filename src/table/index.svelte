@@ -14,6 +14,7 @@ const dispatch = createEventDispatcher();
 export let cssClass = '';
 export let _this = undefined;
 export let selectable = true;
+export let scrollContainer = undefined;
 export let scrollCorrectionOffset = 0;
 // useful for when row-groups are needed.
 // then tbody.row-selector can be set to allow highlighting whole groups
@@ -79,17 +80,33 @@ function selectNext (skipEvent = false) {
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
+function getScrollContainer () {
+	let scrlCont;
+	if (scrollContainer) {
+		if (typeof scrollContainer === 'string') scrlCont = _this.closest(scrollContainer);
+		else scrlCont = scrollContainer;
+	}
+	if (scrlCont) return scrlCont;
+	return _this;
+}
+
 function selectClicked (skipEvent = false) {
 	const rows = getSelectableItems();
 	const rowEl = rows[selectedIdx];
 	if (!rowEl) return;
-	rowEl.focus();
+	if (rowEl != document.activeElement) rowEl.focus();
 
-	let top = rowEl.offsetTop - headerHeight + parseFloat(scrollCorrectionOffset);
-	if (_this.scrollTop > top) _this.scrollTo({ top });
+	const scrlCont = getScrollContainer();
+	let topMargin = (scrlCont == _this ? 0 : _this.offsetTop);
+
+	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
+	console.log(scrlCont.scrollTop, top);
+
+	if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top });
 	else {
-		top = rowEl.offsetTop + rowEl.offsetHeight - _this.offsetHeight + headerHeight + parseFloat(scrollCorrectionOffset);
-		if (_this.scrollTop < top) _this.scrollTo({ top });
+		top = rowEl.offsetTop + rowEl.offsetHeight - scrlCont.offsetHeight +
+			headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
+		if (scrlCont.scrollTop < top) scrlCont.scrollTo({ top });
 	}
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
@@ -104,6 +121,7 @@ function selectFocusedRow (rowEl) {
 }
 
 function onFocus (e) {
+	if (!_this.contains(e.target)) return;
 	if (!e || !e.target || shouldSkipNav(e)) return;
 	if (e.target == document) return;
 	if (!e.target.matches(rowSelector)) return;
@@ -116,6 +134,7 @@ function onFocus (e) {
 }
 
 function onClick (e) {
+	if (!_this.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	// debounce, so to not duplicate events when dblclicking
@@ -130,6 +149,7 @@ function onClick (e) {
 }
 
 function onDblClick (e) {
+	if (!_this.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
