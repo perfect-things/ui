@@ -5,6 +5,7 @@
 	<NavItem name="Button Toggle" {active} />
 	<NavItem name="Push Button" {active} />
 	<NavItem name="Datepicker" {active} />
+	<NavItem name="Checkbox" {active} />
 	<NavItem name="Input" {active} />
 	<NavItem name="Input Math" {active} />
 	<NavItem name="Password" hash="InputPassword" {active} />
@@ -43,6 +44,7 @@ import ColorPalette from '../components/color-palette';
 
 import Autocomplete from '../components/autocomplete';
 import Datepicker from '../components/datepicker';
+import Checkbox from '../components/checkbox';
 import Input from '../components/input';
 import InputMath from '../components/input-math';
 import InputPassword from '../components/input-password';
@@ -63,6 +65,7 @@ const components = {
 	ButtonToggle,
 	ColorPalette,
 	Datepicker,
+	Checkbox,
 	Dialog,
 	Drawer,
 	Icon,

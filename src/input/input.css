@@ -12,23 +12,25 @@ input:not([type=radio], [type=checkbox]) {
 	width: 25ch;
 }
 
-input:not([type=radio], [type=checkbox]):focus {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
 input:focus { outline: 0; }
 
 .label.disabled,
 input:disabled { opacity: 0.75; }
 
-input:not([type=radio], [type=checkbox]):invalid {
+
+input:not([type=radio]):focus {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+
+
+input:not([type=radio]):invalid {
 	border-color: var(--ui-color-danger);
 	box-shadow: var(--ui-shadow-invalid);
 }
 
 
-input:is([type=checkbox], [type=radio]) {
+input:is([type=radio]) {
 	vertical-align: inherit;
 	transform: scale(1.6);
 	filter: saturate(0.8);
@@ -36,7 +38,7 @@ input:is([type=checkbox], [type=radio]) {
 }
 
 
-input:is([type=checkbox], [type=radio]):focus {
+input:is([type=radio]):focus {
 	box-shadow: 0 0 0 1px var(--ui-color-accent), var(--ui-shadow-focus);
 	filter:
 		saturate(0.8)

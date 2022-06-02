@@ -1,6 +1,7 @@
 import Autocomplete from './autocomplete';
 import Button from './button';
 import ButtonToggle from './button-toggle';
+import Checkbox from './checkbox';
 import Dialog from './dialog';
 import Datepicker from './datepicker';
 import Drawer from './drawer';
@@ -25,6 +26,7 @@ export {
 	Autocomplete,
 	Button,
 	ButtonToggle,
+	Checkbox,
 	Dialog,
 	Datepicker,
 	Drawer,
