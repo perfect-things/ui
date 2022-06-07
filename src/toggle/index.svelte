@@ -20,12 +20,12 @@ const dispatch = createEventDispatcher();
 
 const isTouchDevice = 'ontouchstart' in document.documentElement;
 const getMouseX = e => (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
-const outerWidth = el => el.getBoundingClientRect().width;
-const innerWidth = el => {
-	const css = getComputedStyle(el);
+const outerWidth = _el => _el.getBoundingClientRect().width;
+const innerWidth = _el => {
+	const css = getComputedStyle(_el);
 	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
 	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
-	return el.getBoundingClientRect().width - borders - padding;
+	return _el.getBoundingClientRect().width - borders - padding;
 };
 
 export let id = undefined;
@@ -35,10 +35,22 @@ let el, label, handle, startX, maxX, minX, currentX = 0;
 let isClick = false, isDragging = false;
 
 onMount(() => {
-	maxX = innerWidth(el);
-	minX = outerWidth(handle);
+	initialMeasure(el);
 	setValue(undefined, true);
 });
+
+
+function initialMeasure (_el) {
+	const isHidden = _el.offsetParent === null;
+	if (isHidden) {
+		_el = _el.cloneNode(true);
+		document.body.appendChild(_el);
+	}
+	const _handle = _el.querySelector('.toggle-handle');
+	maxX = innerWidth(_el);
+	minX = outerWidth(_handle);
+	if (isHidden && _el) _el.remove();
+}
 
 function setValue (v, skipEvent = false) {
 	if (typeof v !== 'undefined') value = v;

@@ -10,6 +10,10 @@ The perfect toggle component in Svelte:
 <br>
 
 <Toggle on:change="{e => toggleValue = e.detail}" value="{toggleValue}" /> {toggleValue}
+<div style="margin: 10px 0 0; line-height: 2.4em; display:{toggleValue ? 'block' : 'none'}">
+	<Toggle /> hidden initially<br>
+	<Toggle value="true"/> hidden initially
+</div>
 <br><br><br>
 <Toggle value="{toggleValue}" disabled /> (disabled)
 

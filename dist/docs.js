@@ -12199,13 +12199,13 @@ function instance$v($$self, $$props, $$invalidate) {
 	? e.touches[0].clientX
 	: e.clientX;
 
-	const outerWidth = el => el.getBoundingClientRect().width;
+	const outerWidth = _el => _el.getBoundingClientRect().width;
 
-	const innerWidth = el => {
-		const css = getComputedStyle(el);
+	const innerWidth = _el => {
+		const css = getComputedStyle(_el);
 		const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
 		const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
-		return el.getBoundingClientRect().width - borders - padding;
+		return _el.getBoundingClientRect().width - borders - padding;
 	};
 
 	let { id = undefined } = $$props;
@@ -12215,10 +12215,23 @@ function instance$v($$self, $$props, $$invalidate) {
 	let isClick = false, isDragging = false;
 
 	onMount(() => {
-		maxX = innerWidth(el);
-		minX = outerWidth(handle);
+		initialMeasure(el);
 		setValue(undefined, true);
 	});
+
+	function initialMeasure(_el) {
+		const isHidden = _el.offsetParent === null;
+
+		if (isHidden) {
+			_el = _el.cloneNode(true);
+			document.body.appendChild(_el);
+		}
+
+		const _handle = _el.querySelector('.toggle-handle');
+		maxX = innerWidth(_el);
+		minX = outerWidth(_handle);
+		if (isHidden && _el) _el.remove();
+	}
 
 	function setValue(v, skipEvent = false) {
 		if (typeof v !== 'undefined') $$invalidate(0, value = v);
@@ -12338,6 +12351,7 @@ function instance$v($$self, $$props, $$invalidate) {
 		currentX,
 		isClick,
 		isDragging,
+		initialMeasure,
 		setValue,
 		onKey,
 		dragStart,
@@ -24591,12 +24605,20 @@ function create_fragment$8(ctx) {
 	let t16;
 	let t17;
 	let t18;
+	let div;
+	let toggle1;
+	let t19;
 	let br1;
+	let t20;
+	let toggle2;
+	let t21;
+	let t22;
 	let br2;
 	let br3;
-	let t19;
-	let toggle1;
-	let t20;
+	let br4;
+	let t23;
+	let toggle3;
+	let t24;
 	let current;
 
 	toggle0 = new Toggle({
@@ -24605,8 +24627,10 @@ function create_fragment$8(ctx) {
 		});
 
 	toggle0.$on("change", /*change_handler*/ ctx[1]);
+	toggle1 = new Toggle({ $$inline: true });
+	toggle2 = new Toggle({ props: { value: "true" }, $$inline: true });
 
-	toggle1 = new Toggle({
+	toggle3 = new Toggle({
 			props: {
 				value: /*toggleValue*/ ctx[0],
 				disabled: true
@@ -24647,12 +24671,20 @@ function create_fragment$8(ctx) {
 			t16 = space();
 			t17 = text(/*toggleValue*/ ctx[0]);
 			t18 = space();
+			div = element("div");
+			create_component(toggle1.$$.fragment);
+			t19 = text(" hidden initially");
 			br1 = element("br");
+			t20 = space();
+			create_component(toggle2.$$.fragment);
+			t21 = text(" hidden initially");
+			t22 = space();
 			br2 = element("br");
 			br3 = element("br");
-			t19 = space();
-			create_component(toggle1.$$.fragment);
-			t20 = text(" (disabled)");
+			br4 = element("br");
+			t23 = space();
+			create_component(toggle3.$$.fragment);
+			t24 = text(" (disabled)");
 			add_location(h2, file$8, 0, 0, 0);
 			add_location(em0, file$8, 4, 12, 74);
 			add_location(em1, file$8, 4, 38, 100);
@@ -24664,9 +24696,14 @@ function create_fragment$8(ctx) {
 			add_location(li3, file$8, 7, 1, 241);
 			add_location(ul, file$8, 3, 0, 57);
 			add_location(br0, file$8, 9, 0, 277);
-			add_location(br1, file$8, 12, 0, 372);
-			add_location(br2, file$8, 12, 4, 376);
-			add_location(br3, file$8, 12, 8, 380);
+			add_location(br1, file$8, 13, 28, 493);
+			set_style(div, "margin", "10px 0 0");
+			set_style(div, "line-height", "2.4em");
+			set_style(div, "display", /*toggleValue*/ ctx[0] ? 'block' : 'none');
+			add_location(div, file$8, 12, 0, 372);
+			add_location(br2, file$8, 16, 0, 546);
+			add_location(br3, file$8, 16, 4, 550);
+			add_location(br4, file$8, 16, 8, 554);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -24696,12 +24733,20 @@ function create_fragment$8(ctx) {
 			insert_dev(target, t16, anchor);
 			insert_dev(target, t17, anchor);
 			insert_dev(target, t18, anchor);
-			insert_dev(target, br1, anchor);
+			insert_dev(target, div, anchor);
+			mount_component(toggle1, div, null);
+			append_dev(div, t19);
+			append_dev(div, br1);
+			append_dev(div, t20);
+			mount_component(toggle2, div, null);
+			append_dev(div, t21);
+			insert_dev(target, t22, anchor);
 			insert_dev(target, br2, anchor);
 			insert_dev(target, br3, anchor);
-			insert_dev(target, t19, anchor);
-			mount_component(toggle1, target, anchor);
-			insert_dev(target, t20, anchor);
+			insert_dev(target, br4, anchor);
+			insert_dev(target, t23, anchor);
+			mount_component(toggle3, target, anchor);
+			insert_dev(target, t24, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
@@ -24709,19 +24754,28 @@ function create_fragment$8(ctx) {
 			if (dirty & /*toggleValue*/ 1) toggle0_changes.value = /*toggleValue*/ ctx[0];
 			toggle0.$set(toggle0_changes);
 			if (!current || dirty & /*toggleValue*/ 1) set_data_dev(t17, /*toggleValue*/ ctx[0]);
-			const toggle1_changes = {};
-			if (dirty & /*toggleValue*/ 1) toggle1_changes.value = /*toggleValue*/ ctx[0];
-			toggle1.$set(toggle1_changes);
+
+			if (!current || dirty & /*toggleValue*/ 1) {
+				set_style(div, "display", /*toggleValue*/ ctx[0] ? 'block' : 'none');
+			}
+
+			const toggle3_changes = {};
+			if (dirty & /*toggleValue*/ 1) toggle3_changes.value = /*toggleValue*/ ctx[0];
+			toggle3.$set(toggle3_changes);
 		},
 		i: function intro(local) {
 			if (current) return;
 			transition_in(toggle0.$$.fragment, local);
 			transition_in(toggle1.$$.fragment, local);
+			transition_in(toggle2.$$.fragment, local);
+			transition_in(toggle3.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(toggle0.$$.fragment, local);
 			transition_out(toggle1.$$.fragment, local);
+			transition_out(toggle2.$$.fragment, local);
+			transition_out(toggle3.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -24735,12 +24789,16 @@ function create_fragment$8(ctx) {
 			if (detaching) detach_dev(t16);
 			if (detaching) detach_dev(t17);
 			if (detaching) detach_dev(t18);
-			if (detaching) detach_dev(br1);
+			if (detaching) detach_dev(div);
+			destroy_component(toggle1);
+			destroy_component(toggle2);
+			if (detaching) detach_dev(t22);
 			if (detaching) detach_dev(br2);
 			if (detaching) detach_dev(br3);
-			if (detaching) detach_dev(t19);
-			destroy_component(toggle1, detaching);
-			if (detaching) detach_dev(t20);
+			if (detaching) detach_dev(br4);
+			if (detaching) detach_dev(t23);
+			destroy_component(toggle3, detaching);
+			if (detaching) detach_dev(t24);
 		}
 	};
 
