@@ -7,7 +7,7 @@
 	cursor: pointer;
 	overflow: hidden;
 	width: calc(var(--ui-toggle-size) * 2.5);
-	border: calc(var(--ui-toggle-size) / 15) solid var(--ui-color-text-light-1);
+	border: calc(var(--ui-toggle-size) / 15) solid var(--ui-color-text-dark-2);
 	border-radius: var(--ui-border-radius-xl);
 	background: var(--ui-color-background-input);
 	padding: 1.5px;
