@@ -14,7 +14,7 @@
 	</label>
 </div>
 <script>
-import { onMount } from 'svelte';
+import { onMount, afterUpdate } from 'svelte';
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
@@ -34,10 +34,17 @@ export let disabled = undefined;
 let el, label, handle, startX, maxX, minX, currentX = 0;
 let isClick = false, isDragging = false;
 
+
 onMount(() => {
 	initialMeasure(el);
 	setValue(undefined, true);
 });
+
+
+afterUpdate(() => {
+	if (typeof value === 'undefined') setValue(false, true);
+});
+
 
 
 function initialMeasure (_el) {
