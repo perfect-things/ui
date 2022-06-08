@@ -33,16 +33,15 @@ export let value = false;
 export let disabled = undefined;
 let el, label, handle, startX, maxX, minX, currentX = 0;
 let isClick = false, isDragging = false;
-
+let oldValue;
 
 onMount(() => {
 	initialMeasure(el);
-	setValue(undefined, true);
 });
 
 
 afterUpdate(() => {
-	if (typeof value === 'undefined') setValue(false, true);
+	setValue(value, true);
 });
 
 
@@ -59,10 +58,14 @@ function initialMeasure (_el) {
 	if (isHidden && _el) _el.remove();
 }
 
-function setValue (v, skipEvent = false) {
-	if (typeof v !== 'undefined') value = v;
+function setValue (v, skipEvent = false, force = false) {
+	if (typeof v === 'undefined') v = false;
+	if (typeof v !== 'boolean') v = !!v;
+	if (v !== value) return value = v;
+	if (value === oldValue && !force) return;
 	startX = currentX = value ? maxX : minX;
 	label.style.width = `${Math.round(currentX)}px`;
+	oldValue = value;
 	if (!skipEvent) dispatch('change', value);
 }
 
@@ -99,7 +102,7 @@ function dragEnd () {
 	label.style.transition = '';
 	isDragging = false;
 	if (isClick) setValue(!value);
-	else setValue(currentX - minX >= (maxX - minX) / 2);
+	else setValue(currentX - minX >= (maxX - minX) / 2, false, true);
 }
 
 function drag (e) {
