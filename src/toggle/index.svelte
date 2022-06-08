@@ -41,6 +41,7 @@ onMount(() => {
 
 
 afterUpdate(() => {
+	if (typeof value !== 'boolean') value = !!value;
 	setValue(value, true);
 });
 
