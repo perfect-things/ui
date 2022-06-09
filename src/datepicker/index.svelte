@@ -25,7 +25,7 @@ export let title = undefined;
 export let placeholder = FORMAT;
 export let elevate = false;
 export let showOnFocus = false;
-
+export let orientation = 'auto';	// '[left|right|auto] [top|bottom|auto]'
 $:elevated = elevate === true || elevate === 'true';
 
 const dispatch = createEventDispatcher();
@@ -40,6 +40,7 @@ onMount(() => {
 		format: FORMAT,
 		todayBtn: true,
 		todayBtnMode: 1,
+		orientation,
 		todayHighlight: true,
 		showOnFocus: (showOnFocus === 'true' || showOnFocus === true),
 		prevArrow: icons.chevronLeft,
