@@ -1,7 +1,7 @@
 {
   "name": "simple-ui-components-in-svelte",
   "description": "Simple UI components written in Svelte",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "type": "module",
   "main": "src/index.js",
   "license": "GPL-3.0-or-later",
