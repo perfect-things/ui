@@ -12,6 +12,7 @@
 		on:input="{oninput}"
 		on:focus="{showOnFocusFn}"
 		on:click="{open}"
+		on:blur="{onblur}"
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
 
@@ -235,12 +236,19 @@ function oninput () {
 	hasEdited = true;
 }
 
+function onblur () {
+	setTimeout(() => {
+		if (document.activeElement != inputEl) close();
+	}, 200);
+}
+
 
 function onclick (item) {
 	const oldValue = value;
 	value = item;
 	inputEl.value = item.name;
 	highlightIndex = item.idx;
+	requestAnimationFrame(() => inputEl.focus());
 	dispatch('change', { value, oldValue });
 	close();
 }
