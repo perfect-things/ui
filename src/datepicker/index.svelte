@@ -17,11 +17,12 @@ import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import Icon, { icons } from '../icon';
 
+const FORMAT = 'yyyy-mm-dd';
 export let value = '';
 export let id = undefined;
 export let name = undefined;
 export let title = undefined;
-export let placeholder = undefined;
+export let placeholder = FORMAT;
 export let elevate = false;
 export let showOnFocus = false;
 
@@ -36,7 +37,7 @@ onMount(() => {
 		autohide: true,
 		buttonClass: 'button button-normal button-text',
 		container: elevated ? document.body : undefined,
-		format: 'yyyy-mm-dd',
+		format: FORMAT,
 		todayBtn: true,
 		todayBtnMode: 1,
 		todayHighlight: true,

@@ -1,10 +1,10 @@
 <h2>Datepicker</h2>
 
 <h3>Normal</h3>
-<Datepicker placeholder="Select date" />
+<Datepicker />
 
 <h3>Show on focus</h3>
-<Datepicker showOnFocus="true" placeholder="Select date" />
+<Datepicker showOnFocus="true" placeholder="Custom placeholder" />
 
 
 <h3>In a container with <em>overflow: hidden</em></h3>
@@ -12,7 +12,7 @@
 	property must be set on the component.</p>
 <div class="docs-datepicker-overflow">
 	<small>overflow: hidden</small>
-	<Datepicker elevate="true" placeholder="Select date" />
+	<Datepicker elevate="true" />
 </div>
 <p>This option should only be used when absolutely necessary (e.g. when Datepicker
 	is used inside dialogs/popups), because it makes the component less accessible
