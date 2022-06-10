@@ -1,6 +1,15 @@
-.button-toggle { display: inline-block; padding: 1px; }
+.button-toggle {
+	padding: 1px;
+	display: inline-flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: stretch;
+}
+
 
 .button-toggle .button {
+	flex-shrink: 0;
+	flex-grow: 10;
 	border-radius: 0;
 	position: relative;
 	background: var(--ui-color-background-input);
