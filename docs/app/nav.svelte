@@ -2,8 +2,8 @@
 	<h3>Form Controls</h3>
 	<NavItem name="Autocomplete" {active} />
 	<NavItem name="Button" {active} />
-	<NavItem name="Button Toggle" {active} />
 	<NavItem name="Push Button" {active} />
+	<NavItem name="Button Toggle" {active} />
 	<NavItem name="Datepicker" {active} />
 	<NavItem name="Checkbox" {active} />
 	<NavItem name="Input" {active} />

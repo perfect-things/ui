@@ -3,14 +3,16 @@
 .button-toggle .button {
 	border-radius: 0;
 	position: relative;
+	background: var(--ui-color-background-input);
+	border-color: transparent;
+	box-shadow: none;
 }
 
-.button-toggle .button:not(:first-of-type,:last-of-type) {
-	border-left-color: var(--ui-color-border-semi);
-	border-right-color: var(--ui-color-border-semi);
+.button-toggle .button:focus {
+	z-index: 1;
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
 }
-
-.button-toggle .button:focus { z-index: 1; }
 
 .button-toggle .button:first-of-type {
 	border-top-left-radius: var(--ui-border-radius);
@@ -20,9 +22,7 @@
 .button-toggle .button:last-of-type {
 	border-top-right-radius: var(--ui-border-radius);
 	border-bottom-right-radius: var(--ui-border-radius);
-	/* border-right-color: transparent; */
 }
-
 
 .button-toggle.round .button:first-of-type {
 	border-top-left-radius: var(--ui-border-radius-xl);
@@ -33,6 +33,5 @@
 	border-top-right-radius: var(--ui-border-radius-xl);
 	border-bottom-right-radius: var(--ui-border-radius-xl);
 }
-
 
 .button-toggle .selected { background-color: var(--ui-color-highlight); }
