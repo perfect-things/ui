@@ -27,6 +27,7 @@ import chevronLeft from './icons/chevron-left.svg';
 import chevronRight from './icons/chevron-right.svg';
 import close from './icons/close.svg';
 import cog from './icons/cog.svg';
+import drag from './icons/drag.svg';
 import dots from './icons/dots.svg';
 import edit from './icons/edit.svg';
 import eye from './icons/eye.svg';
@@ -90,6 +91,7 @@ export const icons = {
 	chevronRight,
 	close,
 	cog,
+	drag,
 	dots,
 	edit,
 	eye,
