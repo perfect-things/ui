@@ -10,7 +10,7 @@
 		value="{value && value.name || ''}"
 		bind:this="{inputEl}"
 		on:input="{oninput}"
-		on:focus="{showOnFocusFn}"
+		on:focus="{onfocus}"
 		on:click="{open}"
 		on:blur="{onblur}"
 		on:keydown|capture="{onkeydown}"
@@ -65,7 +65,6 @@ export let showOnFocus = false;
 export let className = '';
 
 $:elevated = elevate === 'true' || elevate === true;
-$:showOnFocusFn = (showOnFocus === true || showOnFocus === 'true') ? open : undefined;
 
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
@@ -76,6 +75,7 @@ let mouseOverList = false;
 let highlightIndex = 0;
 let filteredData = [], groupedData = [];
 let originalText = '';
+let hasSetValue = true;
 
 
 onMount(() => {
@@ -138,7 +138,6 @@ function open (e) {
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
-	originalText = inputEl.value;
 	addEventListeners();
 	recalculateListPosition(listEl, inputEl, elevated);
 
@@ -159,15 +158,20 @@ function close () {
 
 
 function selectItem () {
+	if (hasSetValue) return;
+
 	const oldValue = value;
 	if (filteredData[highlightIndex]) {
 		value = filteredData[highlightIndex];
+		if (value && value.name && inputEl.value !== value.name) inputEl.value = value.name;
 	}
 	// should create a new item
 	else if (allowNew) {
 		value = { name: inputEl.value };
 	}
 	else revert();
+
+	hasSetValue = true;
 	dispatch('change', { value, oldValue });
 	close();
 }
@@ -217,6 +221,7 @@ function down () {
 function revert () {
 	if (originalText && originalText !== inputEl.value) inputEl.value = originalText;
 	else if (value && value.name) inputEl.value = value.name;
+	else inputEl.value = '';
 }
 
 
@@ -229,14 +234,22 @@ function clear () {
 
 
 /*** EVENT LISTENERS ******************************************************************************/
+function onfocus () {
+	originalText = inputEl.value;
+	if (showOnFocus === true || showOnFocus === 'true') open();
+}
+
+
 function oninput () {
 	open();
 	requestAnimationFrame(filter);
 	recalculateListPosition(listEl, inputEl, elevated);
 	hasEdited = true;
+	hasSetValue = false;
 }
 
 function onblur () {
+	selectItem();
 	setTimeout(() => {
 		if (document.activeElement != inputEl) close();
 	}, 200);
@@ -255,7 +268,12 @@ function onclick (item) {
 
 
 function onkeydown (e) {
-	if (e.key === 'Tab') return close();
+	if (e.key === 'Tab') {
+		selectItem();
+		return close();
+	}
+
+
 
 	const fnmap = {
 		ArrowDown: down,
