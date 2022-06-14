@@ -1,9 +1,15 @@
-<div class="button-toggle {cssClass}" {disabled} class:round bind:this="{el}">
-	<input type="hidden" {id} {name} {disabled} value="{value}"/>
+<div
+	{disabled}
+	class="button-toggle {cssClass}"
+	class:round
+	bind:this="{el}">
 
-	{#each items as item}
+	<input type="hidden" {name} {disabled} value="{value}"/>
+
+	{#each items as item, idx}
 		{#if item.name}
 			<Button
+				id="{idx === 0 && id ? id : undefined}"
 				{disabled}
 				icon="{item.icon}"
 				cssClass="{value === item.value ? 'selected' : ''}"

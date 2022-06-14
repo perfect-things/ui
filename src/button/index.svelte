@@ -2,6 +2,7 @@
 	{disabled}
 	{form}
 	{title}
+	{id}
 	type="{submit ? 'submit' : 'button'}"
 	class="button {cssClass}"
 
@@ -40,6 +41,7 @@ export let text = false;		// looks like normal text, but like a button on hover
 export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button
 
+export let id = undefined;
 export let title = undefined;
 export let form = undefined;
 export let cssClass = '';
