@@ -5,7 +5,6 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
-- [x] toggle-buttons should be based on radio inputs (and be focusable when a label is clicked)
 - [ ] tooltips
 
 - [ ] add description & API/options/parameters/etc.

@@ -1,0 +1,9 @@
+.toggle-box {
+	margin: 10px 0 0;
+	line-height: 2.4em;
+	display: none;
+}
+
+.toggle-box.visible {
+	display: block;
+}

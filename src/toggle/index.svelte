@@ -42,7 +42,7 @@ onMount(() => {
 
 afterUpdate(() => {
 	if (typeof value !== 'boolean') value = !!value;
-	setValue(value, true);
+	setValue(value);
 });
 
 
@@ -58,6 +58,7 @@ function initialMeasure (_el) {
 	minX = outerWidth(_handle);
 	if (isHidden && _el) _el.remove();
 }
+
 
 function setValue (v, skipEvent = false, force = false) {
 	if (typeof v === 'undefined') v = false;
