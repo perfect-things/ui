@@ -1,4 +1,10 @@
-.tooltip-container { z-index: 9999; }
+.tooltip-container {
+	z-index: 9999;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+}
 
 .tooltip-plate {
 	--tooltip-bg: var(--ui-color-background-dark-2);
