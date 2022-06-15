@@ -18,8 +18,12 @@
 <Tooltip target="box3" events="click">Showing on click</Tooltip>
 
 <h3>On Click and on Focus</h3>
-<button id="box4">button with a tooltip</button>
+<button id="box4">button with a tooltip on-focus & on-click</button>
 <Tooltip target="box4" events="click,focus">Showing on click</Tooltip>
+
+<h3>On-hover & on-focus, with show-delay</h3>
+<button id="box5">button</button>
+<Tooltip target="box5" events="hover,focus" delay="700">Showing with a delay</Tooltip>
 
 
 <script>

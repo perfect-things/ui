@@ -4,7 +4,8 @@
 			{disabled}
 			class="button button-normal"
 			class:selected="{value === item.value}"
-			class:button-has-text="{item.name}">
+			class:button-has-text="{item.name}"
+			on:mousedown="{onmousedown}">
 				{#if item.icon}
 					<Icon name="{item.icon}"/>
 				{/if}
@@ -36,6 +37,15 @@ export let value = '';
 
 const dispatch = createEventDispatcher();
 let el;
+
+function onmousedown (e) {
+	const btn = e.target.querySelector('input');
+	if (btn) {
+		e.preventDefault();
+		btn.focus();
+		btn.click();
+	}
+}
 
 function onchange (e, button) {
 	value = button.value;
