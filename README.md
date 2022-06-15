@@ -5,8 +5,6 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
-- [x] tooltips
-
 - [ ] add description & API/options/parameters/etc.
 - [ ] add code samples
 
