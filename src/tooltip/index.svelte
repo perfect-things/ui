@@ -16,7 +16,7 @@ export let delay = '0';
 
 let position = 'top';
 let visible = false;
-let hideTimer, noHide = false;
+let showTimer, hideTimer, noHide = false;
 let el, targetEl, tooltipContainer;
 
 onMount(() => {
@@ -34,14 +34,15 @@ afterUpdate(align);
 
 function show () {
 	clearTimeout(hideTimer);
-	if (visible) return;
-	setTimeout(_show, parseFloat(delay) || 0);
+	if (visible || showTimer) return;
+	showTimer = setTimeout(_show, parseFloat(delay) || 0);
 }
 
 
 function _show () {
 	visible = true;
 	noHide = false;
+	showTimer = null;
 	requestAnimationFrame(() => {
 		tooltipContainer.appendChild(el);
 		align();
