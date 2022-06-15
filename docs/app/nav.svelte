@@ -26,6 +26,7 @@
 	<NavItem name="Icon" {active} />
 	<NavItem name="TextFit" {active} />
 	<NavItem name="Toaster" {active} />
+	<NavItem name="Tooltip" {active} />
 	<NavItem name="Color Palette" {active} />
 </nav>
 
@@ -51,6 +52,7 @@ import InputPassword from '../components/input-password';
 import Select from '../components/select';
 import Textarea from '../components/textarea';
 import Toggle from '../components/toggle';
+import Tooltip from '../components/tooltip';
 
 import Dialog from '../components/dialog';
 import Drawer from '../components/drawer';
@@ -82,6 +84,7 @@ const components = {
 	TextFit,
 	Toaster,
 	Toggle,
+	Tooltip,
 	Tree,
 };
 

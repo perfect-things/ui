@@ -1,0 +1,30 @@
+.tooltip-plate { position: absolute; padding-bottom: 0.7em; }
+
+.tooltip {
+	background-color: var(--ui-color-background-dark-2);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: var(--ui-border-radius-s);
+	position: relative;
+	filter: drop-shadow(0 0.1em 0.2em #0007);
+}
+.tooltip-content { padding: 0.75em; }
+
+.tooltip::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -0.7em;
+	border-width: 0.8em 0.5em 0;
+	border-style: solid;
+	border-color: var(--ui-color-background-dark-2) transparent transparent;
+}
+
+.tooltip-bottom { padding-bottom: 0; padding-top: 0.7em; }
+.tooltip-bottom .tooltip::after {
+	top: -0.7em;
+	bottom: auto;
+	border-width: 0 0.5em 0.8em;
+	border-color: transparent transparent var(--ui-color-background-dark-2);
+}
