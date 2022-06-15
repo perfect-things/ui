@@ -142,6 +142,7 @@ function addTargetEvents () {
 	if (events.includes('click')) {
 		targetEl.addEventListener('mousedown', show);
 		document.addEventListener('mousedown', hide);
+		document.addEventListener('click', hide);
 	}
 	if (events.includes('focus')) {
 		targetEl.addEventListener('focus', show);
@@ -161,6 +162,7 @@ function removeTargetEvents () {
 	if (events.includes('click')) {
 		targetEl.removeEventListener('mousedown', show);
 		document.removeEventListener('mousedown', hide);
+		document.removeEventListener('click', hide);
 	}
 	if (events.includes('focus')) {
 		targetEl.removeEventListener('focus', show);
