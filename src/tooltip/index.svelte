@@ -8,7 +8,7 @@
 	</div>
 {/if}
 <script>
-import { onDestroy, onMount } from 'svelte';
+import { afterUpdate, onDestroy, onMount } from 'svelte';
 export let target = 'body';
 export let events = 'hover';	// hover, click, focus
 export let className = '';
@@ -28,6 +28,8 @@ onMount(() => {
 onDestroy(() => {
 	removeTargetEvents();
 });
+
+afterUpdate(align);
 
 
 function show () {
@@ -71,6 +73,7 @@ function hide (e) {
 
 
 function align () {
+	if (!visible) return;
 	const targetBox = targetEl.getBoundingClientRect();
 	const tooltipBox = el.getBoundingClientRect();
 
