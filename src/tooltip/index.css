@@ -21,7 +21,7 @@
 		drop-shadow(0 0 1px #fff);
 }
 
-.tooltip-content { padding: 0.75em; }
+.tooltip-content { padding: 0.75em; text-align: center; }
 
 .tooltip::after {
 	content: "";
