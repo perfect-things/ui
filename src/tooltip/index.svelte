@@ -16,7 +16,7 @@ export let delay = '0';
 
 let position = 'top';
 let visible = false;
-let showTimer, hideTimer, noHide = false;
+let showTimer, hideTimer, shownEvent, noHide = false;
 let el, targetEl, tooltipContainer;
 
 onMount(() => {
@@ -32,17 +32,18 @@ onDestroy(() => {
 afterUpdate(align);
 
 
-function show () {
+function show (e) {
 	clearTimeout(hideTimer);
 	if (visible || showTimer) return;
-	showTimer = setTimeout(_show, parseFloat(delay) || 0);
+	showTimer = setTimeout(() => _show(e), parseFloat(delay) || 0);
 }
 
 
-function _show () {
+function _show (e) {
 	visible = true;
 	noHide = false;
 	showTimer = null;
+	shownEvent = e.type;
 	requestAnimationFrame(() => {
 		tooltipContainer.appendChild(el);
 		align();
@@ -60,16 +61,23 @@ function _hide () {
 	removeTooltipEvents();
 }
 
-
+/**
+ * Hide tooltip only with the corresponding event:
+ * - when shown on mouseover - hide with mouseout
+ * - when shown on focus - hide on blur
+ * - when shown on click/mousedown - hide only on click/mousedown elsewhere
+ * @param e - hide event
+ */
 function hide (e) {
 	if (!visible) return;
 	if (e.type === 'scroll' || e.type === 'resize') return _hide();
-	if (e.type === 'click') {
+	if (e.type === 'click' || e.type === 'mousedown') {
 		if (targetEl.contains(e.target) || el.contains(e.target)) return;
 		_hide();
 	}
-	if (events.includes('hover')) hideTimer = setTimeout(_hide, 50);
-	if (events.includes('focus') && e.type === 'blur' && !noHide) _hide();
+	if (shownEvent === 'mouseover' && e.type === 'mouseout') return hideTimer = setTimeout(_hide, 50);
+	if (shownEvent === 'focus' && e.type === 'blur' && !noHide) return _hide();
+	if (shownEvent === 'mousedown' && e.type === 'mousedown') return _hide();
 }
 
 
@@ -132,8 +140,8 @@ function removeTooltipEvents () {
 function addTargetEvents () {
 	if (!targetEl) return;
 	if (events.includes('click')) {
-		targetEl.addEventListener('click', show);
-		document.addEventListener('click', hide);
+		targetEl.addEventListener('mousedown', show);
+		document.addEventListener('mousedown', hide);
 	}
 	if (events.includes('focus')) {
 		targetEl.addEventListener('focus', show);
@@ -151,8 +159,8 @@ function addTargetEvents () {
 function removeTargetEvents () {
 	if (!targetEl) return;
 	if (events.includes('click')) {
-		targetEl.removeEventListener('click', show);
-		document.removeEventListener('click', hide);
+		targetEl.removeEventListener('mousedown', show);
+		document.removeEventListener('mousedown', hide);
 	}
 	if (events.includes('focus')) {
 		targetEl.removeEventListener('focus', show);
