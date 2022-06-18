@@ -273,8 +273,6 @@ function onkeydown (e) {
 		return close();
 	}
 
-
-
 	const fnmap = {
 		ArrowDown: down,
 		ArrowUp: up,
@@ -290,6 +288,7 @@ function onkeydown (e) {
 function onkeypress (e) {
 	if (e.key === 'Enter' && opened) {
 		e.preventDefault();
+		hasSetValue = false;
 		selectItem();
 	}
 }

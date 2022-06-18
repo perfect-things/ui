@@ -6,6 +6,7 @@ echo "3. patch"
 echo "q. quit"
 read -p "Select version to publish (patch): " ans
 case $ans in
+    0  ) v=none ;;
     1  ) v=major ;;
     2  ) v=minor ;;
     q  ) v=patch ;;
@@ -16,6 +17,8 @@ esac
 npm run dist
 git add --all
 git commit -am 'release'
-npm version $v
+if [ $v != none ]; then
+	npm version $v
+fi
 git push
 npm publish
