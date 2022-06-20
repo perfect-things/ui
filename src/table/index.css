@@ -32,6 +32,7 @@
 }
 
 .table tbody:focus,
+.table tbody:focus-within,
 .table tr:focus { outline: none; background-color: var(--ui-color-highlight-dark-2); }
 
 .table tbody td {
