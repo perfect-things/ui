@@ -102,6 +102,9 @@
 .datepicker-cell.prev:not(.disabled),
 .datepicker-cell.next:not(.disabled) { color: var(--ui-color-background-light-2); }
 
+.datepicker-cell.selected.prev:not(.disabled),
+.datepicker-cell.selected.next:not(.disabled) { color: var(--ui-color-text-dark-1); }
+
 
 .datepicker-cell.selected { background-color: var(--ui-color-highlight); color: var(--ui-color-text); }
 
