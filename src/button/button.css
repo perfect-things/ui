@@ -57,4 +57,8 @@
 .button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
 
 
-.button.round { padding: var(--ui-margin); border-radius: var(--ui-border-radius-xl); }
+.button.round {
+	min-width: 28px;
+	padding: var(--ui-margin);
+	border-radius: var(--ui-border-radius-xl);
+}
