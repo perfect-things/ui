@@ -60,6 +60,11 @@ function onkeydown (e) {
 		if (picker.active) e.preventDefault();
 		requestAnimationFrame(() => picker.hide());
 	}
+
+	if (e.key.includes('Arrow') && picker.active) {
+		e.stopPropagation();
+	}
+
 	dispatch('keydown', e);
 }
 
