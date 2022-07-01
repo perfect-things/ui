@@ -61,11 +61,12 @@ function onkeydown (e) {
 		requestAnimationFrame(() => picker.hide());
 	}
 
-	if (e.key.includes('Arrow') && picker.active) {
-		e.stopPropagation();
-	}
+	// prevents picker's events in Safari
+	// if (e.key.includes('Arrow') && picker.active) {
+	// 	e.stopPropagation();
+	// }
 
-	dispatch('keydown', e);
+	dispatch('keydown', { event: e, component: picker });
 }
 
 function oninput () {
