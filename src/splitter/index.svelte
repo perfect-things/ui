@@ -69,11 +69,16 @@ function updateSize (box, withAnimation = false) {
 	if (isVertical) {
 		targetEl.style.height = box.height + 'px';
 		el.style.top = (box.height - halfsize) + 'px';
+		const collapsed = initialTargetBox.minHeight === box.height;
+		dispatch('change', { height: box.height, collapsed });
 	}
 	else {
 		targetEl.style.width = box.width + 'px';
 		el.style.left = (box.width - halfsize) + 'px';
+		const collapsed = initialTargetBox.minWidth === box.width;
+		dispatch('change', { width: box.width, collapsed });
 	}
+
 	if (withAnimation) {
 		setTimeout(() => {
 			targetEl.style.transition = originalTargetTransition;
@@ -124,7 +129,5 @@ function mouseup () {
 	document.removeEventListener('mouseup', mouseup);
 	document.removeEventListener('mousemove', mousemove);
 	document.body.style.cursor = bodyCursor;
-	const { width, height } = targetEl.getBoundingClientRect();
-	dispatch('change', { width, height });
 }
 </script>
