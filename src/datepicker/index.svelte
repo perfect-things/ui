@@ -86,7 +86,6 @@ function onchange () {
 }
 
 function onshow () {
-	inputEl.select();
 	open = true;
 }
 
