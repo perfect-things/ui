@@ -23,7 +23,7 @@ onMount(() => {
 });
 
 
-export function setSize (to) {
+export function setSize (to, withAnimation = false) {
 	const prop = isVertical ? 'height' : 'width';
 	const Prop = isVertical ? 'Height' : 'Width';
 	const box = {};
@@ -31,8 +31,8 @@ export function setSize (to) {
 	if (to === 'min') box[prop] = initialTargetBox['min' + Prop];
 	else if (to === 'max') box[prop] = initialTargetBox['max' + Prop];
 	// unit size
-	else if (typeof to === 'number') box[prop] = to + 'px';
-	updateSize(box, true);
+	else if (typeof to === 'number') box[prop] = to;
+	updateSize(box, withAnimation);
 }
 
 function init () {
