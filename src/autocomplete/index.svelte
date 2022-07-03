@@ -1,4 +1,4 @@
-<div class="autocomplete {className}" bind:this="{el}">
+<div class="autocomplete {className}" class:open="{opened}" bind:this="{el}">
 	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input" autocomplete="off"
 		{id}
@@ -76,7 +76,6 @@ let highlightIndex = 0;
 let filteredData = [], groupedData = [];
 let originalText = '';
 let hasSetValue = true;
-
 
 onMount(() => {
 	if (elevated) document.body.appendChild(listEl);

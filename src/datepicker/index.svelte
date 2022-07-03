@@ -1,4 +1,4 @@
-<div class="datepicker-wrapper">
+<div class="datepicker-wrapper" class:open>
 	<input type="text" autocomplete="off"
 		{id}
 		{name}
@@ -7,6 +7,8 @@
 		on:changeDate="{onchange}"
 		on:input="{oninput}"
 		on:keydown|capture="{onkeydown}"
+		on:show="{onshow}"
+		on:hide="{onhide}"
 		bind:this="{inputEl}"
 		bind:value="{value}">
 	<Icon name="calendar"/>
@@ -30,7 +32,7 @@ $:elevated = elevate === true || elevate === 'true';
 
 const dispatch = createEventDispatcher();
 let picker, inputEl;
-
+let open = false;
 
 onMount(() => {
 	picker = new Datepicker(inputEl, {
@@ -45,7 +47,7 @@ onMount(() => {
 		showOnFocus: (showOnFocus === 'true' || showOnFocus === true),
 		prevArrow: icons.chevronLeft,
 		nextArrow: icons.chevronRight,
-		updateOnBlur: false,
+		updateOnBlur: true,
 		weekStart: 1,
 	});
 });
@@ -81,6 +83,15 @@ function oninput () {
 function onchange () {
 	value = picker.getDate('yyyy-mm-dd');
 	dispatch('change', value);
+}
+
+function onshow () {
+	inputEl.select();
+	open = true;
+}
+
+function onhide () {
+	open = false;
 }
 
 </script>
