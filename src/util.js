@@ -73,3 +73,9 @@ export function uuid () {
 		return v.toString(16);
 	});
 }
+
+
+export function roundAmount (val, precision = 2) {
+	const multiplier = Math.pow(10, precision);
+	return Math.round(val * multiplier) / multiplier;
+}

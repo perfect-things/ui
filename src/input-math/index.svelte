@@ -13,6 +13,7 @@
 </div>
 <script>
 import { createEventDispatcher } from 'svelte';
+import { roundAmount } from '../util';
 import Icon from '../icon';
 
 export let _this = undefined;
@@ -56,6 +57,6 @@ function parseAmount (amount) {
 		catch (e) { amount = 0; }
 	}
 	let num = parseFloat(amount);
-	return (num === Infinity || isNaN(num)) ? 0 : num;
+	return (num === Infinity || isNaN(num)) ? 0 : roundAmount(num);
 }
 </script>
