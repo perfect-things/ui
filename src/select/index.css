@@ -44,7 +44,7 @@
 	border: none;
 	background: none;
 	background-color: inherit;
-	line-height: 1;
+	line-height: 1.2;
 	border-radius: var(--ui-border-radius);
 	padding: var(--ui-margin) var(--ui-margin-xl) var(--ui-margin) var(--ui-margin-m);
 	width: 100%;
