@@ -71,3 +71,15 @@
 
 .dialog-header:empty,
 .dialog-footer:empty { display: none; }
+
+
+.mobile .dialog-backdrop .dialog {
+	height: 100%;
+	width: 100%;
+	min-height: 0;
+	min-width: 0;
+	max-height: 100%;
+	max-width: 100%;
+	border-radius: 0;
+	box-shadow: none;
+}
