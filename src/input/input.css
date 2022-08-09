@@ -1,4 +1,8 @@
 input::placeholder {
+	color: var(--ui-color-text-dark-2);
+}
+
+.theme-light input::placeholder {
 	color: var(--ui-color-text-light-2);
 }
 
