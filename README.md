@@ -5,6 +5,10 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
+- [ ] add light/dark theme switch
+- [ ] password strength indicator for input pass
+   https://github.com/dropbox/zxcvbn
+
 - [ ] add description & API/options/parameters/etc.
 - [ ] add code samples
 
