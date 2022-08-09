@@ -16,7 +16,9 @@
 	content: "✕";
 	display: block;
 	opacity: 0;
-	font-size: 1.1em;
+	font-size: 1.4em;
+	line-height: 0.9em;
+	align-self: flex-start;
 	color: inherit;
 }
 
@@ -29,6 +31,7 @@
 	height: 70%;
 	margin: 0;
 	border-radius: inherit;
+	align-self: center;
 }
 
 .checkbox:checked::after { opacity: 1; }
