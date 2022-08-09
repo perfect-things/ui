@@ -1,10 +1,11 @@
 .theme-light {
-	--ui-color-accent: #ffca69;
-	--ui-color-accent-semi: #ffca6966;
-	--ui-color-accent-light-1: #fdd07b;
-	--ui-color-accent-light-2: #fedea3;
-	--ui-color-accent-dark-1: #f3bd5a;
-	--ui-color-accent-dark-2: #e6af48;
+	--ui-color-accent: #b37400;
+	--ui-color-accent-semi: #b3740066;
+	--ui-color-accent-light-1: #c37f00;
+	--ui-color-accent-light-2: #cf8803;
+	--ui-color-accent-dark-1: #79520b;
+	--ui-color-accent-dark-2: #694d13;
+
 
 	--ui-color-highlight: #86beff;
 	--ui-color-highlight-semi: #86beff66;
@@ -13,10 +14,10 @@
 	--ui-color-highlight-dark-1: #7aafec;
 	--ui-color-highlight-dark-2: #6ba0de;
 
-	--ui-color-info: #86a9d2;
-	--ui-color-info-semi: #86a9d266;
-	--ui-color-info-dark-1: #7798bf;
-	--ui-color-info-dark-2: #6486b0;
+	--ui-color-info: #bbd3f0;
+	--ui-color-info-semi: #bbd3f066;
+	--ui-color-info-dark-1: #acc4e1;
+	--ui-color-info-dark-2: #99b4d4;
 
 	--ui-color-success: #7bd7ae;
 	--ui-color-success-semi: #7bd7ae66;
@@ -44,10 +45,10 @@
 	--ui-color-background-semi: #eee6;
 	--ui-color-background-light-1: #f0f0f0;
 	--ui-color-background-light-2: #fff;
-	--ui-color-background-dark-1: #ccc;
-	--ui-color-background-dark-2: #aaa;
+	--ui-color-background-dark-1: #ddd;
+	--ui-color-background-dark-2: #ccc;
 
-	--ui-color-background-input: #ccc;
+	--ui-color-background-input: #c2c2c2;
 
 	--ui-color-text: #333;
 	--ui-color-text-semi: #3336;
@@ -55,4 +56,7 @@
 	--ui-color-text-light-2: #666;
 	--ui-color-text-dark-1: #222;
 	--ui-color-text-dark-2: #111;
+
+	--ui-popup-border: 1px solid var(--ui-color-background-dark-2);
+	--ui-popup-background: var(--ui-color-background);
 }

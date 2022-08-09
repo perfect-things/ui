@@ -56,4 +56,7 @@
 	--ui-color-text-light-2: #fefefe;
 	--ui-color-text-dark-1: #aaa;
 	--ui-color-text-dark-2: #888;
+
+	--ui-popup-border: 1px solid var(--ui-color-background-light-2);
+	--ui-popup-background: var(--ui-color-background);
 }

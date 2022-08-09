@@ -31,11 +31,12 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
+	opacity: 0.6;
 	pointer-events: none;
 	background-repeat: no-repeat;
 	background-position: right 0.75rem center;
 	background-size: 0.6em 0.8em;
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23eeeeee' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23aaa' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
 }
 
 .select-wrapper select {
@@ -55,3 +56,9 @@
 }
 
 .select-wrapper select:focus { outline: none; }
+
+
+
+.theme-light .select-wrapper::after {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23222' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+}

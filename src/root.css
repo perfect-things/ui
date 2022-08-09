@@ -15,9 +15,7 @@
 	--ui-margin-xl: 2em;
 
 	/* popup vars */
-	--ui-popup-border: 1px solid var(--ui-color-background-light-2);
 	--ui-popup-border-radius: var(--ui-border-radius);
-	--ui-popup-background: var(--ui-color-background);
 	--ui-popup-shadow: var(--ui-shadow-fancy);
 
 	/* shadows */
