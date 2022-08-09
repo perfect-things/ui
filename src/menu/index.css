@@ -59,3 +59,8 @@
 	margin: var(--ui-margin) var(--ui-margin-m);
 	border-bottom: var(--ui-popup-border);
 }
+
+
+.mobile .menu-button {
+	padding: 1em;
+}
