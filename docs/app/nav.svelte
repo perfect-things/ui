@@ -1,4 +1,9 @@
 <nav>
+	<div class="nav-toolbar">
+		<span>Theme:</span>
+		<ActualToggle value="true" on:change="{switchColorMode}"/>
+	</div>
+
 	<h3>Form Controls</h3>
 	<NavItem name="Autocomplete" {active} />
 	<NavItem name="Button" {active} />
@@ -33,6 +38,7 @@
 <svelte:window on:hashchange="{onhashchange}" />
 <script>
 import NavItem from './nav-item';
+import ActualToggle from '../../src/toggle';
 
 import Button from '../components/button';
 import ButtonToggle from '../components/button-toggle';
@@ -95,4 +101,11 @@ function onhashchange () {
 	active = location.hash.substr(1);
 	component = components[active];
 }
+
+
+function switchColorMode (e) {
+	document.documentElement.className = e.detail ? 'theme-dark' : 'theme-light';
+}
+
+
 </script>

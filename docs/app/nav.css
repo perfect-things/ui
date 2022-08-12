@@ -18,3 +18,13 @@ nav a {
 
 nav a:hover { background-color: var(--ui-color-highlight-dark-2); }
 nav a.active { background-color: var(--ui-color-highlight); }
+
+
+.nav-toolbar {
+	margin: -1em -2em 0 -1em;
+	padding: 1em;
+	background-color: var(--ui-color-background-dark-2);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
