@@ -5,9 +5,6 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
-- [x] add light/dark theme switch to docs
-- [x] update toggle accessibility
-
 - [ ] password strength indicator for input pass
    https://github.com/dropbox/zxcvbn
 
