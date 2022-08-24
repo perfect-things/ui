@@ -16,9 +16,6 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
   - text-primary, secondary
   - rm semi, etc
 
-- [x] Segmented control tweaks
-	https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/segmented-controls
-
 
 - [ ] add description & API/options/parameters/etc.
 - [ ] add code samples
@@ -65,3 +62,4 @@ A browser window should open with the demo of the components.
 
 ## Resources
 - icons: https://tablericons.com
+- https://developer.apple.com/design/human-interface-guidelines/components/
