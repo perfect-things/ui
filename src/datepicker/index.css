@@ -119,7 +119,7 @@
 /* hover/focus */
 .datepicker-cell.focused,
 .datepicker-cell.today.focused,
-.datepicker-cell.highlighted:not(.range):not(.disabled):hover,
+.datepicker-cell.highlighted:not(.range,.disabled):hover,
 .datepicker-cell.highlighted:not(.range).focused,
 .datepicker-cell:not(.disabled):hover {
 	background-color: var(--ui-color-info);
@@ -135,7 +135,7 @@
 .datepicker-cell.range-start:not(.selected) { background-color: #b5b5b5; color: #fff; }
 .datepicker-cell.range-end.focused:not(.selected),
 .datepicker-cell.range-start.focused:not(.selected) { background-color: #afafaf; }
-.datepicker-cell.range:not(.disabled):not(.focused):not(.today):hover { background-color: #d5d5d5; }
+.datepicker-cell.range:not(.disabled,.focused,.today):hover { background-color: #d5d5d5; }
 .datepicker-cell.range.disabled { color: #c2c2c2; }
 .datepicker-cell.range.focused { background-color: #cfcfcf; }
 

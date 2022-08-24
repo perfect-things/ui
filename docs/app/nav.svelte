@@ -8,6 +8,7 @@
 	<NavItem name="Autocomplete" {active} />
 	<NavItem name="Button" {active} />
 	<NavItem name="Push Button" {active} />
+	<NavItem name="Button Group" {active} />
 	<NavItem name="Button Toggle" {active} />
 	<NavItem name="Datepicker" {active} />
 	<NavItem name="Checkbox" {active} />
@@ -41,6 +42,7 @@ import NavItem from './nav-item';
 import ActualToggle from '../../src/toggle';
 
 import Button from '../components/button';
+import ButtonGroup from '../components/button-group';
 import ButtonToggle from '../components/button-toggle';
 import PushButton from '../components/push-button';
 import Menu from '../components/menu';
@@ -70,6 +72,7 @@ import Tree from '../components/tree';
 const components = {
 	Autocomplete,
 	Button,
+	ButtonGroup,
 	ButtonToggle,
 	ColorPalette,
 	Datepicker,

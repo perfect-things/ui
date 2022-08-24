@@ -1,5 +1,6 @@
 import Autocomplete from './autocomplete';
 import Button from './button';
+import ButtonGroup from './button-group';
 import ButtonToggle from './button-toggle';
 import Checkbox from './checkbox';
 import Dialog from './dialog';
@@ -26,6 +27,7 @@ export * from './menu/index.js';
 export {
 	Autocomplete,
 	Button,
+	ButtonGroup,
 	ButtonToggle,
 	Checkbox,
 	Dialog,

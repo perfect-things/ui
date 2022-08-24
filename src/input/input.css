@@ -1,8 +1,10 @@
-input::placeholder {
-	color: var(--ui-color-text-dark-1);
-}
+.theme-dark input { color-scheme: dark; }
+.theme-light input { color-scheme: light; }
 
-input:not([type=radio], [type=checkbox]) {
+
+input::placeholder { color: var(--ui-color-text-dark-1); }
+
+input:not([type=radio]) {
 	font: inherit;
 	height: 2.2em;
 	border: 1px solid transparent;
@@ -20,6 +22,13 @@ input:focus { outline: 0; }
 input:disabled { opacity: 0.75; }
 
 
+input:is([type=radio]) {
+	vertical-align: inherit;
+	transform: scale(1.6);
+	filter: saturate(0.8);
+	margin-right: 1em;
+}
+
 input:not([type=radio]):focus {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
@@ -29,14 +38,6 @@ input:not([type=radio]):focus {
 input:not([type=radio]):invalid {
 	border-color: var(--ui-color-danger);
 	box-shadow: var(--ui-shadow-invalid);
-}
-
-
-input:is([type=radio]) {
-	vertical-align: inherit;
-	transform: scale(1.6);
-	filter: saturate(0.8);
-	margin-right: 1em;
 }
 
 
@@ -59,8 +60,6 @@ input[type=color] {
 	padding: 0;
 	cursor: pointer;
 }
-
-input[type=file] { position: absolute; right: -500px; }
 
 .label {
 	height: 2.2em;

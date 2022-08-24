@@ -1,4 +1,4 @@
-<div {disabled} class="button-toggle {cssClass}" class:round bind:this="{el}">
+<div {disabled} class="button-group button-toggle {cssClass}" class:round bind:this="{el}">
 	{#each items as item, idx}
 		<label
 			{disabled}

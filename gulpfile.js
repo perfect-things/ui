@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import del from 'del';
+import { deleteAsync } from 'del';
 import livereload from 'gulp-livereload';
 import svelte from 'rollup-plugin-svelte';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -20,9 +20,7 @@ let isProd = false;
 
 const setProd = (done) => { isProd = true; done(); };
 
-export function cleanup () {
-	return del([DIST_PATH + '/*']);
-}
+export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
 
 export function html () {
 	return src('docs/index.html').pipe(dest(DIST_PATH));

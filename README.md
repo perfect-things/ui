@@ -8,6 +8,18 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 - [ ] password strength indicator for input pass
    https://github.com/dropbox/zxcvbn
 
+- [ ] focus outline
+	https://www.matuzo.at/blog/2022/focus-outline/
+
+- [ ] suicis color palette
+  - reduce text & bg colors
+  - text-primary, secondary
+  - rm semi, etc
+
+- [x] Segmented control tweaks
+	https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/segmented-controls
+
+
 - [ ] add description & API/options/parameters/etc.
 - [ ] add code samples
 
