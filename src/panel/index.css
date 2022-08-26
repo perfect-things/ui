@@ -30,7 +30,7 @@
 .expanded .chevron { transform: rotate(90deg); }
 
 
-.panel-header:focus { outline: none; }
+.panel-header:focus { outline: 1px solid transparent; }
 .panel-wrap:focus-within {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);

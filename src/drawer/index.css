@@ -15,7 +15,7 @@
 	overscroll-behavior-y: contain;
 }
 
-.drawer:focus { outline: none; }
+.drawer:focus { outline: 1px solid transparent; }
 
 .drawer-header {
 	position: sticky;

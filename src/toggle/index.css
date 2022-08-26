@@ -16,7 +16,7 @@
 .toggle[disabled] { pointer-events: none; opacity: 0.6; }
 
 .toggle:focus {
-	outline: none;
+	outline: 1px solid transparent;
 	box-shadow: var(--ui-shadow-focus);
 	border-color: var(--ui-color-accent);
 }

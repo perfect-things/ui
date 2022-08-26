@@ -69,7 +69,7 @@
 
 .autocomplete-list-item.selected {
 	background-color: var(--ui-color-highlight);
-	outline: none;
+	outline: 1px solid transparent;
 }
 .autocomplete-list-item:hover {
 	background-color: var(--ui-color-highlight-dark-2);

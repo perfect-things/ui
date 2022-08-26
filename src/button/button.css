@@ -26,11 +26,11 @@
 .button:focus {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
-	outline: none;
+	outline: 1px solid transparent;
 }
 
 .button:active {
-	outline: none;
+	outline: 1px solid transparent;
 	box-shadow: none;
 	transform: translateY(1px);
 	filter: brightness(0.85);
