@@ -8,9 +8,6 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 - [ ] password strength indicator for input pass
    https://github.com/dropbox/zxcvbn
 
-- [x] focus outline
-	https://www.matuzo.at/blog/2022/focus-outline/
-
 - [ ] suicis color palette
   - reduce text & bg colors
   - text-primary, secondary
