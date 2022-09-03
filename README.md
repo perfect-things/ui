@@ -5,6 +5,8 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
+- [x] datepicker: today on green, when viewing previous month
+
 - [ ] password strength indicator for input pass
    https://github.com/dropbox/zxcvbn
 

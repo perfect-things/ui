@@ -113,7 +113,7 @@
 
 
 /* today */
-.datepicker-cell.today:not(.selected) { background-color: var(--ui-color-success); }
+.datepicker-cell.today:not(.selected) { background-color: var(--ui-color-success); color: var(--ui-color-text); }
 
 
 /* hover/focus */
