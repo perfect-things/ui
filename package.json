@@ -16,6 +16,9 @@
     "lint": "gulp lint",
     "start": "run-p watch serve"
   },
+  "exports": {
+    ".": "./src/index.js"
+  },
   "dependencies": {
     "vanillajs-datepicker": "^1.2.0",
     "zxcvbn": "^4.4.2"
