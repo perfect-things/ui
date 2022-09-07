@@ -43,9 +43,9 @@
 }
 
 .button svg {
-	min-height: calc(var(--ui-button-size) * 1.2);
-	max-height: calc(var(--ui-button-size) * 1.2);
-	height: calc(var(--ui-button-size) * 1.2);
+	min-height: calc(var(--ui-button-size) * 1.25);
+	max-height: calc(var(--ui-button-size) * 1.25);
+	height: calc(var(--ui-button-size) * 1.25);
 	min-width: var(--ui-button-size);
 	width: auto;
 	pointer-events: none;
