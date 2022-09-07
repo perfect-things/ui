@@ -26,10 +26,7 @@ onMount(() => {
 	addTargetEvents();
 });
 
-onDestroy(() => {
-	removeTargetEvents();
-});
-
+onDestroy(removeTargetEvents);
 afterUpdate(align);
 
 
@@ -73,7 +70,8 @@ function _hide () {
  * @param e - hide event
  */
 function hide (e) {
-	if ((e.type === 'mousedown' || e.type === 'click') && e.target === targetEl) return;
+	const targetIsSelf = targetEl.contains(e.target);
+	if ((e.type === 'mousedown' || e.type === 'click') && targetIsSelf) return;
 	if (showTimer && shownEvent !== 'click') {
 		clearTimeout(showTimer);
 		showTimer = null;
