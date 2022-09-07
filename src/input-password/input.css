@@ -31,16 +31,17 @@
 
 /* PASSWORD STRENGTH */
 .password-strength {
-	width: 100%;
-	height: 5px;
-	margin: -7px 1px 0;
-	border-radius: 0 0 4px 4px;
-	overflow: hidden;
+	width: calc(100% - 6px);
+	height: 3px;
+	margin: -7px 3px 0;
+	border-radius: 10px;
 	background-color: var(--ui-color-background-input);
+	cursor: default;
 }
 
 .password-strength-progress {
 	height: 100%;
+	border-radius: inherit;
 	transition: width var(--ui-animation-speed) ease-out;
 	background-color: var(--ui-color-danger);
 }
@@ -51,14 +52,15 @@
 
 
 .password-strength-info {
+	cursor: default;
 	position: absolute;
-	width: 100%;
+	width: calc(100% - 2px);
 	display: none;
 	flex-flow: column;
 	align-items: stretch;
 	gap: 1em;
 	font-size: 0.8em;
-	margin: 3.1em 0 0;
+	margin: 3em 1px 0;
 	padding: 1em;
 	border-radius: 4px;
 	background-color: var(--ui-color-background-input);
