@@ -26,6 +26,10 @@ export function html () {
 	return src('docs/index.html').pipe(dest(DIST_PATH));
 }
 
+export function externals () {
+	return src('node_modules/zxcvbn/dist/zxcvbn.js*').pipe(dest(DIST_PATH));
+}
+
 export function eslint () {
 	return src(['{src,docs}/**/*.{js,svelte}', '*.js'])
 		.pipe(gulpEslint())
@@ -103,7 +107,7 @@ function watchTask (done) {
 
 export const lint = parallel(eslint, stylelint);
 
-const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html);
+const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html, externals);
 export const build = series(cleanup, _build);
 export const prod = series(setProd, build);
 

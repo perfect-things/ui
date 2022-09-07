@@ -2,6 +2,12 @@
 	width: 25ch;
 	position: relative;
 	display: inline-flex;
+	flex-flow: column;
+	align-items: stretch;
+	justify-content: space-between;
+}
+.input-password-row {
+	display: flex;
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-between;
@@ -13,7 +19,7 @@
 	padding-right: 28px;
 }
 
-.input-password-wrapper > .button {
+.input-password-wrapper .input-password-row > .button {
 	position: absolute;
 	right: 5px;
 	width: 22px;
@@ -21,3 +27,50 @@
 }
 
 .input-password-wrapper.visible .input-password { font-family: inherit; }
+
+
+/* PASSWORD STRENGTH */
+.password-strength {
+	width: 100%;
+	height: 5px;
+	margin: -7px 1px 0;
+	border-radius: 0 0 4px 4px;
+	overflow: hidden;
+	background-color: var(--ui-color-background-input);
+}
+
+.password-strength-progress {
+	height: 100%;
+	transition: width var(--ui-animation-speed) ease-out;
+	background-color: var(--ui-color-danger);
+}
+
+.password-strength-progress.warning { background-color: var(--ui-color-warning); }
+.password-strength-progress.info { background-color: var(--ui-color-info); }
+.password-strength-progress.success { background-color: var(--ui-color-success); }
+
+
+.password-strength-info {
+	position: absolute;
+	width: 100%;
+	display: none;
+	flex-flow: column;
+	align-items: stretch;
+	gap: 1em;
+	font-size: 0.8em;
+	margin: 3.1em 0 0;
+	padding: 1em;
+	border-radius: 4px;
+	background-color: var(--ui-color-background-input);
+	border: 1px solid var(--ui-color-danger);
+}
+
+.input-password-wrapper:focus-within .password-strength-info { display: flex; }
+
+.password-strength-info.warning { border-color: var(--ui-color-warning); }
+.password-strength-info.info { border-color: var(--ui-color-info); }
+.password-strength-info.success { border-color: var(--ui-color-success); }
+
+.password-strength-info h2 { font-size: 1.1em; text-align: left; }
+.password-strength-info small { font-size: 1em; margin: 0; }
+.password-strength-info small:empty { display: none; }
