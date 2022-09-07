@@ -1,0 +1,7 @@
+.tooltip-box {
+	display: inline-block;
+	margin: 10px 0 0;
+	line-height: 2.4em;
+	padding: 1em;
+	border: 1px solid #ccc;
+}

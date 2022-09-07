@@ -17,7 +17,8 @@
     "start": "run-p watch serve"
   },
   "dependencies": {
-    "vanillajs-datepicker": "^1.2.0"
+    "vanillajs-datepicker": "^1.2.0",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@ffaubert/gulp-stylelint": "^14.0.0",

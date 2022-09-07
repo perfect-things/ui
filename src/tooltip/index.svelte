@@ -1,5 +1,5 @@
 {#if visible}
-	<div class="tooltip-plate tooltip-{position}" class:visible bind:this="{el}">
+	<div class="tooltip-plate tooltip-{_position}" class:visible bind:this="{el}">
 		<div class="tooltip">
 			<div class="tooltip-content {className}">
 				<slot/>
@@ -13,8 +13,9 @@ export let target = 'body';
 export let events = 'hover';	// hover, click, focus
 export let className = '';
 export let delay = '0';
+export let position = 'auto';
 
-let position = 'top';
+let _position = 'top';
 let visible = false;
 let showTimer, hideTimer, shownEvent, noHide = false;
 let el, targetEl, tooltipContainer;
@@ -33,7 +34,10 @@ afterUpdate(align);
 
 
 function show (e) {
-	clearTimeout(hideTimer);
+	if (hideTimer) {
+		clearTimeout(hideTimer);
+		hideTimer = null;
+	}
 	if (visible || showTimer) return;
 	showTimer = setTimeout(() => _show(e), parseFloat(delay) || 0);
 }
@@ -69,6 +73,11 @@ function _hide () {
  * @param e - hide event
  */
 function hide (e) {
+	if ((e.type === 'mousedown' || e.type === 'click') && e.target === targetEl) return;
+	if (showTimer && shownEvent !== 'click') {
+		clearTimeout(showTimer);
+		showTimer = null;
+	}
 	if (!visible) return;
 	if (e.type === 'scroll' || e.type === 'resize') return _hide();
 	if (e.type === 'click' || e.type === 'mousedown') {
@@ -86,13 +95,13 @@ function align () {
 	const targetBox = targetEl.getBoundingClientRect();
 	const tooltipBox = el.getBoundingClientRect();
 
-	position = 'top';
+	_position = 'top';
 	let top = targetBox.top - tooltipBox.height;
 	let left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
 
-	if (top < 0) {
+	if (top < 0 || position === 'bottom') {
 		top = targetBox.top + targetBox.height;
-		position = 'bottom';
+		_position = 'bottom';
 	}
 	el.style.top = top + 'px';
 	el.style.left = left + 'px';
@@ -120,6 +129,8 @@ function addTooltipEvents () {
 		el.addEventListener('mouseover', show);
 		el.addEventListener('mouseout', hide);
 	}
+	window.addEventListener('resize', hide);
+	document.addEventListener('scroll', hide, true);
 }
 
 
@@ -134,6 +145,8 @@ function removeTooltipEvents () {
 		el.removeEventListener('mouseover', show);
 		el.removeEventListener('mouseout', hide);
 	}
+	window.removeEventListener('resize', hide);
+	document.removeEventListener('scroll', hide, true);
 }
 
 
@@ -152,8 +165,6 @@ function addTargetEvents () {
 		targetEl.addEventListener('mouseover', show);
 		targetEl.addEventListener('mouseout', hide);
 	}
-	window.addEventListener('resize', hide);
-	document.addEventListener('scroll', hide, true);
 }
 
 
@@ -172,7 +183,5 @@ function removeTargetEvents () {
 		targetEl.removeEventListener('mouseover', show);
 		targetEl.removeEventListener('mouseout', hide);
 	}
-	window.removeEventListener('resize', hide);
-	document.removeEventListener('scroll', hide, true);
 }
 </script>
