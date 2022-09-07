@@ -34,13 +34,12 @@ afterUpdate(align);
 
 
 function show (e) {
-	clearTimeout(hideTimer);
+	if (hideTimer) {
+		clearTimeout(hideTimer);
+		hideTimer = null;
+	}
 	if (visible || showTimer) return;
-	showTimer = setTimeout(() => {
-		_show(e);
-		console.log('showing now');
-	}, parseFloat(delay) || 0);
-	console.log('showing');
+	showTimer = setTimeout(() => _show(e), parseFloat(delay) || 0);
 }
 
 
@@ -64,7 +63,6 @@ function preventHiding () {
 function _hide () {
 	visible = false;
 	removeTooltipEvents();
-	console.log('hiding');
 }
 
 /**
@@ -75,7 +73,11 @@ function _hide () {
  * @param e - hide event
  */
 function hide (e) {
-	clearTimeout(showTimer);
+	if ((e.type === 'mousedown' || e.type === 'click') && e.target === targetEl) return;
+	if (showTimer && shownEvent !== 'click') {
+		clearTimeout(showTimer);
+		showTimer = null;
+	}
 	if (!visible) return;
 	if (e.type === 'scroll' || e.type === 'resize') return _hide();
 	if (e.type === 'click' || e.type === 'mousedown') {
@@ -127,6 +129,8 @@ function addTooltipEvents () {
 		el.addEventListener('mouseover', show);
 		el.addEventListener('mouseout', hide);
 	}
+	window.addEventListener('resize', hide);
+	document.addEventListener('scroll', hide, true);
 }
 
 
@@ -141,6 +145,8 @@ function removeTooltipEvents () {
 		el.removeEventListener('mouseover', show);
 		el.removeEventListener('mouseout', hide);
 	}
+	window.removeEventListener('resize', hide);
+	document.removeEventListener('scroll', hide, true);
 }
 
 
@@ -159,8 +165,6 @@ function addTargetEvents () {
 		targetEl.addEventListener('mouseover', show);
 		targetEl.addEventListener('mouseout', hide);
 	}
-	window.addEventListener('resize', hide);
-	document.addEventListener('scroll', hide, true);
 }
 
 
@@ -179,7 +183,5 @@ function removeTargetEvents () {
 		targetEl.removeEventListener('mouseover', show);
 		targetEl.removeEventListener('mouseout', hide);
 	}
-	window.removeEventListener('resize', hide);
-	document.removeEventListener('scroll', hide, true);
 }
 </script>
