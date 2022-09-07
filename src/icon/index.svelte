@@ -58,6 +58,7 @@ import sidebarRight from './icons/sidebar-right.svg';
 import shared from './icons/shared.svg';
 import sortAsc from './icons/sort-asc.svg';
 import sortDesc from './icons/sort-desc.svg';
+import split from './icons/split.svg';
 import tag from './icons/tag.svg';
 import trash from './icons/trash.svg';
 import user from './icons/user.svg';
@@ -122,6 +123,7 @@ export const icons = {
 	shared,
 	sortAsc,
 	sortDesc,
+	split,
 	tag,
 	trash,
 	user,
