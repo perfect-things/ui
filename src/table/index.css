@@ -3,6 +3,7 @@
 	height: 100%;
 	overflow: auto;
 	overscroll-behavior-y: contain;
+	position: relative;
 }
 
 .table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
