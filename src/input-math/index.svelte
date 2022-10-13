@@ -50,6 +50,7 @@ function onchange (e) {
 
 const save_eval = eval;	// https://rollupjs.org/guide/en/#eval2--eval
 function parseAmount (amount) {
+	if (!amount) return '';
 	amount = ('' + amount).replace(/[\s,]/g, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
 	if ((/[+\-\\*/.]+/i).test(amount)) {
