@@ -169,7 +169,6 @@ function selectItem () {
 	else if (allowNew) {
 		value = { name: inputEl.value };
 	}
-	else revert();
 
 	hasSetValue = true;
 	dispatch('change', { value, oldValue });
@@ -249,6 +248,7 @@ function oninput () {
 }
 
 function onblur () {
+	if (opened && !inputEl.value) return revert();
 	selectItem();
 	setTimeout(() => {
 		if (document.activeElement != inputEl) close();
