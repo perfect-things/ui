@@ -3,7 +3,7 @@ import { deleteAsync } from 'del';
 import livereload from 'gulp-livereload';
 import svelte from 'rollup-plugin-svelte';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
+import uglify from '@lopatnov/rollup-plugin-uglify';
 import { default as throught2 } from 'through2';
 import inlineSvg from 'rollup-plugin-inline-svg';
 import sourcemap from 'gulp-sourcemaps';
@@ -18,6 +18,7 @@ const noop = throught2.obj;
 const DIST_PATH = 'dist/';
 let isProd = false;
 
+const red = (msg) => '\x1B[31m' + msg + '\x1B[39m';
 const setProd = (done) => { isProd = true; done(); };
 
 export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
@@ -54,6 +55,11 @@ export function js () {
 	return src('./docs/index.js')
 		.pipe(isProd ? noop() : sourcemap.init())
 		.pipe(rollup({
+			onwarn: (err) => {
+				if (/eval/.test(err)) return;
+				if (/A11y/.test(err)) return;
+				console.error('\x07', red('\nERROR: ' + err.message + '\n'));
+			},
 			plugins: [
 				nodeResolve({
 					extensions: ['.mjs', '.js', '.svelte'],
@@ -61,7 +67,7 @@ export function js () {
 				}),
 				inlineSvg({ include: ['src/**/*.svg'] }),
 				svelte({ compilerOptions: { dev: !isProd, css: false }}),
-				isProd && terser()
+				isProd && uglify()
 			],
 		}, {
 			file: 'docs.js',

@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <ul
 	class="tree"
 	tabindex="0"

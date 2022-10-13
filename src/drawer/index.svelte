@@ -1,4 +1,5 @@
 {#if isVisible}
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div class="drawer" tabindex="-1"
 		use:docclick
 		bind:this="{el}"

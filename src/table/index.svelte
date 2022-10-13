@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="table-wrapper {cssClass}"
 	class:selectable
 	bind:this="{_this}"

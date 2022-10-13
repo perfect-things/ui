@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="autocomplete {className}" class:open="{opened}" bind:this="{el}">
 	<Icon name="dots"/>
 	<input type="text" class="autocomplete-input" autocomplete="off"
