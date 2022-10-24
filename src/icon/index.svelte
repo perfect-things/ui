@@ -29,6 +29,7 @@ import close from './icons/close.svg';
 import cog from './icons/cog.svg';
 import dots from './icons/dots.svg';
 import edit from './icons/edit.svg';
+import envelope from './icons/envelope.svg';
 import eye from './icons/eye.svg';
 import eyeOff from './icons/eye-off.svg';
 import error from './icons/error.svg';
@@ -93,6 +94,7 @@ export const icons = {
 	cog,
 	dots,
 	edit,
+	envelope,
 	eye,
 	eyeOff,
 	error,
