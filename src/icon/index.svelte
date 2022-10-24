@@ -11,6 +11,7 @@ import arrowRight from './icons/arrow-right.svg';
 import arrowNarrowDown from './icons/arrow-narrow-down.svg';
 import arrowNarrowUp from './icons/arrow-narrow-up.svg';
 import bank from './icons/bank.svg';
+import basket from './icons/basket.svg';
 import bell from './icons/bell.svg';
 import book from './icons/book.svg';
 import bookmark from './icons/bookmark.svg';
@@ -19,6 +20,7 @@ import calendar from './icons/calendar.svg';
 import chartLine from './icons/chart-line.svg';
 import chartPie from './icons/chart-pie.svg';
 import cash from './icons/cash.svg';
+import cart from './icons/cart.svg';
 import check from './icons/check.svg';
 import checkboxChecked from './icons/checkbox-checked.svg';
 import checkbox from './icons/checkbox.svg';
@@ -77,12 +79,14 @@ export const icons = {
 	arrowNarrowDown,
 	arrowNarrowUp,
 	bank,
+	basket,
 	bell,
 	book,
 	bookmark,
 	calculator,
 	calendar,
 	cash,
+	cart,
 	chartLine,
 	chartPie,
 	check,
