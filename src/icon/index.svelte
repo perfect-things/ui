@@ -26,6 +26,7 @@ import checklist from './icons/checklist.svg';
 import chevronLeft from './icons/chevron-left.svg';
 import chevronRight from './icons/chevron-right.svg';
 import close from './icons/close.svg';
+import coin from './icons/coin.svg';
 import cog from './icons/cog.svg';
 import dots from './icons/dots.svg';
 import edit from './icons/edit.svg';
@@ -91,6 +92,7 @@ export const icons = {
 	chevronLeft,
 	chevronRight,
 	close,
+	coin,
 	cog,
 	dots,
 	edit,
