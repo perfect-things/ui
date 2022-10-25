@@ -26,13 +26,15 @@ let selectedIdx = -1;
 let headerHeight = 0;
 let clickTimer;
 let previousKey;
-
+let hasFocus = false;
 
 onMount(() => {
 	Object.assign(_this.dataset, data);
 	if (selectable) {
 		document.addEventListener('keydown', onKeyDown);
 		document.addEventListener('focus', onFocus, true);
+		document.addEventListener('blur', onDocBlur, true);
+		document.addEventListener('click', onDocClick, true);
 		makeRowsSelectable();
 		requestAnimationFrame(() => {
 			const head = _this && _this.querySelector('thead');
@@ -45,6 +47,8 @@ onDestroy(() => {
 	if (selectable) {
 		document.removeEventListener('keydown', onKeyDown);
 		document.removeEventListener('focus', onFocus, true);
+		document.removeEventListener('blur', onDocBlur, true);
+		document.removeEventListener('click', onDocClick, true);
 		makeRowsNotSelectable();
 	}
 });
@@ -121,7 +125,10 @@ function selectFocusedRow (rowEl) {
 }
 
 function onFocus (e) {
-	if (!_this.contains(e.target)) return;
+	if (!_this.contains(e.target)) {
+		setFocus(false);
+		return;
+	}
 	if (!e || !e.target || shouldSkipNav(e)) return;
 	if (e.target == document) return;
 	if (!e.target.matches(rowSelector)) return;
@@ -130,7 +137,19 @@ function onFocus (e) {
 	if (rowEl) {
 		selectFocusedRow(rowEl);
 		dispatch('click', { event: e, selectedItem: rowEl });
+		setFocus(true);
 	}
+}
+
+
+function onDocClick (e) {
+	if (!_this.contains(e.target)) setFocus(false);
+}
+
+function onDocBlur () {
+	requestAnimationFrame(() => {
+		if (!document.hasFocus()) setFocus(false);
+	});
 }
 
 function onClick (e) {
@@ -162,7 +181,10 @@ function onDblClick (e) {
 
 
 function onKeyDown (e) {
-	if (!_this.contains(e.target)) return;
+	if (!_this.contains(e.target)) {
+		setFocus(false);
+		return;
+	}
 	if (shouldSkipNav(e)) return;
 
 	if (e.key === 'ArrowUp' || e.key === 'k') {
@@ -196,5 +218,15 @@ function shouldSkipNav (e) {
 	if (skipEventFor.includes(e.target.tagName)) return true;
 	if (e.target.closest('.dialog,.drawer')) return true;
 	return false;
+}
+
+
+function setFocus (newState) {
+	if (!hasFocus && !newState) return;
+	hasFocus = newState;
+	const event = { type: 'focus', target: _this };
+	const selectedItem = hasFocus ? getSelectableItems()[selectedIdx] : null;
+	dispatch('focuschanged', { event, selectedItem });
+	dispatch(hasFocus ? 'focus' : 'blur', { event, selectedItem });
 }
 </script>
