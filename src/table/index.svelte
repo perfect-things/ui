@@ -124,26 +124,26 @@ function selectFocusedRow (rowEl) {
 	selectClicked(true);
 }
 
-function onFocus (e) {
-	if (!_this.contains(e.target)) {
-		setFocus(false);
-		return;
-	}
+function findRow (e) {
 	if (!e || !e.target || shouldSkipNav(e)) return;
+	if (!_this.contains(e.target)) return;
 	if (e.target == document) return;
-	if (!e.target.matches(rowSelector)) return;
+	return e.target.closest(rowSelector);
+}
 
-	const rowEl = e.target.closest(rowSelector);
+function onFocus (e) {
+	const rowEl = findRow(e);
 	if (rowEl) {
 		selectFocusedRow(rowEl);
 		dispatch('click', { event: e, selectedItem: rowEl });
-		setFocus(true);
 	}
+	setFocus(!!rowEl);
 }
 
 
 function onDocClick (e) {
-	if (!_this.contains(e.target)) setFocus(false);
+	const rowEl = findRow(e);
+	setFocus(!!rowEl);
 }
 
 function onDocBlur () {
@@ -223,7 +223,7 @@ function shouldSkipNav (e) {
 
 function setFocus (newState) {
 	if (!hasFocus && !newState) return;
-	hasFocus = newState;
+	hasFocus = !!newState;
 	const event = { type: 'focus', target: _this };
 	const selectedItem = hasFocus ? getSelectableItems()[selectedIdx] : null;
 	dispatch('focuschanged', { event, selectedItem });
