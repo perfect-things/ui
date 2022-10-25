@@ -7,6 +7,7 @@
 	{title}
 	{disabled}
 	{required}
+	{...$$props}
 	bind:this="{_this}"
 	bind:checked="{checked}"
 	bind:indeterminate="{indeterminate}"
