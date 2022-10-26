@@ -148,7 +148,8 @@ function onDocClick (e) {
 
 function onDocBlur () {
 	requestAnimationFrame(() => {
-		if (!document.hasFocus()) setFocus(false);
+		const focusNotInTable = !_this.contains(document.activeElement);
+		if (!document.hasFocus() && focusNotInTable) setFocus(false);
 	});
 }
 

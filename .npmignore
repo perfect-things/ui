@@ -1,0 +1,7 @@
+dist/docs.css
+dist/docs.js
+dist/index.html
+docs/**/*.*
+.*
+gulpfile.js
+release.sh
