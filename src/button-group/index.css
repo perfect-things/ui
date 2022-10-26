@@ -12,9 +12,10 @@
 	flex-grow: 10;
 	border-radius: 0;
 	position: relative;
-	box-shadow: none;
 	overflow: hidden;
 }
+
+.button-group .button[disabled] { box-shadow: var(--ui-shadow-button); }
 
 .button-group .button:first-of-type {
 	border-top-left-radius: var(--ui-border-radius);
