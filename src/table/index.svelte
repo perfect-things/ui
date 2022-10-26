@@ -125,7 +125,7 @@ function selectFocusedRow (rowEl) {
 }
 
 function findRow (e) {
-	if (!e || !e.target || shouldSkipNav(e)) return;
+	if (!e || !e.target) return;
 	if (!_this.contains(e.target)) return;
 	if (e.target == document) return;
 	return e.target.closest(rowSelector);
