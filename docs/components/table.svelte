@@ -3,7 +3,6 @@
 <div class="table-viewport">
 	<Table rowSelector=".row-sel"
 		on:key="{onKey}"
-		on:focuschanged="{onFocusChanged}"
 		on:dblclick="{onSelect}"
 		on:select="{onSelect}">
 		<thead>
@@ -121,8 +120,4 @@ function onSelect (e) {
 	console.log(e.type, selectedItem);
 }
 
-function onFocusChanged (e) {
-	const { selectedItem } = e.detail;
-	console.log(e.type, selectedItem);
-}
 </script>
