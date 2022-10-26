@@ -134,7 +134,7 @@ function findRow (e) {
 function onFocus (e) {
 	const rowEl = findRow(e);
 	if (rowEl) {
-		selectFocusedRow(rowEl);
+		if (!shouldSkipNav(e)) selectFocusedRow(rowEl);
 		dispatch('click', { event: e, selectedItem: rowEl });
 	}
 	setFocus(!!rowEl);
