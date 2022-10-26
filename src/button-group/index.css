@@ -1,5 +1,5 @@
 .button-group {
-	padding: 1px 1px 2px;
+	padding: 0 0 1px;
 	display: inline-flex;
 	flex-flow: row;
 	align-items: center;
