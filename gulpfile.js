@@ -3,7 +3,7 @@ import { deleteAsync } from 'del';
 import livereload from 'gulp-livereload';
 import svelte from 'rollup-plugin-svelte';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import uglify from '@lopatnov/rollup-plugin-uglify';
+import terser from '@rollup/plugin-terser';
 import { default as throught2 } from 'through2';
 import inlineSvg from 'rollup-plugin-inline-svg';
 import sourcemap from 'gulp-sourcemaps';
@@ -67,7 +67,7 @@ export function js () {
 				}),
 				inlineSvg({ include: ['src/**/*.svg'] }),
 				svelte({ compilerOptions: { dev: !isProd, css: false }}),
-				isProd && uglify()
+				isProd && terser()
 			],
 		}, {
 			file: 'docs.js',
