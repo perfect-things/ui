@@ -17,7 +17,8 @@
     "start": "run-p watch serve"
   },
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
   },
   "dependencies": {
     "vanillajs-datepicker": "^1.2.0",
