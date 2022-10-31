@@ -5,8 +5,8 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 
 
 ### TODO
-- [x] password strength indicator for input pass
-   https://github.com/dropbox/zxcvbn
+- [ ] pass-thru props
+  - [ ] verify that 'data-' is passed correctly too
 
 - [ ] suicis color palette
   - reduce text & bg colors
