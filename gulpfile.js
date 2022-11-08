@@ -71,7 +71,7 @@ export function js () {
 			],
 		}, {
 			file: 'docs.js',
-			format: 'esm',
+			format: 'esm'
 		}))
 		.pipe(isProd ? noop() : sourcemap.write(''))
 		.pipe(dest(DIST_PATH))
