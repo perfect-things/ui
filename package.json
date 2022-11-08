@@ -47,5 +47,11 @@
     "stylelint-config-standard": "^29.0.0",
     "svelte": "^3.52.0",
     "through2": "^4.0.2"
+  },
+  "overrides": {
+    "chokidar": "^3.0.0",
+    "glob-stream": "^7.0.0",
+    "glob-parent": "^6.0.0",
+    "micromatch": "^4.0.0"
   }
 }
