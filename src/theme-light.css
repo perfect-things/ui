@@ -1,4 +1,6 @@
 .theme-light {
+	color-scheme: light;
+
 	--ui-color-accent: #b37400;
 	--ui-color-accent-semi: #b3740066;
 	--ui-color-accent-light-1: #c37f00;

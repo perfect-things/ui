@@ -58,7 +58,7 @@
 .toast-warning { background-color: var(--ui-color-warning); }
 .toast-error { background-color: var(--ui-color-danger); }
 .toast-msg {
-	color: #eee;
+	color: var(--ui-color-text);
 	flex: 1;
 	display: flex;
 	align-items: center;

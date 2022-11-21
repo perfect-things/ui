@@ -6,7 +6,6 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import { default as throught2 } from 'through2';
 import inlineSvg from 'rollup-plugin-inline-svg';
-import sourcemap from 'gulp-sourcemaps';
 import concat from 'gulp-concat';
 import gulpEslint from 'gulp-eslint-new';
 import gulpStylelint from '@ffaubert/gulp-stylelint';
@@ -52,8 +51,7 @@ export function stylelint () {
 
 
 export function js () {
-	return src('./docs/index.js')
-		.pipe(isProd ? noop() : sourcemap.init())
+	return src('./docs/index.js', { sourcemaps: !isProd })
 		.pipe(rollup({
 			onwarn: (err) => {
 				if (/eval/.test(err)) return;
@@ -73,8 +71,7 @@ export function js () {
 			file: 'docs.js',
 			format: 'esm'
 		}))
-		.pipe(isProd ? noop() : sourcemap.write(''))
-		.pipe(dest(DIST_PATH))
+		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
 
@@ -82,22 +79,18 @@ export function js () {
 
 
 export function libCSS () {
-	return src('src/**/*.css')
-		.pipe(isProd ? noop() : sourcemap.init())
+	return src('src/**/*.css', { sourcemaps: !isProd })
 		.pipe(concat('ui.css'))
-		.pipe(isProd ? noop() : sourcemap.write())
 		.pipe(isProd ? cleanCSS() : noop())
-		.pipe(dest(DIST_PATH))
+		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
 
 export function docsCSS () {
-	return src('docs/**/*.css')
-		.pipe(isProd ? noop() : sourcemap.init())
+	return src('docs/**/*.css', { sourcemaps: !isProd })
 		.pipe(concat('docs.css'))
-		.pipe(isProd ? noop() : sourcemap.write())
 		.pipe(isProd ? cleanCSS() : noop())
-		.pipe(dest(DIST_PATH))
+		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
 

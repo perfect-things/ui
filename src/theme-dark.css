@@ -1,5 +1,7 @@
 :root,
 .theme-dark {
+	color-scheme: dark;
+
 	--ui-color-accent: #bb7a00;
 	--ui-color-accent-semi: #bb7a0066;
 	--ui-color-accent-light-1: #d69214;
