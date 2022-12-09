@@ -25,7 +25,11 @@
 .panel-header::-webkit-details-marker { display: none; }
 .panel-content { border-top: 1px solid var(--ui-color-border); padding: 0.5em 1em; }
 
-.chevron { height: 1.2em; transform: rotate(0deg); transition: transform var(--ui-animation-speed) ease-out; }
+.chevron {
+	height: 1.2em;
+	transform: rotate(0deg);
+	transition: transform var(--ui-animation-speed) ease-out;
+}
 .chevron svg { width: 1.2em; height: 1.2em; }
 .expanded .chevron { transform: rotate(90deg); }
 

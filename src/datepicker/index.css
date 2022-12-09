@@ -70,7 +70,11 @@
 .datepicker-view .days .datepicker-cell,
 .datepicker-view .dow { flex-basis: 14.2857142857%; }
 
-.datepicker-view.datepicker-grid .datepicker-cell { flex-basis: 25%; height: 4.5rem; line-height: 4.5rem; }
+.datepicker-view.datepicker-grid .datepicker-cell {
+	flex-basis: 25%;
+	height: 4.5rem;
+	line-height: 4.5rem;
+}
 
 
 .datepicker-title { padding: 0.375rem 0.75rem; text-align: center; }
@@ -106,14 +110,20 @@
 .datepicker-cell.selected.next:not(.disabled) { color: var(--ui-color-text-dark-1); }
 
 
-.datepicker-cell.selected { background-color: var(--ui-color-highlight); color: var(--ui-color-text); }
+.datepicker-cell.selected {
+	background-color: var(--ui-color-highlight);
+	color: var(--ui-color-text);
+}
 
 .datepicker-cell.disabled { color: var(--ui-color-text-dark-1); }
 
 
 
 /* today */
-.datepicker-cell.today:not(.selected) { background-color: var(--ui-color-success); color: var(--ui-color-text); }
+.datepicker-cell.today:not(.selected) {
+	background-color: var(--ui-color-success);
+	color: var(--ui-color-text);
+}
 
 
 /* hover/focus */

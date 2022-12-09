@@ -43,11 +43,15 @@ export function eslint () {
 
 export function stylelint () {
 	return src(['{src,docs}/**/*.css'])
-		.pipe(gulpStylelint({ reporters: [{ formatter: 'string', console: true }] }))
+		.pipe(gulpStylelint({
+			fix: true,
+			reporters: [{ formatter: 'string', console: true }]
+		}))
 		.on('error', function () {
 			console.log('\x07');    // beep
 			this.emit('end');
-		});
+		})
+		.pipe(dest('src'));
 }
 
 
