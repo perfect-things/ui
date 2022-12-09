@@ -84,11 +84,11 @@ function dragStart (e) {
 
 	if (e.type === 'touchstart') {
 		document.addEventListener('touchend', dragEnd);
-		document.addEventListener('touchmove', drag, { passive: false  });
+		document.addEventListener('touchmove', drag, { passive: false });
 	}
 	else {
 		document.addEventListener('mouseup', dragEnd);
-		document.addEventListener('mousemove', drag, { passive: false  });
+		document.addEventListener('mousemove', drag, { passive: false });
 	}
 	label.style.transition = 'none';
 	startX = getMouseX(e) - currentX;

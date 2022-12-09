@@ -32,7 +32,8 @@ export function externals () {
 
 export function eslint () {
 	return src(['{src,docs}/**/*.{js,svelte}', '*.js'])
-		.pipe(gulpEslint())
+		.pipe(gulpEslint({ fix: true }))   // Lint files, create fixes.
+		.pipe(gulpEslint.fix())            // Fix files if necessary.
 		.pipe(gulpEslint.format())
 		.pipe(gulpEslint.results(results => {
 			if (results.errorCount) console.log('\x07');    // beep
@@ -42,7 +43,7 @@ export function eslint () {
 
 export function stylelint () {
 	return src(['{src,docs}/**/*.css'])
-		.pipe(gulpStylelint({ reporters: [{ formatter: 'string', console: true}] }))
+		.pipe(gulpStylelint({ reporters: [{ formatter: 'string', console: true }] }))
 		.on('error', function () {
 			console.log('\x07');    // beep
 			this.emit('end');
@@ -64,7 +65,7 @@ export function js () {
 					dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 				}),
 				inlineSvg({ include: ['src/**/*.svg'] }),
-				svelte({ compilerOptions: { dev: !isProd, css: false }}),
+				svelte({ compilerOptions: { dev: !isProd, css: false } }),
 				isProd && terser()
 			],
 		}, {

@@ -37,7 +37,7 @@ function select (node) {
 	unselectAll();
 	selectedItem = node;
 	selectedItem.classList.add('selected');
-	selectedItem.scrollIntoView({block: 'nearest', inline: 'nearest'});
+	selectedItem.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 	const item = tryToGetSelectedItem();
 	dispatch('select', { selectedItem, item });
 }

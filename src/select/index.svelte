@@ -35,7 +35,7 @@ export let items = [];
 export let disabled = undefined;
 let el, groups = [];
 
-$:{
+$: {
 	let nogroup = [];
 	const _groups = {};
 	items.forEach(item => {

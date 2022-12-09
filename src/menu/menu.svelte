@@ -29,7 +29,7 @@ onDestroy(() => {
 
 
 
-function updatePosition (e)  {
+function updatePosition (e) {
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 
 	const etype = e && e.type;
@@ -45,7 +45,7 @@ function updatePosition (e)  {
 		menuEl.style.left = btnBox.left + 'px';
 	}
 	// ensure it stays on screen
-	let {x, y, width, height} = menuEl.getBoundingClientRect();
+	let { x, y, width, height } = menuEl.getBoundingClientRect();
 	const winH = window.innerHeight;
 	const winW = window.innerWidth;
 	const padding = 10;

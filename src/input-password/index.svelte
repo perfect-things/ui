@@ -56,7 +56,7 @@ let inputEl;
 
 
 
-$:{
+$: {
 	const { score, info } = measure(value);
 	label = labels[score];
 	percent = score ? score * 25 : 5;

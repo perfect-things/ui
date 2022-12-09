@@ -1,12 +1,13 @@
 {
+	"root": true,
 	"extends": "eslint:recommended",
 	"env": {
 		"browser": true,
-		"es2021": true
+		"es2022": true
 	},
 	"parserOptions": {
 		"sourceType": "module",
-		"ecmaVersion": 2021
+		"ecmaVersion": "latest"
 	},
 	"plugins": [ "svelte3" ],
 	"overrides": [
@@ -14,17 +15,30 @@
 	],
 	"rules": {
 		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
-		"indent": [ 2, "tab" ],
-		"quotes": [ 2, "single", "avoid-escape" ],
-		"semi": [ 2, "always" ],
+		"indent": [ "error", "tab" ],
+		"quotes": [ "error", "single", "avoid-escape" ],
+		"semi": [ "error", "always" ],
 		"func-call-spacing": ["error", "never"],
 		"space-before-function-paren": ["error", "always"],
+		"object-curly-spacing": [ "error", "always" ],
+		"array-bracket-spacing": [ "error", "never" ],
+		"space-before-blocks": [ "error", "always" ],
+		"space-in-parens": [ "error", "never" ],
 		"newline-per-chained-call": ["error", { "ignoreChainWithDepth": 3 }],
-		"no-undef": 2,
-		"no-mixed-spaces-and-tabs": 2,
-		"no-unused-vars": 2,
-		"no-trailing-spaces": 2,
-		"no-shadow": 2,
+		"no-undef": "error",
+		"no-mixed-spaces-and-tabs": "error",
+		"no-unused-vars": "error",
+		"no-trailing-spaces": "error",
+		"no-multi-spaces": ["error", { "ignoreEOLComments": true }],
+		"key-spacing": [
+			"error",
+			{
+				"beforeColon": false,
+				"afterColon": true,
+				"mode": "strict"
+			}
+		],
+		"no-shadow": "error",
 		"eol-last": 1,
 		"curly": 0,
 		"no-console": 0,

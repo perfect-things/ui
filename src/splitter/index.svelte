@@ -46,7 +46,7 @@ function init () {
 	}
 	else {
 		initialTargetBox.minWidth = minWidth(targetEl);
-		initialTargetBox.maxWidth = Math.min(innerWidth(el.parentElement),  maxWidth(targetEl));
+		initialTargetBox.maxWidth = Math.min(innerWidth(el.parentElement), maxWidth(targetEl));
 	}
 	updateSize(initialTargetBox);
 
