@@ -4,7 +4,6 @@
 		"alpha-value-notation": null,
 		"annotation-no-unknown": true,
 		"at-rule-no-unknown": true,
-
 		"block-closing-brace-empty-line-before": "never",
 		"block-closing-brace-newline-after": null,
 		"block-closing-brace-newline-before": "always-multi-line",
@@ -14,15 +13,12 @@
 		"block-opening-brace-newline-before": null,
 		"block-opening-brace-space-after": "always-single-line",
 		"block-opening-brace-space-before": "always",
-
 		"color-hex-case": "lower",
 		"color-hex-length": null,
 		"color-no-invalid-hex": true,
-
 		"comment-empty-line-before": null,
 		"custom-property-empty-line-before": null,
 		"custom-property-no-missing-var-function": true,
-
 		"declaration-bang-space-after": "never",
 		"declaration-bang-space-before": "always",
 		"declaration-block-no-duplicate-custom-properties": true,
@@ -38,10 +34,8 @@
 		"declaration-colon-space-after": "always-single-line",
 		"declaration-colon-space-before": "never",
 		"declaration-empty-line-before": null,
-
 		"font-family-no-duplicate-names": true,
 		"font-family-no-missing-generic-family-keyword": true,
-
 		"function-calc-no-unspaced-operator": true,
 		"function-comma-newline-before": "never-multi-line",
 		"function-comma-space-after": "always-single-line",
@@ -50,15 +44,13 @@
 		"function-name-case": "lower",
 		"function-no-unknown": true,
 		"function-parentheses-newline-inside": "always-multi-line",
-		"function-parentheses-space-inside": "never",
+		"function-parentheses-space-inside": "never-single-line",
 		"function-whitespace-after": "always",
-
 		"indentation": "tab",
 		"length-zero-no-unit": true,
 		"max-empty-lines": null,
 		"max-line-length": 100,
 		"media-feature-name-no-unknown": true,
-
 		"no-descending-specificity": true,
 		"no-duplicate-at-import-rules": true,
 		"no-duplicate-selectors": true,
@@ -70,17 +62,13 @@
 		"no-irregular-whitespace": true,
 		"no-missing-end-of-source-newline": true,
 		"no-unknown-animations": true,
-
 		"number-leading-zero": null,
 		"number-max-precision": 10,
 		"number-no-trailing-zeros": true,
-
 		"property-case": "lower",
 		"property-no-unknown": true,
 		"property-no-vendor-prefix": null,
-
 		"rule-empty-line-before": null,
-
 		"selector-attribute-brackets-space-inside": "never",
 		"selector-attribute-operator-space-after": "never",
 		"selector-attribute-operator-space-before": "never",
@@ -99,13 +87,11 @@
 		"selector-pseudo-element-no-unknown": true,
 		"selector-type-case": "lower",
 		"selector-type-no-unknown": true,
-
 		"shorthand-property-no-redundant-values": true,
 		"string-no-newline": true,
 		"string-quotes": "double",
 		"unit-case": "lower",
 		"unit-no-unknown": true,
-
 		"value-keyword-case": "lower",
 		"value-list-comma-newline-before": "never-multi-line",
 		"value-list-comma-space-after": "always-single-line",
