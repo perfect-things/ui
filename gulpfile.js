@@ -14,7 +14,7 @@ import rollup from 'gulp-rollup-plugin';
 
 const { series, parallel, src, dest, watch } = gulp;
 const noop = throught2.obj;
-const DIST_PATH = 'dist/';
+const DIST_PATH = 'docs/';
 let isProd = false;
 
 const red = (msg) => '\x1B[31m' + msg + '\x1B[39m';
@@ -23,7 +23,7 @@ const setProd = (done) => { isProd = true; done(); };
 export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
 
 export function html () {
-	return src('docs/index.html').pipe(dest(DIST_PATH));
+	return src('docs-src/index.html').pipe(dest(DIST_PATH));
 }
 
 export function externals () {
@@ -31,7 +31,7 @@ export function externals () {
 }
 
 export function eslint () {
-	return src(['{src,docs}/**/*.{js,svelte}', '*.js'])
+	return src(['{src,docs-src}/**/*.{js,svelte}', '*.js'])
 		.pipe(gulpEslint({ fix: true }))   // Lint files, create fixes.
 		.pipe(gulpEslint.fix())            // Fix files if necessary.
 		.pipe(gulpEslint.format())
@@ -42,7 +42,7 @@ export function eslint () {
 
 
 export function stylelint () {
-	return src(['{src,docs}/**/*.css'])
+	return src(['{src,docs-src}/**/*.css'])
 		.pipe(gulpStylelint({
 			// fix: true,
 			reporters: [{ formatter: 'string', console: true }]
@@ -56,7 +56,7 @@ export function stylelint () {
 
 
 export function js () {
-	return src('./docs/index.js', { sourcemaps: !isProd })
+	return src('./docs-src/index.js', { sourcemaps: !isProd })
 		.pipe(rollup({
 			onwarn: (err) => {
 				if (/eval/.test(err)) return;
@@ -92,7 +92,7 @@ export function libCSS () {
 }
 
 export function docsCSS () {
-	return src('docs/**/*.css', { sourcemaps: !isProd })
+	return src('docs-src/**/*.css', { sourcemaps: !isProd })
 		.pipe(concat('docs.css'))
 		.pipe(isProd ? cleanCSS() : noop())
 		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
@@ -103,8 +103,8 @@ function watchTask (done) {
 	if (isProd) return done();
 	livereload.listen();
 	watch('src/**/*.css', series(libCSS, stylelint));
-	watch('docs/**/*.css', series(docsCSS, stylelint));
-	watch('{src,docs}/**/*.{js,svelte}', series(js, eslint));
+	watch('docs-src/**/*.css', series(docsCSS, stylelint));
+	watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
 
 }
 
