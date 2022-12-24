@@ -1,7 +1,7 @@
-dist/docs.css
-dist/docs.js
-dist/index.html
-docs/**/*.*
+docs/docs.css
+docs/docs.js
+docs/index.html
+docs-src/**/*.*
 .*
 gulpfile.js
 release.sh
