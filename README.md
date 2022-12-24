@@ -3,6 +3,9 @@ simple-ui-components-in-svelte
 
 A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).
 
+### Github pages site with docs
+https://perfect-things.github.io/simple-ui-components-in-svelte/
+
 
 ### TODO
 - [ ] pass-thru props
@@ -46,7 +49,8 @@ import { Button } from 'simple-ui-components-in-svelte';
 ```
 
 
-## Dev & demo
+## Development
+
 You need node & npm (obviously). Run these:
 ```sh
 git clone git@github.com:tborychowski/simple-ui-components-in-svelte.git
