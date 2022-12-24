@@ -7,6 +7,8 @@ A set of simple, but perfect, UI components, written in Svelte (the only front-e
 https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 
+![Screenshot](screen.png)
+
 ### TODO
 - [ ] pass-thru props
   - [ ] verify that 'data-' is passed correctly too
