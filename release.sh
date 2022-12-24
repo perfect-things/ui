@@ -9,9 +9,10 @@ case $ans in
     0  ) v=none ;;
     1  ) v=major ;;
     2  ) v=minor ;;
-    q  ) v=patch ;;
+    3  ) v=patch ;;
     "" ) v=patch ;;
-    *  ) echo "Whats that?" ;;
+    q  ) exit ;;
+    *  ) echo "Whats that?" && exit ;;
 esac
 
 npm run dist
