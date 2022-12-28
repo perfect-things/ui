@@ -10,7 +10,7 @@
 <h3>In a container with <em>overflow: hidden</em></h3>
 <p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
 	property must be set on the component.</p>
-<div class="docs-datepicker-overflow">
+<div class="docs-overflow-box">
 	<small>overflow: hidden</small>
 	<Datepicker elevate="true" />
 </div>

@@ -13,7 +13,7 @@
 <h3>In a container with <em>overflow: hidden</em></h3>
 <p>Where parent container has <em>overflow: hidden</em>, and/or another container is covering the menu,
 	<em>elevate="true"</em> property must be set on the component.</p>
-<div class="docs-menu-overflow">
+<div class="docs-overflow-box">
 	<small>parent: <em>overflow: hidden</em></small>
 	<Button on:click="{someMenu1.open}">Regular Menu</Button>
 	<Menu bind:this="{someMenu1}">

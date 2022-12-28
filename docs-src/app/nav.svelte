@@ -4,6 +4,10 @@
 		<ActualToggle value="true" on:change="{switchColorMode}"/>
 	</div>
 
+	<h3>Intro</h3>
+	<NavItem name="About" {active} />
+	<NavItem name="Get Started" {active} />
+
 	<h3>Form Controls</h3>
 	<NavItem name="Autocomplete" {active} />
 	<NavItem name="Button" {active} />
@@ -40,6 +44,8 @@
 <script>
 import NavItem from './nav-item';
 import ActualToggle from '../../src/toggle';
+import About from './about';
+import GetStarted from './start';
 
 import Button from '../components/button';
 import ButtonGroup from '../components/button-group';
@@ -70,6 +76,8 @@ import Table from '../components/table';
 import Tree from '../components/tree';
 
 const components = {
+	About,
+	GetStarted,
 	Autocomplete,
 	Button,
 	ButtonGroup,
@@ -97,7 +105,7 @@ const components = {
 	Tree,
 };
 
-let active = location.hash.substr(1) || 'Button';
+let active = location.hash.substr(1) || 'About';
 export let component = components[active];
 
 function onhashchange () {

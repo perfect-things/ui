@@ -1,10 +1,45 @@
 <h2>Button</h2>
 
+<div class="docs-layout">
+	<div class="docs-column">
+		<h3>Demo</h3>
+		{#if buttonText}
+			<Button {...props}>{buttonText}</Button>
+		{:else}
+			<Button {...props}/>
+		{/if}
+
+		<hr>
+		<code class="docs-code">
+			{@html buttonHtml}
+		</code>
+	</div>
+	<div class="docs-column">
+		<h3>Properties</h3>
+		<h4>Text</h4>
+		<input bind:value="{buttonText}" on:input="{buildButtonHtml}" />
+		<h4>Style</h4>
+		<ButtonToggle items="{buttonStyles}" value="" on:change="{onStyleChange}" />
+		<h4>Type</h4>
+		<ButtonToggle items="{buttonTypes}" value="default" on:change="{onTypeChange}" />
+		<h4>Icon</h4>
+		<ButtonToggle items="{buttonIcons}" value="" on:change="{onIconChange}" />
+		<h4>Round</h4>
+		<Toggle bind:value="{props.round}" on:change="{buildButtonHtml}"/>
+		<h4>Disabled</h4>
+		<Toggle bind:value="{props.disabled}" on:change="{buildButtonHtml}"/>
+
+	</div>
+</div>
+
+
+
+<hr>
 <h3>Normal</h3>
 
 <h4>Default</h4>
 <Button>Hello</Button>
-<Button success>Warning</Button>
+<Button success>Success</Button>
 <Button warning>Warning</Button>
 <Button danger>Danger</Button>
 
@@ -90,6 +125,7 @@
 <hr>
 <h3>Icon only buttons</h3>
 
+
 <h4>Default</h4>
 <Button icon="info"></Button>
 <Button icon="check" success></Button>
@@ -138,6 +174,88 @@
 
 
 <script>
-import { Button } from '../../src';
+import { onMount } from 'svelte';
+import { Button, ButtonToggle, Toggle } from '../../src';
+
+let props = {};
+let buttonText = 'Demo button';
+const buttonStyles = [
+	{ name: 'Normal', value: '' },
+	{ name: 'Outline', value: 'outline' },
+	{ name: 'Text', value: 'text' },
+	{ name: 'Link', value: 'link' },
+];
+
+const buttonTypes = [
+	{ name: 'Default', value: 'default' },
+	{ name: 'Success', value: 'success' },
+	{ name: 'Warning', value: 'warning' },
+	{ name: 'Danger', value: 'danger' },
+];
+
+const buttonIcons = [
+	{ name: 'none', value: '' },
+	{ name: 'info', value: 'info' },
+	{ name: 'check', value: 'check' },
+	{ name: 'alert', value: 'alert' },
+	{ name: 'trash', value: 'trash' },
+];
+
+let buttonHtml = '';
+
+
+onMount(() => {
+	buildButtonHtml();
+});
+
+
+
+function buildButtonHtml () {
+	const _props = {};
+	for (let prop in props) {
+		if (props[prop] === false) continue;
+		_props[prop] = props[prop];
+	}
+	let _html = '';
+	let propsStr = JSON.stringify(_props)
+		.replace(/"([^"]+)":/g, '$1:')
+		.replace(/(:)/g, '=')
+		.replace(/,/g, ' ')
+		.replace(/({|}|=true|default|icon="")/g, '')
+		.trim();
+	if (propsStr) propsStr = ' ' + propsStr;
+
+	if (!buttonText) _html = `<Button${propsStr}/>`;
+	else _html = `<Button${propsStr}>${buttonText}</Button>`;
+
+	buttonHtml = encode(_html);
+}
+
+function onStyleChange (e) {
+	props.outline = false;
+	props.text = false;
+	props.link = false;
+	if (e.detail) props[e.detail] = true;
+	buildButtonHtml();
+}
+
+function onTypeChange (e) {
+	props.default = false;
+	props.success = false;
+	props.warning = false;
+	props.danger = false;
+	if (e.detail) props[e.detail] = true;
+	buildButtonHtml();
+}
+
+function onIconChange (e) {
+	props.icon = e.detail;
+	buildButtonHtml();
+}
+
+
+function encode (s) {
+	return s.replace(/[\u00A0-\u9999<>&]/gim, i => `&#${i.charCodeAt(0)};`);
+}
 
 </script>
