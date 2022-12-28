@@ -22,6 +22,7 @@ const dispatch = createEventDispatcher();
 let el;
 let selectedItem;
 
+
 function getVisibleNodes () {
 	return Array.from(el.querySelectorAll('.tree .tree-node'));
 }
@@ -113,10 +114,12 @@ function onkeydown (e) {
 	dispatch('keydown', { event: e, selectedItem, item });
 }
 
+
 function tryToGetSelectedItem () {
 	const id = selectedItem.dataset.id;
 	if (id) return findItem(id);
 }
+
 
 function findItem (id, nodes) {
 	if (!nodes) nodes = items;

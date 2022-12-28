@@ -31,7 +31,7 @@
 		<Item><Icon name="close"/> Close something</Item>
 	</Menu>
 
-	<Button cssClass="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
+	<Button className="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
 	<Menu bind:this="{someMenu3}" elevate="true">
 		<Item><Icon name="plus"/> A very long text</Item>
 		<Item><Icon name=""/> Another very long text</Item>

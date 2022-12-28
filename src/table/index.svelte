@@ -1,5 +1,6 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="table-wrapper {cssClass}"
+<div
+	class="table-wrapper {className}"
 	class:selectable
 	bind:this="{_this}"
 	on:click="{onClick}"
@@ -12,7 +13,7 @@
 import { onDestroy, onMount, createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
-export let cssClass = '';
+export let className = '';
 export let _this = undefined;
 export let selectable = true;
 export let scrollContainer = undefined;
@@ -41,6 +42,7 @@ onMount(() => {
 	}
 });
 
+
 onDestroy(() => {
 	if (selectable) {
 		document.removeEventListener('keydown', onKeyDown);
@@ -49,19 +51,23 @@ onDestroy(() => {
 	}
 });
 
+
 function getSelectableItems () {
 	const rows = _this.parentNode.querySelectorAll(`.table ${rowSelector}`);
 	if (rows && rows.length) return Array.from(rows);
 	return [];
 }
 
+
 function makeRowsSelectable () {
 	getSelectableItems().forEach(item => item.setAttribute('tabindex', 0));
 }
 
+
 function makeRowsNotSelectable () {
 	getSelectableItems().forEach(item => item.removeAttribute('tabindex'));
 }
+
 
 function selectPrev (skipEvent = false) {
 	const rows = getSelectableItems();
@@ -72,6 +78,7 @@ function selectPrev (skipEvent = false) {
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
 
+
 function selectNext (skipEvent = false) {
 	const rows = getSelectableItems();
 	if (selectedIdx >= rows.length - 1) return;
@@ -80,6 +87,7 @@ function selectNext (skipEvent = false) {
 	rowEl.focus();
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
 }
+
 
 function getScrollContainer () {
 	let scrlCont;
@@ -90,6 +98,7 @@ function getScrollContainer () {
 	if (scrlCont) return scrlCont;
 	return _this;
 }
+
 
 function selectClicked (skipEvent = false) {
 	const rows = getSelectableItems();
@@ -120,6 +129,7 @@ function selectFocusedRow (rowEl) {
 	selectClicked(true);
 }
 
+
 function onFocus (e) {
 	if (!_this.contains(e.target)) return;
 	if (!e || !e.target || shouldSkipNav(e)) return;
@@ -132,6 +142,7 @@ function onFocus (e) {
 		dispatch('click', { event: e, selectedItem: rowEl });
 	}
 }
+
 
 function onClick (e) {
 	if (!_this.contains(e.target)) return;
@@ -147,6 +158,7 @@ function onClick (e) {
 		dispatch('click', { event: e, selectedItem: rowEl });
 	}
 }
+
 
 function onDblClick (e) {
 	if (!_this.contains(e.target)) return;

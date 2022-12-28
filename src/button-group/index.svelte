@@ -1,9 +1,9 @@
-<div class="button-group {cssClass}" class:round>
+<div class="button-group {className}" class:round>
 	<slot/>
 </div>
 
 <script>
 export let round = undefined;	// round button
-export let cssClass = '';
+export let className = '';
 
 </script>

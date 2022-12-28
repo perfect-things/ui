@@ -1,4 +1,4 @@
-<div {disabled} class="button-group button-toggle {cssClass}" class:round bind:this="{el}">
+<div {disabled} class="button-group button-toggle {className}" class:round bind:this="{el}">
 	{#each items as item, idx}
 		<label
 			{disabled}
@@ -29,7 +29,7 @@ import Icon from '../icon';
 
 export let disabled = undefined;
 export let round = undefined;	// round button
-export let cssClass = '';
+export let className = '';
 export let items = '';
 export let id = '';
 export let name = uuid();

@@ -1,17 +1,10 @@
 <input type="text" autocomplete="off"
-	{id}
-	{name}
-	{title}
-	{placeholder}
+	{...$$props}
 	bind:value="{value}"
 	on:keydown="{onkeydown}"
 	on:change="{onchange}">
 <script>
 export let value = '';
-export let id = undefined;
-export let name = undefined;
-export let title = undefined;
-export let placeholder = undefined;
 
 const DECIMAL_SEPARATOR = '.';
 const allowedKeys = [

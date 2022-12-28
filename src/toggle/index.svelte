@@ -1,39 +1,36 @@
-<div class="toggle"
+<div
+	class="toggle"
 	class:checked="{value}"
-	disabled="{disabled}"
-	bind:this="{el}"
 	tabIndex="{disabled ? undefined : 0}"
+	bind:this="{el}"
 	on:keydown="{onKey}"
 	on:touchstart={dragStart}
 	on:mousedown={dragStart}
 	on:contextmenu|preventDefault
 	on:click|preventDefault>
-	<label class="toggle-label" bind:this="{label}">
+	<label class="toggle-label" {title} bind:this="{label}">
 		<div class="toggle-handle" bind:this="{handle}"></div>
-		<input {id} type="checkbox" class="toggle-input" bind:checked="{value}">
+		<input {...inputProps} type="checkbox" class="toggle-input" bind:checked="{value}">
 	</label>
 </div>
 <script>
 import { onMount, afterUpdate } from 'svelte';
 import { createEventDispatcher } from 'svelte';
+import { pluck } from '../util';
+
 const dispatch = createEventDispatcher();
-
 const isTouchDevice = 'ontouchstart' in document.documentElement;
-const getMouseX = e => (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
-const outerWidth = _el => _el.getBoundingClientRect().width;
-const innerWidth = _el => {
-	const css = getComputedStyle(_el);
-	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
-	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
-	return _el.getBoundingClientRect().width - borders - padding;
-};
 
-export let id = undefined;
 export let value = false;
 export let disabled = undefined;
+
 let el, label, handle, startX, maxX, minX, currentX = 0;
 let isClick = false, isDragging = false;
 let oldValue;
+
+$:title = $$props.title;
+$:inputProps = pluck($$props, ['id', 'name', 'disabled', 'required']);
+
 
 onMount(() => {
 	initialMeasure(el);
@@ -45,6 +42,24 @@ afterUpdate(() => {
 	setValue(value);
 });
 
+
+
+function getMouseX (e) {
+	return (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+}
+
+
+function outerWidth (_el) {
+	return _el.getBoundingClientRect().width;
+}
+
+
+function innerWidth (_el) {
+	const css = getComputedStyle(_el);
+	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
+	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
+	return _el.getBoundingClientRect().width - borders - padding;
+}
 
 
 function initialMeasure (_el) {
@@ -71,12 +86,14 @@ function setValue (v, skipEvent = false, force = false) {
 	if (!skipEvent) dispatch('change', value);
 }
 
+
 function onKey (e) {
 	if (e.key === 'Enter' || e.key === ' ') {
 		e.preventDefault();
 		setValue(!value);
 	}
 }
+
 
 function dragStart (e) {
 	// prevent double call
@@ -96,6 +113,7 @@ function dragStart (e) {
 	isClick = true;
 }
 
+
 function dragEnd () {
 	document.removeEventListener('mouseup', dragEnd);
 	document.removeEventListener('mousemove', drag);
@@ -106,6 +124,7 @@ function dragEnd () {
 	if (isClick) setValue(!value);
 	else setValue(currentX - minX >= (maxX - minX) / 2, false, true);
 }
+
 
 function drag (e) {
 	if (!isDragging) return;

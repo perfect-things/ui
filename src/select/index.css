@@ -9,7 +9,7 @@
 	display: inline-block;
 }
 
-.select-wrapper.disabled { opacity: 0.7; cursor: default; }
+.select-wrapper:has(:disabled) { opacity: 0.7; cursor: default; }
 
 .select-wrapper:focus,
 .select-wrapper:focus-within {

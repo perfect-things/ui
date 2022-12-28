@@ -1,14 +1,14 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="autocomplete {className}" class:open="{opened}" bind:this="{el}">
 	<Icon name="dots"/>
-	<input type="text" class="autocomplete-input" autocomplete="off"
-		{id}
-		{name}
-		{title}
-		{placeholder}
-		{required}
-		{disabled}
+	<input
+		type="text"
+		autocomplete="off"
+		class="autocomplete-input"
 		value="{value && value.name || ''}"
+
+		{...props}
+
 		bind:this="{inputEl}"
 		on:input="{oninput}"
 		on:focus="{onfocus}"
@@ -49,23 +49,19 @@
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './util';
+import { pluck } from '../util';
 import Icon from '../icon';
 export let data = [];
 export let value = null;
 export let allowNew = false;
 export let showAllInitially = true;
 export let clearOnEsc = false;
-export let id = undefined;
-export let name = undefined;
-export let title = undefined;
-export let placeholder = undefined;
-export let required = false;
-export let disabled = undefined;
 export let elevate = false;
 export let showOnFocus = false;
 export let className = '';
 
 $:elevated = elevate === 'true' || elevate === true;
+$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
 
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
@@ -78,13 +74,16 @@ let filteredData = [], groupedData = [];
 let originalText = '';
 let hasSetValue = true;
 
+
 onMount(() => {
 	if (elevated) document.body.appendChild(listEl);
 });
 
+
 onDestroy(() => {
 	if (elevated) listEl.remove();
 });
+
 
 afterUpdate(() => {
 	if (!opened && data.length) {
@@ -131,7 +130,6 @@ function filter () {
 	highlightIndex = 0;
 	if (listEl) highlight(listEl);
 }
-
 
 
 function open (e) {
@@ -247,6 +245,7 @@ function oninput () {
 	hasSetValue = false;
 }
 
+
 function onblur () {
 	if (opened && !inputEl.value) return revert();
 	selectItem();
@@ -316,6 +315,7 @@ function onScrollOrResize (e) {
 	return close();
 }
 
+
 function onDocumentClick (e) {
 	const notEl = el && !el.contains(e.target);
 	const notList = listEl && !listEl.contains(e.target);
@@ -325,11 +325,13 @@ function onDocumentClick (e) {
 	}
 }
 
+
 function addEventListeners () {
 	window.addEventListener('resize', onScrollOrResize);
 	document.addEventListener('scroll', onScrollOrResize, true);
 	document.addEventListener('click', onDocumentClick, true);
 }
+
 
 function removeEventListeners () {
 	window.removeEventListener('resize', onScrollOrResize);

@@ -2,7 +2,7 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div aria-modal="true"
 	aria-label="{title}"
-	class="dialog-backdrop {cssClass}"
+	class="dialog-backdrop {className}"
 	class:opened
 	class:draw-borders="{drawborders === 'true' || drawborders === true}"
 	bind:this="{backdropEl}"
@@ -24,7 +24,7 @@ import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 export let title = '';
 export let opened = false;
 export let drawborders = false;
-export let cssClass = '';
+export let className = '';
 export let skipFirstFocus = false;
 
 const dispatch = createEventDispatcher();

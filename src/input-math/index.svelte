@@ -1,14 +1,15 @@
 <div class="input-math-wrapper">
 	<Icon name="calculator"/>
-	<input type="text" class="input-math" autocomplete="off"
-		{id}
-		{name}
-		{title}
-		{placeholder}
+	<input
+		type="text"
+		autocomplete="off"
+		class="input-math"
+		{...$$props}
 		bind:this="{_this}"
 		bind:value="{value}"
 		on:keydown="{onkeydown}"
 		on:change="{onchange}"
+		on:focus
 		on:blur>
 </div>
 <script>
@@ -18,10 +19,7 @@ import Icon from '../icon';
 
 export let _this = undefined;
 export let value = '';
-export let id = undefined;
-export let name = undefined;
-export let title = undefined;
-export let placeholder = undefined;
+
 
 const dispatch = createEventDispatcher();
 const DECIMAL_SEPARATOR = '.';

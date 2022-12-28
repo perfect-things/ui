@@ -1,9 +1,9 @@
 <div class="datepicker-wrapper" class:open>
-	<input type="text" autocomplete="off"
-		{id}
-		{name}
-		{title}
+	<input
+		type="text"
+		autocomplete="off"
 		{placeholder}
+		{...$$props}
 		on:changeDate="{onchange}"
 		on:input="{oninput}"
 		on:keydown|capture="{onkeydown}"
@@ -21,9 +21,6 @@ import Icon, { icons } from '../icon';
 
 const FORMAT = 'yyyy-mm-dd';
 export let value = '';
-export let id = undefined;
-export let name = undefined;
-export let title = undefined;
 export let placeholder = FORMAT;
 export let elevate = false;
 export let showOnFocus = false;

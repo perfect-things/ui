@@ -19,6 +19,17 @@ export function animate (el, from, to, _options = {}) {
 }
 
 
+const pluckOne = (obj, key) => obj[key];
+
+export function pluck (obj, keys) {
+	if (!obj) return {};
+	if (!Array.isArray(keys)) return pluckOne(obj, keys);
+	const newObj = {};
+	keys.forEach(key => newObj[key] = obj[key]);
+	return newObj;
+}
+
+
 export const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
 	'select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]';
 

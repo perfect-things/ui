@@ -1,6 +1,9 @@
 <div class="input-password-wrapper" class:visible>
 	<div class="input-password-row" class:visible>
-		<input type="password" class="input-password" autocomplete="off"
+		<input
+			type="password"
+			class="input-password"
+			autocomplete="off"
 			{id}
 			{name}
 			{title}
@@ -9,6 +12,7 @@
 			bind:value="{value}"
 			on:keydown
 			on:change
+			on:focus
 			on:blur>
 		<Button link icon="{visible ? 'eyeOff' : 'eye'}" on:click="{toggle}"/>
 	</div>
@@ -53,7 +57,6 @@ let percent = 0;
 let strengthInfoText = '';
 let colorClass = '';
 let inputEl;
-
 
 
 $: {

@@ -13,7 +13,7 @@
 	padding: 1.5px;
 }
 
-.toggle[disabled] { pointer-events: none; opacity: 0.6; }
+.toggle:has(:disabled) { pointer-events: none; opacity: 0.6; }
 
 .toggle:focus {
 	outline: 1px solid transparent;

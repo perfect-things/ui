@@ -1,9 +1,6 @@
-<div class="select-wrapper" class:disabled>
+<div class="select-wrapper">
 	<select
-		{id}
-		{name}
-		{title}
-		{disabled}
+		{...props}
 		bind:value="{value}"
 		bind:this="{el}"
 		on:change>
@@ -26,14 +23,13 @@
 </div>
 
 <script>
+import { pluck } from '../util';
 export let value = undefined;
-export let id = undefined;
-export let name = undefined;
-export let title = undefined;
 export let placeholder = undefined;
 export let items = [];
-export let disabled = undefined;
 let el, groups = [];
+
+$:props = pluck($$props, ['id', 'title', 'disabled', 'placeholder', 'required']);
 
 $: {
 	let nogroup = [];

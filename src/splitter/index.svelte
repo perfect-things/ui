@@ -35,6 +35,7 @@ export function setSize (to, withAnimation = false) {
 	updateSize(box, withAnimation);
 }
 
+
 function init () {
 	targetEl = el.previousElementSibling;
 	parentEl = el.parentElement;
@@ -56,6 +57,7 @@ function init () {
 	else el.style.width = size + 'px';
 	if (el && el.nextElementSibling) el.nextElementSibling.style.overflow = 'auto';
 }
+
 
 function updateSize (box, withAnimation = false) {
 	let originalTargetTransition, originalElTransition;

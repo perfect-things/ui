@@ -52,6 +52,7 @@ function _show (e) {
 	requestAnimationFrame(addTooltipEvents);
 }
 
+
 function preventHiding () {
 	noHide = true;
 }
@@ -61,6 +62,7 @@ function _hide () {
 	visible = false;
 	removeTooltipEvents();
 }
+
 
 /**
  * Hide tooltip only with the corresponding event:
