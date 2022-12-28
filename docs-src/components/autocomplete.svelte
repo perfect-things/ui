@@ -2,7 +2,8 @@
 <div class="docs-layout">
 	<div class="docs-column">
 		<h3>Normal</h3>
-		<Autocomplete data="{autocompleteData}"
+		<Autocomplete
+			data="{autocompleteData}"
 			on:change="{onChange}"
 			bind:value="{autocompleteValue}" />
 
@@ -10,7 +11,11 @@
 		<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
 		<h3>Allow arbitrary values</h3>
-		<Autocomplete data="{autocompleteData}" placeholder="Type to filter" allowNew="true" bind:value="{autocompleteValue}" />
+		<Autocomplete
+			data="{autocompleteData}"
+			placeholder="Type to filter"
+			allowNew="true"
+			bind:value="{autocompleteValue}" />
 
 		<h3>Show on focus</h3>
 		<Autocomplete showOnFocus="true" data="{autocompleteData}" bind:value="{autocompleteValue}" />
