@@ -1,6 +1,9 @@
 {
 	"root": true,
-	"extends": "eslint:recommended",
+	"extends": [
+		"eslint:recommended",
+		"plugin:svelte/recommended"
+	],
 	"env": {
 		"browser": true,
 		"es2022": true
@@ -9,9 +12,8 @@
 		"sourceType": "module",
 		"ecmaVersion": "latest"
 	},
-	"plugins": [ "svelte3" ],
 	"overrides": [
-		{ "files": "*.svelte", "processor": "svelte3/svelte3" }
+		{ "files": "*.svelte", "parser": "svelte-eslint-parser" }
 	],
 	"rules": {
 		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
@@ -30,13 +32,8 @@
 		"no-unused-vars": "error",
 		"no-trailing-spaces": "error",
 		"no-multi-spaces": ["error", { "ignoreEOLComments": true }],
-		"key-spacing": [
-			"error",
-			{
-				"beforeColon": false,
-				"afterColon": true,
-				"mode": "strict"
-			}
+		"key-spacing": [ "error",
+			{ "beforeColon": false, "afterColon": true, "mode": "strict" }
 		],
 		"no-shadow": "error",
 		"eol-last": 1,
@@ -44,6 +41,8 @@
 		"no-console": 0,
 		"comma-dangle": 0,
 		"no-cond-assign": 0,
-		"prefer-promise-reject-errors": "error"
+		"no-inner-declarations": 0,
+		"prefer-promise-reject-errors": "error",
+		"svelte/no-at-html-tags": 0
 	}
 }

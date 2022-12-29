@@ -1,4 +1,3 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="autocomplete {className}" class:open="{opened}" bind:this="{el}">
 	<Icon name="dots"/>
 	<input
@@ -28,6 +27,7 @@
 				{/if}
 				{#if group.items}
 					{#each group.items as item}
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<div
 							class="autocomplete-list-item"
 							class:selected="{item.idx === highlightIndex}"
@@ -38,6 +38,7 @@
 				{/if}
 			{/each}
 		{:else if allowNew === true || allowNew === 'true' }
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="autocomplete-list-item selected"
 				on:click="{() => onclick({ name: inputEl && inputEl.value || '' })}">
 					Create: <b>{inputEl && inputEl.value || ''}</b>
@@ -65,7 +66,6 @@ $:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'req
 
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
-let initial = true;
 let opened = false;
 let hasEdited = false;
 let mouseOverList = false;
@@ -91,7 +91,6 @@ afterUpdate(() => {
 			data = data.map(item => ({ name: item }));
 		}
 		filter();
-		initial = false;
 		setInitialValue();
 	}
 });

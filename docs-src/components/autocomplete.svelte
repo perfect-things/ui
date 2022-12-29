@@ -1,8 +1,9 @@
 <h2>Autocomplete</h2>
-<div class="docs-autocomplete-layout">
-	<div class="docs-autocomplete-column">
+<div class="docs-layout">
+	<div class="docs-column">
 		<h3>Normal</h3>
-		<Autocomplete data="{autocompleteData}"
+		<Autocomplete
+			data="{autocompleteData}"
 			on:change="{onChange}"
 			bind:value="{autocompleteValue}" />
 
@@ -10,7 +11,11 @@
 		<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
 		<h3>Allow arbitrary values</h3>
-		<Autocomplete data="{autocompleteData}" placeholder="Type to filter" allowNew="true" bind:value="{autocompleteValue}" />
+		<Autocomplete
+			data="{autocompleteData}"
+			placeholder="Type to filter"
+			allowNew="true"
+			bind:value="{autocompleteValue}" />
 
 		<h3>Show on focus</h3>
 		<Autocomplete showOnFocus="true" data="{autocompleteData}" bind:value="{autocompleteValue}" />
@@ -26,7 +31,7 @@
 		<h3>In a container with <em>overflow: hidden</em></h3>
 		<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
 			property must be set on the component.</p>
-		<div class="docs-autocomplete-overflow">
+		<div class="docs-overflow-box">
 			<small>overflow: hidden</small>
 			<Autocomplete data="{autocompleteData}" elevate="true" bind:value="{autocompleteValue}" />
 		</div>
@@ -35,7 +40,7 @@
 			(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
 
 	</div>
-	<div class="docs-autocomplete-column">
+	<div class="docs-column">
 		<h2>Selected value: </h2>
 		<pre>{JSON.stringify(autocompleteValue || {}, null, 2)}</pre>
 	</div>

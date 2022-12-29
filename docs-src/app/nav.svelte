@@ -4,6 +4,9 @@
 		<ActualToggle value="true" on:change="{switchColorMode}"/>
 	</div>
 
+	<h3>Intro</h3>
+	<NavItem name="Get Started" {active} />
+
 	<h3>Form Controls</h3>
 	<NavItem name="Autocomplete" {active} />
 	<NavItem name="Button" {active} />
@@ -40,6 +43,7 @@
 <script>
 import NavItem from './nav-item';
 import ActualToggle from '../../src/toggle';
+import GetStarted from './start';
 
 import Button from '../components/button';
 import ButtonGroup from '../components/button-group';
@@ -70,6 +74,7 @@ import Table from '../components/table';
 import Tree from '../components/tree';
 
 const components = {
+	GetStarted,
 	Autocomplete,
 	Button,
 	ButtonGroup,
@@ -97,14 +102,13 @@ const components = {
 	Tree,
 };
 
-let active = location.hash.substr(1) || 'Button';
+let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
 
 function onhashchange () {
 	active = location.hash.substr(1);
 	component = components[active];
 }
-
 
 function switchColorMode (e) {
 	document.documentElement.className = e.detail ? 'theme-dark' : 'theme-light';

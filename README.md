@@ -10,10 +10,6 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] rename `cssClass` to `className`
-- [x] pass-thru props
-  - [x] 'data-' is passed correctly too
-
 - [ ] suicis color palette
   - reduce text & bg colors
   - text-primary, secondary
