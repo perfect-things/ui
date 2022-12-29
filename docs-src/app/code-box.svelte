@@ -1,4 +1,4 @@
-<code class="docs-code">
+<code>
 	{@html html}
 </code>
 

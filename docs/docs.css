@@ -19,8 +19,6 @@ body * { box-sizing: inherit; }
 	flex-flow: row;
 }
 
-h2 { margin: 0; }
-h3:not(:first-of-type) { margin-top: 50px; }
 a { color: inherit; }
 
 aside {
@@ -37,10 +35,18 @@ main {
 	overflow-y: auto;
 }
 
-main > h2 { margin-bottom: 1.2em; }
+h1,
+h2,
+h3 { font-weight: 300; margin: 2em 0 1.2em; }
 
+h1:first-child,
+h2:first-child,
+h3:first-of-type { margin-top: 0; }
+
+ul,
 p { line-height: 1.6; }
 em { color: var(--ui-color-accent); font-style: normal; }
+
 
 hr {
 	width: 100%;
@@ -76,11 +82,15 @@ hr {
 	position: relative;
 }
 
-.docs-code {
+code {
 	display: block;
 	width: 100%;
 	padding: 1em;
+	line-height: 2;
 	background-color: var(--ui-color-background-dark-2);
+	margin-block: 1em;
+	white-space: pre;
+	overflow: auto;
 }
 
 nav {

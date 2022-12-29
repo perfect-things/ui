@@ -10,7 +10,7 @@
 		on:click={item.items ? toggle : undefined}>
 
 		{#each indents as indent}
-			<div class="tree-indent"></div>
+			<div class="tree-indent indent-{indent}"></div>
 		{/each}
 		<div class="tree-icon tree-{nodeType}-icon"></div>
 		<div class="tree-label">{item.name}</div>

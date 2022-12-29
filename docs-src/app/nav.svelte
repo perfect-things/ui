@@ -5,7 +5,6 @@
 	</div>
 
 	<h3>Intro</h3>
-	<NavItem name="About" {active} />
 	<NavItem name="Get Started" {active} />
 
 	<h3>Form Controls</h3>
@@ -44,7 +43,6 @@
 <script>
 import NavItem from './nav-item';
 import ActualToggle from '../../src/toggle';
-import About from './about';
 import GetStarted from './start';
 
 import Button from '../components/button';
@@ -76,7 +74,6 @@ import Table from '../components/table';
 import Tree from '../components/tree';
 
 const components = {
-	About,
 	GetStarted,
 	Autocomplete,
 	Button,
@@ -105,14 +102,13 @@ const components = {
 	Tree,
 };
 
-let active = location.hash.substr(1) || 'About';
+let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
 
 function onhashchange () {
 	active = location.hash.substr(1);
 	component = components[active];
 }
-
 
 function switchColorMode (e) {
 	document.documentElement.className = e.detail ? 'theme-dark' : 'theme-light';
