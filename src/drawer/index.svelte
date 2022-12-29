@@ -1,18 +1,17 @@
 {#if isVisible}
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div class="drawer" tabindex="-1"
 		use:docclick
 		bind:this="{el}"
 		in:fly="{{ x: ANIMATION_SPEED, duration: 200 }}"
 		out:fly="{{ x: ANIMATION_SPEED, duration: 300 }}"
 	>
-		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<header class="drawer-header" bind:this="{headerEl}" >
 			<h1>{title}</h1>
 			<Button round text icon="close" className="btn-close" title="Close" on:click="{close}"/>
 		</header>
 		<div class="drawer-content"><slot></slot></div>
-		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
 	</div>
 {/if}

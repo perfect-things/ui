@@ -1,18 +1,17 @@
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div aria-modal="true"
 	aria-label="{title}"
 	class="dialog-backdrop {className}"
 	class:opened
 	class:draw-borders="{drawborders === 'true' || drawborders === true}"
 	bind:this="{backdropEl}"
-	on:keydown
 	on:click="{onBackdropClick}">
 	<div class="dialog" bind:this="{dialogEl}">
-		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<h1 class="dialog-header">{title}</h1>
 		<div class="dialog-content" bind:this="{contentEl}"><slot></slot></div>
 		<div class="dialog-footer" bind:this="{footerEl}"><slot name="footer"></slot></div>
-		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
 	</div>
 </div>
