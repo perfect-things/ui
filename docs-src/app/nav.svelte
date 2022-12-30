@@ -1,6 +1,6 @@
 <nav>
 	<div class="nav-toolbar">
-		<span>Theme:</span>
+		<span>Dark mode:</span>
 		<ActualToggle value="true" on:change="{switchColorMode}"/>
 	</div>
 

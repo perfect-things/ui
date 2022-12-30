@@ -33,14 +33,14 @@
 
 <hr>
 <h3>API</h3>
-<Table>
+<Table className="api-table">
 	<thead>
 		<tr><th>Attribute</th><th>Value</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><td>id</td><td>(string)</td><td>assign ID to the underlying button</td></tr>
-		<tr><td>title</td><td>(string)</td><td>assign title to the underlying button</td></tr>
-		<tr><td>submit</td><td>(string) "true"|"false"</td><td>if "true" button type is set to "submit", otherwise it's "button"</td></tr>
+		<tr><td>id</td><td>string</td><td>assign ID to the underlying button</td></tr>
+		<tr><td>title</td><td>string</td><td>assign title to the underlying button</td></tr>
+		<tr><td>submit</td><td>string "true"|"false"</td><td>If "true" button type is set to "submit", otherwise it's "button"</td></tr>
 
 		<tr><td>disabled</td><td>-</td><td>Makes the button disabled</td></tr>
 		<tr><td>round</td><td>-</td><td>Makes the button round</td></tr>
@@ -53,8 +53,8 @@
 		<tr><td>warning</td><td>-</td><td>Button type: warning</td></tr>
 		<tr><td>danger</td><td>-</td><td>Button type: danger</td></tr>
 
-		<tr><td>icon</td><td>(string) icon name</td><td>Adds an icon to the button (see <a href="#Icon">icons</a> section for icon names)</td></tr>
-		<tr><td>on:click</td><td>(function)</td><td>The standard svelte function assignment by reference.</td></tr>
+		<tr><td>icon</td><td>string icon name</td><td>Adds an icon to the button (see <a href="#Icon">icons</a> section for icon names)</td></tr>
+		<tr><td>on:click</td><td>function</td><td>The standard svelte function assignment by reference.</td></tr>
 	</tbody>
 </Table>
 

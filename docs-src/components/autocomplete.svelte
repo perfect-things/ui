@@ -46,8 +46,77 @@
 	</div>
 </div>
 
+<hr>
+<h3>Example instantiation</h3>
+<code>
+&lt;Autocomplete
+    data="&lbrace; autocompleteData &rbrace;"
+    on:change="&lbrace; onChange &rbrace;"
+    bind:value="&lbrace; autocompleteValue &rbrace;" /&gt;
+
+&lt;script&gt;
+const autocompleteData = &lbrace;
+    &lbrace; id: 1, name: 'Alpha', group: 'Group 1' &rbrace;,
+    &lbrace; id: 2, name: 'Beta', group: 'Group 1' &rbrace;,
+    &lbrace; id: 3, name: 'Gamma', group: 'Group 2' &rbrace;,
+    &lbrace; id: 4, name: 'Delta', group: 'Group 2' &rbrace;,
+&rbrace;;
+let autocompleteValue = autocompleteData[1];
+
+function onChange (e) &lbrace;
+    const &lbrace; value, oldValue &rbrace; = e.detail;
+    console.log(&lbrace; value, oldValue &rbrace;);
+&rbrace;
+&lt;/script&gt;
+</code>
+
+<hr>
+<h3>API</h3>
+<Table className="api-table">
+	<thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
+	<tbody>
+		<tr><td>id</td><td><i>string</i></td><td>Assign ID to the underlying input</td></tr>
+		<tr><td>title</td><td><i>string</i></td><td>Assign title to the underlying input</td></tr>
+
+		<tr><td>name</td><td><i>string</i></td><td>Assign name to the underlying input</td></tr>
+		<tr><td>placeholder</td><td><i>string</i></td><td>Shows placeholder text</td></tr>
+		<tr><td>required</td><td>-</td><td>Marks input as required for form submission</td></tr>
+		<tr><td>disabled</td><td>-</td><td>Makes the input disabled</td></tr>
+
+		<tr>
+			<td>data</td>
+			<td><i>array</i>, <em>required</em></td>
+			<td>An array of strings or objects in the following format:
+				<code>&lbrace; name:string, id?: string | number, group?: string &rbrace;</code>
+				(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique)
+			</td>
+		</tr>
+		<tr><td>allowNew</td><td><i>string</i>, "true" | "false"<br>(default to false)</td><td>whether to allow arbitrary values (that don't exist in the list)</td></tr>
+		<tr><td>className</td><td><i>string</i></td><td>Additional css class name to be added to the component.</td></tr>
+		<tr><td>clearOnEsc</td><td><i>string</i>, "true" | "false"<br>(default to false)</td><td>If <i>true</i> - the input will be cleared when Escape is pressed.</td></tr>
+		<tr><td>elevate</td><td><i>string</i>, "true" | "false"<br>(default to false)</td><td>If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it's not hidden under some elements (see example above).</td></tr>
+		<tr><td>showOnFocus</td><td><i>string</i>, "true" | "false"<br>(default to false)</td><td>If <i>true</i> - the popup will be automatically open when the input gets focus (as opposed to, when the user starts typing).</td></tr>
+		<tr>
+			<td>showAllInitially</td>
+			<td><i>string</i>, "true" | "false"<br>(default to true)</td>
+			<td>
+				When the input has a value - the list in the poput is filtered by the input value.<br>
+				If this option is set to true (default) - when user navigates to the input (with a value)<br>
+				or clicks such an input - the poput initially will show all items unfiltered, and only once<br>
+				user starts typing - the list will be filtered again.<br>
+				If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered.
+			</td>
+		</tr>
+		<tr><td>value</td><td><i>string</i> | <i>number</i></td><td>initial value of the input</td></tr>
+		<tr><td>on:change</td><td><i>function</i></td><td>Triggered when value changes.</td></tr>
+		<tr><td>on:keydown</td><td><i>function</i></td><td>Triggered when a key is down.</td></tr>
+	</tbody>
+</Table>
+
+
+
 <script>
-import { Autocomplete } from '../../src';
+import { Autocomplete, Table } from '../../src';
 
 const autocompleteData = [
 	{ id: 1, name: 'Alpha', group: 'Group 1' },
@@ -100,7 +169,7 @@ const autocompleteDataSimplest = [
 	'Theta',
 	'Iota',
 	'Kappa',
-	'Lambda is the last item in Group 2',
+	'Lambda is the last item in this list',
 ];
 let autocompleteValueSimplest = 'Gamma';
 

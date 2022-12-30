@@ -92,3 +92,14 @@ code {
 	white-space: pre;
 	overflow: auto;
 }
+
+.api-table { height: unset; }
+.api-table .table { table-layout: fixed; }
+
+.api-table tr td { vertical-align: top; }
+
+.api-table tr th:first-child,
+.api-table tr td:first-child { width: 150px; white-space: nowrap; }
+
+.api-table tr th:nth-child(2),
+.api-table tr td:nth-child(2) { width: 200px; }
