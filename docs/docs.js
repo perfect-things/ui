@@ -23007,111 +23007,111 @@ function create_default_slot$5(ctx) {
 			i23.textContent = "function";
 			td47 = element("td");
 			td47.textContent = "Triggered when a key is down.";
-			add_location(th0, file$h, 77, 12, 2550);
-			add_location(th1, file$h, 77, 30, 2568);
-			add_location(th2, file$h, 77, 44, 2582);
-			add_location(tr0, file$h, 77, 8, 2546);
-			add_location(thead, file$h, 77, 1, 2539);
-			add_location(td0, file$h, 79, 6, 2631);
-			add_location(i0, file$h, 79, 21, 2646);
-			add_location(td1, file$h, 79, 17, 2642);
-			add_location(td2, file$h, 79, 39, 2664);
-			add_location(tr1, file$h, 79, 2, 2627);
-			add_location(td3, file$h, 80, 6, 2718);
-			add_location(i1, file$h, 80, 24, 2736);
-			add_location(td4, file$h, 80, 20, 2732);
-			add_location(td5, file$h, 80, 42, 2754);
-			add_location(tr2, file$h, 80, 2, 2714);
-			add_location(td6, file$h, 82, 6, 2812);
-			add_location(i2, file$h, 82, 23, 2829);
-			add_location(td7, file$h, 82, 19, 2825);
-			add_location(td8, file$h, 82, 41, 2847);
-			add_location(tr3, file$h, 82, 2, 2808);
-			add_location(td9, file$h, 83, 6, 2903);
-			add_location(i3, file$h, 83, 30, 2927);
-			add_location(td10, file$h, 83, 26, 2923);
-			add_location(td11, file$h, 83, 48, 2945);
-			add_location(tr4, file$h, 83, 2, 2899);
-			add_location(td12, file$h, 84, 6, 2988);
-			add_location(td13, file$h, 84, 23, 3005);
-			add_location(td14, file$h, 84, 33, 3015);
-			add_location(tr5, file$h, 84, 2, 2984);
-			add_location(td15, file$h, 85, 6, 3079);
-			add_location(td16, file$h, 85, 23, 3096);
-			add_location(td17, file$h, 85, 33, 3106);
-			add_location(tr6, file$h, 85, 2, 3075);
-			add_location(td18, file$h, 88, 3, 3156);
-			add_location(i4, file$h, 89, 7, 3177);
-			add_location(em, file$h, 89, 21, 3191);
-			add_location(td19, file$h, 89, 3, 3173);
-			add_location(code, file$h, 91, 4, 3281);
-			add_location(i5, file$h, 92, 5, 3367);
-			add_location(i6, file$h, 92, 43, 3405);
-			add_location(i7, file$h, 92, 66, 3428);
-			add_location(td20, file$h, 90, 3, 3217);
-			add_location(tr7, file$h, 87, 2, 3148);
-			add_location(td21, file$h, 95, 6, 3479);
-			add_location(i8, file$h, 95, 27, 3500);
-			add_location(br0, file$h, 95, 58, 3531);
-			add_location(td22, file$h, 95, 23, 3496);
-			add_location(td23, file$h, 95, 85, 3558);
-			add_location(tr8, file$h, 95, 2, 3475);
-			add_location(td24, file$h, 96, 6, 3643);
-			add_location(i9, file$h, 96, 28, 3665);
-			add_location(td25, file$h, 96, 24, 3661);
-			add_location(td26, file$h, 96, 46, 3683);
-			add_location(tr9, file$h, 96, 2, 3639);
-			add_location(td27, file$h, 97, 6, 3759);
-			add_location(i10, file$h, 97, 29, 3782);
-			add_location(br1, file$h, 97, 60, 3813);
-			add_location(td28, file$h, 97, 25, 3778);
-			add_location(i11, file$h, 97, 94, 3847);
-			add_location(td29, file$h, 97, 87, 3840);
-			add_location(tr10, file$h, 97, 2, 3755);
-			add_location(td30, file$h, 98, 6, 3927);
-			add_location(i12, file$h, 98, 26, 3947);
-			add_location(br2, file$h, 98, 57, 3978);
-			add_location(td31, file$h, 98, 22, 3943);
-			add_location(i13, file$h, 98, 91, 4012);
-			add_location(i14, file$h, 98, 141, 4062);
-			add_location(td32, file$h, 98, 84, 4005);
-			add_location(tr11, file$h, 98, 2, 3923);
-			add_location(td33, file$h, 99, 6, 4158);
-			add_location(i15, file$h, 99, 30, 4182);
-			add_location(br3, file$h, 99, 61, 4213);
-			add_location(td34, file$h, 99, 26, 4178);
-			add_location(i16, file$h, 99, 95, 4247);
-			add_location(td35, file$h, 99, 88, 4240);
-			add_location(tr12, file$h, 99, 2, 4154);
-			add_location(td36, file$h, 101, 3, 4390);
-			add_location(i17, file$h, 102, 7, 4423);
-			add_location(br4, file$h, 102, 38, 4454);
-			add_location(td37, file$h, 102, 3, 4419);
-			add_location(br5, file$h, 104, 86, 4575);
-			add_location(br6, file$h, 105, 93, 4673);
-			add_location(br7, file$h, 106, 95, 4773);
-			add_location(br8, file$h, 107, 57, 4835);
-			add_location(i18, file$h, 108, 28, 4868);
-			add_location(i19, file$h, 108, 55, 4895);
-			add_location(td38, file$h, 103, 3, 4484);
-			add_location(tr13, file$h, 100, 2, 4382);
-			add_location(td39, file$h, 111, 6, 4968);
-			add_location(i20, file$h, 111, 24, 4986);
-			add_location(i21, file$h, 111, 40, 5002);
-			add_location(td40, file$h, 111, 20, 4982);
-			add_location(td41, file$h, 111, 58, 5020);
-			add_location(tr14, file$h, 111, 2, 4964);
-			add_location(td42, file$h, 112, 6, 5067);
-			add_location(i22, file$h, 112, 28, 5089);
-			add_location(td43, file$h, 112, 24, 5085);
-			add_location(td44, file$h, 112, 48, 5109);
-			add_location(tr15, file$h, 112, 2, 5063);
-			add_location(td45, file$h, 113, 6, 5159);
-			add_location(i23, file$h, 113, 29, 5182);
-			add_location(td46, file$h, 113, 25, 5178);
-			add_location(td47, file$h, 113, 49, 5202);
-			add_location(tr16, file$h, 113, 2, 5155);
-			add_location(tbody, file$h, 78, 1, 2617);
+			add_location(th0, file$h, 77, 12, 2559);
+			add_location(th1, file$h, 77, 30, 2577);
+			add_location(th2, file$h, 77, 44, 2591);
+			add_location(tr0, file$h, 77, 8, 2555);
+			add_location(thead, file$h, 77, 1, 2548);
+			add_location(td0, file$h, 79, 6, 2640);
+			add_location(i0, file$h, 79, 21, 2655);
+			add_location(td1, file$h, 79, 17, 2651);
+			add_location(td2, file$h, 79, 39, 2673);
+			add_location(tr1, file$h, 79, 2, 2636);
+			add_location(td3, file$h, 80, 6, 2727);
+			add_location(i1, file$h, 80, 24, 2745);
+			add_location(td4, file$h, 80, 20, 2741);
+			add_location(td5, file$h, 80, 42, 2763);
+			add_location(tr2, file$h, 80, 2, 2723);
+			add_location(td6, file$h, 82, 6, 2821);
+			add_location(i2, file$h, 82, 23, 2838);
+			add_location(td7, file$h, 82, 19, 2834);
+			add_location(td8, file$h, 82, 41, 2856);
+			add_location(tr3, file$h, 82, 2, 2817);
+			add_location(td9, file$h, 83, 6, 2912);
+			add_location(i3, file$h, 83, 30, 2936);
+			add_location(td10, file$h, 83, 26, 2932);
+			add_location(td11, file$h, 83, 48, 2954);
+			add_location(tr4, file$h, 83, 2, 2908);
+			add_location(td12, file$h, 84, 6, 2997);
+			add_location(td13, file$h, 84, 23, 3014);
+			add_location(td14, file$h, 84, 33, 3024);
+			add_location(tr5, file$h, 84, 2, 2993);
+			add_location(td15, file$h, 85, 6, 3088);
+			add_location(td16, file$h, 85, 23, 3105);
+			add_location(td17, file$h, 85, 33, 3115);
+			add_location(tr6, file$h, 85, 2, 3084);
+			add_location(td18, file$h, 88, 3, 3165);
+			add_location(i4, file$h, 89, 7, 3186);
+			add_location(em, file$h, 89, 21, 3200);
+			add_location(td19, file$h, 89, 3, 3182);
+			add_location(code, file$h, 91, 4, 3290);
+			add_location(i5, file$h, 92, 5, 3376);
+			add_location(i6, file$h, 92, 43, 3414);
+			add_location(i7, file$h, 92, 66, 3437);
+			add_location(td20, file$h, 90, 3, 3226);
+			add_location(tr7, file$h, 87, 2, 3157);
+			add_location(td21, file$h, 95, 6, 3488);
+			add_location(i8, file$h, 95, 27, 3509);
+			add_location(br0, file$h, 95, 58, 3540);
+			add_location(td22, file$h, 95, 23, 3505);
+			add_location(td23, file$h, 95, 85, 3567);
+			add_location(tr8, file$h, 95, 2, 3484);
+			add_location(td24, file$h, 96, 6, 3652);
+			add_location(i9, file$h, 96, 28, 3674);
+			add_location(td25, file$h, 96, 24, 3670);
+			add_location(td26, file$h, 96, 46, 3692);
+			add_location(tr9, file$h, 96, 2, 3648);
+			add_location(td27, file$h, 97, 6, 3768);
+			add_location(i10, file$h, 97, 29, 3791);
+			add_location(br1, file$h, 97, 60, 3822);
+			add_location(td28, file$h, 97, 25, 3787);
+			add_location(i11, file$h, 97, 94, 3856);
+			add_location(td29, file$h, 97, 87, 3849);
+			add_location(tr10, file$h, 97, 2, 3764);
+			add_location(td30, file$h, 98, 6, 3936);
+			add_location(i12, file$h, 98, 26, 3956);
+			add_location(br2, file$h, 98, 57, 3987);
+			add_location(td31, file$h, 98, 22, 3952);
+			add_location(i13, file$h, 98, 91, 4021);
+			add_location(i14, file$h, 98, 141, 4071);
+			add_location(td32, file$h, 98, 84, 4014);
+			add_location(tr11, file$h, 98, 2, 3932);
+			add_location(td33, file$h, 99, 6, 4167);
+			add_location(i15, file$h, 99, 30, 4191);
+			add_location(br3, file$h, 99, 61, 4222);
+			add_location(td34, file$h, 99, 26, 4187);
+			add_location(i16, file$h, 99, 95, 4256);
+			add_location(td35, file$h, 99, 88, 4249);
+			add_location(tr12, file$h, 99, 2, 4163);
+			add_location(td36, file$h, 101, 3, 4399);
+			add_location(i17, file$h, 102, 7, 4432);
+			add_location(br4, file$h, 102, 38, 4463);
+			add_location(td37, file$h, 102, 3, 4428);
+			add_location(br5, file$h, 104, 86, 4584);
+			add_location(br6, file$h, 105, 93, 4682);
+			add_location(br7, file$h, 106, 95, 4782);
+			add_location(br8, file$h, 107, 57, 4844);
+			add_location(i18, file$h, 108, 28, 4877);
+			add_location(i19, file$h, 108, 55, 4904);
+			add_location(td38, file$h, 103, 3, 4493);
+			add_location(tr13, file$h, 100, 2, 4391);
+			add_location(td39, file$h, 111, 6, 4977);
+			add_location(i20, file$h, 111, 24, 4995);
+			add_location(i21, file$h, 111, 40, 5011);
+			add_location(td40, file$h, 111, 20, 4991);
+			add_location(td41, file$h, 111, 58, 5029);
+			add_location(tr14, file$h, 111, 2, 4973);
+			add_location(td42, file$h, 112, 6, 5076);
+			add_location(i22, file$h, 112, 28, 5098);
+			add_location(td43, file$h, 112, 24, 5094);
+			add_location(td44, file$h, 112, 48, 5118);
+			add_location(tr15, file$h, 112, 2, 5072);
+			add_location(td45, file$h, 113, 6, 5168);
+			add_location(i23, file$h, 113, 29, 5191);
+			add_location(td46, file$h, 113, 25, 5187);
+			add_location(td47, file$h, 113, 49, 5211);
+			add_location(tr16, file$h, 113, 2, 5164);
+			add_location(tbody, file$h, 78, 1, 2626);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, thead, anchor);
@@ -23362,18 +23362,16 @@ function create_fragment$h(ctx) {
 	let t44;
 	let hr1;
 	let t45;
-	let api;
-	let t46;
 	let h38;
-	let t48;
+	let t47;
 	let table;
 	let current;
 
 	function autocomplete0_value_binding(value) {
-		/*autocomplete0_value_binding*/ ctx[7](value);
+		/*autocomplete0_value_binding*/ ctx[6](value);
 	}
 
-	let autocomplete0_props = { data: /*autocompleteData*/ ctx[4] };
+	let autocomplete0_props = { data: /*autocompleteData*/ ctx[3] };
 
 	if (/*autocompleteValue*/ ctx[0] !== void 0) {
 		autocomplete0_props.value = /*autocompleteValue*/ ctx[0];
@@ -23388,12 +23386,12 @@ function create_fragment$h(ctx) {
 	autocomplete0.$on("change", onChange);
 
 	function autocomplete1_value_binding(value) {
-		/*autocomplete1_value_binding*/ ctx[8](value);
+		/*autocomplete1_value_binding*/ ctx[7](value);
 	}
 
 	let autocomplete1_props = {
 		disabled: true,
-		data: /*autocompleteData*/ ctx[4]
+		data: /*autocompleteData*/ ctx[3]
 	};
 
 	if (/*autocompleteValue*/ ctx[0] !== void 0) {
@@ -23408,11 +23406,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete1, 'value', autocomplete1_value_binding, /*autocompleteValue*/ ctx[0]));
 
 	function autocomplete2_value_binding(value) {
-		/*autocomplete2_value_binding*/ ctx[9](value);
+		/*autocomplete2_value_binding*/ ctx[8](value);
 	}
 
 	let autocomplete2_props = {
-		data: /*autocompleteData*/ ctx[4],
+		data: /*autocompleteData*/ ctx[3],
 		placeholder: "Type to filter",
 		allowNew: "true"
 	};
@@ -23429,12 +23427,12 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete2, 'value', autocomplete2_value_binding, /*autocompleteValue*/ ctx[0]));
 
 	function autocomplete3_value_binding(value) {
-		/*autocomplete3_value_binding*/ ctx[10](value);
+		/*autocomplete3_value_binding*/ ctx[9](value);
 	}
 
 	let autocomplete3_props = {
 		showOnFocus: "true",
-		data: /*autocompleteData*/ ctx[4]
+		data: /*autocompleteData*/ ctx[3]
 	};
 
 	if (/*autocompleteValue*/ ctx[0] !== void 0) {
@@ -23449,11 +23447,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete3, 'value', autocomplete3_value_binding, /*autocompleteValue*/ ctx[0]));
 
 	function autocomplete4_value_binding(value) {
-		/*autocomplete4_value_binding*/ ctx[11](value);
+		/*autocomplete4_value_binding*/ ctx[10](value);
 	}
 
 	let autocomplete4_props = {
-		data: /*autocompleteDataSimple*/ ctx[5],
+		data: /*autocompleteDataSimple*/ ctx[4],
 		placeholder: "Type to filter"
 	};
 
@@ -23469,11 +23467,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete4, 'value', autocomplete4_value_binding, /*autocompleteValueSimple*/ ctx[1]));
 
 	function autocomplete5_value_binding(value) {
-		/*autocomplete5_value_binding*/ ctx[12](value);
+		/*autocomplete5_value_binding*/ ctx[11](value);
 	}
 
 	let autocomplete5_props = {
-		data: /*autocompleteDataSimplest*/ ctx[6],
+		data: /*autocompleteDataSimplest*/ ctx[5],
 		placeholder: "Type to filter"
 	};
 
@@ -23489,11 +23487,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete5, 'value', autocomplete5_value_binding, /*autocompleteValueSimplest*/ ctx[2]));
 
 	function autocomplete6_value_binding(value) {
-		/*autocomplete6_value_binding*/ ctx[13](value);
+		/*autocomplete6_value_binding*/ ctx[12](value);
 	}
 
 	let autocomplete6_props = {
-		data: /*autocompleteData*/ ctx[4],
+		data: /*autocompleteData*/ ctx[3],
 		elevate: "true"
 	};
 
@@ -23507,11 +23505,6 @@ function create_fragment$h(ctx) {
 		});
 
 	binding_callbacks.push(() => bind(autocomplete6, 'value', autocomplete6_value_binding, /*autocompleteValue*/ ctx[0]));
-
-	api = new Api({
-			props: { props: /*apiProps*/ ctx[3] },
-			$$inline: true
-		});
 
 	table = new Table({
 			props: {
@@ -23602,11 +23595,9 @@ function create_fragment$h(ctx) {
 			t44 = space();
 			hr1 = element("hr");
 			t45 = space();
-			create_component(api.$$.fragment);
-			t46 = space();
 			h38 = element("h3");
 			h38.textContent = "API";
-			t48 = space();
+			t47 = space();
 			create_component(table.$$.fragment);
 			add_location(h20, file$h, 0, 0, 0);
 			add_location(h30, file$h, 3, 2, 77);
@@ -23637,7 +23628,7 @@ function create_fragment$h(ctx) {
 			add_location(h37, file$h, 49, 0, 1734);
 			add_location(code, file$h, 50, 0, 1765);
 			add_location(hr1, file$h, 72, 0, 2463);
-			add_location(h38, file$h, 75, 0, 2495);
+			add_location(h38, file$h, 75, 0, 2504);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23706,10 +23697,8 @@ function create_fragment$h(ctx) {
 			insert_dev(target, t44, anchor);
 			insert_dev(target, hr1, anchor);
 			insert_dev(target, t45, anchor);
-			mount_component(api, target, anchor);
-			insert_dev(target, t46, anchor);
 			insert_dev(target, h38, anchor);
-			insert_dev(target, t48, anchor);
+			insert_dev(target, t47, anchor);
 			mount_component(table, target, anchor);
 			current = true;
 		},
@@ -23780,7 +23769,7 @@ function create_fragment$h(ctx) {
 			if ((!current || dirty & /*autocompleteValue*/ 1) && t38_value !== (t38_value = JSON.stringify(/*autocompleteValue*/ ctx[0] || {}, null, 2) + "")) set_data_dev(t38, t38_value);
 			const table_changes = {};
 
-			if (dirty & /*$$scope*/ 16384) {
+			if (dirty & /*$$scope*/ 8192) {
 				table_changes.$$scope = { dirty, ctx };
 			}
 
@@ -23795,7 +23784,6 @@ function create_fragment$h(ctx) {
 			transition_in(autocomplete4.$$.fragment, local);
 			transition_in(autocomplete5.$$.fragment, local);
 			transition_in(autocomplete6.$$.fragment, local);
-			transition_in(api.$$.fragment, local);
 			transition_in(table.$$.fragment, local);
 			current = true;
 		},
@@ -23807,7 +23795,6 @@ function create_fragment$h(ctx) {
 			transition_out(autocomplete4.$$.fragment, local);
 			transition_out(autocomplete5.$$.fragment, local);
 			transition_out(autocomplete6.$$.fragment, local);
-			transition_out(api.$$.fragment, local);
 			transition_out(table.$$.fragment, local);
 			current = false;
 		},
@@ -23831,10 +23818,8 @@ function create_fragment$h(ctx) {
 			if (detaching) detach_dev(t44);
 			if (detaching) detach_dev(hr1);
 			if (detaching) detach_dev(t45);
-			destroy_component(api, detaching);
-			if (detaching) detach_dev(t46);
 			if (detaching) detach_dev(h38);
-			if (detaching) detach_dev(t48);
+			if (detaching) detach_dev(t47);
 			destroy_component(table, detaching);
 		}
 	};
@@ -23858,14 +23843,6 @@ function onChange(e) {
 function instance$h($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Autocomplete', slots, []);
-
-	const apiProps = [
-		{
-			name: 'id',
-			type: 'string',
-			description: 'Assign ID to the underlying input'
-		}
-	];
 
 	const autocompleteData = [
 		{ id: 1, name: 'Alpha', group: 'Group 1' },
@@ -24006,8 +23983,6 @@ function instance$h($$self, $$props, $$invalidate) {
 	$$self.$capture_state = () => ({
 		Autocomplete,
 		Table,
-		API: Api,
-		apiProps,
 		autocompleteData,
 		autocompleteValue,
 		autocompleteDataSimple,
@@ -24031,7 +24006,6 @@ function instance$h($$self, $$props, $$invalidate) {
 		autocompleteValue,
 		autocompleteValueSimple,
 		autocompleteValueSimplest,
-		apiProps,
 		autocompleteData,
 		autocompleteDataSimple,
 		autocompleteDataSimplest,

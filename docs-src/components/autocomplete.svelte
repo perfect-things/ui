@@ -71,7 +71,7 @@ function onChange (e) &lbrace;
 </code>
 
 <hr>
-<API props="{apiProps}"/>
+<!-- <API props="{apiProps}"/> -->
 
 <h3>API</h3>
 <Table className="api-table">
@@ -119,11 +119,11 @@ function onChange (e) &lbrace;
 
 <script>
 import { Autocomplete, Table } from '../../src';
-import API from '../app/api';
+// import API from '../app/api';
 
-const apiProps = [
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input' },
-];
+// const apiProps = [
+// 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input' },
+// ];
 
 
 const autocompleteData = [
