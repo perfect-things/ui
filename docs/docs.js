@@ -3299,6 +3299,9 @@ function instance$R($$self, $$props, $$invalidate) {
 		} else // should create a new item
 		if (allowNew) {
 			$$invalidate(0, value = { name: inputEl.value });
+		} else // entered value does not match any record - revert
+		{
+			if (value && value.name && inputEl.value !== value.name) $$invalidate(4, inputEl.value = value.name, inputEl);
 		}
 
 		hasSetValue = true;

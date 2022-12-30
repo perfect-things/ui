@@ -10,7 +10,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [ ] BUG: autocomplete should revert when entered value is not on the list
+- [x] BUG: autocomplete should revert when entered value is not on the list
 - [ ] color palette
   - reduce text & bg colors
   - text-primary, secondary

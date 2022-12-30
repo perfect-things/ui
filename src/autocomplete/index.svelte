@@ -165,6 +165,10 @@ function selectItem () {
 	else if (allowNew) {
 		value = { name: inputEl.value };
 	}
+	// entered value does not match any record - revert
+	else {
+		if (value && value.name && inputEl.value !== value.name) inputEl.value = value.name;
+	}
 
 	hasSetValue = true;
 	dispatch('change', { value, oldValue });

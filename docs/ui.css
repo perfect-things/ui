@@ -397,15 +397,6 @@ svg { width: 24px; height: 24px; }
 	border-radius: var(--ui-border-radius-xl);
 }
 
-.button-toggle:focus-within {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
-.button-toggle .button { background: var(--ui-color-background-input); }
-.button-toggle .button input { position: absolute; top: -100%; opacity: 0; }
-.button-toggle .selected { background-color: var(--ui-color-highlight); }
-
 .button-group {
 	padding: 0 0 1px;
 	display: inline-flex;
@@ -448,6 +439,15 @@ svg { width: 24px; height: 24px; }
 	border-top-right-radius: var(--ui-border-radius-xl);
 	border-bottom-right-radius: var(--ui-border-radius-xl);
 }
+
+.button-toggle:focus-within {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+
+.button-toggle .button { background: var(--ui-color-background-input); }
+.button-toggle .button input { position: absolute; top: -100%; opacity: 0; }
+.button-toggle .selected { background-color: var(--ui-color-highlight); }
 
 .checkbox {
 	appearance: none;
