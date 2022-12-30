@@ -47,7 +47,7 @@ import &lbrace; Button &rbrace; from 'simple-ui-components-in-svelte';
 
 <p>
 	<em>*</em> <a href="#InputPassword">Password</a> is a special case component, where it works fine on its own,
-	but it has also an ability to show the password strength. For that it requires an external library
+	but it also has the ability to show the password strength. For that it requires an external library
 	<a href="https://github.com/dropbox/zxcvbn">zxcvbn</a>.<br>
 	You need to load it in your html file, e.g.:
 </p>
