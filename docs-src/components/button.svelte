@@ -32,36 +32,30 @@
 
 
 <hr>
-<h3>API</h3>
-<Table className="api-table">
-	<thead>
-		<tr><th>Attribute</th><th>Value</th><th>Description</th></tr>
-	</thead>
-	<tbody>
-		<tr><td>id</td><td>string</td><td>assign ID to the underlying button</td></tr>
-		<tr><td>title</td><td>string</td><td>assign title to the underlying button</td></tr>
-		<tr><td>submit</td><td>string "true"|"false"</td><td>If "true" button type is set to "submit", otherwise it's "button"</td></tr>
-
-		<tr><td>disabled</td><td>-</td><td>Makes the button disabled</td></tr>
-		<tr><td>round</td><td>-</td><td>Makes the button round</td></tr>
-
-		<tr><td>outline</td><td>-</td><td>Button style: outline</td></tr>
-		<tr><td>text</td><td>-</td><td>Button style: text</td></tr>
-		<tr><td>link</td><td>-</td><td>Button style: link</td></tr>
-
-		<tr><td>success</td><td>-</td><td>Button type: success</td></tr>
-		<tr><td>warning</td><td>-</td><td>Button type: warning</td></tr>
-		<tr><td>danger</td><td>-</td><td>Button type: danger</td></tr>
-
-		<tr><td>icon</td><td>string icon name</td><td>Adds an icon to the button (see <a href="#Icon">icons</a> section for icon names)</td></tr>
-		<tr><td>on:click</td><td>function</td><td>The standard svelte function assignment by reference.</td></tr>
-	</tbody>
-</Table>
+<API props="{apiProps}"/>
 
 
 <script>
-import { Button, ButtonToggle, Toggle, Table } from '../../src';
+import { Button, ButtonToggle, Toggle } from '../../src';
+import API from '../app/api';
 import CodeBox from '../app/code-box';
+
+const apiProps = [
+	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
+	{ name: 'submit', type: 'string', defalut: '"false"', options: ['"true"', '"false"'], description: 'If "true" button type is set to "submit", otherwise it\'s "button"' },
+	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
+	{ name: 'round', description: 'Makes the button round' },
+	{ name: 'outline', description: 'Button style: outline' },
+	{ name: 'text', description: 'Button style: text' },
+	{ name: 'link', description: 'Button style: link' },
+	{ name: 'success', description: 'Button type: success' },
+	{ name: 'warning', description: 'Button type: warning' },
+	{ name: 'danger', description: 'Button type: danger' },
+	{ name: 'icon', type: 'string', options: ['icon name'], description: 'Adds an icon to the button (see <a href="#Icon">icons</a> section for icon names)' },
+	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
+];
+
 
 let props = {};
 let buttonText = 'Demo button';
