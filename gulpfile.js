@@ -26,6 +26,10 @@ export function html () {
 	return src('docs-src/index.html').pipe(dest(DIST_PATH));
 }
 
+export function assets () {
+	return src(['assets/*.png', 'assets/favicon.svg']).pipe(dest(DIST_PATH));
+}
+
 export function externals () {
 	return src('node_modules/zxcvbn/dist/zxcvbn.js*').pipe(dest(DIST_PATH));
 }
@@ -111,7 +115,7 @@ function watchTask (done) {
 
 export const lint = parallel(eslint, stylelint);
 
-const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html, externals);
+const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html, assets, externals);
 export const build = series(cleanup, _build);
 export const prod = series(setProd, build);
 

@@ -1,4 +1,11 @@
-<h1>Simple UI Components in Svelte</h1>
+<header>
+	<img class="logo" src="logo.png" alt="Logo"/>
+	<h1 class="logotype">
+		<span class="small">simple</span>
+		<span>UI Components</span>
+		<span class="small">in svelte</span>
+	</h1>
+</header>
 
 <p>A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).</p>
 <ul>

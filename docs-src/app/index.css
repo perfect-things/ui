@@ -56,6 +56,32 @@ hr {
 	margin: 3em 0 2em;
 }
 
+header {
+	background: linear-gradient(#0001, #0006), url("bg.png") right;
+	background-size: cover;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: -2em -2em 2em;
+}
+
+.logo { max-width: 256px; filter: drop-shadow(0 1px 2px #0009); }
+.logotype {
+	flex: .5;
+	display: flex;
+	flex-flow: column;
+	justify-content: stretch;
+	padding-inline: 1em;
+	color: var(--ui-color-background-dark-2);
+	font-weight: 600;
+	font-size: 54px;
+	margin: -0.3em 0 0;
+	text-shadow: 0 0 20px #fffa;
+}
+.logotype .small { font-size: 32px; font-weight: 300; margin-block: -0.4em; }
+.logotype .small:last-child { margin-left: 9em; }
+
 
 .docs-layout {
 	display: flex;
