@@ -54,7 +54,7 @@ import &lbrace; Button &rbrace; from 'simple-ui-components-in-svelte';
 <code>
 	&lt;script src="zxcvbn.js"&gt;&lt;/script&gt;
 </code>
-<p>This script is available in SUICIS npm package, and can be copied over to your <i>dist</i> folder, similarly to the css in the previous example, e.g.:</p>
+<p>This script file is available in SUICIS npm package, and can be copied over to your <i>dist</i> folder, similarly to the css in the previous example, e.g.:</p>
 <code>
 "scripts": &lbrace;
     "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css && cp node_modules/simple-ui-components-in-svelte/docs/zxcvbn.js dist/zxcvbn.js"
