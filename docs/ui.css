@@ -397,6 +397,15 @@ svg { width: 24px; height: 24px; }
 	border-radius: var(--ui-border-radius-xl);
 }
 
+.button-toggle:focus-within {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+
+.button-toggle .button { background: var(--ui-color-background-input); }
+.button-toggle .button input { position: absolute; top: -100%; opacity: 0; }
+.button-toggle .selected { background-color: var(--ui-color-highlight); }
+
 .button-group {
 	padding: 0 0 1px;
 	display: inline-flex;
@@ -439,15 +448,6 @@ svg { width: 24px; height: 24px; }
 	border-top-right-radius: var(--ui-border-radius-xl);
 	border-bottom-right-radius: var(--ui-border-radius-xl);
 }
-
-.button-toggle:focus-within {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
-.button-toggle .button { background: var(--ui-color-background-input); }
-.button-toggle .button input { position: absolute; top: -100%; opacity: 0; }
-.button-toggle .selected { background-color: var(--ui-color-highlight); }
 
 .checkbox {
 	appearance: none;
@@ -868,6 +868,85 @@ input[type=color] {
 	text-align: right;
 }
 
+.input-password-wrapper {
+	width: 25ch;
+	position: relative;
+	display: inline-flex;
+	flex-flow: column;
+	align-items: stretch;
+	justify-content: space-between;
+}
+.input-password-row {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.input-password-wrapper .input-password {
+	font-family: verdana, sans-serif;
+	width: 100%;
+	padding-right: 28px;
+}
+
+.input-password-wrapper .input-password-row > .button {
+	position: absolute;
+	right: 5px;
+	width: 22px;
+	height: 22px;
+}
+
+.input-password-wrapper.visible .input-password { font-family: inherit; }
+
+
+/* PASSWORD STRENGTH */
+.password-strength {
+	width: calc(100% - 6px);
+	height: 3px;
+	margin: -7px 3px 0;
+	border-radius: 10px;
+	background-color: var(--ui-color-background-input);
+	cursor: default;
+}
+
+.password-strength-progress {
+	height: 100%;
+	border-radius: inherit;
+	transition: width var(--ui-animation-speed) ease-out;
+	background-color: var(--ui-color-danger);
+}
+
+.password-strength-progress.warning { background-color: var(--ui-color-warning); }
+.password-strength-progress.info { background-color: var(--ui-color-info); }
+.password-strength-progress.success { background-color: var(--ui-color-success); }
+
+
+.password-strength-info {
+	cursor: default;
+	position: absolute;
+	width: calc(100% - 2px);
+	display: none;
+	flex-flow: column;
+	align-items: stretch;
+	gap: 1em;
+	font-size: 0.8em;
+	margin: 3em 1px 0;
+	padding: 1em;
+	border-radius: 4px;
+	background-color: var(--ui-color-background-input);
+	border: 1px solid var(--ui-color-danger);
+}
+
+.input-password-wrapper:focus-within .password-strength-info { display: flex; }
+
+.password-strength-info.warning { border-color: var(--ui-color-warning); }
+.password-strength-info.info { border-color: var(--ui-color-info); }
+.password-strength-info.success { border-color: var(--ui-color-success); }
+
+.password-strength-info h2 { font-size: 1.1em; text-align: left; }
+.password-strength-info small { font-size: 1em; margin: 0; }
+.password-strength-info small:empty { display: none; }
+
 .menu {
 	position: fixed;
 	padding: 0.0626em 0.25em;
@@ -986,85 +1065,6 @@ input[type=color] {
 	transform: translateY(1px);
 	box-shadow: none;
 }
-
-.input-password-wrapper {
-	width: 25ch;
-	position: relative;
-	display: inline-flex;
-	flex-flow: column;
-	align-items: stretch;
-	justify-content: space-between;
-}
-.input-password-row {
-	display: flex;
-	flex-flow: row;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.input-password-wrapper .input-password {
-	font-family: verdana, sans-serif;
-	width: 100%;
-	padding-right: 28px;
-}
-
-.input-password-wrapper .input-password-row > .button {
-	position: absolute;
-	right: 5px;
-	width: 22px;
-	height: 22px;
-}
-
-.input-password-wrapper.visible .input-password { font-family: inherit; }
-
-
-/* PASSWORD STRENGTH */
-.password-strength {
-	width: calc(100% - 6px);
-	height: 3px;
-	margin: -7px 3px 0;
-	border-radius: 10px;
-	background-color: var(--ui-color-background-input);
-	cursor: default;
-}
-
-.password-strength-progress {
-	height: 100%;
-	border-radius: inherit;
-	transition: width var(--ui-animation-speed) ease-out;
-	background-color: var(--ui-color-danger);
-}
-
-.password-strength-progress.warning { background-color: var(--ui-color-warning); }
-.password-strength-progress.info { background-color: var(--ui-color-info); }
-.password-strength-progress.success { background-color: var(--ui-color-success); }
-
-
-.password-strength-info {
-	cursor: default;
-	position: absolute;
-	width: calc(100% - 2px);
-	display: none;
-	flex-flow: column;
-	align-items: stretch;
-	gap: 1em;
-	font-size: 0.8em;
-	margin: 3em 1px 0;
-	padding: 1em;
-	border-radius: 4px;
-	background-color: var(--ui-color-background-input);
-	border: 1px solid var(--ui-color-danger);
-}
-
-.input-password-wrapper:focus-within .password-strength-info { display: flex; }
-
-.password-strength-info.warning { border-color: var(--ui-color-warning); }
-.password-strength-info.info { border-color: var(--ui-color-info); }
-.password-strength-info.success { border-color: var(--ui-color-success); }
-
-.password-strength-info h2 { font-size: 1.1em; text-align: left; }
-.password-strength-info small { font-size: 1em; margin: 0; }
-.password-strength-info small:empty { display: none; }
 
 .select-wrapper {
 	font: inherit;
@@ -1208,6 +1208,59 @@ input[type=color] {
 
 .table th:last-child,
 .table td:last-child { padding-right: var(--ui-margin-l); }
+
+.textarea {
+	position: relative;
+	width: 25ch;
+	vertical-align: top;
+	display: inline-grid;
+	align-items: stretch;
+}
+
+.textarea.autogrow::after,
+.textarea-input {
+	font: inherit;
+	line-height: 1.6;
+	border: 1px solid transparent;
+	margin: 0;
+	width: auto;
+	padding: var(--ui-margin-m);
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+
+.textarea.autogrow::after {
+	content: attr(data-value) " ";
+	visibility: hidden;
+	white-space: pre-wrap;
+	min-width: 1em;
+	resize: none;
+	background: none;
+	appearance: none;
+}
+
+.textarea-input {
+	resize: vertical;
+	height: auto;
+	color: var(--ui-color-text);
+	background-color: var(--ui-color-background-input);
+	border-radius: var(--ui-border-radius);
+}
+.textarea-input:focus {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+	outline: 0;
+}
+
+.textarea-input:invalid {
+	border-color: var(--ui-color-danger);
+	box-shadow: var(--ui-shadow-invalid);
+	outline: 0;
+}
+
+.textarea-input:disabled { opacity: 0.5; }
+
+.textarea.autogrow .textarea-input { resize: none; }
 
 .text-fit {
 	display: inline-block;
@@ -1380,59 +1433,6 @@ input[type=color] {
 .theme-light .toggle-handle::after {
 	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m27.5352.4648-27.0704 27.0704m-.4648-27.5352 28 28' stroke='%23000' stroke-width='4'/%3E%3C/svg%3E");
 }
-
-.textarea {
-	position: relative;
-	width: 25ch;
-	vertical-align: top;
-	display: inline-grid;
-	align-items: stretch;
-}
-
-.textarea.autogrow::after,
-.textarea-input {
-	font: inherit;
-	line-height: 1.6;
-	border: 1px solid transparent;
-	margin: 0;
-	width: auto;
-	padding: var(--ui-margin-m);
-	grid-area: 1 / 1 / 2 / 2;
-}
-
-
-.textarea.autogrow::after {
-	content: attr(data-value) " ";
-	visibility: hidden;
-	white-space: pre-wrap;
-	min-width: 1em;
-	resize: none;
-	background: none;
-	appearance: none;
-}
-
-.textarea-input {
-	resize: vertical;
-	height: auto;
-	color: var(--ui-color-text);
-	background-color: var(--ui-color-background-input);
-	border-radius: var(--ui-border-radius);
-}
-.textarea-input:focus {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-	outline: 0;
-}
-
-.textarea-input:invalid {
-	border-color: var(--ui-color-danger);
-	box-shadow: var(--ui-shadow-invalid);
-	outline: 0;
-}
-
-.textarea-input:disabled { opacity: 0.5; }
-
-.textarea.autogrow .textarea-input { resize: none; }
 
 .tooltip-container {
 	z-index: 9999;

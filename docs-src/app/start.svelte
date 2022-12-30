@@ -24,17 +24,34 @@ The easiest way is probably to add a <i>postinstall</i> script into your <i>pack
 
 <code>
 "scripts": &lbrace;
-    "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css ./dist/ui.css"
+    "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css"
 &rbrace;
 </code>
-
 <p>From there - you can just add it directly to the <i>index.html</i>.</p>
+
+<i>Note:</i> you need to run <em>npm install</em> after adding this line to your <i>package.json</i>
 
 
 <h3>3. Svelte components</h3>
 Just <i>import</i> them from the module, as normal:
 <code>
 import &lbrace; Button &rbrace; from 'simple-ui-components-in-svelte';
+</code>
+
+<p>
+	<em>*</em> <a href="#InputPassword">Password</a> is a special case component, where it works fine on its own,
+	but it has also an ability to show the password strength. For that it requires an external library
+	<a href="https://github.com/dropbox/zxcvbn">zxcvbn</a>.<br>
+	You need to load it in your html file, e.g.:
+</p>
+<code>
+	&lt;script src="zxcvbn.js"&gt;&lt;/script&gt;
+</code>
+<p>This script is available in SUICIS npm package, and can be copied over to your <i>dist</i> folder, similarly to the css in the previous example, e.g.:</p>
+<code>
+"scripts": &lbrace;
+    "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css && cp node_modules/simple-ui-components-in-svelte/docs/zxcvbn.js dist/zxcvbn.js"
+&rbrace;
 </code>
 
 

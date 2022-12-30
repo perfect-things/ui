@@ -1822,16 +1822,41 @@ function create_fragment$T(ctx) {
 	let i4;
 	let t32;
 	let t33;
-	let h32;
-	let t35;
 	let i5;
+	let t35;
+	let em0;
 	let t37;
-	let code2;
+	let i6;
 	let t39;
-	let h21;
+	let h32;
 	let t41;
-	let code3;
+	let i7;
 	let t43;
+	let code2;
+	let t45;
+	let p3;
+	let em1;
+	let t47;
+	let a2;
+	let t49;
+	let a3;
+	let t51;
+	let br2;
+	let t52;
+	let t53;
+	let code3;
+	let t55;
+	let p4;
+	let t56;
+	let i8;
+	let t58;
+	let t59;
+	let code4;
+	let t61;
+	let h21;
+	let t63;
+	let code5;
+	let t65;
 
 	const block = {
 		c: function create() {
@@ -1882,7 +1907,7 @@ function create_fragment$T(ctx) {
 			t26 = text(" folder:");
 			t27 = space();
 			code1 = element("code");
-			code1.textContent = "\"scripts\": {\n    \"postinstall\": \"cp node_modules/simple-ui-components-in-svelte/docs/ui.css ./dist/ui.css\"\n}";
+			code1.textContent = "\"scripts\": {\n    \"postinstall\": \"cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css\"\n}";
 			t29 = space();
 			p2 = element("p");
 			t30 = text("From there - you can just add it directly to the ");
@@ -1890,21 +1915,55 @@ function create_fragment$T(ctx) {
 			i4.textContent = "index.html";
 			t32 = text(".");
 			t33 = space();
+			i5 = element("i");
+			i5.textContent = "Note:";
+			t35 = text(" you need to run ");
+			em0 = element("em");
+			em0.textContent = "npm install";
+			t37 = text(" after adding this line to your ");
+			i6 = element("i");
+			i6.textContent = "package.json";
+			t39 = space();
 			h32 = element("h3");
 			h32.textContent = "3. Svelte components";
-			t35 = text("\nJust ");
-			i5 = element("i");
-			i5.textContent = "import";
-			t37 = text(" them from the module, as normal:\n");
+			t41 = text("\nJust ");
+			i7 = element("i");
+			i7.textContent = "import";
+			t43 = text(" them from the module, as normal:\n");
 			code2 = element("code");
 			code2.textContent = "import { Button } from 'simple-ui-components-in-svelte';";
-			t39 = space();
+			t45 = space();
+			p3 = element("p");
+			em1 = element("em");
+			em1.textContent = "*";
+			t47 = space();
+			a2 = element("a");
+			a2.textContent = "Password";
+			t49 = text(" is a special case component, where it works fine on its own,\n\tbut it has also an ability to show the password strength. For that it requires an external library\n\t");
+			a3 = element("a");
+			a3.textContent = "zxcvbn";
+			t51 = text(".");
+			br2 = element("br");
+			t52 = text("\n\tYou need to load it in your html file, e.g.:");
+			t53 = space();
+			code3 = element("code");
+			code3.textContent = "<script src=\"zxcvbn.js\"></script>";
+			t55 = space();
+			p4 = element("p");
+			t56 = text("This script is available in SUICIS npm package, and can be copied over to your ");
+			i8 = element("i");
+			i8.textContent = "dist";
+			t58 = text(" folder, similarly to the css in the previous example, e.g.:");
+			t59 = space();
+			code4 = element("code");
+			code4.textContent = "\"scripts\": {\n    \"postinstall\": \"cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css && cp node_modules/simple-ui-components-in-svelte/docs/zxcvbn.js dist/zxcvbn.js\"\n}";
+			t61 = space();
 			h21 = element("h2");
 			h21.textContent = "Development";
-			t41 = text("\n\nYou need node & npm (obviously). Then, run these:\n");
-			code3 = element("code");
-			code3.textContent = "git clone git@github.com:perfect-things/simple-ui-components-in-svelte.git\ncd simple-ui-components-in-svelte\nnpm i && npm start";
-			t43 = text("\nA browser window should open with the demo of the components.");
+			t63 = text("\n\nYou need node & npm (obviously). Then, run these:\n");
+			code5 = element("code");
+			code5.textContent = "git clone git@github.com:perfect-things/simple-ui-components-in-svelte.git\ncd simple-ui-components-in-svelte\nnpm i && npm start";
+			t65 = text("\nA browser window should open with the demo of the components.");
 			add_location(h1, file$R, 0, 0, 0);
 			add_location(p0, file$R, 2, 0, 41);
 			attr_dev(a0, "href", "https://perfect-things.github.io/simple-ui-components-in-svelte/");
@@ -1926,13 +1985,27 @@ function create_fragment$T(ctx) {
 			add_location(i3, file$R, 21, 132, 882);
 			add_location(p1, file$R, 19, 0, 537);
 			add_location(code1, file$R, 24, 0, 908);
-			add_location(i4, file$R, 30, 52, 1099);
-			add_location(p2, file$R, 30, 0, 1047);
-			add_location(h32, file$R, 33, 0, 1124);
-			add_location(i5, file$R, 34, 5, 1159);
-			add_location(code2, file$R, 35, 0, 1206);
-			add_location(h21, file$R, 40, 0, 1294);
-			add_location(code3, file$R, 43, 0, 1366);
+			add_location(i4, file$R, 29, 52, 1096);
+			add_location(p2, file$R, 29, 0, 1044);
+			add_location(i5, file$R, 31, 0, 1120);
+			add_location(em0, file$R, 31, 29, 1149);
+			add_location(i6, file$R, 31, 81, 1201);
+			add_location(h32, file$R, 34, 0, 1223);
+			add_location(i7, file$R, 35, 5, 1258);
+			add_location(code2, file$R, 36, 0, 1305);
+			add_location(em1, file$R, 41, 1, 1397);
+			attr_dev(a2, "href", "#InputPassword");
+			add_location(a2, file$R, 41, 12, 1408);
+			attr_dev(a3, "href", "https://github.com/dropbox/zxcvbn");
+			add_location(a3, file$R, 43, 1, 1608);
+			add_location(br2, file$R, 43, 56, 1663);
+			add_location(p3, file$R, 40, 0, 1392);
+			add_location(code3, file$R, 46, 0, 1719);
+			add_location(i8, file$R, 49, 82, 1863);
+			add_location(p4, file$R, 49, 0, 1781);
+			add_location(code4, file$R, 50, 0, 1939);
+			add_location(h21, file$R, 57, 0, 2157);
+			add_location(code5, file$R, 60, 0, 2229);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1979,16 +2052,41 @@ function create_fragment$T(ctx) {
 			append_dev(p2, i4);
 			append_dev(p2, t32);
 			insert_dev(target, t33, anchor);
-			insert_dev(target, h32, anchor);
-			insert_dev(target, t35, anchor);
 			insert_dev(target, i5, anchor);
+			insert_dev(target, t35, anchor);
+			insert_dev(target, em0, anchor);
 			insert_dev(target, t37, anchor);
-			insert_dev(target, code2, anchor);
+			insert_dev(target, i6, anchor);
 			insert_dev(target, t39, anchor);
-			insert_dev(target, h21, anchor);
+			insert_dev(target, h32, anchor);
 			insert_dev(target, t41, anchor);
-			insert_dev(target, code3, anchor);
+			insert_dev(target, i7, anchor);
 			insert_dev(target, t43, anchor);
+			insert_dev(target, code2, anchor);
+			insert_dev(target, t45, anchor);
+			insert_dev(target, p3, anchor);
+			append_dev(p3, em1);
+			append_dev(p3, t47);
+			append_dev(p3, a2);
+			append_dev(p3, t49);
+			append_dev(p3, a3);
+			append_dev(p3, t51);
+			append_dev(p3, br2);
+			append_dev(p3, t52);
+			insert_dev(target, t53, anchor);
+			insert_dev(target, code3, anchor);
+			insert_dev(target, t55, anchor);
+			insert_dev(target, p4, anchor);
+			append_dev(p4, t56);
+			append_dev(p4, i8);
+			append_dev(p4, t58);
+			insert_dev(target, t59, anchor);
+			insert_dev(target, code4, anchor);
+			insert_dev(target, t61, anchor);
+			insert_dev(target, h21, anchor);
+			insert_dev(target, t63, anchor);
+			insert_dev(target, code5, anchor);
+			insert_dev(target, t65, anchor);
 		},
 		p: noop,
 		i: noop,
@@ -2014,16 +2112,30 @@ function create_fragment$T(ctx) {
 			if (detaching) detach_dev(t29);
 			if (detaching) detach_dev(p2);
 			if (detaching) detach_dev(t33);
-			if (detaching) detach_dev(h32);
-			if (detaching) detach_dev(t35);
 			if (detaching) detach_dev(i5);
+			if (detaching) detach_dev(t35);
+			if (detaching) detach_dev(em0);
 			if (detaching) detach_dev(t37);
-			if (detaching) detach_dev(code2);
+			if (detaching) detach_dev(i6);
 			if (detaching) detach_dev(t39);
-			if (detaching) detach_dev(h21);
+			if (detaching) detach_dev(h32);
 			if (detaching) detach_dev(t41);
-			if (detaching) detach_dev(code3);
+			if (detaching) detach_dev(i7);
 			if (detaching) detach_dev(t43);
+			if (detaching) detach_dev(code2);
+			if (detaching) detach_dev(t45);
+			if (detaching) detach_dev(p3);
+			if (detaching) detach_dev(t53);
+			if (detaching) detach_dev(code3);
+			if (detaching) detach_dev(t55);
+			if (detaching) detach_dev(p4);
+			if (detaching) detach_dev(t59);
+			if (detaching) detach_dev(code4);
+			if (detaching) detach_dev(t61);
+			if (detaching) detach_dev(h21);
+			if (detaching) detach_dev(t63);
+			if (detaching) detach_dev(code5);
+			if (detaching) detach_dev(t65);
 		}
 	};
 
@@ -2582,9 +2694,9 @@ function create_if_block_3(ctx) {
 			t0 = text("Create: ");
 			b = element("b");
 			t1 = text(t1_value);
-			add_location(b, file$Q, 43, 13, 1354);
+			add_location(b, file$Q, 42, 13, 1288);
 			attr_dev(div, "class", "autocomplete-list-item selected");
-			add_location(div, file$Q, 41, 3, 1222);
+			add_location(div, file$Q, 40, 3, 1156);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div, anchor);
@@ -2618,7 +2730,7 @@ function create_if_block_3(ctx) {
 	return block;
 }
 
-// (23:2) {#if filteredData.length}
+// (24:2) {#if filteredData.length}
 function create_if_block$a(ctx) {
 	let each_1_anchor;
 	let each_value = /*groupedData*/ ctx[10];
@@ -2679,14 +2791,14 @@ function create_if_block$a(ctx) {
 		block,
 		id: create_if_block$a.name,
 		type: "if",
-		source: "(23:2) {#if filteredData.length}",
+		source: "(24:2) {#if filteredData.length}",
 		ctx
 	});
 
 	return block;
 }
 
-// (25:4) {#if group.name}
+// (26:4) {#if group.name}
 function create_if_block_2(ctx) {
 	let div;
 	let t_value = /*group*/ ctx[50].name + "";
@@ -2697,7 +2809,7 @@ function create_if_block_2(ctx) {
 			div = element("div");
 			t = text(t_value);
 			attr_dev(div, "class", "autocomplete-list-header");
-			add_location(div, file$Q, 25, 5, 679);
+			add_location(div, file$Q, 26, 5, 736);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div, anchor);
@@ -2715,14 +2827,14 @@ function create_if_block_2(ctx) {
 		block,
 		id: create_if_block_2.name,
 		type: "if",
-		source: "(25:4) {#if group.name}",
+		source: "(26:4) {#if group.name}",
 		ctx
 	});
 
 	return block;
 }
 
-// (28:4) {#if group.items}
+// (29:4) {#if group.items}
 function create_if_block_1$2(ctx) {
 	let each_1_anchor;
 	let each_value_1 = /*group*/ ctx[50].items;
@@ -2783,14 +2895,14 @@ function create_if_block_1$2(ctx) {
 		block,
 		id: create_if_block_1$2.name,
 		type: "if",
-		source: "(28:4) {#if group.items}",
+		source: "(29:4) {#if group.items}",
 		ctx
 	});
 
 	return block;
 }
 
-// (29:5) {#each group.items as item}
+// (30:5) {#each group.items as item}
 function create_each_block_1$2(ctx) {
 	let div;
 	let html_tag;
@@ -2811,7 +2923,7 @@ function create_each_block_1$2(ctx) {
 			html_tag.a = t;
 			attr_dev(div, "class", "autocomplete-list-item");
 			toggle_class(div, "selected", /*item*/ ctx[53].idx === /*highlightIndex*/ ctx[8]);
-			add_location(div, file$Q, 30, 6, 870);
+			add_location(div, file$Q, 30, 6, 864);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div, anchor);
@@ -2842,14 +2954,14 @@ function create_each_block_1$2(ctx) {
 		block,
 		id: create_each_block_1$2.name,
 		type: "each",
-		source: "(29:5) {#each group.items as item}",
+		source: "(30:5) {#each group.items as item}",
 		ctx
 	});
 
 	return block;
 }
 
-// (24:3) {#each groupedData as group}
+// (25:3) {#each groupedData as group}
 function create_each_block$6(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2908,7 +3020,7 @@ function create_each_block$6(ctx) {
 		block,
 		id: create_each_block$6.name,
 		type: "each",
-		source: "(24:3) {#each groupedData as group}",
+		source: "(25:3) {#each groupedData as group}",
 		ctx
 	});
 
@@ -2964,12 +3076,12 @@ function create_fragment$R(ctx) {
 			div0 = element("div");
 			if (if_block) if_block.c();
 			set_attributes(input, input_data);
-			add_location(input, file$Q, 2, 1, 100);
+			add_location(input, file$Q, 3, 1, 157);
 			attr_dev(div0, "class", div0_class_value = "autocomplete-list " + (/*opened*/ ctx[6] ? '' : 'hidden'));
-			add_location(div0, file$Q, 18, 1, 402);
+			add_location(div0, file$Q, 19, 1, 459);
 			attr_dev(div1, "class", div1_class_value = "autocomplete " + /*className*/ ctx[2]);
 			toggle_class(div1, "open", /*opened*/ ctx[6]);
-			add_location(div1, file$Q, 0, 0, 0);
+			add_location(div1, file$Q, 1, 0, 57);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4942,24 +5054,24 @@ function create_fragment$M(ctx) {
 			div3 = element("div");
 			attr_dev(div0, "tabindex", "0");
 			attr_dev(div0, "class", "focus-trap focus-trap-top");
-			add_location(div0, file$L, 10, 2, 340);
+			add_location(div0, file$L, 10, 2, 383);
 			attr_dev(h1, "class", "dialog-header");
-			add_location(h1, file$L, 11, 2, 424);
+			add_location(h1, file$L, 11, 2, 467);
 			attr_dev(div1, "class", "dialog-content");
-			add_location(div1, file$L, 12, 2, 465);
+			add_location(div1, file$L, 12, 2, 508);
 			attr_dev(div2, "class", "dialog-footer");
-			add_location(div2, file$L, 13, 2, 539);
+			add_location(div2, file$L, 13, 2, 582);
 			attr_dev(div3, "tabindex", "0");
 			attr_dev(div3, "class", "focus-trap focus-trap-bottom");
-			add_location(div3, file$L, 15, 2, 682);
+			add_location(div3, file$L, 14, 2, 668);
 			attr_dev(div4, "class", "dialog");
-			add_location(div4, file$L, 8, 1, 237);
+			add_location(div4, file$L, 9, 1, 337);
 			attr_dev(div5, "aria-modal", "true");
 			attr_dev(div5, "aria-label", /*title*/ ctx[1]);
 			attr_dev(div5, "class", div5_class_value = "dialog-backdrop " + /*className*/ ctx[3]);
 			toggle_class(div5, "opened", /*opened*/ ctx[0]);
 			toggle_class(div5, "draw-borders", /*drawborders*/ ctx[2] === 'true' || /*drawborders*/ ctx[2] === true);
-			add_location(div5, file$L, 0, 0, 0);
+			add_location(div5, file$L, 2, 0, 112);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4978,7 +5090,7 @@ function create_fragment$M(ctx) {
 				default_slot.m(div1, null);
 			}
 
-			/*div1_binding*/ ctx[17](div1);
+			/*div1_binding*/ ctx[16](div1);
 			append_dev(div4, t3);
 			append_dev(div4, div2);
 
@@ -4986,18 +5098,17 @@ function create_fragment$M(ctx) {
 				footer_slot.m(div2, null);
 			}
 
-			/*div2_binding*/ ctx[18](div2);
+			/*div2_binding*/ ctx[17](div2);
 			append_dev(div4, t4);
 			append_dev(div4, div3);
-			/*div4_binding*/ ctx[19](div4);
-			/*div5_binding*/ ctx[20](div5);
+			/*div4_binding*/ ctx[18](div4);
+			/*div5_binding*/ ctx[19](div5);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
 					listen_dev(div0, "focus", /*focusLast*/ ctx[9], false, false, false),
 					listen_dev(div3, "focus", /*focusFirst*/ ctx[8], false, false, false),
-					listen_dev(div5, "keydown", /*keydown_handler*/ ctx[16], false, false, false),
 					listen_dev(div5, "click", /*onBackdropClick*/ ctx[10], false, false, false)
 				];
 
@@ -5067,11 +5178,11 @@ function create_fragment$M(ctx) {
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(div5);
 			if (default_slot) default_slot.d(detaching);
-			/*div1_binding*/ ctx[17](null);
+			/*div1_binding*/ ctx[16](null);
 			if (footer_slot) footer_slot.d(detaching);
-			/*div2_binding*/ ctx[18](null);
-			/*div4_binding*/ ctx[19](null);
-			/*div5_binding*/ ctx[20](null);
+			/*div2_binding*/ ctx[17](null);
+			/*div4_binding*/ ctx[18](null);
+			/*div5_binding*/ ctx[19](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -5192,10 +5303,6 @@ function instance$M($$self, $$props, $$invalidate) {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Dialog> was created with unknown prop '${key}'`);
 	});
 
-	function keydown_handler(event) {
-		bubble.call(this, $$self, event);
-	}
-
 	function div1_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			contentEl = $$value;
@@ -5296,7 +5403,6 @@ function instance$M($$self, $$props, $$invalidate) {
 		close,
 		$$scope,
 		slots,
-		keydown_handler,
 		div1_binding,
 		div2_binding,
 		div4_binding,
@@ -8497,18 +8603,18 @@ function create_if_block$7(ctx) {
 			div2 = element("div");
 			attr_dev(div0, "tabindex", "0");
 			attr_dev(div0, "class", "focus-trap focus-trap-top");
-			add_location(div0, file$J, 8, 2, 250);
-			add_location(h1, file$J, 10, 3, 392);
+			add_location(div0, file$J, 8, 2, 249);
+			add_location(h1, file$J, 10, 3, 391);
 			attr_dev(header, "class", "drawer-header");
-			add_location(header, file$J, 9, 2, 334);
+			add_location(header, file$J, 9, 2, 333);
 			attr_dev(div1, "class", "drawer-content");
-			add_location(div1, file$J, 13, 2, 515);
+			add_location(div1, file$J, 13, 2, 514);
 			attr_dev(div2, "tabindex", "0");
 			attr_dev(div2, "class", "focus-trap focus-trap-bottom");
-			add_location(div2, file$J, 15, 2, 622);
+			add_location(div2, file$J, 14, 2, 564);
 			attr_dev(div3, "class", "drawer");
 			attr_dev(div3, "tabindex", "-1");
-			add_location(div3, file$J, 1, 1, 17);
+			add_location(div3, file$J, 2, 1, 73);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div3, anchor);
@@ -21202,7 +21308,7 @@ function create_default_slot_4$2(ctx) {
 
 	const block = {
 		c: function create() {
-			t = text("Show warning");
+			t = text("Show success");
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, t, anchor);
