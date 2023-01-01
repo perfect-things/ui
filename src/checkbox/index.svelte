@@ -1,6 +1,6 @@
 <input
 	type="checkbox"
-	class="checkbox"
+	class="checkbox {className}"
 	class:indeterminate
 	{...$$props}
 	bind:this="{_this}"
@@ -12,5 +12,6 @@
 export let _this = undefined;
 export let indeterminate = false;
 export let checked = false;
+export let className = '';
 
 </script>

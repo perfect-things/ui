@@ -10,16 +10,40 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] BUG: autocomplete should revert when entered value is not on the list
+- [x] Bug: drawer shows main header's bg
+- [x] Feat: better on-screen keyboard for numeric inputs
+- [ ] Bug: toggle doesn't work on mobile
+
+- [ ] improve docs: add description, code samples & API/options/parameters/etc.
+	- [x] Autocomplete
+	- [x] Button
+	- [x] Push Button
+	- [x] Button Group
+	- [x] Button Toggle
+	- [x] Checkbox
+	- [ ] Datepicker
+	- [ ] Input
+	- [ ] Input Math
+	- [ ] Password" hash="InputPassword
+	- [ ] Select
+	- [ ] Textarea
+	- [ ] Toggle
+	- [ ] Dialog
+	- [ ] Drawer
+	- [ ] Menu
+	- [ ] Panel
+	- [ ] Splitter
+	- [ ] Table
+	- [ ] Tree
+	- [ ] Icon
+	- [ ] TextFit
+	- [ ] Toaster
+	- [ ] Tooltip
+
 - [ ] color palette
   - reduce text & bg colors
   - text-primary, secondary
   - rm semi, etc
-
-
-- [ ] add description & API/options/parameters/etc.
-- [ ] add code samples
-
 
 
 

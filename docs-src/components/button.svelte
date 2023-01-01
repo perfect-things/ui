@@ -10,6 +10,7 @@
 		{/if}
 
 		<hr>
+		<h3>Example instantiation</h3>
 		<CodeBox tag="Button" text="{buttonText}" props="{props}" />
 	</div>
 	<div class="docs-column">
@@ -38,12 +39,12 @@
 <script>
 import { Button, ButtonToggle, Toggle } from '../../src';
 import API from '../app/api';
-import CodeBox from '../app/code-box';
+import CodeBox from '../app/component-code-box';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
-	{ name: 'submit', type: 'string', defalut: '"false"', options: ['"true"', '"false"'], description: 'If "true" button type is set to "submit", otherwise it\'s "button"' },
+	{ name: 'submit', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
 	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
 	{ name: 'round', description: 'Makes the button round' },
 	{ name: 'outline', description: 'Button style: outline' },
@@ -52,7 +53,8 @@ const apiProps = [
 	{ name: 'success', description: 'Button type: success' },
 	{ name: 'warning', description: 'Button type: warning' },
 	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'icon', type: 'string', options: ['icon name'], description: 'Adds an icon to the button (see <a href="#Icon">icons</a> section for icon names)' },
+	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 

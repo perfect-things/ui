@@ -56,7 +56,7 @@ hr {
 	margin: 3em 0 2em;
 }
 
-header {
+.main-header {
 	background: linear-gradient(#0001, #0006), url("bg.png") right;
 	background-size: cover;
 	height: 300px;

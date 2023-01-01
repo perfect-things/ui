@@ -4,6 +4,7 @@
 		type="text"
 		autocomplete="off"
 		class="input-math"
+		pattern="[\d-+\/\*\.]*"
 		{...$$props}
 		bind:this="{_this}"
 		bind:value="{value}"

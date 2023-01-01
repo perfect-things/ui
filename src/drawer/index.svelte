@@ -8,7 +8,7 @@
 	>
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<header class="drawer-header" bind:this="{headerEl}" >
-			<h1>{title}</h1>
+			<h2>{title}</h2>
 			<Button round text icon="close" className="btn-close" title="Close" on:click="{close}"/>
 		</header>
 		<div class="drawer-content"><slot></slot></div>

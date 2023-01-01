@@ -1,6 +1,7 @@
 {#if $$slots.default}
 	<Button
-		className="push-button {pressed ? 'pressed' : ''} {className}"
+		className="push-button {className}"
+		aria-pressed="{pressed}"
 		{...$$props}
 		{success}
 		{warning}
@@ -13,7 +14,8 @@
 	</Button>
 {:else}
 	<Button
-		className="push-button {pressed ? 'pressed' : ''} {className}"
+		className="push-button {className}"
+		aria-pressed="{pressed}"
 		{...$$props}
 		{success}
 		{warning}

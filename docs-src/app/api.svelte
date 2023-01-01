@@ -23,17 +23,17 @@ export let props = [
 		type: 'string',
 		defalut: '',
 		required: true,
-		options: ['"true"', '"false"'],
 		description: 'assign ID to the underlying component'
 	}
 ];
 
 function buildType (prop) {
-	const type = [];
-	type.push(`<i>${prop.type || '-'}</i>`);
-	if (prop.required) type.push('<em>required</em>');
-	if (prop.options) type.push('<br>' + prop.options.join(' | '));
-	if (prop.default) type.push(`<br>(defaults to ${prop.type})`);
-	return type.join(' ');
+	const res = [];
+	if (!prop.type) prop.type = '-';
+	const types = (Array.isArray(prop.type) ? prop.type : [prop.type]).map(t => `<i>${t}</i>`);
+	res.push(types.join(' | '));
+	if (prop.required) res.push('<em>required</em>');
+	if (prop.default) res.push(`<br>(defaults to ${prop.default})`);
+	return res.join(' ');
 }
 </script>

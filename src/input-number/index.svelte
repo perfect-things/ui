@@ -1,5 +1,6 @@
 <input type="text" autocomplete="off"
 	{...$$props}
+	pattern="-?[\d\.]*"
 	bind:value="{value}"
 	on:keydown="{onkeydown}"
 	on:change="{onchange}">
@@ -30,7 +31,8 @@ const allowedKeys = [
 
 function onkeydown (e) {
 	if (allowedKeys.includes(e.key)) return;
-	if (e.key === DECIMAL_SEPARATOR && !value.includes(DECIMAL_SEPARATOR)) return;
+	if (e.key === '-' && !('' + value).includes('-')) return;
+	if (e.key === DECIMAL_SEPARATOR && !('' + value).includes(DECIMAL_SEPARATOR)) return;
 	e.preventDefault();
 }
 

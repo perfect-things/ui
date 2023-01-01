@@ -24,11 +24,13 @@
 	background-color: inherit;
 	top: 0;
 	width: 100%;
-	margin: 0 0 -1px;
+	margin: 0 0 1em;
 	padding: 0 1em 0 1.4em;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
+
+.drawer-header h2 { margin: 0; padding: 0.5em 0; }
 
 .drawer-content { padding: 0 1.4em; }

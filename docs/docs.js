@@ -1966,7 +1966,7 @@ function create_fragment$U(ctx) {
 			t52 = space();
 			a2 = element("a");
 			a2.textContent = "Password";
-			t54 = text(" is a special case component, where it works fine on its own,\n\tbut it has also an ability to show the password strength. For that it requires an external library\n\t");
+			t54 = text(" is a special case component, where it works fine on its own,\n\tbut it also has the ability to show the password strength. For that it requires an external library\n\t");
 			a3 = element("a");
 			a3.textContent = "zxcvbn";
 			t56 = text(".");
@@ -1977,7 +1977,7 @@ function create_fragment$U(ctx) {
 			code3.textContent = "<script src=\"zxcvbn.js\"></script>";
 			t60 = space();
 			p4 = element("p");
-			t61 = text("This script is available in SUICIS npm package, and can be copied over to your ");
+			t61 = text("This script file is available in SUICIS npm package, and can be copied over to your ");
 			i8 = element("i");
 			i8.textContent = "dist";
 			t63 = text(" folder, similarly to the css in the previous example, e.g.:");
@@ -1994,56 +1994,57 @@ function create_fragment$U(ctx) {
 			attr_dev(img, "class", "logo");
 			if (!src_url_equal(img.src, img_src_value = "logo.png")) attr_dev(img, "src", img_src_value);
 			attr_dev(img, "alt", "Logo");
-			add_location(img, file$S, 1, 1, 10);
+			add_location(img, file$S, 1, 1, 30);
 			attr_dev(span0, "class", "small");
-			add_location(span0, file$S, 3, 2, 81);
-			add_location(span1, file$S, 4, 2, 117);
+			add_location(span0, file$S, 3, 2, 101);
+			add_location(span1, file$S, 4, 2, 137);
 			attr_dev(span2, "class", "small");
-			add_location(span2, file$S, 5, 2, 146);
+			add_location(span2, file$S, 5, 2, 166);
 			attr_dev(h1, "class", "logotype");
-			add_location(h1, file$S, 2, 1, 57);
+			add_location(h1, file$S, 2, 1, 77);
+			attr_dev(header, "class", "main-header");
 			add_location(header, file$S, 0, 0, 0);
-			add_location(p0, file$S, 9, 0, 201);
+			add_location(p0, file$S, 9, 0, 221);
 			attr_dev(a0, "href", "https://perfect-things.github.io/simple-ui-components-in-svelte/");
-			add_location(a0, file$S, 11, 5, 328);
-			add_location(li0, file$S, 11, 1, 324);
+			add_location(a0, file$S, 11, 5, 348);
+			add_location(li0, file$S, 11, 1, 344);
 			attr_dev(a1, "href", "https://github.com/perfect-things/simple-ui-components-in-svelte");
-			add_location(a1, file$S, 12, 5, 430);
-			add_location(li1, file$S, 12, 1, 426);
-			add_location(ul, file$S, 10, 0, 318);
-			add_location(h20, file$S, 16, 0, 529);
-			add_location(h30, file$S, 18, 0, 551);
-			add_location(code0, file$S, 20, 0, 613);
-			add_location(h31, file$S, 25, 0, 670);
-			add_location(i0, file$S, 26, 26, 723);
-			add_location(br0, file$S, 26, 62, 759);
-			add_location(br1, file$S, 27, 141, 905);
-			add_location(i1, file$S, 28, 37, 947);
-			add_location(i2, file$S, 28, 73, 983);
-			add_location(i3, file$S, 28, 132, 1042);
-			add_location(p1, file$S, 26, 0, 697);
-			add_location(code1, file$S, 31, 0, 1068);
-			add_location(i4, file$S, 36, 52, 1256);
-			add_location(p2, file$S, 36, 0, 1204);
-			add_location(i5, file$S, 38, 0, 1280);
-			add_location(em0, file$S, 38, 29, 1309);
-			add_location(i6, file$S, 38, 81, 1361);
-			add_location(h32, file$S, 41, 0, 1383);
-			add_location(i7, file$S, 42, 5, 1418);
-			add_location(code2, file$S, 43, 0, 1465);
-			add_location(em1, file$S, 48, 1, 1557);
+			add_location(a1, file$S, 12, 5, 450);
+			add_location(li1, file$S, 12, 1, 446);
+			add_location(ul, file$S, 10, 0, 338);
+			add_location(h20, file$S, 16, 0, 549);
+			add_location(h30, file$S, 18, 0, 571);
+			add_location(code0, file$S, 20, 0, 633);
+			add_location(h31, file$S, 25, 0, 690);
+			add_location(i0, file$S, 26, 26, 743);
+			add_location(br0, file$S, 26, 62, 779);
+			add_location(br1, file$S, 27, 141, 925);
+			add_location(i1, file$S, 28, 37, 967);
+			add_location(i2, file$S, 28, 73, 1003);
+			add_location(i3, file$S, 28, 132, 1062);
+			add_location(p1, file$S, 26, 0, 717);
+			add_location(code1, file$S, 31, 0, 1088);
+			add_location(i4, file$S, 36, 52, 1276);
+			add_location(p2, file$S, 36, 0, 1224);
+			add_location(i5, file$S, 38, 0, 1300);
+			add_location(em0, file$S, 38, 29, 1329);
+			add_location(i6, file$S, 38, 81, 1381);
+			add_location(h32, file$S, 41, 0, 1403);
+			add_location(i7, file$S, 42, 5, 1438);
+			add_location(code2, file$S, 43, 0, 1485);
+			add_location(em1, file$S, 48, 1, 1577);
 			attr_dev(a2, "href", "#InputPassword");
-			add_location(a2, file$S, 48, 12, 1568);
+			add_location(a2, file$S, 48, 12, 1588);
 			attr_dev(a3, "href", "https://github.com/dropbox/zxcvbn");
-			add_location(a3, file$S, 50, 1, 1768);
-			add_location(br2, file$S, 50, 56, 1823);
-			add_location(p3, file$S, 47, 0, 1552);
-			add_location(code3, file$S, 53, 0, 1879);
-			add_location(i8, file$S, 56, 82, 2023);
-			add_location(p4, file$S, 56, 0, 1941);
-			add_location(code4, file$S, 57, 0, 2099);
-			add_location(h21, file$S, 64, 0, 2317);
-			add_location(code5, file$S, 67, 0, 2389);
+			add_location(a3, file$S, 50, 1, 1789);
+			add_location(br2, file$S, 50, 56, 1844);
+			add_location(p3, file$S, 47, 0, 1572);
+			add_location(code3, file$S, 53, 0, 1900);
+			add_location(i8, file$S, 56, 87, 2049);
+			add_location(p4, file$S, 56, 0, 1962);
+			add_location(code4, file$S, 57, 0, 2125);
+			add_location(h21, file$S, 64, 0, 2343);
+			add_location(code5, file$S, 67, 0, 2415);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4882,9 +4883,18 @@ const file$N = "src/checkbox/index.svelte";
 
 function create_fragment$O(ctx) {
 	let input;
+	let input_class_value;
 	let mounted;
 	let dispose;
-	let input_levels = [{ type: "checkbox" }, { class: "checkbox" }, /*$$props*/ ctx[3]];
+
+	let input_levels = [
+		{ type: "checkbox" },
+		{
+			class: input_class_value = "checkbox " + /*className*/ ctx[3]
+		},
+		/*$$props*/ ctx[4]
+	];
+
 	let input_data = {};
 
 	for (let i = 0; i < input_levels.length; i += 1) {
@@ -4895,7 +4905,7 @@ function create_fragment$O(ctx) {
 		c: function create() {
 			input = element("input");
 			set_attributes(input, input_data);
-			if (/*checked*/ ctx[2] === void 0 || /*indeterminate*/ ctx[1] === void 0) add_render_callback(() => /*input_change_handler*/ ctx[7].call(input));
+			if (/*checked*/ ctx[2] === void 0 || /*indeterminate*/ ctx[1] === void 0) add_render_callback(() => /*input_change_handler*/ ctx[8].call(input));
 			toggle_class(input, "indeterminate", /*indeterminate*/ ctx[1]);
 			add_location(input, file$N, 0, 0, 0);
 		},
@@ -4905,15 +4915,15 @@ function create_fragment$O(ctx) {
 		m: function mount(target, anchor) {
 			insert_dev(target, input, anchor);
 			if (input.autofocus) input.focus();
-			/*input_binding*/ ctx[6](input);
+			/*input_binding*/ ctx[7](input);
 			input.checked = /*checked*/ ctx[2];
 			input.indeterminate = /*indeterminate*/ ctx[1];
 
 			if (!mounted) {
 				dispose = [
-					listen_dev(input, "change", /*input_change_handler*/ ctx[7]),
-					listen_dev(input, "focus", /*focus_handler*/ ctx[4], false, false, false),
-					listen_dev(input, "change", /*change_handler*/ ctx[5], false, false, false)
+					listen_dev(input, "change", /*input_change_handler*/ ctx[8]),
+					listen_dev(input, "focus", /*focus_handler*/ ctx[5], false, false, false),
+					listen_dev(input, "change", /*change_handler*/ ctx[6], false, false, false)
 				];
 
 				mounted = true;
@@ -4922,8 +4932,8 @@ function create_fragment$O(ctx) {
 		p: function update(ctx, [dirty]) {
 			set_attributes(input, input_data = get_spread_update(input_levels, [
 				{ type: "checkbox" },
-				{ class: "checkbox" },
-				dirty & /*$$props*/ 8 && /*$$props*/ ctx[3]
+				dirty & /*className*/ 8 && input_class_value !== (input_class_value = "checkbox " + /*className*/ ctx[3]) && { class: input_class_value },
+				dirty & /*$$props*/ 16 && /*$$props*/ ctx[4]
 			]));
 
 			if (dirty & /*checked*/ 4) {
@@ -4940,7 +4950,7 @@ function create_fragment$O(ctx) {
 		o: noop,
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(input);
-			/*input_binding*/ ctx[6](null);
+			/*input_binding*/ ctx[7](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -4963,6 +4973,7 @@ function instance$O($$self, $$props, $$invalidate) {
 	let { _this = undefined } = $$props;
 	let { indeterminate = false } = $$props;
 	let { checked = false } = $$props;
+	let { className = '' } = $$props;
 
 	function focus_handler(event) {
 		bubble.call(this, $$self, event);
@@ -4987,19 +4998,21 @@ function instance$O($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$set = $$new_props => {
-		$$invalidate(3, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
+		$$invalidate(4, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
 		if ('_this' in $$new_props) $$invalidate(0, _this = $$new_props._this);
 		if ('indeterminate' in $$new_props) $$invalidate(1, indeterminate = $$new_props.indeterminate);
 		if ('checked' in $$new_props) $$invalidate(2, checked = $$new_props.checked);
+		if ('className' in $$new_props) $$invalidate(3, className = $$new_props.className);
 	};
 
-	$$self.$capture_state = () => ({ _this, indeterminate, checked });
+	$$self.$capture_state = () => ({ _this, indeterminate, checked, className });
 
 	$$self.$inject_state = $$new_props => {
-		$$invalidate(3, $$props = assign(assign({}, $$props), $$new_props));
+		$$invalidate(4, $$props = assign(assign({}, $$props), $$new_props));
 		if ('_this' in $$props) $$invalidate(0, _this = $$new_props._this);
 		if ('indeterminate' in $$props) $$invalidate(1, indeterminate = $$new_props.indeterminate);
 		if ('checked' in $$props) $$invalidate(2, checked = $$new_props.checked);
+		if ('className' in $$props) $$invalidate(3, className = $$new_props.className);
 	};
 
 	if ($$props && "$$inject" in $$props) {
@@ -5012,6 +5025,7 @@ function instance$O($$self, $$props, $$invalidate) {
 		_this,
 		indeterminate,
 		checked,
+		className,
 		$$props,
 		focus_handler,
 		change_handler,
@@ -5023,7 +5037,13 @@ function instance$O($$self, $$props, $$invalidate) {
 class Checkbox extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$O, create_fragment$O, safe_not_equal, { _this: 0, indeterminate: 1, checked: 2 });
+
+		init(this, options, instance$O, create_fragment$O, safe_not_equal, {
+			_this: 0,
+			indeterminate: 1,
+			checked: 2,
+			className: 3
+		});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -5054,6 +5074,14 @@ class Checkbox extends SvelteComponentDev {
 	}
 
 	set checked(value) {
+		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get className() {
+		throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set className(value) {
 		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 }
@@ -8606,7 +8634,7 @@ function create_if_block$7(ctx) {
 	let div0;
 	let t0;
 	let header;
-	let h1;
+	let h2;
 	let t1;
 	let t2;
 	let button;
@@ -8641,7 +8669,7 @@ function create_if_block$7(ctx) {
 			div0 = element("div");
 			t0 = space();
 			header = element("header");
-			h1 = element("h1");
+			h2 = element("h2");
 			t1 = text(/*title*/ ctx[0]);
 			t2 = space();
 			create_component(button.$$.fragment);
@@ -8653,7 +8681,7 @@ function create_if_block$7(ctx) {
 			attr_dev(div0, "tabindex", "0");
 			attr_dev(div0, "class", "focus-trap focus-trap-top");
 			add_location(div0, file$K, 8, 2, 249);
-			add_location(h1, file$K, 10, 3, 391);
+			add_location(h2, file$K, 10, 3, 391);
 			attr_dev(header, "class", "drawer-header");
 			add_location(header, file$K, 9, 2, 333);
 			attr_dev(div1, "class", "drawer-content");
@@ -8670,8 +8698,8 @@ function create_if_block$7(ctx) {
 			append_dev(div3, div0);
 			append_dev(div3, t0);
 			append_dev(div3, header);
-			append_dev(header, h1);
-			append_dev(h1, t1);
+			append_dev(header, h2);
+			append_dev(h2, t1);
 			append_dev(header, t2);
 			mount_component(button, header, null);
 			/*header_binding*/ ctx[12](header);
@@ -9014,7 +9042,14 @@ function create_fragment$K(ctx) {
 	let input;
 	let mounted;
 	let dispose;
-	let input_levels = [{ type: "text" }, { autocomplete: "off" }, /*$$props*/ ctx[3]];
+
+	let input_levels = [
+		{ type: "text" },
+		{ autocomplete: "off" },
+		/*$$props*/ ctx[3],
+		{ pattern: "-?[\\d\\.]*" }
+	];
+
 	let input_data = {};
 
 	for (let i = 0; i < input_levels.length; i += 1) {
@@ -9049,7 +9084,8 @@ function create_fragment$K(ctx) {
 			set_attributes(input, input_data = get_spread_update(input_levels, [
 				{ type: "text" },
 				{ autocomplete: "off" },
-				dirty & /*$$props*/ 8 && /*$$props*/ ctx[3]
+				dirty & /*$$props*/ 8 && /*$$props*/ ctx[3],
+				{ pattern: "-?[\\d\\.]*" }
 			]));
 
 			if (dirty & /*value*/ 1 && input.value !== /*value*/ ctx[0]) {
@@ -9106,7 +9142,8 @@ function instance$K($$self, $$props, $$invalidate) {
 
 	function onkeydown(e) {
 		if (allowedKeys.includes(e.key)) return;
-		if (e.key === DECIMAL_SEPARATOR$1 && !value.includes(DECIMAL_SEPARATOR$1)) return;
+		if (e.key === '-' && !('' + value).includes('-')) return;
+		if (e.key === DECIMAL_SEPARATOR$1 && !('' + value).includes(DECIMAL_SEPARATOR$1)) return;
 		e.preventDefault();
 	}
 
@@ -9189,6 +9226,7 @@ function create_fragment$J(ctx) {
 		{ type: "text" },
 		{ autocomplete: "off" },
 		{ class: "input-math" },
+		{ pattern: "[\\d-+\\/\\*\\.]*" },
 		/*$$props*/ ctx[4]
 	];
 
@@ -9239,6 +9277,7 @@ function create_fragment$J(ctx) {
 				{ type: "text" },
 				{ autocomplete: "off" },
 				{ class: "input-math" },
+				{ pattern: "[\\d-+\\/\\*\\.]*" },
 				dirty & /*$$props*/ 16 && /*$$props*/ ctx[4]
 			]));
 
@@ -10204,15 +10243,16 @@ class Panel extends SvelteComponentDev {
 
 /* src/push-button/index.svelte generated by Svelte v3.55.0 */
 
-// (14:0) {:else}
+// (15:0) {:else}
 function create_else_block$2(ctx) {
 	let button;
 	let current;
 
 	const button_spread_levels = [
 		{
-			className: "push-button " + (/*pressed*/ ctx[1] ? 'pressed' : '') + " " + /*className*/ ctx[7]
+			className: "push-button " + /*className*/ ctx[7]
 		},
+		{ "aria-pressed": /*pressed*/ ctx[1] },
 		/*$$props*/ ctx[10],
 		{ success: /*success*/ ctx[2] },
 		{ warning: /*warning*/ ctx[3] },
@@ -10240,11 +10280,12 @@ function create_else_block$2(ctx) {
 			current = true;
 		},
 		p: function update(ctx, dirty) {
-			const button_changes = (dirty & /*pressed, className, $$props, success, warning, danger, round, icon*/ 1278)
+			const button_changes = (dirty & /*className, pressed, $$props, success, warning, danger, round, icon*/ 1278)
 			? get_spread_update(button_spread_levels, [
-					dirty & /*pressed, className*/ 130 && {
-						className: "push-button " + (/*pressed*/ ctx[1] ? 'pressed' : '') + " " + /*className*/ ctx[7]
+					dirty & /*className*/ 128 && {
+						className: "push-button " + /*className*/ ctx[7]
 					},
+					dirty & /*pressed*/ 2 && { "aria-pressed": /*pressed*/ ctx[1] },
 					dirty & /*$$props*/ 1024 && get_spread_object(/*$$props*/ ctx[10]),
 					dirty & /*success*/ 4 && { success: /*success*/ ctx[2] },
 					dirty & /*warning*/ 8 && { warning: /*warning*/ ctx[3] },
@@ -10275,7 +10316,7 @@ function create_else_block$2(ctx) {
 		block,
 		id: create_else_block$2.name,
 		type: "else",
-		source: "(14:0) {:else}",
+		source: "(15:0) {:else}",
 		ctx
 	});
 
@@ -10289,8 +10330,9 @@ function create_if_block$5(ctx) {
 
 	const button_spread_levels = [
 		{
-			className: "push-button " + (/*pressed*/ ctx[1] ? 'pressed' : '') + " " + /*className*/ ctx[7]
+			className: "push-button " + /*className*/ ctx[7]
 		},
+		{ "aria-pressed": /*pressed*/ ctx[1] },
 		/*$$props*/ ctx[10],
 		{ success: /*success*/ ctx[2] },
 		{ warning: /*warning*/ ctx[3] },
@@ -10300,7 +10342,7 @@ function create_if_block$5(ctx) {
 	];
 
 	let button_props = {
-		$$slots: { default: [create_default_slot$d] },
+		$$slots: { default: [create_default_slot$c] },
 		$$scope: { ctx }
 	};
 
@@ -10321,11 +10363,12 @@ function create_if_block$5(ctx) {
 			current = true;
 		},
 		p: function update(ctx, dirty) {
-			const button_changes = (dirty & /*pressed, className, $$props, success, warning, danger, round, icon*/ 1278)
+			const button_changes = (dirty & /*className, pressed, $$props, success, warning, danger, round, icon*/ 1278)
 			? get_spread_update(button_spread_levels, [
-					dirty & /*pressed, className*/ 130 && {
-						className: "push-button " + (/*pressed*/ ctx[1] ? 'pressed' : '') + " " + /*className*/ ctx[7]
+					dirty & /*className*/ 128 && {
+						className: "push-button " + /*className*/ ctx[7]
 					},
+					dirty & /*pressed*/ 2 && { "aria-pressed": /*pressed*/ ctx[1] },
 					dirty & /*$$props*/ 1024 && get_spread_object(/*$$props*/ ctx[10]),
 					dirty & /*success*/ 4 && { success: /*success*/ ctx[2] },
 					dirty & /*warning*/ 8 && { warning: /*warning*/ ctx[3] },
@@ -10367,8 +10410,8 @@ function create_if_block$5(ctx) {
 	return block;
 }
 
-// (2:1) <Button   className="push-button {pressed ? 'pressed' : ''} {className}"   {...$$props}   {success}   {warning}   {danger}   {round}   {icon}   bind:this="{_this}"   on:mousedown="{onMouseDown}">
-function create_default_slot$d(ctx) {
+// (2:1) <Button   className="push-button {className}"   aria-pressed="{pressed}"   {...$$props}   {success}   {warning}   {danger}   {round}   {icon}   bind:this="{_this}"   on:mousedown="{onMouseDown}">
+function create_default_slot$c(ctx) {
 	let current;
 	const default_slot_template = /*#slots*/ ctx[11].default;
 	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[14], null);
@@ -10416,9 +10459,9 @@ function create_default_slot$d(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$d.name,
+		id: create_default_slot$c.name,
 		type: "slot",
-		source: "(2:1) <Button   className=\\\"push-button {pressed ? 'pressed' : ''} {className}\\\"   {...$$props}   {success}   {warning}   {danger}   {round}   {icon}   bind:this=\\\"{_this}\\\"   on:mousedown=\\\"{onMouseDown}\\\">",
+		source: "(2:1) <Button   className=\\\"push-button {className}\\\"   aria-pressed=\\\"{pressed}\\\"   {...$$props}   {success}   {warning}   {danger}   {round}   {icon}   bind:this=\\\"{_this}\\\"   on:mousedown=\\\"{onMouseDown}\\\">",
 		ctx
 	});
 
@@ -14765,7 +14808,7 @@ function create_each_block$1(ctx) {
 }
 
 // (2:0) <Table className="api-table">
-function create_default_slot$c(ctx) {
+function create_default_slot$b(ctx) {
 	let thead;
 	let tr;
 	let th0;
@@ -14853,7 +14896,7 @@ function create_default_slot$c(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$c.name,
+		id: create_default_slot$b.name,
 		type: "slot",
 		source: "(2:0) <Table className=\\\"api-table\\\">",
 		ctx
@@ -14871,7 +14914,7 @@ function create_fragment$t(ctx) {
 	table = new Table({
 			props: {
 				className: "api-table",
-				$$slots: { default: [create_default_slot$c] },
+				$$slots: { default: [create_default_slot$b] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -14931,12 +14974,13 @@ function create_fragment$t(ctx) {
 }
 
 function buildType(prop) {
-	const type = [];
-	type.push(`<i>${prop.type || '-'}</i>`);
-	if (prop.required) type.push('<em>required</em>');
-	if (prop.options) type.push('<br>' + prop.options.join(' | '));
-	if (prop.default) type.push(`<br>(defaults to ${prop.type})`);
-	return type.join(' ');
+	const res = [];
+	if (!prop.type) prop.type = '-';
+	const types = (Array.isArray(prop.type) ? prop.type : [prop.type]).map(t => `<i>${t}</i>`);
+	res.push(types.join(' | '));
+	if (prop.required) res.push('<em>required</em>');
+	if (prop.default) res.push(`<br>(defaults to ${prop.default})`);
+	return res.join(' ');
 }
 
 function instance$t($$self, $$props, $$invalidate) {
@@ -14949,7 +14993,6 @@ function instance$t($$self, $$props, $$invalidate) {
 			type: 'string',
 			defalut: '',
 			required: true,
-			options: ['"true"', '"false"'],
 			description: 'assign ID to the underlying component'
 		}
 	] } = $$props;
@@ -14999,9 +15042,9 @@ class Api extends SvelteComponentDev {
 	}
 }
 
-/* docs-src/app/code-box.svelte generated by Svelte v3.55.0 */
+/* docs-src/app/component-code-box.svelte generated by Svelte v3.55.0 */
 
-const file$s = "docs-src/app/code-box.svelte";
+const file$s = "docs-src/app/component-code-box.svelte";
 
 function create_fragment$s(ctx) {
 	let code;
@@ -15044,8 +15087,8 @@ function encode(s) {
 
 function instance$s($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
-	validate_slots('Code_box', slots, []);
-	let { tag = '<div>' } = $$props;
+	validate_slots('Component_code_box', slots, []);
+	let { tag = 'div' } = $$props;
 	let { props = {} } = $$props;
 	let { text = '' } = $$props;
 	let html = '';
@@ -15062,14 +15105,14 @@ function instance$s($$self, $$props, $$invalidate) {
 		let propsStr = JSON.stringify(_props).replace(/"([^"]+)":/g, '$1:').replace(/(:)/g, '=').replace(/,/g, ' ').replace(/({|}|=true|default)/g, '').trim();
 		if (propsStr) propsStr = ' ' + propsStr;
 		let _html = '';
-		if (!text) _html = `<Button${propsStr}/>`; else _html = `<Button${propsStr}>${text}</Button>`;
+		if (!text) _html = `<${tag}${propsStr}/>`; else _html = `<${tag}${propsStr}>${text}</${tag}>`;
 		return encode(_html);
 	}
 
 	const writable_props = ['tag', 'props', 'text'];
 
 	Object.keys($$props).forEach(key => {
-		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Code_box> was created with unknown prop '${key}'`);
+		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Component_code_box> was created with unknown prop '${key}'`);
 	});
 
 	$$self.$$set = $$props => {
@@ -15107,41 +15150,41 @@ function instance$s($$self, $$props, $$invalidate) {
 	return [html, tag, props, text];
 }
 
-class Code_box extends SvelteComponentDev {
+class Component_code_box extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 		init(this, options, instance$s, create_fragment$s, safe_not_equal, { tag: 1, props: 2, text: 3 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
-			tagName: "Code_box",
+			tagName: "Component_code_box",
 			options,
 			id: create_fragment$s.name
 		});
 	}
 
 	get tag() {
-		throw new Error("<Code_box>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+		throw new Error("<Component_code_box>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 
 	set tag(value) {
-		throw new Error("<Code_box>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+		throw new Error("<Component_code_box>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 
 	get props() {
-		throw new Error("<Code_box>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+		throw new Error("<Component_code_box>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 
 	set props(value) {
-		throw new Error("<Code_box>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+		throw new Error("<Component_code_box>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 
 	get text() {
-		throw new Error("<Code_box>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+		throw new Error("<Component_code_box>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 
 	set text(value) {
-		throw new Error("<Code_box>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+		throw new Error("<Component_code_box>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 }
 
@@ -15208,7 +15251,7 @@ function create_if_block(ctx) {
 	const button_spread_levels = [/*props*/ ctx[0]];
 
 	let button_props = {
-		$$slots: { default: [create_default_slot$b] },
+		$$slots: { default: [create_default_slot$a] },
 		$$scope: { ctx }
 	};
 
@@ -15263,7 +15306,7 @@ function create_if_block(ctx) {
 }
 
 // (7:3) <Button {...props}>
-function create_default_slot$b(ctx) {
+function create_default_slot$a(ctx) {
 	let t;
 
 	const block = {
@@ -15283,7 +15326,7 @@ function create_default_slot$b(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$b.name,
+		id: create_default_slot$a.name,
 		type: "slot",
 		source: "(7:3) <Button {...props}>",
 		ctx
@@ -15304,39 +15347,41 @@ function create_fragment$r(ctx) {
 	let t4;
 	let hr0;
 	let t5;
-	let codebox;
-	let t6;
-	let div1;
 	let h31;
+	let t7;
+	let codebox;
 	let t8;
-	let h40;
+	let div1;
+	let h32;
 	let t10;
+	let h40;
+	let t12;
 	let input;
-	let t11;
-	let h41;
 	let t13;
+	let h41;
+	let t15;
 	let buttontoggle0;
-	let t14;
-	let h42;
 	let t16;
+	let h42;
+	let t18;
 	let buttontoggle1;
-	let t17;
-	let h43;
 	let t19;
+	let h43;
+	let t21;
 	let buttontoggle2;
-	let t20;
-	let h44;
 	let t22;
+	let h44;
+	let t24;
 	let toggle0;
 	let updating_value;
-	let t23;
-	let h45;
 	let t25;
+	let h45;
+	let t27;
 	let toggle1;
 	let updating_value_1;
-	let t26;
+	let t28;
 	let hr1;
-	let t27;
+	let t29;
 	let api;
 	let current;
 	let mounted;
@@ -15352,7 +15397,7 @@ function create_fragment$r(ctx) {
 	current_block_type_index = select_block_type(ctx);
 	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
-	codebox = new Code_box({
+	codebox = new Component_code_box({
 			props: {
 				tag: "Button",
 				text: /*buttonText*/ ctx[1],
@@ -15433,63 +15478,67 @@ function create_fragment$r(ctx) {
 			t4 = space();
 			hr0 = element("hr");
 			t5 = space();
-			create_component(codebox.$$.fragment);
-			t6 = space();
-			div1 = element("div");
 			h31 = element("h3");
-			h31.textContent = "Properties";
+			h31.textContent = "Example instantiation";
+			t7 = space();
+			create_component(codebox.$$.fragment);
 			t8 = space();
+			div1 = element("div");
+			h32 = element("h3");
+			h32.textContent = "Properties";
+			t10 = space();
 			h40 = element("h4");
 			h40.textContent = "Text";
-			t10 = space();
+			t12 = space();
 			input = element("input");
-			t11 = space();
+			t13 = space();
 			h41 = element("h4");
 			h41.textContent = "Style";
-			t13 = space();
+			t15 = space();
 			create_component(buttontoggle0.$$.fragment);
-			t14 = space();
+			t16 = space();
 			h42 = element("h4");
 			h42.textContent = "Type";
-			t16 = space();
+			t18 = space();
 			create_component(buttontoggle1.$$.fragment);
-			t17 = space();
+			t19 = space();
 			h43 = element("h4");
 			h43.textContent = "Icon";
-			t19 = space();
+			t21 = space();
 			create_component(buttontoggle2.$$.fragment);
-			t20 = space();
+			t22 = space();
 			h44 = element("h4");
 			h44.textContent = "Round";
-			t22 = space();
+			t24 = space();
 			create_component(toggle0.$$.fragment);
-			t23 = space();
+			t25 = space();
 			h45 = element("h4");
 			h45.textContent = "Disabled";
-			t25 = space();
-			create_component(toggle1.$$.fragment);
-			t26 = space();
-			hr1 = element("hr");
 			t27 = space();
+			create_component(toggle1.$$.fragment);
+			t28 = space();
+			hr1 = element("hr");
+			t29 = space();
 			create_component(api.$$.fragment);
 			add_location(h2, file$r, 0, 0, 0);
 			add_location(h30, file$r, 4, 2, 72);
 			add_location(hr0, file$r, 11, 2, 194);
+			add_location(h31, file$r, 12, 2, 201);
 			attr_dev(div0, "class", "docs-column");
 			add_location(div0, file$r, 3, 1, 44);
-			add_location(h31, file$r, 15, 2, 299);
-			add_location(h40, file$r, 16, 2, 321);
-			add_location(input, file$r, 17, 2, 337);
-			add_location(h41, file$r, 18, 2, 374);
-			add_location(h42, file$r, 20, 2, 470);
-			add_location(h43, file$r, 22, 2, 570);
-			add_location(h44, file$r, 24, 2, 663);
-			add_location(h45, file$r, 26, 2, 719);
+			add_location(h32, file$r, 16, 2, 332);
+			add_location(h40, file$r, 17, 2, 354);
+			add_location(input, file$r, 18, 2, 370);
+			add_location(h41, file$r, 19, 2, 407);
+			add_location(h42, file$r, 21, 2, 503);
+			add_location(h43, file$r, 23, 2, 603);
+			add_location(h44, file$r, 25, 2, 696);
+			add_location(h45, file$r, 27, 2, 752);
 			attr_dev(div1, "class", "docs-column");
-			add_location(div1, file$r, 14, 1, 271);
+			add_location(div1, file$r, 15, 1, 304);
 			attr_dev(div2, "class", "docs-layout");
 			add_location(div2, file$r, 2, 0, 17);
-			add_location(hr1, file$r, 33, 0, 797);
+			add_location(hr1, file$r, 34, 0, 830);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15505,38 +15554,40 @@ function create_fragment$r(ctx) {
 			append_dev(div0, t4);
 			append_dev(div0, hr0);
 			append_dev(div0, t5);
+			append_dev(div0, h31);
+			append_dev(div0, t7);
 			mount_component(codebox, div0, null);
-			append_dev(div2, t6);
+			append_dev(div2, t8);
 			append_dev(div2, div1);
-			append_dev(div1, h31);
-			append_dev(div1, t8);
-			append_dev(div1, h40);
+			append_dev(div1, h32);
 			append_dev(div1, t10);
+			append_dev(div1, h40);
+			append_dev(div1, t12);
 			append_dev(div1, input);
 			set_input_value(input, /*buttonText*/ ctx[1]);
-			append_dev(div1, t11);
-			append_dev(div1, h41);
 			append_dev(div1, t13);
+			append_dev(div1, h41);
+			append_dev(div1, t15);
 			mount_component(buttontoggle0, div1, null);
-			append_dev(div1, t14);
-			append_dev(div1, h42);
 			append_dev(div1, t16);
+			append_dev(div1, h42);
+			append_dev(div1, t18);
 			mount_component(buttontoggle1, div1, null);
-			append_dev(div1, t17);
-			append_dev(div1, h43);
 			append_dev(div1, t19);
+			append_dev(div1, h43);
+			append_dev(div1, t21);
 			mount_component(buttontoggle2, div1, null);
-			append_dev(div1, t20);
-			append_dev(div1, h44);
 			append_dev(div1, t22);
+			append_dev(div1, h44);
+			append_dev(div1, t24);
 			mount_component(toggle0, div1, null);
-			append_dev(div1, t23);
-			append_dev(div1, h45);
 			append_dev(div1, t25);
+			append_dev(div1, h45);
+			append_dev(div1, t27);
 			mount_component(toggle1, div1, null);
-			insert_dev(target, t26, anchor);
+			insert_dev(target, t28, anchor);
 			insert_dev(target, hr1, anchor);
-			insert_dev(target, t27, anchor);
+			insert_dev(target, t29, anchor);
 			mount_component(api, target, anchor);
 			current = true;
 
@@ -15634,9 +15685,9 @@ function create_fragment$r(ctx) {
 			destroy_component(buttontoggle2);
 			destroy_component(toggle0);
 			destroy_component(toggle1);
-			if (detaching) detach_dev(t26);
+			if (detaching) detach_dev(t28);
 			if (detaching) detach_dev(hr1);
-			if (detaching) detach_dev(t27);
+			if (detaching) detach_dev(t29);
 			destroy_component(api, detaching);
 			mounted = false;
 			dispose();
@@ -15671,10 +15722,9 @@ function instance$r($$self, $$props, $$invalidate) {
 		},
 		{
 			name: 'submit',
-			type: 'string',
-			defalut: '"false"',
-			options: ['"true"', '"false"'],
-			description: 'If "true" button type is set to "submit", otherwise it\'s "button"'
+			type: ['true', 'false'],
+			default: 'false',
+			description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>'
 		},
 		{
 			name: 'disabled',
@@ -15709,10 +15759,14 @@ function instance$r($$self, $$props, $$invalidate) {
 			description: 'Button type: danger'
 		},
 		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
 			name: 'icon',
 			type: 'string',
-			options: ['icon name'],
-			description: 'Adds an icon to the button (see <a href="#Icon">icons</a> section for icon names)'
+			description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)'
 		},
 		{
 			name: 'on:click',
@@ -15795,7 +15849,7 @@ function instance$r($$self, $$props, $$invalidate) {
 		ButtonToggle: Button_toggle$1,
 		Toggle,
 		API: Api,
-		CodeBox: Code_box,
+		CodeBox: Component_code_box,
 		apiProps,
 		props,
 		buttonText,
@@ -15982,21 +16036,21 @@ function create_default_slot_18$1(ctx) {
 		p: function update(ctx, dirty) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -16090,7 +16144,7 @@ function create_default_slot_16$1(ctx) {
 }
 
 // (15:1) <PushButton>
-function create_default_slot_15$1(ctx) {
+function create_default_slot_15$2(ctx) {
 	let t;
 
 	const block = {
@@ -16107,7 +16161,7 @@ function create_default_slot_15$1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_15$1.name,
+		id: create_default_slot_15$2.name,
 		type: "slot",
 		source: "(15:1) <PushButton>",
 		ctx
@@ -16117,7 +16171,7 @@ function create_default_slot_15$1(ctx) {
 }
 
 // (12:0) <ButtonGroup>
-function create_default_slot_14$1(ctx) {
+function create_default_slot_14$2(ctx) {
 	let pushbutton0;
 	let t0;
 	let pushbutton1;
@@ -16143,7 +16197,7 @@ function create_default_slot_14$1(ctx) {
 
 	pushbutton2 = new Push_button$1({
 			props: {
-				$$slots: { default: [create_default_slot_15$1] },
+				$$slots: { default: [create_default_slot_15$2] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -16168,21 +16222,21 @@ function create_default_slot_14$1(ctx) {
 		p: function update(ctx, dirty) {
 			const pushbutton0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton0_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton0.$set(pushbutton0_changes);
 			const pushbutton1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton1_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton1.$set(pushbutton1_changes);
 			const pushbutton2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -16212,7 +16266,7 @@ function create_default_slot_14$1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_14$1.name,
+		id: create_default_slot_14$2.name,
 		type: "slot",
 		source: "(12:0) <ButtonGroup>",
 		ctx
@@ -16222,7 +16276,7 @@ function create_default_slot_14$1(ctx) {
 }
 
 // (21:1) <Button>
-function create_default_slot_13$1(ctx) {
+function create_default_slot_13$2(ctx) {
 	let t;
 
 	const block = {
@@ -16239,7 +16293,7 @@ function create_default_slot_13$1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_13$1.name,
+		id: create_default_slot_13$2.name,
 		type: "slot",
 		source: "(21:1) <Button>",
 		ctx
@@ -16249,7 +16303,7 @@ function create_default_slot_13$1(ctx) {
 }
 
 // (22:1) <Button disabled>
-function create_default_slot_12$1(ctx) {
+function create_default_slot_12$2(ctx) {
 	let t;
 
 	const block = {
@@ -16266,7 +16320,7 @@ function create_default_slot_12$1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_12$1.name,
+		id: create_default_slot_12$2.name,
 		type: "slot",
 		source: "(22:1) <Button disabled>",
 		ctx
@@ -16313,7 +16367,7 @@ function create_default_slot_10$2(ctx) {
 
 	button0 = new Button({
 			props: {
-				$$slots: { default: [create_default_slot_13$1] },
+				$$slots: { default: [create_default_slot_13$2] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -16322,7 +16376,7 @@ function create_default_slot_10$2(ctx) {
 	button1 = new Button({
 			props: {
 				disabled: true,
-				$$slots: { default: [create_default_slot_12$1] },
+				$$slots: { default: [create_default_slot_12$2] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -16355,21 +16409,21 @@ function create_default_slot_10$2(ctx) {
 		p: function update(ctx, dirty) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -16541,21 +16595,21 @@ function create_default_slot_6$3(ctx) {
 		p: function update(ctx, dirty) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -16730,21 +16784,21 @@ function create_default_slot_2$7(ctx) {
 		p: function update(ctx, dirty) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -16846,7 +16900,7 @@ function create_default_slot_1$8(ctx) {
 }
 
 // (52:0) <ButtonGroup round>
-function create_default_slot$a(ctx) {
+function create_default_slot$9(ctx) {
 	let button0;
 	let t0;
 	let button1;
@@ -16898,7 +16952,7 @@ function create_default_slot$a(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$a.name,
+		id: create_default_slot$9.name,
 		type: "slot",
 		source: "(52:0) <ButtonGroup round>",
 		ctx
@@ -16937,6 +16991,14 @@ function create_fragment$q(ctx) {
 	let h36;
 	let t21;
 	let buttongroup6;
+	let t22;
+	let hr;
+	let t23;
+	let h37;
+	let t25;
+	let code;
+	let t27;
+	let api;
 	let current;
 
 	buttongroup0 = new Button_group$1({
@@ -16949,7 +17011,7 @@ function create_fragment$q(ctx) {
 
 	buttongroup1 = new Button_group$1({
 			props: {
-				$$slots: { default: [create_default_slot_14$1] },
+				$$slots: { default: [create_default_slot_14$2] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -16991,9 +17053,14 @@ function create_fragment$q(ctx) {
 	buttongroup6 = new Button_group$1({
 			props: {
 				round: true,
-				$$slots: { default: [create_default_slot$a] },
+				$$slots: { default: [create_default_slot$9] },
 				$$scope: { ctx }
 			},
+			$$inline: true
+		});
+
+	api = new Api({
+			props: { props: /*apiProps*/ ctx[0] },
 			$$inline: true
 		});
 
@@ -17036,6 +17103,16 @@ function create_fragment$q(ctx) {
 			h36.textContent = "Icons only, and round";
 			t21 = space();
 			create_component(buttongroup6.$$.fragment);
+			t22 = space();
+			hr = element("hr");
+			t23 = space();
+			h37 = element("h3");
+			h37.textContent = "Example instantiation";
+			t25 = space();
+			code = element("code");
+			code.textContent = "<ButtonGroup>\n    <Button>One</Button>\n    <Button>Two</Button>\n    <Button>Three</Button>\n</ButtonGroup>\n\n<script>\nfunction onChange (e) {\n    const { value, oldValue } = e.detail;\n    console.log({ value, oldValue });\n}\n</script>";
+			t27 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$q, 0, 0, 0);
 			add_location(h30, file$q, 2, 0, 23);
 			add_location(h31, file$q, 10, 0, 138);
@@ -17044,6 +17121,9 @@ function create_fragment$q(ctx) {
 			add_location(h34, file$q, 34, 0, 536);
 			add_location(h35, file$q, 42, 0, 693);
 			add_location(h36, file$q, 50, 0, 839);
+			add_location(hr, file$q, 58, 0, 1002);
+			add_location(h37, file$q, 59, 0, 1007);
+			add_location(code, file$q, 60, 0, 1038);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17078,54 +17158,62 @@ function create_fragment$q(ctx) {
 			insert_dev(target, h36, anchor);
 			insert_dev(target, t21, anchor);
 			mount_component(buttongroup6, target, anchor);
+			insert_dev(target, t22, anchor);
+			insert_dev(target, hr, anchor);
+			insert_dev(target, t23, anchor);
+			insert_dev(target, h37, anchor);
+			insert_dev(target, t25, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t27, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const buttongroup0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				buttongroup0_changes.$$scope = { dirty, ctx };
 			}
 
 			buttongroup0.$set(buttongroup0_changes);
 			const buttongroup1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				buttongroup1_changes.$$scope = { dirty, ctx };
 			}
 
 			buttongroup1.$set(buttongroup1_changes);
 			const buttongroup2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				buttongroup2_changes.$$scope = { dirty, ctx };
 			}
 
 			buttongroup2.$set(buttongroup2_changes);
 			const buttongroup3_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				buttongroup3_changes.$$scope = { dirty, ctx };
 			}
 
 			buttongroup3.$set(buttongroup3_changes);
 			const buttongroup4_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				buttongroup4_changes.$$scope = { dirty, ctx };
 			}
 
 			buttongroup4.$set(buttongroup4_changes);
 			const buttongroup5_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				buttongroup5_changes.$$scope = { dirty, ctx };
 			}
 
 			buttongroup5.$set(buttongroup5_changes);
 			const buttongroup6_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				buttongroup6_changes.$$scope = { dirty, ctx };
 			}
 
@@ -17140,6 +17228,7 @@ function create_fragment$q(ctx) {
 			transition_in(buttongroup4.$$.fragment, local);
 			transition_in(buttongroup5.$$.fragment, local);
 			transition_in(buttongroup6.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -17150,6 +17239,7 @@ function create_fragment$q(ctx) {
 			transition_out(buttongroup4.$$.fragment, local);
 			transition_out(buttongroup5.$$.fragment, local);
 			transition_out(buttongroup6.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -17182,6 +17272,14 @@ function create_fragment$q(ctx) {
 			if (detaching) detach_dev(h36);
 			if (detaching) detach_dev(t21);
 			destroy_component(buttongroup6, detaching);
+			if (detaching) detach_dev(t22);
+			if (detaching) detach_dev(hr);
+			if (detaching) detach_dev(t23);
+			if (detaching) detach_dev(h37);
+			if (detaching) detach_dev(t25);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t27);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -17199,14 +17297,34 @@ function create_fragment$q(ctx) {
 function instance$q($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Button_group', slots, []);
+
+	const apiProps = [
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'round',
+			description: 'Makes the buttons, on both sides of the group, round.'
+		}
+	];
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Button_group> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ ButtonGroup: Button_group$1, Button, PushButton: Push_button$1 });
-	return [];
+	$$self.$capture_state = () => ({
+		ButtonGroup: Button_group$1,
+		Button,
+		PushButton: Push_button$1,
+		API: Api,
+		apiProps
+	});
+
+	return [apiProps];
 }
 
 class Button_group extends SvelteComponentDev {
@@ -17229,69 +17347,91 @@ const file$p = "docs-src/components/button-toggle.svelte";
 function create_fragment$p(ctx) {
 	let h2;
 	let t1;
-	let h30;
+	let p;
 	let t3;
+	let h30;
+	let t5;
 	let buttontoggle0;
-	let t4;
-	let h31;
 	let t6;
+	let h31;
+	let t8;
 	let div;
 	let buttontoggle1;
-	let t7;
-	let h32;
 	let t9;
-	let label;
+	let h32;
 	let t11;
+	let label;
+	let t13;
 	let buttontoggle2;
-	let t12;
+	let t14;
 	let br0;
 	let br1;
-	let t13;
-	let h40;
 	let t15;
+	let h40;
+	let t17;
 	let buttontoggle3;
 	let br2;
 	let br3;
-	let t16;
-	let h41;
 	let t18;
+	let h41;
+	let t20;
 	let buttontoggle4;
 	let br4;
 	let br5;
-	let t19;
-	let h42;
 	let t21;
+	let h42;
+	let t23;
 	let buttontoggle5;
 	let br6;
 	let br7;
-	let t22;
-	let h33;
 	let t24;
+	let h33;
+	let t26;
 	let buttontoggle6;
 	let br8;
 	let br9;
-	let t25;
-	let h34;
 	let t27;
+	let h34;
+	let t29;
 	let buttontoggle7;
 	let br10;
 	let br11;
+	let t30;
+	let hr;
+	let t31;
+	let h35;
+	let t33;
+	let code0;
+	let t35;
+	let em;
+	let t37;
+	let i0;
+	let t39;
+	let i1;
+	let t41;
+	let i2;
+	let t43;
+	let i3;
+	let t45;
+	let code1;
+	let t47;
+	let api;
 	let current;
 
 	buttontoggle0 = new Button_toggle$1({
-			props: { items: /*buttons*/ ctx[0], value: "1" },
+			props: { items: /*buttons*/ ctx[1], value: "1" },
 			$$inline: true
 		});
 
 	buttontoggle1 = new Button_toggle$1({
-			props: { items: /*buttons*/ ctx[0], value: "1" },
+			props: { items: /*buttons*/ ctx[1], value: "1" },
 			$$inline: true
 		});
 
 	buttontoggle2 = new Button_toggle$1({
 			props: {
 				id: "bt1",
-				items: /*buttons*/ ctx[0],
+				items: /*buttons*/ ctx[1],
 				value: "1"
 			},
 			$$inline: true
@@ -17300,7 +17440,7 @@ function create_fragment$p(ctx) {
 	buttontoggle3 = new Button_toggle$1({
 			props: {
 				disabled: true,
-				items: /*buttons*/ ctx[0]
+				items: /*buttons*/ ctx[1]
 			},
 			$$inline: true
 		});
@@ -17308,28 +17448,33 @@ function create_fragment$p(ctx) {
 	buttontoggle4 = new Button_toggle$1({
 			props: {
 				round: true,
-				items: /*buttons*/ ctx[0],
+				items: /*buttons*/ ctx[1],
 				value: "2"
 			},
 			$$inline: true
 		});
 
 	buttontoggle5 = new Button_toggle$1({
-			props: { items: /*items*/ ctx[1], value: "3" },
+			props: { items: /*items*/ ctx[2], value: "3" },
 			$$inline: true
 		});
 
 	buttontoggle6 = new Button_toggle$1({
-			props: { items: /*icons*/ ctx[2], value: "1" },
+			props: { items: /*icons*/ ctx[3], value: "1" },
 			$$inline: true
 		});
 
 	buttontoggle7 = new Button_toggle$1({
 			props: {
 				round: true,
-				items: /*icons*/ ctx[2],
+				items: /*icons*/ ctx[3],
 				value: "2"
 			},
+			$$inline: true
+		});
+
+	api = new Api({
+			props: { props: /*apiProps*/ ctx[0] },
 			$$inline: true
 		});
 
@@ -17338,88 +17483,129 @@ function create_fragment$p(ctx) {
 			h2 = element("h2");
 			h2.textContent = "Button Toggle";
 			t1 = space();
+			p = element("p");
+			p.textContent = "This adds a nice visual styling of the buttons on top of a radio-button group.";
+			t3 = space();
 			h30 = element("h3");
 			h30.textContent = "Normal";
-			t3 = space();
+			t5 = space();
 			create_component(buttontoggle0.$$.fragment);
-			t4 = space();
+			t6 = space();
 			h31 = element("h3");
 			h31.textContent = "Fit width";
-			t6 = space();
+			t8 = space();
 			div = element("div");
 			create_component(buttontoggle1.$$.fragment);
-			t7 = space();
+			t9 = space();
 			h32 = element("h3");
 			h32.textContent = "With label";
-			t9 = space();
+			t11 = space();
 			label = element("label");
 			label.textContent = "Label for the button toggle";
-			t11 = space();
+			t13 = space();
 			create_component(buttontoggle2.$$.fragment);
-			t12 = space();
+			t14 = space();
 			br0 = element("br");
 			br1 = element("br");
-			t13 = space();
+			t15 = space();
 			h40 = element("h4");
 			h40.textContent = "Disabled";
-			t15 = space();
+			t17 = space();
 			create_component(buttontoggle3.$$.fragment);
 			br2 = element("br");
 			br3 = element("br");
-			t16 = space();
+			t18 = space();
 			h41 = element("h4");
 			h41.textContent = "Round";
-			t18 = space();
+			t20 = space();
 			create_component(buttontoggle4.$$.fragment);
 			br4 = element("br");
 			br5 = element("br");
-			t19 = space();
+			t21 = space();
 			h42 = element("h4");
 			h42.textContent = "With icon";
-			t21 = space();
+			t23 = space();
 			create_component(buttontoggle5.$$.fragment);
 			br6 = element("br");
 			br7 = element("br");
-			t22 = space();
+			t24 = space();
 			h33 = element("h3");
 			h33.textContent = "Icon only buttons";
-			t24 = space();
+			t26 = space();
 			create_component(buttontoggle6.$$.fragment);
 			br8 = element("br");
 			br9 = element("br");
-			t25 = space();
+			t27 = space();
 			h34 = element("h3");
 			h34.textContent = "Icon only, and round";
-			t27 = space();
+			t29 = space();
 			create_component(buttontoggle7.$$.fragment);
 			br10 = element("br");
 			br11 = element("br");
+			t30 = space();
+			hr = element("hr");
+			t31 = space();
+			h35 = element("h3");
+			h35.textContent = "Example instantiation";
+			t33 = space();
+			code0 = element("code");
+			code0.textContent = "<ButtonToggle items=\"{buttons}\" value=\"2\" />\n\n<script>\nconst buttons = [\n    { name: 'One', value: '1' },\n    { name: 'Two', value: '2' },\n    { name: 'Three', value: '3' },\n];\n</script>";
+			t35 = space();
+			em = element("em");
+			em.textContent = "Note:";
+			t37 = text(" the component ");
+			i0 = element("i");
+			i0.textContent = "value";
+			t39 = text(" type and the item's ");
+			i1 = element("i");
+			i1.textContent = "value";
+			t41 = text(" type must match,\nso you can either use ");
+			i2 = element("i");
+			i2.textContent = "string";
+			t43 = text(" for both - like in the example, or ");
+			i3 = element("i");
+			i3.textContent = "number";
+			t45 = text(", like so:\n");
+			code1 = element("code");
+			code1.textContent = "<ButtonToggle items=\"{buttons}\" value=\"{2}\" />\n\n<script>\nconst buttons = [\n    { name: 'One', value: 1 },\n    { name: 'Two', value: 2 },\n    { name: 'Three', value: 3 },\n];\n</script>";
+			t47 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$p, 0, 0, 0);
-			add_location(h30, file$p, 2, 0, 24);
-			add_location(h31, file$p, 5, 0, 86);
+			add_location(p, file$p, 2, 0, 24);
+			add_location(h30, file$p, 4, 0, 111);
+			add_location(h31, file$p, 7, 0, 173);
 			attr_dev(div, "class", "button-toggle-wrapper-wide");
-			add_location(div, file$p, 6, 0, 105);
-			add_location(h32, file$p, 10, 0, 200);
+			add_location(div, file$p, 8, 0, 192);
+			add_location(h32, file$p, 12, 0, 287);
 			attr_dev(label, "class", "label");
 			attr_dev(label, "for", "bt1");
-			add_location(label, file$p, 11, 0, 220);
-			add_location(br0, file$p, 14, 0, 342);
-			add_location(br1, file$p, 14, 4, 346);
-			add_location(h40, file$p, 16, 0, 352);
-			add_location(br2, file$p, 17, 42, 412);
-			add_location(br3, file$p, 17, 46, 416);
-			add_location(h41, file$p, 19, 0, 422);
-			add_location(br4, file$p, 20, 50, 487);
-			add_location(br5, file$p, 20, 54, 491);
-			add_location(h42, file$p, 22, 0, 497);
-			add_location(br6, file$p, 23, 42, 558);
-			add_location(br7, file$p, 23, 46, 562);
-			add_location(h33, file$p, 25, 0, 568);
-			add_location(br8, file$p, 26, 42, 637);
-			add_location(br9, file$p, 26, 46, 641);
-			add_location(h34, file$p, 29, 0, 648);
-			add_location(br10, file$p, 30, 48, 726);
-			add_location(br11, file$p, 30, 52, 730);
+			add_location(label, file$p, 13, 0, 307);
+			add_location(br0, file$p, 16, 0, 429);
+			add_location(br1, file$p, 16, 4, 433);
+			add_location(h40, file$p, 18, 0, 439);
+			add_location(br2, file$p, 19, 42, 499);
+			add_location(br3, file$p, 19, 46, 503);
+			add_location(h41, file$p, 21, 0, 509);
+			add_location(br4, file$p, 22, 50, 574);
+			add_location(br5, file$p, 22, 54, 578);
+			add_location(h42, file$p, 24, 0, 584);
+			add_location(br6, file$p, 25, 42, 645);
+			add_location(br7, file$p, 25, 46, 649);
+			add_location(h33, file$p, 27, 0, 655);
+			add_location(br8, file$p, 28, 42, 724);
+			add_location(br9, file$p, 28, 46, 728);
+			add_location(h34, file$p, 31, 0, 735);
+			add_location(br10, file$p, 32, 48, 813);
+			add_location(br11, file$p, 32, 52, 817);
+			add_location(hr, file$p, 35, 0, 824);
+			add_location(h35, file$p, 36, 0, 829);
+			add_location(code0, file$p, 37, 0, 860);
+			add_location(em, file$p, 49, 0, 1147);
+			add_location(i0, file$p, 49, 29, 1176);
+			add_location(i1, file$p, 49, 62, 1209);
+			add_location(i2, file$p, 50, 22, 1261);
+			add_location(i3, file$p, 50, 71, 1310);
+			add_location(code1, file$p, 51, 0, 1334);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17427,53 +17613,75 @@ function create_fragment$p(ctx) {
 		m: function mount(target, anchor) {
 			insert_dev(target, h2, anchor);
 			insert_dev(target, t1, anchor);
-			insert_dev(target, h30, anchor);
+			insert_dev(target, p, anchor);
 			insert_dev(target, t3, anchor);
+			insert_dev(target, h30, anchor);
+			insert_dev(target, t5, anchor);
 			mount_component(buttontoggle0, target, anchor);
-			insert_dev(target, t4, anchor);
-			insert_dev(target, h31, anchor);
 			insert_dev(target, t6, anchor);
+			insert_dev(target, h31, anchor);
+			insert_dev(target, t8, anchor);
 			insert_dev(target, div, anchor);
 			mount_component(buttontoggle1, div, null);
-			insert_dev(target, t7, anchor);
-			insert_dev(target, h32, anchor);
 			insert_dev(target, t9, anchor);
-			insert_dev(target, label, anchor);
+			insert_dev(target, h32, anchor);
 			insert_dev(target, t11, anchor);
+			insert_dev(target, label, anchor);
+			insert_dev(target, t13, anchor);
 			mount_component(buttontoggle2, target, anchor);
-			insert_dev(target, t12, anchor);
+			insert_dev(target, t14, anchor);
 			insert_dev(target, br0, anchor);
 			insert_dev(target, br1, anchor);
-			insert_dev(target, t13, anchor);
-			insert_dev(target, h40, anchor);
 			insert_dev(target, t15, anchor);
+			insert_dev(target, h40, anchor);
+			insert_dev(target, t17, anchor);
 			mount_component(buttontoggle3, target, anchor);
 			insert_dev(target, br2, anchor);
 			insert_dev(target, br3, anchor);
-			insert_dev(target, t16, anchor);
-			insert_dev(target, h41, anchor);
 			insert_dev(target, t18, anchor);
+			insert_dev(target, h41, anchor);
+			insert_dev(target, t20, anchor);
 			mount_component(buttontoggle4, target, anchor);
 			insert_dev(target, br4, anchor);
 			insert_dev(target, br5, anchor);
-			insert_dev(target, t19, anchor);
-			insert_dev(target, h42, anchor);
 			insert_dev(target, t21, anchor);
+			insert_dev(target, h42, anchor);
+			insert_dev(target, t23, anchor);
 			mount_component(buttontoggle5, target, anchor);
 			insert_dev(target, br6, anchor);
 			insert_dev(target, br7, anchor);
-			insert_dev(target, t22, anchor);
-			insert_dev(target, h33, anchor);
 			insert_dev(target, t24, anchor);
+			insert_dev(target, h33, anchor);
+			insert_dev(target, t26, anchor);
 			mount_component(buttontoggle6, target, anchor);
 			insert_dev(target, br8, anchor);
 			insert_dev(target, br9, anchor);
-			insert_dev(target, t25, anchor);
-			insert_dev(target, h34, anchor);
 			insert_dev(target, t27, anchor);
+			insert_dev(target, h34, anchor);
+			insert_dev(target, t29, anchor);
 			mount_component(buttontoggle7, target, anchor);
 			insert_dev(target, br10, anchor);
 			insert_dev(target, br11, anchor);
+			insert_dev(target, t30, anchor);
+			insert_dev(target, hr, anchor);
+			insert_dev(target, t31, anchor);
+			insert_dev(target, h35, anchor);
+			insert_dev(target, t33, anchor);
+			insert_dev(target, code0, anchor);
+			insert_dev(target, t35, anchor);
+			insert_dev(target, em, anchor);
+			insert_dev(target, t37, anchor);
+			insert_dev(target, i0, anchor);
+			insert_dev(target, t39, anchor);
+			insert_dev(target, i1, anchor);
+			insert_dev(target, t41, anchor);
+			insert_dev(target, i2, anchor);
+			insert_dev(target, t43, anchor);
+			insert_dev(target, i3, anchor);
+			insert_dev(target, t45, anchor);
+			insert_dev(target, code1, anchor);
+			insert_dev(target, t47, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: noop,
@@ -17487,6 +17695,7 @@ function create_fragment$p(ctx) {
 			transition_in(buttontoggle5.$$.fragment, local);
 			transition_in(buttontoggle6.$$.fragment, local);
 			transition_in(buttontoggle7.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -17498,58 +17707,81 @@ function create_fragment$p(ctx) {
 			transition_out(buttontoggle5.$$.fragment, local);
 			transition_out(buttontoggle6.$$.fragment, local);
 			transition_out(buttontoggle7.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(h2);
 			if (detaching) detach_dev(t1);
-			if (detaching) detach_dev(h30);
+			if (detaching) detach_dev(p);
 			if (detaching) detach_dev(t3);
+			if (detaching) detach_dev(h30);
+			if (detaching) detach_dev(t5);
 			destroy_component(buttontoggle0, detaching);
-			if (detaching) detach_dev(t4);
-			if (detaching) detach_dev(h31);
 			if (detaching) detach_dev(t6);
+			if (detaching) detach_dev(h31);
+			if (detaching) detach_dev(t8);
 			if (detaching) detach_dev(div);
 			destroy_component(buttontoggle1);
-			if (detaching) detach_dev(t7);
-			if (detaching) detach_dev(h32);
 			if (detaching) detach_dev(t9);
-			if (detaching) detach_dev(label);
+			if (detaching) detach_dev(h32);
 			if (detaching) detach_dev(t11);
+			if (detaching) detach_dev(label);
+			if (detaching) detach_dev(t13);
 			destroy_component(buttontoggle2, detaching);
-			if (detaching) detach_dev(t12);
+			if (detaching) detach_dev(t14);
 			if (detaching) detach_dev(br0);
 			if (detaching) detach_dev(br1);
-			if (detaching) detach_dev(t13);
-			if (detaching) detach_dev(h40);
 			if (detaching) detach_dev(t15);
+			if (detaching) detach_dev(h40);
+			if (detaching) detach_dev(t17);
 			destroy_component(buttontoggle3, detaching);
 			if (detaching) detach_dev(br2);
 			if (detaching) detach_dev(br3);
-			if (detaching) detach_dev(t16);
-			if (detaching) detach_dev(h41);
 			if (detaching) detach_dev(t18);
+			if (detaching) detach_dev(h41);
+			if (detaching) detach_dev(t20);
 			destroy_component(buttontoggle4, detaching);
 			if (detaching) detach_dev(br4);
 			if (detaching) detach_dev(br5);
-			if (detaching) detach_dev(t19);
-			if (detaching) detach_dev(h42);
 			if (detaching) detach_dev(t21);
+			if (detaching) detach_dev(h42);
+			if (detaching) detach_dev(t23);
 			destroy_component(buttontoggle5, detaching);
 			if (detaching) detach_dev(br6);
 			if (detaching) detach_dev(br7);
-			if (detaching) detach_dev(t22);
-			if (detaching) detach_dev(h33);
 			if (detaching) detach_dev(t24);
+			if (detaching) detach_dev(h33);
+			if (detaching) detach_dev(t26);
 			destroy_component(buttontoggle6, detaching);
 			if (detaching) detach_dev(br8);
 			if (detaching) detach_dev(br9);
-			if (detaching) detach_dev(t25);
-			if (detaching) detach_dev(h34);
 			if (detaching) detach_dev(t27);
+			if (detaching) detach_dev(h34);
+			if (detaching) detach_dev(t29);
 			destroy_component(buttontoggle7, detaching);
 			if (detaching) detach_dev(br10);
 			if (detaching) detach_dev(br11);
+			if (detaching) detach_dev(t30);
+			if (detaching) detach_dev(hr);
+			if (detaching) detach_dev(t31);
+			if (detaching) detach_dev(h35);
+			if (detaching) detach_dev(t33);
+			if (detaching) detach_dev(code0);
+			if (detaching) detach_dev(t35);
+			if (detaching) detach_dev(em);
+			if (detaching) detach_dev(t37);
+			if (detaching) detach_dev(i0);
+			if (detaching) detach_dev(t39);
+			if (detaching) detach_dev(i1);
+			if (detaching) detach_dev(t41);
+			if (detaching) detach_dev(i2);
+			if (detaching) detach_dev(t43);
+			if (detaching) detach_dev(i3);
+			if (detaching) detach_dev(t45);
+			if (detaching) detach_dev(code1);
+			if (detaching) detach_dev(t47);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -17567,6 +17799,43 @@ function create_fragment$p(ctx) {
 function instance$p($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Button_toggle', slots, []);
+
+	const apiProps = [
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'disabled',
+			description: 'Makes the component disabled.'
+		},
+		{
+			name: 'round',
+			description: 'Makes the buttons, on both sides of the group, round.'
+		},
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign id to the first radio button in the group (useful for the associate label\'s <i>for</i> attribute)'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign name to the underlying radio group'
+		},
+		{
+			name: 'value',
+			type: ['string', 'number'],
+			description: 'Assign initial value to the underlying radio group'
+		},
+		{
+			name: 'items',
+			type: 'array',
+			required: true,
+			description: 'An array of objects in the following format: ' + '<code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>'
+		}
+	];
 
 	const buttons = [
 		{ name: 'One', value: '1' },
@@ -17596,8 +17865,16 @@ function instance$p($$self, $$props, $$invalidate) {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Button_toggle> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ ButtonToggle: Button_toggle$1, buttons, items, icons });
-	return [buttons, items, icons];
+	$$self.$capture_state = () => ({
+		ButtonToggle: Button_toggle$1,
+		API: Api,
+		apiProps,
+		buttons,
+		items,
+		icons
+	});
+
+	return [apiProps, buttons, items, icons];
 }
 
 class Button_toggle extends SvelteComponentDev {
@@ -17618,6 +17895,114 @@ class Button_toggle extends SvelteComponentDev {
 const file$o = "docs-src/components/push-button.svelte";
 
 // (6:0) <PushButton>
+function create_default_slot_15$1(ctx) {
+	let t;
+
+	const block = {
+		c: function create() {
+			t = text("Hello");
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, t, anchor);
+		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_15$1.name,
+		type: "slot",
+		source: "(6:0) <PushButton>",
+		ctx
+	});
+
+	return block;
+}
+
+// (7:0) <PushButton success>
+function create_default_slot_14$1(ctx) {
+	let t;
+
+	const block = {
+		c: function create() {
+			t = text("Warning");
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, t, anchor);
+		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_14$1.name,
+		type: "slot",
+		source: "(7:0) <PushButton success>",
+		ctx
+	});
+
+	return block;
+}
+
+// (8:0) <PushButton warning>
+function create_default_slot_13$1(ctx) {
+	let t;
+
+	const block = {
+		c: function create() {
+			t = text("Warning");
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, t, anchor);
+		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_13$1.name,
+		type: "slot",
+		source: "(8:0) <PushButton warning>",
+		ctx
+	});
+
+	return block;
+}
+
+// (9:0) <PushButton danger>
+function create_default_slot_12$1(ctx) {
+	let t;
+
+	const block = {
+		c: function create() {
+			t = text("Danger");
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, t, anchor);
+		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_12$1.name,
+		type: "slot",
+		source: "(9:0) <PushButton danger>",
+		ctx
+	});
+
+	return block;
+}
+
+// (12:0) <PushButton pressed>
 function create_default_slot_11$1(ctx) {
 	let t;
 
@@ -17637,14 +18022,14 @@ function create_default_slot_11$1(ctx) {
 		block,
 		id: create_default_slot_11$1.name,
 		type: "slot",
-		source: "(6:0) <PushButton>",
+		source: "(12:0) <PushButton pressed>",
 		ctx
 	});
 
 	return block;
 }
 
-// (7:0) <PushButton success>
+// (13:0) <PushButton pressed success>
 function create_default_slot_10$1(ctx) {
 	let t;
 
@@ -17664,14 +18049,14 @@ function create_default_slot_10$1(ctx) {
 		block,
 		id: create_default_slot_10$1.name,
 		type: "slot",
-		source: "(7:0) <PushButton success>",
+		source: "(13:0) <PushButton pressed success>",
 		ctx
 	});
 
 	return block;
 }
 
-// (8:0) <PushButton warning>
+// (14:0) <PushButton pressed warning>
 function create_default_slot_9$1(ctx) {
 	let t;
 
@@ -17691,14 +18076,14 @@ function create_default_slot_9$1(ctx) {
 		block,
 		id: create_default_slot_9$1.name,
 		type: "slot",
-		source: "(8:0) <PushButton warning>",
+		source: "(14:0) <PushButton pressed warning>",
 		ctx
 	});
 
 	return block;
 }
 
-// (9:0) <PushButton danger>
+// (15:0) <PushButton pressed danger>
 function create_default_slot_8$2(ctx) {
 	let t;
 
@@ -17718,14 +18103,14 @@ function create_default_slot_8$2(ctx) {
 		block,
 		id: create_default_slot_8$2.name,
 		type: "slot",
-		source: "(9:0) <PushButton danger>",
+		source: "(15:0) <PushButton pressed danger>",
 		ctx
 	});
 
 	return block;
 }
 
-// (12:0) <PushButton disabled>
+// (18:0) <PushButton disabled>
 function create_default_slot_7$2(ctx) {
 	let t;
 
@@ -17745,14 +18130,14 @@ function create_default_slot_7$2(ctx) {
 		block,
 		id: create_default_slot_7$2.name,
 		type: "slot",
-		source: "(12:0) <PushButton disabled>",
+		source: "(18:0) <PushButton disabled>",
 		ctx
 	});
 
 	return block;
 }
 
-// (13:0) <PushButton disabled success>
+// (19:0) <PushButton disabled success>
 function create_default_slot_6$2(ctx) {
 	let t;
 
@@ -17772,14 +18157,14 @@ function create_default_slot_6$2(ctx) {
 		block,
 		id: create_default_slot_6$2.name,
 		type: "slot",
-		source: "(13:0) <PushButton disabled success>",
+		source: "(19:0) <PushButton disabled success>",
 		ctx
 	});
 
 	return block;
 }
 
-// (14:0) <PushButton disabled warning>
+// (20:0) <PushButton disabled warning>
 function create_default_slot_5$4(ctx) {
 	let t;
 
@@ -17799,14 +18184,14 @@ function create_default_slot_5$4(ctx) {
 		block,
 		id: create_default_slot_5$4.name,
 		type: "slot",
-		source: "(14:0) <PushButton disabled warning>",
+		source: "(20:0) <PushButton disabled warning>",
 		ctx
 	});
 
 	return block;
 }
 
-// (15:0) <PushButton disabled danger>
+// (21:0) <PushButton disabled danger>
 function create_default_slot_4$4(ctx) {
 	let t;
 
@@ -17826,14 +18211,14 @@ function create_default_slot_4$4(ctx) {
 		block,
 		id: create_default_slot_4$4.name,
 		type: "slot",
-		source: "(15:0) <PushButton disabled danger>",
+		source: "(21:0) <PushButton disabled danger>",
 		ctx
 	});
 
 	return block;
 }
 
-// (18:0) <PushButton icon="info">
+// (24:0) <PushButton icon="info">
 function create_default_slot_3$4(ctx) {
 	let t;
 
@@ -17853,14 +18238,14 @@ function create_default_slot_3$4(ctx) {
 		block,
 		id: create_default_slot_3$4.name,
 		type: "slot",
-		source: "(18:0) <PushButton icon=\\\"info\\\">",
+		source: "(24:0) <PushButton icon=\\\"info\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (19:0) <PushButton icon="check" success>
+// (25:0) <PushButton icon="check" success>
 function create_default_slot_2$6(ctx) {
 	let t;
 
@@ -17880,14 +18265,14 @@ function create_default_slot_2$6(ctx) {
 		block,
 		id: create_default_slot_2$6.name,
 		type: "slot",
-		source: "(19:0) <PushButton icon=\\\"check\\\" success>",
+		source: "(25:0) <PushButton icon=\\\"check\\\" success>",
 		ctx
 	});
 
 	return block;
 }
 
-// (20:0) <PushButton icon="alert" warning>
+// (26:0) <PushButton icon="alert" warning>
 function create_default_slot_1$7(ctx) {
 	let t;
 
@@ -17907,15 +18292,15 @@ function create_default_slot_1$7(ctx) {
 		block,
 		id: create_default_slot_1$7.name,
 		type: "slot",
-		source: "(20:0) <PushButton icon=\\\"alert\\\" warning>",
+		source: "(26:0) <PushButton icon=\\\"alert\\\" warning>",
 		ctx
 	});
 
 	return block;
 }
 
-// (21:0) <PushButton icon="trash" danger>
-function create_default_slot$9(ctx) {
+// (27:0) <PushButton icon="trash" danger>
+function create_default_slot$8(ctx) {
 	let t;
 
 	const block = {
@@ -17932,9 +18317,9 @@ function create_default_slot$9(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$9.name,
+		id: create_default_slot$8.name,
 		type: "slot",
-		source: "(21:0) <PushButton icon=\\\"trash\\\" danger>",
+		source: "(27:0) <PushButton icon=\\\"trash\\\" danger>",
 		ctx
 	});
 
@@ -17976,38 +18361,56 @@ function create_fragment$o(ctx) {
 	let t20;
 	let pushbutton11;
 	let t21;
-	let hr0;
-	let t22;
-	let h31;
-	let t24;
 	let h43;
-	let t26;
+	let t23;
 	let pushbutton12;
-	let t27;
+	let t24;
 	let pushbutton13;
-	let t28;
+	let t25;
 	let pushbutton14;
-	let t29;
+	let t26;
 	let pushbutton15;
+	let t27;
+	let hr0;
+	let t28;
+	let h31;
 	let t30;
-	let hr1;
-	let t31;
-	let h32;
-	let t33;
 	let h44;
-	let t35;
+	let t32;
 	let pushbutton16;
-	let t36;
+	let t33;
 	let pushbutton17;
-	let t37;
+	let t34;
 	let pushbutton18;
-	let t38;
+	let t35;
 	let pushbutton19;
+	let t36;
+	let hr1;
+	let t37;
+	let h32;
+	let t39;
+	let h45;
+	let t41;
+	let pushbutton20;
+	let t42;
+	let pushbutton21;
+	let t43;
+	let pushbutton22;
+	let t44;
+	let pushbutton23;
+	let t45;
+	let hr2;
+	let t46;
+	let h33;
+	let t48;
+	let code;
+	let t50;
+	let api;
 	let current;
 
 	pushbutton0 = new Push_button$1({
 			props: {
-				$$slots: { default: [create_default_slot_11$1] },
+				$$slots: { default: [create_default_slot_15$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -18016,7 +18419,7 @@ function create_fragment$o(ctx) {
 	pushbutton1 = new Push_button$1({
 			props: {
 				success: true,
-				$$slots: { default: [create_default_slot_10$1] },
+				$$slots: { default: [create_default_slot_14$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -18025,7 +18428,7 @@ function create_fragment$o(ctx) {
 	pushbutton2 = new Push_button$1({
 			props: {
 				warning: true,
-				$$slots: { default: [create_default_slot_9$1] },
+				$$slots: { default: [create_default_slot_13$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -18034,13 +18437,52 @@ function create_fragment$o(ctx) {
 	pushbutton3 = new Push_button$1({
 			props: {
 				danger: true,
-				$$slots: { default: [create_default_slot_8$2] },
+				$$slots: { default: [create_default_slot_12$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
 		});
 
 	pushbutton4 = new Push_button$1({
+			props: {
+				pressed: true,
+				$$slots: { default: [create_default_slot_11$1] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	pushbutton5 = new Push_button$1({
+			props: {
+				pressed: true,
+				success: true,
+				$$slots: { default: [create_default_slot_10$1] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	pushbutton6 = new Push_button$1({
+			props: {
+				pressed: true,
+				warning: true,
+				$$slots: { default: [create_default_slot_9$1] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	pushbutton7 = new Push_button$1({
+			props: {
+				pressed: true,
+				danger: true,
+				$$slots: { default: [create_default_slot_8$2] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	pushbutton8 = new Push_button$1({
 			props: {
 				disabled: true,
 				$$slots: { default: [create_default_slot_7$2] },
@@ -18049,7 +18491,7 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton5 = new Push_button$1({
+	pushbutton9 = new Push_button$1({
 			props: {
 				disabled: true,
 				success: true,
@@ -18059,7 +18501,7 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton6 = new Push_button$1({
+	pushbutton10 = new Push_button$1({
 			props: {
 				disabled: true,
 				warning: true,
@@ -18069,7 +18511,7 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton7 = new Push_button$1({
+	pushbutton11 = new Push_button$1({
 			props: {
 				disabled: true,
 				danger: true,
@@ -18079,7 +18521,7 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton8 = new Push_button$1({
+	pushbutton12 = new Push_button$1({
 			props: {
 				icon: "info",
 				$$slots: { default: [create_default_slot_3$4] },
@@ -18088,7 +18530,7 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton9 = new Push_button$1({
+	pushbutton13 = new Push_button$1({
 			props: {
 				icon: "check",
 				success: true,
@@ -18098,7 +18540,7 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton10 = new Push_button$1({
+	pushbutton14 = new Push_button$1({
 			props: {
 				icon: "alert",
 				warning: true,
@@ -18108,39 +18550,39 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton11 = new Push_button$1({
+	pushbutton15 = new Push_button$1({
 			props: {
 				icon: "trash",
 				danger: true,
-				$$slots: { default: [create_default_slot$9] },
+				$$slots: { default: [create_default_slot$8] },
 				$$scope: { ctx }
 			},
 			$$inline: true
 		});
 
-	pushbutton12 = new Push_button$1({ props: { icon: "info" }, $$inline: true });
+	pushbutton16 = new Push_button$1({ props: { icon: "info" }, $$inline: true });
 
-	pushbutton13 = new Push_button$1({
+	pushbutton17 = new Push_button$1({
 			props: { icon: "check", success: true },
 			$$inline: true
 		});
 
-	pushbutton14 = new Push_button$1({
+	pushbutton18 = new Push_button$1({
 			props: { icon: "alert", warning: true },
 			$$inline: true
 		});
 
-	pushbutton15 = new Push_button$1({
+	pushbutton19 = new Push_button$1({
 			props: { icon: "trash", danger: true },
 			$$inline: true
 		});
 
-	pushbutton16 = new Push_button$1({
+	pushbutton20 = new Push_button$1({
 			props: { round: true, icon: "info" },
 			$$inline: true
 		});
 
-	pushbutton17 = new Push_button$1({
+	pushbutton21 = new Push_button$1({
 			props: {
 				round: true,
 				icon: "check",
@@ -18149,7 +18591,7 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton18 = new Push_button$1({
+	pushbutton22 = new Push_button$1({
 			props: {
 				round: true,
 				icon: "alert",
@@ -18158,8 +18600,13 @@ function create_fragment$o(ctx) {
 			$$inline: true
 		});
 
-	pushbutton19 = new Push_button$1({
+	pushbutton23 = new Push_button$1({
 			props: { round: true, icon: "trash", danger: true },
+			$$inline: true
+		});
+
+	api = new Api({
+			props: { props: /*apiProps*/ ctx[0] },
 			$$inline: true
 		});
 
@@ -18183,7 +18630,7 @@ function create_fragment$o(ctx) {
 			create_component(pushbutton3.$$.fragment);
 			t9 = space();
 			h41 = element("h4");
-			h41.textContent = "Disabled";
+			h41.textContent = "Pressed";
 			t11 = space();
 			create_component(pushbutton4.$$.fragment);
 			t12 = space();
@@ -18194,7 +18641,7 @@ function create_fragment$o(ctx) {
 			create_component(pushbutton7.$$.fragment);
 			t15 = space();
 			h42 = element("h4");
-			h42.textContent = "With icon";
+			h42.textContent = "Disabled";
 			t17 = space();
 			create_component(pushbutton8.$$.fragment);
 			t18 = space();
@@ -18204,48 +18651,73 @@ function create_fragment$o(ctx) {
 			t20 = space();
 			create_component(pushbutton11.$$.fragment);
 			t21 = space();
+			h43 = element("h4");
+			h43.textContent = "With icon";
+			t23 = space();
+			create_component(pushbutton12.$$.fragment);
+			t24 = space();
+			create_component(pushbutton13.$$.fragment);
+			t25 = space();
+			create_component(pushbutton14.$$.fragment);
+			t26 = space();
+			create_component(pushbutton15.$$.fragment);
+			t27 = space();
 			hr0 = element("hr");
-			t22 = space();
+			t28 = space();
 			h31 = element("h3");
 			h31.textContent = "Icon only buttons";
-			t24 = space();
-			h43 = element("h4");
-			h43.textContent = "Default";
-			t26 = space();
-			create_component(pushbutton12.$$.fragment);
-			t27 = space();
-			create_component(pushbutton13.$$.fragment);
-			t28 = space();
-			create_component(pushbutton14.$$.fragment);
-			t29 = space();
-			create_component(pushbutton15.$$.fragment);
 			t30 = space();
-			hr1 = element("hr");
-			t31 = space();
-			h32 = element("h3");
-			h32.textContent = "Icon only, and round";
-			t33 = space();
 			h44 = element("h4");
 			h44.textContent = "Default";
-			t35 = space();
+			t32 = space();
 			create_component(pushbutton16.$$.fragment);
-			t36 = space();
+			t33 = space();
 			create_component(pushbutton17.$$.fragment);
-			t37 = space();
+			t34 = space();
 			create_component(pushbutton18.$$.fragment);
-			t38 = space();
+			t35 = space();
 			create_component(pushbutton19.$$.fragment);
+			t36 = space();
+			hr1 = element("hr");
+			t37 = space();
+			h32 = element("h3");
+			h32.textContent = "Icon only, and round";
+			t39 = space();
+			h45 = element("h4");
+			h45.textContent = "Default";
+			t41 = space();
+			create_component(pushbutton20.$$.fragment);
+			t42 = space();
+			create_component(pushbutton21.$$.fragment);
+			t43 = space();
+			create_component(pushbutton22.$$.fragment);
+			t44 = space();
+			create_component(pushbutton23.$$.fragment);
+			t45 = space();
+			hr2 = element("hr");
+			t46 = space();
+			h33 = element("h3");
+			h33.textContent = "Example instantiation";
+			t48 = space();
+			code = element("code");
+			code.textContent = "<PushButton round icon=\"info\" on:change=\"{ onChange }\"></PushButton>\n\n<script>\nfunction onChange (e) {\n    const { value, oldValue } = e.detail;\n    console.log({ value, oldValue });\n}\n</script>";
+			t50 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$o, 0, 0, 0);
 			add_location(h30, file$o, 2, 0, 22);
 			add_location(h40, file$o, 4, 0, 39);
 			add_location(h41, file$o, 10, 0, 209);
-			add_location(h42, file$o, 16, 0, 416);
-			add_location(hr0, file$o, 23, 0, 639);
-			add_location(h31, file$o, 24, 0, 644);
-			add_location(h43, file$o, 26, 0, 672);
-			add_location(hr1, file$o, 33, 0, 869);
-			add_location(h32, file$o, 34, 0, 874);
-			add_location(h44, file$o, 36, 0, 905);
+			add_location(h42, file$o, 16, 0, 411);
+			add_location(h43, file$o, 22, 0, 618);
+			add_location(hr0, file$o, 29, 0, 841);
+			add_location(h31, file$o, 30, 0, 846);
+			add_location(h44, file$o, 32, 0, 874);
+			add_location(hr1, file$o, 39, 0, 1071);
+			add_location(h32, file$o, 40, 0, 1076);
+			add_location(h45, file$o, 42, 0, 1107);
+			add_location(hr2, file$o, 49, 0, 1328);
+			add_location(h33, file$o, 50, 0, 1333);
+			add_location(code, file$o, 51, 0, 1364);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -18285,120 +18757,166 @@ function create_fragment$o(ctx) {
 			insert_dev(target, t20, anchor);
 			mount_component(pushbutton11, target, anchor);
 			insert_dev(target, t21, anchor);
-			insert_dev(target, hr0, anchor);
-			insert_dev(target, t22, anchor);
-			insert_dev(target, h31, anchor);
-			insert_dev(target, t24, anchor);
 			insert_dev(target, h43, anchor);
-			insert_dev(target, t26, anchor);
+			insert_dev(target, t23, anchor);
 			mount_component(pushbutton12, target, anchor);
-			insert_dev(target, t27, anchor);
+			insert_dev(target, t24, anchor);
 			mount_component(pushbutton13, target, anchor);
-			insert_dev(target, t28, anchor);
+			insert_dev(target, t25, anchor);
 			mount_component(pushbutton14, target, anchor);
-			insert_dev(target, t29, anchor);
+			insert_dev(target, t26, anchor);
 			mount_component(pushbutton15, target, anchor);
+			insert_dev(target, t27, anchor);
+			insert_dev(target, hr0, anchor);
+			insert_dev(target, t28, anchor);
+			insert_dev(target, h31, anchor);
 			insert_dev(target, t30, anchor);
-			insert_dev(target, hr1, anchor);
-			insert_dev(target, t31, anchor);
-			insert_dev(target, h32, anchor);
-			insert_dev(target, t33, anchor);
 			insert_dev(target, h44, anchor);
-			insert_dev(target, t35, anchor);
+			insert_dev(target, t32, anchor);
 			mount_component(pushbutton16, target, anchor);
-			insert_dev(target, t36, anchor);
+			insert_dev(target, t33, anchor);
 			mount_component(pushbutton17, target, anchor);
-			insert_dev(target, t37, anchor);
+			insert_dev(target, t34, anchor);
 			mount_component(pushbutton18, target, anchor);
-			insert_dev(target, t38, anchor);
+			insert_dev(target, t35, anchor);
 			mount_component(pushbutton19, target, anchor);
+			insert_dev(target, t36, anchor);
+			insert_dev(target, hr1, anchor);
+			insert_dev(target, t37, anchor);
+			insert_dev(target, h32, anchor);
+			insert_dev(target, t39, anchor);
+			insert_dev(target, h45, anchor);
+			insert_dev(target, t41, anchor);
+			mount_component(pushbutton20, target, anchor);
+			insert_dev(target, t42, anchor);
+			mount_component(pushbutton21, target, anchor);
+			insert_dev(target, t43, anchor);
+			mount_component(pushbutton22, target, anchor);
+			insert_dev(target, t44, anchor);
+			mount_component(pushbutton23, target, anchor);
+			insert_dev(target, t45, anchor);
+			insert_dev(target, hr2, anchor);
+			insert_dev(target, t46, anchor);
+			insert_dev(target, h33, anchor);
+			insert_dev(target, t48, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t50, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const pushbutton0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton0_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton0.$set(pushbutton0_changes);
 			const pushbutton1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton1_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton1.$set(pushbutton1_changes);
 			const pushbutton2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton2_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton2.$set(pushbutton2_changes);
 			const pushbutton3_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton3_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton3.$set(pushbutton3_changes);
 			const pushbutton4_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton4_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton4.$set(pushbutton4_changes);
 			const pushbutton5_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton5_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton5.$set(pushbutton5_changes);
 			const pushbutton6_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton6_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton6.$set(pushbutton6_changes);
 			const pushbutton7_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton7_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton7.$set(pushbutton7_changes);
 			const pushbutton8_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton8_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton8.$set(pushbutton8_changes);
 			const pushbutton9_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton9_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton9.$set(pushbutton9_changes);
 			const pushbutton10_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton10_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton10.$set(pushbutton10_changes);
 			const pushbutton11_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 2) {
 				pushbutton11_changes.$$scope = { dirty, ctx };
 			}
 
 			pushbutton11.$set(pushbutton11_changes);
+			const pushbutton12_changes = {};
+
+			if (dirty & /*$$scope*/ 2) {
+				pushbutton12_changes.$$scope = { dirty, ctx };
+			}
+
+			pushbutton12.$set(pushbutton12_changes);
+			const pushbutton13_changes = {};
+
+			if (dirty & /*$$scope*/ 2) {
+				pushbutton13_changes.$$scope = { dirty, ctx };
+			}
+
+			pushbutton13.$set(pushbutton13_changes);
+			const pushbutton14_changes = {};
+
+			if (dirty & /*$$scope*/ 2) {
+				pushbutton14_changes.$$scope = { dirty, ctx };
+			}
+
+			pushbutton14.$set(pushbutton14_changes);
+			const pushbutton15_changes = {};
+
+			if (dirty & /*$$scope*/ 2) {
+				pushbutton15_changes.$$scope = { dirty, ctx };
+			}
+
+			pushbutton15.$set(pushbutton15_changes);
 		},
 		i: function intro(local) {
 			if (current) return;
@@ -18422,6 +18940,11 @@ function create_fragment$o(ctx) {
 			transition_in(pushbutton17.$$.fragment, local);
 			transition_in(pushbutton18.$$.fragment, local);
 			transition_in(pushbutton19.$$.fragment, local);
+			transition_in(pushbutton20.$$.fragment, local);
+			transition_in(pushbutton21.$$.fragment, local);
+			transition_in(pushbutton22.$$.fragment, local);
+			transition_in(pushbutton23.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -18445,6 +18968,11 @@ function create_fragment$o(ctx) {
 			transition_out(pushbutton17.$$.fragment, local);
 			transition_out(pushbutton18.$$.fragment, local);
 			transition_out(pushbutton19.$$.fragment, local);
+			transition_out(pushbutton20.$$.fragment, local);
+			transition_out(pushbutton21.$$.fragment, local);
+			transition_out(pushbutton22.$$.fragment, local);
+			transition_out(pushbutton23.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -18482,33 +19010,51 @@ function create_fragment$o(ctx) {
 			if (detaching) detach_dev(t20);
 			destroy_component(pushbutton11, detaching);
 			if (detaching) detach_dev(t21);
-			if (detaching) detach_dev(hr0);
-			if (detaching) detach_dev(t22);
-			if (detaching) detach_dev(h31);
-			if (detaching) detach_dev(t24);
 			if (detaching) detach_dev(h43);
-			if (detaching) detach_dev(t26);
+			if (detaching) detach_dev(t23);
 			destroy_component(pushbutton12, detaching);
-			if (detaching) detach_dev(t27);
+			if (detaching) detach_dev(t24);
 			destroy_component(pushbutton13, detaching);
-			if (detaching) detach_dev(t28);
+			if (detaching) detach_dev(t25);
 			destroy_component(pushbutton14, detaching);
-			if (detaching) detach_dev(t29);
+			if (detaching) detach_dev(t26);
 			destroy_component(pushbutton15, detaching);
+			if (detaching) detach_dev(t27);
+			if (detaching) detach_dev(hr0);
+			if (detaching) detach_dev(t28);
+			if (detaching) detach_dev(h31);
 			if (detaching) detach_dev(t30);
-			if (detaching) detach_dev(hr1);
-			if (detaching) detach_dev(t31);
-			if (detaching) detach_dev(h32);
-			if (detaching) detach_dev(t33);
 			if (detaching) detach_dev(h44);
-			if (detaching) detach_dev(t35);
+			if (detaching) detach_dev(t32);
 			destroy_component(pushbutton16, detaching);
-			if (detaching) detach_dev(t36);
+			if (detaching) detach_dev(t33);
 			destroy_component(pushbutton17, detaching);
-			if (detaching) detach_dev(t37);
+			if (detaching) detach_dev(t34);
 			destroy_component(pushbutton18, detaching);
-			if (detaching) detach_dev(t38);
+			if (detaching) detach_dev(t35);
 			destroy_component(pushbutton19, detaching);
+			if (detaching) detach_dev(t36);
+			if (detaching) detach_dev(hr1);
+			if (detaching) detach_dev(t37);
+			if (detaching) detach_dev(h32);
+			if (detaching) detach_dev(t39);
+			if (detaching) detach_dev(h45);
+			if (detaching) detach_dev(t41);
+			destroy_component(pushbutton20, detaching);
+			if (detaching) detach_dev(t42);
+			destroy_component(pushbutton21, detaching);
+			if (detaching) detach_dev(t43);
+			destroy_component(pushbutton22, detaching);
+			if (detaching) detach_dev(t44);
+			destroy_component(pushbutton23, detaching);
+			if (detaching) detach_dev(t45);
+			if (detaching) detach_dev(hr2);
+			if (detaching) detach_dev(t46);
+			if (detaching) detach_dev(h33);
+			if (detaching) detach_dev(t48);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t50);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -18526,14 +19072,87 @@ function create_fragment$o(ctx) {
 function instance$o($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Push_button', slots, []);
+
+	const apiProps = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying button'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying button'
+		},
+		{
+			name: 'pressed',
+			type: ['true', 'false'],
+			default: 'false',
+			description: 'Initial <i>pressed</i> state of the button.'
+		},
+		{
+			name: 'submit',
+			type: ['true', 'false'],
+			default: 'false',
+			description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>'
+		},
+		{
+			name: 'disabled',
+			description: 'Makes the button <i>disabled</i>'
+		},
+		{
+			name: 'round',
+			description: 'Makes the button round'
+		},
+		{
+			name: 'outline',
+			description: 'Button style: outline'
+		},
+		{
+			name: 'text',
+			description: 'Button style: text'
+		},
+		{
+			name: 'link',
+			description: 'Button style: link'
+		},
+		{
+			name: 'success',
+			description: 'Button type: success'
+		},
+		{
+			name: 'warning',
+			description: 'Button type: warning'
+		},
+		{
+			name: 'danger',
+			description: 'Button type: danger'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'icon',
+			type: 'string',
+			description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)'
+		},
+		{
+			name: 'on:click',
+			type: 'function',
+			description: 'Triggered when the button is clicked.'
+		}
+	];
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Push_button> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ PushButton: Push_button$1 });
-	return [];
+	$$self.$capture_state = () => ({ PushButton: Push_button$1, API: Api, apiProps });
+	return [apiProps];
 }
 
 class Push_button extends SvelteComponentDev {
@@ -20007,7 +20626,7 @@ function create_default_slot_1$6(ctx) {
 }
 
 // (63:0) <Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
-function create_default_slot$8(ctx) {
+function create_default_slot$7(ctx) {
 	let item0;
 	let t0;
 	let item1;
@@ -20119,7 +20738,7 @@ function create_default_slot$8(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$8.name,
+		id: create_default_slot$7.name,
 		type: "slot",
 		source: "(63:0) <Menu type=\\\"context\\\" targetSelector=\\\".div2\\\" bind:this=\\\"{windowsMenu}\\\">",
 		ctx
@@ -20286,7 +20905,7 @@ function create_fragment$n(ctx) {
 	let menu5_props = {
 		type: "context",
 		targetSelector: ".div2",
-		$$slots: { default: [create_default_slot$8] },
+		$$slots: { default: [create_default_slot$7] },
 		$$scope: { ctx }
 	};
 
@@ -21085,7 +21704,7 @@ function create_default_slot_1$5(ctx) {
 }
 
 // (5:47) <TextFit>
-function create_default_slot$7(ctx) {
+function create_default_slot$6(ctx) {
 	let t;
 
 	const block = {
@@ -21105,7 +21724,7 @@ function create_default_slot$7(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$7.name,
+		id: create_default_slot$6.name,
 		type: "slot",
 		source: "(5:47) <TextFit>",
 		ctx
@@ -21149,7 +21768,7 @@ function create_fragment$l(ctx) {
 
 	textfit2 = new Text_fit$1({
 			props: {
-				$$slots: { default: [create_default_slot$7] },
+				$$slots: { default: [create_default_slot$6] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -21459,7 +22078,7 @@ function create_default_slot_1$4(ctx) {
 }
 
 // (8:0) <Button on:click="{() => showToast('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', 200000000)}">
-function create_default_slot$6(ctx) {
+function create_default_slot$5(ctx) {
 	let t;
 
 	const block = {
@@ -21476,7 +22095,7 @@ function create_default_slot$6(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$6.name,
+		id: create_default_slot$5.name,
 		type: "slot",
 		source: "(8:0) <Button on:click=\\\"{() => showToast('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', 200000000)}\\\">",
 		ctx
@@ -21564,7 +22183,7 @@ function create_fragment$k(ctx) {
 
 	button5 = new Button({
 			props: {
-				$$slots: { default: [create_default_slot$6] },
+				$$slots: { default: [create_default_slot$5] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -22678,664 +23297,6 @@ class Color_palette extends SvelteComponentDev {
 const { console: console_1$6 } = globals;
 const file$h = "docs-src/components/autocomplete.svelte";
 
-// (77:0) <Table className="api-table">
-function create_default_slot$5(ctx) {
-	let thead;
-	let tr0;
-	let th0;
-	let th1;
-	let th2;
-	let t3;
-	let tbody;
-	let tr1;
-	let td0;
-	let td1;
-	let i0;
-	let td2;
-	let t7;
-	let tr2;
-	let td3;
-	let td4;
-	let i1;
-	let td5;
-	let t11;
-	let tr3;
-	let td6;
-	let td7;
-	let i2;
-	let td8;
-	let t15;
-	let tr4;
-	let td9;
-	let td10;
-	let i3;
-	let td11;
-	let t19;
-	let tr5;
-	let td12;
-	let td13;
-	let td14;
-	let t23;
-	let tr6;
-	let td15;
-	let td16;
-	let td17;
-	let t27;
-	let tr7;
-	let td18;
-	let t29;
-	let td19;
-	let i4;
-	let t31;
-	let em;
-	let t33;
-	let td20;
-	let t34;
-	let code;
-	let t36;
-	let i5;
-	let t38;
-	let i6;
-	let t40;
-	let i7;
-	let t42;
-	let t43;
-	let tr8;
-	let td21;
-	let td22;
-	let i8;
-	let t46;
-	let br0;
-	let t47;
-	let td23;
-	let t49;
-	let tr9;
-	let td24;
-	let td25;
-	let i9;
-	let td26;
-	let t53;
-	let tr10;
-	let td27;
-	let td28;
-	let i10;
-	let t56;
-	let br1;
-	let t57;
-	let td29;
-	let t58;
-	let i11;
-	let t60;
-	let t61;
-	let tr11;
-	let td30;
-	let td31;
-	let i12;
-	let t64;
-	let br2;
-	let t65;
-	let td32;
-	let t66;
-	let i13;
-	let t68;
-	let i14;
-	let t70;
-	let t71;
-	let tr12;
-	let td33;
-	let td34;
-	let i15;
-	let t74;
-	let br3;
-	let t75;
-	let td35;
-	let t76;
-	let i16;
-	let t78;
-	let t79;
-	let tr13;
-	let td36;
-	let t81;
-	let td37;
-	let i17;
-	let t83;
-	let br4;
-	let t84;
-	let t85;
-	let td38;
-	let t86;
-	let br5;
-	let t87;
-	let br6;
-	let t88;
-	let br7;
-	let t89;
-	let br8;
-	let t90;
-	let i18;
-	let t92;
-	let i19;
-	let t94;
-	let t95;
-	let tr14;
-	let td39;
-	let td40;
-	let i20;
-	let t98;
-	let i21;
-	let td41;
-	let t101;
-	let tr15;
-	let td42;
-	let td43;
-	let i22;
-	let td44;
-	let t105;
-	let tr16;
-	let td45;
-	let td46;
-	let i23;
-	let td47;
-
-	const block = {
-		c: function create() {
-			thead = element("thead");
-			tr0 = element("tr");
-			th0 = element("th");
-			th0.textContent = "Attribute";
-			th1 = element("th");
-			th1.textContent = "Value";
-			th2 = element("th");
-			th2.textContent = "Description";
-			t3 = space();
-			tbody = element("tbody");
-			tr1 = element("tr");
-			td0 = element("td");
-			td0.textContent = "id";
-			td1 = element("td");
-			i0 = element("i");
-			i0.textContent = "string";
-			td2 = element("td");
-			td2.textContent = "Assign ID to the underlying input";
-			t7 = space();
-			tr2 = element("tr");
-			td3 = element("td");
-			td3.textContent = "title";
-			td4 = element("td");
-			i1 = element("i");
-			i1.textContent = "string";
-			td5 = element("td");
-			td5.textContent = "Assign title to the underlying input";
-			t11 = space();
-			tr3 = element("tr");
-			td6 = element("td");
-			td6.textContent = "name";
-			td7 = element("td");
-			i2 = element("i");
-			i2.textContent = "string";
-			td8 = element("td");
-			td8.textContent = "Assign name to the underlying input";
-			t15 = space();
-			tr4 = element("tr");
-			td9 = element("td");
-			td9.textContent = "placeholder";
-			td10 = element("td");
-			i3 = element("i");
-			i3.textContent = "string";
-			td11 = element("td");
-			td11.textContent = "Shows placeholder text";
-			t19 = space();
-			tr5 = element("tr");
-			td12 = element("td");
-			td12.textContent = "required";
-			td13 = element("td");
-			td13.textContent = "-";
-			td14 = element("td");
-			td14.textContent = "Marks input as required for form submission";
-			t23 = space();
-			tr6 = element("tr");
-			td15 = element("td");
-			td15.textContent = "disabled";
-			td16 = element("td");
-			td16.textContent = "-";
-			td17 = element("td");
-			td17.textContent = "Makes the input disabled";
-			t27 = space();
-			tr7 = element("tr");
-			td18 = element("td");
-			td18.textContent = "data";
-			t29 = space();
-			td19 = element("td");
-			i4 = element("i");
-			i4.textContent = "array";
-			t31 = text(", ");
-			em = element("em");
-			em.textContent = "required";
-			t33 = space();
-			td20 = element("td");
-			t34 = text("An array of strings or objects in the following format:\n\t\t\t\t");
-			code = element("code");
-			code.textContent = "{ name:string, id?: string | number, group?: string }";
-			t36 = text("\n\t\t\t\t(");
-			i5 = element("i");
-			i5.textContent = "name";
-			t38 = text(" should be unique, or - if ");
-			i6 = element("i");
-			i6.textContent = "id";
-			t40 = text(" is present - ");
-			i7 = element("i");
-			i7.textContent = "id";
-			t42 = text(" should be unique)");
-			t43 = space();
-			tr8 = element("tr");
-			td21 = element("td");
-			td21.textContent = "allowNew";
-			td22 = element("td");
-			i8 = element("i");
-			i8.textContent = "string";
-			t46 = text(", \"true\" | \"false\"");
-			br0 = element("br");
-			t47 = text("(default to false)");
-			td23 = element("td");
-			td23.textContent = "whether to allow arbitrary values (that don't exist in the list)";
-			t49 = space();
-			tr9 = element("tr");
-			td24 = element("td");
-			td24.textContent = "className";
-			td25 = element("td");
-			i9 = element("i");
-			i9.textContent = "string";
-			td26 = element("td");
-			td26.textContent = "Additional css class name to be added to the component.";
-			t53 = space();
-			tr10 = element("tr");
-			td27 = element("td");
-			td27.textContent = "clearOnEsc";
-			td28 = element("td");
-			i10 = element("i");
-			i10.textContent = "string";
-			t56 = text(", \"true\" | \"false\"");
-			br1 = element("br");
-			t57 = text("(default to false)");
-			td29 = element("td");
-			t58 = text("If ");
-			i11 = element("i");
-			i11.textContent = "true";
-			t60 = text(" - the input will be cleared when Escape is pressed.");
-			t61 = space();
-			tr11 = element("tr");
-			td30 = element("td");
-			td30.textContent = "elevate";
-			td31 = element("td");
-			i12 = element("i");
-			i12.textContent = "string";
-			t64 = text(", \"true\" | \"false\"");
-			br2 = element("br");
-			t65 = text("(default to false)");
-			td32 = element("td");
-			t66 = text("If ");
-			i13 = element("i");
-			i13.textContent = "true";
-			t68 = text(" - the popup will be rendered into the ");
-			i14 = element("i");
-			i14.textContent = "body";
-			t70 = text(", to ensure it's not hidden under some elements (see example above).");
-			t71 = space();
-			tr12 = element("tr");
-			td33 = element("td");
-			td33.textContent = "showOnFocus";
-			td34 = element("td");
-			i15 = element("i");
-			i15.textContent = "string";
-			t74 = text(", \"true\" | \"false\"");
-			br3 = element("br");
-			t75 = text("(default to false)");
-			td35 = element("td");
-			t76 = text("If ");
-			i16 = element("i");
-			i16.textContent = "true";
-			t78 = text(" - the popup will be automatically open when the input gets focus (as opposed to, when the user starts typing).");
-			t79 = space();
-			tr13 = element("tr");
-			td36 = element("td");
-			td36.textContent = "showAllInitially";
-			t81 = space();
-			td37 = element("td");
-			i17 = element("i");
-			i17.textContent = "string";
-			t83 = text(", \"true\" | \"false\"");
-			br4 = element("br");
-			t84 = text("(default to true)");
-			t85 = space();
-			td38 = element("td");
-			t86 = text("When the input has a value - the list in the poput is filtered by the input value.");
-			br5 = element("br");
-			t87 = text("\n\t\t\t\tIf this option is set to true (default) - when user navigates to the input (with a value)");
-			br6 = element("br");
-			t88 = text("\n\t\t\t\tor clicks such an input - the poput initially will show all items unfiltered, and only once");
-			br7 = element("br");
-			t89 = text("\n\t\t\t\tuser starts typing - the list will be filtered again.");
-			br8 = element("br");
-			t90 = text("\n\t\t\t\tIf this value is set to ");
-			i18 = element("i");
-			i18.textContent = "\"false\"";
-			t92 = text(" (or boolean ");
-			i19 = element("i");
-			i19.textContent = "false";
-			t94 = text(") - the list will always be filtered.");
-			t95 = space();
-			tr14 = element("tr");
-			td39 = element("td");
-			td39.textContent = "value";
-			td40 = element("td");
-			i20 = element("i");
-			i20.textContent = "string";
-			t98 = text(" | ");
-			i21 = element("i");
-			i21.textContent = "number";
-			td41 = element("td");
-			td41.textContent = "initial value of the input";
-			t101 = space();
-			tr15 = element("tr");
-			td42 = element("td");
-			td42.textContent = "on:change";
-			td43 = element("td");
-			i22 = element("i");
-			i22.textContent = "function";
-			td44 = element("td");
-			td44.textContent = "Triggered when value changes.";
-			t105 = space();
-			tr16 = element("tr");
-			td45 = element("td");
-			td45.textContent = "on:keydown";
-			td46 = element("td");
-			i23 = element("i");
-			i23.textContent = "function";
-			td47 = element("td");
-			td47.textContent = "Triggered when a key is down.";
-			add_location(th0, file$h, 77, 12, 2559);
-			add_location(th1, file$h, 77, 30, 2577);
-			add_location(th2, file$h, 77, 44, 2591);
-			add_location(tr0, file$h, 77, 8, 2555);
-			add_location(thead, file$h, 77, 1, 2548);
-			add_location(td0, file$h, 79, 6, 2640);
-			add_location(i0, file$h, 79, 21, 2655);
-			add_location(td1, file$h, 79, 17, 2651);
-			add_location(td2, file$h, 79, 39, 2673);
-			add_location(tr1, file$h, 79, 2, 2636);
-			add_location(td3, file$h, 80, 6, 2727);
-			add_location(i1, file$h, 80, 24, 2745);
-			add_location(td4, file$h, 80, 20, 2741);
-			add_location(td5, file$h, 80, 42, 2763);
-			add_location(tr2, file$h, 80, 2, 2723);
-			add_location(td6, file$h, 82, 6, 2821);
-			add_location(i2, file$h, 82, 23, 2838);
-			add_location(td7, file$h, 82, 19, 2834);
-			add_location(td8, file$h, 82, 41, 2856);
-			add_location(tr3, file$h, 82, 2, 2817);
-			add_location(td9, file$h, 83, 6, 2912);
-			add_location(i3, file$h, 83, 30, 2936);
-			add_location(td10, file$h, 83, 26, 2932);
-			add_location(td11, file$h, 83, 48, 2954);
-			add_location(tr4, file$h, 83, 2, 2908);
-			add_location(td12, file$h, 84, 6, 2997);
-			add_location(td13, file$h, 84, 23, 3014);
-			add_location(td14, file$h, 84, 33, 3024);
-			add_location(tr5, file$h, 84, 2, 2993);
-			add_location(td15, file$h, 85, 6, 3088);
-			add_location(td16, file$h, 85, 23, 3105);
-			add_location(td17, file$h, 85, 33, 3115);
-			add_location(tr6, file$h, 85, 2, 3084);
-			add_location(td18, file$h, 88, 3, 3165);
-			add_location(i4, file$h, 89, 7, 3186);
-			add_location(em, file$h, 89, 21, 3200);
-			add_location(td19, file$h, 89, 3, 3182);
-			add_location(code, file$h, 91, 4, 3290);
-			add_location(i5, file$h, 92, 5, 3376);
-			add_location(i6, file$h, 92, 43, 3414);
-			add_location(i7, file$h, 92, 66, 3437);
-			add_location(td20, file$h, 90, 3, 3226);
-			add_location(tr7, file$h, 87, 2, 3157);
-			add_location(td21, file$h, 95, 6, 3488);
-			add_location(i8, file$h, 95, 27, 3509);
-			add_location(br0, file$h, 95, 58, 3540);
-			add_location(td22, file$h, 95, 23, 3505);
-			add_location(td23, file$h, 95, 85, 3567);
-			add_location(tr8, file$h, 95, 2, 3484);
-			add_location(td24, file$h, 96, 6, 3652);
-			add_location(i9, file$h, 96, 28, 3674);
-			add_location(td25, file$h, 96, 24, 3670);
-			add_location(td26, file$h, 96, 46, 3692);
-			add_location(tr9, file$h, 96, 2, 3648);
-			add_location(td27, file$h, 97, 6, 3768);
-			add_location(i10, file$h, 97, 29, 3791);
-			add_location(br1, file$h, 97, 60, 3822);
-			add_location(td28, file$h, 97, 25, 3787);
-			add_location(i11, file$h, 97, 94, 3856);
-			add_location(td29, file$h, 97, 87, 3849);
-			add_location(tr10, file$h, 97, 2, 3764);
-			add_location(td30, file$h, 98, 6, 3936);
-			add_location(i12, file$h, 98, 26, 3956);
-			add_location(br2, file$h, 98, 57, 3987);
-			add_location(td31, file$h, 98, 22, 3952);
-			add_location(i13, file$h, 98, 91, 4021);
-			add_location(i14, file$h, 98, 141, 4071);
-			add_location(td32, file$h, 98, 84, 4014);
-			add_location(tr11, file$h, 98, 2, 3932);
-			add_location(td33, file$h, 99, 6, 4167);
-			add_location(i15, file$h, 99, 30, 4191);
-			add_location(br3, file$h, 99, 61, 4222);
-			add_location(td34, file$h, 99, 26, 4187);
-			add_location(i16, file$h, 99, 95, 4256);
-			add_location(td35, file$h, 99, 88, 4249);
-			add_location(tr12, file$h, 99, 2, 4163);
-			add_location(td36, file$h, 101, 3, 4399);
-			add_location(i17, file$h, 102, 7, 4432);
-			add_location(br4, file$h, 102, 38, 4463);
-			add_location(td37, file$h, 102, 3, 4428);
-			add_location(br5, file$h, 104, 86, 4584);
-			add_location(br6, file$h, 105, 93, 4682);
-			add_location(br7, file$h, 106, 95, 4782);
-			add_location(br8, file$h, 107, 57, 4844);
-			add_location(i18, file$h, 108, 28, 4877);
-			add_location(i19, file$h, 108, 55, 4904);
-			add_location(td38, file$h, 103, 3, 4493);
-			add_location(tr13, file$h, 100, 2, 4391);
-			add_location(td39, file$h, 111, 6, 4977);
-			add_location(i20, file$h, 111, 24, 4995);
-			add_location(i21, file$h, 111, 40, 5011);
-			add_location(td40, file$h, 111, 20, 4991);
-			add_location(td41, file$h, 111, 58, 5029);
-			add_location(tr14, file$h, 111, 2, 4973);
-			add_location(td42, file$h, 112, 6, 5076);
-			add_location(i22, file$h, 112, 28, 5098);
-			add_location(td43, file$h, 112, 24, 5094);
-			add_location(td44, file$h, 112, 48, 5118);
-			add_location(tr15, file$h, 112, 2, 5072);
-			add_location(td45, file$h, 113, 6, 5168);
-			add_location(i23, file$h, 113, 29, 5191);
-			add_location(td46, file$h, 113, 25, 5187);
-			add_location(td47, file$h, 113, 49, 5211);
-			add_location(tr16, file$h, 113, 2, 5164);
-			add_location(tbody, file$h, 78, 1, 2626);
-		},
-		m: function mount(target, anchor) {
-			insert_dev(target, thead, anchor);
-			append_dev(thead, tr0);
-			append_dev(tr0, th0);
-			append_dev(tr0, th1);
-			append_dev(tr0, th2);
-			insert_dev(target, t3, anchor);
-			insert_dev(target, tbody, anchor);
-			append_dev(tbody, tr1);
-			append_dev(tr1, td0);
-			append_dev(tr1, td1);
-			append_dev(td1, i0);
-			append_dev(tr1, td2);
-			append_dev(tbody, t7);
-			append_dev(tbody, tr2);
-			append_dev(tr2, td3);
-			append_dev(tr2, td4);
-			append_dev(td4, i1);
-			append_dev(tr2, td5);
-			append_dev(tbody, t11);
-			append_dev(tbody, tr3);
-			append_dev(tr3, td6);
-			append_dev(tr3, td7);
-			append_dev(td7, i2);
-			append_dev(tr3, td8);
-			append_dev(tbody, t15);
-			append_dev(tbody, tr4);
-			append_dev(tr4, td9);
-			append_dev(tr4, td10);
-			append_dev(td10, i3);
-			append_dev(tr4, td11);
-			append_dev(tbody, t19);
-			append_dev(tbody, tr5);
-			append_dev(tr5, td12);
-			append_dev(tr5, td13);
-			append_dev(tr5, td14);
-			append_dev(tbody, t23);
-			append_dev(tbody, tr6);
-			append_dev(tr6, td15);
-			append_dev(tr6, td16);
-			append_dev(tr6, td17);
-			append_dev(tbody, t27);
-			append_dev(tbody, tr7);
-			append_dev(tr7, td18);
-			append_dev(tr7, t29);
-			append_dev(tr7, td19);
-			append_dev(td19, i4);
-			append_dev(td19, t31);
-			append_dev(td19, em);
-			append_dev(tr7, t33);
-			append_dev(tr7, td20);
-			append_dev(td20, t34);
-			append_dev(td20, code);
-			append_dev(td20, t36);
-			append_dev(td20, i5);
-			append_dev(td20, t38);
-			append_dev(td20, i6);
-			append_dev(td20, t40);
-			append_dev(td20, i7);
-			append_dev(td20, t42);
-			append_dev(tbody, t43);
-			append_dev(tbody, tr8);
-			append_dev(tr8, td21);
-			append_dev(tr8, td22);
-			append_dev(td22, i8);
-			append_dev(td22, t46);
-			append_dev(td22, br0);
-			append_dev(td22, t47);
-			append_dev(tr8, td23);
-			append_dev(tbody, t49);
-			append_dev(tbody, tr9);
-			append_dev(tr9, td24);
-			append_dev(tr9, td25);
-			append_dev(td25, i9);
-			append_dev(tr9, td26);
-			append_dev(tbody, t53);
-			append_dev(tbody, tr10);
-			append_dev(tr10, td27);
-			append_dev(tr10, td28);
-			append_dev(td28, i10);
-			append_dev(td28, t56);
-			append_dev(td28, br1);
-			append_dev(td28, t57);
-			append_dev(tr10, td29);
-			append_dev(td29, t58);
-			append_dev(td29, i11);
-			append_dev(td29, t60);
-			append_dev(tbody, t61);
-			append_dev(tbody, tr11);
-			append_dev(tr11, td30);
-			append_dev(tr11, td31);
-			append_dev(td31, i12);
-			append_dev(td31, t64);
-			append_dev(td31, br2);
-			append_dev(td31, t65);
-			append_dev(tr11, td32);
-			append_dev(td32, t66);
-			append_dev(td32, i13);
-			append_dev(td32, t68);
-			append_dev(td32, i14);
-			append_dev(td32, t70);
-			append_dev(tbody, t71);
-			append_dev(tbody, tr12);
-			append_dev(tr12, td33);
-			append_dev(tr12, td34);
-			append_dev(td34, i15);
-			append_dev(td34, t74);
-			append_dev(td34, br3);
-			append_dev(td34, t75);
-			append_dev(tr12, td35);
-			append_dev(td35, t76);
-			append_dev(td35, i16);
-			append_dev(td35, t78);
-			append_dev(tbody, t79);
-			append_dev(tbody, tr13);
-			append_dev(tr13, td36);
-			append_dev(tr13, t81);
-			append_dev(tr13, td37);
-			append_dev(td37, i17);
-			append_dev(td37, t83);
-			append_dev(td37, br4);
-			append_dev(td37, t84);
-			append_dev(tr13, t85);
-			append_dev(tr13, td38);
-			append_dev(td38, t86);
-			append_dev(td38, br5);
-			append_dev(td38, t87);
-			append_dev(td38, br6);
-			append_dev(td38, t88);
-			append_dev(td38, br7);
-			append_dev(td38, t89);
-			append_dev(td38, br8);
-			append_dev(td38, t90);
-			append_dev(td38, i18);
-			append_dev(td38, t92);
-			append_dev(td38, i19);
-			append_dev(td38, t94);
-			append_dev(tbody, t95);
-			append_dev(tbody, tr14);
-			append_dev(tr14, td39);
-			append_dev(tr14, td40);
-			append_dev(td40, i20);
-			append_dev(td40, t98);
-			append_dev(td40, i21);
-			append_dev(tr14, td41);
-			append_dev(tbody, t101);
-			append_dev(tbody, tr15);
-			append_dev(tr15, td42);
-			append_dev(tr15, td43);
-			append_dev(td43, i22);
-			append_dev(tr15, td44);
-			append_dev(tbody, t105);
-			append_dev(tbody, tr16);
-			append_dev(tr16, td45);
-			append_dev(tr16, td46);
-			append_dev(td46, i23);
-			append_dev(tr16, td47);
-		},
-		p: noop,
-		d: function destroy(detaching) {
-			if (detaching) detach_dev(thead);
-			if (detaching) detach_dev(t3);
-			if (detaching) detach_dev(tbody);
-		}
-	};
-
-	dispatch_dev("SvelteRegisterBlock", {
-		block,
-		id: create_default_slot$5.name,
-		type: "slot",
-		source: "(77:0) <Table className=\\\"api-table\\\">",
-		ctx
-	});
-
-	return block;
-}
-
 function create_fragment$h(ctx) {
 	let h20;
 	let t1;
@@ -23408,16 +23369,14 @@ function create_fragment$h(ctx) {
 	let t44;
 	let hr1;
 	let t45;
-	let h38;
-	let t47;
-	let table;
+	let api;
 	let current;
 
 	function autocomplete0_value_binding(value) {
-		/*autocomplete0_value_binding*/ ctx[6](value);
+		/*autocomplete0_value_binding*/ ctx[7](value);
 	}
 
-	let autocomplete0_props = { data: /*autocompleteData*/ ctx[3] };
+	let autocomplete0_props = { data: /*autocompleteData*/ ctx[4] };
 
 	if (/*autocompleteValue*/ ctx[0] !== void 0) {
 		autocomplete0_props.value = /*autocompleteValue*/ ctx[0];
@@ -23432,12 +23391,12 @@ function create_fragment$h(ctx) {
 	autocomplete0.$on("change", onChange);
 
 	function autocomplete1_value_binding(value) {
-		/*autocomplete1_value_binding*/ ctx[7](value);
+		/*autocomplete1_value_binding*/ ctx[8](value);
 	}
 
 	let autocomplete1_props = {
 		disabled: true,
-		data: /*autocompleteData*/ ctx[3]
+		data: /*autocompleteData*/ ctx[4]
 	};
 
 	if (/*autocompleteValue*/ ctx[0] !== void 0) {
@@ -23452,11 +23411,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete1, 'value', autocomplete1_value_binding, /*autocompleteValue*/ ctx[0]));
 
 	function autocomplete2_value_binding(value) {
-		/*autocomplete2_value_binding*/ ctx[8](value);
+		/*autocomplete2_value_binding*/ ctx[9](value);
 	}
 
 	let autocomplete2_props = {
-		data: /*autocompleteData*/ ctx[3],
+		data: /*autocompleteData*/ ctx[4],
 		placeholder: "Type to filter",
 		allowNew: "true"
 	};
@@ -23473,12 +23432,12 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete2, 'value', autocomplete2_value_binding, /*autocompleteValue*/ ctx[0]));
 
 	function autocomplete3_value_binding(value) {
-		/*autocomplete3_value_binding*/ ctx[9](value);
+		/*autocomplete3_value_binding*/ ctx[10](value);
 	}
 
 	let autocomplete3_props = {
 		showOnFocus: "true",
-		data: /*autocompleteData*/ ctx[3]
+		data: /*autocompleteData*/ ctx[4]
 	};
 
 	if (/*autocompleteValue*/ ctx[0] !== void 0) {
@@ -23493,11 +23452,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete3, 'value', autocomplete3_value_binding, /*autocompleteValue*/ ctx[0]));
 
 	function autocomplete4_value_binding(value) {
-		/*autocomplete4_value_binding*/ ctx[10](value);
+		/*autocomplete4_value_binding*/ ctx[11](value);
 	}
 
 	let autocomplete4_props = {
-		data: /*autocompleteDataSimple*/ ctx[4],
+		data: /*autocompleteDataSimple*/ ctx[5],
 		placeholder: "Type to filter"
 	};
 
@@ -23513,11 +23472,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete4, 'value', autocomplete4_value_binding, /*autocompleteValueSimple*/ ctx[1]));
 
 	function autocomplete5_value_binding(value) {
-		/*autocomplete5_value_binding*/ ctx[11](value);
+		/*autocomplete5_value_binding*/ ctx[12](value);
 	}
 
 	let autocomplete5_props = {
-		data: /*autocompleteDataSimplest*/ ctx[5],
+		data: /*autocompleteDataSimplest*/ ctx[6],
 		placeholder: "Type to filter"
 	};
 
@@ -23533,11 +23492,11 @@ function create_fragment$h(ctx) {
 	binding_callbacks.push(() => bind(autocomplete5, 'value', autocomplete5_value_binding, /*autocompleteValueSimplest*/ ctx[2]));
 
 	function autocomplete6_value_binding(value) {
-		/*autocomplete6_value_binding*/ ctx[12](value);
+		/*autocomplete6_value_binding*/ ctx[13](value);
 	}
 
 	let autocomplete6_props = {
-		data: /*autocompleteData*/ ctx[3],
+		data: /*autocompleteData*/ ctx[4],
 		elevate: "true"
 	};
 
@@ -23552,12 +23511,8 @@ function create_fragment$h(ctx) {
 
 	binding_callbacks.push(() => bind(autocomplete6, 'value', autocomplete6_value_binding, /*autocompleteValue*/ ctx[0]));
 
-	table = new Table({
-			props: {
-				className: "api-table",
-				$$slots: { default: [create_default_slot$5] },
-				$$scope: { ctx }
-			},
+	api = new Api({
+			props: { props: /*apiProps*/ ctx[3] },
 			$$inline: true
 		});
 
@@ -23641,10 +23596,7 @@ function create_fragment$h(ctx) {
 			t44 = space();
 			hr1 = element("hr");
 			t45 = space();
-			h38 = element("h3");
-			h38.textContent = "API";
-			t47 = space();
-			create_component(table.$$.fragment);
+			create_component(api.$$.fragment);
 			add_location(h20, file$h, 0, 0, 0);
 			add_location(h30, file$h, 3, 2, 77);
 			add_location(h31, file$h, 9, 2, 206);
@@ -23674,7 +23626,6 @@ function create_fragment$h(ctx) {
 			add_location(h37, file$h, 49, 0, 1734);
 			add_location(code, file$h, 50, 0, 1765);
 			add_location(hr1, file$h, 72, 0, 2463);
-			add_location(h38, file$h, 75, 0, 2504);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23743,9 +23694,7 @@ function create_fragment$h(ctx) {
 			insert_dev(target, t44, anchor);
 			insert_dev(target, hr1, anchor);
 			insert_dev(target, t45, anchor);
-			insert_dev(target, h38, anchor);
-			insert_dev(target, t47, anchor);
-			mount_component(table, target, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
@@ -23813,13 +23762,6 @@ function create_fragment$h(ctx) {
 
 			autocomplete6.$set(autocomplete6_changes);
 			if ((!current || dirty & /*autocompleteValue*/ 1) && t38_value !== (t38_value = JSON.stringify(/*autocompleteValue*/ ctx[0] || {}, null, 2) + "")) set_data_dev(t38, t38_value);
-			const table_changes = {};
-
-			if (dirty & /*$$scope*/ 8192) {
-				table_changes.$$scope = { dirty, ctx };
-			}
-
-			table.$set(table_changes);
 		},
 		i: function intro(local) {
 			if (current) return;
@@ -23830,7 +23772,7 @@ function create_fragment$h(ctx) {
 			transition_in(autocomplete4.$$.fragment, local);
 			transition_in(autocomplete5.$$.fragment, local);
 			transition_in(autocomplete6.$$.fragment, local);
-			transition_in(table.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -23841,7 +23783,7 @@ function create_fragment$h(ctx) {
 			transition_out(autocomplete4.$$.fragment, local);
 			transition_out(autocomplete5.$$.fragment, local);
 			transition_out(autocomplete6.$$.fragment, local);
-			transition_out(table.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -23864,9 +23806,7 @@ function create_fragment$h(ctx) {
 			if (detaching) detach_dev(t44);
 			if (detaching) detach_dev(hr1);
 			if (detaching) detach_dev(t45);
-			if (detaching) detach_dev(h38);
-			if (detaching) detach_dev(t47);
-			destroy_component(table, detaching);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -23889,6 +23829,93 @@ function onChange(e) {
 function instance$h($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Autocomplete', slots, []);
+
+	const apiProps = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying input.'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'placeholder',
+			type: 'string',
+			description: 'Shows placeholder text.'
+		},
+		{
+			name: 'required',
+			description: 'Mark the input as <i>required</i> for form submission.'
+		},
+		{
+			name: 'disabled',
+			description: 'Make the input disabled.'
+		},
+		{
+			name: 'data',
+			type: 'array',
+			required: true,
+			description: 'An array of strings or objects in the following format: ' + '<code>&lbrace; name:string, id?: string | number, group?: string &rbrace;</code>' + '(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
+		},
+		{
+			name: 'allowNew',
+			type: ['true', 'false'],
+			default: 'false',
+			description: '(default to false)</td><td>whether to allow arbitrary values (that don\'t exist in the list).'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'clearOnEsc',
+			type: ['true', 'false'],
+			default: 'false',
+			description: '(default to false)</td><td>If <i>true</i> - the input will be cleared when Escape is pressed.'
+		},
+		{
+			name: 'elevate',
+			type: ['true', 'false'],
+			default: 'false',
+			description: '(default to false)</td><td>If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).'
+		},
+		{
+			name: 'showOnFocus',
+			type: ['true', 'false'],
+			default: 'false',
+			description: '(default to false)</td><td>If <i>true</i> - the popup will be automatically open when the input gets focus (as opposed to, when the user starts typing).'
+		},
+		{
+			name: 'showAllInitially',
+			type: ['true', 'false'],
+			default: 'true',
+			description: 'When the input has a value - the list in the poput is filtered by the input value.<br> ' + 'If this option is set to true (default) - when user navigates to the input (with a value)<br> ' + 'or clicks such an input - the poput initially will show all items unfiltered, and only once<br> ' + 'user starts typing - the list will be filtered again.<br> ' + 'If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. '
+		},
+		{
+			name: 'value',
+			type: ['string', 'number'],
+			description: 'Initial value of the input.'
+		},
+		{
+			name: 'on:change',
+			type: 'function',
+			description: 'Triggered when value changes.'
+		},
+		{
+			name: 'on:keydown',
+			type: 'function',
+			description: 'Triggered when a key is down.'
+		}
+	];
 
 	const autocompleteData = [
 		{ id: 1, name: 'Alpha', group: 'Group 1' },
@@ -24028,7 +24055,8 @@ function instance$h($$self, $$props, $$invalidate) {
 
 	$$self.$capture_state = () => ({
 		Autocomplete,
-		Table,
+		API: Api,
+		apiProps,
 		autocompleteData,
 		autocompleteValue,
 		autocompleteDataSimple,
@@ -24052,6 +24080,7 @@ function instance$h($$self, $$props, $$invalidate) {
 		autocompleteValue,
 		autocompleteValueSimple,
 		autocompleteValueSimplest,
+		apiProps,
 		autocompleteData,
 		autocompleteDataSimple,
 		autocompleteDataSimplest,
@@ -24324,6 +24353,16 @@ function create_fragment$f(ctx) {
 	let h35;
 	let t18;
 	let checkbox5;
+	let t19;
+	let hr0;
+	let t20;
+	let h36;
+	let t22;
+	let code;
+	let t24;
+	let hr1;
+	let t25;
+	let api;
 	let current;
 	checkbox0 = new Checkbox({ $$inline: true });
 	checkbox0.$on("change", onchange$2);
@@ -24350,6 +24389,11 @@ function create_fragment$f(ctx) {
 
 	checkbox5 = new Checkbox({
 			props: { required: true },
+			$$inline: true
+		});
+
+	api = new Api({
+			props: { props: /*apiProps*/ ctx[0] },
 			$$inline: true
 		});
 
@@ -24387,6 +24431,18 @@ function create_fragment$f(ctx) {
 			h35.textContent = "Invalid";
 			t18 = space();
 			create_component(checkbox5.$$.fragment);
+			t19 = space();
+			hr0 = element("hr");
+			t20 = space();
+			h36 = element("h3");
+			h36.textContent = "Example instantiation";
+			t22 = space();
+			code = element("code");
+			code.textContent = "<Checkbox on:change=\"{ onChange }\" />\n\n<script>\nfunction onChange (e) {\n    const { value, oldValue } = e.detail;\n    console.log({ value, oldValue });\n}\n</script>";
+			t24 = space();
+			hr1 = element("hr");
+			t25 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$f, 0, 0, 0);
 			add_location(h30, file$f, 2, 0, 19);
 			add_location(h31, file$f, 5, 0, 72);
@@ -24394,6 +24450,10 @@ function create_fragment$f(ctx) {
 			add_location(h33, file$f, 11, 0, 159);
 			add_location(h34, file$f, 14, 0, 223);
 			add_location(h35, file$f, 18, 0, 282);
+			add_location(hr0, file$f, 22, 0, 323);
+			add_location(h36, file$f, 23, 0, 328);
+			add_location(code, file$f, 24, 0, 359);
+			add_location(hr1, file$f, 35, 0, 613);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -24424,6 +24484,16 @@ function create_fragment$f(ctx) {
 			insert_dev(target, h35, anchor);
 			insert_dev(target, t18, anchor);
 			mount_component(checkbox5, target, anchor);
+			insert_dev(target, t19, anchor);
+			insert_dev(target, hr0, anchor);
+			insert_dev(target, t20, anchor);
+			insert_dev(target, h36, anchor);
+			insert_dev(target, t22, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t24, anchor);
+			insert_dev(target, hr1, anchor);
+			insert_dev(target, t25, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: noop,
@@ -24435,6 +24505,7 @@ function create_fragment$f(ctx) {
 			transition_in(checkbox3.$$.fragment, local);
 			transition_in(checkbox4.$$.fragment, local);
 			transition_in(checkbox5.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -24444,6 +24515,7 @@ function create_fragment$f(ctx) {
 			transition_out(checkbox3.$$.fragment, local);
 			transition_out(checkbox4.$$.fragment, local);
 			transition_out(checkbox5.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -24472,6 +24544,16 @@ function create_fragment$f(ctx) {
 			if (detaching) detach_dev(h35);
 			if (detaching) detach_dev(t18);
 			destroy_component(checkbox5, detaching);
+			if (detaching) detach_dev(t19);
+			if (detaching) detach_dev(hr0);
+			if (detaching) detach_dev(t20);
+			if (detaching) detach_dev(h36);
+			if (detaching) detach_dev(t22);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t24);
+			if (detaching) detach_dev(hr1);
+			if (detaching) detach_dev(t25);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -24493,14 +24575,56 @@ function onchange$2(e) {
 function instance$f($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Checkbox', slots, []);
+
+	const apiProps = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying input.'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'required',
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.'
+		},
+		{
+			name: 'disabled',
+			description: 'Make the input disabled.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the input.'
+		},
+		{
+			name: 'checked',
+			type: ['true', 'false'],
+			description: 'Make the checkbox checked or unchecked.'
+		},
+		{
+			name: 'indeterminate',
+			type: ['true', 'false'],
+			description: 'If set to <i>true</i> it makes the checkbox show its 3rd state - indeterminate.'
+		}
+	];
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$5.warn(`<Checkbox> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Checkbox, onchange: onchange$2 });
-	return [];
+	$$self.$capture_state = () => ({ Checkbox, API: Api, apiProps, onchange: onchange$2 });
+	return [apiProps];
 }
 
 class Checkbox_1 extends SvelteComponentDev {
@@ -29888,7 +30012,7 @@ function create_fragment$1(ctx) {
 
 	navitem6 = new Nav_item({
 			props: {
-				name: "Datepicker",
+				name: "Checkbox",
 				active: /*active*/ ctx[0]
 			},
 			$$inline: true
@@ -29896,7 +30020,7 @@ function create_fragment$1(ctx) {
 
 	navitem7 = new Nav_item({
 			props: {
-				name: "Checkbox",
+				name: "Datepicker",
 				active: /*active*/ ctx[0]
 			},
 			$$inline: true

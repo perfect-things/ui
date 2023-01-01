@@ -4,7 +4,7 @@
 
 <script>
 
-export let tag = '<div>';
+export let tag = 'div';
 export let props = {};
 export let text = '';
 let html ='';
@@ -28,8 +28,8 @@ function buildHtml () {
 	if (propsStr) propsStr = ' ' + propsStr;
 
 	let _html = '';
-	if (!text) _html = `<Button${propsStr}/>`;
-	else _html = `<Button${propsStr}>${text}</Button>`;
+	if (!text) _html = `<${tag}${propsStr}/>`;
+	else _html = `<${tag}${propsStr}>${text}</${tag}>`;
 
 	return encode(_html);
 }

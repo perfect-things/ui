@@ -1,4 +1,4 @@
-.push-button.pressed {
+.push-button[aria-pressed="true"] {
 	filter: brightness(0.85);
 	transform: translateY(1px);
 	box-shadow: none;
