@@ -1,10 +1,9 @@
-<div class="input-math-wrapper">
+<div class="input-math-wrapper {className}">
 	<Icon name="calculator"/>
 	<input
 		type="text"
 		autocomplete="off"
 		class="input-math"
-		pattern="[\d-+\/\*\.]*"
 		{...$$props}
 		bind:this="{_this}"
 		bind:value="{value}"
@@ -20,6 +19,7 @@ import Icon from '../icon';
 
 export let _this = undefined;
 export let value = '';
+export let className = '';
 
 
 const dispatch = createEventDispatcher();

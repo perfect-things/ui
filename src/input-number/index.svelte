@@ -1,11 +1,14 @@
-<input type="text" autocomplete="off"
+<input
+	type="number"
+	autocomplete="off"
+	class="number-input {className}"
 	{...$$props}
-	pattern="-?[\d\.]*"
 	bind:value="{value}"
 	on:keydown="{onkeydown}"
 	on:change="{onchange}">
 <script>
 export let value = '';
+export let className = '';
 
 const DECIMAL_SEPARATOR = '.';
 const allowedKeys = [

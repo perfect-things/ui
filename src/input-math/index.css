@@ -18,8 +18,15 @@
 	opacity: 0.6;
 }
 
-.input-math-wrapper .input-math {
+.input-math {
 	width: 100%;
 	padding-left: 28px;
 	text-align: right;
+	-moz-appearance: textfield;
+}
+
+.input-math::-webkit-inner-spin-button,
+.input-math::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
