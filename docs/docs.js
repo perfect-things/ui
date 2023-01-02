@@ -9242,7 +9242,7 @@ function create_fragment$J(ctx) {
 		});
 
 	let input_levels = [
-		{ type: "text" },
+		{ type: "number" },
 		{ autocomplete: "off" },
 		{ class: "input-math" },
 		/*$$props*/ ctx[5]
@@ -9292,13 +9292,13 @@ function create_fragment$J(ctx) {
 		},
 		p: function update(ctx, [dirty]) {
 			set_attributes(input, input_data = get_spread_update(input_levels, [
-				{ type: "text" },
+				{ type: "number" },
 				{ autocomplete: "off" },
 				{ class: "input-math" },
 				dirty & /*$$props*/ 32 && /*$$props*/ ctx[5]
 			]));
 
-			if (dirty & /*value*/ 2 && input.value !== /*value*/ ctx[1]) {
+			if (dirty & /*value*/ 2 && to_number(input.value) !== /*value*/ ctx[1]) {
 				set_input_value(input, /*value*/ ctx[1]);
 			}
 
@@ -9428,7 +9428,7 @@ function instance$J($$self, $$props, $$invalidate) {
 	}
 
 	function input_input_handler() {
-		value = this.value;
+		value = to_number(this.value);
 		$$invalidate(1, value);
 	}
 

@@ -1,7 +1,7 @@
 <div class="input-math-wrapper {className}">
 	<Icon name="calculator"/>
 	<input
-		type="text"
+		type="number"
 		autocomplete="off"
 		class="input-math"
 		{...$$props}
