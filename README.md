@@ -13,6 +13,8 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 - [x] Bug: drawer shows main header's bg
 - [x] Feat: better on-screen keyboard for numeric inputs
 - [ ] Bug: toggle doesn't work on mobile
+- [ ] Bug: splitter no work on mobile
+- [ ] Feat: context menu on mobile with a long click?
 
 - [ ] improve docs: add description, code samples & API/options/parameters/etc.
 	- [x] Autocomplete

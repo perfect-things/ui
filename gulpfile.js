@@ -11,6 +11,8 @@ import gulpEslint from 'gulp-eslint-new';
 import gulpStylelint from '@ffaubert/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
 import rollup from 'gulp-rollup-plugin';
+import inject from 'gulp-inject-string';
+
 
 const { series, parallel, src, dest, watch } = gulp;
 const noop = throught2.obj;
@@ -23,7 +25,35 @@ const setProd = (done) => { isProd = true; done(); };
 export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
 
 export function html () {
-	return src('docs-src/index.html').pipe(dest(DIST_PATH));
+	const comment = '<!-- scripts-go-here -->';
+	const reloadScript = '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
+	const matomoScript = `<script>
+	var _paq = window._paq = window._paq || [];
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+		var u="//matomo.borychowski.net/";
+		_paq.push(['setTrackerUrl', u+'matomo.php']);
+		_paq.push(['setSiteId', '2']);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+	})();
+	var currentUrl = location.href;
+	window.addEventListener('hashchange', function() {
+		_paq.push(['setReferrerUrl', currentUrl]);
+		currentUrl = '/' + window.location.hash.substr(1);
+		_paq.push(['setCustomUrl', currentUrl]);
+		_paq.push(['setDocumentTitle', document.title]);
+		_paq.push(['deleteCustomVariables', 'page']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+	});
+	</script>
+	<noscript><p><img src="//matomo.borychowski.net/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>`;
+	const script = isProd ? matomoScript : reloadScript;
+	return src('docs-src/index.html')
+		.pipe(inject.replace(comment, script))
+		.pipe(dest(DIST_PATH));
 }
 
 export function assets () {
@@ -48,14 +78,14 @@ export function eslint () {
 export function stylelint () {
 	return src(['{src,docs-src}/**/*.css'])
 		.pipe(gulpStylelint({
-			// fix: true,
+			fix: true,
 			reporters: [{ formatter: 'string', console: true }]
 		}))
 		.on('error', function () {
 			console.log('\x07');    // beep
 			this.emit('end');
-		});
-	// .pipe(dest('.'));
+		})
+		.pipe(dest('.'));
 }
 
 
@@ -108,6 +138,7 @@ function watchTask (done) {
 	livereload.listen();
 	watch('src/**/*.css', series(libCSS, stylelint));
 	watch('docs-src/**/*.css', series(docsCSS, stylelint));
+	watch('docs-src/**/*.html', html);
 	watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
 
 }
