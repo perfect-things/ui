@@ -1,6 +1,12 @@
 simple-ui-components-in-svelte
 ==============================
 
+## v3.1.0 (2023-01-03)
+- UX change: autocomplete will not close on scroll or resize events from now on (it can be changed using new properties `hideOnScroll` and `hideOnResize`).
+- fixed: autocomplete issue, where clicking on a filtered list would not select.
+- tweak: autocomplete will now show "create new item" always (when enabled), not only when the query did not match anything. Except when the query matches an item exactly.
+
+
 ## v3.0.1 (2022-12-30)
 - autocomplete should revert when entered value is not on the list
 

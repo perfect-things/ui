@@ -25,7 +25,7 @@
 			bind:value="{autocompleteValueSimple}" />
 
 		<h3>Simplest data (just an array of strings)</h3>
-		<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter"
+		<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter" allowNew="true"
 			bind:value="{autocompleteValueSimplest}" />
 
 		<h3>In a container with <em>overflow: hidden</em></h3>
@@ -93,11 +93,13 @@ const apiProps = [
 			'<code>&lbrace; name:string, id?: string | number, group?: string &rbrace;</code>' +
 			'(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
 	},
-	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: '(default to false)</td><td>whether to allow arbitrary values (that don\'t exist in the list).' },
+	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
 	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: '(default to false)</td><td>If <i>true</i> - the input will be cleared when Escape is pressed.' },
-	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: '(default to false)</td><td>If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
-	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: '(default to false)</td><td>If <i>true</i> - the popup will be automatically open when the input gets focus (as opposed to, when the user starts typing).' },
+	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the input will be cleared when Escape is pressed.' },
+	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
+	{ name: 'hideOnScroll', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - scrolling the window will close the popup.' },
+	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
+	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be automatically open when the input gets focus (as opposed to, when the user starts typing).' },
 	{
 		name: 'showAllInitially',
 		type: ['true', 'false'],
@@ -164,6 +166,7 @@ const autocompleteDataSimplest = [
 	'Zeta',
 	'Eta',
 	'Theta',
+	'Iota',
 	'Iota',
 	'Kappa',
 	'Lambda is the last item in this list',

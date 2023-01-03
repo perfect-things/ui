@@ -20,6 +20,7 @@
 	<div class="autocomplete-list {opened ? '' : 'hidden'}"
 		on:mouseenter|capture="{() => mouseOverList = true}"
 		on:mouseleave|capture="{() => mouseOverList = false}"
+		on:mousedown={onListMouseDown}
 		bind:this="{listEl}">
 		{#if filteredData.length}
 			{#each groupedData as group}
@@ -37,10 +38,17 @@
 					{/each}
 				{/if}
 			{/each}
-		{:else if allowNew === true || allowNew === 'true' }
-			<div class="autocomplete-list-item selected"
-				on:click="{() => onclick({ name: inputEl && inputEl.value || '' })}">
-					Create: <b>{inputEl && inputEl.value || ''}</b>
+		{:else if allowNew !== true && allowNew !== 'true'}
+			<div class="autocomplete-list-empty">No items found</div>
+		{/if}
+
+		{#if shouldShowNewItem}
+			<div class="autocomplete-list-header">Create new item</div>
+			<div
+				class="autocomplete-list-item"
+				class:selected="{highlightIndex === filteredData.length}"
+				on:click="{() => onclick({ name: inputEl.value, idx: filteredData.length })}">
+					{inputEl.value}
 			</div>
 		{/if}
 	</div>
@@ -59,9 +67,13 @@ export let clearOnEsc = false;
 export let elevate = false;
 export let showOnFocus = false;
 export let className = '';
+export let hideOnScroll = false;
+export let hideOnResize = false;
 
 $:elevated = elevate === 'true' || elevate === true;
 $:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
+$:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputEl.value));
+$:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputEl && inputEl.value && !valueMatchesItem;
 
 const dispatch = createEventDispatcher();
 let el, inputEl, listEl;
@@ -72,6 +84,7 @@ let highlightIndex = 0;
 let filteredData = [], groupedData = [];
 let originalText = '';
 let hasSetValue = true;
+let isSelecting = false;
 
 
 onMount(() => {
@@ -149,6 +162,7 @@ function close () {
 	removeEventListeners();
 	mouseOverList = false;
 	opened = false;
+	isSelecting = false;
 }
 
 
@@ -210,8 +224,15 @@ function down () {
 	if (!opened) return open();
 	let idx = highlightIndex + 1;
 	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
-	if (idx !== highlightIndex && filteredData[idx]) {
-		highlightIndex = filteredData[idx].idx;
+
+	let item = filteredData[idx];
+
+	if (shouldShowNewItem && idx === filteredData.length) {
+		item = { idx: filteredData.length };
+	}
+
+	if (idx !== highlightIndex && item) {
+		highlightIndex = item.idx;
 		highlight(listEl);
 	}
 }
@@ -240,6 +261,7 @@ function onfocus () {
 
 
 function oninput () {
+	inputEl.value = inputEl.value;	// svelte needs this to rerender some stuff
 	open();
 	requestAnimationFrame(filter);
 	recalculateListPosition(listEl, inputEl, elevated);
@@ -249,11 +271,17 @@ function oninput () {
 
 
 function onblur () {
+	if (isSelecting) return;
 	if (opened && !inputEl.value) return revert();
 	selectItem();
 	setTimeout(() => {
 		if (document.activeElement != inputEl) close();
 	}, 200);
+}
+
+
+function onListMouseDown () {
+	isSelecting = true;
 }
 
 
@@ -313,6 +341,10 @@ function onEsc (e) {
 function onScrollOrResize (e) {
 	if (!opened) return;
 	if (e.target == listEl || e.target == inputEl || mouseOverList) return;
+
+	if (e.type === 'resize' && hideOnResize !== true && hideOnResize !== 'true') return;
+	if (e.type === 'scroll' && hideOnScroll !== true && hideOnScroll !== 'true') return;
+
 	inputEl.blur();
 	return close();
 }

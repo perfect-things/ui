@@ -39,7 +39,7 @@
 }
 
 .autocomplete-list:empty { padding: 0; box-shadow: none; border: none; }
-.autocomplete-list:not(:empty) { min-height: 3em; }
+.autocomplete-list:not(:empty) { min-height: 2em; }
 .autocomplete-list.hidden { display: none; }
 
 .autocomplete-list-header {
@@ -56,6 +56,13 @@
 }
 
 .autocomplete-list-header:last-child { display: none; }
+
+.autocomplete-list-empty {
+	padding: 0.6em 1.2em;
+	color: var(--ui-color-text-semi);
+	cursor: default;
+	white-space: nowrap;
+}
 
 .autocomplete-list-item {
 	padding: 0.6em 1.2em;
