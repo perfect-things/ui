@@ -27,30 +27,8 @@ export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
 export function html () {
 	const comment = '<!-- scripts-go-here -->';
 	const reloadScript = '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
-	const matomoScript = `<script>
-	var _paq = window._paq = window._paq || [];
-	_paq.push(['trackPageView']);
-	_paq.push(['enableLinkTracking']);
-	(function() {
-		var u="//matomo.borychowski.net/";
-		_paq.push(['setTrackerUrl', u+'matomo.php']);
-		_paq.push(['setSiteId', '2']);
-		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-		g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-	})();
-	var currentUrl = location.href;
-	window.addEventListener('hashchange', function() {
-		_paq.push(['setReferrerUrl', currentUrl]);
-		currentUrl = '/' + window.location.hash.substr(1);
-		_paq.push(['setCustomUrl', currentUrl]);
-		_paq.push(['setDocumentTitle', document.title]);
-		_paq.push(['deleteCustomVariables', 'page']);
-		_paq.push(['trackPageView']);
-		_paq.push(['enableLinkTracking']);
-	});
-	</script>
-	<noscript><p><img src="//matomo.borychowski.net/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>`;
-	const script = isProd ? matomoScript : reloadScript;
+	const analyticsScript = '<script async defer data-website-id="f02a9b98-566c-480e-9f83-27640a4b8f9f" src="https://umami.borychowski.net/umami.js"></script>';
+	const script = isProd ? analyticsScript : reloadScript;
 	return src('docs-src/index.html')
 		.pipe(inject.replace(comment, script))
 		.pipe(dest(DIST_PATH));
