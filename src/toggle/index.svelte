@@ -49,12 +49,12 @@ function getMouseX (e) {
 }
 
 
-function outerWidth (_el) {
+function _outerWidth (_el) {
 	return _el.getBoundingClientRect().width;
 }
 
 
-function innerWidth (_el) {
+function _innerWidth (_el) {
 	const css = getComputedStyle(_el);
 	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
 	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
@@ -69,8 +69,8 @@ function initialMeasure (_el) {
 		document.body.appendChild(_el);
 	}
 	const _handle = _el.querySelector('.toggle-handle');
-	maxX = innerWidth(_el);
-	minX = outerWidth(_handle);
+	maxX = _innerWidth(_el);
+	minX = _outerWidth(_handle);
 	if (isHidden && _el) _el.remove();
 }
 
