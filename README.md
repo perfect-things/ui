@@ -10,12 +10,6 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] Bug: show "create/new" in autocomplete all the time, not only when list is empty (no search results). It should be hidden only when it matches an item on the list exactly.
-- [x] Bug: autocomplete - click doesn't select the right item from the filtered list
-    - filter (by keyboard) to several options
-    - click a non-first option with mouse
-    - first option is selected
-
 - [ ] Bug: toggle doesn't work on mobile
 - [ ] Bug: splitter no work on mobile
 - [ ] Feat: context menu on mobile with a long click?

@@ -76,7 +76,7 @@ function onChange (e) &lbrace;
 
 <script>
 import { Autocomplete } from '../../src';
-import API from '../app/api';
+import API from '../api-table';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },

@@ -67,7 +67,7 @@ const buttons = &lsqb;
 
 <script>
 import { ButtonToggle } from '../../src';
-import API from '../app/api';
+import API from '../api-table';
 
 
 const apiProps = [

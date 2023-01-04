@@ -43,7 +43,7 @@
 <script>
 import NavItem from './nav-item';
 import ActualToggle from '../../src/toggle';
-import GetStarted from './start';
+import GetStarted from '../pages/start';
 
 import Button from '../components/button';
 import ButtonGroup from '../components/button-group';

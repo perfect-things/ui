@@ -66,7 +66,7 @@ function onChange (e) &lbrace;
 
 <script>
 import { PushButton } from '../../src';
-import API from '../app/api';
+import API from '../api-table';
 
 
 const apiProps = [

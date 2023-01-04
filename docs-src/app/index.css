@@ -45,6 +45,7 @@ h3:first-of-type { margin-top: 0; }
 
 ul,
 p { line-height: 1.6; }
+
 em { color: var(--ui-color-accent); font-style: normal; }
 
 
@@ -118,6 +119,7 @@ code {
 	white-space: pre;
 	overflow: auto;
 }
+
 
 .api-table { height: unset; }
 .api-table .table { table-layout: fixed; }

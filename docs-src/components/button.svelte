@@ -38,8 +38,8 @@
 
 <script>
 import { Button, ButtonToggle, Toggle } from '../../src';
-import API from '../app/api';
-import CodeBox from '../app/component-code-box';
+import API from '../api-table';
+import CodeBox from '../code-box';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
