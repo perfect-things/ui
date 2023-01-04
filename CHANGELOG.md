@@ -1,6 +1,10 @@
 simple-ui-components-in-svelte
 ==============================
 
+## v3.1.1 (2023-01-04)
+- Fix `input-number` (could not enter decimals)
+- Fix `input-math` (math didn't work)
+
 ## v3.1.0 (2023-01-03)
 - UX change: autocomplete will not close on scroll or resize events from now on (it can be changed using new properties `hideOnScroll` and `hideOnResize`).
 - fixed: autocomplete issue, where clicking on a filtered list would not select.

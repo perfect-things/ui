@@ -9178,10 +9178,12 @@ function create_fragment$K(ctx) {
 
 	let input_levels = [
 		{ type: "number" },
+		{ inputmode: "numeric" },
 		{ autocomplete: "off" },
 		{
 			class: input_class_value = "number-input " + /*className*/ ctx[1]
 		},
+		{ step: "any" },
 		/*$$props*/ ctx[4]
 	];
 
@@ -9218,8 +9220,10 @@ function create_fragment$K(ctx) {
 		p: function update(ctx, [dirty]) {
 			set_attributes(input, input_data = get_spread_update(input_levels, [
 				{ type: "number" },
+				{ inputmode: "numeric" },
 				{ autocomplete: "off" },
 				dirty & /*className*/ 2 && input_class_value !== (input_class_value = "number-input " + /*className*/ ctx[1]) && { class: input_class_value },
+				{ step: "any" },
 				dirty & /*$$props*/ 16 && /*$$props*/ ctx[4]
 			]));
 
@@ -9371,7 +9375,8 @@ function create_fragment$J(ctx) {
 		});
 
 	let input_levels = [
-		{ type: "number" },
+		{ type: "text" },
+		{ inputmode: "numeric" },
 		{ autocomplete: "off" },
 		{ class: "input-math" },
 		/*$$props*/ ctx[5]
@@ -9421,13 +9426,14 @@ function create_fragment$J(ctx) {
 		},
 		p: function update(ctx, [dirty]) {
 			set_attributes(input, input_data = get_spread_update(input_levels, [
-				{ type: "number" },
+				{ type: "text" },
+				{ inputmode: "numeric" },
 				{ autocomplete: "off" },
 				{ class: "input-math" },
 				dirty & /*$$props*/ 32 && /*$$props*/ ctx[5]
 			]));
 
-			if (dirty & /*value*/ 2 && to_number(input.value) !== /*value*/ ctx[1]) {
+			if (dirty & /*value*/ 2 && input.value !== /*value*/ ctx[1]) {
 				set_input_value(input, /*value*/ ctx[1]);
 			}
 
@@ -9505,6 +9511,7 @@ function instance$J($$self, $$props, $$invalidate) {
 		dispatch('keydown', e);
 
 		if (e.key === 'Enter') {
+			console.log(value);
 			const num = parseAmount(value);
 			$$invalidate(1, value = isNaN(num) ? '' : num);
 			return;
@@ -9557,7 +9564,7 @@ function instance$J($$self, $$props, $$invalidate) {
 	}
 
 	function input_input_handler() {
-		value = to_number(this.value);
+		value = this.value;
 		$$invalidate(1, value);
 	}
 

@@ -1,7 +1,9 @@
 <input
 	type="number"
+	inputmode="numeric"
 	autocomplete="off"
 	class="number-input {className}"
+	step="any"
 	{...$$props}
 	bind:value="{value}"
 	on:keydown="{onkeydown}"

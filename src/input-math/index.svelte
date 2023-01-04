@@ -1,7 +1,8 @@
 <div class="input-math-wrapper {className}">
 	<Icon name="calculator"/>
 	<input
-		type="number"
+		type="text"
+		inputmode="numeric"
 		autocomplete="off"
 		class="input-math"
 		{...$$props}
@@ -31,6 +32,7 @@ const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-',
 function onkeydown (e) {
 	dispatch('keydown', e);
 	if (e.key === 'Enter') {
+		console.log(value);
 		const num = parseAmount(value);
 		value = isNaN(num) ? '' : num;
 		return;

@@ -456,6 +456,50 @@ svg { width: 24px; height: 24px; }
 .button-toggle .button input { position: absolute; top: -100%; opacity: 0; }
 .button-toggle .selected { background-color: var(--ui-color-highlight); }
 
+.checkbox {
+	appearance: none;
+	width: 1.5em;
+	height: 1.5em;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.2em;
+	background: var(--ui-color-background-input);
+	border: 1px solid var(--ui-color-text-dark-1);
+	color: var(--ui-color-text-dark-1);
+}
+
+.checkbox::after {
+	content: "✕";
+	display: block;
+	opacity: 0;
+	font-size: 1.4em;
+	line-height: 0.9em;
+	align-self: flex-start;
+	color: inherit;
+}
+
+
+.checkbox.indeterminate::after {
+	content: " ";
+	opacity: 1;
+	background: var(--ui-color-text-dark-1);
+	width: 70%;
+	height: 70%;
+	margin: 0;
+	border-radius: inherit;
+	align-self: center;
+}
+
+.checkbox:checked::after { opacity: 1; }
+
+.checkbox:disabled {
+	opacity: 0.75;
+	cursor: default;
+	color: var(--ui-color-text-dark-2);
+}
+
 .datepicker-wrapper {
 	width: 25ch;
 	position: relative;
@@ -612,50 +656,6 @@ svg { width: 24px; height: 24px; }
 
 .theme-light .datepicker-cell.next:not(.disabled),
 .theme-light .datepicker-cell.prev:not(.disabled) { color: var(--ui-color-background-dark-2); }
-
-.checkbox {
-	appearance: none;
-	width: 1.5em;
-	height: 1.5em;
-	cursor: pointer;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 0.2em;
-	background: var(--ui-color-background-input);
-	border: 1px solid var(--ui-color-text-dark-1);
-	color: var(--ui-color-text-dark-1);
-}
-
-.checkbox::after {
-	content: "✕";
-	display: block;
-	opacity: 0;
-	font-size: 1.4em;
-	line-height: 0.9em;
-	align-self: flex-start;
-	color: inherit;
-}
-
-
-.checkbox.indeterminate::after {
-	content: " ";
-	opacity: 1;
-	background: var(--ui-color-text-dark-1);
-	width: 70%;
-	height: 70%;
-	margin: 0;
-	border-radius: inherit;
-	align-self: center;
-}
-
-.checkbox:checked::after { opacity: 1; }
-
-.checkbox:disabled {
-	opacity: 0.75;
-	cursor: default;
-	color: var(--ui-color-text-dark-2);
-}
 
 .dialog-backdrop {
 	position: fixed;
@@ -1178,6 +1178,61 @@ input[type=color] {
 .splitter.is-dragging::after,
 .splitter:hover::after { background-color: var(--ui-color-background-light-2); }
 
+.table-wrapper {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	overscroll-behavior-y: contain;
+	position: relative;
+}
+
+.table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
+.table {
+	border: 2px solid var(--ui-color-border);
+	border-spacing: 0;
+	width: 100%;
+	cursor: default;
+	/* this enables table scrolling to be gpu accelerated */
+	/* and helps with the performance with large numbers of rows */
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.table thead,
+.table tfoot { position: sticky; z-index: 2; }
+.table thead { top: 0; }
+.table tfoot { bottom: 0; }
+
+.table thead th,
+.table tfoot td {
+	padding: var(--ui-margin-m);
+	font-weight: 400;
+	text-align: left;
+	vertical-align: middle;
+	background: var(--ui-color-background-dark-1);
+}
+
+.table tr:focus-within,
+.table tr:focus,
+.table tbody:focus,
+.table tbody:focus tr {
+	outline: 1px solid transparent;
+	background-color: var(--ui-color-highlight-dark-2);
+}
+
+.table tbody td {
+	padding: var(--ui-margin) var(--ui-margin-m) calc(var(--ui-margin) + 1px);
+	border-bottom: 1px solid var(--ui-color-border);
+	vertical-align: middle;
+	line-height: 1.5em;
+}
+
+.table th:first-child,
+.table td:first-child { padding-left: var(--ui-margin-l); }
+
+.table th:last-child,
+.table td:last-child { padding-right: var(--ui-margin-l); }
+
 .text-fit {
 	display: inline-block;
 	transform-origin: center;
@@ -1236,61 +1291,6 @@ input[type=color] {
 .textarea-input:disabled { opacity: 0.5; }
 
 .textarea.autogrow .textarea-input { resize: none; }
-
-.table-wrapper {
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	overscroll-behavior-y: contain;
-	position: relative;
-}
-
-.table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
-.table {
-	border: 2px solid var(--ui-color-border);
-	border-spacing: 0;
-	width: 100%;
-	cursor: default;
-	/* this enables table scrolling to be gpu accelerated */
-	/* and helps with the performance with large numbers of rows */
-	-webkit-transform: translate3d(0, 0, 0);
-	transform: translate3d(0, 0, 0);
-}
-
-.table thead,
-.table tfoot { position: sticky; z-index: 2; }
-.table thead { top: 0; }
-.table tfoot { bottom: 0; }
-
-.table thead th,
-.table tfoot td {
-	padding: var(--ui-margin-m);
-	font-weight: 400;
-	text-align: left;
-	vertical-align: middle;
-	background: var(--ui-color-background-dark-1);
-}
-
-.table tr:focus-within,
-.table tr:focus,
-.table tbody:focus,
-.table tbody:focus tr {
-	outline: 1px solid transparent;
-	background-color: var(--ui-color-highlight-dark-2);
-}
-
-.table tbody td {
-	padding: var(--ui-margin) var(--ui-margin-m) calc(var(--ui-margin) + 1px);
-	border-bottom: 1px solid var(--ui-color-border);
-	vertical-align: middle;
-	line-height: 1.5em;
-}
-
-.table th:first-child,
-.table td:first-child { padding-left: var(--ui-margin-l); }
-
-.table th:last-child,
-.table td:last-child { padding-right: var(--ui-margin-l); }
 
 .toaster {
 	--toaster-border-radius: var(--ui-border-radius);
