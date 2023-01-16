@@ -1,9 +1,9 @@
-<div class="datepicker-wrapper" class:open>
+<div class="datepicker-wrapper {className}" class:open >
 	<input
 		type="text"
 		autocomplete="off"
-		{placeholder}
 		{...$$props}
+		{placeholder}
 		on:changeDate="{onchange}"
 		on:input="{oninput}"
 		on:keydown|capture="{onkeydown}"
@@ -19,12 +19,13 @@ import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import Icon, { icons } from '../icon';
 
-const FORMAT = 'yyyy-mm-dd';
+export let format = 'yyyy-mm-dd';
 export let value = '';
-export let placeholder = FORMAT;
+export let placeholder = format;
 export let elevate = false;
 export let showOnFocus = false;
 export let orientation = 'auto';	// '[left|right|auto] [top|bottom|auto]'
+export let className = '';
 $:elevated = elevate === true || elevate === 'true';
 
 const dispatch = createEventDispatcher();
@@ -36,7 +37,7 @@ onMount(() => {
 		autohide: true,
 		buttonClass: 'button button-normal button-text',
 		container: elevated ? document.body : undefined,
-		format: FORMAT,
+		format,
 		todayBtn: true,
 		todayBtnMode: 1,
 		orientation,
@@ -69,16 +70,19 @@ function onkeydown (e) {
 }
 
 function oninput () {
+	const wasOpen = open;
 	requestAnimationFrame(() => {
-		if (/^\d{4}-\d{2}-\d{2}$/g.test(value))	{
+		const d = Datepicker.parseDate(value, format);
+		const df = Datepicker.formatDate(d, format);
+		if (df === value) {
 			picker.setDate(value);
-			picker.show();
+			if (wasOpen) picker.show();
 		}
 	});
 }
 
 function onchange () {
-	value = picker.getDate('yyyy-mm-dd');
+	value = picker.getDate(format);
 	dispatch('change', value);
 }
 

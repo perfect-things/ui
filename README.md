@@ -10,9 +10,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] Bug: input-math does not calculate
-- [x] Bug: Math field does not accept decimals (1032.06 - cannot be entered)
-
+- [x] Bug: Number and math inputs should not use `inputmode="numeric"` as this shows digits-only keyboard on mobile (safari).
 
 - [ ] Bug: toggle doesn't work on mobile
 - [ ] Bug: splitter no work on mobile
@@ -25,7 +23,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Button Group
 	- [x] Button Toggle
 	- [x] Checkbox
-	- [ ] Datepicker
+	- [x] Datepicker
 	- [ ] Input
 	- [ ] Input Math
 	- [ ] Password" hash="InputPassword

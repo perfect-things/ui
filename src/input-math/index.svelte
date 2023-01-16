@@ -2,7 +2,6 @@
 	<Icon name="calculator"/>
 	<input
 		type="text"
-		inputmode="numeric"
 		autocomplete="off"
 		class="input-math"
 		{...$$props}

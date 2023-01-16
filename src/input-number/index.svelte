@@ -1,6 +1,5 @@
 <input
 	type="number"
-	inputmode="numeric"
 	autocomplete="off"
 	class="number-input {className}"
 	step="any"
