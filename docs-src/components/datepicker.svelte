@@ -1,4 +1,6 @@
 <h2>Datepicker</h2>
+<p>This is a wrapper for the vanilla javascript component <a href="https://mymth.github.io/vanillajs-datepicker/#/">vanillajs-datepicker</a>.</p>
+<br>
 
 <h3>Normal</h3>
 <Datepicker />

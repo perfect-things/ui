@@ -23,7 +23,7 @@
 <hr>
 <h3>Example instantiation</h3>
 <code>
-&lt;Checkbox on:change="&lbrace; onChange &rbrace;" /&gt;
+&lt;Checkbox on:change="&lbrace;onChange&rbrace;" /&gt;
 
 &lt;script&gt;
 function onChange (e) &lbrace;
