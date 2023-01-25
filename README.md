@@ -10,8 +10,6 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] Bug: Number and math inputs should not use `inputmode="numeric"` as this shows digits-only keyboard on mobile (safari).
-
 - [ ] Bug: toggle doesn't work on mobile
 - [ ] Bug: splitter no work on mobile
 - [ ] Feat: context menu on mobile with a long click?
@@ -24,7 +22,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Button Toggle
 	- [x] Checkbox
 	- [x] Datepicker
-	- [ ] Input
+	- [x] Input
 	- [ ] Input Math
 	- [ ] Password" hash="InputPassword
 	- [ ] Select
