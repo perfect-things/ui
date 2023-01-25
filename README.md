@@ -24,7 +24,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Datepicker
 	- [x] Input
 	- [x] Input Math
-	- [ ] Password" hash="InputPassword
+	- [ ] Input Password
 	- [ ] Select
 	- [ ] Textarea
 	- [ ] Toggle
@@ -39,6 +39,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [ ] TextFit
 	- [ ] Toaster
 	- [ ] Tooltip
+    - [ ] Update screen.png
 
 - [ ] color palette
   - reduce text & bg colors
