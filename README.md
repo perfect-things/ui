@@ -23,7 +23,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Checkbox
 	- [x] Datepicker
 	- [x] Input
-	- [ ] Input Math
+	- [x] Input Math
 	- [ ] Password" hash="InputPassword
 	- [ ] Select
 	- [ ] Textarea

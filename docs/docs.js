@@ -25331,8 +25331,23 @@ function create_fragment$d(ctx) {
 	let h2;
 	let t1;
 	let inputmath;
+	let t2;
+	let hr0;
+	let t3;
+	let h3;
+	let t5;
+	let code;
+	let t7;
+	let hr1;
+	let t8;
+	let api;
 	let current;
 	inputmath = new Input_math$1({ $$inline: true });
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -25340,7 +25355,23 @@ function create_fragment$d(ctx) {
 			h2.textContent = "InputMath (allow + - * /)";
 			t1 = space();
 			create_component(inputmath.$$.fragment);
+			t2 = space();
+			hr0 = element("hr");
+			t3 = space();
+			h3 = element("h3");
+			h3.textContent = "Example instantiation";
+			t5 = space();
+			code = element("code");
+			code.textContent = "<InputMath on:change=\"{onChange}\" />\n\n<script>\nfunction onChange (e) {\n    const { value, oldValue } = e.detail;\n    console.log({ value, oldValue });\n}\n</script>";
+			t7 = space();
+			hr1 = element("hr");
+			t8 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$d, 0, 0, 0);
+			add_location(hr0, file$d, 5, 0, 52);
+			add_location(h3, file$d, 6, 0, 57);
+			add_location(code, file$d, 7, 0, 88);
+			add_location(hr1, file$d, 18, 0, 341);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -25349,22 +25380,44 @@ function create_fragment$d(ctx) {
 			insert_dev(target, h2, anchor);
 			insert_dev(target, t1, anchor);
 			mount_component(inputmath, target, anchor);
+			insert_dev(target, t2, anchor);
+			insert_dev(target, hr0, anchor);
+			insert_dev(target, t3, anchor);
+			insert_dev(target, h3, anchor);
+			insert_dev(target, t5, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t7, anchor);
+			insert_dev(target, hr1, anchor);
+			insert_dev(target, t8, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: noop,
 		i: function intro(local) {
 			if (current) return;
 			transition_in(inputmath.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(inputmath.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(h2);
 			if (detaching) detach_dev(t1);
 			destroy_component(inputmath, detaching);
+			if (detaching) detach_dev(t2);
+			if (detaching) detach_dev(hr0);
+			if (detaching) detach_dev(t3);
+			if (detaching) detach_dev(h3);
+			if (detaching) detach_dev(t5);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t7);
+			if (detaching) detach_dev(hr1);
+			if (detaching) detach_dev(t8);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -25382,14 +25435,51 @@ function create_fragment$d(ctx) {
 function instance$d($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Input_math', slots, []);
+
+	const apiProps = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying input.'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'required',
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.'
+		},
+		{
+			name: 'disabled',
+			description: 'Make the input disabled.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'value',
+			type: ['string', 'number'],
+			description: 'Initial value of the input.'
+		}
+	];
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Input_math> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ InputMath: Input_math$1 });
-	return [];
+	$$self.$capture_state = () => ({ InputMath: Input_math$1, API: Api_table, apiProps });
+	return [apiProps];
 }
 
 class Input_math extends SvelteComponentDev {
