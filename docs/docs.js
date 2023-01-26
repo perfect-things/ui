@@ -25453,6 +25453,11 @@ function instance$d($$self, $$props, $$invalidate) {
 			description: 'Assign title to the underlying input.'
 		},
 		{
+			name: 'placeholder',
+			type: 'string',
+			description: 'Assign placeholder to the underlying input.'
+		},
+		{
 			name: 'required',
 			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.'
 		},
@@ -25469,6 +25474,16 @@ function instance$d($$self, $$props, $$invalidate) {
 			name: 'value',
 			type: ['string', 'number'],
 			description: 'Initial value of the input.'
+		},
+		{
+			name: 'on:change',
+			type: 'function',
+			description: 'Triggered when value changes.'
+		},
+		{
+			name: 'on:keydown',
+			type: 'function',
+			description: 'Triggered when a key is down.'
 		}
 	];
 
@@ -25516,11 +25531,26 @@ function create_fragment$c(ctx) {
 	let t11;
 	let t12;
 	let inputpassword1;
+	let t13;
+	let hr0;
+	let t14;
+	let h32;
+	let t16;
+	let code;
+	let t18;
+	let hr1;
+	let t19;
+	let api;
 	let current;
 	inputpassword0 = new Input_password$1({ $$inline: true });
 
 	inputpassword1 = new Input_password$1({
 			props: { strength: true },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
 			$$inline: true
 		});
 
@@ -25547,6 +25577,18 @@ function create_fragment$c(ctx) {
 			t11 = text(" tag.");
 			t12 = space();
 			create_component(inputpassword1.$$.fragment);
+			t13 = space();
+			hr0 = element("hr");
+			t14 = space();
+			h32 = element("h3");
+			h32.textContent = "Example instantiation";
+			t16 = space();
+			code = element("code");
+			code.textContent = "<InputPassword strength on:change=\"{onChange}\" />\n\n<script>\nfunction onChange (e) {\n    console.log('value', e.target.value);\n}\n</script>";
+			t18 = space();
+			hr1 = element("hr");
+			t19 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$c, 0, 0, 0);
 			add_location(h30, file$c, 2, 0, 25);
 			add_location(h31, file$c, 5, 0, 61);
@@ -25554,6 +25596,10 @@ function create_fragment$c(ctx) {
 			add_location(a, file$c, 6, 5, 108);
 			add_location(em, file$c, 6, 99, 202);
 			add_location(p, file$c, 6, 0, 103);
+			add_location(hr0, file$c, 12, 0, 265);
+			add_location(h32, file$c, 13, 0, 270);
+			add_location(code, file$c, 14, 0, 301);
+			add_location(hr1, file$c, 24, 0, 501);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -25575,6 +25621,16 @@ function create_fragment$c(ctx) {
 			append_dev(p, t11);
 			insert_dev(target, t12, anchor);
 			mount_component(inputpassword1, target, anchor);
+			insert_dev(target, t13, anchor);
+			insert_dev(target, hr0, anchor);
+			insert_dev(target, t14, anchor);
+			insert_dev(target, h32, anchor);
+			insert_dev(target, t16, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t18, anchor);
+			insert_dev(target, hr1, anchor);
+			insert_dev(target, t19, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: noop,
@@ -25582,11 +25638,13 @@ function create_fragment$c(ctx) {
 			if (current) return;
 			transition_in(inputpassword0.$$.fragment, local);
 			transition_in(inputpassword1.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(inputpassword0.$$.fragment, local);
 			transition_out(inputpassword1.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -25601,6 +25659,16 @@ function create_fragment$c(ctx) {
 			if (detaching) detach_dev(p);
 			if (detaching) detach_dev(t12);
 			destroy_component(inputpassword1, detaching);
+			if (detaching) detach_dev(t13);
+			if (detaching) detach_dev(hr0);
+			if (detaching) detach_dev(t14);
+			if (detaching) detach_dev(h32);
+			if (detaching) detach_dev(t16);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t18);
+			if (detaching) detach_dev(hr1);
+			if (detaching) detach_dev(t19);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -25618,14 +25686,70 @@ function create_fragment$c(ctx) {
 function instance$c($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Input_password', slots, []);
+
+	const apiProps = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying input.'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'placeholder',
+			type: 'string',
+			description: 'Assign placeholder to the underlying input.'
+		},
+		{
+			name: 'required',
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.'
+		},
+		{
+			name: 'disabled',
+			description: 'Make the input disabled.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'value',
+			type: ['string', 'number'],
+			description: 'Initial value of the input.'
+		},
+		{
+			name: 'strength',
+			description: 'Provide the password strength UI (zxcvbn lib must be loaded).'
+		},
+		{
+			name: 'on:change',
+			type: 'function',
+			description: 'Triggered when value changes.'
+		},
+		{
+			name: 'on:keydown',
+			type: 'function',
+			description: 'Triggered when a key is down.'
+		}
+	];
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Input_password> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ InputPassword: Input_password$1 });
-	return [];
+	$$self.$capture_state = () => ({ InputPassword: Input_password$1, API: Api_table, apiProps });
+	return [apiProps];
 }
 
 class Input_password extends SvelteComponentDev {

@@ -24,7 +24,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Datepicker
 	- [x] Input
 	- [x] Input Math
-	- [ ] Input Password
+	- [x] Input Password
 	- [ ] Select
 	- [ ] Textarea
 	- [ ] Toggle
