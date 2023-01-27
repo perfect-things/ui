@@ -1,5 +1,5 @@
 <div
-	class="toggle"
+	class="toggle {className}"
 	class:checked="{value}"
 	tabIndex="{disabled ? undefined : 0}"
 	bind:this="{el}"
@@ -9,7 +9,7 @@
 	on:contextmenu|preventDefault
 	on:click|preventDefault>
 	<label class="toggle-label" {title} bind:this="{label}">
-		<div class="toggle-handle" bind:this="{handle}"></div>
+		<span class="toggle-handle" bind:this="{handle}"></span>
 		<input {...inputProps} type="checkbox" class="toggle-input" bind:checked="{value}">
 	</label>
 </div>
@@ -23,13 +23,14 @@ const isTouchDevice = 'ontouchstart' in document.documentElement;
 
 export let value = false;
 export let disabled = undefined;
+export let className = '';
 
 let el, label, handle, startX, maxX, minX, currentX = 0;
 let isClick = false, isDragging = false;
 let oldValue;
 
 $:title = $$props.title;
-$:inputProps = pluck($$props, ['id', 'name', 'disabled', 'required']);
+$:inputProps = pluck($$props, ['id', 'name', 'title', 'disabled', 'required']);
 
 
 onMount(() => {

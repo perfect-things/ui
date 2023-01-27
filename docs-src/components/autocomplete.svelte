@@ -90,7 +90,7 @@ const apiProps = [
 		type: 'array',
 		required: true,
 		description: 'An array of strings or objects in the following format: ' +
-			'<code>&lbrace; name:string, id?: string | number, group?: string &rbrace;</code>' +
+			'<code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>' +
 			'(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
 	},
 	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
@@ -111,7 +111,7 @@ const apiProps = [
 			'If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. '
 	},
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when value changes.' },
+	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 

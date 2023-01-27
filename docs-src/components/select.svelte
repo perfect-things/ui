@@ -1,12 +1,68 @@
 <h2>Select</h2>
+<p>Select component is based on the native HTML select control.
+	It provides some visual styling and also better data management,
+	i.e. it accepts an array of strings or objects.
+</p>
+
+<h3>Normal</h3>
 <Select placeholder="None" items="{selectItems}"/>
 
+<h3>Disabled</h3>
 <Select items="{[{ name: 'Disabled' }]}" disabled/>
 
+<h3>With placeholder</h3>
 <Select placeholder="Select something" items="{[]}" />
+
+<h3>With initial value</h3>
+<Select placeholder="Empty" items="{selectItems}" bind:value="{val}"/> Selected value: {val}
+
+<hr>
+<h3>Example instantiation</h3>
+<code>
+&lt;Select items="&lbrace;items&rbrace;" on:change="&lbrace;onChange&rbrace;" /&gt;
+
+&lt;script&gt;
+const items = [
+	&lbrace; id: '1', name: 'Alpha', group: 'Group 1' &rbrace;,
+	&lbrace; id: '2', name: 'Beta', group: 'Group 1' &rbrace;,
+	&lbrace; id: '3', name: 'Gamma', group: 'Group 1' &rbrace;,
+];
+function onChange (e) &lbrace;
+	const &lbrace; value, oldValue &rbrace; = e.detail;
+	console.log(&lbrace; value, oldValue &rbrace;);
+&rbrace;
+&lt;/script&gt;
+</code>
+
+<hr>
+<API props="{apiProps}"/>
+
 
 <script>
 import { Select } from '../../src';
+import API from '../api-table';
+let val = 'Beta';
+
+const apiProps = [
+	{
+		name: 'items',
+		type: 'array',
+		required: true,
+		description: 'An array of strings or objects in the following format: ' +
+			'<code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>' +
+			'(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
+	},
+
+	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'placeholder', type: 'string', description: 'Adds an item to the beginning of the options list.' },
+	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until an option is selected.' },
+	{ name: 'disabled', description: 'Make the input disabled.' },
+	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. ' },
+	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
+];
 
 
 const selectItems = [

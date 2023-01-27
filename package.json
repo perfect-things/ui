@@ -10,11 +10,13 @@
     "url": "https://github.com/perfect-things/simple-ui-components-in-svelte.git"
   },
   "scripts": {
+    "lint": "gulp lint",
     "dist": "gulp prod",
     "serve": "http-server ./docs --silent --port 3123 -oa localhost",
-    "watch": "gulp",
-    "lint": "gulp lint",
-    "start": "run-p watch serve"
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "launch": "run-p watch serve",
+    "start": "run-s build launch"
   },
   "exports": {
     ".": "./src/index.js",

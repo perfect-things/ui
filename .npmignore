@@ -1,7 +1,11 @@
+docs/bg.png
 docs/docs.css
 docs/docs.js
+docs/favicon.svg
 docs/index.html
-docs-src/**/*.*
+docs/logo.png
+docs/logo-white.png
+docs-src/
 .*
 gulpfile.js
 release.sh

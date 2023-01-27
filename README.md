@@ -25,9 +25,10 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Input
 	- [x] Input Math
 	- [x] Input Password
-	- [ ] Select
-	- [ ] Textarea
-	- [ ] Toggle
+	- [x] Select
+	- [x] Textarea
+	- [x] Toggle
+    
 	- [ ] Dialog
 	- [ ] Drawer
 	- [ ] Menu
@@ -39,6 +40,8 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [ ] TextFit
 	- [ ] Toaster
 	- [ ] Tooltip
+
+    - [ ] Mobile compatible
     - [ ] Update screen.png
 
 - [ ] color palette

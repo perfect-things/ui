@@ -17,8 +17,39 @@ The perfect toggle component in Svelte:
 <br><br><br>
 <Toggle value="{true}" disabled /> (disabled)
 
+
+
+<hr>
+<h3>Example instantiation</h3>
+<code>
+&lt;Toggle value="true" on:change="&lbrace;onChange&rbrace;" /&gt;
+
+&lt;script&gt;
+function onChange (e) &lbrace;
+    console.log('onchange', e.detail);
+&rbrace;
+&lt;/script&gt;
+</code>
+
+<hr>
+<API props="{apiProps}"/>
+
+
 <script>
 import { Toggle } from '../../src';
+import API from '../api-table';
+
+const apiProps = [
+	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.' },
+	{ name: 'disabled', description: 'Make the input disabled.' },
+	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
+	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
+];
+
 
 let toggleValue = false;
 

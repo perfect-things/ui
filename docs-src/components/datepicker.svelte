@@ -57,7 +57,7 @@ const apiProps = [
 
 	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the datepicker will be automatically open when the input gets focus (normally opens on click).' },
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when value changes.' },
+	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 ];

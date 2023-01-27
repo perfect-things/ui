@@ -1420,15 +1420,16 @@ function roundAmount (val, precision = 2) {
 const file$T = "src/toggle/index.svelte";
 
 function create_fragment$V(ctx) {
-	let div1;
+	let div;
 	let label_1;
-	let div0;
+	let span;
 	let t;
 	let input;
-	let div1_tabindex_value;
+	let div_class_value;
+	let div_tabindex_value;
 	let mounted;
 	let dispose;
-	let input_levels = [/*inputProps*/ ctx[5], { type: "checkbox" }, { class: "toggle-input" }];
+	let input_levels = [/*inputProps*/ ctx[6], { type: "checkbox" }, { class: "toggle-input" }];
 	let input_data = {};
 
 	for (let i = 0; i < input_levels.length; i += 1) {
@@ -1437,46 +1438,46 @@ function create_fragment$V(ctx) {
 
 	const block = {
 		c: function create() {
-			div1 = element("div");
+			div = element("div");
 			label_1 = element("label");
-			div0 = element("div");
+			span = element("span");
 			t = space();
 			input = element("input");
-			attr_dev(div0, "class", "toggle-handle");
-			add_location(div0, file$T, 11, 2, 295);
+			attr_dev(span, "class", "toggle-handle");
+			add_location(span, file$T, 11, 2, 307);
 			set_attributes(input, input_data);
-			add_location(input, file$T, 12, 2, 352);
+			add_location(input, file$T, 12, 2, 366);
 			attr_dev(label_1, "class", "toggle-label");
-			attr_dev(label_1, "title", /*title*/ ctx[6]);
-			add_location(label_1, file$T, 10, 1, 236);
-			attr_dev(div1, "class", "toggle");
-			attr_dev(div1, "tabindex", div1_tabindex_value = /*disabled*/ ctx[1] ? undefined : 0);
-			toggle_class(div1, "checked", /*value*/ ctx[0]);
-			add_location(div1, file$T, 0, 0, 0);
+			attr_dev(label_1, "title", /*title*/ ctx[7]);
+			add_location(label_1, file$T, 10, 1, 248);
+			attr_dev(div, "class", div_class_value = "toggle " + /*className*/ ctx[2]);
+			attr_dev(div, "tabindex", div_tabindex_value = /*disabled*/ ctx[1] ? undefined : 0);
+			toggle_class(div, "checked", /*value*/ ctx[0]);
+			add_location(div, file$T, 0, 0, 0);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
 		},
 		m: function mount(target, anchor) {
-			insert_dev(target, div1, anchor);
-			append_dev(div1, label_1);
-			append_dev(label_1, div0);
-			/*div0_binding*/ ctx[11](div0);
+			insert_dev(target, div, anchor);
+			append_dev(div, label_1);
+			append_dev(label_1, span);
+			/*span_binding*/ ctx[12](span);
 			append_dev(label_1, t);
 			append_dev(label_1, input);
 			if (input.autofocus) input.focus();
 			input.checked = /*value*/ ctx[0];
-			/*label_1_binding*/ ctx[13](label_1);
-			/*div1_binding*/ ctx[14](div1);
+			/*label_1_binding*/ ctx[14](label_1);
+			/*div_binding*/ ctx[15](div);
 
 			if (!mounted) {
 				dispose = [
-					listen_dev(input, "change", /*input_change_handler*/ ctx[12]),
-					listen_dev(div1, "keydown", /*onKey*/ ctx[7], false, false, false),
-					listen_dev(div1, "touchstart", /*dragStart*/ ctx[8], false, false, false),
-					listen_dev(div1, "mousedown", /*dragStart*/ ctx[8], false, false, false),
-					listen_dev(div1, "contextmenu", prevent_default(/*contextmenu_handler*/ ctx[9]), false, true, false),
-					listen_dev(div1, "click", prevent_default(/*click_handler*/ ctx[10]), false, true, false)
+					listen_dev(input, "change", /*input_change_handler*/ ctx[13]),
+					listen_dev(div, "keydown", /*onKey*/ ctx[8], false, false, false),
+					listen_dev(div, "touchstart", /*dragStart*/ ctx[9], false, false, false),
+					listen_dev(div, "mousedown", /*dragStart*/ ctx[9], false, false, false),
+					listen_dev(div, "contextmenu", prevent_default(/*contextmenu_handler*/ ctx[10]), false, true, false),
+					listen_dev(div, "click", prevent_default(/*click_handler*/ ctx[11]), false, true, false)
 				];
 
 				mounted = true;
@@ -1484,7 +1485,7 @@ function create_fragment$V(ctx) {
 		},
 		p: function update(ctx, [dirty]) {
 			set_attributes(input, input_data = get_spread_update(input_levels, [
-				dirty & /*inputProps*/ 32 && /*inputProps*/ ctx[5],
+				dirty & /*inputProps*/ 64 && /*inputProps*/ ctx[6],
 				{ type: "checkbox" },
 				{ class: "toggle-input" }
 			]));
@@ -1493,25 +1494,29 @@ function create_fragment$V(ctx) {
 				input.checked = /*value*/ ctx[0];
 			}
 
-			if (dirty & /*title*/ 64) {
-				attr_dev(label_1, "title", /*title*/ ctx[6]);
+			if (dirty & /*title*/ 128) {
+				attr_dev(label_1, "title", /*title*/ ctx[7]);
 			}
 
-			if (dirty & /*disabled*/ 2 && div1_tabindex_value !== (div1_tabindex_value = /*disabled*/ ctx[1] ? undefined : 0)) {
-				attr_dev(div1, "tabindex", div1_tabindex_value);
+			if (dirty & /*className*/ 4 && div_class_value !== (div_class_value = "toggle " + /*className*/ ctx[2])) {
+				attr_dev(div, "class", div_class_value);
 			}
 
-			if (dirty & /*value*/ 1) {
-				toggle_class(div1, "checked", /*value*/ ctx[0]);
+			if (dirty & /*disabled*/ 2 && div_tabindex_value !== (div_tabindex_value = /*disabled*/ ctx[1] ? undefined : 0)) {
+				attr_dev(div, "tabindex", div_tabindex_value);
+			}
+
+			if (dirty & /*className, value*/ 5) {
+				toggle_class(div, "checked", /*value*/ ctx[0]);
 			}
 		},
 		i: noop,
 		o: noop,
 		d: function destroy(detaching) {
-			if (detaching) detach_dev(div1);
-			/*div0_binding*/ ctx[11](null);
-			/*label_1_binding*/ ctx[13](null);
-			/*div1_binding*/ ctx[14](null);
+			if (detaching) detach_dev(div);
+			/*span_binding*/ ctx[12](null);
+			/*label_1_binding*/ ctx[14](null);
+			/*div_binding*/ ctx[15](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -1554,6 +1559,7 @@ function instance$V($$self, $$props, $$invalidate) {
 	const isTouchDevice = 'ontouchstart' in document.documentElement;
 	let { value = false } = $$props;
 	let { disabled = undefined } = $$props;
+	let { className = '' } = $$props;
 	let el, label, handle, startX, maxX, minX, currentX = 0;
 	let isClick = false, isDragging = false;
 	let oldValue;
@@ -1587,7 +1593,7 @@ function instance$V($$self, $$props, $$invalidate) {
 		if (v !== value) return $$invalidate(0, value = v);
 		if (value === oldValue && !force) return;
 		startX = currentX = value ? maxX : minX;
-		$$invalidate(3, label.style.width = `${Math.round(currentX)}px`, label);
+		$$invalidate(4, label.style.width = `${Math.round(currentX)}px`, label);
 		oldValue = value;
 		if (!skipEvent) dispatch('change', value);
 	}
@@ -1611,7 +1617,7 @@ function instance$V($$self, $$props, $$invalidate) {
 			document.addEventListener('mousemove', drag, { passive: false });
 		}
 
-		$$invalidate(3, label.style.transition = 'none', label);
+		$$invalidate(4, label.style.transition = 'none', label);
 		startX = getMouseX(e) - currentX;
 		isDragging = true;
 		isClick = true;
@@ -1622,7 +1628,7 @@ function instance$V($$self, $$props, $$invalidate) {
 		document.removeEventListener('mousemove', drag);
 		document.removeEventListener('touchend', dragEnd);
 		document.removeEventListener('touchmove', drag);
-		$$invalidate(3, label.style.transition = '', label);
+		$$invalidate(4, label.style.transition = '', label);
 		isDragging = false;
 		if (isClick) setValue(!value); else setValue(currentX - minX >= (maxX - minX) / 2, false, true);
 	}
@@ -1634,7 +1640,7 @@ function instance$V($$self, $$props, $$invalidate) {
 		currentX = getMouseX(e) - startX;
 		if (currentX > maxX) currentX = maxX;
 		if (currentX < minX) currentX = minX;
-		$$invalidate(3, label.style.width = `${Math.round(currentX)}px`, label);
+		$$invalidate(4, label.style.width = `${Math.round(currentX)}px`, label);
 	}
 
 	function contextmenu_handler(event) {
@@ -1645,10 +1651,10 @@ function instance$V($$self, $$props, $$invalidate) {
 		bubble.call(this, $$self, event);
 	}
 
-	function div0_binding($$value) {
+	function span_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			handle = $$value;
-			$$invalidate(4, handle);
+			$$invalidate(5, handle);
 		});
 	}
 
@@ -1660,21 +1666,22 @@ function instance$V($$self, $$props, $$invalidate) {
 	function label_1_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			label = $$value;
-			$$invalidate(3, label);
+			$$invalidate(4, label);
 		});
 	}
 
-	function div1_binding($$value) {
+	function div_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			el = $$value;
-			$$invalidate(2, el);
+			$$invalidate(3, el);
 		});
 	}
 
 	$$self.$$set = $$new_props => {
-		$$invalidate(28, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
+		$$invalidate(29, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
 		if ('value' in $$new_props) $$invalidate(0, value = $$new_props.value);
 		if ('disabled' in $$new_props) $$invalidate(1, disabled = $$new_props.disabled);
+		if ('className' in $$new_props) $$invalidate(2, className = $$new_props.className);
 	};
 
 	$$self.$capture_state = () => ({
@@ -1686,6 +1693,7 @@ function instance$V($$self, $$props, $$invalidate) {
 		isTouchDevice,
 		value,
 		disabled,
+		className,
 		el,
 		label,
 		handle,
@@ -1710,12 +1718,13 @@ function instance$V($$self, $$props, $$invalidate) {
 	});
 
 	$$self.$inject_state = $$new_props => {
-		$$invalidate(28, $$props = assign(assign({}, $$props), $$new_props));
+		$$invalidate(29, $$props = assign(assign({}, $$props), $$new_props));
 		if ('value' in $$props) $$invalidate(0, value = $$new_props.value);
 		if ('disabled' in $$props) $$invalidate(1, disabled = $$new_props.disabled);
-		if ('el' in $$props) $$invalidate(2, el = $$new_props.el);
-		if ('label' in $$props) $$invalidate(3, label = $$new_props.label);
-		if ('handle' in $$props) $$invalidate(4, handle = $$new_props.handle);
+		if ('className' in $$props) $$invalidate(2, className = $$new_props.className);
+		if ('el' in $$props) $$invalidate(3, el = $$new_props.el);
+		if ('label' in $$props) $$invalidate(4, label = $$new_props.label);
+		if ('handle' in $$props) $$invalidate(5, handle = $$new_props.handle);
 		if ('startX' in $$props) startX = $$new_props.startX;
 		if ('maxX' in $$props) maxX = $$new_props.maxX;
 		if ('minX' in $$props) minX = $$new_props.minX;
@@ -1723,8 +1732,8 @@ function instance$V($$self, $$props, $$invalidate) {
 		if ('isClick' in $$props) isClick = $$new_props.isClick;
 		if ('isDragging' in $$props) isDragging = $$new_props.isDragging;
 		if ('oldValue' in $$props) oldValue = $$new_props.oldValue;
-		if ('inputProps' in $$props) $$invalidate(5, inputProps = $$new_props.inputProps);
-		if ('title' in $$props) $$invalidate(6, title = $$new_props.title);
+		if ('inputProps' in $$props) $$invalidate(6, inputProps = $$new_props.inputProps);
+		if ('title' in $$props) $$invalidate(7, title = $$new_props.title);
 	};
 
 	if ($$props && "$$inject" in $$props) {
@@ -1732,8 +1741,8 @@ function instance$V($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$.update = () => {
-		$$invalidate(6, title = $$props.title);
-		$$invalidate(5, inputProps = pluck($$props, ['id', 'name', 'disabled', 'required']));
+		$$invalidate(7, title = $$props.title);
+		$$invalidate(6, inputProps = pluck($$props, ['id', 'name', 'title', 'disabled', 'required']));
 	};
 
 	$$props = exclude_internal_props($$props);
@@ -1741,6 +1750,7 @@ function instance$V($$self, $$props, $$invalidate) {
 	return [
 		value,
 		disabled,
+		className,
 		el,
 		label,
 		handle,
@@ -1750,17 +1760,17 @@ function instance$V($$self, $$props, $$invalidate) {
 		dragStart,
 		contextmenu_handler,
 		click_handler,
-		div0_binding,
+		span_binding,
 		input_change_handler,
 		label_1_binding,
-		div1_binding
+		div_binding
 	];
 }
 
 class Toggle extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$V, create_fragment$V, safe_not_equal, { value: 0, disabled: 1 });
+		init(this, options, instance$V, create_fragment$V, safe_not_equal, { value: 0, disabled: 1, className: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -1783,6 +1793,14 @@ class Toggle extends SvelteComponentDev {
 	}
 
 	set disabled(value) {
+		throw new Error("<Toggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get className() {
+		throw new Error("<Toggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set className(value) {
 		throw new Error("<Toggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 }
@@ -10941,13 +10959,13 @@ const file$F = "src/select/index.svelte";
 
 function get_each_context$5(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[10] = list[i];
+	child_ctx[11] = list[i];
 	return child_ctx;
 }
 
 function get_each_context_1$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[13] = list[i];
+	child_ctx[14] = list[i];
 	return child_ctx;
 }
 
@@ -10962,7 +10980,7 @@ function create_if_block_1$1(ctx) {
 			t = text(/*placeholder*/ ctx[1]);
 			option.__value = "";
 			option.value = option.__value;
-			add_location(option, file$F, 8, 3, 130);
+			add_location(option, file$F, 8, 3, 142);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, option, anchor);
@@ -10990,7 +11008,7 @@ function create_if_block_1$1(ctx) {
 // (18:3) {:else}
 function create_else_block$1(ctx) {
 	let option;
-	let t_value = /*group*/ ctx[10].name + "";
+	let t_value = /*group*/ ctx[11].name + "";
 	let t;
 	let option_value_value;
 
@@ -10998,18 +11016,18 @@ function create_else_block$1(ctx) {
 		c: function create() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*group*/ ctx[10].id;
+			option.__value = option_value_value = /*group*/ ctx[11].id;
 			option.value = option.__value;
-			add_location(option, file$F, 18, 4, 391);
+			add_location(option, file$F, 18, 4, 403);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, option, anchor);
 			append_dev(option, t);
 		},
 		p: function update(ctx, dirty) {
-			if (dirty & /*groups*/ 8 && t_value !== (t_value = /*group*/ ctx[10].name + "")) set_data_dev(t, t_value);
+			if (dirty & /*groups*/ 16 && t_value !== (t_value = /*group*/ ctx[11].name + "")) set_data_dev(t, t_value);
 
-			if (dirty & /*groups*/ 8 && option_value_value !== (option_value_value = /*group*/ ctx[10].id)) {
+			if (dirty & /*groups*/ 16 && option_value_value !== (option_value_value = /*group*/ ctx[11].id)) {
 				prop_dev(option, "__value", option_value_value);
 				option.value = option.__value;
 			}
@@ -11034,7 +11052,7 @@ function create_else_block$1(ctx) {
 function create_if_block$4(ctx) {
 	let optgroup;
 	let optgroup_label_value;
-	let each_value_1 = /*group*/ ctx[10].items;
+	let each_value_1 = /*group*/ ctx[11].items;
 	validate_each_argument(each_value_1);
 	let each_blocks = [];
 
@@ -11050,8 +11068,8 @@ function create_if_block$4(ctx) {
 				each_blocks[i].c();
 			}
 
-			attr_dev(optgroup, "label", optgroup_label_value = /*group*/ ctx[10].name);
-			add_location(optgroup, file$F, 12, 4, 229);
+			attr_dev(optgroup, "label", optgroup_label_value = /*group*/ ctx[11].name);
+			add_location(optgroup, file$F, 12, 4, 241);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, optgroup, anchor);
@@ -11061,8 +11079,8 @@ function create_if_block$4(ctx) {
 			}
 		},
 		p: function update(ctx, dirty) {
-			if (dirty & /*groups*/ 8) {
-				each_value_1 = /*group*/ ctx[10].items;
+			if (dirty & /*groups*/ 16) {
+				each_value_1 = /*group*/ ctx[11].items;
 				validate_each_argument(each_value_1);
 				let i;
 
@@ -11085,7 +11103,7 @@ function create_if_block$4(ctx) {
 				each_blocks.length = each_value_1.length;
 			}
 
-			if (dirty & /*groups*/ 8 && optgroup_label_value !== (optgroup_label_value = /*group*/ ctx[10].name)) {
+			if (dirty & /*groups*/ 16 && optgroup_label_value !== (optgroup_label_value = /*group*/ ctx[11].name)) {
 				attr_dev(optgroup, "label", optgroup_label_value);
 			}
 		},
@@ -11109,7 +11127,7 @@ function create_if_block$4(ctx) {
 // (14:5) {#each group.items as item}
 function create_each_block_1$1(ctx) {
 	let option;
-	let t_value = /*item*/ ctx[13].name + "";
+	let t_value = /*item*/ ctx[14].name + "";
 	let t;
 	let option_value_value;
 
@@ -11117,18 +11135,18 @@ function create_each_block_1$1(ctx) {
 		c: function create() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*item*/ ctx[13].id;
+			option.__value = option_value_value = /*item*/ ctx[14].id;
 			option.value = option.__value;
-			add_location(option, file$F, 14, 6, 300);
+			add_location(option, file$F, 14, 6, 312);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, option, anchor);
 			append_dev(option, t);
 		},
 		p: function update(ctx, dirty) {
-			if (dirty & /*groups*/ 8 && t_value !== (t_value = /*item*/ ctx[13].name + "")) set_data_dev(t, t_value);
+			if (dirty & /*groups*/ 16 && t_value !== (t_value = /*item*/ ctx[14].name + "")) set_data_dev(t, t_value);
 
-			if (dirty & /*groups*/ 8 && option_value_value !== (option_value_value = /*item*/ ctx[13].id)) {
+			if (dirty & /*groups*/ 16 && option_value_value !== (option_value_value = /*item*/ ctx[14].id)) {
 				prop_dev(option, "__value", option_value_value);
 				option.value = option.__value;
 			}
@@ -11154,7 +11172,7 @@ function create_each_block$5(ctx) {
 	let if_block_anchor;
 
 	function select_block_type(ctx, dirty) {
-		if (/*group*/ ctx[10].items) return create_if_block$4;
+		if (/*group*/ ctx[11].items) return create_if_block$4;
 		return create_else_block$1;
 	}
 
@@ -11204,10 +11222,11 @@ function create_fragment$F(ctx) {
 	let div;
 	let select;
 	let if_block_anchor;
+	let div_class_value;
 	let mounted;
 	let dispose;
 	let if_block = /*placeholder*/ ctx[1] && create_if_block_1$1(ctx);
-	let each_value = /*groups*/ ctx[3];
+	let each_value = /*groups*/ ctx[4];
 	validate_each_argument(each_value);
 	let each_blocks = [];
 
@@ -11215,7 +11234,7 @@ function create_fragment$F(ctx) {
 		each_blocks[i] = create_each_block$5(get_each_context$5(ctx, each_value, i));
 	}
 
-	let select_levels = [/*props*/ ctx[4]];
+	let select_levels = [/*props*/ ctx[5]];
 	let select_data = {};
 
 	for (let i = 0; i < select_levels.length; i += 1) {
@@ -11234,9 +11253,9 @@ function create_fragment$F(ctx) {
 			}
 
 			set_attributes(select, select_data);
-			if (/*value*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[7].call(select));
-			add_location(select, file$F, 1, 1, 30);
-			attr_dev(div, "class", "select-wrapper");
+			if (/*value*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[8].call(select));
+			add_location(select, file$F, 1, 1, 42);
+			attr_dev(div, "class", div_class_value = "select-wrapper " + /*className*/ ctx[2]);
 			add_location(div, file$F, 0, 0, 0);
 		},
 		l: function claim(nodes) {
@@ -11255,12 +11274,12 @@ function create_fragment$F(ctx) {
 			(select_data.multiple ? select_options : select_option)(select, select_data.value);
 			if (select.autofocus) select.focus();
 			select_option(select, /*value*/ ctx[0]);
-			/*select_binding*/ ctx[8](select);
+			/*select_binding*/ ctx[9](select);
 
 			if (!mounted) {
 				dispose = [
-					listen_dev(select, "change", /*select_change_handler*/ ctx[7]),
-					listen_dev(select, "change", /*change_handler*/ ctx[6], false, false, false)
+					listen_dev(select, "change", /*select_change_handler*/ ctx[8]),
+					listen_dev(select, "change", /*change_handler*/ ctx[7], false, false, false)
 				];
 
 				mounted = true;
@@ -11280,8 +11299,8 @@ function create_fragment$F(ctx) {
 				if_block = null;
 			}
 
-			if (dirty & /*groups*/ 8) {
-				each_value = /*groups*/ ctx[3];
+			if (dirty & /*groups*/ 16) {
+				each_value = /*groups*/ ctx[4];
 				validate_each_argument(each_value);
 				let i;
 
@@ -11304,11 +11323,15 @@ function create_fragment$F(ctx) {
 				each_blocks.length = each_value.length;
 			}
 
-			set_attributes(select, select_data = get_spread_update(select_levels, [dirty & /*props*/ 16 && /*props*/ ctx[4]]));
-			if (dirty & /*props*/ 16 && 'value' in select_data) (select_data.multiple ? select_options : select_option)(select, select_data.value);
+			set_attributes(select, select_data = get_spread_update(select_levels, [dirty & /*props*/ 32 && /*props*/ ctx[5]]));
+			if (dirty & /*props*/ 32 && 'value' in select_data) (select_data.multiple ? select_options : select_option)(select, select_data.value);
 
 			if (dirty & /*value*/ 1) {
 				select_option(select, /*value*/ ctx[0]);
+			}
+
+			if (dirty & /*className*/ 4 && div_class_value !== (div_class_value = "select-wrapper " + /*className*/ ctx[2])) {
+				attr_dev(div, "class", div_class_value);
 			}
 		},
 		i: noop,
@@ -11317,7 +11340,7 @@ function create_fragment$F(ctx) {
 			if (detaching) detach_dev(div);
 			if (if_block) if_block.d();
 			destroy_each(each_blocks, detaching);
-			/*select_binding*/ ctx[8](null);
+			/*select_binding*/ ctx[9](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -11341,6 +11364,7 @@ function instance$F($$self, $$props, $$invalidate) {
 	let { value = undefined } = $$props;
 	let { placeholder = undefined } = $$props;
 	let { items = [] } = $$props;
+	let { className = '' } = $$props;
 	let el, groups = [];
 
 	function change_handler(event) {
@@ -11355,16 +11379,17 @@ function instance$F($$self, $$props, $$invalidate) {
 	function select_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			el = $$value;
-			$$invalidate(2, el);
-			($$invalidate(3, groups), $$invalidate(5, items));
+			$$invalidate(3, el);
+			($$invalidate(4, groups), $$invalidate(6, items));
 		});
 	}
 
 	$$self.$$set = $$new_props => {
-		$$invalidate(9, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
+		$$invalidate(10, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
 		if ('value' in $$new_props) $$invalidate(0, value = $$new_props.value);
 		if ('placeholder' in $$new_props) $$invalidate(1, placeholder = $$new_props.placeholder);
-		if ('items' in $$new_props) $$invalidate(5, items = $$new_props.items);
+		if ('items' in $$new_props) $$invalidate(6, items = $$new_props.items);
+		if ('className' in $$new_props) $$invalidate(2, className = $$new_props.className);
 	};
 
 	$$self.$capture_state = () => ({
@@ -11372,19 +11397,21 @@ function instance$F($$self, $$props, $$invalidate) {
 		value,
 		placeholder,
 		items,
+		className,
 		el,
 		groups,
 		props
 	});
 
 	$$self.$inject_state = $$new_props => {
-		$$invalidate(9, $$props = assign(assign({}, $$props), $$new_props));
+		$$invalidate(10, $$props = assign(assign({}, $$props), $$new_props));
 		if ('value' in $$props) $$invalidate(0, value = $$new_props.value);
 		if ('placeholder' in $$props) $$invalidate(1, placeholder = $$new_props.placeholder);
-		if ('items' in $$props) $$invalidate(5, items = $$new_props.items);
-		if ('el' in $$props) $$invalidate(2, el = $$new_props.el);
-		if ('groups' in $$props) $$invalidate(3, groups = $$new_props.groups);
-		if ('props' in $$props) $$invalidate(4, props = $$new_props.props);
+		if ('items' in $$props) $$invalidate(6, items = $$new_props.items);
+		if ('className' in $$props) $$invalidate(2, className = $$new_props.className);
+		if ('el' in $$props) $$invalidate(3, el = $$new_props.el);
+		if ('groups' in $$props) $$invalidate(4, groups = $$new_props.groups);
+		if ('props' in $$props) $$invalidate(5, props = $$new_props.props);
 	};
 
 	if ($$props && "$$inject" in $$props) {
@@ -11392,9 +11419,9 @@ function instance$F($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$.update = () => {
-		$$invalidate(4, props = pluck($$props, ['id', 'title', 'disabled', 'placeholder', 'required']));
+		$$invalidate(5, props = pluck($$props, ['id', 'title', 'disabled', 'required']));
 
-		if ($$self.$$.dirty & /*items*/ 32) {
+		if ($$self.$$.dirty & /*items*/ 64) {
 			{
 				let nogroup = [];
 				const _groups = {};
@@ -11405,7 +11432,7 @@ function instance$F($$self, $$props, $$invalidate) {
 					_groups[item.group].items.push(item);
 				});
 
-				$$invalidate(3, groups = [...nogroup, ...Object.values(_groups)]);
+				$$invalidate(4, groups = [...nogroup, ...Object.values(_groups)]);
 			}
 		}
 	};
@@ -11415,6 +11442,7 @@ function instance$F($$self, $$props, $$invalidate) {
 	return [
 		value,
 		placeholder,
+		className,
 		el,
 		groups,
 		props,
@@ -11428,7 +11456,13 @@ function instance$F($$self, $$props, $$invalidate) {
 class Select extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$F, create_fragment$F, safe_not_equal, { value: 0, placeholder: 1, items: 5 });
+
+		init(this, options, instance$F, create_fragment$F, safe_not_equal, {
+			value: 0,
+			placeholder: 1,
+			items: 6,
+			className: 2
+		});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -11459,6 +11493,14 @@ class Select extends SvelteComponentDev {
 	}
 
 	set items(value) {
+		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get className() {
+		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set className(value) {
 		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 }
@@ -12203,10 +12245,11 @@ const file$C = "src/textarea/index.svelte";
 function create_fragment$C(ctx) {
 	let div;
 	let textarea;
+	let div_class_value;
 	let div_data_value_value;
 	let mounted;
 	let dispose;
-	let textarea_levels = [/*$$props*/ ctx[2], { class: "textarea-input" }];
+	let textarea_levels = [/*$$props*/ ctx[3], { class: "textarea-input" }];
 	let textarea_data = {};
 
 	for (let i = 0; i < textarea_levels.length; i += 1) {
@@ -12218,8 +12261,8 @@ function create_fragment$C(ctx) {
 			div = element("div");
 			textarea = element("textarea");
 			set_attributes(textarea, textarea_data);
-			add_location(textarea, file$C, 1, 1, 83);
-			attr_dev(div, "class", "textarea");
+			add_location(textarea, file$C, 1, 1, 95);
+			attr_dev(div, "class", div_class_value = "textarea " + /*className*/ ctx[2]);
 			attr_dev(div, "data-value", div_data_value_value = /*autogrow*/ ctx[1] ? /*value*/ ctx[0] : undefined);
 			toggle_class(div, "autogrow", /*autogrow*/ ctx[1]);
 			add_location(div, file$C, 0, 0, 0);
@@ -12234,22 +12277,31 @@ function create_fragment$C(ctx) {
 			set_input_value(textarea, /*value*/ ctx[0]);
 
 			if (!mounted) {
-				dispose = listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[3]);
+				dispose = [
+					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[6]),
+					listen_dev(textarea, "change", /*change_handler*/ ctx[4], false, false, false),
+					listen_dev(textarea, "input", /*input_handler*/ ctx[5], false, false, false)
+				];
+
 				mounted = true;
 			}
 		},
 		p: function update(ctx, [dirty]) {
-			set_attributes(textarea, textarea_data = get_spread_update(textarea_levels, [dirty & /*$$props*/ 4 && /*$$props*/ ctx[2], { class: "textarea-input" }]));
+			set_attributes(textarea, textarea_data = get_spread_update(textarea_levels, [dirty & /*$$props*/ 8 && /*$$props*/ ctx[3], { class: "textarea-input" }]));
 
 			if (dirty & /*value*/ 1) {
 				set_input_value(textarea, /*value*/ ctx[0]);
+			}
+
+			if (dirty & /*className*/ 4 && div_class_value !== (div_class_value = "textarea " + /*className*/ ctx[2])) {
+				attr_dev(div, "class", div_class_value);
 			}
 
 			if (dirty & /*autogrow, value*/ 3 && div_data_value_value !== (div_data_value_value = /*autogrow*/ ctx[1] ? /*value*/ ctx[0] : undefined)) {
 				attr_dev(div, "data-value", div_data_value_value);
 			}
 
-			if (dirty & /*autogrow*/ 2) {
+			if (dirty & /*className, autogrow*/ 6) {
 				toggle_class(div, "autogrow", /*autogrow*/ ctx[1]);
 			}
 		},
@@ -12258,7 +12310,7 @@ function create_fragment$C(ctx) {
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(div);
 			mounted = false;
-			dispose();
+			run_all(dispose);
 		}
 	};
 
@@ -12278,6 +12330,15 @@ function instance$C($$self, $$props, $$invalidate) {
 	validate_slots('Textarea', slots, []);
 	let { value = '' } = $$props;
 	let { autogrow = false } = $$props;
+	let { className = '' } = $$props;
+
+	function change_handler(event) {
+		bubble.call(this, $$self, event);
+	}
+
+	function input_handler(event) {
+		bubble.call(this, $$self, event);
+	}
 
 	function textarea_input_handler() {
 		value = this.value;
@@ -12285,17 +12346,19 @@ function instance$C($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$set = $$new_props => {
-		$$invalidate(2, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
+		$$invalidate(3, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
 		if ('value' in $$new_props) $$invalidate(0, value = $$new_props.value);
 		if ('autogrow' in $$new_props) $$invalidate(1, autogrow = $$new_props.autogrow);
+		if ('className' in $$new_props) $$invalidate(2, className = $$new_props.className);
 	};
 
-	$$self.$capture_state = () => ({ value, autogrow });
+	$$self.$capture_state = () => ({ value, autogrow, className });
 
 	$$self.$inject_state = $$new_props => {
-		$$invalidate(2, $$props = assign(assign({}, $$props), $$new_props));
+		$$invalidate(3, $$props = assign(assign({}, $$props), $$new_props));
 		if ('value' in $$props) $$invalidate(0, value = $$new_props.value);
 		if ('autogrow' in $$props) $$invalidate(1, autogrow = $$new_props.autogrow);
+		if ('className' in $$props) $$invalidate(2, className = $$new_props.className);
 	};
 
 	if ($$props && "$$inject" in $$props) {
@@ -12303,13 +12366,22 @@ function instance$C($$self, $$props, $$invalidate) {
 	}
 
 	$$props = exclude_internal_props($$props);
-	return [value, autogrow, $$props, textarea_input_handler];
+
+	return [
+		value,
+		autogrow,
+		className,
+		$$props,
+		change_handler,
+		input_handler,
+		textarea_input_handler
+	];
 }
 
 class Textarea extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$C, create_fragment$C, safe_not_equal, { value: 0, autogrow: 1 });
+		init(this, options, instance$C, create_fragment$C, safe_not_equal, { value: 0, autogrow: 1, className: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -12332,6 +12404,14 @@ class Textarea extends SvelteComponentDev {
 	}
 
 	set autogrow(value) {
+		throw new Error("<Textarea>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get className() {
+		throw new Error("<Textarea>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set className(value) {
 		throw new Error("<Textarea>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 }
@@ -24064,7 +24144,7 @@ function instance$h($$self, $$props, $$invalidate) {
 			name: 'data',
 			type: 'array',
 			required: true,
-			description: 'An array of strings or objects in the following format: ' + '<code>&lbrace; name:string, id?: string | number, group?: string &rbrace;</code>' + '(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
+			description: 'An array of strings or objects in the following format: ' + '<code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>' + '(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
 		},
 		{
 			name: 'allowNew',
@@ -24121,7 +24201,7 @@ function instance$h($$self, $$props, $$invalidate) {
 		{
 			name: 'on:change',
 			type: 'function',
-			description: 'Triggered when value changes.'
+			description: 'Triggered when the value changes.'
 		},
 		{
 			name: 'on:keydown',
@@ -24668,7 +24748,7 @@ function instance$g($$self, $$props, $$invalidate) {
 		{
 			name: 'on:change',
 			type: 'function',
-			description: 'Triggered when value changes.'
+			description: 'Triggered when the value changes.'
 		},
 		{
 			name: 'on:keydown',
@@ -25459,7 +25539,7 @@ function instance$d($$self, $$props, $$invalidate) {
 		},
 		{
 			name: 'required',
-			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.'
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.'
 		},
 		{
 			name: 'disabled',
@@ -25478,7 +25558,7 @@ function instance$d($$self, $$props, $$invalidate) {
 		{
 			name: 'on:change',
 			type: 'function',
-			description: 'Triggered when value changes.'
+			description: 'Triggered when the value changes.'
 		},
 		{
 			name: 'on:keydown',
@@ -25710,7 +25790,7 @@ function instance$c($$self, $$props, $$invalidate) {
 		},
 		{
 			name: 'required',
-			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.'
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.'
 		},
 		{
 			name: 'disabled',
@@ -25733,7 +25813,7 @@ function instance$c($$self, $$props, $$invalidate) {
 		{
 			name: 'on:change',
 			type: 'function',
-			description: 'Triggered when value changes.'
+			description: 'Triggered when the value changes.'
 		},
 		{
 			name: 'on:keydown',
@@ -25772,17 +25852,42 @@ const file$b = "docs-src/components/select.svelte";
 function create_fragment$b(ctx) {
 	let h2;
 	let t1;
-	let select0;
-	let t2;
-	let select1;
+	let p;
 	let t3;
+	let h30;
+	let t5;
+	let select0;
+	let t6;
+	let h31;
+	let t8;
+	let select1;
+	let t9;
+	let h32;
+	let t11;
 	let select2;
+	let t12;
+	let h33;
+	let t14;
+	let select3;
+	let updating_value;
+	let t15;
+	let t16;
+	let t17;
+	let hr0;
+	let t18;
+	let h34;
+	let t20;
+	let code;
+	let t22;
+	let hr1;
+	let t23;
+	let api;
 	let current;
 
 	select0 = new Select({
 			props: {
 				placeholder: "None",
-				items: /*selectItems*/ ctx[0]
+				items: /*selectItems*/ ctx[2]
 			},
 			$$inline: true
 		});
@@ -25803,17 +25908,78 @@ function create_fragment$b(ctx) {
 			$$inline: true
 		});
 
+	function select3_value_binding(value) {
+		/*select3_value_binding*/ ctx[3](value);
+	}
+
+	let select3_props = {
+		placeholder: "Empty",
+		items: /*selectItems*/ ctx[2]
+	};
+
+	if (/*val*/ ctx[0] !== void 0) {
+		select3_props.value = /*val*/ ctx[0];
+	}
+
+	select3 = new Select({ props: select3_props, $$inline: true });
+	binding_callbacks.push(() => bind(select3, 'value', select3_value_binding, /*val*/ ctx[0]));
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[1] },
+			$$inline: true
+		});
+
 	const block = {
 		c: function create() {
 			h2 = element("h2");
 			h2.textContent = "Select";
 			t1 = space();
-			create_component(select0.$$.fragment);
-			t2 = space();
-			create_component(select1.$$.fragment);
+			p = element("p");
+			p.textContent = "Select component is based on the native HTML select control.\n\tIt provides some visual styling and also better data management,\n\ti.e. it accepts an array of strings or objects.";
 			t3 = space();
+			h30 = element("h3");
+			h30.textContent = "Normal";
+			t5 = space();
+			create_component(select0.$$.fragment);
+			t6 = space();
+			h31 = element("h3");
+			h31.textContent = "Disabled";
+			t8 = space();
+			create_component(select1.$$.fragment);
+			t9 = space();
+			h32 = element("h3");
+			h32.textContent = "With placeholder";
+			t11 = space();
 			create_component(select2.$$.fragment);
+			t12 = space();
+			h33 = element("h3");
+			h33.textContent = "With initial value";
+			t14 = space();
+			create_component(select3.$$.fragment);
+			t15 = text(" Selected value: ");
+			t16 = text(/*val*/ ctx[0]);
+			t17 = space();
+			hr0 = element("hr");
+			t18 = space();
+			h34 = element("h3");
+			h34.textContent = "Example instantiation";
+			t20 = space();
+			code = element("code");
+			code.textContent = "<Select items=\"{items}\" on:change=\"{onChange}\" />\n\n<script>\nconst items = [\n\t{ id: '1', name: 'Alpha', group: 'Group 1' },\n\t{ id: '2', name: 'Beta', group: 'Group 1' },\n\t{ id: '3', name: 'Gamma', group: 'Group 1' },\n];\nfunction onChange (e) {\n\tconst { value, oldValue } = e.detail;\n\tconsole.log({ value, oldValue });\n}\n</script>";
+			t22 = space();
+			hr1 = element("hr");
+			t23 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$b, 0, 0, 0);
+			add_location(p, file$b, 1, 0, 16);
+			add_location(h30, file$b, 6, 0, 201);
+			add_location(h31, file$b, 9, 0, 269);
+			add_location(h32, file$b, 12, 0, 340);
+			add_location(h33, file$b, 15, 0, 422);
+			add_location(hr0, file$b, 18, 0, 544);
+			add_location(h34, file$b, 19, 0, 549);
+			add_location(code, file$b, 20, 0, 580);
+			add_location(hr1, file$b, 36, 0, 1055);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -25821,35 +25987,98 @@ function create_fragment$b(ctx) {
 		m: function mount(target, anchor) {
 			insert_dev(target, h2, anchor);
 			insert_dev(target, t1, anchor);
-			mount_component(select0, target, anchor);
-			insert_dev(target, t2, anchor);
-			mount_component(select1, target, anchor);
+			insert_dev(target, p, anchor);
 			insert_dev(target, t3, anchor);
+			insert_dev(target, h30, anchor);
+			insert_dev(target, t5, anchor);
+			mount_component(select0, target, anchor);
+			insert_dev(target, t6, anchor);
+			insert_dev(target, h31, anchor);
+			insert_dev(target, t8, anchor);
+			mount_component(select1, target, anchor);
+			insert_dev(target, t9, anchor);
+			insert_dev(target, h32, anchor);
+			insert_dev(target, t11, anchor);
 			mount_component(select2, target, anchor);
+			insert_dev(target, t12, anchor);
+			insert_dev(target, h33, anchor);
+			insert_dev(target, t14, anchor);
+			mount_component(select3, target, anchor);
+			insert_dev(target, t15, anchor);
+			insert_dev(target, t16, anchor);
+			insert_dev(target, t17, anchor);
+			insert_dev(target, hr0, anchor);
+			insert_dev(target, t18, anchor);
+			insert_dev(target, h34, anchor);
+			insert_dev(target, t20, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t22, anchor);
+			insert_dev(target, hr1, anchor);
+			insert_dev(target, t23, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
-		p: noop,
+		p: function update(ctx, [dirty]) {
+			const select3_changes = {};
+
+			if (!updating_value && dirty & /*val*/ 1) {
+				updating_value = true;
+				select3_changes.value = /*val*/ ctx[0];
+				add_flush_callback(() => updating_value = false);
+			}
+
+			select3.$set(select3_changes);
+			if (!current || dirty & /*val*/ 1) set_data_dev(t16, /*val*/ ctx[0]);
+		},
 		i: function intro(local) {
 			if (current) return;
 			transition_in(select0.$$.fragment, local);
 			transition_in(select1.$$.fragment, local);
 			transition_in(select2.$$.fragment, local);
+			transition_in(select3.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(select0.$$.fragment, local);
 			transition_out(select1.$$.fragment, local);
 			transition_out(select2.$$.fragment, local);
+			transition_out(select3.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(h2);
 			if (detaching) detach_dev(t1);
-			destroy_component(select0, detaching);
-			if (detaching) detach_dev(t2);
-			destroy_component(select1, detaching);
+			if (detaching) detach_dev(p);
 			if (detaching) detach_dev(t3);
+			if (detaching) detach_dev(h30);
+			if (detaching) detach_dev(t5);
+			destroy_component(select0, detaching);
+			if (detaching) detach_dev(t6);
+			if (detaching) detach_dev(h31);
+			if (detaching) detach_dev(t8);
+			destroy_component(select1, detaching);
+			if (detaching) detach_dev(t9);
+			if (detaching) detach_dev(h32);
+			if (detaching) detach_dev(t11);
 			destroy_component(select2, detaching);
+			if (detaching) detach_dev(t12);
+			if (detaching) detach_dev(h33);
+			if (detaching) detach_dev(t14);
+			destroy_component(select3, detaching);
+			if (detaching) detach_dev(t15);
+			if (detaching) detach_dev(t16);
+			if (detaching) detach_dev(t17);
+			if (detaching) detach_dev(hr0);
+			if (detaching) detach_dev(t18);
+			if (detaching) detach_dev(h34);
+			if (detaching) detach_dev(t20);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t22);
+			if (detaching) detach_dev(hr1);
+			if (detaching) detach_dev(t23);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -25867,6 +26096,59 @@ function create_fragment$b(ctx) {
 function instance$b($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Select', slots, []);
+	let val = 'Beta';
+
+	const apiProps = [
+		{
+			name: 'items',
+			type: 'array',
+			required: true,
+			description: 'An array of strings or objects in the following format: ' + '<code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>' + '(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
+		},
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying input.'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'placeholder',
+			type: 'string',
+			description: 'Adds an item to the beginning of the options list.'
+		},
+		{
+			name: 'required',
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until an option is selected.'
+		},
+		{
+			name: 'disabled',
+			description: 'Make the input disabled.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'value',
+			type: ['string', 'number'],
+			description: 'Initial value of the input.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. '
+		},
+		{
+			name: 'on:change',
+			type: 'function',
+			description: 'Triggered when the value changes.'
+		}
+	];
 
 	const selectItems = [
 		{
@@ -25977,8 +26259,22 @@ function instance$b($$self, $$props, $$invalidate) {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Select> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Select, selectItems });
-	return [selectItems];
+	function select3_value_binding(value) {
+		val = value;
+		$$invalidate(0, val);
+	}
+
+	$$self.$capture_state = () => ({ Select, API: Api_table, val, apiProps, selectItems });
+
+	$$self.$inject_state = $$props => {
+		if ('val' in $$props) $$invalidate(0, val = $$props.val);
+	};
+
+	if ($$props && "$$inject" in $$props) {
+		$$self.$inject_state($$props.$$inject);
+	}
+
+	return [val, apiProps, selectItems, select3_value_binding];
 }
 
 class Select_1 extends SvelteComponentDev {
@@ -26012,6 +26308,20 @@ function create_fragment$a(ctx) {
 	let h32;
 	let t9;
 	let textarea2;
+	let t10;
+	let h33;
+	let t12;
+	let textarea3;
+	let t13;
+	let hr0;
+	let t14;
+	let h34;
+	let t16;
+	let code;
+	let t18;
+	let hr1;
+	let t19;
+	let api;
 	let current;
 	textarea0 = new Textarea({ $$inline: true });
 
@@ -26021,7 +26331,17 @@ function create_fragment$a(ctx) {
 		});
 
 	textarea2 = new Textarea({
+			props: { placeholder: "Add some text" },
+			$$inline: true
+		});
+
+	textarea3 = new Textarea({
 			props: { autogrow: true },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
 			$$inline: true
 		});
 
@@ -26041,13 +26361,35 @@ function create_fragment$a(ctx) {
 			create_component(textarea1.$$.fragment);
 			t7 = space();
 			h32 = element("h3");
-			h32.textContent = "Autogrow";
+			h32.textContent = "Placeholder";
 			t9 = space();
 			create_component(textarea2.$$.fragment);
+			t10 = space();
+			h33 = element("h3");
+			h33.textContent = "Autogrow";
+			t12 = space();
+			create_component(textarea3.$$.fragment);
+			t13 = space();
+			hr0 = element("hr");
+			t14 = space();
+			h34 = element("h3");
+			h34.textContent = "Example instantiation";
+			t16 = space();
+			code = element("code");
+			code.textContent = "<Textarea autogrow on:change=\"{onChange}\" />\n\n<script>\nfunction onChange (e) {\n    console.log('value', e.target.value);\n}\n</script>";
+			t18 = space();
+			hr1 = element("hr");
+			t19 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$a, 0, 0, 0);
 			add_location(h30, file$a, 2, 0, 19);
 			add_location(h31, file$a, 5, 0, 59);
-			add_location(h32, file$a, 9, 0, 110);
+			add_location(h32, file$a, 8, 0, 109);
+			add_location(h33, file$a, 12, 0, 182);
+			add_location(hr0, file$a, 16, 0, 233);
+			add_location(h34, file$a, 17, 0, 238);
+			add_location(code, file$a, 18, 0, 269);
+			add_location(hr1, file$a, 28, 0, 464);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -26066,6 +26408,20 @@ function create_fragment$a(ctx) {
 			insert_dev(target, h32, anchor);
 			insert_dev(target, t9, anchor);
 			mount_component(textarea2, target, anchor);
+			insert_dev(target, t10, anchor);
+			insert_dev(target, h33, anchor);
+			insert_dev(target, t12, anchor);
+			mount_component(textarea3, target, anchor);
+			insert_dev(target, t13, anchor);
+			insert_dev(target, hr0, anchor);
+			insert_dev(target, t14, anchor);
+			insert_dev(target, h34, anchor);
+			insert_dev(target, t16, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t18, anchor);
+			insert_dev(target, hr1, anchor);
+			insert_dev(target, t19, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: noop,
@@ -26074,12 +26430,16 @@ function create_fragment$a(ctx) {
 			transition_in(textarea0.$$.fragment, local);
 			transition_in(textarea1.$$.fragment, local);
 			transition_in(textarea2.$$.fragment, local);
+			transition_in(textarea3.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(textarea0.$$.fragment, local);
 			transition_out(textarea1.$$.fragment, local);
 			transition_out(textarea2.$$.fragment, local);
+			transition_out(textarea3.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -26096,6 +26456,20 @@ function create_fragment$a(ctx) {
 			if (detaching) detach_dev(h32);
 			if (detaching) detach_dev(t9);
 			destroy_component(textarea2, detaching);
+			if (detaching) detach_dev(t10);
+			if (detaching) detach_dev(h33);
+			if (detaching) detach_dev(t12);
+			destroy_component(textarea3, detaching);
+			if (detaching) detach_dev(t13);
+			if (detaching) detach_dev(hr0);
+			if (detaching) detach_dev(t14);
+			if (detaching) detach_dev(h34);
+			if (detaching) detach_dev(t16);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t18);
+			if (detaching) detach_dev(hr1);
+			if (detaching) detach_dev(t19);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -26113,14 +26487,70 @@ function create_fragment$a(ctx) {
 function instance$a($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Textarea', slots, []);
+
+	const apiProps = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying textarea.'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying textarea.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign title to the underlying textarea.'
+		},
+		{
+			name: 'placeholder',
+			type: 'string',
+			description: 'Assign placeholder to the underlying textarea.'
+		},
+		{
+			name: 'required',
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.'
+		},
+		{
+			name: 'disabled',
+			description: 'Make the input disabled.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'value',
+			type: 'string',
+			description: 'Initial value of the textarea.'
+		},
+		{
+			name: 'autogrow',
+			description: 'If present - the textarea will grow in height to match the text and avoid scrollbar.'
+		},
+		{
+			name: 'on:change',
+			type: 'function',
+			description: 'Triggered when the value changes.'
+		},
+		{
+			name: 'on:input',
+			type: 'function',
+			description: 'Triggered when input value is edited.'
+		}
+	];
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Textarea> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Textarea });
-	return [];
+	$$self.$capture_state = () => ({ Textarea, API: Api_table, apiProps });
+	return [apiProps];
 }
 
 class Textarea_1 extends SvelteComponentDev {
@@ -26182,10 +26612,19 @@ function create_fragment$9(ctx) {
 	let t23;
 	let toggle3;
 	let t24;
+	let hr0;
+	let t25;
+	let h3;
+	let t27;
+	let code;
+	let t29;
+	let hr1;
+	let t30;
+	let api;
 	let current;
 
 	function toggle0_value_binding(value) {
-		/*toggle0_value_binding*/ ctx[1](value);
+		/*toggle0_value_binding*/ ctx[2](value);
 	}
 
 	let toggle0_props = {};
@@ -26202,6 +26641,11 @@ function create_fragment$9(ctx) {
 
 	toggle3 = new Toggle({
 			props: { value: true, disabled: true },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[1] },
 			$$inline: true
 		});
 
@@ -26251,7 +26695,18 @@ function create_fragment$9(ctx) {
 			br4 = element("br");
 			t23 = space();
 			create_component(toggle3.$$.fragment);
-			t24 = text(" (disabled)");
+			t24 = text(" (disabled)\n\n\n\n");
+			hr0 = element("hr");
+			t25 = space();
+			h3 = element("h3");
+			h3.textContent = "Example instantiation";
+			t27 = space();
+			code = element("code");
+			code.textContent = "<Toggle value=\"true\" on:change=\"{onChange}\" />\n\n<script>\nfunction onChange (e) {\n    console.log('onchange', e.detail);\n}\n</script>";
+			t29 = space();
+			hr1 = element("hr");
+			t30 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$9, 0, 0, 0);
 			add_location(em0, file$9, 4, 12, 74);
 			add_location(em1, file$9, 4, 38, 100);
@@ -26270,6 +26725,10 @@ function create_fragment$9(ctx) {
 			add_location(br2, file$9, 16, 0, 494);
 			add_location(br3, file$9, 16, 4, 498);
 			add_location(br4, file$9, 16, 8, 502);
+			add_location(hr0, file$9, 21, 0, 556);
+			add_location(h3, file$9, 22, 0, 561);
+			add_location(code, file$9, 23, 0, 592);
+			add_location(hr1, file$9, 33, 0, 786);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -26313,6 +26772,15 @@ function create_fragment$9(ctx) {
 			insert_dev(target, t23, anchor);
 			mount_component(toggle3, target, anchor);
 			insert_dev(target, t24, anchor);
+			insert_dev(target, hr0, anchor);
+			insert_dev(target, t25, anchor);
+			insert_dev(target, h3, anchor);
+			insert_dev(target, t27, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t29, anchor);
+			insert_dev(target, hr1, anchor);
+			insert_dev(target, t30, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
@@ -26337,6 +26805,7 @@ function create_fragment$9(ctx) {
 			transition_in(toggle1.$$.fragment, local);
 			transition_in(toggle2.$$.fragment, local);
 			transition_in(toggle3.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -26344,6 +26813,7 @@ function create_fragment$9(ctx) {
 			transition_out(toggle1.$$.fragment, local);
 			transition_out(toggle2.$$.fragment, local);
 			transition_out(toggle3.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -26367,6 +26837,15 @@ function create_fragment$9(ctx) {
 			if (detaching) detach_dev(t23);
 			destroy_component(toggle3, detaching);
 			if (detaching) detach_dev(t24);
+			if (detaching) detach_dev(hr0);
+			if (detaching) detach_dev(t25);
+			if (detaching) detach_dev(h3);
+			if (detaching) detach_dev(t27);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t29);
+			if (detaching) detach_dev(hr1);
+			if (detaching) detach_dev(t30);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -26388,6 +26867,48 @@ function onchange$1(e) {
 function instance$9($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Toggle', slots, []);
+
+	const apiProps = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'Assign ID to the underlying input.'
+		},
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Assign title to the underlying input.'
+		},
+		{
+			name: 'required',
+			description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.'
+		},
+		{
+			name: 'disabled',
+			description: 'Make the input disabled.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'value',
+			type: 'string',
+			description: 'Initial value of the input.'
+		},
+		{
+			name: 'on:change',
+			type: 'function',
+			description: 'Triggered when the value changes.'
+		}
+	];
+
 	let toggleValue = false;
 	const writable_props = [];
 
@@ -26400,7 +26921,13 @@ function instance$9($$self, $$props, $$invalidate) {
 		$$invalidate(0, toggleValue);
 	}
 
-	$$self.$capture_state = () => ({ Toggle, toggleValue, onchange: onchange$1 });
+	$$self.$capture_state = () => ({
+		Toggle,
+		API: Api_table,
+		apiProps,
+		toggleValue,
+		onchange: onchange$1
+	});
 
 	$$self.$inject_state = $$props => {
 		if ('toggleValue' in $$props) $$invalidate(0, toggleValue = $$props.toggleValue);
@@ -26410,7 +26937,7 @@ function instance$9($$self, $$props, $$invalidate) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [toggleValue, toggle0_value_binding];
+	return [toggleValue, apiProps, toggle0_value_binding];
 }
 
 class Toggle_1 extends SvelteComponentDev {

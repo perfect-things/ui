@@ -14,7 +14,7 @@ import rollup from 'gulp-rollup-plugin';
 import inject from 'gulp-inject-string';
 
 
-const { series, parallel, src, dest, watch } = gulp;
+const { series, parallel, src, dest } = gulp;
 const noop = throught2.obj;
 const DIST_PATH = 'docs/';
 let isProd = false;
@@ -114,10 +114,10 @@ export function docsCSS () {
 function watchTask (done) {
 	if (isProd) return done();
 	livereload.listen();
-	watch('src/**/*.css', series(libCSS, stylelint));
-	watch('docs-src/**/*.css', series(docsCSS, stylelint));
-	watch('docs-src/**/*.html', html);
-	watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
+	gulp.watch('src/**/*.css', series(libCSS, stylelint));
+	gulp.watch('docs-src/**/*.css', series(docsCSS, stylelint));
+	gulp.watch('docs-src/**/*.html', html);
+	gulp.watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
 
 }
 
@@ -127,5 +127,5 @@ export const lint = parallel(eslint, stylelint);
 const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html, assets, externals);
 export const build = series(cleanup, _build);
 export const prod = series(setProd, build);
-
-export default series(build, watchTask);
+export const watch = watchTask;
+export default series(build, watch);

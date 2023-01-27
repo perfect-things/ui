@@ -1,4 +1,4 @@
-<div class="select-wrapper">
+<div class="select-wrapper {className}">
 	<select
 		{...props}
 		bind:value="{value}"
@@ -27,9 +27,11 @@ import { pluck } from '../util';
 export let value = undefined;
 export let placeholder = undefined;
 export let items = [];
+export let className = '';
+
 let el, groups = [];
 
-$:props = pluck($$props, ['id', 'title', 'disabled', 'placeholder', 'required']);
+$:props = pluck($$props, ['id', 'title', 'disabled', 'required']);
 
 $: {
 	let nogroup = [];
