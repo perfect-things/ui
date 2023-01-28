@@ -29,7 +29,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Textarea
 	- [x] Toggle
     
-	- [ ] Dialog
+	- [x] Dialog
 	- [ ] Drawer
 	- [ ] Menu
 	- [ ] Panel

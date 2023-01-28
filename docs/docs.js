@@ -27585,7 +27585,7 @@ function create_default_slot_6(ctx) {
 	return block;
 }
 
-// (18:0) <Dialog bind:this="{dialog1}" title="Hello" drawborders="true">
+// (12:0) <Dialog bind:this="{dialog1}" title="Hello" drawborders="true">
 function create_default_slot_5(ctx) {
 	let t0;
 	let br;
@@ -27619,12 +27619,12 @@ function create_default_slot_5(ctx) {
 			t9 = space();
 			p4 = element("p");
 			p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-			add_location(br, file$7, 18, 16, 3395);
-			add_location(p0, file$7, 21, 1, 3416);
-			add_location(p1, file$7, 22, 1, 4044);
-			add_location(p2, file$7, 23, 1, 4612);
-			add_location(p3, file$7, 24, 1, 5229);
-			add_location(p4, file$7, 25, 1, 6099);
+			add_location(br, file$7, 12, 16, 397);
+			add_location(p0, file$7, 15, 1, 418);
+			add_location(p1, file$7, 16, 1, 1046);
+			add_location(p2, file$7, 17, 1, 1614);
+			add_location(p3, file$7, 18, 1, 2231);
+			add_location(p4, file$7, 19, 1, 3101);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, t0, anchor);
@@ -27661,14 +27661,14 @@ function create_default_slot_5(ctx) {
 		block,
 		id: create_default_slot_5.name,
 		type: "slot",
-		source: "(18:0) <Dialog bind:this=\\\"{dialog1}\\\" title=\\\"Hello\\\" drawborders=\\\"true\\\">",
+		source: "(12:0) <Dialog bind:this=\\\"{dialog1}\\\" title=\\\"Hello\\\" drawborders=\\\"true\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (29:2) <Button on:click="{() => dialog1.close()}">
+// (23:2) <Button on:click="{() => dialog1.close()}">
 function create_default_slot_4(ctx) {
 	let t;
 
@@ -27688,14 +27688,14 @@ function create_default_slot_4(ctx) {
 		block,
 		id: create_default_slot_4.name,
 		type: "slot",
-		source: "(29:2) <Button on:click=\\\"{() => dialog1.close()}\\\">",
+		source: "(23:2) <Button on:click=\\\"{() => dialog1.close()}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (28:1) 
+// (22:1) 
 function create_footer_slot_1(ctx) {
 	let div;
 	let button;
@@ -27709,14 +27709,14 @@ function create_footer_slot_1(ctx) {
 			$$inline: true
 		});
 
-	button.$on("click", /*click_handler_3*/ ctx[6]);
+	button.$on("click", /*click_handler_3*/ ctx[7]);
 
 	const block = {
 		c: function create() {
 			div = element("div");
 			create_component(button.$$.fragment);
 			attr_dev(div, "slot", "footer");
-			add_location(div, file$7, 27, 1, 6419);
+			add_location(div, file$7, 21, 1, 3421);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div, anchor);
@@ -27726,7 +27726,7 @@ function create_footer_slot_1(ctx) {
 		p: function update(ctx, dirty) {
 			const button_changes = {};
 
-			if (dirty & /*$$scope*/ 4096) {
+			if (dirty & /*$$scope*/ 8192) {
 				button_changes.$$scope = { dirty, ctx };
 			}
 
@@ -27751,14 +27751,14 @@ function create_footer_slot_1(ctx) {
 		block,
 		id: create_footer_slot_1.name,
 		type: "slot",
-		source: "(28:1) ",
+		source: "(22:1) ",
 		ctx
 	});
 
 	return block;
 }
 
-// (33:0) <Dialog bind:this="{dialog2}" title="Hello">
+// (27:0) <Dialog bind:this="{dialog2}" title="Hello">
 function create_default_slot_3(ctx) {
 	let t;
 
@@ -27778,14 +27778,14 @@ function create_default_slot_3(ctx) {
 		block,
 		id: create_default_slot_3.name,
 		type: "slot",
-		source: "(33:0) <Dialog bind:this=\\\"{dialog2}\\\" title=\\\"Hello\\\">",
+		source: "(27:0) <Dialog bind:this=\\\"{dialog2}\\\" title=\\\"Hello\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (38:0) <Dialog bind:this="{dialog3}">
+// (32:0) <Dialog bind:this="{dialog3}">
 function create_default_slot_2$1(ctx) {
 	let t;
 
@@ -27805,14 +27805,14 @@ function create_default_slot_2$1(ctx) {
 		block,
 		id: create_default_slot_2$1.name,
 		type: "slot",
-		source: "(38:0) <Dialog bind:this=\\\"{dialog3}\\\">",
+		source: "(32:0) <Dialog bind:this=\\\"{dialog3}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (41:2) <Button on:click="{() => dialog3.close()}">
+// (35:2) <Button on:click="{() => dialog3.close()}">
 function create_default_slot_1$2(ctx) {
 	let t;
 
@@ -27832,14 +27832,14 @@ function create_default_slot_1$2(ctx) {
 		block,
 		id: create_default_slot_1$2.name,
 		type: "slot",
-		source: "(41:2) <Button on:click=\\\"{() => dialog3.close()}\\\">",
+		source: "(35:2) <Button on:click=\\\"{() => dialog3.close()}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (42:2) <Button on:click="{() => dialog3.close()}">
+// (36:2) <Button on:click="{() => dialog3.close()}">
 function create_default_slot$3(ctx) {
 	let t;
 
@@ -27859,14 +27859,14 @@ function create_default_slot$3(ctx) {
 		block,
 		id: create_default_slot$3.name,
 		type: "slot",
-		source: "(42:2) <Button on:click=\\\"{() => dialog3.close()}\\\">",
+		source: "(36:2) <Button on:click=\\\"{() => dialog3.close()}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (40:1) 
+// (34:1) 
 function create_footer_slot(ctx) {
 	let div;
 	let button0;
@@ -27882,7 +27882,7 @@ function create_footer_slot(ctx) {
 			$$inline: true
 		});
 
-	button0.$on("click", /*click_handler_4*/ ctx[9]);
+	button0.$on("click", /*click_handler_4*/ ctx[10]);
 
 	button1 = new Button({
 			props: {
@@ -27892,7 +27892,7 @@ function create_footer_slot(ctx) {
 			$$inline: true
 		});
 
-	button1.$on("click", /*click_handler_5*/ ctx[10]);
+	button1.$on("click", /*click_handler_5*/ ctx[11]);
 
 	const block = {
 		c: function create() {
@@ -27901,7 +27901,7 @@ function create_footer_slot(ctx) {
 			t = space();
 			create_component(button1.$$.fragment);
 			attr_dev(div, "slot", "footer");
-			add_location(div, file$7, 39, 1, 6630);
+			add_location(div, file$7, 33, 1, 3632);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div, anchor);
@@ -27913,14 +27913,14 @@ function create_footer_slot(ctx) {
 		p: function update(ctx, dirty) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 4096) {
+			if (dirty & /*$$scope*/ 8192) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 4096) {
+			if (dirty & /*$$scope*/ 8192) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -27948,7 +27948,7 @@ function create_footer_slot(ctx) {
 		block,
 		id: create_footer_slot.name,
 		type: "slot",
-		source: "(40:1) ",
+		source: "(34:1) ",
 		ctx
 	});
 
@@ -27970,21 +27970,19 @@ function create_fragment$7(ctx) {
 	let t7;
 	let button2;
 	let t8;
-	let p0;
-	let t10;
-	let p1;
-	let t12;
-	let p2;
-	let t14;
-	let p3;
-	let t16;
-	let p4;
-	let t18;
 	let dialog0;
-	let t19;
+	let t9;
 	let dialog1_1;
-	let t20;
+	let t10;
 	let dialog2_1;
+	let t11;
+	let hr;
+	let t12;
+	let h3;
+	let t14;
+	let code;
+	let t16;
+	let api;
 	let current;
 
 	button0 = new Button({
@@ -27995,7 +27993,7 @@ function create_fragment$7(ctx) {
 			$$inline: true
 		});
 
-	button0.$on("click", /*click_handler*/ ctx[3]);
+	button0.$on("click", /*click_handler*/ ctx[4]);
 
 	button1 = new Button({
 			props: {
@@ -28005,7 +28003,7 @@ function create_fragment$7(ctx) {
 			$$inline: true
 		});
 
-	button1.$on("click", /*click_handler_1*/ ctx[4]);
+	button1.$on("click", /*click_handler_1*/ ctx[5]);
 
 	button2 = new Button({
 			props: {
@@ -28015,7 +28013,7 @@ function create_fragment$7(ctx) {
 			$$inline: true
 		});
 
-	button2.$on("click", /*click_handler_2*/ ctx[5]);
+	button2.$on("click", /*click_handler_2*/ ctx[6]);
 
 	let dialog0_props = {
 		title: "Hello",
@@ -28028,7 +28026,7 @@ function create_fragment$7(ctx) {
 	};
 
 	dialog0 = new Dialog({ props: dialog0_props, $$inline: true });
-	/*dialog0_binding*/ ctx[7](dialog0);
+	/*dialog0_binding*/ ctx[8](dialog0);
 
 	let dialog1_1_props = {
 		title: "Hello",
@@ -28037,7 +28035,7 @@ function create_fragment$7(ctx) {
 	};
 
 	dialog1_1 = new Dialog({ props: dialog1_1_props, $$inline: true });
-	/*dialog1_1_binding*/ ctx[8](dialog1_1);
+	/*dialog1_1_binding*/ ctx[9](dialog1_1);
 
 	let dialog2_1_props = {
 		$$slots: {
@@ -28048,7 +28046,12 @@ function create_fragment$7(ctx) {
 	};
 
 	dialog2_1 = new Dialog({ props: dialog2_1_props, $$inline: true });
-	/*dialog2_1_binding*/ ctx[11](dialog2_1);
+	/*dialog2_1_binding*/ ctx[12](dialog2_1);
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[3] },
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -28069,36 +28072,29 @@ function create_fragment$7(ctx) {
 			t7 = space();
 			create_component(button2.$$.fragment);
 			t8 = space();
-			p0 = element("p");
-			p0.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis porttitor justo, eget ornare massa commodo non. Pellentesque semper dictum mauris, id pretium mi mattis in. Proin sodales neque id euismod interdum. Fusce vel blandit orci. Mauris nec ligula aliquam, vestibulum erat nec, ullamcorper nunc. Cras vel lacinia sem. Aenean non tincidunt nisl, vitae consectetur est. Integer id neque tempor, facilisis felis egestas, aliquam turpis. Mauris id consectetur purus. Praesent vehicula, mauris eu hendrerit vehicula, velit tortor fermentum enim, eget malesuada quam eros at quam. Integer mattis egestas tempus.";
-			t10 = space();
-			p1 = element("p");
-			p1.textContent = "Aliquam et purus enim. Suspendisse potenti. Suspendisse tincidunt ullamcorper nulla non gravida. Morbi at tellus dui. Sed orci ligula, facilisis sit amet odio eu, commodo ultricies lorem. Nullam sagittis sapien metus, eu posuere sem iaculis sed. Duis at nibh feugiat, placerat lectus nec, consectetur elit. In sollicitudin est in ultricies gravida. Ut malesuada ex lacinia, posuere augue eget, imperdiet erat. Phasellus ac dui sit amet ligula condimentum venenatis vitae ornare augue. Vivamus pellentesque felis in orci finibus, a accumsan libero consectetur.";
-			t12 = space();
-			p2 = element("p");
-			p2.textContent = "Nulla facilisi. Sed in neque hendrerit, convallis neque a, semper sem. Maecenas suscipit ex quis risus mollis, at tincidunt mi faucibus. Pellentesque in faucibus metus. Etiam sollicitudin accumsan arcu interdum sollicitudin. Suspendisse iaculis congue justo id posuere. Ut sed nisi molestie, egestas nulla at, feugiat neque. Nullam vitae libero eu sem ornare tempus vel id tortor. Ut varius ullamcorper nisl et dignissim. Vestibulum sodales massa id odio aliquet ornare. Nunc mollis quis sapien fringilla ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus eget posuere orci.";
-			t14 = space();
-			p3 = element("p");
-			p3.textContent = "Suspendisse sollicitudin sed ligula nec tempus. Phasellus quis luctus sapien. Nullam nec sapien fringilla, sollicitudin dui sit amet, molestie arcu. Pellentesque id elit et sem pharetra gravida. Donec sed metus ut dui venenatis euismod varius ut libero. Duis ornare odio finibus eros rhoncus ullamcorper. Maecenas auctor lectus volutpat sem pretium volutpat. Mauris blandit quam diam, nec consequat arcu dignissim ut. Donec ac lacus pretium, sollicitudin nisi in, ullamcorper enim. Ut convallis nec eros nec scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris non odio a ipsum varius pretium non ut ex. Quisque euismod luctus risus, sit amet venenatis justo vehicula non. Aliquam erat volutpat. Phasellus eu leo ut odio cursus cursus. Pellentesque porta odio id arcu mattis, vitae aliquam risus efficitur.";
-			t16 = space();
-			p4 = element("p");
-			p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-			t18 = space();
 			create_component(dialog0.$$.fragment);
-			t19 = space();
+			t9 = space();
 			create_component(dialog1_1.$$.fragment);
-			t20 = space();
+			t10 = space();
 			create_component(dialog2_1.$$.fragment);
+			t11 = space();
+			hr = element("hr");
+			t12 = space();
+			h3 = element("h3");
+			h3.textContent = "Example instantiation";
+			t14 = space();
+			code = element("code");
+			code.textContent = "<Dialog bind:this=\"{dialog1}\">\n    Are you sure?\n    <div slot=\"footer\">\n        <Button on:click=\"{() => dialog1.close()}\">Close</Button>\n    </div>\n</Dialog>\n\n<Button on:click=\"{() => dialog1.open()}\">Show dialog</Button>\n\n<script>\n    let dialog1;\n</script>";
+			t16 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$7, 0, 0, 0);
 			add_location(li0, file$7, 3, 1, 23);
 			add_location(li1, file$7, 4, 1, 59);
 			add_location(ul, file$7, 2, 0, 17);
 			add_location(br, file$7, 6, 0, 116);
-			add_location(p0, file$7, 11, 0, 317);
-			add_location(p1, file$7, 12, 0, 944);
-			add_location(p2, file$7, 13, 0, 1511);
-			add_location(p3, file$7, 14, 0, 2127);
-			add_location(p4, file$7, 15, 0, 2996);
+			add_location(hr, file$7, 41, 0, 3788);
+			add_location(h3, file$7, 42, 0, 3793);
+			add_location(code, file$7, 43, 0, 3824);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -28118,62 +28114,60 @@ function create_fragment$7(ctx) {
 			insert_dev(target, t7, anchor);
 			mount_component(button2, target, anchor);
 			insert_dev(target, t8, anchor);
-			insert_dev(target, p0, anchor);
-			insert_dev(target, t10, anchor);
-			insert_dev(target, p1, anchor);
-			insert_dev(target, t12, anchor);
-			insert_dev(target, p2, anchor);
-			insert_dev(target, t14, anchor);
-			insert_dev(target, p3, anchor);
-			insert_dev(target, t16, anchor);
-			insert_dev(target, p4, anchor);
-			insert_dev(target, t18, anchor);
 			mount_component(dialog0, target, anchor);
-			insert_dev(target, t19, anchor);
+			insert_dev(target, t9, anchor);
 			mount_component(dialog1_1, target, anchor);
-			insert_dev(target, t20, anchor);
+			insert_dev(target, t10, anchor);
 			mount_component(dialog2_1, target, anchor);
+			insert_dev(target, t11, anchor);
+			insert_dev(target, hr, anchor);
+			insert_dev(target, t12, anchor);
+			insert_dev(target, h3, anchor);
+			insert_dev(target, t14, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t16, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 4096) {
+			if (dirty & /*$$scope*/ 8192) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 4096) {
+			if (dirty & /*$$scope*/ 8192) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 4096) {
+			if (dirty & /*$$scope*/ 8192) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
 			button2.$set(button2_changes);
 			const dialog0_changes = {};
 
-			if (dirty & /*$$scope, dialog1*/ 4097) {
+			if (dirty & /*$$scope, dialog1*/ 8193) {
 				dialog0_changes.$$scope = { dirty, ctx };
 			}
 
 			dialog0.$set(dialog0_changes);
 			const dialog1_1_changes = {};
 
-			if (dirty & /*$$scope*/ 4096) {
+			if (dirty & /*$$scope*/ 8192) {
 				dialog1_1_changes.$$scope = { dirty, ctx };
 			}
 
 			dialog1_1.$set(dialog1_1_changes);
 			const dialog2_1_changes = {};
 
-			if (dirty & /*$$scope, dialog3*/ 4100) {
+			if (dirty & /*$$scope, dialog3*/ 8196) {
 				dialog2_1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28187,6 +28181,7 @@ function create_fragment$7(ctx) {
 			transition_in(dialog0.$$.fragment, local);
 			transition_in(dialog1_1.$$.fragment, local);
 			transition_in(dialog2_1.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -28196,6 +28191,7 @@ function create_fragment$7(ctx) {
 			transition_out(dialog0.$$.fragment, local);
 			transition_out(dialog1_1.$$.fragment, local);
 			transition_out(dialog2_1.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -28211,24 +28207,22 @@ function create_fragment$7(ctx) {
 			if (detaching) detach_dev(t7);
 			destroy_component(button2, detaching);
 			if (detaching) detach_dev(t8);
-			if (detaching) detach_dev(p0);
-			if (detaching) detach_dev(t10);
-			if (detaching) detach_dev(p1);
-			if (detaching) detach_dev(t12);
-			if (detaching) detach_dev(p2);
-			if (detaching) detach_dev(t14);
-			if (detaching) detach_dev(p3);
-			if (detaching) detach_dev(t16);
-			if (detaching) detach_dev(p4);
-			if (detaching) detach_dev(t18);
-			/*dialog0_binding*/ ctx[7](null);
+			/*dialog0_binding*/ ctx[8](null);
 			destroy_component(dialog0, detaching);
-			if (detaching) detach_dev(t19);
-			/*dialog1_1_binding*/ ctx[8](null);
+			if (detaching) detach_dev(t9);
+			/*dialog1_1_binding*/ ctx[9](null);
 			destroy_component(dialog1_1, detaching);
-			if (detaching) detach_dev(t20);
-			/*dialog2_1_binding*/ ctx[11](null);
+			if (detaching) detach_dev(t10);
+			/*dialog2_1_binding*/ ctx[12](null);
 			destroy_component(dialog2_1, detaching);
+			if (detaching) detach_dev(t11);
+			if (detaching) detach_dev(hr);
+			if (detaching) detach_dev(t12);
+			if (detaching) detach_dev(h3);
+			if (detaching) detach_dev(t14);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t16);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -28246,6 +28240,48 @@ function create_fragment$7(ctx) {
 function instance$7($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Dialog', slots, []);
+
+	const apiProps = [
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Set title for the dialog.'
+		},
+		{
+			name: 'opened',
+			type: ['true', 'false'],
+			default: 'false',
+			description: 'Set dialog\'s open state.'
+		},
+		{
+			name: 'drawBorders',
+			type: ['true', 'false'],
+			default: 'false',
+			description: 'If <i>true</i> - the dialog will have borders between title and content'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component container.'
+		},
+		{
+			name: 'skipFirstFocus',
+			type: ['true', 'false'],
+			default: 'false',
+			description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.'
+		},
+		{
+			name: 'on:open',
+			type: 'function',
+			description: 'Triggered after the dialog is opened.'
+		},
+		{
+			name: 'on:close',
+			type: 'function',
+			description: 'Triggered after the dialog is closed.'
+		}
+	];
+
 	let dialog1, dialog2, dialog3;
 	const writable_props = [];
 
@@ -28285,6 +28321,8 @@ function instance$7($$self, $$props, $$invalidate) {
 	$$self.$capture_state = () => ({
 		Button,
 		Dialog,
+		API: Api_table,
+		apiProps,
 		dialog1,
 		dialog2,
 		dialog3
@@ -28304,6 +28342,7 @@ function instance$7($$self, $$props, $$invalidate) {
 		dialog1,
 		dialog2,
 		dialog3,
+		apiProps,
 		click_handler,
 		click_handler_1,
 		click_handler_2,
