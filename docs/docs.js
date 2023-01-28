@@ -8827,6 +8827,7 @@ function create_if_block$7(ctx) {
 	let div1;
 	let t4;
 	let div2;
+	let div3_class_value;
 	let div3_intro;
 	let div3_outro;
 	let current;
@@ -8844,9 +8845,9 @@ function create_if_block$7(ctx) {
 			$$inline: true
 		});
 
-	button.$on("click", /*close*/ ctx[1]);
-	const default_slot_template = /*#slots*/ ctx[11].default;
-	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[10], null);
+	button.$on("click", /*close*/ ctx[2]);
+	const default_slot_template = /*#slots*/ ctx[12].default;
+	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[11], null);
 
 	const block = {
 		c: function create() {
@@ -8865,16 +8866,16 @@ function create_if_block$7(ctx) {
 			div2 = element("div");
 			attr_dev(div0, "tabindex", "0");
 			attr_dev(div0, "class", "focus-trap focus-trap-top");
-			add_location(div0, file$K, 8, 2, 249);
-			add_location(h2, file$K, 10, 3, 391);
+			add_location(div0, file$K, 8, 2, 289);
+			add_location(h2, file$K, 10, 3, 431);
 			attr_dev(header, "class", "drawer-header");
-			add_location(header, file$K, 9, 2, 333);
+			add_location(header, file$K, 9, 2, 373);
 			attr_dev(div1, "class", "drawer-content");
-			add_location(div1, file$K, 13, 2, 514);
+			add_location(div1, file$K, 13, 2, 554);
 			attr_dev(div2, "tabindex", "0");
 			attr_dev(div2, "class", "focus-trap focus-trap-bottom");
-			add_location(div2, file$K, 14, 2, 564);
-			attr_dev(div3, "class", "drawer");
+			add_location(div2, file$K, 14, 2, 604);
+			attr_dev(div3, "class", div3_class_value = "drawer " + /*className*/ ctx[1]);
 			attr_dev(div3, "tabindex", "-1");
 			add_location(div3, file$K, 2, 1, 73);
 		},
@@ -8887,7 +8888,7 @@ function create_if_block$7(ctx) {
 			append_dev(h2, t1);
 			append_dev(header, t2);
 			mount_component(button, header, null);
-			/*header_binding*/ ctx[12](header);
+			/*header_binding*/ ctx[13](header);
 			append_dev(div3, t3);
 			append_dev(div3, div1);
 
@@ -8897,14 +8898,14 @@ function create_if_block$7(ctx) {
 
 			append_dev(div3, t4);
 			append_dev(div3, div2);
-			/*div3_binding*/ ctx[13](div3);
+			/*div3_binding*/ ctx[14](div3);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen_dev(div0, "focus", /*focusLast*/ ctx[7], false, false, false),
-					listen_dev(div2, "focus", /*focusFirst*/ ctx[6], false, false, false),
-					action_destroyer(/*docclick*/ ctx[5].call(null, div3))
+					listen_dev(div0, "focus", /*focusLast*/ ctx[8], false, false, false),
+					listen_dev(div2, "focus", /*focusFirst*/ ctx[7], false, false, false),
+					action_destroyer(/*docclick*/ ctx[6].call(null, div3))
 				];
 
 				mounted = true;
@@ -8915,18 +8916,22 @@ function create_if_block$7(ctx) {
 			if (!current || dirty & /*title*/ 1) set_data_dev(t1, /*title*/ ctx[0]);
 
 			if (default_slot) {
-				if (default_slot.p && (!current || dirty & /*$$scope*/ 1024)) {
+				if (default_slot.p && (!current || dirty & /*$$scope*/ 2048)) {
 					update_slot_base(
 						default_slot,
 						default_slot_template,
 						ctx,
-						/*$$scope*/ ctx[10],
+						/*$$scope*/ ctx[11],
 						!current
-						? get_all_dirty_from_scope(/*$$scope*/ ctx[10])
-						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[10], dirty, null),
+						? get_all_dirty_from_scope(/*$$scope*/ ctx[11])
+						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[11], dirty, null),
 						null
 					);
 				}
+			}
+
+			if (!current || dirty & /*className*/ 2 && div3_class_value !== (div3_class_value = "drawer " + /*className*/ ctx[1])) {
+				attr_dev(div3, "class", div3_class_value);
 			}
 		},
 		i: function intro(local) {
@@ -8936,7 +8941,7 @@ function create_if_block$7(ctx) {
 
 			add_render_callback(() => {
 				if (div3_outro) div3_outro.end(1);
-				div3_intro = create_in_transition(div3, fly, { x: ANIMATION_SPEED, duration: 200 });
+				div3_intro = create_in_transition(div3, fly, { x: 300, duration: ANIMATION_SPEED });
 				div3_intro.start();
 			});
 
@@ -8946,15 +8951,20 @@ function create_if_block$7(ctx) {
 			transition_out(button.$$.fragment, local);
 			transition_out(default_slot, local);
 			if (div3_intro) div3_intro.invalidate();
-			div3_outro = create_out_transition(div3, fly, { x: ANIMATION_SPEED, duration: 300 });
+
+			div3_outro = create_out_transition(div3, fly, {
+				x: 300,
+				duration: ANIMATION_SPEED ? ANIMATION_SPEED + 100 : 0
+			});
+
 			current = false;
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(div3);
 			destroy_component(button);
-			/*header_binding*/ ctx[12](null);
+			/*header_binding*/ ctx[13](null);
 			if (default_slot) default_slot.d(detaching);
-			/*div3_binding*/ ctx[13](null);
+			/*div3_binding*/ ctx[14](null);
 			if (detaching && div3_outro) div3_outro.end();
 			mounted = false;
 			run_all(dispose);
@@ -8975,7 +8985,7 @@ function create_if_block$7(ctx) {
 function create_fragment$L(ctx) {
 	let if_block_anchor;
 	let current;
-	let if_block = /*isVisible*/ ctx[2] && create_if_block$7(ctx);
+	let if_block = /*isVisible*/ ctx[3] && create_if_block$7(ctx);
 
 	const block = {
 		c: function create() {
@@ -8991,11 +9001,11 @@ function create_fragment$L(ctx) {
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
-			if (/*isVisible*/ ctx[2]) {
+			if (/*isVisible*/ ctx[3]) {
 				if (if_block) {
 					if_block.p(ctx, dirty);
 
-					if (dirty & /*isVisible*/ 4) {
+					if (dirty & /*isVisible*/ 8) {
 						transition_in(if_block, 1);
 					}
 				} else {
@@ -9044,6 +9054,8 @@ function instance$L($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Drawer', slots, ['default']);
 	let { title = 'Drawer' } = $$props;
+	let { className = '' } = $$props;
+	const dispatch = createEventDispatcher();
 	let isVisible = false;
 	let el, headerEl, targetBtn;
 
@@ -9070,13 +9082,15 @@ function instance$L($$self, $$props, $$invalidate) {
 
 	function open(target) {
 		targetBtn = target || document.activeElement;
-		$$invalidate(2, isVisible = true);
+		$$invalidate(3, isVisible = true);
 		requestAnimationFrame(() => headerEl.querySelector('.btn-close').focus());
+		dispatch('open');
 	}
 
 	function close() {
-		$$invalidate(2, isVisible = false);
+		$$invalidate(3, isVisible = false);
 		if (targetBtn) targetBtn.focus();
+		dispatch('close');
 	}
 
 	function focusFirst() {
@@ -9097,7 +9111,7 @@ function instance$L($$self, $$props, $$invalidate) {
 		return Array.from(el.querySelectorAll(FOCUSABLE_SELECTOR));
 	}
 
-	const writable_props = ['title'];
+	const writable_props = ['title', 'className'];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Drawer> was created with unknown prop '${key}'`);
@@ -9106,28 +9120,32 @@ function instance$L($$self, $$props, $$invalidate) {
 	function header_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			headerEl = $$value;
-			$$invalidate(4, headerEl);
+			$$invalidate(5, headerEl);
 		});
 	}
 
 	function div3_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			el = $$value;
-			$$invalidate(3, el);
+			$$invalidate(4, el);
 		});
 	}
 
 	$$self.$$set = $$props => {
 		if ('title' in $$props) $$invalidate(0, title = $$props.title);
-		if ('$$scope' in $$props) $$invalidate(10, $$scope = $$props.$$scope);
+		if ('className' in $$props) $$invalidate(1, className = $$props.className);
+		if ('$$scope' in $$props) $$invalidate(11, $$scope = $$props.$$scope);
 	};
 
 	$$self.$capture_state = () => ({
+		createEventDispatcher,
 		fly,
 		ANIMATION_SPEED,
 		FOCUSABLE_SELECTOR,
 		Button,
 		title,
+		className,
+		dispatch,
 		isVisible,
 		el,
 		headerEl,
@@ -9144,9 +9162,10 @@ function instance$L($$self, $$props, $$invalidate) {
 
 	$$self.$inject_state = $$props => {
 		if ('title' in $$props) $$invalidate(0, title = $$props.title);
-		if ('isVisible' in $$props) $$invalidate(2, isVisible = $$props.isVisible);
-		if ('el' in $$props) $$invalidate(3, el = $$props.el);
-		if ('headerEl' in $$props) $$invalidate(4, headerEl = $$props.headerEl);
+		if ('className' in $$props) $$invalidate(1, className = $$props.className);
+		if ('isVisible' in $$props) $$invalidate(3, isVisible = $$props.isVisible);
+		if ('el' in $$props) $$invalidate(4, el = $$props.el);
+		if ('headerEl' in $$props) $$invalidate(5, headerEl = $$props.headerEl);
 		if ('targetBtn' in $$props) targetBtn = $$props.targetBtn;
 	};
 
@@ -9156,6 +9175,7 @@ function instance$L($$self, $$props, $$invalidate) {
 
 	return [
 		title,
+		className,
 		close,
 		isVisible,
 		el,
@@ -9175,7 +9195,14 @@ function instance$L($$self, $$props, $$invalidate) {
 class Drawer extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$L, create_fragment$L, safe_not_equal, { title: 0, toggle: 8, open: 9, close: 1 });
+
+		init(this, options, instance$L, create_fragment$L, safe_not_equal, {
+			title: 0,
+			className: 1,
+			toggle: 9,
+			open: 10,
+			close: 2
+		});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -9194,8 +9221,17 @@ class Drawer extends SvelteComponentDev {
 		flush();
 	}
 
+	get className() {
+		return this.$$.ctx[1];
+	}
+
+	set className(className) {
+		this.$$set({ className });
+		flush();
+	}
+
 	get toggle() {
-		return this.$$.ctx[8];
+		return this.$$.ctx[9];
 	}
 
 	set toggle(value) {
@@ -9203,7 +9239,7 @@ class Drawer extends SvelteComponentDev {
 	}
 
 	get open() {
-		return this.$$.ctx[9];
+		return this.$$.ctx[10];
 	}
 
 	set open(value) {
@@ -9211,7 +9247,7 @@ class Drawer extends SvelteComponentDev {
 	}
 
 	get close() {
-		return this.$$.ctx[1];
+		return this.$$.ctx[2];
 	}
 
 	set close(value) {
@@ -28399,7 +28435,7 @@ function create_default_slot_2(ctx) {
 	return block;
 }
 
-// (16:1) <Button on:click="{() => drawer.close()}">
+// (9:1) <Button on:click="{() => drawer.close()}">
 function create_default_slot_1$1(ctx) {
 	let t;
 
@@ -28419,14 +28455,14 @@ function create_default_slot_1$1(ctx) {
 		block,
 		id: create_default_slot_1$1.name,
 		type: "slot",
-		source: "(16:1) <Button on:click=\\\"{() => drawer.close()}\\\">",
+		source: "(9:1) <Button on:click=\\\"{() => drawer.close()}\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (11:0) <Drawer bind:this="{drawer}" title="Drawer">
+// (5:0) <Drawer bind:this="{drawer}" title="Drawer">
 function create_default_slot$2(ctx) {
 	let t0;
 	let br0;
@@ -28456,7 +28492,7 @@ function create_default_slot$2(ctx) {
 			$$inline: true
 		});
 
-	button.$on("click", /*click_handler_1*/ ctx[2]);
+	button.$on("click", /*click_handler_1*/ ctx[3]);
 
 	const block = {
 		c: function create() {
@@ -28483,14 +28519,14 @@ function create_default_slot$2(ctx) {
 			t12 = space();
 			p4 = element("p");
 			p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-			add_location(br0, file$6, 12, 16, 3144);
-			add_location(br1, file$6, 13, 13, 3162);
-			add_location(br2, file$6, 14, 1, 3168);
-			add_location(p0, file$6, 17, 1, 3240);
-			add_location(p1, file$6, 18, 1, 3868);
-			add_location(p2, file$6, 19, 1, 4436);
-			add_location(p3, file$6, 20, 1, 5053);
-			add_location(p4, file$6, 21, 1, 5923);
+			add_location(br0, file$6, 5, 16, 145);
+			add_location(br1, file$6, 6, 13, 163);
+			add_location(br2, file$6, 7, 1, 169);
+			add_location(p0, file$6, 9, 1, 240);
+			add_location(p1, file$6, 10, 1, 868);
+			add_location(p2, file$6, 11, 1, 1436);
+			add_location(p3, file$6, 12, 1, 2053);
+			add_location(p4, file$6, 13, 1, 2923);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, t0, anchor);
@@ -28516,7 +28552,7 @@ function create_default_slot$2(ctx) {
 		p: function update(ctx, dirty) {
 			const button_changes = {};
 
-			if (dirty & /*$$scope*/ 16) {
+			if (dirty & /*$$scope*/ 32) {
 				button_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28557,7 +28593,7 @@ function create_default_slot$2(ctx) {
 		block,
 		id: create_default_slot$2.name,
 		type: "slot",
-		source: "(11:0) <Drawer bind:this=\\\"{drawer}\\\" title=\\\"Drawer\\\">",
+		source: "(5:0) <Drawer bind:this=\\\"{drawer}\\\" title=\\\"Drawer\\\">",
 		ctx
 	});
 
@@ -28569,17 +28605,15 @@ function create_fragment$6(ctx) {
 	let t1;
 	let button;
 	let t2;
-	let p0;
-	let t4;
-	let p1;
-	let t6;
-	let p2;
-	let t8;
-	let p3;
-	let t10;
-	let p4;
-	let t12;
 	let drawer_1;
+	let t3;
+	let hr;
+	let t4;
+	let h3;
+	let t6;
+	let code;
+	let t8;
+	let api;
 	let current;
 
 	button = new Button({
@@ -28590,7 +28624,7 @@ function create_fragment$6(ctx) {
 			$$inline: true
 		});
 
-	button.$on("click", /*click_handler*/ ctx[1]);
+	button.$on("click", /*click_handler*/ ctx[2]);
 
 	let drawer_1_props = {
 		title: "Drawer",
@@ -28599,7 +28633,12 @@ function create_fragment$6(ctx) {
 	};
 
 	drawer_1 = new Drawer({ props: drawer_1_props, $$inline: true });
-	/*drawer_1_binding*/ ctx[3](drawer_1);
+	/*drawer_1_binding*/ ctx[4](drawer_1);
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[1] },
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -28608,28 +28647,21 @@ function create_fragment$6(ctx) {
 			t1 = space();
 			create_component(button.$$.fragment);
 			t2 = space();
-			p0 = element("p");
-			p0.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis porttitor justo, eget ornare massa commodo non. Pellentesque semper dictum mauris, id pretium mi mattis in. Proin sodales neque id euismod interdum. Fusce vel blandit orci. Mauris nec ligula aliquam, vestibulum erat nec, ullamcorper nunc. Cras vel lacinia sem. Aenean non tincidunt nisl, vitae consectetur est. Integer id neque tempor, facilisis felis egestas, aliquam turpis. Mauris id consectetur purus. Praesent vehicula, mauris eu hendrerit vehicula, velit tortor fermentum enim, eget malesuada quam eros at quam. Integer mattis egestas tempus.";
-			t4 = space();
-			p1 = element("p");
-			p1.textContent = "Aliquam et purus enim. Suspendisse potenti. Suspendisse tincidunt ullamcorper nulla non gravida. Morbi at tellus dui. Sed orci ligula, facilisis sit amet odio eu, commodo ultricies lorem. Nullam sagittis sapien metus, eu posuere sem iaculis sed. Duis at nibh feugiat, placerat lectus nec, consectetur elit. In sollicitudin est in ultricies gravida. Ut malesuada ex lacinia, posuere augue eget, imperdiet erat. Phasellus ac dui sit amet ligula condimentum venenatis vitae ornare augue. Vivamus pellentesque felis in orci finibus, a accumsan libero consectetur.";
-			t6 = space();
-			p2 = element("p");
-			p2.textContent = "Nulla facilisi. Sed in neque hendrerit, convallis neque a, semper sem. Maecenas suscipit ex quis risus mollis, at tincidunt mi faucibus. Pellentesque in faucibus metus. Etiam sollicitudin accumsan arcu interdum sollicitudin. Suspendisse iaculis congue justo id posuere. Ut sed nisi molestie, egestas nulla at, feugiat neque. Nullam vitae libero eu sem ornare tempus vel id tortor. Ut varius ullamcorper nisl et dignissim. Vestibulum sodales massa id odio aliquet ornare. Nunc mollis quis sapien fringilla ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus eget posuere orci.";
-			t8 = space();
-			p3 = element("p");
-			p3.textContent = "Suspendisse sollicitudin sed ligula nec tempus. Phasellus quis luctus sapien. Nullam nec sapien fringilla, sollicitudin dui sit amet, molestie arcu. Pellentesque id elit et sem pharetra gravida. Donec sed metus ut dui venenatis euismod varius ut libero. Duis ornare odio finibus eros rhoncus ullamcorper. Maecenas auctor lectus volutpat sem pretium volutpat. Mauris blandit quam diam, nec consequat arcu dignissim ut. Donec ac lacus pretium, sollicitudin nisi in, ullamcorper enim. Ut convallis nec eros nec scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris non odio a ipsum varius pretium non ut ex. Quisque euismod luctus risus, sit amet venenatis justo vehicula non. Aliquam erat volutpat. Phasellus eu leo ut odio cursus cursus. Pellentesque porta odio id arcu mattis, vitae aliquam risus efficitur.";
-			t10 = space();
-			p4 = element("p");
-			p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-			t12 = space();
 			create_component(drawer_1.$$.fragment);
+			t3 = space();
+			hr = element("hr");
+			t4 = space();
+			h3 = element("h3");
+			h3.textContent = "Example instantiation";
+			t6 = space();
+			code = element("code");
+			code.textContent = "<Drawer bind:this=\"{drawer1}\" title=\"Drawer\">\n    Hello world!\n    <Button on:click=\"{() => drawer1.close()}\">Close</Button>\n</Drawer>\n\n<Button on:click=\"{() => drawer1.toggle()}\">Show dialog</Button>\n\n<script>\n    let drawer1;\n</script>";
+			t8 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$6, 0, 0, 0);
-			add_location(p0, file$6, 4, 0, 84);
-			add_location(p1, file$6, 5, 0, 711);
-			add_location(p2, file$6, 6, 0, 1278);
-			add_location(p3, file$6, 7, 0, 1894);
-			add_location(p4, file$6, 8, 0, 2763);
+			add_location(hr, file$6, 18, 0, 3254);
+			add_location(h3, file$6, 19, 0, 3259);
+			add_location(code, file$6, 20, 0, 3290);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -28639,30 +28671,28 @@ function create_fragment$6(ctx) {
 			insert_dev(target, t1, anchor);
 			mount_component(button, target, anchor);
 			insert_dev(target, t2, anchor);
-			insert_dev(target, p0, anchor);
-			insert_dev(target, t4, anchor);
-			insert_dev(target, p1, anchor);
-			insert_dev(target, t6, anchor);
-			insert_dev(target, p2, anchor);
-			insert_dev(target, t8, anchor);
-			insert_dev(target, p3, anchor);
-			insert_dev(target, t10, anchor);
-			insert_dev(target, p4, anchor);
-			insert_dev(target, t12, anchor);
 			mount_component(drawer_1, target, anchor);
+			insert_dev(target, t3, anchor);
+			insert_dev(target, hr, anchor);
+			insert_dev(target, t4, anchor);
+			insert_dev(target, h3, anchor);
+			insert_dev(target, t6, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t8, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const button_changes = {};
 
-			if (dirty & /*$$scope*/ 16) {
+			if (dirty & /*$$scope*/ 32) {
 				button_changes.$$scope = { dirty, ctx };
 			}
 
 			button.$set(button_changes);
 			const drawer_1_changes = {};
 
-			if (dirty & /*$$scope, drawer*/ 17) {
+			if (dirty & /*$$scope, drawer*/ 33) {
 				drawer_1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28672,11 +28702,13 @@ function create_fragment$6(ctx) {
 			if (current) return;
 			transition_in(button.$$.fragment, local);
 			transition_in(drawer_1.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(button.$$.fragment, local);
 			transition_out(drawer_1.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -28684,18 +28716,16 @@ function create_fragment$6(ctx) {
 			if (detaching) detach_dev(t1);
 			destroy_component(button, detaching);
 			if (detaching) detach_dev(t2);
-			if (detaching) detach_dev(p0);
-			if (detaching) detach_dev(t4);
-			if (detaching) detach_dev(p1);
-			if (detaching) detach_dev(t6);
-			if (detaching) detach_dev(p2);
-			if (detaching) detach_dev(t8);
-			if (detaching) detach_dev(p3);
-			if (detaching) detach_dev(t10);
-			if (detaching) detach_dev(p4);
-			if (detaching) detach_dev(t12);
-			/*drawer_1_binding*/ ctx[3](null);
+			/*drawer_1_binding*/ ctx[4](null);
 			destroy_component(drawer_1, detaching);
+			if (detaching) detach_dev(t3);
+			if (detaching) detach_dev(hr);
+			if (detaching) detach_dev(t4);
+			if (detaching) detach_dev(h3);
+			if (detaching) detach_dev(t6);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t8);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -28713,6 +28743,30 @@ function create_fragment$6(ctx) {
 function instance$6($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Drawer', slots, []);
+
+	const apiProps = [
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Set title for the drawer.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component container.'
+		},
+		{
+			name: 'on:open',
+			type: 'function',
+			description: 'Triggered after the drawer is opened.'
+		},
+		{
+			name: 'on:close',
+			type: 'function',
+			description: 'Triggered after the drawer is closed.'
+		}
+	];
+
 	let drawer;
 	const writable_props = [];
 
@@ -28730,7 +28784,7 @@ function instance$6($$self, $$props, $$invalidate) {
 		});
 	}
 
-	$$self.$capture_state = () => ({ Button, Drawer, drawer });
+	$$self.$capture_state = () => ({ Button, Drawer, API: Api_table, apiProps, drawer });
 
 	$$self.$inject_state = $$props => {
 		if ('drawer' in $$props) $$invalidate(0, drawer = $$props.drawer);
@@ -28740,7 +28794,7 @@ function instance$6($$self, $$props, $$invalidate) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [drawer, click_handler, click_handler_1, drawer_1_binding];
+	return [drawer, apiProps, click_handler, click_handler_1, drawer_1_binding];
 }
 
 class Drawer_1 extends SvelteComponentDev {
