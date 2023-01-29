@@ -68,36 +68,7 @@
 </Menu>
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;!-- Regular menu --&gt;
-&lt;Menu bind:this="&lbrace;menu1&rbrace;"&gt;
-    &lt;Item&gt;&lt;Icon name="plus"/&gt; Add some&lt;/Item&gt;
-    &lt;Item&gt;&lt;Icon name=""/&gt; Add some more&lt;/Item&gt;
-    &lt;Separator /&gt;
-    &lt;Item on:click="&lbrace;closeSomething&rbrace;"&gt;&lt;Icon name="close"/&gt; Close something&lt;/Item&gt;
-&lt;/Menu&gt;
-
-&lt;Button on:click="&lbrace;() => menu1.open()&rbrace;"&gt;Show menu&lt;/Button&gt;
-
-&lt;!-- Context menu --&gt;
-&lt;div class="div1"&gt;Tab&lt;/div&gt;
-&lt;Menu type="context" targetSelector=".div1" bind:this="&lbrace;menu2&rbrace;"&gt;
-    &lt;Item on:click="&lbrace;action1&rbrace;"&gt;New window&lt;/Item&gt;
-    &lt;Item on:click="&lbrace;action2&rbrace;"&gt;New private window&lt;/Item&gt;
-    &lt;Separator /&gt;
-    &lt;Item on:click="&lbrace;action3&rbrace;"&gt;Close All Windows&lt;/Item&gt;
-&lt;/Menu&gt;
-
-&lt;script&gt;
-    let menu1, menu2;
-    function closeSomething (e) &lbrace;
-        e.stopPropagation(); // prevents menu auto-closing
-        menu1.close();       // manually close the menu
-    &rbrace;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
 <API props="{apiProps}"/>
 <API props="{instanceApiProps}" title="Menu Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
@@ -106,7 +77,8 @@
 
 <script>
 import { Button, Menu, Item, Separator, Icon } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
@@ -125,6 +97,35 @@ const instanceApiProps = [
 const itemApiProps = [
 	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.stopPropagation();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
 ];
+
+const exampleHtml = `
+<!-- Regular menu -->
+<Menu bind:this="{menu1}">
+    <Item><Icon name="plus"/> Add some</Item>
+    <Item><Icon name=""/> Add some more</Item>
+    <Separator />
+    <Item on:click="{closeSomething}"><Icon name="close"/> Close something</Item>
+</Menu>
+
+<Button on:click="{() => menu1.open()}">Show menu</Button>
+
+<!-- Context menu -->
+<div class="div1">Tab</div>
+<Menu type="context" targetSelector=".div1" bind:this="{menu2}">
+    <Item on:click="{action1}">New window</Item>
+    <Item on:click="{action2}">New private window</Item>
+    <Separator />
+    <Item on:click="{action3}">Close All Windows</Item>
+</Menu>
+
+<script>
+    let menu1, menu2;
+    function closeSomething (e) {
+        e.stopPropagation(); // prevents menu auto-closing
+        menu1.close();       // manually close the menu
+    }
+&lt;/script>
+`;
 
 
 let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;

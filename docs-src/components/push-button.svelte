@@ -47,27 +47,14 @@
 <PushButton round icon="trash" danger></PushButton>
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;PushButton round icon="info" on:change="&lbrace; onChange &rbrace;"&gt;&lt;/PushButton&gt;
-
-&lt;script&gt;
-function onChange (e) &lbrace;
-    const &lbrace; value, oldValue &rbrace; = e.detail;
-    console.log(&lbrace; value, oldValue &rbrace;);
-&rbrace;
-&lt;/script&gt;
-</code>
-
-
+<CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>
 
 
 <script>
 import { PushButton } from '../../src';
-import API from '../api-table';
-
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
@@ -87,4 +74,14 @@ const apiProps = [
 	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 
+const exampleHtml = `
+<PushButton round icon="info" on:change="{onChange}"></PushButton>
+
+<script>
+function onChange (e) {
+    const { value, oldValue } = e.detail;
+    console.log({ value, oldValue });
+}
+&lt;/script>
+`;
 </script>

@@ -38,23 +38,9 @@
 </Dialog>
 
 
+<CodeExample html="{exampleHtml}" />
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Dialog bind:this="&lbrace;dialog1&rbrace;"&gt;
-    Are you sure?
-    &lt;div slot="footer"&gt;
-        &lt;Button on:click="&lbrace;() => dialog1.close()&rbrace;"&gt;Close&lt;/Button&gt;
-    &lt;/div&gt;
-&lt;/Dialog&gt;
 
-&lt;Button on:click="&lbrace;() => dialog1.open()&rbrace;"&gt;Show dialog&lt;/Button&gt;
-
-&lt;script&gt;
-    let dialog1;
-&lt;/script&gt;
-</code>
 
 <API props="{apiProps}"/>
 
@@ -64,7 +50,8 @@
 
 <script>
 import { Button, Dialog } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'title', type: 'string', description: 'Set title for the dialog.' },
@@ -80,6 +67,21 @@ const instanceApiProps = [
 	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
 	{ name: 'close', type: 'function', description: 'Closes the dialog.' },
 ];
+
+const exampleHtml = `
+<Dialog bind:this="{dialog1}">
+    Are you sure?
+    <div slot="footer">
+        <Button on:click="{() => dialog1.close()}">Close</Button>
+    </div>
+</Dialog>
+
+<Button on:click="{() => dialog1.open()}">Show dialog</Button>
+
+<script>
+    let dialog1;
+&lt;/script>
+`;
 
 let dialog1, dialog2, dialog3;
 

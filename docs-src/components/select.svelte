@@ -16,31 +16,16 @@
 <h3>With initial value</h3>
 <Select placeholder="Empty" items="{selectItems}" bind:value="{val}"/> Selected value: {val}
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Select items="&lbrace;items&rbrace;" on:change="&lbrace;onChange&rbrace;" /&gt;
 
-&lt;script&gt;
-const items = [
-	&lbrace; id: '1', name: 'Alpha', group: 'Group 1' &rbrace;,
-	&lbrace; id: '2', name: 'Beta', group: 'Group 1' &rbrace;,
-	&lbrace; id: '3', name: 'Gamma', group: 'Group 1' &rbrace;,
-];
-function onChange (e) &lbrace;
-	const &lbrace; value, oldValue &rbrace; = e.detail;
-	console.log(&lbrace; value, oldValue &rbrace;);
-&rbrace;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
-<hr>
 <API props="{apiProps}"/>
 
 
 <script>
 import { Select } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 let val = 'Beta';
 
 const apiProps = [
@@ -64,6 +49,21 @@ const apiProps = [
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
+const exampleHtml = `
+<Select items="{items}" on:change="{onChange}" />
+
+<script>
+const items = [
+	{ id: '1', name: 'Alpha', group: 'Group 1' },
+	{ id: '2', name: 'Beta', group: 'Group 1' },
+	{ id: '3', name: 'Gamma', group: 'Group 1' },
+];
+function onChange (e) {
+	const { value, oldValue } = e.detail;
+	console.log({ value, oldValue });
+}
+&lt;/script>
+`;
 
 const selectItems = [
 	{ id: 'Alpha', name: 'Alpha', group: 'Group 1' },

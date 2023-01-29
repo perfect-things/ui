@@ -20,26 +20,15 @@
 <Checkbox required />
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Checkbox on:change="&lbrace;onChange&rbrace;" /&gt;
+<CodeExample html="{exampleHtml}" />
 
-&lt;script&gt;
-function onChange (e) &lbrace;
-    const &lbrace; value, oldValue &rbrace; = e.detail;
-    console.log(&lbrace; value, oldValue &rbrace;);
-&rbrace;
-&lt;/script&gt;
-</code>
-
-<hr>
 <API props="{apiProps}"/>
 
 
 <script>
 import { Checkbox } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
@@ -51,6 +40,16 @@ const apiProps = [
 	{ name: 'checked', type: ['true', 'false'], description: 'Make the checkbox checked or unchecked.' },
 	{ name: 'indeterminate', type: ['true', 'false'], description: 'If set to <i>true</i> it makes the checkbox show its 3rd state - indeterminate.' },
 ];
+
+const exampleHtml = `
+<Checkbox on:change="{onChange}" />
+
+<script>
+function onChange (e) {
+    console.log(e.target.checked);
+}
+&lt;/script>
+`;
 
 
 function onchange (e) {

@@ -25,23 +25,23 @@
 <input name="radio-group" type="radio" />
 
 
-
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;input type="text" on:change="&lbrace;onChange&rbrace;" /&gt;
-&lt;InputNumber /&gt;
-
-&lt;script&gt;
-function onChange (e) &lbrace;
-    console.log('value', e.target.value);
-&rbrace;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
 
 <script>
 import { InputNumber } from '../../src';
+import CodeExample from '../code-example/index.svelte';
+
+const exampleHtml = `
+<input type="text" on:change="{onChange}" />
+<InputNumber />
+
+<script>
+function onChange (e) {
+    console.log('value', e.target.value);
+}
+&lt;/script>
+`;
 
 function oninput (e) {
 	console.log(e);

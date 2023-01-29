@@ -33,41 +33,20 @@
 <ButtonToggle round items="{icons}" value="2" /><br><br>
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;ButtonToggle items="&lbrace;buttons&rbrace;" value="2" /&gt;
 
-&lt;script&gt;
-const buttons = &lsqb;
-    &lbrace; name: 'One', value: '1' &rbrace;,
-    &lbrace; name: 'Two', value: '2' &rbrace;,
-    &lbrace; name: 'Three', value: '3' &rbrace;,
-&rsqb;;
-&lt;/script&gt;
-</code>
 
+<CodeExample html="{exampleHtml}" />
 <em>Note:</em> the component <i>value</i> type and the item's <i>value</i> type must match,
 so you can either use <i>string</i> for both - like in the example, or <i>number</i>, like so:
-<code>
-&lt;ButtonToggle items="&lbrace;buttons&rbrace;" value="&lbrace;2&rbrace;" /&gt;
-
-&lt;script&gt;
-const buttons = &lsqb;
-    &lbrace; name: 'One', value: 1 &rbrace;,
-    &lbrace; name: 'Two', value: 2 &rbrace;,
-    &lbrace; name: 'Three', value: 3 &rbrace;,
-&rsqb;;
-&lt;/script&gt;
-</code>
-
+<CodeExample notitle html="{exampleHtml2}"></CodeExample>
 
 <API props="{apiProps}"/>
 
 
 <script>
 import { ButtonToggle } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 
 const apiProps = [
@@ -87,6 +66,31 @@ const apiProps = [
 	},
 ];
 
+const exampleHtml = `
+<ButtonToggle items="{buttons}" value="2" />
+
+<script>
+const buttons = [
+    { name: 'One', value: '1' },
+    { name: 'Two', value: '2' },
+    { name: 'Three', value: '3' },
+];
+&lt;/script>
+`;
+
+const exampleHtml2 = `
+<ButtonToggle items="{buttons}" value="{2}" />
+
+<script>
+const buttons = [
+    { name: 'One', value: 1 },
+    { name: 'Two', value: 2 },
+    { name: 'Three', value: 3 },
+];
+&lt;/script>
+`;
+
+
 
 const buttons = [
 	{ name: 'One', value: '1' },
@@ -105,4 +109,5 @@ const icons = [
 	{ icon: 'check', value: '2' },
 	{ icon: 'alert', value: '3' },
 ];
+
 </script>

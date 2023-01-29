@@ -9,26 +9,15 @@
 <InputPassword strength/>
 
 
+<CodeExample html="{exampleHtml}" />
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;InputPassword strength on:change="&lbrace;onChange&rbrace;" /&gt;
-
-&lt;script&gt;
-function onChange (e) &lbrace;
-    console.log('value', e.target.value);
-&rbrace;
-&lt;/script&gt;
-</code>
-
-<hr>
 <API props="{apiProps}"/>
 
 
 <script>
 import { InputPassword } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
@@ -44,4 +33,13 @@ const apiProps = [
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
+const exampleHtml = `
+<InputPassword strength on:change="{onChange}" />
+
+<script>
+function onChange (e) {
+    console.log('value', e.target.value);
+}
+&lt;/script>
+`;
 </script>

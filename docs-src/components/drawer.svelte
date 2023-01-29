@@ -16,20 +16,7 @@
 
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Drawer bind:this="&lbrace;drawer1&rbrace;" title="Drawer"&gt;
-    Hello world!
-    &lt;Button on:click="&lbrace;() => drawer1.close()&rbrace;"&gt;Close&lt;/Button&gt;
-&lt;/Drawer&gt;
-
-&lt;Button on:click="&lbrace;() => drawer1.toggle()&rbrace;"&gt;Show dialog&lt;/Button&gt;
-
-&lt;script&gt;
-    let drawer1;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
 <API props="{apiProps}"/>
 
@@ -37,7 +24,8 @@
 
 <script>
 import { Button, Drawer } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'title', type: 'string', description: 'Set title for the drawer.' },
@@ -51,6 +39,19 @@ const instanceApiProps = [
 	{ name: 'close', type: 'function', description: 'Closes the drawer.' },
 	{ name: 'toggle', type: 'function', description: 'Toggles the open state (opens when closed, closes when open).' },
 ];
+
+const exampleHtml = `
+<Drawer bind:this="{drawer1}" title="Drawer">
+    Hello world!
+    <Button on:click="{() => drawer1.close()}">Close</Button>
+</Drawer>
+
+<Button on:click="{() => drawer1.toggle()}">Show dialog</Button>
+
+<script>
+    let drawer1;
+&lt;/script>
+`;
 
 
 let drawer;

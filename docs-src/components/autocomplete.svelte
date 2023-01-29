@@ -46,29 +46,8 @@
 	</div>
 </div>
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Autocomplete
-    data="&lbrace; autocompleteData &rbrace;"
-    on:change="&lbrace; onChange &rbrace;"
-    bind:value="&lbrace; autocompleteValue &rbrace;" /&gt;
 
-&lt;script&gt;
-const autocompleteData = &lbrace;
-    &lbrace; id: 1, name: 'Alpha', group: 'Group 1' &rbrace;,
-    &lbrace; id: 2, name: 'Beta', group: 'Group 1' &rbrace;,
-    &lbrace; id: 3, name: 'Gamma', group: 'Group 2' &rbrace;,
-    &lbrace; id: 4, name: 'Delta', group: 'Group 2' &rbrace;,
-&rbrace;;
-let autocompleteValue = autocompleteData[1];
-
-function onChange (e) &lbrace;
-    const &lbrace; value, oldValue &rbrace; = e.detail;
-    console.log(&lbrace; value, oldValue &rbrace;);
-&rbrace;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
 <hr>
 <API props="{apiProps}"/>
@@ -76,7 +55,9 @@ function onChange (e) &lbrace;
 
 <script>
 import { Autocomplete } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
+
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
@@ -114,6 +95,28 @@ const apiProps = [
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
+
+const exampleHtml = `
+<Autocomplete
+    data="{ autocompleteData }"
+    on:change="{ onChange }"
+    bind:value="{ autocompleteValue }" />
+
+<script>
+const autocompleteData = {
+    { id: 1, name: 'Alpha', group: 'Group 1' },
+    { id: 2, name: 'Beta', group: 'Group 1' },
+    { id: 3, name: 'Gamma', group: 'Group 2' },
+    { id: 4, name: 'Delta', group: 'Group 2' },
+};
+let autocompleteValue = autocompleteData[1];
+
+function onChange (e) {
+    const { value, oldValue } = e.detail;
+    console.log({ value, oldValue });
+}
+&lt;/script>
+`;
 
 
 
