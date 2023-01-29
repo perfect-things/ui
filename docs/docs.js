@@ -3075,7 +3075,7 @@ function create_each_block$7(ctx) {
 }
 
 // (45:2) {#if shouldShowNewItem}
-function create_if_block$a(ctx) {
+function create_if_block$b(ctx) {
 	let div0;
 	let t1;
 	let div1;
@@ -3126,7 +3126,7 @@ function create_if_block$a(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$a.name,
+		id: create_if_block$b.name,
 		type: "if",
 		source: "(45:2) {#if shouldShowNewItem}",
 		ctx
@@ -3174,7 +3174,7 @@ function create_fragment$S(ctx) {
 
 	let current_block_type = select_block_type(ctx);
 	let if_block0 = current_block_type && current_block_type(ctx);
-	let if_block1 = /*shouldShowNewItem*/ ctx[11] && create_if_block$a(ctx);
+	let if_block1 = /*shouldShowNewItem*/ ctx[11] && create_if_block$b(ctx);
 
 	const block = {
 		c: function create() {
@@ -3260,7 +3260,7 @@ function create_fragment$S(ctx) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
-					if_block1 = create_if_block$a(ctx);
+					if_block1 = create_if_block$b(ctx);
 					if_block1.c();
 					if_block1.m(div0, null);
 				}
@@ -3936,7 +3936,7 @@ class Autocomplete extends SvelteComponentDev {
 const file$Q = "src/button/index.svelte";
 
 // (23:1) {#if icon}
-function create_if_block$9(ctx) {
+function create_if_block$a(ctx) {
 	let icon_1;
 	let current;
 
@@ -3974,7 +3974,7 @@ function create_if_block$9(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$9.name,
+		id: create_if_block$a.name,
 		type: "if",
 		source: "(23:1) {#if icon}",
 		ctx
@@ -3991,7 +3991,7 @@ function create_fragment$R(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	let if_block = /*icon*/ ctx[8] && create_if_block$9(ctx);
+	let if_block = /*icon*/ ctx[8] && create_if_block$a(ctx);
 	const default_slot_template = /*#slots*/ ctx[14].default;
 	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[13], null);
 
@@ -4065,7 +4065,7 @@ function create_fragment$R(ctx) {
 						transition_in(if_block, 1);
 					}
 				} else {
-					if_block = create_if_block$9(ctx);
+					if_block = create_if_block$a(ctx);
 					if_block.c();
 					transition_in(if_block, 1);
 					if_block.m(button, t);
@@ -4526,7 +4526,7 @@ function get_each_context$6(ctx, list, i) {
 }
 
 // (9:4) {#if item.icon}
-function create_if_block$8(ctx) {
+function create_if_block$9(ctx) {
 	let icon;
 	let current;
 
@@ -4564,7 +4564,7 @@ function create_if_block$8(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$8.name,
+		id: create_if_block$9.name,
 		type: "if",
 		source: "(9:4) {#if item.icon}",
 		ctx
@@ -4588,7 +4588,7 @@ function create_each_block$6(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	let if_block = /*item*/ ctx[12].icon && create_if_block$8(ctx);
+	let if_block = /*item*/ ctx[12].icon && create_if_block$9(ctx);
 
 	function change_handler(...args) {
 		return /*change_handler*/ ctx[9](/*item*/ ctx[12], ...args);
@@ -4650,7 +4650,7 @@ function create_each_block$6(ctx) {
 						transition_in(if_block, 1);
 					}
 				} else {
-					if_block = create_if_block$8(ctx);
+					if_block = create_if_block$9(ctx);
 					if_block.c();
 					transition_in(if_block, 1);
 					if_block.m(label, t0);
@@ -8814,7 +8814,7 @@ function scale(node, { delay = 0, duration = 400, easing = cubicOut, start = 0, 
 const file$K = "src/drawer/index.svelte";
 
 // (1:0) {#if isVisible}
-function create_if_block$7(ctx) {
+function create_if_block$8(ctx) {
 	let div3;
 	let div0;
 	let t0;
@@ -8973,7 +8973,7 @@ function create_if_block$7(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$7.name,
+		id: create_if_block$8.name,
 		type: "if",
 		source: "(1:0) {#if isVisible}",
 		ctx
@@ -8985,7 +8985,7 @@ function create_if_block$7(ctx) {
 function create_fragment$L(ctx) {
 	let if_block_anchor;
 	let current;
-	let if_block = /*isVisible*/ ctx[3] && create_if_block$7(ctx);
+	let if_block = /*isVisible*/ ctx[3] && create_if_block$8(ctx);
 
 	const block = {
 		c: function create() {
@@ -9009,7 +9009,7 @@ function create_fragment$L(ctx) {
 						transition_in(if_block, 1);
 					}
 				} else {
-					if_block = create_if_block$7(ctx);
+					if_block = create_if_block$8(ctx);
 					if_block.c();
 					transition_in(if_block, 1);
 					if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -9746,7 +9746,7 @@ const { console: console_1$8 } = globals;
 const file$H = "src/input-password/index.svelte";
 
 // (19:1) {#if strength && lib && value}
-function create_if_block$6(ctx) {
+function create_if_block$7(ctx) {
 	let div2;
 	let div1;
 	let div0;
@@ -9824,7 +9824,7 @@ function create_if_block$6(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$6.name,
+		id: create_if_block$7.name,
 		type: "if",
 		source: "(19:1) {#if strength && lib && value}",
 		ctx
@@ -9853,7 +9853,7 @@ function create_fragment$I(ctx) {
 		});
 
 	button.$on("click", /*toggle*/ ctx[13]);
-	let if_block = /*strength*/ ctx[5] && /*lib*/ ctx[7] && /*value*/ ctx[0] && create_if_block$6(ctx);
+	let if_block = /*strength*/ ctx[5] && /*lib*/ ctx[7] && /*value*/ ctx[0] && create_if_block$7(ctx);
 
 	const block = {
 		c: function create() {
@@ -9939,7 +9939,7 @@ function create_fragment$I(ctx) {
 				if (if_block) {
 					if_block.p(ctx, dirty);
 				} else {
-					if_block = create_if_block$6(ctx);
+					if_block = create_if_block$7(ctx);
 					if_block.c();
 					if_block.m(div1, null);
 				}
@@ -10578,7 +10578,7 @@ function create_else_block$2(ctx) {
 }
 
 // (1:0) {#if $$slots.default}
-function create_if_block$5(ctx) {
+function create_if_block$6(ctx) {
 	let button;
 	let current;
 
@@ -10655,7 +10655,7 @@ function create_if_block$5(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$5.name,
+		id: create_if_block$6.name,
 		type: "if",
 		source: "(1:0) {#if $$slots.default}",
 		ctx
@@ -10727,7 +10727,7 @@ function create_fragment$G(ctx) {
 	let if_block;
 	let if_block_anchor;
 	let current;
-	const if_block_creators = [create_if_block$5, create_else_block$2];
+	const if_block_creators = [create_if_block$6, create_else_block$2];
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
@@ -11085,7 +11085,7 @@ function create_else_block$1(ctx) {
 }
 
 // (12:3) {#if group.items}
-function create_if_block$4(ctx) {
+function create_if_block$5(ctx) {
 	let optgroup;
 	let optgroup_label_value;
 	let each_value_1 = /*group*/ ctx[11].items;
@@ -11151,7 +11151,7 @@ function create_if_block$4(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$4.name,
+		id: create_if_block$5.name,
 		type: "if",
 		source: "(12:3) {#if group.items}",
 		ctx
@@ -11208,7 +11208,7 @@ function create_each_block$5(ctx) {
 	let if_block_anchor;
 
 	function select_block_type(ctx, dirty) {
-		if (/*group*/ ctx[11].items) return create_if_block$4;
+		if (/*group*/ ctx[11].items) return create_if_block$5;
 		return create_else_block$1;
 	}
 
@@ -12727,7 +12727,7 @@ function create_if_block_1(ctx) {
 }
 
 // (9:3) {#if toast.showProgress}
-function create_if_block$3(ctx) {
+function create_if_block$4(ctx) {
 	let div1;
 	let div0;
 
@@ -12757,7 +12757,7 @@ function create_if_block$3(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$3.name,
+		id: create_if_block$4.name,
 		type: "if",
 		source: "(9:3) {#if toast.showProgress}",
 		ctx
@@ -12787,7 +12787,7 @@ function create_each_block$4(key_1, ctx) {
 		return /*click_handler_1*/ ctx[4](/*toast*/ ctx[7]);
 	}
 
-	let if_block1 = /*toast*/ ctx[7].showProgress && create_if_block$3(ctx);
+	let if_block1 = /*toast*/ ctx[7].showProgress && create_if_block$4(ctx);
 
 	const block = {
 		key: key_1,
@@ -12849,7 +12849,7 @@ function create_each_block$4(key_1, ctx) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
-					if_block1 = create_if_block$3(ctx);
+					if_block1 = create_if_block$4(ctx);
 					if_block1.c();
 					if_block1.m(div1, t4);
 				}
@@ -13133,7 +13133,7 @@ class Toaster extends SvelteComponentDev {
 const file$z = "src/tooltip/index.svelte";
 
 // (1:0) {#if visible}
-function create_if_block$2(ctx) {
+function create_if_block$3(ctx) {
 	let div2;
 	let div1;
 	let div0;
@@ -13215,7 +13215,7 @@ function create_if_block$2(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$2.name,
+		id: create_if_block$3.name,
 		type: "if",
 		source: "(1:0) {#if visible}",
 		ctx
@@ -13227,7 +13227,7 @@ function create_if_block$2(ctx) {
 function create_fragment$z(ctx) {
 	let if_block_anchor;
 	let current;
-	let if_block = /*visible*/ ctx[2] && create_if_block$2(ctx);
+	let if_block = /*visible*/ ctx[2] && create_if_block$3(ctx);
 
 	const block = {
 		c: function create() {
@@ -13251,7 +13251,7 @@ function create_fragment$z(ctx) {
 						transition_in(if_block, 1);
 					}
 				} else {
-					if_block = create_if_block$2(ctx);
+					if_block = create_if_block$3(ctx);
 					if_block.c();
 					transition_in(if_block, 1);
 					if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -13681,7 +13681,7 @@ function create_each_block_1(ctx) {
 }
 
 // (19:1) {#if item.items && expanded}
-function create_if_block$1(ctx) {
+function create_if_block$2(ctx) {
 	let ul;
 	let current;
 	let each_value = /*item*/ ctx[1].items;
@@ -13770,7 +13770,7 @@ function create_if_block$1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_if_block$1.name,
+		id: create_if_block$2.name,
 		type: "if",
 		source: "(19:1) {#if item.items && expanded}",
 		ctx
@@ -13855,7 +13855,7 @@ function create_fragment$y(ctx) {
 		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
 	}
 
-	let if_block = /*item*/ ctx[1].items && /*expanded*/ ctx[0] && create_if_block$1(ctx);
+	let if_block = /*item*/ ctx[1].items && /*expanded*/ ctx[0] && create_if_block$2(ctx);
 
 	const block = {
 		c: function create() {
@@ -13982,7 +13982,7 @@ function create_fragment$y(ctx) {
 						transition_in(if_block, 1);
 					}
 				} else {
-					if_block = create_if_block$1(ctx);
+					if_block = create_if_block$2(ctx);
 					if_block.c();
 					transition_in(if_block, 1);
 					if_block.m(li, null);
@@ -15059,22 +15059,53 @@ const file$t = "docs-src/api-table/index.svelte";
 
 function get_each_context$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[1] = list[i];
+	child_ctx[3] = list[i];
 	return child_ctx;
 }
 
-// (7:2) {#each props as prop}
+// (2:0) {#if description}
+function create_if_block$1(ctx) {
+	let p;
+
+	const block = {
+		c: function create() {
+			p = element("p");
+			add_location(p, file$t, 2, 1, 36);
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, p, anchor);
+			p.innerHTML = /*description*/ ctx[1];
+		},
+		p: function update(ctx, dirty) {
+			if (dirty & /*description*/ 2) p.innerHTML = /*description*/ ctx[1];		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(p);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_if_block$1.name,
+		type: "if",
+		source: "(2:0) {#if description}",
+		ctx
+	});
+
+	return block;
+}
+
+// (10:2) {#each props as prop}
 function create_each_block$1(ctx) {
 	let tr;
 	let td0;
-	let t0_value = /*prop*/ ctx[1].name + "";
+	let t0_value = /*prop*/ ctx[3].name + "";
 	let t0;
 	let t1;
 	let td1;
-	let raw0_value = buildType(/*prop*/ ctx[1]) + "";
+	let raw0_value = buildType(/*prop*/ ctx[3]) + "";
 	let t2;
 	let td2;
-	let raw1_value = /*prop*/ ctx[1].description + "";
+	let raw1_value = /*prop*/ ctx[3].description + "";
 	let t3;
 
 	const block = {
@@ -15087,10 +15118,10 @@ function create_each_block$1(ctx) {
 			t2 = space();
 			td2 = element("td");
 			t3 = space();
-			add_location(td0, file$t, 8, 4, 171);
-			add_location(td1, file$t, 9, 4, 196);
-			add_location(td2, file$t, 10, 4, 233);
-			add_location(tr, file$t, 7, 3, 162);
+			add_location(td0, file$t, 11, 4, 232);
+			add_location(td1, file$t, 12, 4, 257);
+			add_location(td2, file$t, 13, 4, 294);
+			add_location(tr, file$t, 10, 3, 223);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, tr, anchor);
@@ -15105,8 +15136,8 @@ function create_each_block$1(ctx) {
 			append_dev(tr, t3);
 		},
 		p: function update(ctx, dirty) {
-			if (dirty & /*props*/ 1 && t0_value !== (t0_value = /*prop*/ ctx[1].name + "")) set_data_dev(t0, t0_value);
-			if (dirty & /*props*/ 1 && raw0_value !== (raw0_value = buildType(/*prop*/ ctx[1]) + "")) td1.innerHTML = raw0_value;			if (dirty & /*props*/ 1 && raw1_value !== (raw1_value = /*prop*/ ctx[1].description + "")) td2.innerHTML = raw1_value;		},
+			if (dirty & /*props*/ 4 && t0_value !== (t0_value = /*prop*/ ctx[3].name + "")) set_data_dev(t0, t0_value);
+			if (dirty & /*props*/ 4 && raw0_value !== (raw0_value = buildType(/*prop*/ ctx[3]) + "")) td1.innerHTML = raw0_value;			if (dirty & /*props*/ 4 && raw1_value !== (raw1_value = /*prop*/ ctx[3].description + "")) td2.innerHTML = raw1_value;		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(tr);
 		}
@@ -15116,14 +15147,14 @@ function create_each_block$1(ctx) {
 		block,
 		id: create_each_block$1.name,
 		type: "each",
-		source: "(7:2) {#each props as prop}",
+		source: "(10:2) {#each props as prop}",
 		ctx
 	});
 
 	return block;
 }
 
-// (2:0) <Table className="api-table">
+// (5:0) <Table className="api-table">
 function create_default_slot$b(ctx) {
 	let thead;
 	let tr;
@@ -15132,7 +15163,7 @@ function create_default_slot$b(ctx) {
 	let th2;
 	let t3;
 	let tbody;
-	let each_value = /*props*/ ctx[0];
+	let each_value = /*props*/ ctx[2];
 	validate_each_argument(each_value);
 	let each_blocks = [];
 
@@ -15147,7 +15178,7 @@ function create_default_slot$b(ctx) {
 			th0 = element("th");
 			th0.textContent = "Attribute";
 			th1 = element("th");
-			th1.textContent = "Value";
+			th1.textContent = "Type/Value";
 			th2 = element("th");
 			th2.textContent = "Description";
 			t3 = space();
@@ -15157,12 +15188,12 @@ function create_default_slot$b(ctx) {
 				each_blocks[i].c();
 			}
 
-			add_location(th0, file$t, 3, 6, 58);
-			add_location(th1, file$t, 3, 24, 76);
-			add_location(th2, file$t, 3, 38, 90);
-			add_location(tr, file$t, 3, 2, 54);
-			add_location(thead, file$t, 2, 1, 44);
-			add_location(tbody, file$t, 5, 1, 127);
+			add_location(th0, file$t, 6, 6, 114);
+			add_location(th1, file$t, 6, 24, 132);
+			add_location(th2, file$t, 6, 43, 151);
+			add_location(tr, file$t, 6, 2, 110);
+			add_location(thead, file$t, 5, 1, 100);
+			add_location(tbody, file$t, 8, 1, 188);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, thead, anchor);
@@ -15178,8 +15209,8 @@ function create_default_slot$b(ctx) {
 			}
 		},
 		p: function update(ctx, dirty) {
-			if (dirty & /*props, buildType*/ 1) {
-				each_value = /*props*/ ctx[0];
+			if (dirty & /*props, buildType*/ 4) {
+				each_value = /*props*/ ctx[2];
 				validate_each_argument(each_value);
 				let i;
 
@@ -15214,7 +15245,7 @@ function create_default_slot$b(ctx) {
 		block,
 		id: create_default_slot$b.name,
 		type: "slot",
-		source: "(2:0) <Table className=\\\"api-table\\\">",
+		source: "(5:0) <Table className=\\\"api-table\\\">",
 		ctx
 	});
 
@@ -15223,9 +15254,12 @@ function create_default_slot$b(ctx) {
 
 function create_fragment$t(ctx) {
 	let h3;
+	let t0;
 	let t1;
+	let t2;
 	let table;
 	let current;
+	let if_block = /*description*/ ctx[1] && create_if_block$1(ctx);
 
 	table = new Table({
 			props: {
@@ -15239,8 +15273,10 @@ function create_fragment$t(ctx) {
 	const block = {
 		c: function create() {
 			h3 = element("h3");
-			h3.textContent = "API";
+			t0 = text(/*title*/ ctx[0]);
 			t1 = space();
+			if (if_block) if_block.c();
+			t2 = space();
 			create_component(table.$$.fragment);
 			add_location(h3, file$t, 0, 0, 0);
 		},
@@ -15249,14 +15285,32 @@ function create_fragment$t(ctx) {
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, h3, anchor);
+			append_dev(h3, t0);
 			insert_dev(target, t1, anchor);
+			if (if_block) if_block.m(target, anchor);
+			insert_dev(target, t2, anchor);
 			mount_component(table, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
+			if (!current || dirty & /*title*/ 1) set_data_dev(t0, /*title*/ ctx[0]);
+
+			if (/*description*/ ctx[1]) {
+				if (if_block) {
+					if_block.p(ctx, dirty);
+				} else {
+					if_block = create_if_block$1(ctx);
+					if_block.c();
+					if_block.m(t2.parentNode, t2);
+				}
+			} else if (if_block) {
+				if_block.d(1);
+				if_block = null;
+			}
+
 			const table_changes = {};
 
-			if (dirty & /*$$scope, props*/ 17) {
+			if (dirty & /*$$scope, props*/ 68) {
 				table_changes.$$scope = { dirty, ctx };
 			}
 
@@ -15274,6 +15328,8 @@ function create_fragment$t(ctx) {
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(h3);
 			if (detaching) detach_dev(t1);
+			if (if_block) if_block.d(detaching);
+			if (detaching) detach_dev(t2);
 			destroy_component(table, detaching);
 		}
 	};
@@ -15302,6 +15358,8 @@ function buildType(prop) {
 function instance$t($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Api_table', slots, []);
+	let { title = 'API' } = $$props;
+	let { description = '' } = $$props;
 
 	let { props = [
 		{
@@ -15313,33 +15371,43 @@ function instance$t($$self, $$props, $$invalidate) {
 		}
 	] } = $$props;
 
-	const writable_props = ['props'];
+	const writable_props = ['title', 'description', 'props'];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Api_table> was created with unknown prop '${key}'`);
 	});
 
 	$$self.$$set = $$props => {
-		if ('props' in $$props) $$invalidate(0, props = $$props.props);
+		if ('title' in $$props) $$invalidate(0, title = $$props.title);
+		if ('description' in $$props) $$invalidate(1, description = $$props.description);
+		if ('props' in $$props) $$invalidate(2, props = $$props.props);
 	};
 
-	$$self.$capture_state = () => ({ Table, props, buildType });
+	$$self.$capture_state = () => ({
+		Table,
+		title,
+		description,
+		props,
+		buildType
+	});
 
 	$$self.$inject_state = $$props => {
-		if ('props' in $$props) $$invalidate(0, props = $$props.props);
+		if ('title' in $$props) $$invalidate(0, title = $$props.title);
+		if ('description' in $$props) $$invalidate(1, description = $$props.description);
+		if ('props' in $$props) $$invalidate(2, props = $$props.props);
 	};
 
 	if ($$props && "$$inject" in $$props) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [props];
+	return [title, description, props];
 }
 
 class Api_table extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$t, create_fragment$t, safe_not_equal, { props: 0 });
+		init(this, options, instance$t, create_fragment$t, safe_not_equal, { title: 0, description: 1, props: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -15347,6 +15415,22 @@ class Api_table extends SvelteComponentDev {
 			options,
 			id: create_fragment$t.name
 		});
+	}
+
+	get title() {
+		throw new Error("<Api_table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set title(value) {
+		throw new Error("<Api_table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get description() {
+		throw new Error("<Api_table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set description(value) {
+		throw new Error("<Api_table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 
 	get props() {
@@ -19690,7 +19774,7 @@ function create_default_slot_23(ctx) {
 			$$inline: true
 		});
 
-	item2.$on("click", /*menuCloseThings*/ ctx[8]);
+	item2.$on("click", /*menuCloseThings*/ ctx[11]);
 
 	const block = {
 		c: function create() {
@@ -19715,21 +19799,21 @@ function create_default_slot_23(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope, closeThingsText*/ 16777280) {
+			if (dirty & /*$$scope, closeThingsText*/ 134217792) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -19991,21 +20075,21 @@ function create_default_slot_18(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -20267,21 +20351,21 @@ function create_default_slot_13(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -20543,21 +20627,21 @@ function create_default_slot_8$1(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -20757,7 +20841,7 @@ function create_default_slot_4$3(ctx) {
 			$$inline: true
 		});
 
-	item0.$on("click", /*newTab*/ ctx[9]);
+	item0.$on("click", /*newTab*/ ctx[12]);
 
 	item1 = new Menu_item({
 			props: {
@@ -20767,7 +20851,7 @@ function create_default_slot_4$3(ctx) {
 			$$inline: true
 		});
 
-	item1.$on("click", /*newPrivateTab*/ ctx[10]);
+	item1.$on("click", /*newPrivateTab*/ ctx[13]);
 	separator = new Menu_separator({ $$inline: true });
 
 	item2 = new Menu_item({
@@ -20778,7 +20862,7 @@ function create_default_slot_4$3(ctx) {
 			$$inline: true
 		});
 
-	item2.$on("click", /*closeTabs*/ ctx[11]);
+	item2.$on("click", /*closeTabs*/ ctx[14]);
 
 	const block = {
 		c: function create() {
@@ -20803,21 +20887,21 @@ function create_default_slot_4$3(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope, closeTabsText*/ 16777344) {
+			if (dirty & /*$$scope, closeTabsText*/ 134217856) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -20960,7 +21044,7 @@ function create_default_slot$7(ctx) {
 			$$inline: true
 		});
 
-	item0.$on("click", /*newWindow*/ ctx[13]);
+	item0.$on("click", /*newWindow*/ ctx[16]);
 
 	item1 = new Menu_item({
 			props: {
@@ -20970,7 +21054,7 @@ function create_default_slot$7(ctx) {
 			$$inline: true
 		});
 
-	item1.$on("click", /*newPrivateWindow*/ ctx[14]);
+	item1.$on("click", /*newPrivateWindow*/ ctx[17]);
 	separator = new Menu_separator({ $$inline: true });
 
 	item2 = new Menu_item({
@@ -20981,7 +21065,7 @@ function create_default_slot$7(ctx) {
 			$$inline: true
 		});
 
-	item2.$on("click", /*closeWindows*/ ctx[15]);
+	item2.$on("click", /*closeWindows*/ ctx[18]);
 
 	const block = {
 		c: function create() {
@@ -21006,21 +21090,21 @@ function create_default_slot$7(ctx) {
 		p: function update(ctx, dirty) {
 			const item0_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item0_changes.$$scope = { dirty, ctx };
 			}
 
 			item0.$set(item0_changes);
 			const item1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item1_changes.$$scope = { dirty, ctx };
 			}
 
 			item1.$set(item1_changes);
 			const item2_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				item2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -21122,6 +21206,18 @@ function create_fragment$n(ctx) {
 	let menu4;
 	let t40;
 	let menu5;
+	let t41;
+	let hr;
+	let t42;
+	let h33;
+	let t44;
+	let code;
+	let t46;
+	let api0;
+	let t47;
+	let api1;
+	let t48;
+	let api2;
 	let current;
 
 	button0 = new Button({
@@ -21142,7 +21238,7 @@ function create_fragment$n(ctx) {
 	};
 
 	menu0 = new Menu({ props: menu0_props, $$inline: true });
-	/*menu0_binding*/ ctx[16](menu0);
+	/*menu0_binding*/ ctx[19](menu0);
 
 	button1 = new Button({
 			props: {
@@ -21162,7 +21258,7 @@ function create_fragment$n(ctx) {
 	};
 
 	menu1 = new Menu({ props: menu1_props, $$inline: true });
-	/*menu1_binding*/ ctx[17](menu1);
+	/*menu1_binding*/ ctx[20](menu1);
 
 	button2 = new Button({
 			props: {
@@ -21183,7 +21279,7 @@ function create_fragment$n(ctx) {
 	};
 
 	menu2 = new Menu({ props: menu2_props, $$inline: true });
-	/*menu2_binding*/ ctx[18](menu2);
+	/*menu2_binding*/ ctx[21](menu2);
 
 	button3 = new Button({
 			props: {
@@ -21205,7 +21301,7 @@ function create_fragment$n(ctx) {
 	};
 
 	menu3 = new Menu({ props: menu3_props, $$inline: true });
-	/*menu3_binding*/ ctx[19](menu3);
+	/*menu3_binding*/ ctx[22](menu3);
 
 	let menu4_props = {
 		type: "context",
@@ -21215,8 +21311,8 @@ function create_fragment$n(ctx) {
 	};
 
 	menu4 = new Menu({ props: menu4_props, $$inline: true });
-	/*menu4_binding*/ ctx[20](menu4);
-	menu4.$on("close", /*onTabsMenuClose*/ ctx[12]);
+	/*menu4_binding*/ ctx[23](menu4);
+	menu4.$on("close", /*onTabsMenuClose*/ ctx[15]);
 
 	let menu5_props = {
 		type: "context",
@@ -21226,7 +21322,29 @@ function create_fragment$n(ctx) {
 	};
 
 	menu5 = new Menu({ props: menu5_props, $$inline: true });
-	/*menu5_binding*/ ctx[21](menu5);
+	/*menu5_binding*/ ctx[24](menu5);
+
+	api0 = new Api_table({
+			props: { props: /*apiProps*/ ctx[8] },
+			$$inline: true
+		});
+
+	api1 = new Api_table({
+			props: {
+				props: /*instanceApiProps*/ ctx[9],
+				title: "Menu Instance API",
+				description: "A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"
+			},
+			$$inline: true
+		});
+
+	api2 = new Api_table({
+			props: {
+				props: /*itemApiProps*/ ctx[10],
+				title: "Item API"
+			},
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -21300,6 +21418,20 @@ function create_fragment$n(ctx) {
 			create_component(menu4.$$.fragment);
 			t40 = space();
 			create_component(menu5.$$.fragment);
+			t41 = space();
+			hr = element("hr");
+			t42 = space();
+			h33 = element("h3");
+			h33.textContent = "Example instantiation";
+			t44 = space();
+			code = element("code");
+			code.textContent = "<!-- Regular menu -->\n<Menu bind:this=\"{menu1}\">\n    <Item><Icon name=\"plus\"/> Add some</Item>\n    <Item><Icon name=\"\"/> Add some more</Item>\n    <Separator />\n    <Item on:click=\"{closeSomething}\"><Icon name=\"close\"/> Close something</Item>\n</Menu>\n\n<Button on:click=\"{() => menu1.open()}\">Show menu</Button>\n\n<!-- Context menu -->\n<div class=\"div1\">Tab</div>\n<Menu type=\"context\" targetSelector=\".div1\" bind:this=\"{menu2}\">\n    <Item on:click=\"{action1}\">New window</Item>\n    <Item on:click=\"{action2}\">New private window</Item>\n    <Separator />\n    <Item on:click=\"{action3}\">Close All Windows</Item>\n</Menu>\n\n<script>\n    let menu1, menu2;\n    function closeSomething (e) {\n        e.stopPropagation(); // prevents menu auto-closing\n        menu1.close();       // manually close the menu\n    }\n</script>";
+			t46 = space();
+			create_component(api0.$$.fragment);
+			t47 = space();
+			create_component(api1.$$.fragment);
+			t48 = space();
+			create_component(api2.$$.fragment);
 			add_location(h2, file$n, 0, 0, 0);
 			add_location(h30, file$n, 2, 0, 15);
 			add_location(em0, file$n, 12, 24, 347);
@@ -21323,6 +21455,9 @@ function create_fragment$n(ctx) {
 			add_location(div2, file$n, 52, 0, 1927);
 			attr_dev(div3, "class", "div div2");
 			add_location(div3, file$n, 53, 0, 1959);
+			add_location(hr, file$n, 70, 0, 2590);
+			add_location(h33, file$n, 71, 0, 2595);
+			add_location(code, file$n, 72, 0, 2626);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21386,76 +21521,88 @@ function create_fragment$n(ctx) {
 			mount_component(menu4, target, anchor);
 			insert_dev(target, t40, anchor);
 			mount_component(menu5, target, anchor);
+			insert_dev(target, t41, anchor);
+			insert_dev(target, hr, anchor);
+			insert_dev(target, t42, anchor);
+			insert_dev(target, h33, anchor);
+			insert_dev(target, t44, anchor);
+			insert_dev(target, code, anchor);
+			insert_dev(target, t46, anchor);
+			mount_component(api0, target, anchor);
+			insert_dev(target, t47, anchor);
+			mount_component(api1, target, anchor);
+			insert_dev(target, t48, anchor);
+			mount_component(api2, target, anchor);
 			current = true;
 		},
 		p: function update(new_ctx, [dirty]) {
 			ctx = new_ctx;
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const menu0_changes = {};
 
-			if (dirty & /*$$scope, closeThingsText*/ 16777280) {
+			if (dirty & /*$$scope, closeThingsText*/ 134217792) {
 				menu0_changes.$$scope = { dirty, ctx };
 			}
 
 			menu0.$set(menu0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const menu1_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				menu1_changes.$$scope = { dirty, ctx };
 			}
 
 			menu1.$set(menu1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
 			button2.$set(button2_changes);
 			const menu2_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				menu2_changes.$$scope = { dirty, ctx };
 			}
 
 			menu2.$set(menu2_changes);
 			const button3_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				button3_changes.$$scope = { dirty, ctx };
 			}
 
 			button3.$set(button3_changes);
 			const menu3_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				menu3_changes.$$scope = { dirty, ctx };
 			}
 
 			menu3.$set(menu3_changes);
 			const menu4_changes = {};
 
-			if (dirty & /*$$scope, closeTabsText*/ 16777344) {
+			if (dirty & /*$$scope, closeTabsText*/ 134217856) {
 				menu4_changes.$$scope = { dirty, ctx };
 			}
 
 			menu4.$set(menu4_changes);
 			const menu5_changes = {};
 
-			if (dirty & /*$$scope*/ 16777216) {
+			if (dirty & /*$$scope*/ 134217728) {
 				menu5_changes.$$scope = { dirty, ctx };
 			}
 
@@ -21473,6 +21620,9 @@ function create_fragment$n(ctx) {
 			transition_in(menu3.$$.fragment, local);
 			transition_in(menu4.$$.fragment, local);
 			transition_in(menu5.$$.fragment, local);
+			transition_in(api0.$$.fragment, local);
+			transition_in(api1.$$.fragment, local);
+			transition_in(api2.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -21486,6 +21636,9 @@ function create_fragment$n(ctx) {
 			transition_out(menu3.$$.fragment, local);
 			transition_out(menu4.$$.fragment, local);
 			transition_out(menu5.$$.fragment, local);
+			transition_out(api0.$$.fragment, local);
+			transition_out(api1.$$.fragment, local);
+			transition_out(api2.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -21495,7 +21648,7 @@ function create_fragment$n(ctx) {
 			if (detaching) detach_dev(t3);
 			destroy_component(button0, detaching);
 			if (detaching) detach_dev(t4);
-			/*menu0_binding*/ ctx[16](null);
+			/*menu0_binding*/ ctx[19](null);
 			destroy_component(menu0, detaching);
 			if (detaching) detach_dev(t5);
 			if (detaching) detach_dev(h31);
@@ -21504,13 +21657,13 @@ function create_fragment$n(ctx) {
 			if (detaching) detach_dev(t14);
 			if (detaching) detach_dev(div0);
 			destroy_component(button1);
-			/*menu1_binding*/ ctx[17](null);
+			/*menu1_binding*/ ctx[20](null);
 			destroy_component(menu1);
 			destroy_component(button2);
-			/*menu2_binding*/ ctx[18](null);
+			/*menu2_binding*/ ctx[21](null);
 			destroy_component(menu2);
 			destroy_component(button3);
-			/*menu3_binding*/ ctx[19](null);
+			/*menu3_binding*/ ctx[22](null);
 			destroy_component(menu3);
 			if (detaching) detach_dev(t23);
 			if (detaching) detach_dev(div1);
@@ -21525,11 +21678,23 @@ function create_fragment$n(ctx) {
 			if (detaching) detach_dev(t37);
 			if (detaching) detach_dev(div3);
 			if (detaching) detach_dev(t39);
-			/*menu4_binding*/ ctx[20](null);
+			/*menu4_binding*/ ctx[23](null);
 			destroy_component(menu4, detaching);
 			if (detaching) detach_dev(t40);
-			/*menu5_binding*/ ctx[21](null);
+			/*menu5_binding*/ ctx[24](null);
 			destroy_component(menu5, detaching);
+			if (detaching) detach_dev(t41);
+			if (detaching) detach_dev(hr);
+			if (detaching) detach_dev(t42);
+			if (detaching) detach_dev(h33);
+			if (detaching) detach_dev(t44);
+			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(t46);
+			destroy_component(api0, detaching);
+			if (detaching) detach_dev(t47);
+			destroy_component(api1, detaching);
+			if (detaching) detach_dev(t48);
+			destroy_component(api2, detaching);
 		}
 	};
 
@@ -21547,13 +21712,71 @@ function create_fragment$n(ctx) {
 function instance$n($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Menu', slots, []);
+
+	const apiProps = [
+		{
+			name: 'type',
+			type: 'context',
+			description: 'If type is set to <em>context</em> the menu will behave as context-menu.'
+		},
+		{
+			name: 'targetSelector',
+			type: 'string',
+			required: true,
+			description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).'
+		},
+		{
+			name: 'closeOnClick',
+			type: ['true', 'false'],
+			default: 'true',
+			description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.'
+		},
+		{
+			name: 'elevate',
+			type: ['true', 'false'],
+			default: 'false',
+			description: 'If <i>true</i> - the menu will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).'
+		},
+		{
+			name: 'on:open',
+			type: 'function',
+			description: 'Triggered after the menu is opened.'
+		},
+		{
+			name: 'on:close',
+			type: 'function',
+			description: 'Triggered after the menu is closed.'
+		}
+	];
+
+	const instanceApiProps = [
+		{
+			name: 'open',
+			type: 'function',
+			description: 'Opens the menu.'
+		},
+		{
+			name: 'close',
+			type: 'function',
+			description: 'Closes the menu.'
+		}
+	];
+
+	const itemApiProps = [
+		{
+			name: 'on:click',
+			type: 'function',
+			description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.stopPropagation();</em> it is possible to prevent menu from auto closing when the item was clicked.'
+		}
+	];
+
 	let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
 	let closeThingsText = 'Close all things';
 	let closeTabsText = 'Close all tabs';
 	let thingsMenuTimer, tabsMenutimer;
 
 	function menuCloseThings(e) {
-		if (e && e.detail) e.detail.stopPropagation();
+		if (e) e.stopPropagation();
 		const initial = 'Close all things';
 		const confrm = 'Confirm Closing';
 
@@ -21661,6 +21884,10 @@ function instance$n($$self, $$props, $$invalidate) {
 		Item: Menu_item,
 		Separator: Menu_separator,
 		Icon,
+		API: Api_table,
+		apiProps,
+		instanceApiProps,
+		itemApiProps,
 		someMenu1,
 		someMenu2,
 		someMenu3,
@@ -21707,6 +21934,9 @@ function instance$n($$self, $$props, $$invalidate) {
 		windowsMenu,
 		closeThingsText,
 		closeTabsText,
+		apiProps,
+		instanceApiProps,
+		itemApiProps,
 		menuCloseThings,
 		newTab,
 		newPrivateTab,
@@ -27745,7 +27975,7 @@ function create_footer_slot_1(ctx) {
 			$$inline: true
 		});
 
-	button.$on("click", /*click_handler_3*/ ctx[7]);
+	button.$on("click", /*click_handler_3*/ ctx[8]);
 
 	const block = {
 		c: function create() {
@@ -27762,7 +27992,7 @@ function create_footer_slot_1(ctx) {
 		p: function update(ctx, dirty) {
 			const button_changes = {};
 
-			if (dirty & /*$$scope*/ 8192) {
+			if (dirty & /*$$scope*/ 16384) {
 				button_changes.$$scope = { dirty, ctx };
 			}
 
@@ -27918,7 +28148,7 @@ function create_footer_slot(ctx) {
 			$$inline: true
 		});
 
-	button0.$on("click", /*click_handler_4*/ ctx[10]);
+	button0.$on("click", /*click_handler_4*/ ctx[11]);
 
 	button1 = new Button({
 			props: {
@@ -27928,7 +28158,7 @@ function create_footer_slot(ctx) {
 			$$inline: true
 		});
 
-	button1.$on("click", /*click_handler_5*/ ctx[11]);
+	button1.$on("click", /*click_handler_5*/ ctx[12]);
 
 	const block = {
 		c: function create() {
@@ -27949,14 +28179,14 @@ function create_footer_slot(ctx) {
 		p: function update(ctx, dirty) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 8192) {
+			if (dirty & /*$$scope*/ 16384) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 8192) {
+			if (dirty & /*$$scope*/ 16384) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28018,7 +28248,9 @@ function create_fragment$7(ctx) {
 	let t14;
 	let code;
 	let t16;
-	let api;
+	let api0;
+	let t17;
+	let api1;
 	let current;
 
 	button0 = new Button({
@@ -28029,7 +28261,7 @@ function create_fragment$7(ctx) {
 			$$inline: true
 		});
 
-	button0.$on("click", /*click_handler*/ ctx[4]);
+	button0.$on("click", /*click_handler*/ ctx[5]);
 
 	button1 = new Button({
 			props: {
@@ -28039,7 +28271,7 @@ function create_fragment$7(ctx) {
 			$$inline: true
 		});
 
-	button1.$on("click", /*click_handler_1*/ ctx[5]);
+	button1.$on("click", /*click_handler_1*/ ctx[6]);
 
 	button2 = new Button({
 			props: {
@@ -28049,7 +28281,7 @@ function create_fragment$7(ctx) {
 			$$inline: true
 		});
 
-	button2.$on("click", /*click_handler_2*/ ctx[6]);
+	button2.$on("click", /*click_handler_2*/ ctx[7]);
 
 	let dialog0_props = {
 		title: "Hello",
@@ -28062,7 +28294,7 @@ function create_fragment$7(ctx) {
 	};
 
 	dialog0 = new Dialog({ props: dialog0_props, $$inline: true });
-	/*dialog0_binding*/ ctx[8](dialog0);
+	/*dialog0_binding*/ ctx[9](dialog0);
 
 	let dialog1_1_props = {
 		title: "Hello",
@@ -28071,7 +28303,7 @@ function create_fragment$7(ctx) {
 	};
 
 	dialog1_1 = new Dialog({ props: dialog1_1_props, $$inline: true });
-	/*dialog1_1_binding*/ ctx[9](dialog1_1);
+	/*dialog1_1_binding*/ ctx[10](dialog1_1);
 
 	let dialog2_1_props = {
 		$$slots: {
@@ -28082,10 +28314,19 @@ function create_fragment$7(ctx) {
 	};
 
 	dialog2_1 = new Dialog({ props: dialog2_1_props, $$inline: true });
-	/*dialog2_1_binding*/ ctx[12](dialog2_1);
+	/*dialog2_1_binding*/ ctx[13](dialog2_1);
 
-	api = new Api_table({
+	api0 = new Api_table({
 			props: { props: /*apiProps*/ ctx[3] },
+			$$inline: true
+		});
+
+	api1 = new Api_table({
+			props: {
+				props: /*instanceApiProps*/ ctx[4],
+				title: "Instance API",
+				description: "A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"
+			},
 			$$inline: true
 		});
 
@@ -28122,7 +28363,9 @@ function create_fragment$7(ctx) {
 			code = element("code");
 			code.textContent = "<Dialog bind:this=\"{dialog1}\">\n    Are you sure?\n    <div slot=\"footer\">\n        <Button on:click=\"{() => dialog1.close()}\">Close</Button>\n    </div>\n</Dialog>\n\n<Button on:click=\"{() => dialog1.open()}\">Show dialog</Button>\n\n<script>\n    let dialog1;\n</script>";
 			t16 = space();
-			create_component(api.$$.fragment);
+			create_component(api0.$$.fragment);
+			t17 = space();
+			create_component(api1.$$.fragment);
 			add_location(h2, file$7, 0, 0, 0);
 			add_location(li0, file$7, 3, 1, 23);
 			add_location(li1, file$7, 4, 1, 59);
@@ -28162,48 +28405,50 @@ function create_fragment$7(ctx) {
 			insert_dev(target, t14, anchor);
 			insert_dev(target, code, anchor);
 			insert_dev(target, t16, anchor);
-			mount_component(api, target, anchor);
+			mount_component(api0, target, anchor);
+			insert_dev(target, t17, anchor);
+			mount_component(api1, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 8192) {
+			if (dirty & /*$$scope*/ 16384) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 8192) {
+			if (dirty & /*$$scope*/ 16384) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 8192) {
+			if (dirty & /*$$scope*/ 16384) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
 			button2.$set(button2_changes);
 			const dialog0_changes = {};
 
-			if (dirty & /*$$scope, dialog1*/ 8193) {
+			if (dirty & /*$$scope, dialog1*/ 16385) {
 				dialog0_changes.$$scope = { dirty, ctx };
 			}
 
 			dialog0.$set(dialog0_changes);
 			const dialog1_1_changes = {};
 
-			if (dirty & /*$$scope*/ 8192) {
+			if (dirty & /*$$scope*/ 16384) {
 				dialog1_1_changes.$$scope = { dirty, ctx };
 			}
 
 			dialog1_1.$set(dialog1_1_changes);
 			const dialog2_1_changes = {};
 
-			if (dirty & /*$$scope, dialog3*/ 8196) {
+			if (dirty & /*$$scope, dialog3*/ 16388) {
 				dialog2_1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28217,7 +28462,8 @@ function create_fragment$7(ctx) {
 			transition_in(dialog0.$$.fragment, local);
 			transition_in(dialog1_1.$$.fragment, local);
 			transition_in(dialog2_1.$$.fragment, local);
-			transition_in(api.$$.fragment, local);
+			transition_in(api0.$$.fragment, local);
+			transition_in(api1.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -28227,7 +28473,8 @@ function create_fragment$7(ctx) {
 			transition_out(dialog0.$$.fragment, local);
 			transition_out(dialog1_1.$$.fragment, local);
 			transition_out(dialog2_1.$$.fragment, local);
-			transition_out(api.$$.fragment, local);
+			transition_out(api0.$$.fragment, local);
+			transition_out(api1.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -28243,13 +28490,13 @@ function create_fragment$7(ctx) {
 			if (detaching) detach_dev(t7);
 			destroy_component(button2, detaching);
 			if (detaching) detach_dev(t8);
-			/*dialog0_binding*/ ctx[8](null);
+			/*dialog0_binding*/ ctx[9](null);
 			destroy_component(dialog0, detaching);
 			if (detaching) detach_dev(t9);
-			/*dialog1_1_binding*/ ctx[9](null);
+			/*dialog1_1_binding*/ ctx[10](null);
 			destroy_component(dialog1_1, detaching);
 			if (detaching) detach_dev(t10);
-			/*dialog2_1_binding*/ ctx[12](null);
+			/*dialog2_1_binding*/ ctx[13](null);
 			destroy_component(dialog2_1, detaching);
 			if (detaching) detach_dev(t11);
 			if (detaching) detach_dev(hr);
@@ -28258,7 +28505,9 @@ function create_fragment$7(ctx) {
 			if (detaching) detach_dev(t14);
 			if (detaching) detach_dev(code);
 			if (detaching) detach_dev(t16);
-			destroy_component(api, detaching);
+			destroy_component(api0, detaching);
+			if (detaching) detach_dev(t17);
+			destroy_component(api1, detaching);
 		}
 	};
 
@@ -28318,6 +28567,19 @@ function instance$7($$self, $$props, $$invalidate) {
 		}
 	];
 
+	const instanceApiProps = [
+		{
+			name: 'open',
+			type: 'function',
+			description: 'Opens the dialog.'
+		},
+		{
+			name: 'close',
+			type: 'function',
+			description: 'Closes the dialog.'
+		}
+	];
+
 	let dialog1, dialog2, dialog3;
 	const writable_props = [];
 
@@ -28359,6 +28621,7 @@ function instance$7($$self, $$props, $$invalidate) {
 		Dialog,
 		API: Api_table,
 		apiProps,
+		instanceApiProps,
 		dialog1,
 		dialog2,
 		dialog3
@@ -28379,6 +28642,7 @@ function instance$7($$self, $$props, $$invalidate) {
 		dialog2,
 		dialog3,
 		apiProps,
+		instanceApiProps,
 		click_handler,
 		click_handler_1,
 		click_handler_2,
@@ -28492,7 +28756,7 @@ function create_default_slot$2(ctx) {
 			$$inline: true
 		});
 
-	button.$on("click", /*click_handler_1*/ ctx[3]);
+	button.$on("click", /*click_handler_1*/ ctx[4]);
 
 	const block = {
 		c: function create() {
@@ -28552,7 +28816,7 @@ function create_default_slot$2(ctx) {
 		p: function update(ctx, dirty) {
 			const button_changes = {};
 
-			if (dirty & /*$$scope*/ 32) {
+			if (dirty & /*$$scope*/ 64) {
 				button_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28613,7 +28877,9 @@ function create_fragment$6(ctx) {
 	let t6;
 	let code;
 	let t8;
-	let api;
+	let api0;
+	let t9;
+	let api1;
 	let current;
 
 	button = new Button({
@@ -28624,7 +28890,7 @@ function create_fragment$6(ctx) {
 			$$inline: true
 		});
 
-	button.$on("click", /*click_handler*/ ctx[2]);
+	button.$on("click", /*click_handler*/ ctx[3]);
 
 	let drawer_1_props = {
 		title: "Drawer",
@@ -28633,10 +28899,19 @@ function create_fragment$6(ctx) {
 	};
 
 	drawer_1 = new Drawer({ props: drawer_1_props, $$inline: true });
-	/*drawer_1_binding*/ ctx[4](drawer_1);
+	/*drawer_1_binding*/ ctx[5](drawer_1);
 
-	api = new Api_table({
+	api0 = new Api_table({
 			props: { props: /*apiProps*/ ctx[1] },
+			$$inline: true
+		});
+
+	api1 = new Api_table({
+			props: {
+				props: /*instanceApiProps*/ ctx[2],
+				title: "Instance API",
+				description: "A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"
+			},
 			$$inline: true
 		});
 
@@ -28657,7 +28932,9 @@ function create_fragment$6(ctx) {
 			code = element("code");
 			code.textContent = "<Drawer bind:this=\"{drawer1}\" title=\"Drawer\">\n    Hello world!\n    <Button on:click=\"{() => drawer1.close()}\">Close</Button>\n</Drawer>\n\n<Button on:click=\"{() => drawer1.toggle()}\">Show dialog</Button>\n\n<script>\n    let drawer1;\n</script>";
 			t8 = space();
-			create_component(api.$$.fragment);
+			create_component(api0.$$.fragment);
+			t9 = space();
+			create_component(api1.$$.fragment);
 			add_location(h2, file$6, 0, 0, 0);
 			add_location(hr, file$6, 18, 0, 3254);
 			add_location(h3, file$6, 19, 0, 3259);
@@ -28679,20 +28956,22 @@ function create_fragment$6(ctx) {
 			insert_dev(target, t6, anchor);
 			insert_dev(target, code, anchor);
 			insert_dev(target, t8, anchor);
-			mount_component(api, target, anchor);
+			mount_component(api0, target, anchor);
+			insert_dev(target, t9, anchor);
+			mount_component(api1, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const button_changes = {};
 
-			if (dirty & /*$$scope*/ 32) {
+			if (dirty & /*$$scope*/ 64) {
 				button_changes.$$scope = { dirty, ctx };
 			}
 
 			button.$set(button_changes);
 			const drawer_1_changes = {};
 
-			if (dirty & /*$$scope, drawer*/ 33) {
+			if (dirty & /*$$scope, drawer*/ 65) {
 				drawer_1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28702,13 +28981,15 @@ function create_fragment$6(ctx) {
 			if (current) return;
 			transition_in(button.$$.fragment, local);
 			transition_in(drawer_1.$$.fragment, local);
-			transition_in(api.$$.fragment, local);
+			transition_in(api0.$$.fragment, local);
+			transition_in(api1.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(button.$$.fragment, local);
 			transition_out(drawer_1.$$.fragment, local);
-			transition_out(api.$$.fragment, local);
+			transition_out(api0.$$.fragment, local);
+			transition_out(api1.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -28716,7 +28997,7 @@ function create_fragment$6(ctx) {
 			if (detaching) detach_dev(t1);
 			destroy_component(button, detaching);
 			if (detaching) detach_dev(t2);
-			/*drawer_1_binding*/ ctx[4](null);
+			/*drawer_1_binding*/ ctx[5](null);
 			destroy_component(drawer_1, detaching);
 			if (detaching) detach_dev(t3);
 			if (detaching) detach_dev(hr);
@@ -28725,7 +29006,9 @@ function create_fragment$6(ctx) {
 			if (detaching) detach_dev(t6);
 			if (detaching) detach_dev(code);
 			if (detaching) detach_dev(t8);
-			destroy_component(api, detaching);
+			destroy_component(api0, detaching);
+			if (detaching) detach_dev(t9);
+			destroy_component(api1, detaching);
 		}
 	};
 
@@ -28767,6 +29050,24 @@ function instance$6($$self, $$props, $$invalidate) {
 		}
 	];
 
+	const instanceApiProps = [
+		{
+			name: 'open',
+			type: 'function',
+			description: 'Opens the drawer.'
+		},
+		{
+			name: 'close',
+			type: 'function',
+			description: 'Closes the drawer.'
+		},
+		{
+			name: 'toggle',
+			type: 'function',
+			description: 'Toggles the open state (opens when closed, closes when open).'
+		}
+	];
+
 	let drawer;
 	const writable_props = [];
 
@@ -28784,7 +29085,14 @@ function instance$6($$self, $$props, $$invalidate) {
 		});
 	}
 
-	$$self.$capture_state = () => ({ Button, Drawer, API: Api_table, apiProps, drawer });
+	$$self.$capture_state = () => ({
+		Button,
+		Drawer,
+		API: Api_table,
+		apiProps,
+		instanceApiProps,
+		drawer
+	});
 
 	$$self.$inject_state = $$props => {
 		if ('drawer' in $$props) $$invalidate(0, drawer = $$props.drawer);
@@ -28794,7 +29102,14 @@ function instance$6($$self, $$props, $$invalidate) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [drawer, apiProps, click_handler, click_handler_1, drawer_1_binding];
+	return [
+		drawer,
+		apiProps,
+		instanceApiProps,
+		click_handler,
+		click_handler_1,
+		drawer_1_binding
+	];
 }
 
 class Drawer_1 extends SvelteComponentDev {

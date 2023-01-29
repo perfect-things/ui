@@ -33,6 +33,8 @@
 
 <API props="{apiProps}"/>
 
+<API props="{instanceApiProps}" title="Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+
 <script>
 import { Button, Drawer } from '../../src';
 import API from '../api-table';
@@ -42,6 +44,12 @@ const apiProps = [
 	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component container.' },
 	{ name: 'on:open', type: 'function', description: 'Triggered after the drawer is opened.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the drawer is closed.' },
+];
+
+const instanceApiProps = [
+	{ name: 'open', type: 'function', description: 'Opens the drawer.' },
+	{ name: 'close', type: 'function', description: 'Closes the drawer.' },
+	{ name: 'toggle', type: 'function', description: 'Toggles the open state (opens when closed, closes when open).' },
 ];
 
 

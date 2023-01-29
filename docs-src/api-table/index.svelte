@@ -1,7 +1,10 @@
-<h3>API</h3>
+<h3>{title}</h3>
+{#if description}
+	<p>{@html description}</p>
+{/if}
 <Table className="api-table">
 	<thead>
-		<tr><th>Attribute</th><th>Value</th><th>Description</th></tr>
+		<tr><th>Attribute</th><th>Type/Value</th><th>Description</th></tr>
 	</thead>
 	<tbody>
 		{#each props as prop}
@@ -16,7 +19,8 @@
 
 <script>
 import { Table } from '../../src';
-
+export let title = 'API';
+export let description = '';
 export let props = [
 	{
 		name: 'id',

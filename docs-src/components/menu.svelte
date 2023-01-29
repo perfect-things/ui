@@ -67,8 +67,66 @@
 	<Item on:click="{closeWindows}">Close All Windows</Item>
 </Menu>
 
+
+<hr>
+<h3>Example instantiation</h3>
+<code>
+&lt;!-- Regular menu --&gt;
+&lt;Menu bind:this="&lbrace;menu1&rbrace;"&gt;
+    &lt;Item&gt;&lt;Icon name="plus"/&gt; Add some&lt;/Item&gt;
+    &lt;Item&gt;&lt;Icon name=""/&gt; Add some more&lt;/Item&gt;
+    &lt;Separator /&gt;
+    &lt;Item on:click="&lbrace;closeSomething&rbrace;"&gt;&lt;Icon name="close"/&gt; Close something&lt;/Item&gt;
+&lt;/Menu&gt;
+
+&lt;Button on:click="&lbrace;() => menu1.open()&rbrace;"&gt;Show menu&lt;/Button&gt;
+
+&lt;!-- Context menu --&gt;
+&lt;div class="div1"&gt;Tab&lt;/div&gt;
+&lt;Menu type="context" targetSelector=".div1" bind:this="&lbrace;menu2&rbrace;"&gt;
+    &lt;Item on:click="&lbrace;action1&rbrace;"&gt;New window&lt;/Item&gt;
+    &lt;Item on:click="&lbrace;action2&rbrace;"&gt;New private window&lt;/Item&gt;
+    &lt;Separator /&gt;
+    &lt;Item on:click="&lbrace;action3&rbrace;"&gt;Close All Windows&lt;/Item&gt;
+&lt;/Menu&gt;
+
+&lt;script&gt;
+    let menu1, menu2;
+    function closeSomething (e) &lbrace;
+        e.stopPropagation(); // prevents menu auto-closing
+        menu1.close();       // manually close the menu
+    &rbrace;
+&lt;/script&gt;
+</code>
+
+<API props="{apiProps}"/>
+<API props="{instanceApiProps}" title="Menu Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<API props="{itemApiProps}" title="Item API"/>
+
+
 <script>
 import { Button, Menu, Item, Separator, Icon } from '../../src';
+import API from '../api-table';
+
+const apiProps = [
+	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
+	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
+	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
+	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the menu will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
+	{ name: 'on:open', type: 'function', description: 'Triggered after the menu is opened.' },
+	{ name: 'on:close', type: 'function', description: 'Triggered after the menu is closed.' },
+];
+
+const instanceApiProps = [
+	{ name: 'open', type: 'function', description: 'Opens the menu.' },
+	{ name: 'close', type: 'function', description: 'Closes the menu.' },
+];
+
+const itemApiProps = [
+	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.stopPropagation();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
+];
+
+
 let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
@@ -76,7 +134,7 @@ let thingsMenuTimer, tabsMenutimer;
 
 
 function menuCloseThings (e) {
-	if (e && e.detail) e.detail.stopPropagation();
+	if (e) e.stopPropagation();
 	const initial = 'Close all things';
 	const confrm = 'Confirm Closing';
 

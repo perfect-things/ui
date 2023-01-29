@@ -58,6 +58,9 @@
 
 <API props="{apiProps}"/>
 
+<API props="{instanceApiProps}" title="Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+
+
 
 <script>
 import { Button, Dialog } from '../../src';
@@ -71,6 +74,11 @@ const apiProps = [
 	{ name: 'skipFirstFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
 	{ name: 'on:open', type: 'function', description: 'Triggered after the dialog is opened.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the dialog is closed.' },
+];
+
+const instanceApiProps = [
+	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
+	{ name: 'close', type: 'function', description: 'Closes the dialog.' },
 ];
 
 let dialog1, dialog2, dialog3;
