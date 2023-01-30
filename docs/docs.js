@@ -10238,8 +10238,8 @@ function create_fragment$I(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	const default_slot_template = /*#slots*/ ctx[7].default;
-	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[6], null);
+	const default_slot_template = /*#slots*/ ctx[8].default;
+	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[7], null);
 
 	const block = {
 		c: function create() {
@@ -10253,16 +10253,17 @@ function create_fragment$I(ctx) {
 			div1 = element("div");
 			if (default_slot) default_slot.c();
 			attr_dev(div0, "class", "chevron");
-			add_location(div0, file$H, 4, 3, 201);
+			add_location(div0, file$H, 4, 3, 213);
 			attr_dev(summary, "class", "panel-header");
-			add_location(summary, file$H, 2, 2, 133);
+			add_location(summary, file$H, 2, 2, 145);
 			attr_dev(div1, "class", "panel-content");
-			add_location(div1, file$H, 6, 2, 270);
+			add_location(div1, file$H, 6, 2, 282);
 			attr_dev(details, "class", "panel");
 			details.open = /*open*/ ctx[0];
-			add_location(details, file$H, 1, 1, 62);
+			add_location(details, file$H, 1, 1, 74);
 			attr_dev(div2, "class", "panel-wrap");
-			toggle_class(div2, "expanded", /*expanded*/ ctx[4]);
+			toggle_class(div2, "expanded", /*expanded*/ ctx[5]);
+			toggle_class(div2, "round", /*round*/ ctx[2]);
 			add_location(div2, file$H, 0, 0, 0);
 		},
 		l: function claim(nodes) {
@@ -10276,7 +10277,7 @@ function create_fragment$I(ctx) {
 			append_dev(summary, t1);
 			append_dev(summary, div0);
 			div0.innerHTML = raw_value;
-			/*summary_binding*/ ctx[8](summary);
+			/*summary_binding*/ ctx[9](summary);
 			append_dev(details, t2);
 			append_dev(details, div1);
 
@@ -10284,13 +10285,13 @@ function create_fragment$I(ctx) {
 				default_slot.m(div1, null);
 			}
 
-			/*div2_binding*/ ctx[9](div2);
+			/*div2_binding*/ ctx[10](div2);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen_dev(details, "keydown", /*toggle*/ ctx[5], false, false, false),
-					listen_dev(details, "click", /*toggle*/ ctx[5], false, false, false)
+					listen_dev(details, "keydown", /*toggle*/ ctx[6], false, false, false),
+					listen_dev(details, "click", /*toggle*/ ctx[6], false, false, false)
 				];
 
 				mounted = true;
@@ -10300,15 +10301,15 @@ function create_fragment$I(ctx) {
 			if (!current || dirty & /*title*/ 2) set_data_dev(t0, /*title*/ ctx[1]);
 
 			if (default_slot) {
-				if (default_slot.p && (!current || dirty & /*$$scope*/ 64)) {
+				if (default_slot.p && (!current || dirty & /*$$scope*/ 128)) {
 					update_slot_base(
 						default_slot,
 						default_slot_template,
 						ctx,
-						/*$$scope*/ ctx[6],
+						/*$$scope*/ ctx[7],
 						!current
-						? get_all_dirty_from_scope(/*$$scope*/ ctx[6])
-						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[6], dirty, null),
+						? get_all_dirty_from_scope(/*$$scope*/ ctx[7])
+						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[7], dirty, null),
 						null
 					);
 				}
@@ -10318,8 +10319,12 @@ function create_fragment$I(ctx) {
 				prop_dev(details, "open", /*open*/ ctx[0]);
 			}
 
-			if (!current || dirty & /*expanded*/ 16) {
-				toggle_class(div2, "expanded", /*expanded*/ ctx[4]);
+			if (!current || dirty & /*expanded*/ 32) {
+				toggle_class(div2, "expanded", /*expanded*/ ctx[5]);
+			}
+
+			if (!current || dirty & /*round*/ 4) {
+				toggle_class(div2, "round", /*round*/ ctx[2]);
 			}
 		},
 		i: function intro(local) {
@@ -10333,9 +10338,9 @@ function create_fragment$I(ctx) {
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(div2);
-			/*summary_binding*/ ctx[8](null);
+			/*summary_binding*/ ctx[9](null);
 			if (default_slot) default_slot.d(detaching);
-			/*div2_binding*/ ctx[9](null);
+			/*div2_binding*/ ctx[10](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -10355,8 +10360,10 @@ function create_fragment$I(ctx) {
 function instance$I($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Panel', slots, ['default']);
+	const dispatch = createEventDispatcher();
 	let { title = '' } = $$props;
 	let { open = false } = $$props;
+	let { round = false } = $$props;
 	let wrapEl, headerEl, expanded = open;
 	const expandedProps = { height: 0 };
 	const collapsedProps = { height: 0 };
@@ -10380,6 +10387,7 @@ function instance$I($$self, $$props, $$invalidate) {
 	function toggle(e) {
 		const skipToggleOn = ['BUTTON', 'INPUT', 'A', 'SELECT', 'TEXTAREA'];
 		if (skipToggleOn.includes(e.target.tagName)) return;
+		if (e.target.closest('.panel-content')) return;
 
 		// toggling works for space key natively, but on keyup, which adds a delay
 		// as user needs to release the key for the animation to start
@@ -10389,16 +10397,23 @@ function instance$I($$self, $$props, $$invalidate) {
 		e.preventDefault();
 
 		if (expanded) {
-			$$invalidate(4, expanded = false);
-			animate(wrapEl, expandedProps, collapsedProps).then(() => $$invalidate(0, open = expanded));
+			$$invalidate(5, expanded = false);
+
+			animate(wrapEl, expandedProps, collapsedProps).then(() => {
+				$$invalidate(0, open = expanded);
+				dispatch('close');
+			});
 		} else {
-			$$invalidate(4, expanded = true);
+			$$invalidate(5, expanded = true);
 			$$invalidate(0, open = true);
-			animate(wrapEl, collapsedProps, expandedProps);
+
+			animate(wrapEl, collapsedProps, expandedProps).then(() => {
+				dispatch('open');
+			});
 		}
 	}
 
-	const writable_props = ['title', 'open'];
+	const writable_props = ['title', 'open', 'round'];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Panel> was created with unknown prop '${key}'`);
@@ -10407,29 +10422,33 @@ function instance$I($$self, $$props, $$invalidate) {
 	function summary_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			headerEl = $$value;
-			$$invalidate(3, headerEl);
+			$$invalidate(4, headerEl);
 		});
 	}
 
 	function div2_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			wrapEl = $$value;
-			$$invalidate(2, wrapEl);
+			$$invalidate(3, wrapEl);
 		});
 	}
 
 	$$self.$$set = $$props => {
 		if ('title' in $$props) $$invalidate(1, title = $$props.title);
 		if ('open' in $$props) $$invalidate(0, open = $$props.open);
-		if ('$$scope' in $$props) $$invalidate(6, $$scope = $$props.$$scope);
+		if ('round' in $$props) $$invalidate(2, round = $$props.round);
+		if ('$$scope' in $$props) $$invalidate(7, $$scope = $$props.$$scope);
 	};
 
 	$$self.$capture_state = () => ({
+		createEventDispatcher,
 		onMount,
 		icons,
 		animate,
+		dispatch,
 		title,
 		open,
+		round,
 		wrapEl,
 		headerEl,
 		expanded,
@@ -10442,9 +10461,10 @@ function instance$I($$self, $$props, $$invalidate) {
 	$$self.$inject_state = $$props => {
 		if ('title' in $$props) $$invalidate(1, title = $$props.title);
 		if ('open' in $$props) $$invalidate(0, open = $$props.open);
-		if ('wrapEl' in $$props) $$invalidate(2, wrapEl = $$props.wrapEl);
-		if ('headerEl' in $$props) $$invalidate(3, headerEl = $$props.headerEl);
-		if ('expanded' in $$props) $$invalidate(4, expanded = $$props.expanded);
+		if ('round' in $$props) $$invalidate(2, round = $$props.round);
+		if ('wrapEl' in $$props) $$invalidate(3, wrapEl = $$props.wrapEl);
+		if ('headerEl' in $$props) $$invalidate(4, headerEl = $$props.headerEl);
+		if ('expanded' in $$props) $$invalidate(5, expanded = $$props.expanded);
 	};
 
 	if ($$props && "$$inject" in $$props) {
@@ -10454,6 +10474,7 @@ function instance$I($$self, $$props, $$invalidate) {
 	return [
 		open,
 		title,
+		round,
 		wrapEl,
 		headerEl,
 		expanded,
@@ -10468,7 +10489,7 @@ function instance$I($$self, $$props, $$invalidate) {
 class Panel extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$I, create_fragment$I, safe_not_equal, { title: 1, open: 0 });
+		init(this, options, instance$I, create_fragment$I, safe_not_equal, { title: 1, open: 0, round: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -10491,6 +10512,14 @@ class Panel extends SvelteComponentDev {
 	}
 
 	set open(value) {
+		throw new Error("<Panel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get round() {
+		throw new Error("<Panel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set round(value) {
 		throw new Error("<Panel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 }
@@ -17288,7 +17317,7 @@ function create_default_slot_3$5(ctx) {
 }
 
 // (36:0) <ButtonGroup>
-function create_default_slot_2$7(ctx) {
+function create_default_slot_2$8(ctx) {
 	let button0;
 	let t0;
 	let button1;
@@ -17386,7 +17415,7 @@ function create_default_slot_2$7(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2$7.name,
+		id: create_default_slot_2$8.name,
 		type: "slot",
 		source: "(36:0) <ButtonGroup>",
 		ctx
@@ -17590,7 +17619,7 @@ function create_fragment$q(ctx) {
 
 	buttongroup4 = new Button_group$1({
 			props: {
-				$$slots: { default: [create_default_slot_2$7] },
+				$$slots: { default: [create_default_slot_2$8] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -18828,7 +18857,7 @@ function create_default_slot_3$4(ctx) {
 }
 
 // (25:0) <PushButton icon="check" success>
-function create_default_slot_2$6(ctx) {
+function create_default_slot_2$7(ctx) {
 	let t;
 
 	const block = {
@@ -18845,7 +18874,7 @@ function create_default_slot_2$6(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2$6.name,
+		id: create_default_slot_2$7.name,
 		type: "slot",
 		source: "(25:0) <PushButton icon=\\\"check\\\" success>",
 		ctx
@@ -19112,7 +19141,7 @@ function create_fragment$o(ctx) {
 			props: {
 				icon: "check",
 				success: true,
-				$$slots: { default: [create_default_slot_2$6] },
+				$$slots: { default: [create_default_slot_2$7] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -21158,7 +21187,7 @@ function create_default_slot_3$3(ctx) {
 }
 
 // (65:1) <Item on:click="{newPrivateWindow}">
-function create_default_slot_2$5(ctx) {
+function create_default_slot_2$6(ctx) {
 	let t;
 
 	const block = {
@@ -21175,7 +21204,7 @@ function create_default_slot_2$5(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2$5.name,
+		id: create_default_slot_2$6.name,
 		type: "slot",
 		source: "(65:1) <Item on:click=\\\"{newPrivateWindow}\\\">",
 		ctx
@@ -21234,7 +21263,7 @@ function create_default_slot$7(ctx) {
 
 	item1 = new Menu_item({
 			props: {
-				$$slots: { default: [create_default_slot_2$5] },
+				$$slots: { default: [create_default_slot_2$6] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -22394,7 +22423,7 @@ class Icon_1 extends SvelteComponentDev {
 const file$l = "docs-src/components/text-fit.svelte";
 
 // (3:47) <TextFit>
-function create_default_slot_2$4(ctx) {
+function create_default_slot_2$5(ctx) {
 	let t;
 
 	const block = {
@@ -22414,7 +22443,7 @@ function create_default_slot_2$4(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2$4.name,
+		id: create_default_slot_2$5.name,
 		type: "slot",
 		source: "(3:47) <TextFit>",
 		ctx
@@ -22502,7 +22531,7 @@ function create_fragment$l(ctx) {
 
 	textfit0 = new Text_fit$1({
 			props: {
-				$$slots: { default: [create_default_slot_2$4] },
+				$$slots: { default: [create_default_slot_2$5] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -22774,7 +22803,7 @@ function create_default_slot_3$2(ctx) {
 }
 
 // (6:0) <Button danger on:click="{() => showToast('Hello', 'error', 10000, 'Undo', cb)}">
-function create_default_slot_2$3(ctx) {
+function create_default_slot_2$4(ctx) {
 	let t;
 
 	const block = {
@@ -22791,7 +22820,7 @@ function create_default_slot_2$3(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2$3.name,
+		id: create_default_slot_2$4.name,
 		type: "slot",
 		source: "(6:0) <Button danger on:click=\\\"{() => showToast('Hello', 'error', 10000, 'Undo', cb)}\\\">",
 		ctx
@@ -22912,7 +22941,7 @@ function create_fragment$k(ctx) {
 	button3 = new Button({
 			props: {
 				danger: true,
-				$$slots: { default: [create_default_slot_2$3] },
+				$$slots: { default: [create_default_slot_2$4] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -27519,7 +27548,7 @@ function create_default_slot_3$1(ctx) {
 }
 
 // (22:0) <Tooltip target="box3" events="click">
-function create_default_slot_2$2(ctx) {
+function create_default_slot_2$3(ctx) {
 	let t;
 
 	const block = {
@@ -27536,7 +27565,7 @@ function create_default_slot_2$2(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2$2.name,
+		id: create_default_slot_2$3.name,
 		type: "slot",
 		source: "(22:0) <Tooltip target=\\\"box3\\\" events=\\\"click\\\">",
 		ctx
@@ -27671,7 +27700,7 @@ function create_fragment$8(ctx) {
 			props: {
 				target: "box3",
 				events: "click",
-				$$slots: { default: [create_default_slot_2$2] },
+				$$slots: { default: [create_default_slot_2$3] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -28243,7 +28272,7 @@ function create_default_slot_3(ctx) {
 }
 
 // (32:0) <Dialog bind:this="{dialog3}">
-function create_default_slot_2$1(ctx) {
+function create_default_slot_2$2(ctx) {
 	let t;
 
 	const block = {
@@ -28260,7 +28289,7 @@ function create_default_slot_2$1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2$1.name,
+		id: create_default_slot_2$2.name,
 		type: "slot",
 		source: "(32:0) <Dialog bind:this=\\\"{dialog3}\\\">",
 		ctx
@@ -28495,7 +28524,7 @@ function create_fragment$7(ctx) {
 	let dialog2_1_props = {
 		$$slots: {
 			footer: [create_footer_slot],
-			default: [create_default_slot_2$1]
+			default: [create_default_slot_2$2]
 		},
 		$$scope: { ctx }
 	};
@@ -28868,7 +28897,7 @@ class Dialog_1 extends SvelteComponentDev {
 const file$6 = "docs-src/components/drawer.svelte";
 
 // (3:0) <Button on:click="{() => drawer.toggle()}">
-function create_default_slot_2(ctx) {
+function create_default_slot_2$1(ctx) {
 	let t;
 
 	const block = {
@@ -28885,7 +28914,7 @@ function create_default_slot_2(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_2.name,
+		id: create_default_slot_2$1.name,
 		type: "slot",
 		source: "(3:0) <Button on:click=\\\"{() => drawer.toggle()}\\\">",
 		ctx
@@ -29075,7 +29104,7 @@ function create_fragment$6(ctx) {
 
 	button = new Button({
 			props: {
-				$$slots: { default: [create_default_slot_2] },
+				$$slots: { default: [create_default_slot_2$1] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -29326,8 +29355,8 @@ class Drawer_1 extends SvelteComponentDev {
 /* docs-src/components/panel.svelte generated by Svelte v3.55.0 */
 const file$5 = "docs-src/components/panel.svelte";
 
-// (5:1) <Panel title="Hello">
-function create_default_slot_1(ctx) {
+// (5:0) <Panel title="Hello">
+function create_default_slot_2(ctx) {
 	let p0;
 	let t1;
 	let p1;
@@ -29349,11 +29378,11 @@ function create_default_slot_1(ctx) {
 			t5 = space();
 			a = element("a");
 			a.textContent = "a link";
-			add_location(p0, file$5, 5, 2, 66);
-			add_location(p1, file$5, 6, 2, 98);
-			add_location(p2, file$5, 7, 2, 120);
+			add_location(p0, file$5, 5, 1, 56);
+			add_location(p1, file$5, 6, 1, 87);
+			add_location(p2, file$5, 7, 1, 108);
 			attr_dev(a, "href", "#Panel");
-			add_location(a, file$5, 8, 2, 152);
+			add_location(a, file$5, 8, 1, 139);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, p0, anchor);
@@ -29378,16 +29407,43 @@ function create_default_slot_1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot_1.name,
+		id: create_default_slot_2.name,
 		type: "slot",
-		source: "(5:1) <Panel title=\\\"Hello\\\">",
+		source: "(5:0) <Panel title=\\\"Hello\\\">",
 		ctx
 	});
 
 	return block;
 }
 
-// (12:1) <Panel title="Panel 2" open>
+// (19:1) <Button>
+function create_default_slot_1(ctx) {
+	let t;
+
+	const block = {
+		c: function create() {
+			t = text("Action");
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, t, anchor);
+		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot_1.name,
+		type: "slot",
+		source: "(19:1) <Button>",
+		ctx
+	});
+
+	return block;
+}
+
+// (15:0) <Panel title="Panel 2" open round>
 function create_default_slot$1(ctx) {
 	let p0;
 	let t1;
@@ -29396,6 +29452,15 @@ function create_default_slot$1(ctx) {
 	let p2;
 	let t5;
 	let button;
+	let current;
+
+	button = new Button({
+			props: {
+				$$slots: { default: [create_default_slot_1] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -29408,12 +29473,10 @@ function create_default_slot$1(ctx) {
 			p2 = element("p");
 			p2.textContent = "This is panel contents";
 			t5 = space();
-			button = element("button");
-			button.textContent = "Asdasd";
-			add_location(p0, file$5, 12, 2, 223);
-			add_location(p1, file$5, 13, 2, 255);
-			add_location(p2, file$5, 14, 2, 277);
-			add_location(button, file$5, 15, 2, 309);
+			create_component(button.$$.fragment);
+			add_location(p0, file$5, 15, 1, 238);
+			add_location(p1, file$5, 16, 1, 269);
+			add_location(p2, file$5, 17, 1, 290);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, p0, anchor);
@@ -29422,9 +29485,27 @@ function create_default_slot$1(ctx) {
 			insert_dev(target, t3, anchor);
 			insert_dev(target, p2, anchor);
 			insert_dev(target, t5, anchor);
-			insert_dev(target, button, anchor);
+			mount_component(button, target, anchor);
+			current = true;
 		},
-		p: noop,
+		p: function update(ctx, dirty) {
+			const button_changes = {};
+
+			if (dirty & /*$$scope*/ 4) {
+				button_changes.$$scope = { dirty, ctx };
+			}
+
+			button.$set(button_changes);
+		},
+		i: function intro(local) {
+			if (current) return;
+			transition_in(button.$$.fragment, local);
+			current = true;
+		},
+		o: function outro(local) {
+			transition_out(button.$$.fragment, local);
+			current = false;
+		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(p0);
 			if (detaching) detach_dev(t1);
@@ -29432,7 +29513,7 @@ function create_default_slot$1(ctx) {
 			if (detaching) detach_dev(t3);
 			if (detaching) detach_dev(p2);
 			if (detaching) detach_dev(t5);
-			if (detaching) detach_dev(button);
+			destroy_component(button, detaching);
 		}
 	};
 
@@ -29440,7 +29521,7 @@ function create_default_slot$1(ctx) {
 		block,
 		id: create_default_slot$1.name,
 		type: "slot",
-		source: "(12:1) <Panel title=\\\"Panel 2\\\" open>",
+		source: "(15:0) <Panel title=\\\"Panel 2\\\" open round>",
 		ctx
 	});
 
@@ -29450,16 +29531,23 @@ function create_default_slot$1(ctx) {
 function create_fragment$5(ctx) {
 	let h2;
 	let t1;
-	let div;
+	let h30;
+	let t3;
 	let panel0;
-	let t2;
+	let t4;
+	let h31;
+	let t6;
 	let panel1;
+	let t7;
+	let codeexample;
+	let t8;
+	let api;
 	let current;
 
 	panel0 = new Panel({
 			props: {
 				title: "Hello",
-				$$slots: { default: [create_default_slot_1] },
+				$$slots: { default: [create_default_slot_2] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -29469,9 +29557,20 @@ function create_fragment$5(ctx) {
 			props: {
 				title: "Panel 2",
 				open: true,
+				round: true,
 				$$slots: { default: [create_default_slot$1] },
 				$$scope: { ctx }
 			},
+			$$inline: true
+		});
+
+	codeexample = new Code_example({
+			props: { html: /*exampleHtml*/ ctx[1] },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
 			$$inline: true
 		});
 
@@ -29480,13 +29579,22 @@ function create_fragment$5(ctx) {
 			h2 = element("h2");
 			h2.textContent = "Panel";
 			t1 = space();
-			div = element("div");
+			h30 = element("h3");
+			h30.textContent = "Normal";
+			t3 = space();
 			create_component(panel0.$$.fragment);
-			t2 = space();
+			t4 = space();
+			h31 = element("h3");
+			h31.textContent = "Round, opened";
+			t6 = space();
 			create_component(panel1.$$.fragment);
+			t7 = space();
+			create_component(codeexample.$$.fragment);
+			t8 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$5, 0, 0, 0);
-			attr_dev(div, "class", "accordion");
-			add_location(div, file$5, 2, 0, 16);
+			add_location(h30, file$5, 2, 0, 16);
+			add_location(h31, file$5, 12, 0, 178);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -29494,23 +29602,30 @@ function create_fragment$5(ctx) {
 		m: function mount(target, anchor) {
 			insert_dev(target, h2, anchor);
 			insert_dev(target, t1, anchor);
-			insert_dev(target, div, anchor);
-			mount_component(panel0, div, null);
-			append_dev(div, t2);
-			mount_component(panel1, div, null);
+			insert_dev(target, h30, anchor);
+			insert_dev(target, t3, anchor);
+			mount_component(panel0, target, anchor);
+			insert_dev(target, t4, anchor);
+			insert_dev(target, h31, anchor);
+			insert_dev(target, t6, anchor);
+			mount_component(panel1, target, anchor);
+			insert_dev(target, t7, anchor);
+			mount_component(codeexample, target, anchor);
+			insert_dev(target, t8, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const panel0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				panel0_changes.$$scope = { dirty, ctx };
 			}
 
 			panel0.$set(panel0_changes);
 			const panel1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				panel1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -29520,19 +29635,31 @@ function create_fragment$5(ctx) {
 			if (current) return;
 			transition_in(panel0.$$.fragment, local);
 			transition_in(panel1.$$.fragment, local);
+			transition_in(codeexample.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(panel0.$$.fragment, local);
 			transition_out(panel1.$$.fragment, local);
+			transition_out(codeexample.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(h2);
 			if (detaching) detach_dev(t1);
-			if (detaching) detach_dev(div);
-			destroy_component(panel0);
-			destroy_component(panel1);
+			if (detaching) detach_dev(h30);
+			if (detaching) detach_dev(t3);
+			destroy_component(panel0, detaching);
+			if (detaching) detach_dev(t4);
+			if (detaching) detach_dev(h31);
+			if (detaching) detach_dev(t6);
+			destroy_component(panel1, detaching);
+			if (detaching) detach_dev(t7);
+			destroy_component(codeexample, detaching);
+			if (detaching) detach_dev(t8);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -29550,14 +29677,58 @@ function create_fragment$5(ctx) {
 function instance$5($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Panel', slots, []);
+
+	const apiProps = [
+		{
+			name: 'title',
+			type: 'string',
+			description: 'Panel title.'
+		},
+		{
+			name: 'open',
+			description: 'Panel initial open state.'
+		},
+		{
+			name: 'round',
+			description: 'Adds rounded corners to the panel.'
+		},
+		{
+			name: 'on:open',
+			type: 'function',
+			description: 'Triggered after the panel is opened.'
+		},
+		{
+			name: 'on:close',
+			type: 'function',
+			description: 'Triggered after the panel is closed.'
+		}
+	];
+
+	const exampleHtml = `
+<Panel title="Hello" round>
+	<p>This is panel contents</p>
+	<p>Hello world!</p>
+	<p>This is panel contents</p>
+	<Button>Action</Button>
+</Panel>
+`;
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Panel> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Panel });
-	return [];
+	$$self.$capture_state = () => ({
+		Panel,
+		Button,
+		API: Api_table,
+		CodeExample: Code_example,
+		apiProps,
+		exampleHtml
+	});
+
+	return [apiProps, exampleHtml];
 }
 
 class Panel_1 extends SvelteComponentDev {

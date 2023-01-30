@@ -1,12 +1,14 @@
 .panel-wrap {
 	overflow: hidden;
-	border: 2px solid var(--ui-color-border);
 	will-change: height;
 	position: relative;
+	border: 2px solid var(--ui-color-border);
+	background: var(--ui-color-background-dark-2);
 }
 
+.panel-wrap.round { border-radius: var(--ui-border-radius-s); }
+
 .panel-header {
-	background: var(--ui-color-background-dark-2);
 	color: var(--ui-color-text);
 	text-align: left;
 	border: none;
@@ -23,7 +25,12 @@
 	user-select: none;
 }
 .panel-header::-webkit-details-marker { display: none; }
-.panel-content { border-top: 1px solid var(--ui-color-border); padding: 0.5em 1em; }
+
+.panel-content {
+	border-top: 1px solid var(--ui-color-border);
+	background: var(--ui-color-background);
+	padding: 0.5em 1em;
+}
 
 .chevron {
 	height: 1.2em;
