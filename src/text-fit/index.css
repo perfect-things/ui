@@ -2,4 +2,5 @@
 	display: inline-block;
 	transform-origin: center;
 	white-space: nowrap;
+	-webkit-font-smoothing: subpixel-antialiased;
 }

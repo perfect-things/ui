@@ -36,8 +36,8 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Splitter
 	- [x] Table
 	- [x] Tree
-	- [ ] Icon
-	- [ ] TextFit
+	- [x] Icon
+	- [x] TextFit
 	- [ ] Toaster
 	- [ ] Tooltip
 

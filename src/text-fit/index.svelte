@@ -1,10 +1,10 @@
-<span class="text" bind:this="{el}">
+<span class="text-fit" bind:this="{el}">
 	<slot></slot>
 </span>
 
 <script>
 import { onMount, onDestroy } from 'svelte';
-const MARGIN = 15;
+export let margin = 0;
 const DEBOUNCE_RESIZE = 10;
 let el, parent, resizeObserver, timer, mutationObserver;
 
@@ -12,7 +12,7 @@ function resize () {
 	el.style.transform = '';
 	const textW = el.getBoundingClientRect().width;
 	const parentW = parent.getBoundingClientRect().width;
-	const val = (parentW - MARGIN) / textW;
+	const val = (parentW - margin) / textW;
 	el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`;
 }
 

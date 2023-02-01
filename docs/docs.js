@@ -12550,14 +12550,14 @@ const file$C = "src/text-fit/index.svelte";
 function create_fragment$C(ctx) {
 	let span;
 	let current;
-	const default_slot_template = /*#slots*/ ctx[2].default;
-	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[1], null);
+	const default_slot_template = /*#slots*/ ctx[3].default;
+	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
 
 	const block = {
 		c: function create() {
 			span = element("span");
 			if (default_slot) default_slot.c();
-			attr_dev(span, "class", "text");
+			attr_dev(span, "class", "text-fit");
 			add_location(span, file$C, 0, 0, 0);
 		},
 		l: function claim(nodes) {
@@ -12570,20 +12570,20 @@ function create_fragment$C(ctx) {
 				default_slot.m(span, null);
 			}
 
-			/*span_binding*/ ctx[3](span);
+			/*span_binding*/ ctx[4](span);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			if (default_slot) {
-				if (default_slot.p && (!current || dirty & /*$$scope*/ 2)) {
+				if (default_slot.p && (!current || dirty & /*$$scope*/ 4)) {
 					update_slot_base(
 						default_slot,
 						default_slot_template,
 						ctx,
-						/*$$scope*/ ctx[1],
+						/*$$scope*/ ctx[2],
 						!current
-						? get_all_dirty_from_scope(/*$$scope*/ ctx[1])
-						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[1], dirty, null),
+						? get_all_dirty_from_scope(/*$$scope*/ ctx[2])
+						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[2], dirty, null),
 						null
 					);
 				}
@@ -12601,7 +12601,7 @@ function create_fragment$C(ctx) {
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(span);
 			if (default_slot) default_slot.d(detaching);
-			/*span_binding*/ ctx[3](null);
+			/*span_binding*/ ctx[4](null);
 		}
 	};
 
@@ -12616,19 +12616,19 @@ function create_fragment$C(ctx) {
 	return block;
 }
 
-const MARGIN = 15;
 const DEBOUNCE_RESIZE = 10;
 
 function instance$C($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Text_fit', slots, ['default']);
+	let { margin = 0 } = $$props;
 	let el, parent, resizeObserver, timer, mutationObserver;
 
 	function resize() {
 		$$invalidate(0, el.style.transform = '', el);
 		const textW = el.getBoundingClientRect().width;
 		const parentW = parent.getBoundingClientRect().width;
-		const val = (parentW - MARGIN) / textW;
+		const val = (parentW - margin) / textW;
 		$$invalidate(0, el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`, el);
 	}
 
@@ -12651,7 +12651,7 @@ function instance$C($$self, $$props, $$invalidate) {
 		mutationObserver.disconnect();
 	});
 
-	const writable_props = [];
+	const writable_props = ['margin'];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Text_fit> was created with unknown prop '${key}'`);
@@ -12665,13 +12665,14 @@ function instance$C($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$set = $$props => {
-		if ('$$scope' in $$props) $$invalidate(1, $$scope = $$props.$$scope);
+		if ('margin' in $$props) $$invalidate(1, margin = $$props.margin);
+		if ('$$scope' in $$props) $$invalidate(2, $$scope = $$props.$$scope);
 	};
 
 	$$self.$capture_state = () => ({
 		onMount,
 		onDestroy,
-		MARGIN,
+		margin,
 		DEBOUNCE_RESIZE,
 		el,
 		parent,
@@ -12682,6 +12683,7 @@ function instance$C($$self, $$props, $$invalidate) {
 	});
 
 	$$self.$inject_state = $$props => {
+		if ('margin' in $$props) $$invalidate(1, margin = $$props.margin);
 		if ('el' in $$props) $$invalidate(0, el = $$props.el);
 		if ('parent' in $$props) parent = $$props.parent;
 		if ('resizeObserver' in $$props) resizeObserver = $$props.resizeObserver;
@@ -12693,13 +12695,13 @@ function instance$C($$self, $$props, $$invalidate) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [el, $$scope, slots, span_binding];
+	return [el, margin, $$scope, slots, span_binding];
 }
 
 let Text_fit$1 = class Text_fit extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$C, create_fragment$C, safe_not_equal, {});
+		init(this, options, instance$C, create_fragment$C, safe_not_equal, { margin: 1 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -12707,6 +12709,14 @@ let Text_fit$1 = class Text_fit extends SvelteComponentDev {
 			options,
 			id: create_fragment$C.name
 		});
+	}
+
+	get margin() {
+		throw new Error("<Text_fit>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set margin(value) {
+		throw new Error("<Text_fit>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 };
 
@@ -22271,7 +22281,7 @@ const file$m = "docs-src/components/icon.svelte";
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[0] = list[i];
+	child_ctx[2] = list[i];
 	return child_ctx;
 }
 
@@ -22282,13 +22292,12 @@ function create_each_block(ctx) {
 	let icon;
 	let t0;
 	let div1;
-	let t1_value = /*icon*/ ctx[0] + "";
+	let t1_value = /*icon*/ ctx[2] + "";
 	let t1;
-	let t2;
 	let current;
 
 	icon = new Icon({
-			props: { name: /*icon*/ ctx[0] },
+			props: { name: /*icon*/ ctx[2] },
 			$$inline: true
 		});
 
@@ -22300,7 +22309,6 @@ function create_each_block(ctx) {
 			t0 = space();
 			div1 = element("div");
 			t1 = text(t1_value);
-			t2 = space();
 			attr_dev(div0, "class", "icon-block-icon");
 			add_location(div0, file$m, 3, 2, 78);
 			attr_dev(div1, "class", "icon-block-name");
@@ -22315,7 +22323,6 @@ function create_each_block(ctx) {
 			append_dev(div2, t0);
 			append_dev(div2, div1);
 			append_dev(div1, t1);
-			append_dev(div2, t2);
 			current = true;
 		},
 		p: noop,
@@ -22348,7 +22355,10 @@ function create_each_block(ctx) {
 function create_fragment$m(ctx) {
 	let h2;
 	let t1;
-	let each_1_anchor;
+	let t2;
+	let codeexample;
+	let t3;
+	let api;
 	let current;
 	let each_value = Object.keys(icons);
 	validate_each_argument(each_value);
@@ -22362,6 +22372,16 @@ function create_fragment$m(ctx) {
 		each_blocks[i] = null;
 	});
 
+	codeexample = new Code_example({
+			props: { html: /*exampleHtml*/ ctx[1] },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
+			$$inline: true
+		});
+
 	const block = {
 		c: function create() {
 			h2 = element("h2");
@@ -22372,7 +22392,10 @@ function create_fragment$m(ctx) {
 				each_blocks[i].c();
 			}
 
-			each_1_anchor = empty();
+			t2 = space();
+			create_component(codeexample.$$.fragment);
+			t3 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$m, 0, 0, 0);
 		},
 		l: function claim(nodes) {
@@ -22386,7 +22409,10 @@ function create_fragment$m(ctx) {
 				each_blocks[i].m(target, anchor);
 			}
 
-			insert_dev(target, each_1_anchor, anchor);
+			insert_dev(target, t2, anchor);
+			mount_component(codeexample, target, anchor);
+			insert_dev(target, t3, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
@@ -22405,7 +22431,7 @@ function create_fragment$m(ctx) {
 						each_blocks[i] = create_each_block(child_ctx);
 						each_blocks[i].c();
 						transition_in(each_blocks[i], 1);
-						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+						each_blocks[i].m(t2.parentNode, t2);
 					}
 				}
 
@@ -22425,6 +22451,8 @@ function create_fragment$m(ctx) {
 				transition_in(each_blocks[i]);
 			}
 
+			transition_in(codeexample.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -22434,13 +22462,18 @@ function create_fragment$m(ctx) {
 				transition_out(each_blocks[i]);
 			}
 
+			transition_out(codeexample.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(h2);
 			if (detaching) detach_dev(t1);
 			destroy_each(each_blocks, detaching);
-			if (detaching) detach_dev(each_1_anchor);
+			if (detaching) detach_dev(t2);
+			destroy_component(codeexample, detaching);
+			if (detaching) detach_dev(t3);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -22458,14 +22491,35 @@ function create_fragment$m(ctx) {
 function instance$m($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Icon', slots, []);
+
+	const apiProps = [
+		{
+			name: 'name',
+			type: 'string',
+			description: 'Name of the icon.'
+		}
+	];
+
+	const exampleHtml = `
+<Icon name="alert"/>
+`;
+
 	const writable_props = [];
 
 	Object_1.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Icon> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Icon, icons });
-	return [];
+	$$self.$capture_state = () => ({
+		Icon,
+		icons,
+		API: Api_table,
+		CodeExample: Code_example,
+		apiProps,
+		exampleHtml
+	});
+
+	return [apiProps, exampleHtml];
 }
 
 class Icon_1 extends SvelteComponentDev {
@@ -22485,7 +22539,7 @@ class Icon_1 extends SvelteComponentDev {
 /* docs-src/components/text-fit.svelte generated by Svelte v3.55.0 */
 const file$l = "docs-src/components/text-fit.svelte";
 
-// (3:47) <TextFit>
+// (9:47) <TextFit>
 function create_default_slot_2$5(ctx) {
 	let t;
 
@@ -22508,14 +22562,14 @@ function create_default_slot_2$5(ctx) {
 		block,
 		id: create_default_slot_2$5.name,
 		type: "slot",
-		source: "(3:47) <TextFit>",
+		source: "(9:47) <TextFit>",
 		ctx
 	});
 
 	return block;
 }
 
-// (4:47) <TextFit>
+// (10:47) <TextFit>
 function create_default_slot_1$5(ctx) {
 	let t;
 
@@ -22538,14 +22592,14 @@ function create_default_slot_1$5(ctx) {
 		block,
 		id: create_default_slot_1$5.name,
 		type: "slot",
-		source: "(4:47) <TextFit>",
+		source: "(10:47) <TextFit>",
 		ctx
 	});
 
 	return block;
 }
 
-// (5:47) <TextFit>
+// (11:47) <TextFit>
 function create_default_slot$7(ctx) {
 	let t;
 
@@ -22568,7 +22622,7 @@ function create_default_slot$7(ctx) {
 		block,
 		id: create_default_slot$7.name,
 		type: "slot",
-		source: "(5:47) <TextFit>",
+		source: "(11:47) <TextFit>",
 		ctx
 	});
 
@@ -22578,16 +22632,31 @@ function create_default_slot$7(ctx) {
 function create_fragment$l(ctx) {
 	let h2;
 	let t1;
+	let p0;
+	let t3;
+	let p1;
+	let t4;
+	let br;
+	let t5;
+	let em;
+	let t7;
+	let t8;
+	let hr;
+	let t9;
 	let input;
-	let t2;
+	let t10;
 	let div0;
 	let textfit0;
-	let t3;
+	let t11;
 	let div1;
 	let textfit1;
-	let t4;
+	let t12;
 	let div2;
 	let textfit2;
+	let t13;
+	let codeexample;
+	let t14;
+	let api;
 	let current;
 	let mounted;
 	let dispose;
@@ -22616,33 +22685,65 @@ function create_fragment$l(ctx) {
 			$$inline: true
 		});
 
+	codeexample = new Code_example({
+			props: { html: /*exampleHtml*/ ctx[2] },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[1] },
+			$$inline: true
+		});
+
 	const block = {
 		c: function create() {
 			h2 = element("h2");
 			h2.textContent = "Text-fit";
 			t1 = space();
+			p0 = element("p");
+			p0.textContent = "Auto-adjusts font size of the block of text, so that the text takes full width of the block.";
+			t3 = space();
+			p1 = element("p");
+			t4 = text("This is using matrix transformation, so the text will not be super sharp.");
+			br = element("br");
+			t5 = text("\n\tIt is advised to set the ");
+			em = element("em");
+			em.textContent = "font-size";
+			t7 = text(" (on the parent or the component itself) that is closest to the average size of the text.");
+			t8 = space();
+			hr = element("hr");
+			t9 = space();
 			input = element("input");
-			t2 = space();
+			t10 = space();
 			div0 = element("div");
 			create_component(textfit0.$$.fragment);
-			t3 = space();
+			t11 = space();
 			div1 = element("div");
 			create_component(textfit1.$$.fragment);
-			t4 = space();
+			t12 = space();
 			div2 = element("div");
 			create_component(textfit2.$$.fragment);
+			t13 = space();
+			create_component(codeexample.$$.fragment);
+			t14 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$l, 0, 0, 0);
+			add_location(p0, file$l, 1, 0, 18);
+			add_location(br, file$l, 2, 76, 194);
+			add_location(em, file$l, 3, 26, 225);
+			add_location(p1, file$l, 2, 0, 118);
+			add_location(hr, file$l, 5, 0, 338);
 			attr_dev(input, "type", "text");
-			add_location(input, file$l, 1, 0, 18);
+			add_location(input, file$l, 7, 0, 344);
 			attr_dev(div0, "class", "text-fit-div");
 			set_style(div0, "width", "100px");
-			add_location(div0, file$l, 2, 0, 65);
+			add_location(div0, file$l, 8, 0, 391);
 			attr_dev(div1, "class", "text-fit-div");
 			set_style(div1, "width", "200px");
-			add_location(div1, file$l, 3, 0, 151);
+			add_location(div1, file$l, 9, 0, 477);
 			attr_dev(div2, "class", "text-fit-div");
 			set_style(div2, "width", "300px");
-			add_location(div2, file$l, 4, 0, 237);
+			add_location(div2, file$l, 10, 0, 563);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -22650,21 +22751,36 @@ function create_fragment$l(ctx) {
 		m: function mount(target, anchor) {
 			insert_dev(target, h2, anchor);
 			insert_dev(target, t1, anchor);
+			insert_dev(target, p0, anchor);
+			insert_dev(target, t3, anchor);
+			insert_dev(target, p1, anchor);
+			append_dev(p1, t4);
+			append_dev(p1, br);
+			append_dev(p1, t5);
+			append_dev(p1, em);
+			append_dev(p1, t7);
+			insert_dev(target, t8, anchor);
+			insert_dev(target, hr, anchor);
+			insert_dev(target, t9, anchor);
 			insert_dev(target, input, anchor);
 			set_input_value(input, /*textFitText*/ ctx[0]);
-			insert_dev(target, t2, anchor);
+			insert_dev(target, t10, anchor);
 			insert_dev(target, div0, anchor);
 			mount_component(textfit0, div0, null);
-			insert_dev(target, t3, anchor);
+			insert_dev(target, t11, anchor);
 			insert_dev(target, div1, anchor);
 			mount_component(textfit1, div1, null);
-			insert_dev(target, t4, anchor);
+			insert_dev(target, t12, anchor);
 			insert_dev(target, div2, anchor);
 			mount_component(textfit2, div2, null);
+			insert_dev(target, t13, anchor);
+			mount_component(codeexample, target, anchor);
+			insert_dev(target, t14, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 
 			if (!mounted) {
-				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[1]);
+				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[3]);
 				mounted = true;
 			}
 		},
@@ -22675,21 +22791,21 @@ function create_fragment$l(ctx) {
 
 			const textfit0_changes = {};
 
-			if (dirty & /*$$scope, textFitText*/ 5) {
+			if (dirty & /*$$scope, textFitText*/ 17) {
 				textfit0_changes.$$scope = { dirty, ctx };
 			}
 
 			textfit0.$set(textfit0_changes);
 			const textfit1_changes = {};
 
-			if (dirty & /*$$scope, textFitText*/ 5) {
+			if (dirty & /*$$scope, textFitText*/ 17) {
 				textfit1_changes.$$scope = { dirty, ctx };
 			}
 
 			textfit1.$set(textfit1_changes);
 			const textfit2_changes = {};
 
-			if (dirty & /*$$scope, textFitText*/ 5) {
+			if (dirty & /*$$scope, textFitText*/ 17) {
 				textfit2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -22700,27 +22816,41 @@ function create_fragment$l(ctx) {
 			transition_in(textfit0.$$.fragment, local);
 			transition_in(textfit1.$$.fragment, local);
 			transition_in(textfit2.$$.fragment, local);
+			transition_in(codeexample.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(textfit0.$$.fragment, local);
 			transition_out(textfit1.$$.fragment, local);
 			transition_out(textfit2.$$.fragment, local);
+			transition_out(codeexample.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(h2);
 			if (detaching) detach_dev(t1);
+			if (detaching) detach_dev(p0);
+			if (detaching) detach_dev(t3);
+			if (detaching) detach_dev(p1);
+			if (detaching) detach_dev(t8);
+			if (detaching) detach_dev(hr);
+			if (detaching) detach_dev(t9);
 			if (detaching) detach_dev(input);
-			if (detaching) detach_dev(t2);
+			if (detaching) detach_dev(t10);
 			if (detaching) detach_dev(div0);
 			destroy_component(textfit0);
-			if (detaching) detach_dev(t3);
+			if (detaching) detach_dev(t11);
 			if (detaching) detach_dev(div1);
 			destroy_component(textfit1);
-			if (detaching) detach_dev(t4);
+			if (detaching) detach_dev(t12);
 			if (detaching) detach_dev(div2);
 			destroy_component(textfit2);
+			if (detaching) detach_dev(t13);
+			destroy_component(codeexample, detaching);
+			if (detaching) detach_dev(t14);
+			destroy_component(api, detaching);
 			mounted = false;
 			dispose();
 		}
@@ -22740,6 +22870,20 @@ function create_fragment$l(ctx) {
 function instance$l($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Text_fit', slots, []);
+
+	const apiProps = [
+		{
+			name: 'margin',
+			type: 'number',
+			default: '0',
+			description: 'Margin around the text (in px).'
+		}
+	];
+
+	const exampleHtml = `
+<TextFit>Some text</TextFit>
+`;
+
 	let textFitText = 'My Lovely Text';
 	const writable_props = [];
 
@@ -22752,7 +22896,14 @@ function instance$l($$self, $$props, $$invalidate) {
 		$$invalidate(0, textFitText);
 	}
 
-	$$self.$capture_state = () => ({ TextFit: Text_fit$1, textFitText });
+	$$self.$capture_state = () => ({
+		TextFit: Text_fit$1,
+		API: Api_table,
+		CodeExample: Code_example,
+		apiProps,
+		exampleHtml,
+		textFitText
+	});
 
 	$$self.$inject_state = $$props => {
 		if ('textFitText' in $$props) $$invalidate(0, textFitText = $$props.textFitText);
@@ -22762,7 +22913,7 @@ function instance$l($$self, $$props, $$invalidate) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [textFitText, input_input_handler];
+	return [textFitText, apiProps, exampleHtml, input_input_handler];
 }
 
 class Text_fit extends SvelteComponentDev {
