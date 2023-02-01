@@ -10625,7 +10625,7 @@ function create_if_block$7(ctx) {
 	];
 
 	let button_props = {
-		$$slots: { default: [create_default_slot$c] },
+		$$slots: { default: [create_default_slot$d] },
 		$$scope: { ctx }
 	};
 
@@ -10694,7 +10694,7 @@ function create_if_block$7(ctx) {
 }
 
 // (2:1) <Button   className="push-button {className}"   aria-pressed="{pressed}"   {...$$props}   {success}   {warning}   {danger}   {round}   {icon}   bind:this="{_this}"   on:mousedown="{onMouseDown}">
-function create_default_slot$c(ctx) {
+function create_default_slot$d(ctx) {
 	let current;
 	const default_slot_template = /*#slots*/ ctx[11].default;
 	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[14], null);
@@ -10742,7 +10742,7 @@ function create_default_slot$c(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$c.name,
+		id: create_default_slot$d.name,
 		type: "slot",
 		source: "(2:1) <Button   className=\\\"push-button {className}\\\"   aria-pressed=\\\"{pressed}\\\"   {...$$props}   {success}   {warning}   {danger}   {round}   {icon}   bind:this=\\\"{_this}\\\"   on:mousedown=\\\"{onMouseDown}\\\">",
 		ctx
@@ -11592,7 +11592,7 @@ function create_fragment$F(ctx) {
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div, anchor);
-			/*div_binding*/ ctx[5](div);
+			/*div_binding*/ ctx[8](div);
 
 			if (!mounted) {
 				dispose = listen_dev(div, "mousedown", /*mousedown*/ ctx[3], false, false, false);
@@ -11612,7 +11612,7 @@ function create_fragment$F(ctx) {
 		o: noop,
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(div);
-			/*div_binding*/ ctx[5](null);
+			/*div_binding*/ ctx[8](null);
 			mounted = false;
 			dispose();
 		}
@@ -11634,6 +11634,7 @@ function instance$F($$self, $$props, $$invalidate) {
 	validate_slots('Splitter', slots, []);
 	const dispatch = createEventDispatcher();
 	const size = 8, halfsize = size / 2;
+	const Box = {};
 	let isVertical = false;
 	let el, parentEl, targetEl;
 	let initialTargetBox, startX, startY;
@@ -11643,6 +11644,18 @@ function instance$F($$self, $$props, $$invalidate) {
 	onMount(() => {
 		requestAnimationFrame(init);
 	});
+
+	function toggle() {
+		setSize(Box.collapsed ? 'max' : 'min', true);
+	}
+
+	function collapse() {
+		setSize('min', true);
+	}
+
+	function expand() {
+		setSize('max', true);
+	}
 
 	function setSize(to, withAnimation = false) {
 		const prop = isVertical ? 'height' : 'width';
@@ -11692,12 +11705,16 @@ function instance$F($$self, $$props, $$invalidate) {
 			targetEl.style.height = box.height + 'px';
 			$$invalidate(1, el.style.top = box.height - halfsize + 'px', el);
 			const collapsed = initialTargetBox.minHeight === box.height;
-			dispatch('change', { height: box.height, collapsed });
+			Box.height = box.height;
+			Box.collapsed = collapsed;
+			dispatch('change', Box);
 		} else {
 			targetEl.style.width = box.width + 'px';
 			$$invalidate(1, el.style.left = box.width - halfsize + 'px', el);
 			const collapsed = initialTargetBox.minWidth === box.width;
-			dispatch('change', { width: box.width, collapsed });
+			Box.width = box.width;
+			Box.collapsed = collapsed;
+			dispatch('change', Box);
 		}
 
 		if (withAnimation) {
@@ -11705,6 +11722,7 @@ function instance$F($$self, $$props, $$invalidate) {
 				() => {
 					targetEl.style.transition = originalTargetTransition;
 					$$invalidate(1, el.style.transition = originalElTransition, el);
+					dispatch('changed', Box);
 				},
 				ANIMATION_SPEED
 			);
@@ -11747,6 +11765,7 @@ function instance$F($$self, $$props, $$invalidate) {
 		document.removeEventListener('mouseup', mouseup);
 		document.removeEventListener('mousemove', mousemove);
 		document.body.style.cursor = bodyCursor;
+		dispatch('changed', Box);
 	}
 
 	const writable_props = [];
@@ -11778,6 +11797,7 @@ function instance$F($$self, $$props, $$invalidate) {
 		dispatch,
 		size,
 		halfsize,
+		Box,
 		isVertical,
 		el,
 		parentEl,
@@ -11788,6 +11808,9 @@ function instance$F($$self, $$props, $$invalidate) {
 		mousedownTargetBox,
 		isDragging,
 		bodyCursor,
+		toggle,
+		collapse,
+		expand,
 		setSize,
 		init,
 		updateSize,
@@ -11813,13 +11836,29 @@ function instance$F($$self, $$props, $$invalidate) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [isVertical, el, isDragging, mousedown, setSize, div_binding];
+	return [
+		isVertical,
+		el,
+		isDragging,
+		mousedown,
+		toggle,
+		collapse,
+		expand,
+		setSize,
+		div_binding
+	];
 }
 
 class Splitter extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$F, create_fragment$F, safe_not_equal, { setSize: 4 });
+
+		init(this, options, instance$F, create_fragment$F, safe_not_equal, {
+			toggle: 4,
+			collapse: 5,
+			expand: 6,
+			setSize: 7
+		});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -11829,8 +11868,32 @@ class Splitter extends SvelteComponentDev {
 		});
 	}
 
-	get setSize() {
+	get toggle() {
 		return this.$$.ctx[4];
+	}
+
+	set toggle(value) {
+		throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get collapse() {
+		return this.$$.ctx[5];
+	}
+
+	set collapse(value) {
+		throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get expand() {
+		return this.$$.ctx[6];
+	}
+
+	set expand(value) {
+		throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get setSize() {
+		return this.$$.ctx[7];
 	}
 
 	set setSize(value) {
@@ -15184,7 +15247,7 @@ function create_each_block$1(ctx) {
 }
 
 // (5:0) <Table className="api-table">
-function create_default_slot$b(ctx) {
+function create_default_slot$c(ctx) {
 	let thead;
 	let tr;
 	let th0;
@@ -15272,7 +15335,7 @@ function create_default_slot$b(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$b.name,
+		id: create_default_slot$c.name,
 		type: "slot",
 		source: "(5:0) <Table className=\\\"api-table\\\">",
 		ctx
@@ -15293,7 +15356,7 @@ function create_fragment$u(ctx) {
 	table = new Table({
 			props: {
 				className: "api-table",
-				$$slots: { default: [create_default_slot$b] },
+				$$slots: { default: [create_default_slot$c] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -15680,7 +15743,7 @@ function create_if_block$1(ctx) {
 	const button_spread_levels = [/*props*/ ctx[0]];
 
 	let button_props = {
-		$$slots: { default: [create_default_slot$a] },
+		$$slots: { default: [create_default_slot$b] },
 		$$scope: { ctx }
 	};
 
@@ -15735,7 +15798,7 @@ function create_if_block$1(ctx) {
 }
 
 // (7:3) <Button {...props}>
-function create_default_slot$a(ctx) {
+function create_default_slot$b(ctx) {
 	let t;
 
 	const block = {
@@ -15755,7 +15818,7 @@ function create_default_slot$a(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$a.name,
+		id: create_default_slot$b.name,
 		type: "slot",
 		source: "(7:3) <Button {...props}>",
 		ctx
@@ -17487,7 +17550,7 @@ function create_default_slot_1$8(ctx) {
 }
 
 // (52:0) <ButtonGroup round>
-function create_default_slot$9(ctx) {
+function create_default_slot$a(ctx) {
 	let button0;
 	let t0;
 	let button1;
@@ -17539,7 +17602,7 @@ function create_default_slot$9(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$9.name,
+		id: create_default_slot$a.name,
 		type: "slot",
 		source: "(52:0) <ButtonGroup round>",
 		ctx
@@ -17636,7 +17699,7 @@ function create_fragment$q(ctx) {
 	buttongroup6 = new Button_group$1({
 			props: {
 				round: true,
-				$$slots: { default: [create_default_slot$9] },
+				$$slots: { default: [create_default_slot$a] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -18911,7 +18974,7 @@ function create_default_slot_1$7(ctx) {
 }
 
 // (27:0) <PushButton icon="trash" danger>
-function create_default_slot$8(ctx) {
+function create_default_slot$9(ctx) {
 	let t;
 
 	const block = {
@@ -18928,7 +18991,7 @@ function create_default_slot$8(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$8.name,
+		id: create_default_slot$9.name,
 		type: "slot",
 		source: "(27:0) <PushButton icon=\\\"trash\\\" danger>",
 		ctx
@@ -19161,7 +19224,7 @@ function create_fragment$o(ctx) {
 			props: {
 				icon: "trash",
 				danger: true,
-				$$slots: { default: [create_default_slot$8] },
+				$$slots: { default: [create_default_slot$9] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -21241,7 +21304,7 @@ function create_default_slot_1$6(ctx) {
 }
 
 // (63:0) <Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
-function create_default_slot$7(ctx) {
+function create_default_slot$8(ctx) {
 	let item0;
 	let t0;
 	let item1;
@@ -21353,7 +21416,7 @@ function create_default_slot$7(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$7.name,
+		id: create_default_slot$8.name,
 		type: "slot",
 		source: "(63:0) <Menu type=\\\"context\\\" targetSelector=\\\".div2\\\" bind:this=\\\"{windowsMenu}\\\">",
 		ctx
@@ -21528,7 +21591,7 @@ function create_fragment$n(ctx) {
 	let menu5_props = {
 		type: "context",
 		targetSelector: ".div2",
-		$$slots: { default: [create_default_slot$7] },
+		$$slots: { default: [create_default_slot$8] },
 		$$scope: { ctx }
 	};
 
@@ -22483,7 +22546,7 @@ function create_default_slot_1$5(ctx) {
 }
 
 // (5:47) <TextFit>
-function create_default_slot$6(ctx) {
+function create_default_slot$7(ctx) {
 	let t;
 
 	const block = {
@@ -22503,7 +22566,7 @@ function create_default_slot$6(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$6.name,
+		id: create_default_slot$7.name,
 		type: "slot",
 		source: "(5:47) <TextFit>",
 		ctx
@@ -22547,7 +22610,7 @@ function create_fragment$l(ctx) {
 
 	textfit2 = new Text_fit$1({
 			props: {
-				$$slots: { default: [create_default_slot$6] },
+				$$slots: { default: [create_default_slot$7] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -22857,7 +22920,7 @@ function create_default_slot_1$4(ctx) {
 }
 
 // (8:0) <Button on:click="{() => showToast('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', 200000000)}">
-function create_default_slot$5(ctx) {
+function create_default_slot$6(ctx) {
 	let t;
 
 	const block = {
@@ -22874,7 +22937,7 @@ function create_default_slot$5(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$5.name,
+		id: create_default_slot$6.name,
 		type: "slot",
 		source: "(8:0) <Button on:click=\\\"{() => showToast('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', 200000000)}\\\">",
 		ctx
@@ -22962,7 +23025,7 @@ function create_fragment$k(ctx) {
 
 	button5 = new Button({
 			props: {
-				$$slots: { default: [create_default_slot$5] },
+				$$slots: { default: [create_default_slot$6] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -27602,7 +27665,7 @@ function create_default_slot_1$3(ctx) {
 }
 
 // (30:0) <Tooltip target="box5" events="hover,focus" delay="700">
-function create_default_slot$4(ctx) {
+function create_default_slot$5(ctx) {
 	let t;
 
 	const block = {
@@ -27619,7 +27682,7 @@ function create_default_slot$4(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$4.name,
+		id: create_default_slot$5.name,
 		type: "slot",
 		source: "(30:0) <Tooltip target=\\\"box5\\\" events=\\\"hover,focus\\\" delay=\\\"700\\\">",
 		ctx
@@ -27721,7 +27784,7 @@ function create_fragment$8(ctx) {
 				target: "box5",
 				events: "hover,focus",
 				delay: "700",
-				$$slots: { default: [create_default_slot$4] },
+				$$slots: { default: [create_default_slot$5] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -28326,7 +28389,7 @@ function create_default_slot_1$2(ctx) {
 }
 
 // (36:2) <Button on:click="{() => dialog3.close()}">
-function create_default_slot$3(ctx) {
+function create_default_slot$4(ctx) {
 	let t;
 
 	const block = {
@@ -28343,7 +28406,7 @@ function create_default_slot$3(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$3.name,
+		id: create_default_slot$4.name,
 		type: "slot",
 		source: "(36:2) <Button on:click=\\\"{() => dialog3.close()}\\\">",
 		ctx
@@ -28372,7 +28435,7 @@ function create_footer_slot(ctx) {
 
 	button1 = new Button({
 			props: {
-				$$slots: { default: [create_default_slot$3] },
+				$$slots: { default: [create_default_slot$4] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -28951,7 +29014,7 @@ function create_default_slot_1$1(ctx) {
 }
 
 // (5:0) <Drawer bind:this="{drawer}" title="Drawer">
-function create_default_slot$2(ctx) {
+function create_default_slot$3(ctx) {
 	let t0;
 	let br0;
 	let t1;
@@ -29079,7 +29142,7 @@ function create_default_slot$2(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$2.name,
+		id: create_default_slot$3.name,
 		type: "slot",
 		source: "(5:0) <Drawer bind:this=\\\"{drawer}\\\" title=\\\"Drawer\\\">",
 		ctx
@@ -29114,7 +29177,7 @@ function create_fragment$6(ctx) {
 
 	let drawer_1_props = {
 		title: "Drawer",
-		$$slots: { default: [create_default_slot$2] },
+		$$slots: { default: [create_default_slot$3] },
 		$$scope: { ctx }
 	};
 
@@ -29444,7 +29507,7 @@ function create_default_slot_1(ctx) {
 }
 
 // (15:0) <Panel title="Panel 2" open round>
-function create_default_slot$1(ctx) {
+function create_default_slot$2(ctx) {
 	let p0;
 	let t1;
 	let p1;
@@ -29519,7 +29582,7 @@ function create_default_slot$1(ctx) {
 
 	dispatch_dev("SvelteRegisterBlock", {
 		block,
-		id: create_default_slot$1.name,
+		id: create_default_slot$2.name,
 		type: "slot",
 		source: "(15:0) <Panel title=\\\"Panel 2\\\" open round>",
 		ctx
@@ -29558,7 +29621,7 @@ function create_fragment$5(ctx) {
 				title: "Panel 2",
 				open: true,
 				round: true,
-				$$slots: { default: [create_default_slot$1] },
+				$$slots: { default: [create_default_slot$2] },
 				$$scope: { ctx }
 			},
 			$$inline: true
@@ -29750,29 +29813,113 @@ class Panel_1 extends SvelteComponentDev {
 const { console: console_1$2 } = globals;
 const file$4 = "docs-src/components/splitter.svelte";
 
+// (10:0) <Button on:click="{toggle}">
+function create_default_slot$1(ctx) {
+	let t;
+
+	const block = {
+		c: function create() {
+			t = text("Toggle");
+		},
+		m: function mount(target, anchor) {
+			insert_dev(target, t, anchor);
+		},
+		d: function destroy(detaching) {
+			if (detaching) detach_dev(t);
+		}
+	};
+
+	dispatch_dev("SvelteRegisterBlock", {
+		block,
+		id: create_default_slot$1.name,
+		type: "slot",
+		source: "(10:0) <Button on:click=\\\"{toggle}\\\">",
+		ctx
+	});
+
+	return block;
+}
+
 function create_fragment$4(ctx) {
 	let h2;
 	let t1;
 	let p;
 	let t3;
+	let ul;
+	let li0;
+	let t4;
+	let em0;
+	let t6;
+	let li1;
+	let t7;
+	let em1;
+	let t9;
+	let em2;
+	let t11;
+	let t12;
+	let hr;
+	let t13;
+	let button;
+	let t14;
 	let div2;
 	let div0;
-	let t5;
+	let t16;
 	let splitter0;
-	let t6;
+	let t17;
 	let div1;
-	let t8;
+	let t19;
+	let br;
+	let t20;
 	let div5;
 	let div3;
-	let t10;
-	let splitter1;
-	let t11;
+	let t22;
+	let splitter1_1;
+	let t23;
 	let div4;
+	let t25;
+	let codeexample;
+	let t26;
+	let api0;
+	let t27;
+	let api1;
 	let current;
-	splitter0 = new Splitter({ $$inline: true });
-	splitter0.$on("change", onchange);
-	splitter1 = new Splitter({ $$inline: true });
-	splitter1.$on("change", onchange);
+
+	button = new Button({
+			props: {
+				$$slots: { default: [create_default_slot$1] },
+				$$scope: { ctx }
+			},
+			$$inline: true
+		});
+
+	button.$on("click", /*toggle*/ ctx[5]);
+	let splitter0_props = {};
+	splitter0 = new Splitter({ props: splitter0_props, $$inline: true });
+	/*splitter0_binding*/ ctx[6](splitter0);
+	splitter0.$on("changed", onchange);
+	let splitter1_1_props = {};
+	splitter1_1 = new Splitter({ props: splitter1_1_props, $$inline: true });
+	/*splitter1_1_binding*/ ctx[7](splitter1_1);
+	splitter1_1.$on("changed", onchange);
+
+	codeexample = new Code_example({
+			props: { html: /*exampleHtml*/ ctx[4] },
+			$$inline: true
+		});
+
+	api0 = new Api_table({
+			props: { props: /*apiProps*/ ctx[2] },
+			$$inline: true
+		});
+
+	api1 = new Api_table({
+			props: {
+				props: /*instanceApiProps*/ ctx[3],
+				title: "Instance API",
+				description: "A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"
+			},
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -29780,39 +29927,74 @@ function create_fragment$4(ctx) {
 			h2.textContent = "Splitter";
 			t1 = space();
 			p = element("p");
-			p.textContent = "Resizable splitter component";
+			p.textContent = "Resizable splitter component.";
 			t3 = space();
+			ul = element("ul");
+			li0 = element("li");
+			t4 = text("It uses ");
+			em0 = element("em");
+			em0.textContent = "flex flow";
+			t6 = text(" property to determine the direction of resizing (row=horizontal, column=vertical).\n\t");
+			li1 = element("li");
+			t7 = text("It uses ");
+			em1 = element("em");
+			em1.textContent = "min-width";
+			t9 = text(" and ");
+			em2 = element("em");
+			em2.textContent = "max-width";
+			t11 = text(" props to determine how much to resize;");
+			t12 = space();
+			hr = element("hr");
+			t13 = space();
+			create_component(button.$$.fragment);
+			t14 = space();
 			div2 = element("div");
 			div0 = element("div");
 			div0.textContent = "Left";
-			t5 = space();
+			t16 = space();
 			create_component(splitter0.$$.fragment);
-			t6 = space();
+			t17 = space();
 			div1 = element("div");
 			div1.textContent = "Right";
-			t8 = space();
+			t19 = space();
+			br = element("br");
+			t20 = space();
 			div5 = element("div");
 			div3 = element("div");
 			div3.textContent = "Top";
-			t10 = space();
-			create_component(splitter1.$$.fragment);
-			t11 = space();
+			t22 = space();
+			create_component(splitter1_1.$$.fragment);
+			t23 = space();
 			div4 = element("div");
 			div4.textContent = "Bottom";
+			t25 = space();
+			create_component(codeexample.$$.fragment);
+			t26 = space();
+			create_component(api0.$$.fragment);
+			t27 = space();
+			create_component(api1.$$.fragment);
 			add_location(h2, file$4, 0, 0, 0);
 			add_location(p, file$4, 1, 0, 18);
+			add_location(em0, file$4, 3, 13, 73);
+			add_location(li0, file$4, 3, 1, 61);
+			add_location(em1, file$4, 4, 13, 188);
+			add_location(em2, file$4, 4, 36, 211);
+			add_location(li1, file$4, 4, 1, 176);
+			add_location(ul, file$4, 2, 0, 55);
+			add_location(hr, file$4, 7, 0, 276);
 			attr_dev(div0, "class", "split-box min-w");
-			add_location(div0, file$4, 4, 1, 81);
+			add_location(div0, file$4, 11, 1, 352);
 			attr_dev(div1, "class", "split-box");
-			add_location(div1, file$4, 6, 1, 157);
+			add_location(div1, file$4, 13, 1, 452);
 			attr_dev(div2, "class", "split-wrap");
-			add_location(div2, file$4, 3, 0, 55);
+			add_location(div2, file$4, 10, 0, 326);
+			add_location(br, file$4, 15, 0, 494);
 			attr_dev(div3, "class", "split-box min-h");
-			add_location(div3, file$4, 10, 1, 239);
+			add_location(div3, file$4, 17, 1, 538);
 			attr_dev(div4, "class", "split-box");
-			add_location(div4, file$4, 12, 1, 314);
+			add_location(div4, file$4, 19, 1, 637);
 			attr_dev(div5, "class", "split-wrap split-wrap-v");
-			add_location(div5, file$4, 9, 0, 200);
+			add_location(div5, file$4, 16, 0, 499);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -29822,31 +30004,75 @@ function create_fragment$4(ctx) {
 			insert_dev(target, t1, anchor);
 			insert_dev(target, p, anchor);
 			insert_dev(target, t3, anchor);
+			insert_dev(target, ul, anchor);
+			append_dev(ul, li0);
+			append_dev(li0, t4);
+			append_dev(li0, em0);
+			append_dev(li0, t6);
+			append_dev(ul, li1);
+			append_dev(li1, t7);
+			append_dev(li1, em1);
+			append_dev(li1, t9);
+			append_dev(li1, em2);
+			append_dev(li1, t11);
+			insert_dev(target, t12, anchor);
+			insert_dev(target, hr, anchor);
+			insert_dev(target, t13, anchor);
+			mount_component(button, target, anchor);
+			insert_dev(target, t14, anchor);
 			insert_dev(target, div2, anchor);
 			append_dev(div2, div0);
-			append_dev(div2, t5);
+			append_dev(div2, t16);
 			mount_component(splitter0, div2, null);
-			append_dev(div2, t6);
+			append_dev(div2, t17);
 			append_dev(div2, div1);
-			insert_dev(target, t8, anchor);
+			insert_dev(target, t19, anchor);
+			insert_dev(target, br, anchor);
+			insert_dev(target, t20, anchor);
 			insert_dev(target, div5, anchor);
 			append_dev(div5, div3);
-			append_dev(div5, t10);
-			mount_component(splitter1, div5, null);
-			append_dev(div5, t11);
+			append_dev(div5, t22);
+			mount_component(splitter1_1, div5, null);
+			append_dev(div5, t23);
 			append_dev(div5, div4);
+			insert_dev(target, t25, anchor);
+			mount_component(codeexample, target, anchor);
+			insert_dev(target, t26, anchor);
+			mount_component(api0, target, anchor);
+			insert_dev(target, t27, anchor);
+			mount_component(api1, target, anchor);
 			current = true;
 		},
-		p: noop,
+		p: function update(ctx, [dirty]) {
+			const button_changes = {};
+
+			if (dirty & /*$$scope*/ 256) {
+				button_changes.$$scope = { dirty, ctx };
+			}
+
+			button.$set(button_changes);
+			const splitter0_changes = {};
+			splitter0.$set(splitter0_changes);
+			const splitter1_1_changes = {};
+			splitter1_1.$set(splitter1_1_changes);
+		},
 		i: function intro(local) {
 			if (current) return;
+			transition_in(button.$$.fragment, local);
 			transition_in(splitter0.$$.fragment, local);
-			transition_in(splitter1.$$.fragment, local);
+			transition_in(splitter1_1.$$.fragment, local);
+			transition_in(codeexample.$$.fragment, local);
+			transition_in(api0.$$.fragment, local);
+			transition_in(api1.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
+			transition_out(button.$$.fragment, local);
 			transition_out(splitter0.$$.fragment, local);
-			transition_out(splitter1.$$.fragment, local);
+			transition_out(splitter1_1.$$.fragment, local);
+			transition_out(codeexample.$$.fragment, local);
+			transition_out(api0.$$.fragment, local);
+			transition_out(api1.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -29854,11 +30080,27 @@ function create_fragment$4(ctx) {
 			if (detaching) detach_dev(t1);
 			if (detaching) detach_dev(p);
 			if (detaching) detach_dev(t3);
+			if (detaching) detach_dev(ul);
+			if (detaching) detach_dev(t12);
+			if (detaching) detach_dev(hr);
+			if (detaching) detach_dev(t13);
+			destroy_component(button, detaching);
+			if (detaching) detach_dev(t14);
 			if (detaching) detach_dev(div2);
+			/*splitter0_binding*/ ctx[6](null);
 			destroy_component(splitter0);
-			if (detaching) detach_dev(t8);
+			if (detaching) detach_dev(t19);
+			if (detaching) detach_dev(br);
+			if (detaching) detach_dev(t20);
 			if (detaching) detach_dev(div5);
-			destroy_component(splitter1);
+			/*splitter1_1_binding*/ ctx[7](null);
+			destroy_component(splitter1_1);
+			if (detaching) detach_dev(t25);
+			destroy_component(codeexample, detaching);
+			if (detaching) detach_dev(t26);
+			destroy_component(api0, detaching);
+			if (detaching) detach_dev(t27);
+			destroy_component(api1, detaching);
 		}
 	};
 
@@ -29880,14 +30122,125 @@ function onchange(e) {
 function instance$4($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Splitter', slots, []);
+
+	const apiProps = [
+		{
+			name: 'on:change',
+			type: 'function',
+			description: 'Triggered during the resizing (mousemove).'
+		},
+		{
+			name: 'on:changed',
+			type: 'function',
+			description: 'Triggered when resizing finished (mouseup).'
+		}
+	];
+
+	const instanceApiProps = [
+		{
+			name: 'collapse',
+			type: 'function',
+			description: 'Set the size to the <em>min-width</em> of the previous div.'
+		},
+		{
+			name: 'expand',
+			type: 'function',
+			description: 'Set the size to the <em>max-width</em> of the previous div.'
+		},
+		{
+			name: 'toggle',
+			type: 'function',
+			description: 'Toggle between collapsed and expanded state.'
+		},
+		{
+			name: 'setSize',
+			type: 'function',
+			description: 'Set the split size.<br>Function accepts 2 arguments:<br><em>to</em> [string|number] - use number for pixel size, or predefined strings like "min", "max" or "default"<br><em>withAnimation</em> [boolean] - set to true to enable animation. Defaults to false.'
+		}
+	];
+
+	const exampleHtml = `
+<Button on:click="{toggle}">Toggle</Button>
+<div style="flex-flow:row">
+	<div>Left</div>
+	<Splitter on:changed={onchanged} bind:this="{splitter1}" />
+	<div>Right</div>
+</div>
+
+<script>
+let splitter1;
+
+function toggle () {
+	splitter1.toggle();
+}
+
+function onchanged (e) {
+	// logs current height/width in px and collapsed state
+	console.log(e.detail);
+}
+&lt;/script>
+`;
+
+	let splitter1, splitter2;
+
+	function toggle() {
+		splitter1.toggle();
+		splitter2.toggle();
+	}
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$2.warn(`<Splitter> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Splitter, onchange });
-	return [];
+	function splitter0_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			splitter1 = $$value;
+			$$invalidate(0, splitter1);
+		});
+	}
+
+	function splitter1_1_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			splitter2 = $$value;
+			$$invalidate(1, splitter2);
+		});
+	}
+
+	$$self.$capture_state = () => ({
+		Splitter,
+		Button,
+		API: Api_table,
+		CodeExample: Code_example,
+		apiProps,
+		instanceApiProps,
+		exampleHtml,
+		splitter1,
+		splitter2,
+		onchange,
+		toggle
+	});
+
+	$$self.$inject_state = $$props => {
+		if ('splitter1' in $$props) $$invalidate(0, splitter1 = $$props.splitter1);
+		if ('splitter2' in $$props) $$invalidate(1, splitter2 = $$props.splitter2);
+	};
+
+	if ($$props && "$$inject" in $$props) {
+		$$self.$inject_state($$props.$$inject);
+	}
+
+	return [
+		splitter1,
+		splitter2,
+		apiProps,
+		instanceApiProps,
+		exampleHtml,
+		toggle,
+		splitter0_binding,
+		splitter1_1_binding
+	];
 }
 
 class Splitter_1 extends SvelteComponentDev {
@@ -31860,7 +32213,7 @@ class Tree_1 extends SvelteComponentDev {
 const file$1 = "docs-src/nav/index.svelte";
 
 function create_fragment$1(ctx) {
-	let nav;
+	let menu;
 	let div;
 	let span;
 	let t1;
@@ -32124,7 +32477,7 @@ function create_fragment$1(ctx) {
 
 	const block = {
 		c: function create() {
-			nav = element("nav");
+			menu = element("menu");
 			div = element("div");
 			span = element("span");
 			span.textContent = "Dark mode:";
@@ -32194,84 +32547,84 @@ function create_fragment$1(ctx) {
 			create_component(navitem24.$$.fragment);
 			t35 = space();
 			create_component(navitem25.$$.fragment);
-			add_location(span, file$1, 2, 2, 35);
+			add_location(span, file$1, 2, 2, 36);
 			attr_dev(div, "class", "nav-toolbar");
-			add_location(div, file$1, 1, 1, 7);
-			add_location(h30, file$1, 6, 1, 130);
-			add_location(h31, file$1, 9, 1, 188);
-			add_location(h32, file$1, 24, 1, 739);
-			add_location(h33, file$1, 33, 1, 1009);
-			add_location(nav, file$1, 0, 0, 0);
+			add_location(div, file$1, 1, 1, 8);
+			add_location(h30, file$1, 6, 1, 131);
+			add_location(h31, file$1, 9, 1, 189);
+			add_location(h32, file$1, 24, 1, 740);
+			add_location(h33, file$1, 33, 1, 1010);
+			add_location(menu, file$1, 0, 0, 0);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
 		},
 		m: function mount(target, anchor) {
-			insert_dev(target, nav, anchor);
-			append_dev(nav, div);
+			insert_dev(target, menu, anchor);
+			append_dev(menu, div);
 			append_dev(div, span);
 			append_dev(div, t1);
 			mount_component(actualtoggle, div, null);
-			append_dev(nav, t2);
-			append_dev(nav, h30);
-			append_dev(nav, t4);
-			mount_component(navitem0, nav, null);
-			append_dev(nav, t5);
-			append_dev(nav, h31);
-			append_dev(nav, t7);
-			mount_component(navitem1, nav, null);
-			append_dev(nav, t8);
-			mount_component(navitem2, nav, null);
-			append_dev(nav, t9);
-			mount_component(navitem3, nav, null);
-			append_dev(nav, t10);
-			mount_component(navitem4, nav, null);
-			append_dev(nav, t11);
-			mount_component(navitem5, nav, null);
-			append_dev(nav, t12);
-			mount_component(navitem6, nav, null);
-			append_dev(nav, t13);
-			mount_component(navitem7, nav, null);
-			append_dev(nav, t14);
-			mount_component(navitem8, nav, null);
-			append_dev(nav, t15);
-			mount_component(navitem9, nav, null);
-			append_dev(nav, t16);
-			mount_component(navitem10, nav, null);
-			append_dev(nav, t17);
-			mount_component(navitem11, nav, null);
-			append_dev(nav, t18);
-			mount_component(navitem12, nav, null);
-			append_dev(nav, t19);
-			mount_component(navitem13, nav, null);
-			append_dev(nav, t20);
-			append_dev(nav, h32);
-			append_dev(nav, t22);
-			mount_component(navitem14, nav, null);
-			append_dev(nav, t23);
-			mount_component(navitem15, nav, null);
-			append_dev(nav, t24);
-			mount_component(navitem16, nav, null);
-			append_dev(nav, t25);
-			mount_component(navitem17, nav, null);
-			append_dev(nav, t26);
-			mount_component(navitem18, nav, null);
-			append_dev(nav, t27);
-			mount_component(navitem19, nav, null);
-			append_dev(nav, t28);
-			mount_component(navitem20, nav, null);
-			append_dev(nav, t29);
-			append_dev(nav, h33);
-			append_dev(nav, t31);
-			mount_component(navitem21, nav, null);
-			append_dev(nav, t32);
-			mount_component(navitem22, nav, null);
-			append_dev(nav, t33);
-			mount_component(navitem23, nav, null);
-			append_dev(nav, t34);
-			mount_component(navitem24, nav, null);
-			append_dev(nav, t35);
-			mount_component(navitem25, nav, null);
+			append_dev(menu, t2);
+			append_dev(menu, h30);
+			append_dev(menu, t4);
+			mount_component(navitem0, menu, null);
+			append_dev(menu, t5);
+			append_dev(menu, h31);
+			append_dev(menu, t7);
+			mount_component(navitem1, menu, null);
+			append_dev(menu, t8);
+			mount_component(navitem2, menu, null);
+			append_dev(menu, t9);
+			mount_component(navitem3, menu, null);
+			append_dev(menu, t10);
+			mount_component(navitem4, menu, null);
+			append_dev(menu, t11);
+			mount_component(navitem5, menu, null);
+			append_dev(menu, t12);
+			mount_component(navitem6, menu, null);
+			append_dev(menu, t13);
+			mount_component(navitem7, menu, null);
+			append_dev(menu, t14);
+			mount_component(navitem8, menu, null);
+			append_dev(menu, t15);
+			mount_component(navitem9, menu, null);
+			append_dev(menu, t16);
+			mount_component(navitem10, menu, null);
+			append_dev(menu, t17);
+			mount_component(navitem11, menu, null);
+			append_dev(menu, t18);
+			mount_component(navitem12, menu, null);
+			append_dev(menu, t19);
+			mount_component(navitem13, menu, null);
+			append_dev(menu, t20);
+			append_dev(menu, h32);
+			append_dev(menu, t22);
+			mount_component(navitem14, menu, null);
+			append_dev(menu, t23);
+			mount_component(navitem15, menu, null);
+			append_dev(menu, t24);
+			mount_component(navitem16, menu, null);
+			append_dev(menu, t25);
+			mount_component(navitem17, menu, null);
+			append_dev(menu, t26);
+			mount_component(navitem18, menu, null);
+			append_dev(menu, t27);
+			mount_component(navitem19, menu, null);
+			append_dev(menu, t28);
+			mount_component(navitem20, menu, null);
+			append_dev(menu, t29);
+			append_dev(menu, h33);
+			append_dev(menu, t31);
+			mount_component(navitem21, menu, null);
+			append_dev(menu, t32);
+			mount_component(navitem22, menu, null);
+			append_dev(menu, t33);
+			mount_component(navitem23, menu, null);
+			append_dev(menu, t34);
+			mount_component(navitem24, menu, null);
+			append_dev(menu, t35);
+			mount_component(navitem25, menu, null);
 			current = true;
 
 			if (!mounted) {
@@ -32421,7 +32774,7 @@ function create_fragment$1(ctx) {
 			current = false;
 		},
 		d: function destroy(detaching) {
-			if (detaching) detach_dev(nav);
+			if (detaching) detach_dev(menu);
 			destroy_component(actualtoggle);
 			destroy_component(navitem0);
 			destroy_component(navitem1);

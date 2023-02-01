@@ -1,28 +1,31 @@
-nav {
+menu {
 	width: 100%;
 	display: flex;
 	flex-flow: column;
+	padding: 0;
+	margin: 0;
 }
 
-nav h3 { margin: 0 -1em; padding: 0.5em 1em; }
-nav h3:not(:first-child) { margin-top: 1em; }
+menu h3 { margin: 0 -1rem; padding: 0.5rem 1rem; }
+menu h3:not(:first-child) { margin-top: 1rem; }
 
-nav a {
+menu a {
 	color: var(--ui-color-text);
 	text-decoration: none;
 	display: block;
-	margin: 0.1em 0;
-	padding: 0.5em 1.4em;
+	margin: 0.1rem 0;
+	padding: 0.5rem 1.4rem;
 	border-radius: var(--ui-border-radius-s);
+	white-space: nowrap;
 }
 
-nav a:hover { background-color: var(--ui-color-highlight-dark-2); }
-nav a.active { background-color: var(--ui-color-highlight); }
+menu a:hover { background-color: var(--ui-color-highlight-dark-2); }
+menu a.active { background-color: var(--ui-color-highlight); }
 
 
 .nav-toolbar {
-	margin: -1em -2em 0 -1em;
-	padding: 1em;
+	margin: -1rem -1rem 0;
+	padding: 1rem;
 	background-color: var(--ui-color-background-dark-2);
 	display: flex;
 	align-items: center;

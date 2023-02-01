@@ -33,7 +33,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Drawer
 	- [x] Menu
 	- [x] Panel
-	- [ ] Splitter
+	- [x] Splitter
 	- [ ] Table
 	- [ ] Tree
 	- [ ] Icon

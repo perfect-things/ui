@@ -10,5 +10,5 @@
 .split-wrap-v { flex-flow: column; }
 .split-box { border: 1px solid green; flex: 1; }
 
-.min-w { min-width: 20px; max-width: 120px; }
+.min-w { min-width: 20px; max-width: 220px; }
 .min-h { min-height: 50px; max-height: 150px; }

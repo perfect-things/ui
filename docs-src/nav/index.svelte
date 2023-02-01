@@ -1,4 +1,4 @@
-<nav>
+<menu>
 	<div class="nav-toolbar">
 		<span>Dark mode:</span>
 		<ActualToggle value="true" on:change="{switchColorMode}"/>
@@ -37,7 +37,7 @@
 	<NavItem name="Toaster" {active} />
 	<NavItem name="Tooltip" {active} />
 	<NavItem name="Color Palette" {active} />
-</nav>
+</menu>
 
 <svelte:window on:hashchange="{onhashchange}" />
 <script>
