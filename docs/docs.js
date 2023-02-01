@@ -32176,14 +32176,28 @@ function create_fragment$2(ctx) {
 	let t1;
 	let div;
 	let tree;
+	let t2;
+	let codeexample;
+	let t3;
+	let api;
 	let current;
 
 	tree = new Tree({
-			props: { items: /*items*/ ctx[0] },
+			props: { items: /*items*/ ctx[2] },
 			$$inline: true
 		});
 
 	tree.$on("select", onSelect);
+
+	codeexample = new Code_example({
+			props: { html: /*exampleHtml*/ ctx[1] },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -32192,6 +32206,10 @@ function create_fragment$2(ctx) {
 			t1 = space();
 			div = element("div");
 			create_component(tree.$$.fragment);
+			t2 = space();
+			create_component(codeexample.$$.fragment);
+			t3 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$2, 0, 0, 0);
 			set_style(div, "display", "inline-block");
 			set_style(div, "width", "200px");
@@ -32205,16 +32223,24 @@ function create_fragment$2(ctx) {
 			insert_dev(target, t1, anchor);
 			insert_dev(target, div, anchor);
 			mount_component(tree, div, null);
+			insert_dev(target, t2, anchor);
+			mount_component(codeexample, target, anchor);
+			insert_dev(target, t3, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: noop,
 		i: function intro(local) {
 			if (current) return;
 			transition_in(tree.$$.fragment, local);
+			transition_in(codeexample.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
 			transition_out(tree.$$.fragment, local);
+			transition_out(codeexample.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -32222,6 +32248,10 @@ function create_fragment$2(ctx) {
 			if (detaching) detach_dev(t1);
 			if (detaching) detach_dev(div);
 			destroy_component(tree);
+			if (detaching) detach_dev(t2);
+			destroy_component(codeexample, detaching);
+			if (detaching) detach_dev(t3);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -32243,6 +32273,38 @@ function onSelect(e) {
 function instance$2($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Tree', slots, []);
+
+	const apiProps = [
+		{
+			name: 'on:select',
+			type: 'function',
+			description: 'Triggered after an item was selected.'
+		}
+	];
+
+	const exampleHtml = `
+<Tree {items} on:select="{onSelect}"/>
+
+<script>
+const items = [
+	{ id: 1, name: 'One' },
+	{ id: 2, name: 'Two', items: [
+		{ id: 21, name: 'One' },
+		{ id: 22, name: 'Two' },
+		{ id: 23, name: 'Three', items: [
+			{ id: 231, name: 'One' },
+			{ id: 232, name: 'Two' },
+		] },
+		{ id: 24, name: 'Four' },
+	] },
+	{ id: 3, name: 'Three' },
+];
+
+function onSelect (e) {
+	console.log(e.detail);
+}
+&lt;/script>
+`;
 
 	const items = [
 		{ id: 1, name: 'One' },
@@ -32323,8 +32385,17 @@ function instance$2($$self, $$props, $$invalidate) {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<Tree> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Tree, onSelect, items });
-	return [items];
+	$$self.$capture_state = () => ({
+		Tree,
+		API: Api_table,
+		CodeExample: Code_example,
+		apiProps,
+		exampleHtml,
+		onSelect,
+		items
+	});
+
+	return [apiProps, exampleHtml, items];
 }
 
 class Tree_1 extends SvelteComponentDev {

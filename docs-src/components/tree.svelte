@@ -5,8 +5,41 @@
 </div>
 
 
+<CodeExample html="{exampleHtml}" />
+<API props="{apiProps}"/>
+
 <script>
 import { Tree } from '../../src';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
+
+const apiProps = [
+	{ name: 'on:select', type: 'function', description: 'Triggered after an item was selected.' },
+];
+
+const exampleHtml = `
+<Tree {items} on:select="{onSelect}"/>
+
+<script>
+const items = [
+	{ id: 1, name: 'One' },
+	{ id: 2, name: 'Two', items: [
+		{ id: 21, name: 'One' },
+		{ id: 22, name: 'Two' },
+		{ id: 23, name: 'Three', items: [
+			{ id: 231, name: 'One' },
+			{ id: 232, name: 'Two' },
+		] },
+		{ id: 24, name: 'Four' },
+	] },
+	{ id: 3, name: 'Three' },
+];
+
+function onSelect (e) {
+	console.log(e.detail);
+}
+&lt;/script>
+`;
 
 function onSelect (e) {
 	console.log(e.detail);

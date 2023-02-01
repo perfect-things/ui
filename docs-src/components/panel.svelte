@@ -20,9 +20,7 @@
 </Panel>
 
 
-
 <CodeExample html="{exampleHtml}" />
-
 <API props="{apiProps}"/>
 
 
