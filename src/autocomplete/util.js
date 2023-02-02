@@ -63,8 +63,11 @@ export function recalculateListPosition (listEl, inputEl, elevated) {
 
 
 
-// Handles arrays, objects, null, strings, numbers, (no Date)
-export function deepCopy (o) {
+/**
+ * Handles arrays, objects, null, strings, numbers, (no Date)
+ * @deprecated
+ */
+export function deepCopyOld (o) {
 	if (typeof o !== 'object'||o === null) return o;
 	let newO, i;
 	// handle case: array
@@ -81,6 +84,9 @@ export function deepCopy (o) {
 	return newO;
 }
 
+export function deepCopy (o) {
+	return structuredClone(o);
+}
 
 export function fuzzy (hay = '', s = '') {
 	hay = hay.toLowerCase();
