@@ -1,6 +1,4 @@
-<aside>
-	<Nav bind:component="{component}" />
-</aside>
+<Nav bind:component="{component}" />
 <main>
 	<svelte:component this="{component}"/>
 </main>

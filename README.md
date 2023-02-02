@@ -16,7 +16,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 - [ ] Feat: context menu [type-to-select](https://height.app/blog/guide-to-build-context-menus#type-to-select)
 
 - [x] improve docs: add description, code samples & API/options/parameters/etc.
-- [ ] Make docs mobile compatible
+- [x] Make docs mobile compatible
 - [ ] Update screen.png
 
 - [ ] color palette

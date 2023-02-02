@@ -21,13 +21,6 @@ body * { box-sizing: inherit; }
 
 a { color: inherit; }
 
-aside {
-	padding: 1rem 1rem 4rem;
-	border-right: 1px solid var(--ui-color-border-dark-2);
-	height: 100%;
-	overflow-y: auto;
-}
-
 main {
 	flex: 1;
 	padding: 2rem 2rem 10rem;

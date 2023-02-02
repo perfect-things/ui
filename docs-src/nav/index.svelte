@@ -1,46 +1,51 @@
-<menu>
-	<div class="nav-toolbar">
-		<span>Dark mode:</span>
-		<ActualToggle value="true" on:change="{switchColorMode}"/>
-	</div>
+<UIButton icon="meatballs" text className="nav-toggler {navMobileShow ? 'visible' : ''}" on:click="{toggleNav}"></UIButton>
 
-	<h3>Intro</h3>
-	<NavItem name="Get Started" {active} />
+<aside class:mobile-show="{navMobileShow}">
+	<menu>
+		<div class="nav-toolbar">
+			<span>Dark mode:</span>
+			<ActualToggle value="true" on:change="{switchColorMode}"/>
+		</div>
 
-	<h3>Form Controls</h3>
-	<NavItem name="Autocomplete" {active} />
-	<NavItem name="Button" {active} />
-	<NavItem name="Push Button" {active} />
-	<NavItem name="Button Group" {active} />
-	<NavItem name="Button Toggle" {active} />
-	<NavItem name="Checkbox" {active} />
-	<NavItem name="Datepicker" {active} />
-	<NavItem name="Input" {active} />
-	<NavItem name="Input Math" {active} />
-	<NavItem name="Password" hash="InputPassword" {active} />
-	<NavItem name="Select" {active} />
-	<NavItem name="Textarea" {active} />
-	<NavItem name="Toggle" {active} />
+		<h3>Intro</h3>
+		<NavItem name="Get Started" {active} />
 
-	<h3>Containers</h3>
-	<NavItem name="Dialog" {active} />
-	<NavItem name="Drawer" {active} />
-	<NavItem name="Menu" {active} />
-	<NavItem name="Panel" {active} />
-	<NavItem name="Splitter" {active} />
-	<NavItem name="Table" {active} />
-	<NavItem name="Tree" {active} />
+		<h3>Form Controls</h3>
+		<NavItem name="Autocomplete" {active} />
+		<NavItem name="Button" {active} />
+		<NavItem name="Push Button" {active} />
+		<NavItem name="Button Group" {active} />
+		<NavItem name="Button Toggle" {active} />
+		<NavItem name="Checkbox" {active} />
+		<NavItem name="Datepicker" {active} />
+		<NavItem name="Input" {active} />
+		<NavItem name="Input Math" {active} />
+		<NavItem name="Password" hash="InputPassword" {active} />
+		<NavItem name="Select" {active} />
+		<NavItem name="Textarea" {active} />
+		<NavItem name="Toggle" {active} />
 
-	<h3>Generic</h3>
-	<NavItem name="Icon" {active} />
-	<NavItem name="TextFit" {active} />
-	<NavItem name="Toaster" {active} />
-	<NavItem name="Tooltip" {active} />
-	<NavItem name="Color Palette" {active} />
-</menu>
+		<h3>Containers</h3>
+		<NavItem name="Dialog" {active} />
+		<NavItem name="Drawer" {active} />
+		<NavItem name="Menu" {active} />
+		<NavItem name="Panel" {active} />
+		<NavItem name="Splitter" {active} />
+		<NavItem name="Table" {active} />
+		<NavItem name="Tree" {active} />
+
+		<h3>Generic</h3>
+		<NavItem name="Icon" {active} />
+		<NavItem name="TextFit" {active} />
+		<NavItem name="Toaster" {active} />
+		<NavItem name="Tooltip" {active} />
+		<NavItem name="Color Palette" {active} />
+	</menu>
+</aside>
 
 <svelte:window on:hashchange="{onhashchange}" />
 <script>
+import { Button as UIButton } from '../../src';
 import NavItem from './nav-item';
 import ActualToggle from '../../src/toggle';
 import GetStarted from '../pages/start';
@@ -104,6 +109,8 @@ const components = {
 
 let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
+let navMobileShow = false;
+
 
 function onhashchange () {
 	active = location.hash.substr(1);
@@ -114,5 +121,11 @@ function switchColorMode (e) {
 	document.documentElement.className = e.detail ? 'theme-dark' : 'theme-light';
 }
 
+
+function toggleNav () {
+	navMobileShow = !navMobileShow;
+}
+
+window.addEventListener('popstate', () => navMobileShow = false);
 
 </script>
