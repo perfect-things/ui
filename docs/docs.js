@@ -2307,26 +2307,9 @@ function recalculateListPosition (listEl, inputEl, elevated) {
 	});
 }
 
-
-
-// Handles arrays, objects, null, strings, numbers, (no Date)
 function deepCopy (o) {
-	if (typeof o !== 'object'||o === null) return o;
-	let newO, i;
-	// handle case: array
-	if (o instanceof Array) {
-		let l = o.length;
-		newO = [];
-		for (i = 0; i < l; i++) newO[i] = deepCopy(o[i]);
-		return newO;
-	}
-	// handle case: object
-	newO = {};
-	// eslint-disable-next-line no-prototype-builtins
-	for (i in o) if (o.hasOwnProperty(i)) newO[i] = deepCopy(o[i]);
-	return newO;
+	return structuredClone(o);
 }
-
 
 function fuzzy (hay = '', s = '') {
 	hay = hay.toLowerCase();
@@ -23113,6 +23096,14 @@ function create_fragment$k(ctx) {
 	let button4;
 	let t7;
 	let button5;
+	let t8;
+	let codeexample;
+	let t9;
+	let api0;
+	let t10;
+	let api1;
+	let t11;
+	let api2;
 	let current;
 
 	toaster = new Toaster({
@@ -23128,7 +23119,7 @@ function create_fragment$k(ctx) {
 			$$inline: true
 		});
 
-	button0.$on("click", /*click_handler*/ ctx[1]);
+	button0.$on("click", /*click_handler*/ ctx[5]);
 
 	button1 = new Button({
 			props: {
@@ -23139,7 +23130,7 @@ function create_fragment$k(ctx) {
 			$$inline: true
 		});
 
-	button1.$on("click", /*click_handler_1*/ ctx[2]);
+	button1.$on("click", /*click_handler_1*/ ctx[6]);
 
 	button2 = new Button({
 			props: {
@@ -23150,7 +23141,7 @@ function create_fragment$k(ctx) {
 			$$inline: true
 		});
 
-	button2.$on("click", /*click_handler_2*/ ctx[3]);
+	button2.$on("click", /*click_handler_2*/ ctx[7]);
 
 	button3 = new Button({
 			props: {
@@ -23161,7 +23152,7 @@ function create_fragment$k(ctx) {
 			$$inline: true
 		});
 
-	button3.$on("click", /*click_handler_3*/ ctx[4]);
+	button3.$on("click", /*click_handler_3*/ ctx[8]);
 
 	button4 = new Button({
 			props: {
@@ -23172,7 +23163,7 @@ function create_fragment$k(ctx) {
 			$$inline: true
 		});
 
-	button4.$on("click", /*click_handler_4*/ ctx[5]);
+	button4.$on("click", /*click_handler_4*/ ctx[9]);
 
 	button5 = new Button({
 			props: {
@@ -23182,7 +23173,35 @@ function create_fragment$k(ctx) {
 			$$inline: true
 		});
 
-	button5.$on("click", /*click_handler_5*/ ctx[6]);
+	button5.$on("click", /*click_handler_5*/ ctx[10]);
+
+	codeexample = new Code_example({
+			props: { html: /*exampleHtml*/ ctx[3] },
+			$$inline: true
+		});
+
+	api0 = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
+			$$inline: true
+		});
+
+	api1 = new Api_table({
+			props: {
+				props: /*showToastAPI*/ ctx[1],
+				title: "showToast function",
+				description: "A component exports a global <em>showToast</em> function with the following arguments:"
+			},
+			$$inline: true
+		});
+
+	api2 = new Api_table({
+			props: {
+				props: /*hideToastAPI*/ ctx[2],
+				title: "hideToast function",
+				description: "A component exports a global <em>hideToast</em> function with the following arguments:"
+			},
+			$$inline: true
+		});
 
 	const block = {
 		c: function create() {
@@ -23202,6 +23221,14 @@ function create_fragment$k(ctx) {
 			create_component(button4.$$.fragment);
 			t7 = space();
 			create_component(button5.$$.fragment);
+			t8 = space();
+			create_component(codeexample.$$.fragment);
+			t9 = space();
+			create_component(api0.$$.fragment);
+			t10 = space();
+			create_component(api1.$$.fragment);
+			t11 = space();
+			create_component(api2.$$.fragment);
 			add_location(h2, file$k, 0, 0, 0);
 		},
 		l: function claim(nodes) {
@@ -23223,47 +23250,55 @@ function create_fragment$k(ctx) {
 			mount_component(button4, target, anchor);
 			insert_dev(target, t7, anchor);
 			mount_component(button5, target, anchor);
+			insert_dev(target, t8, anchor);
+			mount_component(codeexample, target, anchor);
+			insert_dev(target, t9, anchor);
+			mount_component(api0, target, anchor);
+			insert_dev(target, t10, anchor);
+			mount_component(api1, target, anchor);
+			insert_dev(target, t11, anchor);
+			mount_component(api2, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const button0_changes = {};
 
-			if (dirty & /*$$scope*/ 128) {
+			if (dirty & /*$$scope*/ 2048) {
 				button0_changes.$$scope = { dirty, ctx };
 			}
 
 			button0.$set(button0_changes);
 			const button1_changes = {};
 
-			if (dirty & /*$$scope*/ 128) {
+			if (dirty & /*$$scope*/ 2048) {
 				button1_changes.$$scope = { dirty, ctx };
 			}
 
 			button1.$set(button1_changes);
 			const button2_changes = {};
 
-			if (dirty & /*$$scope*/ 128) {
+			if (dirty & /*$$scope*/ 2048) {
 				button2_changes.$$scope = { dirty, ctx };
 			}
 
 			button2.$set(button2_changes);
 			const button3_changes = {};
 
-			if (dirty & /*$$scope*/ 128) {
+			if (dirty & /*$$scope*/ 2048) {
 				button3_changes.$$scope = { dirty, ctx };
 			}
 
 			button3.$set(button3_changes);
 			const button4_changes = {};
 
-			if (dirty & /*$$scope*/ 128) {
+			if (dirty & /*$$scope*/ 2048) {
 				button4_changes.$$scope = { dirty, ctx };
 			}
 
 			button4.$set(button4_changes);
 			const button5_changes = {};
 
-			if (dirty & /*$$scope*/ 128) {
+			if (dirty & /*$$scope*/ 2048) {
 				button5_changes.$$scope = { dirty, ctx };
 			}
 
@@ -23278,6 +23313,10 @@ function create_fragment$k(ctx) {
 			transition_in(button3.$$.fragment, local);
 			transition_in(button4.$$.fragment, local);
 			transition_in(button5.$$.fragment, local);
+			transition_in(codeexample.$$.fragment, local);
+			transition_in(api0.$$.fragment, local);
+			transition_in(api1.$$.fragment, local);
+			transition_in(api2.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -23288,6 +23327,10 @@ function create_fragment$k(ctx) {
 			transition_out(button3.$$.fragment, local);
 			transition_out(button4.$$.fragment, local);
 			transition_out(button5.$$.fragment, local);
+			transition_out(codeexample.$$.fragment, local);
+			transition_out(api0.$$.fragment, local);
+			transition_out(api1.$$.fragment, local);
+			transition_out(api2.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -23306,6 +23349,14 @@ function create_fragment$k(ctx) {
 			destroy_component(button4, detaching);
 			if (detaching) detach_dev(t7);
 			destroy_component(button5, detaching);
+			if (detaching) detach_dev(t8);
+			destroy_component(codeexample, detaching);
+			if (detaching) detach_dev(t9);
+			destroy_component(api0, detaching);
+			if (detaching) detach_dev(t10);
+			destroy_component(api1, detaching);
+			if (detaching) detach_dev(t11);
+			destroy_component(api2, detaching);
 		}
 	};
 
@@ -23323,6 +23374,70 @@ function create_fragment$k(ctx) {
 function instance$k($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Toaster', slots, []);
+
+	const apiProps = [
+		{
+			name: 'position',
+			type: ['top', 'bottom'],
+			default: 'top',
+			description: 'Toaster position on screen.'
+		}
+	];
+
+	const showToastAPI = [
+		{
+			name: 'message',
+			type: 'string',
+			required: true,
+			description: 'Message to show.'
+		},
+		{
+			name: 'type',
+			type: ['info', 'success', 'warning', 'error'],
+			default: 'info',
+			description: 'Type of the message.'
+		},
+		{
+			name: 'timeout',
+			type: 'number',
+			default: 5000,
+			description: 'How long the toast should remain on screen (in milliseconds).'
+		},
+		{
+			name: 'button',
+			type: 'string',
+			description: 'Label of the optional button on the toast.'
+		},
+		{
+			name: 'callback',
+			type: 'function',
+			description: 'Callback function triggered when the button is clicked.<br>The function receives 1 parameter, which is the ID of the toast.'
+		}
+	];
+
+	const hideToastAPI = [
+		{
+			name: 'id',
+			type: 'string',
+			description: 'ID of the toast message that is returned by <em>showToast</em> function.'
+		}
+	];
+
+	const exampleHtml = `
+<Toaster position="bottom"/>
+
+<Button on:click="{() => showToast('Hello')}">Show info</Button>
+<Button success on:click="{() => showToast('Hello', 'success')}">Show success</Button>
+<Button warning on:click="{() => showToast('Hello', 'warning')}">Show warning</Button>
+<Button danger on:click="{() => showToast('Hello', 'error', 10000, 'Undo', cb)}">Show error</Button>
+
+<script>
+import { Toaster, showToast, hideToast, Button } from 'simple-ui-components-in-svelte';
+
+function cb (id) {
+	hideToast(id);
+}
+`;
 
 	function cb(id) {
 		console.log(id);
@@ -23347,10 +23462,20 @@ function instance$k($$self, $$props, $$invalidate) {
 		Toaster,
 		showToast,
 		hideToast,
+		API: Api_table,
+		CodeExample: Code_example,
+		apiProps,
+		showToastAPI,
+		hideToastAPI,
+		exampleHtml,
 		cb
 	});
 
 	return [
+		apiProps,
+		showToastAPI,
+		hideToastAPI,
+		exampleHtml,
 		cb,
 		click_handler,
 		click_handler_1,
