@@ -10,14 +10,13 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
+- [ ] Update screen.png
 - [ ] Bug: toggle doesn't work on mobile
 - [ ] Bug: splitter no work on mobile
 - [ ] Feat: context menu on mobile with a long click?
 - [ ] Feat: context menu [type-to-select](https://height.app/blog/guide-to-build-context-menus#type-to-select)
 
-- [x] improve docs: add description, code samples & API/options/parameters/etc.
-- [x] Make docs mobile compatible
-- [ ] Update screen.png
+
 
 - [ ] color palette
   - reduce text & bg colors
