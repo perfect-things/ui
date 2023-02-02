@@ -15,35 +15,9 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 - [ ] Feat: context menu on mobile with a long click?
 - [ ] Feat: context menu [type-to-select](https://height.app/blog/guide-to-build-context-menus#type-to-select)
 
-- [ ] improve docs: add description, code samples & API/options/parameters/etc.
-	- [x] Autocomplete
-	- [x] Button
-	- [x] Push Button
-	- [x] Button Group
-	- [x] Button Toggle
-	- [x] Checkbox
-	- [x] Datepicker
-	- [x] Input
-	- [x] Input Math
-	- [x] Input Password
-	- [x] Select
-	- [x] Textarea
-	- [x] Toggle
-
-	- [x] Dialog
-	- [x] Drawer
-	- [x] Menu
-	- [x] Panel
-	- [x] Splitter
-	- [x] Table
-	- [x] Tree
-	- [x] Icon
-	- [x] TextFit
-	- [ ] Toaster
-	- [ ] Tooltip
-
-    - [ ] Mobile compatible
-    - [ ] Update screen.png
+- [x] improve docs: add description, code samples & API/options/parameters/etc.
+- [ ] Make docs mobile compatible
+- [ ] Update screen.png
 
 - [ ] color palette
   - reduce text & bg colors
