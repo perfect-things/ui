@@ -3,26 +3,16 @@
 <InputMath />
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;InputMath on:change="&lbrace;onChange&rbrace;" /&gt;
 
-&lt;script&gt;
-function onChange (e) &lbrace;
-    const &lbrace; value, oldValue &rbrace; = e.detail;
-    console.log(&lbrace; value, oldValue &rbrace;);
-&rbrace;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
-<hr>
 <API props="{apiProps}"/>
 
 
 <script>
 import { InputMath } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
@@ -37,5 +27,16 @@ const apiProps = [
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
+
+const exampleHtml = `
+<InputMath on:change="{onChange}" />
+
+<script>
+function onChange (e) {
+    const { value, oldValue } = e.detail;
+    console.log({ value, oldValue });
+}
+&lt;/script>
+`;
 
 </script>

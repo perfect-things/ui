@@ -11,6 +11,7 @@ import { getMouseX, getMouseY, innerWidth, innerHeight, ANIMATION_SPEED,
 
 const dispatch = createEventDispatcher();
 const size = 8, halfsize = size / 2;
+const Box = {};
 
 let isVertical = false;
 let el, parentEl, targetEl;
@@ -22,6 +23,18 @@ onMount(() => {
 	requestAnimationFrame(init);
 });
 
+
+export function toggle () {
+	setSize(Box.collapsed ? 'max' : 'min', true);
+}
+
+export function collapse () {
+	setSize('min', true);
+}
+
+export function expand () {
+	setSize('max', true);
+}
 
 export function setSize (to, withAnimation = false) {
 	const prop = isVertical ? 'height' : 'width';
@@ -72,19 +85,24 @@ function updateSize (box, withAnimation = false) {
 		targetEl.style.height = box.height + 'px';
 		el.style.top = (box.height - halfsize) + 'px';
 		const collapsed = initialTargetBox.minHeight === box.height;
-		dispatch('change', { height: box.height, collapsed });
+		Box.height = box.height;
+		Box.collapsed = collapsed;
+		dispatch('change', Box);
 	}
 	else {
 		targetEl.style.width = box.width + 'px';
 		el.style.left = (box.width - halfsize) + 'px';
 		const collapsed = initialTargetBox.minWidth === box.width;
-		dispatch('change', { width: box.width, collapsed });
+		Box.width = box.width;
+		Box.collapsed = collapsed;
+		dispatch('change', Box);
 	}
 
 	if (withAnimation) {
 		setTimeout(() => {
 			targetEl.style.transition = originalTargetTransition;
 			el.style.transition = originalElTransition;
+			dispatch('changed', Box);
 		}, ANIMATION_SPEED);
 	}
 }
@@ -131,5 +149,6 @@ function mouseup () {
 	document.removeEventListener('mouseup', mouseup);
 	document.removeEventListener('mousemove', mousemove);
 	document.body.style.cursor = bodyCursor;
+	dispatch('changed', Box);
 }
 </script>

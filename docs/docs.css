@@ -22,7 +22,7 @@ body * { box-sizing: inherit; }
 a { color: inherit; }
 
 aside {
-	padding: 1em 2em 4em 1em;
+	padding: 1rem 1rem 4rem;
 	border-right: 1px solid var(--ui-color-border-dark-2);
 	height: 100%;
 	overflow-y: auto;
@@ -30,14 +30,14 @@ aside {
 
 main {
 	flex: 1;
-	padding: 2em 2em 10em;
+	padding: 2rem 2rem 10rem;
 	height: 100%;
 	overflow-y: auto;
 }
 
 h1,
 h2,
-h3 { font-weight: 300; margin: 2em 0 1.2em; }
+h3 { font-weight: 300; margin: 2rem 0 1.2rem; }
 
 h1:first-child,
 h2:first-child,
@@ -127,7 +127,7 @@ code {
 .api-table tr td { vertical-align: top; }
 
 .api-table tr th:first-child,
-.api-table tr td:first-child { width: 150px; white-space: nowrap; }
+.api-table tr td:first-child { width: 200px; }
 
 .api-table tr th:nth-child(2),
 .api-table tr td:nth-child(2) { width: 200px; }
@@ -208,10 +208,6 @@ small { display: block; margin: 5px 0 15px; }
 	float: right;
 }
 
-.accordion .panel-wrap {
-	margin: -2px 0 0;
-}
-
 .split-wrap {
 	width: 400px;
 	height: 200px;
@@ -224,7 +220,7 @@ small { display: block; margin: 5px 0 15px; }
 .split-wrap-v { flex-flow: column; }
 .split-box { border: 1px solid green; flex: 1; }
 
-.min-w { min-width: 20px; max-width: 120px; }
+.min-w { min-width: 20px; max-width: 220px; }
 .min-h { min-height: 50px; max-height: 150px; }
 
 .table-viewport {
@@ -261,31 +257,34 @@ small { display: block; margin: 5px 0 15px; }
 	border: 1px solid #ccc;
 }
 
-nav {
+menu {
 	width: 100%;
 	display: flex;
 	flex-flow: column;
+	padding: 0;
+	margin: 0;
 }
 
-nav h3 { margin: 0 -1em; padding: 0.5em 1em; }
-nav h3:not(:first-child) { margin-top: 1em; }
+menu h3 { margin: 0 -1rem; padding: 0.5rem 1rem; }
+menu h3:not(:first-child) { margin-top: 1rem; }
 
-nav a {
+menu a {
 	color: var(--ui-color-text);
 	text-decoration: none;
 	display: block;
-	margin: 0.1em 0;
-	padding: 0.5em 1.4em;
+	margin: 0.1rem 0;
+	padding: 0.5rem 1.4rem;
 	border-radius: var(--ui-border-radius-s);
+	white-space: nowrap;
 }
 
-nav a:hover { background-color: var(--ui-color-highlight-dark-2); }
-nav a.active { background-color: var(--ui-color-highlight); }
+menu a:hover { background-color: var(--ui-color-highlight-dark-2); }
+menu a.active { background-color: var(--ui-color-highlight); }
 
 
 .nav-toolbar {
-	margin: -1em -2em 0 -1em;
-	padding: 1em;
+	margin: -1rem -1rem 0;
+	padding: 1rem;
 	background-color: var(--ui-color-background-dark-2);
 	display: flex;
 	align-items: center;

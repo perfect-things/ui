@@ -14,25 +14,16 @@
 <Textarea autogrow></Textarea>
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Textarea autogrow on:change="&lbrace;onChange&rbrace;" /&gt;
 
-&lt;script&gt;
-function onChange (e) &lbrace;
-    console.log('value', e.target.value);
-&rbrace;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
-<hr>
 <API props="{apiProps}"/>
 
 
 <script>
 import { Textarea } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying textarea.' },
@@ -48,5 +39,14 @@ const apiProps = [
 	{ name: 'on:input', type: 'function', description: 'Triggered when input value is edited.' },
 ];
 
+const exampleHtml = `
+<Textarea autogrow on:change="{onChange}" />
+
+<script>
+function onChange (e) {
+    console.log('value', e.target.value);
+}
+&lt;/script>
+`;
 
 </script>

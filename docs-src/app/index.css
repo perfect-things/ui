@@ -22,7 +22,7 @@ body * { box-sizing: inherit; }
 a { color: inherit; }
 
 aside {
-	padding: 1em 2em 4em 1em;
+	padding: 1rem 1rem 4rem;
 	border-right: 1px solid var(--ui-color-border-dark-2);
 	height: 100%;
 	overflow-y: auto;
@@ -30,14 +30,14 @@ aside {
 
 main {
 	flex: 1;
-	padding: 2em 2em 10em;
+	padding: 2rem 2rem 10rem;
 	height: 100%;
 	overflow-y: auto;
 }
 
 h1,
 h2,
-h3 { font-weight: 300; margin: 2em 0 1.2em; }
+h3 { font-weight: 300; margin: 2rem 0 1.2rem; }
 
 h1:first-child,
 h2:first-child,
@@ -127,7 +127,7 @@ code {
 .api-table tr td { vertical-align: top; }
 
 .api-table tr th:first-child,
-.api-table tr td:first-child { width: 150px; white-space: nowrap; }
+.api-table tr td:first-child { width: 200px; }
 
 .api-table tr th:nth-child(2),
 .api-table tr td:nth-child(2) { width: 200px; }

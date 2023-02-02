@@ -67,8 +67,67 @@
 	<Item on:click="{closeWindows}">Close All Windows</Item>
 </Menu>
 
+
+<CodeExample html="{exampleHtml}" />
+
+<API props="{apiProps}"/>
+<API props="{instanceApiProps}" title="Menu Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<API props="{itemApiProps}" title="Item API"/>
+
+
 <script>
 import { Button, Menu, Item, Separator, Icon } from '../../src';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
+
+const apiProps = [
+	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
+	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
+	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
+	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the menu will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
+	{ name: 'on:open', type: 'function', description: 'Triggered after the menu is opened.' },
+	{ name: 'on:close', type: 'function', description: 'Triggered after the menu is closed.' },
+];
+
+const instanceApiProps = [
+	{ name: 'open', type: 'function', description: 'Opens the menu.' },
+	{ name: 'close', type: 'function', description: 'Closes the menu.' },
+];
+
+const itemApiProps = [
+	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.stopPropagation();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
+];
+
+const exampleHtml = `
+<!-- Regular menu -->
+<Menu bind:this="{menu1}">
+    <Item><Icon name="plus"/> Add some</Item>
+    <Item><Icon name=""/> Add some more</Item>
+    <Separator />
+    <Item on:click="{closeSomething}"><Icon name="close"/> Close something</Item>
+</Menu>
+
+<Button on:click="{() => menu1.open()}">Show menu</Button>
+
+<!-- Context menu -->
+<div class="div1">Tab</div>
+<Menu type="context" targetSelector=".div1" bind:this="{menu2}">
+    <Item on:click="{action1}">New window</Item>
+    <Item on:click="{action2}">New private window</Item>
+    <Separator />
+    <Item on:click="{action3}">Close All Windows</Item>
+</Menu>
+
+<script>
+    let menu1, menu2;
+    function closeSomething (e) {
+        e.stopPropagation(); // prevents menu auto-closing
+        menu1.close();       // manually close the menu
+    }
+&lt;/script>
+`;
+
+
 let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
@@ -76,7 +135,7 @@ let thingsMenuTimer, tabsMenutimer;
 
 
 function menuCloseThings (e) {
-	if (e && e.detail) e.detail.stopPropagation();
+	if (e) e.stopPropagation();
 	const initial = 'Close all things';
 	const confrm = 'Confirm Closing';
 

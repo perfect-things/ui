@@ -28,16 +28,16 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 	- [x] Select
 	- [x] Textarea
 	- [x] Toggle
-    
-	- [ ] Dialog
-	- [ ] Drawer
-	- [ ] Menu
-	- [ ] Panel
-	- [ ] Splitter
-	- [ ] Table
-	- [ ] Tree
-	- [ ] Icon
-	- [ ] TextFit
+
+	- [x] Dialog
+	- [x] Drawer
+	- [x] Menu
+	- [x] Panel
+	- [x] Splitter
+	- [x] Table
+	- [x] Tree
+	- [x] Icon
+	- [x] TextFit
 	- [ ] Toaster
 	- [ ] Tooltip
 

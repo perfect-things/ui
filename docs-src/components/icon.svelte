@@ -6,6 +6,20 @@
 	</div>
 {/each}
 
+<CodeExample html="{exampleHtml}" />
+<API props="{apiProps}"/>
+
 <script>
 import { Icon, icons } from '../../src';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
+
+const apiProps = [
+	{ name: 'name', type: 'string', description: 'Name of the icon.' },
+];
+
+const exampleHtml = `
+<Icon name="alert"/>
+`;
+
 </script>

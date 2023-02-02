@@ -25,25 +25,15 @@
 
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Datepicker on:change="&lbrace; onChange &rbrace;" /&gt;
-
-&lt;script&gt;
-function onChange (e) &lbrace;
-    const &lbrace; value, oldValue &rbrace; = e.detail;
-    console.log(&lbrace; value, oldValue &rbrace;);
-&rbrace;
-&lt;/script&gt;
-</code>
+<CodeExample html="{exampleHtml}" />
 
 <API props="{apiProps}"/>
 
 
 <script>
 import { Datepicker } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
@@ -54,12 +44,21 @@ const apiProps = [
 	{ name: 'placeholder', type: 'string', default: 'yyyy-mm-dd', description: 'Add a custom placeholder for the input.' },
 	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component container.' },
 	{ name: 'format', type: 'string', default: 'yyyy-mm-dd', description: 'Date format (<a href="https://mymth.github.io/vanillajs-datepicker/#/date-string+format" target="_blank">docs</a>).' },
-
 	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the datepicker will be automatically open when the input gets focus (normally opens on click).' },
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
+	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
-	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 ];
 
+const exampleHtml = `
+<Datepicker on:change="{ onChange }" />
+
+<script>
+function onChange (e) {
+    console.log(e.detail.value);
+}
+&lt;/script>
+
+`;
 </script>

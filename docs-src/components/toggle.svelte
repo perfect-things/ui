@@ -19,25 +19,15 @@ The perfect toggle component in Svelte:
 
 
 
-<hr>
-<h3>Example instantiation</h3>
-<code>
-&lt;Toggle value="true" on:change="&lbrace;onChange&rbrace;" /&gt;
+<CodeExample html="{exampleHtml}" />
 
-&lt;script&gt;
-function onChange (e) &lbrace;
-    console.log('onchange', e.detail);
-&rbrace;
-&lt;/script&gt;
-</code>
-
-<hr>
 <API props="{apiProps}"/>
 
 
 <script>
 import { Toggle } from '../../src';
-import API from '../api-table';
+import API from '../api-table/index.svelte';
+import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
@@ -49,6 +39,16 @@ const apiProps = [
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
+
+const exampleHtml = `
+<Toggle value="true" on:change="{onChange}" />
+
+<script>
+function onChange (e) {
+    console.log('onchange', e.detail);
+}
+&lt;/script>
+`;
 
 
 let toggleValue = false;
