@@ -9,7 +9,7 @@
 {/if}
 <script>
 import { afterUpdate, onDestroy, onMount } from 'svelte';
-export let target = 'body';
+export let target = '';
 export let events = 'hover';	// hover, click, focus
 export let className = '';
 export let delay = '0';
@@ -22,7 +22,7 @@ let el, targetEl, tooltipContainer;
 
 onMount(() => {
 	initContainer();
-	targetEl = document.querySelector('#' + target);
+	targetEl = target ? document.querySelector('#' + target) : document.body;
 	addTargetEvents();
 });
 

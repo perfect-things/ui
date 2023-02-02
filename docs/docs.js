@@ -13380,7 +13380,7 @@ function create_fragment$A(ctx) {
 function instance$A($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Tooltip', slots, ['default']);
-	let { target = 'body' } = $$props;
+	let { target = '' } = $$props;
 	let { events = 'hover' } = $$props;
 	let { className = '' } = $$props;
 	let { delay = '0' } = $$props;
@@ -13392,7 +13392,11 @@ function instance$A($$self, $$props, $$invalidate) {
 
 	onMount(() => {
 		initContainer();
-		targetEl = document.querySelector('#' + target);
+
+		targetEl = target
+		? document.querySelector('#' + target)
+		: document.body;
+
 		addTargetEvents();
 	});
 
@@ -28005,6 +28009,10 @@ function create_fragment$8(ctx) {
 	let button1;
 	let t29;
 	let tooltip5;
+	let t30;
+	let codeexample;
+	let t31;
+	let api;
 	let current;
 
 	tooltip0 = new Tooltip({
@@ -28066,6 +28074,16 @@ function create_fragment$8(ctx) {
 			$$inline: true
 		});
 
+	codeexample = new Code_example({
+			props: { html: /*exampleHtml*/ ctx[1] },
+			$$inline: true
+		});
+
+	api = new Api_table({
+			props: { props: /*apiProps*/ ctx[0] },
+			$$inline: true
+		});
+
 	const block = {
 		c: function create() {
 			h2 = element("h2");
@@ -28117,6 +28135,10 @@ function create_fragment$8(ctx) {
 			button1.textContent = "button";
 			t29 = space();
 			create_component(tooltip5.$$.fragment);
+			t30 = space();
+			create_component(codeexample.$$.fragment);
+			t31 = space();
+			create_component(api.$$.fragment);
 			add_location(h2, file$8, 0, 0, 0);
 			add_location(h30, file$8, 2, 0, 18);
 			attr_dev(span0, "class", "tooltip-box");
@@ -28182,47 +28204,51 @@ function create_fragment$8(ctx) {
 			insert_dev(target, button1, anchor);
 			insert_dev(target, t29, anchor);
 			mount_component(tooltip5, target, anchor);
+			insert_dev(target, t30, anchor);
+			mount_component(codeexample, target, anchor);
+			insert_dev(target, t31, anchor);
+			mount_component(api, target, anchor);
 			current = true;
 		},
 		p: function update(ctx, [dirty]) {
 			const tooltip0_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				tooltip0_changes.$$scope = { dirty, ctx };
 			}
 
 			tooltip0.$set(tooltip0_changes);
 			const tooltip1_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				tooltip1_changes.$$scope = { dirty, ctx };
 			}
 
 			tooltip1.$set(tooltip1_changes);
 			const tooltip2_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				tooltip2_changes.$$scope = { dirty, ctx };
 			}
 
 			tooltip2.$set(tooltip2_changes);
 			const tooltip3_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				tooltip3_changes.$$scope = { dirty, ctx };
 			}
 
 			tooltip3.$set(tooltip3_changes);
 			const tooltip4_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				tooltip4_changes.$$scope = { dirty, ctx };
 			}
 
 			tooltip4.$set(tooltip4_changes);
 			const tooltip5_changes = {};
 
-			if (dirty & /*$$scope*/ 1) {
+			if (dirty & /*$$scope*/ 4) {
 				tooltip5_changes.$$scope = { dirty, ctx };
 			}
 
@@ -28236,6 +28262,8 @@ function create_fragment$8(ctx) {
 			transition_in(tooltip3.$$.fragment, local);
 			transition_in(tooltip4.$$.fragment, local);
 			transition_in(tooltip5.$$.fragment, local);
+			transition_in(codeexample.$$.fragment, local);
+			transition_in(api.$$.fragment, local);
 			current = true;
 		},
 		o: function outro(local) {
@@ -28245,6 +28273,8 @@ function create_fragment$8(ctx) {
 			transition_out(tooltip3.$$.fragment, local);
 			transition_out(tooltip4.$$.fragment, local);
 			transition_out(tooltip5.$$.fragment, local);
+			transition_out(codeexample.$$.fragment, local);
+			transition_out(api.$$.fragment, local);
 			current = false;
 		},
 		d: function destroy(detaching) {
@@ -28285,6 +28315,10 @@ function create_fragment$8(ctx) {
 			if (detaching) detach_dev(button1);
 			if (detaching) detach_dev(t29);
 			destroy_component(tooltip5, detaching);
+			if (detaching) detach_dev(t30);
+			destroy_component(codeexample, detaching);
+			if (detaching) detach_dev(t31);
+			destroy_component(api, detaching);
 		}
 	};
 
@@ -28302,14 +28336,62 @@ function create_fragment$8(ctx) {
 function instance$8($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Tooltip', slots, []);
+
+	const apiProps = [
+		{
+			name: 'target',
+			required: true,
+			type: 'string',
+			description: 'ID of the target element.'
+		},
+		{
+			name: 'position',
+			type: ['top', 'bottom'],
+			default: 'auto',
+			description: 'Enforce the position of the tooltip to be above (top) or below (bottom) the target element.<br>Auto - will auto-position the tooltip so it stays on screen.'
+		},
+		{
+			name: 'className',
+			type: 'string',
+			description: 'Additional css class name to be added to the component.'
+		},
+		{
+			name: 'delay',
+			type: 'number',
+			default: '0',
+			description: 'Delay after which the tooltip should appear (in milliseconds).'
+		},
+		{
+			name: 'events',
+			type: ['hover', 'click', 'focus'],
+			default: 'hover',
+			description: 'Type of mouse event that should trigger the tooltip. Multiple events can be entered in a comma-separated string.<br>Note, that these events will dictate how the tooltip shows up as well as disappears, e.g.:<br><em>hover</em> - tooltip will show up on mouse over and disappear on mouse out<br><em>click</em> - tooltip will show up on click and will disappear when anything else (but the target or tooltip) is clicked.<br><em>focus</em> - tooltip will show up on focus and disappear on blur.'
+		}
+	];
+
+	const exampleHtml = `
+<div id="box1"></div>
+<Tooltip position="bottom" target="box1">Some tooltip text</Tooltip>
+
+<button id="box4">button with a tooltip on-focus & on-click</button>
+<Tooltip target="box4" events="click,focus">Showing on click</Tooltip>
+`;
+
 	const writable_props = [];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Tooltip> was created with unknown prop '${key}'`);
 	});
 
-	$$self.$capture_state = () => ({ Tooltip });
-	return [];
+	$$self.$capture_state = () => ({
+		Tooltip,
+		API: Api_table,
+		CodeExample: Code_example,
+		apiProps,
+		exampleHtml
+	});
+
+	return [apiProps, exampleHtml];
 }
 
 class Tooltip_1 extends SvelteComponentDev {
