@@ -1,0 +1,10 @@
+code {
+	display: block;
+	width: 100%;
+	padding: 1em;
+	line-height: 2;
+	background-color: var(--ui-color-background-dark-2);
+	margin-block: 1em;
+	white-space: pre;
+	overflow: auto;
+}

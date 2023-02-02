@@ -39,7 +39,7 @@
 <script>
 import { Button, ButtonToggle, Toggle } from '../../src';
 import API from '../api-table';
-import CodeBox from '../code-box';
+import CodeBox from '../code-example/code-box.svelte';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
