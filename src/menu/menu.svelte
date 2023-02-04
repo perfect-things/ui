@@ -6,6 +6,8 @@
 
 <script>
 import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+import initLongPressEvent from '../longpress.js';
+
 const dispatch = createEventDispatcher();
 
 export let type = undefined;          // can be undefined or 'context'
@@ -17,13 +19,21 @@ let menuEl, targetEl, focusedEl, opened = false;
 
 
 onMount(() => {
-	if (type === 'context') document.addEventListener('contextmenu', onContextMenu);
+	initLongPressEvent();
+
+	if (type === 'context') {
+		document.addEventListener('contextmenu', onContextMenu);
+		document.addEventListener('longpress', onContextMenu);
+	}
 	if (elevated) document.body.appendChild(menuEl);
 });
 
 
 onDestroy(() => {
-	if (type === 'context') document.removeEventListener('contextmenu', onContextMenu);
+	if (type === 'context') {
+		document.removeEventListener('contextmenu', onContextMenu);
+		document.removeEventListener('longpress', onContextMenu);
+	}
 	if (elevated) menuEl.remove();
 });
 
@@ -33,17 +43,25 @@ function updatePosition (e) {
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 
 	const etype = e && e.type;
-	// context menu
-	if (etype === 'contextmenu' && type === 'context') {	// update position to pointer
-		menuEl.style.top = e.y + 'px';
-		menuEl.style.left = e.x + 'px';
+
+	if (type === 'context') {
+		if (etype === 'contextmenu') {
+			menuEl.style.top = e.y + 'px';
+			menuEl.style.left = e.x + 'px';
+		}
+		else if (etype === 'longpress') {
+			menuEl.style.top = e.detail.y + 'px';
+			menuEl.style.left = e.detail.x + 'px';
+		}
 	}
+
 	// regular menu
 	else if (etype === 'click' && type !== 'context') {
 		const btnBox = e.target.getBoundingClientRect();
 		menuEl.style.top = (btnBox.top + btnBox.height + 3) + 'px';
 		menuEl.style.left = btnBox.left + 'px';
 	}
+
 	// ensure it stays on screen
 	let { x, y, width, height } = menuEl.getBoundingClientRect();
 	const winH = window.innerHeight;

@@ -5,7 +5,8 @@
 	max-height: 300px;
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
+	gap: 3vw;
 	margin: -2em -2em 2em;
 	overflow: hidden;
 }

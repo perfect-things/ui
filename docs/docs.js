@@ -1012,7 +1012,7 @@ function make_dirty(component, i) {
     }
     component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
 }
-function init(component, options, instance, create_fragment, not_equal, props, append_styles, dirty = [-1]) {
+function init$1(component, options, instance, create_fragment, not_equal, props, append_styles, dirty = [-1]) {
     const parent_component = current_component;
     set_current_component(component);
     const $$ = component.$$ = {
@@ -1743,7 +1743,7 @@ function instance$X($$self, $$props, $$invalidate) {
 class Icon extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$X, create_fragment$X, safe_not_equal, { name: 1 });
+		init$1(this, options, instance$X, create_fragment$X, safe_not_equal, { name: 1 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -2852,7 +2852,7 @@ class Autocomplete extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(
+		init$1(
 			this,
 			options,
 			instance$W,
@@ -3293,7 +3293,7 @@ class Button extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$V, create_fragment$V, safe_not_equal, {
+		init$1(this, options, instance$V, create_fragment$V, safe_not_equal, {
 			_this: 0,
 			success: 1,
 			warning: 2,
@@ -3519,7 +3519,7 @@ function instance$U($$self, $$props, $$invalidate) {
 let Button_group$1 = class Button_group extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$U, create_fragment$U, safe_not_equal, { round: 0, className: 1 });
+		init$1(this, options, instance$U, create_fragment$U, safe_not_equal, { round: 0, className: 1 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -3983,7 +3983,7 @@ let Button_toggle$1 = class Button_toggle extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$T, create_fragment$T, safe_not_equal, {
+		init$1(this, options, instance$T, create_fragment$T, safe_not_equal, {
 			disabled: 1,
 			round: 2,
 			className: 3,
@@ -4219,7 +4219,7 @@ class Checkbox extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$S, create_fragment$S, safe_not_equal, {
+		init$1(this, options, instance$S, create_fragment$S, safe_not_equal, {
 			_this: 0,
 			indeterminate: 1,
 			checked: 2,
@@ -4672,7 +4672,7 @@ class Dialog extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$R, create_fragment$R, safe_not_equal, {
+		init$1(this, options, instance$R, create_fragment$R, safe_not_equal, {
 			title: 1,
 			opened: 0,
 			drawborders: 2,
@@ -7730,7 +7730,7 @@ let Datepicker_1$1 = class Datepicker_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$Q, create_fragment$Q, safe_not_equal, {
+		init$1(this, options, instance$Q, create_fragment$Q, safe_not_equal, {
 			format: 11,
 			value: 0,
 			placeholder: 1,
@@ -8227,7 +8227,7 @@ class Drawer extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$P, create_fragment$P, safe_not_equal, {
+		init$1(this, options, instance$P, create_fragment$P, safe_not_equal, {
 			title: 0,
 			className: 1,
 			toggle: 9,
@@ -8447,7 +8447,7 @@ function instance$O($$self, $$props, $$invalidate) {
 class Input_number extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$O, create_fragment$O, safe_not_equal, { value: 0, className: 1 });
+		init$1(this, options, instance$O, create_fragment$O, safe_not_equal, { value: 0, className: 1 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -8736,7 +8736,7 @@ function instance$N($$self, $$props, $$invalidate) {
 let Input_math$1 = class Input_math extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$N, create_fragment$N, safe_not_equal, { _this: 0, value: 1, className: 2 });
+		init$1(this, options, instance$N, create_fragment$N, safe_not_equal, { _this: 0, value: 1, className: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -9187,7 +9187,7 @@ let Input_password$1 = class Input_password extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$M, create_fragment$M, safe_not_equal, {
+		init$1(this, options, instance$M, create_fragment$M, safe_not_equal, {
 			value: 0,
 			id: 1,
 			name: 2,
@@ -9520,7 +9520,7 @@ function instance$L($$self, $$props, $$invalidate) {
 class Panel extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$L, create_fragment$L, safe_not_equal, { title: 1, open: 0, round: 2 });
+		init$1(this, options, instance$L, create_fragment$L, safe_not_equal, { title: 1, open: 0, round: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -9966,7 +9966,7 @@ let Push_button$1 = class Push_button extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$K, create_fragment$K, safe_not_equal, {
+		init$1(this, options, instance$K, create_fragment$K, safe_not_equal, {
 			_this: 0,
 			pressed: 1,
 			success: 2,
@@ -10553,7 +10553,7 @@ class Select extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$J, create_fragment$J, safe_not_equal, {
+		init$1(this, options, instance$J, create_fragment$J, safe_not_equal, {
 			value: 0,
 			placeholder: 1,
 			items: 6,
@@ -10884,7 +10884,7 @@ class Splitter extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$I, create_fragment$I, safe_not_equal, {
+		init$1(this, options, instance$I, create_fragment$I, safe_not_equal, {
 			toggle: 4,
 			collapse: 5,
 			expand: 6,
@@ -11322,7 +11322,7 @@ class Table extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$H, create_fragment$H, safe_not_equal, {
+		init$1(this, options, instance$H, create_fragment$H, safe_not_equal, {
 			className: 1,
 			_this: 0,
 			selectable: 2,
@@ -11540,7 +11540,7 @@ function instance$G($$self, $$props, $$invalidate) {
 class Textarea extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$G, create_fragment$G, safe_not_equal, { value: 0, autogrow: 1, className: 2 });
+		init$1(this, options, instance$G, create_fragment$G, safe_not_equal, { value: 0, autogrow: 1, className: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -11732,7 +11732,7 @@ function instance$F($$self, $$props, $$invalidate) {
 let Text_fit$1 = class Text_fit extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$F, create_fragment$F, safe_not_equal, { margin: 1 });
+		init$1(this, options, instance$F, create_fragment$F, safe_not_equal, { margin: 1 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -12243,7 +12243,7 @@ function instance$E($$self, $$props, $$invalidate) {
 class Toaster extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$E, create_fragment$E, safe_not_equal, { position: 0 });
+		init$1(this, options, instance$E, create_fragment$E, safe_not_equal, { position: 0 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -12616,7 +12616,7 @@ function instance$D($$self, $$props, $$invalidate) {
 class Toggle extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$D, create_fragment$D, safe_not_equal, { value: 0, disabled: 1, className: 2 });
+		init$1(this, options, instance$D, create_fragment$D, safe_not_equal, { value: 0, disabled: 1, className: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -13098,7 +13098,7 @@ class Tooltip extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$C, create_fragment$C, safe_not_equal, {
+		init$1(this, options, instance$C, create_fragment$C, safe_not_equal, {
 			target: 4,
 			events: 5,
 			className: 0,
@@ -13614,7 +13614,7 @@ function instance$B($$self, $$props, $$invalidate) {
 class Tree_node extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$B, create_fragment$B, safe_not_equal, { item: 1, level: 2, expanded: 0 });
+		init$1(this, options, instance$B, create_fragment$B, safe_not_equal, { item: 1, level: 2, expanded: 0 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -13983,7 +13983,7 @@ function instance$A($$self, $$props, $$invalidate) {
 class Tree extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$A, create_fragment$A, safe_not_equal, { items: 0 });
+		init$1(this, options, instance$A, create_fragment$A, safe_not_equal, { items: 0 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -14000,6 +14000,114 @@ class Tree extends SvelteComponentDev {
 	set items(value) {
 		throw new Error("<Tree>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
+}
+
+const maxDiffX = 10;    // max number of X pixels the mouse can move during long press before it is canceled
+const maxDiffY = 10;    // max number of Y pixels the mouse can move during long press before it is canceled
+
+// track number of pixels the mouse moves during long press
+let startX = 0;         // mouse x position when timer started
+let startY = 0;         // mouse y position when timer started
+
+let EVENT_NAME = 'longpress';
+let DELAY = 500;
+let timer = null;
+
+
+
+function fireLongPressEvent (originalEvent) {
+	clearTimer();
+	originalEvent = unifyEvent(originalEvent);
+
+	const event = new CustomEvent(EVENT_NAME, {
+		bubbles: true,
+		cancelable: true,
+		detail: {
+			x: originalEvent.clientX,
+			y: originalEvent.clientY
+		}
+	});
+	const allowClickEvent = originalEvent.target.dispatchEvent(event);
+
+	if (!allowClickEvent) {
+		// suppress the next click event if e.preventDefault() was called in longpress handler
+		document.addEventListener('click', function suppressEvent (e) {
+			document.removeEventListener('click', suppressEvent, true);
+			cancelEvent(e);
+		}, true);
+	}
+}
+
+
+/**
+ * consolidates mouse, touch, and Pointer events
+ */
+function unifyEvent (e) {
+	if (e.changedTouches !== undefined) return e.changedTouches[0];
+	return e;
+}
+
+
+function startTimer (e) {
+	clearTimer();
+	timer = setTimeout(() => fireLongPressEvent(e), DELAY);
+}
+
+function clearTimer () {
+	clearTimeout(timer);
+	timer = null;
+}
+
+
+function cancelEvent (e) {
+	e.stopImmediatePropagation();
+	e.preventDefault();
+	e.stopPropagation();
+}
+
+
+/**
+ * Starts the timer on mouse down and logs current position
+ */
+function mouseDownHandler (e) {
+	startX = e.clientX;
+	startY = e.clientY;
+	startTimer(e);
+}
+
+
+/**
+ * If the mouse moves n pixels during long-press, cancel the timer
+ */
+function mouseMoveHandler (e) {
+	const diffX = Math.abs(startX - e.clientX);
+	const diffY = Math.abs(startY - e.clientY);
+	if (diffX >= maxDiffX || diffY >= maxDiffY) clearTimer();
+}
+
+
+function init (delay = 500, eventName = 'longpress') {
+	if (window.longPressEventInitialised) return;
+
+	DELAY = delay;
+	EVENT_NAME = eventName;
+
+	// check if we're using a touch screen
+	const hasPointerEvents = (('PointerEvent' in window) || (window.navigator && 'msPointerEnabled' in window.navigator));
+	const isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+
+	// switch to pointer events or touch events if using a touch screen
+	const mouseDown = hasPointerEvents ? 'pointerdown' : isTouch ? 'touchstart' : 'mousedown';
+	const mouseUp = hasPointerEvents ? 'pointerup' : isTouch ? 'touchend' : 'mouseup';
+	const mouseMove = hasPointerEvents ? 'pointermove' : isTouch ? 'touchmove' : 'mousemove';
+
+	// hook events that clear a pending long press event
+	document.addEventListener(mouseDown, mouseDownHandler, true);
+	document.addEventListener(mouseMove, mouseMoveHandler, true);
+	document.addEventListener(mouseUp, clearTimer, true);
+	document.addEventListener('wheel', clearTimer, true);
+	document.addEventListener('scroll', clearTimer, true);
+	window.longPressEventInitialised = true;
 }
 
 /* src/menu/menu.svelte generated by Svelte v3.55.0 */
@@ -14091,12 +14199,22 @@ function instance$z($$self, $$props, $$invalidate) {
 	let menuEl, targetEl, focusedEl, opened = false;
 
 	onMount(() => {
-		if (type === 'context') document.addEventListener('contextmenu', onContextMenu);
+		init();
+
+		if (type === 'context') {
+			document.addEventListener('contextmenu', onContextMenu);
+			document.addEventListener('longpress', onContextMenu);
+		}
+
 		if (elevated) document.body.appendChild(menuEl);
 	});
 
 	onDestroy(() => {
-		if (type === 'context') document.removeEventListener('contextmenu', onContextMenu);
+		if (type === 'context') {
+			document.removeEventListener('contextmenu', onContextMenu);
+			document.removeEventListener('longpress', onContextMenu);
+		}
+
 		if (elevated) menuEl.remove();
 	});
 
@@ -14104,12 +14222,14 @@ function instance$z($$self, $$props, $$invalidate) {
 		if (e && e.detail && e.detail instanceof Event) e = e.detail;
 		const etype = e && e.type;
 
-		// context menu
-		if (etype === 'contextmenu' && type === 'context') {
-			// update position to pointer
-			$$invalidate(0, menuEl.style.top = e.y + 'px', menuEl);
-
-			$$invalidate(0, menuEl.style.left = e.x + 'px', menuEl);
+		if (type === 'context') {
+			if (etype === 'contextmenu') {
+				$$invalidate(0, menuEl.style.top = e.y + 'px', menuEl);
+				$$invalidate(0, menuEl.style.left = e.x + 'px', menuEl);
+			} else if (etype === 'longpress') {
+				$$invalidate(0, menuEl.style.top = e.detail.y + 'px', menuEl);
+				$$invalidate(0, menuEl.style.left = e.detail.x + 'px', menuEl);
+			}
 		} else // regular menu
 		if (etype === 'click' && type !== 'context') {
 			const btnBox = e.target.getBoundingClientRect();
@@ -14261,6 +14381,7 @@ function instance$z($$self, $$props, $$invalidate) {
 		createEventDispatcher,
 		onDestroy,
 		onMount,
+		initLongPressEvent: init,
 		dispatch,
 		type,
 		targetSelector,
@@ -14327,7 +14448,7 @@ class Menu extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
 
-		init(this, options, instance$z, create_fragment$z, safe_not_equal, {
+		init$1(this, options, instance$z, create_fragment$z, safe_not_equal, {
 			type: 2,
 			targetSelector: 3,
 			closeOnClick: 4,
@@ -14505,7 +14626,7 @@ function instance$y($$self, $$props, $$invalidate) {
 class Menu_item extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$y, create_fragment$y, safe_not_equal, {});
+		init$1(this, options, instance$y, create_fragment$y, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -14569,7 +14690,7 @@ function instance$x($$self, $$props) {
 class Menu_separator extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$x, create_fragment$x, safe_not_equal, {});
+		init$1(this, options, instance$x, create_fragment$x, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -14669,7 +14790,7 @@ function instance$w($$self, $$props, $$invalidate) {
 class Nav_item extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$w, create_fragment$w, safe_not_equal, { active: 0, name: 1, hash: 2 });
+		init$1(this, options, instance$w, create_fragment$w, safe_not_equal, { active: 0, name: 1, hash: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -15132,7 +15253,7 @@ function instance$v($$self, $$props) {
 class Start extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$v, create_fragment$v, safe_not_equal, {});
+		init$1(this, options, instance$v, create_fragment$v, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -15496,7 +15617,7 @@ function instance$u($$self, $$props, $$invalidate) {
 class Api_table extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$u, create_fragment$u, safe_not_equal, { title: 0, description: 1, props: 2 });
+		init$1(this, options, instance$u, create_fragment$u, safe_not_equal, { title: 0, description: 1, props: 2 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -15642,7 +15763,7 @@ function instance$t($$self, $$props, $$invalidate) {
 class Code_box extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$t, create_fragment$t, safe_not_equal, { tag: 1, props: 2, text: 3 });
+		init$1(this, options, instance$t, create_fragment$t, safe_not_equal, { tag: 1, props: 2, text: 3 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -16378,7 +16499,7 @@ function instance$s($$self, $$props, $$invalidate) {
 class Button_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$s, create_fragment$s, safe_not_equal, {});
+		init$1(this, options, instance$s, create_fragment$s, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -16520,7 +16641,7 @@ function instance$r($$self, $$props, $$invalidate) {
 class Code_example extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$r, create_fragment$r, safe_not_equal, { html: 0, notitle: 1 });
+		init$1(this, options, instance$r, create_fragment$r, safe_not_equal, { html: 0, notitle: 1 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -17980,7 +18101,7 @@ function onChange (e) {
 class Button_group extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$q, create_fragment$q, safe_not_equal, {});
+		init$1(this, options, instance$q, create_fragment$q, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -18551,7 +18672,7 @@ const buttons = [
 class Button_toggle extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$p, create_fragment$p, safe_not_equal, {});
+		init$1(this, options, instance$p, create_fragment$p, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -19833,7 +19954,7 @@ function onChange (e) {
 class Push_button extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$o, create_fragment$o, safe_not_equal, {});
+		init$1(this, options, instance$o, create_fragment$o, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -22250,7 +22371,7 @@ function instance$n($$self, $$props, $$invalidate) {
 class Menu_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$n, create_fragment$n, safe_not_equal, {});
+		init$1(this, options, instance$n, create_fragment$n, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -22512,7 +22633,7 @@ function instance$m($$self, $$props, $$invalidate) {
 class Icon_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$m, create_fragment$m, safe_not_equal, {});
+		init$1(this, options, instance$m, create_fragment$m, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -22906,7 +23027,7 @@ function instance$l($$self, $$props, $$invalidate) {
 class Text_fit extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$l, create_fragment$l, safe_not_equal, {});
+		init$1(this, options, instance$l, create_fragment$l, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -23493,7 +23614,7 @@ function cb (id) {
 class Toaster_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$k, create_fragment$k, safe_not_equal, {});
+		init$1(this, options, instance$k, create_fragment$k, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -23604,7 +23725,7 @@ function instance$j($$self, $$props, $$invalidate) {
 class Color_palette_box extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$j, create_fragment$j, safe_not_equal, { bg: 0, text: 1 });
+		init$1(this, options, instance$j, create_fragment$j, safe_not_equal, { bg: 0, text: 1 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -24403,7 +24524,7 @@ function instance$i($$self, $$props, $$invalidate) {
 class Color_palette extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$i, create_fragment$i, safe_not_equal, {});
+		init$1(this, options, instance$i, create_fragment$i, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -25244,7 +25365,7 @@ function onChange (e) {
 class Autocomplete_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$h, create_fragment$h, safe_not_equal, {});
+		init$1(this, options, instance$h, create_fragment$h, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -25632,7 +25753,7 @@ function onChange (e) {
 class Datepicker_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$g, create_fragment$g, safe_not_equal, {});
+		init$1(this, options, instance$g, create_fragment$g, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -25946,7 +26067,7 @@ function onChange (e) {
 class Checkbox_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$f, create_fragment$f, safe_not_equal, {});
+		init$1(this, options, instance$f, create_fragment$f, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -26249,7 +26370,7 @@ function onChange (e) {
 class Input extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$e, create_fragment$e, safe_not_equal, {});
+		init$1(this, options, instance$e, create_fragment$e, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -26431,7 +26552,7 @@ function onChange (e) {
 class Input_math extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$d, create_fragment$d, safe_not_equal, {});
+		init$1(this, options, instance$d, create_fragment$d, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -26680,7 +26801,7 @@ function onChange (e) {
 class Input_password extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$c, create_fragment$c, safe_not_equal, {});
+		init$1(this, options, instance$c, create_fragment$c, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -27126,7 +27247,7 @@ function onChange (e) {
 class Select_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$b, create_fragment$b, safe_not_equal, {});
+		init$1(this, options, instance$b, create_fragment$b, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -27396,7 +27517,7 @@ function onChange (e) {
 class Textarea_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$a, create_fragment$a, safe_not_equal, {});
+		init$1(this, options, instance$a, create_fragment$a, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -27772,7 +27893,7 @@ function onChange (e) {
 class Toggle_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$9, create_fragment$9, safe_not_equal, {});
+		init$1(this, options, instance$9, create_fragment$9, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -28397,7 +28518,7 @@ function instance$8($$self, $$props, $$invalidate) {
 class Tooltip_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$8, create_fragment$8, safe_not_equal, {});
+		init$1(this, options, instance$8, create_fragment$8, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -29303,7 +29424,7 @@ function instance$7($$self, $$props, $$invalidate) {
 class Dialog_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$7, create_fragment$7, safe_not_equal, {});
+		init$1(this, options, instance$7, create_fragment$7, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -29762,7 +29883,7 @@ function instance$6($$self, $$props, $$invalidate) {
 class Drawer_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$6, create_fragment$6, safe_not_equal, {});
+		init$1(this, options, instance$6, create_fragment$6, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -30155,7 +30276,7 @@ function instance$5($$self, $$props, $$invalidate) {
 class Panel_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$5, create_fragment$5, safe_not_equal, {});
+		init$1(this, options, instance$5, create_fragment$5, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -30604,7 +30725,7 @@ function onchanged (e) {
 class Splitter_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$4, create_fragment$4, safe_not_equal, {});
+		init$1(this, options, instance$4, create_fragment$4, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -32513,7 +32634,7 @@ function instance$3($$self, $$props, $$invalidate) {
 class Table_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
+		init$1(this, options, instance$3, create_fragment$3, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -32759,7 +32880,7 @@ function onSelect (e) {
 class Tree_1 extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$2, create_fragment$2, safe_not_equal, {});
+		init$1(this, options, instance$2, create_fragment$2, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -33530,7 +33651,7 @@ function instance$1($$self, $$props, $$invalidate) {
 class Nav extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance$1, create_fragment$1, safe_not_equal, { component: 4 });
+		init$1(this, options, instance$1, create_fragment$1, safe_not_equal, { component: 4 });
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
@@ -33694,7 +33815,7 @@ function instance($$self, $$props, $$invalidate) {
 class App extends SvelteComponentDev {
 	constructor(options) {
 		super(options);
-		init(this, options, instance, create_fragment, safe_not_equal, {});
+		init$1(this, options, instance, create_fragment, safe_not_equal, {});
 
 		dispatch_dev("SvelteRegisterComponent", {
 			component: this,
