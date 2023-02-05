@@ -14187,8 +14187,8 @@ function instance$z($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Menu', slots, ['default']);
 	const dispatch = createEventDispatcher();
-	const isSupported = 'oncontextmenu' in document.documentElement;
-	const contextmenu = isSupported ? 'contextmenu' : 'longpress';
+	const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
+	const contextmenu = isMobileSafari ? 'longpress' : 'contextmenu';
 	let { type = undefined } = $$props;
 	let { targetSelector = 'body' } = $$props;
 	let { closeOnClick = true } = $$props;
@@ -14199,11 +14199,10 @@ function instance$z($$self, $$props, $$invalidate) {
 		init();
 
 		if (type === 'context') {
-			document.querySelectorAll(targetSelector).forEach(el => {
-				el.style['-webkit-touch-callout'] = 'none';
-				el.style.touchCallout = 'none';
-			});
-
+			// document.querySelectorAll(targetSelector).forEach(el => {
+			// 	el.style['-webkit-touch-callout'] = 'none';
+			// 	el.style.touchCallout = 'none';
+			// });
 			document.addEventListener(contextmenu, onContextMenu);
 		}
 
@@ -14396,7 +14395,7 @@ function instance$z($$self, $$props, $$invalidate) {
 		onMount,
 		initLongPressEvent: init,
 		dispatch,
-		isSupported,
+		isMobileSafari,
 		contextmenu,
 		type,
 		targetSelector,

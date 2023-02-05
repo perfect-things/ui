@@ -9,8 +9,8 @@ import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 import initLongPressEvent from '../longpress.js';
 
 const dispatch = createEventDispatcher();
-const isSupported = 'oncontextmenu' in document.documentElement;
-const contextmenu = isSupported ? 'contextmenu' : 'longpress';
+const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
+const contextmenu = isMobileSafari ? 'longpress' : 'contextmenu';
 
 export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
@@ -24,11 +24,10 @@ onMount(() => {
 	initLongPressEvent();
 
 	if (type === 'context') {
-		document.querySelectorAll(targetSelector).forEach(el => {
-			el.style['-webkit-touch-callout'] = 'none';
-			el.style.touchCallout = 'none';
-		});
-
+		// document.querySelectorAll(targetSelector).forEach(el => {
+		// 	el.style['-webkit-touch-callout'] = 'none';
+		// 	el.style.touchCallout = 'none';
+		// });
 		document.addEventListener(contextmenu, onContextMenu);
 	}
 	if (elevated) document.body.appendChild(menuEl);
