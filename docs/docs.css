@@ -1,14 +1,3 @@
-.api-table { height: unset; }
-.api-table .table { table-layout: fixed; }
-
-.api-table tr td { vertical-align: top; }
-
-.api-table tr th:first-child,
-.api-table tr td:first-child { width: 200px; }
-
-.api-table tr th:nth-child(2),
-.api-table tr td:nth-child(2) { width: 200px; }
-
 html,
 body {
 	box-sizing: border-box;
@@ -99,6 +88,17 @@ code {
 	overflow: auto;
 }
 
+.api-table { height: unset; }
+.api-table .table { table-layout: fixed; }
+
+.api-table tr td { vertical-align: top; }
+
+.api-table tr th:first-child,
+.api-table tr td:first-child { width: 200px; }
+
+.api-table tr th:nth-child(2),
+.api-table tr td:nth-child(2) { width: 200px; }
+
 aside {
 	padding: 1rem 1rem 4rem;
 	border-right: 1px solid var(--ui-color-border-dark-2);
@@ -175,6 +175,46 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	main { padding-top: 5em; }
 	.main-header { margin-top: -5em; }
 }
+
+.main-header {
+	background: linear-gradient(#0001, #0006), url("bg.png") right;
+	background-size: cover;
+	height: 30vw;
+	max-height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3vw;
+	margin: -2em -2em 2em;
+	overflow: hidden;
+}
+
+.logo {
+	width: 20vw;
+	max-width: 256px;
+	filter: drop-shadow(0 1px 2px #0009);
+}
+
+.logotype {
+	font-size: 6vw;
+	font-weight: 600;
+	text-shadow: 0 0 20px #fffa;
+	margin: -0.3em 0 0;
+	display: flex;
+	flex-flow: column;
+	justify-content: stretch;
+	color: var(--ui-color-background-dark-2);
+	white-space: nowrap;
+}
+
+.logotype span { display: block; }
+.logotype .small {
+	font-size: 0.49em;
+	font-weight: 300;
+	margin-block: -0.4em;
+	white-space: nowrap;
+}
+.logotype .small:last-child { text-align: right; }
 
 .button-toggle-wrapper-wide { width: 400px; }
 .button-toggle-wrapper-wide .button-toggle { width: 100%; }
@@ -300,44 +340,4 @@ small { display: block; margin: 5px 0 15px; }
 	padding: 1em;
 	border: 1px solid #ccc;
 }
-
-.main-header {
-	background: linear-gradient(#0001, #0006), url("bg.png") right;
-	background-size: cover;
-	height: 30vw;
-	max-height: 300px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 3vw;
-	margin: -2em -2em 2em;
-	overflow: hidden;
-}
-
-.logo {
-	width: 20vw;
-	max-width: 256px;
-	filter: drop-shadow(0 1px 2px #0009);
-}
-
-.logotype {
-	font-size: 6vw;
-	font-weight: 600;
-	text-shadow: 0 0 20px #fffa;
-	margin: -0.3em 0 0;
-	display: flex;
-	flex-flow: column;
-	justify-content: stretch;
-	color: var(--ui-color-background-dark-2);
-	white-space: nowrap;
-}
-
-.logotype span { display: block; }
-.logotype .small {
-	font-size: 0.49em;
-	font-weight: 300;
-	margin-block: -0.4em;
-	white-space: nowrap;
-}
-.logotype .small:last-child { text-align: right; }
 /*# sourceMappingURL=docs.css.map */

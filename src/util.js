@@ -90,3 +90,12 @@ export function roundAmount (val, precision = 2) {
 	const multiplier = Math.pow(10, precision);
 	return Math.round(val * multiplier) / multiplier;
 }
+
+
+export function blink (el, duration = 160) {
+	return animate(el,
+		{ opacity: 1 },
+		{ opacity: 0.5 },
+		{ duration: duration / 2, direction: 'alternate', iterations: 2 }
+	);
+}

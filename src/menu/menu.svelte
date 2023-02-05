@@ -85,12 +85,11 @@ function onContextMenu (e) {
 
 
 function onDocumentClick (e) {
-	// if (type === 'context' && e.button !== 0) return;
-	if (!menuEl.contains(e.target)) close();
+	if (!menuEl.contains(e.target)) highlightButtonAndClose(e.target, e);
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
 		const clickedOnItem = e.target.closest('.menu-item:not(.menu-separator)');
-		if (shouldClose && clickedOnItem) close();
+		if (shouldClose && clickedOnItem) highlightButtonAndClose(e.target, e);
 	}
 }
 
@@ -165,6 +164,17 @@ export function open (e) {
 		requestAnimationFrame(resolve);
 		focusNext();
 	}));
+}
+
+
+function highlightButtonAndClose (btn, e) {
+	btn.focus();
+	// need to wait for the button to trigger click
+	// and check if it's not cancelled by consumers
+	// the timeout must be longer than the menu-item blink + some 20ms
+	setTimeout(() => {
+		if (!e.defaultPrevented) close();
+	}, 260);
 }
 
 

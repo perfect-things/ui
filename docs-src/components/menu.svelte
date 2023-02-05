@@ -95,7 +95,7 @@ const instanceApiProps = [
 ];
 
 const itemApiProps = [
-	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.stopPropagation();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
+	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
 ];
 
 const exampleHtml = `
@@ -121,7 +121,7 @@ const exampleHtml = `
 <script>
     let menu1, menu2;
     function closeSomething (e) {
-        e.stopPropagation(); // prevents menu auto-closing
+        e.preventDefault(); // prevents menu auto-closing
         menu1.close();       // manually close the menu
     }
 &lt;/script>
@@ -135,7 +135,7 @@ let thingsMenuTimer, tabsMenutimer;
 
 
 function menuCloseThings (e) {
-	if (e) e.stopPropagation();
+	if (e) e.preventDefault();
 	const initial = 'Close all things';
 	const confrm = 'Confirm Closing';
 
@@ -161,7 +161,8 @@ function newPrivateTab () {
 	tabsMenu.close().then(() => alert('New Private Tab clicked'));
 }
 function closeTabs (e) {
-	if (e) e.stopPropagation();
+	if (e) e.preventDefault();
+
 	const initial = 'Close all tabs';
 	const confrm = 'Confirm Closing';
 

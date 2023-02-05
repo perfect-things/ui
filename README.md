@@ -10,8 +10,10 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
+- [ ] menu: see why context menu with long-click need double clicking on mobile
 - [x] Feat: context menu on mobile with a long click
 - [x] copy and rewrite long-press
+- [x] menu: highlight clicked
 - [ ] Feat: context menu [type-to-select](https://height.app/blog/guide-to-build-context-menus#type-to-select)
 
 
