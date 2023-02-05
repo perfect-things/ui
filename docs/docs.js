@@ -2628,7 +2628,7 @@ function instance$W($$self, $$props, $$invalidate) {
 
 	function onScrollOrResize(e) {
 		if (!opened) return;
-		if (e.target == listEl || e.target == inputEl || mouseOverList) return;
+		if (e.target === listEl || e.target === inputEl || mouseOverList) return;
 		if (e.type === 'resize' && hideOnResize !== true && hideOnResize !== 'true') return;
 		if (e.type === 'scroll' && hideOnScroll !== true && hideOnScroll !== 'true') return;
 		inputEl.blur();
@@ -11044,7 +11044,7 @@ function create_fragment$H(ctx) {
 }
 
 function shouldSkipNav(e) {
-	if (!e || !e.target || e.target == document) return false;
+	if (!e || !e.target || e.target === document) return false;
 	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'];
 	if (skipEventFor.includes(e.target.tagName)) return true;
 	if (e.target.closest('.dialog,.drawer')) return true;
@@ -11139,7 +11139,7 @@ function instance$H($$self, $$props, $$invalidate) {
 		if (!rowEl) return;
 		if (rowEl != document.activeElement) rowEl.focus();
 		const scrlCont = getScrollContainer();
-		let topMargin = scrlCont == _this ? 0 : _this.offsetTop;
+		let topMargin = scrlCont === _this ? 0 : _this.offsetTop;
 		let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
 
 		if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top }); else {
@@ -11153,14 +11153,14 @@ function instance$H($$self, $$props, $$invalidate) {
 	function selectFocusedRow(rowEl) {
 		if (!rowEl) return;
 		const rows = getSelectableItems();
-		selectedIdx = rows.findIndex(item => item == rowEl);
+		selectedIdx = rows.findIndex(item => item === rowEl);
 		selectClicked(true);
 	}
 
 	function onFocus(e) {
 		if (!_this.contains(e.target)) return;
 		if (!e || !e.target || shouldSkipNav(e)) return;
-		if (e.target == document) return;
+		if (e.target === document) return;
 		if (!e.target.matches(rowSelector)) return;
 		const rowEl = e.target.closest(rowSelector);
 
@@ -12177,7 +12177,7 @@ function hideToast(id) {
 function guid() {
 	return ('xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx').replace(/[xy]/g, c => {
 		const r = Math.random() * 16 | 0;
-		const v = c == 'x' ? r : r & 0x3 | 0x8;
+		const v = c === 'x' ? r : r & 0x3 | 0x8;
 		return v.toString(16);
 	});
 }
@@ -13851,7 +13851,7 @@ function instance$A($$self, $$props, $$invalidate) {
 	}
 
 	function select(node) {
-		if (!node || selectedItem == node) return;
+		if (!node || selectedItem === node) return;
 		unselectAll();
 		selectedItem = node;
 		selectedItem.classList.add('selected');
@@ -13930,7 +13930,7 @@ function instance$A($$self, $$props, $$invalidate) {
 		if (!nodes) nodes = items;
 
 		for (let found, node, i = 0; node = nodes[i]; i++) {
-			if (node.id == id) return node;
+			if (node.id === id) return node;
 			if (node.items) found = findItem(id, node.items);
 			if (found) return found;
 		}
@@ -14036,15 +14036,7 @@ function fireLongPressEvent (originalEvent) {
 			y: originalEvent.clientY
 		}
 	});
-	const allowClickEvent = originalEvent.target.dispatchEvent(event);
-
-	if (!allowClickEvent) {
-		// suppress the next click event if e.preventDefault() was called in longpress handler
-		document.addEventListener('click', function suppressEvent (e) {
-			document.removeEventListener('click', suppressEvent, true);
-			cancelEvent(e);
-		}, true);
-	}
+	originalEvent.target.dispatchEvent(event);
 }
 
 
@@ -14062,16 +14054,10 @@ function startTimer (e) {
 	timer = setTimeout(() => fireLongPressEvent(e), DELAY);
 }
 
+
 function clearTimer () {
-	clearTimeout(timer);
+	if (timer) clearTimeout(timer);
 	timer = null;
-}
-
-
-function cancelEvent (e) {
-	e.stopImmediatePropagation();
-	e.preventDefault();
-	e.stopPropagation();
 }
 
 
@@ -14102,13 +14088,13 @@ function init (delay = 500, eventName = 'longpress') {
 	EVENT_NAME = eventName;
 
 	// check if we're using a touch screen
-	const hasPointerEvents = (('PointerEvent' in window) || (window.navigator && 'msPointerEnabled' in window.navigator));
 	const isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+	const hasPointerEvents = (('PointerEvent' in window) || (window.navigator && 'msPointerEnabled' in window.navigator));
 
 	// switch to pointer events or touch events if using a touch screen
-	const mouseDown = hasPointerEvents ? 'pointerdown' : isTouch ? 'touchstart' : 'mousedown';
-	const mouseUp = hasPointerEvents ? 'pointerup' : isTouch ? 'touchend' : 'mouseup';
-	const mouseMove = hasPointerEvents ? 'pointermove' : isTouch ? 'touchmove' : 'mousemove';
+	const mouseDown = isTouch ? 'touchstart' : hasPointerEvents ? 'pointerdown' : 'mousedown';
+	const mouseUp = isTouch ? 'touchend' : hasPointerEvents ? 'pointerup' : 'mouseup';
+	const mouseMove = isTouch ? 'touchmove' : hasPointerEvents ? 'pointermove' : 'mousemove';
 
 	// hook events that clear a pending long press event
 	document.addEventListener(mouseDown, mouseDownHandler, true);
@@ -14201,6 +14187,8 @@ function instance$z($$self, $$props, $$invalidate) {
 	let { $$slots: slots = {}, $$scope } = $$props;
 	validate_slots('Menu', slots, ['default']);
 	const dispatch = createEventDispatcher();
+	const isSupported = 'oncontextmenu' in document.documentElement;
+	const contextmenu = isSupported ? 'contextmenu' : 'longpress';
 	let { type = undefined } = $$props;
 	let { targetSelector = 'body' } = $$props;
 	let { closeOnClick = true } = $$props;
@@ -14211,8 +14199,12 @@ function instance$z($$self, $$props, $$invalidate) {
 		init();
 
 		if (type === 'context') {
-			document.addEventListener('contextmenu', onContextMenu);
-			document.addEventListener('longpress', onContextMenu);
+			document.querySelectorAll(targetSelector).forEach(el => {
+				el.style['-webkit-touch-callout'] = 'none';
+				el.style.touchCallout = 'none';
+			});
+
+			document.addEventListener(contextmenu, onContextMenu);
 		}
 
 		if (elevated) document.body.appendChild(menuEl);
@@ -14220,8 +14212,7 @@ function instance$z($$self, $$props, $$invalidate) {
 
 	onDestroy(() => {
 		if (type === 'context') {
-			document.removeEventListener('contextmenu', onContextMenu);
-			document.removeEventListener('longpress', onContextMenu);
+			document.removeEventListener(contextmenu, onContextMenu);
 		}
 
 		if (elevated) menuEl.remove();
@@ -14267,7 +14258,7 @@ function instance$z($$self, $$props, $$invalidate) {
 	}
 
 	function onDocumentClick(e) {
-		if (!menuEl.contains(e.target)) highlightButtonAndClose(e.target, e); else {
+		if (!menuEl.contains(e.target)) close(); else {
 			const shouldClose = closeOnClick === true || closeOnClick === 'true';
 			const clickedOnItem = e.target.closest('.menu-item:not(.menu-separator)');
 			if (shouldClose && clickedOnItem) highlightButtonAndClose(e.target, e);
@@ -14307,7 +14298,7 @@ function instance$z($$self, $$props, $$invalidate) {
 	function focusNext() {
 		const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
 		let idx = -1;
-		if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
+		if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 		if (idx >= buttons.length - 1) return;
 		focusedEl = buttons[idx + 1];
 		if (focusedEl) focusedEl.focus();
@@ -14316,7 +14307,7 @@ function instance$z($$self, $$props, $$invalidate) {
 	function focusPrev() {
 		const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
 		let idx = buttons.length;
-		if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
+		if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 		if (idx <= 0) return;
 		focusedEl = buttons[idx - 1];
 		if (focusedEl) focusedEl.focus();
@@ -14405,6 +14396,8 @@ function instance$z($$self, $$props, $$invalidate) {
 		onMount,
 		initLongPressEvent: init,
 		dispatch,
+		isSupported,
+		contextmenu,
 		type,
 		targetSelector,
 		closeOnClick,

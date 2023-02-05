@@ -23,15 +23,7 @@ function fireLongPressEvent (originalEvent) {
 			y: originalEvent.clientY
 		}
 	});
-	const allowClickEvent = originalEvent.target.dispatchEvent(event);
-
-	if (!allowClickEvent) {
-		// suppress the next click event if e.preventDefault() was called in longpress handler
-		document.addEventListener('click', function suppressEvent (e) {
-			document.removeEventListener('click', suppressEvent, true);
-			cancelEvent(e);
-		}, true);
-	}
+	originalEvent.target.dispatchEvent(event);
 }
 
 
@@ -49,16 +41,10 @@ function startTimer (e) {
 	timer = setTimeout(() => fireLongPressEvent(e), DELAY);
 }
 
+
 function clearTimer () {
-	clearTimeout(timer);
+	if (timer) clearTimeout(timer);
 	timer = null;
-}
-
-
-function cancelEvent (e) {
-	e.stopImmediatePropagation();
-	e.preventDefault();
-	e.stopPropagation();
 }
 
 
@@ -89,13 +75,13 @@ export default function init (delay = 500, eventName = 'longpress') {
 	EVENT_NAME = eventName;
 
 	// check if we're using a touch screen
-	const hasPointerEvents = (('PointerEvent' in window) || (window.navigator && 'msPointerEnabled' in window.navigator));
 	const isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+	const hasPointerEvents = (('PointerEvent' in window) || (window.navigator && 'msPointerEnabled' in window.navigator));
 
 	// switch to pointer events or touch events if using a touch screen
-	const mouseDown = hasPointerEvents ? 'pointerdown' : isTouch ? 'touchstart' : 'mousedown';
-	const mouseUp = hasPointerEvents ? 'pointerup' : isTouch ? 'touchend' : 'mouseup';
-	const mouseMove = hasPointerEvents ? 'pointermove' : isTouch ? 'touchmove' : 'mousemove';
+	const mouseDown = isTouch ? 'touchstart' : hasPointerEvents ? 'pointerdown' : 'mousedown';
+	const mouseUp = isTouch ? 'touchend' : hasPointerEvents ? 'pointerup' : 'mouseup';
+	const mouseMove = isTouch ? 'touchmove' : hasPointerEvents ? 'pointermove' : 'mousemove';
 
 	// hook events that clear a pending long press event
 	document.addEventListener(mouseDown, mouseDownHandler, true);

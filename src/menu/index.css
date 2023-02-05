@@ -9,6 +9,8 @@
 	overflow: hidden;
 	cursor: default;
 	z-index: 999;
+	-webkit-user-select: none;
+	user-select: none;
 
 	color: var(--ui-color-text);
 	border: var(--ui-popup-border);

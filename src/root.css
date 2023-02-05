@@ -31,7 +31,11 @@
 }
 
 
-body,
-body * { box-sizing: border-box; }
+body {
+	box-sizing: border-box;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
+body * { box-sizing: inherit; }
 
 svg { width: 24px; height: 24px; }

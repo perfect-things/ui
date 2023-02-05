@@ -9,6 +9,8 @@ import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 import initLongPressEvent from '../longpress.js';
 
 const dispatch = createEventDispatcher();
+const isSupported = 'oncontextmenu' in document.documentElement;
+const contextmenu = isSupported ? 'contextmenu' : 'longpress';
 
 export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
@@ -22,8 +24,12 @@ onMount(() => {
 	initLongPressEvent();
 
 	if (type === 'context') {
-		document.addEventListener('contextmenu', onContextMenu);
-		document.addEventListener('longpress', onContextMenu);
+		document.querySelectorAll(targetSelector).forEach(el => {
+			el.style['-webkit-touch-callout'] = 'none';
+			el.style.touchCallout = 'none';
+		});
+
+		document.addEventListener(contextmenu, onContextMenu);
 	}
 	if (elevated) document.body.appendChild(menuEl);
 });
@@ -31,8 +37,7 @@ onMount(() => {
 
 onDestroy(() => {
 	if (type === 'context') {
-		document.removeEventListener('contextmenu', onContextMenu);
-		document.removeEventListener('longpress', onContextMenu);
+		document.removeEventListener(contextmenu, onContextMenu);
 	}
 	if (elevated) menuEl.remove();
 });
@@ -77,6 +82,7 @@ function onContextMenu (e) {
 	close();
 	targetEl = e.target.closest(targetSelector);
 	if (!targetEl) return;
+
 	e.stopPropagation();
 	e.preventDefault();
 	updatePosition(e);
@@ -85,7 +91,7 @@ function onContextMenu (e) {
 
 
 function onDocumentClick (e) {
-	if (!menuEl.contains(e.target)) highlightButtonAndClose(e.target, e);
+	if (!menuEl.contains(e.target)) close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
 		const clickedOnItem = e.target.closest('.menu-item:not(.menu-separator)');
