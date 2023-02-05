@@ -34,7 +34,7 @@ function unselectAll () {
 
 
 function select (node) {
-	if (!node || selectedItem == node) return;
+	if (!node || selectedItem === node) return;
 	unselectAll();
 	selectedItem = node;
 	selectedItem.classList.add('selected');
@@ -124,7 +124,7 @@ function tryToGetSelectedItem () {
 function findItem (id, nodes) {
 	if (!nodes) nodes = items;
 	for (let found, node, i = 0; node = nodes[i]; i++) {
-		if (node.id == id) return node;
+		if (node.id === id) return node;
 		if (node.items) found = findItem(id, node.items);
 		if (found) return found;
 	}

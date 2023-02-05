@@ -132,7 +132,7 @@ function focusTarget () {
 function focusNext () {
 	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
 	let idx = -1;
-	if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
+	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx >= buttons.length - 1) return;
 	focusedEl = buttons[idx + 1];
 	if (focusedEl) focusedEl.focus();
@@ -142,7 +142,7 @@ function focusNext () {
 function focusPrev () {
 	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
 	let idx = buttons.length;
-	if (focusedEl) idx = buttons.findIndex(el => el == focusedEl);
+	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx <= 0) return;
 	focusedEl = buttons[idx - 1];
 	if (focusedEl) focusedEl.focus();

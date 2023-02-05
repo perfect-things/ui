@@ -107,7 +107,7 @@ function selectClicked (skipEvent = false) {
 	if (rowEl != document.activeElement) rowEl.focus();
 
 	const scrlCont = getScrollContainer();
-	let topMargin = (scrlCont == _this ? 0 : _this.offsetTop);
+	let topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
 
 	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
 
@@ -125,7 +125,7 @@ function selectClicked (skipEvent = false) {
 function selectFocusedRow (rowEl) {
 	if (!rowEl) return;
 	const rows = getSelectableItems();
-	selectedIdx = rows.findIndex(item => item == rowEl);
+	selectedIdx = rows.findIndex(item => item === rowEl);
 	selectClicked(true);
 }
 
@@ -133,7 +133,7 @@ function selectFocusedRow (rowEl) {
 function onFocus (e) {
 	if (!_this.contains(e.target)) return;
 	if (!e || !e.target || shouldSkipNav(e)) return;
-	if (e.target == document) return;
+	if (e.target === document) return;
 	if (!e.target.matches(rowSelector)) return;
 
 	const rowEl = e.target.closest(rowSelector);
@@ -203,7 +203,7 @@ function onKeyDown (e) {
 
 
 function shouldSkipNav (e) {
-	if (!e || !e.target || e.target == document) return false;
+	if (!e || !e.target || e.target === document) return false;
 	const skipEventFor = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'];
 	if (skipEventFor.includes(e.target.tagName)) return true;
 	if (e.target.closest('.dialog,.drawer')) return true;

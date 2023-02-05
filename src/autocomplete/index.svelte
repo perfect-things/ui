@@ -340,7 +340,7 @@ function onEsc (e) {
 
 function onScrollOrResize (e) {
 	if (!opened) return;
-	if (e.target == listEl || e.target == inputEl || mouseOverList) return;
+	if (e.target === listEl || e.target === inputEl || mouseOverList) return;
 
 	if (e.type === 'resize' && hideOnResize !== true && hideOnResize !== 'true') return;
 	if (e.type === 'scroll' && hideOnScroll !== true && hideOnScroll !== 'true') return;
