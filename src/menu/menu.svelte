@@ -16,31 +16,48 @@ export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
 export let elevate = false;
+
 $:elevated = elevate === 'true' || elevate === true;
 let menuEl, targetEl, focusedEl, opened = false;
+const menuButtons = [];
+let typeQuery = '';
+let typeTimer;
+
 
 
 onMount(() => {
 	initLongPressEvent();
 
-	if (type === 'context') {
-		// document.querySelectorAll(targetSelector).forEach(el => {
-		// 	el.style['-webkit-touch-callout'] = 'none';
-		// 	el.style.touchCallout = 'none';
-		// });
-		document.addEventListener(contextmenu, onContextMenu);
-	}
+	if (type === 'context') document.addEventListener(contextmenu, onContextMenu);
 	if (elevated) document.body.appendChild(menuEl);
+	indexButtons();
 });
 
 
 onDestroy(() => {
-	if (type === 'context') {
-		document.removeEventListener(contextmenu, onContextMenu);
-	}
+	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
 	if (elevated) menuEl.remove();
 });
 
+
+function indexButtons () {
+	if (!menuEl) return;
+	const addBtn = el => menuButtons.push({ el, text: el.textContent.trim().toLowerCase() });
+	menuEl.querySelectorAll('.menu-button').forEach(addBtn);
+}
+
+
+function matchTypeQuery (key) {
+	if (!/^\w| $/i.test(key)) return;
+	if (typeTimer) clearTimeout(typeTimer);
+	typeTimer = setTimeout(() => typeQuery = '', 300);
+	typeQuery += key;
+	const btn = menuButtons.find(b => b.text.startsWith(typeQuery));
+	if (btn) {
+		btn.el.focus();
+		focusedEl = btn.el;
+	}
+}
 
 
 function updatePosition (e) {
@@ -60,7 +77,7 @@ function updatePosition (e) {
 	}
 
 	// regular menu
-	else if (etype === 'click' && type !== 'context') {
+	else if (etype === 'click') {
 		const btnBox = e.target.getBoundingClientRect();
 		menuEl.style.top = (btnBox.top + btnBox.height + 3) + 'px';
 		menuEl.style.left = btnBox.left + 'px';
@@ -78,7 +95,7 @@ function updatePosition (e) {
 
 
 function onContextMenu (e) {
-	close();
+	_close();
 	targetEl = e.target.closest(targetSelector);
 	if (!targetEl) return;
 
@@ -90,17 +107,17 @@ function onContextMenu (e) {
 
 
 function onDocumentClick (e) {
-	if (!menuEl.contains(e.target)) close();
+	if (!menuEl.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
-		const clickedOnItem = e.target.closest('.menu-item:not(.menu-separator)');
-		if (shouldClose && clickedOnItem) highlightButtonAndClose(e.target, e);
+		const clickedOnItem = !!e.target.closest('.menu-item:not(.menu-separator)');
+		if (shouldClose && clickedOnItem) close(e);
 	}
 }
 
 
 function onscroll () {
-	if (opened) close();
+	if (opened) _close();
 }
 
 
@@ -114,23 +131,38 @@ function onmousemove (e) {
 
 
 function onKeydown (e) {
-	if (e.key === 'Escape') close();
+	if (e.key === 'Escape') _close();
 
 	if (!menuEl.contains(e.target)) return;
 
-	if (e.key === 'ArrowDown') {
-		e.preventDefault();
-		focusNext();
-	}
-	else if (e.key === 'ArrowUp') {
-		e.preventDefault();
-		focusPrev();
-	}
+	if (e.key.startsWith('Arrow')) e.preventDefault();
+	if (e.key.startsWith(' ')) e.preventDefault();
+
+	if (e.key === 'ArrowDown') focusNext();
+	else if (e.key === 'ArrowUp') focusPrev();
+	else if (e.key === 'ArrowLeft') focusFirst();
+	else if (e.key === 'ArrowRight') focusLast();
+
+	else matchTypeQuery(e.key);
 }
 
 
 function focusTarget () {
 	if (targetEl && targetEl.focus) targetEl.focus();
+}
+
+
+function focusFirst () {
+	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	focusedEl = buttons[0];
+	if (focusedEl) focusedEl.focus();
+}
+
+
+function focusLast () {
+	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	focusedEl = buttons[buttons.length - 1];
+	if (focusedEl) focusedEl.focus();
 }
 
 
@@ -172,18 +204,25 @@ export function open (e) {
 }
 
 
-function highlightButtonAndClose (btn, e) {
-	btn.focus();
-	// need to wait for the button to trigger click
-	// and check if it's not cancelled by consumers
+/**
+ * Highlights the clicked button and closes the menu (provided that the button's event handler did not call preventDefault())
+ */
+export function close (e) {
+	if (e && e.detail && e.detail.target) e = e.detail;
+	if (e && e.target) e.target.focus();
+	// need to wait for the button to trigger click and check if it's not cancelled by consumers
 	// the timeout must be longer than the menu-item blink + some 20ms
-	setTimeout(() => {
-		if (!e.defaultPrevented) close();
-	}, 260);
+	return new Promise(resolve => {
+		setTimeout(() => {
+			if (!e || !e.defaultPrevented) _close().then(() => resolve());
+			else resolve();
+		}, 220);
+	});
 }
 
 
-export function close () {
+function _close () {
+	if (!opened) return Promise.resolve();
 	opened = false;
 	return new Promise(resolve => requestAnimationFrame(() => {
 		dispatch('close');

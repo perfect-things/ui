@@ -6,6 +6,15 @@
 	<Item><Icon name="plus"/> Add a thing</Item>
 	<Item><Icon name=""/> Add another one</Item>
 	<Separator />
+	<Item shortcut="cmd+shift+c"><Icon name=""/> Third option</Item>
+	<Item shortcut="cmd+alt+d"><Icon name=""/> Fourth menu item</Item>
+	<Item shortcut="cmd+c"><Icon name=""/> Fifth element</Item>
+	<Item shortcut="cmd+enter"><Icon name=""/> Sixth one, to make it longer</Item>
+	<Item shortcut="backspace"><Icon name=""/> Seventh. Menu supports type-ahead</Item>
+	<Item shortcut="escape"><Icon name=""/> Eight, so go ahead and try typing</Item>
+	<Item shortcut="cmd+option+s"><Icon name=""/> Ninth, the beginning of the menu item text</Item>
+	<Item><Icon name=""/> Tenth, and it should be focused</Item>
+	<Separator />
 	<Item on:click="{menuCloseThings}"><Icon name="close"/> {closeThingsText}</Item>
 </Menu>
 
@@ -54,17 +63,17 @@
 <div class="div div2">Window</div>
 
 <Menu type="context" targetSelector=".div1" bind:this="{tabsMenu}" on:close="{onTabsMenuClose}">
-	<Item on:click="{newTab}"><Icon name="plus"/> New Tab</Item>
-	<Item on:click="{newPrivateTab}"><Icon name=""/> New Private Tab</Item>
+	<Item shortcut="cmd+t" on:click="{newTab}"><Icon name="plus"/> New Tab</Item>
+	<Item shortcut="cmd+shift+t" on:click="{newPrivateTab}"><Icon name=""/> New Private Tab</Item>
 	<Separator />
-	<Item on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</Item>
+	<Item shortcut="cmd+shift+w" on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</Item>
 </Menu>
 
 <Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
-	<Item on:click="{newWindow}">New window</Item>
-	<Item on:click="{newPrivateWindow}">New private window</Item>
+	<Item shortcut="cmd+n" on:click="{newWindow}">New window</Item>
+	<Item shortcut="cmd+shift+n" on:click="{newPrivateWindow}">New private window</Item>
 	<Separator />
-	<Item on:click="{closeWindows}">Close All Windows</Item>
+	<Item shortcut="cmd+shift+q" on:click="{closeWindows}">Close All Windows</Item>
 </Menu>
 
 
@@ -95,6 +104,7 @@ const instanceApiProps = [
 ];
 
 const itemApiProps = [
+	{ name: 'shortcut', type: 'string', description: 'A string representation of a keyboard shortcut. e.g. <em>cmd+alt+c</em>.<br>Keys should be separated by a <em>+</em> sign (which will be hidden in the rendered item).<br>Special keys (like cmd, alt, ctrl, shift, escape, enter, etc.) will be replaced by a corresponding symbol.<br>Keyboard handling must be done elsewhere.' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
 ];
 
@@ -112,16 +122,16 @@ const exampleHtml = `
 <!-- Context menu -->
 <div class="div1">Tab</div>
 <Menu type="context" targetSelector=".div1" bind:this="{menu2}">
-    <Item on:click="{action1}">New window</Item>
-    <Item on:click="{action2}">New private window</Item>
+    <Item shortcut="cmd+n" on:click="{action1}">New window</Item>
+    <Item shortcut="cmd+shift+n" on:click="{action2}">New private window</Item>
     <Separator />
-    <Item on:click="{action3}">Close All Windows</Item>
+    <Item shortcut="cmd+shift+q" on:click="{action3}">Close All Windows</Item>
 </Menu>
 
 <script>
     let menu1, menu2;
     function closeSomething (e) {
-        e.preventDefault(); // prevents menu auto-closing
+        e.preventDefault();   // prevents menu auto-closing
         menu1.close();       // manually close the menu
     }
 &lt;/script>

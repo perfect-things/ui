@@ -96,6 +96,6 @@ export function blink (el, duration = 160) {
 	return animate(el,
 		{ opacity: 1 },
 		{ opacity: 0.5 },
-		{ duration: duration / 2, direction: 'alternate', iterations: 2 }
+		{ duration: duration / 2, fill: 'backwards' }
 	);
 }

@@ -21,6 +21,13 @@
 
 .menu.hidden { display: none; }
 
+.menu-separator {
+	height: 0;
+	padding: 0;
+	margin: var(--ui-margin) var(--ui-margin-m);
+	border-bottom: var(--ui-popup-border);
+}
+
 .menu-item {
 	padding: 0.1em 0;
 	margin: 2px 0;
@@ -36,6 +43,22 @@
 	height: 1.3em;
 	margin: -0.1em 0.727em -0.1em 0;
 }
+
+.menu-item-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-right: 2em;
+}
+
+.menu-item-shortcut {
+	margin: -0.1em 0 -0.1em auto;
+	letter-spacing: 0.1em;
+	opacity: 0.5;
+}
+
+.menu-item-shortcut:empty { visibility: hidden; }
+
 
 .menu-button {
 	font-size: 0.86em;
@@ -53,19 +76,11 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.menu-button:focus {
-	outline: 1px solid transparent;
-	background-color: var(--ui-color-highlight);
-}
+.menu-button:focus-within,
+.menu-button:focus { outline: 1px solid transparent; background-color: var(--ui-color-highlight); }
 
-.menu-separator {
-	height: 0;
-	padding: 0;
-	margin: var(--ui-margin) var(--ui-margin-m);
-	border-bottom: var(--ui-popup-border);
-}
+.menu-button:focus .menu-item-shortcut { opacity: 1; }
 
 
-.mobile .menu-button {
-	padding: 1em;
-}
+
+.mobile .menu-button { padding: 1em; }
