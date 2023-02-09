@@ -3,7 +3,7 @@ docs/bg.png
 docs/docs.css
 docs/docs.js
 docs/favicon.svg
-docs/github-dark.min.js
+docs/github-dark.min.css
 docs/highlight-svelte.min.js
 docs/highlight.min.js
 docs/index.html
@@ -14,3 +14,4 @@ docs-src/
 .*
 gulpfile.js
 release.sh
+screen.png
