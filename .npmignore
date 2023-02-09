@@ -1,10 +1,15 @@
+assets/
 docs/bg.png
 docs/docs.css
 docs/docs.js
 docs/favicon.svg
+docs/github-dark.min.js
+docs/highlight-svelte.min.js
+docs/highlight.min.js
 docs/index.html
-docs/logo.png
 docs/logo-white.png
+docs/logo.png
+docs/logo2.png
 docs-src/
 .*
 gulpfile.js
