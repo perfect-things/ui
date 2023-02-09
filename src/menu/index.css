@@ -1,6 +1,6 @@
 .menu {
 	position: fixed;
-	padding: 0.0626em 0.25em;
+	padding: 0.2em 0.25em;
 	margin: 0;
 	display: flex;
 	flex-flow: column;
@@ -19,18 +19,12 @@
 	box-shadow: var(--ui-popup-shadow);
 }
 
-.menu.hidden { display: none; }
 
-.menu-separator {
-	height: 0;
-	padding: 0;
-	margin: var(--ui-margin) var(--ui-margin-m);
-	border-bottom: var(--ui-popup-border);
-}
+.menu.hidden { display: none; }
 
 .menu-item {
 	padding: 0.1em 0;
-	margin: 2px 0;
+	margin: 0;
 	position: relative;
 	overflow: hidden;
 	display: flex;
@@ -38,11 +32,7 @@
 	justify-content: space-between;
 }
 
-.menu-item svg {
-	width: 1.3em;
-	height: 1.3em;
-	margin: -0.1em 0.727em -0.1em 0;
-}
+.menu-item svg { width: 1.3em; height: 1.3em; margin: -0.1em 0.5em -0.1em 0; }
 
 .menu-item-content {
 	display: flex;
@@ -51,13 +41,16 @@
 	margin-right: 2em;
 }
 
-.menu-item-shortcut {
-	margin: -0.1em 0 -0.1em auto;
-	letter-spacing: 0.1em;
-	opacity: 0.5;
-}
+.menu-item-shortcut { margin: -0.1em 0 -0.1em auto; letter-spacing: 0.1em; opacity: 0.5; }
 
 .menu-item-shortcut:empty { visibility: hidden; }
+
+.menu-separator {
+	height: 0;
+	padding: 0;
+	margin: var(--ui-margin) 0.6em;
+	border-bottom: var(--ui-popup-border);
+}
 
 
 .menu-button {
@@ -72,8 +65,8 @@
 	align-items: center;
 	white-space: nowrap;
 	cursor: pointer;
-	padding: 0.3637em 0.727em;
-	border-radius: var(--ui-border-radius);
+	padding: 0.6em 1em;
+	border-radius: var(--ui-border-radius-s);
 }
 
 .menu-button:focus-within,
@@ -82,5 +75,13 @@
 .menu-button:focus .menu-item-shortcut { opacity: 1; }
 
 
-
 .mobile .menu-button { padding: 1em; }
+
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+	.menu {
+		background-color: var(--ui-color-background-semi);
+		-webkit-backdrop-filter: blur(30px);
+		backdrop-filter: blur(30px);
+	}
+}

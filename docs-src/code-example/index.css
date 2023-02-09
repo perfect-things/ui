@@ -7,4 +7,5 @@ code {
 	margin-block: 1em;
 	white-space: pre;
 	overflow: auto;
+	border-radius: var(--ui-border-radius-s);
 }

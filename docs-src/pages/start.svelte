@@ -1,5 +1,5 @@
 <header class="main-header">
-	<img class="logo" src="logo.png" alt="Logo"/>
+	<img class="logo" src="logo2.png" alt="Logo"/>
 	<h1 class="logotype">
 		<span class="small">simple</span>
 		<span>UI Components</span>

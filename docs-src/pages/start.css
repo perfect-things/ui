@@ -1,32 +1,34 @@
 .main-header {
-	background: linear-gradient(#0001, #0006), url("bg.png") right;
-	background-size: cover;
 	height: 30vw;
 	max-height: 300px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 3vw;
+	gap: 3.5vw;
 	margin: -2em -2em 2em;
+	padding: 2em;
 	overflow: hidden;
+	border-bottom: 1px solid var(--ui-color-border-dark-2);
 }
 
 .logo {
 	width: 20vw;
-	max-width: 256px;
+	height: 20vw;
+	max-width: 196px;
+	max-height: 196px;
+	opacity: 0.9;
 	filter: drop-shadow(0 1px 2px #0009);
 }
 
 .logotype {
-	font-size: 6vw;
+	font-size: 4vw;
 	font-weight: 600;
-	text-shadow: 0 0 20px #fffa;
 	margin: -0.3em 0 0;
 	display: flex;
 	flex-flow: column;
 	justify-content: stretch;
-	color: var(--ui-color-background-dark-2);
 	white-space: nowrap;
+	filter: drop-shadow(0 1px 2px #0009);
 }
 
 .logotype span { display: block; }

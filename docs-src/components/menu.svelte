@@ -4,16 +4,16 @@
 <Button on:click="{thingsMenu.open}">Show menu</Button>
 <Menu bind:this="{thingsMenu}">
 	<Item><Icon name="plus"/> Add a thing</Item>
-	<Item><Icon name=""/> Add another one</Item>
+	<Item>Add another one</Item>
 	<Separator />
-	<Item shortcut="cmd+shift+c"><Icon name=""/> Third option</Item>
-	<Item shortcut="cmd+alt+d"><Icon name=""/> Fourth menu item</Item>
-	<Item shortcut="cmd+c"><Icon name=""/> Fifth element</Item>
-	<Item shortcut="cmd+enter"><Icon name=""/> Sixth one, to make it longer</Item>
-	<Item shortcut="backspace"><Icon name=""/> Seventh. Menu supports type-ahead</Item>
-	<Item shortcut="escape"><Icon name=""/> Eight, so go ahead and try typing</Item>
-	<Item shortcut="cmd+option+s"><Icon name=""/> Ninth, the beginning of the menu item text</Item>
-	<Item><Icon name=""/> Tenth, and it should be focused</Item>
+	<Item shortcut="cmd+shift+c">Third option</Item>
+	<Item shortcut="cmd+alt+d">Fourth menu item</Item>
+	<Item shortcut="cmd+c">Fifth element</Item>
+	<Item shortcut="cmd+enter">Sixth one, to make it longer</Item>
+	<Item shortcut="backspace">Seventh. Menu supports type-ahead</Item>
+	<Item shortcut="escape">Eight, so go ahead and try typing</Item>
+	<Item shortcut="cmd+option+s">Ninth, the beginning of the menu item text</Item>
+	<Item>Tenth, and it should be focused</Item>
 	<Separator />
 	<Item on:click="{menuCloseThings}"><Icon name="close"/> {closeThingsText}</Item>
 </Menu>
@@ -27,7 +27,7 @@
 	<Button on:click="{someMenu1.open}">Regular Menu</Button>
 	<Menu bind:this="{someMenu1}">
 		<Item><Icon name="plus"/> Add some</Item>
-		<Item><Icon name=""/> Add some more</Item>
+		<Item>Add some more</Item>
 		<Separator />
 		<Item><Icon name="close"/> Close something</Item>
 	</Menu>
@@ -35,7 +35,7 @@
 	<Button on:click="{someMenu2.open}">Elevated Menu</Button>
 	<Menu bind:this="{someMenu2}" elevate="true">
 		<Item><Icon name="plus"/> Add some</Item>
-		<Item><Icon name=""/> Add some more</Item>
+		<Item>Add some more</Item>
 		<Separator />
 		<Item><Icon name="close"/> Close something</Item>
 	</Menu>
@@ -43,7 +43,7 @@
 	<Button className="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
 	<Menu bind:this="{someMenu3}" elevate="true">
 		<Item><Icon name="plus"/> A very long text</Item>
-		<Item><Icon name=""/> Another very long text</Item>
+		<Item>Another very long text</Item>
 		<Separator />
 		<Item><Icon name="close"/> Probably the longest text in the world!</Item>
 	</Menu>
@@ -64,7 +64,7 @@
 
 <Menu type="context" targetSelector=".div1" bind:this="{tabsMenu}" on:close="{onTabsMenuClose}">
 	<Item shortcut="cmd+t" on:click="{newTab}"><Icon name="plus"/> New Tab</Item>
-	<Item shortcut="cmd+shift+t" on:click="{newPrivateTab}"><Icon name=""/> New Private Tab</Item>
+	<Item shortcut="cmd+shift+t" on:click="{newPrivateTab}">New Private Tab</Item>
 	<Separator />
 	<Item shortcut="cmd+shift+w" on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</Item>
 </Menu>
@@ -112,7 +112,7 @@ const exampleHtml = `
 <!-- Regular menu -->
 <Menu bind:this="{menu1}">
     <Item><Icon name="plus"/> Add some</Item>
-    <Item><Icon name=""/> Add some more</Item>
+    <Item>Add some more</Item>
     <Separator />
     <Item on:click="{closeSomething}"><Icon name="close"/> Close something</Item>
 </Menu>
