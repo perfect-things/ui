@@ -88,6 +88,18 @@ hr {
 	position: relative;
 }
 
+code {
+	display: block;
+	width: 100%;
+	padding: 1em;
+	line-height: 2;
+	background-color: var(--ui-color-background-dark-2);
+	margin-block: 1em;
+	white-space: pre;
+	overflow: auto;
+	border-radius: var(--ui-border-radius-s);
+}
+
 .button-toggle-wrapper-wide { width: 400px; }
 .button-toggle-wrapper-wide .button-toggle { width: 100%; }
 
@@ -211,18 +223,6 @@ small { display: block; margin: 5px 0 15px; }
 	line-height: 2.4em;
 	padding: 1em;
 	border: 1px solid #ccc;
-}
-
-code {
-	display: block;
-	width: 100%;
-	padding: 1em;
-	line-height: 2;
-	background-color: var(--ui-color-background-dark-2);
-	margin-block: 1em;
-	white-space: pre;
-	overflow: auto;
-	border-radius: var(--ui-border-radius-s);
 }
 
 aside {

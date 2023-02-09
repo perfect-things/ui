@@ -1,7 +1,7 @@
 .checkbox {
 	appearance: none;
-	width: 1.5em;
-	height: 1.5em;
+	width: 1.4em;
+	height: 1.4em;
 	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
@@ -10,15 +10,16 @@
 	background: var(--ui-color-background-input);
 	border: 1px solid var(--ui-color-text-dark-1);
 	color: var(--ui-color-text-dark-1);
+	font: inherit;   /* required for em-sizing */
 }
 
 .checkbox::after {
 	content: "✕";
 	display: block;
 	opacity: 0;
-	font-size: 1.4em;
-	line-height: 0.9em;
-	align-self: flex-start;
+	font-size: 1em;
+	line-height: 1;
+	align-self: center;
 	color: inherit;
 }
 
