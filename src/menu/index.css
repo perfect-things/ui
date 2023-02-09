@@ -66,7 +66,7 @@
 	white-space: nowrap;
 	cursor: pointer;
 	padding: 0.6em 1em;
-	border-radius: var(--ui-border-radius-s);
+	border-radius: var(--ui-border-radius);
 }
 
 .menu-button:focus-within,

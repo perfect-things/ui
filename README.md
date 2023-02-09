@@ -21,7 +21,8 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 
 - [ ] color palette
-  - reduce text & bg colors
+  - reduce text & bg
+  - colors
   - text-primary, secondary
   - rm semi, etc
 
