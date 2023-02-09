@@ -10,6 +10,7 @@ docs/index.html
 docs/logo-white.png
 docs/logo.png
 docs/logo2.png
+docs/zxcvbn.js.map
 docs-src/
 .*
 gulpfile.js
