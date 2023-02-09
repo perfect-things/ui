@@ -31,6 +31,7 @@
 					{#each group.items as item}
 						<div
 							class="autocomplete-list-item"
+							class:in-group="{!!item.group}"
 							class:selected="{item.idx === highlightIndex}"
 							on:click="{() => onclick(item)}">
 							{@html item.highlightedName || item.name}
@@ -290,9 +291,11 @@ function onclick (item) {
 	value = item;
 	inputEl.value = item.name;
 	highlightIndex = item.idx;
-	requestAnimationFrame(() => inputEl.focus());
 	dispatch('change', { value, oldValue });
-	close();
+	requestAnimationFrame(() => {
+		inputEl.focus();
+		close();
+	});
 }
 
 

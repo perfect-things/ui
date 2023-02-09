@@ -70,7 +70,10 @@
 }
 
 .menu-button:focus-within,
-.menu-button:focus { outline: 1px solid transparent; background-color: var(--ui-color-highlight); }
+.menu-button:focus {
+	background-color: var(--ui-color-highlight);
+	outline: 1px solid transparent;
+}
 
 .menu-button:focus .menu-item-shortcut { opacity: 1; }
 

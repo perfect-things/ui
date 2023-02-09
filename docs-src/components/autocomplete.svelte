@@ -42,7 +42,7 @@
 	</div>
 	<div class="docs-column">
 		<h2>Selected value: </h2>
-		<pre>{JSON.stringify(autocompleteValue || {}, null, 2)}</pre>
+		<code>{JSON.stringify(autocompleteValue || {}, null, 2)}</code>
 	</div>
 </div>
 
@@ -157,6 +157,12 @@ const autocompleteDataSimple = [
 	{ name: 'Iota', group: '😀 Group 2 has a very long name' },
 	{ name: 'Kappa', group: '😀 Group 2 has a very long name' },
 	{ name: 'Lambda is the last item in Group 2', group: '😀 Group 2 has a very long name' },
+
+	{ name: 'Alpha' },
+	{ name: 'Beta' },
+	{ name: 'Gamma' },
+	{ name: 'Delta' },
+	{ name: 'Epsilon' },
 ];
 let autocompleteValueSimple = autocompleteDataSimple[3];
 

@@ -18,9 +18,7 @@
 
 <h3>1. Firstly, install the module as a dev dependency:</h3>
 
-<code>
-npm i -D simple-ui-components-in-svelte
-</code>
+<pre><code class="bash">npm i -D simple-ui-components-in-svelte</code></pre>
 
 
 <h3>2. Import the CSS</h3>
@@ -29,11 +27,10 @@ There are many ways to do that. I specifically didn't use any css-to-js imports 
 The easiest way is probably to add a <i>postinstall</i> script into your <i>package.json</i> that will just copy the file into your <i>dist</i> folder:
 </p>
 
-<code>
-"scripts": &lbrace;
+<pre><code class="json">"scripts": &lbrace;
     "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css"
-&rbrace;
-</code>
+&rbrace;</code></pre>
+
 <p>From there - you can just add it directly to the <i>index.html</i>.</p>
 
 <i>Note:</i> you need to run <em>npm install</em> after adding this line to your <i>package.json</i>
@@ -41,9 +38,8 @@ The easiest way is probably to add a <i>postinstall</i> script into your <i>pack
 
 <h3>3. Svelte components</h3>
 Just <i>import</i> them from the module, as normal:
-<code>
-import &lbrace; Button &rbrace; from 'simple-ui-components-in-svelte';
-</code>
+
+<pre><code class="js">import &lbrace; Button &rbrace; from 'simple-ui-components-in-svelte';</code></pre>
 
 <p>
 	<em>*</em> <a href="#InputPassword">Password</a> is a special case component, where it works fine on its own,
@@ -51,25 +47,23 @@ import &lbrace; Button &rbrace; from 'simple-ui-components-in-svelte';
 	<a href="https://github.com/dropbox/zxcvbn">zxcvbn</a>.<br>
 	You need to load it in your html file, e.g.:
 </p>
-<code>
-	&lt;script src="zxcvbn.js"&gt;&lt;/script&gt;
-</code>
+
+<pre><code class="html">&lt;script src="zxcvbn.js"&gt;&lt;/script&gt;</code></pre>
+
 <p>This script file is available in SUICIS npm package, and can be copied over to your <i>dist</i> folder, similarly to the css in the previous example, e.g.:</p>
-<code>
-"scripts": &lbrace;
+<pre><code class="json">"scripts": &lbrace;
     "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css && cp node_modules/simple-ui-components-in-svelte/docs/zxcvbn.js dist/zxcvbn.js"
-&rbrace;
-</code>
+&rbrace;</code></pre>
 
 
 <h2>Development</h2>
 
 You need node & npm (obviously). Then, run these:
-<code>
-git clone git@github.com:perfect-things/simple-ui-components-in-svelte.git
+
+<pre><code class="bash">git clone git@github.com:perfect-things/simple-ui-components-in-svelte.git
 cd simple-ui-components-in-svelte
-npm i && npm start
-</code>
+npm i && npm start</code></pre>
+
 A browser window should open with the demo of the components.
 
 

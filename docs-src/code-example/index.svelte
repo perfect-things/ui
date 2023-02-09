@@ -1,7 +1,7 @@
 {#if !notitle}
 	<hr><h3>Example</h3>
 {/if}
-<code>{@html encode(html)}</code>
+<pre><code class="svelte">{@html encode(html)}</code></pre>
 
 <script>
 export let html = '';

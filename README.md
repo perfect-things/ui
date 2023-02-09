@@ -10,13 +10,13 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] Feat: menu [type-to-select](https://height.app/blog/guide-to-build-context-menus#type-to-select)
-- [x] Feat: menu shortcuts
+- [x] Feat: restyle autocomplete to resemble select/menu components
+- [x] Bug: autocomplete when show-on-focus is on, clicking does not hide list
 
 
 - [ ] Update screen.png
 - [ ] Bug: toggle doesn't work on mobile
-- [ ] Bug: splitter no work on mobile
+- [ ] Bug: splitter doesn't work on mobile
 
 
 

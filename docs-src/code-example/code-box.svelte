@@ -1,6 +1,4 @@
-<code>
-	{@html html}
-</code>
+<pre><code class="svelte">{@html html}</code></pre>
 
 <script>
 

@@ -8,4 +8,5 @@ code {
 	white-space: pre;
 	overflow: auto;
 	border-radius: var(--ui-border-radius-s);
+	transition: all 1s ease-out;
 }

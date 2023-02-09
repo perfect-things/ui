@@ -1798,7 +1798,7 @@ function get_each_context_1$2(ctx, list, i) {
 	return child_ctx;
 }
 
-// (41:53) 
+// (42:53) 
 function create_if_block_4(ctx) {
 	let div;
 
@@ -1807,7 +1807,7 @@ function create_if_block_4(ctx) {
 			div = element("div");
 			div.textContent = "No items found";
 			attr_dev(div, "class", "autocomplete-list-empty");
-			add_location(div, file$V, 41, 3, 1188);
+			add_location(div, file$V, 42, 3, 1227);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div, anchor);
@@ -1822,7 +1822,7 @@ function create_if_block_4(ctx) {
 		block,
 		id: create_if_block_4.name,
 		type: "if",
-		source: "(41:53) ",
+		source: "(42:53) ",
 		ctx
 	});
 
@@ -2021,6 +2021,7 @@ function create_each_block_1$2(ctx) {
 			t = space();
 			html_tag.a = t;
 			attr_dev(div, "class", "autocomplete-list-item");
+			toggle_class(div, "in-group", !!/*item*/ ctx[59].group);
 			toggle_class(div, "selected", /*item*/ ctx[59].idx === /*highlightIndex*/ ctx[9]);
 			add_location(div, file$V, 31, 6, 897);
 		},
@@ -2037,6 +2038,10 @@ function create_each_block_1$2(ctx) {
 		p: function update(new_ctx, dirty) {
 			ctx = new_ctx;
 			if (dirty[0] & /*groupedData*/ 1024 && raw_value !== (raw_value = (/*item*/ ctx[59].highlightedName || /*item*/ ctx[59].name) + "")) html_tag.p(raw_value);
+
+			if (dirty[0] & /*groupedData*/ 1024) {
+				toggle_class(div, "in-group", !!/*item*/ ctx[59].group);
+			}
 
 			if (dirty[0] & /*groupedData, highlightIndex*/ 1536) {
 				toggle_class(div, "selected", /*item*/ ctx[59].idx === /*highlightIndex*/ ctx[9]);
@@ -2126,7 +2131,7 @@ function create_each_block$7(ctx) {
 	return block;
 }
 
-// (45:2) {#if shouldShowNewItem}
+// (46:2) {#if shouldShowNewItem}
 function create_if_block$c(ctx) {
 	let div0;
 	let t1;
@@ -2144,10 +2149,10 @@ function create_if_block$c(ctx) {
 			div1 = element("div");
 			t2 = text(t2_value);
 			attr_dev(div0, "class", "autocomplete-list-header");
-			add_location(div0, file$V, 45, 3, 1284);
+			add_location(div0, file$V, 46, 3, 1323);
 			attr_dev(div1, "class", "autocomplete-list-item");
 			toggle_class(div1, "selected", /*highlightIndex*/ ctx[9] === /*filteredData*/ ctx[4].length);
-			add_location(div1, file$V, 46, 3, 1347);
+			add_location(div1, file$V, 47, 3, 1386);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, div0, anchor);
@@ -2180,7 +2185,7 @@ function create_if_block$c(ctx) {
 		block,
 		id: create_if_block$c.name,
 		type: "if",
-		source: "(45:2) {#if shouldShowNewItem}",
+		source: "(46:2) {#if shouldShowNewItem}",
 		ctx
 	});
 
@@ -2591,9 +2596,12 @@ function instance$W($$self, $$props, $$invalidate) {
 		$$invalidate(0, value = item);
 		$$invalidate(3, inputEl.value = item.name, inputEl);
 		$$invalidate(9, highlightIndex = item.idx);
-		requestAnimationFrame(() => inputEl.focus());
 		dispatch('change', { value, oldValue });
-		close();
+
+		requestAnimationFrame(() => {
+			inputEl.focus();
+			close();
+		});
 	}
 
 	function onkeydown(e) {
@@ -14995,6 +15003,7 @@ function create_fragment$v(ctx) {
 	let t14;
 	let h30;
 	let t16;
+	let pre0;
 	let code0;
 	let t18;
 	let h31;
@@ -15014,6 +15023,7 @@ function create_fragment$v(ctx) {
 	let i3;
 	let t31;
 	let t32;
+	let pre1;
 	let code1;
 	let t34;
 	let p2;
@@ -15031,6 +15041,7 @@ function create_fragment$v(ctx) {
 	let t46;
 	let i7;
 	let t48;
+	let pre2;
 	let code2;
 	let t50;
 	let p3;
@@ -15043,6 +15054,7 @@ function create_fragment$v(ctx) {
 	let br2;
 	let t57;
 	let t58;
+	let pre3;
 	let code3;
 	let t60;
 	let p4;
@@ -15050,10 +15062,12 @@ function create_fragment$v(ctx) {
 	let i8;
 	let t63;
 	let t64;
+	let pre4;
 	let code4;
 	let t66;
 	let h21;
 	let t68;
+	let pre5;
 	let code5;
 	let t70;
 
@@ -15090,6 +15104,7 @@ function create_fragment$v(ctx) {
 			h30 = element("h3");
 			h30.textContent = "1. Firstly, install the module as a dev dependency:";
 			t16 = space();
+			pre0 = element("pre");
 			code0 = element("code");
 			code0.textContent = "npm i -D simple-ui-components-in-svelte";
 			t18 = space();
@@ -15115,6 +15130,7 @@ function create_fragment$v(ctx) {
 			i3.textContent = "dist";
 			t31 = text(" folder:");
 			t32 = space();
+			pre1 = element("pre");
 			code1 = element("code");
 			code1.textContent = "\"scripts\": {\n    \"postinstall\": \"cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css\"\n}";
 			t34 = space();
@@ -15138,7 +15154,8 @@ function create_fragment$v(ctx) {
 			t46 = text("\nJust ");
 			i7 = element("i");
 			i7.textContent = "import";
-			t48 = text(" them from the module, as normal:\n");
+			t48 = text(" them from the module, as normal:\n\n");
+			pre2 = element("pre");
 			code2 = element("code");
 			code2.textContent = "import { Button } from 'simple-ui-components-in-svelte';";
 			t50 = space();
@@ -15155,6 +15172,7 @@ function create_fragment$v(ctx) {
 			br2 = element("br");
 			t57 = text("\n\tYou need to load it in your html file, e.g.:");
 			t58 = space();
+			pre3 = element("pre");
 			code3 = element("code");
 			code3.textContent = "<script src=\"zxcvbn.js\"></script>";
 			t60 = space();
@@ -15164,15 +15182,17 @@ function create_fragment$v(ctx) {
 			i8.textContent = "dist";
 			t63 = text(" folder, similarly to the css in the previous example, e.g.:");
 			t64 = space();
+			pre4 = element("pre");
 			code4 = element("code");
 			code4.textContent = "\"scripts\": {\n    \"postinstall\": \"cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css && cp node_modules/simple-ui-components-in-svelte/docs/zxcvbn.js dist/zxcvbn.js\"\n}";
 			t66 = space();
 			h21 = element("h2");
 			h21.textContent = "Development";
-			t68 = text("\n\nYou need node & npm (obviously). Then, run these:\n");
+			t68 = text("\n\nYou need node & npm (obviously). Then, run these:\n\n");
+			pre5 = element("pre");
 			code5 = element("code");
 			code5.textContent = "git clone git@github.com:perfect-things/simple-ui-components-in-svelte.git\ncd simple-ui-components-in-svelte\nnpm i && npm start";
-			t70 = text("\nA browser window should open with the demo of the components.");
+			t70 = text("\n\nA browser window should open with the demo of the components.");
 			attr_dev(img, "class", "logo");
 			if (!src_url_equal(img.src, img_src_value = "logo2.png")) attr_dev(img, "src", img_src_value);
 			attr_dev(img, "alt", "Logo");
@@ -15196,37 +15216,49 @@ function create_fragment$v(ctx) {
 			add_location(ul, file$v, 10, 0, 339);
 			add_location(h20, file$v, 16, 0, 550);
 			add_location(h30, file$v, 18, 0, 572);
-			add_location(code0, file$v, 20, 0, 634);
-			add_location(h31, file$v, 25, 0, 691);
-			add_location(i0, file$v, 26, 26, 744);
-			add_location(br0, file$v, 26, 62, 780);
-			add_location(br1, file$v, 27, 141, 926);
-			add_location(i1, file$v, 28, 37, 968);
-			add_location(i2, file$v, 28, 73, 1004);
-			add_location(i3, file$v, 28, 132, 1063);
-			add_location(p1, file$v, 26, 0, 718);
-			add_location(code1, file$v, 31, 0, 1089);
-			add_location(i4, file$v, 36, 52, 1277);
-			add_location(p2, file$v, 36, 0, 1225);
-			add_location(i5, file$v, 38, 0, 1301);
-			add_location(em0, file$v, 38, 29, 1330);
-			add_location(i6, file$v, 38, 81, 1382);
-			add_location(h32, file$v, 41, 0, 1404);
-			add_location(i7, file$v, 42, 5, 1439);
-			add_location(code2, file$v, 43, 0, 1486);
-			add_location(em1, file$v, 48, 1, 1578);
+			attr_dev(code0, "class", "bash");
+			add_location(code0, file$v, 20, 5, 639);
+			add_location(pre0, file$v, 20, 0, 634);
+			add_location(h31, file$v, 23, 0, 713);
+			add_location(i0, file$v, 24, 26, 766);
+			add_location(br0, file$v, 24, 62, 802);
+			add_location(br1, file$v, 25, 141, 948);
+			add_location(i1, file$v, 26, 37, 990);
+			add_location(i2, file$v, 26, 73, 1026);
+			add_location(i3, file$v, 26, 132, 1085);
+			add_location(p1, file$v, 24, 0, 740);
+			attr_dev(code1, "class", "json");
+			add_location(code1, file$v, 29, 5, 1116);
+			add_location(pre1, file$v, 29, 0, 1111);
+			add_location(i4, file$v, 33, 52, 1322);
+			add_location(p2, file$v, 33, 0, 1270);
+			add_location(i5, file$v, 35, 0, 1346);
+			add_location(em0, file$v, 35, 29, 1375);
+			add_location(i6, file$v, 35, 81, 1427);
+			add_location(h32, file$v, 38, 0, 1449);
+			add_location(i7, file$v, 39, 5, 1484);
+			attr_dev(code2, "class", "js");
+			add_location(code2, file$v, 41, 5, 1537);
+			add_location(pre2, file$v, 41, 0, 1532);
+			add_location(em1, file$v, 44, 1, 1644);
 			attr_dev(a2, "href", "#InputPassword");
-			add_location(a2, file$v, 48, 12, 1589);
+			add_location(a2, file$v, 44, 12, 1655);
 			attr_dev(a3, "href", "https://github.com/dropbox/zxcvbn");
-			add_location(a3, file$v, 50, 1, 1790);
-			add_location(br2, file$v, 50, 56, 1845);
-			add_location(p3, file$v, 47, 0, 1573);
-			add_location(code3, file$v, 53, 0, 1901);
-			add_location(i8, file$v, 56, 87, 2050);
-			add_location(p4, file$v, 56, 0, 1963);
-			add_location(code4, file$v, 57, 0, 2126);
-			add_location(h21, file$v, 64, 0, 2344);
-			add_location(code5, file$v, 67, 0, 2416);
+			add_location(a3, file$v, 46, 1, 1856);
+			add_location(br2, file$v, 46, 56, 1911);
+			add_location(p3, file$v, 43, 0, 1639);
+			attr_dev(code3, "class", "html");
+			add_location(code3, file$v, 50, 5, 1973);
+			add_location(pre3, file$v, 50, 0, 1968);
+			add_location(i8, file$v, 52, 87, 2139);
+			add_location(p4, file$v, 52, 0, 2052);
+			attr_dev(code4, "class", "json");
+			add_location(code4, file$v, 53, 5, 2220);
+			add_location(pre4, file$v, 53, 0, 2215);
+			add_location(h21, file$v, 58, 0, 2455);
+			attr_dev(code5, "class", "bash");
+			add_location(code5, file$v, 62, 5, 2533);
+			add_location(pre5, file$v, 62, 0, 2528);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15255,7 +15287,8 @@ function create_fragment$v(ctx) {
 			insert_dev(target, t14, anchor);
 			insert_dev(target, h30, anchor);
 			insert_dev(target, t16, anchor);
-			insert_dev(target, code0, anchor);
+			insert_dev(target, pre0, anchor);
+			append_dev(pre0, code0);
 			insert_dev(target, t18, anchor);
 			insert_dev(target, h31, anchor);
 			insert_dev(target, t20, anchor);
@@ -15274,7 +15307,8 @@ function create_fragment$v(ctx) {
 			append_dev(p1, i3);
 			append_dev(p1, t31);
 			insert_dev(target, t32, anchor);
-			insert_dev(target, code1, anchor);
+			insert_dev(target, pre1, anchor);
+			append_dev(pre1, code1);
 			insert_dev(target, t34, anchor);
 			insert_dev(target, p2, anchor);
 			append_dev(p2, t35);
@@ -15291,7 +15325,8 @@ function create_fragment$v(ctx) {
 			insert_dev(target, t46, anchor);
 			insert_dev(target, i7, anchor);
 			insert_dev(target, t48, anchor);
-			insert_dev(target, code2, anchor);
+			insert_dev(target, pre2, anchor);
+			append_dev(pre2, code2);
 			insert_dev(target, t50, anchor);
 			insert_dev(target, p3, anchor);
 			append_dev(p3, em1);
@@ -15303,18 +15338,21 @@ function create_fragment$v(ctx) {
 			append_dev(p3, br2);
 			append_dev(p3, t57);
 			insert_dev(target, t58, anchor);
-			insert_dev(target, code3, anchor);
+			insert_dev(target, pre3, anchor);
+			append_dev(pre3, code3);
 			insert_dev(target, t60, anchor);
 			insert_dev(target, p4, anchor);
 			append_dev(p4, t61);
 			append_dev(p4, i8);
 			append_dev(p4, t63);
 			insert_dev(target, t64, anchor);
-			insert_dev(target, code4, anchor);
+			insert_dev(target, pre4, anchor);
+			append_dev(pre4, code4);
 			insert_dev(target, t66, anchor);
 			insert_dev(target, h21, anchor);
 			insert_dev(target, t68, anchor);
-			insert_dev(target, code5, anchor);
+			insert_dev(target, pre5, anchor);
+			append_dev(pre5, code5);
 			insert_dev(target, t70, anchor);
 		},
 		p: noop,
@@ -15331,13 +15369,13 @@ function create_fragment$v(ctx) {
 			if (detaching) detach_dev(t14);
 			if (detaching) detach_dev(h30);
 			if (detaching) detach_dev(t16);
-			if (detaching) detach_dev(code0);
+			if (detaching) detach_dev(pre0);
 			if (detaching) detach_dev(t18);
 			if (detaching) detach_dev(h31);
 			if (detaching) detach_dev(t20);
 			if (detaching) detach_dev(p1);
 			if (detaching) detach_dev(t32);
-			if (detaching) detach_dev(code1);
+			if (detaching) detach_dev(pre1);
 			if (detaching) detach_dev(t34);
 			if (detaching) detach_dev(p2);
 			if (detaching) detach_dev(t38);
@@ -15351,19 +15389,19 @@ function create_fragment$v(ctx) {
 			if (detaching) detach_dev(t46);
 			if (detaching) detach_dev(i7);
 			if (detaching) detach_dev(t48);
-			if (detaching) detach_dev(code2);
+			if (detaching) detach_dev(pre2);
 			if (detaching) detach_dev(t50);
 			if (detaching) detach_dev(p3);
 			if (detaching) detach_dev(t58);
-			if (detaching) detach_dev(code3);
+			if (detaching) detach_dev(pre3);
 			if (detaching) detach_dev(t60);
 			if (detaching) detach_dev(p4);
 			if (detaching) detach_dev(t64);
-			if (detaching) detach_dev(code4);
+			if (detaching) detach_dev(pre4);
 			if (detaching) detach_dev(t66);
 			if (detaching) detach_dev(h21);
 			if (detaching) detach_dev(t68);
-			if (detaching) detach_dev(code5);
+			if (detaching) detach_dev(pre5);
 			if (detaching) detach_dev(t70);
 		}
 	};
@@ -15798,18 +15836,23 @@ class Api_table extends SvelteComponentDev {
 const file$t = "docs-src/code-example/code-box.svelte";
 
 function create_fragment$t(ctx) {
+	let pre;
 	let code;
 
 	const block = {
 		c: function create() {
+			pre = element("pre");
 			code = element("code");
-			add_location(code, file$t, 0, 0, 0);
+			attr_dev(code, "class", "svelte");
+			add_location(code, file$t, 0, 5, 5);
+			add_location(pre, file$t, 0, 0, 0);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
 		},
 		m: function mount(target, anchor) {
-			insert_dev(target, code, anchor);
+			insert_dev(target, pre, anchor);
+			append_dev(pre, code);
 			code.innerHTML = /*html*/ ctx[0];
 		},
 		p: function update(ctx, [dirty]) {
@@ -15817,7 +15860,7 @@ function create_fragment$t(ctx) {
 		i: noop,
 		o: noop,
 		d: function destroy(detaching) {
-			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(pre);
 		}
 	};
 
@@ -16691,6 +16734,7 @@ function create_if_block(ctx) {
 
 function create_fragment$r(ctx) {
 	let t;
+	let pre;
 	let code;
 	let raw_value = encode(/*html*/ ctx[0]) + "";
 	let if_block = !/*notitle*/ ctx[1] && create_if_block(ctx);
@@ -16699,8 +16743,11 @@ function create_fragment$r(ctx) {
 		c: function create() {
 			if (if_block) if_block.c();
 			t = space();
+			pre = element("pre");
 			code = element("code");
-			add_location(code, file$r, 3, 0, 43);
+			attr_dev(code, "class", "svelte");
+			add_location(code, file$r, 3, 5, 48);
+			add_location(pre, file$r, 3, 0, 43);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -16708,7 +16755,8 @@ function create_fragment$r(ctx) {
 		m: function mount(target, anchor) {
 			if (if_block) if_block.m(target, anchor);
 			insert_dev(target, t, anchor);
-			insert_dev(target, code, anchor);
+			insert_dev(target, pre, anchor);
+			append_dev(pre, code);
 			code.innerHTML = raw_value;
 		},
 		p: function update(ctx, [dirty]) {
@@ -16729,7 +16777,7 @@ function create_fragment$r(ctx) {
 		d: function destroy(detaching) {
 			if (if_block) if_block.d(detaching);
 			if (detaching) detach_dev(t);
-			if (detaching) detach_dev(code);
+			if (detaching) detach_dev(pre);
 		}
 	};
 
@@ -25102,7 +25150,7 @@ function create_fragment$h(ctx) {
 	let div2;
 	let h21;
 	let t37;
-	let pre;
+	let code;
 	let t38_value = JSON.stringify(/*autocompleteValue*/ ctx[0] || {}, null, 2) + "";
 	let t38;
 	let t39;
@@ -25330,7 +25378,7 @@ function create_fragment$h(ctx) {
 			h21 = element("h2");
 			h21.textContent = "Selected value:";
 			t37 = space();
-			pre = element("pre");
+			code = element("code");
 			t38 = text(t38_value);
 			t39 = space();
 			create_component(codeexample.$$.fragment);
@@ -25358,12 +25406,12 @@ function create_fragment$h(ctx) {
 			attr_dev(div1, "class", "docs-column");
 			add_location(div1, file$h, 2, 1, 49);
 			add_location(h21, file$h, 43, 2, 1639);
-			add_location(pre, file$h, 44, 2, 1667);
+			add_location(code, file$h, 44, 2, 1667);
 			attr_dev(div2, "class", "docs-column");
 			add_location(div2, file$h, 42, 1, 1611);
 			attr_dev(div3, "class", "docs-layout");
 			add_location(div3, file$h, 1, 0, 22);
-			add_location(hr, file$h, 51, 0, 1784);
+			add_location(hr, file$h, 51, 0, 1786);
 		},
 		l: function claim(nodes) {
 			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -25421,8 +25469,8 @@ function create_fragment$h(ctx) {
 			append_dev(div3, div2);
 			append_dev(div2, h21);
 			append_dev(div2, t37);
-			append_dev(div2, pre);
-			append_dev(pre, t38);
+			append_dev(div2, code);
+			append_dev(code, t38);
 			insert_dev(target, t39, anchor);
 			mount_component(codeexample, target, anchor);
 			insert_dev(target, t40, anchor);
@@ -25758,7 +25806,12 @@ function onChange (e) {
 		{
 			name: 'Lambda is the last item in Group 2',
 			group: '😀 Group 2 has a very long name'
-		}
+		},
+		{ name: 'Alpha' },
+		{ name: 'Beta' },
+		{ name: 'Gamma' },
+		{ name: 'Delta' },
+		{ name: 'Epsilon' }
 	];
 
 	let autocompleteValueSimple = autocompleteDataSimple[3];
@@ -34081,6 +34134,7 @@ function instance$1($$self, $$props, $$invalidate) {
 	function onhashchange() {
 		$$invalidate(0, active = location.hash.substr(1));
 		$$invalidate(4, component = components[active]);
+		setTimeout(() => window.hljs.highlightAll(), 500);
 	}
 
 	function toggleNav() {
@@ -34329,6 +34383,8 @@ class App extends SvelteComponentDev {
 }
 
 var index = new App({ target: document.querySelector('#app') });
+
+setTimeout(() => window.hljs.highlightAll(), 500);
 
 export { index as default };
 //# sourceMappingURL=docs.js.map

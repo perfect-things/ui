@@ -115,6 +115,7 @@ let navMobileShow = false;
 function onhashchange () {
 	active = location.hash.substr(1);
 	component = components[active];
+	setTimeout(() => window.hljs.highlightAll(), 500);
 }
 
 function switchColorMode (e) {
