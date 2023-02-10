@@ -1,6 +1,6 @@
 main pre[class],
 code {
-	background-color: var(--ui-color-background-dark-2);
+	background-color: #1a1a1a;
 	border-radius: var(--ui-border-radius-s);
 }
 
