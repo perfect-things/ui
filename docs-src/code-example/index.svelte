@@ -1,14 +1,15 @@
 {#if !notitle}
 	<hr><h3>Example</h3>
 {/if}
-<pre><code class="svelte">{@html encode(html)}</code></pre>
+<pre><code class="language-svelte">
+	{@html encode(html)}
+</code></pre>
 
 <script>
 export let html = '';
 export let notitle = false;
 
 function encode (s) {
-	// return s.replace(/[\u00A0-\u9999<>&]/gim, i => `&#${i.charCodeAt(0)};`);
 	return s
 		.replace(/{/gim, '&lbrace;')
 		.replace(/}/gim, '&rbrace;')

@@ -1,12 +1,17 @@
+main pre[class],
+code {
+	background-color: var(--ui-color-background-dark-2);
+	border-radius: var(--ui-border-radius-s);
+}
+
 code {
 	display: block;
 	width: 100%;
 	padding: 1em;
-	line-height: 2;
-	background-color: var(--ui-color-background-dark-2);
 	margin-block: 1em;
+	line-height: 2;
 	white-space: pre;
 	overflow: auto;
-	border-radius: var(--ui-border-radius-s);
-	transition: background 1s ease-out;
 }
+
+code[class*=language-] { padding: 0; margin: 0; }

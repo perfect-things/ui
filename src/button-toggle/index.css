@@ -3,6 +3,9 @@
 	box-shadow: var(--ui-shadow-focus);
 }
 
-.button-toggle .button { background: var(--ui-color-background-input); }
+.button-toggle .button {
+	background: var(--ui-color-background-input);
+	border-left-color: var(--ui-color-background-light-2);
+}
 .button-toggle .button input { position: absolute; top: -100%; opacity: 0; }
 .button-toggle .selected { background-color: var(--ui-color-highlight); }

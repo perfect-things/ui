@@ -1,4 +1,9 @@
 import App from './app';
-export default new App({ target: document.querySelector('#app') });
 
-setTimeout(() => window.hljs.highlightAll(), 500);
+import 'prismjs';
+import 'prism-svelte';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-bash';
+import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
+
+export default new App({ target: document.querySelector('#app') });

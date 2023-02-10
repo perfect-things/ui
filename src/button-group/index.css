@@ -13,8 +13,7 @@
 	border-radius: 0;
 	position: relative;
 	overflow: hidden;
-	border-right: 1px solid var(--ui-color-background-semi);
-	border-left: 1px solid var(--ui-color-text-semi);
+	border-left: 1px solid var(--ui-color-background-semi);
 }
 
 .button-group .button[disabled] { box-shadow: var(--ui-shadow-button); }

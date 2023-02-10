@@ -1,4 +1,6 @@
-<pre><code class="svelte">{@html html}</code></pre>
+<pre><code class="language-svelte">
+	{@html html}
+</code></pre>
 
 <script>
 

@@ -12,7 +12,6 @@ import gulpStylelint from '@ffaubert/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
 import rollup from 'gulp-rollup-plugin';
 import inject from 'gulp-inject-string';
-import download from 'gulp-download-stream';
 
 
 const { series, parallel, src, dest } = gulp;
@@ -42,17 +41,11 @@ export function assets () {
 }
 
 
-export function remote () {
-	return download([
-		'https://unpkg.com/@highlightjs/cdn-assets/highlight.min.js',
-		'https://unpkg.com/@highlightjs/cdn-assets/styles/github-dark.min.css',
-		{ url: 'https://unpkg.com/highlightjs-svelte/dist/svelte.min.js', file: 'highlight-svelte.min.js' },
-	]).pipe(dest(DIST_PATH));
-}
-
-
 export function externals () {
-	return src('node_modules/zxcvbn/dist/zxcvbn.js*').pipe(dest(DIST_PATH));
+	return src([
+		'node_modules/zxcvbn/dist/zxcvbn.js*',
+		'node_modules/prismjs/themes/prism-tomorrow.min.css',
+	]).pipe(dest(DIST_PATH));
 }
 
 export function eslint () {
@@ -137,7 +130,7 @@ function watchTask (done) {
 
 export const lint = parallel(eslint, stylelint);
 
-const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html, assets, externals, remote);
+const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html, assets, externals);
 export const build = series(cleanup, _build);
 export const prod = series(setProd, build);
 export const watch = watchTask;
