@@ -10,8 +10,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] Feat: restyle autocomplete to resemble select/menu components
-- [x] Bug: autocomplete when show-on-focus is on, clicking does not hide list
+- [x] Bug: toaster on mobile is wider than screen
 
 
 - [ ] Update screen.png

@@ -85,3 +85,8 @@
 	transition: width 0.3s;
 	will-change: width;
 }
+
+
+@media (max-width: 700px) {
+	.toaster { width: calc(100vw - 1em); }
+}
