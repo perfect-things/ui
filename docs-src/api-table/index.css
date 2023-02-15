@@ -1,5 +1,10 @@
-.api-table { height: unset; }
-.api-table .table { table-layout: fixed; }
+.api-table {
+	height: unset;
+	overflow-y: visible;
+	overflow-x: auto;
+	overscroll-behavior-y: unset;
+}
+.api-table .table { table-layout: fixed; min-width: 900px; }
 
 .api-table tr td { vertical-align: top; }
 

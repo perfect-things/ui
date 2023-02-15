@@ -10973,8 +10973,8 @@ function create_fragment$H(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	const default_slot_template = /*#slots*/ ctx[10].default;
-	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[9], null);
+	const default_slot_template = /*#slots*/ ctx[11].default;
+	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[10], null);
 
 	const block = {
 		c: function create() {
@@ -10982,8 +10982,9 @@ function create_fragment$H(ctx) {
 			table = element("table");
 			if (default_slot) default_slot.c();
 			attr_dev(table, "class", "table");
-			add_location(table, file$H, 8, 1, 189);
+			add_location(table, file$H, 9, 1, 202);
 			attr_dev(div, "class", div_class_value = "table-wrapper " + /*className*/ ctx[1]);
+			toggle_class(div, "round", /*round*/ ctx[3]);
 			toggle_class(div, "selectable", /*selectable*/ ctx[2]);
 			add_location(div, file$H, 1, 0, 57);
 		},
@@ -10998,13 +10999,13 @@ function create_fragment$H(ctx) {
 				default_slot.m(table, null);
 			}
 
-			/*div_binding*/ ctx[11](div);
+			/*div_binding*/ ctx[12](div);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen_dev(div, "click", /*onClick*/ ctx[3], false, false, false),
-					listen_dev(div, "dblclick", /*onDblClick*/ ctx[4], false, false, false)
+					listen_dev(div, "click", /*onClick*/ ctx[4], false, false, false),
+					listen_dev(div, "dblclick", /*onDblClick*/ ctx[5], false, false, false)
 				];
 
 				mounted = true;
@@ -11012,15 +11013,15 @@ function create_fragment$H(ctx) {
 		},
 		p: function update(ctx, [dirty]) {
 			if (default_slot) {
-				if (default_slot.p && (!current || dirty & /*$$scope*/ 512)) {
+				if (default_slot.p && (!current || dirty & /*$$scope*/ 1024)) {
 					update_slot_base(
 						default_slot,
 						default_slot_template,
 						ctx,
-						/*$$scope*/ ctx[9],
+						/*$$scope*/ ctx[10],
 						!current
-						? get_all_dirty_from_scope(/*$$scope*/ ctx[9])
-						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[9], dirty, null),
+						? get_all_dirty_from_scope(/*$$scope*/ ctx[10])
+						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[10], dirty, null),
 						null
 					);
 				}
@@ -11028,6 +11029,10 @@ function create_fragment$H(ctx) {
 
 			if (!current || dirty & /*className*/ 2 && div_class_value !== (div_class_value = "table-wrapper " + /*className*/ ctx[1])) {
 				attr_dev(div, "class", div_class_value);
+			}
+
+			if (!current || dirty & /*className, round*/ 10) {
+				toggle_class(div, "round", /*round*/ ctx[3]);
 			}
 
 			if (!current || dirty & /*className, selectable*/ 6) {
@@ -11046,7 +11051,7 @@ function create_fragment$H(ctx) {
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(div);
 			if (default_slot) default_slot.d(detaching);
-			/*div_binding*/ ctx[11](null);
+			/*div_binding*/ ctx[12](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -11078,6 +11083,7 @@ function instance$H($$self, $$props, $$invalidate) {
 	let { className = '' } = $$props;
 	let { _this = undefined } = $$props;
 	let { selectable = true } = $$props;
+	let { round = false } = $$props;
 	let { scrollContainer = undefined } = $$props;
 	let { scrollCorrectionOffset = 0 } = $$props;
 	let { rowSelector = 'tbody tr' } = $$props;
@@ -11254,6 +11260,7 @@ function instance$H($$self, $$props, $$invalidate) {
 		'className',
 		'_this',
 		'selectable',
+		'round',
 		'scrollContainer',
 		'scrollCorrectionOffset',
 		'rowSelector',
@@ -11275,11 +11282,12 @@ function instance$H($$self, $$props, $$invalidate) {
 		if ('className' in $$props) $$invalidate(1, className = $$props.className);
 		if ('_this' in $$props) $$invalidate(0, _this = $$props._this);
 		if ('selectable' in $$props) $$invalidate(2, selectable = $$props.selectable);
-		if ('scrollContainer' in $$props) $$invalidate(5, scrollContainer = $$props.scrollContainer);
-		if ('scrollCorrectionOffset' in $$props) $$invalidate(6, scrollCorrectionOffset = $$props.scrollCorrectionOffset);
-		if ('rowSelector' in $$props) $$invalidate(7, rowSelector = $$props.rowSelector);
-		if ('data' in $$props) $$invalidate(8, data = $$props.data);
-		if ('$$scope' in $$props) $$invalidate(9, $$scope = $$props.$$scope);
+		if ('round' in $$props) $$invalidate(3, round = $$props.round);
+		if ('scrollContainer' in $$props) $$invalidate(6, scrollContainer = $$props.scrollContainer);
+		if ('scrollCorrectionOffset' in $$props) $$invalidate(7, scrollCorrectionOffset = $$props.scrollCorrectionOffset);
+		if ('rowSelector' in $$props) $$invalidate(8, rowSelector = $$props.rowSelector);
+		if ('data' in $$props) $$invalidate(9, data = $$props.data);
+		if ('$$scope' in $$props) $$invalidate(10, $$scope = $$props.$$scope);
 	};
 
 	$$self.$capture_state = () => ({
@@ -11290,6 +11298,7 @@ function instance$H($$self, $$props, $$invalidate) {
 		className,
 		_this,
 		selectable,
+		round,
 		scrollContainer,
 		scrollCorrectionOffset,
 		rowSelector,
@@ -11317,10 +11326,11 @@ function instance$H($$self, $$props, $$invalidate) {
 		if ('className' in $$props) $$invalidate(1, className = $$props.className);
 		if ('_this' in $$props) $$invalidate(0, _this = $$props._this);
 		if ('selectable' in $$props) $$invalidate(2, selectable = $$props.selectable);
-		if ('scrollContainer' in $$props) $$invalidate(5, scrollContainer = $$props.scrollContainer);
-		if ('scrollCorrectionOffset' in $$props) $$invalidate(6, scrollCorrectionOffset = $$props.scrollCorrectionOffset);
-		if ('rowSelector' in $$props) $$invalidate(7, rowSelector = $$props.rowSelector);
-		if ('data' in $$props) $$invalidate(8, data = $$props.data);
+		if ('round' in $$props) $$invalidate(3, round = $$props.round);
+		if ('scrollContainer' in $$props) $$invalidate(6, scrollContainer = $$props.scrollContainer);
+		if ('scrollCorrectionOffset' in $$props) $$invalidate(7, scrollCorrectionOffset = $$props.scrollCorrectionOffset);
+		if ('rowSelector' in $$props) $$invalidate(8, rowSelector = $$props.rowSelector);
+		if ('data' in $$props) $$invalidate(9, data = $$props.data);
 		if ('selectedIdx' in $$props) selectedIdx = $$props.selectedIdx;
 		if ('headerHeight' in $$props) headerHeight = $$props.headerHeight;
 		if ('clickTimer' in $$props) clickTimer = $$props.clickTimer;
@@ -11335,6 +11345,7 @@ function instance$H($$self, $$props, $$invalidate) {
 		_this,
 		className,
 		selectable,
+		round,
 		onClick,
 		onDblClick,
 		scrollContainer,
@@ -11355,10 +11366,11 @@ class Table extends SvelteComponentDev {
 			className: 1,
 			_this: 0,
 			selectable: 2,
-			scrollContainer: 5,
-			scrollCorrectionOffset: 6,
-			rowSelector: 7,
-			data: 8
+			round: 3,
+			scrollContainer: 6,
+			scrollCorrectionOffset: 7,
+			rowSelector: 8,
+			data: 9
 		});
 
 		dispatch_dev("SvelteRegisterComponent", {
@@ -11390,6 +11402,14 @@ class Table extends SvelteComponentDev {
 	}
 
 	set selectable(value) {
+		throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	get round() {
+		throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	}
+
+	set round(value) {
 		throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	}
 
@@ -31315,7 +31335,7 @@ class Splitter_1 extends SvelteComponentDev {
 const { console: console_1$1 } = globals;
 const file$3 = "docs-src/components/table.svelte";
 
-// (4:1) <Table rowSelector=".row-sel"   on:keydown="{onKey}"   on:dblclick="{onSelect}"   on:select="{onSelect}">
+// (4:1) <Table rowSelector=".row-sel" round   on:keydown="{onKey}"   on:dblclick="{onSelect}"   on:select="{onSelect}">
 function create_default_slot(ctx) {
 	let thead0;
 	let tr0;
@@ -32223,357 +32243,357 @@ function create_default_slot(ctx) {
 			td189.textContent = "Sum";
 			td190 = element("td");
 			td190.textContent = "$180";
-			add_location(th0, file$3, 8, 7, 169);
-			add_location(th1, file$3, 8, 20, 182);
-			add_location(th2, file$3, 8, 34, 196);
-			add_location(tr0, file$3, 8, 3, 165);
-			add_location(thead0, file$3, 7, 2, 154);
+			add_location(th0, file$3, 8, 7, 175);
+			add_location(th1, file$3, 8, 20, 188);
+			add_location(th2, file$3, 8, 34, 202);
+			add_location(tr0, file$3, 8, 3, 171);
+			add_location(thead0, file$3, 7, 2, 160);
 			attr_dev(th3, "colspan", "3");
-			add_location(th3, file$3, 11, 7, 244);
-			add_location(tr1, file$3, 11, 3, 240);
-			add_location(thead1, file$3, 10, 2, 229);
-			add_location(td0, file$3, 14, 23, 325);
-			add_location(td1, file$3, 14, 36, 338);
-			add_location(td2, file$3, 14, 52, 354);
+			add_location(th3, file$3, 11, 7, 250);
+			add_location(tr1, file$3, 11, 3, 246);
+			add_location(thead1, file$3, 10, 2, 235);
+			add_location(td0, file$3, 14, 23, 331);
+			add_location(td1, file$3, 14, 36, 344);
+			add_location(td2, file$3, 14, 52, 360);
 			attr_dev(tr2, "class", "row-sel");
-			add_location(tr2, file$3, 14, 3, 305);
-			add_location(td3, file$3, 15, 23, 396);
-			add_location(td4, file$3, 15, 36, 409);
-			add_location(td5, file$3, 15, 53, 426);
+			add_location(tr2, file$3, 14, 3, 311);
+			add_location(td3, file$3, 15, 23, 402);
+			add_location(td4, file$3, 15, 36, 415);
+			add_location(td5, file$3, 15, 53, 432);
 			attr_dev(tr3, "class", "row-sel");
-			add_location(tr3, file$3, 15, 3, 376);
-			add_location(td6, file$3, 16, 23, 467);
-			add_location(td7, file$3, 16, 36, 480);
-			add_location(td8, file$3, 16, 50, 494);
+			add_location(tr3, file$3, 15, 3, 382);
+			add_location(td6, file$3, 16, 23, 473);
+			add_location(td7, file$3, 16, 36, 486);
+			add_location(td8, file$3, 16, 50, 500);
 			attr_dev(tr4, "class", "row-sel");
-			add_location(tr4, file$3, 16, 3, 447);
-			add_location(td9, file$3, 17, 23, 535);
-			add_location(td10, file$3, 17, 36, 548);
-			add_location(td11, file$3, 17, 50, 562);
+			add_location(tr4, file$3, 16, 3, 453);
+			add_location(td9, file$3, 17, 23, 541);
+			add_location(td10, file$3, 17, 36, 554);
+			add_location(td11, file$3, 17, 50, 568);
 			attr_dev(tr5, "class", "row-sel");
-			add_location(tr5, file$3, 17, 3, 515);
-			add_location(td12, file$3, 18, 23, 603);
-			add_location(td13, file$3, 18, 36, 616);
-			add_location(td14, file$3, 18, 48, 628);
+			add_location(tr5, file$3, 17, 3, 521);
+			add_location(td12, file$3, 18, 23, 609);
+			add_location(td13, file$3, 18, 36, 622);
+			add_location(td14, file$3, 18, 48, 634);
 			attr_dev(tr6, "class", "row-sel");
-			add_location(tr6, file$3, 18, 3, 583);
-			add_location(td15, file$3, 19, 23, 669);
-			add_location(td16, file$3, 19, 36, 682);
-			add_location(td17, file$3, 19, 49, 695);
+			add_location(tr6, file$3, 18, 3, 589);
+			add_location(td15, file$3, 19, 23, 675);
+			add_location(td16, file$3, 19, 36, 688);
+			add_location(td17, file$3, 19, 49, 701);
 			attr_dev(tr7, "class", "row-sel");
-			add_location(tr7, file$3, 19, 3, 649);
-			add_location(tbody0, file$3, 13, 2, 294);
-			add_location(td18, file$3, 22, 7, 767);
-			add_location(td19, file$3, 22, 20, 780);
-			add_location(td20, file$3, 22, 36, 796);
-			add_location(tr8, file$3, 22, 3, 763);
-			add_location(td21, file$3, 23, 7, 821);
-			add_location(td22, file$3, 23, 20, 834);
-			add_location(td23, file$3, 23, 36, 850);
-			add_location(tr9, file$3, 23, 3, 817);
+			add_location(tr7, file$3, 19, 3, 655);
+			add_location(tbody0, file$3, 13, 2, 300);
+			add_location(td18, file$3, 22, 7, 773);
+			add_location(td19, file$3, 22, 20, 786);
+			add_location(td20, file$3, 22, 36, 802);
+			add_location(tr8, file$3, 22, 3, 769);
+			add_location(td21, file$3, 23, 7, 827);
+			add_location(td22, file$3, 23, 20, 840);
+			add_location(td23, file$3, 23, 36, 856);
+			add_location(tr9, file$3, 23, 3, 823);
 			attr_dev(tbody1, "class", "row-sel row-group");
-			add_location(tbody1, file$3, 21, 2, 726);
-			add_location(td24, file$3, 26, 23, 912);
-			add_location(td25, file$3, 26, 36, 925);
-			add_location(td26, file$3, 26, 48, 937);
+			add_location(tbody1, file$3, 21, 2, 732);
+			add_location(td24, file$3, 26, 23, 918);
+			add_location(td25, file$3, 26, 36, 931);
+			add_location(td26, file$3, 26, 48, 943);
 			attr_dev(tr10, "class", "row-sel");
-			add_location(tr10, file$3, 26, 3, 892);
-			add_location(td27, file$3, 27, 23, 978);
-			add_location(td28, file$3, 27, 36, 991);
-			add_location(td29, file$3, 27, 49, 1004);
+			add_location(tr10, file$3, 26, 3, 898);
+			add_location(td27, file$3, 27, 23, 984);
+			add_location(td28, file$3, 27, 36, 997);
+			add_location(td29, file$3, 27, 49, 1010);
 			attr_dev(tr11, "class", "row-sel");
-			add_location(tr11, file$3, 27, 3, 958);
-			add_location(td30, file$3, 28, 23, 1045);
-			add_location(td31, file$3, 28, 36, 1058);
-			add_location(td32, file$3, 28, 51, 1073);
+			add_location(tr11, file$3, 27, 3, 964);
+			add_location(td30, file$3, 28, 23, 1051);
+			add_location(td31, file$3, 28, 36, 1064);
+			add_location(td32, file$3, 28, 51, 1079);
 			attr_dev(tr12, "class", "row-sel");
-			add_location(tr12, file$3, 28, 3, 1025);
-			add_location(td33, file$3, 29, 23, 1114);
-			add_location(td34, file$3, 29, 36, 1127);
-			add_location(td35, file$3, 29, 54, 1145);
+			add_location(tr12, file$3, 28, 3, 1031);
+			add_location(td33, file$3, 29, 23, 1120);
+			add_location(td34, file$3, 29, 36, 1133);
+			add_location(td35, file$3, 29, 54, 1151);
 			attr_dev(tr13, "class", "row-sel");
-			add_location(tr13, file$3, 29, 3, 1094);
-			add_location(td36, file$3, 30, 23, 1186);
-			add_location(td37, file$3, 30, 36, 1199);
-			add_location(td38, file$3, 30, 52, 1215);
+			add_location(tr13, file$3, 29, 3, 1100);
+			add_location(td36, file$3, 30, 23, 1192);
+			add_location(td37, file$3, 30, 36, 1205);
+			add_location(td38, file$3, 30, 52, 1221);
 			attr_dev(tr14, "class", "row-sel");
-			add_location(tr14, file$3, 30, 3, 1166);
-			add_location(td39, file$3, 31, 23, 1256);
-			add_location(td40, file$3, 31, 36, 1269);
-			add_location(td41, file$3, 31, 53, 1286);
+			add_location(tr14, file$3, 30, 3, 1172);
+			add_location(td39, file$3, 31, 23, 1262);
+			add_location(td40, file$3, 31, 36, 1275);
+			add_location(td41, file$3, 31, 53, 1292);
 			attr_dev(tr15, "class", "row-sel");
-			add_location(tr15, file$3, 31, 3, 1236);
-			add_location(td42, file$3, 32, 23, 1327);
-			add_location(td43, file$3, 32, 36, 1340);
-			add_location(td44, file$3, 32, 53, 1357);
+			add_location(tr15, file$3, 31, 3, 1242);
+			add_location(td42, file$3, 32, 23, 1333);
+			add_location(td43, file$3, 32, 36, 1346);
+			add_location(td44, file$3, 32, 53, 1363);
 			attr_dev(tr16, "class", "row-sel");
-			add_location(tr16, file$3, 32, 3, 1307);
-			add_location(tbody2, file$3, 25, 2, 881);
+			add_location(tr16, file$3, 32, 3, 1313);
+			add_location(tbody2, file$3, 25, 2, 887);
 			attr_dev(th4, "colspan", "3");
-			add_location(th4, file$3, 35, 7, 1403);
-			add_location(tr17, file$3, 35, 3, 1399);
-			add_location(thead2, file$3, 34, 2, 1388);
-			add_location(td45, file$3, 38, 23, 1484);
-			add_location(td46, file$3, 38, 36, 1497);
-			add_location(td47, file$3, 38, 52, 1513);
+			add_location(th4, file$3, 35, 7, 1409);
+			add_location(tr17, file$3, 35, 3, 1405);
+			add_location(thead2, file$3, 34, 2, 1394);
+			add_location(td45, file$3, 38, 23, 1490);
+			add_location(td46, file$3, 38, 36, 1503);
+			add_location(td47, file$3, 38, 52, 1519);
 			attr_dev(tr18, "class", "row-sel");
-			add_location(tr18, file$3, 38, 3, 1464);
-			add_location(td48, file$3, 39, 23, 1555);
-			add_location(td49, file$3, 39, 36, 1568);
-			add_location(td50, file$3, 39, 53, 1585);
+			add_location(tr18, file$3, 38, 3, 1470);
+			add_location(td48, file$3, 39, 23, 1561);
+			add_location(td49, file$3, 39, 36, 1574);
+			add_location(td50, file$3, 39, 53, 1591);
 			attr_dev(tr19, "class", "row-sel");
-			add_location(tr19, file$3, 39, 3, 1535);
-			add_location(td51, file$3, 40, 23, 1626);
-			add_location(td52, file$3, 40, 36, 1639);
-			add_location(td53, file$3, 40, 50, 1653);
+			add_location(tr19, file$3, 39, 3, 1541);
+			add_location(td51, file$3, 40, 23, 1632);
+			add_location(td52, file$3, 40, 36, 1645);
+			add_location(td53, file$3, 40, 50, 1659);
 			attr_dev(tr20, "class", "row-sel");
-			add_location(tr20, file$3, 40, 3, 1606);
-			add_location(td54, file$3, 41, 23, 1694);
-			add_location(td55, file$3, 41, 36, 1707);
-			add_location(td56, file$3, 41, 50, 1721);
+			add_location(tr20, file$3, 40, 3, 1612);
+			add_location(td54, file$3, 41, 23, 1700);
+			add_location(td55, file$3, 41, 36, 1713);
+			add_location(td56, file$3, 41, 50, 1727);
 			attr_dev(tr21, "class", "row-sel");
-			add_location(tr21, file$3, 41, 3, 1674);
-			add_location(td57, file$3, 42, 23, 1762);
-			add_location(td58, file$3, 42, 36, 1775);
-			add_location(td59, file$3, 42, 48, 1787);
+			add_location(tr21, file$3, 41, 3, 1680);
+			add_location(td57, file$3, 42, 23, 1768);
+			add_location(td58, file$3, 42, 36, 1781);
+			add_location(td59, file$3, 42, 48, 1793);
 			attr_dev(tr22, "class", "row-sel");
-			add_location(tr22, file$3, 42, 3, 1742);
-			add_location(td60, file$3, 43, 23, 1828);
-			add_location(td61, file$3, 43, 36, 1841);
-			add_location(td62, file$3, 43, 49, 1854);
+			add_location(tr22, file$3, 42, 3, 1748);
+			add_location(td60, file$3, 43, 23, 1834);
+			add_location(td61, file$3, 43, 36, 1847);
+			add_location(td62, file$3, 43, 49, 1860);
 			attr_dev(tr23, "class", "row-sel");
-			add_location(tr23, file$3, 43, 3, 1808);
-			add_location(td63, file$3, 44, 23, 1895);
-			add_location(td64, file$3, 44, 36, 1908);
-			add_location(td65, file$3, 44, 49, 1921);
+			add_location(tr23, file$3, 43, 3, 1814);
+			add_location(td63, file$3, 44, 23, 1901);
+			add_location(td64, file$3, 44, 36, 1914);
+			add_location(td65, file$3, 44, 49, 1927);
 			attr_dev(tr24, "class", "row-sel");
-			add_location(tr24, file$3, 44, 3, 1875);
-			add_location(td66, file$3, 45, 23, 1962);
-			add_location(td67, file$3, 45, 36, 1975);
-			add_location(td68, file$3, 45, 51, 1990);
+			add_location(tr24, file$3, 44, 3, 1881);
+			add_location(td66, file$3, 45, 23, 1968);
+			add_location(td67, file$3, 45, 36, 1981);
+			add_location(td68, file$3, 45, 51, 1996);
 			attr_dev(tr25, "class", "row-sel");
-			add_location(tr25, file$3, 45, 3, 1942);
-			add_location(td69, file$3, 46, 23, 2031);
-			add_location(td70, file$3, 46, 36, 2044);
-			add_location(td71, file$3, 46, 54, 2062);
+			add_location(tr25, file$3, 45, 3, 1948);
+			add_location(td69, file$3, 46, 23, 2037);
+			add_location(td70, file$3, 46, 36, 2050);
+			add_location(td71, file$3, 46, 54, 2068);
 			attr_dev(tr26, "class", "row-sel");
-			add_location(tr26, file$3, 46, 3, 2011);
-			add_location(td72, file$3, 47, 23, 2103);
-			add_location(td73, file$3, 47, 36, 2116);
-			add_location(td74, file$3, 47, 52, 2132);
+			add_location(tr26, file$3, 46, 3, 2017);
+			add_location(td72, file$3, 47, 23, 2109);
+			add_location(td73, file$3, 47, 36, 2122);
+			add_location(td74, file$3, 47, 52, 2138);
 			attr_dev(tr27, "class", "row-sel");
-			add_location(tr27, file$3, 47, 3, 2083);
-			add_location(td75, file$3, 48, 23, 2173);
-			add_location(td76, file$3, 48, 36, 2186);
-			add_location(td77, file$3, 48, 53, 2203);
+			add_location(tr27, file$3, 47, 3, 2089);
+			add_location(td75, file$3, 48, 23, 2179);
+			add_location(td76, file$3, 48, 36, 2192);
+			add_location(td77, file$3, 48, 53, 2209);
 			attr_dev(tr28, "class", "row-sel");
-			add_location(tr28, file$3, 48, 3, 2153);
-			add_location(td78, file$3, 49, 23, 2244);
-			add_location(td79, file$3, 49, 36, 2257);
-			add_location(td80, file$3, 49, 53, 2274);
+			add_location(tr28, file$3, 48, 3, 2159);
+			add_location(td78, file$3, 49, 23, 2250);
+			add_location(td79, file$3, 49, 36, 2263);
+			add_location(td80, file$3, 49, 53, 2280);
 			attr_dev(tr29, "class", "row-sel");
-			add_location(tr29, file$3, 49, 3, 2224);
-			add_location(tbody3, file$3, 37, 2, 1453);
+			add_location(tr29, file$3, 49, 3, 2230);
+			add_location(tbody3, file$3, 37, 2, 1459);
 			attr_dev(th5, "colspan", "3");
-			add_location(th5, file$3, 52, 7, 2320);
-			add_location(tr30, file$3, 52, 3, 2316);
-			add_location(thead3, file$3, 51, 2, 2305);
-			add_location(td81, file$3, 55, 23, 2401);
-			add_location(td82, file$3, 55, 36, 2414);
-			add_location(td83, file$3, 55, 52, 2430);
+			add_location(th5, file$3, 52, 7, 2326);
+			add_location(tr30, file$3, 52, 3, 2322);
+			add_location(thead3, file$3, 51, 2, 2311);
+			add_location(td81, file$3, 55, 23, 2407);
+			add_location(td82, file$3, 55, 36, 2420);
+			add_location(td83, file$3, 55, 52, 2436);
 			attr_dev(tr31, "class", "row-sel");
-			add_location(tr31, file$3, 55, 3, 2381);
-			add_location(td84, file$3, 56, 23, 2472);
-			add_location(td85, file$3, 56, 36, 2485);
-			add_location(td86, file$3, 56, 53, 2502);
+			add_location(tr31, file$3, 55, 3, 2387);
+			add_location(td84, file$3, 56, 23, 2478);
+			add_location(td85, file$3, 56, 36, 2491);
+			add_location(td86, file$3, 56, 53, 2508);
 			attr_dev(tr32, "class", "row-sel");
-			add_location(tr32, file$3, 56, 3, 2452);
-			add_location(td87, file$3, 57, 23, 2543);
-			add_location(td88, file$3, 57, 36, 2556);
-			add_location(td89, file$3, 57, 50, 2570);
+			add_location(tr32, file$3, 56, 3, 2458);
+			add_location(td87, file$3, 57, 23, 2549);
+			add_location(td88, file$3, 57, 36, 2562);
+			add_location(td89, file$3, 57, 50, 2576);
 			attr_dev(tr33, "class", "row-sel");
-			add_location(tr33, file$3, 57, 3, 2523);
-			add_location(td90, file$3, 58, 23, 2611);
-			add_location(td91, file$3, 58, 36, 2624);
-			add_location(td92, file$3, 58, 50, 2638);
+			add_location(tr33, file$3, 57, 3, 2529);
+			add_location(td90, file$3, 58, 23, 2617);
+			add_location(td91, file$3, 58, 36, 2630);
+			add_location(td92, file$3, 58, 50, 2644);
 			attr_dev(tr34, "class", "row-sel");
-			add_location(tr34, file$3, 58, 3, 2591);
-			add_location(td93, file$3, 59, 23, 2679);
-			add_location(td94, file$3, 59, 36, 2692);
-			add_location(td95, file$3, 59, 48, 2704);
+			add_location(tr34, file$3, 58, 3, 2597);
+			add_location(td93, file$3, 59, 23, 2685);
+			add_location(td94, file$3, 59, 36, 2698);
+			add_location(td95, file$3, 59, 48, 2710);
 			attr_dev(tr35, "class", "row-sel");
-			add_location(tr35, file$3, 59, 3, 2659);
-			add_location(td96, file$3, 60, 23, 2745);
-			add_location(td97, file$3, 60, 36, 2758);
-			add_location(td98, file$3, 60, 49, 2771);
+			add_location(tr35, file$3, 59, 3, 2665);
+			add_location(td96, file$3, 60, 23, 2751);
+			add_location(td97, file$3, 60, 36, 2764);
+			add_location(td98, file$3, 60, 49, 2777);
 			attr_dev(tr36, "class", "row-sel");
-			add_location(tr36, file$3, 60, 3, 2725);
-			add_location(td99, file$3, 61, 23, 2812);
-			add_location(td100, file$3, 61, 36, 2825);
-			add_location(td101, file$3, 61, 49, 2838);
+			add_location(tr36, file$3, 60, 3, 2731);
+			add_location(td99, file$3, 61, 23, 2818);
+			add_location(td100, file$3, 61, 36, 2831);
+			add_location(td101, file$3, 61, 49, 2844);
 			attr_dev(tr37, "class", "row-sel");
-			add_location(tr37, file$3, 61, 3, 2792);
-			add_location(td102, file$3, 62, 23, 2879);
-			add_location(td103, file$3, 62, 36, 2892);
-			add_location(td104, file$3, 62, 51, 2907);
+			add_location(tr37, file$3, 61, 3, 2798);
+			add_location(td102, file$3, 62, 23, 2885);
+			add_location(td103, file$3, 62, 36, 2898);
+			add_location(td104, file$3, 62, 51, 2913);
 			attr_dev(tr38, "class", "row-sel");
-			add_location(tr38, file$3, 62, 3, 2859);
-			add_location(td105, file$3, 63, 23, 2948);
-			add_location(td106, file$3, 63, 36, 2961);
-			add_location(td107, file$3, 63, 54, 2979);
+			add_location(tr38, file$3, 62, 3, 2865);
+			add_location(td105, file$3, 63, 23, 2954);
+			add_location(td106, file$3, 63, 36, 2967);
+			add_location(td107, file$3, 63, 54, 2985);
 			attr_dev(tr39, "class", "row-sel");
-			add_location(tr39, file$3, 63, 3, 2928);
-			add_location(td108, file$3, 64, 23, 3020);
-			add_location(td109, file$3, 64, 36, 3033);
-			add_location(td110, file$3, 64, 52, 3049);
+			add_location(tr39, file$3, 63, 3, 2934);
+			add_location(td108, file$3, 64, 23, 3026);
+			add_location(td109, file$3, 64, 36, 3039);
+			add_location(td110, file$3, 64, 52, 3055);
 			attr_dev(tr40, "class", "row-sel");
-			add_location(tr40, file$3, 64, 3, 3000);
-			add_location(td111, file$3, 65, 23, 3090);
-			add_location(td112, file$3, 65, 36, 3103);
-			add_location(td113, file$3, 65, 53, 3120);
+			add_location(tr40, file$3, 64, 3, 3006);
+			add_location(td111, file$3, 65, 23, 3096);
+			add_location(td112, file$3, 65, 36, 3109);
+			add_location(td113, file$3, 65, 53, 3126);
 			attr_dev(tr41, "class", "row-sel");
-			add_location(tr41, file$3, 65, 3, 3070);
-			add_location(td114, file$3, 66, 23, 3161);
-			add_location(td115, file$3, 66, 36, 3174);
-			add_location(td116, file$3, 66, 53, 3191);
+			add_location(tr41, file$3, 65, 3, 3076);
+			add_location(td114, file$3, 66, 23, 3167);
+			add_location(td115, file$3, 66, 36, 3180);
+			add_location(td116, file$3, 66, 53, 3197);
 			attr_dev(tr42, "class", "row-sel");
-			add_location(tr42, file$3, 66, 3, 3141);
-			add_location(tbody4, file$3, 54, 2, 2370);
+			add_location(tr42, file$3, 66, 3, 3147);
+			add_location(tbody4, file$3, 54, 2, 2376);
 			attr_dev(th6, "colspan", "3");
-			add_location(th6, file$3, 69, 7, 3237);
-			add_location(tr43, file$3, 69, 3, 3233);
-			add_location(thead4, file$3, 68, 2, 3222);
-			add_location(td117, file$3, 72, 23, 3318);
-			add_location(td118, file$3, 72, 36, 3331);
-			add_location(td119, file$3, 72, 52, 3347);
+			add_location(th6, file$3, 69, 7, 3243);
+			add_location(tr43, file$3, 69, 3, 3239);
+			add_location(thead4, file$3, 68, 2, 3228);
+			add_location(td117, file$3, 72, 23, 3324);
+			add_location(td118, file$3, 72, 36, 3337);
+			add_location(td119, file$3, 72, 52, 3353);
 			attr_dev(tr44, "class", "row-sel");
-			add_location(tr44, file$3, 72, 3, 3298);
-			add_location(td120, file$3, 73, 23, 3389);
-			add_location(td121, file$3, 73, 36, 3402);
-			add_location(td122, file$3, 73, 53, 3419);
+			add_location(tr44, file$3, 72, 3, 3304);
+			add_location(td120, file$3, 73, 23, 3395);
+			add_location(td121, file$3, 73, 36, 3408);
+			add_location(td122, file$3, 73, 53, 3425);
 			attr_dev(tr45, "class", "row-sel");
-			add_location(tr45, file$3, 73, 3, 3369);
-			add_location(td123, file$3, 74, 23, 3460);
-			add_location(td124, file$3, 74, 36, 3473);
-			add_location(td125, file$3, 74, 50, 3487);
+			add_location(tr45, file$3, 73, 3, 3375);
+			add_location(td123, file$3, 74, 23, 3466);
+			add_location(td124, file$3, 74, 36, 3479);
+			add_location(td125, file$3, 74, 50, 3493);
 			attr_dev(tr46, "class", "row-sel");
-			add_location(tr46, file$3, 74, 3, 3440);
-			add_location(td126, file$3, 75, 23, 3528);
-			add_location(td127, file$3, 75, 36, 3541);
-			add_location(td128, file$3, 75, 50, 3555);
+			add_location(tr46, file$3, 74, 3, 3446);
+			add_location(td126, file$3, 75, 23, 3534);
+			add_location(td127, file$3, 75, 36, 3547);
+			add_location(td128, file$3, 75, 50, 3561);
 			attr_dev(tr47, "class", "row-sel");
-			add_location(tr47, file$3, 75, 3, 3508);
-			add_location(td129, file$3, 76, 23, 3596);
-			add_location(td130, file$3, 76, 36, 3609);
-			add_location(td131, file$3, 76, 48, 3621);
+			add_location(tr47, file$3, 75, 3, 3514);
+			add_location(td129, file$3, 76, 23, 3602);
+			add_location(td130, file$3, 76, 36, 3615);
+			add_location(td131, file$3, 76, 48, 3627);
 			attr_dev(tr48, "class", "row-sel");
-			add_location(tr48, file$3, 76, 3, 3576);
-			add_location(td132, file$3, 77, 23, 3662);
-			add_location(td133, file$3, 77, 36, 3675);
-			add_location(td134, file$3, 77, 49, 3688);
+			add_location(tr48, file$3, 76, 3, 3582);
+			add_location(td132, file$3, 77, 23, 3668);
+			add_location(td133, file$3, 77, 36, 3681);
+			add_location(td134, file$3, 77, 49, 3694);
 			attr_dev(tr49, "class", "row-sel");
-			add_location(tr49, file$3, 77, 3, 3642);
-			add_location(td135, file$3, 78, 23, 3729);
-			add_location(td136, file$3, 78, 36, 3742);
-			add_location(td137, file$3, 78, 49, 3755);
+			add_location(tr49, file$3, 77, 3, 3648);
+			add_location(td135, file$3, 78, 23, 3735);
+			add_location(td136, file$3, 78, 36, 3748);
+			add_location(td137, file$3, 78, 49, 3761);
 			attr_dev(tr50, "class", "row-sel");
-			add_location(tr50, file$3, 78, 3, 3709);
-			add_location(td138, file$3, 79, 23, 3796);
-			add_location(td139, file$3, 79, 36, 3809);
-			add_location(td140, file$3, 79, 51, 3824);
+			add_location(tr50, file$3, 78, 3, 3715);
+			add_location(td138, file$3, 79, 23, 3802);
+			add_location(td139, file$3, 79, 36, 3815);
+			add_location(td140, file$3, 79, 51, 3830);
 			attr_dev(tr51, "class", "row-sel");
-			add_location(tr51, file$3, 79, 3, 3776);
-			add_location(td141, file$3, 80, 23, 3865);
-			add_location(td142, file$3, 80, 36, 3878);
-			add_location(td143, file$3, 80, 54, 3896);
+			add_location(tr51, file$3, 79, 3, 3782);
+			add_location(td141, file$3, 80, 23, 3871);
+			add_location(td142, file$3, 80, 36, 3884);
+			add_location(td143, file$3, 80, 54, 3902);
 			attr_dev(tr52, "class", "row-sel");
-			add_location(tr52, file$3, 80, 3, 3845);
-			add_location(td144, file$3, 81, 23, 3937);
-			add_location(td145, file$3, 81, 36, 3950);
-			add_location(td146, file$3, 81, 52, 3966);
+			add_location(tr52, file$3, 80, 3, 3851);
+			add_location(td144, file$3, 81, 23, 3943);
+			add_location(td145, file$3, 81, 36, 3956);
+			add_location(td146, file$3, 81, 52, 3972);
 			attr_dev(tr53, "class", "row-sel");
-			add_location(tr53, file$3, 81, 3, 3917);
-			add_location(td147, file$3, 82, 23, 4007);
-			add_location(td148, file$3, 82, 36, 4020);
-			add_location(td149, file$3, 82, 53, 4037);
+			add_location(tr53, file$3, 81, 3, 3923);
+			add_location(td147, file$3, 82, 23, 4013);
+			add_location(td148, file$3, 82, 36, 4026);
+			add_location(td149, file$3, 82, 53, 4043);
 			attr_dev(tr54, "class", "row-sel");
-			add_location(tr54, file$3, 82, 3, 3987);
-			add_location(td150, file$3, 83, 23, 4078);
-			add_location(td151, file$3, 83, 36, 4091);
-			add_location(td152, file$3, 83, 53, 4108);
+			add_location(tr54, file$3, 82, 3, 3993);
+			add_location(td150, file$3, 83, 23, 4084);
+			add_location(td151, file$3, 83, 36, 4097);
+			add_location(td152, file$3, 83, 53, 4114);
 			attr_dev(tr55, "class", "row-sel");
-			add_location(tr55, file$3, 83, 3, 4058);
-			add_location(tbody5, file$3, 71, 2, 3287);
+			add_location(tr55, file$3, 83, 3, 4064);
+			add_location(tbody5, file$3, 71, 2, 3293);
 			attr_dev(th7, "colspan", "3");
-			add_location(th7, file$3, 86, 7, 4154);
-			add_location(tr56, file$3, 86, 3, 4150);
-			add_location(thead5, file$3, 85, 2, 4139);
-			add_location(td153, file$3, 89, 23, 4235);
-			add_location(td154, file$3, 89, 36, 4248);
-			add_location(td155, file$3, 89, 52, 4264);
+			add_location(th7, file$3, 86, 7, 4160);
+			add_location(tr56, file$3, 86, 3, 4156);
+			add_location(thead5, file$3, 85, 2, 4145);
+			add_location(td153, file$3, 89, 23, 4241);
+			add_location(td154, file$3, 89, 36, 4254);
+			add_location(td155, file$3, 89, 52, 4270);
 			attr_dev(tr57, "class", "row-sel");
-			add_location(tr57, file$3, 89, 3, 4215);
-			add_location(td156, file$3, 90, 23, 4306);
-			add_location(td157, file$3, 90, 36, 4319);
-			add_location(td158, file$3, 90, 53, 4336);
+			add_location(tr57, file$3, 89, 3, 4221);
+			add_location(td156, file$3, 90, 23, 4312);
+			add_location(td157, file$3, 90, 36, 4325);
+			add_location(td158, file$3, 90, 53, 4342);
 			attr_dev(tr58, "class", "row-sel");
-			add_location(tr58, file$3, 90, 3, 4286);
-			add_location(td159, file$3, 91, 23, 4377);
-			add_location(td160, file$3, 91, 36, 4390);
-			add_location(td161, file$3, 91, 50, 4404);
+			add_location(tr58, file$3, 90, 3, 4292);
+			add_location(td159, file$3, 91, 23, 4383);
+			add_location(td160, file$3, 91, 36, 4396);
+			add_location(td161, file$3, 91, 50, 4410);
 			attr_dev(tr59, "class", "row-sel");
-			add_location(tr59, file$3, 91, 3, 4357);
-			add_location(td162, file$3, 92, 23, 4445);
-			add_location(td163, file$3, 92, 36, 4458);
-			add_location(td164, file$3, 92, 50, 4472);
+			add_location(tr59, file$3, 91, 3, 4363);
+			add_location(td162, file$3, 92, 23, 4451);
+			add_location(td163, file$3, 92, 36, 4464);
+			add_location(td164, file$3, 92, 50, 4478);
 			attr_dev(tr60, "class", "row-sel");
-			add_location(tr60, file$3, 92, 3, 4425);
-			add_location(td165, file$3, 93, 23, 4513);
-			add_location(td166, file$3, 93, 36, 4526);
-			add_location(td167, file$3, 93, 48, 4538);
+			add_location(tr60, file$3, 92, 3, 4431);
+			add_location(td165, file$3, 93, 23, 4519);
+			add_location(td166, file$3, 93, 36, 4532);
+			add_location(td167, file$3, 93, 48, 4544);
 			attr_dev(tr61, "class", "row-sel");
-			add_location(tr61, file$3, 93, 3, 4493);
-			add_location(td168, file$3, 94, 23, 4579);
-			add_location(td169, file$3, 94, 36, 4592);
-			add_location(td170, file$3, 94, 49, 4605);
+			add_location(tr61, file$3, 93, 3, 4499);
+			add_location(td168, file$3, 94, 23, 4585);
+			add_location(td169, file$3, 94, 36, 4598);
+			add_location(td170, file$3, 94, 49, 4611);
 			attr_dev(tr62, "class", "row-sel");
-			add_location(tr62, file$3, 94, 3, 4559);
-			add_location(td171, file$3, 95, 23, 4646);
-			add_location(td172, file$3, 95, 36, 4659);
-			add_location(td173, file$3, 95, 49, 4672);
+			add_location(tr62, file$3, 94, 3, 4565);
+			add_location(td171, file$3, 95, 23, 4652);
+			add_location(td172, file$3, 95, 36, 4665);
+			add_location(td173, file$3, 95, 49, 4678);
 			attr_dev(tr63, "class", "row-sel");
-			add_location(tr63, file$3, 95, 3, 4626);
-			add_location(td174, file$3, 96, 23, 4713);
-			add_location(td175, file$3, 96, 36, 4726);
-			add_location(td176, file$3, 96, 51, 4741);
+			add_location(tr63, file$3, 95, 3, 4632);
+			add_location(td174, file$3, 96, 23, 4719);
+			add_location(td175, file$3, 96, 36, 4732);
+			add_location(td176, file$3, 96, 51, 4747);
 			attr_dev(tr64, "class", "row-sel");
-			add_location(tr64, file$3, 96, 3, 4693);
-			add_location(td177, file$3, 97, 23, 4782);
-			add_location(td178, file$3, 97, 36, 4795);
-			add_location(td179, file$3, 97, 54, 4813);
+			add_location(tr64, file$3, 96, 3, 4699);
+			add_location(td177, file$3, 97, 23, 4788);
+			add_location(td178, file$3, 97, 36, 4801);
+			add_location(td179, file$3, 97, 54, 4819);
 			attr_dev(tr65, "class", "row-sel");
-			add_location(tr65, file$3, 97, 3, 4762);
-			add_location(td180, file$3, 98, 23, 4854);
-			add_location(td181, file$3, 98, 36, 4867);
-			add_location(td182, file$3, 98, 52, 4883);
+			add_location(tr65, file$3, 97, 3, 4768);
+			add_location(td180, file$3, 98, 23, 4860);
+			add_location(td181, file$3, 98, 36, 4873);
+			add_location(td182, file$3, 98, 52, 4889);
 			attr_dev(tr66, "class", "row-sel");
-			add_location(tr66, file$3, 98, 3, 4834);
-			add_location(td183, file$3, 99, 23, 4924);
-			add_location(td184, file$3, 99, 36, 4937);
-			add_location(td185, file$3, 99, 53, 4954);
+			add_location(tr66, file$3, 98, 3, 4840);
+			add_location(td183, file$3, 99, 23, 4930);
+			add_location(td184, file$3, 99, 36, 4943);
+			add_location(td185, file$3, 99, 53, 4960);
 			attr_dev(tr67, "class", "row-sel");
-			add_location(tr67, file$3, 99, 3, 4904);
-			add_location(td186, file$3, 100, 23, 4995);
-			add_location(td187, file$3, 100, 36, 5008);
-			add_location(td188, file$3, 100, 53, 5025);
+			add_location(tr67, file$3, 99, 3, 4910);
+			add_location(td186, file$3, 100, 23, 5001);
+			add_location(td187, file$3, 100, 36, 5014);
+			add_location(td188, file$3, 100, 53, 5031);
 			attr_dev(tr68, "class", "row-sel");
-			add_location(tr68, file$3, 100, 3, 4975);
-			add_location(tbody6, file$3, 88, 2, 4204);
+			add_location(tr68, file$3, 100, 3, 4981);
+			add_location(tbody6, file$3, 88, 2, 4210);
 			attr_dev(td189, "colspan", "2");
-			add_location(td189, file$3, 103, 7, 5071);
-			add_location(td190, file$3, 103, 31, 5095);
-			add_location(tr69, file$3, 103, 3, 5067);
-			add_location(tfoot, file$3, 102, 2, 5056);
+			add_location(td189, file$3, 103, 7, 5077);
+			add_location(td190, file$3, 103, 31, 5101);
+			add_location(tr69, file$3, 103, 3, 5073);
+			add_location(tfoot, file$3, 102, 2, 5062);
 		},
 		m: function mount(target, anchor) {
 			insert_dev(target, thead0, anchor);
@@ -32965,7 +32985,7 @@ function create_default_slot(ctx) {
 		block,
 		id: create_default_slot.name,
 		type: "slot",
-		source: "(4:1) <Table rowSelector=\\\".row-sel\\\"   on:keydown=\\\"{onKey}\\\"   on:dblclick=\\\"{onSelect}\\\"   on:select=\\\"{onSelect}\\\">",
+		source: "(4:1) <Table rowSelector=\\\".row-sel\\\" round   on:keydown=\\\"{onKey}\\\"   on:dblclick=\\\"{onSelect}\\\"   on:select=\\\"{onSelect}\\\">",
 		ctx
 	});
 
@@ -32986,6 +33006,7 @@ function create_fragment$3(ctx) {
 	table = new Table({
 			props: {
 				rowSelector: ".row-sel",
+				round: true,
 				$$slots: { default: [create_default_slot] },
 				$$scope: { ctx }
 			},
@@ -33106,6 +33127,10 @@ function instance$3($$self, $$props, $$invalidate) {
 			description: 'Makes table rows selectable with mouse and adds keyboard navigation.'
 		},
 		{
+			name: 'round',
+			description: 'Adds rounded corners to the table.'
+		},
+		{
 			name: 'rowSelector',
 			type: 'string',
 			default: 'tbody tr',
@@ -33146,7 +33171,7 @@ function instance$3($$self, $$props, $$invalidate) {
 	];
 
 	const exampleHtml = `
-<Table rowSelector=".row-sel">
+<Table rowSelector=".row-sel" round>
 		<thead>
 			<tr><th>Year</th><th>Month</th><th>Price</th></tr>
 		</thead>

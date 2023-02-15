@@ -1,6 +1,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="table-wrapper {className}"
+	class:round
 	class:selectable
 	bind:this="{_this}"
 	on:click="{onClick}"
@@ -16,6 +17,7 @@ const dispatch = createEventDispatcher();
 export let className = '';
 export let _this = undefined;
 export let selectable = true;
+export let round = false;
 export let scrollContainer = undefined;
 export let scrollCorrectionOffset = 0;
 // useful for when row-groups are needed.

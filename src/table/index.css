@@ -4,14 +4,18 @@
 	overflow: auto;
 	overscroll-behavior-y: contain;
 	position: relative;
+	transform: translateZ(1px);
+	border: 2px solid var(--ui-color-border);
 }
 
 .table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
+.table-wrapper.round { border-radius: var(--ui-border-radius-s); }
+
 .table {
-	border: 2px solid var(--ui-color-border);
 	border-spacing: 0;
-	width: 100%;
 	cursor: default;
+	width: calc(100% + 1px);
+	margin-left: -1px;
 	/* this enables table scrolling to be gpu accelerated */
 	/* and helps with the performance with large numbers of rows */
 	-webkit-transform: translate3d(0, 0, 0);
