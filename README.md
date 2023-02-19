@@ -10,10 +10,6 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
-- [x] add rounded corners to table
-- [x] api tables dont work on mobile
-- [x] Update screen.png
-
 - [ ] Bug: toggle doesn't work on mobile
 - [ ] Bug: splitter doesn't work on mobile
 

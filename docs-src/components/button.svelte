@@ -11,7 +11,7 @@
 
 		<hr>
 		<h3>Example instantiation</h3>
-		<CodeBox tag="Button" text="{buttonText}" props="{props}" />
+		<CodeBox tag="Button" text="{buttonText}" {props} />
 	</div>
 	<div class="docs-column">
 		<h3>Properties</h3>
@@ -34,7 +34,6 @@
 
 <hr>
 <API props="{apiProps}"/>
-
 
 <script>
 import { Button, ButtonToggle, Toggle } from '../../src';
@@ -89,7 +88,7 @@ function onStyleChange (e) {
 	props.outline = false;
 	props.text = false;
 	props.link = false;
-	if (e.detail) props[e.detail] = true;
+	setProp(e.detail, true);
 }
 
 function onTypeChange (e) {
@@ -97,11 +96,16 @@ function onTypeChange (e) {
 	props.success = false;
 	props.warning = false;
 	props.danger = false;
-	if (e.detail) props[e.detail] = true;
+	setProp(e.detail, true);
 }
 
 function onIconChange (e) {
-	props.icon = e.detail;
+	setProp('icon', e.detail);
+}
+
+function setProp (name, val) {
+	if (!name || typeof val === 'undefined') return;
+	props[name] = val;
 }
 
 

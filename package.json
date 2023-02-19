@@ -31,12 +31,12 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
     "del": "^7.0.0",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "eslint-plugin-svelte3": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
-    "gulp-eslint-new": "^1.7.1",
+    "gulp-eslint-new": "^1.7.2",
     "gulp-inject-string": "^1.1.2",
     "gulp-livereload": "^4.0.2",
     "gulp-rollup-plugin": "^2.0.0",
@@ -44,11 +44,11 @@
     "npm-run-all": "^4.1.5",
     "prism-svelte": "^0.5.0",
     "prismjs": "^1.29.0",
-    "rollup": "^3.14.0",
+    "rollup": "^3.17.1",
     "rollup-plugin-inline-svg": "^3.0.3",
-    "rollup-plugin-svelte": "^7.1.0",
-    "stylelint": "^14.16.1",
-    "stylelint-config-standard": "^29.0.0",
+    "rollup-plugin-svelte": "^7.1.3",
+    "stylelint": "^15.1.0",
+    "stylelint-config-standard": "^30.0.1",
     "svelte": "^3.55.1",
     "through2": "^4.0.2"
   },
@@ -56,6 +56,9 @@
     "chokidar": "^3.5.3",
     "glob-stream": "^7.0.0",
     "glob-parent": "^6.0.2",
-    "micromatch": "^4.0.5"
+    "micromatch": "^4.0.5",
+    "@ffaubert/gulp-stylelint": {
+      "stylelint": "^15.1.0"
+    }
   }
 }

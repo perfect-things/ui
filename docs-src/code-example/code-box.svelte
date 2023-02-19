@@ -1,16 +1,21 @@
-<pre><code class="language-svelte">
-	{@html html}
-</code></pre>
+<pre><code class="language-">{@html html}</code></pre>
 
 <script>
-
+import { afterUpdate } from 'svelte';
 export let tag = 'div';
 export let props = {};
 export let text = '';
 let html ='';
 
-$:html = buildHtml(tag, props, text);
 
+afterUpdate(() => {
+	requestAnimationFrame(update);
+});
+
+
+function update () {
+	html = window.Prism.highlight(buildHtml(), window.Prism.languages.svelte, 'svelte');
+}
 
 function buildHtml () {
 	const _props = {};
@@ -27,17 +32,8 @@ function buildHtml () {
 		.trim();
 	if (propsStr) propsStr = ' ' + propsStr;
 
-	let _html = '';
-	if (!text) _html = `<${tag}${propsStr}/>`;
-	else _html = `<${tag}${propsStr}>${text}</${tag}>`;
-
-	return encode(_html);
-}
-
-
-
-function encode (s) {
-	return s.replace(/[\u00A0-\u9999<>&]/gim, i => `&#${i.charCodeAt(0)};`);
+	if (!text) return `<${tag}${propsStr}/>`;
+	return `<${tag}${propsStr}>${text}</${tag}>`;
 }
 
 </script>
