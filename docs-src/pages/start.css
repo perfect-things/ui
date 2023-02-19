@@ -8,7 +8,6 @@
 	margin: -2em -2em 2em;
 	padding: 2em;
 	overflow: hidden;
-	border-bottom: 1px solid var(--ui-color-border-dark-2);
 }
 
 .logo {
@@ -21,7 +20,7 @@
 }
 
 .logotype {
-	font-size: 4vw;
+	font-size: clamp(32px, 4.2vw, 64px);
 	font-weight: 600;
 	margin: -0.3em 0 0;
 	display: flex;
