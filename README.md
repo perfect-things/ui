@@ -64,3 +64,8 @@ A browser window should open with the demo of the components.
 ## Resources
 - icons: https://tablericons.com
 - https://developer.apple.com/design/human-interface-guidelines/components/
+
+
+## Support me
+<a href="https://liberapay.com/tborychowski/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+<a href="https://www.buymeacoffee.com/tborychowski" target="_blank"><img height="60" width="217" src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
