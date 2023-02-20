@@ -32,6 +32,7 @@
 	max-height: 26em;
 	-webkit-user-select: none;
 	user-select: none;
+	transform: translateZ(1px);
 
 	color: var(--ui-color-text);
 	border: var(--ui-popup-border);

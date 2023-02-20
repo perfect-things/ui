@@ -20,7 +20,7 @@
 }
 
 .datepicker-wrapper .datepicker-input { width: 100%; padding-right: 28px; }
-.datepicker { display: none; }
+.datepicker { display: none; transform: translateZ(1px); }
 .datepicker.active { display: block; }
 
 .datepicker-dropdown {

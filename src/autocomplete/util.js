@@ -39,7 +39,6 @@ export function recalculateListPosition (listEl, inputEl, elevated) {
 	if (elevated) quickPositionRecalc(listEl, inputEl);
 	requestAnimationFrame(() => {
 		if (!listEl || !listEl.style) return;
-
 		const inputBox = inputEl.getBoundingClientRect();
 		if (elevated) {
 			listEl.style.top = (inputBox.top + inputBox.height + 3) + 'px';
@@ -54,9 +53,15 @@ export function recalculateListPosition (listEl, inputEl, elevated) {
 		const listT = listBox.top;
 		const listH = listBox.height;
 		const winH = window.innerHeight;
+		let maxH = 0;
 		if (listT + listH + 10 > winH) {
-			const maxH = Math.max(winH - listT - 10, 100);
+			maxH = Math.max(winH - listT - 10, 100);
 			listEl.style.height = maxH + 'px';
+		}
+		if (listT + maxH + 10 > winH) {
+			listEl.style.height = listBox.height + 'px';
+			if (elevated) listEl.style.top = (inputBox.top - listBox.height - 3) + 'px';
+			else listEl.style.top = (-listBox.height - 3) + 'px';
 		}
 	});
 }
