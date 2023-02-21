@@ -17,6 +17,7 @@
 	border-radius: var(--ui-popup-border-radius);
 	background: var(--ui-popup-background);
 	box-shadow: var(--ui-popup-shadow);
+	transform: translateZ(1px);
 }
 
 

@@ -10,6 +10,7 @@
 	z-index: 99;
 	background-color: rgba(0 0 0 / 0);
 	transition: background-color var(--ui-animation-speed) ease-out;
+	transform: translateZ(1px);
 }
 
 .dialog-backdrop.opened { background-color: rgba(0 0 0 / .6); }

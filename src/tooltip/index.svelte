@@ -96,11 +96,11 @@ function align () {
 	const tooltipBox = el.getBoundingClientRect();
 
 	_position = 'top';
-	let top = targetBox.top - tooltipBox.height;
+	let top = targetBox.top - tooltipBox.height - 2;
 	let left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
 
 	if (top < 0 || position === 'bottom') {
-		top = targetBox.top + targetBox.height;
+		top = targetBox.top + targetBox.height + 2;
 		_position = 'bottom';
 	}
 	el.style.top = top + 'px';
