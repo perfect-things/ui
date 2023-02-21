@@ -1,9 +1,9 @@
 .toaster {
-	--toaster-border-radius: var(--ui-border-radius);
+	--toaster-border-radius: var(--ui-border-radius-s);
 	position: fixed;
 	width: 30em;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translateX(-50%) translateZ(1px);
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
@@ -21,7 +21,7 @@
 	flex: 1;
 	z-index: 999;
 	display: flex;
-	align-items: stretch;
+	align-items: center;
 	justify-content: space-between;
 	min-height: 2em;
 	margin-top: var(--ui-margin);
@@ -33,16 +33,17 @@
 	background: none;
 	border: none;
 	color: var(--ui-color-text);
-	height: auto;
+	height: 32px;
 	font-size: inherit;
 	min-width: 1.6em;
 	padding: 0 var(--ui-margin-m);
-	margin: 0;
+	margin: 0 var(--ui-margin-m) 0 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 5px;
 }
-.toast button:hover { color: var(--ui-color-text-light-2); background: #3338; }
+.toast button:hover { color: var(--ui-color-text-light-2); background: #2228; }
 .toast button:active { color: var(--ui-color-text-dark-2); background: #0008; }
 
 .toast .toast-close {
@@ -63,7 +64,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0.5em 0.5em 0.5em 1.5em;
+	padding: 0.8em 0.8em 0.8em 1.5em;
 	line-height: 1.4;
 }
 .toast-progressbar {
@@ -82,11 +83,23 @@
 	background-color: #ffffff15;
 	border: 1px solid #ffffff25;
 	width: 0;
-	transition: width 0.3s;
+	transition: width .2s;
 	will-change: width;
 }
 
 
 @media (max-width: 700px) {
 	.toaster { width: calc(100vw - 1em); }
+}
+
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+	.toast-info { background-color: var(--ui-color-info-semi); }
+	.toast-success { background-color: var(--ui-color-success-semi); }
+	.toast-warning { background-color: var(--ui-color-warning-semi); }
+	.toast-error { background-color: var(--ui-color-danger-semi); }
+	.toast {
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
+	}
 }

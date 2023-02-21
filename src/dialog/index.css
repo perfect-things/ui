@@ -44,7 +44,7 @@
 	font-weight: 400;
 	margin: 0;
 	padding: 0.4em 1em 0;
-	background: var(--ui-color-background);
+	background: var(--ui-color-background-semi);
 }
 
 .dialog-content {
@@ -58,7 +58,7 @@
 
 .dialog-footer [slot="footer"] {
 	width: 100%;
-	background: var(--ui-color-background);
+	background: var(--ui-color-background-semi);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -83,4 +83,15 @@
 	max-width: 100%;
 	border-radius: 0;
 	box-shadow: none;
+}
+
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+	.dialog {
+		background-color: var(--ui-color-background-semi);
+		-webkit-backdrop-filter: blur(30px);
+		backdrop-filter: blur(30px);
+	}
+	.dialog-header,
+	.dialog-footer [slot="footer"] { background: none; }
 }

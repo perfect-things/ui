@@ -35,3 +35,15 @@
 .drawer-header h2 { margin: 0; padding: 0.5em 0; }
 
 .drawer-content { padding: 0 1.4em; }
+
+
+
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+	.drawer {
+		background-color: var(--ui-color-background-semi);
+		-webkit-backdrop-filter: blur(30px);
+		backdrop-filter: blur(30px);
+	}
+	.drawer-header { background: none; }
+}
