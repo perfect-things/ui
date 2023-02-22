@@ -11,6 +11,8 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 ### TODO
 - [ ] upgrade dialogs? (https://web.dev/building-a-dialog-component/)
+- [ ] consider rem vs em (https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/)
+
 
 - [ ] Bug: toggle doesn't work on mobile
 - [ ] Bug: splitter doesn't work on mobile
