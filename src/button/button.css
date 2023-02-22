@@ -55,12 +55,12 @@
 }
 
 
-.button:not(.button-has-text) { min-width: 34px; padding: 0 var(--ui-margin-m); }
+.button:not(.button-has-text) { min-width: 28px; padding: 0 var(--ui-margin-m); }
 .button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
 
 
 .button.round {
-	min-width: 34px;
+	min-width: 28px;
 	padding: var(--ui-margin);
 	border-radius: var(--ui-border-radius-xl);
 }
