@@ -130,7 +130,7 @@ function watchTask (done) {
 
 export const lint = parallel(eslint, stylelint);
 
-const _build = parallel(eslint, stylelint, js, libCSS, docsCSS, html, assets, externals);
+const _build = parallel(lint, js, libCSS, docsCSS, html, assets, externals);
 export const build = series(cleanup, _build);
 export const prod = series(setProd, build);
 export const watch = watchTask;

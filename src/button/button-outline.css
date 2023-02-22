@@ -3,22 +3,19 @@
 	border: 0.1em solid var(--ui-color-info);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
-	padding: 0 var(--ui-button-size);
-	text-decoration: none;
 }
-
-.button-outline:hover { text-decoration: none; }
-.button-outline:focus { background: var(--ui-color-info-semi); }
-
-.button-outline.success { border-color: var(--ui-color-success); }
-.button-outline.warning { border-color: var(--ui-color-warning); }
-.button-outline.danger { border-color: var(--ui-color-danger); }
 
 .button-outline:focus,
 .button-outline:hover { background-color: var(--ui-color-info-semi); }
+
+.button-outline.success { border-color: var(--ui-color-success); }
 .button-outline.success:focus,
 .button-outline.success:hover { background-color: var(--ui-color-success-semi); }
+
+.button-outline.warning { border-color: var(--ui-color-warning); }
 .button-outline.warning:focus,
 .button-outline.warning:hover { background-color: var(--ui-color-warning-semi); }
+
+.button-outline.danger { border-color: var(--ui-color-danger); }
 .button-outline.danger:focus,
 .button-outline.danger:hover { background-color: var(--ui-color-danger-semi); }

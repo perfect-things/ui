@@ -3,16 +3,17 @@
 	border: none;
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
-	padding: 0 var(--ui-button-size);
-	text-decoration: none;
 	box-shadow: none;
 }
 
 .button-text:focus,
-.button-text:hover { background-color: var(--ui-color-info); text-decoration: none; }
+.button-text:hover { background-color: var(--ui-color-info); }
+
 .button-text.success:focus,
 .button-text.success:hover { background-color: var(--ui-color-success); }
+
 .button-text.warning:focus,
 .button-text.warning:hover { background-color: var(--ui-color-warning); }
+
 .button-text.danger:focus,
 .button-text.danger:hover { background-color: var(--ui-color-danger); }

@@ -10,7 +10,8 @@
 	--ui-margin-s: 0.1em;
 	--ui-margin-m: 0.5em;
 	--ui-margin-l: 1em;
-	--ui-margin-xl: 2em;
+	--ui-margin-xl: 1.4em;
+	--ui-margin-xxl: 2em;
 
 	/* popup vars */
 	--ui-popup-border-radius: var(--ui-border-radius);

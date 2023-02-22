@@ -4,11 +4,8 @@
 	box-shadow: var(--ui-shadow-button);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
-	padding: 0 var(--ui-margin-l);
-	text-decoration: none;
 }
 
-.button-normal:hover { text-decoration: none; }
 .button-normal.success { background: var(--ui-color-success); }
 .button-normal.warning { background: var(--ui-color-warning); }
 .button-normal.danger { background: var(--ui-color-danger); }

@@ -9,10 +9,11 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: 0.4em;
+	gap: var(--ui-margin-m);
 
 	height: auto;
 	margin: 0;
+	padding: 0 var(--ui-margin-l);
 	color: var(--ui-color-text);
 	-webkit-user-select: none;
 	user-select: none;
@@ -21,8 +22,10 @@
 	white-space: nowrap;
 	vertical-align: middle;
 	border-radius: var(--ui-border-radius);
+	text-decoration: none;
 }
 
+.button:hover { text-decoration: none; }
 .button:focus {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
@@ -51,14 +54,15 @@
 	pointer-events: none;
 }
 
-.button-has-text svg { margin-left: calc(var(--ui-margin-m) / -2); }
 
-.button:not(.button-has-text) { min-width: 30px; padding: 0 var(--ui-margin-m); }
+.button:not(.button-has-text) { min-width: 34px; padding: 0 var(--ui-margin-m); }
 .button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
 
 
 .button.round {
-	min-width: 28px;
+	min-width: 34px;
 	padding: var(--ui-margin);
 	border-radius: var(--ui-border-radius-xl);
 }
+
+.button-has-text.round { padding-inline: var(--ui-margin-l); }
