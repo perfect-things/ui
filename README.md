@@ -10,6 +10,8 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 ![Screenshot](screen.png)
 
 ### TODO
+- [ ] upgrade dialogs? (https://web.dev/building-a-dialog-component/)
+
 - [ ] Bug: toggle doesn't work on mobile
 - [ ] Bug: splitter doesn't work on mobile
 
