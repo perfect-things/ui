@@ -25,7 +25,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { uuid } from '../util';
-import Icon from '../icon';
+import { Icon } from '../icon';
 
 export let disabled = undefined;
 export let round = undefined;	// round button

@@ -11,7 +11,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { onMount } from 'svelte';
-import { icons } from '../icon';
+import { icons } from '../icon/icons';
 import { animate } from '../util';
 const dispatch = createEventDispatcher();
 

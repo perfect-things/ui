@@ -1,6 +1,11 @@
 {
 	"root": true,
-	"extends": "eslint:recommended",
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
 	"env": {
 		"browser": true,
 		"es2022": true
@@ -9,10 +14,13 @@
 		"sourceType": "module",
 		"ecmaVersion": "latest"
 	},
-	"plugins": [ "svelte3" ],
+	"plugins": [ "svelte3", "@typescript-eslint" ],
 	"overrides": [
 		{ "files": "*.svelte", "processor": "svelte3/svelte3" }
 	],
+	"settings": {
+		"svelte3/typescript": true
+	},
 	"rules": {
 		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
 		"indent": [ "error", "tab" ],
@@ -30,8 +38,13 @@
 		"no-unused-vars": "error",
 		"no-trailing-spaces": "error",
 		"no-multi-spaces": ["error", { "ignoreEOLComments": true }],
-		"key-spacing": [ "error",
-			{ "beforeColon": false, "afterColon": true, "mode": "strict" }
+		"key-spacing": [
+			"error",
+			{
+				"beforeColon": false,
+				"afterColon": true,
+				"mode": "strict"
+			}
 		],
 		"no-shadow": "error",
 		"eol-last": 1,
@@ -39,6 +52,8 @@
 		"no-console": 0,
 		"comma-dangle": 0,
 		"no-cond-assign": 0,
-		"prefer-promise-reject-errors": "error"
+		"prefer-promise-reject-errors": "error",
+		"@typescript-eslint/ban-ts-comment": "off",
+		"@typescript-eslint/no-explicit-any": "off"
 	}
 }

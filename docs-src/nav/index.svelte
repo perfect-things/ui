@@ -46,37 +46,37 @@
 <svelte:window on:hashchange="{onhashchange}" />
 <script>
 import { Button as UIButton } from '../../src';
-import NavItem from './nav-item';
-import ActualToggle from '../../src/toggle';
-import GetStarted from '../pages/start';
+import NavItem from './nav-item.svelte';
+import { Toggle as ActualToggle } from '../../src';
+import GetStarted from '../pages/start.svelte';
 
-import Button from '../components/button';
-import ButtonGroup from '../components/button-group';
-import ButtonToggle from '../components/button-toggle';
-import PushButton from '../components/push-button';
-import Menu from '../components/menu';
-import Icon from '../components/icon';
-import TextFit from '../components/text-fit';
-import Toaster from '../components/toaster';
-import ColorPalette from '../components/color-palette';
+import Button from '../components/button.svelte';
+import ButtonGroup from '../components/button-group.svelte';
+import ButtonToggle from '../components/button-toggle.svelte';
+import PushButton from '../components/push-button.svelte';
+import Menu from '../components/menu.svelte';
+import Icon from '../components/icon.svelte';
+import TextFit from '../components/text-fit.svelte';
+import Toaster from '../components/toaster.svelte';
+import ColorPalette from '../components/color-palette.svelte';
 
-import Autocomplete from '../components/autocomplete';
-import Datepicker from '../components/datepicker';
-import Checkbox from '../components/checkbox';
-import Input from '../components/input';
-import InputMath from '../components/input-math';
-import InputPassword from '../components/input-password';
-import Select from '../components/select';
-import Textarea from '../components/textarea';
-import Toggle from '../components/toggle';
-import Tooltip from '../components/tooltip';
+import Autocomplete from '../components/autocomplete.svelte';
+import Datepicker from '../components/datepicker.svelte';
+import Checkbox from '../components/checkbox.svelte';
+import Input from '../components/input.svelte';
+import InputMath from '../components/input-math.svelte';
+import InputPassword from '../components/input-password.svelte';
+import Select from '../components/select.svelte';
+import Textarea from '../components/textarea.svelte';
+import Toggle from '../components/toggle.svelte';
+import Tooltip from '../components/tooltip.svelte';
 
-import Dialog from '../components/dialog';
-import Drawer from '../components/drawer';
-import Panel from '../components/panel';
-import Splitter from '../components/splitter';
-import Table from '../components/table';
-import Tree from '../components/tree';
+import Dialog from '../components/dialog.svelte';
+import Drawer from '../components/drawer.svelte';
+import Panel from '../components/panel.svelte';
+import Splitter from '../components/splitter.svelte';
+import Table from '../components/table.svelte';
+import Tree from '../components/tree.svelte';
 
 const components = {
 	GetStarted,

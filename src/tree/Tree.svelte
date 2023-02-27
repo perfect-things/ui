@@ -12,9 +12,9 @@
 	{/each}
 </ul>
 
-<script>
+<script lang="ts">
 import { createEventDispatcher } from 'svelte';
-import TreeNode from './tree-node';
+import TreeNode from './TreeNode.svelte';
 
 export let items = [];
 
@@ -23,7 +23,7 @@ let el;
 let selectedItem;
 
 
-function getVisibleNodes () {
+function getVisibleNodes (): string {
 	return Array.from(el.querySelectorAll('.tree .tree-node'));
 }
 

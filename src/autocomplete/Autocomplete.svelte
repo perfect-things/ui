@@ -59,7 +59,7 @@
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './util';
 import { pluck } from '../util';
-import Icon from '../icon';
+import { Icon } from '../icon';
 export let data = [];
 export let value = null;
 export let allowNew = false;

@@ -30,7 +30,7 @@
 </div>
 <script>
 import { onMount } from 'svelte';
-import Button from '../button';
+import { Button } from '../button';
 
 export let value = '';
 export let id = undefined;

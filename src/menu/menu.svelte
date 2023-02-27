@@ -4,9 +4,9 @@
 
 <svelte:options accessors={true}/>
 
-<script>
+<script lang="ts">
 import { createEventDispatcher, onDestroy, onMount } from 'svelte';
-import initLongPressEvent from '../longpress.js';
+import initLongPressEvent from '../longpress';
 
 const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;

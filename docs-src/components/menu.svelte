@@ -3,19 +3,19 @@
 <h3>Normal menu</h3>
 <Button on:click="{thingsMenu.open}">Show menu</Button>
 <Menu bind:this="{thingsMenu}">
-	<Item><Icon name="plus"/> Add a thing</Item>
-	<Item>Add another one</Item>
-	<Separator />
-	<Item shortcut="cmd+shift+c">Third option</Item>
-	<Item shortcut="cmd+alt+d">Fourth menu item</Item>
-	<Item shortcut="cmd+c">Fifth element</Item>
-	<Item shortcut="cmd+enter">Sixth one, to make it longer</Item>
-	<Item shortcut="backspace">Seventh. Menu supports type-ahead</Item>
-	<Item shortcut="escape">Eight, so go ahead and try typing</Item>
-	<Item shortcut="cmd+option+s">Ninth, the beginning of the menu item text</Item>
-	<Item>Tenth, and it should be focused</Item>
-	<Separator />
-	<Item on:click="{menuCloseThings}"><Icon name="close"/> {closeThingsText}</Item>
+	<MenuItem><Icon name="plus"/> Add a thing</MenuItem>
+	<MenuItem>Add another one</MenuItem>
+	<MenuSeparator />
+	<MenuItem shortcut="cmd+shift+c">Third option</MenuItem>
+	<MenuItem shortcut="cmd+alt+d">Fourth menu item</MenuItem>
+	<MenuItem shortcut="cmd+c">Fifth element</MenuItem>
+	<MenuItem shortcut="cmd+enter">Sixth one, to make it longer</MenuItem>
+	<MenuItem shortcut="backspace">Seventh. Menu supports type-ahead</MenuItem>
+	<MenuItem shortcut="escape">Eight, so go ahead and try typing</MenuItem>
+	<MenuItem shortcut="cmd+option+s">Ninth, the beginning of the menu item text</MenuItem>
+	<MenuItem>Tenth, and it should be focused</MenuItem>
+	<MenuSeparator />
+	<MenuItem on:click="{menuCloseThings}"><Icon name="close"/> {closeThingsText}</MenuItem>
 </Menu>
 
 
@@ -26,26 +26,26 @@
 	<small>parent: <em>overflow: hidden</em></small>
 	<Button on:click="{someMenu1.open}">Regular Menu</Button>
 	<Menu bind:this="{someMenu1}">
-		<Item><Icon name="plus"/> Add some</Item>
-		<Item>Add some more</Item>
-		<Separator />
-		<Item><Icon name="close"/> Close something</Item>
+		<MenuItem><Icon name="plus"/> Add some</MenuItem>
+		<MenuItem>Add some more</MenuItem>
+		<MenuSeparator />
+		<MenuItem><Icon name="close"/> Close something</MenuItem>
 	</Menu>
 
 	<Button on:click="{someMenu2.open}">Elevated Menu</Button>
 	<Menu bind:this="{someMenu2}" elevate="true">
-		<Item><Icon name="plus"/> Add some</Item>
-		<Item>Add some more</Item>
-		<Separator />
-		<Item><Icon name="close"/> Close something</Item>
+		<MenuItem><Icon name="plus"/> Add some</MenuItem>
+		<MenuItem>Add some more</MenuItem>
+		<MenuSeparator />
+		<MenuItem><Icon name="close"/> Close something</MenuItem>
 	</Menu>
 
 	<Button className="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
 	<Menu bind:this="{someMenu3}" elevate="true">
-		<Item><Icon name="plus"/> A very long text</Item>
-		<Item>Another very long text</Item>
-		<Separator />
-		<Item><Icon name="close"/> Probably the longest text in the world!</Item>
+		<MenuItem><Icon name="plus"/> A very long text</MenuItem>
+		<MenuItem>Another very long text</MenuItem>
+		<MenuSeparator />
+		<MenuItem><Icon name="close"/> Probably the longest text in the world!</MenuItem>
 	</Menu>
 
 </div>
@@ -63,17 +63,17 @@
 <div class="div div2">Window</div>
 
 <Menu type="context" targetSelector=".div1" bind:this="{tabsMenu}" on:close="{onTabsMenuClose}">
-	<Item shortcut="cmd+t" on:click="{newTab}"><Icon name="plus"/> New Tab</Item>
-	<Item shortcut="cmd+shift+t" on:click="{newPrivateTab}">New Private Tab</Item>
-	<Separator />
-	<Item shortcut="cmd+shift+w" on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</Item>
+	<MenuItem shortcut="cmd+t" on:click="{newTab}"><Icon name="plus"/> New Tab</MenuItem>
+	<MenuItem shortcut="cmd+shift+t" on:click="{newPrivateTab}">New Private Tab</MenuItem>
+	<MenuSeparator />
+	<MenuItem shortcut="cmd+shift+w" on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</MenuItem>
 </Menu>
 
 <Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
-	<Item shortcut="cmd+n" on:click="{newWindow}">New window</Item>
-	<Item shortcut="cmd+shift+n" on:click="{newPrivateWindow}">New private window</Item>
-	<Separator />
-	<Item shortcut="cmd+shift+q" on:click="{closeWindows}">Close All Windows</Item>
+	<MenuItem shortcut="cmd+n" on:click="{newWindow}">New window</MenuItem>
+	<MenuItem shortcut="cmd+shift+n" on:click="{newPrivateWindow}">New private window</MenuItem>
+	<MenuSeparator />
+	<MenuItem shortcut="cmd+shift+q" on:click="{closeWindows}">Close All Windows</MenuItem>
 </Menu>
 
 
@@ -81,11 +81,11 @@
 
 <API props="{apiProps}"/>
 <API props="{instanceApiProps}" title="Menu Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
-<API props="{itemApiProps}" title="Item API"/>
+<API props="{itemApiProps}" title="MenuItem API"/>
 
 
 <script>
-import { Button, Menu, Item, Separator, Icon } from '../../src';
+import { Button, Menu, MenuItem, MenuSeparator, Icon } from '../../src';
 import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
@@ -111,10 +111,10 @@ const itemApiProps = [
 const exampleHtml = `
 <!-- Regular menu -->
 <Menu bind:this="{menu1}">
-    <Item><Icon name="plus"/> Add some</Item>
-    <Item>Add some more</Item>
-    <Separator />
-    <Item on:click="{closeSomething}"><Icon name="close"/> Close something</Item>
+    <MenuItem><Icon name="plus"/> Add some</MenuItem>
+    <MenuItem>Add some more</MenuItem>
+    <MenuSeparator />
+    <MenuItem on:click="{closeSomething}"><Icon name="close"/> Close something</MenuItem>
 </Menu>
 
 <Button on:click="{() => menu1.open()}">Show menu</Button>
@@ -122,10 +122,10 @@ const exampleHtml = `
 <!-- Context menu -->
 <div class="div1">Tab</div>
 <Menu type="context" targetSelector=".div1" bind:this="{menu2}">
-    <Item shortcut="cmd+n" on:click="{action1}">New window</Item>
-    <Item shortcut="cmd+shift+n" on:click="{action2}">New private window</Item>
-    <Separator />
-    <Item shortcut="cmd+shift+q" on:click="{action3}">Close All Windows</Item>
+    <MenuItem shortcut="cmd+n" on:click="{action1}">New window</MenuItem>
+    <MenuItem shortcut="cmd+shift+n" on:click="{action2}">New private window</MenuItem>
+    <MenuSeparator />
+    <MenuItem shortcut="cmd+shift+q" on:click="{action3}">Close All Windows</MenuItem>
 </Menu>
 
 <script>

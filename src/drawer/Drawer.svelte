@@ -21,7 +21,7 @@
 import { createEventDispatcher } from 'svelte';
 import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
-import Button from '../button';
+import { Button } from '../button';
 
 export let title = 'Drawer';
 export let className = '';

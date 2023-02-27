@@ -3,7 +3,7 @@
 	<svelte:component this="{component}"/>
 </main>
 
-<script>
+<script lang="ts">
 import Nav from '../nav';
 
 

@@ -17,7 +17,8 @@
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
-import Icon, { icons } from '../icon';
+import { Icon } from '../icon';
+import { icons } from '../icon/icons';
 
 export let format = 'yyyy-mm-dd';
 export let value = '';

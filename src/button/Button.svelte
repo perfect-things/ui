@@ -24,7 +24,7 @@
 	<slot></slot>
 </button>
 <script>
-import Icon from '../icon';
+import { Icon } from '../icon';
 
 export let _this = undefined;
 

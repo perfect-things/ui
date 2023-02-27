@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import { deleteAsync } from 'del';
 import livereload from 'gulp-livereload';
 import svelte from 'rollup-plugin-svelte';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import { default as throught2 } from 'through2';
 import inlineSvg from 'rollup-plugin-inline-svg';
@@ -12,7 +12,8 @@ import gulpStylelint from '@ffaubert/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
 import rollup from 'gulp-rollup-plugin';
 import inject from 'gulp-inject-string';
-
+import typescript from '@rollup/plugin-typescript';
+import sveltePreprocess from 'svelte-preprocess';
 
 const { series, parallel, src, dest } = gulp;
 const noop = throught2.obj;
@@ -49,7 +50,7 @@ export function externals () {
 }
 
 export function eslint () {
-	return src(['{src,docs-src}/**/*.{js,svelte}', '*.js'])
+	return src(['{src,docs-src}/**/*.{js,svelte,ts}', '*.js'])
 		.pipe(gulpEslint({ fix: true }))   // Lint files, create fixes.
 		.pipe(gulpEslint.fix())            // Fix files if necessary.
 		.pipe(gulpEslint.format())
@@ -74,20 +75,31 @@ export function stylelint () {
 
 
 export function js () {
-	return src('./docs-src/index.js', { sourcemaps: !isProd })
+	return src('./docs-src/index.ts', { sourcemaps: !isProd })
 		.pipe(rollup({
 			onwarn: (err) => {
 				if (/eval/.test(err)) return;
 				if (/A11y/.test(err)) return;
+				if (/typescript/.test(err)) {
+					const msg = red('\nERROR: ' + err.message.replace('@rollup/plugin-typescript ', '')) +
+						`\n${err.loc.file}:${err.loc.line}:${err.loc.column} ${err.frame}`;
+					return console.error('\x07', msg);
+				}
 				console.error('\x07', red('\nERROR: ' + err.message + '\n'));
 			},
 			plugins: [
-				nodeResolve({
-					extensions: ['.mjs', '.js', '.svelte'],
-					dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
+				resolve({
+					browser: true,
+					extensions: ['.mjs', '.js', '.svelte', '.ts'],
+					dedupe: ['svelte']
 				}),
 				inlineSvg({ include: ['src/**/*.svg'] }),
-				svelte({ compilerOptions: { dev: !isProd, css: false } }),
+				svelte({
+					preprocess: sveltePreprocess(),
+					emitCss: false,
+					compilerOptions: { dev: !isProd }
+				}),
+				typescript({ sourceMap: !isProd }),
 				isProd && terser()
 			],
 		}, {
@@ -123,8 +135,7 @@ function watchTask (done) {
 	gulp.watch('src/**/*.css', series(libCSS, stylelint));
 	gulp.watch('docs-src/**/*.css', series(docsCSS, stylelint));
 	gulp.watch('docs-src/**/*.html', html);
-	gulp.watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
-
+	gulp.watch('{src,docs-src}/**/*.{js,svelte,ts}', series(js, eslint));
 }
 
 
