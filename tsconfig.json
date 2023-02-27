@@ -2,10 +2,10 @@
  	"extends": "@tsconfig/svelte/tsconfig.json",
  	"compilerOptions": {
  		"target": "ESNEXT",
-		"lib": [
-			"ESNEXT",
-			"DOM"
-		],
+		"lib": [ "ESNEXT", "DOM" ],
+		"declaration": true,
+		"declarationDir": "./docs",
+		"outDir": "./docs",
 	},
  	"include": [
  		"src/**/*",
