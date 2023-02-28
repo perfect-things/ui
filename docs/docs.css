@@ -14,6 +14,24 @@
 .api-table tr th:nth-child(2),
 .api-table tr td:nth-child(2) { width: 200px; }
 
+main pre[class],
+code {
+	background-color: #1a1a1a;
+	border-radius: var(--ui-border-radius-s);
+}
+
+code {
+	display: block;
+	width: 100%;
+	padding: 1em;
+	margin-block: 1em;
+	line-height: 2;
+	white-space: pre;
+	overflow: auto;
+}
+
+code[class*=language-] { padding: 0; margin: 0; }
+
 html,
 body {
 	box-sizing: border-box;
@@ -295,24 +313,6 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	main { padding-top: 5em; }
 	.main-header { margin-top: -5em; }
 }
-
-main pre[class],
-code {
-	background-color: #1a1a1a;
-	border-radius: var(--ui-border-radius-s);
-}
-
-code {
-	display: block;
-	width: 100%;
-	padding: 1em;
-	margin-block: 1em;
-	line-height: 2;
-	white-space: pre;
-	overflow: auto;
-}
-
-code[class*=language-] { padding: 0; margin: 0; }
 
 .main-header {
 	height: 30vw;

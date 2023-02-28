@@ -1,9 +1,3 @@
-import Menu from './menu.svelte';
-import Item from './menu-item.svelte';
-import Separator from './menu-separator.svelte';
-
-export {
-	Menu,
-	Item,
-	Separator
-};
+export { default as Menu } from './Menu.svelte';
+export { default as MenuItem } from './MenuItem.svelte';
+export { default as MenuSeparator } from './MenuSeparator.svelte';

@@ -19,7 +19,7 @@ function update () {
 
 function buildHtml () {
 	const _props = {};
-	for (let prop in props) {
+	for (const prop in props) {
 		if (props[prop] === false) continue;
 		if (props[prop] === '') continue;
 		_props[prop] = props[prop];

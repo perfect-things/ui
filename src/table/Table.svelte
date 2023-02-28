@@ -109,7 +109,7 @@ function selectClicked (skipEvent = false) {
 	if (rowEl != document.activeElement) rowEl.focus();
 
 	const scrlCont = getScrollContainer();
-	let topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
+	const topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
 
 	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
 

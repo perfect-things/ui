@@ -97,7 +97,7 @@ function align () {
 
 	_position = 'top';
 	let top = targetBox.top - tooltipBox.height - 2;
-	let left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
+	const left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
 
 	if (top < 0 || position === 'bottom') {
 		top = targetBox.top + targetBox.height + 2;

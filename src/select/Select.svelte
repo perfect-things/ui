@@ -34,7 +34,7 @@ let el, groups = [];
 $:props = pluck($$props, ['id', 'title', 'disabled', 'required']);
 
 $: {
-	let nogroup = [];
+	const nogroup = [];
 	const _groups = {};
 	items.forEach(item => {
 		if (!item.group) return nogroup.push(item);

@@ -39,6 +39,7 @@
 		"no-console": 0,
 		"comma-dangle": 0,
 		"no-cond-assign": 0,
-		"prefer-promise-reject-errors": "error"
+		"prefer-promise-reject-errors": "error",
+		"prefer-const": ["error", { "destructuring": "any", "ignoreReadBeforeAssign": false } ]
 	}
 }

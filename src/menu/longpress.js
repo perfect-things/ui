@@ -69,14 +69,14 @@ function mouseMoveHandler (e) {
 
 
 export default function init (delay = 500, eventName = 'longpress') {
-	if (window.longPressEventInitialised) return;
+	if (window['longPressEventInitialised']) return;
 
 	DELAY = delay;
 	EVENT_NAME = eventName;
 
 	// check if we're using a touch screen
-	const isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
-	const hasPointerEvents = (('PointerEvent' in window) || (window.navigator && 'msPointerEnabled' in window.navigator));
+	const isTouch = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator['msMaxTouchPoints'] > 0));
+	const hasPointerEvents = (('PointerEvent' in window) || (navigator && 'msPointerEnabled' in navigator));
 
 	// switch to pointer events or touch events if using a touch screen
 	const mouseDown = isTouch ? 'touchstart' : hasPointerEvents ? 'pointerdown' : 'mousedown';
@@ -89,5 +89,5 @@ export default function init (delay = 500, eventName = 'longpress') {
 	document.addEventListener(mouseUp, clearTimer, true);
 	document.addEventListener('wheel', clearTimer, true);
 	document.addEventListener('scroll', clearTimer, true);
-	window.longPressEventInitialised = true;
+	window['longPressEventInitialised'] = true;
 }

@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import { deleteAsync } from 'del';
 import livereload from 'gulp-livereload';
 import svelte from 'rollup-plugin-svelte';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import { default as throught2 } from 'through2';
 import inlineSvg from 'rollup-plugin-inline-svg';
@@ -82,12 +82,16 @@ export function js () {
 				console.error('\x07', red('\nERROR: ' + err.message + '\n'));
 			},
 			plugins: [
-				nodeResolve({
+				resolve({
+					browser: true,
 					extensions: ['.mjs', '.js', '.svelte'],
-					dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
+					dedupe: ['svelte']
 				}),
 				inlineSvg({ include: ['src/**/*.svg'] }),
-				svelte({ compilerOptions: { dev: !isProd, css: false } }),
+				svelte({
+					emitCss: false,
+					compilerOptions: { dev: !isProd }
+				}),
 				isProd && terser()
 			],
 		}, {

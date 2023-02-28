@@ -58,7 +58,7 @@ const apiProps = [
 ];
 
 
-let props = {};
+const props = {};
 let buttonText = 'Demo button';
 const buttonStyles = [
 	{ name: 'Normal', value: '' },

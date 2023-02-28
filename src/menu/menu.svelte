@@ -6,7 +6,7 @@
 
 <script>
 import { createEventDispatcher, onDestroy, onMount } from 'svelte';
-import initLongPressEvent from '../longpress.js';
+import initLongPressEvent from './longpress.js';
 
 const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
@@ -84,7 +84,7 @@ function updatePosition (e) {
 	}
 
 	// ensure it stays on screen
-	let { x, y, width, height } = menuEl.getBoundingClientRect();
+	const { x, y, width, height } = menuEl.getBoundingClientRect();
 	const winH = window.innerHeight;
 	const winW = window.innerWidth;
 	const padding = 10;

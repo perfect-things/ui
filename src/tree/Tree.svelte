@@ -14,7 +14,7 @@
 
 <script>
 import { createEventDispatcher } from 'svelte';
-import TreeNode from './tree-node';
+import TreeNode from './TreeNode.svelte';
 
 export let items = [];
 
