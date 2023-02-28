@@ -74,7 +74,9 @@ function _hide () {
  * @param e - hide event
  */
 function hide (e) {
-	const targetIsSelf = targetEl.contains(e.target);
+	const targetIsSelf = e.target && targetEl.contains(e.target);
+	const targetIsTooltip = e.target && el.contains(e.target);
+
 	if ((e.type === 'mousedown' || e.type === 'click') && targetIsSelf) return;
 	if (showTimer && shownEvent !== 'click') {
 		clearTimeout(showTimer);
@@ -83,7 +85,7 @@ function hide (e) {
 	if (!visible) return;
 	if (e.type === 'scroll' || e.type === 'resize') return _hide();
 	if (e.type === 'click' || e.type === 'mousedown') {
-		if (targetEl.contains(e.target) || el.contains(e.target)) return;
+		if (targetIsSelf || targetIsTooltip) return;
 		_hide();
 	}
 	if (shownEvent === 'mouseover' && e.type === 'mouseout') return hideTimer = setTimeout(_hide, 50);
