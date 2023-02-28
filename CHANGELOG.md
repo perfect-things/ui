@@ -1,6 +1,11 @@
 simple-ui-components-in-svelte
 ==============================
 
+## v4.0.0 (2023-02-28)
+- Renamed components: `Item` -> `MenuItem`, `Separator` -> `MenuSeparator`
+- Refactored the folder structure
+
+
 ## v3.1.2 (2023-01-04)
 - Toggle's `innerWidth` function was somehow overwriting `window.innerWidth` property (maybe a compiler issue?)
 
