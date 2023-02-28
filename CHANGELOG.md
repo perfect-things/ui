@@ -1,6 +1,11 @@
 simple-ui-components-in-svelte
 ==============================
 
+## v5.0.1 (2023-02-28)
+- Bring back `button-outline.css` (it was accidentally deleted in v5.0.0)
+
+
+
 ## v5.0.0 (2023-02-28)
 - Breaking change: renamed props for all components: `className` -> `class` (as it turns out it is possible to use `class` as a prop name in svelte)
 - Almost all components now have a `class` prop, which can be used to add custom classes to the component
