@@ -1,5 +1,5 @@
 {#if visible}
-	<div class="tooltip-plate tooltip-{_position}" class:visible bind:this="{el}">
+	<div class="tooltip-plate tooltip-{_position} {className}" class:visible bind:this="{el}">
 		<div class="tooltip">
 			<div class="tooltip-content {className}">
 				<slot/>
@@ -11,14 +11,16 @@
 import { afterUpdate, onDestroy, onMount } from 'svelte';
 export let target = '';
 export let events = 'hover';	// hover, click, focus
-export let className = '';
 export let delay = '0';
 export let position = 'auto';
+let className = '';
+export { className as class };
 
 let _position = 'top';
 let visible = false;
 let showTimer, hideTimer, shownEvent, noHide = false;
 let el, targetEl, tooltipContainer;
+
 
 onMount(() => {
 	initContainer();

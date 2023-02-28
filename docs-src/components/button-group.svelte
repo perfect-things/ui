@@ -68,7 +68,7 @@ import CodeExample from '../code-example/index.svelte';
 
 
 const apiProps = [
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
 ];
 

@@ -1,4 +1,4 @@
-<div class="panel-wrap" class:expanded class:round bind:this="{wrapEl}">
+<div class="panel-wrap {className}" class:expanded class:round bind:this="{wrapEl}">
 	<details class="panel" {open} on:keydown={toggle} on:click={toggle}>
 		<summary class="panel-header" bind:this="{headerEl}">
 			{title}
@@ -18,10 +18,14 @@ const dispatch = createEventDispatcher();
 export let title = '';
 export let open = false;
 export let round = false;
+let className = '';
+export { className as class };
 
 let wrapEl, headerEl, expanded = open;
 const expandedProps = { height: 0 };
 const collapsedProps = { height: 0 };
+
+
 
 onMount(calcHeights);
 

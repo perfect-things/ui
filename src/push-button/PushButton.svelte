@@ -2,7 +2,7 @@
 	<Button
 		className="push-button {className}"
 		aria-pressed="{pressed}"
-		{...$$props}
+		{...props}
 		{success}
 		{warning}
 		{danger}
@@ -16,7 +16,7 @@
 	<Button
 		className="push-button {className}"
 		aria-pressed="{pressed}"
-		{...$$props}
+		{...props}
 		{success}
 		{warning}
 		{danger}
@@ -28,6 +28,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { Button } from '../button';
+import { pluck } from '../util';
 
 export let _this = undefined;
 export let pressed = false;
@@ -39,7 +40,11 @@ export let danger = false;
 export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button
 
-export let className = '';
+let className = '';
+export { className as class };
+
+$:props = pluck($$props, ['id', 'title', 'disabled']);
+
 
 const dispatch = createEventDispatcher();
 

@@ -29,22 +29,14 @@ import CodeExample from '../code-example/index.svelte';
 let val = 'Beta';
 
 const apiProps = [
-	{
-		name: 'items',
-		type: 'array',
-		required: true,
-		description: 'An array of strings or objects in the following format: ' +
-			'<code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>' +
-			'(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
-	},
-
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'disabled', description: 'Make the input disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', description: 'Adds an item to the beginning of the options list.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until an option is selected.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. ' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];

@@ -1,4 +1,4 @@
-<ul class="menu" class:hidden="{!opened}" bind:this="{menuEl}">
+<ul class="menu {className}" class:hidden="{!opened}" bind:this="{menuEl}">
 	<slot></slot>
 </ul>
 
@@ -16,6 +16,9 @@ export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
 export let elevate = false;
+let className = '';
+export { className as class };
+
 
 $:elevated = elevate === 'true' || elevate === true;
 let menuEl, targetEl, focusedEl, opened = false;

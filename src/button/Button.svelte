@@ -13,7 +13,7 @@
 	class:warning
 	class:danger
 
-	{...$$props}
+	{...props}
 
 	on:focus
 	on:keydown
@@ -25,6 +25,7 @@
 </button>
 <script>
 import { Icon } from '../icon';
+import { pluck } from '../util';
 
 export let _this = undefined;
 
@@ -39,6 +40,10 @@ export let text = false;		// looks like normal text, but like a button on hover
 export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button
 
-export let className = '';
+let className = '';
+export { className as class };
+
+$:props = pluck($$props, ['id', 'title', 'disabled']);
+
 
 </script>

@@ -67,9 +67,11 @@ export let showAllInitially = true;
 export let clearOnEsc = false;
 export let elevate = false;
 export let showOnFocus = false;
-export let className = '';
 export let hideOnScroll = false;
 export let hideOnResize = false;
+
+let className = '';
+export { className as class };
 
 $:elevated = elevate === 'true' || elevate === true;
 $:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);

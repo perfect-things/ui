@@ -20,15 +20,16 @@ import CodeExample from '../code-example/index.svelte';
 
 
 const apiProps = [
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'position', type: ['top', 'bottom'], default: 'top', description: 'Toaster position on screen.' },
 ];
 
 const showToastAPI = [
-	{ name: 'message', type: 'string', required: true, description: 'Message to show.' },
-	{ name: 'type', type: ['info', 'success', 'warning', 'error'], default: 'info', description: 'Type of the message.' },
-	{ name: 'timeout', type: 'number', default: 5000, description: 'How long the toast should remain on screen (in milliseconds).' },
 	{ name: 'button', type: 'string', description: 'Label of the optional button on the toast.' },
 	{ name: 'callback', type: 'function', description: 'Callback function triggered when the button is clicked.<br>The function receives 1 parameter, which is the ID of the toast.' },
+	{ name: 'message', type: 'string', required: true, description: 'Message to show.' },
+	{ name: 'timeout', type: 'number', default: 5000, description: 'How long the toast should remain on screen (in milliseconds).' },
+	{ name: 'type', type: ['info', 'success', 'warning', 'error'], default: 'info', description: 'Type of the message.' },
 ];
 
 const hideToastAPI = [

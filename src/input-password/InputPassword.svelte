@@ -1,4 +1,4 @@
-<div class="input-password-wrapper" class:visible>
+<div class="input-password-wrapper {className}" class:visible>
 	<div class="input-password-row" class:visible>
 		<input
 			type="password"
@@ -38,7 +38,8 @@ export let name = undefined;
 export let title = undefined;
 export let placeholder = undefined;
 export let strength = false;
-
+let className = '';
+export { className as class };
 
 // score:
 // 0 - too guessable: risky password. (guesses < 10^3)

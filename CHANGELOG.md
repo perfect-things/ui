@@ -1,8 +1,16 @@
 simple-ui-components-in-svelte
 ==============================
 
+## v5.0.0 (2023-02-28)
+- Breaking change: renamed props for all components: `className` -> `class` (as it turns out it is possible to use `class` as a prop name in svelte)
+- Almost all components now have a `class` prop, which can be used to add custom classes to the component
+- Updated docs to reflect the above changes
+- Docs API table is now alphabetically sorted
+- Components don't use `$$props` anymore, as it was causing issues with the `class` prop. Instead, the props are now explicitly passed down to the component. This is a good thing to do, as it makes the components more explicit and easier to understand.
+
+
 ## v4.0.0 (2023-02-28)
-- Renamed components: `Item` -> `MenuItem`, `Separator` -> `MenuSeparator`
+- Breaking change: renamed components: `Item` -> `MenuItem`, `Separator` -> `MenuSeparator`
 - Refactored the folder structure
 
 

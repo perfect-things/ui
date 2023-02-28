@@ -4,6 +4,7 @@
 
 <script>
 export let round = undefined;	// round button
-export let className = '';
+let className = '';
+export { className as class };
 
 </script>

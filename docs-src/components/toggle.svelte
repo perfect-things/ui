@@ -30,12 +30,12 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'disabled', description: 'Make the input disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];

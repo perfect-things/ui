@@ -1,4 +1,4 @@
-<div class="toaster toaster-{position}">
+<div class="toaster toaster-{position} {className}">
 	{#each toasts as toast (toast.id)}
 		<div class="toast toast-{toast.type}" transition:scale="{{ start: 0.5 }}">
 			<div class="toast-msg">{@html toast.msg}</div>
@@ -21,6 +21,9 @@ import { scale } from 'svelte/transition';
 import { _toasts, hideToast } from './toaster.js';
 
 export let position = 'top';
+let className = '';
+export { className as class };
+
 let toasts = [];
 const timers = {};
 const progress = {};

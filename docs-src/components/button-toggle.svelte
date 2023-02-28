@@ -50,20 +50,13 @@ import CodeExample from '../code-example/index.svelte';
 
 
 const apiProps = [
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'disabled', description: 'Makes the component disabled.' },
-	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
-
 	{ name: 'id', type: 'string', description: 'Assign id to the first radio button in the group (useful for the associate label\'s <i>for</i> attribute)' },
+	{ name: 'items', type: 'array', required: true, description: 'An array of objects in the following format: <code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>' },
 	{ name: 'name', type: 'string', description: 'Assign name to the underlying radio group' },
+	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Assign initial value to the underlying radio group' },
-	{
-		name: 'items',
-		type: 'array',
-		required: true,
-		description: 'An array of objects in the following format: ' +
-			'<code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>'
-	},
 ];
 
 const exampleHtml = `

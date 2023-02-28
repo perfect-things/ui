@@ -26,15 +26,15 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
+	{ name: 'autogrow', description: 'If present - the textarea will grow in height to match the text and avoid scrollbar.' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'disabled', description: 'Make the input disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying textarea.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying textarea.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying textarea.' },
 	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying textarea.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying textarea.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the textarea.' },
-	{ name: 'autogrow', description: 'If present - the textarea will grow in height to match the text and avoid scrollbar.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:input', type: 'function', description: 'Triggered when input value is edited.' },
 ];

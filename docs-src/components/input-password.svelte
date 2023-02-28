@@ -26,7 +26,7 @@ const apiProps = [
 	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.' },
 	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 	{ name: 'strength', description: 'Provide the password strength UI (zxcvbn lib must be loaded).' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },

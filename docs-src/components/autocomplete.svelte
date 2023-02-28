@@ -60,37 +60,21 @@ import CodeExample from '../code-example/index.svelte';
 
 
 const apiProps = [
+	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the input will be cleared when Escape is pressed.' },
+	{ name: 'data', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
+	{ name: 'disabled', description: 'Make the input disabled.' },
+	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
+	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
+	{ name: 'hideOnScroll', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - scrolling the window will close the popup.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{
-		name: 'data',
-		type: 'array',
-		required: true,
-		description: 'An array of strings or objects in the following format: ' +
-			'<code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>' +
-			'(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).'
-	},
-	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the input will be cleared when Escape is pressed.' },
-	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
-	{ name: 'hideOnScroll', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - scrolling the window will close the popup.' },
-	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
+	{ name: 'showAllInitially', type: ['true', 'false'], default: 'true', description: 'When the input has a value - the list in the poput is filtered by the input value.<br>If this option is set to true (default) - when user navigates to the input (with a value)<br> or clicks such an input - the poput initially will show all items unfiltered, and only once<br> user starts typing - the list will be filtered again.<br> If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. ' },
 	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be automatically open when the input gets focus (as opposed to, when the user starts typing).' },
-	{
-		name: 'showAllInitially',
-		type: ['true', 'false'],
-		default: 'true',
-		description: 'When the input has a value - the list in the poput is filtered by the input value.<br> ' +
-			'If this option is set to true (default) - when user navigates to the input (with a value)<br> ' +
-			'or clicks such an input - the poput initially will show all items unfiltered, and only once<br> ' +
-			'user starts typing - the list will be filtered again.<br> ' +
-			'If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. '
-	},
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },

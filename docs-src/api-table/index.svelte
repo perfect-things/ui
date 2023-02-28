@@ -2,7 +2,7 @@
 {#if description}
 	<p>{@html description}</p>
 {/if}
-<Table className="api-table">
+<Table class="api-table">
 	<thead>
 		<tr><th>Attribute</th><th>Type/Value</th><th>Description</th></tr>
 	</thead>

@@ -57,20 +57,20 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
-	{ name: 'pressed', type: ['true', 'false'], default: 'false', description: 'Initial <i>pressed</i> state of the button.' },
-	{ name: 'submit', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
-	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
-	{ name: 'round', description: 'Makes the button round' },
-	{ name: 'outline', description: 'Button style: outline' },
-	{ name: 'text', description: 'Button style: text' },
-	{ name: 'link', description: 'Button style: link' },
-	{ name: 'success', description: 'Button type: success' },
-	{ name: 'warning', description: 'Button type: warning' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
+	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
+	{ name: 'link', description: 'Button style: link' },
+	{ name: 'outline', description: 'Button style: outline' },
+	{ name: 'pressed', type: ['true', 'false'], default: 'false', description: 'Initial <i>pressed</i> state of the button.' },
+	{ name: 'round', description: 'Makes the button round' },
+	{ name: 'submit', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
+	{ name: 'success', description: 'Button type: success' },
+	{ name: 'text', description: 'Button style: text' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
+	{ name: 'warning', description: 'Button type: warning' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 

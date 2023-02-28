@@ -54,18 +54,18 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
-	{ name: 'title', type: 'string', description: 'Set title for the dialog.' },
-	{ name: 'opened', type: ['true' , 'false'], default: 'false', description: 'Set dialog\'s open state.' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
 	{ name: 'drawBorders', type: ['true' , 'false'], default: 'false', description: 'If <i>true</i> - the dialog will have borders between title and content' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component container.' },
+	{ name: 'opened', type: ['true' , 'false'], default: 'false', description: 'Set dialog\'s open state.' },
 	{ name: 'skipFirstFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the dialog is opened.' },
+	{ name: 'title', type: 'string', description: 'Set title for the dialog.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the dialog is closed.' },
+	{ name: 'on:open', type: 'function', description: 'Triggered after the dialog is opened.' },
 ];
 
 const instanceApiProps = [
-	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
 	{ name: 'close', type: 'function', description: 'Closes the dialog.' },
+	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
 ];
 
 const exampleHtml = `

@@ -28,15 +28,15 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
 	{ name: 'title', type: 'string', description: 'Set title for the drawer.' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the component container.' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the drawer is opened.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the drawer is closed.' },
+	{ name: 'on:open', type: 'function', description: 'Triggered after the drawer is opened.' },
 ];
 
 const instanceApiProps = [
-	{ name: 'open', type: 'function', description: 'Opens the drawer.' },
 	{ name: 'close', type: 'function', description: 'Closes the drawer.' },
+	{ name: 'open', type: 'function', description: 'Opens the drawer.' },
 	{ name: 'toggle', type: 'function', description: 'Toggles the open state (opens when closed, closes when open).' },
 ];
 

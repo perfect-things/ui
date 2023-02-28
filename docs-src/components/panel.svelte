@@ -30,11 +30,12 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
-	{ name: 'title', type: 'string', description: 'Panel title.' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'open', description: 'Panel initial open state.' },
 	{ name: 'round', description: 'Adds rounded corners to the panel.' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the panel is opened.' },
+	{ name: 'title', type: 'string', description: 'Panel title.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the panel is closed.' },
+	{ name: 'on:open', type: 'function', description: 'Triggered after the panel is opened.' },
 ];
 
 const exampleHtml = `
