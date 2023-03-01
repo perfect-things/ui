@@ -18,7 +18,7 @@
 
 <script>
 import { scale } from 'svelte/transition';
-import { _toasts, hideToast } from './toaster.js';
+import { _toasts, hideToast } from './toaster';
 
 export let position = 'top';
 let className = '';

@@ -15,6 +15,7 @@ import inject from 'gulp-inject-string';
 import typescript from '@rollup/plugin-typescript';
 import sveltePreprocess from 'svelte-preprocess';
 
+
 const { series, parallel, src, dest } = gulp;
 const noop = throught2.obj;
 const DIST_PATH = 'docs/';
@@ -104,13 +105,11 @@ export function js () {
 			],
 		}, {
 			file: 'docs.js',
-			format: 'esm'
+			format: 'esm',
 		}))
 		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
-
-
 
 
 export function libCSS () {

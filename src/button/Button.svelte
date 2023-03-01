@@ -23,7 +23,7 @@
 	{#if icon}<Icon name="{icon}"/>{/if}
 	<slot></slot>
 </button>
-<script>
+<script lang="ts">
 import { Icon } from '../icon';
 import { pluck } from '../util';
 
@@ -44,6 +44,5 @@ let className = '';
 export { className as class };
 
 $:props = pluck($$props, ['id', 'title', 'disabled']);
-
 
 </script>

@@ -3,13 +3,11 @@
   "description": "Simple UI components written in Svelte",
   "version": "5.0.1",
   "type": "module",
-  "main": "/src/index.ts",
+  "main": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
     "./package.json": "./package.json"
   },
-  "types": "./src/index.ts",
-
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",

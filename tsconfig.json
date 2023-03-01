@@ -1,19 +1,21 @@
 {
- 	"extends": "@tsconfig/svelte/tsconfig.json",
-	"moduleResolution": "bundler",
- 	"compilerOptions": {
- 		"target": "esnext",
-		"lib": [ "esnext", "dom" ],
-		"declaration": true,
-		"declarationDir": "./docs",
-		"outDir": "./docs",
+	"extends": "@tsconfig/svelte/tsconfig.json",
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"lib": [
+			"esnext",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"moduleResolution": "node",
 	},
- 	"include": [
- 		"src/**/*",
- 		"docs-src/**/*"
- 	],
- 	"exclude": [
- 		"docs/*",
- 		"node_modules/*"
- 	]
- }
+	"include": [
+		"src/**/*",
+		"docs-src/**/*"
+	],
+	"exclude": [
+		"docs",
+		"node_modules"
+	]
+}

@@ -55,7 +55,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './util';
 import { pluck } from '../util';
