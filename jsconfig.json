@@ -3,7 +3,8 @@
 		"module": "esnext",
 		"target": "esnext",
 		"lib": [ "esnext", "dom" ],
-		"checkJs": true
+		"checkJs": true,
+		"moduleResolution": "node"
 	},
 	"include": [ "src/**/*", "docs-src/**/*" ],
 	"exclude": [ "docs", "node_modules" ]
