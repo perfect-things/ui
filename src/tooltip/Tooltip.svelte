@@ -1,5 +1,5 @@
 {#if visible}
-	<div class="tooltip-plate tooltip-{_position}" class:visible bind:this="{el}">
+	<div class="tooltip-plate tooltip-{_position} {className}" class:visible bind:this="{el}">
 		<div class="tooltip">
 			<div class="tooltip-content {className}">
 				<slot/>
@@ -11,14 +11,16 @@
 import { afterUpdate, onDestroy, onMount } from 'svelte';
 export let target = '';
 export let events = 'hover';	// hover, click, focus
-export let className = '';
 export let delay = '0';
 export let position = 'auto';
+let className = '';
+export { className as class };
 
 let _position = 'top';
 let visible = false;
 let showTimer, hideTimer, shownEvent, noHide = false;
 let el, targetEl, tooltipContainer;
+
 
 onMount(() => {
 	initContainer();
@@ -72,7 +74,9 @@ function _hide () {
  * @param e - hide event
  */
 function hide (e) {
-	const targetIsSelf = targetEl.contains(e.target);
+	const targetIsSelf = e.target && targetEl.contains(e.target);
+	const targetIsTooltip = e.target && el.contains(e.target);
+
 	if ((e.type === 'mousedown' || e.type === 'click') && targetIsSelf) return;
 	if (showTimer && shownEvent !== 'click') {
 		clearTimeout(showTimer);
@@ -81,7 +85,7 @@ function hide (e) {
 	if (!visible) return;
 	if (e.type === 'scroll' || e.type === 'resize') return _hide();
 	if (e.type === 'click' || e.type === 'mousedown') {
-		if (targetEl.contains(e.target) || el.contains(e.target)) return;
+		if (targetIsSelf || targetIsTooltip) return;
 		_hide();
 	}
 	if (shownEvent === 'mouseover' && e.type === 'mouseout') return hideTimer = setTimeout(_hide, 50);
@@ -97,7 +101,7 @@ function align () {
 
 	_position = 'top';
 	let top = targetBox.top - tooltipBox.height - 2;
-	let left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
+	const left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
 
 	if (top < 0 || position === 'bottom') {
 		top = targetBox.top + targetBox.height + 2;

@@ -27,14 +27,16 @@ import { pluck } from '../util';
 export let value = undefined;
 export let placeholder = undefined;
 export let items = [];
-export let className = '';
+let className = '';
+export { className as class };
+
 
 let el, groups = [];
 
 $:props = pluck($$props, ['id', 'title', 'disabled', 'required']);
 
 $: {
-	let nogroup = [];
+	const nogroup = [];
 	const _groups = {};
 	items.forEach(item => {
 		if (!item.group) return nogroup.push(item);

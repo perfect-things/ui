@@ -23,8 +23,9 @@ import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 export let title = '';
 export let opened = false;
 export let drawborders = false;
-export let className = '';
 export let skipFirstFocus = false;
+let className = '';
+export { className as class };
 
 const dispatch = createEventDispatcher();
 let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;

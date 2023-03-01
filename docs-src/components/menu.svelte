@@ -40,7 +40,7 @@
 		<MenuItem><Icon name="close"/> Close something</MenuItem>
 	</Menu>
 
-	<Button className="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
+	<Button class="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
 	<Menu bind:this="{someMenu3}" elevate="true">
 		<MenuItem><Icon name="plus"/> A very long text</MenuItem>
 		<MenuItem>Another very long text</MenuItem>
@@ -90,17 +90,18 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
-	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
-	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the menu will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the menu is opened.' },
+	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
+	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the menu is closed.' },
+	{ name: 'on:open', type: 'function', description: 'Triggered after the menu is opened.' },
 ];
 
 const instanceApiProps = [
-	{ name: 'open', type: 'function', description: 'Opens the menu.' },
 	{ name: 'close', type: 'function', description: 'Closes the menu.' },
+	{ name: 'open', type: 'function', description: 'Opens the menu.' },
 ];
 
 const itemApiProps = [

@@ -3,13 +3,21 @@
 	autocomplete="off"
 	class="number-input {className}"
 	step="any"
-	{...$$props}
+	{...props}
 	bind:value="{value}"
 	on:keydown="{onkeydown}"
 	on:change="{onchange}">
+
+
 <script>
+import { pluck } from '../util';
+
 export let value = '';
-export let className = '';
+let className = '';
+export { className as class };
+
+$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
+
 
 const DECIMAL_SEPARATOR = '.';
 const allowedKeys = [

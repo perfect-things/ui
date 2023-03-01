@@ -23,7 +23,8 @@ const isTouchDevice = 'ontouchstart' in document.documentElement;
 
 export let value = false;
 export let disabled = undefined;
-export let className = '';
+let className = '';
+export { className as class };
 
 let el, label, handle, startX, maxX, minX, currentX = 0;
 let isClick = false, isDragging = false;

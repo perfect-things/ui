@@ -1,6 +1,6 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <ul
-	class="tree"
+	class="tree {className}"
 	tabindex="0"
 	bind:this="{el}"
 	on:focus="{selectFirst}"
@@ -17,6 +17,9 @@ import { createEventDispatcher } from 'svelte';
 import TreeNode from './TreeNode.svelte';
 
 export let items = [];
+let className = '';
+export { className as class };
+
 
 const dispatch = createEventDispatcher();
 let el;

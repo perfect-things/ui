@@ -2,7 +2,7 @@
 	<input
 		type="text"
 		autocomplete="off"
-		{...$$props}
+		{...props}
 		{placeholder}
 		on:changeDate="{onchange}"
 		on:input="{oninput}"
@@ -17,8 +17,8 @@
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
-import { Icon } from '../icon';
-import { icons } from '../icon/icons';
+import { Icon, icons } from '../icon';
+import { pluck } from '../util';
 
 export let format = 'yyyy-mm-dd';
 export let value = '';
@@ -26,8 +26,11 @@ export let placeholder = format;
 export let elevate = false;
 export let showOnFocus = false;
 export let orientation = 'auto';	// '[left|right|auto] [top|bottom|auto]'
-export let className = '';
+let className = '';
+export { className as class };
+
 $:elevated = elevate === true || elevate === 'true';
+$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'required']);
 
 const dispatch = createEventDispatcher();
 let picker, inputEl;

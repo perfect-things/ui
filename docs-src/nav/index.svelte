@@ -45,9 +45,8 @@
 
 <svelte:window on:hashchange="{onhashchange}" />
 <script>
-import { Button as UIButton } from '../../src';
+import { Button as UIButton, Toggle as ActualToggle } from '../../src';
 import NavItem from './nav-item.svelte';
-import { Toggle as ActualToggle } from '../../src';
 import GetStarted from '../pages/start.svelte';
 
 import Button from '../components/button.svelte';

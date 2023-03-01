@@ -24,7 +24,8 @@ import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
 import { Button } from '../button';
 
 export let title = 'Drawer';
-export let className = '';
+let className = '';
+export { className as class };
 
 const dispatch = createEventDispatcher();
 let isVisible = false;

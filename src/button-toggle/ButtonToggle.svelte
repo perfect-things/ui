@@ -29,11 +29,12 @@ import { Icon } from '../icon';
 
 export let disabled = undefined;
 export let round = undefined;	// round button
-export let className = '';
 export let items = '';
 export let id = '';
 export let name = uuid();
 export let value = '';
+let className = '';
+export { className as class };
 
 const dispatch = createEventDispatcher();
 let el;

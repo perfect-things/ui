@@ -1,8 +1,9 @@
 {
  	"extends": "@tsconfig/svelte/tsconfig.json",
+	"moduleResolution": "bundler",
  	"compilerOptions": {
- 		"target": "ESNEXT",
-		"lib": [ "ESNEXT", "DOM" ],
+ 		"target": "esnext",
+		"lib": [ "esnext", "dom" ],
 		"declaration": true,
 		"declarationDir": "./docs",
 		"outDir": "./docs",

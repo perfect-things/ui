@@ -21,6 +21,7 @@ export function groupData (items: Item[]) {
 	return groups;
 }
 
+
 export function highlight (listEl: HTMLElement) {
 	requestAnimationFrame(() => {
 		const selectedEl = listEl.querySelector('.selected') as HTMLElement;
@@ -38,12 +39,14 @@ export function highlight (listEl: HTMLElement) {
 	});
 }
 
+
 // quick and instant recalc to minimise visual flyover of the dropdown across the screen
 export function quickPositionRecalc (listEl, inputEl) {
 	const inputBox = inputEl.getBoundingClientRect();
 	listEl.style.top = (inputBox.top + inputBox.height + 3) + 'px';
 	listEl.style.left = inputBox.left + 'px';
 }
+
 
 export function recalculateListPosition (listEl: HTMLElement, inputEl: HTMLElement, elevated: boolean) {
 	if (elevated) quickPositionRecalc(listEl, inputEl);

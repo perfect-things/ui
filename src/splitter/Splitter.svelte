@@ -1,4 +1,4 @@
-<div class="splitter"
+<div class="splitter {className}"
 	class:vertical="{isVertical}"
 	class:is-dragging="{isDragging}"
 	on:mousedown="{mousedown}"
@@ -8,6 +8,10 @@
 import { onMount, createEventDispatcher } from 'svelte';
 import { getMouseX, getMouseY, innerWidth, innerHeight, ANIMATION_SPEED,
 	minHeight, minWidth, getFlexFlow, maxHeight, maxWidth } from '../util';
+
+
+let className = '';
+export { className as class };
 
 const dispatch = createEventDispatcher();
 const size = 8, halfsize = size / 2;

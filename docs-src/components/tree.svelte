@@ -14,6 +14,7 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'on:select', type: 'function', description: 'Triggered after an item was selected.' },
 ];
 

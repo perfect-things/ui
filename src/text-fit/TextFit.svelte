@@ -1,10 +1,14 @@
-<span class="text-fit" bind:this="{el}">
+<span class="text-fit {className}" bind:this="{el}">
 	<slot></slot>
 </span>
 
 <script>
 import { onMount, onDestroy } from 'svelte';
+
 export let margin = 0;
+let className = '';
+export { className as class };
+
 const DEBOUNCE_RESIZE = 10;
 let el, parent, resizeObserver, timer, mutationObserver;
 

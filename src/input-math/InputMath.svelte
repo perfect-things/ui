@@ -4,7 +4,7 @@
 		type="text"
 		autocomplete="off"
 		class="input-math"
-		{...$$props}
+		{...props}
 		bind:this="{_this}"
 		bind:value="{value}"
 		on:keydown="{onkeydown}"
@@ -14,13 +14,15 @@
 </div>
 <script>
 import { createEventDispatcher } from 'svelte';
-import { roundAmount } from '../util';
 import { Icon } from '../icon';
+import { pluck, roundAmount } from '../util';
 
 export let _this = undefined;
 export let value = '';
-export let className = '';
+let className = '';
+export { className as class };
 
+$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
 
 const dispatch = createEventDispatcher();
 const DECIMAL_SEPARATOR = '.';
@@ -56,7 +58,7 @@ function parseAmount (amount) {
 		try { amount = save_eval(amount); }
 		catch (e) { amount = 0; }
 	}
-	let num = parseFloat(amount);
+	const num = parseFloat(amount);
 	return (num === Infinity || isNaN(num)) ? 0 : roundAmount(num);
 }
 </script>

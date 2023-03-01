@@ -14,12 +14,15 @@
 import { onDestroy, onMount, createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
-export let className = '';
 export let _this = undefined;
 export let selectable = true;
 export let round = false;
 export let scrollContainer = undefined;
 export let scrollCorrectionOffset = 0;
+
+let className = '';
+export { className as class };
+
 // useful for when row-groups are needed.
 // then tbody.row-selector can be set to allow highlighting whole groups
 export let rowSelector = 'tbody tr';
@@ -109,7 +112,7 @@ function selectClicked (skipEvent = false) {
 	if (rowEl != document.activeElement) rowEl.focus();
 
 	const scrlCont = getScrollContainer();
-	let topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
+	const topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
 
 	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
 

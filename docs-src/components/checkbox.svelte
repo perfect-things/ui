@@ -31,14 +31,14 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
+	{ name: 'checked', type: ['true', 'false'], description: 'Make the checkbox checked or unchecked.' },
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the input.' },
+	{ name: 'disabled', description: 'Make the input disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'indeterminate', type: ['true', 'false'], description: 'If set to <i>true</i> it makes the checkbox show its 3rd state - indeterminate.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'className', type: 'string', description: 'Additional css class name to be added to the input.' },
-	{ name: 'checked', type: ['true', 'false'], description: 'Make the checkbox checked or unchecked.' },
-	{ name: 'indeterminate', type: ['true', 'false'], description: 'If set to <i>true</i> it makes the checkbox show its 3rd state - indeterminate.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 ];
 
 const exampleHtml = `

@@ -32,6 +32,7 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered during the resizing (mousemove).' },
 	{ name: 'on:changed', type: 'function', description: 'Triggered when resizing finished (mouseup).' },
 ];
@@ -39,8 +40,8 @@ const apiProps = [
 const instanceApiProps = [
 	{ name: 'collapse', type: 'function', description: 'Set the size to the <em>min-width</em> of the previous div.' },
 	{ name: 'expand', type: 'function', description: 'Set the size to the <em>max-width</em> of the previous div.' },
-	{ name: 'toggle', type: 'function', description: 'Toggle between collapsed and expanded state.' },
 	{ name: 'setSize', type: 'function', description: 'Set the split size.<br>Function accepts 2 arguments:<br><em>to</em> [string|number] - use number for pixel size, or predefined strings like "min", "max" or "default"<br><em>withAnimation</em> [boolean] - set to true to enable animation. Defaults to false.' },
+	{ name: 'toggle', type: 'function', description: 'Toggle between collapsed and expanded state.' },
 ];
 
 

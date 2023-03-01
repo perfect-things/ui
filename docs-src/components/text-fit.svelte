@@ -20,6 +20,7 @@ import API from '../api-table/index.svelte';
 import CodeExample from '../code-example/index.svelte';
 
 const apiProps = [
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'margin', type: 'number', default: '0', description: 'Margin around the text (in px).' },
 ];
 
