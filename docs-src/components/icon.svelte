@@ -11,8 +11,8 @@
 
 <script>
 import { Icon, icons } from '../../src';
-import API from '../api-table/index.svelte';
-import CodeExample from '../code-example/index.svelte';
+import { API } from '../api-table';
+import { CodeExample } from '../code-example';
 
 const apiProps = [
 	{ name: 'name', type: 'string', description: 'Name of the icon.' },

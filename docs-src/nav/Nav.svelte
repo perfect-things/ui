@@ -1,4 +1,4 @@
-<UIButton icon="meatballs" text className="nav-toggler {navMobileShow ? 'visible' : ''}" on:click="{toggleNav}"></UIButton>
+<UIButton icon="meatballs" text class="nav-toggler {navMobileShow ? 'visible' : ''}" on:click="{toggleNav}"></UIButton>
 
 <aside class:mobile-show="{navMobileShow}">
 	<menu>
@@ -46,7 +46,7 @@
 <svelte:window on:hashchange="{onhashchange}" />
 <script>
 import { Button as UIButton, Toggle as ActualToggle } from '../../src';
-import NavItem from './nav-item.svelte';
+import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 
 import Button from '../components/button.svelte';

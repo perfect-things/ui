@@ -4,7 +4,7 @@
 </main>
 
 <script>
-import Nav from '../nav';
+import { Nav } from '../nav';
 
 
 let component = undefined;

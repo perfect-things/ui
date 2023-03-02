@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"module": "esnext",
 		"target": "esnext",
-		"lib": [ "esnext", "dom" ],
+		"module": "esnext",
+		"lib": [ "esnext", "DOM", "DOM.Iterable" ],
+		"moduleResolution": "nodenext",
 		"checkJs": true,
-		"moduleResolution": "node"
 	},
-	"include": [ "src/**/*", "docs-src/**/*" ],
+	"include": [ "src", "docs-src" ],
 	"exclude": [ "docs", "node_modules" ]
 }

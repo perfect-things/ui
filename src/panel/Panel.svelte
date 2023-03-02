@@ -9,8 +9,7 @@
 </div>
 
 <script>
-import { createEventDispatcher } from 'svelte';
-import { onMount } from 'svelte';
+import { createEventDispatcher , onMount } from 'svelte';
 import { icons } from '../icon';
 import { animate } from '../util';
 const dispatch = createEventDispatcher();

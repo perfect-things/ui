@@ -14,8 +14,7 @@
 	</label>
 </div>
 <script>
-import { onMount, afterUpdate } from 'svelte';
-import { createEventDispatcher } from 'svelte';
+import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
 import { pluck } from '../util';
 
 const dispatch = createEventDispatcher();

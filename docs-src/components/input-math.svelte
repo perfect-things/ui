@@ -11,8 +11,8 @@
 
 <script>
 import { InputMath } from '../../src';
-import API from '../api-table/index.svelte';
-import CodeExample from '../code-example/index.svelte';
+import { API } from '../api-table';
+import { CodeExample } from '../code-example';
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },

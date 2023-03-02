@@ -4,9 +4,10 @@ import livereload from 'gulp-livereload';
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
-import { default as throught2 } from 'through2';
+import throught2 from 'through2';
 import inlineSvg from 'rollup-plugin-inline-svg';
 import concat from 'gulp-concat';
+// eslint-disable-next-line import/no-unresolved
 import gulpEslint from 'gulp-eslint-new';
 import gulpStylelint from '@ffaubert/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';

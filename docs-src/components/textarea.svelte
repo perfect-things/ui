@@ -22,8 +22,8 @@
 
 <script>
 import { Textarea } from '../../src';
-import API from '../api-table/index.svelte';
-import CodeExample from '../code-example/index.svelte';
+import { API } from '../api-table';
+import { CodeExample } from '../code-example';
 
 const apiProps = [
 	{ name: 'autogrow', description: 'If present - the textarea will grow in height to match the text and avoid scrollbar.' },

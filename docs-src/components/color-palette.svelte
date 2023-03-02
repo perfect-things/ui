@@ -76,6 +76,6 @@
 
 
 <script>
-import PaletteBox from './color-palette-box';
+import PaletteBox from './color-palette-box.svelte';
 
 </script>

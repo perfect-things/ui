@@ -86,8 +86,8 @@
 
 <script>
 import { Button, Menu, MenuItem, MenuSeparator, Icon } from '../../src';
-import API from '../api-table/index.svelte';
-import CodeExample from '../code-example/index.svelte';
+import { API } from '../api-table';
+import { CodeExample } from '../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },

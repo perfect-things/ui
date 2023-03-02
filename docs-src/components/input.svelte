@@ -30,7 +30,7 @@
 
 <script>
 import { InputNumber } from '../../src';
-import CodeExample from '../code-example/index.svelte';
+import { CodeExample } from '../code-example';
 
 const exampleHtml = `
 <input type="text" on:change="{onChange}" />
