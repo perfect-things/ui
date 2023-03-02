@@ -43,7 +43,7 @@ export let round = undefined;	// round button
 let className = '';
 export { className as class };
 
-$:props = pluck($$props, ['id', 'title', 'disabled']);
+$:props = pluck($$props, ['id', 'title', 'disabled', 'form']);
 
 
 </script>
