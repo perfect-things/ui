@@ -1,15 +1,12 @@
 import gulp from 'gulp';
 import { deleteAsync } from 'del';
-// @ts-ignore
 import livereload from 'gulp-livereload';
 import throught2 from 'through2';
 import concat from 'gulp-concat';
 // eslint-disable-next-line import/no-unresolved
 import gulpEslint from 'gulp-eslint-new';
-// @ts-ignore
 import gulpStylelint from '@ffaubert/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
-// @ts-ignore
 import inject from 'gulp-inject-string';
 import { createGulpEsbuild } from 'gulp-esbuild';
 import sveltePlugin from 'esbuild-svelte';
@@ -134,7 +131,6 @@ function watchTask (done) {
 	gulp.watch('docs-src/**/*.css', series(docsCSS, stylelint));
 	gulp.watch('docs-src/**/*.html', html);
 	gulp.watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
-
 }
 
 
