@@ -1,18 +1,19 @@
 import gulp from 'gulp';
 import { deleteAsync } from 'del';
+// @ts-ignore
 import livereload from 'gulp-livereload';
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser';
 import throught2 from 'through2';
-import inlineSvg from 'rollup-plugin-inline-svg';
 import concat from 'gulp-concat';
 // eslint-disable-next-line import/no-unresolved
 import gulpEslint from 'gulp-eslint-new';
+// @ts-ignore
 import gulpStylelint from '@ffaubert/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
-import rollup from 'gulp-rollup-plugin';
+// @ts-ignore
 import inject from 'gulp-inject-string';
+import { createGulpEsbuild } from 'gulp-esbuild';
+import sveltePlugin from 'esbuild-svelte';
+import NodeResolve from '@esbuild-plugins/node-resolve';
 
 
 const { series, parallel, src, dest } = gulp;
@@ -20,7 +21,9 @@ const noop = throught2.obj;
 const DIST_PATH = 'docs/';
 let isProd = false;
 
-const red = (msg) => '\x1B[31m' + msg + '\x1B[39m';
+let gulpEsbuild = createGulpEsbuild({ incremental: false });
+
+
 const setProd = (done) => { isProd = true; done(); };
 
 export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
@@ -75,30 +78,30 @@ export function stylelint () {
 
 
 export function js () {
+	const cfg = {
+		outfile: 'docs.js',
+		mainFields: ['svelte', 'browser', 'module', 'main'],
+		bundle: true,
+		minify: isProd,
+		sourcemap: !isProd,
+		loader: { '.svg': 'text' },
+		logLevel: 'warning',
+		// https://esbuild.github.io/api/#log-override
+		logOverride: { 'direct-eval': 'silent' },
+		legalComments: 'none',
+		format: 'esm',
+		treeShaking: true,
+		color: true,
+		plugins: [
+			sveltePlugin({ compilerOptions: { dev: !isProd, css: false } }),
+			// @ts-ignore
+			NodeResolve.default({ extensions: ['.js', '.svelte'] }),
+		],
+	};
+
 	return src('./docs-src/index.js', { sourcemaps: !isProd })
-		.pipe(rollup({
-			onwarn: (err) => {
-				if (/eval/.test(err)) return;
-				if (/A11y/.test(err)) return;
-				console.error('\x07', red('\nERROR: ' + err.message + '\n'));
-			},
-			plugins: [
-				resolve({
-					browser: true,
-					extensions: ['.mjs', '.js', '.svelte'],
-					dedupe: ['svelte']
-				}),
-				inlineSvg({ include: ['src/**/*.svg'] }),
-				svelte({
-					emitCss: false,
-					compilerOptions: { dev: !isProd }
-				}),
-				isProd && terser()
-			],
-		}, {
-			file: 'docs.js',
-			format: 'esm'
-		}))
+		// @ts-ignore
+		.pipe(gulpEsbuild(cfg))
 		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
@@ -124,6 +127,8 @@ export function docsCSS () {
 
 function watchTask (done) {
 	if (isProd) return done();
+
+	gulpEsbuild = createGulpEsbuild({ incremental: true });
 	livereload.listen();
 	gulp.watch('src/**/*.css', series(libCSS, stylelint));
 	gulp.watch('docs-src/**/*.css', series(docsCSS, stylelint));
@@ -135,8 +140,8 @@ function watchTask (done) {
 
 export const lint = parallel(eslint, stylelint);
 
-const _build = parallel(lint, js, libCSS, docsCSS, html, assets, externals);
-export const build = series(cleanup, _build);
+export const build = series(cleanup, parallel(js, libCSS, lint, docsCSS, html, assets, externals));
+
 export const prod = series(setProd, build);
 export const watch = watchTask;
 export default series(build, watch);
