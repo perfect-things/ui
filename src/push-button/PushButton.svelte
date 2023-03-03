@@ -1,6 +1,6 @@
 {#if $$slots.default}
 	<Button
-		className="push-button {className}"
+		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
 		{success}
@@ -14,7 +14,7 @@
 	</Button>
 {:else}
 	<Button
-		className="push-button {className}"
+		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
 		{success}
@@ -50,6 +50,7 @@ const dispatch = createEventDispatcher();
 
 function onMouseDown (e) {
 	pressed = !pressed;
+	console.log(pressed);
 	dispatch('click', e);
 }
 </script>
