@@ -1,5 +1,5 @@
 // Grab the prefers reduced media query.
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : false;
 const shouldReduce = (!reducedMotion || reducedMotion.matches);
 export const ANIMATION_SPEED = shouldReduce ? 0 : 200;
 

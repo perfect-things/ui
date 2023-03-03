@@ -5,6 +5,6 @@
 		"lib": [ "esnext", "DOM", "DOM.Iterable" ],
 		"moduleResolution": "node"
 	},
-	"include": [ "src", "docs-src" ],
+	"include": [ "src", "docs-src", "tests" ],
 	"exclude": [ "docs", "node_modules" ]
 }
