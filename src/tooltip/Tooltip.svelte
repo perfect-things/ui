@@ -13,6 +13,8 @@ export let target = '';
 export let events = 'hover';	// hover, click, focus
 export let delay = '0';
 export let position = 'auto';
+export let offset = 2;
+
 let className = '';
 export { className as class };
 
@@ -100,11 +102,11 @@ function align () {
 	const tooltipBox = el.getBoundingClientRect();
 
 	_position = 'top';
-	let top = targetBox.top - tooltipBox.height - 2;
+	let top = targetBox.top - tooltipBox.height - (parseFloat(offset) || 2);
 	const left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
 
 	if (top < 0 || position === 'bottom') {
-		top = targetBox.top + targetBox.height + 2;
+		top = targetBox.top + targetBox.height + (parseFloat(offset) || 2);
 		_position = 'bottom';
 	}
 	el.style.top = top + 'px';
