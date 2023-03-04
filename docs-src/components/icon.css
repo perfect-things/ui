@@ -1,15 +1,16 @@
 .icon-block {
 	float: left;
-	width: 96px;
-	height: 96px;
-	margin: 0 20px 20px 0;
+	width: 128px;
+	height: 128px;
+	margin: 0 1em 1em 0;
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: stretch;
-	background-color: var(--ui-color-background);
+	background-color: var(--ui-color-background-semi);
 	padding: 0 10px 10px;
 	border-radius: 5px;
+	border: 1px solid var(--ui-color-border);
 }
 
 .icon-block-icon {
@@ -27,4 +28,6 @@
 .icon-block-name {
 	height: 20px;
 	text-align: center;
+	overflow-wrap: break-word;
+	font-size: 0.9em;
 }

@@ -1,7 +1,20 @@
 {@html svg}
 
 <script>
-import { icons } from './icons.svelte';
+import * as icons from './icons.js';
 export let name = '';
-$:svg = icons[name] || `<svg width="20" height="20" title="${name}"></svg>`;
+
+const aliases = {
+	add: 'plus',
+	report: 'reportAnalytics',
+};
+
+$:svg = findIcon(name);
+
+/*eslint import/namespace: 0 */
+function findIcon (_name) {
+	if (_name in aliases) _name = aliases[_name];
+	if (_name in icons) return icons[_name];
+	return `<svg width="20" height="20" title="${_name}"></svg>`;
+}
 </script>

@@ -1,2 +1,2 @@
 export { default as Icon } from './Icon.svelte';
-export * from './icons.svelte';
+export * as icons from './icons.js';
