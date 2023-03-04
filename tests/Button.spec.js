@@ -1,6 +1,6 @@
 import { Button } from '../src/button';
 import { render, fireEvent } from '@testing-library/svelte';
-import SlotTest from './SlotTest.svelte';
+import SlotTest from './ButtonSlotTest.svelte';
 
 
 test('Button', async () => {

@@ -87,12 +87,12 @@ const exampleHtml = `
     bind:value="{ autocompleteValue }" />
 
 <script>
-const autocompleteData = {
+const autocompleteData = [
     { id: 1, name: 'Alpha', group: 'Group 1' },
     { id: 2, name: 'Beta', group: 'Group 1' },
     { id: 3, name: 'Gamma', group: 'Group 2' },
     { id: 4, name: 'Delta', group: 'Group 2' },
-};
+];
 let autocompleteValue = autocompleteData[1];
 
 function onChange (e) {
