@@ -1,8 +1,9 @@
 module.exports = {
+	rootDir: '.',
 	transform: {
 		'^.+\\.svelte$': 'svelte-jester',
 		'^.+\\.js$': 'babel-jest',
-		'^.+\\.svg$': '<rootDir>/svgTransform.cjs',
+		'^.+\\.svg$': './tests/svgTransform.cjs',
 	},
 	moduleFileExtensions: ['js', 'svelte'],
 	testEnvironment: 'jsdom',

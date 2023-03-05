@@ -2,6 +2,7 @@ import { Icon } from '../src/icon';
 import { render } from '@testing-library/svelte';
 
 
+
 test('Icon', async () => {
 	const { container, component } = render(Icon, { name: 'alert', });
 	const icon = container.querySelector('svg');
