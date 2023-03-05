@@ -9,7 +9,14 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 ![Screenshot](screen.png)
 
+
+
 ### TODO
+- [ ] https://github.com/davipon/svelte-component-test-recipes#testing-the-bind-directive-two-way-binding
+
+
+
+
 - [ ] upgrade dialogs? (https://web.dev/building-a-dialog-component/)
 - [ ] consider rem vs em (https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/)
 
