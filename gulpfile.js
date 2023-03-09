@@ -5,7 +5,7 @@ import throught2 from 'through2';
 import concat from 'gulp-concat';
 // eslint-disable-next-line import/no-unresolved
 import gulpEslint from 'gulp-eslint-new';
-import gulpStylelint from '@ffaubert/gulp-stylelint';
+import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
 import inject from 'gulp-inject-string';
 import { createGulpEsbuild } from 'gulp-esbuild';
