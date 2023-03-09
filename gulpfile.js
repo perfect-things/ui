@@ -28,8 +28,7 @@ export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
 export function html () {
 	const comment = '<!-- scripts-go-here -->';
 	const reloadScript = '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
-	const analyticsScript = '<script async defer data-website-id="f02a9b98-566c-480e-9f83-27640a4b8f9f" src="https://umami.borychowski.net/umami.js"></script>' +
-		'<script defer data-domain="perfect-things.github.io" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
+	const analyticsScript = '<script defer data-domain="perfect-things.github.io" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
 
 	const script = isProd ? analyticsScript : reloadScript;
 	return src('docs-src/index.html')
