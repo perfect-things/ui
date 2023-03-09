@@ -64,9 +64,6 @@
     "chokidar": "^3.5.3",
     "glob-stream": "^7.0.0",
     "glob-parent": "^6.0.2",
-    "micromatch": "^4.0.5",
-    "jest-transformer-svg": {
-      "jest": "^29.4.3"
-    }
+    "micromatch": "^4.0.5"
   }
 }
