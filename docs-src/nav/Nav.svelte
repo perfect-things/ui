@@ -1,4 +1,7 @@
-<UIButton icon="meatballs" text class="nav-toggler {navMobileShow ? 'visible' : ''}" on:click="{toggleNav}"></UIButton>
+<UIButton text
+	icon="meatballs"
+	class="nav-toggler {navMobileShow ? 'visible' : ''}"
+	on:click="{toggleNav}"/>
 
 <aside class:mobile-show="{navMobileShow}">
 	<menu>
@@ -49,62 +52,9 @@ import { Button as UIButton, Toggle as ActualToggle } from '../../src';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 
-import Button from '../components/button.svelte';
-import ButtonGroup from '../components/button-group.svelte';
-import ButtonToggle from '../components/button-toggle.svelte';
-import PushButton from '../components/push-button.svelte';
-import Menu from '../components/menu.svelte';
-import Icon from '../components/icon.svelte';
-import TextFit from '../components/text-fit.svelte';
-import Toaster from '../components/toaster.svelte';
-import ColorPalette from '../components/color-palette.svelte';
+import * as TestComponents from '../components';
 
-import Autocomplete from '../components/autocomplete.svelte';
-import Datepicker from '../components/datepicker.svelte';
-import Checkbox from '../components/checkbox.svelte';
-import Input from '../components/input.svelte';
-import InputMath from '../components/input-math.svelte';
-import InputPassword from '../components/input-password.svelte';
-import Select from '../components/select.svelte';
-import Textarea from '../components/textarea.svelte';
-import Toggle from '../components/toggle.svelte';
-import Tooltip from '../components/tooltip.svelte';
-
-import Dialog from '../components/dialog.svelte';
-import Drawer from '../components/drawer.svelte';
-import Panel from '../components/panel.svelte';
-import Splitter from '../components/splitter.svelte';
-import Table from '../components/table.svelte';
-import Tree from '../components/tree.svelte';
-
-const components = {
-	GetStarted,
-	Autocomplete,
-	Button,
-	ButtonGroup,
-	ButtonToggle,
-	ColorPalette,
-	Datepicker,
-	Checkbox,
-	Dialog,
-	Drawer,
-	Icon,
-	Input,
-	InputMath,
-	InputPassword,
-	Menu,
-	Panel,
-	PushButton,
-	Select,
-	Splitter,
-	Table,
-	Textarea,
-	TextFit,
-	Toaster,
-	Toggle,
-	Tooltip,
-	Tree,
-};
+const components = { GetStarted, ...TestComponents, };
 
 let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
