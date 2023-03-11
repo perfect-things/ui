@@ -330,16 +330,6 @@ small { display: block; margin: 5px 0 15px; }
 	padding: 4px;
 }
 
-.text-fit-div {
-	border: 1px solid red;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	resize: horizontal;
-}
-
 .toggle-box {
 	margin: 10px 0 0;
 	line-height: 2.4em;
@@ -348,6 +338,16 @@ small { display: block; margin: 5px 0 15px; }
 
 .toggle-box.visible {
 	display: block;
+}
+
+.text-fit-div {
+	border: 1px solid red;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	resize: horizontal;
 }
 
 .tooltip-box {

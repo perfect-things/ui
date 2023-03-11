@@ -14604,7 +14604,6 @@ function instance17($$self, $$props, $$invalidate) {
   const dispatch = (0, import_svelte11.createEventDispatcher)();
   function onMouseDown(e) {
     $$invalidate(1, pressed = !pressed);
-    console.log(pressed);
     dispatch("click", e);
   }
   function button_binding($$value) {

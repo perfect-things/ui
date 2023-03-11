@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
+    "@babel/plugin-transform-runtime": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@ronilaukkarinen/gulp-stylelint": "^14.0.0",

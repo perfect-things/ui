@@ -2,7 +2,7 @@ import { ButtonToggle } from '../src/button-toggle';
 import { render, fireEvent } from '@testing-library/svelte';
 
 
-test('Button', async () => {
+test('ButtonToggle', async () => {
 	const items = [
 		{ name: 'One', value: '1' },
 		{ name: 'Two', value: '2' },
