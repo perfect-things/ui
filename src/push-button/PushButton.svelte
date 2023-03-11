@@ -50,7 +50,6 @@ const dispatch = createEventDispatcher();
 
 function onMouseDown (e) {
 	pressed = !pressed;
-	console.log(pressed);
 	dispatch('click', e);
 }
 </script>
