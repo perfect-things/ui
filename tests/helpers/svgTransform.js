@@ -1,6 +1,6 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
-module.exports = {
+export default {
 	getCacheKey (_fileData, filename) {
 		return crypto.createHash('md5').update(filename).digest('hex');
 	},

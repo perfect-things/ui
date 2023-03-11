@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import { Autocomplete } from '../src/autocomplete';
-import { waitForTimeout } from './utils';
+import { waitForTimeout } from './helpers/utils';
 
 
 const data = [

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/svelte';
-import ButtonGroup from './ButtonGroupTest.svelte';
+import ButtonGroup from './helpers/ButtonGroup.svelte';
 
 
 test('ButtonGroup', async () => {

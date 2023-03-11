@@ -5,6 +5,6 @@
 </ButtonGroup>
 
 <script>
-import { Button } from '../src/button';
-import { ButtonGroup } from '../src/button-group';
+import { Button } from '../../src/button';
+import { ButtonGroup } from '../../src/button-group';
 </script>

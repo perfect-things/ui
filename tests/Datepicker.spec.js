@@ -1,6 +1,6 @@
 import { Datepicker } from '../src/datepicker';
 import { render, fireEvent } from '@testing-library/svelte';
-import { waitForTimeout } from './utils';
+import { waitForTimeout } from './helpers/utils';
 
 
 test('Datepicker', async () => {

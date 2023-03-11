@@ -9,6 +9,7 @@
     "env": {
         "browser": true,
 		"jest": true,
+		"node": true,
         "es2022": true
     },
     "parserOptions": {
