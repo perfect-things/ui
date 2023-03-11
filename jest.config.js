@@ -1,9 +1,9 @@
 export default {
-	rootDir: '.',
+	rootDir: './',
 	transform: {
 		'^.+\\.svelte$': 'svelte-jester',
 		'^.+\\.js$': 'babel-jest',
-		'^.+\\.svg$': './tests/helpers/svgTransform.js',
+		'^.+\\.svg$': '<rootDir>/tests/helpers/svgTransform.js',
 	},
 	transformIgnorePatterns: [
 		'node_modules/(?!(vanillajs-datepicker)/)'
@@ -12,5 +12,10 @@ export default {
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [
 		'@testing-library/jest-dom/extend-expect'
+	],
+	coveragePathIgnorePatterns: [
+		'<rootDir>/*.js',
+		'<rootDir>/tests/coverage/',
+		'<rootDir>/tests/helpers',
 	]
 };

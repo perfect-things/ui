@@ -15,7 +15,7 @@
     "serve": "http-server ./docs --silent --port 3123 -oa localhost",
     "build": "gulp build",
     "watch": "gulp watch",
-    "test": "jest",
+    "test": "jest --coverage",
     "launch": "run-p watch serve",
     "start": "run-s build launch"
   },
@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.20.2",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@ronilaukkarinen/gulp-stylelint": "^14.0.0",
+    "@testing-library/dom": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/svelte": "^3.2.2",
     "@types/jest": "^29.4.0",
