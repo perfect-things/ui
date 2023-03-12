@@ -1,9 +1,37 @@
 simple-ui-components-in-svelte
 ==============================
 
+## v5.1.0 (2023-03-12)
+- Better Menu highlighting (doesn't hl first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS
+- Mobile friendlier buttons (touchstart invokes :active styling)
+- unit tests for some components
+
+## v5.0.8 (2023-03-03)
+- Tooltip offset parameter
+
+
+## v5.0.7 (2023-03-03)
+- PushButton fix (pushed class was not applied)
+
+## v5.0.6 (2023-03-02)
+- Add back `form` property to a button
+
+## v5.0.5 (2023-03-02)
+- Reduce memory footprint (removed some of the `transform` props that were no longer necessary)
+
+## v5.0.4 (2023-03-02)
+- esbuild replaced rollup for speed and simplicity
+- cleanup & refactoring
+
+## v5.0.3 (2023-03-01)
+- Tooltip hiding fix (wasn't hiding when hovering target)
+
+## v5.0.2 (2023-03-01)
+- Toaster import fix
+- Tooltip fix (some console errors were popping up)
+
 ## v5.0.1 (2023-02-28)
 - Bring back `button-outline.css` (it was accidentally deleted in v5.0.0)
-
 
 
 ## v5.0.0 (2023-02-28)
