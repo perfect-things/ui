@@ -20,6 +20,8 @@
 	transform: translateZ(1px);
 }
 
+.menu:focus { outline: none; }
+
 
 .menu.hidden { display: none; }
 

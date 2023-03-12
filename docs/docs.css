@@ -1,3 +1,19 @@
+.api-table {
+	height: unset;
+	overflow-y: visible;
+	overflow-x: auto;
+	overscroll-behavior-y: unset;
+}
+.api-table .table { table-layout: fixed; min-width: 900px; }
+
+.api-table tr td { vertical-align: top; }
+
+.api-table tr th:first-child,
+.api-table tr td:first-child { width: 200px; }
+
+.api-table tr th:nth-child(2),
+.api-table tr td:nth-child(2) { width: 200px; }
+
 html,
 body {
 	box-sizing: border-box;
@@ -80,8 +96,23 @@ hr {
 	position: relative;
 }
 
+main pre[class],
+code {
+	background-color: #1a1a1a;
+	border-radius: var(--ui-border-radius-s);
+}
 
-pre[class*=language-] code[class*=language-] { white-space: break-spaces; }
+code {
+	display: block;
+	width: 100%;
+	padding: 1em;
+	margin-block: 1em;
+	line-height: 2;
+	white-space: pre;
+	overflow: auto;
+}
+
+code[class*=language-] { padding: 0; margin: 0; }
 
 aside {
 	padding: 1rem 1rem 4rem;
@@ -160,40 +191,6 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	.main-header { margin-top: -5em; }
 }
 
-.api-table {
-	height: unset;
-	overflow-y: visible;
-	overflow-x: auto;
-	overscroll-behavior-y: unset;
-}
-.api-table .table { table-layout: fixed; min-width: 900px; }
-
-.api-table tr td { vertical-align: top; }
-
-.api-table tr th:first-child,
-.api-table tr td:first-child { width: 200px; }
-
-.api-table tr th:nth-child(2),
-.api-table tr td:nth-child(2) { width: 200px; }
-
-main pre[class],
-code {
-	background-color: #1a1a1a;
-	border-radius: var(--ui-border-radius-s);
-}
-
-code {
-	display: block;
-	width: 100%;
-	padding: 1em;
-	margin-block: 1em;
-	line-height: 2;
-	white-space: pre;
-	overflow: auto;
-}
-
-code[class*=language-] { padding: 0; margin: 0; }
-
 .main-header {
 	height: 30vw;
 	max-height: 300px;
@@ -235,9 +232,6 @@ code[class*=language-] { padding: 0; margin: 0; }
 }
 .logotype .small:last-child { text-align: right; }
 
-.button-toggle-wrapper-wide { width: 400px; }
-.button-toggle-wrapper-wide .button-toggle { width: 100%; }
-
 .group {
 	background: #222;
 	padding: 10px;
@@ -256,6 +250,9 @@ code[class*=language-] { padding: 0; margin: 0; }
 	overflow: hidden;
 	background-color: var(--ui-color-background-dark-2);
 }
+
+.button-toggle-wrapper-wide { width: 400px; }
+.button-toggle-wrapper-wide .button-toggle { width: 100%; }
 
 .icon-block {
 	float: left;
@@ -314,6 +311,13 @@ small { display: block; margin: 5px 0 15px; }
 	float: right;
 }
 
+.table-viewport {
+	width: 50%;
+	height: 500px;
+	border: 1px dashed red;
+	padding: 4px;
+}
+
 .split-wrap {
 	width: 400px;
 	height: 200px;
@@ -328,13 +332,6 @@ small { display: block; margin: 5px 0 15px; }
 
 .min-w { min-width: 20px; max-width: 220px; }
 .min-h { min-height: 50px; max-height: 150px; }
-
-.table-viewport {
-	width: 50%;
-	height: 500px;
-	border: 1px dashed red;
-	padding: 4px;
-}
 
 .text-fit-div {
 	border: 1px solid red;

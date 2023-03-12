@@ -1398,7 +1398,7 @@ var require_internal = __commonJS({
       }
       info.block.p(child_ctx, dirty);
     }
-    var globals14 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
+    var globals15 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
     function destroy_block(block, lookup) {
       block.d(1);
       lookup.delete(block.key);
@@ -2129,7 +2129,7 @@ var require_internal = __commonJS({
     exports.get_spread_object = get_spread_object3;
     exports.get_spread_update = get_spread_update12;
     exports.get_store_value = get_store_value;
-    exports.globals = globals14;
+    exports.globals = globals15;
     exports.group_outros = group_outros12;
     exports.handle_promise = handle_promise;
     exports.hasContext = hasContext;
@@ -13063,6 +13063,7 @@ function init13(delay = 500, eventName = "longpress") {
 }
 
 // src/menu/Menu.svelte
+var { console: console_12 } = import_internal13.globals;
 var file12 = "src/menu/Menu.svelte";
 function create_fragment13(ctx) {
   let ul;
@@ -13086,9 +13087,10 @@ function create_fragment13(ctx) {
         default_slot.c();
       (0, import_internal13.attr_dev)(ul, "class", ul_class_value = "menu " + /*className*/
       ctx[0]);
+      (0, import_internal13.attr_dev)(ul, "tabindex", "0");
       (0, import_internal13.toggle_class)(ul, "hidden", !/*opened*/
       ctx[2]);
-      (0, import_internal13.add_location)(ul, file12, 0, 0, 0);
+      (0, import_internal13.add_location)(ul, file12, 1, 0, 55);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13272,6 +13274,10 @@ function instance13($$self, $$props, $$invalidate) {
       focusedEl.focus();
     }
   }
+  function onmouseout() {
+    focusedEl = null;
+    menuEl.focus();
+  }
   function onKeydown2(e) {
     if (e.key === "Escape")
       _close();
@@ -13342,7 +13348,9 @@ function instance13($$self, $$props, $$invalidate) {
       dispatch("open");
       addEventListeners();
       requestAnimationFrame(resolve);
-      focusNext();
+      console.log(menuEl);
+      if (menuEl)
+        menuEl.focus();
     }));
   }
   function close(e) {
@@ -13378,17 +13386,19 @@ function instance13($$self, $$props, $$invalidate) {
     document.addEventListener("keydown", onKeydown2);
     document.addEventListener("wheel", onscroll);
     document.addEventListener("mousemove", onmousemove);
+    document.addEventListener("mouseout", onmouseout);
   }
   function removeEventListeners() {
     document.removeEventListener("click", onDocumentClick);
     document.removeEventListener("keydown", onKeydown2);
     document.removeEventListener("wheel", onscroll);
     document.removeEventListener("mousemove", onmousemove);
+    document.removeEventListener("mouseout", onmouseout);
   }
   const writable_props = ["type", "targetSelector", "closeOnClick", "elevate", "class"];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console.warn(`<Menu> was created with unknown prop '${key}'`);
+      console_12.warn(`<Menu> was created with unknown prop '${key}'`);
   });
   function ul_binding($$value) {
     import_internal13.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -13437,6 +13447,7 @@ function instance13($$self, $$props, $$invalidate) {
     onDocumentClick,
     onscroll,
     onmousemove,
+    onmouseout,
     onKeydown: onKeydown2,
     focusTarget,
     focusFirst,
@@ -20516,7 +20527,7 @@ var CodeBox = class extends import_internal32.SvelteComponentDev {
 var CodeBox_default = CodeBox;
 
 // docs-src/components/autocomplete/Autocomplete.svelte
-var { console: console_12 } = import_internal33.globals;
+var { console: console_13 } = import_internal33.globals;
 var file31 = "docs-src/components/autocomplete/Autocomplete.svelte";
 function create_fragment33(ctx) {
   let h20;
@@ -21288,7 +21299,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_12.warn(`<Autocomplete> was created with unknown prop '${key}'`);
+      console_13.warn(`<Autocomplete> was created with unknown prop '${key}'`);
   });
   function autocomplete0_value_binding(value) {
     autocompleteValue = value;
@@ -24098,7 +24109,7 @@ var ButtonToggle_default2 = ButtonToggle_1;
 
 // docs-src/components/checkbox/Checkbox.svelte
 var import_internal37 = __toESM(require_internal());
-var { console: console_13 } = import_internal37.globals;
+var { console: console_14 } = import_internal37.globals;
 var file35 = "docs-src/components/checkbox/Checkbox.svelte";
 function create_fragment37(ctx) {
   let h2;
@@ -24393,7 +24404,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_13.warn(`<Checkbox> was created with unknown prop '${key}'`);
+      console_14.warn(`<Checkbox> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Checkbox: Checkbox_default,
@@ -27329,7 +27340,7 @@ var Icon_default2 = Icon_1;
 
 // docs-src/components/input/Input.svelte
 var import_internal44 = __toESM(require_internal());
-var { console: console_14 } = import_internal44.globals;
+var { console: console_15 } = import_internal44.globals;
 var file42 = "docs-src/components/input/Input.svelte";
 function create_fragment44(ctx) {
   let h2;
@@ -27632,7 +27643,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_14.warn(`<Input> was created with unknown prop '${key}'`);
+      console_15.warn(`<Input> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     InputNumber: InputNumber_default,
@@ -32850,7 +32861,7 @@ var Select_default2 = Select_1;
 
 // docs-src/components/splitter/Splitter.svelte
 var import_internal51 = __toESM(require_internal());
-var { console: console_15 } = import_internal51.globals;
+var { console: console_16 } = import_internal51.globals;
 var file49 = "docs-src/components/splitter/Splitter.svelte";
 function create_default_slot10(ctx) {
   let t;
@@ -33245,7 +33256,7 @@ function onchanged (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_15.warn(`<Splitter> was created with unknown prop '${key}'`);
+      console_16.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function splitter0_binding($$value) {
     import_internal51.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -33308,7 +33319,7 @@ var Splitter_default2 = Splitter_1;
 
 // docs-src/components/table/Table.svelte
 var import_internal52 = __toESM(require_internal());
-var { console: console_16 } = import_internal52.globals;
+var { console: console_17 } = import_internal52.globals;
 var file50 = "docs-src/components/table/Table.svelte";
 function create_default_slot11(ctx) {
   let thead0;
@@ -35210,7 +35221,7 @@ function instance52($$self, $$props, $$invalidate) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_16.warn(`<Table> was created with unknown prop '${key}'`);
+      console_17.warn(`<Table> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Table: Table_default,
@@ -35947,7 +35958,7 @@ var Textarea_default2 = Textarea_1;
 
 // docs-src/components/toaster/Toaster.svelte
 var import_internal55 = __toESM(require_internal());
-var { console: console_17 } = import_internal55.globals;
+var { console: console_18 } = import_internal55.globals;
 var file53 = "docs-src/components/toaster/Toaster.svelte";
 function create_default_slot_55(ctx) {
   let t;
@@ -36475,7 +36486,7 @@ function cb (id) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_17.warn(`<Toaster> was created with unknown prop '${key}'`);
+      console_18.warn(`<Toaster> was created with unknown prop '${key}'`);
   });
   const click_handler = () => showToast("Hello");
   const click_handler_1 = () => showToast("Hello", "success");
@@ -36526,7 +36537,7 @@ var Toaster_default2 = Toaster_1;
 
 // docs-src/components/toggle/Toggle.svelte
 var import_internal56 = __toESM(require_internal());
-var { console: console_18 } = import_internal56.globals;
+var { console: console_19 } = import_internal56.globals;
 var file54 = "docs-src/components/toggle/Toggle.svelte";
 function create_fragment56(ctx) {
   let h2;
@@ -36888,7 +36899,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_18.warn(`<Toggle> was created with unknown prop '${key}'`);
+      console_19.warn(`<Toggle> was created with unknown prop '${key}'`);
   });
   function toggle0_value_binding(value) {
     toggleValue = value;
@@ -37691,7 +37702,7 @@ var Tooltip_default2 = Tooltip_1;
 
 // docs-src/components/tree/Tree.svelte
 var import_internal58 = __toESM(require_internal());
-var { console: console_19 } = import_internal58.globals;
+var { console: console_110 } = import_internal58.globals;
 var file56 = "docs-src/components/tree/Tree.svelte";
 function create_fragment58(ctx) {
   let h2;
@@ -37911,7 +37922,7 @@ function onSelect (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_19.warn(`<Tree> was created with unknown prop '${key}'`);
+      console_110.warn(`<Tree> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Tree: Tree_default,

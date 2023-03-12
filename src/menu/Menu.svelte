@@ -1,5 +1,10 @@
-<ul class="menu {className}" class:hidden="{!opened}" bind:this="{menuEl}">
-	<slot></slot>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<ul
+	class="menu {className}"
+	class:hidden="{!opened}"
+	bind:this="{menuEl}"
+	tabindex="0">
+		<slot></slot>
 </ul>
 
 <svelte:options accessors={true}/>
@@ -132,6 +137,11 @@ function onmousemove (e) {
 	}
 }
 
+function onmouseout () {
+	focusedEl = null;
+	menuEl.focus();
+}
+
 
 function onKeydown (e) {
 	if (e.key === 'Escape') _close();
@@ -202,7 +212,9 @@ export function open (e) {
 		dispatch('open');
 		addEventListeners();
 		requestAnimationFrame(resolve);
-		focusNext();
+		// focusNext();
+		console.log(menuEl);
+		if (menuEl) menuEl.focus();
 	}));
 }
 
@@ -241,6 +253,7 @@ function addEventListeners () {
 	document.addEventListener('keydown', onKeydown);
 	document.addEventListener('wheel', onscroll);
 	document.addEventListener('mousemove', onmousemove);
+	document.addEventListener('mouseout', onmouseout);
 }
 
 
@@ -249,6 +262,7 @@ function removeEventListeners () {
 	document.removeEventListener('keydown', onKeydown);
 	document.removeEventListener('wheel', onscroll);
 	document.removeEventListener('mousemove', onmousemove);
+	document.removeEventListener('mouseout', onmouseout);
 }
 
 </script>

@@ -79,6 +79,3 @@ hr {
 	z-index: 1;
 	position: relative;
 }
-
-
-pre[class*=language-] code[class*=language-] { white-space: break-spaces; }
