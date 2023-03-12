@@ -23,7 +23,7 @@
 </div>
 
 <script>
-import { pluck } from '../util';
+import { pluck } from '../utils';
 export let value = undefined;
 export let placeholder = undefined;
 export let items = [];

@@ -25,7 +25,7 @@
 
 <script>
 import { createEventDispatcher } from 'svelte';
-import { uuid } from '../util';
+import { uuid } from '../utils';
 import { Icon } from '../icon';
 
 export let disabled = undefined;

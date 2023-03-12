@@ -38,12 +38,9 @@ test('Autocomplete', async () => {
 	expect(input).toHaveAttribute('placeholder', 'Component1');
 	expect(input).toHaveAttribute('required');
 
-	// const mock = jest.fn();
-
 	// open list
 	await fireEvent.click(input);
 	await waitForTimeout();
-	// expect(mock).toHaveBeenCalled();
 
 	// verify list
 	const autocompleteList = container.querySelector('.autocomplete-list');

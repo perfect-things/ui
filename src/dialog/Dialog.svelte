@@ -19,7 +19,7 @@
 
 <script>
 import { createEventDispatcher, onMount } from 'svelte';
-import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../util';
+import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 export let title = '';
 export let opened = false;
 export let drawborders = false;

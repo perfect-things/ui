@@ -11,7 +11,7 @@
 <script>
 import { createEventDispatcher , onMount } from 'svelte';
 import { icons } from '../icon';
-import { animate } from '../util';
+import { animate } from '../utils';
 const dispatch = createEventDispatcher();
 
 export let title = '';

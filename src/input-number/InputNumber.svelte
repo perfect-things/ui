@@ -10,7 +10,7 @@
 
 
 <script>
-import { pluck } from '../util';
+import { pluck } from '../utils';
 
 export let value = '';
 let className = '';

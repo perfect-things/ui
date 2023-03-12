@@ -15,7 +15,8 @@
     "serve": "http-server ./docs --silent --port 3123 -oa localhost",
     "build": "gulp build",
     "watch": "gulp watch",
-    "test": "jest --coverage",
+    "test-coverage": "jest --coverage",
+    "test": "jest",
     "launch": "run-p watch serve",
     "start": "run-s build launch"
   },

@@ -27,7 +27,7 @@
 </button>
 <script>
 import { Icon } from '../icon';
-import { pluck } from '../util';
+import { pluck } from '../utils';
 
 export let _this = undefined;
 

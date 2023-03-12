@@ -15,7 +15,7 @@
 </div>
 <script>
 import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
-import { pluck } from '../util';
+import { pluck } from '../utils';
 
 const dispatch = createEventDispatcher();
 const isTouchDevice = 'ontouchstart' in document.documentElement;

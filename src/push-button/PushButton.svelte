@@ -28,7 +28,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { Button } from '../button';
-import { pluck } from '../util';
+import { pluck } from '../utils';
 
 export let _this = undefined;
 export let pressed = false;

@@ -15,7 +15,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../icon';
-import { pluck, roundAmount } from '../util';
+import { pluck, roundAmount } from '../utils';
 
 export let _this = undefined;
 export let value = '';

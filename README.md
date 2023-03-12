@@ -12,6 +12,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 
 ### TODO
+- [ ] unit-tests backfill & coverage
 - [ ] https://github.com/davipon/svelte-component-test-recipes#testing-the-bind-directive-two-way-binding
 
 

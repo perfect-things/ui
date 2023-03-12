@@ -7,7 +7,7 @@
 
 <script>
 import { createEventDispatcher } from 'svelte';
-import { blink } from '../util.js';
+import { blink } from '../utils.js';
 
 export let shortcut = '';
 

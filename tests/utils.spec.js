@@ -1,5 +1,5 @@
-import { waitForTimeout } from './helpers/utils';
-import * as util from '../src/util';
+import './helpers/utils';
+import * as util from '../src/utils';
 import { screen } from '@testing-library/dom';
 
 
@@ -81,13 +81,39 @@ test('util - getCSSvalueInPx', () => {
 
 
 test('util - innerWidth', async () => {
-	const style = 'width: 1000px; height: 1000px; padding: 10px; border: 1px solid black;';
+	const w = 100;
+	const h = 100;
+	const style = `width: ${w}px; height: ${h}px; padding: 10px; border: 1px solid black;`;
 	document.body.innerHTML = `<div title="test-div" style="${style}">Example</div>`;
 
 	const div = screen.getByTitle('test-div');
-	await waitForTimeout();
+	div.getBoundingClientRect = () => ({ width: w, height: h, top: 0, left: 0, right: 0, bottom: 0, });
 
-	console.log(div.getBoundingClientRect(), div.outerHTML);
-	// const width = util.innerWidth(div);
-	// expect(width).toBe(78);
+	const width = util.innerWidth(div);
+	const height = util.innerHeight(div);
+	expect(width).toBe(78);
+	expect(height).toBe(78);
+});
+
+
+test('util - uuid', () => {
+	const id = util.uuid();
+	expect(id).toBeTruthy();
+});
+
+
+test('util - roundAmount', () => {
+	const amount = 123.456;
+	const rounded = util.roundAmount(amount);
+	expect(rounded).toBe(123.46);
+});
+
+
+test('util - blink', () => {
+	const div = document.createElement('div');
+	document.body.appendChild(div);
+
+	const spy = jest.spyOn(div, 'animate');
+	util.blink(div);
+	expect(spy).toHaveBeenCalled();
 });

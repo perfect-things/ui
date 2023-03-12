@@ -57,8 +57,8 @@
 
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
-import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './util';
-import { pluck } from '../util';
+import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './utils';
+import { pluck } from '../utils';
 import { Icon } from '../icon';
 export let data = [];
 export let value = null;

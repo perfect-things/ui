@@ -7,7 +7,7 @@
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { getMouseX, getMouseY, innerWidth, innerHeight, ANIMATION_SPEED,
-	minHeight, minWidth, getFlexFlow, maxHeight, maxWidth } from '../util';
+	minHeight, minWidth, getFlexFlow, maxHeight, maxWidth } from '../utils';
 
 
 let className = '';

@@ -11,7 +11,7 @@
 
 
 <script>
-import { pluck } from '../util';
+import { pluck } from '../utils';
 export let _this = undefined;
 export let indeterminate = false;
 export let checked = false;
