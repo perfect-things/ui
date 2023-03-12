@@ -12,6 +12,7 @@
 
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
+		<NavItem name="Changelog" {active} />
 
 		<h3>Form Controls</h3>
 		<NavItem name="Autocomplete" {active} />
@@ -51,10 +52,11 @@
 import { Button as UIButton, Toggle as ActualToggle } from '../../src';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
+import Changelog from '../pages/changelog.svelte';
 
 import * as TestComponents from '../components';
 
-const components = { GetStarted, ...TestComponents, };
+const components = { GetStarted, Changelog, ...TestComponents, };
 
 let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];

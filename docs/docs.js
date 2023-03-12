@@ -33,7 +33,7 @@ var require_internal = __commonJS({
   "node_modules/svelte/internal/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function noop31() {
+    function noop32() {
     }
     var identity = (x) => x;
     function assign12(tar, src) {
@@ -44,9 +44,9 @@ var require_internal = __commonJS({
     function is_promise(value) {
       return !!value && (typeof value === "object" || typeof value === "function") && typeof value.then === "function";
     }
-    function add_location59(element60, file59, line, column, char) {
-      element60.__svelte_meta = {
-        loc: { file: file59, line, column, char }
+    function add_location60(element61, file60, line, column, char) {
+      element61.__svelte_meta = {
+        loc: { file: file60, line, column, char }
       };
     }
     function run(fn) {
@@ -61,7 +61,7 @@ var require_internal = __commonJS({
     function is_function3(thing) {
       return typeof thing === "function";
     }
-    function safe_not_equal61(a, b) {
+    function safe_not_equal62(a, b) {
       return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
     }
     var src_url_equal_anchor;
@@ -85,7 +85,7 @@ var require_internal = __commonJS({
     }
     function subscribe(store, ...callbacks) {
       if (store == null) {
-        return noop31;
+        return noop32;
       }
       const unsub = store.subscribe(...callbacks);
       return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
@@ -186,11 +186,11 @@ var require_internal = __commonJS({
     }
     var has_prop = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
     function action_destroyer2(action_result) {
-      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop31;
+      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop32;
     }
     var is_client = typeof window !== "undefined";
     exports.now = is_client ? () => window.performance.now() : () => Date.now();
-    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop31;
+    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop32;
     function set_now(fn) {
       exports.now = fn;
     }
@@ -298,7 +298,7 @@ var require_internal = __commonJS({
     function append_styles(target, style_sheet_id, styles) {
       const append_styles_to = get_root_for_style(target);
       if (!append_styles_to.getElementById(style_sheet_id)) {
-        const style = element59("style");
+        const style = element60("style");
         style.id = style_sheet_id;
         style.textContent = styles;
         append_stylesheet(append_styles_to, style);
@@ -314,7 +314,7 @@ var require_internal = __commonJS({
       return node.ownerDocument;
     }
     function append_empty_stylesheet(node) {
-      const style_element = element59("style");
+      const style_element = element60("style");
       append_stylesheet(get_root_for_style(node), style_element);
       return style_element.sheet;
     }
@@ -363,7 +363,7 @@ var require_internal = __commonJS({
           iterations[i].d(detaching);
       }
     }
-    function element59(name) {
+    function element60(name) {
       return document.createElement(name);
     }
     function element_is(name, is) {
@@ -381,14 +381,14 @@ var require_internal = __commonJS({
     function svg_element(name) {
       return document.createElementNS("http://www.w3.org/2000/svg", name);
     }
-    function text34(data) {
+    function text35(data) {
       return document.createTextNode(data);
     }
-    function space44() {
-      return text34(" ");
+    function space45() {
+      return text35(" ");
     }
     function empty7() {
-      return text34("");
+      return text35("");
     }
     function listen(node, event, handler, options) {
       node.addEventListener(event, handler, options);
@@ -481,8 +481,8 @@ var require_internal = __commonJS({
       }
       return array;
     }
-    function children(element60) {
-      return Array.from(element60.childNodes);
+    function children(element61) {
+      return Array.from(element61.childNodes);
     }
     function init_claim_info(nodes) {
       if (nodes.claim_info === void 0) {
@@ -544,7 +544,7 @@ var require_internal = __commonJS({
       }, () => create_element(name));
     }
     function claim_element(nodes, name, attributes) {
-      return claim_element_base(nodes, name, attributes, element59);
+      return claim_element_base(nodes, name, attributes, element60);
     }
     function claim_svg_element(nodes, name, attributes) {
       return claim_element_base(nodes, name, attributes, svg_element);
@@ -563,7 +563,7 @@ var require_internal = __commonJS({
             node.data = dataStr;
           }
         },
-        () => text34(data),
+        () => text35(data),
         true
         // Text nodes should not update last index since it is likely not worth it to eliminate an increasing subsequence of actual elements
       );
@@ -571,10 +571,10 @@ var require_internal = __commonJS({
     function claim_space(nodes) {
       return claim_text(nodes, " ");
     }
-    function find_comment(nodes, text35, start) {
+    function find_comment(nodes, text36, start) {
       for (let i = start; i < nodes.length; i += 1) {
         const node = nodes[i];
-        if (node.nodeType === 8 && node.textContent.trim() === text35) {
+        if (node.nodeType === 8 && node.textContent.trim() === text36) {
           return i;
         }
       }
@@ -597,10 +597,10 @@ var require_internal = __commonJS({
       }
       return new HtmlTagHydration(claimed_nodes, is_svg);
     }
-    function set_data(text35, data) {
+    function set_data(text36, data) {
       data = "" + data;
-      if (text35.wholeText !== data)
-        text35.data = data;
+      if (text36.wholeText !== data)
+        text36.data = data;
     }
     function set_input_value8(input, value) {
       input.value = value == null ? "" : value;
@@ -660,7 +660,7 @@ var require_internal = __commonJS({
       if (computed_style.position === "static") {
         node.style.position = "relative";
       }
-      const iframe = element59("iframe");
+      const iframe = element60("iframe");
       iframe.setAttribute("style", "display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;");
       iframe.setAttribute("aria-hidden", "true");
       iframe.tabIndex = -1;
@@ -688,8 +688,8 @@ var require_internal = __commonJS({
         detach(iframe);
       };
     }
-    function toggle_class20(element60, name, toggle) {
-      element60.classList[toggle ? "add" : "remove"](name);
+    function toggle_class20(element61, name, toggle) {
+      element61.classList[toggle ? "add" : "remove"](name);
     }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
       const e = document.createEvent("CustomEvent");
@@ -732,7 +732,7 @@ var require_internal = __commonJS({
           if (this.is_svg)
             this.e = svg_element(target.nodeName);
           else
-            this.e = element59(target.nodeName);
+            this.e = element60(target.nodeName);
           this.t = target;
           this.c(html);
         }
@@ -782,9 +782,9 @@ var require_internal = __commonJS({
       }
       return result;
     }
-    function get_custom_elements_slots(element60) {
+    function get_custom_elements_slots(element61) {
       const result = {};
-      element60.childNodes.forEach((node) => {
+      element61.childNodes.forEach((node) => {
         result[node.slot || "default"] = true;
       });
       return result;
@@ -856,10 +856,10 @@ var require_internal = __commonJS({
     }
     function create_animation(node, from, fn, params) {
       if (!from)
-        return noop31;
+        return noop32;
       const to = node.getBoundingClientRect();
       if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom)
-        return noop31;
+        return noop32;
       const {
         delay = 0,
         duration = 300,
@@ -868,7 +868,7 @@ var require_internal = __commonJS({
         start: start_time = exports.now() + delay,
         // @ts-ignore todo:
         end = start_time + duration,
-        tick: tick2 = noop31,
+        tick: tick2 = noop32,
         css
       } = fn(node, { from, to }, params);
       let running = true;
@@ -1121,7 +1121,7 @@ var require_internal = __commonJS({
           delete_rule(node, animation_name);
       }
       function go() {
-        const { delay = 0, duration = 300, easing = identity, tick: tick2 = noop31, css } = config || null_transition;
+        const { delay = 0, duration = 300, easing = identity, tick: tick2 = noop32, css } = config || null_transition;
         if (css)
           animation_name = create_rule(node, 0, 1, duration, delay, easing, css, uid++);
         tick2(0, 1);
@@ -1180,7 +1180,7 @@ var require_internal = __commonJS({
       const group = outros;
       group.r += 1;
       function go() {
-        const { delay = 0, duration = 300, easing = identity, tick: tick2 = noop31, css } = config || null_transition;
+        const { delay = 0, duration = 300, easing = identity, tick: tick2 = noop32, css } = config || null_transition;
         if (css)
           animation_name = create_rule(node, 1, 0, duration, delay, easing, css);
         const start_time = exports.now() + delay;
@@ -1236,7 +1236,7 @@ var require_internal = __commonJS({
         if (animation_name)
           delete_rule(node, animation_name);
       }
-      function init62(program, duration) {
+      function init63(program, duration) {
         const d = program.b - t;
         duration *= Math.abs(d);
         return {
@@ -1250,7 +1250,7 @@ var require_internal = __commonJS({
         };
       }
       function go(b) {
-        const { delay = 0, duration = 300, easing = identity, tick: tick2 = noop31, css } = config || null_transition;
+        const { delay = 0, duration = 300, easing = identity, tick: tick2 = noop32, css } = config || null_transition;
         const program = {
           start: exports.now() + delay,
           b
@@ -1268,11 +1268,11 @@ var require_internal = __commonJS({
           }
           if (b)
             tick2(0, 1);
-          running_program = init62(program, duration);
+          running_program = init63(program, duration);
           add_render_callback5(() => dispatch(node, b, "start"));
           loop((now) => {
             if (pending_program && now > pending_program.start) {
-              running_program = init62(pending_program, duration);
+              running_program = init63(pending_program, duration);
               pending_program = null;
               dispatch(node, running_program.b, "start");
               if (css) {
@@ -1398,7 +1398,7 @@ var require_internal = __commonJS({
       }
       info.block.p(child_ctx, dirty);
     }
-    var globals15 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
+    var globals14 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
     function destroy_block(block, lookup) {
       block.d(1);
       lookup.delete(block.key);
@@ -1662,8 +1662,8 @@ var require_internal = __commonJS({
       }
       return component;
     }
-    function debug(file59, line, column, values) {
-      console.log(`{@debug} ${file59 ? file59 + " " : ""}(${line}:${column})`);
+    function debug(file60, line, column, values) {
+      console.log(`{@debug} ${file60 ? file60 + " " : ""}(${line}:${column})`);
       console.log(values);
       return "";
     }
@@ -1766,7 +1766,7 @@ var require_internal = __commonJS({
       }
       component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
     }
-    function init61(component, options, instance61, create_fragment61, not_equal2, props, append_styles2, dirty = [-1]) {
+    function init62(component, options, instance62, create_fragment62, not_equal2, props, append_styles2, dirty = [-1]) {
       const parent_component = exports.current_component;
       set_current_component(component);
       const $$ = component.$$ = {
@@ -1774,7 +1774,7 @@ var require_internal = __commonJS({
         ctx: [],
         // state
         props,
-        update: noop31,
+        update: noop32,
         not_equal: not_equal2,
         bound: blank_object(),
         // lifecycle
@@ -1792,7 +1792,7 @@ var require_internal = __commonJS({
       };
       append_styles2 && append_styles2($$.root);
       let ready = false;
-      $$.ctx = instance61 ? instance61(component, options.props || {}, (i, ret, ...rest) => {
+      $$.ctx = instance62 ? instance62(component, options.props || {}, (i, ret, ...rest) => {
         const value = rest.length ? rest[0] : ret;
         if ($$.ctx && not_equal2($$.ctx[i], $$.ctx[i] = value)) {
           if (!$$.skip_bound && $$.bound[i])
@@ -1805,7 +1805,7 @@ var require_internal = __commonJS({
       $$.update();
       ready = true;
       run_all18($$.before_update);
-      $$.fragment = create_fragment61 ? create_fragment61($$.ctx) : false;
+      $$.fragment = create_fragment62 ? create_fragment62($$.ctx) : false;
       if (options.target) {
         if (options.hydrate) {
           start_hydrating();
@@ -1844,11 +1844,11 @@ var require_internal = __commonJS({
         }
         $destroy() {
           destroy_component39(this, 1);
-          this.$destroy = noop31;
+          this.$destroy = noop32;
         }
         $on(type, callback) {
           if (!is_function3(callback)) {
-            return noop31;
+            return noop32;
           }
           const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
           callbacks.push(callback);
@@ -1870,11 +1870,11 @@ var require_internal = __commonJS({
     var SvelteComponent = class {
       $destroy() {
         destroy_component39(this, 1);
-        this.$destroy = noop31;
+        this.$destroy = noop32;
       }
       $on(type, callback) {
         if (!is_function3(callback)) {
-          return noop31;
+          return noop32;
         }
         const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
         callbacks.push(callback);
@@ -1892,42 +1892,42 @@ var require_internal = __commonJS({
         }
       }
     };
-    function dispatch_dev61(type, detail) {
+    function dispatch_dev62(type, detail) {
       document.dispatchEvent(custom_event(type, Object.assign({ version: "3.55.1" }, detail), { bubbles: true }));
     }
-    function append_dev39(target, node) {
-      dispatch_dev61("SvelteDOMInsert", { target, node });
+    function append_dev40(target, node) {
+      dispatch_dev62("SvelteDOMInsert", { target, node });
       append(target, node);
     }
     function append_hydration_dev(target, node) {
-      dispatch_dev61("SvelteDOMInsert", { target, node });
+      dispatch_dev62("SvelteDOMInsert", { target, node });
       append_hydration(target, node);
     }
-    function insert_dev61(target, node, anchor) {
-      dispatch_dev61("SvelteDOMInsert", { target, node, anchor });
+    function insert_dev62(target, node, anchor) {
+      dispatch_dev62("SvelteDOMInsert", { target, node, anchor });
       insert(target, node, anchor);
     }
     function insert_hydration_dev(target, node, anchor) {
-      dispatch_dev61("SvelteDOMInsert", { target, node, anchor });
+      dispatch_dev62("SvelteDOMInsert", { target, node, anchor });
       insert_hydration(target, node, anchor);
     }
-    function detach_dev61(node) {
-      dispatch_dev61("SvelteDOMRemove", { node });
+    function detach_dev62(node) {
+      dispatch_dev62("SvelteDOMRemove", { node });
       detach(node);
     }
     function detach_between_dev(before, after) {
       while (before.nextSibling && before.nextSibling !== after) {
-        detach_dev61(before.nextSibling);
+        detach_dev62(before.nextSibling);
       }
     }
     function detach_before_dev(after) {
       while (after.previousSibling) {
-        detach_dev61(after.previousSibling);
+        detach_dev62(after.previousSibling);
       }
     }
     function detach_after_dev(before) {
       while (before.nextSibling) {
-        detach_dev61(before.nextSibling);
+        detach_dev62(before.nextSibling);
       }
     }
     function listen_dev25(node, event, handler, options, has_prevent_default, has_stop_propagation) {
@@ -1936,34 +1936,34 @@ var require_internal = __commonJS({
         modifiers.push("preventDefault");
       if (has_stop_propagation)
         modifiers.push("stopPropagation");
-      dispatch_dev61("SvelteDOMAddEventListener", { node, event, handler, modifiers });
+      dispatch_dev62("SvelteDOMAddEventListener", { node, event, handler, modifiers });
       const dispose = listen(node, event, handler, options);
       return () => {
-        dispatch_dev61("SvelteDOMRemoveEventListener", { node, event, handler, modifiers });
+        dispatch_dev62("SvelteDOMRemoveEventListener", { node, event, handler, modifiers });
         dispose();
       };
     }
     function attr_dev45(node, attribute, value) {
       attr(node, attribute, value);
       if (value == null)
-        dispatch_dev61("SvelteDOMRemoveAttribute", { node, attribute });
+        dispatch_dev62("SvelteDOMRemoveAttribute", { node, attribute });
       else
-        dispatch_dev61("SvelteDOMSetAttribute", { node, attribute, value });
+        dispatch_dev62("SvelteDOMSetAttribute", { node, attribute, value });
     }
     function prop_dev4(node, property, value) {
       node[property] = value;
-      dispatch_dev61("SvelteDOMSetProperty", { node, property, value });
+      dispatch_dev62("SvelteDOMSetProperty", { node, property, value });
     }
     function dataset_dev(node, property, value) {
       node.dataset[property] = value;
-      dispatch_dev61("SvelteDOMSetDataset", { node, property, value });
+      dispatch_dev62("SvelteDOMSetDataset", { node, property, value });
     }
-    function set_data_dev20(text35, data) {
+    function set_data_dev20(text36, data) {
       data = "" + data;
-      if (text35.wholeText === data)
+      if (text36.wholeText === data)
         return;
-      dispatch_dev61("SvelteDOMSetData", { node: text35, data });
-      text35.data = data;
+      dispatch_dev62("SvelteDOMSetData", { node: text36, data });
+      text36.data = data;
     }
     function validate_each_argument9(arg) {
       if (typeof arg !== "string" && !(arg && typeof arg === "object" && "length" in arg)) {
@@ -1974,7 +1974,7 @@ var require_internal = __commonJS({
         throw new Error(msg);
       }
     }
-    function validate_slots61(name, slot, keys) {
+    function validate_slots62(name, slot, keys) {
       for (const slot_key of Object.keys(slot)) {
         if (!~keys.indexOf(slot_key)) {
           console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
@@ -1995,11 +1995,11 @@ var require_internal = __commonJS({
     function construct_svelte_component_dev2(component, props) {
       const error_message = "this={...} of <svelte:component> should specify a Svelte component.";
       try {
-        const instance61 = new component(props);
-        if (!instance61.$$ || !instance61.$set || !instance61.$on || !instance61.$destroy) {
+        const instance62 = new component(props);
+        if (!instance62.$$ || !instance62.$set || !instance62.$on || !instance62.$destroy) {
           throw new Error(error_message);
         }
-        return instance61;
+        return instance62;
       } catch (err) {
         const { message } = err;
         if (typeof message === "string" && message.indexOf("is not a constructor") !== -1) {
@@ -2009,7 +2009,7 @@ var require_internal = __commonJS({
         }
       }
     }
-    var SvelteComponentDev61 = class extends SvelteComponent {
+    var SvelteComponentDev62 = class extends SvelteComponent {
       constructor(options) {
         if (!options || !options.target && !options.$$inline) {
           throw new Error("'target' is a required option");
@@ -2027,7 +2027,7 @@ var require_internal = __commonJS({
       $inject_state() {
       }
     };
-    var SvelteComponentTyped = class extends SvelteComponentDev61 {
+    var SvelteComponentTyped = class extends SvelteComponentDev62 {
       constructor(options) {
         super(options);
       }
@@ -2043,20 +2043,20 @@ var require_internal = __commonJS({
     exports.HtmlTag = HtmlTag4;
     exports.HtmlTagHydration = HtmlTagHydration;
     exports.SvelteComponent = SvelteComponent;
-    exports.SvelteComponentDev = SvelteComponentDev61;
+    exports.SvelteComponentDev = SvelteComponentDev62;
     exports.SvelteComponentTyped = SvelteComponentTyped;
     exports.action_destroyer = action_destroyer2;
     exports.add_attribute = add_attribute;
     exports.add_classes = add_classes;
     exports.add_flush_callback = add_flush_callback6;
-    exports.add_location = add_location59;
+    exports.add_location = add_location60;
     exports.add_render_callback = add_render_callback5;
     exports.add_resize_listener = add_resize_listener;
     exports.add_styles = add_styles;
     exports.add_transform = add_transform;
     exports.afterUpdate = afterUpdate5;
     exports.append = append;
-    exports.append_dev = append_dev39;
+    exports.append_dev = append_dev40;
     exports.append_empty_stylesheet = append_empty_stylesheet;
     exports.append_hydration = append_hydration;
     exports.append_hydration_dev = append_hydration_dev;
@@ -2102,11 +2102,11 @@ var require_internal = __commonJS({
     exports.detach_after_dev = detach_after_dev;
     exports.detach_before_dev = detach_before_dev;
     exports.detach_between_dev = detach_between_dev;
-    exports.detach_dev = detach_dev61;
+    exports.detach_dev = detach_dev62;
     exports.dirty_components = dirty_components;
-    exports.dispatch_dev = dispatch_dev61;
+    exports.dispatch_dev = dispatch_dev62;
     exports.each = each;
-    exports.element = element59;
+    exports.element = element60;
     exports.element_is = element_is;
     exports.empty = empty7;
     exports.end_hydrating = end_hydrating;
@@ -2129,16 +2129,16 @@ var require_internal = __commonJS({
     exports.get_spread_object = get_spread_object3;
     exports.get_spread_update = get_spread_update12;
     exports.get_store_value = get_store_value;
-    exports.globals = globals15;
+    exports.globals = globals14;
     exports.group_outros = group_outros12;
     exports.handle_promise = handle_promise;
     exports.hasContext = hasContext;
     exports.has_prop = has_prop;
     exports.head_selector = head_selector;
     exports.identity = identity;
-    exports.init = init61;
+    exports.init = init62;
     exports.insert = insert;
-    exports.insert_dev = insert_dev61;
+    exports.insert_dev = insert_dev62;
     exports.insert_hydration = insert_hydration;
     exports.insert_hydration_dev = insert_hydration_dev;
     exports.intros = intros;
@@ -2156,7 +2156,7 @@ var require_internal = __commonJS({
     exports.merge_ssr_styles = merge_ssr_styles;
     exports.missing_component = missing_component;
     exports.mount_component = mount_component39;
-    exports.noop = noop31;
+    exports.noop = noop32;
     exports.not_equal = not_equal;
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
@@ -2169,7 +2169,7 @@ var require_internal = __commonJS({
     exports.query_selector_all = query_selector_all;
     exports.run = run;
     exports.run_all = run_all18;
-    exports.safe_not_equal = safe_not_equal61;
+    exports.safe_not_equal = safe_not_equal62;
     exports.schedule_update = schedule_update;
     exports.select_multiple_value = select_multiple_value;
     exports.select_option = select_option2;
@@ -2190,14 +2190,14 @@ var require_internal = __commonJS({
     exports.set_store_value = set_store_value;
     exports.set_style = set_style6;
     exports.set_svg_attributes = set_svg_attributes;
-    exports.space = space44;
+    exports.space = space45;
     exports.spread = spread;
     exports.src_url_equal = src_url_equal2;
     exports.start_hydrating = start_hydrating;
     exports.stop_propagation = stop_propagation2;
     exports.subscribe = subscribe;
     exports.svg_element = svg_element;
-    exports.text = text34;
+    exports.text = text35;
     exports.tick = tick;
     exports.time_ranges_to_array = time_ranges_to_array;
     exports.to_number = to_number2;
@@ -2213,7 +2213,7 @@ var require_internal = __commonJS({
     exports.validate_dynamic_element = validate_dynamic_element;
     exports.validate_each_argument = validate_each_argument9;
     exports.validate_each_keys = validate_each_keys2;
-    exports.validate_slots = validate_slots61;
+    exports.validate_slots = validate_slots62;
     exports.validate_store = validate_store;
     exports.validate_void_dynamic_element = validate_void_dynamic_element;
     exports.xlink_attr = xlink_attr;
@@ -2896,13 +2896,13 @@ var require_prism = __commonJS({
            * @param {Element} element
            * @returns {string}
            */
-          getLanguage: function(element59) {
-            while (element59) {
-              var m = lang.exec(element59.className);
+          getLanguage: function(element60) {
+            while (element60) {
+              var m = lang.exec(element60.className);
               if (m) {
                 return m[1].toLowerCase();
               }
-              element59 = element59.parentElement;
+              element60 = element60.parentElement;
             }
             return "none";
           },
@@ -2913,9 +2913,9 @@ var require_prism = __commonJS({
            * @param {string} language
            * @returns {void}
            */
-          setLanguage: function(element59, language) {
-            element59.className = element59.className.replace(RegExp(lang, "gi"), "");
-            element59.classList.add("language-" + language);
+          setLanguage: function(element60, language) {
+            element60.className = element60.className.replace(RegExp(lang, "gi"), "");
+            element60.classList.add("language-" + language);
           },
           /**
            * Returns the script element that is currently executing.
@@ -2968,17 +2968,17 @@ var require_prism = __commonJS({
            * @param {boolean} [defaultActivation=false]
            * @returns {boolean}
            */
-          isActive: function(element59, className, defaultActivation) {
+          isActive: function(element60, className, defaultActivation) {
             var no = "no-" + className;
-            while (element59) {
-              var classList = element59.classList;
+            while (element60) {
+              var classList = element60.classList;
               if (classList.contains(className)) {
                 return true;
               }
               if (classList.contains(no)) {
                 return false;
               }
-              element59 = element59.parentElement;
+              element60 = element60.parentElement;
             }
             return !!defaultActivation;
           }
@@ -3196,8 +3196,8 @@ var require_prism = __commonJS({
           _.hooks.run("before-highlightall", env);
           env.elements = Array.prototype.slice.apply(env.container.querySelectorAll(env.selector));
           _.hooks.run("before-all-elements-highlight", env);
-          for (var i = 0, element59; element59 = env.elements[i++]; ) {
-            _.highlightElement(element59, async === true, env.callback);
+          for (var i = 0, element60; element60 = env.elements[i++]; ) {
+            _.highlightElement(element60, async === true, env.callback);
           }
         },
         /**
@@ -3228,17 +3228,17 @@ var require_prism = __commonJS({
          * @memberof Prism
          * @public
          */
-        highlightElement: function(element59, async, callback) {
-          var language = _.util.getLanguage(element59);
+        highlightElement: function(element60, async, callback) {
+          var language = _.util.getLanguage(element60);
           var grammar = _.languages[language];
-          _.util.setLanguage(element59, language);
-          var parent = element59.parentElement;
+          _.util.setLanguage(element60, language);
+          var parent = element60.parentElement;
           if (parent && parent.nodeName.toLowerCase() === "pre") {
             _.util.setLanguage(parent, language);
           }
-          var code = element59.textContent;
+          var code = element60.textContent;
           var env = {
-            element: element59,
+            element: element60,
             language,
             grammar,
             code
@@ -3300,9 +3300,9 @@ var require_prism = __commonJS({
          * @example
          * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
          */
-        highlight: function(text34, grammar, language) {
+        highlight: function(text35, grammar, language) {
           var env = {
-            code: text34,
+            code: text35,
             grammar,
             language
           };
@@ -3338,7 +3338,7 @@ var require_prism = __commonJS({
          *     }
          * });
          */
-        tokenize: function(text34, grammar) {
+        tokenize: function(text35, grammar) {
           var rest = grammar.rest;
           if (rest) {
             for (var token in rest) {
@@ -3347,8 +3347,8 @@ var require_prism = __commonJS({
             delete grammar.rest;
           }
           var tokenList = new LinkedList();
-          addAfter(tokenList, tokenList.head, text34);
-          matchGrammar(text34, tokenList, grammar, tokenList.head, 0);
+          addAfter(tokenList, tokenList.head, text35);
+          matchGrammar(text35, tokenList, grammar, tokenList.head, 0);
           return toArray(tokenList);
         },
         /**
@@ -3437,9 +3437,9 @@ var require_prism = __commonJS({
         }
         return "<" + env.tag + ' class="' + env.classes.join(" ") + '"' + attributes + ">" + env.content + "</" + env.tag + ">";
       };
-      function matchPattern(pattern, pos, text34, lookbehind) {
+      function matchPattern(pattern, pos, text35, lookbehind) {
         pattern.lastIndex = pos;
-        var match = pattern.exec(text34);
+        var match = pattern.exec(text35);
         if (match && lookbehind && match[1]) {
           var lookbehindLength = match[1].length;
           match.index += lookbehindLength;
@@ -3447,7 +3447,7 @@ var require_prism = __commonJS({
         }
         return match;
       }
-      function matchGrammar(text34, tokenList, grammar, startNode, startPos, rematch) {
+      function matchGrammar(text35, tokenList, grammar, startNode, startPos, rematch) {
         for (var token in grammar) {
           if (!grammar.hasOwnProperty(token) || !grammar[token]) {
             continue;
@@ -3473,7 +3473,7 @@ var require_prism = __commonJS({
                 break;
               }
               var str = currentNode.value;
-              if (tokenList.length > text34.length) {
+              if (tokenList.length > text35.length) {
                 return;
               }
               if (str instanceof Token) {
@@ -3482,8 +3482,8 @@ var require_prism = __commonJS({
               var removeCount = 1;
               var match;
               if (greedy) {
-                match = matchPattern(pattern, pos, text34, lookbehind);
-                if (!match || match.index >= text34.length) {
+                match = matchPattern(pattern, pos, text35, lookbehind);
+                if (!match || match.index >= text35.length) {
                   break;
                 }
                 var from = match.index;
@@ -3504,7 +3504,7 @@ var require_prism = __commonJS({
                   p += k.value.length;
                 }
                 removeCount--;
-                str = text34.slice(pos, p);
+                str = text35.slice(pos, p);
                 match.index -= pos;
               } else {
                 match = matchPattern(pattern, 0, str, lookbehind);
@@ -3536,7 +3536,7 @@ var require_prism = __commonJS({
                   cause: token + "," + j,
                   reach
                 };
-                matchGrammar(text34, tokenList, grammar, currentNode.prev, pos, nestedRematch);
+                matchGrammar(text35, tokenList, grammar, currentNode.prev, pos, nestedRematch);
                 if (rematch && nestedRematch.reach > rematch.reach) {
                   rematch.reach = nestedRematch.reach;
                 }
@@ -4125,11 +4125,11 @@ var require_prism = __commonJS({
           }
           loadFile(
             src,
-            function(text34) {
+            function(text35) {
               pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
               var range2 = parseRange(pre.getAttribute("data-range"));
               if (range2) {
-                var lines = text34.split(/\r\n?|\n/g);
+                var lines = text35.split(/\r\n?|\n/g);
                 var start = range2[0];
                 var end = range2[1] == null ? lines.length : range2[1];
                 if (start < 0) {
@@ -4140,12 +4140,12 @@ var require_prism = __commonJS({
                   end += lines.length;
                 }
                 end = Math.max(0, Math.min(end, lines.length));
-                text34 = lines.slice(start, end).join("\n");
+                text35 = lines.slice(start, end).join("\n");
                 if (!pre.hasAttribute("data-start")) {
                   pre.setAttribute("data-start", String(start + 1));
                 }
               }
-              code.textContent = text34;
+              code.textContent = text35;
               Prism2.highlightElement(code);
             },
             function(error) {
@@ -4165,8 +4165,8 @@ var require_prism = __commonJS({
          */
         highlight: function highlight2(container) {
           var elements = (container || document).querySelectorAll(SELECTOR);
-          for (var i = 0, element59; element59 = elements[i++]; ) {
-            Prism2.highlightElement(element59);
+          for (var i = 0, element60; element60 = elements[i++]; ) {
+            Prism2.highlightElement(element60);
           }
         }
       };
@@ -4380,10 +4380,10 @@ var require_prism_normalize_whitespace = __commonJS({
 });
 
 // docs-src/app/App.svelte
-var import_internal60 = __toESM(require_internal());
+var import_internal61 = __toESM(require_internal());
 
 // docs-src/nav/Nav.svelte
-var import_internal59 = __toESM(require_internal());
+var import_internal60 = __toESM(require_internal());
 
 // src/autocomplete/Autocomplete.svelte
 var import_internal2 = __toESM(require_internal());
@@ -6687,7 +6687,7 @@ function instance3($$self, $$props, $$invalidate) {
   let { submit = false } = $$props;
   let { outline = false } = $$props;
   let { link = false } = $$props;
-  let { text: text34 = false } = $$props;
+  let { text: text35 = false } = $$props;
   let { icon = void 0 } = $$props;
   let { round = void 0 } = $$props;
   let { class: className = "" } = $$props;
@@ -6729,7 +6729,7 @@ function instance3($$self, $$props, $$invalidate) {
     if ("link" in $$new_props)
       $$invalidate(6, link = $$new_props.link);
     if ("text" in $$new_props)
-      $$invalidate(7, text34 = $$new_props.text);
+      $$invalidate(7, text35 = $$new_props.text);
     if ("icon" in $$new_props)
       $$invalidate(8, icon = $$new_props.icon);
     if ("round" in $$new_props)
@@ -6749,7 +6749,7 @@ function instance3($$self, $$props, $$invalidate) {
     submit,
     outline,
     link,
-    text: text34,
+    text: text35,
     icon,
     round,
     className,
@@ -6773,7 +6773,7 @@ function instance3($$self, $$props, $$invalidate) {
     if ("link" in $$props)
       $$invalidate(6, link = $$new_props.link);
     if ("text" in $$props)
-      $$invalidate(7, text34 = $$new_props.text);
+      $$invalidate(7, text35 = $$new_props.text);
     if ("icon" in $$props)
       $$invalidate(8, icon = $$new_props.icon);
     if ("round" in $$props)
@@ -6801,7 +6801,7 @@ function instance3($$self, $$props, $$invalidate) {
     submit,
     outline,
     link,
-    text34,
+    text35,
     icon,
     round,
     className,
@@ -9845,9 +9845,9 @@ function unfocus(datepicker) {
     }
     datepicker.hide();
   };
-  const element59 = datepicker.element;
-  if (isActiveElement(element59)) {
-    element59.addEventListener("blur", onBlur, { once: true });
+  const element60 = datepicker.element;
+  if (isActiveElement(element60)) {
+    element60.addEventListener("blur", onBlur, { once: true });
   } else {
     onBlur();
   }
@@ -9977,8 +9977,8 @@ var Picker = class {
   constructor(datepicker) {
     const { config, inputField } = this.datepicker = datepicker;
     const template = pickerTemplate_default.replace(/%buttonClass%/g, config.buttonClass);
-    const element59 = this.element = parseHTML(template).firstChild;
-    const [header, main, footer] = element59.firstChild.children;
+    const element60 = this.element = parseHTML(template).firstChild;
+    const [header, main, footer] = element60.firstChild.children;
     const title = header.firstElementChild;
     const [prevButton, viewSwitch, nextButton] = header.lastElementChild.children;
     const [todayButton, clearButton] = footer.firstChild.children;
@@ -9993,11 +9993,11 @@ var Picker = class {
     this.main = main;
     this.controls = controls;
     const elementClass = inputField ? "dropdown" : "inline";
-    element59.classList.add(`datepicker-${elementClass}`);
+    element60.classList.add(`datepicker-${elementClass}`);
     processPickerOptions(this, config);
     this.viewDate = computeResetViewDate(datepicker);
     registerListeners(datepicker, [
-      [element59, "mousedown", onMousedownPicker],
+      [element60, "mousedown", onMousedownPicker],
       [main, "click", onClickView.bind(null, datepicker)],
       [controls.viewSwitch, "click", onClickViewSwitch.bind(null, datepicker)],
       [controls.prevButton, "click", onClickPrevButton.bind(null, datepicker)],
@@ -10034,24 +10034,24 @@ var Picker = class {
     if (this.active) {
       return;
     }
-    const { datepicker, element: element59 } = this;
+    const { datepicker, element: element60 } = this;
     const inputField = datepicker.inputField;
     if (inputField) {
       const inputDirection = getTextDirection(inputField);
-      if (inputDirection !== getTextDirection(getParent(element59))) {
-        element59.dir = inputDirection;
-      } else if (element59.dir) {
-        element59.removeAttribute("dir");
+      if (inputDirection !== getTextDirection(getParent(element60))) {
+        element60.dir = inputDirection;
+      } else if (element60.dir) {
+        element60.removeAttribute("dir");
       }
-      element59.style.visibility = "hidden";
-      element59.classList.add("active");
+      element60.style.visibility = "hidden";
+      element60.classList.add("active");
       this.place();
-      element59.style.visibility = "";
+      element60.style.visibility = "";
       if (datepicker.config.disableTouchKeyboard) {
         inputField.blur();
       }
     } else {
-      element59.classList.add("active");
+      element60.classList.add("active");
     }
     this.active = true;
     triggerDatepickerEvent(datepicker, "show");
@@ -10386,12 +10386,12 @@ function onPaste(datepicker, ev) {
 
 // node_modules/vanillajs-datepicker/js/events/otherListeners.js
 function onClickOutside(datepicker, ev) {
-  const { element: element59, picker } = datepicker;
-  if (!picker.active && !isActiveElement(element59)) {
+  const { element: element60, picker } = datepicker;
+  if (!picker.active && !isActiveElement(element60)) {
     return;
   }
   const pickerElem = picker.element;
-  if (findElementInEventPath(ev, (el) => el === element59 || el === pickerElem)) {
+  if (findElementInEventPath(ev, (el) => el === element60 || el === pickerElem)) {
     return;
   }
   unfocus(datepicker);
@@ -10480,9 +10480,9 @@ var Datepicker = class {
    * date picker belongs to. Use this only when creating date picker as a part
    * of date range picker
    */
-  constructor(element59, options = {}, rangepicker = void 0) {
-    element59.datepicker = this;
-    this.element = element59;
+  constructor(element60, options = {}, rangepicker = void 0) {
+    element60.datepicker = this;
+    this.element = element60;
     this.dates = [];
     const config = this.config = Object.assign({
       buttonClass: options.buttonClass && String(options.buttonClass) || "button",
@@ -10492,14 +10492,14 @@ var Datepicker = class {
       minDate: void 0
     }, processOptions(defaultOptions_default, this));
     let inputField;
-    if (element59.tagName === "INPUT") {
-      inputField = this.inputField = element59;
+    if (element60.tagName === "INPUT") {
+      inputField = this.inputField = element60;
       inputField.classList.add("datepicker-input");
       if (options.container) {
         config.container = options.container instanceof HTMLElement ? options.container : document.querySelector(options.container);
       }
     } else {
-      config.container = element59;
+      config.container = element60;
     }
     if (rangepicker) {
       const index = rangepicker.inputs.indexOf(inputField);
@@ -10515,10 +10515,10 @@ var Datepicker = class {
     Object.assign(config, processOptions(options, this));
     config.shortcutKeys = createShortcutKeyConfig(options.shortcutKeys || {});
     const initialDates = stringToArray(
-      element59.value || element59.dataset.date,
+      element60.value || element60.dataset.date,
       config.dateDelimiter
     );
-    delete element59.dataset.date;
+    delete element60.dataset.date;
     const inputDateValues = processInputDates(this, initialDates);
     if (inputDateValues && inputDateValues.length > 0) {
       this.dates = inputDateValues;
@@ -10527,7 +10527,7 @@ var Datepicker = class {
       inputField.value = stringifyDates(this.dates, config);
     }
     const picker = this.picker = new Picker(this);
-    const keydownListener = [element59, "keydown", onKeydown.bind(null, this)];
+    const keydownListener = [element60, "keydown", onKeydown.bind(null, this)];
     if (inputField) {
       registerListeners(this, [
         keydownListener,
@@ -10663,9 +10663,9 @@ var Datepicker = class {
     this.hide();
     unregisterListeners(this);
     this.picker.detach();
-    const element59 = this.element;
-    element59.classList.remove("datepicker-input");
-    delete element59.datepicker;
+    const element60 = this.element;
+    element60.classList.remove("datepicker-input");
+    delete element60.datepicker;
     return this;
   }
   /**
@@ -13063,7 +13063,6 @@ function init13(delay = 500, eventName = "longpress") {
 }
 
 // src/menu/Menu.svelte
-var { console: console_12 } = import_internal13.globals;
 var file12 = "src/menu/Menu.svelte";
 function create_fragment13(ctx) {
   let ul;
@@ -13348,7 +13347,6 @@ function instance13($$self, $$props, $$invalidate) {
       dispatch("open");
       addEventListeners();
       requestAnimationFrame(resolve);
-      console.log(menuEl);
       if (menuEl)
         menuEl.focus();
     }));
@@ -13398,7 +13396,7 @@ function instance13($$self, $$props, $$invalidate) {
   const writable_props = ["type", "targetSelector", "closeOnClick", "elevate", "class"];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_12.warn(`<Menu> was created with unknown prop '${key}'`);
+      console.warn(`<Menu> was created with unknown prop '${key}'`);
   });
   function ul_binding($$value) {
     import_internal13.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -15509,7 +15507,7 @@ function instance19($$self, $$props, $$invalidate) {
   let mousedownTargetBox;
   let isDragging = false, bodyCursor;
   (0, import_svelte12.onMount)(() => {
-    requestAnimationFrame(init61);
+    requestAnimationFrame(init62);
   });
   function toggle() {
     setSize(Box.collapsed ? "max" : "min", true);
@@ -15534,7 +15532,7 @@ function instance19($$self, $$props, $$invalidate) {
       box[prop] = to;
     updateSize(box, withAnimation);
   }
-  function init61() {
+  function init62() {
     targetEl = el.previousElementSibling;
     parentEl = el.parentElement;
     $$invalidate(1, isVertical = getFlexFlow(parentEl) === "column");
@@ -15682,7 +15680,7 @@ function instance19($$self, $$props, $$invalidate) {
     collapse,
     expand,
     setSize,
-    init: init61,
+    init: init62,
     updateSize,
     mousedown,
     mousemove,
@@ -19764,6 +19762,978 @@ var Start = class extends import_internal29.SvelteComponentDev {
 };
 var start_default = Start;
 
+// docs-src/pages/changelog.svelte
+var import_internal30 = __toESM(require_internal());
+var file28 = "docs-src/pages/changelog.svelte";
+function create_fragment30(ctx) {
+  let h1;
+  let t1;
+  let h20;
+  let t2;
+  let small0;
+  let t4;
+  let ul0;
+  let li0;
+  let li1;
+  let t6;
+  let em0;
+  let t8;
+  let li2;
+  let li3;
+  let t11;
+  let h21;
+  let t12;
+  let small1;
+  let t14;
+  let ul1;
+  let li4;
+  let t16;
+  let h22;
+  let t17;
+  let small2;
+  let t19;
+  let ul2;
+  let li5;
+  let t21;
+  let h23;
+  let t22;
+  let small3;
+  let t24;
+  let ul3;
+  let li6;
+  let t25;
+  let em1;
+  let t27;
+  let t28;
+  let h24;
+  let t29;
+  let small4;
+  let t31;
+  let ul4;
+  let li7;
+  let t32;
+  let em2;
+  let t34;
+  let t35;
+  let h25;
+  let t36;
+  let small5;
+  let t38;
+  let ul5;
+  let li8;
+  let li9;
+  let t41;
+  let h26;
+  let t42;
+  let small6;
+  let t44;
+  let ul6;
+  let li10;
+  let t46;
+  let h27;
+  let t47;
+  let small7;
+  let t49;
+  let ul7;
+  let li11;
+  let li12;
+  let t52;
+  let h28;
+  let t53;
+  let small8;
+  let t55;
+  let ul8;
+  let li13;
+  let t56;
+  let em3;
+  let t58;
+  let t59;
+  let h29;
+  let t60;
+  let small9;
+  let t62;
+  let ul9;
+  let li14;
+  let t63;
+  let em4;
+  let t65;
+  let em5;
+  let t67;
+  let em6;
+  let t69;
+  let li15;
+  let t70;
+  let em7;
+  let t72;
+  let li16;
+  let li17;
+  let li18;
+  let t75;
+  let em8;
+  let t77;
+  let em9;
+  let t79;
+  let t80;
+  let h210;
+  let t81;
+  let small10;
+  let t83;
+  let ul10;
+  let li19;
+  let t84;
+  let em10;
+  let t86;
+  let em11;
+  let t88;
+  let em12;
+  let t90;
+  let em13;
+  let t92;
+  let li20;
+  let t94;
+  let h211;
+  let t95;
+  let small11;
+  let t97;
+  let ul11;
+  let li21;
+  let t98;
+  let em14;
+  let t100;
+  let em15;
+  let t102;
+  let t103;
+  let h212;
+  let t104;
+  let small12;
+  let t106;
+  let ul12;
+  let li22;
+  let t107;
+  let em16;
+  let t109;
+  let li23;
+  let t110;
+  let em17;
+  let t112;
+  let t113;
+  let h213;
+  let t114;
+  let small13;
+  let t116;
+  let ul13;
+  let li24;
+  let t117;
+  let em18;
+  let t119;
+  let em19;
+  let t121;
+  let li25;
+  let li26;
+  let t124;
+  let h214;
+  let t125;
+  let small14;
+  let t127;
+  let ul14;
+  let li27;
+  let t129;
+  let h215;
+  let t130;
+  let small15;
+  let t132;
+  let ul15;
+  let li28;
+  let t133;
+  let em20;
+  let t135;
+  let em21;
+  let t137;
+  let li29;
+  let t138;
+  let em22;
+  let t140;
+  let t141;
+  let h216;
+  let t142;
+  let small16;
+  let t144;
+  let ul16;
+  let li30;
+  let t145;
+  let em23;
+  let t147;
+  let em24;
+  let t149;
+  let t150;
+  let h217;
+  let t151;
+  let small17;
+  const block = {
+    c: function create() {
+      h1 = (0, import_internal30.element)("h1");
+      h1.textContent = "Changelog";
+      t1 = (0, import_internal30.space)();
+      h20 = (0, import_internal30.element)("h2");
+      t2 = (0, import_internal30.text)("v5.1.0 ");
+      small0 = (0, import_internal30.element)("small");
+      small0.textContent = "(2023-03-12)";
+      t4 = (0, import_internal30.space)();
+      ul0 = (0, import_internal30.element)("ul");
+      li0 = (0, import_internal30.element)("li");
+      li0.textContent = "Better Menu highlighting (doesn't highlight first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS\n	";
+      li1 = (0, import_internal30.element)("li");
+      t6 = (0, import_internal30.text)("Mobile friendlier buttons (touchstart invokes ");
+      em0 = (0, import_internal30.element)("em");
+      em0.textContent = ":active";
+      t8 = (0, import_internal30.text)(" styling)\n	");
+      li2 = (0, import_internal30.element)("li");
+      li2.textContent = "unit tests for some components\n	";
+      li3 = (0, import_internal30.element)("li");
+      li3.textContent = "changelog page in docs";
+      t11 = (0, import_internal30.space)();
+      h21 = (0, import_internal30.element)("h2");
+      t12 = (0, import_internal30.text)("v5.0.8 ");
+      small1 = (0, import_internal30.element)("small");
+      small1.textContent = "(2023-03-03)";
+      t14 = (0, import_internal30.space)();
+      ul1 = (0, import_internal30.element)("ul");
+      li4 = (0, import_internal30.element)("li");
+      li4.textContent = "Tooltip offset parameter";
+      t16 = (0, import_internal30.space)();
+      h22 = (0, import_internal30.element)("h2");
+      t17 = (0, import_internal30.text)("v5.0.7 ");
+      small2 = (0, import_internal30.element)("small");
+      small2.textContent = "(2023-03-03)";
+      t19 = (0, import_internal30.space)();
+      ul2 = (0, import_internal30.element)("ul");
+      li5 = (0, import_internal30.element)("li");
+      li5.textContent = "PushButton fix (pushed class was not applied)";
+      t21 = (0, import_internal30.space)();
+      h23 = (0, import_internal30.element)("h2");
+      t22 = (0, import_internal30.text)("v5.0.6 ");
+      small3 = (0, import_internal30.element)("small");
+      small3.textContent = "(2023-03-02)";
+      t24 = (0, import_internal30.space)();
+      ul3 = (0, import_internal30.element)("ul");
+      li6 = (0, import_internal30.element)("li");
+      t25 = (0, import_internal30.text)("Add back ");
+      em1 = (0, import_internal30.element)("em");
+      em1.textContent = "form";
+      t27 = (0, import_internal30.text)(" property to a button");
+      t28 = (0, import_internal30.space)();
+      h24 = (0, import_internal30.element)("h2");
+      t29 = (0, import_internal30.text)("v5.0.5 ");
+      small4 = (0, import_internal30.element)("small");
+      small4.textContent = "(2023-03-02)";
+      t31 = (0, import_internal30.space)();
+      ul4 = (0, import_internal30.element)("ul");
+      li7 = (0, import_internal30.element)("li");
+      t32 = (0, import_internal30.text)("Reduce memory footprint (removed some of the ");
+      em2 = (0, import_internal30.element)("em");
+      em2.textContent = "transform";
+      t34 = (0, import_internal30.text)(" props that were no longer necessary)");
+      t35 = (0, import_internal30.space)();
+      h25 = (0, import_internal30.element)("h2");
+      t36 = (0, import_internal30.text)("v5.0.4 ");
+      small5 = (0, import_internal30.element)("small");
+      small5.textContent = "(2023-03-02)";
+      t38 = (0, import_internal30.space)();
+      ul5 = (0, import_internal30.element)("ul");
+      li8 = (0, import_internal30.element)("li");
+      li8.textContent = "esbuild replaced rollup for speed and simplicity\n	";
+      li9 = (0, import_internal30.element)("li");
+      li9.textContent = "cleanup & refactoring";
+      t41 = (0, import_internal30.space)();
+      h26 = (0, import_internal30.element)("h2");
+      t42 = (0, import_internal30.text)("v5.0.3 ");
+      small6 = (0, import_internal30.element)("small");
+      small6.textContent = "(2023-03-01)";
+      t44 = (0, import_internal30.space)();
+      ul6 = (0, import_internal30.element)("ul");
+      li10 = (0, import_internal30.element)("li");
+      li10.textContent = "Tooltip hiding fix (wasn't hiding when hovering target)";
+      t46 = (0, import_internal30.space)();
+      h27 = (0, import_internal30.element)("h2");
+      t47 = (0, import_internal30.text)("v5.0.2 ");
+      small7 = (0, import_internal30.element)("small");
+      small7.textContent = "(2023-03-01)";
+      t49 = (0, import_internal30.space)();
+      ul7 = (0, import_internal30.element)("ul");
+      li11 = (0, import_internal30.element)("li");
+      li11.textContent = "Toaster import fix\n	";
+      li12 = (0, import_internal30.element)("li");
+      li12.textContent = "Tooltip fix (some console errors were popping up)";
+      t52 = (0, import_internal30.space)();
+      h28 = (0, import_internal30.element)("h2");
+      t53 = (0, import_internal30.text)("v5.0.1 ");
+      small8 = (0, import_internal30.element)("small");
+      small8.textContent = "(2023-02-28)";
+      t55 = (0, import_internal30.space)();
+      ul8 = (0, import_internal30.element)("ul");
+      li13 = (0, import_internal30.element)("li");
+      t56 = (0, import_internal30.text)("Bring back ");
+      em3 = (0, import_internal30.element)("em");
+      em3.textContent = "button-outline.css";
+      t58 = (0, import_internal30.text)(" (it was accidentally deleted in v5.0.0)");
+      t59 = (0, import_internal30.space)();
+      h29 = (0, import_internal30.element)("h2");
+      t60 = (0, import_internal30.text)("v5.0.0 ");
+      small9 = (0, import_internal30.element)("small");
+      small9.textContent = "(2023-02-28)";
+      t62 = (0, import_internal30.space)();
+      ul9 = (0, import_internal30.element)("ul");
+      li14 = (0, import_internal30.element)("li");
+      t63 = (0, import_internal30.text)("Breaking change: renamed props for all components: ");
+      em4 = (0, import_internal30.element)("em");
+      em4.textContent = "className";
+      t65 = (0, import_internal30.text)(" -> ");
+      em5 = (0, import_internal30.element)("em");
+      em5.textContent = "class";
+      t67 = (0, import_internal30.text)(" (as it turns out it is possible to use ");
+      em6 = (0, import_internal30.element)("em");
+      em6.textContent = "class";
+      t69 = (0, import_internal30.text)(" as a prop name in svelte)\n	");
+      li15 = (0, import_internal30.element)("li");
+      t70 = (0, import_internal30.text)("Almost all components now have a ");
+      em7 = (0, import_internal30.element)("em");
+      em7.textContent = "class";
+      t72 = (0, import_internal30.text)(" prop, which can be used to add custom classes to the component\n	");
+      li16 = (0, import_internal30.element)("li");
+      li16.textContent = "Updated docs to reflect the above changes\n	";
+      li17 = (0, import_internal30.element)("li");
+      li17.textContent = "Docs API table is now alphabetically sorted\n	";
+      li18 = (0, import_internal30.element)("li");
+      t75 = (0, import_internal30.text)("Components don't use ");
+      em8 = (0, import_internal30.element)("em");
+      em8.textContent = "$$props";
+      t77 = (0, import_internal30.text)(" anymore, as it was causing issues with the ");
+      em9 = (0, import_internal30.element)("em");
+      em9.textContent = "class";
+      t79 = (0, import_internal30.text)(" prop. Instead, the props are now explicitly passed down to the component. This is a good thing to do, as it makes the components more explicit and easier to understand.");
+      t80 = (0, import_internal30.space)();
+      h210 = (0, import_internal30.element)("h2");
+      t81 = (0, import_internal30.text)("v4.0.0 ");
+      small10 = (0, import_internal30.element)("small");
+      small10.textContent = "(2023-02-28)";
+      t83 = (0, import_internal30.space)();
+      ul10 = (0, import_internal30.element)("ul");
+      li19 = (0, import_internal30.element)("li");
+      t84 = (0, import_internal30.text)("Breaking change: renamed components: ");
+      em10 = (0, import_internal30.element)("em");
+      em10.textContent = "Item";
+      t86 = (0, import_internal30.text)(" -> ");
+      em11 = (0, import_internal30.element)("em");
+      em11.textContent = "MenuItem";
+      t88 = (0, import_internal30.text)(", ");
+      em12 = (0, import_internal30.element)("em");
+      em12.textContent = "Separator";
+      t90 = (0, import_internal30.text)(" -> ");
+      em13 = (0, import_internal30.element)("em");
+      em13.textContent = "MenuSeparator";
+      t92 = (0, import_internal30.space)();
+      li20 = (0, import_internal30.element)("li");
+      li20.textContent = "Refactored the folder structure";
+      t94 = (0, import_internal30.space)();
+      h211 = (0, import_internal30.element)("h2");
+      t95 = (0, import_internal30.text)("v3.1.2 ");
+      small11 = (0, import_internal30.element)("small");
+      small11.textContent = "(2023-01-04)";
+      t97 = (0, import_internal30.space)();
+      ul11 = (0, import_internal30.element)("ul");
+      li21 = (0, import_internal30.element)("li");
+      t98 = (0, import_internal30.text)("Toggle's ");
+      em14 = (0, import_internal30.element)("em");
+      em14.textContent = "innerWidth";
+      t100 = (0, import_internal30.text)(" function was somehow overwriting ");
+      em15 = (0, import_internal30.element)("em");
+      em15.textContent = "window.innerWidth";
+      t102 = (0, import_internal30.text)(" property (maybe a compiler issue?)");
+      t103 = (0, import_internal30.space)();
+      h212 = (0, import_internal30.element)("h2");
+      t104 = (0, import_internal30.text)("v3.1.1 ");
+      small12 = (0, import_internal30.element)("small");
+      small12.textContent = "(2023-01-04)";
+      t106 = (0, import_internal30.space)();
+      ul12 = (0, import_internal30.element)("ul");
+      li22 = (0, import_internal30.element)("li");
+      t107 = (0, import_internal30.text)("Fix ");
+      em16 = (0, import_internal30.element)("em");
+      em16.textContent = "input-number";
+      t109 = (0, import_internal30.text)(" (could not enter decimals)\n	");
+      li23 = (0, import_internal30.element)("li");
+      t110 = (0, import_internal30.text)("Fix ");
+      em17 = (0, import_internal30.element)("em");
+      em17.textContent = "input-math";
+      t112 = (0, import_internal30.text)(" (math didn't work)");
+      t113 = (0, import_internal30.space)();
+      h213 = (0, import_internal30.element)("h2");
+      t114 = (0, import_internal30.text)("v3.1.0 ");
+      small13 = (0, import_internal30.element)("small");
+      small13.textContent = "(2023-01-03)";
+      t116 = (0, import_internal30.space)();
+      ul13 = (0, import_internal30.element)("ul");
+      li24 = (0, import_internal30.element)("li");
+      t117 = (0, import_internal30.text)("UX change: autocomplete will not close on scroll or resize events from now on (it can be changed using new properties ");
+      em18 = (0, import_internal30.element)("em");
+      em18.textContent = "hideOnScroll";
+      t119 = (0, import_internal30.text)(" and ");
+      em19 = (0, import_internal30.element)("em");
+      em19.textContent = "hideOnResize";
+      t121 = (0, import_internal30.text)(").\n	");
+      li25 = (0, import_internal30.element)("li");
+      li25.textContent = "fixed: autocomplete issue, where clicking on a filtered list would not select.\n	";
+      li26 = (0, import_internal30.element)("li");
+      li26.textContent = 'tweak: autocomplete will now show "create new item" always (when enabled), not only when the query did not match anything. Except when the query matches an item exactly.';
+      t124 = (0, import_internal30.space)();
+      h214 = (0, import_internal30.element)("h2");
+      t125 = (0, import_internal30.text)("v3.0.1 ");
+      small14 = (0, import_internal30.element)("small");
+      small14.textContent = "(2022-12-30)";
+      t127 = (0, import_internal30.space)();
+      ul14 = (0, import_internal30.element)("ul");
+      li27 = (0, import_internal30.element)("li");
+      li27.textContent = "autocomplete should revert when entered value is not on the list";
+      t129 = (0, import_internal30.space)();
+      h215 = (0, import_internal30.element)("h2");
+      t130 = (0, import_internal30.text)("v3.0.0 ");
+      small15 = (0, import_internal30.element)("small");
+      small15.textContent = "(2022-12-28)";
+      t132 = (0, import_internal30.space)();
+      ul15 = (0, import_internal30.element)("ul");
+      li28 = (0, import_internal30.element)("li");
+      t133 = (0, import_internal30.text)("breaking change: ");
+      em20 = (0, import_internal30.element)("em");
+      em20.textContent = "cssClass";
+      t135 = (0, import_internal30.text)(" property available on some components has been renamed to ");
+      em21 = (0, import_internal30.element)("em");
+      em21.textContent = "className";
+      t137 = (0, import_internal30.text)(" (to be more aligned with the standard workaround in other libs/frameworks).\n	");
+      li29 = (0, import_internal30.element)("li");
+      t138 = (0, import_internal30.text)("some components (where possible) are now using ");
+      em22 = (0, import_internal30.element)("em");
+      em22.textContent = "$$props";
+      t140 = (0, import_internal30.text)(" to pass-through the properties of the instance down to the component.");
+      t141 = (0, import_internal30.space)();
+      h216 = (0, import_internal30.element)("h2");
+      t142 = (0, import_internal30.text)("v2.1.1 ");
+      small16 = (0, import_internal30.element)("small");
+      small16.textContent = "(2022-12-24)";
+      t144 = (0, import_internal30.space)();
+      ul16 = (0, import_internal30.element)("ul");
+      li30 = (0, import_internal30.element)("li");
+      t145 = (0, import_internal30.text)("breaking change: ");
+      em23 = (0, import_internal30.element)("em");
+      em23.textContent = "dist";
+      t147 = (0, import_internal30.text)(" folder has been renamed to ");
+      em24 = (0, import_internal30.element)("em");
+      em24.textContent = "docs";
+      t149 = (0, import_internal30.text)(", as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).");
+      t150 = (0, import_internal30.space)();
+      h217 = (0, import_internal30.element)("h2");
+      t151 = (0, import_internal30.text)("v1.7.12 ");
+      small17 = (0, import_internal30.element)("small");
+      small17.textContent = "(2022-12-01)";
+      (0, import_internal30.add_location)(h1, file28, 0, 0, 0);
+      (0, import_internal30.add_location)(small0, file28, 3, 11, 32);
+      (0, import_internal30.add_location)(h20, file28, 3, 0, 21);
+      (0, import_internal30.add_location)(li0, file28, 5, 1, 71);
+      (0, import_internal30.add_location)(em0, file28, 6, 51, 269);
+      (0, import_internal30.add_location)(li1, file28, 6, 1, 219);
+      (0, import_internal30.add_location)(li2, file28, 7, 1, 296);
+      (0, import_internal30.add_location)(li3, file28, 8, 1, 332);
+      (0, import_internal30.add_location)(ul0, file28, 4, 0, 65);
+      (0, import_internal30.add_location)(small1, file28, 11, 11, 377);
+      (0, import_internal30.add_location)(h21, file28, 11, 0, 366);
+      (0, import_internal30.add_location)(li4, file28, 13, 1, 416);
+      (0, import_internal30.add_location)(ul1, file28, 12, 0, 410);
+      (0, import_internal30.add_location)(small2, file28, 16, 11, 463);
+      (0, import_internal30.add_location)(h22, file28, 16, 0, 452);
+      (0, import_internal30.add_location)(li5, file28, 18, 1, 502);
+      (0, import_internal30.add_location)(ul2, file28, 17, 0, 496);
+      (0, import_internal30.add_location)(small3, file28, 21, 11, 570);
+      (0, import_internal30.add_location)(h23, file28, 21, 0, 559);
+      (0, import_internal30.add_location)(em1, file28, 23, 14, 622);
+      (0, import_internal30.add_location)(li6, file28, 23, 1, 609);
+      (0, import_internal30.add_location)(ul3, file28, 22, 0, 603);
+      (0, import_internal30.add_location)(small4, file28, 26, 11, 675);
+      (0, import_internal30.add_location)(h24, file28, 26, 0, 664);
+      (0, import_internal30.add_location)(em2, file28, 28, 50, 763);
+      (0, import_internal30.add_location)(li7, file28, 28, 1, 714);
+      (0, import_internal30.add_location)(ul4, file28, 27, 0, 708);
+      (0, import_internal30.add_location)(small5, file28, 31, 11, 837);
+      (0, import_internal30.add_location)(h25, file28, 31, 0, 826);
+      (0, import_internal30.add_location)(li8, file28, 33, 1, 876);
+      (0, import_internal30.add_location)(li9, file28, 34, 1, 930);
+      (0, import_internal30.add_location)(ul5, file28, 32, 0, 870);
+      (0, import_internal30.add_location)(small6, file28, 37, 11, 974);
+      (0, import_internal30.add_location)(h26, file28, 37, 0, 963);
+      (0, import_internal30.add_location)(li10, file28, 39, 1, 1013);
+      (0, import_internal30.add_location)(ul6, file28, 38, 0, 1007);
+      (0, import_internal30.add_location)(small7, file28, 42, 11, 1091);
+      (0, import_internal30.add_location)(h27, file28, 42, 0, 1080);
+      (0, import_internal30.add_location)(li11, file28, 44, 1, 1130);
+      (0, import_internal30.add_location)(li12, file28, 45, 1, 1154);
+      (0, import_internal30.add_location)(ul7, file28, 43, 0, 1124);
+      (0, import_internal30.add_location)(small8, file28, 48, 11, 1226);
+      (0, import_internal30.add_location)(h28, file28, 48, 0, 1215);
+      (0, import_internal30.add_location)(em3, file28, 50, 16, 1280);
+      (0, import_internal30.add_location)(li13, file28, 50, 1, 1265);
+      (0, import_internal30.add_location)(ul8, file28, 49, 0, 1259);
+      (0, import_internal30.add_location)(small9, file28, 54, 11, 1367);
+      (0, import_internal30.add_location)(h29, file28, 54, 0, 1356);
+      (0, import_internal30.add_location)(em4, file28, 56, 56, 1461);
+      (0, import_internal30.add_location)(em5, file28, 56, 78, 1483);
+      (0, import_internal30.add_location)(em6, file28, 56, 132, 1537);
+      (0, import_internal30.add_location)(li14, file28, 56, 1, 1406);
+      (0, import_internal30.add_location)(em7, file28, 57, 38, 1616);
+      (0, import_internal30.add_location)(li15, file28, 57, 1, 1579);
+      (0, import_internal30.add_location)(li16, file28, 58, 1, 1695);
+      (0, import_internal30.add_location)(li17, file28, 59, 1, 1742);
+      (0, import_internal30.add_location)(em8, file28, 60, 26, 1816);
+      (0, import_internal30.add_location)(em9, file28, 60, 86, 1876);
+      (0, import_internal30.add_location)(li18, file28, 60, 1, 1791);
+      (0, import_internal30.add_location)(ul9, file28, 55, 0, 1400);
+      (0, import_internal30.add_location)(small10, file28, 64, 11, 2079);
+      (0, import_internal30.add_location)(h210, file28, 64, 0, 2068);
+      (0, import_internal30.add_location)(em10, file28, 66, 42, 2159);
+      (0, import_internal30.add_location)(em11, file28, 66, 59, 2176);
+      (0, import_internal30.add_location)(em12, file28, 66, 78, 2195);
+      (0, import_internal30.add_location)(em13, file28, 66, 100, 2217);
+      (0, import_internal30.add_location)(li19, file28, 66, 1, 2118);
+      (0, import_internal30.add_location)(li20, file28, 67, 1, 2241);
+      (0, import_internal30.add_location)(ul10, file28, 65, 0, 2112);
+      (0, import_internal30.add_location)(small11, file28, 71, 11, 2296);
+      (0, import_internal30.add_location)(h211, file28, 71, 0, 2285);
+      (0, import_internal30.add_location)(em14, file28, 73, 14, 2348);
+      (0, import_internal30.add_location)(em15, file28, 73, 67, 2401);
+      (0, import_internal30.add_location)(li21, file28, 73, 1, 2335);
+      (0, import_internal30.add_location)(ul11, file28, 72, 0, 2329);
+      (0, import_internal30.add_location)(small12, file28, 77, 11, 2482);
+      (0, import_internal30.add_location)(h212, file28, 77, 0, 2471);
+      (0, import_internal30.add_location)(em16, file28, 79, 9, 2529);
+      (0, import_internal30.add_location)(li22, file28, 79, 1, 2521);
+      (0, import_internal30.add_location)(em17, file28, 80, 9, 2587);
+      (0, import_internal30.add_location)(li23, file28, 80, 1, 2579);
+      (0, import_internal30.add_location)(ul12, file28, 78, 0, 2515);
+      (0, import_internal30.add_location)(small13, file28, 84, 11, 2645);
+      (0, import_internal30.add_location)(h213, file28, 84, 0, 2634);
+      (0, import_internal30.add_location)(em18, file28, 86, 123, 2806);
+      (0, import_internal30.add_location)(em19, file28, 86, 149, 2832);
+      (0, import_internal30.add_location)(li24, file28, 86, 1, 2684);
+      (0, import_internal30.add_location)(li25, file28, 87, 1, 2857);
+      (0, import_internal30.add_location)(li26, file28, 88, 1, 2941);
+      (0, import_internal30.add_location)(ul13, file28, 85, 0, 2678);
+      (0, import_internal30.add_location)(small14, file28, 92, 11, 3134);
+      (0, import_internal30.add_location)(h214, file28, 92, 0, 3123);
+      (0, import_internal30.add_location)(li27, file28, 94, 1, 3173);
+      (0, import_internal30.add_location)(ul14, file28, 93, 0, 3167);
+      (0, import_internal30.add_location)(small15, file28, 97, 11, 3260);
+      (0, import_internal30.add_location)(h215, file28, 97, 0, 3249);
+      (0, import_internal30.add_location)(em20, file28, 99, 22, 3320);
+      (0, import_internal30.add_location)(em21, file28, 99, 98, 3396);
+      (0, import_internal30.add_location)(li28, file28, 99, 1, 3299);
+      (0, import_internal30.add_location)(em22, file28, 100, 52, 3543);
+      (0, import_internal30.add_location)(li29, file28, 100, 1, 3492);
+      (0, import_internal30.add_location)(ul15, file28, 98, 0, 3293);
+      (0, import_internal30.add_location)(small16, file28, 103, 11, 3648);
+      (0, import_internal30.add_location)(h216, file28, 103, 0, 3637);
+      (0, import_internal30.add_location)(em23, file28, 105, 22, 3708);
+      (0, import_internal30.add_location)(em24, file28, 105, 63, 3749);
+      (0, import_internal30.add_location)(li30, file28, 105, 1, 3687);
+      (0, import_internal30.add_location)(ul16, file28, 104, 0, 3681);
+      (0, import_internal30.add_location)(small17, file28, 108, 12, 3939);
+      (0, import_internal30.add_location)(h217, file28, 108, 0, 3927);
+    },
+    l: function claim(nodes) {
+      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal30.insert_dev)(target, h1, anchor);
+      (0, import_internal30.insert_dev)(target, t1, anchor);
+      (0, import_internal30.insert_dev)(target, h20, anchor);
+      (0, import_internal30.append_dev)(h20, t2);
+      (0, import_internal30.append_dev)(h20, small0);
+      (0, import_internal30.insert_dev)(target, t4, anchor);
+      (0, import_internal30.insert_dev)(target, ul0, anchor);
+      (0, import_internal30.append_dev)(ul0, li0);
+      (0, import_internal30.append_dev)(ul0, li1);
+      (0, import_internal30.append_dev)(li1, t6);
+      (0, import_internal30.append_dev)(li1, em0);
+      (0, import_internal30.append_dev)(li1, t8);
+      (0, import_internal30.append_dev)(ul0, li2);
+      (0, import_internal30.append_dev)(ul0, li3);
+      (0, import_internal30.insert_dev)(target, t11, anchor);
+      (0, import_internal30.insert_dev)(target, h21, anchor);
+      (0, import_internal30.append_dev)(h21, t12);
+      (0, import_internal30.append_dev)(h21, small1);
+      (0, import_internal30.insert_dev)(target, t14, anchor);
+      (0, import_internal30.insert_dev)(target, ul1, anchor);
+      (0, import_internal30.append_dev)(ul1, li4);
+      (0, import_internal30.insert_dev)(target, t16, anchor);
+      (0, import_internal30.insert_dev)(target, h22, anchor);
+      (0, import_internal30.append_dev)(h22, t17);
+      (0, import_internal30.append_dev)(h22, small2);
+      (0, import_internal30.insert_dev)(target, t19, anchor);
+      (0, import_internal30.insert_dev)(target, ul2, anchor);
+      (0, import_internal30.append_dev)(ul2, li5);
+      (0, import_internal30.insert_dev)(target, t21, anchor);
+      (0, import_internal30.insert_dev)(target, h23, anchor);
+      (0, import_internal30.append_dev)(h23, t22);
+      (0, import_internal30.append_dev)(h23, small3);
+      (0, import_internal30.insert_dev)(target, t24, anchor);
+      (0, import_internal30.insert_dev)(target, ul3, anchor);
+      (0, import_internal30.append_dev)(ul3, li6);
+      (0, import_internal30.append_dev)(li6, t25);
+      (0, import_internal30.append_dev)(li6, em1);
+      (0, import_internal30.append_dev)(li6, t27);
+      (0, import_internal30.insert_dev)(target, t28, anchor);
+      (0, import_internal30.insert_dev)(target, h24, anchor);
+      (0, import_internal30.append_dev)(h24, t29);
+      (0, import_internal30.append_dev)(h24, small4);
+      (0, import_internal30.insert_dev)(target, t31, anchor);
+      (0, import_internal30.insert_dev)(target, ul4, anchor);
+      (0, import_internal30.append_dev)(ul4, li7);
+      (0, import_internal30.append_dev)(li7, t32);
+      (0, import_internal30.append_dev)(li7, em2);
+      (0, import_internal30.append_dev)(li7, t34);
+      (0, import_internal30.insert_dev)(target, t35, anchor);
+      (0, import_internal30.insert_dev)(target, h25, anchor);
+      (0, import_internal30.append_dev)(h25, t36);
+      (0, import_internal30.append_dev)(h25, small5);
+      (0, import_internal30.insert_dev)(target, t38, anchor);
+      (0, import_internal30.insert_dev)(target, ul5, anchor);
+      (0, import_internal30.append_dev)(ul5, li8);
+      (0, import_internal30.append_dev)(ul5, li9);
+      (0, import_internal30.insert_dev)(target, t41, anchor);
+      (0, import_internal30.insert_dev)(target, h26, anchor);
+      (0, import_internal30.append_dev)(h26, t42);
+      (0, import_internal30.append_dev)(h26, small6);
+      (0, import_internal30.insert_dev)(target, t44, anchor);
+      (0, import_internal30.insert_dev)(target, ul6, anchor);
+      (0, import_internal30.append_dev)(ul6, li10);
+      (0, import_internal30.insert_dev)(target, t46, anchor);
+      (0, import_internal30.insert_dev)(target, h27, anchor);
+      (0, import_internal30.append_dev)(h27, t47);
+      (0, import_internal30.append_dev)(h27, small7);
+      (0, import_internal30.insert_dev)(target, t49, anchor);
+      (0, import_internal30.insert_dev)(target, ul7, anchor);
+      (0, import_internal30.append_dev)(ul7, li11);
+      (0, import_internal30.append_dev)(ul7, li12);
+      (0, import_internal30.insert_dev)(target, t52, anchor);
+      (0, import_internal30.insert_dev)(target, h28, anchor);
+      (0, import_internal30.append_dev)(h28, t53);
+      (0, import_internal30.append_dev)(h28, small8);
+      (0, import_internal30.insert_dev)(target, t55, anchor);
+      (0, import_internal30.insert_dev)(target, ul8, anchor);
+      (0, import_internal30.append_dev)(ul8, li13);
+      (0, import_internal30.append_dev)(li13, t56);
+      (0, import_internal30.append_dev)(li13, em3);
+      (0, import_internal30.append_dev)(li13, t58);
+      (0, import_internal30.insert_dev)(target, t59, anchor);
+      (0, import_internal30.insert_dev)(target, h29, anchor);
+      (0, import_internal30.append_dev)(h29, t60);
+      (0, import_internal30.append_dev)(h29, small9);
+      (0, import_internal30.insert_dev)(target, t62, anchor);
+      (0, import_internal30.insert_dev)(target, ul9, anchor);
+      (0, import_internal30.append_dev)(ul9, li14);
+      (0, import_internal30.append_dev)(li14, t63);
+      (0, import_internal30.append_dev)(li14, em4);
+      (0, import_internal30.append_dev)(li14, t65);
+      (0, import_internal30.append_dev)(li14, em5);
+      (0, import_internal30.append_dev)(li14, t67);
+      (0, import_internal30.append_dev)(li14, em6);
+      (0, import_internal30.append_dev)(li14, t69);
+      (0, import_internal30.append_dev)(ul9, li15);
+      (0, import_internal30.append_dev)(li15, t70);
+      (0, import_internal30.append_dev)(li15, em7);
+      (0, import_internal30.append_dev)(li15, t72);
+      (0, import_internal30.append_dev)(ul9, li16);
+      (0, import_internal30.append_dev)(ul9, li17);
+      (0, import_internal30.append_dev)(ul9, li18);
+      (0, import_internal30.append_dev)(li18, t75);
+      (0, import_internal30.append_dev)(li18, em8);
+      (0, import_internal30.append_dev)(li18, t77);
+      (0, import_internal30.append_dev)(li18, em9);
+      (0, import_internal30.append_dev)(li18, t79);
+      (0, import_internal30.insert_dev)(target, t80, anchor);
+      (0, import_internal30.insert_dev)(target, h210, anchor);
+      (0, import_internal30.append_dev)(h210, t81);
+      (0, import_internal30.append_dev)(h210, small10);
+      (0, import_internal30.insert_dev)(target, t83, anchor);
+      (0, import_internal30.insert_dev)(target, ul10, anchor);
+      (0, import_internal30.append_dev)(ul10, li19);
+      (0, import_internal30.append_dev)(li19, t84);
+      (0, import_internal30.append_dev)(li19, em10);
+      (0, import_internal30.append_dev)(li19, t86);
+      (0, import_internal30.append_dev)(li19, em11);
+      (0, import_internal30.append_dev)(li19, t88);
+      (0, import_internal30.append_dev)(li19, em12);
+      (0, import_internal30.append_dev)(li19, t90);
+      (0, import_internal30.append_dev)(li19, em13);
+      (0, import_internal30.append_dev)(li19, t92);
+      (0, import_internal30.append_dev)(ul10, li20);
+      (0, import_internal30.insert_dev)(target, t94, anchor);
+      (0, import_internal30.insert_dev)(target, h211, anchor);
+      (0, import_internal30.append_dev)(h211, t95);
+      (0, import_internal30.append_dev)(h211, small11);
+      (0, import_internal30.insert_dev)(target, t97, anchor);
+      (0, import_internal30.insert_dev)(target, ul11, anchor);
+      (0, import_internal30.append_dev)(ul11, li21);
+      (0, import_internal30.append_dev)(li21, t98);
+      (0, import_internal30.append_dev)(li21, em14);
+      (0, import_internal30.append_dev)(li21, t100);
+      (0, import_internal30.append_dev)(li21, em15);
+      (0, import_internal30.append_dev)(li21, t102);
+      (0, import_internal30.insert_dev)(target, t103, anchor);
+      (0, import_internal30.insert_dev)(target, h212, anchor);
+      (0, import_internal30.append_dev)(h212, t104);
+      (0, import_internal30.append_dev)(h212, small12);
+      (0, import_internal30.insert_dev)(target, t106, anchor);
+      (0, import_internal30.insert_dev)(target, ul12, anchor);
+      (0, import_internal30.append_dev)(ul12, li22);
+      (0, import_internal30.append_dev)(li22, t107);
+      (0, import_internal30.append_dev)(li22, em16);
+      (0, import_internal30.append_dev)(li22, t109);
+      (0, import_internal30.append_dev)(ul12, li23);
+      (0, import_internal30.append_dev)(li23, t110);
+      (0, import_internal30.append_dev)(li23, em17);
+      (0, import_internal30.append_dev)(li23, t112);
+      (0, import_internal30.insert_dev)(target, t113, anchor);
+      (0, import_internal30.insert_dev)(target, h213, anchor);
+      (0, import_internal30.append_dev)(h213, t114);
+      (0, import_internal30.append_dev)(h213, small13);
+      (0, import_internal30.insert_dev)(target, t116, anchor);
+      (0, import_internal30.insert_dev)(target, ul13, anchor);
+      (0, import_internal30.append_dev)(ul13, li24);
+      (0, import_internal30.append_dev)(li24, t117);
+      (0, import_internal30.append_dev)(li24, em18);
+      (0, import_internal30.append_dev)(li24, t119);
+      (0, import_internal30.append_dev)(li24, em19);
+      (0, import_internal30.append_dev)(li24, t121);
+      (0, import_internal30.append_dev)(ul13, li25);
+      (0, import_internal30.append_dev)(ul13, li26);
+      (0, import_internal30.insert_dev)(target, t124, anchor);
+      (0, import_internal30.insert_dev)(target, h214, anchor);
+      (0, import_internal30.append_dev)(h214, t125);
+      (0, import_internal30.append_dev)(h214, small14);
+      (0, import_internal30.insert_dev)(target, t127, anchor);
+      (0, import_internal30.insert_dev)(target, ul14, anchor);
+      (0, import_internal30.append_dev)(ul14, li27);
+      (0, import_internal30.insert_dev)(target, t129, anchor);
+      (0, import_internal30.insert_dev)(target, h215, anchor);
+      (0, import_internal30.append_dev)(h215, t130);
+      (0, import_internal30.append_dev)(h215, small15);
+      (0, import_internal30.insert_dev)(target, t132, anchor);
+      (0, import_internal30.insert_dev)(target, ul15, anchor);
+      (0, import_internal30.append_dev)(ul15, li28);
+      (0, import_internal30.append_dev)(li28, t133);
+      (0, import_internal30.append_dev)(li28, em20);
+      (0, import_internal30.append_dev)(li28, t135);
+      (0, import_internal30.append_dev)(li28, em21);
+      (0, import_internal30.append_dev)(li28, t137);
+      (0, import_internal30.append_dev)(ul15, li29);
+      (0, import_internal30.append_dev)(li29, t138);
+      (0, import_internal30.append_dev)(li29, em22);
+      (0, import_internal30.append_dev)(li29, t140);
+      (0, import_internal30.insert_dev)(target, t141, anchor);
+      (0, import_internal30.insert_dev)(target, h216, anchor);
+      (0, import_internal30.append_dev)(h216, t142);
+      (0, import_internal30.append_dev)(h216, small16);
+      (0, import_internal30.insert_dev)(target, t144, anchor);
+      (0, import_internal30.insert_dev)(target, ul16, anchor);
+      (0, import_internal30.append_dev)(ul16, li30);
+      (0, import_internal30.append_dev)(li30, t145);
+      (0, import_internal30.append_dev)(li30, em23);
+      (0, import_internal30.append_dev)(li30, t147);
+      (0, import_internal30.append_dev)(li30, em24);
+      (0, import_internal30.append_dev)(li30, t149);
+      (0, import_internal30.insert_dev)(target, t150, anchor);
+      (0, import_internal30.insert_dev)(target, h217, anchor);
+      (0, import_internal30.append_dev)(h217, t151);
+      (0, import_internal30.append_dev)(h217, small17);
+    },
+    p: import_internal30.noop,
+    i: import_internal30.noop,
+    o: import_internal30.noop,
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal30.detach_dev)(h1);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t1);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h20);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t4);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul0);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t11);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h21);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t14);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul1);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t16);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h22);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t19);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul2);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t21);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h23);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t24);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul3);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t28);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h24);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t31);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul4);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t35);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h25);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t38);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul5);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t41);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h26);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t44);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul6);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t46);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h27);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t49);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul7);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t52);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h28);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t55);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul8);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t59);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h29);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t62);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul9);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t80);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h210);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t83);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul10);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t94);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h211);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t97);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul11);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t103);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h212);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t106);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul12);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t113);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h213);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t116);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul13);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t124);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h214);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t127);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul14);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t129);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h215);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t132);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul15);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t141);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h216);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t144);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul16);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t150);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h217);
+    }
+  };
+  (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_fragment30.name,
+    type: "component",
+    source: "",
+    ctx
+  });
+  return block;
+}
+function instance30($$self, $$props) {
+  let { $$slots: slots = {}, $$scope } = $$props;
+  (0, import_internal30.validate_slots)("Changelog", slots, []);
+  const writable_props = [];
+  Object.keys($$props).forEach((key) => {
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
+      console.warn(`<Changelog> was created with unknown prop '${key}'`);
+  });
+  return [];
+}
+var Changelog = class extends import_internal30.SvelteComponentDev {
+  constructor(options) {
+    super(options);
+    (0, import_internal30.init)(this, options, instance30, create_fragment30, import_internal30.safe_not_equal, {});
+    (0, import_internal30.dispatch_dev)("SvelteRegisterComponent", {
+      component: this,
+      tagName: "Changelog",
+      options,
+      id: create_fragment30.name
+    });
+  }
+};
+var changelog_default = Changelog;
+
 // docs-src/components/index.js
 var components_exports = {};
 __export(components_exports, {
@@ -19795,11 +20765,11 @@ __export(components_exports, {
 });
 
 // docs-src/components/autocomplete/Autocomplete.svelte
-var import_internal33 = __toESM(require_internal());
+var import_internal34 = __toESM(require_internal());
 
 // docs-src/api-table/ApiTable.svelte
-var import_internal30 = __toESM(require_internal());
-var file28 = "docs-src/api-table/ApiTable.svelte";
+var import_internal31 = __toESM(require_internal());
+var file29 = "docs-src/api-table/ApiTable.svelte";
 function get_each_context7(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[3] = list[i];
@@ -19809,11 +20779,11 @@ function create_if_block11(ctx) {
   let p;
   const block = {
     c: function create() {
-      p = (0, import_internal30.element)("p");
-      (0, import_internal30.add_location)(p, file28, 2, 1, 36);
+      p = (0, import_internal31.element)("p");
+      (0, import_internal31.add_location)(p, file29, 2, 1, 36);
     },
     m: function mount(target, anchor) {
-      (0, import_internal30.insert_dev)(target, p, anchor);
+      (0, import_internal31.insert_dev)(target, p, anchor);
       p.innerHTML = /*description*/
       ctx[1];
     },
@@ -19826,10 +20796,10 @@ function create_if_block11(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal30.detach_dev)(p);
+        (0, import_internal31.detach_dev)(p);
     }
   };
-  (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_if_block11.name,
     type: "if",
@@ -19861,36 +20831,36 @@ function create_each_block7(ctx) {
   let t3;
   const block = {
     c: function create() {
-      tr = (0, import_internal30.element)("tr");
-      td0 = (0, import_internal30.element)("td");
-      t0 = (0, import_internal30.text)(t0_value);
-      t1 = (0, import_internal30.space)();
-      td1 = (0, import_internal30.element)("td");
-      t2 = (0, import_internal30.space)();
-      td2 = (0, import_internal30.element)("td");
-      t3 = (0, import_internal30.space)();
-      (0, import_internal30.add_location)(td0, file28, 11, 4, 228);
-      (0, import_internal30.add_location)(td1, file28, 12, 4, 253);
-      (0, import_internal30.add_location)(td2, file28, 13, 4, 290);
-      (0, import_internal30.add_location)(tr, file28, 10, 3, 219);
+      tr = (0, import_internal31.element)("tr");
+      td0 = (0, import_internal31.element)("td");
+      t0 = (0, import_internal31.text)(t0_value);
+      t1 = (0, import_internal31.space)();
+      td1 = (0, import_internal31.element)("td");
+      t2 = (0, import_internal31.space)();
+      td2 = (0, import_internal31.element)("td");
+      t3 = (0, import_internal31.space)();
+      (0, import_internal31.add_location)(td0, file29, 11, 4, 228);
+      (0, import_internal31.add_location)(td1, file29, 12, 4, 253);
+      (0, import_internal31.add_location)(td2, file29, 13, 4, 290);
+      (0, import_internal31.add_location)(tr, file29, 10, 3, 219);
     },
     m: function mount(target, anchor) {
-      (0, import_internal30.insert_dev)(target, tr, anchor);
-      (0, import_internal30.append_dev)(tr, td0);
-      (0, import_internal30.append_dev)(td0, t0);
-      (0, import_internal30.append_dev)(tr, t1);
-      (0, import_internal30.append_dev)(tr, td1);
+      (0, import_internal31.insert_dev)(target, tr, anchor);
+      (0, import_internal31.append_dev)(tr, td0);
+      (0, import_internal31.append_dev)(td0, t0);
+      (0, import_internal31.append_dev)(tr, t1);
+      (0, import_internal31.append_dev)(tr, td1);
       td1.innerHTML = raw0_value;
-      (0, import_internal30.append_dev)(tr, t2);
-      (0, import_internal30.append_dev)(tr, td2);
+      (0, import_internal31.append_dev)(tr, t2);
+      (0, import_internal31.append_dev)(tr, td2);
       td2.innerHTML = raw1_value;
-      (0, import_internal30.append_dev)(tr, t3);
+      (0, import_internal31.append_dev)(tr, t3);
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*props*/
       4 && t0_value !== (t0_value = /*prop*/
       ctx2[3].name + ""))
-        (0, import_internal30.set_data_dev)(t0, t0_value);
+        (0, import_internal31.set_data_dev)(t0, t0_value);
       if (dirty & /*props*/
       4 && raw0_value !== (raw0_value = buildType(
         /*prop*/
@@ -19906,10 +20876,10 @@ function create_each_block7(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal30.detach_dev)(tr);
+        (0, import_internal31.detach_dev)(tr);
     }
   };
-  (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_each_block7.name,
     type: "each",
@@ -19930,41 +20900,41 @@ function create_default_slot2(ctx) {
     /*props*/
     ctx[2]
   );
-  (0, import_internal30.validate_each_argument)(each_value);
+  (0, import_internal31.validate_each_argument)(each_value);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
     each_blocks[i] = create_each_block7(get_each_context7(ctx, each_value, i));
   }
   const block = {
     c: function create() {
-      thead = (0, import_internal30.element)("thead");
-      tr = (0, import_internal30.element)("tr");
-      th0 = (0, import_internal30.element)("th");
+      thead = (0, import_internal31.element)("thead");
+      tr = (0, import_internal31.element)("tr");
+      th0 = (0, import_internal31.element)("th");
       th0.textContent = "Attribute";
-      th1 = (0, import_internal30.element)("th");
+      th1 = (0, import_internal31.element)("th");
       th1.textContent = "Type/Value";
-      th2 = (0, import_internal30.element)("th");
+      th2 = (0, import_internal31.element)("th");
       th2.textContent = "Description";
-      t3 = (0, import_internal30.space)();
-      tbody = (0, import_internal30.element)("tbody");
+      t3 = (0, import_internal31.space)();
+      tbody = (0, import_internal31.element)("tbody");
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      (0, import_internal30.add_location)(th0, file28, 6, 6, 110);
-      (0, import_internal30.add_location)(th1, file28, 6, 24, 128);
-      (0, import_internal30.add_location)(th2, file28, 6, 43, 147);
-      (0, import_internal30.add_location)(tr, file28, 6, 2, 106);
-      (0, import_internal30.add_location)(thead, file28, 5, 1, 96);
-      (0, import_internal30.add_location)(tbody, file28, 8, 1, 184);
+      (0, import_internal31.add_location)(th0, file29, 6, 6, 110);
+      (0, import_internal31.add_location)(th1, file29, 6, 24, 128);
+      (0, import_internal31.add_location)(th2, file29, 6, 43, 147);
+      (0, import_internal31.add_location)(tr, file29, 6, 2, 106);
+      (0, import_internal31.add_location)(thead, file29, 5, 1, 96);
+      (0, import_internal31.add_location)(tbody, file29, 8, 1, 184);
     },
     m: function mount(target, anchor) {
-      (0, import_internal30.insert_dev)(target, thead, anchor);
-      (0, import_internal30.append_dev)(thead, tr);
-      (0, import_internal30.append_dev)(tr, th0);
-      (0, import_internal30.append_dev)(tr, th1);
-      (0, import_internal30.append_dev)(tr, th2);
-      (0, import_internal30.insert_dev)(target, t3, anchor);
-      (0, import_internal30.insert_dev)(target, tbody, anchor);
+      (0, import_internal31.insert_dev)(target, thead, anchor);
+      (0, import_internal31.append_dev)(thead, tr);
+      (0, import_internal31.append_dev)(tr, th0);
+      (0, import_internal31.append_dev)(tr, th1);
+      (0, import_internal31.append_dev)(tr, th2);
+      (0, import_internal31.insert_dev)(target, t3, anchor);
+      (0, import_internal31.insert_dev)(target, tbody, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].m(tbody, null);
       }
@@ -19974,7 +20944,7 @@ function create_default_slot2(ctx) {
       4) {
         each_value = /*props*/
         ctx2[2];
-        (0, import_internal30.validate_each_argument)(each_value);
+        (0, import_internal31.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
           const child_ctx = get_each_context7(ctx2, each_value, i);
@@ -19994,15 +20964,15 @@ function create_default_slot2(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal30.detach_dev)(thead);
+        (0, import_internal31.detach_dev)(thead);
       if (detaching)
-        (0, import_internal30.detach_dev)(t3);
+        (0, import_internal31.detach_dev)(t3);
       if (detaching)
-        (0, import_internal30.detach_dev)(tbody);
-      (0, import_internal30.destroy_each)(each_blocks, detaching);
+        (0, import_internal31.detach_dev)(tbody);
+      (0, import_internal31.destroy_each)(each_blocks, detaching);
     }
   };
-  (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot2.name,
     type: "slot",
@@ -20011,7 +20981,7 @@ function create_default_slot2(ctx) {
   });
   return block;
 }
-function create_fragment30(ctx) {
+function create_fragment31(ctx) {
   let h3;
   let t0;
   let t1;
@@ -20032,35 +21002,35 @@ function create_fragment30(ctx) {
   });
   const block = {
     c: function create() {
-      h3 = (0, import_internal30.element)("h3");
-      t0 = (0, import_internal30.text)(
+      h3 = (0, import_internal31.element)("h3");
+      t0 = (0, import_internal31.text)(
         /*title*/
         ctx[0]
       );
-      t1 = (0, import_internal30.space)();
+      t1 = (0, import_internal31.space)();
       if (if_block)
         if_block.c();
-      t2 = (0, import_internal30.space)();
-      (0, import_internal30.create_component)(table.$$.fragment);
-      (0, import_internal30.add_location)(h3, file28, 0, 0, 0);
+      t2 = (0, import_internal31.space)();
+      (0, import_internal31.create_component)(table.$$.fragment);
+      (0, import_internal31.add_location)(h3, file29, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal30.insert_dev)(target, h3, anchor);
-      (0, import_internal30.append_dev)(h3, t0);
-      (0, import_internal30.insert_dev)(target, t1, anchor);
+      (0, import_internal31.insert_dev)(target, h3, anchor);
+      (0, import_internal31.append_dev)(h3, t0);
+      (0, import_internal31.insert_dev)(target, t1, anchor);
       if (if_block)
         if_block.m(target, anchor);
-      (0, import_internal30.insert_dev)(target, t2, anchor);
-      (0, import_internal30.mount_component)(table, target, anchor);
+      (0, import_internal31.insert_dev)(target, t2, anchor);
+      (0, import_internal31.mount_component)(table, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
       if (!current || dirty & /*title*/
       1)
-        (0, import_internal30.set_data_dev)(
+        (0, import_internal31.set_data_dev)(
           t0,
           /*title*/
           ctx2[0]
@@ -20090,28 +21060,28 @@ function create_fragment30(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal30.transition_in)(table.$$.fragment, local);
+      (0, import_internal31.transition_in)(table.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal30.transition_out)(table.$$.fragment, local);
+      (0, import_internal31.transition_out)(table.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal30.detach_dev)(h3);
+        (0, import_internal31.detach_dev)(h3);
       if (detaching)
-        (0, import_internal30.detach_dev)(t1);
+        (0, import_internal31.detach_dev)(t1);
       if (if_block)
         if_block.d(detaching);
       if (detaching)
-        (0, import_internal30.detach_dev)(t2);
-      (0, import_internal30.destroy_component)(table, detaching);
+        (0, import_internal31.detach_dev)(t2);
+      (0, import_internal31.destroy_component)(table, detaching);
     }
   };
-  (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment30.name,
+    id: create_fragment31.name,
     type: "component",
     source: "",
     ctx
@@ -20130,9 +21100,9 @@ function buildType(prop) {
     res.push(`<br>(defaults to ${prop.default})`);
   return res.join(" ");
 }
-function instance30($$self, $$props, $$invalidate) {
+function instance31($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal30.validate_slots)("ApiTable", slots, []);
+  (0, import_internal31.validate_slots)("ApiTable", slots, []);
   let { title = "API" } = $$props;
   let { description = "" } = $$props;
   let { props = [
@@ -20177,15 +21147,15 @@ function instance30($$self, $$props, $$invalidate) {
   }
   return [title, description, props];
 }
-var ApiTable = class extends import_internal30.SvelteComponentDev {
+var ApiTable = class extends import_internal31.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal30.init)(this, options, instance30, create_fragment30, import_internal30.safe_not_equal, { title: 0, description: 1, props: 2 });
-    (0, import_internal30.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal31.init)(this, options, instance31, create_fragment31, import_internal31.safe_not_equal, { title: 0, description: 1, props: 2 });
+    (0, import_internal31.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ApiTable",
       options,
-      id: create_fragment30.name
+      id: create_fragment31.name
     });
   }
   get title() {
@@ -20210,31 +21180,31 @@ var ApiTable = class extends import_internal30.SvelteComponentDev {
 var ApiTable_default = ApiTable;
 
 // docs-src/code-example/CodeExample.svelte
-var import_internal31 = __toESM(require_internal());
-var file29 = "docs-src/code-example/CodeExample.svelte";
+var import_internal32 = __toESM(require_internal());
+var file30 = "docs-src/code-example/CodeExample.svelte";
 function create_if_block12(ctx) {
   let hr;
   let h3;
   const block = {
     c: function create() {
-      hr = (0, import_internal31.element)("hr");
-      h3 = (0, import_internal31.element)("h3");
+      hr = (0, import_internal32.element)("hr");
+      h3 = (0, import_internal32.element)("h3");
       h3.textContent = "Example";
-      (0, import_internal31.add_location)(hr, file29, 1, 1, 16);
-      (0, import_internal31.add_location)(h3, file29, 1, 5, 20);
+      (0, import_internal32.add_location)(hr, file30, 1, 1, 16);
+      (0, import_internal32.add_location)(h3, file30, 1, 5, 20);
     },
     m: function mount(target, anchor) {
-      (0, import_internal31.insert_dev)(target, hr, anchor);
-      (0, import_internal31.insert_dev)(target, h3, anchor);
+      (0, import_internal32.insert_dev)(target, hr, anchor);
+      (0, import_internal32.insert_dev)(target, h3, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal31.detach_dev)(hr);
+        (0, import_internal32.detach_dev)(hr);
       if (detaching)
-        (0, import_internal31.detach_dev)(h3);
+        (0, import_internal32.detach_dev)(h3);
     }
   };
-  (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal32.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_if_block12.name,
     type: "if",
@@ -20243,7 +21213,7 @@ function create_if_block12(ctx) {
   });
   return block;
 }
-function create_fragment31(ctx) {
+function create_fragment32(ctx) {
   let t0;
   let pre;
   let code;
@@ -20260,16 +21230,16 @@ function create_fragment31(ctx) {
     c: function create() {
       if (if_block)
         if_block.c();
-      t0 = (0, import_internal31.space)();
-      pre = (0, import_internal31.element)("pre");
-      code = (0, import_internal31.element)("code");
-      t1 = (0, import_internal31.text)("\n	");
-      html_tag = new import_internal31.HtmlTag(false);
-      t2 = (0, import_internal31.text)("\n");
+      t0 = (0, import_internal32.space)();
+      pre = (0, import_internal32.element)("pre");
+      code = (0, import_internal32.element)("code");
+      t1 = (0, import_internal32.text)("\n	");
+      html_tag = new import_internal32.HtmlTag(false);
+      t2 = (0, import_internal32.text)("\n");
       html_tag.a = t2;
-      (0, import_internal31.attr_dev)(code, "class", "language-svelte");
-      (0, import_internal31.add_location)(code, file29, 3, 5, 48);
-      (0, import_internal31.add_location)(pre, file29, 3, 0, 43);
+      (0, import_internal32.attr_dev)(code, "class", "language-svelte");
+      (0, import_internal32.add_location)(code, file30, 3, 5, 48);
+      (0, import_internal32.add_location)(pre, file30, 3, 0, 43);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -20277,12 +21247,12 @@ function create_fragment31(ctx) {
     m: function mount(target, anchor) {
       if (if_block)
         if_block.m(target, anchor);
-      (0, import_internal31.insert_dev)(target, t0, anchor);
-      (0, import_internal31.insert_dev)(target, pre, anchor);
-      (0, import_internal31.append_dev)(pre, code);
-      (0, import_internal31.append_dev)(code, t1);
+      (0, import_internal32.insert_dev)(target, t0, anchor);
+      (0, import_internal32.insert_dev)(target, pre, anchor);
+      (0, import_internal32.append_dev)(pre, code);
+      (0, import_internal32.append_dev)(code, t1);
       html_tag.m(raw_value, code);
-      (0, import_internal31.append_dev)(code, t2);
+      (0, import_internal32.append_dev)(code, t2);
     },
     p: function update(ctx2, [dirty]) {
       if (!/*notitle*/
@@ -20304,20 +21274,20 @@ function create_fragment31(ctx) {
       ) + ""))
         html_tag.p(raw_value);
     },
-    i: import_internal31.noop,
-    o: import_internal31.noop,
+    i: import_internal32.noop,
+    o: import_internal32.noop,
     d: function destroy(detaching) {
       if (if_block)
         if_block.d(detaching);
       if (detaching)
-        (0, import_internal31.detach_dev)(t0);
+        (0, import_internal32.detach_dev)(t0);
       if (detaching)
-        (0, import_internal31.detach_dev)(pre);
+        (0, import_internal32.detach_dev)(pre);
     }
   };
-  (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal32.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment31.name,
+    id: create_fragment32.name,
     type: "component",
     source: "",
     ctx
@@ -20327,9 +21297,9 @@ function create_fragment31(ctx) {
 function encode(s) {
   return s.replace(/{/gim, "&lbrace;").replace(/}/gim, "&rbrace;").replace(/</gim, "&lt;").replace(/>/gim, "&gt;").replace(/\t/gim, "    ").trim();
 }
-function instance31($$self, $$props, $$invalidate) {
+function instance32($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal31.validate_slots)("CodeExample", slots, []);
+  (0, import_internal32.validate_slots)("CodeExample", slots, []);
   let { html = "" } = $$props;
   let { notitle = false } = $$props;
   const writable_props = ["html", "notitle"];
@@ -20355,15 +21325,15 @@ function instance31($$self, $$props, $$invalidate) {
   }
   return [html, notitle];
 }
-var CodeExample = class extends import_internal31.SvelteComponentDev {
+var CodeExample = class extends import_internal32.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal31.init)(this, options, instance31, create_fragment31, import_internal31.safe_not_equal, { html: 0, notitle: 1 });
-    (0, import_internal31.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal32.init)(this, options, instance32, create_fragment32, import_internal32.safe_not_equal, { html: 0, notitle: 1 });
+    (0, import_internal32.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "CodeExample",
       options,
-      id: create_fragment31.name
+      id: create_fragment32.name
     });
   }
   get html() {
@@ -20382,26 +21352,26 @@ var CodeExample = class extends import_internal31.SvelteComponentDev {
 var CodeExample_default = CodeExample;
 
 // docs-src/code-example/CodeBox.svelte
-var import_internal32 = __toESM(require_internal());
+var import_internal33 = __toESM(require_internal());
 var import_svelte18 = __toESM(require_svelte());
-var file30 = "docs-src/code-example/CodeBox.svelte";
-function create_fragment32(ctx) {
+var file31 = "docs-src/code-example/CodeBox.svelte";
+function create_fragment33(ctx) {
   let pre;
   let code;
   const block = {
     c: function create() {
-      pre = (0, import_internal32.element)("pre");
-      code = (0, import_internal32.element)("code");
-      (0, import_internal32.attr_dev)(code, "class", "language-");
-      (0, import_internal32.add_location)(code, file30, 0, 5, 5);
-      (0, import_internal32.add_location)(pre, file30, 0, 0, 0);
+      pre = (0, import_internal33.element)("pre");
+      code = (0, import_internal33.element)("code");
+      (0, import_internal33.attr_dev)(code, "class", "language-");
+      (0, import_internal33.add_location)(code, file31, 0, 5, 5);
+      (0, import_internal33.add_location)(pre, file31, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal32.insert_dev)(target, pre, anchor);
-      (0, import_internal32.append_dev)(pre, code);
+      (0, import_internal33.insert_dev)(target, pre, anchor);
+      (0, import_internal33.append_dev)(pre, code);
       code.innerHTML = /*html*/
       ctx[0];
     },
@@ -20412,28 +21382,28 @@ function create_fragment32(ctx) {
         ctx2[0];
       ;
     },
-    i: import_internal32.noop,
-    o: import_internal32.noop,
+    i: import_internal33.noop,
+    o: import_internal33.noop,
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal32.detach_dev)(pre);
+        (0, import_internal33.detach_dev)(pre);
     }
   };
-  (0, import_internal32.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal33.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment32.name,
+    id: create_fragment33.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance32($$self, $$props, $$invalidate) {
+function instance33($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal32.validate_slots)("CodeBox", slots, []);
+  (0, import_internal33.validate_slots)("CodeBox", slots, []);
   let { tag = "div" } = $$props;
   let { props = {} } = $$props;
-  let { text: text34 = "" } = $$props;
+  let { text: text35 = "" } = $$props;
   let html = "";
   (0, import_svelte18.afterUpdate)(() => {
     requestAnimationFrame(update);
@@ -20453,9 +21423,9 @@ function instance32($$self, $$props, $$invalidate) {
     let propsStr = JSON.stringify(_props).replace(/"([^"]+)":/g, "$1:").replace(/(:)/g, "=").replace(/,/g, " ").replace(/({|}|=true|default)/g, "").trim();
     if (propsStr)
       propsStr = " " + propsStr;
-    if (!text34)
+    if (!text35)
       return `<${tag}${propsStr}/>`;
-    return `<${tag}${propsStr}>${text34}</${tag}>`;
+    return `<${tag}${propsStr}>${text35}</${tag}>`;
   }
   const writable_props = ["tag", "props", "text"];
   Object.keys($$props).forEach((key) => {
@@ -20468,13 +21438,13 @@ function instance32($$self, $$props, $$invalidate) {
     if ("props" in $$props2)
       $$invalidate(2, props = $$props2.props);
     if ("text" in $$props2)
-      $$invalidate(3, text34 = $$props2.text);
+      $$invalidate(3, text35 = $$props2.text);
   };
   $$self.$capture_state = () => ({
     afterUpdate: import_svelte18.afterUpdate,
     tag,
     props,
-    text: text34,
+    text: text35,
     html,
     update,
     buildHtml
@@ -20485,24 +21455,24 @@ function instance32($$self, $$props, $$invalidate) {
     if ("props" in $$props2)
       $$invalidate(2, props = $$props2.props);
     if ("text" in $$props2)
-      $$invalidate(3, text34 = $$props2.text);
+      $$invalidate(3, text35 = $$props2.text);
     if ("html" in $$props2)
       $$invalidate(0, html = $$props2.html);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
-  return [html, tag, props, text34];
+  return [html, tag, props, text35];
 }
-var CodeBox = class extends import_internal32.SvelteComponentDev {
+var CodeBox = class extends import_internal33.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal32.init)(this, options, instance32, create_fragment32, import_internal32.safe_not_equal, { tag: 1, props: 2, text: 3 });
-    (0, import_internal32.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal33.init)(this, options, instance33, create_fragment33, import_internal33.safe_not_equal, { tag: 1, props: 2, text: 3 });
+    (0, import_internal33.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "CodeBox",
       options,
-      id: create_fragment32.name
+      id: create_fragment33.name
     });
   }
   get tag() {
@@ -20527,9 +21497,9 @@ var CodeBox = class extends import_internal32.SvelteComponentDev {
 var CodeBox_default = CodeBox;
 
 // docs-src/components/autocomplete/Autocomplete.svelte
-var { console: console_13 } = import_internal33.globals;
-var file31 = "docs-src/components/autocomplete/Autocomplete.svelte";
-function create_fragment33(ctx) {
+var { console: console_12 } = import_internal34.globals;
+var file32 = "docs-src/components/autocomplete/Autocomplete.svelte";
+function create_fragment34(ctx) {
   let h20;
   let t1;
   let div3;
@@ -20622,7 +21592,7 @@ function create_fragment33(ctx) {
     props: autocomplete0_props,
     $$inline: true
   });
-  import_internal33.binding_callbacks.push(() => (0, import_internal33.bind)(autocomplete0, "value", autocomplete0_value_binding));
+  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(autocomplete0, "value", autocomplete0_value_binding));
   autocomplete0.$on("change", onChange);
   function autocomplete1_value_binding(value) {
     ctx[9](value);
@@ -20645,7 +21615,7 @@ function create_fragment33(ctx) {
     props: autocomplete1_props,
     $$inline: true
   });
-  import_internal33.binding_callbacks.push(() => (0, import_internal33.bind)(autocomplete1, "value", autocomplete1_value_binding));
+  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(autocomplete1, "value", autocomplete1_value_binding));
   function autocomplete2_value_binding(value) {
     ctx[10](value);
   }
@@ -20668,7 +21638,7 @@ function create_fragment33(ctx) {
     props: autocomplete2_props,
     $$inline: true
   });
-  import_internal33.binding_callbacks.push(() => (0, import_internal33.bind)(autocomplete2, "value", autocomplete2_value_binding));
+  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(autocomplete2, "value", autocomplete2_value_binding));
   function autocomplete3_value_binding(value) {
     ctx[11](value);
   }
@@ -20690,7 +21660,7 @@ function create_fragment33(ctx) {
     props: autocomplete3_props,
     $$inline: true
   });
-  import_internal33.binding_callbacks.push(() => (0, import_internal33.bind)(autocomplete3, "value", autocomplete3_value_binding));
+  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(autocomplete3, "value", autocomplete3_value_binding));
   function autocomplete4_value_binding(value) {
     ctx[12](value);
   }
@@ -20712,7 +21682,7 @@ function create_fragment33(ctx) {
     props: autocomplete4_props,
     $$inline: true
   });
-  import_internal33.binding_callbacks.push(() => (0, import_internal33.bind)(autocomplete4, "value", autocomplete4_value_binding));
+  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(autocomplete4, "value", autocomplete4_value_binding));
   function autocomplete5_value_binding(value) {
     ctx[13](value);
   }
@@ -20735,7 +21705,7 @@ function create_fragment33(ctx) {
     props: autocomplete5_props,
     $$inline: true
   });
-  import_internal33.binding_callbacks.push(() => (0, import_internal33.bind)(autocomplete5, "value", autocomplete5_value_binding));
+  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(autocomplete5, "value", autocomplete5_value_binding));
   function autocomplete6_value_binding(value) {
     ctx[14](value);
   }
@@ -20757,7 +21727,7 @@ function create_fragment33(ctx) {
     props: autocomplete6_props,
     $$inline: true
   });
-  import_internal33.binding_callbacks.push(() => (0, import_internal33.bind)(autocomplete6, "value", autocomplete6_value_binding));
+  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(autocomplete6, "value", autocomplete6_value_binding));
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -20774,170 +21744,170 @@ function create_fragment33(ctx) {
   });
   const block = {
     c: function create() {
-      h20 = (0, import_internal33.element)("h2");
+      h20 = (0, import_internal34.element)("h2");
       h20.textContent = "Autocomplete";
-      t1 = (0, import_internal33.space)();
-      div3 = (0, import_internal33.element)("div");
-      div1 = (0, import_internal33.element)("div");
-      h30 = (0, import_internal33.element)("h3");
+      t1 = (0, import_internal34.space)();
+      div3 = (0, import_internal34.element)("div");
+      div1 = (0, import_internal34.element)("div");
+      h30 = (0, import_internal34.element)("h3");
       h30.textContent = "Normal";
-      t3 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(autocomplete0.$$.fragment);
-      t4 = (0, import_internal33.space)();
-      h31 = (0, import_internal33.element)("h3");
+      t3 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(autocomplete0.$$.fragment);
+      t4 = (0, import_internal34.space)();
+      h31 = (0, import_internal34.element)("h3");
       h31.textContent = "Disabled";
-      t6 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(autocomplete1.$$.fragment);
-      t7 = (0, import_internal33.space)();
-      h32 = (0, import_internal33.element)("h3");
+      t6 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(autocomplete1.$$.fragment);
+      t7 = (0, import_internal34.space)();
+      h32 = (0, import_internal34.element)("h3");
       h32.textContent = "Allow arbitrary values";
-      t9 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(autocomplete2.$$.fragment);
-      t10 = (0, import_internal33.space)();
-      h33 = (0, import_internal33.element)("h3");
+      t9 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(autocomplete2.$$.fragment);
+      t10 = (0, import_internal34.space)();
+      h33 = (0, import_internal34.element)("h3");
       h33.textContent = "Show on focus";
-      t12 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(autocomplete3.$$.fragment);
-      t13 = (0, import_internal33.space)();
-      h34 = (0, import_internal33.element)("h3");
+      t12 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(autocomplete3.$$.fragment);
+      t13 = (0, import_internal34.space)();
+      h34 = (0, import_internal34.element)("h3");
       h34.textContent = "Simpler data (no ID, just 'name')";
-      t15 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(autocomplete4.$$.fragment);
-      t16 = (0, import_internal33.space)();
-      h35 = (0, import_internal33.element)("h3");
+      t15 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(autocomplete4.$$.fragment);
+      t16 = (0, import_internal34.space)();
+      h35 = (0, import_internal34.element)("h3");
       h35.textContent = "Simplest data (just an array of strings)";
-      t18 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(autocomplete5.$$.fragment);
-      t19 = (0, import_internal33.space)();
-      h36 = (0, import_internal33.element)("h3");
-      t20 = (0, import_internal33.text)("In a container with ");
-      em0 = (0, import_internal33.element)("em");
+      t18 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(autocomplete5.$$.fragment);
+      t19 = (0, import_internal34.space)();
+      h36 = (0, import_internal34.element)("h3");
+      t20 = (0, import_internal34.text)("In a container with ");
+      em0 = (0, import_internal34.element)("em");
       em0.textContent = "overflow: hidden";
-      t22 = (0, import_internal33.space)();
-      p0 = (0, import_internal33.element)("p");
-      t23 = (0, import_internal33.text)("Where parent container has ");
-      em1 = (0, import_internal33.element)("em");
+      t22 = (0, import_internal34.space)();
+      p0 = (0, import_internal34.element)("p");
+      t23 = (0, import_internal34.text)("Where parent container has ");
+      em1 = (0, import_internal34.element)("em");
       em1.textContent = "overflow: hidden";
-      t25 = (0, import_internal33.text)(", ");
-      em2 = (0, import_internal33.element)("em");
+      t25 = (0, import_internal34.text)(", ");
+      em2 = (0, import_internal34.element)("em");
       em2.textContent = 'elevate="true"';
-      t27 = (0, import_internal33.text)("\n			property must be set on the component.");
-      t28 = (0, import_internal33.space)();
-      div0 = (0, import_internal33.element)("div");
-      small = (0, import_internal33.element)("small");
+      t27 = (0, import_internal34.text)("\n			property must be set on the component.");
+      t28 = (0, import_internal34.space)();
+      div0 = (0, import_internal34.element)("div");
+      small = (0, import_internal34.element)("small");
       small.textContent = "overflow: hidden";
-      t30 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(autocomplete6.$$.fragment);
-      t31 = (0, import_internal33.space)();
-      p1 = (0, import_internal33.element)("p");
-      t32 = (0, import_internal33.text)("This option should only be used when absolutely necessary (e.g. when Autocomplete\n			is used inside dialogs/popups), because it makes the component less accessible\n			(the list container is rendered directly in the ");
-      em3 = (0, import_internal33.element)("em");
+      t30 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(autocomplete6.$$.fragment);
+      t31 = (0, import_internal34.space)();
+      p1 = (0, import_internal34.element)("p");
+      t32 = (0, import_internal34.text)("This option should only be used when absolutely necessary (e.g. when Autocomplete\n			is used inside dialogs/popups), because it makes the component less accessible\n			(the list container is rendered directly in the ");
+      em3 = (0, import_internal34.element)("em");
       em3.textContent = "<body>";
-      t34 = (0, import_internal33.text)(", and not next to the input).");
-      t35 = (0, import_internal33.space)();
-      div2 = (0, import_internal33.element)("div");
-      h21 = (0, import_internal33.element)("h2");
+      t34 = (0, import_internal34.text)(", and not next to the input).");
+      t35 = (0, import_internal34.space)();
+      div2 = (0, import_internal34.element)("div");
+      h21 = (0, import_internal34.element)("h2");
       h21.textContent = "Selected value:";
-      t37 = (0, import_internal33.space)();
-      code = (0, import_internal33.element)("code");
-      t38 = (0, import_internal33.text)(t38_value);
-      t39 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(codeexample.$$.fragment);
-      t40 = (0, import_internal33.space)();
-      hr = (0, import_internal33.element)("hr");
-      t41 = (0, import_internal33.space)();
-      (0, import_internal33.create_component)(api.$$.fragment);
-      (0, import_internal33.add_location)(h20, file31, 0, 0, 0);
-      (0, import_internal33.add_location)(h30, file31, 3, 2, 77);
-      (0, import_internal33.add_location)(h31, file31, 9, 2, 206);
-      (0, import_internal33.add_location)(h32, file31, 12, 2, 314);
-      (0, import_internal33.add_location)(h33, file31, 19, 2, 484);
-      (0, import_internal33.add_location)(h34, file31, 22, 2, 607);
-      (0, import_internal33.add_location)(h35, file31, 26, 2, 775);
-      (0, import_internal33.add_location)(em0, file31, 30, 26, 994);
-      (0, import_internal33.add_location)(h36, file31, 30, 2, 970);
-      (0, import_internal33.add_location)(em1, file31, 31, 32, 1057);
-      (0, import_internal33.add_location)(em2, file31, 31, 59, 1084);
-      (0, import_internal33.add_location)(p0, file31, 31, 2, 1027);
-      (0, import_internal33.add_location)(small, file31, 34, 3, 1191);
-      (0, import_internal33.attr_dev)(div0, "class", "docs-overflow-box");
-      (0, import_internal33.add_location)(div0, file31, 33, 2, 1156);
-      (0, import_internal33.add_location)(em3, file31, 39, 51, 1546);
-      (0, import_internal33.add_location)(p1, file31, 37, 2, 1328);
-      (0, import_internal33.attr_dev)(div1, "class", "docs-column");
-      (0, import_internal33.add_location)(div1, file31, 2, 1, 49);
-      (0, import_internal33.add_location)(h21, file31, 43, 2, 1639);
-      (0, import_internal33.add_location)(code, file31, 44, 2, 1667);
-      (0, import_internal33.attr_dev)(div2, "class", "docs-column");
-      (0, import_internal33.add_location)(div2, file31, 42, 1, 1611);
-      (0, import_internal33.attr_dev)(div3, "class", "docs-layout");
-      (0, import_internal33.add_location)(div3, file31, 1, 0, 22);
-      (0, import_internal33.add_location)(hr, file31, 51, 0, 1786);
+      t37 = (0, import_internal34.space)();
+      code = (0, import_internal34.element)("code");
+      t38 = (0, import_internal34.text)(t38_value);
+      t39 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(codeexample.$$.fragment);
+      t40 = (0, import_internal34.space)();
+      hr = (0, import_internal34.element)("hr");
+      t41 = (0, import_internal34.space)();
+      (0, import_internal34.create_component)(api.$$.fragment);
+      (0, import_internal34.add_location)(h20, file32, 0, 0, 0);
+      (0, import_internal34.add_location)(h30, file32, 3, 2, 77);
+      (0, import_internal34.add_location)(h31, file32, 9, 2, 206);
+      (0, import_internal34.add_location)(h32, file32, 12, 2, 314);
+      (0, import_internal34.add_location)(h33, file32, 19, 2, 484);
+      (0, import_internal34.add_location)(h34, file32, 22, 2, 607);
+      (0, import_internal34.add_location)(h35, file32, 26, 2, 775);
+      (0, import_internal34.add_location)(em0, file32, 30, 26, 994);
+      (0, import_internal34.add_location)(h36, file32, 30, 2, 970);
+      (0, import_internal34.add_location)(em1, file32, 31, 32, 1057);
+      (0, import_internal34.add_location)(em2, file32, 31, 59, 1084);
+      (0, import_internal34.add_location)(p0, file32, 31, 2, 1027);
+      (0, import_internal34.add_location)(small, file32, 34, 3, 1191);
+      (0, import_internal34.attr_dev)(div0, "class", "docs-overflow-box");
+      (0, import_internal34.add_location)(div0, file32, 33, 2, 1156);
+      (0, import_internal34.add_location)(em3, file32, 39, 51, 1546);
+      (0, import_internal34.add_location)(p1, file32, 37, 2, 1328);
+      (0, import_internal34.attr_dev)(div1, "class", "docs-column");
+      (0, import_internal34.add_location)(div1, file32, 2, 1, 49);
+      (0, import_internal34.add_location)(h21, file32, 43, 2, 1639);
+      (0, import_internal34.add_location)(code, file32, 44, 2, 1667);
+      (0, import_internal34.attr_dev)(div2, "class", "docs-column");
+      (0, import_internal34.add_location)(div2, file32, 42, 1, 1611);
+      (0, import_internal34.attr_dev)(div3, "class", "docs-layout");
+      (0, import_internal34.add_location)(div3, file32, 1, 0, 22);
+      (0, import_internal34.add_location)(hr, file32, 51, 0, 1786);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal33.insert_dev)(target, h20, anchor);
-      (0, import_internal33.insert_dev)(target, t1, anchor);
-      (0, import_internal33.insert_dev)(target, div3, anchor);
-      (0, import_internal33.append_dev)(div3, div1);
-      (0, import_internal33.append_dev)(div1, h30);
-      (0, import_internal33.append_dev)(div1, t3);
-      (0, import_internal33.mount_component)(autocomplete0, div1, null);
-      (0, import_internal33.append_dev)(div1, t4);
-      (0, import_internal33.append_dev)(div1, h31);
-      (0, import_internal33.append_dev)(div1, t6);
-      (0, import_internal33.mount_component)(autocomplete1, div1, null);
-      (0, import_internal33.append_dev)(div1, t7);
-      (0, import_internal33.append_dev)(div1, h32);
-      (0, import_internal33.append_dev)(div1, t9);
-      (0, import_internal33.mount_component)(autocomplete2, div1, null);
-      (0, import_internal33.append_dev)(div1, t10);
-      (0, import_internal33.append_dev)(div1, h33);
-      (0, import_internal33.append_dev)(div1, t12);
-      (0, import_internal33.mount_component)(autocomplete3, div1, null);
-      (0, import_internal33.append_dev)(div1, t13);
-      (0, import_internal33.append_dev)(div1, h34);
-      (0, import_internal33.append_dev)(div1, t15);
-      (0, import_internal33.mount_component)(autocomplete4, div1, null);
-      (0, import_internal33.append_dev)(div1, t16);
-      (0, import_internal33.append_dev)(div1, h35);
-      (0, import_internal33.append_dev)(div1, t18);
-      (0, import_internal33.mount_component)(autocomplete5, div1, null);
-      (0, import_internal33.append_dev)(div1, t19);
-      (0, import_internal33.append_dev)(div1, h36);
-      (0, import_internal33.append_dev)(h36, t20);
-      (0, import_internal33.append_dev)(h36, em0);
-      (0, import_internal33.append_dev)(div1, t22);
-      (0, import_internal33.append_dev)(div1, p0);
-      (0, import_internal33.append_dev)(p0, t23);
-      (0, import_internal33.append_dev)(p0, em1);
-      (0, import_internal33.append_dev)(p0, t25);
-      (0, import_internal33.append_dev)(p0, em2);
-      (0, import_internal33.append_dev)(p0, t27);
-      (0, import_internal33.append_dev)(div1, t28);
-      (0, import_internal33.append_dev)(div1, div0);
-      (0, import_internal33.append_dev)(div0, small);
-      (0, import_internal33.append_dev)(div0, t30);
-      (0, import_internal33.mount_component)(autocomplete6, div0, null);
-      (0, import_internal33.append_dev)(div1, t31);
-      (0, import_internal33.append_dev)(div1, p1);
-      (0, import_internal33.append_dev)(p1, t32);
-      (0, import_internal33.append_dev)(p1, em3);
-      (0, import_internal33.append_dev)(p1, t34);
-      (0, import_internal33.append_dev)(div3, t35);
-      (0, import_internal33.append_dev)(div3, div2);
-      (0, import_internal33.append_dev)(div2, h21);
-      (0, import_internal33.append_dev)(div2, t37);
-      (0, import_internal33.append_dev)(div2, code);
-      (0, import_internal33.append_dev)(code, t38);
-      (0, import_internal33.insert_dev)(target, t39, anchor);
-      (0, import_internal33.mount_component)(codeexample, target, anchor);
-      (0, import_internal33.insert_dev)(target, t40, anchor);
-      (0, import_internal33.insert_dev)(target, hr, anchor);
-      (0, import_internal33.insert_dev)(target, t41, anchor);
-      (0, import_internal33.mount_component)(api, target, anchor);
+      (0, import_internal34.insert_dev)(target, h20, anchor);
+      (0, import_internal34.insert_dev)(target, t1, anchor);
+      (0, import_internal34.insert_dev)(target, div3, anchor);
+      (0, import_internal34.append_dev)(div3, div1);
+      (0, import_internal34.append_dev)(div1, h30);
+      (0, import_internal34.append_dev)(div1, t3);
+      (0, import_internal34.mount_component)(autocomplete0, div1, null);
+      (0, import_internal34.append_dev)(div1, t4);
+      (0, import_internal34.append_dev)(div1, h31);
+      (0, import_internal34.append_dev)(div1, t6);
+      (0, import_internal34.mount_component)(autocomplete1, div1, null);
+      (0, import_internal34.append_dev)(div1, t7);
+      (0, import_internal34.append_dev)(div1, h32);
+      (0, import_internal34.append_dev)(div1, t9);
+      (0, import_internal34.mount_component)(autocomplete2, div1, null);
+      (0, import_internal34.append_dev)(div1, t10);
+      (0, import_internal34.append_dev)(div1, h33);
+      (0, import_internal34.append_dev)(div1, t12);
+      (0, import_internal34.mount_component)(autocomplete3, div1, null);
+      (0, import_internal34.append_dev)(div1, t13);
+      (0, import_internal34.append_dev)(div1, h34);
+      (0, import_internal34.append_dev)(div1, t15);
+      (0, import_internal34.mount_component)(autocomplete4, div1, null);
+      (0, import_internal34.append_dev)(div1, t16);
+      (0, import_internal34.append_dev)(div1, h35);
+      (0, import_internal34.append_dev)(div1, t18);
+      (0, import_internal34.mount_component)(autocomplete5, div1, null);
+      (0, import_internal34.append_dev)(div1, t19);
+      (0, import_internal34.append_dev)(div1, h36);
+      (0, import_internal34.append_dev)(h36, t20);
+      (0, import_internal34.append_dev)(h36, em0);
+      (0, import_internal34.append_dev)(div1, t22);
+      (0, import_internal34.append_dev)(div1, p0);
+      (0, import_internal34.append_dev)(p0, t23);
+      (0, import_internal34.append_dev)(p0, em1);
+      (0, import_internal34.append_dev)(p0, t25);
+      (0, import_internal34.append_dev)(p0, em2);
+      (0, import_internal34.append_dev)(p0, t27);
+      (0, import_internal34.append_dev)(div1, t28);
+      (0, import_internal34.append_dev)(div1, div0);
+      (0, import_internal34.append_dev)(div0, small);
+      (0, import_internal34.append_dev)(div0, t30);
+      (0, import_internal34.mount_component)(autocomplete6, div0, null);
+      (0, import_internal34.append_dev)(div1, t31);
+      (0, import_internal34.append_dev)(div1, p1);
+      (0, import_internal34.append_dev)(p1, t32);
+      (0, import_internal34.append_dev)(p1, em3);
+      (0, import_internal34.append_dev)(p1, t34);
+      (0, import_internal34.append_dev)(div3, t35);
+      (0, import_internal34.append_dev)(div3, div2);
+      (0, import_internal34.append_dev)(div2, h21);
+      (0, import_internal34.append_dev)(div2, t37);
+      (0, import_internal34.append_dev)(div2, code);
+      (0, import_internal34.append_dev)(code, t38);
+      (0, import_internal34.insert_dev)(target, t39, anchor);
+      (0, import_internal34.mount_component)(codeexample, target, anchor);
+      (0, import_internal34.insert_dev)(target, t40, anchor);
+      (0, import_internal34.insert_dev)(target, hr, anchor);
+      (0, import_internal34.insert_dev)(target, t41, anchor);
+      (0, import_internal34.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -20947,7 +21917,7 @@ function create_fragment33(ctx) {
         updating_value = true;
         autocomplete0_changes.value = /*autocompleteValue*/
         ctx2[0];
-        (0, import_internal33.add_flush_callback)(() => updating_value = false);
+        (0, import_internal34.add_flush_callback)(() => updating_value = false);
       }
       autocomplete0.$set(autocomplete0_changes);
       const autocomplete1_changes = {};
@@ -20956,7 +21926,7 @@ function create_fragment33(ctx) {
         updating_value_1 = true;
         autocomplete1_changes.value = /*autocompleteValue*/
         ctx2[0];
-        (0, import_internal33.add_flush_callback)(() => updating_value_1 = false);
+        (0, import_internal34.add_flush_callback)(() => updating_value_1 = false);
       }
       autocomplete1.$set(autocomplete1_changes);
       const autocomplete2_changes = {};
@@ -20965,7 +21935,7 @@ function create_fragment33(ctx) {
         updating_value_2 = true;
         autocomplete2_changes.value = /*autocompleteValue*/
         ctx2[0];
-        (0, import_internal33.add_flush_callback)(() => updating_value_2 = false);
+        (0, import_internal34.add_flush_callback)(() => updating_value_2 = false);
       }
       autocomplete2.$set(autocomplete2_changes);
       const autocomplete3_changes = {};
@@ -20974,7 +21944,7 @@ function create_fragment33(ctx) {
         updating_value_3 = true;
         autocomplete3_changes.value = /*autocompleteValue*/
         ctx2[0];
-        (0, import_internal33.add_flush_callback)(() => updating_value_3 = false);
+        (0, import_internal34.add_flush_callback)(() => updating_value_3 = false);
       }
       autocomplete3.$set(autocomplete3_changes);
       const autocomplete4_changes = {};
@@ -20983,7 +21953,7 @@ function create_fragment33(ctx) {
         updating_value_4 = true;
         autocomplete4_changes.value = /*autocompleteValueSimple*/
         ctx2[1];
-        (0, import_internal33.add_flush_callback)(() => updating_value_4 = false);
+        (0, import_internal34.add_flush_callback)(() => updating_value_4 = false);
       }
       autocomplete4.$set(autocomplete4_changes);
       const autocomplete5_changes = {};
@@ -20992,7 +21962,7 @@ function create_fragment33(ctx) {
         updating_value_5 = true;
         autocomplete5_changes.value = /*autocompleteValueSimplest*/
         ctx2[2];
-        (0, import_internal33.add_flush_callback)(() => updating_value_5 = false);
+        (0, import_internal34.add_flush_callback)(() => updating_value_5 = false);
       }
       autocomplete5.$set(autocomplete5_changes);
       const autocomplete6_changes = {};
@@ -21001,7 +21971,7 @@ function create_fragment33(ctx) {
         updating_value_6 = true;
         autocomplete6_changes.value = /*autocompleteValue*/
         ctx2[0];
-        (0, import_internal33.add_flush_callback)(() => updating_value_6 = false);
+        (0, import_internal34.add_flush_callback)(() => updating_value_6 = false);
       }
       autocomplete6.$set(autocomplete6_changes);
       if ((!current || dirty & /*autocompleteValue*/
@@ -21011,63 +21981,63 @@ function create_fragment33(ctx) {
         null,
         2
       ) + ""))
-        (0, import_internal33.set_data_dev)(t38, t38_value);
+        (0, import_internal34.set_data_dev)(t38, t38_value);
     },
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal33.transition_in)(autocomplete0.$$.fragment, local);
-      (0, import_internal33.transition_in)(autocomplete1.$$.fragment, local);
-      (0, import_internal33.transition_in)(autocomplete2.$$.fragment, local);
-      (0, import_internal33.transition_in)(autocomplete3.$$.fragment, local);
-      (0, import_internal33.transition_in)(autocomplete4.$$.fragment, local);
-      (0, import_internal33.transition_in)(autocomplete5.$$.fragment, local);
-      (0, import_internal33.transition_in)(autocomplete6.$$.fragment, local);
-      (0, import_internal33.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal33.transition_in)(api.$$.fragment, local);
+      (0, import_internal34.transition_in)(autocomplete0.$$.fragment, local);
+      (0, import_internal34.transition_in)(autocomplete1.$$.fragment, local);
+      (0, import_internal34.transition_in)(autocomplete2.$$.fragment, local);
+      (0, import_internal34.transition_in)(autocomplete3.$$.fragment, local);
+      (0, import_internal34.transition_in)(autocomplete4.$$.fragment, local);
+      (0, import_internal34.transition_in)(autocomplete5.$$.fragment, local);
+      (0, import_internal34.transition_in)(autocomplete6.$$.fragment, local);
+      (0, import_internal34.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal34.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal33.transition_out)(autocomplete0.$$.fragment, local);
-      (0, import_internal33.transition_out)(autocomplete1.$$.fragment, local);
-      (0, import_internal33.transition_out)(autocomplete2.$$.fragment, local);
-      (0, import_internal33.transition_out)(autocomplete3.$$.fragment, local);
-      (0, import_internal33.transition_out)(autocomplete4.$$.fragment, local);
-      (0, import_internal33.transition_out)(autocomplete5.$$.fragment, local);
-      (0, import_internal33.transition_out)(autocomplete6.$$.fragment, local);
-      (0, import_internal33.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal33.transition_out)(api.$$.fragment, local);
+      (0, import_internal34.transition_out)(autocomplete0.$$.fragment, local);
+      (0, import_internal34.transition_out)(autocomplete1.$$.fragment, local);
+      (0, import_internal34.transition_out)(autocomplete2.$$.fragment, local);
+      (0, import_internal34.transition_out)(autocomplete3.$$.fragment, local);
+      (0, import_internal34.transition_out)(autocomplete4.$$.fragment, local);
+      (0, import_internal34.transition_out)(autocomplete5.$$.fragment, local);
+      (0, import_internal34.transition_out)(autocomplete6.$$.fragment, local);
+      (0, import_internal34.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal34.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal33.detach_dev)(h20);
+        (0, import_internal34.detach_dev)(h20);
       if (detaching)
-        (0, import_internal33.detach_dev)(t1);
+        (0, import_internal34.detach_dev)(t1);
       if (detaching)
-        (0, import_internal33.detach_dev)(div3);
-      (0, import_internal33.destroy_component)(autocomplete0);
-      (0, import_internal33.destroy_component)(autocomplete1);
-      (0, import_internal33.destroy_component)(autocomplete2);
-      (0, import_internal33.destroy_component)(autocomplete3);
-      (0, import_internal33.destroy_component)(autocomplete4);
-      (0, import_internal33.destroy_component)(autocomplete5);
-      (0, import_internal33.destroy_component)(autocomplete6);
+        (0, import_internal34.detach_dev)(div3);
+      (0, import_internal34.destroy_component)(autocomplete0);
+      (0, import_internal34.destroy_component)(autocomplete1);
+      (0, import_internal34.destroy_component)(autocomplete2);
+      (0, import_internal34.destroy_component)(autocomplete3);
+      (0, import_internal34.destroy_component)(autocomplete4);
+      (0, import_internal34.destroy_component)(autocomplete5);
+      (0, import_internal34.destroy_component)(autocomplete6);
       if (detaching)
-        (0, import_internal33.detach_dev)(t39);
-      (0, import_internal33.destroy_component)(codeexample, detaching);
+        (0, import_internal34.detach_dev)(t39);
+      (0, import_internal34.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal33.detach_dev)(t40);
+        (0, import_internal34.detach_dev)(t40);
       if (detaching)
-        (0, import_internal33.detach_dev)(hr);
+        (0, import_internal34.detach_dev)(hr);
       if (detaching)
-        (0, import_internal33.detach_dev)(t41);
-      (0, import_internal33.destroy_component)(api, detaching);
+        (0, import_internal34.detach_dev)(t41);
+      (0, import_internal34.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal33.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment33.name,
+    id: create_fragment34.name,
     type: "component",
     source: "",
     ctx
@@ -21078,9 +22048,9 @@ function onChange(e) {
   const { value, oldValue } = e.detail;
   console.log({ value, oldValue });
 }
-function instance33($$self, $$props, $$invalidate) {
+function instance34($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal33.validate_slots)("Autocomplete", slots, []);
+  (0, import_internal34.validate_slots)("Autocomplete", slots, []);
   const apiProps = [
     {
       name: "allowNew",
@@ -21299,7 +22269,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_13.warn(`<Autocomplete> was created with unknown prop '${key}'`);
+      console_12.warn(`<Autocomplete> was created with unknown prop '${key}'`);
   });
   function autocomplete0_value_binding(value) {
     autocompleteValue = value;
@@ -21372,23 +22342,23 @@ function onChange (e) {
     autocomplete6_value_binding
   ];
 }
-var Autocomplete_1 = class extends import_internal33.SvelteComponentDev {
+var Autocomplete_1 = class extends import_internal34.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal33.init)(this, options, instance33, create_fragment33, import_internal33.safe_not_equal, {});
-    (0, import_internal33.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal34.init)(this, options, instance34, create_fragment34, import_internal34.safe_not_equal, {});
+    (0, import_internal34.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Autocomplete_1",
       options,
-      id: create_fragment33.name
+      id: create_fragment34.name
     });
   }
 };
 var Autocomplete_default2 = Autocomplete_1;
 
 // docs-src/components/button/Button.svelte
-var import_internal34 = __toESM(require_internal());
-var file32 = "docs-src/components/button/Button.svelte";
+var import_internal35 = __toESM(require_internal());
+var file33 = "docs-src/components/button/Button.svelte";
 function create_else_block3(ctx) {
   let button;
   let current;
@@ -21398,20 +22368,20 @@ function create_else_block3(ctx) {
   ];
   let button_props = {};
   for (let i = 0; i < button_spread_levels.length; i += 1) {
-    button_props = (0, import_internal34.assign)(button_props, button_spread_levels[i]);
+    button_props = (0, import_internal35.assign)(button_props, button_spread_levels[i]);
   }
   button = new Button_default({ props: button_props, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal34.create_component)(button.$$.fragment);
+      (0, import_internal35.create_component)(button.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal34.mount_component)(button, target, anchor);
+      (0, import_internal35.mount_component)(button, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
       const button_changes = dirty & /*props*/
-      1 ? (0, import_internal34.get_spread_update)(button_spread_levels, [(0, import_internal34.get_spread_object)(
+      1 ? (0, import_internal35.get_spread_update)(button_spread_levels, [(0, import_internal35.get_spread_object)(
         /*props*/
         ctx2[0]
       )]) : {};
@@ -21420,18 +22390,18 @@ function create_else_block3(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal34.transition_in)(button.$$.fragment, local);
+      (0, import_internal35.transition_in)(button.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal34.transition_out)(button.$$.fragment, local);
+      (0, import_internal35.transition_out)(button.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal34.destroy_component)(button, detaching);
+      (0, import_internal35.destroy_component)(button, detaching);
     }
   };
-  (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_else_block3.name,
     type: "else",
@@ -21452,20 +22422,20 @@ function create_if_block13(ctx) {
     $$scope: { ctx }
   };
   for (let i = 0; i < button_spread_levels.length; i += 1) {
-    button_props = (0, import_internal34.assign)(button_props, button_spread_levels[i]);
+    button_props = (0, import_internal35.assign)(button_props, button_spread_levels[i]);
   }
   button = new Button_default({ props: button_props, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal34.create_component)(button.$$.fragment);
+      (0, import_internal35.create_component)(button.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal34.mount_component)(button, target, anchor);
+      (0, import_internal35.mount_component)(button, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
       const button_changes = dirty & /*props*/
-      1 ? (0, import_internal34.get_spread_update)(button_spread_levels, [(0, import_internal34.get_spread_object)(
+      1 ? (0, import_internal35.get_spread_update)(button_spread_levels, [(0, import_internal35.get_spread_object)(
         /*props*/
         ctx2[0]
       )]) : {};
@@ -21478,18 +22448,18 @@ function create_if_block13(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal34.transition_in)(button.$$.fragment, local);
+      (0, import_internal35.transition_in)(button.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal34.transition_out)(button.$$.fragment, local);
+      (0, import_internal35.transition_out)(button.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal34.destroy_component)(button, detaching);
+      (0, import_internal35.destroy_component)(button, detaching);
     }
   };
-  (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_if_block13.name,
     type: "if",
@@ -21502,18 +22472,18 @@ function create_default_slot3(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal34.text)(
+      t = (0, import_internal35.text)(
         /*buttonText*/
         ctx[1]
       );
     },
     m: function mount(target, anchor) {
-      (0, import_internal34.insert_dev)(target, t, anchor);
+      (0, import_internal35.insert_dev)(target, t, anchor);
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*buttonText*/
       2)
-        (0, import_internal34.set_data_dev)(
+        (0, import_internal35.set_data_dev)(
           t,
           /*buttonText*/
           ctx2[1]
@@ -21521,10 +22491,10 @@ function create_default_slot3(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal34.detach_dev)(t);
+        (0, import_internal35.detach_dev)(t);
     }
   };
-  (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot3.name,
     type: "slot",
@@ -21533,7 +22503,7 @@ function create_default_slot3(ctx) {
   });
   return block;
 }
-function create_fragment34(ctx) {
+function create_fragment35(ctx) {
   let h2;
   let t1;
   let div2;
@@ -21664,7 +22634,7 @@ function create_fragment34(ctx) {
     ctx[0].round;
   }
   toggle0 = new Toggle_default({ props: toggle0_props, $$inline: true });
-  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(toggle0, "value", toggle0_value_binding));
+  import_internal35.binding_callbacks.push(() => (0, import_internal35.bind)(toggle0, "value", toggle0_value_binding));
   function toggle1_value_binding(value) {
     ctx[11](value);
   }
@@ -21677,7 +22647,7 @@ function create_fragment34(ctx) {
     ctx[0].disabled;
   }
   toggle1 = new Toggle_default({ props: toggle1_props, $$inline: true });
-  import_internal34.binding_callbacks.push(() => (0, import_internal34.bind)(toggle1, "value", toggle1_value_binding));
+  import_internal35.binding_callbacks.push(() => (0, import_internal35.bind)(toggle1, "value", toggle1_value_binding));
   api = new ApiTable_default({
     props: { props: (
       /*apiProps*/
@@ -21687,136 +22657,136 @@ function create_fragment34(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal34.element)("h2");
+      h2 = (0, import_internal35.element)("h2");
       h2.textContent = "Button";
-      t1 = (0, import_internal34.space)();
-      div2 = (0, import_internal34.element)("div");
-      div0 = (0, import_internal34.element)("div");
-      h30 = (0, import_internal34.element)("h3");
+      t1 = (0, import_internal35.space)();
+      div2 = (0, import_internal35.element)("div");
+      div0 = (0, import_internal35.element)("div");
+      h30 = (0, import_internal35.element)("h3");
       h30.textContent = "Demo";
-      t3 = (0, import_internal34.space)();
+      t3 = (0, import_internal35.space)();
       if_block.c();
-      t4 = (0, import_internal34.space)();
-      hr0 = (0, import_internal34.element)("hr");
-      t5 = (0, import_internal34.space)();
-      h31 = (0, import_internal34.element)("h3");
+      t4 = (0, import_internal35.space)();
+      hr0 = (0, import_internal35.element)("hr");
+      t5 = (0, import_internal35.space)();
+      h31 = (0, import_internal35.element)("h3");
       h31.textContent = "Example instantiation";
-      t7 = (0, import_internal34.space)();
-      (0, import_internal34.create_component)(codebox.$$.fragment);
-      t8 = (0, import_internal34.space)();
-      div1 = (0, import_internal34.element)("div");
-      h32 = (0, import_internal34.element)("h3");
+      t7 = (0, import_internal35.space)();
+      (0, import_internal35.create_component)(codebox.$$.fragment);
+      t8 = (0, import_internal35.space)();
+      div1 = (0, import_internal35.element)("div");
+      h32 = (0, import_internal35.element)("h3");
       h32.textContent = "Properties";
-      t10 = (0, import_internal34.space)();
-      h40 = (0, import_internal34.element)("h4");
+      t10 = (0, import_internal35.space)();
+      h40 = (0, import_internal35.element)("h4");
       h40.textContent = "Text";
-      t12 = (0, import_internal34.space)();
-      input = (0, import_internal34.element)("input");
-      t13 = (0, import_internal34.space)();
-      h41 = (0, import_internal34.element)("h4");
+      t12 = (0, import_internal35.space)();
+      input = (0, import_internal35.element)("input");
+      t13 = (0, import_internal35.space)();
+      h41 = (0, import_internal35.element)("h4");
       h41.textContent = "Style";
-      t15 = (0, import_internal34.space)();
-      (0, import_internal34.create_component)(buttontoggle0.$$.fragment);
-      t16 = (0, import_internal34.space)();
-      h42 = (0, import_internal34.element)("h4");
+      t15 = (0, import_internal35.space)();
+      (0, import_internal35.create_component)(buttontoggle0.$$.fragment);
+      t16 = (0, import_internal35.space)();
+      h42 = (0, import_internal35.element)("h4");
       h42.textContent = "Type";
-      t18 = (0, import_internal34.space)();
-      (0, import_internal34.create_component)(buttontoggle1.$$.fragment);
-      t19 = (0, import_internal34.space)();
-      h43 = (0, import_internal34.element)("h4");
+      t18 = (0, import_internal35.space)();
+      (0, import_internal35.create_component)(buttontoggle1.$$.fragment);
+      t19 = (0, import_internal35.space)();
+      h43 = (0, import_internal35.element)("h4");
       h43.textContent = "Icon";
-      t21 = (0, import_internal34.space)();
-      (0, import_internal34.create_component)(buttontoggle2.$$.fragment);
-      t22 = (0, import_internal34.space)();
-      h44 = (0, import_internal34.element)("h4");
+      t21 = (0, import_internal35.space)();
+      (0, import_internal35.create_component)(buttontoggle2.$$.fragment);
+      t22 = (0, import_internal35.space)();
+      h44 = (0, import_internal35.element)("h4");
       h44.textContent = "Round";
-      t24 = (0, import_internal34.space)();
-      (0, import_internal34.create_component)(toggle0.$$.fragment);
-      t25 = (0, import_internal34.space)();
-      h45 = (0, import_internal34.element)("h4");
+      t24 = (0, import_internal35.space)();
+      (0, import_internal35.create_component)(toggle0.$$.fragment);
+      t25 = (0, import_internal35.space)();
+      h45 = (0, import_internal35.element)("h4");
       h45.textContent = "Disabled";
-      t27 = (0, import_internal34.space)();
-      (0, import_internal34.create_component)(toggle1.$$.fragment);
-      t28 = (0, import_internal34.space)();
-      hr1 = (0, import_internal34.element)("hr");
-      t29 = (0, import_internal34.space)();
-      (0, import_internal34.create_component)(api.$$.fragment);
-      (0, import_internal34.add_location)(h2, file32, 0, 0, 0);
-      (0, import_internal34.add_location)(h30, file32, 4, 2, 72);
-      (0, import_internal34.add_location)(hr0, file32, 11, 2, 194);
-      (0, import_internal34.add_location)(h31, file32, 12, 2, 201);
-      (0, import_internal34.attr_dev)(div0, "class", "docs-column");
-      (0, import_internal34.add_location)(div0, file32, 3, 1, 44);
-      (0, import_internal34.add_location)(h32, file32, 16, 2, 324);
-      (0, import_internal34.add_location)(h40, file32, 17, 2, 346);
-      (0, import_internal34.add_location)(input, file32, 18, 2, 362);
-      (0, import_internal34.add_location)(h41, file32, 19, 2, 399);
-      (0, import_internal34.add_location)(h42, file32, 21, 2, 495);
-      (0, import_internal34.add_location)(h43, file32, 23, 2, 595);
-      (0, import_internal34.add_location)(h44, file32, 25, 2, 688);
-      (0, import_internal34.add_location)(h45, file32, 27, 2, 744);
-      (0, import_internal34.attr_dev)(div1, "class", "docs-column");
-      (0, import_internal34.add_location)(div1, file32, 15, 1, 296);
-      (0, import_internal34.attr_dev)(div2, "class", "docs-layout");
-      (0, import_internal34.add_location)(div2, file32, 2, 0, 17);
-      (0, import_internal34.add_location)(hr1, file32, 34, 0, 822);
+      t27 = (0, import_internal35.space)();
+      (0, import_internal35.create_component)(toggle1.$$.fragment);
+      t28 = (0, import_internal35.space)();
+      hr1 = (0, import_internal35.element)("hr");
+      t29 = (0, import_internal35.space)();
+      (0, import_internal35.create_component)(api.$$.fragment);
+      (0, import_internal35.add_location)(h2, file33, 0, 0, 0);
+      (0, import_internal35.add_location)(h30, file33, 4, 2, 72);
+      (0, import_internal35.add_location)(hr0, file33, 11, 2, 194);
+      (0, import_internal35.add_location)(h31, file33, 12, 2, 201);
+      (0, import_internal35.attr_dev)(div0, "class", "docs-column");
+      (0, import_internal35.add_location)(div0, file33, 3, 1, 44);
+      (0, import_internal35.add_location)(h32, file33, 16, 2, 324);
+      (0, import_internal35.add_location)(h40, file33, 17, 2, 346);
+      (0, import_internal35.add_location)(input, file33, 18, 2, 362);
+      (0, import_internal35.add_location)(h41, file33, 19, 2, 399);
+      (0, import_internal35.add_location)(h42, file33, 21, 2, 495);
+      (0, import_internal35.add_location)(h43, file33, 23, 2, 595);
+      (0, import_internal35.add_location)(h44, file33, 25, 2, 688);
+      (0, import_internal35.add_location)(h45, file33, 27, 2, 744);
+      (0, import_internal35.attr_dev)(div1, "class", "docs-column");
+      (0, import_internal35.add_location)(div1, file33, 15, 1, 296);
+      (0, import_internal35.attr_dev)(div2, "class", "docs-layout");
+      (0, import_internal35.add_location)(div2, file33, 2, 0, 17);
+      (0, import_internal35.add_location)(hr1, file33, 34, 0, 822);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal34.insert_dev)(target, h2, anchor);
-      (0, import_internal34.insert_dev)(target, t1, anchor);
-      (0, import_internal34.insert_dev)(target, div2, anchor);
-      (0, import_internal34.append_dev)(div2, div0);
-      (0, import_internal34.append_dev)(div0, h30);
-      (0, import_internal34.append_dev)(div0, t3);
+      (0, import_internal35.insert_dev)(target, h2, anchor);
+      (0, import_internal35.insert_dev)(target, t1, anchor);
+      (0, import_internal35.insert_dev)(target, div2, anchor);
+      (0, import_internal35.append_dev)(div2, div0);
+      (0, import_internal35.append_dev)(div0, h30);
+      (0, import_internal35.append_dev)(div0, t3);
       if_blocks[current_block_type_index].m(div0, null);
-      (0, import_internal34.append_dev)(div0, t4);
-      (0, import_internal34.append_dev)(div0, hr0);
-      (0, import_internal34.append_dev)(div0, t5);
-      (0, import_internal34.append_dev)(div0, h31);
-      (0, import_internal34.append_dev)(div0, t7);
-      (0, import_internal34.mount_component)(codebox, div0, null);
-      (0, import_internal34.append_dev)(div2, t8);
-      (0, import_internal34.append_dev)(div2, div1);
-      (0, import_internal34.append_dev)(div1, h32);
-      (0, import_internal34.append_dev)(div1, t10);
-      (0, import_internal34.append_dev)(div1, h40);
-      (0, import_internal34.append_dev)(div1, t12);
-      (0, import_internal34.append_dev)(div1, input);
-      (0, import_internal34.set_input_value)(
+      (0, import_internal35.append_dev)(div0, t4);
+      (0, import_internal35.append_dev)(div0, hr0);
+      (0, import_internal35.append_dev)(div0, t5);
+      (0, import_internal35.append_dev)(div0, h31);
+      (0, import_internal35.append_dev)(div0, t7);
+      (0, import_internal35.mount_component)(codebox, div0, null);
+      (0, import_internal35.append_dev)(div2, t8);
+      (0, import_internal35.append_dev)(div2, div1);
+      (0, import_internal35.append_dev)(div1, h32);
+      (0, import_internal35.append_dev)(div1, t10);
+      (0, import_internal35.append_dev)(div1, h40);
+      (0, import_internal35.append_dev)(div1, t12);
+      (0, import_internal35.append_dev)(div1, input);
+      (0, import_internal35.set_input_value)(
         input,
         /*buttonText*/
         ctx[1]
       );
-      (0, import_internal34.append_dev)(div1, t13);
-      (0, import_internal34.append_dev)(div1, h41);
-      (0, import_internal34.append_dev)(div1, t15);
-      (0, import_internal34.mount_component)(buttontoggle0, div1, null);
-      (0, import_internal34.append_dev)(div1, t16);
-      (0, import_internal34.append_dev)(div1, h42);
-      (0, import_internal34.append_dev)(div1, t18);
-      (0, import_internal34.mount_component)(buttontoggle1, div1, null);
-      (0, import_internal34.append_dev)(div1, t19);
-      (0, import_internal34.append_dev)(div1, h43);
-      (0, import_internal34.append_dev)(div1, t21);
-      (0, import_internal34.mount_component)(buttontoggle2, div1, null);
-      (0, import_internal34.append_dev)(div1, t22);
-      (0, import_internal34.append_dev)(div1, h44);
-      (0, import_internal34.append_dev)(div1, t24);
-      (0, import_internal34.mount_component)(toggle0, div1, null);
-      (0, import_internal34.append_dev)(div1, t25);
-      (0, import_internal34.append_dev)(div1, h45);
-      (0, import_internal34.append_dev)(div1, t27);
-      (0, import_internal34.mount_component)(toggle1, div1, null);
-      (0, import_internal34.insert_dev)(target, t28, anchor);
-      (0, import_internal34.insert_dev)(target, hr1, anchor);
-      (0, import_internal34.insert_dev)(target, t29, anchor);
-      (0, import_internal34.mount_component)(api, target, anchor);
+      (0, import_internal35.append_dev)(div1, t13);
+      (0, import_internal35.append_dev)(div1, h41);
+      (0, import_internal35.append_dev)(div1, t15);
+      (0, import_internal35.mount_component)(buttontoggle0, div1, null);
+      (0, import_internal35.append_dev)(div1, t16);
+      (0, import_internal35.append_dev)(div1, h42);
+      (0, import_internal35.append_dev)(div1, t18);
+      (0, import_internal35.mount_component)(buttontoggle1, div1, null);
+      (0, import_internal35.append_dev)(div1, t19);
+      (0, import_internal35.append_dev)(div1, h43);
+      (0, import_internal35.append_dev)(div1, t21);
+      (0, import_internal35.mount_component)(buttontoggle2, div1, null);
+      (0, import_internal35.append_dev)(div1, t22);
+      (0, import_internal35.append_dev)(div1, h44);
+      (0, import_internal35.append_dev)(div1, t24);
+      (0, import_internal35.mount_component)(toggle0, div1, null);
+      (0, import_internal35.append_dev)(div1, t25);
+      (0, import_internal35.append_dev)(div1, h45);
+      (0, import_internal35.append_dev)(div1, t27);
+      (0, import_internal35.mount_component)(toggle1, div1, null);
+      (0, import_internal35.insert_dev)(target, t28, anchor);
+      (0, import_internal35.insert_dev)(target, hr1, anchor);
+      (0, import_internal35.insert_dev)(target, t29, anchor);
+      (0, import_internal35.mount_component)(api, target, anchor);
       current = true;
       if (!mounted) {
-        dispose = (0, import_internal34.listen_dev)(
+        dispose = (0, import_internal35.listen_dev)(
           input,
           "input",
           /*input_input_handler*/
@@ -21831,11 +22801,11 @@ function create_fragment34(ctx) {
       if (current_block_type_index === previous_block_index) {
         if_blocks[current_block_type_index].p(ctx2, dirty);
       } else {
-        (0, import_internal34.group_outros)();
-        (0, import_internal34.transition_out)(if_blocks[previous_block_index], 1, 1, () => {
+        (0, import_internal35.group_outros)();
+        (0, import_internal35.transition_out)(if_blocks[previous_block_index], 1, 1, () => {
           if_blocks[previous_block_index] = null;
         });
-        (0, import_internal34.check_outros)();
+        (0, import_internal35.check_outros)();
         if_block = if_blocks[current_block_type_index];
         if (!if_block) {
           if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
@@ -21843,7 +22813,7 @@ function create_fragment34(ctx) {
         } else {
           if_block.p(ctx2, dirty);
         }
-        (0, import_internal34.transition_in)(if_block, 1);
+        (0, import_internal35.transition_in)(if_block, 1);
         if_block.m(div0, t4);
       }
       const codebox_changes = {};
@@ -21859,7 +22829,7 @@ function create_fragment34(ctx) {
       if (dirty & /*buttonText*/
       2 && input.value !== /*buttonText*/
       ctx2[1]) {
-        (0, import_internal34.set_input_value)(
+        (0, import_internal35.set_input_value)(
           input,
           /*buttonText*/
           ctx2[1]
@@ -21871,7 +22841,7 @@ function create_fragment34(ctx) {
         updating_value = true;
         toggle0_changes.value = /*props*/
         ctx2[0].round;
-        (0, import_internal34.add_flush_callback)(() => updating_value = false);
+        (0, import_internal35.add_flush_callback)(() => updating_value = false);
       }
       toggle0.$set(toggle0_changes);
       const toggle1_changes = {};
@@ -21880,71 +22850,71 @@ function create_fragment34(ctx) {
         updating_value_1 = true;
         toggle1_changes.value = /*props*/
         ctx2[0].disabled;
-        (0, import_internal34.add_flush_callback)(() => updating_value_1 = false);
+        (0, import_internal35.add_flush_callback)(() => updating_value_1 = false);
       }
       toggle1.$set(toggle1_changes);
     },
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal34.transition_in)(if_block);
-      (0, import_internal34.transition_in)(codebox.$$.fragment, local);
-      (0, import_internal34.transition_in)(buttontoggle0.$$.fragment, local);
-      (0, import_internal34.transition_in)(buttontoggle1.$$.fragment, local);
-      (0, import_internal34.transition_in)(buttontoggle2.$$.fragment, local);
-      (0, import_internal34.transition_in)(toggle0.$$.fragment, local);
-      (0, import_internal34.transition_in)(toggle1.$$.fragment, local);
-      (0, import_internal34.transition_in)(api.$$.fragment, local);
+      (0, import_internal35.transition_in)(if_block);
+      (0, import_internal35.transition_in)(codebox.$$.fragment, local);
+      (0, import_internal35.transition_in)(buttontoggle0.$$.fragment, local);
+      (0, import_internal35.transition_in)(buttontoggle1.$$.fragment, local);
+      (0, import_internal35.transition_in)(buttontoggle2.$$.fragment, local);
+      (0, import_internal35.transition_in)(toggle0.$$.fragment, local);
+      (0, import_internal35.transition_in)(toggle1.$$.fragment, local);
+      (0, import_internal35.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal34.transition_out)(if_block);
-      (0, import_internal34.transition_out)(codebox.$$.fragment, local);
-      (0, import_internal34.transition_out)(buttontoggle0.$$.fragment, local);
-      (0, import_internal34.transition_out)(buttontoggle1.$$.fragment, local);
-      (0, import_internal34.transition_out)(buttontoggle2.$$.fragment, local);
-      (0, import_internal34.transition_out)(toggle0.$$.fragment, local);
-      (0, import_internal34.transition_out)(toggle1.$$.fragment, local);
-      (0, import_internal34.transition_out)(api.$$.fragment, local);
+      (0, import_internal35.transition_out)(if_block);
+      (0, import_internal35.transition_out)(codebox.$$.fragment, local);
+      (0, import_internal35.transition_out)(buttontoggle0.$$.fragment, local);
+      (0, import_internal35.transition_out)(buttontoggle1.$$.fragment, local);
+      (0, import_internal35.transition_out)(buttontoggle2.$$.fragment, local);
+      (0, import_internal35.transition_out)(toggle0.$$.fragment, local);
+      (0, import_internal35.transition_out)(toggle1.$$.fragment, local);
+      (0, import_internal35.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal34.detach_dev)(h2);
+        (0, import_internal35.detach_dev)(h2);
       if (detaching)
-        (0, import_internal34.detach_dev)(t1);
+        (0, import_internal35.detach_dev)(t1);
       if (detaching)
-        (0, import_internal34.detach_dev)(div2);
+        (0, import_internal35.detach_dev)(div2);
       if_blocks[current_block_type_index].d();
-      (0, import_internal34.destroy_component)(codebox);
-      (0, import_internal34.destroy_component)(buttontoggle0);
-      (0, import_internal34.destroy_component)(buttontoggle1);
-      (0, import_internal34.destroy_component)(buttontoggle2);
-      (0, import_internal34.destroy_component)(toggle0);
-      (0, import_internal34.destroy_component)(toggle1);
+      (0, import_internal35.destroy_component)(codebox);
+      (0, import_internal35.destroy_component)(buttontoggle0);
+      (0, import_internal35.destroy_component)(buttontoggle1);
+      (0, import_internal35.destroy_component)(buttontoggle2);
+      (0, import_internal35.destroy_component)(toggle0);
+      (0, import_internal35.destroy_component)(toggle1);
       if (detaching)
-        (0, import_internal34.detach_dev)(t28);
+        (0, import_internal35.detach_dev)(t28);
       if (detaching)
-        (0, import_internal34.detach_dev)(hr1);
+        (0, import_internal35.detach_dev)(hr1);
       if (detaching)
-        (0, import_internal34.detach_dev)(t29);
-      (0, import_internal34.destroy_component)(api, detaching);
+        (0, import_internal35.detach_dev)(t29);
+      (0, import_internal35.destroy_component)(api, detaching);
       mounted = false;
       dispose();
     }
   };
-  (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment34.name,
+    id: create_fragment35.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance34($$self, $$props, $$invalidate) {
+function instance35($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal34.validate_slots)("Button", slots, []);
+  (0, import_internal35.validate_slots)("Button", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -22112,38 +23082,38 @@ function instance34($$self, $$props, $$invalidate) {
     toggle1_value_binding
   ];
 }
-var Button_1 = class extends import_internal34.SvelteComponentDev {
+var Button_1 = class extends import_internal35.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal34.init)(this, options, instance34, create_fragment34, import_internal34.safe_not_equal, {});
-    (0, import_internal34.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal35.init)(this, options, instance35, create_fragment35, import_internal35.safe_not_equal, {});
+    (0, import_internal35.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Button_1",
       options,
-      id: create_fragment34.name
+      id: create_fragment35.name
     });
   }
 };
 var Button_default2 = Button_1;
 
 // docs-src/components/button-group/ButtonGroup.svelte
-var import_internal35 = __toESM(require_internal());
-var file33 = "docs-src/components/button-group/ButtonGroup.svelte";
+var import_internal36 = __toESM(require_internal());
+var file34 = "docs-src/components/button-group/ButtonGroup.svelte";
 function create_default_slot_21(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("One");
+      t = (0, import_internal36.text)("One");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_21.name,
     type: "slot",
@@ -22156,17 +23126,17 @@ function create_default_slot_20(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Two");
+      t = (0, import_internal36.text)("Two");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_20.name,
     type: "slot",
@@ -22179,17 +23149,17 @@ function create_default_slot_19(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Three");
+      t = (0, import_internal36.text)("Three");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_19.name,
     type: "slot",
@@ -22228,18 +23198,18 @@ function create_default_slot_18(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal35.create_component)(button0.$$.fragment);
-      t0 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button1.$$.fragment);
-      t1 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button2.$$.fragment);
+      (0, import_internal36.create_component)(button0.$$.fragment);
+      t0 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button1.$$.fragment);
+      t1 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.mount_component)(button0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t0, anchor);
-      (0, import_internal35.mount_component)(button1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.mount_component)(button2, target, anchor);
+      (0, import_internal36.mount_component)(button0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t0, anchor);
+      (0, import_internal36.mount_component)(button1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.mount_component)(button2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -22265,28 +23235,28 @@ function create_default_slot_18(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(button0.$$.fragment, local);
-      (0, import_internal35.transition_in)(button1.$$.fragment, local);
-      (0, import_internal35.transition_in)(button2.$$.fragment, local);
+      (0, import_internal36.transition_in)(button0.$$.fragment, local);
+      (0, import_internal36.transition_in)(button1.$$.fragment, local);
+      (0, import_internal36.transition_in)(button2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(button0.$$.fragment, local);
-      (0, import_internal35.transition_out)(button1.$$.fragment, local);
-      (0, import_internal35.transition_out)(button2.$$.fragment, local);
+      (0, import_internal36.transition_out)(button0.$$.fragment, local);
+      (0, import_internal36.transition_out)(button1.$$.fragment, local);
+      (0, import_internal36.transition_out)(button2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal35.destroy_component)(button0, detaching);
+      (0, import_internal36.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t0);
-      (0, import_internal35.destroy_component)(button1, detaching);
+        (0, import_internal36.detach_dev)(t0);
+      (0, import_internal36.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
-      (0, import_internal35.destroy_component)(button2, detaching);
+        (0, import_internal36.detach_dev)(t1);
+      (0, import_internal36.destroy_component)(button2, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_18.name,
     type: "slot",
@@ -22299,17 +23269,17 @@ function create_default_slot_17(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("One");
+      t = (0, import_internal36.text)("One");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_17.name,
     type: "slot",
@@ -22322,17 +23292,17 @@ function create_default_slot_16(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Two");
+      t = (0, import_internal36.text)("Two");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_16.name,
     type: "slot",
@@ -22345,17 +23315,17 @@ function create_default_slot_15(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Three");
+      t = (0, import_internal36.text)("Three");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_15.name,
     type: "slot",
@@ -22394,18 +23364,18 @@ function create_default_slot_14(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal35.create_component)(pushbutton0.$$.fragment);
-      t0 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(pushbutton1.$$.fragment);
-      t1 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(pushbutton2.$$.fragment);
+      (0, import_internal36.create_component)(pushbutton0.$$.fragment);
+      t0 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(pushbutton1.$$.fragment);
+      t1 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(pushbutton2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.mount_component)(pushbutton0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t0, anchor);
-      (0, import_internal35.mount_component)(pushbutton1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.mount_component)(pushbutton2, target, anchor);
+      (0, import_internal36.mount_component)(pushbutton0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t0, anchor);
+      (0, import_internal36.mount_component)(pushbutton1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.mount_component)(pushbutton2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -22431,28 +23401,28 @@ function create_default_slot_14(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(pushbutton0.$$.fragment, local);
-      (0, import_internal35.transition_in)(pushbutton1.$$.fragment, local);
-      (0, import_internal35.transition_in)(pushbutton2.$$.fragment, local);
+      (0, import_internal36.transition_in)(pushbutton0.$$.fragment, local);
+      (0, import_internal36.transition_in)(pushbutton1.$$.fragment, local);
+      (0, import_internal36.transition_in)(pushbutton2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(pushbutton0.$$.fragment, local);
-      (0, import_internal35.transition_out)(pushbutton1.$$.fragment, local);
-      (0, import_internal35.transition_out)(pushbutton2.$$.fragment, local);
+      (0, import_internal36.transition_out)(pushbutton0.$$.fragment, local);
+      (0, import_internal36.transition_out)(pushbutton1.$$.fragment, local);
+      (0, import_internal36.transition_out)(pushbutton2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal35.destroy_component)(pushbutton0, detaching);
+      (0, import_internal36.destroy_component)(pushbutton0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t0);
-      (0, import_internal35.destroy_component)(pushbutton1, detaching);
+        (0, import_internal36.detach_dev)(t0);
+      (0, import_internal36.destroy_component)(pushbutton1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
-      (0, import_internal35.destroy_component)(pushbutton2, detaching);
+        (0, import_internal36.detach_dev)(t1);
+      (0, import_internal36.destroy_component)(pushbutton2, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_14.name,
     type: "slot",
@@ -22465,17 +23435,17 @@ function create_default_slot_13(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("One");
+      t = (0, import_internal36.text)("One");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_13.name,
     type: "slot",
@@ -22488,17 +23458,17 @@ function create_default_slot_12(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Two");
+      t = (0, import_internal36.text)("Two");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_12.name,
     type: "slot",
@@ -22511,17 +23481,17 @@ function create_default_slot_11(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Three");
+      t = (0, import_internal36.text)("Three");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_11.name,
     type: "slot",
@@ -22561,18 +23531,18 @@ function create_default_slot_10(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal35.create_component)(button0.$$.fragment);
-      t0 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button1.$$.fragment);
-      t1 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button2.$$.fragment);
+      (0, import_internal36.create_component)(button0.$$.fragment);
+      t0 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button1.$$.fragment);
+      t1 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.mount_component)(button0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t0, anchor);
-      (0, import_internal35.mount_component)(button1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.mount_component)(button2, target, anchor);
+      (0, import_internal36.mount_component)(button0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t0, anchor);
+      (0, import_internal36.mount_component)(button1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.mount_component)(button2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -22598,28 +23568,28 @@ function create_default_slot_10(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(button0.$$.fragment, local);
-      (0, import_internal35.transition_in)(button1.$$.fragment, local);
-      (0, import_internal35.transition_in)(button2.$$.fragment, local);
+      (0, import_internal36.transition_in)(button0.$$.fragment, local);
+      (0, import_internal36.transition_in)(button1.$$.fragment, local);
+      (0, import_internal36.transition_in)(button2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(button0.$$.fragment, local);
-      (0, import_internal35.transition_out)(button1.$$.fragment, local);
-      (0, import_internal35.transition_out)(button2.$$.fragment, local);
+      (0, import_internal36.transition_out)(button0.$$.fragment, local);
+      (0, import_internal36.transition_out)(button1.$$.fragment, local);
+      (0, import_internal36.transition_out)(button2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal35.destroy_component)(button0, detaching);
+      (0, import_internal36.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t0);
-      (0, import_internal35.destroy_component)(button1, detaching);
+        (0, import_internal36.detach_dev)(t0);
+      (0, import_internal36.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
-      (0, import_internal35.destroy_component)(button2, detaching);
+        (0, import_internal36.detach_dev)(t1);
+      (0, import_internal36.destroy_component)(button2, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_10.name,
     type: "slot",
@@ -22632,17 +23602,17 @@ function create_default_slot_9(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("One");
+      t = (0, import_internal36.text)("One");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_9.name,
     type: "slot",
@@ -22655,17 +23625,17 @@ function create_default_slot_8(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Two");
+      t = (0, import_internal36.text)("Two");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_8.name,
     type: "slot",
@@ -22678,17 +23648,17 @@ function create_default_slot_7(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Three");
+      t = (0, import_internal36.text)("Three");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_7.name,
     type: "slot",
@@ -22727,18 +23697,18 @@ function create_default_slot_6(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal35.create_component)(button0.$$.fragment);
-      t0 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button1.$$.fragment);
-      t1 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button2.$$.fragment);
+      (0, import_internal36.create_component)(button0.$$.fragment);
+      t0 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button1.$$.fragment);
+      t1 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.mount_component)(button0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t0, anchor);
-      (0, import_internal35.mount_component)(button1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.mount_component)(button2, target, anchor);
+      (0, import_internal36.mount_component)(button0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t0, anchor);
+      (0, import_internal36.mount_component)(button1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.mount_component)(button2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -22764,28 +23734,28 @@ function create_default_slot_6(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(button0.$$.fragment, local);
-      (0, import_internal35.transition_in)(button1.$$.fragment, local);
-      (0, import_internal35.transition_in)(button2.$$.fragment, local);
+      (0, import_internal36.transition_in)(button0.$$.fragment, local);
+      (0, import_internal36.transition_in)(button1.$$.fragment, local);
+      (0, import_internal36.transition_in)(button2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(button0.$$.fragment, local);
-      (0, import_internal35.transition_out)(button1.$$.fragment, local);
-      (0, import_internal35.transition_out)(button2.$$.fragment, local);
+      (0, import_internal36.transition_out)(button0.$$.fragment, local);
+      (0, import_internal36.transition_out)(button1.$$.fragment, local);
+      (0, import_internal36.transition_out)(button2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal35.destroy_component)(button0, detaching);
+      (0, import_internal36.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t0);
-      (0, import_internal35.destroy_component)(button1, detaching);
+        (0, import_internal36.detach_dev)(t0);
+      (0, import_internal36.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
-      (0, import_internal35.destroy_component)(button2, detaching);
+        (0, import_internal36.detach_dev)(t1);
+      (0, import_internal36.destroy_component)(button2, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_6.name,
     type: "slot",
@@ -22798,17 +23768,17 @@ function create_default_slot_5(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("One");
+      t = (0, import_internal36.text)("One");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_5.name,
     type: "slot",
@@ -22821,17 +23791,17 @@ function create_default_slot_4(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Two");
+      t = (0, import_internal36.text)("Two");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_4.name,
     type: "slot",
@@ -22844,17 +23814,17 @@ function create_default_slot_3(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal35.text)("Three");
+      t = (0, import_internal36.text)("Three");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, t, anchor);
+      (0, import_internal36.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(t);
+        (0, import_internal36.detach_dev)(t);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_3.name,
     type: "slot",
@@ -22896,18 +23866,18 @@ function create_default_slot_2(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal35.create_component)(button0.$$.fragment);
-      t0 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button1.$$.fragment);
-      t1 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button2.$$.fragment);
+      (0, import_internal36.create_component)(button0.$$.fragment);
+      t0 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button1.$$.fragment);
+      t1 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.mount_component)(button0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t0, anchor);
-      (0, import_internal35.mount_component)(button1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.mount_component)(button2, target, anchor);
+      (0, import_internal36.mount_component)(button0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t0, anchor);
+      (0, import_internal36.mount_component)(button1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.mount_component)(button2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -22933,28 +23903,28 @@ function create_default_slot_2(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(button0.$$.fragment, local);
-      (0, import_internal35.transition_in)(button1.$$.fragment, local);
-      (0, import_internal35.transition_in)(button2.$$.fragment, local);
+      (0, import_internal36.transition_in)(button0.$$.fragment, local);
+      (0, import_internal36.transition_in)(button1.$$.fragment, local);
+      (0, import_internal36.transition_in)(button2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(button0.$$.fragment, local);
-      (0, import_internal35.transition_out)(button1.$$.fragment, local);
-      (0, import_internal35.transition_out)(button2.$$.fragment, local);
+      (0, import_internal36.transition_out)(button0.$$.fragment, local);
+      (0, import_internal36.transition_out)(button1.$$.fragment, local);
+      (0, import_internal36.transition_out)(button2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal35.destroy_component)(button0, detaching);
+      (0, import_internal36.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t0);
-      (0, import_internal35.destroy_component)(button1, detaching);
+        (0, import_internal36.detach_dev)(t0);
+      (0, import_internal36.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
-      (0, import_internal35.destroy_component)(button2, detaching);
+        (0, import_internal36.detach_dev)(t1);
+      (0, import_internal36.destroy_component)(button2, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_2.name,
     type: "slot",
@@ -22975,46 +23945,46 @@ function create_default_slot_1(ctx) {
   button2 = new Button_default({ props: { icon: "alert" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal35.create_component)(button0.$$.fragment);
-      t0 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button1.$$.fragment);
-      t1 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button2.$$.fragment);
+      (0, import_internal36.create_component)(button0.$$.fragment);
+      t0 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button1.$$.fragment);
+      t1 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.mount_component)(button0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t0, anchor);
-      (0, import_internal35.mount_component)(button1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.mount_component)(button2, target, anchor);
+      (0, import_internal36.mount_component)(button0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t0, anchor);
+      (0, import_internal36.mount_component)(button1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.mount_component)(button2, target, anchor);
       current = true;
     },
-    p: import_internal35.noop,
+    p: import_internal36.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(button0.$$.fragment, local);
-      (0, import_internal35.transition_in)(button1.$$.fragment, local);
-      (0, import_internal35.transition_in)(button2.$$.fragment, local);
+      (0, import_internal36.transition_in)(button0.$$.fragment, local);
+      (0, import_internal36.transition_in)(button1.$$.fragment, local);
+      (0, import_internal36.transition_in)(button2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(button0.$$.fragment, local);
-      (0, import_internal35.transition_out)(button1.$$.fragment, local);
-      (0, import_internal35.transition_out)(button2.$$.fragment, local);
+      (0, import_internal36.transition_out)(button0.$$.fragment, local);
+      (0, import_internal36.transition_out)(button1.$$.fragment, local);
+      (0, import_internal36.transition_out)(button2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal35.destroy_component)(button0, detaching);
+      (0, import_internal36.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t0);
-      (0, import_internal35.destroy_component)(button1, detaching);
+        (0, import_internal36.detach_dev)(t0);
+      (0, import_internal36.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
-      (0, import_internal35.destroy_component)(button2, detaching);
+        (0, import_internal36.detach_dev)(t1);
+      (0, import_internal36.destroy_component)(button2, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_1.name,
     type: "slot",
@@ -23035,46 +24005,46 @@ function create_default_slot4(ctx) {
   button2 = new Button_default({ props: { icon: "alert" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal35.create_component)(button0.$$.fragment);
-      t0 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button1.$$.fragment);
-      t1 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(button2.$$.fragment);
+      (0, import_internal36.create_component)(button0.$$.fragment);
+      t0 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button1.$$.fragment);
+      t1 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(button2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.mount_component)(button0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t0, anchor);
-      (0, import_internal35.mount_component)(button1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.mount_component)(button2, target, anchor);
+      (0, import_internal36.mount_component)(button0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t0, anchor);
+      (0, import_internal36.mount_component)(button1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.mount_component)(button2, target, anchor);
       current = true;
     },
-    p: import_internal35.noop,
+    p: import_internal36.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(button0.$$.fragment, local);
-      (0, import_internal35.transition_in)(button1.$$.fragment, local);
-      (0, import_internal35.transition_in)(button2.$$.fragment, local);
+      (0, import_internal36.transition_in)(button0.$$.fragment, local);
+      (0, import_internal36.transition_in)(button1.$$.fragment, local);
+      (0, import_internal36.transition_in)(button2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(button0.$$.fragment, local);
-      (0, import_internal35.transition_out)(button1.$$.fragment, local);
-      (0, import_internal35.transition_out)(button2.$$.fragment, local);
+      (0, import_internal36.transition_out)(button0.$$.fragment, local);
+      (0, import_internal36.transition_out)(button1.$$.fragment, local);
+      (0, import_internal36.transition_out)(button2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal35.destroy_component)(button0, detaching);
+      (0, import_internal36.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t0);
-      (0, import_internal35.destroy_component)(button1, detaching);
+        (0, import_internal36.detach_dev)(t0);
+      (0, import_internal36.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
-      (0, import_internal35.destroy_component)(button2, detaching);
+        (0, import_internal36.detach_dev)(t1);
+      (0, import_internal36.destroy_component)(button2, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot4.name,
     type: "slot",
@@ -23083,7 +24053,7 @@ function create_default_slot4(ctx) {
   });
   return block;
 }
-function create_fragment35(ctx) {
+function create_fragment36(ctx) {
   let h2;
   let t1;
   let h30;
@@ -23185,93 +24155,93 @@ function create_fragment35(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal35.element)("h2");
+      h2 = (0, import_internal36.element)("h2");
       h2.textContent = "Button Group";
-      t1 = (0, import_internal35.space)();
-      h30 = (0, import_internal35.element)("h3");
+      t1 = (0, import_internal36.space)();
+      h30 = (0, import_internal36.element)("h3");
       h30.textContent = "Normal";
-      t3 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(buttongroup0.$$.fragment);
-      t4 = (0, import_internal35.space)();
-      h31 = (0, import_internal35.element)("h3");
+      t3 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(buttongroup0.$$.fragment);
+      t4 = (0, import_internal36.space)();
+      h31 = (0, import_internal36.element)("h3");
       h31.textContent = "Push Buttons";
-      t6 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(buttongroup1.$$.fragment);
-      t7 = (0, import_internal35.space)();
-      h32 = (0, import_internal35.element)("h3");
+      t6 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(buttongroup1.$$.fragment);
+      t7 = (0, import_internal36.space)();
+      h32 = (0, import_internal36.element)("h3");
       h32.textContent = "Disabled button";
-      t9 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(buttongroup2.$$.fragment);
-      t10 = (0, import_internal35.space)();
-      h33 = (0, import_internal35.element)("h3");
+      t9 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(buttongroup2.$$.fragment);
+      t10 = (0, import_internal36.space)();
+      h33 = (0, import_internal36.element)("h3");
       h33.textContent = "Round";
-      t12 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(buttongroup3.$$.fragment);
-      t13 = (0, import_internal35.space)();
-      h34 = (0, import_internal35.element)("h3");
+      t12 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(buttongroup3.$$.fragment);
+      t13 = (0, import_internal36.space)();
+      h34 = (0, import_internal36.element)("h3");
       h34.textContent = "With icons";
-      t15 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(buttongroup4.$$.fragment);
-      t16 = (0, import_internal35.space)();
-      h35 = (0, import_internal35.element)("h3");
+      t15 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(buttongroup4.$$.fragment);
+      t16 = (0, import_internal36.space)();
+      h35 = (0, import_internal36.element)("h3");
       h35.textContent = "Icons only";
-      t18 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(buttongroup5.$$.fragment);
-      t19 = (0, import_internal35.space)();
-      h36 = (0, import_internal35.element)("h3");
+      t18 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(buttongroup5.$$.fragment);
+      t19 = (0, import_internal36.space)();
+      h36 = (0, import_internal36.element)("h3");
       h36.textContent = "Icons only, and round";
-      t21 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(buttongroup6.$$.fragment);
-      t22 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(codeexample.$$.fragment);
-      t23 = (0, import_internal35.space)();
-      (0, import_internal35.create_component)(api.$$.fragment);
-      (0, import_internal35.add_location)(h2, file33, 0, 0, 0);
-      (0, import_internal35.add_location)(h30, file33, 2, 0, 23);
-      (0, import_internal35.add_location)(h31, file33, 10, 0, 138);
-      (0, import_internal35.add_location)(h32, file33, 18, 0, 283);
-      (0, import_internal35.add_location)(h33, file33, 26, 0, 416);
-      (0, import_internal35.add_location)(h34, file33, 34, 0, 536);
-      (0, import_internal35.add_location)(h35, file33, 42, 0, 693);
-      (0, import_internal35.add_location)(h36, file33, 50, 0, 839);
+      t21 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(buttongroup6.$$.fragment);
+      t22 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(codeexample.$$.fragment);
+      t23 = (0, import_internal36.space)();
+      (0, import_internal36.create_component)(api.$$.fragment);
+      (0, import_internal36.add_location)(h2, file34, 0, 0, 0);
+      (0, import_internal36.add_location)(h30, file34, 2, 0, 23);
+      (0, import_internal36.add_location)(h31, file34, 10, 0, 138);
+      (0, import_internal36.add_location)(h32, file34, 18, 0, 283);
+      (0, import_internal36.add_location)(h33, file34, 26, 0, 416);
+      (0, import_internal36.add_location)(h34, file34, 34, 0, 536);
+      (0, import_internal36.add_location)(h35, file34, 42, 0, 693);
+      (0, import_internal36.add_location)(h36, file34, 50, 0, 839);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal35.insert_dev)(target, h2, anchor);
-      (0, import_internal35.insert_dev)(target, t1, anchor);
-      (0, import_internal35.insert_dev)(target, h30, anchor);
-      (0, import_internal35.insert_dev)(target, t3, anchor);
-      (0, import_internal35.mount_component)(buttongroup0, target, anchor);
-      (0, import_internal35.insert_dev)(target, t4, anchor);
-      (0, import_internal35.insert_dev)(target, h31, anchor);
-      (0, import_internal35.insert_dev)(target, t6, anchor);
-      (0, import_internal35.mount_component)(buttongroup1, target, anchor);
-      (0, import_internal35.insert_dev)(target, t7, anchor);
-      (0, import_internal35.insert_dev)(target, h32, anchor);
-      (0, import_internal35.insert_dev)(target, t9, anchor);
-      (0, import_internal35.mount_component)(buttongroup2, target, anchor);
-      (0, import_internal35.insert_dev)(target, t10, anchor);
-      (0, import_internal35.insert_dev)(target, h33, anchor);
-      (0, import_internal35.insert_dev)(target, t12, anchor);
-      (0, import_internal35.mount_component)(buttongroup3, target, anchor);
-      (0, import_internal35.insert_dev)(target, t13, anchor);
-      (0, import_internal35.insert_dev)(target, h34, anchor);
-      (0, import_internal35.insert_dev)(target, t15, anchor);
-      (0, import_internal35.mount_component)(buttongroup4, target, anchor);
-      (0, import_internal35.insert_dev)(target, t16, anchor);
-      (0, import_internal35.insert_dev)(target, h35, anchor);
-      (0, import_internal35.insert_dev)(target, t18, anchor);
-      (0, import_internal35.mount_component)(buttongroup5, target, anchor);
-      (0, import_internal35.insert_dev)(target, t19, anchor);
-      (0, import_internal35.insert_dev)(target, h36, anchor);
-      (0, import_internal35.insert_dev)(target, t21, anchor);
-      (0, import_internal35.mount_component)(buttongroup6, target, anchor);
-      (0, import_internal35.insert_dev)(target, t22, anchor);
-      (0, import_internal35.mount_component)(codeexample, target, anchor);
-      (0, import_internal35.insert_dev)(target, t23, anchor);
-      (0, import_internal35.mount_component)(api, target, anchor);
+      (0, import_internal36.insert_dev)(target, h2, anchor);
+      (0, import_internal36.insert_dev)(target, t1, anchor);
+      (0, import_internal36.insert_dev)(target, h30, anchor);
+      (0, import_internal36.insert_dev)(target, t3, anchor);
+      (0, import_internal36.mount_component)(buttongroup0, target, anchor);
+      (0, import_internal36.insert_dev)(target, t4, anchor);
+      (0, import_internal36.insert_dev)(target, h31, anchor);
+      (0, import_internal36.insert_dev)(target, t6, anchor);
+      (0, import_internal36.mount_component)(buttongroup1, target, anchor);
+      (0, import_internal36.insert_dev)(target, t7, anchor);
+      (0, import_internal36.insert_dev)(target, h32, anchor);
+      (0, import_internal36.insert_dev)(target, t9, anchor);
+      (0, import_internal36.mount_component)(buttongroup2, target, anchor);
+      (0, import_internal36.insert_dev)(target, t10, anchor);
+      (0, import_internal36.insert_dev)(target, h33, anchor);
+      (0, import_internal36.insert_dev)(target, t12, anchor);
+      (0, import_internal36.mount_component)(buttongroup3, target, anchor);
+      (0, import_internal36.insert_dev)(target, t13, anchor);
+      (0, import_internal36.insert_dev)(target, h34, anchor);
+      (0, import_internal36.insert_dev)(target, t15, anchor);
+      (0, import_internal36.mount_component)(buttongroup4, target, anchor);
+      (0, import_internal36.insert_dev)(target, t16, anchor);
+      (0, import_internal36.insert_dev)(target, h35, anchor);
+      (0, import_internal36.insert_dev)(target, t18, anchor);
+      (0, import_internal36.mount_component)(buttongroup5, target, anchor);
+      (0, import_internal36.insert_dev)(target, t19, anchor);
+      (0, import_internal36.insert_dev)(target, h36, anchor);
+      (0, import_internal36.insert_dev)(target, t21, anchor);
+      (0, import_internal36.mount_component)(buttongroup6, target, anchor);
+      (0, import_internal36.insert_dev)(target, t22, anchor);
+      (0, import_internal36.mount_component)(codeexample, target, anchor);
+      (0, import_internal36.insert_dev)(target, t23, anchor);
+      (0, import_internal36.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -23321,101 +24291,101 @@ function create_fragment35(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal35.transition_in)(buttongroup0.$$.fragment, local);
-      (0, import_internal35.transition_in)(buttongroup1.$$.fragment, local);
-      (0, import_internal35.transition_in)(buttongroup2.$$.fragment, local);
-      (0, import_internal35.transition_in)(buttongroup3.$$.fragment, local);
-      (0, import_internal35.transition_in)(buttongroup4.$$.fragment, local);
-      (0, import_internal35.transition_in)(buttongroup5.$$.fragment, local);
-      (0, import_internal35.transition_in)(buttongroup6.$$.fragment, local);
-      (0, import_internal35.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal35.transition_in)(api.$$.fragment, local);
+      (0, import_internal36.transition_in)(buttongroup0.$$.fragment, local);
+      (0, import_internal36.transition_in)(buttongroup1.$$.fragment, local);
+      (0, import_internal36.transition_in)(buttongroup2.$$.fragment, local);
+      (0, import_internal36.transition_in)(buttongroup3.$$.fragment, local);
+      (0, import_internal36.transition_in)(buttongroup4.$$.fragment, local);
+      (0, import_internal36.transition_in)(buttongroup5.$$.fragment, local);
+      (0, import_internal36.transition_in)(buttongroup6.$$.fragment, local);
+      (0, import_internal36.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal36.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal35.transition_out)(buttongroup0.$$.fragment, local);
-      (0, import_internal35.transition_out)(buttongroup1.$$.fragment, local);
-      (0, import_internal35.transition_out)(buttongroup2.$$.fragment, local);
-      (0, import_internal35.transition_out)(buttongroup3.$$.fragment, local);
-      (0, import_internal35.transition_out)(buttongroup4.$$.fragment, local);
-      (0, import_internal35.transition_out)(buttongroup5.$$.fragment, local);
-      (0, import_internal35.transition_out)(buttongroup6.$$.fragment, local);
-      (0, import_internal35.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal35.transition_out)(api.$$.fragment, local);
+      (0, import_internal36.transition_out)(buttongroup0.$$.fragment, local);
+      (0, import_internal36.transition_out)(buttongroup1.$$.fragment, local);
+      (0, import_internal36.transition_out)(buttongroup2.$$.fragment, local);
+      (0, import_internal36.transition_out)(buttongroup3.$$.fragment, local);
+      (0, import_internal36.transition_out)(buttongroup4.$$.fragment, local);
+      (0, import_internal36.transition_out)(buttongroup5.$$.fragment, local);
+      (0, import_internal36.transition_out)(buttongroup6.$$.fragment, local);
+      (0, import_internal36.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal36.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal35.detach_dev)(h2);
+        (0, import_internal36.detach_dev)(h2);
       if (detaching)
-        (0, import_internal35.detach_dev)(t1);
+        (0, import_internal36.detach_dev)(t1);
       if (detaching)
-        (0, import_internal35.detach_dev)(h30);
+        (0, import_internal36.detach_dev)(h30);
       if (detaching)
-        (0, import_internal35.detach_dev)(t3);
-      (0, import_internal35.destroy_component)(buttongroup0, detaching);
+        (0, import_internal36.detach_dev)(t3);
+      (0, import_internal36.destroy_component)(buttongroup0, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t4);
+        (0, import_internal36.detach_dev)(t4);
       if (detaching)
-        (0, import_internal35.detach_dev)(h31);
+        (0, import_internal36.detach_dev)(h31);
       if (detaching)
-        (0, import_internal35.detach_dev)(t6);
-      (0, import_internal35.destroy_component)(buttongroup1, detaching);
+        (0, import_internal36.detach_dev)(t6);
+      (0, import_internal36.destroy_component)(buttongroup1, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t7);
+        (0, import_internal36.detach_dev)(t7);
       if (detaching)
-        (0, import_internal35.detach_dev)(h32);
+        (0, import_internal36.detach_dev)(h32);
       if (detaching)
-        (0, import_internal35.detach_dev)(t9);
-      (0, import_internal35.destroy_component)(buttongroup2, detaching);
+        (0, import_internal36.detach_dev)(t9);
+      (0, import_internal36.destroy_component)(buttongroup2, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t10);
+        (0, import_internal36.detach_dev)(t10);
       if (detaching)
-        (0, import_internal35.detach_dev)(h33);
+        (0, import_internal36.detach_dev)(h33);
       if (detaching)
-        (0, import_internal35.detach_dev)(t12);
-      (0, import_internal35.destroy_component)(buttongroup3, detaching);
+        (0, import_internal36.detach_dev)(t12);
+      (0, import_internal36.destroy_component)(buttongroup3, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t13);
+        (0, import_internal36.detach_dev)(t13);
       if (detaching)
-        (0, import_internal35.detach_dev)(h34);
+        (0, import_internal36.detach_dev)(h34);
       if (detaching)
-        (0, import_internal35.detach_dev)(t15);
-      (0, import_internal35.destroy_component)(buttongroup4, detaching);
+        (0, import_internal36.detach_dev)(t15);
+      (0, import_internal36.destroy_component)(buttongroup4, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t16);
+        (0, import_internal36.detach_dev)(t16);
       if (detaching)
-        (0, import_internal35.detach_dev)(h35);
+        (0, import_internal36.detach_dev)(h35);
       if (detaching)
-        (0, import_internal35.detach_dev)(t18);
-      (0, import_internal35.destroy_component)(buttongroup5, detaching);
+        (0, import_internal36.detach_dev)(t18);
+      (0, import_internal36.destroy_component)(buttongroup5, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t19);
+        (0, import_internal36.detach_dev)(t19);
       if (detaching)
-        (0, import_internal35.detach_dev)(h36);
+        (0, import_internal36.detach_dev)(h36);
       if (detaching)
-        (0, import_internal35.detach_dev)(t21);
-      (0, import_internal35.destroy_component)(buttongroup6, detaching);
+        (0, import_internal36.detach_dev)(t21);
+      (0, import_internal36.destroy_component)(buttongroup6, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t22);
-      (0, import_internal35.destroy_component)(codeexample, detaching);
+        (0, import_internal36.detach_dev)(t22);
+      (0, import_internal36.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal35.detach_dev)(t23);
-      (0, import_internal35.destroy_component)(api, detaching);
+        (0, import_internal36.detach_dev)(t23);
+      (0, import_internal36.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment35.name,
+    id: create_fragment36.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance35($$self, $$props, $$invalidate) {
+function instance36($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal35.validate_slots)("ButtonGroup", slots, []);
+  (0, import_internal36.validate_slots)("ButtonGroup", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -23457,24 +24427,24 @@ function onChange (e) {
   });
   return [apiProps, exampleHtml];
 }
-var ButtonGroup_1 = class extends import_internal35.SvelteComponentDev {
+var ButtonGroup_1 = class extends import_internal36.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal35.init)(this, options, instance35, create_fragment35, import_internal35.safe_not_equal, {});
-    (0, import_internal35.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal36.init)(this, options, instance36, create_fragment36, import_internal36.safe_not_equal, {});
+    (0, import_internal36.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ButtonGroup_1",
       options,
-      id: create_fragment35.name
+      id: create_fragment36.name
     });
   }
 };
 var ButtonGroup_default2 = ButtonGroup_1;
 
 // docs-src/components/button-toggle/ButtonToggle.svelte
-var import_internal36 = __toESM(require_internal());
-var file34 = "docs-src/components/button-toggle/ButtonToggle.svelte";
-function create_fragment36(ctx) {
+var import_internal37 = __toESM(require_internal());
+var file35 = "docs-src/components/button-toggle/ButtonToggle.svelte";
+function create_fragment37(ctx) {
   let h2;
   let t1;
   let p;
@@ -23640,364 +24610,364 @@ function create_fragment36(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal36.element)("h2");
+      h2 = (0, import_internal37.element)("h2");
       h2.textContent = "Button Toggle";
-      t1 = (0, import_internal36.space)();
-      p = (0, import_internal36.element)("p");
+      t1 = (0, import_internal37.space)();
+      p = (0, import_internal37.element)("p");
       p.textContent = "This adds a nice visual styling of the buttons on top of a radio-button group.";
-      t3 = (0, import_internal36.space)();
-      h30 = (0, import_internal36.element)("h3");
+      t3 = (0, import_internal37.space)();
+      h30 = (0, import_internal37.element)("h3");
       h30.textContent = "Normal";
-      t5 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(buttontoggle0.$$.fragment);
-      t6 = (0, import_internal36.space)();
-      h31 = (0, import_internal36.element)("h3");
+      t5 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(buttontoggle0.$$.fragment);
+      t6 = (0, import_internal37.space)();
+      h31 = (0, import_internal37.element)("h3");
       h31.textContent = "Fit width";
-      t8 = (0, import_internal36.space)();
-      div = (0, import_internal36.element)("div");
-      (0, import_internal36.create_component)(buttontoggle1.$$.fragment);
-      t9 = (0, import_internal36.space)();
-      h32 = (0, import_internal36.element)("h3");
+      t8 = (0, import_internal37.space)();
+      div = (0, import_internal37.element)("div");
+      (0, import_internal37.create_component)(buttontoggle1.$$.fragment);
+      t9 = (0, import_internal37.space)();
+      h32 = (0, import_internal37.element)("h3");
       h32.textContent = "With label";
-      t11 = (0, import_internal36.space)();
-      label = (0, import_internal36.element)("label");
+      t11 = (0, import_internal37.space)();
+      label = (0, import_internal37.element)("label");
       label.textContent = "Label for the button toggle";
-      t13 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(buttontoggle2.$$.fragment);
-      t14 = (0, import_internal36.space)();
-      br0 = (0, import_internal36.element)("br");
-      br1 = (0, import_internal36.element)("br");
-      t15 = (0, import_internal36.space)();
-      h40 = (0, import_internal36.element)("h4");
+      t13 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(buttontoggle2.$$.fragment);
+      t14 = (0, import_internal37.space)();
+      br0 = (0, import_internal37.element)("br");
+      br1 = (0, import_internal37.element)("br");
+      t15 = (0, import_internal37.space)();
+      h40 = (0, import_internal37.element)("h4");
       h40.textContent = "Disabled";
-      t17 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(buttontoggle3.$$.fragment);
-      br2 = (0, import_internal36.element)("br");
-      br3 = (0, import_internal36.element)("br");
-      t18 = (0, import_internal36.space)();
-      h41 = (0, import_internal36.element)("h4");
+      t17 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(buttontoggle3.$$.fragment);
+      br2 = (0, import_internal37.element)("br");
+      br3 = (0, import_internal37.element)("br");
+      t18 = (0, import_internal37.space)();
+      h41 = (0, import_internal37.element)("h4");
       h41.textContent = "Round";
-      t20 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(buttontoggle4.$$.fragment);
-      br4 = (0, import_internal36.element)("br");
-      br5 = (0, import_internal36.element)("br");
-      t21 = (0, import_internal36.space)();
-      h42 = (0, import_internal36.element)("h4");
+      t20 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(buttontoggle4.$$.fragment);
+      br4 = (0, import_internal37.element)("br");
+      br5 = (0, import_internal37.element)("br");
+      t21 = (0, import_internal37.space)();
+      h42 = (0, import_internal37.element)("h4");
       h42.textContent = "With icon";
-      t23 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(buttontoggle5.$$.fragment);
-      br6 = (0, import_internal36.element)("br");
-      br7 = (0, import_internal36.element)("br");
-      t24 = (0, import_internal36.space)();
-      h33 = (0, import_internal36.element)("h3");
+      t23 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(buttontoggle5.$$.fragment);
+      br6 = (0, import_internal37.element)("br");
+      br7 = (0, import_internal37.element)("br");
+      t24 = (0, import_internal37.space)();
+      h33 = (0, import_internal37.element)("h3");
       h33.textContent = "Icon only buttons";
-      t26 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(buttontoggle6.$$.fragment);
-      br8 = (0, import_internal36.element)("br");
-      br9 = (0, import_internal36.element)("br");
-      t27 = (0, import_internal36.space)();
-      h34 = (0, import_internal36.element)("h3");
+      t26 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(buttontoggle6.$$.fragment);
+      br8 = (0, import_internal37.element)("br");
+      br9 = (0, import_internal37.element)("br");
+      t27 = (0, import_internal37.space)();
+      h34 = (0, import_internal37.element)("h3");
       h34.textContent = "Icon only, and round";
-      t29 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(buttontoggle7.$$.fragment);
-      br10 = (0, import_internal36.element)("br");
-      br11 = (0, import_internal36.element)("br");
-      t30 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(codeexample0.$$.fragment);
-      t31 = (0, import_internal36.space)();
-      em = (0, import_internal36.element)("em");
+      t29 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(buttontoggle7.$$.fragment);
+      br10 = (0, import_internal37.element)("br");
+      br11 = (0, import_internal37.element)("br");
+      t30 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(codeexample0.$$.fragment);
+      t31 = (0, import_internal37.space)();
+      em = (0, import_internal37.element)("em");
       em.textContent = "Note:";
-      t33 = (0, import_internal36.text)(" the component ");
-      i0 = (0, import_internal36.element)("i");
+      t33 = (0, import_internal37.text)(" the component ");
+      i0 = (0, import_internal37.element)("i");
       i0.textContent = "value";
-      t35 = (0, import_internal36.text)(" type and the item's ");
-      i1 = (0, import_internal36.element)("i");
+      t35 = (0, import_internal37.text)(" type and the item's ");
+      i1 = (0, import_internal37.element)("i");
       i1.textContent = "value";
-      t37 = (0, import_internal36.text)(" type must match,\nso you can either use ");
-      i2 = (0, import_internal36.element)("i");
+      t37 = (0, import_internal37.text)(" type must match,\nso you can either use ");
+      i2 = (0, import_internal37.element)("i");
       i2.textContent = "string";
-      t39 = (0, import_internal36.text)(" for both - like in the example, or ");
-      i3 = (0, import_internal36.element)("i");
+      t39 = (0, import_internal37.text)(" for both - like in the example, or ");
+      i3 = (0, import_internal37.element)("i");
       i3.textContent = "number";
-      t41 = (0, import_internal36.text)(", like so:\n");
-      (0, import_internal36.create_component)(codeexample1.$$.fragment);
-      t42 = (0, import_internal36.space)();
-      (0, import_internal36.create_component)(api.$$.fragment);
-      (0, import_internal36.add_location)(h2, file34, 0, 0, 0);
-      (0, import_internal36.add_location)(p, file34, 2, 0, 24);
-      (0, import_internal36.add_location)(h30, file34, 4, 0, 111);
-      (0, import_internal36.add_location)(h31, file34, 7, 0, 173);
-      (0, import_internal36.attr_dev)(div, "class", "button-toggle-wrapper-wide");
-      (0, import_internal36.add_location)(div, file34, 8, 0, 192);
-      (0, import_internal36.add_location)(h32, file34, 12, 0, 287);
-      (0, import_internal36.attr_dev)(label, "class", "label");
-      (0, import_internal36.attr_dev)(label, "for", "bt1");
-      (0, import_internal36.add_location)(label, file34, 13, 0, 307);
-      (0, import_internal36.add_location)(br0, file34, 16, 0, 429);
-      (0, import_internal36.add_location)(br1, file34, 16, 4, 433);
-      (0, import_internal36.add_location)(h40, file34, 18, 0, 439);
-      (0, import_internal36.add_location)(br2, file34, 19, 42, 499);
-      (0, import_internal36.add_location)(br3, file34, 19, 46, 503);
-      (0, import_internal36.add_location)(h41, file34, 21, 0, 509);
-      (0, import_internal36.add_location)(br4, file34, 22, 50, 574);
-      (0, import_internal36.add_location)(br5, file34, 22, 54, 578);
-      (0, import_internal36.add_location)(h42, file34, 24, 0, 584);
-      (0, import_internal36.add_location)(br6, file34, 25, 42, 645);
-      (0, import_internal36.add_location)(br7, file34, 25, 46, 649);
-      (0, import_internal36.add_location)(h33, file34, 27, 0, 655);
-      (0, import_internal36.add_location)(br8, file34, 28, 42, 724);
-      (0, import_internal36.add_location)(br9, file34, 28, 46, 728);
-      (0, import_internal36.add_location)(h34, file34, 31, 0, 735);
-      (0, import_internal36.add_location)(br10, file34, 32, 48, 813);
-      (0, import_internal36.add_location)(br11, file34, 32, 52, 817);
-      (0, import_internal36.add_location)(em, file34, 38, 0, 863);
-      (0, import_internal36.add_location)(i0, file34, 38, 29, 892);
-      (0, import_internal36.add_location)(i1, file34, 38, 62, 925);
-      (0, import_internal36.add_location)(i2, file34, 39, 22, 977);
-      (0, import_internal36.add_location)(i3, file34, 39, 71, 1026);
+      t41 = (0, import_internal37.text)(", like so:\n");
+      (0, import_internal37.create_component)(codeexample1.$$.fragment);
+      t42 = (0, import_internal37.space)();
+      (0, import_internal37.create_component)(api.$$.fragment);
+      (0, import_internal37.add_location)(h2, file35, 0, 0, 0);
+      (0, import_internal37.add_location)(p, file35, 2, 0, 24);
+      (0, import_internal37.add_location)(h30, file35, 4, 0, 111);
+      (0, import_internal37.add_location)(h31, file35, 7, 0, 173);
+      (0, import_internal37.attr_dev)(div, "class", "button-toggle-wrapper-wide");
+      (0, import_internal37.add_location)(div, file35, 8, 0, 192);
+      (0, import_internal37.add_location)(h32, file35, 12, 0, 287);
+      (0, import_internal37.attr_dev)(label, "class", "label");
+      (0, import_internal37.attr_dev)(label, "for", "bt1");
+      (0, import_internal37.add_location)(label, file35, 13, 0, 307);
+      (0, import_internal37.add_location)(br0, file35, 16, 0, 429);
+      (0, import_internal37.add_location)(br1, file35, 16, 4, 433);
+      (0, import_internal37.add_location)(h40, file35, 18, 0, 439);
+      (0, import_internal37.add_location)(br2, file35, 19, 42, 499);
+      (0, import_internal37.add_location)(br3, file35, 19, 46, 503);
+      (0, import_internal37.add_location)(h41, file35, 21, 0, 509);
+      (0, import_internal37.add_location)(br4, file35, 22, 50, 574);
+      (0, import_internal37.add_location)(br5, file35, 22, 54, 578);
+      (0, import_internal37.add_location)(h42, file35, 24, 0, 584);
+      (0, import_internal37.add_location)(br6, file35, 25, 42, 645);
+      (0, import_internal37.add_location)(br7, file35, 25, 46, 649);
+      (0, import_internal37.add_location)(h33, file35, 27, 0, 655);
+      (0, import_internal37.add_location)(br8, file35, 28, 42, 724);
+      (0, import_internal37.add_location)(br9, file35, 28, 46, 728);
+      (0, import_internal37.add_location)(h34, file35, 31, 0, 735);
+      (0, import_internal37.add_location)(br10, file35, 32, 48, 813);
+      (0, import_internal37.add_location)(br11, file35, 32, 52, 817);
+      (0, import_internal37.add_location)(em, file35, 38, 0, 863);
+      (0, import_internal37.add_location)(i0, file35, 38, 29, 892);
+      (0, import_internal37.add_location)(i1, file35, 38, 62, 925);
+      (0, import_internal37.add_location)(i2, file35, 39, 22, 977);
+      (0, import_internal37.add_location)(i3, file35, 39, 71, 1026);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal36.insert_dev)(target, h2, anchor);
-      (0, import_internal36.insert_dev)(target, t1, anchor);
-      (0, import_internal36.insert_dev)(target, p, anchor);
-      (0, import_internal36.insert_dev)(target, t3, anchor);
-      (0, import_internal36.insert_dev)(target, h30, anchor);
-      (0, import_internal36.insert_dev)(target, t5, anchor);
-      (0, import_internal36.mount_component)(buttontoggle0, target, anchor);
-      (0, import_internal36.insert_dev)(target, t6, anchor);
-      (0, import_internal36.insert_dev)(target, h31, anchor);
-      (0, import_internal36.insert_dev)(target, t8, anchor);
-      (0, import_internal36.insert_dev)(target, div, anchor);
-      (0, import_internal36.mount_component)(buttontoggle1, div, null);
-      (0, import_internal36.insert_dev)(target, t9, anchor);
-      (0, import_internal36.insert_dev)(target, h32, anchor);
-      (0, import_internal36.insert_dev)(target, t11, anchor);
-      (0, import_internal36.insert_dev)(target, label, anchor);
-      (0, import_internal36.insert_dev)(target, t13, anchor);
-      (0, import_internal36.mount_component)(buttontoggle2, target, anchor);
-      (0, import_internal36.insert_dev)(target, t14, anchor);
-      (0, import_internal36.insert_dev)(target, br0, anchor);
-      (0, import_internal36.insert_dev)(target, br1, anchor);
-      (0, import_internal36.insert_dev)(target, t15, anchor);
-      (0, import_internal36.insert_dev)(target, h40, anchor);
-      (0, import_internal36.insert_dev)(target, t17, anchor);
-      (0, import_internal36.mount_component)(buttontoggle3, target, anchor);
-      (0, import_internal36.insert_dev)(target, br2, anchor);
-      (0, import_internal36.insert_dev)(target, br3, anchor);
-      (0, import_internal36.insert_dev)(target, t18, anchor);
-      (0, import_internal36.insert_dev)(target, h41, anchor);
-      (0, import_internal36.insert_dev)(target, t20, anchor);
-      (0, import_internal36.mount_component)(buttontoggle4, target, anchor);
-      (0, import_internal36.insert_dev)(target, br4, anchor);
-      (0, import_internal36.insert_dev)(target, br5, anchor);
-      (0, import_internal36.insert_dev)(target, t21, anchor);
-      (0, import_internal36.insert_dev)(target, h42, anchor);
-      (0, import_internal36.insert_dev)(target, t23, anchor);
-      (0, import_internal36.mount_component)(buttontoggle5, target, anchor);
-      (0, import_internal36.insert_dev)(target, br6, anchor);
-      (0, import_internal36.insert_dev)(target, br7, anchor);
-      (0, import_internal36.insert_dev)(target, t24, anchor);
-      (0, import_internal36.insert_dev)(target, h33, anchor);
-      (0, import_internal36.insert_dev)(target, t26, anchor);
-      (0, import_internal36.mount_component)(buttontoggle6, target, anchor);
-      (0, import_internal36.insert_dev)(target, br8, anchor);
-      (0, import_internal36.insert_dev)(target, br9, anchor);
-      (0, import_internal36.insert_dev)(target, t27, anchor);
-      (0, import_internal36.insert_dev)(target, h34, anchor);
-      (0, import_internal36.insert_dev)(target, t29, anchor);
-      (0, import_internal36.mount_component)(buttontoggle7, target, anchor);
-      (0, import_internal36.insert_dev)(target, br10, anchor);
-      (0, import_internal36.insert_dev)(target, br11, anchor);
-      (0, import_internal36.insert_dev)(target, t30, anchor);
-      (0, import_internal36.mount_component)(codeexample0, target, anchor);
-      (0, import_internal36.insert_dev)(target, t31, anchor);
-      (0, import_internal36.insert_dev)(target, em, anchor);
-      (0, import_internal36.insert_dev)(target, t33, anchor);
-      (0, import_internal36.insert_dev)(target, i0, anchor);
-      (0, import_internal36.insert_dev)(target, t35, anchor);
-      (0, import_internal36.insert_dev)(target, i1, anchor);
-      (0, import_internal36.insert_dev)(target, t37, anchor);
-      (0, import_internal36.insert_dev)(target, i2, anchor);
-      (0, import_internal36.insert_dev)(target, t39, anchor);
-      (0, import_internal36.insert_dev)(target, i3, anchor);
-      (0, import_internal36.insert_dev)(target, t41, anchor);
-      (0, import_internal36.mount_component)(codeexample1, target, anchor);
-      (0, import_internal36.insert_dev)(target, t42, anchor);
-      (0, import_internal36.mount_component)(api, target, anchor);
+      (0, import_internal37.insert_dev)(target, h2, anchor);
+      (0, import_internal37.insert_dev)(target, t1, anchor);
+      (0, import_internal37.insert_dev)(target, p, anchor);
+      (0, import_internal37.insert_dev)(target, t3, anchor);
+      (0, import_internal37.insert_dev)(target, h30, anchor);
+      (0, import_internal37.insert_dev)(target, t5, anchor);
+      (0, import_internal37.mount_component)(buttontoggle0, target, anchor);
+      (0, import_internal37.insert_dev)(target, t6, anchor);
+      (0, import_internal37.insert_dev)(target, h31, anchor);
+      (0, import_internal37.insert_dev)(target, t8, anchor);
+      (0, import_internal37.insert_dev)(target, div, anchor);
+      (0, import_internal37.mount_component)(buttontoggle1, div, null);
+      (0, import_internal37.insert_dev)(target, t9, anchor);
+      (0, import_internal37.insert_dev)(target, h32, anchor);
+      (0, import_internal37.insert_dev)(target, t11, anchor);
+      (0, import_internal37.insert_dev)(target, label, anchor);
+      (0, import_internal37.insert_dev)(target, t13, anchor);
+      (0, import_internal37.mount_component)(buttontoggle2, target, anchor);
+      (0, import_internal37.insert_dev)(target, t14, anchor);
+      (0, import_internal37.insert_dev)(target, br0, anchor);
+      (0, import_internal37.insert_dev)(target, br1, anchor);
+      (0, import_internal37.insert_dev)(target, t15, anchor);
+      (0, import_internal37.insert_dev)(target, h40, anchor);
+      (0, import_internal37.insert_dev)(target, t17, anchor);
+      (0, import_internal37.mount_component)(buttontoggle3, target, anchor);
+      (0, import_internal37.insert_dev)(target, br2, anchor);
+      (0, import_internal37.insert_dev)(target, br3, anchor);
+      (0, import_internal37.insert_dev)(target, t18, anchor);
+      (0, import_internal37.insert_dev)(target, h41, anchor);
+      (0, import_internal37.insert_dev)(target, t20, anchor);
+      (0, import_internal37.mount_component)(buttontoggle4, target, anchor);
+      (0, import_internal37.insert_dev)(target, br4, anchor);
+      (0, import_internal37.insert_dev)(target, br5, anchor);
+      (0, import_internal37.insert_dev)(target, t21, anchor);
+      (0, import_internal37.insert_dev)(target, h42, anchor);
+      (0, import_internal37.insert_dev)(target, t23, anchor);
+      (0, import_internal37.mount_component)(buttontoggle5, target, anchor);
+      (0, import_internal37.insert_dev)(target, br6, anchor);
+      (0, import_internal37.insert_dev)(target, br7, anchor);
+      (0, import_internal37.insert_dev)(target, t24, anchor);
+      (0, import_internal37.insert_dev)(target, h33, anchor);
+      (0, import_internal37.insert_dev)(target, t26, anchor);
+      (0, import_internal37.mount_component)(buttontoggle6, target, anchor);
+      (0, import_internal37.insert_dev)(target, br8, anchor);
+      (0, import_internal37.insert_dev)(target, br9, anchor);
+      (0, import_internal37.insert_dev)(target, t27, anchor);
+      (0, import_internal37.insert_dev)(target, h34, anchor);
+      (0, import_internal37.insert_dev)(target, t29, anchor);
+      (0, import_internal37.mount_component)(buttontoggle7, target, anchor);
+      (0, import_internal37.insert_dev)(target, br10, anchor);
+      (0, import_internal37.insert_dev)(target, br11, anchor);
+      (0, import_internal37.insert_dev)(target, t30, anchor);
+      (0, import_internal37.mount_component)(codeexample0, target, anchor);
+      (0, import_internal37.insert_dev)(target, t31, anchor);
+      (0, import_internal37.insert_dev)(target, em, anchor);
+      (0, import_internal37.insert_dev)(target, t33, anchor);
+      (0, import_internal37.insert_dev)(target, i0, anchor);
+      (0, import_internal37.insert_dev)(target, t35, anchor);
+      (0, import_internal37.insert_dev)(target, i1, anchor);
+      (0, import_internal37.insert_dev)(target, t37, anchor);
+      (0, import_internal37.insert_dev)(target, i2, anchor);
+      (0, import_internal37.insert_dev)(target, t39, anchor);
+      (0, import_internal37.insert_dev)(target, i3, anchor);
+      (0, import_internal37.insert_dev)(target, t41, anchor);
+      (0, import_internal37.mount_component)(codeexample1, target, anchor);
+      (0, import_internal37.insert_dev)(target, t42, anchor);
+      (0, import_internal37.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal36.noop,
+    p: import_internal37.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal36.transition_in)(buttontoggle0.$$.fragment, local);
-      (0, import_internal36.transition_in)(buttontoggle1.$$.fragment, local);
-      (0, import_internal36.transition_in)(buttontoggle2.$$.fragment, local);
-      (0, import_internal36.transition_in)(buttontoggle3.$$.fragment, local);
-      (0, import_internal36.transition_in)(buttontoggle4.$$.fragment, local);
-      (0, import_internal36.transition_in)(buttontoggle5.$$.fragment, local);
-      (0, import_internal36.transition_in)(buttontoggle6.$$.fragment, local);
-      (0, import_internal36.transition_in)(buttontoggle7.$$.fragment, local);
-      (0, import_internal36.transition_in)(codeexample0.$$.fragment, local);
-      (0, import_internal36.transition_in)(codeexample1.$$.fragment, local);
-      (0, import_internal36.transition_in)(api.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle0.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle1.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle2.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle3.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle4.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle5.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle6.$$.fragment, local);
+      (0, import_internal37.transition_in)(buttontoggle7.$$.fragment, local);
+      (0, import_internal37.transition_in)(codeexample0.$$.fragment, local);
+      (0, import_internal37.transition_in)(codeexample1.$$.fragment, local);
+      (0, import_internal37.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal36.transition_out)(buttontoggle0.$$.fragment, local);
-      (0, import_internal36.transition_out)(buttontoggle1.$$.fragment, local);
-      (0, import_internal36.transition_out)(buttontoggle2.$$.fragment, local);
-      (0, import_internal36.transition_out)(buttontoggle3.$$.fragment, local);
-      (0, import_internal36.transition_out)(buttontoggle4.$$.fragment, local);
-      (0, import_internal36.transition_out)(buttontoggle5.$$.fragment, local);
-      (0, import_internal36.transition_out)(buttontoggle6.$$.fragment, local);
-      (0, import_internal36.transition_out)(buttontoggle7.$$.fragment, local);
-      (0, import_internal36.transition_out)(codeexample0.$$.fragment, local);
-      (0, import_internal36.transition_out)(codeexample1.$$.fragment, local);
-      (0, import_internal36.transition_out)(api.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle0.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle1.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle2.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle3.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle4.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle5.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle6.$$.fragment, local);
+      (0, import_internal37.transition_out)(buttontoggle7.$$.fragment, local);
+      (0, import_internal37.transition_out)(codeexample0.$$.fragment, local);
+      (0, import_internal37.transition_out)(codeexample1.$$.fragment, local);
+      (0, import_internal37.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal36.detach_dev)(h2);
+        (0, import_internal37.detach_dev)(h2);
       if (detaching)
-        (0, import_internal36.detach_dev)(t1);
+        (0, import_internal37.detach_dev)(t1);
       if (detaching)
-        (0, import_internal36.detach_dev)(p);
+        (0, import_internal37.detach_dev)(p);
       if (detaching)
-        (0, import_internal36.detach_dev)(t3);
+        (0, import_internal37.detach_dev)(t3);
       if (detaching)
-        (0, import_internal36.detach_dev)(h30);
+        (0, import_internal37.detach_dev)(h30);
       if (detaching)
-        (0, import_internal36.detach_dev)(t5);
-      (0, import_internal36.destroy_component)(buttontoggle0, detaching);
+        (0, import_internal37.detach_dev)(t5);
+      (0, import_internal37.destroy_component)(buttontoggle0, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(t6);
+        (0, import_internal37.detach_dev)(t6);
       if (detaching)
-        (0, import_internal36.detach_dev)(h31);
+        (0, import_internal37.detach_dev)(h31);
       if (detaching)
-        (0, import_internal36.detach_dev)(t8);
+        (0, import_internal37.detach_dev)(t8);
       if (detaching)
-        (0, import_internal36.detach_dev)(div);
-      (0, import_internal36.destroy_component)(buttontoggle1);
+        (0, import_internal37.detach_dev)(div);
+      (0, import_internal37.destroy_component)(buttontoggle1);
       if (detaching)
-        (0, import_internal36.detach_dev)(t9);
+        (0, import_internal37.detach_dev)(t9);
       if (detaching)
-        (0, import_internal36.detach_dev)(h32);
+        (0, import_internal37.detach_dev)(h32);
       if (detaching)
-        (0, import_internal36.detach_dev)(t11);
+        (0, import_internal37.detach_dev)(t11);
       if (detaching)
-        (0, import_internal36.detach_dev)(label);
+        (0, import_internal37.detach_dev)(label);
       if (detaching)
-        (0, import_internal36.detach_dev)(t13);
-      (0, import_internal36.destroy_component)(buttontoggle2, detaching);
+        (0, import_internal37.detach_dev)(t13);
+      (0, import_internal37.destroy_component)(buttontoggle2, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(t14);
+        (0, import_internal37.detach_dev)(t14);
       if (detaching)
-        (0, import_internal36.detach_dev)(br0);
+        (0, import_internal37.detach_dev)(br0);
       if (detaching)
-        (0, import_internal36.detach_dev)(br1);
+        (0, import_internal37.detach_dev)(br1);
       if (detaching)
-        (0, import_internal36.detach_dev)(t15);
+        (0, import_internal37.detach_dev)(t15);
       if (detaching)
-        (0, import_internal36.detach_dev)(h40);
+        (0, import_internal37.detach_dev)(h40);
       if (detaching)
-        (0, import_internal36.detach_dev)(t17);
-      (0, import_internal36.destroy_component)(buttontoggle3, detaching);
+        (0, import_internal37.detach_dev)(t17);
+      (0, import_internal37.destroy_component)(buttontoggle3, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(br2);
+        (0, import_internal37.detach_dev)(br2);
       if (detaching)
-        (0, import_internal36.detach_dev)(br3);
+        (0, import_internal37.detach_dev)(br3);
       if (detaching)
-        (0, import_internal36.detach_dev)(t18);
+        (0, import_internal37.detach_dev)(t18);
       if (detaching)
-        (0, import_internal36.detach_dev)(h41);
+        (0, import_internal37.detach_dev)(h41);
       if (detaching)
-        (0, import_internal36.detach_dev)(t20);
-      (0, import_internal36.destroy_component)(buttontoggle4, detaching);
+        (0, import_internal37.detach_dev)(t20);
+      (0, import_internal37.destroy_component)(buttontoggle4, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(br4);
+        (0, import_internal37.detach_dev)(br4);
       if (detaching)
-        (0, import_internal36.detach_dev)(br5);
+        (0, import_internal37.detach_dev)(br5);
       if (detaching)
-        (0, import_internal36.detach_dev)(t21);
+        (0, import_internal37.detach_dev)(t21);
       if (detaching)
-        (0, import_internal36.detach_dev)(h42);
+        (0, import_internal37.detach_dev)(h42);
       if (detaching)
-        (0, import_internal36.detach_dev)(t23);
-      (0, import_internal36.destroy_component)(buttontoggle5, detaching);
+        (0, import_internal37.detach_dev)(t23);
+      (0, import_internal37.destroy_component)(buttontoggle5, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(br6);
+        (0, import_internal37.detach_dev)(br6);
       if (detaching)
-        (0, import_internal36.detach_dev)(br7);
+        (0, import_internal37.detach_dev)(br7);
       if (detaching)
-        (0, import_internal36.detach_dev)(t24);
+        (0, import_internal37.detach_dev)(t24);
       if (detaching)
-        (0, import_internal36.detach_dev)(h33);
+        (0, import_internal37.detach_dev)(h33);
       if (detaching)
-        (0, import_internal36.detach_dev)(t26);
-      (0, import_internal36.destroy_component)(buttontoggle6, detaching);
+        (0, import_internal37.detach_dev)(t26);
+      (0, import_internal37.destroy_component)(buttontoggle6, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(br8);
+        (0, import_internal37.detach_dev)(br8);
       if (detaching)
-        (0, import_internal36.detach_dev)(br9);
+        (0, import_internal37.detach_dev)(br9);
       if (detaching)
-        (0, import_internal36.detach_dev)(t27);
+        (0, import_internal37.detach_dev)(t27);
       if (detaching)
-        (0, import_internal36.detach_dev)(h34);
+        (0, import_internal37.detach_dev)(h34);
       if (detaching)
-        (0, import_internal36.detach_dev)(t29);
-      (0, import_internal36.destroy_component)(buttontoggle7, detaching);
+        (0, import_internal37.detach_dev)(t29);
+      (0, import_internal37.destroy_component)(buttontoggle7, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(br10);
+        (0, import_internal37.detach_dev)(br10);
       if (detaching)
-        (0, import_internal36.detach_dev)(br11);
+        (0, import_internal37.detach_dev)(br11);
       if (detaching)
-        (0, import_internal36.detach_dev)(t30);
-      (0, import_internal36.destroy_component)(codeexample0, detaching);
+        (0, import_internal37.detach_dev)(t30);
+      (0, import_internal37.destroy_component)(codeexample0, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(t31);
+        (0, import_internal37.detach_dev)(t31);
       if (detaching)
-        (0, import_internal36.detach_dev)(em);
+        (0, import_internal37.detach_dev)(em);
       if (detaching)
-        (0, import_internal36.detach_dev)(t33);
+        (0, import_internal37.detach_dev)(t33);
       if (detaching)
-        (0, import_internal36.detach_dev)(i0);
+        (0, import_internal37.detach_dev)(i0);
       if (detaching)
-        (0, import_internal36.detach_dev)(t35);
+        (0, import_internal37.detach_dev)(t35);
       if (detaching)
-        (0, import_internal36.detach_dev)(i1);
+        (0, import_internal37.detach_dev)(i1);
       if (detaching)
-        (0, import_internal36.detach_dev)(t37);
+        (0, import_internal37.detach_dev)(t37);
       if (detaching)
-        (0, import_internal36.detach_dev)(i2);
+        (0, import_internal37.detach_dev)(i2);
       if (detaching)
-        (0, import_internal36.detach_dev)(t39);
+        (0, import_internal37.detach_dev)(t39);
       if (detaching)
-        (0, import_internal36.detach_dev)(i3);
+        (0, import_internal37.detach_dev)(i3);
       if (detaching)
-        (0, import_internal36.detach_dev)(t41);
-      (0, import_internal36.destroy_component)(codeexample1, detaching);
+        (0, import_internal37.detach_dev)(t41);
+      (0, import_internal37.destroy_component)(codeexample1, detaching);
       if (detaching)
-        (0, import_internal36.detach_dev)(t42);
-      (0, import_internal36.destroy_component)(api, detaching);
+        (0, import_internal37.detach_dev)(t42);
+      (0, import_internal37.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal37.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment36.name,
+    id: create_fragment37.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance36($$self, $$props, $$invalidate) {
+function instance37($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal36.validate_slots)("ButtonToggle", slots, []);
+  (0, import_internal37.validate_slots)("ButtonToggle", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -24093,25 +25063,25 @@ const buttons = [
   });
   return [apiProps, exampleHtml, exampleHtml2, buttons, items, icons];
 }
-var ButtonToggle_1 = class extends import_internal36.SvelteComponentDev {
+var ButtonToggle_1 = class extends import_internal37.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal36.init)(this, options, instance36, create_fragment36, import_internal36.safe_not_equal, {});
-    (0, import_internal36.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal37.init)(this, options, instance37, create_fragment37, import_internal37.safe_not_equal, {});
+    (0, import_internal37.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ButtonToggle_1",
       options,
-      id: create_fragment36.name
+      id: create_fragment37.name
     });
   }
 };
 var ButtonToggle_default2 = ButtonToggle_1;
 
 // docs-src/components/checkbox/Checkbox.svelte
-var import_internal37 = __toESM(require_internal());
-var { console: console_14 } = import_internal37.globals;
-var file35 = "docs-src/components/checkbox/Checkbox.svelte";
-function create_fragment37(ctx) {
+var import_internal38 = __toESM(require_internal());
+var { console: console_13 } = import_internal38.globals;
+var file36 = "docs-src/components/checkbox/Checkbox.svelte";
+function create_fragment38(ctx) {
   let h2;
   let t1;
   let h30;
@@ -24180,166 +25150,166 @@ function create_fragment37(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal37.element)("h2");
+      h2 = (0, import_internal38.element)("h2");
       h2.textContent = "Checkbox";
-      t1 = (0, import_internal37.space)();
-      h30 = (0, import_internal37.element)("h3");
+      t1 = (0, import_internal38.space)();
+      h30 = (0, import_internal38.element)("h3");
       h30.textContent = "Normal";
-      t3 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(checkbox0.$$.fragment);
-      t4 = (0, import_internal37.space)();
-      h31 = (0, import_internal37.element)("h3");
+      t3 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(checkbox0.$$.fragment);
+      t4 = (0, import_internal38.space)();
+      h31 = (0, import_internal38.element)("h3");
       h31.textContent = "Disabled";
-      t6 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(checkbox1.$$.fragment);
-      t7 = (0, import_internal37.space)();
-      h32 = (0, import_internal37.element)("h3");
+      t6 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(checkbox1.$$.fragment);
+      t7 = (0, import_internal38.space)();
+      h32 = (0, import_internal38.element)("h3");
       h32.textContent = "Checked";
-      t9 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(checkbox2.$$.fragment);
-      t10 = (0, import_internal37.space)();
-      h33 = (0, import_internal37.element)("h3");
+      t9 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(checkbox2.$$.fragment);
+      t10 = (0, import_internal38.space)();
+      h33 = (0, import_internal38.element)("h3");
       h33.textContent = "Checked disabled";
-      t12 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(checkbox3.$$.fragment);
-      t13 = (0, import_internal37.space)();
-      h34 = (0, import_internal37.element)("h3");
+      t12 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(checkbox3.$$.fragment);
+      t13 = (0, import_internal38.space)();
+      h34 = (0, import_internal38.element)("h3");
       h34.textContent = "Indeterminate";
-      t15 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(checkbox4.$$.fragment);
-      t16 = (0, import_internal37.space)();
-      h35 = (0, import_internal37.element)("h3");
+      t15 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(checkbox4.$$.fragment);
+      t16 = (0, import_internal38.space)();
+      h35 = (0, import_internal38.element)("h3");
       h35.textContent = "Invalid";
-      t18 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(checkbox5.$$.fragment);
-      t19 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(codeexample.$$.fragment);
-      t20 = (0, import_internal37.space)();
-      (0, import_internal37.create_component)(api.$$.fragment);
-      (0, import_internal37.add_location)(h2, file35, 0, 0, 0);
-      (0, import_internal37.add_location)(h30, file35, 2, 0, 19);
-      (0, import_internal37.add_location)(h31, file35, 5, 0, 72);
-      (0, import_internal37.add_location)(h32, file35, 8, 0, 113);
-      (0, import_internal37.add_location)(h33, file35, 11, 0, 159);
-      (0, import_internal37.add_location)(h34, file35, 14, 0, 223);
-      (0, import_internal37.add_location)(h35, file35, 18, 0, 282);
+      t18 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(checkbox5.$$.fragment);
+      t19 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(codeexample.$$.fragment);
+      t20 = (0, import_internal38.space)();
+      (0, import_internal38.create_component)(api.$$.fragment);
+      (0, import_internal38.add_location)(h2, file36, 0, 0, 0);
+      (0, import_internal38.add_location)(h30, file36, 2, 0, 19);
+      (0, import_internal38.add_location)(h31, file36, 5, 0, 72);
+      (0, import_internal38.add_location)(h32, file36, 8, 0, 113);
+      (0, import_internal38.add_location)(h33, file36, 11, 0, 159);
+      (0, import_internal38.add_location)(h34, file36, 14, 0, 223);
+      (0, import_internal38.add_location)(h35, file36, 18, 0, 282);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal37.insert_dev)(target, h2, anchor);
-      (0, import_internal37.insert_dev)(target, t1, anchor);
-      (0, import_internal37.insert_dev)(target, h30, anchor);
-      (0, import_internal37.insert_dev)(target, t3, anchor);
-      (0, import_internal37.mount_component)(checkbox0, target, anchor);
-      (0, import_internal37.insert_dev)(target, t4, anchor);
-      (0, import_internal37.insert_dev)(target, h31, anchor);
-      (0, import_internal37.insert_dev)(target, t6, anchor);
-      (0, import_internal37.mount_component)(checkbox1, target, anchor);
-      (0, import_internal37.insert_dev)(target, t7, anchor);
-      (0, import_internal37.insert_dev)(target, h32, anchor);
-      (0, import_internal37.insert_dev)(target, t9, anchor);
-      (0, import_internal37.mount_component)(checkbox2, target, anchor);
-      (0, import_internal37.insert_dev)(target, t10, anchor);
-      (0, import_internal37.insert_dev)(target, h33, anchor);
-      (0, import_internal37.insert_dev)(target, t12, anchor);
-      (0, import_internal37.mount_component)(checkbox3, target, anchor);
-      (0, import_internal37.insert_dev)(target, t13, anchor);
-      (0, import_internal37.insert_dev)(target, h34, anchor);
-      (0, import_internal37.insert_dev)(target, t15, anchor);
-      (0, import_internal37.mount_component)(checkbox4, target, anchor);
-      (0, import_internal37.insert_dev)(target, t16, anchor);
-      (0, import_internal37.insert_dev)(target, h35, anchor);
-      (0, import_internal37.insert_dev)(target, t18, anchor);
-      (0, import_internal37.mount_component)(checkbox5, target, anchor);
-      (0, import_internal37.insert_dev)(target, t19, anchor);
-      (0, import_internal37.mount_component)(codeexample, target, anchor);
-      (0, import_internal37.insert_dev)(target, t20, anchor);
-      (0, import_internal37.mount_component)(api, target, anchor);
+      (0, import_internal38.insert_dev)(target, h2, anchor);
+      (0, import_internal38.insert_dev)(target, t1, anchor);
+      (0, import_internal38.insert_dev)(target, h30, anchor);
+      (0, import_internal38.insert_dev)(target, t3, anchor);
+      (0, import_internal38.mount_component)(checkbox0, target, anchor);
+      (0, import_internal38.insert_dev)(target, t4, anchor);
+      (0, import_internal38.insert_dev)(target, h31, anchor);
+      (0, import_internal38.insert_dev)(target, t6, anchor);
+      (0, import_internal38.mount_component)(checkbox1, target, anchor);
+      (0, import_internal38.insert_dev)(target, t7, anchor);
+      (0, import_internal38.insert_dev)(target, h32, anchor);
+      (0, import_internal38.insert_dev)(target, t9, anchor);
+      (0, import_internal38.mount_component)(checkbox2, target, anchor);
+      (0, import_internal38.insert_dev)(target, t10, anchor);
+      (0, import_internal38.insert_dev)(target, h33, anchor);
+      (0, import_internal38.insert_dev)(target, t12, anchor);
+      (0, import_internal38.mount_component)(checkbox3, target, anchor);
+      (0, import_internal38.insert_dev)(target, t13, anchor);
+      (0, import_internal38.insert_dev)(target, h34, anchor);
+      (0, import_internal38.insert_dev)(target, t15, anchor);
+      (0, import_internal38.mount_component)(checkbox4, target, anchor);
+      (0, import_internal38.insert_dev)(target, t16, anchor);
+      (0, import_internal38.insert_dev)(target, h35, anchor);
+      (0, import_internal38.insert_dev)(target, t18, anchor);
+      (0, import_internal38.mount_component)(checkbox5, target, anchor);
+      (0, import_internal38.insert_dev)(target, t19, anchor);
+      (0, import_internal38.mount_component)(codeexample, target, anchor);
+      (0, import_internal38.insert_dev)(target, t20, anchor);
+      (0, import_internal38.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal37.noop,
+    p: import_internal38.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal37.transition_in)(checkbox0.$$.fragment, local);
-      (0, import_internal37.transition_in)(checkbox1.$$.fragment, local);
-      (0, import_internal37.transition_in)(checkbox2.$$.fragment, local);
-      (0, import_internal37.transition_in)(checkbox3.$$.fragment, local);
-      (0, import_internal37.transition_in)(checkbox4.$$.fragment, local);
-      (0, import_internal37.transition_in)(checkbox5.$$.fragment, local);
-      (0, import_internal37.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal37.transition_in)(api.$$.fragment, local);
+      (0, import_internal38.transition_in)(checkbox0.$$.fragment, local);
+      (0, import_internal38.transition_in)(checkbox1.$$.fragment, local);
+      (0, import_internal38.transition_in)(checkbox2.$$.fragment, local);
+      (0, import_internal38.transition_in)(checkbox3.$$.fragment, local);
+      (0, import_internal38.transition_in)(checkbox4.$$.fragment, local);
+      (0, import_internal38.transition_in)(checkbox5.$$.fragment, local);
+      (0, import_internal38.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal38.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal37.transition_out)(checkbox0.$$.fragment, local);
-      (0, import_internal37.transition_out)(checkbox1.$$.fragment, local);
-      (0, import_internal37.transition_out)(checkbox2.$$.fragment, local);
-      (0, import_internal37.transition_out)(checkbox3.$$.fragment, local);
-      (0, import_internal37.transition_out)(checkbox4.$$.fragment, local);
-      (0, import_internal37.transition_out)(checkbox5.$$.fragment, local);
-      (0, import_internal37.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal37.transition_out)(api.$$.fragment, local);
+      (0, import_internal38.transition_out)(checkbox0.$$.fragment, local);
+      (0, import_internal38.transition_out)(checkbox1.$$.fragment, local);
+      (0, import_internal38.transition_out)(checkbox2.$$.fragment, local);
+      (0, import_internal38.transition_out)(checkbox3.$$.fragment, local);
+      (0, import_internal38.transition_out)(checkbox4.$$.fragment, local);
+      (0, import_internal38.transition_out)(checkbox5.$$.fragment, local);
+      (0, import_internal38.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal38.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal37.detach_dev)(h2);
+        (0, import_internal38.detach_dev)(h2);
       if (detaching)
-        (0, import_internal37.detach_dev)(t1);
+        (0, import_internal38.detach_dev)(t1);
       if (detaching)
-        (0, import_internal37.detach_dev)(h30);
+        (0, import_internal38.detach_dev)(h30);
       if (detaching)
-        (0, import_internal37.detach_dev)(t3);
-      (0, import_internal37.destroy_component)(checkbox0, detaching);
+        (0, import_internal38.detach_dev)(t3);
+      (0, import_internal38.destroy_component)(checkbox0, detaching);
       if (detaching)
-        (0, import_internal37.detach_dev)(t4);
+        (0, import_internal38.detach_dev)(t4);
       if (detaching)
-        (0, import_internal37.detach_dev)(h31);
+        (0, import_internal38.detach_dev)(h31);
       if (detaching)
-        (0, import_internal37.detach_dev)(t6);
-      (0, import_internal37.destroy_component)(checkbox1, detaching);
+        (0, import_internal38.detach_dev)(t6);
+      (0, import_internal38.destroy_component)(checkbox1, detaching);
       if (detaching)
-        (0, import_internal37.detach_dev)(t7);
+        (0, import_internal38.detach_dev)(t7);
       if (detaching)
-        (0, import_internal37.detach_dev)(h32);
+        (0, import_internal38.detach_dev)(h32);
       if (detaching)
-        (0, import_internal37.detach_dev)(t9);
-      (0, import_internal37.destroy_component)(checkbox2, detaching);
+        (0, import_internal38.detach_dev)(t9);
+      (0, import_internal38.destroy_component)(checkbox2, detaching);
       if (detaching)
-        (0, import_internal37.detach_dev)(t10);
+        (0, import_internal38.detach_dev)(t10);
       if (detaching)
-        (0, import_internal37.detach_dev)(h33);
+        (0, import_internal38.detach_dev)(h33);
       if (detaching)
-        (0, import_internal37.detach_dev)(t12);
-      (0, import_internal37.destroy_component)(checkbox3, detaching);
+        (0, import_internal38.detach_dev)(t12);
+      (0, import_internal38.destroy_component)(checkbox3, detaching);
       if (detaching)
-        (0, import_internal37.detach_dev)(t13);
+        (0, import_internal38.detach_dev)(t13);
       if (detaching)
-        (0, import_internal37.detach_dev)(h34);
+        (0, import_internal38.detach_dev)(h34);
       if (detaching)
-        (0, import_internal37.detach_dev)(t15);
-      (0, import_internal37.destroy_component)(checkbox4, detaching);
+        (0, import_internal38.detach_dev)(t15);
+      (0, import_internal38.destroy_component)(checkbox4, detaching);
       if (detaching)
-        (0, import_internal37.detach_dev)(t16);
+        (0, import_internal38.detach_dev)(t16);
       if (detaching)
-        (0, import_internal37.detach_dev)(h35);
+        (0, import_internal38.detach_dev)(h35);
       if (detaching)
-        (0, import_internal37.detach_dev)(t18);
-      (0, import_internal37.destroy_component)(checkbox5, detaching);
+        (0, import_internal38.detach_dev)(t18);
+      (0, import_internal38.destroy_component)(checkbox5, detaching);
       if (detaching)
-        (0, import_internal37.detach_dev)(t19);
-      (0, import_internal37.destroy_component)(codeexample, detaching);
+        (0, import_internal38.detach_dev)(t19);
+      (0, import_internal38.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal37.detach_dev)(t20);
-      (0, import_internal37.destroy_component)(api, detaching);
+        (0, import_internal38.detach_dev)(t20);
+      (0, import_internal38.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal37.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal38.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment37.name,
+    id: create_fragment38.name,
     type: "component",
     source: "",
     ctx
@@ -24349,9 +25319,9 @@ function create_fragment37(ctx) {
 function onchange(e) {
   console.log(e.target.checked);
 }
-function instance37($$self, $$props, $$invalidate) {
+function instance38($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal37.validate_slots)("Checkbox", slots, []);
+  (0, import_internal38.validate_slots)("Checkbox", slots, []);
   const apiProps = [
     {
       name: "checked",
@@ -24404,7 +25374,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_14.warn(`<Checkbox> was created with unknown prop '${key}'`);
+      console_13.warn(`<Checkbox> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Checkbox: Checkbox_default,
@@ -24416,27 +25386,27 @@ function onChange (e) {
   });
   return [apiProps, exampleHtml];
 }
-var Checkbox_1 = class extends import_internal37.SvelteComponentDev {
+var Checkbox_1 = class extends import_internal38.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal37.init)(this, options, instance37, create_fragment37, import_internal37.safe_not_equal, {});
-    (0, import_internal37.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal38.init)(this, options, instance38, create_fragment38, import_internal38.safe_not_equal, {});
+    (0, import_internal38.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Checkbox_1",
       options,
-      id: create_fragment37.name
+      id: create_fragment38.name
     });
   }
 };
 var Checkbox_default2 = Checkbox_1;
 
 // docs-src/components/color-palette/ColorPalette.svelte
-var import_internal39 = __toESM(require_internal());
+var import_internal40 = __toESM(require_internal());
 
 // docs-src/components/color-palette/ColorPaletteBox.svelte
-var import_internal38 = __toESM(require_internal());
-var file36 = "docs-src/components/color-palette/ColorPaletteBox.svelte";
-function create_fragment38(ctx) {
+var import_internal39 = __toESM(require_internal());
+var file37 = "docs-src/components/color-palette/ColorPaletteBox.svelte";
+function create_fragment39(ctx) {
   let div;
   let t0;
   let t1;
@@ -24445,84 +25415,84 @@ function create_fragment38(ctx) {
   let t3;
   const block = {
     c: function create() {
-      div = (0, import_internal38.element)("div");
-      t0 = (0, import_internal38.text)("background: --ui-");
-      t1 = (0, import_internal38.text)(
+      div = (0, import_internal39.element)("div");
+      t0 = (0, import_internal39.text)("background: --ui-");
+      t1 = (0, import_internal39.text)(
         /*bg*/
         ctx[0]
       );
-      br = (0, import_internal38.element)("br");
-      t2 = (0, import_internal38.text)("\n	text: --ui-");
-      t3 = (0, import_internal38.text)(
+      br = (0, import_internal39.element)("br");
+      t2 = (0, import_internal39.text)("\n	text: --ui-");
+      t3 = (0, import_internal39.text)(
         /*text*/
         ctx[1]
       );
-      (0, import_internal38.add_location)(br, file36, 1, 22, 114);
-      (0, import_internal38.attr_dev)(div, "class", "palette-box");
-      (0, import_internal38.set_style)(div, "background-color", "var(--ui-" + /*bg*/
+      (0, import_internal39.add_location)(br, file37, 1, 22, 114);
+      (0, import_internal39.attr_dev)(div, "class", "palette-box");
+      (0, import_internal39.set_style)(div, "background-color", "var(--ui-" + /*bg*/
       ctx[0] + ")");
-      (0, import_internal38.set_style)(div, "color", "var(--ui-" + /*text*/
+      (0, import_internal39.set_style)(div, "color", "var(--ui-" + /*text*/
       ctx[1] + ")");
-      (0, import_internal38.add_location)(div, file36, 0, 0, 0);
+      (0, import_internal39.add_location)(div, file37, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal38.insert_dev)(target, div, anchor);
-      (0, import_internal38.append_dev)(div, t0);
-      (0, import_internal38.append_dev)(div, t1);
-      (0, import_internal38.append_dev)(div, br);
-      (0, import_internal38.append_dev)(div, t2);
-      (0, import_internal38.append_dev)(div, t3);
+      (0, import_internal39.insert_dev)(target, div, anchor);
+      (0, import_internal39.append_dev)(div, t0);
+      (0, import_internal39.append_dev)(div, t1);
+      (0, import_internal39.append_dev)(div, br);
+      (0, import_internal39.append_dev)(div, t2);
+      (0, import_internal39.append_dev)(div, t3);
     },
     p: function update(ctx2, [dirty]) {
       if (dirty & /*bg*/
       1)
-        (0, import_internal38.set_data_dev)(
+        (0, import_internal39.set_data_dev)(
           t1,
           /*bg*/
           ctx2[0]
         );
       if (dirty & /*text*/
       2)
-        (0, import_internal38.set_data_dev)(
+        (0, import_internal39.set_data_dev)(
           t3,
           /*text*/
           ctx2[1]
         );
       if (dirty & /*bg*/
       1) {
-        (0, import_internal38.set_style)(div, "background-color", "var(--ui-" + /*bg*/
+        (0, import_internal39.set_style)(div, "background-color", "var(--ui-" + /*bg*/
         ctx2[0] + ")");
       }
       if (dirty & /*text*/
       2) {
-        (0, import_internal38.set_style)(div, "color", "var(--ui-" + /*text*/
+        (0, import_internal39.set_style)(div, "color", "var(--ui-" + /*text*/
         ctx2[1] + ")");
       }
     },
-    i: import_internal38.noop,
-    o: import_internal38.noop,
+    i: import_internal39.noop,
+    o: import_internal39.noop,
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal38.detach_dev)(div);
+        (0, import_internal39.detach_dev)(div);
     }
   };
-  (0, import_internal38.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal39.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment38.name,
+    id: create_fragment39.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance38($$self, $$props, $$invalidate) {
+function instance39($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal38.validate_slots)("ColorPaletteBox", slots, []);
+  (0, import_internal39.validate_slots)("ColorPaletteBox", slots, []);
   let { bg = "color-background" } = $$props;
-  let { text: text34 = "color-text" } = $$props;
+  let { text: text35 = "color-text" } = $$props;
   const writable_props = ["bg", "text"];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
@@ -24532,29 +25502,29 @@ function instance38($$self, $$props, $$invalidate) {
     if ("bg" in $$props2)
       $$invalidate(0, bg = $$props2.bg);
     if ("text" in $$props2)
-      $$invalidate(1, text34 = $$props2.text);
+      $$invalidate(1, text35 = $$props2.text);
   };
-  $$self.$capture_state = () => ({ bg, text: text34 });
+  $$self.$capture_state = () => ({ bg, text: text35 });
   $$self.$inject_state = ($$props2) => {
     if ("bg" in $$props2)
       $$invalidate(0, bg = $$props2.bg);
     if ("text" in $$props2)
-      $$invalidate(1, text34 = $$props2.text);
+      $$invalidate(1, text35 = $$props2.text);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
-  return [bg, text34];
+  return [bg, text35];
 }
-var ColorPaletteBox = class extends import_internal38.SvelteComponentDev {
+var ColorPaletteBox = class extends import_internal39.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal38.init)(this, options, instance38, create_fragment38, import_internal38.safe_not_equal, { bg: 0, text: 1 });
-    (0, import_internal38.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal39.init)(this, options, instance39, create_fragment39, import_internal39.safe_not_equal, { bg: 0, text: 1 });
+    (0, import_internal39.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ColorPaletteBox",
       options,
-      id: create_fragment38.name
+      id: create_fragment39.name
     });
   }
   get bg() {
@@ -24573,8 +25543,8 @@ var ColorPaletteBox = class extends import_internal38.SvelteComponentDev {
 var ColorPaletteBox_default = ColorPaletteBox;
 
 // docs-src/components/color-palette/ColorPalette.svelte
-var file37 = "docs-src/components/color-palette/ColorPalette.svelte";
-function create_fragment39(ctx) {
+var file38 = "docs-src/components/color-palette/ColorPalette.svelte";
+function create_fragment40(ctx) {
   let h2;
   let t1;
   let h30;
@@ -24851,477 +25821,477 @@ function create_fragment39(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal39.element)("h2");
+      h2 = (0, import_internal40.element)("h2");
       h2.textContent = "Color Palette";
-      t1 = (0, import_internal39.space)();
-      h30 = (0, import_internal39.element)("h3");
+      t1 = (0, import_internal40.space)();
+      h30 = (0, import_internal40.element)("h3");
       h30.textContent = "Special colors";
-      t3 = (0, import_internal39.space)();
-      h40 = (0, import_internal39.element)("h4");
+      t3 = (0, import_internal40.space)();
+      h40 = (0, import_internal40.element)("h4");
       h40.textContent = "Accent";
-      t5 = (0, import_internal39.space)();
-      div0 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox0.$$.fragment);
-      t6 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox1.$$.fragment);
-      t7 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox2.$$.fragment);
-      t8 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox3.$$.fragment);
-      t9 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox4.$$.fragment);
-      t10 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox5.$$.fragment);
-      t11 = (0, import_internal39.space)();
-      h41 = (0, import_internal39.element)("h4");
+      t5 = (0, import_internal40.space)();
+      div0 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox0.$$.fragment);
+      t6 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox1.$$.fragment);
+      t7 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox2.$$.fragment);
+      t8 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox3.$$.fragment);
+      t9 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox4.$$.fragment);
+      t10 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox5.$$.fragment);
+      t11 = (0, import_internal40.space)();
+      h41 = (0, import_internal40.element)("h4");
       h41.textContent = "Info";
-      t13 = (0, import_internal39.space)();
-      div1 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox6.$$.fragment);
-      t14 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox7.$$.fragment);
-      t15 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox8.$$.fragment);
-      t16 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox9.$$.fragment);
-      t17 = (0, import_internal39.space)();
-      h42 = (0, import_internal39.element)("h4");
+      t13 = (0, import_internal40.space)();
+      div1 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox6.$$.fragment);
+      t14 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox7.$$.fragment);
+      t15 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox8.$$.fragment);
+      t16 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox9.$$.fragment);
+      t17 = (0, import_internal40.space)();
+      h42 = (0, import_internal40.element)("h4");
       h42.textContent = "Success";
-      t19 = (0, import_internal39.space)();
-      div2 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox10.$$.fragment);
-      t20 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox11.$$.fragment);
-      t21 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox12.$$.fragment);
-      t22 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox13.$$.fragment);
-      t23 = (0, import_internal39.space)();
-      h43 = (0, import_internal39.element)("h4");
+      t19 = (0, import_internal40.space)();
+      div2 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox10.$$.fragment);
+      t20 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox11.$$.fragment);
+      t21 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox12.$$.fragment);
+      t22 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox13.$$.fragment);
+      t23 = (0, import_internal40.space)();
+      h43 = (0, import_internal40.element)("h4");
       h43.textContent = "Warning";
-      t25 = (0, import_internal39.space)();
-      div3 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox14.$$.fragment);
-      t26 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox15.$$.fragment);
-      t27 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox16.$$.fragment);
-      t28 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox17.$$.fragment);
-      t29 = (0, import_internal39.space)();
-      h44 = (0, import_internal39.element)("h4");
+      t25 = (0, import_internal40.space)();
+      div3 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox14.$$.fragment);
+      t26 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox15.$$.fragment);
+      t27 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox16.$$.fragment);
+      t28 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox17.$$.fragment);
+      t29 = (0, import_internal40.space)();
+      h44 = (0, import_internal40.element)("h4");
       h44.textContent = "Danger";
-      t31 = (0, import_internal39.space)();
-      div4 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox18.$$.fragment);
-      t32 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox19.$$.fragment);
-      t33 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox20.$$.fragment);
-      t34 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox21.$$.fragment);
-      t35 = (0, import_internal39.space)();
-      h31 = (0, import_internal39.element)("h3");
+      t31 = (0, import_internal40.space)();
+      div4 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox18.$$.fragment);
+      t32 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox19.$$.fragment);
+      t33 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox20.$$.fragment);
+      t34 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox21.$$.fragment);
+      t35 = (0, import_internal40.space)();
+      h31 = (0, import_internal40.element)("h3");
       h31.textContent = "Highlight colors";
-      t37 = (0, import_internal39.space)();
-      div5 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox22.$$.fragment);
-      t38 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox23.$$.fragment);
-      t39 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox24.$$.fragment);
-      t40 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox25.$$.fragment);
-      t41 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox26.$$.fragment);
-      t42 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox27.$$.fragment);
-      t43 = (0, import_internal39.space)();
-      h32 = (0, import_internal39.element)("h3");
+      t37 = (0, import_internal40.space)();
+      div5 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox22.$$.fragment);
+      t38 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox23.$$.fragment);
+      t39 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox24.$$.fragment);
+      t40 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox25.$$.fragment);
+      t41 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox26.$$.fragment);
+      t42 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox27.$$.fragment);
+      t43 = (0, import_internal40.space)();
+      h32 = (0, import_internal40.element)("h3");
       h32.textContent = "Background colors";
-      t45 = (0, import_internal39.space)();
-      div6 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox28.$$.fragment);
-      t46 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox29.$$.fragment);
-      t47 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox30.$$.fragment);
-      t48 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox31.$$.fragment);
-      t49 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox32.$$.fragment);
-      t50 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox33.$$.fragment);
-      t51 = (0, import_internal39.space)();
-      h33 = (0, import_internal39.element)("h3");
+      t45 = (0, import_internal40.space)();
+      div6 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox28.$$.fragment);
+      t46 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox29.$$.fragment);
+      t47 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox30.$$.fragment);
+      t48 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox31.$$.fragment);
+      t49 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox32.$$.fragment);
+      t50 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox33.$$.fragment);
+      t51 = (0, import_internal40.space)();
+      h33 = (0, import_internal40.element)("h3");
       h33.textContent = "Text colors";
-      t53 = (0, import_internal39.space)();
-      div7 = (0, import_internal39.element)("div");
-      (0, import_internal39.create_component)(palettebox34.$$.fragment);
-      t54 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox35.$$.fragment);
-      t55 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox36.$$.fragment);
-      t56 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox37.$$.fragment);
-      t57 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox38.$$.fragment);
-      t58 = (0, import_internal39.space)();
-      (0, import_internal39.create_component)(palettebox39.$$.fragment);
-      (0, import_internal39.add_location)(h2, file37, 0, 0, 0);
-      (0, import_internal39.add_location)(h30, file37, 2, 0, 24);
-      (0, import_internal39.add_location)(h40, file37, 4, 0, 49);
-      (0, import_internal39.attr_dev)(div0, "class", "group");
-      (0, import_internal39.add_location)(div0, file37, 5, 0, 65);
-      (0, import_internal39.add_location)(h41, file37, 14, 0, 372);
-      (0, import_internal39.attr_dev)(div1, "class", "group");
-      (0, import_internal39.add_location)(div1, file37, 15, 0, 386);
-      (0, import_internal39.add_location)(h42, file37, 22, 0, 561);
-      (0, import_internal39.attr_dev)(div2, "class", "group");
-      (0, import_internal39.add_location)(div2, file37, 23, 0, 578);
-      (0, import_internal39.add_location)(h43, file37, 30, 0, 765);
-      (0, import_internal39.attr_dev)(div3, "class", "group");
-      (0, import_internal39.add_location)(div3, file37, 31, 0, 782);
-      (0, import_internal39.add_location)(h44, file37, 38, 0, 969);
-      (0, import_internal39.attr_dev)(div4, "class", "group");
-      (0, import_internal39.add_location)(div4, file37, 39, 0, 985);
-      (0, import_internal39.add_location)(h31, file37, 46, 0, 1168);
-      (0, import_internal39.attr_dev)(div5, "class", "group");
-      (0, import_internal39.add_location)(div5, file37, 47, 0, 1194);
-      (0, import_internal39.add_location)(h32, file37, 56, 0, 1479);
-      (0, import_internal39.attr_dev)(div6, "class", "group group-light");
-      (0, import_internal39.add_location)(div6, file37, 57, 0, 1506);
-      (0, import_internal39.add_location)(h33, file37, 66, 0, 1809);
-      (0, import_internal39.attr_dev)(div7, "class", "group");
-      (0, import_internal39.add_location)(div7, file37, 67, 0, 1830);
+      t53 = (0, import_internal40.space)();
+      div7 = (0, import_internal40.element)("div");
+      (0, import_internal40.create_component)(palettebox34.$$.fragment);
+      t54 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox35.$$.fragment);
+      t55 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox36.$$.fragment);
+      t56 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox37.$$.fragment);
+      t57 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox38.$$.fragment);
+      t58 = (0, import_internal40.space)();
+      (0, import_internal40.create_component)(palettebox39.$$.fragment);
+      (0, import_internal40.add_location)(h2, file38, 0, 0, 0);
+      (0, import_internal40.add_location)(h30, file38, 2, 0, 24);
+      (0, import_internal40.add_location)(h40, file38, 4, 0, 49);
+      (0, import_internal40.attr_dev)(div0, "class", "group");
+      (0, import_internal40.add_location)(div0, file38, 5, 0, 65);
+      (0, import_internal40.add_location)(h41, file38, 14, 0, 372);
+      (0, import_internal40.attr_dev)(div1, "class", "group");
+      (0, import_internal40.add_location)(div1, file38, 15, 0, 386);
+      (0, import_internal40.add_location)(h42, file38, 22, 0, 561);
+      (0, import_internal40.attr_dev)(div2, "class", "group");
+      (0, import_internal40.add_location)(div2, file38, 23, 0, 578);
+      (0, import_internal40.add_location)(h43, file38, 30, 0, 765);
+      (0, import_internal40.attr_dev)(div3, "class", "group");
+      (0, import_internal40.add_location)(div3, file38, 31, 0, 782);
+      (0, import_internal40.add_location)(h44, file38, 38, 0, 969);
+      (0, import_internal40.attr_dev)(div4, "class", "group");
+      (0, import_internal40.add_location)(div4, file38, 39, 0, 985);
+      (0, import_internal40.add_location)(h31, file38, 46, 0, 1168);
+      (0, import_internal40.attr_dev)(div5, "class", "group");
+      (0, import_internal40.add_location)(div5, file38, 47, 0, 1194);
+      (0, import_internal40.add_location)(h32, file38, 56, 0, 1479);
+      (0, import_internal40.attr_dev)(div6, "class", "group group-light");
+      (0, import_internal40.add_location)(div6, file38, 57, 0, 1506);
+      (0, import_internal40.add_location)(h33, file38, 66, 0, 1809);
+      (0, import_internal40.attr_dev)(div7, "class", "group");
+      (0, import_internal40.add_location)(div7, file38, 67, 0, 1830);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal39.insert_dev)(target, h2, anchor);
-      (0, import_internal39.insert_dev)(target, t1, anchor);
-      (0, import_internal39.insert_dev)(target, h30, anchor);
-      (0, import_internal39.insert_dev)(target, t3, anchor);
-      (0, import_internal39.insert_dev)(target, h40, anchor);
-      (0, import_internal39.insert_dev)(target, t5, anchor);
-      (0, import_internal39.insert_dev)(target, div0, anchor);
-      (0, import_internal39.mount_component)(palettebox0, div0, null);
-      (0, import_internal39.append_dev)(div0, t6);
-      (0, import_internal39.mount_component)(palettebox1, div0, null);
-      (0, import_internal39.append_dev)(div0, t7);
-      (0, import_internal39.mount_component)(palettebox2, div0, null);
-      (0, import_internal39.append_dev)(div0, t8);
-      (0, import_internal39.mount_component)(palettebox3, div0, null);
-      (0, import_internal39.append_dev)(div0, t9);
-      (0, import_internal39.mount_component)(palettebox4, div0, null);
-      (0, import_internal39.append_dev)(div0, t10);
-      (0, import_internal39.mount_component)(palettebox5, div0, null);
-      (0, import_internal39.insert_dev)(target, t11, anchor);
-      (0, import_internal39.insert_dev)(target, h41, anchor);
-      (0, import_internal39.insert_dev)(target, t13, anchor);
-      (0, import_internal39.insert_dev)(target, div1, anchor);
-      (0, import_internal39.mount_component)(palettebox6, div1, null);
-      (0, import_internal39.append_dev)(div1, t14);
-      (0, import_internal39.mount_component)(palettebox7, div1, null);
-      (0, import_internal39.append_dev)(div1, t15);
-      (0, import_internal39.mount_component)(palettebox8, div1, null);
-      (0, import_internal39.append_dev)(div1, t16);
-      (0, import_internal39.mount_component)(palettebox9, div1, null);
-      (0, import_internal39.insert_dev)(target, t17, anchor);
-      (0, import_internal39.insert_dev)(target, h42, anchor);
-      (0, import_internal39.insert_dev)(target, t19, anchor);
-      (0, import_internal39.insert_dev)(target, div2, anchor);
-      (0, import_internal39.mount_component)(palettebox10, div2, null);
-      (0, import_internal39.append_dev)(div2, t20);
-      (0, import_internal39.mount_component)(palettebox11, div2, null);
-      (0, import_internal39.append_dev)(div2, t21);
-      (0, import_internal39.mount_component)(palettebox12, div2, null);
-      (0, import_internal39.append_dev)(div2, t22);
-      (0, import_internal39.mount_component)(palettebox13, div2, null);
-      (0, import_internal39.insert_dev)(target, t23, anchor);
-      (0, import_internal39.insert_dev)(target, h43, anchor);
-      (0, import_internal39.insert_dev)(target, t25, anchor);
-      (0, import_internal39.insert_dev)(target, div3, anchor);
-      (0, import_internal39.mount_component)(palettebox14, div3, null);
-      (0, import_internal39.append_dev)(div3, t26);
-      (0, import_internal39.mount_component)(palettebox15, div3, null);
-      (0, import_internal39.append_dev)(div3, t27);
-      (0, import_internal39.mount_component)(palettebox16, div3, null);
-      (0, import_internal39.append_dev)(div3, t28);
-      (0, import_internal39.mount_component)(palettebox17, div3, null);
-      (0, import_internal39.insert_dev)(target, t29, anchor);
-      (0, import_internal39.insert_dev)(target, h44, anchor);
-      (0, import_internal39.insert_dev)(target, t31, anchor);
-      (0, import_internal39.insert_dev)(target, div4, anchor);
-      (0, import_internal39.mount_component)(palettebox18, div4, null);
-      (0, import_internal39.append_dev)(div4, t32);
-      (0, import_internal39.mount_component)(palettebox19, div4, null);
-      (0, import_internal39.append_dev)(div4, t33);
-      (0, import_internal39.mount_component)(palettebox20, div4, null);
-      (0, import_internal39.append_dev)(div4, t34);
-      (0, import_internal39.mount_component)(palettebox21, div4, null);
-      (0, import_internal39.insert_dev)(target, t35, anchor);
-      (0, import_internal39.insert_dev)(target, h31, anchor);
-      (0, import_internal39.insert_dev)(target, t37, anchor);
-      (0, import_internal39.insert_dev)(target, div5, anchor);
-      (0, import_internal39.mount_component)(palettebox22, div5, null);
-      (0, import_internal39.append_dev)(div5, t38);
-      (0, import_internal39.mount_component)(palettebox23, div5, null);
-      (0, import_internal39.append_dev)(div5, t39);
-      (0, import_internal39.mount_component)(palettebox24, div5, null);
-      (0, import_internal39.append_dev)(div5, t40);
-      (0, import_internal39.mount_component)(palettebox25, div5, null);
-      (0, import_internal39.append_dev)(div5, t41);
-      (0, import_internal39.mount_component)(palettebox26, div5, null);
-      (0, import_internal39.append_dev)(div5, t42);
-      (0, import_internal39.mount_component)(palettebox27, div5, null);
-      (0, import_internal39.insert_dev)(target, t43, anchor);
-      (0, import_internal39.insert_dev)(target, h32, anchor);
-      (0, import_internal39.insert_dev)(target, t45, anchor);
-      (0, import_internal39.insert_dev)(target, div6, anchor);
-      (0, import_internal39.mount_component)(palettebox28, div6, null);
-      (0, import_internal39.append_dev)(div6, t46);
-      (0, import_internal39.mount_component)(palettebox29, div6, null);
-      (0, import_internal39.append_dev)(div6, t47);
-      (0, import_internal39.mount_component)(palettebox30, div6, null);
-      (0, import_internal39.append_dev)(div6, t48);
-      (0, import_internal39.mount_component)(palettebox31, div6, null);
-      (0, import_internal39.append_dev)(div6, t49);
-      (0, import_internal39.mount_component)(palettebox32, div6, null);
-      (0, import_internal39.append_dev)(div6, t50);
-      (0, import_internal39.mount_component)(palettebox33, div6, null);
-      (0, import_internal39.insert_dev)(target, t51, anchor);
-      (0, import_internal39.insert_dev)(target, h33, anchor);
-      (0, import_internal39.insert_dev)(target, t53, anchor);
-      (0, import_internal39.insert_dev)(target, div7, anchor);
-      (0, import_internal39.mount_component)(palettebox34, div7, null);
-      (0, import_internal39.append_dev)(div7, t54);
-      (0, import_internal39.mount_component)(palettebox35, div7, null);
-      (0, import_internal39.append_dev)(div7, t55);
-      (0, import_internal39.mount_component)(palettebox36, div7, null);
-      (0, import_internal39.append_dev)(div7, t56);
-      (0, import_internal39.mount_component)(palettebox37, div7, null);
-      (0, import_internal39.append_dev)(div7, t57);
-      (0, import_internal39.mount_component)(palettebox38, div7, null);
-      (0, import_internal39.append_dev)(div7, t58);
-      (0, import_internal39.mount_component)(palettebox39, div7, null);
+      (0, import_internal40.insert_dev)(target, h2, anchor);
+      (0, import_internal40.insert_dev)(target, t1, anchor);
+      (0, import_internal40.insert_dev)(target, h30, anchor);
+      (0, import_internal40.insert_dev)(target, t3, anchor);
+      (0, import_internal40.insert_dev)(target, h40, anchor);
+      (0, import_internal40.insert_dev)(target, t5, anchor);
+      (0, import_internal40.insert_dev)(target, div0, anchor);
+      (0, import_internal40.mount_component)(palettebox0, div0, null);
+      (0, import_internal40.append_dev)(div0, t6);
+      (0, import_internal40.mount_component)(palettebox1, div0, null);
+      (0, import_internal40.append_dev)(div0, t7);
+      (0, import_internal40.mount_component)(palettebox2, div0, null);
+      (0, import_internal40.append_dev)(div0, t8);
+      (0, import_internal40.mount_component)(palettebox3, div0, null);
+      (0, import_internal40.append_dev)(div0, t9);
+      (0, import_internal40.mount_component)(palettebox4, div0, null);
+      (0, import_internal40.append_dev)(div0, t10);
+      (0, import_internal40.mount_component)(palettebox5, div0, null);
+      (0, import_internal40.insert_dev)(target, t11, anchor);
+      (0, import_internal40.insert_dev)(target, h41, anchor);
+      (0, import_internal40.insert_dev)(target, t13, anchor);
+      (0, import_internal40.insert_dev)(target, div1, anchor);
+      (0, import_internal40.mount_component)(palettebox6, div1, null);
+      (0, import_internal40.append_dev)(div1, t14);
+      (0, import_internal40.mount_component)(palettebox7, div1, null);
+      (0, import_internal40.append_dev)(div1, t15);
+      (0, import_internal40.mount_component)(palettebox8, div1, null);
+      (0, import_internal40.append_dev)(div1, t16);
+      (0, import_internal40.mount_component)(palettebox9, div1, null);
+      (0, import_internal40.insert_dev)(target, t17, anchor);
+      (0, import_internal40.insert_dev)(target, h42, anchor);
+      (0, import_internal40.insert_dev)(target, t19, anchor);
+      (0, import_internal40.insert_dev)(target, div2, anchor);
+      (0, import_internal40.mount_component)(palettebox10, div2, null);
+      (0, import_internal40.append_dev)(div2, t20);
+      (0, import_internal40.mount_component)(palettebox11, div2, null);
+      (0, import_internal40.append_dev)(div2, t21);
+      (0, import_internal40.mount_component)(palettebox12, div2, null);
+      (0, import_internal40.append_dev)(div2, t22);
+      (0, import_internal40.mount_component)(palettebox13, div2, null);
+      (0, import_internal40.insert_dev)(target, t23, anchor);
+      (0, import_internal40.insert_dev)(target, h43, anchor);
+      (0, import_internal40.insert_dev)(target, t25, anchor);
+      (0, import_internal40.insert_dev)(target, div3, anchor);
+      (0, import_internal40.mount_component)(palettebox14, div3, null);
+      (0, import_internal40.append_dev)(div3, t26);
+      (0, import_internal40.mount_component)(palettebox15, div3, null);
+      (0, import_internal40.append_dev)(div3, t27);
+      (0, import_internal40.mount_component)(palettebox16, div3, null);
+      (0, import_internal40.append_dev)(div3, t28);
+      (0, import_internal40.mount_component)(palettebox17, div3, null);
+      (0, import_internal40.insert_dev)(target, t29, anchor);
+      (0, import_internal40.insert_dev)(target, h44, anchor);
+      (0, import_internal40.insert_dev)(target, t31, anchor);
+      (0, import_internal40.insert_dev)(target, div4, anchor);
+      (0, import_internal40.mount_component)(palettebox18, div4, null);
+      (0, import_internal40.append_dev)(div4, t32);
+      (0, import_internal40.mount_component)(palettebox19, div4, null);
+      (0, import_internal40.append_dev)(div4, t33);
+      (0, import_internal40.mount_component)(palettebox20, div4, null);
+      (0, import_internal40.append_dev)(div4, t34);
+      (0, import_internal40.mount_component)(palettebox21, div4, null);
+      (0, import_internal40.insert_dev)(target, t35, anchor);
+      (0, import_internal40.insert_dev)(target, h31, anchor);
+      (0, import_internal40.insert_dev)(target, t37, anchor);
+      (0, import_internal40.insert_dev)(target, div5, anchor);
+      (0, import_internal40.mount_component)(palettebox22, div5, null);
+      (0, import_internal40.append_dev)(div5, t38);
+      (0, import_internal40.mount_component)(palettebox23, div5, null);
+      (0, import_internal40.append_dev)(div5, t39);
+      (0, import_internal40.mount_component)(palettebox24, div5, null);
+      (0, import_internal40.append_dev)(div5, t40);
+      (0, import_internal40.mount_component)(palettebox25, div5, null);
+      (0, import_internal40.append_dev)(div5, t41);
+      (0, import_internal40.mount_component)(palettebox26, div5, null);
+      (0, import_internal40.append_dev)(div5, t42);
+      (0, import_internal40.mount_component)(palettebox27, div5, null);
+      (0, import_internal40.insert_dev)(target, t43, anchor);
+      (0, import_internal40.insert_dev)(target, h32, anchor);
+      (0, import_internal40.insert_dev)(target, t45, anchor);
+      (0, import_internal40.insert_dev)(target, div6, anchor);
+      (0, import_internal40.mount_component)(palettebox28, div6, null);
+      (0, import_internal40.append_dev)(div6, t46);
+      (0, import_internal40.mount_component)(palettebox29, div6, null);
+      (0, import_internal40.append_dev)(div6, t47);
+      (0, import_internal40.mount_component)(palettebox30, div6, null);
+      (0, import_internal40.append_dev)(div6, t48);
+      (0, import_internal40.mount_component)(palettebox31, div6, null);
+      (0, import_internal40.append_dev)(div6, t49);
+      (0, import_internal40.mount_component)(palettebox32, div6, null);
+      (0, import_internal40.append_dev)(div6, t50);
+      (0, import_internal40.mount_component)(palettebox33, div6, null);
+      (0, import_internal40.insert_dev)(target, t51, anchor);
+      (0, import_internal40.insert_dev)(target, h33, anchor);
+      (0, import_internal40.insert_dev)(target, t53, anchor);
+      (0, import_internal40.insert_dev)(target, div7, anchor);
+      (0, import_internal40.mount_component)(palettebox34, div7, null);
+      (0, import_internal40.append_dev)(div7, t54);
+      (0, import_internal40.mount_component)(palettebox35, div7, null);
+      (0, import_internal40.append_dev)(div7, t55);
+      (0, import_internal40.mount_component)(palettebox36, div7, null);
+      (0, import_internal40.append_dev)(div7, t56);
+      (0, import_internal40.mount_component)(palettebox37, div7, null);
+      (0, import_internal40.append_dev)(div7, t57);
+      (0, import_internal40.mount_component)(palettebox38, div7, null);
+      (0, import_internal40.append_dev)(div7, t58);
+      (0, import_internal40.mount_component)(palettebox39, div7, null);
       current = true;
     },
-    p: import_internal39.noop,
+    p: import_internal40.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal39.transition_in)(palettebox0.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox1.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox2.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox3.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox4.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox5.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox6.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox7.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox8.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox9.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox10.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox11.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox12.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox13.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox14.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox15.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox16.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox17.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox18.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox19.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox20.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox21.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox22.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox23.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox24.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox25.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox26.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox27.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox28.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox29.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox30.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox31.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox32.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox33.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox34.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox35.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox36.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox37.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox38.$$.fragment, local);
-      (0, import_internal39.transition_in)(palettebox39.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox0.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox1.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox2.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox3.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox4.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox5.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox6.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox7.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox8.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox9.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox10.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox11.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox12.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox13.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox14.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox15.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox16.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox17.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox18.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox19.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox20.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox21.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox22.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox23.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox24.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox25.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox26.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox27.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox28.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox29.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox30.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox31.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox32.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox33.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox34.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox35.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox36.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox37.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox38.$$.fragment, local);
+      (0, import_internal40.transition_in)(palettebox39.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal39.transition_out)(palettebox0.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox1.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox2.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox3.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox4.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox5.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox6.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox7.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox8.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox9.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox10.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox11.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox12.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox13.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox14.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox15.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox16.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox17.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox18.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox19.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox20.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox21.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox22.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox23.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox24.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox25.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox26.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox27.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox28.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox29.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox30.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox31.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox32.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox33.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox34.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox35.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox36.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox37.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox38.$$.fragment, local);
-      (0, import_internal39.transition_out)(palettebox39.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox0.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox1.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox2.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox3.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox4.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox5.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox6.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox7.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox8.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox9.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox10.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox11.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox12.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox13.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox14.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox15.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox16.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox17.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox18.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox19.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox20.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox21.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox22.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox23.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox24.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox25.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox26.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox27.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox28.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox29.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox30.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox31.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox32.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox33.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox34.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox35.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox36.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox37.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox38.$$.fragment, local);
+      (0, import_internal40.transition_out)(palettebox39.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal39.detach_dev)(h2);
+        (0, import_internal40.detach_dev)(h2);
       if (detaching)
-        (0, import_internal39.detach_dev)(t1);
+        (0, import_internal40.detach_dev)(t1);
       if (detaching)
-        (0, import_internal39.detach_dev)(h30);
+        (0, import_internal40.detach_dev)(h30);
       if (detaching)
-        (0, import_internal39.detach_dev)(t3);
+        (0, import_internal40.detach_dev)(t3);
       if (detaching)
-        (0, import_internal39.detach_dev)(h40);
+        (0, import_internal40.detach_dev)(h40);
       if (detaching)
-        (0, import_internal39.detach_dev)(t5);
+        (0, import_internal40.detach_dev)(t5);
       if (detaching)
-        (0, import_internal39.detach_dev)(div0);
-      (0, import_internal39.destroy_component)(palettebox0);
-      (0, import_internal39.destroy_component)(palettebox1);
-      (0, import_internal39.destroy_component)(palettebox2);
-      (0, import_internal39.destroy_component)(palettebox3);
-      (0, import_internal39.destroy_component)(palettebox4);
-      (0, import_internal39.destroy_component)(palettebox5);
+        (0, import_internal40.detach_dev)(div0);
+      (0, import_internal40.destroy_component)(palettebox0);
+      (0, import_internal40.destroy_component)(palettebox1);
+      (0, import_internal40.destroy_component)(palettebox2);
+      (0, import_internal40.destroy_component)(palettebox3);
+      (0, import_internal40.destroy_component)(palettebox4);
+      (0, import_internal40.destroy_component)(palettebox5);
       if (detaching)
-        (0, import_internal39.detach_dev)(t11);
+        (0, import_internal40.detach_dev)(t11);
       if (detaching)
-        (0, import_internal39.detach_dev)(h41);
+        (0, import_internal40.detach_dev)(h41);
       if (detaching)
-        (0, import_internal39.detach_dev)(t13);
+        (0, import_internal40.detach_dev)(t13);
       if (detaching)
-        (0, import_internal39.detach_dev)(div1);
-      (0, import_internal39.destroy_component)(palettebox6);
-      (0, import_internal39.destroy_component)(palettebox7);
-      (0, import_internal39.destroy_component)(palettebox8);
-      (0, import_internal39.destroy_component)(palettebox9);
+        (0, import_internal40.detach_dev)(div1);
+      (0, import_internal40.destroy_component)(palettebox6);
+      (0, import_internal40.destroy_component)(palettebox7);
+      (0, import_internal40.destroy_component)(palettebox8);
+      (0, import_internal40.destroy_component)(palettebox9);
       if (detaching)
-        (0, import_internal39.detach_dev)(t17);
+        (0, import_internal40.detach_dev)(t17);
       if (detaching)
-        (0, import_internal39.detach_dev)(h42);
+        (0, import_internal40.detach_dev)(h42);
       if (detaching)
-        (0, import_internal39.detach_dev)(t19);
+        (0, import_internal40.detach_dev)(t19);
       if (detaching)
-        (0, import_internal39.detach_dev)(div2);
-      (0, import_internal39.destroy_component)(palettebox10);
-      (0, import_internal39.destroy_component)(palettebox11);
-      (0, import_internal39.destroy_component)(palettebox12);
-      (0, import_internal39.destroy_component)(palettebox13);
+        (0, import_internal40.detach_dev)(div2);
+      (0, import_internal40.destroy_component)(palettebox10);
+      (0, import_internal40.destroy_component)(palettebox11);
+      (0, import_internal40.destroy_component)(palettebox12);
+      (0, import_internal40.destroy_component)(palettebox13);
       if (detaching)
-        (0, import_internal39.detach_dev)(t23);
+        (0, import_internal40.detach_dev)(t23);
       if (detaching)
-        (0, import_internal39.detach_dev)(h43);
+        (0, import_internal40.detach_dev)(h43);
       if (detaching)
-        (0, import_internal39.detach_dev)(t25);
+        (0, import_internal40.detach_dev)(t25);
       if (detaching)
-        (0, import_internal39.detach_dev)(div3);
-      (0, import_internal39.destroy_component)(palettebox14);
-      (0, import_internal39.destroy_component)(palettebox15);
-      (0, import_internal39.destroy_component)(palettebox16);
-      (0, import_internal39.destroy_component)(palettebox17);
+        (0, import_internal40.detach_dev)(div3);
+      (0, import_internal40.destroy_component)(palettebox14);
+      (0, import_internal40.destroy_component)(palettebox15);
+      (0, import_internal40.destroy_component)(palettebox16);
+      (0, import_internal40.destroy_component)(palettebox17);
       if (detaching)
-        (0, import_internal39.detach_dev)(t29);
+        (0, import_internal40.detach_dev)(t29);
       if (detaching)
-        (0, import_internal39.detach_dev)(h44);
+        (0, import_internal40.detach_dev)(h44);
       if (detaching)
-        (0, import_internal39.detach_dev)(t31);
+        (0, import_internal40.detach_dev)(t31);
       if (detaching)
-        (0, import_internal39.detach_dev)(div4);
-      (0, import_internal39.destroy_component)(palettebox18);
-      (0, import_internal39.destroy_component)(palettebox19);
-      (0, import_internal39.destroy_component)(palettebox20);
-      (0, import_internal39.destroy_component)(palettebox21);
+        (0, import_internal40.detach_dev)(div4);
+      (0, import_internal40.destroy_component)(palettebox18);
+      (0, import_internal40.destroy_component)(palettebox19);
+      (0, import_internal40.destroy_component)(palettebox20);
+      (0, import_internal40.destroy_component)(palettebox21);
       if (detaching)
-        (0, import_internal39.detach_dev)(t35);
+        (0, import_internal40.detach_dev)(t35);
       if (detaching)
-        (0, import_internal39.detach_dev)(h31);
+        (0, import_internal40.detach_dev)(h31);
       if (detaching)
-        (0, import_internal39.detach_dev)(t37);
+        (0, import_internal40.detach_dev)(t37);
       if (detaching)
-        (0, import_internal39.detach_dev)(div5);
-      (0, import_internal39.destroy_component)(palettebox22);
-      (0, import_internal39.destroy_component)(palettebox23);
-      (0, import_internal39.destroy_component)(palettebox24);
-      (0, import_internal39.destroy_component)(palettebox25);
-      (0, import_internal39.destroy_component)(palettebox26);
-      (0, import_internal39.destroy_component)(palettebox27);
+        (0, import_internal40.detach_dev)(div5);
+      (0, import_internal40.destroy_component)(palettebox22);
+      (0, import_internal40.destroy_component)(palettebox23);
+      (0, import_internal40.destroy_component)(palettebox24);
+      (0, import_internal40.destroy_component)(palettebox25);
+      (0, import_internal40.destroy_component)(palettebox26);
+      (0, import_internal40.destroy_component)(palettebox27);
       if (detaching)
-        (0, import_internal39.detach_dev)(t43);
+        (0, import_internal40.detach_dev)(t43);
       if (detaching)
-        (0, import_internal39.detach_dev)(h32);
+        (0, import_internal40.detach_dev)(h32);
       if (detaching)
-        (0, import_internal39.detach_dev)(t45);
+        (0, import_internal40.detach_dev)(t45);
       if (detaching)
-        (0, import_internal39.detach_dev)(div6);
-      (0, import_internal39.destroy_component)(palettebox28);
-      (0, import_internal39.destroy_component)(palettebox29);
-      (0, import_internal39.destroy_component)(palettebox30);
-      (0, import_internal39.destroy_component)(palettebox31);
-      (0, import_internal39.destroy_component)(palettebox32);
-      (0, import_internal39.destroy_component)(palettebox33);
+        (0, import_internal40.detach_dev)(div6);
+      (0, import_internal40.destroy_component)(palettebox28);
+      (0, import_internal40.destroy_component)(palettebox29);
+      (0, import_internal40.destroy_component)(palettebox30);
+      (0, import_internal40.destroy_component)(palettebox31);
+      (0, import_internal40.destroy_component)(palettebox32);
+      (0, import_internal40.destroy_component)(palettebox33);
       if (detaching)
-        (0, import_internal39.detach_dev)(t51);
+        (0, import_internal40.detach_dev)(t51);
       if (detaching)
-        (0, import_internal39.detach_dev)(h33);
+        (0, import_internal40.detach_dev)(h33);
       if (detaching)
-        (0, import_internal39.detach_dev)(t53);
+        (0, import_internal40.detach_dev)(t53);
       if (detaching)
-        (0, import_internal39.detach_dev)(div7);
-      (0, import_internal39.destroy_component)(palettebox34);
-      (0, import_internal39.destroy_component)(palettebox35);
-      (0, import_internal39.destroy_component)(palettebox36);
-      (0, import_internal39.destroy_component)(palettebox37);
-      (0, import_internal39.destroy_component)(palettebox38);
-      (0, import_internal39.destroy_component)(palettebox39);
+        (0, import_internal40.detach_dev)(div7);
+      (0, import_internal40.destroy_component)(palettebox34);
+      (0, import_internal40.destroy_component)(palettebox35);
+      (0, import_internal40.destroy_component)(palettebox36);
+      (0, import_internal40.destroy_component)(palettebox37);
+      (0, import_internal40.destroy_component)(palettebox38);
+      (0, import_internal40.destroy_component)(palettebox39);
     }
   };
-  (0, import_internal39.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal40.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment39.name,
+    id: create_fragment40.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance39($$self, $$props, $$invalidate) {
+function instance40($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal39.validate_slots)("ColorPalette", slots, []);
+  (0, import_internal40.validate_slots)("ColorPalette", slots, []);
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
@@ -25330,24 +26300,24 @@ function instance39($$self, $$props, $$invalidate) {
   $$self.$capture_state = () => ({ PaletteBox: ColorPaletteBox_default });
   return [];
 }
-var ColorPalette = class extends import_internal39.SvelteComponentDev {
+var ColorPalette = class extends import_internal40.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal39.init)(this, options, instance39, create_fragment39, import_internal39.safe_not_equal, {});
-    (0, import_internal39.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal40.init)(this, options, instance40, create_fragment40, import_internal40.safe_not_equal, {});
+    (0, import_internal40.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ColorPalette",
       options,
-      id: create_fragment39.name
+      id: create_fragment40.name
     });
   }
 };
 var ColorPalette_default = ColorPalette;
 
 // docs-src/components/datepicker/Datepicker.svelte
-var import_internal40 = __toESM(require_internal());
-var file38 = "docs-src/components/datepicker/Datepicker.svelte";
-function create_fragment40(ctx) {
+var import_internal41 = __toESM(require_internal());
+var file39 = "docs-src/components/datepicker/Datepicker.svelte";
+function create_fragment41(ctx) {
   let h2;
   let t1;
   let p0;
@@ -25426,221 +26396,221 @@ function create_fragment40(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal40.element)("h2");
+      h2 = (0, import_internal41.element)("h2");
       h2.textContent = "Datepicker";
-      t1 = (0, import_internal40.space)();
-      p0 = (0, import_internal40.element)("p");
-      t2 = (0, import_internal40.text)("This is a wrapper for the vanilla javascript component ");
-      a = (0, import_internal40.element)("a");
+      t1 = (0, import_internal41.space)();
+      p0 = (0, import_internal41.element)("p");
+      t2 = (0, import_internal41.text)("This is a wrapper for the vanilla javascript component ");
+      a = (0, import_internal41.element)("a");
       a.textContent = "vanillajs-datepicker";
-      t4 = (0, import_internal40.text)(".");
-      t5 = (0, import_internal40.space)();
-      br = (0, import_internal40.element)("br");
-      t6 = (0, import_internal40.space)();
-      h30 = (0, import_internal40.element)("h3");
+      t4 = (0, import_internal41.text)(".");
+      t5 = (0, import_internal41.space)();
+      br = (0, import_internal41.element)("br");
+      t6 = (0, import_internal41.space)();
+      h30 = (0, import_internal41.element)("h3");
       h30.textContent = "Normal";
-      t8 = (0, import_internal40.space)();
-      (0, import_internal40.create_component)(datepicker0.$$.fragment);
-      t9 = (0, import_internal40.space)();
-      h31 = (0, import_internal40.element)("h3");
+      t8 = (0, import_internal41.space)();
+      (0, import_internal41.create_component)(datepicker0.$$.fragment);
+      t9 = (0, import_internal41.space)();
+      h31 = (0, import_internal41.element)("h3");
       h31.textContent = "Show on focus";
-      t11 = (0, import_internal40.space)();
-      (0, import_internal40.create_component)(datepicker1.$$.fragment);
-      t12 = (0, import_internal40.space)();
-      h32 = (0, import_internal40.element)("h3");
+      t11 = (0, import_internal41.space)();
+      (0, import_internal41.create_component)(datepicker1.$$.fragment);
+      t12 = (0, import_internal41.space)();
+      h32 = (0, import_internal41.element)("h3");
       h32.textContent = "Change date format";
-      t14 = (0, import_internal40.space)();
-      (0, import_internal40.create_component)(datepicker2.$$.fragment);
-      t15 = (0, import_internal40.space)();
-      h33 = (0, import_internal40.element)("h3");
-      t16 = (0, import_internal40.text)("In a container with ");
-      em0 = (0, import_internal40.element)("em");
+      t14 = (0, import_internal41.space)();
+      (0, import_internal41.create_component)(datepicker2.$$.fragment);
+      t15 = (0, import_internal41.space)();
+      h33 = (0, import_internal41.element)("h3");
+      t16 = (0, import_internal41.text)("In a container with ");
+      em0 = (0, import_internal41.element)("em");
       em0.textContent = "overflow: hidden";
-      t18 = (0, import_internal40.space)();
-      p1 = (0, import_internal40.element)("p");
-      t19 = (0, import_internal40.text)("Where parent container has ");
-      em1 = (0, import_internal40.element)("em");
+      t18 = (0, import_internal41.space)();
+      p1 = (0, import_internal41.element)("p");
+      t19 = (0, import_internal41.text)("Where parent container has ");
+      em1 = (0, import_internal41.element)("em");
       em1.textContent = "overflow: hidden";
-      t21 = (0, import_internal40.text)(", ");
-      em2 = (0, import_internal40.element)("em");
+      t21 = (0, import_internal41.text)(", ");
+      em2 = (0, import_internal41.element)("em");
       em2.textContent = 'elevate="true"';
-      t23 = (0, import_internal40.text)("\n	property must be set on the component.");
-      t24 = (0, import_internal40.space)();
-      div = (0, import_internal40.element)("div");
-      small = (0, import_internal40.element)("small");
+      t23 = (0, import_internal41.text)("\n	property must be set on the component.");
+      t24 = (0, import_internal41.space)();
+      div = (0, import_internal41.element)("div");
+      small = (0, import_internal41.element)("small");
       small.textContent = "overflow: hidden";
-      t26 = (0, import_internal40.space)();
-      (0, import_internal40.create_component)(datepicker3.$$.fragment);
-      t27 = (0, import_internal40.space)();
-      p2 = (0, import_internal40.element)("p");
-      t28 = (0, import_internal40.text)("This option should only be used when absolutely necessary (e.g. when Datepicker\n	is used inside dialogs/popups), because it makes the component less accessible\n	(the list container is rendered directly in the ");
-      em3 = (0, import_internal40.element)("em");
+      t26 = (0, import_internal41.space)();
+      (0, import_internal41.create_component)(datepicker3.$$.fragment);
+      t27 = (0, import_internal41.space)();
+      p2 = (0, import_internal41.element)("p");
+      t28 = (0, import_internal41.text)("This option should only be used when absolutely necessary (e.g. when Datepicker\n	is used inside dialogs/popups), because it makes the component less accessible\n	(the list container is rendered directly in the ");
+      em3 = (0, import_internal41.element)("em");
       em3.textContent = "<body>";
-      t30 = (0, import_internal40.text)(", and not next to the input).");
-      t31 = (0, import_internal40.space)();
-      (0, import_internal40.create_component)(codeexample.$$.fragment);
-      t32 = (0, import_internal40.space)();
-      (0, import_internal40.create_component)(api.$$.fragment);
-      (0, import_internal40.add_location)(h2, file38, 0, 0, 0);
-      (0, import_internal40.attr_dev)(a, "href", "https://mymth.github.io/vanillajs-datepicker/#/");
-      (0, import_internal40.add_location)(a, file38, 1, 58, 78);
-      (0, import_internal40.add_location)(p0, file38, 1, 0, 20);
-      (0, import_internal40.add_location)(br, file38, 2, 0, 166);
-      (0, import_internal40.add_location)(h30, file38, 4, 0, 172);
-      (0, import_internal40.add_location)(h31, file38, 7, 0, 204);
-      (0, import_internal40.add_location)(h32, file38, 10, 0, 295);
-      (0, import_internal40.add_location)(em0, file38, 14, 24, 382);
-      (0, import_internal40.add_location)(h33, file38, 14, 0, 358);
-      (0, import_internal40.add_location)(em1, file38, 15, 30, 443);
-      (0, import_internal40.add_location)(em2, file38, 15, 57, 470);
-      (0, import_internal40.add_location)(p1, file38, 15, 0, 413);
-      (0, import_internal40.add_location)(small, file38, 18, 1, 571);
-      (0, import_internal40.attr_dev)(div, "class", "docs-overflow-box");
-      (0, import_internal40.add_location)(div, file38, 17, 0, 538);
-      (0, import_internal40.add_location)(em3, file38, 23, 49, 853);
-      (0, import_internal40.add_location)(p2, file38, 21, 0, 641);
+      t30 = (0, import_internal41.text)(", and not next to the input).");
+      t31 = (0, import_internal41.space)();
+      (0, import_internal41.create_component)(codeexample.$$.fragment);
+      t32 = (0, import_internal41.space)();
+      (0, import_internal41.create_component)(api.$$.fragment);
+      (0, import_internal41.add_location)(h2, file39, 0, 0, 0);
+      (0, import_internal41.attr_dev)(a, "href", "https://mymth.github.io/vanillajs-datepicker/#/");
+      (0, import_internal41.add_location)(a, file39, 1, 58, 78);
+      (0, import_internal41.add_location)(p0, file39, 1, 0, 20);
+      (0, import_internal41.add_location)(br, file39, 2, 0, 166);
+      (0, import_internal41.add_location)(h30, file39, 4, 0, 172);
+      (0, import_internal41.add_location)(h31, file39, 7, 0, 204);
+      (0, import_internal41.add_location)(h32, file39, 10, 0, 295);
+      (0, import_internal41.add_location)(em0, file39, 14, 24, 382);
+      (0, import_internal41.add_location)(h33, file39, 14, 0, 358);
+      (0, import_internal41.add_location)(em1, file39, 15, 30, 443);
+      (0, import_internal41.add_location)(em2, file39, 15, 57, 470);
+      (0, import_internal41.add_location)(p1, file39, 15, 0, 413);
+      (0, import_internal41.add_location)(small, file39, 18, 1, 571);
+      (0, import_internal41.attr_dev)(div, "class", "docs-overflow-box");
+      (0, import_internal41.add_location)(div, file39, 17, 0, 538);
+      (0, import_internal41.add_location)(em3, file39, 23, 49, 853);
+      (0, import_internal41.add_location)(p2, file39, 21, 0, 641);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal40.insert_dev)(target, h2, anchor);
-      (0, import_internal40.insert_dev)(target, t1, anchor);
-      (0, import_internal40.insert_dev)(target, p0, anchor);
-      (0, import_internal40.append_dev)(p0, t2);
-      (0, import_internal40.append_dev)(p0, a);
-      (0, import_internal40.append_dev)(p0, t4);
-      (0, import_internal40.insert_dev)(target, t5, anchor);
-      (0, import_internal40.insert_dev)(target, br, anchor);
-      (0, import_internal40.insert_dev)(target, t6, anchor);
-      (0, import_internal40.insert_dev)(target, h30, anchor);
-      (0, import_internal40.insert_dev)(target, t8, anchor);
-      (0, import_internal40.mount_component)(datepicker0, target, anchor);
-      (0, import_internal40.insert_dev)(target, t9, anchor);
-      (0, import_internal40.insert_dev)(target, h31, anchor);
-      (0, import_internal40.insert_dev)(target, t11, anchor);
-      (0, import_internal40.mount_component)(datepicker1, target, anchor);
-      (0, import_internal40.insert_dev)(target, t12, anchor);
-      (0, import_internal40.insert_dev)(target, h32, anchor);
-      (0, import_internal40.insert_dev)(target, t14, anchor);
-      (0, import_internal40.mount_component)(datepicker2, target, anchor);
-      (0, import_internal40.insert_dev)(target, t15, anchor);
-      (0, import_internal40.insert_dev)(target, h33, anchor);
-      (0, import_internal40.append_dev)(h33, t16);
-      (0, import_internal40.append_dev)(h33, em0);
-      (0, import_internal40.insert_dev)(target, t18, anchor);
-      (0, import_internal40.insert_dev)(target, p1, anchor);
-      (0, import_internal40.append_dev)(p1, t19);
-      (0, import_internal40.append_dev)(p1, em1);
-      (0, import_internal40.append_dev)(p1, t21);
-      (0, import_internal40.append_dev)(p1, em2);
-      (0, import_internal40.append_dev)(p1, t23);
-      (0, import_internal40.insert_dev)(target, t24, anchor);
-      (0, import_internal40.insert_dev)(target, div, anchor);
-      (0, import_internal40.append_dev)(div, small);
-      (0, import_internal40.append_dev)(div, t26);
-      (0, import_internal40.mount_component)(datepicker3, div, null);
-      (0, import_internal40.insert_dev)(target, t27, anchor);
-      (0, import_internal40.insert_dev)(target, p2, anchor);
-      (0, import_internal40.append_dev)(p2, t28);
-      (0, import_internal40.append_dev)(p2, em3);
-      (0, import_internal40.append_dev)(p2, t30);
-      (0, import_internal40.insert_dev)(target, t31, anchor);
-      (0, import_internal40.mount_component)(codeexample, target, anchor);
-      (0, import_internal40.insert_dev)(target, t32, anchor);
-      (0, import_internal40.mount_component)(api, target, anchor);
+      (0, import_internal41.insert_dev)(target, h2, anchor);
+      (0, import_internal41.insert_dev)(target, t1, anchor);
+      (0, import_internal41.insert_dev)(target, p0, anchor);
+      (0, import_internal41.append_dev)(p0, t2);
+      (0, import_internal41.append_dev)(p0, a);
+      (0, import_internal41.append_dev)(p0, t4);
+      (0, import_internal41.insert_dev)(target, t5, anchor);
+      (0, import_internal41.insert_dev)(target, br, anchor);
+      (0, import_internal41.insert_dev)(target, t6, anchor);
+      (0, import_internal41.insert_dev)(target, h30, anchor);
+      (0, import_internal41.insert_dev)(target, t8, anchor);
+      (0, import_internal41.mount_component)(datepicker0, target, anchor);
+      (0, import_internal41.insert_dev)(target, t9, anchor);
+      (0, import_internal41.insert_dev)(target, h31, anchor);
+      (0, import_internal41.insert_dev)(target, t11, anchor);
+      (0, import_internal41.mount_component)(datepicker1, target, anchor);
+      (0, import_internal41.insert_dev)(target, t12, anchor);
+      (0, import_internal41.insert_dev)(target, h32, anchor);
+      (0, import_internal41.insert_dev)(target, t14, anchor);
+      (0, import_internal41.mount_component)(datepicker2, target, anchor);
+      (0, import_internal41.insert_dev)(target, t15, anchor);
+      (0, import_internal41.insert_dev)(target, h33, anchor);
+      (0, import_internal41.append_dev)(h33, t16);
+      (0, import_internal41.append_dev)(h33, em0);
+      (0, import_internal41.insert_dev)(target, t18, anchor);
+      (0, import_internal41.insert_dev)(target, p1, anchor);
+      (0, import_internal41.append_dev)(p1, t19);
+      (0, import_internal41.append_dev)(p1, em1);
+      (0, import_internal41.append_dev)(p1, t21);
+      (0, import_internal41.append_dev)(p1, em2);
+      (0, import_internal41.append_dev)(p1, t23);
+      (0, import_internal41.insert_dev)(target, t24, anchor);
+      (0, import_internal41.insert_dev)(target, div, anchor);
+      (0, import_internal41.append_dev)(div, small);
+      (0, import_internal41.append_dev)(div, t26);
+      (0, import_internal41.mount_component)(datepicker3, div, null);
+      (0, import_internal41.insert_dev)(target, t27, anchor);
+      (0, import_internal41.insert_dev)(target, p2, anchor);
+      (0, import_internal41.append_dev)(p2, t28);
+      (0, import_internal41.append_dev)(p2, em3);
+      (0, import_internal41.append_dev)(p2, t30);
+      (0, import_internal41.insert_dev)(target, t31, anchor);
+      (0, import_internal41.mount_component)(codeexample, target, anchor);
+      (0, import_internal41.insert_dev)(target, t32, anchor);
+      (0, import_internal41.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal40.noop,
+    p: import_internal41.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal40.transition_in)(datepicker0.$$.fragment, local);
-      (0, import_internal40.transition_in)(datepicker1.$$.fragment, local);
-      (0, import_internal40.transition_in)(datepicker2.$$.fragment, local);
-      (0, import_internal40.transition_in)(datepicker3.$$.fragment, local);
-      (0, import_internal40.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal40.transition_in)(api.$$.fragment, local);
+      (0, import_internal41.transition_in)(datepicker0.$$.fragment, local);
+      (0, import_internal41.transition_in)(datepicker1.$$.fragment, local);
+      (0, import_internal41.transition_in)(datepicker2.$$.fragment, local);
+      (0, import_internal41.transition_in)(datepicker3.$$.fragment, local);
+      (0, import_internal41.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal41.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal40.transition_out)(datepicker0.$$.fragment, local);
-      (0, import_internal40.transition_out)(datepicker1.$$.fragment, local);
-      (0, import_internal40.transition_out)(datepicker2.$$.fragment, local);
-      (0, import_internal40.transition_out)(datepicker3.$$.fragment, local);
-      (0, import_internal40.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal40.transition_out)(api.$$.fragment, local);
+      (0, import_internal41.transition_out)(datepicker0.$$.fragment, local);
+      (0, import_internal41.transition_out)(datepicker1.$$.fragment, local);
+      (0, import_internal41.transition_out)(datepicker2.$$.fragment, local);
+      (0, import_internal41.transition_out)(datepicker3.$$.fragment, local);
+      (0, import_internal41.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal41.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal40.detach_dev)(h2);
+        (0, import_internal41.detach_dev)(h2);
       if (detaching)
-        (0, import_internal40.detach_dev)(t1);
+        (0, import_internal41.detach_dev)(t1);
       if (detaching)
-        (0, import_internal40.detach_dev)(p0);
+        (0, import_internal41.detach_dev)(p0);
       if (detaching)
-        (0, import_internal40.detach_dev)(t5);
+        (0, import_internal41.detach_dev)(t5);
       if (detaching)
-        (0, import_internal40.detach_dev)(br);
+        (0, import_internal41.detach_dev)(br);
       if (detaching)
-        (0, import_internal40.detach_dev)(t6);
+        (0, import_internal41.detach_dev)(t6);
       if (detaching)
-        (0, import_internal40.detach_dev)(h30);
+        (0, import_internal41.detach_dev)(h30);
       if (detaching)
-        (0, import_internal40.detach_dev)(t8);
-      (0, import_internal40.destroy_component)(datepicker0, detaching);
+        (0, import_internal41.detach_dev)(t8);
+      (0, import_internal41.destroy_component)(datepicker0, detaching);
       if (detaching)
-        (0, import_internal40.detach_dev)(t9);
+        (0, import_internal41.detach_dev)(t9);
       if (detaching)
-        (0, import_internal40.detach_dev)(h31);
+        (0, import_internal41.detach_dev)(h31);
       if (detaching)
-        (0, import_internal40.detach_dev)(t11);
-      (0, import_internal40.destroy_component)(datepicker1, detaching);
+        (0, import_internal41.detach_dev)(t11);
+      (0, import_internal41.destroy_component)(datepicker1, detaching);
       if (detaching)
-        (0, import_internal40.detach_dev)(t12);
+        (0, import_internal41.detach_dev)(t12);
       if (detaching)
-        (0, import_internal40.detach_dev)(h32);
+        (0, import_internal41.detach_dev)(h32);
       if (detaching)
-        (0, import_internal40.detach_dev)(t14);
-      (0, import_internal40.destroy_component)(datepicker2, detaching);
+        (0, import_internal41.detach_dev)(t14);
+      (0, import_internal41.destroy_component)(datepicker2, detaching);
       if (detaching)
-        (0, import_internal40.detach_dev)(t15);
+        (0, import_internal41.detach_dev)(t15);
       if (detaching)
-        (0, import_internal40.detach_dev)(h33);
+        (0, import_internal41.detach_dev)(h33);
       if (detaching)
-        (0, import_internal40.detach_dev)(t18);
+        (0, import_internal41.detach_dev)(t18);
       if (detaching)
-        (0, import_internal40.detach_dev)(p1);
+        (0, import_internal41.detach_dev)(p1);
       if (detaching)
-        (0, import_internal40.detach_dev)(t24);
+        (0, import_internal41.detach_dev)(t24);
       if (detaching)
-        (0, import_internal40.detach_dev)(div);
-      (0, import_internal40.destroy_component)(datepicker3);
+        (0, import_internal41.detach_dev)(div);
+      (0, import_internal41.destroy_component)(datepicker3);
       if (detaching)
-        (0, import_internal40.detach_dev)(t27);
+        (0, import_internal41.detach_dev)(t27);
       if (detaching)
-        (0, import_internal40.detach_dev)(p2);
+        (0, import_internal41.detach_dev)(p2);
       if (detaching)
-        (0, import_internal40.detach_dev)(t31);
-      (0, import_internal40.destroy_component)(codeexample, detaching);
+        (0, import_internal41.detach_dev)(t31);
+      (0, import_internal41.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal40.detach_dev)(t32);
-      (0, import_internal40.destroy_component)(api, detaching);
+        (0, import_internal41.detach_dev)(t32);
+      (0, import_internal41.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal40.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment40.name,
+    id: create_fragment41.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance40($$self, $$props, $$invalidate) {
+function instance41($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal40.validate_slots)("Datepicker", slots, []);
+  (0, import_internal41.validate_slots)("Datepicker", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -25734,38 +26704,38 @@ function onChange (e) {
   });
   return [apiProps, exampleHtml];
 }
-var Datepicker_12 = class extends import_internal40.SvelteComponentDev {
+var Datepicker_12 = class extends import_internal41.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal40.init)(this, options, instance40, create_fragment40, import_internal40.safe_not_equal, {});
-    (0, import_internal40.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal41.init)(this, options, instance41, create_fragment41, import_internal41.safe_not_equal, {});
+    (0, import_internal41.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Datepicker_1",
       options,
-      id: create_fragment40.name
+      id: create_fragment41.name
     });
   }
 };
 var Datepicker_default2 = Datepicker_12;
 
 // docs-src/components/dialog/Dialog.svelte
-var import_internal41 = __toESM(require_internal());
-var file39 = "docs-src/components/dialog/Dialog.svelte";
+var import_internal42 = __toESM(require_internal());
+var file40 = "docs-src/components/dialog/Dialog.svelte";
 function create_default_slot_82(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("Show dialog 1");
+      t = (0, import_internal42.text)("Show dialog 1");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_82.name,
     type: "slot",
@@ -25778,17 +26748,17 @@ function create_default_slot_72(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("Show dialog 2");
+      t = (0, import_internal42.text)("Show dialog 2");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_72.name,
     type: "slot",
@@ -25801,17 +26771,17 @@ function create_default_slot_62(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("Show dialog 3");
+      t = (0, import_internal42.text)("Show dialog 3");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_62.name,
     type: "slot",
@@ -25835,73 +26805,73 @@ function create_default_slot_52(ctx) {
   let p4;
   const block = {
     c: function create() {
-      t0 = (0, import_internal41.text)("dialog contents");
-      br = (0, import_internal41.element)("br");
-      t1 = (0, import_internal41.text)("\n	Hello world!\n\n	");
-      p0 = (0, import_internal41.element)("p");
+      t0 = (0, import_internal42.text)("dialog contents");
+      br = (0, import_internal42.element)("br");
+      t1 = (0, import_internal42.text)("\n	Hello world!\n\n	");
+      p0 = (0, import_internal42.element)("p");
       p0.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis porttitor justo, eget ornare massa commodo non. Pellentesque semper dictum mauris, id pretium mi mattis in. Proin sodales neque id euismod interdum. Fusce vel blandit orci. Mauris nec ligula aliquam, vestibulum erat nec, ullamcorper nunc. Cras vel lacinia sem. Aenean non tincidunt nisl, vitae consectetur est. Integer id neque tempor, facilisis felis egestas, aliquam turpis. Mauris id consectetur purus. Praesent vehicula, mauris eu hendrerit vehicula, velit tortor fermentum enim, eget malesuada quam eros at quam. Integer mattis egestas tempus.";
-      t3 = (0, import_internal41.space)();
-      p1 = (0, import_internal41.element)("p");
+      t3 = (0, import_internal42.space)();
+      p1 = (0, import_internal42.element)("p");
       p1.textContent = "Aliquam et purus enim. Suspendisse potenti. Suspendisse tincidunt ullamcorper nulla non gravida. Morbi at tellus dui. Sed orci ligula, facilisis sit amet odio eu, commodo ultricies lorem. Nullam sagittis sapien metus, eu posuere sem iaculis sed. Duis at nibh feugiat, placerat lectus nec, consectetur elit. In sollicitudin est in ultricies gravida. Ut malesuada ex lacinia, posuere augue eget, imperdiet erat. Phasellus ac dui sit amet ligula condimentum venenatis vitae ornare augue. Vivamus pellentesque felis in orci finibus, a accumsan libero consectetur.";
-      t5 = (0, import_internal41.space)();
-      p2 = (0, import_internal41.element)("p");
+      t5 = (0, import_internal42.space)();
+      p2 = (0, import_internal42.element)("p");
       p2.textContent = "Nulla facilisi. Sed in neque hendrerit, convallis neque a, semper sem. Maecenas suscipit ex quis risus mollis, at tincidunt mi faucibus. Pellentesque in faucibus metus. Etiam sollicitudin accumsan arcu interdum sollicitudin. Suspendisse iaculis congue justo id posuere. Ut sed nisi molestie, egestas nulla at, feugiat neque. Nullam vitae libero eu sem ornare tempus vel id tortor. Ut varius ullamcorper nisl et dignissim. Vestibulum sodales massa id odio aliquet ornare. Nunc mollis quis sapien fringilla ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus eget posuere orci.";
-      t7 = (0, import_internal41.space)();
-      p3 = (0, import_internal41.element)("p");
+      t7 = (0, import_internal42.space)();
+      p3 = (0, import_internal42.element)("p");
       p3.textContent = "Suspendisse sollicitudin sed ligula nec tempus. Phasellus quis luctus sapien. Nullam nec sapien fringilla, sollicitudin dui sit amet, molestie arcu. Pellentesque id elit et sem pharetra gravida. Donec sed metus ut dui venenatis euismod varius ut libero. Duis ornare odio finibus eros rhoncus ullamcorper. Maecenas auctor lectus volutpat sem pretium volutpat. Mauris blandit quam diam, nec consequat arcu dignissim ut. Donec ac lacus pretium, sollicitudin nisi in, ullamcorper enim. Ut convallis nec eros nec scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris non odio a ipsum varius pretium non ut ex. Quisque euismod luctus risus, sit amet venenatis justo vehicula non. Aliquam erat volutpat. Phasellus eu leo ut odio cursus cursus. Pellentesque porta odio id arcu mattis, vitae aliquam risus efficitur.";
-      t9 = (0, import_internal41.space)();
-      p4 = (0, import_internal41.element)("p");
+      t9 = (0, import_internal42.space)();
+      p4 = (0, import_internal42.element)("p");
       p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-      (0, import_internal41.add_location)(br, file39, 12, 16, 397);
-      (0, import_internal41.add_location)(p0, file39, 15, 1, 418);
-      (0, import_internal41.add_location)(p1, file39, 16, 1, 1046);
-      (0, import_internal41.add_location)(p2, file39, 17, 1, 1614);
-      (0, import_internal41.add_location)(p3, file39, 18, 1, 2231);
-      (0, import_internal41.add_location)(p4, file39, 19, 1, 3101);
+      (0, import_internal42.add_location)(br, file40, 12, 16, 397);
+      (0, import_internal42.add_location)(p0, file40, 15, 1, 418);
+      (0, import_internal42.add_location)(p1, file40, 16, 1, 1046);
+      (0, import_internal42.add_location)(p2, file40, 17, 1, 1614);
+      (0, import_internal42.add_location)(p3, file40, 18, 1, 2231);
+      (0, import_internal42.add_location)(p4, file40, 19, 1, 3101);
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t0, anchor);
-      (0, import_internal41.insert_dev)(target, br, anchor);
-      (0, import_internal41.insert_dev)(target, t1, anchor);
-      (0, import_internal41.insert_dev)(target, p0, anchor);
-      (0, import_internal41.insert_dev)(target, t3, anchor);
-      (0, import_internal41.insert_dev)(target, p1, anchor);
-      (0, import_internal41.insert_dev)(target, t5, anchor);
-      (0, import_internal41.insert_dev)(target, p2, anchor);
-      (0, import_internal41.insert_dev)(target, t7, anchor);
-      (0, import_internal41.insert_dev)(target, p3, anchor);
-      (0, import_internal41.insert_dev)(target, t9, anchor);
-      (0, import_internal41.insert_dev)(target, p4, anchor);
+      (0, import_internal42.insert_dev)(target, t0, anchor);
+      (0, import_internal42.insert_dev)(target, br, anchor);
+      (0, import_internal42.insert_dev)(target, t1, anchor);
+      (0, import_internal42.insert_dev)(target, p0, anchor);
+      (0, import_internal42.insert_dev)(target, t3, anchor);
+      (0, import_internal42.insert_dev)(target, p1, anchor);
+      (0, import_internal42.insert_dev)(target, t5, anchor);
+      (0, import_internal42.insert_dev)(target, p2, anchor);
+      (0, import_internal42.insert_dev)(target, t7, anchor);
+      (0, import_internal42.insert_dev)(target, p3, anchor);
+      (0, import_internal42.insert_dev)(target, t9, anchor);
+      (0, import_internal42.insert_dev)(target, p4, anchor);
     },
-    p: import_internal41.noop,
+    p: import_internal42.noop,
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t0);
+        (0, import_internal42.detach_dev)(t0);
       if (detaching)
-        (0, import_internal41.detach_dev)(br);
+        (0, import_internal42.detach_dev)(br);
       if (detaching)
-        (0, import_internal41.detach_dev)(t1);
+        (0, import_internal42.detach_dev)(t1);
       if (detaching)
-        (0, import_internal41.detach_dev)(p0);
+        (0, import_internal42.detach_dev)(p0);
       if (detaching)
-        (0, import_internal41.detach_dev)(t3);
+        (0, import_internal42.detach_dev)(t3);
       if (detaching)
-        (0, import_internal41.detach_dev)(p1);
+        (0, import_internal42.detach_dev)(p1);
       if (detaching)
-        (0, import_internal41.detach_dev)(t5);
+        (0, import_internal42.detach_dev)(t5);
       if (detaching)
-        (0, import_internal41.detach_dev)(p2);
+        (0, import_internal42.detach_dev)(p2);
       if (detaching)
-        (0, import_internal41.detach_dev)(t7);
+        (0, import_internal42.detach_dev)(t7);
       if (detaching)
-        (0, import_internal41.detach_dev)(p3);
+        (0, import_internal42.detach_dev)(p3);
       if (detaching)
-        (0, import_internal41.detach_dev)(t9);
+        (0, import_internal42.detach_dev)(t9);
       if (detaching)
-        (0, import_internal41.detach_dev)(p4);
+        (0, import_internal42.detach_dev)(p4);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_52.name,
     type: "slot",
@@ -25914,17 +26884,17 @@ function create_default_slot_42(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("Close");
+      t = (0, import_internal42.text)("Close");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_42.name,
     type: "slot",
@@ -25951,14 +26921,14 @@ function create_footer_slot_1(ctx) {
   );
   const block = {
     c: function create() {
-      div = (0, import_internal41.element)("div");
-      (0, import_internal41.create_component)(button.$$.fragment);
-      (0, import_internal41.attr_dev)(div, "slot", "footer");
-      (0, import_internal41.add_location)(div, file39, 21, 1, 3421);
+      div = (0, import_internal42.element)("div");
+      (0, import_internal42.create_component)(button.$$.fragment);
+      (0, import_internal42.attr_dev)(div, "slot", "footer");
+      (0, import_internal42.add_location)(div, file40, 21, 1, 3421);
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, div, anchor);
-      (0, import_internal41.mount_component)(button, div, null);
+      (0, import_internal42.insert_dev)(target, div, anchor);
+      (0, import_internal42.mount_component)(button, div, null);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -25972,20 +26942,20 @@ function create_footer_slot_1(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal41.transition_in)(button.$$.fragment, local);
+      (0, import_internal42.transition_in)(button.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal41.transition_out)(button.$$.fragment, local);
+      (0, import_internal42.transition_out)(button.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(div);
-      (0, import_internal41.destroy_component)(button);
+        (0, import_internal42.detach_dev)(div);
+      (0, import_internal42.destroy_component)(button);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_footer_slot_1.name,
     type: "slot",
@@ -25998,17 +26968,17 @@ function create_default_slot_32(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("Hello!");
+      t = (0, import_internal42.text)("Hello!");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_32.name,
     type: "slot",
@@ -26021,17 +26991,17 @@ function create_default_slot_22(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("Are you sure?");
+      t = (0, import_internal42.text)("Are you sure?");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_22.name,
     type: "slot",
@@ -26044,17 +27014,17 @@ function create_default_slot_110(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("Yes");
+      t = (0, import_internal42.text)("Yes");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_110.name,
     type: "slot",
@@ -26067,17 +27037,17 @@ function create_default_slot5(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal41.text)("No");
+      t = (0, import_internal42.text)("No");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, t, anchor);
+      (0, import_internal42.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(t);
+        (0, import_internal42.detach_dev)(t);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot5.name,
     type: "slot",
@@ -26118,18 +27088,18 @@ function create_footer_slot(ctx) {
   );
   const block = {
     c: function create() {
-      div = (0, import_internal41.element)("div");
-      (0, import_internal41.create_component)(button0.$$.fragment);
-      t = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(button1.$$.fragment);
-      (0, import_internal41.attr_dev)(div, "slot", "footer");
-      (0, import_internal41.add_location)(div, file39, 33, 1, 3632);
+      div = (0, import_internal42.element)("div");
+      (0, import_internal42.create_component)(button0.$$.fragment);
+      t = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(button1.$$.fragment);
+      (0, import_internal42.attr_dev)(div, "slot", "footer");
+      (0, import_internal42.add_location)(div, file40, 33, 1, 3632);
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, div, anchor);
-      (0, import_internal41.mount_component)(button0, div, null);
-      (0, import_internal41.append_dev)(div, t);
-      (0, import_internal41.mount_component)(button1, div, null);
+      (0, import_internal42.insert_dev)(target, div, anchor);
+      (0, import_internal42.mount_component)(button0, div, null);
+      (0, import_internal42.append_dev)(div, t);
+      (0, import_internal42.mount_component)(button1, div, null);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -26149,23 +27119,23 @@ function create_footer_slot(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal41.transition_in)(button0.$$.fragment, local);
-      (0, import_internal41.transition_in)(button1.$$.fragment, local);
+      (0, import_internal42.transition_in)(button0.$$.fragment, local);
+      (0, import_internal42.transition_in)(button1.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal41.transition_out)(button0.$$.fragment, local);
-      (0, import_internal41.transition_out)(button1.$$.fragment, local);
+      (0, import_internal42.transition_out)(button0.$$.fragment, local);
+      (0, import_internal42.transition_out)(button1.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(div);
-      (0, import_internal41.destroy_component)(button0);
-      (0, import_internal41.destroy_component)(button1);
+        (0, import_internal42.detach_dev)(div);
+      (0, import_internal42.destroy_component)(button0);
+      (0, import_internal42.destroy_component)(button1);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_footer_slot.name,
     type: "slot",
@@ -26174,7 +27144,7 @@ function create_footer_slot(ctx) {
   });
   return block;
 }
-function create_fragment41(ctx) {
+function create_fragment42(ctx) {
   let h2;
   let t1;
   let ul;
@@ -26291,69 +27261,69 @@ function create_fragment41(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal41.element)("h2");
+      h2 = (0, import_internal42.element)("h2");
       h2.textContent = "Dialog";
-      t1 = (0, import_internal41.space)();
-      ul = (0, import_internal41.element)("ul");
-      li0 = (0, import_internal41.element)("li");
+      t1 = (0, import_internal42.space)();
+      ul = (0, import_internal42.element)("ul");
+      li0 = (0, import_internal42.element)("li");
       li0.textContent = "simple, small, no dependencies\n	";
-      li1 = (0, import_internal41.element)("li");
+      li1 = (0, import_internal42.element)("li");
       li1.textContent = "accessible (full keyboard support, focus trap)";
-      t4 = (0, import_internal41.space)();
-      br = (0, import_internal41.element)("br");
-      t5 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(button0.$$.fragment);
-      t6 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(button1.$$.fragment);
-      t7 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(button2.$$.fragment);
-      t8 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(dialog0.$$.fragment);
-      t9 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(dialog1_1.$$.fragment);
-      t10 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(dialog2_1.$$.fragment);
-      t11 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(codeexample.$$.fragment);
-      t12 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(api0.$$.fragment);
-      t13 = (0, import_internal41.space)();
-      (0, import_internal41.create_component)(api1.$$.fragment);
-      (0, import_internal41.add_location)(h2, file39, 0, 0, 0);
-      (0, import_internal41.add_location)(li0, file39, 3, 1, 23);
-      (0, import_internal41.add_location)(li1, file39, 4, 1, 59);
-      (0, import_internal41.add_location)(ul, file39, 2, 0, 17);
-      (0, import_internal41.add_location)(br, file39, 6, 0, 116);
+      t4 = (0, import_internal42.space)();
+      br = (0, import_internal42.element)("br");
+      t5 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(button0.$$.fragment);
+      t6 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(button1.$$.fragment);
+      t7 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(button2.$$.fragment);
+      t8 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(dialog0.$$.fragment);
+      t9 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(dialog1_1.$$.fragment);
+      t10 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(dialog2_1.$$.fragment);
+      t11 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(codeexample.$$.fragment);
+      t12 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(api0.$$.fragment);
+      t13 = (0, import_internal42.space)();
+      (0, import_internal42.create_component)(api1.$$.fragment);
+      (0, import_internal42.add_location)(h2, file40, 0, 0, 0);
+      (0, import_internal42.add_location)(li0, file40, 3, 1, 23);
+      (0, import_internal42.add_location)(li1, file40, 4, 1, 59);
+      (0, import_internal42.add_location)(ul, file40, 2, 0, 17);
+      (0, import_internal42.add_location)(br, file40, 6, 0, 116);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal41.insert_dev)(target, h2, anchor);
-      (0, import_internal41.insert_dev)(target, t1, anchor);
-      (0, import_internal41.insert_dev)(target, ul, anchor);
-      (0, import_internal41.append_dev)(ul, li0);
-      (0, import_internal41.append_dev)(ul, li1);
-      (0, import_internal41.insert_dev)(target, t4, anchor);
-      (0, import_internal41.insert_dev)(target, br, anchor);
-      (0, import_internal41.insert_dev)(target, t5, anchor);
-      (0, import_internal41.mount_component)(button0, target, anchor);
-      (0, import_internal41.insert_dev)(target, t6, anchor);
-      (0, import_internal41.mount_component)(button1, target, anchor);
-      (0, import_internal41.insert_dev)(target, t7, anchor);
-      (0, import_internal41.mount_component)(button2, target, anchor);
-      (0, import_internal41.insert_dev)(target, t8, anchor);
-      (0, import_internal41.mount_component)(dialog0, target, anchor);
-      (0, import_internal41.insert_dev)(target, t9, anchor);
-      (0, import_internal41.mount_component)(dialog1_1, target, anchor);
-      (0, import_internal41.insert_dev)(target, t10, anchor);
-      (0, import_internal41.mount_component)(dialog2_1, target, anchor);
-      (0, import_internal41.insert_dev)(target, t11, anchor);
-      (0, import_internal41.mount_component)(codeexample, target, anchor);
-      (0, import_internal41.insert_dev)(target, t12, anchor);
-      (0, import_internal41.mount_component)(api0, target, anchor);
-      (0, import_internal41.insert_dev)(target, t13, anchor);
-      (0, import_internal41.mount_component)(api1, target, anchor);
+      (0, import_internal42.insert_dev)(target, h2, anchor);
+      (0, import_internal42.insert_dev)(target, t1, anchor);
+      (0, import_internal42.insert_dev)(target, ul, anchor);
+      (0, import_internal42.append_dev)(ul, li0);
+      (0, import_internal42.append_dev)(ul, li1);
+      (0, import_internal42.insert_dev)(target, t4, anchor);
+      (0, import_internal42.insert_dev)(target, br, anchor);
+      (0, import_internal42.insert_dev)(target, t5, anchor);
+      (0, import_internal42.mount_component)(button0, target, anchor);
+      (0, import_internal42.insert_dev)(target, t6, anchor);
+      (0, import_internal42.mount_component)(button1, target, anchor);
+      (0, import_internal42.insert_dev)(target, t7, anchor);
+      (0, import_internal42.mount_component)(button2, target, anchor);
+      (0, import_internal42.insert_dev)(target, t8, anchor);
+      (0, import_internal42.mount_component)(dialog0, target, anchor);
+      (0, import_internal42.insert_dev)(target, t9, anchor);
+      (0, import_internal42.mount_component)(dialog1_1, target, anchor);
+      (0, import_internal42.insert_dev)(target, t10, anchor);
+      (0, import_internal42.mount_component)(dialog2_1, target, anchor);
+      (0, import_internal42.insert_dev)(target, t11, anchor);
+      (0, import_internal42.mount_component)(codeexample, target, anchor);
+      (0, import_internal42.insert_dev)(target, t12, anchor);
+      (0, import_internal42.mount_component)(api0, target, anchor);
+      (0, import_internal42.insert_dev)(target, t13, anchor);
+      (0, import_internal42.mount_component)(api1, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -26397,84 +27367,84 @@ function create_fragment41(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal41.transition_in)(button0.$$.fragment, local);
-      (0, import_internal41.transition_in)(button1.$$.fragment, local);
-      (0, import_internal41.transition_in)(button2.$$.fragment, local);
-      (0, import_internal41.transition_in)(dialog0.$$.fragment, local);
-      (0, import_internal41.transition_in)(dialog1_1.$$.fragment, local);
-      (0, import_internal41.transition_in)(dialog2_1.$$.fragment, local);
-      (0, import_internal41.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal41.transition_in)(api0.$$.fragment, local);
-      (0, import_internal41.transition_in)(api1.$$.fragment, local);
+      (0, import_internal42.transition_in)(button0.$$.fragment, local);
+      (0, import_internal42.transition_in)(button1.$$.fragment, local);
+      (0, import_internal42.transition_in)(button2.$$.fragment, local);
+      (0, import_internal42.transition_in)(dialog0.$$.fragment, local);
+      (0, import_internal42.transition_in)(dialog1_1.$$.fragment, local);
+      (0, import_internal42.transition_in)(dialog2_1.$$.fragment, local);
+      (0, import_internal42.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal42.transition_in)(api0.$$.fragment, local);
+      (0, import_internal42.transition_in)(api1.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal41.transition_out)(button0.$$.fragment, local);
-      (0, import_internal41.transition_out)(button1.$$.fragment, local);
-      (0, import_internal41.transition_out)(button2.$$.fragment, local);
-      (0, import_internal41.transition_out)(dialog0.$$.fragment, local);
-      (0, import_internal41.transition_out)(dialog1_1.$$.fragment, local);
-      (0, import_internal41.transition_out)(dialog2_1.$$.fragment, local);
-      (0, import_internal41.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal41.transition_out)(api0.$$.fragment, local);
-      (0, import_internal41.transition_out)(api1.$$.fragment, local);
+      (0, import_internal42.transition_out)(button0.$$.fragment, local);
+      (0, import_internal42.transition_out)(button1.$$.fragment, local);
+      (0, import_internal42.transition_out)(button2.$$.fragment, local);
+      (0, import_internal42.transition_out)(dialog0.$$.fragment, local);
+      (0, import_internal42.transition_out)(dialog1_1.$$.fragment, local);
+      (0, import_internal42.transition_out)(dialog2_1.$$.fragment, local);
+      (0, import_internal42.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal42.transition_out)(api0.$$.fragment, local);
+      (0, import_internal42.transition_out)(api1.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal41.detach_dev)(h2);
+        (0, import_internal42.detach_dev)(h2);
       if (detaching)
-        (0, import_internal41.detach_dev)(t1);
+        (0, import_internal42.detach_dev)(t1);
       if (detaching)
-        (0, import_internal41.detach_dev)(ul);
+        (0, import_internal42.detach_dev)(ul);
       if (detaching)
-        (0, import_internal41.detach_dev)(t4);
+        (0, import_internal42.detach_dev)(t4);
       if (detaching)
-        (0, import_internal41.detach_dev)(br);
+        (0, import_internal42.detach_dev)(br);
       if (detaching)
-        (0, import_internal41.detach_dev)(t5);
-      (0, import_internal41.destroy_component)(button0, detaching);
+        (0, import_internal42.detach_dev)(t5);
+      (0, import_internal42.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t6);
-      (0, import_internal41.destroy_component)(button1, detaching);
+        (0, import_internal42.detach_dev)(t6);
+      (0, import_internal42.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t7);
-      (0, import_internal41.destroy_component)(button2, detaching);
+        (0, import_internal42.detach_dev)(t7);
+      (0, import_internal42.destroy_component)(button2, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t8);
+        (0, import_internal42.detach_dev)(t8);
       ctx[10](null);
-      (0, import_internal41.destroy_component)(dialog0, detaching);
+      (0, import_internal42.destroy_component)(dialog0, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t9);
+        (0, import_internal42.detach_dev)(t9);
       ctx[11](null);
-      (0, import_internal41.destroy_component)(dialog1_1, detaching);
+      (0, import_internal42.destroy_component)(dialog1_1, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t10);
+        (0, import_internal42.detach_dev)(t10);
       ctx[14](null);
-      (0, import_internal41.destroy_component)(dialog2_1, detaching);
+      (0, import_internal42.destroy_component)(dialog2_1, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t11);
-      (0, import_internal41.destroy_component)(codeexample, detaching);
+        (0, import_internal42.detach_dev)(t11);
+      (0, import_internal42.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t12);
-      (0, import_internal41.destroy_component)(api0, detaching);
+        (0, import_internal42.detach_dev)(t12);
+      (0, import_internal42.destroy_component)(api0, detaching);
       if (detaching)
-        (0, import_internal41.detach_dev)(t13);
-      (0, import_internal41.destroy_component)(api1, detaching);
+        (0, import_internal42.detach_dev)(t13);
+      (0, import_internal42.destroy_component)(api1, detaching);
     }
   };
-  (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment41.name,
+    id: create_fragment42.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance41($$self, $$props, $$invalidate) {
+function instance42($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal41.validate_slots)("Dialog", slots, []);
+  (0, import_internal42.validate_slots)("Dialog", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -26552,13 +27522,13 @@ function instance41($$self, $$props, $$invalidate) {
   const click_handler_2 = () => dialog3.open();
   const click_handler_3 = () => dialog1.close();
   function dialog0_binding($$value) {
-    import_internal41.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal42.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialog1 = $$value;
       $$invalidate(0, dialog1);
     });
   }
   function dialog1_1_binding($$value) {
-    import_internal41.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal42.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialog2 = $$value;
       $$invalidate(1, dialog2);
     });
@@ -26566,7 +27536,7 @@ function instance41($$self, $$props, $$invalidate) {
   const click_handler_4 = () => dialog3.close();
   const click_handler_5 = () => dialog3.close();
   function dialog2_1_binding($$value) {
-    import_internal41.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal42.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialog3 = $$value;
       $$invalidate(2, dialog3);
     });
@@ -26612,38 +27582,38 @@ function instance41($$self, $$props, $$invalidate) {
     dialog2_1_binding
   ];
 }
-var Dialog_1 = class extends import_internal41.SvelteComponentDev {
+var Dialog_1 = class extends import_internal42.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal41.init)(this, options, instance41, create_fragment41, import_internal41.safe_not_equal, {});
-    (0, import_internal41.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal42.init)(this, options, instance42, create_fragment42, import_internal42.safe_not_equal, {});
+    (0, import_internal42.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Dialog_1",
       options,
-      id: create_fragment41.name
+      id: create_fragment42.name
     });
   }
 };
 var Dialog_default2 = Dialog_1;
 
 // docs-src/components/drawer/Drawer.svelte
-var import_internal42 = __toESM(require_internal());
-var file40 = "docs-src/components/drawer/Drawer.svelte";
+var import_internal43 = __toESM(require_internal());
+var file41 = "docs-src/components/drawer/Drawer.svelte";
 function create_default_slot_23(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal42.text)("Toggle drawer");
+      t = (0, import_internal43.text)("Toggle drawer");
     },
     m: function mount(target, anchor) {
-      (0, import_internal42.insert_dev)(target, t, anchor);
+      (0, import_internal43.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal42.detach_dev)(t);
+        (0, import_internal43.detach_dev)(t);
     }
   };
-  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal43.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_23.name,
     type: "slot",
@@ -26656,17 +27626,17 @@ function create_default_slot_111(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal42.text)("Close Drawer");
+      t = (0, import_internal43.text)("Close Drawer");
     },
     m: function mount(target, anchor) {
-      (0, import_internal42.insert_dev)(target, t, anchor);
+      (0, import_internal43.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal42.detach_dev)(t);
+        (0, import_internal43.detach_dev)(t);
     }
   };
-  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal43.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_111.name,
     type: "slot",
@@ -26709,57 +27679,57 @@ function create_default_slot6(ctx) {
   );
   const block = {
     c: function create() {
-      t0 = (0, import_internal42.text)("drawer contents");
-      br0 = (0, import_internal42.element)("br");
-      t1 = (0, import_internal42.text)("\n	Hello world!");
-      br1 = (0, import_internal42.element)("br");
-      t2 = (0, import_internal42.space)();
-      br2 = (0, import_internal42.element)("br");
-      t3 = (0, import_internal42.space)();
-      (0, import_internal42.create_component)(button.$$.fragment);
-      t4 = (0, import_internal42.space)();
-      p0 = (0, import_internal42.element)("p");
+      t0 = (0, import_internal43.text)("drawer contents");
+      br0 = (0, import_internal43.element)("br");
+      t1 = (0, import_internal43.text)("\n	Hello world!");
+      br1 = (0, import_internal43.element)("br");
+      t2 = (0, import_internal43.space)();
+      br2 = (0, import_internal43.element)("br");
+      t3 = (0, import_internal43.space)();
+      (0, import_internal43.create_component)(button.$$.fragment);
+      t4 = (0, import_internal43.space)();
+      p0 = (0, import_internal43.element)("p");
       p0.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis porttitor justo, eget ornare massa commodo non. Pellentesque semper dictum mauris, id pretium mi mattis in. Proin sodales neque id euismod interdum. Fusce vel blandit orci. Mauris nec ligula aliquam, vestibulum erat nec, ullamcorper nunc. Cras vel lacinia sem. Aenean non tincidunt nisl, vitae consectetur est. Integer id neque tempor, facilisis felis egestas, aliquam turpis. Mauris id consectetur purus. Praesent vehicula, mauris eu hendrerit vehicula, velit tortor fermentum enim, eget malesuada quam eros at quam. Integer mattis egestas tempus.";
-      t6 = (0, import_internal42.space)();
-      p1 = (0, import_internal42.element)("p");
+      t6 = (0, import_internal43.space)();
+      p1 = (0, import_internal43.element)("p");
       p1.textContent = "Aliquam et purus enim. Suspendisse potenti. Suspendisse tincidunt ullamcorper nulla non gravida. Morbi at tellus dui. Sed orci ligula, facilisis sit amet odio eu, commodo ultricies lorem. Nullam sagittis sapien metus, eu posuere sem iaculis sed. Duis at nibh feugiat, placerat lectus nec, consectetur elit. In sollicitudin est in ultricies gravida. Ut malesuada ex lacinia, posuere augue eget, imperdiet erat. Phasellus ac dui sit amet ligula condimentum venenatis vitae ornare augue. Vivamus pellentesque felis in orci finibus, a accumsan libero consectetur.";
-      t8 = (0, import_internal42.space)();
-      p2 = (0, import_internal42.element)("p");
+      t8 = (0, import_internal43.space)();
+      p2 = (0, import_internal43.element)("p");
       p2.textContent = "Nulla facilisi. Sed in neque hendrerit, convallis neque a, semper sem. Maecenas suscipit ex quis risus mollis, at tincidunt mi faucibus. Pellentesque in faucibus metus. Etiam sollicitudin accumsan arcu interdum sollicitudin. Suspendisse iaculis congue justo id posuere. Ut sed nisi molestie, egestas nulla at, feugiat neque. Nullam vitae libero eu sem ornare tempus vel id tortor. Ut varius ullamcorper nisl et dignissim. Vestibulum sodales massa id odio aliquet ornare. Nunc mollis quis sapien fringilla ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus eget posuere orci.";
-      t10 = (0, import_internal42.space)();
-      p3 = (0, import_internal42.element)("p");
+      t10 = (0, import_internal43.space)();
+      p3 = (0, import_internal43.element)("p");
       p3.textContent = "Suspendisse sollicitudin sed ligula nec tempus. Phasellus quis luctus sapien. Nullam nec sapien fringilla, sollicitudin dui sit amet, molestie arcu. Pellentesque id elit et sem pharetra gravida. Donec sed metus ut dui venenatis euismod varius ut libero. Duis ornare odio finibus eros rhoncus ullamcorper. Maecenas auctor lectus volutpat sem pretium volutpat. Mauris blandit quam diam, nec consequat arcu dignissim ut. Donec ac lacus pretium, sollicitudin nisi in, ullamcorper enim. Ut convallis nec eros nec scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris non odio a ipsum varius pretium non ut ex. Quisque euismod luctus risus, sit amet venenatis justo vehicula non. Aliquam erat volutpat. Phasellus eu leo ut odio cursus cursus. Pellentesque porta odio id arcu mattis, vitae aliquam risus efficitur.";
-      t12 = (0, import_internal42.space)();
-      p4 = (0, import_internal42.element)("p");
+      t12 = (0, import_internal43.space)();
+      p4 = (0, import_internal43.element)("p");
       p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-      (0, import_internal42.add_location)(br0, file40, 5, 16, 145);
-      (0, import_internal42.add_location)(br1, file40, 6, 13, 163);
-      (0, import_internal42.add_location)(br2, file40, 7, 1, 169);
-      (0, import_internal42.add_location)(p0, file40, 9, 1, 240);
-      (0, import_internal42.add_location)(p1, file40, 10, 1, 868);
-      (0, import_internal42.add_location)(p2, file40, 11, 1, 1436);
-      (0, import_internal42.add_location)(p3, file40, 12, 1, 2053);
-      (0, import_internal42.add_location)(p4, file40, 13, 1, 2923);
+      (0, import_internal43.add_location)(br0, file41, 5, 16, 145);
+      (0, import_internal43.add_location)(br1, file41, 6, 13, 163);
+      (0, import_internal43.add_location)(br2, file41, 7, 1, 169);
+      (0, import_internal43.add_location)(p0, file41, 9, 1, 240);
+      (0, import_internal43.add_location)(p1, file41, 10, 1, 868);
+      (0, import_internal43.add_location)(p2, file41, 11, 1, 1436);
+      (0, import_internal43.add_location)(p3, file41, 12, 1, 2053);
+      (0, import_internal43.add_location)(p4, file41, 13, 1, 2923);
     },
     m: function mount(target, anchor) {
-      (0, import_internal42.insert_dev)(target, t0, anchor);
-      (0, import_internal42.insert_dev)(target, br0, anchor);
-      (0, import_internal42.insert_dev)(target, t1, anchor);
-      (0, import_internal42.insert_dev)(target, br1, anchor);
-      (0, import_internal42.insert_dev)(target, t2, anchor);
-      (0, import_internal42.insert_dev)(target, br2, anchor);
-      (0, import_internal42.insert_dev)(target, t3, anchor);
-      (0, import_internal42.mount_component)(button, target, anchor);
-      (0, import_internal42.insert_dev)(target, t4, anchor);
-      (0, import_internal42.insert_dev)(target, p0, anchor);
-      (0, import_internal42.insert_dev)(target, t6, anchor);
-      (0, import_internal42.insert_dev)(target, p1, anchor);
-      (0, import_internal42.insert_dev)(target, t8, anchor);
-      (0, import_internal42.insert_dev)(target, p2, anchor);
-      (0, import_internal42.insert_dev)(target, t10, anchor);
-      (0, import_internal42.insert_dev)(target, p3, anchor);
-      (0, import_internal42.insert_dev)(target, t12, anchor);
-      (0, import_internal42.insert_dev)(target, p4, anchor);
+      (0, import_internal43.insert_dev)(target, t0, anchor);
+      (0, import_internal43.insert_dev)(target, br0, anchor);
+      (0, import_internal43.insert_dev)(target, t1, anchor);
+      (0, import_internal43.insert_dev)(target, br1, anchor);
+      (0, import_internal43.insert_dev)(target, t2, anchor);
+      (0, import_internal43.insert_dev)(target, br2, anchor);
+      (0, import_internal43.insert_dev)(target, t3, anchor);
+      (0, import_internal43.mount_component)(button, target, anchor);
+      (0, import_internal43.insert_dev)(target, t4, anchor);
+      (0, import_internal43.insert_dev)(target, p0, anchor);
+      (0, import_internal43.insert_dev)(target, t6, anchor);
+      (0, import_internal43.insert_dev)(target, p1, anchor);
+      (0, import_internal43.insert_dev)(target, t8, anchor);
+      (0, import_internal43.insert_dev)(target, p2, anchor);
+      (0, import_internal43.insert_dev)(target, t10, anchor);
+      (0, import_internal43.insert_dev)(target, p3, anchor);
+      (0, import_internal43.insert_dev)(target, t12, anchor);
+      (0, import_internal43.insert_dev)(target, p4, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -26773,52 +27743,52 @@ function create_default_slot6(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal42.transition_in)(button.$$.fragment, local);
+      (0, import_internal43.transition_in)(button.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal42.transition_out)(button.$$.fragment, local);
+      (0, import_internal43.transition_out)(button.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal42.detach_dev)(t0);
+        (0, import_internal43.detach_dev)(t0);
       if (detaching)
-        (0, import_internal42.detach_dev)(br0);
+        (0, import_internal43.detach_dev)(br0);
       if (detaching)
-        (0, import_internal42.detach_dev)(t1);
+        (0, import_internal43.detach_dev)(t1);
       if (detaching)
-        (0, import_internal42.detach_dev)(br1);
+        (0, import_internal43.detach_dev)(br1);
       if (detaching)
-        (0, import_internal42.detach_dev)(t2);
+        (0, import_internal43.detach_dev)(t2);
       if (detaching)
-        (0, import_internal42.detach_dev)(br2);
+        (0, import_internal43.detach_dev)(br2);
       if (detaching)
-        (0, import_internal42.detach_dev)(t3);
-      (0, import_internal42.destroy_component)(button, detaching);
+        (0, import_internal43.detach_dev)(t3);
+      (0, import_internal43.destroy_component)(button, detaching);
       if (detaching)
-        (0, import_internal42.detach_dev)(t4);
+        (0, import_internal43.detach_dev)(t4);
       if (detaching)
-        (0, import_internal42.detach_dev)(p0);
+        (0, import_internal43.detach_dev)(p0);
       if (detaching)
-        (0, import_internal42.detach_dev)(t6);
+        (0, import_internal43.detach_dev)(t6);
       if (detaching)
-        (0, import_internal42.detach_dev)(p1);
+        (0, import_internal43.detach_dev)(p1);
       if (detaching)
-        (0, import_internal42.detach_dev)(t8);
+        (0, import_internal43.detach_dev)(t8);
       if (detaching)
-        (0, import_internal42.detach_dev)(p2);
+        (0, import_internal43.detach_dev)(p2);
       if (detaching)
-        (0, import_internal42.detach_dev)(t10);
+        (0, import_internal43.detach_dev)(t10);
       if (detaching)
-        (0, import_internal42.detach_dev)(p3);
+        (0, import_internal43.detach_dev)(p3);
       if (detaching)
-        (0, import_internal42.detach_dev)(t12);
+        (0, import_internal43.detach_dev)(t12);
       if (detaching)
-        (0, import_internal42.detach_dev)(p4);
+        (0, import_internal43.detach_dev)(p4);
     }
   };
-  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal43.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot6.name,
     type: "slot",
@@ -26827,7 +27797,7 @@ function create_default_slot6(ctx) {
   });
   return block;
 }
-function create_fragment42(ctx) {
+function create_fragment43(ctx) {
   let h2;
   let t1;
   let button;
@@ -26886,35 +27856,35 @@ function create_fragment42(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal42.element)("h2");
+      h2 = (0, import_internal43.element)("h2");
       h2.textContent = "Drawer";
-      t1 = (0, import_internal42.space)();
-      (0, import_internal42.create_component)(button.$$.fragment);
-      t2 = (0, import_internal42.space)();
-      (0, import_internal42.create_component)(drawer_1.$$.fragment);
-      t3 = (0, import_internal42.space)();
-      (0, import_internal42.create_component)(codeexample.$$.fragment);
-      t4 = (0, import_internal42.space)();
-      (0, import_internal42.create_component)(api0.$$.fragment);
-      t5 = (0, import_internal42.space)();
-      (0, import_internal42.create_component)(api1.$$.fragment);
-      (0, import_internal42.add_location)(h2, file40, 0, 0, 0);
+      t1 = (0, import_internal43.space)();
+      (0, import_internal43.create_component)(button.$$.fragment);
+      t2 = (0, import_internal43.space)();
+      (0, import_internal43.create_component)(drawer_1.$$.fragment);
+      t3 = (0, import_internal43.space)();
+      (0, import_internal43.create_component)(codeexample.$$.fragment);
+      t4 = (0, import_internal43.space)();
+      (0, import_internal43.create_component)(api0.$$.fragment);
+      t5 = (0, import_internal43.space)();
+      (0, import_internal43.create_component)(api1.$$.fragment);
+      (0, import_internal43.add_location)(h2, file41, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal42.insert_dev)(target, h2, anchor);
-      (0, import_internal42.insert_dev)(target, t1, anchor);
-      (0, import_internal42.mount_component)(button, target, anchor);
-      (0, import_internal42.insert_dev)(target, t2, anchor);
-      (0, import_internal42.mount_component)(drawer_1, target, anchor);
-      (0, import_internal42.insert_dev)(target, t3, anchor);
-      (0, import_internal42.mount_component)(codeexample, target, anchor);
-      (0, import_internal42.insert_dev)(target, t4, anchor);
-      (0, import_internal42.mount_component)(api0, target, anchor);
-      (0, import_internal42.insert_dev)(target, t5, anchor);
-      (0, import_internal42.mount_component)(api1, target, anchor);
+      (0, import_internal43.insert_dev)(target, h2, anchor);
+      (0, import_internal43.insert_dev)(target, t1, anchor);
+      (0, import_internal43.mount_component)(button, target, anchor);
+      (0, import_internal43.insert_dev)(target, t2, anchor);
+      (0, import_internal43.mount_component)(drawer_1, target, anchor);
+      (0, import_internal43.insert_dev)(target, t3, anchor);
+      (0, import_internal43.mount_component)(codeexample, target, anchor);
+      (0, import_internal43.insert_dev)(target, t4, anchor);
+      (0, import_internal43.mount_component)(api0, target, anchor);
+      (0, import_internal43.insert_dev)(target, t5, anchor);
+      (0, import_internal43.mount_component)(api1, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -26934,54 +27904,54 @@ function create_fragment42(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal42.transition_in)(button.$$.fragment, local);
-      (0, import_internal42.transition_in)(drawer_1.$$.fragment, local);
-      (0, import_internal42.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal42.transition_in)(api0.$$.fragment, local);
-      (0, import_internal42.transition_in)(api1.$$.fragment, local);
+      (0, import_internal43.transition_in)(button.$$.fragment, local);
+      (0, import_internal43.transition_in)(drawer_1.$$.fragment, local);
+      (0, import_internal43.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal43.transition_in)(api0.$$.fragment, local);
+      (0, import_internal43.transition_in)(api1.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal42.transition_out)(button.$$.fragment, local);
-      (0, import_internal42.transition_out)(drawer_1.$$.fragment, local);
-      (0, import_internal42.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal42.transition_out)(api0.$$.fragment, local);
-      (0, import_internal42.transition_out)(api1.$$.fragment, local);
+      (0, import_internal43.transition_out)(button.$$.fragment, local);
+      (0, import_internal43.transition_out)(drawer_1.$$.fragment, local);
+      (0, import_internal43.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal43.transition_out)(api0.$$.fragment, local);
+      (0, import_internal43.transition_out)(api1.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal42.detach_dev)(h2);
+        (0, import_internal43.detach_dev)(h2);
       if (detaching)
-        (0, import_internal42.detach_dev)(t1);
-      (0, import_internal42.destroy_component)(button, detaching);
+        (0, import_internal43.detach_dev)(t1);
+      (0, import_internal43.destroy_component)(button, detaching);
       if (detaching)
-        (0, import_internal42.detach_dev)(t2);
+        (0, import_internal43.detach_dev)(t2);
       ctx[6](null);
-      (0, import_internal42.destroy_component)(drawer_1, detaching);
+      (0, import_internal43.destroy_component)(drawer_1, detaching);
       if (detaching)
-        (0, import_internal42.detach_dev)(t3);
-      (0, import_internal42.destroy_component)(codeexample, detaching);
+        (0, import_internal43.detach_dev)(t3);
+      (0, import_internal43.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal42.detach_dev)(t4);
-      (0, import_internal42.destroy_component)(api0, detaching);
+        (0, import_internal43.detach_dev)(t4);
+      (0, import_internal43.destroy_component)(api0, detaching);
       if (detaching)
-        (0, import_internal42.detach_dev)(t5);
-      (0, import_internal42.destroy_component)(api1, detaching);
+        (0, import_internal43.detach_dev)(t5);
+      (0, import_internal43.destroy_component)(api1, detaching);
     }
   };
-  (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal43.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment42.name,
+    id: create_fragment43.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance42($$self, $$props, $$invalidate) {
+function instance43($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal42.validate_slots)("Drawer", slots, []);
+  (0, import_internal43.validate_slots)("Drawer", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -27042,7 +28012,7 @@ function instance42($$self, $$props, $$invalidate) {
   const click_handler = () => drawer.toggle();
   const click_handler_1 = () => drawer.close();
   function drawer_1_binding($$value) {
-    import_internal42.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal43.binding_callbacks[$$value ? "unshift" : "push"](() => {
       drawer = $$value;
       $$invalidate(0, drawer);
     });
@@ -27074,24 +28044,24 @@ function instance42($$self, $$props, $$invalidate) {
     drawer_1_binding
   ];
 }
-var Drawer_1 = class extends import_internal42.SvelteComponentDev {
+var Drawer_1 = class extends import_internal43.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal42.init)(this, options, instance42, create_fragment42, import_internal42.safe_not_equal, {});
-    (0, import_internal42.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal43.init)(this, options, instance43, create_fragment43, import_internal43.safe_not_equal, {});
+    (0, import_internal43.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Drawer_1",
       options,
-      id: create_fragment42.name
+      id: create_fragment43.name
     });
   }
 };
 var Drawer_default2 = Drawer_1;
 
 // docs-src/components/icon/Icon.svelte
-var import_internal43 = __toESM(require_internal());
-var { Object: Object_13 } = import_internal43.globals;
-var file41 = "docs-src/components/icon/Icon.svelte";
+var import_internal44 = __toESM(require_internal());
+var { Object: Object_13 } = import_internal44.globals;
+var file42 = "docs-src/components/icon/Icon.svelte";
 function get_each_context8(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[2] = list[i];
@@ -27119,48 +28089,48 @@ function create_each_block8(ctx) {
   });
   const block = {
     c: function create() {
-      div2 = (0, import_internal43.element)("div");
-      div0 = (0, import_internal43.element)("div");
-      (0, import_internal43.create_component)(icon.$$.fragment);
-      t0 = (0, import_internal43.space)();
-      div1 = (0, import_internal43.element)("div");
-      t1 = (0, import_internal43.text)(t1_value);
-      (0, import_internal43.attr_dev)(div0, "class", "icon-block-icon");
-      (0, import_internal43.add_location)(div0, file41, 3, 2, 93);
-      (0, import_internal43.attr_dev)(div1, "class", "icon-block-name");
-      (0, import_internal43.add_location)(div1, file41, 4, 2, 152);
-      (0, import_internal43.attr_dev)(div2, "class", "icon-block");
-      (0, import_internal43.attr_dev)(div2, "title", div2_title_value = /*icon*/
+      div2 = (0, import_internal44.element)("div");
+      div0 = (0, import_internal44.element)("div");
+      (0, import_internal44.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal44.space)();
+      div1 = (0, import_internal44.element)("div");
+      t1 = (0, import_internal44.text)(t1_value);
+      (0, import_internal44.attr_dev)(div0, "class", "icon-block-icon");
+      (0, import_internal44.add_location)(div0, file42, 3, 2, 93);
+      (0, import_internal44.attr_dev)(div1, "class", "icon-block-name");
+      (0, import_internal44.add_location)(div1, file42, 4, 2, 152);
+      (0, import_internal44.attr_dev)(div2, "class", "icon-block");
+      (0, import_internal44.attr_dev)(div2, "title", div2_title_value = /*icon*/
       ctx[2]);
-      (0, import_internal43.add_location)(div2, file41, 2, 1, 51);
+      (0, import_internal44.add_location)(div2, file42, 2, 1, 51);
     },
     m: function mount(target, anchor) {
-      (0, import_internal43.insert_dev)(target, div2, anchor);
-      (0, import_internal43.append_dev)(div2, div0);
-      (0, import_internal43.mount_component)(icon, div0, null);
-      (0, import_internal43.append_dev)(div2, t0);
-      (0, import_internal43.append_dev)(div2, div1);
-      (0, import_internal43.append_dev)(div1, t1);
+      (0, import_internal44.insert_dev)(target, div2, anchor);
+      (0, import_internal44.append_dev)(div2, div0);
+      (0, import_internal44.mount_component)(icon, div0, null);
+      (0, import_internal44.append_dev)(div2, t0);
+      (0, import_internal44.append_dev)(div2, div1);
+      (0, import_internal44.append_dev)(div1, t1);
       current = true;
     },
-    p: import_internal43.noop,
+    p: import_internal44.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal43.transition_in)(icon.$$.fragment, local);
+      (0, import_internal44.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal43.transition_out)(icon.$$.fragment, local);
+      (0, import_internal44.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal43.detach_dev)(div2);
-      (0, import_internal43.destroy_component)(icon);
+        (0, import_internal44.detach_dev)(div2);
+      (0, import_internal44.destroy_component)(icon);
     }
   };
-  (0, import_internal43.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal44.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_each_block8.name,
     type: "each",
@@ -27169,7 +28139,7 @@ function create_each_block8(ctx) {
   });
   return block;
 }
-function create_fragment43(ctx) {
+function create_fragment44(ctx) {
   let h2;
   let t1;
   let t2;
@@ -27178,12 +28148,12 @@ function create_fragment43(ctx) {
   let api;
   let current;
   let each_value = Object.keys(icons_exports);
-  (0, import_internal43.validate_each_argument)(each_value);
+  (0, import_internal44.validate_each_argument)(each_value);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
     each_blocks[i] = create_each_block8(get_each_context8(ctx, each_value, i));
   }
-  const out = (i) => (0, import_internal43.transition_out)(each_blocks[i], 1, 1, () => {
+  const out = (i) => (0, import_internal44.transition_out)(each_blocks[i], 1, 1, () => {
     each_blocks[i] = null;
   });
   codeexample = new CodeExample_default({
@@ -27202,103 +28172,103 @@ function create_fragment43(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal43.element)("h2");
+      h2 = (0, import_internal44.element)("h2");
       h2.textContent = "Icons";
-      t1 = (0, import_internal43.space)();
+      t1 = (0, import_internal44.space)();
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      t2 = (0, import_internal43.space)();
-      (0, import_internal43.create_component)(codeexample.$$.fragment);
-      t3 = (0, import_internal43.space)();
-      (0, import_internal43.create_component)(api.$$.fragment);
-      (0, import_internal43.add_location)(h2, file41, 0, 0, 0);
+      t2 = (0, import_internal44.space)();
+      (0, import_internal44.create_component)(codeexample.$$.fragment);
+      t3 = (0, import_internal44.space)();
+      (0, import_internal44.create_component)(api.$$.fragment);
+      (0, import_internal44.add_location)(h2, file42, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal43.insert_dev)(target, h2, anchor);
-      (0, import_internal43.insert_dev)(target, t1, anchor);
+      (0, import_internal44.insert_dev)(target, h2, anchor);
+      (0, import_internal44.insert_dev)(target, t1, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].m(target, anchor);
       }
-      (0, import_internal43.insert_dev)(target, t2, anchor);
-      (0, import_internal43.mount_component)(codeexample, target, anchor);
-      (0, import_internal43.insert_dev)(target, t3, anchor);
-      (0, import_internal43.mount_component)(api, target, anchor);
+      (0, import_internal44.insert_dev)(target, t2, anchor);
+      (0, import_internal44.mount_component)(codeexample, target, anchor);
+      (0, import_internal44.insert_dev)(target, t3, anchor);
+      (0, import_internal44.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
       if (dirty & /*Object, icons*/
       0) {
         each_value = Object.keys(icons_exports);
-        (0, import_internal43.validate_each_argument)(each_value);
+        (0, import_internal44.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
           const child_ctx = get_each_context8(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
-            (0, import_internal43.transition_in)(each_blocks[i], 1);
+            (0, import_internal44.transition_in)(each_blocks[i], 1);
           } else {
             each_blocks[i] = create_each_block8(child_ctx);
             each_blocks[i].c();
-            (0, import_internal43.transition_in)(each_blocks[i], 1);
+            (0, import_internal44.transition_in)(each_blocks[i], 1);
             each_blocks[i].m(t2.parentNode, t2);
           }
         }
-        (0, import_internal43.group_outros)();
+        (0, import_internal44.group_outros)();
         for (i = each_value.length; i < each_blocks.length; i += 1) {
           out(i);
         }
-        (0, import_internal43.check_outros)();
+        (0, import_internal44.check_outros)();
       }
     },
     i: function intro(local) {
       if (current)
         return;
       for (let i = 0; i < each_value.length; i += 1) {
-        (0, import_internal43.transition_in)(each_blocks[i]);
+        (0, import_internal44.transition_in)(each_blocks[i]);
       }
-      (0, import_internal43.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal43.transition_in)(api.$$.fragment, local);
+      (0, import_internal44.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal44.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
       each_blocks = each_blocks.filter(Boolean);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        (0, import_internal43.transition_out)(each_blocks[i]);
+        (0, import_internal44.transition_out)(each_blocks[i]);
       }
-      (0, import_internal43.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal43.transition_out)(api.$$.fragment, local);
+      (0, import_internal44.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal44.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal43.detach_dev)(h2);
+        (0, import_internal44.detach_dev)(h2);
       if (detaching)
-        (0, import_internal43.detach_dev)(t1);
-      (0, import_internal43.destroy_each)(each_blocks, detaching);
+        (0, import_internal44.detach_dev)(t1);
+      (0, import_internal44.destroy_each)(each_blocks, detaching);
       if (detaching)
-        (0, import_internal43.detach_dev)(t2);
-      (0, import_internal43.destroy_component)(codeexample, detaching);
+        (0, import_internal44.detach_dev)(t2);
+      (0, import_internal44.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal43.detach_dev)(t3);
-      (0, import_internal43.destroy_component)(api, detaching);
+        (0, import_internal44.detach_dev)(t3);
+      (0, import_internal44.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal43.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal44.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment43.name,
+    id: create_fragment44.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance43($$self, $$props, $$invalidate) {
+function instance44($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal43.validate_slots)("Icon", slots, []);
+  (0, import_internal44.validate_slots)("Icon", slots, []);
   const apiProps = [
     {
       name: "name",
@@ -27324,25 +28294,25 @@ function instance43($$self, $$props, $$invalidate) {
   });
   return [apiProps, exampleHtml];
 }
-var Icon_1 = class extends import_internal43.SvelteComponentDev {
+var Icon_1 = class extends import_internal44.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal43.init)(this, options, instance43, create_fragment43, import_internal43.safe_not_equal, {});
-    (0, import_internal43.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal44.init)(this, options, instance44, create_fragment44, import_internal44.safe_not_equal, {});
+    (0, import_internal44.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Icon_1",
       options,
-      id: create_fragment43.name
+      id: create_fragment44.name
     });
   }
 };
 var Icon_default2 = Icon_1;
 
 // docs-src/components/input/Input.svelte
-var import_internal44 = __toESM(require_internal());
-var { console: console_15 } = import_internal44.globals;
-var file42 = "docs-src/components/input/Input.svelte";
-function create_fragment44(ctx) {
+var import_internal45 = __toESM(require_internal());
+var { console: console_14 } = import_internal45.globals;
+var file43 = "docs-src/components/input/Input.svelte";
+function create_fragment45(ctx) {
   let h2;
   let t1;
   let p0;
@@ -27396,228 +28366,228 @@ function create_fragment44(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal44.element)("h2");
+      h2 = (0, import_internal45.element)("h2");
       h2.textContent = "Input";
-      t1 = (0, import_internal44.space)();
-      p0 = (0, import_internal44.element)("p");
+      t1 = (0, import_internal45.space)();
+      p0 = (0, import_internal45.element)("p");
       p0.textContent = "The basic inputs are not componentised, only styled with css.";
-      t3 = (0, import_internal44.space)();
-      p1 = (0, import_internal44.element)("p");
-      t4 = (0, import_internal44.text)("Only ");
-      i = (0, import_internal44.element)("i");
+      t3 = (0, import_internal45.space)();
+      p1 = (0, import_internal45.element)("p");
+      t4 = (0, import_internal45.text)("Only ");
+      i = (0, import_internal45.element)("i");
       i.textContent = "NumberInput";
-      t6 = (0, import_internal44.text)(" is a special component here.");
-      t7 = (0, import_internal44.space)();
-      br = (0, import_internal44.element)("br");
-      t8 = (0, import_internal44.space)();
-      h30 = (0, import_internal44.element)("h3");
+      t6 = (0, import_internal45.text)(" is a special component here.");
+      t7 = (0, import_internal45.space)();
+      br = (0, import_internal45.element)("br");
+      t8 = (0, import_internal45.space)();
+      h30 = (0, import_internal45.element)("h3");
       h30.textContent = "Text";
-      t10 = (0, import_internal44.space)();
-      input0 = (0, import_internal44.element)("input");
-      t11 = (0, import_internal44.space)();
-      h31 = (0, import_internal44.element)("h3");
+      t10 = (0, import_internal45.space)();
+      input0 = (0, import_internal45.element)("input");
+      t11 = (0, import_internal45.space)();
+      h31 = (0, import_internal45.element)("h3");
       h31.textContent = "Password";
-      t13 = (0, import_internal44.space)();
-      input1 = (0, import_internal44.element)("input");
-      t14 = (0, import_internal44.space)();
-      h32 = (0, import_internal44.element)("h3");
+      t13 = (0, import_internal45.space)();
+      input1 = (0, import_internal45.element)("input");
+      t14 = (0, import_internal45.space)();
+      h32 = (0, import_internal45.element)("h3");
       h32.textContent = "Number";
-      t16 = (0, import_internal44.space)();
-      input2 = (0, import_internal44.element)("input");
-      t17 = (0, import_internal44.space)();
-      h33 = (0, import_internal44.element)("h3");
+      t16 = (0, import_internal45.space)();
+      input2 = (0, import_internal45.element)("input");
+      t17 = (0, import_internal45.space)();
+      h33 = (0, import_internal45.element)("h3");
       h33.textContent = "Better Number";
-      t19 = (0, import_internal44.space)();
-      (0, import_internal44.create_component)(inputnumber.$$.fragment);
-      t20 = (0, import_internal44.space)();
-      h34 = (0, import_internal44.element)("h3");
+      t19 = (0, import_internal45.space)();
+      (0, import_internal45.create_component)(inputnumber.$$.fragment);
+      t20 = (0, import_internal45.space)();
+      h34 = (0, import_internal45.element)("h3");
       h34.textContent = "Search";
-      t22 = (0, import_internal44.space)();
-      input3 = (0, import_internal44.element)("input");
-      t23 = (0, import_internal44.space)();
-      h35 = (0, import_internal44.element)("h3");
+      t22 = (0, import_internal45.space)();
+      input3 = (0, import_internal45.element)("input");
+      t23 = (0, import_internal45.space)();
+      h35 = (0, import_internal45.element)("h3");
       h35.textContent = "Radio button";
-      t25 = (0, import_internal44.space)();
-      input4 = (0, import_internal44.element)("input");
-      t26 = (0, import_internal44.space)();
-      input5 = (0, import_internal44.element)("input");
-      t27 = (0, import_internal44.space)();
-      input6 = (0, import_internal44.element)("input");
-      t28 = (0, import_internal44.space)();
-      (0, import_internal44.create_component)(codeexample.$$.fragment);
-      (0, import_internal44.add_location)(h2, file42, 0, 0, 0);
-      (0, import_internal44.add_location)(p0, file42, 2, 0, 16);
-      (0, import_internal44.add_location)(i, file42, 3, 8, 93);
-      (0, import_internal44.add_location)(p1, file42, 3, 0, 85);
-      (0, import_internal44.add_location)(br, file42, 4, 0, 145);
-      (0, import_internal44.add_location)(h30, file42, 6, 0, 151);
-      (0, import_internal44.attr_dev)(input0, "type", "text");
-      (0, import_internal44.add_location)(input0, file42, 7, 0, 165);
-      (0, import_internal44.add_location)(h31, file42, 9, 0, 209);
-      (0, import_internal44.attr_dev)(input1, "type", "password");
-      (0, import_internal44.add_location)(input1, file42, 10, 0, 227);
-      (0, import_internal44.add_location)(h32, file42, 12, 0, 254);
-      (0, import_internal44.attr_dev)(input2, "type", "number");
-      (0, import_internal44.add_location)(input2, file42, 13, 0, 270);
-      (0, import_internal44.add_location)(h33, file42, 15, 0, 295);
-      (0, import_internal44.add_location)(h34, file42, 18, 0, 335);
-      (0, import_internal44.attr_dev)(input3, "type", "search");
-      (0, import_internal44.add_location)(input3, file42, 19, 0, 351);
-      (0, import_internal44.add_location)(h35, file42, 21, 0, 376);
-      (0, import_internal44.attr_dev)(input4, "name", "radio-group");
-      (0, import_internal44.attr_dev)(input4, "type", "radio");
+      t25 = (0, import_internal45.space)();
+      input4 = (0, import_internal45.element)("input");
+      t26 = (0, import_internal45.space)();
+      input5 = (0, import_internal45.element)("input");
+      t27 = (0, import_internal45.space)();
+      input6 = (0, import_internal45.element)("input");
+      t28 = (0, import_internal45.space)();
+      (0, import_internal45.create_component)(codeexample.$$.fragment);
+      (0, import_internal45.add_location)(h2, file43, 0, 0, 0);
+      (0, import_internal45.add_location)(p0, file43, 2, 0, 16);
+      (0, import_internal45.add_location)(i, file43, 3, 8, 93);
+      (0, import_internal45.add_location)(p1, file43, 3, 0, 85);
+      (0, import_internal45.add_location)(br, file43, 4, 0, 145);
+      (0, import_internal45.add_location)(h30, file43, 6, 0, 151);
+      (0, import_internal45.attr_dev)(input0, "type", "text");
+      (0, import_internal45.add_location)(input0, file43, 7, 0, 165);
+      (0, import_internal45.add_location)(h31, file43, 9, 0, 209);
+      (0, import_internal45.attr_dev)(input1, "type", "password");
+      (0, import_internal45.add_location)(input1, file43, 10, 0, 227);
+      (0, import_internal45.add_location)(h32, file43, 12, 0, 254);
+      (0, import_internal45.attr_dev)(input2, "type", "number");
+      (0, import_internal45.add_location)(input2, file43, 13, 0, 270);
+      (0, import_internal45.add_location)(h33, file43, 15, 0, 295);
+      (0, import_internal45.add_location)(h34, file43, 18, 0, 335);
+      (0, import_internal45.attr_dev)(input3, "type", "search");
+      (0, import_internal45.add_location)(input3, file43, 19, 0, 351);
+      (0, import_internal45.add_location)(h35, file43, 21, 0, 376);
+      (0, import_internal45.attr_dev)(input4, "name", "radio-group");
+      (0, import_internal45.attr_dev)(input4, "type", "radio");
       input4.disabled = true;
-      (0, import_internal44.add_location)(input4, file42, 22, 0, 398);
-      (0, import_internal44.attr_dev)(input5, "name", "radio-group");
-      (0, import_internal44.attr_dev)(input5, "type", "radio");
-      (0, import_internal44.add_location)(input5, file42, 23, 0, 449);
-      (0, import_internal44.attr_dev)(input6, "name", "radio-group");
-      (0, import_internal44.attr_dev)(input6, "type", "radio");
-      (0, import_internal44.add_location)(input6, file42, 24, 0, 491);
+      (0, import_internal45.add_location)(input4, file43, 22, 0, 398);
+      (0, import_internal45.attr_dev)(input5, "name", "radio-group");
+      (0, import_internal45.attr_dev)(input5, "type", "radio");
+      (0, import_internal45.add_location)(input5, file43, 23, 0, 449);
+      (0, import_internal45.attr_dev)(input6, "name", "radio-group");
+      (0, import_internal45.attr_dev)(input6, "type", "radio");
+      (0, import_internal45.add_location)(input6, file43, 24, 0, 491);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal44.insert_dev)(target, h2, anchor);
-      (0, import_internal44.insert_dev)(target, t1, anchor);
-      (0, import_internal44.insert_dev)(target, p0, anchor);
-      (0, import_internal44.insert_dev)(target, t3, anchor);
-      (0, import_internal44.insert_dev)(target, p1, anchor);
-      (0, import_internal44.append_dev)(p1, t4);
-      (0, import_internal44.append_dev)(p1, i);
-      (0, import_internal44.append_dev)(p1, t6);
-      (0, import_internal44.insert_dev)(target, t7, anchor);
-      (0, import_internal44.insert_dev)(target, br, anchor);
-      (0, import_internal44.insert_dev)(target, t8, anchor);
-      (0, import_internal44.insert_dev)(target, h30, anchor);
-      (0, import_internal44.insert_dev)(target, t10, anchor);
-      (0, import_internal44.insert_dev)(target, input0, anchor);
-      (0, import_internal44.insert_dev)(target, t11, anchor);
-      (0, import_internal44.insert_dev)(target, h31, anchor);
-      (0, import_internal44.insert_dev)(target, t13, anchor);
-      (0, import_internal44.insert_dev)(target, input1, anchor);
-      (0, import_internal44.insert_dev)(target, t14, anchor);
-      (0, import_internal44.insert_dev)(target, h32, anchor);
-      (0, import_internal44.insert_dev)(target, t16, anchor);
-      (0, import_internal44.insert_dev)(target, input2, anchor);
-      (0, import_internal44.insert_dev)(target, t17, anchor);
-      (0, import_internal44.insert_dev)(target, h33, anchor);
-      (0, import_internal44.insert_dev)(target, t19, anchor);
-      (0, import_internal44.mount_component)(inputnumber, target, anchor);
-      (0, import_internal44.insert_dev)(target, t20, anchor);
-      (0, import_internal44.insert_dev)(target, h34, anchor);
-      (0, import_internal44.insert_dev)(target, t22, anchor);
-      (0, import_internal44.insert_dev)(target, input3, anchor);
-      (0, import_internal44.insert_dev)(target, t23, anchor);
-      (0, import_internal44.insert_dev)(target, h35, anchor);
-      (0, import_internal44.insert_dev)(target, t25, anchor);
-      (0, import_internal44.insert_dev)(target, input4, anchor);
-      (0, import_internal44.insert_dev)(target, t26, anchor);
-      (0, import_internal44.insert_dev)(target, input5, anchor);
-      (0, import_internal44.insert_dev)(target, t27, anchor);
-      (0, import_internal44.insert_dev)(target, input6, anchor);
-      (0, import_internal44.insert_dev)(target, t28, anchor);
-      (0, import_internal44.mount_component)(codeexample, target, anchor);
+      (0, import_internal45.insert_dev)(target, h2, anchor);
+      (0, import_internal45.insert_dev)(target, t1, anchor);
+      (0, import_internal45.insert_dev)(target, p0, anchor);
+      (0, import_internal45.insert_dev)(target, t3, anchor);
+      (0, import_internal45.insert_dev)(target, p1, anchor);
+      (0, import_internal45.append_dev)(p1, t4);
+      (0, import_internal45.append_dev)(p1, i);
+      (0, import_internal45.append_dev)(p1, t6);
+      (0, import_internal45.insert_dev)(target, t7, anchor);
+      (0, import_internal45.insert_dev)(target, br, anchor);
+      (0, import_internal45.insert_dev)(target, t8, anchor);
+      (0, import_internal45.insert_dev)(target, h30, anchor);
+      (0, import_internal45.insert_dev)(target, t10, anchor);
+      (0, import_internal45.insert_dev)(target, input0, anchor);
+      (0, import_internal45.insert_dev)(target, t11, anchor);
+      (0, import_internal45.insert_dev)(target, h31, anchor);
+      (0, import_internal45.insert_dev)(target, t13, anchor);
+      (0, import_internal45.insert_dev)(target, input1, anchor);
+      (0, import_internal45.insert_dev)(target, t14, anchor);
+      (0, import_internal45.insert_dev)(target, h32, anchor);
+      (0, import_internal45.insert_dev)(target, t16, anchor);
+      (0, import_internal45.insert_dev)(target, input2, anchor);
+      (0, import_internal45.insert_dev)(target, t17, anchor);
+      (0, import_internal45.insert_dev)(target, h33, anchor);
+      (0, import_internal45.insert_dev)(target, t19, anchor);
+      (0, import_internal45.mount_component)(inputnumber, target, anchor);
+      (0, import_internal45.insert_dev)(target, t20, anchor);
+      (0, import_internal45.insert_dev)(target, h34, anchor);
+      (0, import_internal45.insert_dev)(target, t22, anchor);
+      (0, import_internal45.insert_dev)(target, input3, anchor);
+      (0, import_internal45.insert_dev)(target, t23, anchor);
+      (0, import_internal45.insert_dev)(target, h35, anchor);
+      (0, import_internal45.insert_dev)(target, t25, anchor);
+      (0, import_internal45.insert_dev)(target, input4, anchor);
+      (0, import_internal45.insert_dev)(target, t26, anchor);
+      (0, import_internal45.insert_dev)(target, input5, anchor);
+      (0, import_internal45.insert_dev)(target, t27, anchor);
+      (0, import_internal45.insert_dev)(target, input6, anchor);
+      (0, import_internal45.insert_dev)(target, t28, anchor);
+      (0, import_internal45.mount_component)(codeexample, target, anchor);
       current = true;
       if (!mounted) {
-        dispose = (0, import_internal44.listen_dev)(input0, "input", oninput, false, false, false);
+        dispose = (0, import_internal45.listen_dev)(input0, "input", oninput, false, false, false);
         mounted = true;
       }
     },
-    p: import_internal44.noop,
+    p: import_internal45.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal44.transition_in)(inputnumber.$$.fragment, local);
-      (0, import_internal44.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal45.transition_in)(inputnumber.$$.fragment, local);
+      (0, import_internal45.transition_in)(codeexample.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal44.transition_out)(inputnumber.$$.fragment, local);
-      (0, import_internal44.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal45.transition_out)(inputnumber.$$.fragment, local);
+      (0, import_internal45.transition_out)(codeexample.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal44.detach_dev)(h2);
+        (0, import_internal45.detach_dev)(h2);
       if (detaching)
-        (0, import_internal44.detach_dev)(t1);
+        (0, import_internal45.detach_dev)(t1);
       if (detaching)
-        (0, import_internal44.detach_dev)(p0);
+        (0, import_internal45.detach_dev)(p0);
       if (detaching)
-        (0, import_internal44.detach_dev)(t3);
+        (0, import_internal45.detach_dev)(t3);
       if (detaching)
-        (0, import_internal44.detach_dev)(p1);
+        (0, import_internal45.detach_dev)(p1);
       if (detaching)
-        (0, import_internal44.detach_dev)(t7);
+        (0, import_internal45.detach_dev)(t7);
       if (detaching)
-        (0, import_internal44.detach_dev)(br);
+        (0, import_internal45.detach_dev)(br);
       if (detaching)
-        (0, import_internal44.detach_dev)(t8);
+        (0, import_internal45.detach_dev)(t8);
       if (detaching)
-        (0, import_internal44.detach_dev)(h30);
+        (0, import_internal45.detach_dev)(h30);
       if (detaching)
-        (0, import_internal44.detach_dev)(t10);
+        (0, import_internal45.detach_dev)(t10);
       if (detaching)
-        (0, import_internal44.detach_dev)(input0);
+        (0, import_internal45.detach_dev)(input0);
       if (detaching)
-        (0, import_internal44.detach_dev)(t11);
+        (0, import_internal45.detach_dev)(t11);
       if (detaching)
-        (0, import_internal44.detach_dev)(h31);
+        (0, import_internal45.detach_dev)(h31);
       if (detaching)
-        (0, import_internal44.detach_dev)(t13);
+        (0, import_internal45.detach_dev)(t13);
       if (detaching)
-        (0, import_internal44.detach_dev)(input1);
+        (0, import_internal45.detach_dev)(input1);
       if (detaching)
-        (0, import_internal44.detach_dev)(t14);
+        (0, import_internal45.detach_dev)(t14);
       if (detaching)
-        (0, import_internal44.detach_dev)(h32);
+        (0, import_internal45.detach_dev)(h32);
       if (detaching)
-        (0, import_internal44.detach_dev)(t16);
+        (0, import_internal45.detach_dev)(t16);
       if (detaching)
-        (0, import_internal44.detach_dev)(input2);
+        (0, import_internal45.detach_dev)(input2);
       if (detaching)
-        (0, import_internal44.detach_dev)(t17);
+        (0, import_internal45.detach_dev)(t17);
       if (detaching)
-        (0, import_internal44.detach_dev)(h33);
+        (0, import_internal45.detach_dev)(h33);
       if (detaching)
-        (0, import_internal44.detach_dev)(t19);
-      (0, import_internal44.destroy_component)(inputnumber, detaching);
+        (0, import_internal45.detach_dev)(t19);
+      (0, import_internal45.destroy_component)(inputnumber, detaching);
       if (detaching)
-        (0, import_internal44.detach_dev)(t20);
+        (0, import_internal45.detach_dev)(t20);
       if (detaching)
-        (0, import_internal44.detach_dev)(h34);
+        (0, import_internal45.detach_dev)(h34);
       if (detaching)
-        (0, import_internal44.detach_dev)(t22);
+        (0, import_internal45.detach_dev)(t22);
       if (detaching)
-        (0, import_internal44.detach_dev)(input3);
+        (0, import_internal45.detach_dev)(input3);
       if (detaching)
-        (0, import_internal44.detach_dev)(t23);
+        (0, import_internal45.detach_dev)(t23);
       if (detaching)
-        (0, import_internal44.detach_dev)(h35);
+        (0, import_internal45.detach_dev)(h35);
       if (detaching)
-        (0, import_internal44.detach_dev)(t25);
+        (0, import_internal45.detach_dev)(t25);
       if (detaching)
-        (0, import_internal44.detach_dev)(input4);
+        (0, import_internal45.detach_dev)(input4);
       if (detaching)
-        (0, import_internal44.detach_dev)(t26);
+        (0, import_internal45.detach_dev)(t26);
       if (detaching)
-        (0, import_internal44.detach_dev)(input5);
+        (0, import_internal45.detach_dev)(input5);
       if (detaching)
-        (0, import_internal44.detach_dev)(t27);
+        (0, import_internal45.detach_dev)(t27);
       if (detaching)
-        (0, import_internal44.detach_dev)(input6);
+        (0, import_internal45.detach_dev)(input6);
       if (detaching)
-        (0, import_internal44.detach_dev)(t28);
-      (0, import_internal44.destroy_component)(codeexample, detaching);
+        (0, import_internal45.detach_dev)(t28);
+      (0, import_internal45.destroy_component)(codeexample, detaching);
       mounted = false;
       dispose();
     }
   };
-  (0, import_internal44.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal45.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment44.name,
+    id: create_fragment45.name,
     type: "component",
     source: "",
     ctx
@@ -27627,9 +28597,9 @@ function create_fragment44(ctx) {
 function oninput(e) {
   console.log(e);
 }
-function instance44($$self, $$props, $$invalidate) {
+function instance45($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal44.validate_slots)("Input", slots, []);
+  (0, import_internal45.validate_slots)("Input", slots, []);
   const exampleHtml = `
 <input type="text" on:change="{onChange}" />
 <InputNumber />
@@ -27643,7 +28613,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_15.warn(`<Input> was created with unknown prop '${key}'`);
+      console_14.warn(`<Input> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     InputNumber: InputNumber_default,
@@ -27653,24 +28623,24 @@ function onChange (e) {
   });
   return [exampleHtml];
 }
-var Input = class extends import_internal44.SvelteComponentDev {
+var Input = class extends import_internal45.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal44.init)(this, options, instance44, create_fragment44, import_internal44.safe_not_equal, {});
-    (0, import_internal44.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal45.init)(this, options, instance45, create_fragment45, import_internal45.safe_not_equal, {});
+    (0, import_internal45.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Input",
       options,
-      id: create_fragment44.name
+      id: create_fragment45.name
     });
   }
 };
 var Input_default = Input;
 
 // docs-src/components/input-math/InputMath.svelte
-var import_internal45 = __toESM(require_internal());
-var file43 = "docs-src/components/input-math/InputMath.svelte";
-function create_fragment45(ctx) {
+var import_internal46 = __toESM(require_internal());
+var file44 = "docs-src/components/input-math/InputMath.svelte";
+function create_fragment46(ctx) {
   let h2;
   let t1;
   let inputmath;
@@ -27696,70 +28666,70 @@ function create_fragment45(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal45.element)("h2");
+      h2 = (0, import_internal46.element)("h2");
       h2.textContent = "InputMath (allow + - * /)";
-      t1 = (0, import_internal45.space)();
-      (0, import_internal45.create_component)(inputmath.$$.fragment);
-      t2 = (0, import_internal45.space)();
-      (0, import_internal45.create_component)(codeexample.$$.fragment);
-      t3 = (0, import_internal45.space)();
-      (0, import_internal45.create_component)(api.$$.fragment);
-      (0, import_internal45.add_location)(h2, file43, 0, 0, 0);
+      t1 = (0, import_internal46.space)();
+      (0, import_internal46.create_component)(inputmath.$$.fragment);
+      t2 = (0, import_internal46.space)();
+      (0, import_internal46.create_component)(codeexample.$$.fragment);
+      t3 = (0, import_internal46.space)();
+      (0, import_internal46.create_component)(api.$$.fragment);
+      (0, import_internal46.add_location)(h2, file44, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal45.insert_dev)(target, h2, anchor);
-      (0, import_internal45.insert_dev)(target, t1, anchor);
-      (0, import_internal45.mount_component)(inputmath, target, anchor);
-      (0, import_internal45.insert_dev)(target, t2, anchor);
-      (0, import_internal45.mount_component)(codeexample, target, anchor);
-      (0, import_internal45.insert_dev)(target, t3, anchor);
-      (0, import_internal45.mount_component)(api, target, anchor);
+      (0, import_internal46.insert_dev)(target, h2, anchor);
+      (0, import_internal46.insert_dev)(target, t1, anchor);
+      (0, import_internal46.mount_component)(inputmath, target, anchor);
+      (0, import_internal46.insert_dev)(target, t2, anchor);
+      (0, import_internal46.mount_component)(codeexample, target, anchor);
+      (0, import_internal46.insert_dev)(target, t3, anchor);
+      (0, import_internal46.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal45.noop,
+    p: import_internal46.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal45.transition_in)(inputmath.$$.fragment, local);
-      (0, import_internal45.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal45.transition_in)(api.$$.fragment, local);
+      (0, import_internal46.transition_in)(inputmath.$$.fragment, local);
+      (0, import_internal46.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal46.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal45.transition_out)(inputmath.$$.fragment, local);
-      (0, import_internal45.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal45.transition_out)(api.$$.fragment, local);
+      (0, import_internal46.transition_out)(inputmath.$$.fragment, local);
+      (0, import_internal46.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal46.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal45.detach_dev)(h2);
+        (0, import_internal46.detach_dev)(h2);
       if (detaching)
-        (0, import_internal45.detach_dev)(t1);
-      (0, import_internal45.destroy_component)(inputmath, detaching);
+        (0, import_internal46.detach_dev)(t1);
+      (0, import_internal46.destroy_component)(inputmath, detaching);
       if (detaching)
-        (0, import_internal45.detach_dev)(t2);
-      (0, import_internal45.destroy_component)(codeexample, detaching);
+        (0, import_internal46.detach_dev)(t2);
+      (0, import_internal46.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal45.detach_dev)(t3);
-      (0, import_internal45.destroy_component)(api, detaching);
+        (0, import_internal46.detach_dev)(t3);
+      (0, import_internal46.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal45.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal46.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment45.name,
+    id: create_fragment46.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance45($$self, $$props, $$invalidate) {
+function instance46($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal45.validate_slots)("InputMath", slots, []);
+  (0, import_internal46.validate_slots)("InputMath", slots, []);
   const apiProps = [
     {
       name: "id",
@@ -27834,24 +28804,24 @@ function onChange (e) {
   });
   return [apiProps, exampleHtml];
 }
-var InputMath_1 = class extends import_internal45.SvelteComponentDev {
+var InputMath_1 = class extends import_internal46.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal45.init)(this, options, instance45, create_fragment45, import_internal45.safe_not_equal, {});
-    (0, import_internal45.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal46.init)(this, options, instance46, create_fragment46, import_internal46.safe_not_equal, {});
+    (0, import_internal46.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputMath_1",
       options,
-      id: create_fragment45.name
+      id: create_fragment46.name
     });
   }
 };
 var InputMath_default2 = InputMath_1;
 
 // docs-src/components/input-password/InputPassword.svelte
-var import_internal46 = __toESM(require_internal());
-var file44 = "docs-src/components/input-password/InputPassword.svelte";
-function create_fragment46(ctx) {
+var import_internal47 = __toESM(require_internal());
+var file45 = "docs-src/components/input-password/InputPassword.svelte";
+function create_fragment47(ctx) {
   let h2;
   let t1;
   let h30;
@@ -27894,123 +28864,123 @@ function create_fragment46(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal46.element)("h2");
+      h2 = (0, import_internal47.element)("h2");
       h2.textContent = "Input Password";
-      t1 = (0, import_internal46.space)();
-      h30 = (0, import_internal46.element)("h3");
+      t1 = (0, import_internal47.space)();
+      h30 = (0, import_internal47.element)("h3");
       h30.textContent = "Default";
-      t3 = (0, import_internal46.space)();
-      (0, import_internal46.create_component)(inputpassword0.$$.fragment);
-      t4 = (0, import_internal46.space)();
-      h31 = (0, import_internal46.element)("h3");
+      t3 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(inputpassword0.$$.fragment);
+      t4 = (0, import_internal47.space)();
+      h31 = (0, import_internal47.element)("h3");
       h31.textContent = "With password strength indicator";
-      t6 = (0, import_internal46.space)();
-      p = (0, import_internal46.element)("p");
-      t7 = (0, import_internal46.text)("* ");
-      a = (0, import_internal46.element)("a");
+      t6 = (0, import_internal47.space)();
+      p = (0, import_internal47.element)("p");
+      t7 = (0, import_internal47.text)("* ");
+      a = (0, import_internal47.element)("a");
       a.textContent = "zxcvbn";
-      t9 = (0, import_internal46.text)(" lib must be available and loaded via a ");
-      em = (0, import_internal46.element)("em");
+      t9 = (0, import_internal47.text)(" lib must be available and loaded via a ");
+      em = (0, import_internal47.element)("em");
       em.textContent = "<script>";
-      t11 = (0, import_internal46.text)(" tag.");
-      t12 = (0, import_internal46.space)();
-      (0, import_internal46.create_component)(inputpassword1.$$.fragment);
-      t13 = (0, import_internal46.space)();
-      (0, import_internal46.create_component)(codeexample.$$.fragment);
-      t14 = (0, import_internal46.space)();
-      (0, import_internal46.create_component)(api.$$.fragment);
-      (0, import_internal46.add_location)(h2, file44, 0, 0, 0);
-      (0, import_internal46.add_location)(h30, file44, 2, 0, 25);
-      (0, import_internal46.add_location)(h31, file44, 5, 0, 61);
-      (0, import_internal46.attr_dev)(a, "href", "https://github.com/dropbox/zxcvbn");
-      (0, import_internal46.add_location)(a, file44, 6, 5, 108);
-      (0, import_internal46.add_location)(em, file44, 6, 99, 202);
-      (0, import_internal46.add_location)(p, file44, 6, 0, 103);
+      t11 = (0, import_internal47.text)(" tag.");
+      t12 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(inputpassword1.$$.fragment);
+      t13 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(codeexample.$$.fragment);
+      t14 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(api.$$.fragment);
+      (0, import_internal47.add_location)(h2, file45, 0, 0, 0);
+      (0, import_internal47.add_location)(h30, file45, 2, 0, 25);
+      (0, import_internal47.add_location)(h31, file45, 5, 0, 61);
+      (0, import_internal47.attr_dev)(a, "href", "https://github.com/dropbox/zxcvbn");
+      (0, import_internal47.add_location)(a, file45, 6, 5, 108);
+      (0, import_internal47.add_location)(em, file45, 6, 99, 202);
+      (0, import_internal47.add_location)(p, file45, 6, 0, 103);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal46.insert_dev)(target, h2, anchor);
-      (0, import_internal46.insert_dev)(target, t1, anchor);
-      (0, import_internal46.insert_dev)(target, h30, anchor);
-      (0, import_internal46.insert_dev)(target, t3, anchor);
-      (0, import_internal46.mount_component)(inputpassword0, target, anchor);
-      (0, import_internal46.insert_dev)(target, t4, anchor);
-      (0, import_internal46.insert_dev)(target, h31, anchor);
-      (0, import_internal46.insert_dev)(target, t6, anchor);
-      (0, import_internal46.insert_dev)(target, p, anchor);
-      (0, import_internal46.append_dev)(p, t7);
-      (0, import_internal46.append_dev)(p, a);
-      (0, import_internal46.append_dev)(p, t9);
-      (0, import_internal46.append_dev)(p, em);
-      (0, import_internal46.append_dev)(p, t11);
-      (0, import_internal46.insert_dev)(target, t12, anchor);
-      (0, import_internal46.mount_component)(inputpassword1, target, anchor);
-      (0, import_internal46.insert_dev)(target, t13, anchor);
-      (0, import_internal46.mount_component)(codeexample, target, anchor);
-      (0, import_internal46.insert_dev)(target, t14, anchor);
-      (0, import_internal46.mount_component)(api, target, anchor);
+      (0, import_internal47.insert_dev)(target, h2, anchor);
+      (0, import_internal47.insert_dev)(target, t1, anchor);
+      (0, import_internal47.insert_dev)(target, h30, anchor);
+      (0, import_internal47.insert_dev)(target, t3, anchor);
+      (0, import_internal47.mount_component)(inputpassword0, target, anchor);
+      (0, import_internal47.insert_dev)(target, t4, anchor);
+      (0, import_internal47.insert_dev)(target, h31, anchor);
+      (0, import_internal47.insert_dev)(target, t6, anchor);
+      (0, import_internal47.insert_dev)(target, p, anchor);
+      (0, import_internal47.append_dev)(p, t7);
+      (0, import_internal47.append_dev)(p, a);
+      (0, import_internal47.append_dev)(p, t9);
+      (0, import_internal47.append_dev)(p, em);
+      (0, import_internal47.append_dev)(p, t11);
+      (0, import_internal47.insert_dev)(target, t12, anchor);
+      (0, import_internal47.mount_component)(inputpassword1, target, anchor);
+      (0, import_internal47.insert_dev)(target, t13, anchor);
+      (0, import_internal47.mount_component)(codeexample, target, anchor);
+      (0, import_internal47.insert_dev)(target, t14, anchor);
+      (0, import_internal47.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal46.noop,
+    p: import_internal47.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal46.transition_in)(inputpassword0.$$.fragment, local);
-      (0, import_internal46.transition_in)(inputpassword1.$$.fragment, local);
-      (0, import_internal46.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal46.transition_in)(api.$$.fragment, local);
+      (0, import_internal47.transition_in)(inputpassword0.$$.fragment, local);
+      (0, import_internal47.transition_in)(inputpassword1.$$.fragment, local);
+      (0, import_internal47.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal47.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal46.transition_out)(inputpassword0.$$.fragment, local);
-      (0, import_internal46.transition_out)(inputpassword1.$$.fragment, local);
-      (0, import_internal46.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal46.transition_out)(api.$$.fragment, local);
+      (0, import_internal47.transition_out)(inputpassword0.$$.fragment, local);
+      (0, import_internal47.transition_out)(inputpassword1.$$.fragment, local);
+      (0, import_internal47.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal47.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal46.detach_dev)(h2);
+        (0, import_internal47.detach_dev)(h2);
       if (detaching)
-        (0, import_internal46.detach_dev)(t1);
+        (0, import_internal47.detach_dev)(t1);
       if (detaching)
-        (0, import_internal46.detach_dev)(h30);
+        (0, import_internal47.detach_dev)(h30);
       if (detaching)
-        (0, import_internal46.detach_dev)(t3);
-      (0, import_internal46.destroy_component)(inputpassword0, detaching);
+        (0, import_internal47.detach_dev)(t3);
+      (0, import_internal47.destroy_component)(inputpassword0, detaching);
       if (detaching)
-        (0, import_internal46.detach_dev)(t4);
+        (0, import_internal47.detach_dev)(t4);
       if (detaching)
-        (0, import_internal46.detach_dev)(h31);
+        (0, import_internal47.detach_dev)(h31);
       if (detaching)
-        (0, import_internal46.detach_dev)(t6);
+        (0, import_internal47.detach_dev)(t6);
       if (detaching)
-        (0, import_internal46.detach_dev)(p);
+        (0, import_internal47.detach_dev)(p);
       if (detaching)
-        (0, import_internal46.detach_dev)(t12);
-      (0, import_internal46.destroy_component)(inputpassword1, detaching);
+        (0, import_internal47.detach_dev)(t12);
+      (0, import_internal47.destroy_component)(inputpassword1, detaching);
       if (detaching)
-        (0, import_internal46.detach_dev)(t13);
-      (0, import_internal46.destroy_component)(codeexample, detaching);
+        (0, import_internal47.detach_dev)(t13);
+      (0, import_internal47.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal46.detach_dev)(t14);
-      (0, import_internal46.destroy_component)(api, detaching);
+        (0, import_internal47.detach_dev)(t14);
+      (0, import_internal47.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal46.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment46.name,
+    id: create_fragment47.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance46($$self, $$props, $$invalidate) {
+function instance47($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal46.validate_slots)("InputPassword", slots, []);
+  (0, import_internal47.validate_slots)("InputPassword", slots, []);
   const apiProps = [
     {
       name: "id",
@@ -28088,38 +29058,38 @@ function onChange (e) {
   });
   return [apiProps, exampleHtml];
 }
-var InputPassword_1 = class extends import_internal46.SvelteComponentDev {
+var InputPassword_1 = class extends import_internal47.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal46.init)(this, options, instance46, create_fragment46, import_internal46.safe_not_equal, {});
-    (0, import_internal46.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal47.init)(this, options, instance47, create_fragment47, import_internal47.safe_not_equal, {});
+    (0, import_internal47.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputPassword_1",
       options,
-      id: create_fragment46.name
+      id: create_fragment47.name
     });
   }
 };
 var InputPassword_default2 = InputPassword_1;
 
 // docs-src/components/menu/Menu.svelte
-var import_internal47 = __toESM(require_internal());
-var file45 = "docs-src/components/menu/Menu.svelte";
+var import_internal48 = __toESM(require_internal());
+var file46 = "docs-src/components/menu/Menu.svelte";
 function create_default_slot_35(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Show menu");
+      t = (0, import_internal48.text)("Show menu");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_35.name,
     type: "slot",
@@ -28135,32 +29105,32 @@ function create_default_slot_34(ctx) {
   icon = new Icon_default({ props: { name: "plus" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" Add a thing");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" Add a thing");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_34.name,
     type: "slot",
@@ -28173,17 +29143,17 @@ function create_default_slot_33(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Add another one");
+      t = (0, import_internal48.text)("Add another one");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_33.name,
     type: "slot",
@@ -28196,17 +29166,17 @@ function create_default_slot_322(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Third option");
+      t = (0, import_internal48.text)("Third option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_322.name,
     type: "slot",
@@ -28219,17 +29189,17 @@ function create_default_slot_31(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Fourth menu item");
+      t = (0, import_internal48.text)("Fourth menu item");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_31.name,
     type: "slot",
@@ -28242,17 +29212,17 @@ function create_default_slot_30(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Fifth element");
+      t = (0, import_internal48.text)("Fifth element");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_30.name,
     type: "slot",
@@ -28265,17 +29235,17 @@ function create_default_slot_29(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Sixth one, to make it longer");
+      t = (0, import_internal48.text)("Sixth one, to make it longer");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_29.name,
     type: "slot",
@@ -28288,17 +29258,17 @@ function create_default_slot_28(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Seventh. Menu supports type-ahead");
+      t = (0, import_internal48.text)("Seventh. Menu supports type-ahead");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_28.name,
     type: "slot",
@@ -28311,17 +29281,17 @@ function create_default_slot_27(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Eight, so go ahead and try typing");
+      t = (0, import_internal48.text)("Eight, so go ahead and try typing");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_27.name,
     type: "slot",
@@ -28334,17 +29304,17 @@ function create_default_slot_26(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Ninth, the beginning of the menu item text");
+      t = (0, import_internal48.text)("Ninth, the beginning of the menu item text");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_26.name,
     type: "slot",
@@ -28357,17 +29327,17 @@ function create_default_slot_25(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Tenth, and it should be focused");
+      t = (0, import_internal48.text)("Tenth, and it should be focused");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_25.name,
     type: "slot",
@@ -28384,23 +29354,23 @@ function create_default_slot_24(ctx) {
   icon = new Icon_default({ props: { name: "close" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      t1 = (0, import_internal47.text)(
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      t1 = (0, import_internal48.text)(
         /*closeThingsText*/
         ctx[6]
       );
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
       if (!current || dirty & /*closeThingsText*/
       64)
-        (0, import_internal47.set_data_dev)(
+        (0, import_internal48.set_data_dev)(
           t1,
           /*closeThingsText*/
           ctx2[6]
@@ -28409,22 +29379,22 @@ function create_default_slot_24(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
+        (0, import_internal48.detach_dev)(t0);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
+        (0, import_internal48.detach_dev)(t1);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_24.name,
     type: "slot",
@@ -28553,58 +29523,58 @@ function create_default_slot_232(ctx) {
   );
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(menuitem0.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem1.$$.fragment);
-      t1 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuseparator0.$$.fragment);
-      t2 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem2.$$.fragment);
-      t3 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem3.$$.fragment);
-      t4 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem4.$$.fragment);
-      t5 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem5.$$.fragment);
-      t6 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem6.$$.fragment);
-      t7 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem7.$$.fragment);
-      t8 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem8.$$.fragment);
-      t9 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem9.$$.fragment);
-      t10 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuseparator1.$$.fragment);
-      t11 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem10.$$.fragment);
+      (0, import_internal48.create_component)(menuitem0.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem1.$$.fragment);
+      t1 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuseparator0.$$.fragment);
+      t2 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem2.$$.fragment);
+      t3 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem3.$$.fragment);
+      t4 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem4.$$.fragment);
+      t5 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem5.$$.fragment);
+      t6 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem6.$$.fragment);
+      t7 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem7.$$.fragment);
+      t8 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem8.$$.fragment);
+      t9 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem9.$$.fragment);
+      t10 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuseparator1.$$.fragment);
+      t11 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem10.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(menuitem0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.mount_component)(menuitem1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.mount_component)(menuseparator0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t2, anchor);
-      (0, import_internal47.mount_component)(menuitem2, target, anchor);
-      (0, import_internal47.insert_dev)(target, t3, anchor);
-      (0, import_internal47.mount_component)(menuitem3, target, anchor);
-      (0, import_internal47.insert_dev)(target, t4, anchor);
-      (0, import_internal47.mount_component)(menuitem4, target, anchor);
-      (0, import_internal47.insert_dev)(target, t5, anchor);
-      (0, import_internal47.mount_component)(menuitem5, target, anchor);
-      (0, import_internal47.insert_dev)(target, t6, anchor);
-      (0, import_internal47.mount_component)(menuitem6, target, anchor);
-      (0, import_internal47.insert_dev)(target, t7, anchor);
-      (0, import_internal47.mount_component)(menuitem7, target, anchor);
-      (0, import_internal47.insert_dev)(target, t8, anchor);
-      (0, import_internal47.mount_component)(menuitem8, target, anchor);
-      (0, import_internal47.insert_dev)(target, t9, anchor);
-      (0, import_internal47.mount_component)(menuitem9, target, anchor);
-      (0, import_internal47.insert_dev)(target, t10, anchor);
-      (0, import_internal47.mount_component)(menuseparator1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t11, anchor);
-      (0, import_internal47.mount_component)(menuitem10, target, anchor);
+      (0, import_internal48.mount_component)(menuitem0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.mount_component)(menuitem1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(menuseparator0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t2, anchor);
+      (0, import_internal48.mount_component)(menuitem2, target, anchor);
+      (0, import_internal48.insert_dev)(target, t3, anchor);
+      (0, import_internal48.mount_component)(menuitem3, target, anchor);
+      (0, import_internal48.insert_dev)(target, t4, anchor);
+      (0, import_internal48.mount_component)(menuitem4, target, anchor);
+      (0, import_internal48.insert_dev)(target, t5, anchor);
+      (0, import_internal48.mount_component)(menuitem5, target, anchor);
+      (0, import_internal48.insert_dev)(target, t6, anchor);
+      (0, import_internal48.mount_component)(menuitem6, target, anchor);
+      (0, import_internal48.insert_dev)(target, t7, anchor);
+      (0, import_internal48.mount_component)(menuitem7, target, anchor);
+      (0, import_internal48.insert_dev)(target, t8, anchor);
+      (0, import_internal48.mount_component)(menuitem8, target, anchor);
+      (0, import_internal48.insert_dev)(target, t9, anchor);
+      (0, import_internal48.mount_component)(menuitem9, target, anchor);
+      (0, import_internal48.insert_dev)(target, t10, anchor);
+      (0, import_internal48.mount_component)(menuseparator1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t11, anchor);
+      (0, import_internal48.mount_component)(menuitem10, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -28678,78 +29648,78 @@ function create_default_slot_232(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuseparator0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem2.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem3.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem4.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem5.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem6.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem7.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem8.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem9.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuseparator1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem10.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuseparator0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem3.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem4.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem5.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem6.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem7.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem8.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem9.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuseparator1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem10.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuseparator0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem2.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem3.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem4.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem5.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem6.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem7.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem8.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem9.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuseparator1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem10.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuseparator0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem3.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem4.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem5.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem6.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem7.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem8.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem9.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuseparator1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem10.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(menuitem0, detaching);
+      (0, import_internal48.destroy_component)(menuitem0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
-      (0, import_internal47.destroy_component)(menuitem1, detaching);
+        (0, import_internal48.detach_dev)(t0);
+      (0, import_internal48.destroy_component)(menuitem1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
-      (0, import_internal47.destroy_component)(menuseparator0, detaching);
+        (0, import_internal48.detach_dev)(t1);
+      (0, import_internal48.destroy_component)(menuseparator0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t2);
-      (0, import_internal47.destroy_component)(menuitem2, detaching);
+        (0, import_internal48.detach_dev)(t2);
+      (0, import_internal48.destroy_component)(menuitem2, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t3);
-      (0, import_internal47.destroy_component)(menuitem3, detaching);
+        (0, import_internal48.detach_dev)(t3);
+      (0, import_internal48.destroy_component)(menuitem3, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t4);
-      (0, import_internal47.destroy_component)(menuitem4, detaching);
+        (0, import_internal48.detach_dev)(t4);
+      (0, import_internal48.destroy_component)(menuitem4, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t5);
-      (0, import_internal47.destroy_component)(menuitem5, detaching);
+        (0, import_internal48.detach_dev)(t5);
+      (0, import_internal48.destroy_component)(menuitem5, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t6);
-      (0, import_internal47.destroy_component)(menuitem6, detaching);
+        (0, import_internal48.detach_dev)(t6);
+      (0, import_internal48.destroy_component)(menuitem6, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t7);
-      (0, import_internal47.destroy_component)(menuitem7, detaching);
+        (0, import_internal48.detach_dev)(t7);
+      (0, import_internal48.destroy_component)(menuitem7, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t8);
-      (0, import_internal47.destroy_component)(menuitem8, detaching);
+        (0, import_internal48.detach_dev)(t8);
+      (0, import_internal48.destroy_component)(menuitem8, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t9);
-      (0, import_internal47.destroy_component)(menuitem9, detaching);
+        (0, import_internal48.detach_dev)(t9);
+      (0, import_internal48.destroy_component)(menuitem9, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t10);
-      (0, import_internal47.destroy_component)(menuseparator1, detaching);
+        (0, import_internal48.detach_dev)(t10);
+      (0, import_internal48.destroy_component)(menuseparator1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t11);
-      (0, import_internal47.destroy_component)(menuitem10, detaching);
+        (0, import_internal48.detach_dev)(t11);
+      (0, import_internal48.destroy_component)(menuitem10, detaching);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_232.name,
     type: "slot",
@@ -28762,17 +29732,17 @@ function create_default_slot_222(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Regular Menu");
+      t = (0, import_internal48.text)("Regular Menu");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_222.name,
     type: "slot",
@@ -28788,32 +29758,32 @@ function create_default_slot_212(ctx) {
   icon = new Icon_default({ props: { name: "plus" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" Add some");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" Add some");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_212.name,
     type: "slot",
@@ -28826,17 +29796,17 @@ function create_default_slot_202(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Add some more");
+      t = (0, import_internal48.text)("Add some more");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_202.name,
     type: "slot",
@@ -28852,32 +29822,32 @@ function create_default_slot_192(ctx) {
   icon = new Icon_default({ props: { name: "close" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" Close something");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" Close something");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_192.name,
     type: "slot",
@@ -28919,22 +29889,22 @@ function create_default_slot_182(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(menuitem0.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem1.$$.fragment);
-      t1 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuseparator.$$.fragment);
-      t2 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem2.$$.fragment);
+      (0, import_internal48.create_component)(menuitem0.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem1.$$.fragment);
+      t1 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuseparator.$$.fragment);
+      t2 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(menuitem0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.mount_component)(menuitem1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.mount_component)(menuseparator, target, anchor);
-      (0, import_internal47.insert_dev)(target, t2, anchor);
-      (0, import_internal47.mount_component)(menuitem2, target, anchor);
+      (0, import_internal48.mount_component)(menuitem0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.mount_component)(menuitem1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(menuseparator, target, anchor);
+      (0, import_internal48.insert_dev)(target, t2, anchor);
+      (0, import_internal48.mount_component)(menuitem2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -28960,33 +29930,33 @@ function create_default_slot_182(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(menuitem0, detaching);
+      (0, import_internal48.destroy_component)(menuitem0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
-      (0, import_internal47.destroy_component)(menuitem1, detaching);
+        (0, import_internal48.detach_dev)(t0);
+      (0, import_internal48.destroy_component)(menuitem1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
-      (0, import_internal47.destroy_component)(menuseparator, detaching);
+        (0, import_internal48.detach_dev)(t1);
+      (0, import_internal48.destroy_component)(menuseparator, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t2);
-      (0, import_internal47.destroy_component)(menuitem2, detaching);
+        (0, import_internal48.detach_dev)(t2);
+      (0, import_internal48.destroy_component)(menuitem2, detaching);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_182.name,
     type: "slot",
@@ -28999,17 +29969,17 @@ function create_default_slot_172(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Elevated Menu");
+      t = (0, import_internal48.text)("Elevated Menu");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_172.name,
     type: "slot",
@@ -29025,32 +29995,32 @@ function create_default_slot_162(ctx) {
   icon = new Icon_default({ props: { name: "plus" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" Add some");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" Add some");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_162.name,
     type: "slot",
@@ -29063,17 +30033,17 @@ function create_default_slot_152(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Add some more");
+      t = (0, import_internal48.text)("Add some more");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_152.name,
     type: "slot",
@@ -29089,32 +30059,32 @@ function create_default_slot_142(ctx) {
   icon = new Icon_default({ props: { name: "close" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" Close something");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" Close something");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_142.name,
     type: "slot",
@@ -29156,22 +30126,22 @@ function create_default_slot_132(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(menuitem0.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem1.$$.fragment);
-      t1 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuseparator.$$.fragment);
-      t2 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem2.$$.fragment);
+      (0, import_internal48.create_component)(menuitem0.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem1.$$.fragment);
+      t1 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuseparator.$$.fragment);
+      t2 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(menuitem0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.mount_component)(menuitem1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.mount_component)(menuseparator, target, anchor);
-      (0, import_internal47.insert_dev)(target, t2, anchor);
-      (0, import_internal47.mount_component)(menuitem2, target, anchor);
+      (0, import_internal48.mount_component)(menuitem0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.mount_component)(menuitem1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(menuseparator, target, anchor);
+      (0, import_internal48.insert_dev)(target, t2, anchor);
+      (0, import_internal48.mount_component)(menuitem2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -29197,33 +30167,33 @@ function create_default_slot_132(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(menuitem0, detaching);
+      (0, import_internal48.destroy_component)(menuitem0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
-      (0, import_internal47.destroy_component)(menuitem1, detaching);
+        (0, import_internal48.detach_dev)(t0);
+      (0, import_internal48.destroy_component)(menuitem1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
-      (0, import_internal47.destroy_component)(menuseparator, detaching);
+        (0, import_internal48.detach_dev)(t1);
+      (0, import_internal48.destroy_component)(menuseparator, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t2);
-      (0, import_internal47.destroy_component)(menuitem2, detaching);
+        (0, import_internal48.detach_dev)(t2);
+      (0, import_internal48.destroy_component)(menuitem2, detaching);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_132.name,
     type: "slot",
@@ -29236,17 +30206,17 @@ function create_default_slot_122(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Right edge");
+      t = (0, import_internal48.text)("Right edge");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_122.name,
     type: "slot",
@@ -29262,32 +30232,32 @@ function create_default_slot_112(ctx) {
   icon = new Icon_default({ props: { name: "plus" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" A very long text");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" A very long text");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_112.name,
     type: "slot",
@@ -29300,17 +30270,17 @@ function create_default_slot_102(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Another very long text");
+      t = (0, import_internal48.text)("Another very long text");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_102.name,
     type: "slot",
@@ -29326,32 +30296,32 @@ function create_default_slot_92(ctx) {
   icon = new Icon_default({ props: { name: "close" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" Probably the longest text in the world!");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" Probably the longest text in the world!");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_92.name,
     type: "slot",
@@ -29393,22 +30363,22 @@ function create_default_slot_83(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(menuitem0.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem1.$$.fragment);
-      t1 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuseparator.$$.fragment);
-      t2 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem2.$$.fragment);
+      (0, import_internal48.create_component)(menuitem0.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem1.$$.fragment);
+      t1 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuseparator.$$.fragment);
+      t2 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(menuitem0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.mount_component)(menuitem1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.mount_component)(menuseparator, target, anchor);
-      (0, import_internal47.insert_dev)(target, t2, anchor);
-      (0, import_internal47.mount_component)(menuitem2, target, anchor);
+      (0, import_internal48.mount_component)(menuitem0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.mount_component)(menuitem1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(menuseparator, target, anchor);
+      (0, import_internal48.insert_dev)(target, t2, anchor);
+      (0, import_internal48.mount_component)(menuitem2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -29434,33 +30404,33 @@ function create_default_slot_83(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(menuitem0, detaching);
+      (0, import_internal48.destroy_component)(menuitem0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
-      (0, import_internal47.destroy_component)(menuitem1, detaching);
+        (0, import_internal48.detach_dev)(t0);
+      (0, import_internal48.destroy_component)(menuitem1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
-      (0, import_internal47.destroy_component)(menuseparator, detaching);
+        (0, import_internal48.detach_dev)(t1);
+      (0, import_internal48.destroy_component)(menuseparator, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t2);
-      (0, import_internal47.destroy_component)(menuitem2, detaching);
+        (0, import_internal48.detach_dev)(t2);
+      (0, import_internal48.destroy_component)(menuitem2, detaching);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_83.name,
     type: "slot",
@@ -29476,32 +30446,32 @@ function create_default_slot_73(ctx) {
   icon = new Icon_default({ props: { name: "plus" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t = (0, import_internal47.text)(" New Tab");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t = (0, import_internal48.text)(" New Tab");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: import_internal48.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_73.name,
     type: "slot",
@@ -29514,17 +30484,17 @@ function create_default_slot_63(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("New Private Tab");
+      t = (0, import_internal48.text)("New Private Tab");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_63.name,
     type: "slot",
@@ -29541,23 +30511,23 @@ function create_default_slot_53(ctx) {
   icon = new Icon_default({ props: { name: "close" }, $$inline: true });
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(icon.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      t1 = (0, import_internal47.text)(
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      t1 = (0, import_internal48.text)(
         /*closeTabsText*/
         ctx[7]
       );
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(icon, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(icon, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
       if (!current || dirty & /*closeTabsText*/
       128)
-        (0, import_internal47.set_data_dev)(
+        (0, import_internal48.set_data_dev)(
           t1,
           /*closeTabsText*/
           ctx2[7]
@@ -29566,22 +30536,22 @@ function create_default_slot_53(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(icon.$$.fragment, local);
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(icon.$$.fragment, local);
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(icon, detaching);
+      (0, import_internal48.destroy_component)(icon, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
+        (0, import_internal48.detach_dev)(t0);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
+        (0, import_internal48.detach_dev)(t1);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_53.name,
     type: "slot",
@@ -29641,22 +30611,22 @@ function create_default_slot_43(ctx) {
   );
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(menuitem0.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem1.$$.fragment);
-      t1 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuseparator.$$.fragment);
-      t2 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem2.$$.fragment);
+      (0, import_internal48.create_component)(menuitem0.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem1.$$.fragment);
+      t1 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuseparator.$$.fragment);
+      t2 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(menuitem0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.mount_component)(menuitem1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.mount_component)(menuseparator, target, anchor);
-      (0, import_internal47.insert_dev)(target, t2, anchor);
-      (0, import_internal47.mount_component)(menuitem2, target, anchor);
+      (0, import_internal48.mount_component)(menuitem0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.mount_component)(menuitem1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(menuseparator, target, anchor);
+      (0, import_internal48.insert_dev)(target, t2, anchor);
+      (0, import_internal48.mount_component)(menuitem2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -29682,33 +30652,33 @@ function create_default_slot_43(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(menuitem0, detaching);
+      (0, import_internal48.destroy_component)(menuitem0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
-      (0, import_internal47.destroy_component)(menuitem1, detaching);
+        (0, import_internal48.detach_dev)(t0);
+      (0, import_internal48.destroy_component)(menuitem1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
-      (0, import_internal47.destroy_component)(menuseparator, detaching);
+        (0, import_internal48.detach_dev)(t1);
+      (0, import_internal48.destroy_component)(menuseparator, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t2);
-      (0, import_internal47.destroy_component)(menuitem2, detaching);
+        (0, import_internal48.detach_dev)(t2);
+      (0, import_internal48.destroy_component)(menuitem2, detaching);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_43.name,
     type: "slot",
@@ -29721,17 +30691,17 @@ function create_default_slot_36(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("New window");
+      t = (0, import_internal48.text)("New window");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_36.name,
     type: "slot",
@@ -29744,17 +30714,17 @@ function create_default_slot_210(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("New private window");
+      t = (0, import_internal48.text)("New private window");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_210.name,
     type: "slot",
@@ -29767,17 +30737,17 @@ function create_default_slot_113(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal47.text)("Close All Windows");
+      t = (0, import_internal48.text)("Close All Windows");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, t, anchor);
+      (0, import_internal48.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(t);
+        (0, import_internal48.detach_dev)(t);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_113.name,
     type: "slot",
@@ -29837,22 +30807,22 @@ function create_default_slot7(ctx) {
   );
   const block = {
     c: function create() {
-      (0, import_internal47.create_component)(menuitem0.$$.fragment);
-      t0 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem1.$$.fragment);
-      t1 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuseparator.$$.fragment);
-      t2 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menuitem2.$$.fragment);
+      (0, import_internal48.create_component)(menuitem0.$$.fragment);
+      t0 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem1.$$.fragment);
+      t1 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuseparator.$$.fragment);
+      t2 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menuitem2.$$.fragment);
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.mount_component)(menuitem0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t0, anchor);
-      (0, import_internal47.mount_component)(menuitem1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.mount_component)(menuseparator, target, anchor);
-      (0, import_internal47.insert_dev)(target, t2, anchor);
-      (0, import_internal47.mount_component)(menuitem2, target, anchor);
+      (0, import_internal48.mount_component)(menuitem0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t0, anchor);
+      (0, import_internal48.mount_component)(menuitem1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
+      (0, import_internal48.mount_component)(menuseparator, target, anchor);
+      (0, import_internal48.insert_dev)(target, t2, anchor);
+      (0, import_internal48.mount_component)(menuitem2, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -29878,33 +30848,33 @@ function create_default_slot7(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_in)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_in)(menuitem2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(menuitem0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuseparator.$$.fragment, local);
-      (0, import_internal47.transition_out)(menuitem2.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuseparator.$$.fragment, local);
+      (0, import_internal48.transition_out)(menuitem2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal47.destroy_component)(menuitem0, detaching);
+      (0, import_internal48.destroy_component)(menuitem0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t0);
-      (0, import_internal47.destroy_component)(menuitem1, detaching);
+        (0, import_internal48.detach_dev)(t0);
+      (0, import_internal48.destroy_component)(menuitem1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
-      (0, import_internal47.destroy_component)(menuseparator, detaching);
+        (0, import_internal48.detach_dev)(t1);
+      (0, import_internal48.destroy_component)(menuseparator, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t2);
-      (0, import_internal47.destroy_component)(menuitem2, detaching);
+        (0, import_internal48.detach_dev)(t2);
+      (0, import_internal48.destroy_component)(menuitem2, detaching);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot7.name,
     type: "slot",
@@ -29913,7 +30883,7 @@ function create_default_slot7(ctx) {
   });
   return block;
 }
-function create_fragment47(ctx) {
+function create_fragment48(ctx) {
   let h2;
   let t1;
   let h30;
@@ -29989,7 +30959,7 @@ function create_fragment47(ctx) {
     $$inline: true
   });
   button0.$on("click", function() {
-    if ((0, import_internal47.is_function)(
+    if ((0, import_internal48.is_function)(
       /*thingsMenu*/
       ctx[3].open
     ))
@@ -30009,7 +30979,7 @@ function create_fragment47(ctx) {
     $$inline: true
   });
   button1.$on("click", function() {
-    if ((0, import_internal47.is_function)(
+    if ((0, import_internal48.is_function)(
       /*someMenu1*/
       ctx[0].open
     ))
@@ -30029,7 +30999,7 @@ function create_fragment47(ctx) {
     $$inline: true
   });
   button2.$on("click", function() {
-    if ((0, import_internal47.is_function)(
+    if ((0, import_internal48.is_function)(
       /*someMenu2*/
       ctx[1].open
     ))
@@ -30051,7 +31021,7 @@ function create_fragment47(ctx) {
     $$inline: true
   });
   button3.$on("click", function() {
-    if ((0, import_internal47.is_function)(
+    if ((0, import_internal48.is_function)(
       /*someMenu3*/
       ctx[2].open
     ))
@@ -30122,178 +31092,178 @@ function create_fragment47(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal47.element)("h2");
+      h2 = (0, import_internal48.element)("h2");
       h2.textContent = "Menu";
-      t1 = (0, import_internal47.space)();
-      h30 = (0, import_internal47.element)("h3");
+      t1 = (0, import_internal48.space)();
+      h30 = (0, import_internal48.element)("h3");
       h30.textContent = "Normal menu";
-      t3 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(button0.$$.fragment);
-      t4 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menu0.$$.fragment);
-      t5 = (0, import_internal47.space)();
-      h31 = (0, import_internal47.element)("h3");
-      t6 = (0, import_internal47.text)("In a container with ");
-      em0 = (0, import_internal47.element)("em");
+      t3 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(button0.$$.fragment);
+      t4 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menu0.$$.fragment);
+      t5 = (0, import_internal48.space)();
+      h31 = (0, import_internal48.element)("h3");
+      t6 = (0, import_internal48.text)("In a container with ");
+      em0 = (0, import_internal48.element)("em");
       em0.textContent = "overflow: hidden";
-      t8 = (0, import_internal47.space)();
-      p0 = (0, import_internal47.element)("p");
-      t9 = (0, import_internal47.text)("Where parent container has ");
-      em1 = (0, import_internal47.element)("em");
+      t8 = (0, import_internal48.space)();
+      p0 = (0, import_internal48.element)("p");
+      t9 = (0, import_internal48.text)("Where parent container has ");
+      em1 = (0, import_internal48.element)("em");
       em1.textContent = "overflow: hidden";
-      t11 = (0, import_internal47.text)(", and/or another container is covering the menu,\n	");
-      em2 = (0, import_internal47.element)("em");
+      t11 = (0, import_internal48.text)(", and/or another container is covering the menu,\n	");
+      em2 = (0, import_internal48.element)("em");
       em2.textContent = 'elevate="true"';
-      t13 = (0, import_internal47.text)(" property must be set on the component.");
-      t14 = (0, import_internal47.space)();
-      div0 = (0, import_internal47.element)("div");
-      small0 = (0, import_internal47.element)("small");
-      t15 = (0, import_internal47.text)("parent: ");
-      em3 = (0, import_internal47.element)("em");
+      t13 = (0, import_internal48.text)(" property must be set on the component.");
+      t14 = (0, import_internal48.space)();
+      div0 = (0, import_internal48.element)("div");
+      small0 = (0, import_internal48.element)("small");
+      t15 = (0, import_internal48.text)("parent: ");
+      em3 = (0, import_internal48.element)("em");
       em3.textContent = "overflow: hidden";
-      t17 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(button1.$$.fragment);
-      t18 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menu1.$$.fragment);
-      t19 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(button2.$$.fragment);
-      t20 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menu2.$$.fragment);
-      t21 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(button3.$$.fragment);
-      t22 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menu3.$$.fragment);
-      t23 = (0, import_internal47.space)();
-      div1 = (0, import_internal47.element)("div");
-      small1 = (0, import_internal47.element)("small");
-      t24 = (0, import_internal47.text)("parent's sibling with ");
-      em4 = (0, import_internal47.element)("em");
+      t17 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(button1.$$.fragment);
+      t18 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menu1.$$.fragment);
+      t19 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(button2.$$.fragment);
+      t20 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menu2.$$.fragment);
+      t21 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(button3.$$.fragment);
+      t22 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menu3.$$.fragment);
+      t23 = (0, import_internal48.space)();
+      div1 = (0, import_internal48.element)("div");
+      small1 = (0, import_internal48.element)("small");
+      t24 = (0, import_internal48.text)("parent's sibling with ");
+      em4 = (0, import_internal48.element)("em");
       em4.textContent = "z-index";
-      t26 = (0, import_internal47.text)(" higher than parent");
-      t27 = (0, import_internal47.space)();
-      p1 = (0, import_internal47.element)("p");
-      t28 = (0, import_internal47.text)("This option should only be used when absolutely necessary, because it makes the component less accessible\n	(the list container is rendered directly in the ");
-      em5 = (0, import_internal47.element)("em");
+      t26 = (0, import_internal48.text)(" higher than parent");
+      t27 = (0, import_internal48.space)();
+      p1 = (0, import_internal48.element)("p");
+      t28 = (0, import_internal48.text)("This option should only be used when absolutely necessary, because it makes the component less accessible\n	(the list container is rendered directly in the ");
+      em5 = (0, import_internal48.element)("em");
       em5.textContent = "<body>";
-      t30 = (0, import_internal47.text)(", and not next to the input).");
-      t31 = (0, import_internal47.space)();
-      h32 = (0, import_internal47.element)("h3");
+      t30 = (0, import_internal48.text)(", and not next to the input).");
+      t31 = (0, import_internal48.space)();
+      h32 = (0, import_internal48.element)("h3");
       h32.textContent = "Context menu";
-      t33 = (0, import_internal47.space)();
-      small2 = (0, import_internal47.element)("small");
+      t33 = (0, import_internal48.space)();
+      small2 = (0, import_internal48.element)("small");
       small2.textContent = "(Right-click on the boxes below)";
-      t35 = (0, import_internal47.space)();
-      div2 = (0, import_internal47.element)("div");
+      t35 = (0, import_internal48.space)();
+      div2 = (0, import_internal48.element)("div");
       div2.textContent = "Tab";
-      t37 = (0, import_internal47.space)();
-      div3 = (0, import_internal47.element)("div");
+      t37 = (0, import_internal48.space)();
+      div3 = (0, import_internal48.element)("div");
       div3.textContent = "Window";
-      t39 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menu4.$$.fragment);
-      t40 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(menu5.$$.fragment);
-      t41 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(codeexample.$$.fragment);
-      t42 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(api0.$$.fragment);
-      t43 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(api1.$$.fragment);
-      t44 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(api2.$$.fragment);
-      (0, import_internal47.add_location)(h2, file45, 0, 0, 0);
-      (0, import_internal47.add_location)(h30, file45, 2, 0, 15);
-      (0, import_internal47.add_location)(em0, file45, 21, 24, 915);
-      (0, import_internal47.add_location)(h31, file45, 21, 0, 891);
-      (0, import_internal47.add_location)(em1, file45, 22, 30, 976);
-      (0, import_internal47.add_location)(em2, file45, 23, 1, 1051);
-      (0, import_internal47.add_location)(p0, file45, 22, 0, 946);
-      (0, import_internal47.add_location)(em3, file45, 25, 16, 1166);
-      (0, import_internal47.add_location)(small0, file45, 25, 1, 1151);
-      (0, import_internal47.attr_dev)(div0, "class", "docs-overflow-box");
-      (0, import_internal47.add_location)(div0, file45, 24, 0, 1118);
-      (0, import_internal47.add_location)(em4, file45, 52, 30, 2190);
-      (0, import_internal47.add_location)(small1, file45, 52, 1, 2161);
-      (0, import_internal47.attr_dev)(div1, "class", "another-element-with-z-index");
-      (0, import_internal47.add_location)(div1, file45, 51, 0, 2117);
-      (0, import_internal47.add_location)(em5, file45, 55, 49, 2399);
-      (0, import_internal47.add_location)(p1, file45, 54, 0, 2241);
-      (0, import_internal47.add_location)(h32, file45, 58, 0, 2456);
-      (0, import_internal47.add_location)(small2, file45, 59, 0, 2478);
-      (0, import_internal47.attr_dev)(div2, "class", "div div1");
-      (0, import_internal47.add_location)(div2, file45, 61, 0, 2527);
-      (0, import_internal47.attr_dev)(div3, "class", "div div2");
-      (0, import_internal47.add_location)(div3, file45, 62, 0, 2559);
+      t39 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menu4.$$.fragment);
+      t40 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(menu5.$$.fragment);
+      t41 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(codeexample.$$.fragment);
+      t42 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(api0.$$.fragment);
+      t43 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(api1.$$.fragment);
+      t44 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(api2.$$.fragment);
+      (0, import_internal48.add_location)(h2, file46, 0, 0, 0);
+      (0, import_internal48.add_location)(h30, file46, 2, 0, 15);
+      (0, import_internal48.add_location)(em0, file46, 21, 24, 915);
+      (0, import_internal48.add_location)(h31, file46, 21, 0, 891);
+      (0, import_internal48.add_location)(em1, file46, 22, 30, 976);
+      (0, import_internal48.add_location)(em2, file46, 23, 1, 1051);
+      (0, import_internal48.add_location)(p0, file46, 22, 0, 946);
+      (0, import_internal48.add_location)(em3, file46, 25, 16, 1166);
+      (0, import_internal48.add_location)(small0, file46, 25, 1, 1151);
+      (0, import_internal48.attr_dev)(div0, "class", "docs-overflow-box");
+      (0, import_internal48.add_location)(div0, file46, 24, 0, 1118);
+      (0, import_internal48.add_location)(em4, file46, 52, 30, 2190);
+      (0, import_internal48.add_location)(small1, file46, 52, 1, 2161);
+      (0, import_internal48.attr_dev)(div1, "class", "another-element-with-z-index");
+      (0, import_internal48.add_location)(div1, file46, 51, 0, 2117);
+      (0, import_internal48.add_location)(em5, file46, 55, 49, 2399);
+      (0, import_internal48.add_location)(p1, file46, 54, 0, 2241);
+      (0, import_internal48.add_location)(h32, file46, 58, 0, 2456);
+      (0, import_internal48.add_location)(small2, file46, 59, 0, 2478);
+      (0, import_internal48.attr_dev)(div2, "class", "div div1");
+      (0, import_internal48.add_location)(div2, file46, 61, 0, 2527);
+      (0, import_internal48.attr_dev)(div3, "class", "div div2");
+      (0, import_internal48.add_location)(div3, file46, 62, 0, 2559);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal47.insert_dev)(target, h2, anchor);
-      (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.insert_dev)(target, h30, anchor);
-      (0, import_internal47.insert_dev)(target, t3, anchor);
-      (0, import_internal47.mount_component)(button0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t4, anchor);
-      (0, import_internal47.mount_component)(menu0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t5, anchor);
-      (0, import_internal47.insert_dev)(target, h31, anchor);
-      (0, import_internal47.append_dev)(h31, t6);
-      (0, import_internal47.append_dev)(h31, em0);
-      (0, import_internal47.insert_dev)(target, t8, anchor);
-      (0, import_internal47.insert_dev)(target, p0, anchor);
-      (0, import_internal47.append_dev)(p0, t9);
-      (0, import_internal47.append_dev)(p0, em1);
-      (0, import_internal47.append_dev)(p0, t11);
-      (0, import_internal47.append_dev)(p0, em2);
-      (0, import_internal47.append_dev)(p0, t13);
-      (0, import_internal47.insert_dev)(target, t14, anchor);
-      (0, import_internal47.insert_dev)(target, div0, anchor);
-      (0, import_internal47.append_dev)(div0, small0);
-      (0, import_internal47.append_dev)(small0, t15);
-      (0, import_internal47.append_dev)(small0, em3);
-      (0, import_internal47.append_dev)(div0, t17);
-      (0, import_internal47.mount_component)(button1, div0, null);
-      (0, import_internal47.append_dev)(div0, t18);
-      (0, import_internal47.mount_component)(menu1, div0, null);
-      (0, import_internal47.append_dev)(div0, t19);
-      (0, import_internal47.mount_component)(button2, div0, null);
-      (0, import_internal47.append_dev)(div0, t20);
-      (0, import_internal47.mount_component)(menu2, div0, null);
-      (0, import_internal47.append_dev)(div0, t21);
-      (0, import_internal47.mount_component)(button3, div0, null);
-      (0, import_internal47.append_dev)(div0, t22);
-      (0, import_internal47.mount_component)(menu3, div0, null);
-      (0, import_internal47.insert_dev)(target, t23, anchor);
-      (0, import_internal47.insert_dev)(target, div1, anchor);
-      (0, import_internal47.append_dev)(div1, small1);
-      (0, import_internal47.append_dev)(small1, t24);
-      (0, import_internal47.append_dev)(small1, em4);
-      (0, import_internal47.append_dev)(small1, t26);
-      (0, import_internal47.insert_dev)(target, t27, anchor);
-      (0, import_internal47.insert_dev)(target, p1, anchor);
-      (0, import_internal47.append_dev)(p1, t28);
-      (0, import_internal47.append_dev)(p1, em5);
-      (0, import_internal47.append_dev)(p1, t30);
-      (0, import_internal47.insert_dev)(target, t31, anchor);
-      (0, import_internal47.insert_dev)(target, h32, anchor);
-      (0, import_internal47.insert_dev)(target, t33, anchor);
-      (0, import_internal47.insert_dev)(target, small2, anchor);
-      (0, import_internal47.insert_dev)(target, t35, anchor);
-      (0, import_internal47.insert_dev)(target, div2, anchor);
-      (0, import_internal47.insert_dev)(target, t37, anchor);
-      (0, import_internal47.insert_dev)(target, div3, anchor);
-      (0, import_internal47.insert_dev)(target, t39, anchor);
-      (0, import_internal47.mount_component)(menu4, target, anchor);
-      (0, import_internal47.insert_dev)(target, t40, anchor);
-      (0, import_internal47.mount_component)(menu5, target, anchor);
-      (0, import_internal47.insert_dev)(target, t41, anchor);
-      (0, import_internal47.mount_component)(codeexample, target, anchor);
-      (0, import_internal47.insert_dev)(target, t42, anchor);
-      (0, import_internal47.mount_component)(api0, target, anchor);
-      (0, import_internal47.insert_dev)(target, t43, anchor);
-      (0, import_internal47.mount_component)(api1, target, anchor);
-      (0, import_internal47.insert_dev)(target, t44, anchor);
-      (0, import_internal47.mount_component)(api2, target, anchor);
+      (0, import_internal48.insert_dev)(target, h2, anchor);
+      (0, import_internal48.insert_dev)(target, t1, anchor);
+      (0, import_internal48.insert_dev)(target, h30, anchor);
+      (0, import_internal48.insert_dev)(target, t3, anchor);
+      (0, import_internal48.mount_component)(button0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t4, anchor);
+      (0, import_internal48.mount_component)(menu0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t5, anchor);
+      (0, import_internal48.insert_dev)(target, h31, anchor);
+      (0, import_internal48.append_dev)(h31, t6);
+      (0, import_internal48.append_dev)(h31, em0);
+      (0, import_internal48.insert_dev)(target, t8, anchor);
+      (0, import_internal48.insert_dev)(target, p0, anchor);
+      (0, import_internal48.append_dev)(p0, t9);
+      (0, import_internal48.append_dev)(p0, em1);
+      (0, import_internal48.append_dev)(p0, t11);
+      (0, import_internal48.append_dev)(p0, em2);
+      (0, import_internal48.append_dev)(p0, t13);
+      (0, import_internal48.insert_dev)(target, t14, anchor);
+      (0, import_internal48.insert_dev)(target, div0, anchor);
+      (0, import_internal48.append_dev)(div0, small0);
+      (0, import_internal48.append_dev)(small0, t15);
+      (0, import_internal48.append_dev)(small0, em3);
+      (0, import_internal48.append_dev)(div0, t17);
+      (0, import_internal48.mount_component)(button1, div0, null);
+      (0, import_internal48.append_dev)(div0, t18);
+      (0, import_internal48.mount_component)(menu1, div0, null);
+      (0, import_internal48.append_dev)(div0, t19);
+      (0, import_internal48.mount_component)(button2, div0, null);
+      (0, import_internal48.append_dev)(div0, t20);
+      (0, import_internal48.mount_component)(menu2, div0, null);
+      (0, import_internal48.append_dev)(div0, t21);
+      (0, import_internal48.mount_component)(button3, div0, null);
+      (0, import_internal48.append_dev)(div0, t22);
+      (0, import_internal48.mount_component)(menu3, div0, null);
+      (0, import_internal48.insert_dev)(target, t23, anchor);
+      (0, import_internal48.insert_dev)(target, div1, anchor);
+      (0, import_internal48.append_dev)(div1, small1);
+      (0, import_internal48.append_dev)(small1, t24);
+      (0, import_internal48.append_dev)(small1, em4);
+      (0, import_internal48.append_dev)(small1, t26);
+      (0, import_internal48.insert_dev)(target, t27, anchor);
+      (0, import_internal48.insert_dev)(target, p1, anchor);
+      (0, import_internal48.append_dev)(p1, t28);
+      (0, import_internal48.append_dev)(p1, em5);
+      (0, import_internal48.append_dev)(p1, t30);
+      (0, import_internal48.insert_dev)(target, t31, anchor);
+      (0, import_internal48.insert_dev)(target, h32, anchor);
+      (0, import_internal48.insert_dev)(target, t33, anchor);
+      (0, import_internal48.insert_dev)(target, small2, anchor);
+      (0, import_internal48.insert_dev)(target, t35, anchor);
+      (0, import_internal48.insert_dev)(target, div2, anchor);
+      (0, import_internal48.insert_dev)(target, t37, anchor);
+      (0, import_internal48.insert_dev)(target, div3, anchor);
+      (0, import_internal48.insert_dev)(target, t39, anchor);
+      (0, import_internal48.mount_component)(menu4, target, anchor);
+      (0, import_internal48.insert_dev)(target, t40, anchor);
+      (0, import_internal48.mount_component)(menu5, target, anchor);
+      (0, import_internal48.insert_dev)(target, t41, anchor);
+      (0, import_internal48.mount_component)(codeexample, target, anchor);
+      (0, import_internal48.insert_dev)(target, t42, anchor);
+      (0, import_internal48.mount_component)(api0, target, anchor);
+      (0, import_internal48.insert_dev)(target, t43, anchor);
+      (0, import_internal48.mount_component)(api1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t44, anchor);
+      (0, import_internal48.mount_component)(api2, target, anchor);
       current = true;
     },
     p: function update(new_ctx, [dirty]) {
@@ -30362,132 +31332,132 @@ function create_fragment47(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(button0.$$.fragment, local);
-      (0, import_internal47.transition_in)(menu0.$$.fragment, local);
-      (0, import_internal47.transition_in)(button1.$$.fragment, local);
-      (0, import_internal47.transition_in)(menu1.$$.fragment, local);
-      (0, import_internal47.transition_in)(button2.$$.fragment, local);
-      (0, import_internal47.transition_in)(menu2.$$.fragment, local);
-      (0, import_internal47.transition_in)(button3.$$.fragment, local);
-      (0, import_internal47.transition_in)(menu3.$$.fragment, local);
-      (0, import_internal47.transition_in)(menu4.$$.fragment, local);
-      (0, import_internal47.transition_in)(menu5.$$.fragment, local);
-      (0, import_internal47.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal47.transition_in)(api0.$$.fragment, local);
-      (0, import_internal47.transition_in)(api1.$$.fragment, local);
-      (0, import_internal47.transition_in)(api2.$$.fragment, local);
+      (0, import_internal48.transition_in)(button0.$$.fragment, local);
+      (0, import_internal48.transition_in)(menu0.$$.fragment, local);
+      (0, import_internal48.transition_in)(button1.$$.fragment, local);
+      (0, import_internal48.transition_in)(menu1.$$.fragment, local);
+      (0, import_internal48.transition_in)(button2.$$.fragment, local);
+      (0, import_internal48.transition_in)(menu2.$$.fragment, local);
+      (0, import_internal48.transition_in)(button3.$$.fragment, local);
+      (0, import_internal48.transition_in)(menu3.$$.fragment, local);
+      (0, import_internal48.transition_in)(menu4.$$.fragment, local);
+      (0, import_internal48.transition_in)(menu5.$$.fragment, local);
+      (0, import_internal48.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal48.transition_in)(api0.$$.fragment, local);
+      (0, import_internal48.transition_in)(api1.$$.fragment, local);
+      (0, import_internal48.transition_in)(api2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(button0.$$.fragment, local);
-      (0, import_internal47.transition_out)(menu0.$$.fragment, local);
-      (0, import_internal47.transition_out)(button1.$$.fragment, local);
-      (0, import_internal47.transition_out)(menu1.$$.fragment, local);
-      (0, import_internal47.transition_out)(button2.$$.fragment, local);
-      (0, import_internal47.transition_out)(menu2.$$.fragment, local);
-      (0, import_internal47.transition_out)(button3.$$.fragment, local);
-      (0, import_internal47.transition_out)(menu3.$$.fragment, local);
-      (0, import_internal47.transition_out)(menu4.$$.fragment, local);
-      (0, import_internal47.transition_out)(menu5.$$.fragment, local);
-      (0, import_internal47.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal47.transition_out)(api0.$$.fragment, local);
-      (0, import_internal47.transition_out)(api1.$$.fragment, local);
-      (0, import_internal47.transition_out)(api2.$$.fragment, local);
+      (0, import_internal48.transition_out)(button0.$$.fragment, local);
+      (0, import_internal48.transition_out)(menu0.$$.fragment, local);
+      (0, import_internal48.transition_out)(button1.$$.fragment, local);
+      (0, import_internal48.transition_out)(menu1.$$.fragment, local);
+      (0, import_internal48.transition_out)(button2.$$.fragment, local);
+      (0, import_internal48.transition_out)(menu2.$$.fragment, local);
+      (0, import_internal48.transition_out)(button3.$$.fragment, local);
+      (0, import_internal48.transition_out)(menu3.$$.fragment, local);
+      (0, import_internal48.transition_out)(menu4.$$.fragment, local);
+      (0, import_internal48.transition_out)(menu5.$$.fragment, local);
+      (0, import_internal48.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal48.transition_out)(api0.$$.fragment, local);
+      (0, import_internal48.transition_out)(api1.$$.fragment, local);
+      (0, import_internal48.transition_out)(api2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal47.detach_dev)(h2);
+        (0, import_internal48.detach_dev)(h2);
       if (detaching)
-        (0, import_internal47.detach_dev)(t1);
+        (0, import_internal48.detach_dev)(t1);
       if (detaching)
-        (0, import_internal47.detach_dev)(h30);
+        (0, import_internal48.detach_dev)(h30);
       if (detaching)
-        (0, import_internal47.detach_dev)(t3);
-      (0, import_internal47.destroy_component)(button0, detaching);
+        (0, import_internal48.detach_dev)(t3);
+      (0, import_internal48.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t4);
+        (0, import_internal48.detach_dev)(t4);
       ctx[20](null);
-      (0, import_internal47.destroy_component)(menu0, detaching);
+      (0, import_internal48.destroy_component)(menu0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t5);
+        (0, import_internal48.detach_dev)(t5);
       if (detaching)
-        (0, import_internal47.detach_dev)(h31);
+        (0, import_internal48.detach_dev)(h31);
       if (detaching)
-        (0, import_internal47.detach_dev)(t8);
+        (0, import_internal48.detach_dev)(t8);
       if (detaching)
-        (0, import_internal47.detach_dev)(p0);
+        (0, import_internal48.detach_dev)(p0);
       if (detaching)
-        (0, import_internal47.detach_dev)(t14);
+        (0, import_internal48.detach_dev)(t14);
       if (detaching)
-        (0, import_internal47.detach_dev)(div0);
-      (0, import_internal47.destroy_component)(button1);
+        (0, import_internal48.detach_dev)(div0);
+      (0, import_internal48.destroy_component)(button1);
       ctx[21](null);
-      (0, import_internal47.destroy_component)(menu1);
-      (0, import_internal47.destroy_component)(button2);
+      (0, import_internal48.destroy_component)(menu1);
+      (0, import_internal48.destroy_component)(button2);
       ctx[22](null);
-      (0, import_internal47.destroy_component)(menu2);
-      (0, import_internal47.destroy_component)(button3);
+      (0, import_internal48.destroy_component)(menu2);
+      (0, import_internal48.destroy_component)(button3);
       ctx[23](null);
-      (0, import_internal47.destroy_component)(menu3);
+      (0, import_internal48.destroy_component)(menu3);
       if (detaching)
-        (0, import_internal47.detach_dev)(t23);
+        (0, import_internal48.detach_dev)(t23);
       if (detaching)
-        (0, import_internal47.detach_dev)(div1);
+        (0, import_internal48.detach_dev)(div1);
       if (detaching)
-        (0, import_internal47.detach_dev)(t27);
+        (0, import_internal48.detach_dev)(t27);
       if (detaching)
-        (0, import_internal47.detach_dev)(p1);
+        (0, import_internal48.detach_dev)(p1);
       if (detaching)
-        (0, import_internal47.detach_dev)(t31);
+        (0, import_internal48.detach_dev)(t31);
       if (detaching)
-        (0, import_internal47.detach_dev)(h32);
+        (0, import_internal48.detach_dev)(h32);
       if (detaching)
-        (0, import_internal47.detach_dev)(t33);
+        (0, import_internal48.detach_dev)(t33);
       if (detaching)
-        (0, import_internal47.detach_dev)(small2);
+        (0, import_internal48.detach_dev)(small2);
       if (detaching)
-        (0, import_internal47.detach_dev)(t35);
+        (0, import_internal48.detach_dev)(t35);
       if (detaching)
-        (0, import_internal47.detach_dev)(div2);
+        (0, import_internal48.detach_dev)(div2);
       if (detaching)
-        (0, import_internal47.detach_dev)(t37);
+        (0, import_internal48.detach_dev)(t37);
       if (detaching)
-        (0, import_internal47.detach_dev)(div3);
+        (0, import_internal48.detach_dev)(div3);
       if (detaching)
-        (0, import_internal47.detach_dev)(t39);
+        (0, import_internal48.detach_dev)(t39);
       ctx[24](null);
-      (0, import_internal47.destroy_component)(menu4, detaching);
+      (0, import_internal48.destroy_component)(menu4, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t40);
+        (0, import_internal48.detach_dev)(t40);
       ctx[25](null);
-      (0, import_internal47.destroy_component)(menu5, detaching);
+      (0, import_internal48.destroy_component)(menu5, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t41);
-      (0, import_internal47.destroy_component)(codeexample, detaching);
+        (0, import_internal48.detach_dev)(t41);
+      (0, import_internal48.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t42);
-      (0, import_internal47.destroy_component)(api0, detaching);
+        (0, import_internal48.detach_dev)(t42);
+      (0, import_internal48.destroy_component)(api0, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t43);
-      (0, import_internal47.destroy_component)(api1, detaching);
+        (0, import_internal48.detach_dev)(t43);
+      (0, import_internal48.destroy_component)(api1, detaching);
       if (detaching)
-        (0, import_internal47.detach_dev)(t44);
-      (0, import_internal47.destroy_component)(api2, detaching);
+        (0, import_internal48.detach_dev)(t44);
+      (0, import_internal48.destroy_component)(api2, detaching);
     }
   };
-  (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment47.name,
+    id: create_fragment48.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance47($$self, $$props, $$invalidate) {
+function instance48($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal47.validate_slots)("Menu", slots, []);
+  (0, import_internal48.validate_slots)("Menu", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -30638,37 +31608,37 @@ function instance47($$self, $$props, $$invalidate) {
       console.warn(`<Menu> was created with unknown prop '${key}'`);
   });
   function menu0_binding($$value) {
-    import_internal47.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal48.binding_callbacks[$$value ? "unshift" : "push"](() => {
       thingsMenu = $$value;
       $$invalidate(3, thingsMenu);
     });
   }
   function menu1_binding($$value) {
-    import_internal47.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal48.binding_callbacks[$$value ? "unshift" : "push"](() => {
       someMenu1 = $$value;
       $$invalidate(0, someMenu1);
     });
   }
   function menu2_binding($$value) {
-    import_internal47.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal48.binding_callbacks[$$value ? "unshift" : "push"](() => {
       someMenu2 = $$value;
       $$invalidate(1, someMenu2);
     });
   }
   function menu3_binding($$value) {
-    import_internal47.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal48.binding_callbacks[$$value ? "unshift" : "push"](() => {
       someMenu3 = $$value;
       $$invalidate(2, someMenu3);
     });
   }
   function menu4_binding($$value) {
-    import_internal47.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal48.binding_callbacks[$$value ? "unshift" : "push"](() => {
       tabsMenu = $$value;
       $$invalidate(4, tabsMenu);
     });
   }
   function menu5_binding($$value) {
-    import_internal47.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal48.binding_callbacks[$$value ? "unshift" : "push"](() => {
       windowsMenu = $$value;
       $$invalidate(5, windowsMenu);
     });
@@ -30758,23 +31728,23 @@ function instance47($$self, $$props, $$invalidate) {
     menu5_binding
   ];
 }
-var Menu_1 = class extends import_internal47.SvelteComponentDev {
+var Menu_1 = class extends import_internal48.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal47.init)(this, options, instance47, create_fragment47, import_internal47.safe_not_equal, {});
-    (0, import_internal47.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal48.init)(this, options, instance48, create_fragment48, import_internal48.safe_not_equal, {});
+    (0, import_internal48.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Menu_1",
       options,
-      id: create_fragment47.name
+      id: create_fragment48.name
     });
   }
 };
 var Menu_default2 = Menu_1;
 
 // docs-src/components/panel/Panel.svelte
-var import_internal48 = __toESM(require_internal());
-var file46 = "docs-src/components/panel/Panel.svelte";
+var import_internal49 = __toESM(require_internal());
+var file47 = "docs-src/components/panel/Panel.svelte";
 function create_default_slot_211(ctx) {
   let p0;
   let t1;
@@ -30785,51 +31755,51 @@ function create_default_slot_211(ctx) {
   let a;
   const block = {
     c: function create() {
-      p0 = (0, import_internal48.element)("p");
+      p0 = (0, import_internal49.element)("p");
       p0.textContent = "This is panel contents";
-      t1 = (0, import_internal48.space)();
-      p1 = (0, import_internal48.element)("p");
+      t1 = (0, import_internal49.space)();
+      p1 = (0, import_internal49.element)("p");
       p1.textContent = "Hello world!";
-      t3 = (0, import_internal48.space)();
-      p2 = (0, import_internal48.element)("p");
+      t3 = (0, import_internal49.space)();
+      p2 = (0, import_internal49.element)("p");
       p2.textContent = "This is panel contents";
-      t5 = (0, import_internal48.space)();
-      a = (0, import_internal48.element)("a");
+      t5 = (0, import_internal49.space)();
+      a = (0, import_internal49.element)("a");
       a.textContent = "a link";
-      (0, import_internal48.add_location)(p0, file46, 5, 1, 56);
-      (0, import_internal48.add_location)(p1, file46, 6, 1, 87);
-      (0, import_internal48.add_location)(p2, file46, 7, 1, 108);
-      (0, import_internal48.attr_dev)(a, "href", "#Panel");
-      (0, import_internal48.add_location)(a, file46, 8, 1, 139);
+      (0, import_internal49.add_location)(p0, file47, 5, 1, 56);
+      (0, import_internal49.add_location)(p1, file47, 6, 1, 87);
+      (0, import_internal49.add_location)(p2, file47, 7, 1, 108);
+      (0, import_internal49.attr_dev)(a, "href", "#Panel");
+      (0, import_internal49.add_location)(a, file47, 8, 1, 139);
     },
     m: function mount(target, anchor) {
-      (0, import_internal48.insert_dev)(target, p0, anchor);
-      (0, import_internal48.insert_dev)(target, t1, anchor);
-      (0, import_internal48.insert_dev)(target, p1, anchor);
-      (0, import_internal48.insert_dev)(target, t3, anchor);
-      (0, import_internal48.insert_dev)(target, p2, anchor);
-      (0, import_internal48.insert_dev)(target, t5, anchor);
-      (0, import_internal48.insert_dev)(target, a, anchor);
+      (0, import_internal49.insert_dev)(target, p0, anchor);
+      (0, import_internal49.insert_dev)(target, t1, anchor);
+      (0, import_internal49.insert_dev)(target, p1, anchor);
+      (0, import_internal49.insert_dev)(target, t3, anchor);
+      (0, import_internal49.insert_dev)(target, p2, anchor);
+      (0, import_internal49.insert_dev)(target, t5, anchor);
+      (0, import_internal49.insert_dev)(target, a, anchor);
     },
-    p: import_internal48.noop,
+    p: import_internal49.noop,
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal48.detach_dev)(p0);
+        (0, import_internal49.detach_dev)(p0);
       if (detaching)
-        (0, import_internal48.detach_dev)(t1);
+        (0, import_internal49.detach_dev)(t1);
       if (detaching)
-        (0, import_internal48.detach_dev)(p1);
+        (0, import_internal49.detach_dev)(p1);
       if (detaching)
-        (0, import_internal48.detach_dev)(t3);
+        (0, import_internal49.detach_dev)(t3);
       if (detaching)
-        (0, import_internal48.detach_dev)(p2);
+        (0, import_internal49.detach_dev)(p2);
       if (detaching)
-        (0, import_internal48.detach_dev)(t5);
+        (0, import_internal49.detach_dev)(t5);
       if (detaching)
-        (0, import_internal48.detach_dev)(a);
+        (0, import_internal49.detach_dev)(a);
     }
   };
-  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_211.name,
     type: "slot",
@@ -30842,17 +31812,17 @@ function create_default_slot_114(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal48.text)("Action");
+      t = (0, import_internal49.text)("Action");
     },
     m: function mount(target, anchor) {
-      (0, import_internal48.insert_dev)(target, t, anchor);
+      (0, import_internal49.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal48.detach_dev)(t);
+        (0, import_internal49.detach_dev)(t);
     }
   };
-  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_114.name,
     type: "slot",
@@ -30879,28 +31849,28 @@ function create_default_slot8(ctx) {
   });
   const block = {
     c: function create() {
-      p0 = (0, import_internal48.element)("p");
+      p0 = (0, import_internal49.element)("p");
       p0.textContent = "This is panel contents";
-      t1 = (0, import_internal48.space)();
-      p1 = (0, import_internal48.element)("p");
+      t1 = (0, import_internal49.space)();
+      p1 = (0, import_internal49.element)("p");
       p1.textContent = "Hello world!";
-      t3 = (0, import_internal48.space)();
-      p2 = (0, import_internal48.element)("p");
+      t3 = (0, import_internal49.space)();
+      p2 = (0, import_internal49.element)("p");
       p2.textContent = "This is panel contents";
-      t5 = (0, import_internal48.space)();
-      (0, import_internal48.create_component)(button.$$.fragment);
-      (0, import_internal48.add_location)(p0, file46, 15, 1, 238);
-      (0, import_internal48.add_location)(p1, file46, 16, 1, 269);
-      (0, import_internal48.add_location)(p2, file46, 17, 1, 290);
+      t5 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(button.$$.fragment);
+      (0, import_internal49.add_location)(p0, file47, 15, 1, 238);
+      (0, import_internal49.add_location)(p1, file47, 16, 1, 269);
+      (0, import_internal49.add_location)(p2, file47, 17, 1, 290);
     },
     m: function mount(target, anchor) {
-      (0, import_internal48.insert_dev)(target, p0, anchor);
-      (0, import_internal48.insert_dev)(target, t1, anchor);
-      (0, import_internal48.insert_dev)(target, p1, anchor);
-      (0, import_internal48.insert_dev)(target, t3, anchor);
-      (0, import_internal48.insert_dev)(target, p2, anchor);
-      (0, import_internal48.insert_dev)(target, t5, anchor);
-      (0, import_internal48.mount_component)(button, target, anchor);
+      (0, import_internal49.insert_dev)(target, p0, anchor);
+      (0, import_internal49.insert_dev)(target, t1, anchor);
+      (0, import_internal49.insert_dev)(target, p1, anchor);
+      (0, import_internal49.insert_dev)(target, t3, anchor);
+      (0, import_internal49.insert_dev)(target, p2, anchor);
+      (0, import_internal49.insert_dev)(target, t5, anchor);
+      (0, import_internal49.mount_component)(button, target, anchor);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -30914,30 +31884,30 @@ function create_default_slot8(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal48.transition_in)(button.$$.fragment, local);
+      (0, import_internal49.transition_in)(button.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal48.transition_out)(button.$$.fragment, local);
+      (0, import_internal49.transition_out)(button.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal48.detach_dev)(p0);
+        (0, import_internal49.detach_dev)(p0);
       if (detaching)
-        (0, import_internal48.detach_dev)(t1);
+        (0, import_internal49.detach_dev)(t1);
       if (detaching)
-        (0, import_internal48.detach_dev)(p1);
+        (0, import_internal49.detach_dev)(p1);
       if (detaching)
-        (0, import_internal48.detach_dev)(t3);
+        (0, import_internal49.detach_dev)(t3);
       if (detaching)
-        (0, import_internal48.detach_dev)(p2);
+        (0, import_internal49.detach_dev)(p2);
       if (detaching)
-        (0, import_internal48.detach_dev)(t5);
-      (0, import_internal48.destroy_component)(button, detaching);
+        (0, import_internal49.detach_dev)(t5);
+      (0, import_internal49.destroy_component)(button, detaching);
     }
   };
-  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot8.name,
     type: "slot",
@@ -30946,7 +31916,7 @@ function create_default_slot8(ctx) {
   });
   return block;
 }
-function create_fragment48(ctx) {
+function create_fragment49(ctx) {
   let h2;
   let t1;
   let h30;
@@ -30995,43 +31965,43 @@ function create_fragment48(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal48.element)("h2");
+      h2 = (0, import_internal49.element)("h2");
       h2.textContent = "Panel";
-      t1 = (0, import_internal48.space)();
-      h30 = (0, import_internal48.element)("h3");
+      t1 = (0, import_internal49.space)();
+      h30 = (0, import_internal49.element)("h3");
       h30.textContent = "Normal";
-      t3 = (0, import_internal48.space)();
-      (0, import_internal48.create_component)(panel0.$$.fragment);
-      t4 = (0, import_internal48.space)();
-      h31 = (0, import_internal48.element)("h3");
+      t3 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(panel0.$$.fragment);
+      t4 = (0, import_internal49.space)();
+      h31 = (0, import_internal49.element)("h3");
       h31.textContent = "Round, opened";
-      t6 = (0, import_internal48.space)();
-      (0, import_internal48.create_component)(panel1.$$.fragment);
-      t7 = (0, import_internal48.space)();
-      (0, import_internal48.create_component)(codeexample.$$.fragment);
-      t8 = (0, import_internal48.space)();
-      (0, import_internal48.create_component)(api.$$.fragment);
-      (0, import_internal48.add_location)(h2, file46, 0, 0, 0);
-      (0, import_internal48.add_location)(h30, file46, 2, 0, 16);
-      (0, import_internal48.add_location)(h31, file46, 12, 0, 178);
+      t6 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(panel1.$$.fragment);
+      t7 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(codeexample.$$.fragment);
+      t8 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(api.$$.fragment);
+      (0, import_internal49.add_location)(h2, file47, 0, 0, 0);
+      (0, import_internal49.add_location)(h30, file47, 2, 0, 16);
+      (0, import_internal49.add_location)(h31, file47, 12, 0, 178);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal48.insert_dev)(target, h2, anchor);
-      (0, import_internal48.insert_dev)(target, t1, anchor);
-      (0, import_internal48.insert_dev)(target, h30, anchor);
-      (0, import_internal48.insert_dev)(target, t3, anchor);
-      (0, import_internal48.mount_component)(panel0, target, anchor);
-      (0, import_internal48.insert_dev)(target, t4, anchor);
-      (0, import_internal48.insert_dev)(target, h31, anchor);
-      (0, import_internal48.insert_dev)(target, t6, anchor);
-      (0, import_internal48.mount_component)(panel1, target, anchor);
-      (0, import_internal48.insert_dev)(target, t7, anchor);
-      (0, import_internal48.mount_component)(codeexample, target, anchor);
-      (0, import_internal48.insert_dev)(target, t8, anchor);
-      (0, import_internal48.mount_component)(api, target, anchor);
+      (0, import_internal49.insert_dev)(target, h2, anchor);
+      (0, import_internal49.insert_dev)(target, t1, anchor);
+      (0, import_internal49.insert_dev)(target, h30, anchor);
+      (0, import_internal49.insert_dev)(target, t3, anchor);
+      (0, import_internal49.mount_component)(panel0, target, anchor);
+      (0, import_internal49.insert_dev)(target, t4, anchor);
+      (0, import_internal49.insert_dev)(target, h31, anchor);
+      (0, import_internal49.insert_dev)(target, t6, anchor);
+      (0, import_internal49.mount_component)(panel1, target, anchor);
+      (0, import_internal49.insert_dev)(target, t7, anchor);
+      (0, import_internal49.mount_component)(codeexample, target, anchor);
+      (0, import_internal49.insert_dev)(target, t8, anchor);
+      (0, import_internal49.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -31051,56 +32021,56 @@ function create_fragment48(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal48.transition_in)(panel0.$$.fragment, local);
-      (0, import_internal48.transition_in)(panel1.$$.fragment, local);
-      (0, import_internal48.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal48.transition_in)(api.$$.fragment, local);
+      (0, import_internal49.transition_in)(panel0.$$.fragment, local);
+      (0, import_internal49.transition_in)(panel1.$$.fragment, local);
+      (0, import_internal49.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal49.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal48.transition_out)(panel0.$$.fragment, local);
-      (0, import_internal48.transition_out)(panel1.$$.fragment, local);
-      (0, import_internal48.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal48.transition_out)(api.$$.fragment, local);
+      (0, import_internal49.transition_out)(panel0.$$.fragment, local);
+      (0, import_internal49.transition_out)(panel1.$$.fragment, local);
+      (0, import_internal49.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal49.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal48.detach_dev)(h2);
+        (0, import_internal49.detach_dev)(h2);
       if (detaching)
-        (0, import_internal48.detach_dev)(t1);
+        (0, import_internal49.detach_dev)(t1);
       if (detaching)
-        (0, import_internal48.detach_dev)(h30);
+        (0, import_internal49.detach_dev)(h30);
       if (detaching)
-        (0, import_internal48.detach_dev)(t3);
-      (0, import_internal48.destroy_component)(panel0, detaching);
+        (0, import_internal49.detach_dev)(t3);
+      (0, import_internal49.destroy_component)(panel0, detaching);
       if (detaching)
-        (0, import_internal48.detach_dev)(t4);
+        (0, import_internal49.detach_dev)(t4);
       if (detaching)
-        (0, import_internal48.detach_dev)(h31);
+        (0, import_internal49.detach_dev)(h31);
       if (detaching)
-        (0, import_internal48.detach_dev)(t6);
-      (0, import_internal48.destroy_component)(panel1, detaching);
+        (0, import_internal49.detach_dev)(t6);
+      (0, import_internal49.destroy_component)(panel1, detaching);
       if (detaching)
-        (0, import_internal48.detach_dev)(t7);
-      (0, import_internal48.destroy_component)(codeexample, detaching);
+        (0, import_internal49.detach_dev)(t7);
+      (0, import_internal49.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal48.detach_dev)(t8);
-      (0, import_internal48.destroy_component)(api, detaching);
+        (0, import_internal49.detach_dev)(t8);
+      (0, import_internal49.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment48.name,
+    id: create_fragment49.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance48($$self, $$props, $$invalidate) {
+function instance49($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal48.validate_slots)("Panel", slots, []);
+  (0, import_internal49.validate_slots)("Panel", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -31154,38 +32124,38 @@ function instance48($$self, $$props, $$invalidate) {
   });
   return [apiProps, exampleHtml];
 }
-var Panel_1 = class extends import_internal48.SvelteComponentDev {
+var Panel_1 = class extends import_internal49.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal48.init)(this, options, instance48, create_fragment48, import_internal48.safe_not_equal, {});
-    (0, import_internal48.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal49.init)(this, options, instance49, create_fragment49, import_internal49.safe_not_equal, {});
+    (0, import_internal49.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Panel_1",
       options,
-      id: create_fragment48.name
+      id: create_fragment49.name
     });
   }
 };
 var Panel_default2 = Panel_1;
 
 // docs-src/components/push-button/PushButton.svelte
-var import_internal49 = __toESM(require_internal());
-var file47 = "docs-src/components/push-button/PushButton.svelte";
+var import_internal50 = __toESM(require_internal());
+var file48 = "docs-src/components/push-button/PushButton.svelte";
 function create_default_slot_153(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Hello");
+      t = (0, import_internal50.text)("Hello");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_153.name,
     type: "slot",
@@ -31198,17 +32168,17 @@ function create_default_slot_143(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Warning");
+      t = (0, import_internal50.text)("Warning");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_143.name,
     type: "slot",
@@ -31221,17 +32191,17 @@ function create_default_slot_133(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Warning");
+      t = (0, import_internal50.text)("Warning");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_133.name,
     type: "slot",
@@ -31244,17 +32214,17 @@ function create_default_slot_123(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Danger");
+      t = (0, import_internal50.text)("Danger");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_123.name,
     type: "slot",
@@ -31267,17 +32237,17 @@ function create_default_slot_115(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Hello");
+      t = (0, import_internal50.text)("Hello");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_115.name,
     type: "slot",
@@ -31290,17 +32260,17 @@ function create_default_slot_103(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Warning");
+      t = (0, import_internal50.text)("Warning");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_103.name,
     type: "slot",
@@ -31313,17 +32283,17 @@ function create_default_slot_93(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Warning");
+      t = (0, import_internal50.text)("Warning");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_93.name,
     type: "slot",
@@ -31336,17 +32306,17 @@ function create_default_slot_84(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Danger");
+      t = (0, import_internal50.text)("Danger");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_84.name,
     type: "slot",
@@ -31359,17 +32329,17 @@ function create_default_slot_74(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Hello");
+      t = (0, import_internal50.text)("Hello");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_74.name,
     type: "slot",
@@ -31382,17 +32352,17 @@ function create_default_slot_64(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Success");
+      t = (0, import_internal50.text)("Success");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_64.name,
     type: "slot",
@@ -31405,17 +32375,17 @@ function create_default_slot_54(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Warning");
+      t = (0, import_internal50.text)("Warning");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_54.name,
     type: "slot",
@@ -31428,17 +32398,17 @@ function create_default_slot_44(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Danger");
+      t = (0, import_internal50.text)("Danger");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_44.name,
     type: "slot",
@@ -31451,17 +32421,17 @@ function create_default_slot_37(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Info");
+      t = (0, import_internal50.text)("Info");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_37.name,
     type: "slot",
@@ -31474,17 +32444,17 @@ function create_default_slot_213(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Success");
+      t = (0, import_internal50.text)("Success");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_213.name,
     type: "slot",
@@ -31497,17 +32467,17 @@ function create_default_slot_116(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Warning");
+      t = (0, import_internal50.text)("Warning");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_116.name,
     type: "slot",
@@ -31520,17 +32490,17 @@ function create_default_slot9(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal49.text)("Delete");
+      t = (0, import_internal50.text)("Delete");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, t, anchor);
+      (0, import_internal50.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(t);
+        (0, import_internal50.detach_dev)(t);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot9.name,
     type: "slot",
@@ -31539,7 +32509,7 @@ function create_default_slot9(ctx) {
   });
   return block;
 }
-function create_fragment49(ctx) {
+function create_fragment50(ctx) {
   let h2;
   let t1;
   let h30;
@@ -31805,183 +32775,183 @@ function create_fragment49(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal49.element)("h2");
+      h2 = (0, import_internal50.element)("h2");
       h2.textContent = "Push Button";
-      t1 = (0, import_internal49.space)();
-      h30 = (0, import_internal49.element)("h3");
+      t1 = (0, import_internal50.space)();
+      h30 = (0, import_internal50.element)("h3");
       h30.textContent = "Normal";
-      t3 = (0, import_internal49.space)();
-      h40 = (0, import_internal49.element)("h4");
+      t3 = (0, import_internal50.space)();
+      h40 = (0, import_internal50.element)("h4");
       h40.textContent = "Default";
-      t5 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton0.$$.fragment);
-      t6 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton1.$$.fragment);
-      t7 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton2.$$.fragment);
-      t8 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton3.$$.fragment);
-      t9 = (0, import_internal49.space)();
-      h41 = (0, import_internal49.element)("h4");
+      t5 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton0.$$.fragment);
+      t6 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton1.$$.fragment);
+      t7 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton2.$$.fragment);
+      t8 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton3.$$.fragment);
+      t9 = (0, import_internal50.space)();
+      h41 = (0, import_internal50.element)("h4");
       h41.textContent = "Pressed";
-      t11 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton4.$$.fragment);
-      t12 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton5.$$.fragment);
-      t13 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton6.$$.fragment);
-      t14 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton7.$$.fragment);
-      t15 = (0, import_internal49.space)();
-      h42 = (0, import_internal49.element)("h4");
+      t11 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton4.$$.fragment);
+      t12 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton5.$$.fragment);
+      t13 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton6.$$.fragment);
+      t14 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton7.$$.fragment);
+      t15 = (0, import_internal50.space)();
+      h42 = (0, import_internal50.element)("h4");
       h42.textContent = "Disabled";
-      t17 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton8.$$.fragment);
-      t18 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton9.$$.fragment);
-      t19 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton10.$$.fragment);
-      t20 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton11.$$.fragment);
-      t21 = (0, import_internal49.space)();
-      h43 = (0, import_internal49.element)("h4");
+      t17 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton8.$$.fragment);
+      t18 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton9.$$.fragment);
+      t19 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton10.$$.fragment);
+      t20 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton11.$$.fragment);
+      t21 = (0, import_internal50.space)();
+      h43 = (0, import_internal50.element)("h4");
       h43.textContent = "With icon";
-      t23 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton12.$$.fragment);
-      t24 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton13.$$.fragment);
-      t25 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton14.$$.fragment);
-      t26 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton15.$$.fragment);
-      t27 = (0, import_internal49.space)();
-      hr0 = (0, import_internal49.element)("hr");
-      t28 = (0, import_internal49.space)();
-      h31 = (0, import_internal49.element)("h3");
+      t23 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton12.$$.fragment);
+      t24 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton13.$$.fragment);
+      t25 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton14.$$.fragment);
+      t26 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton15.$$.fragment);
+      t27 = (0, import_internal50.space)();
+      hr0 = (0, import_internal50.element)("hr");
+      t28 = (0, import_internal50.space)();
+      h31 = (0, import_internal50.element)("h3");
       h31.textContent = "Icon only buttons";
-      t30 = (0, import_internal49.space)();
-      h44 = (0, import_internal49.element)("h4");
+      t30 = (0, import_internal50.space)();
+      h44 = (0, import_internal50.element)("h4");
       h44.textContent = "Default";
-      t32 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton16.$$.fragment);
-      t33 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton17.$$.fragment);
-      t34 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton18.$$.fragment);
-      t35 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton19.$$.fragment);
-      t36 = (0, import_internal49.space)();
-      hr1 = (0, import_internal49.element)("hr");
-      t37 = (0, import_internal49.space)();
-      h32 = (0, import_internal49.element)("h3");
+      t32 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton16.$$.fragment);
+      t33 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton17.$$.fragment);
+      t34 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton18.$$.fragment);
+      t35 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton19.$$.fragment);
+      t36 = (0, import_internal50.space)();
+      hr1 = (0, import_internal50.element)("hr");
+      t37 = (0, import_internal50.space)();
+      h32 = (0, import_internal50.element)("h3");
       h32.textContent = "Icon only, and round";
-      t39 = (0, import_internal49.space)();
-      h45 = (0, import_internal49.element)("h4");
+      t39 = (0, import_internal50.space)();
+      h45 = (0, import_internal50.element)("h4");
       h45.textContent = "Default";
-      t41 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton20.$$.fragment);
-      t42 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton21.$$.fragment);
-      t43 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton22.$$.fragment);
-      t44 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(pushbutton23.$$.fragment);
-      t45 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(codeexample.$$.fragment);
-      t46 = (0, import_internal49.space)();
-      (0, import_internal49.create_component)(api.$$.fragment);
-      (0, import_internal49.add_location)(h2, file47, 0, 0, 0);
-      (0, import_internal49.add_location)(h30, file47, 2, 0, 22);
-      (0, import_internal49.add_location)(h40, file47, 4, 0, 39);
-      (0, import_internal49.add_location)(h41, file47, 10, 0, 209);
-      (0, import_internal49.add_location)(h42, file47, 16, 0, 411);
-      (0, import_internal49.add_location)(h43, file47, 22, 0, 618);
-      (0, import_internal49.add_location)(hr0, file47, 29, 0, 841);
-      (0, import_internal49.add_location)(h31, file47, 30, 0, 846);
-      (0, import_internal49.add_location)(h44, file47, 32, 0, 874);
-      (0, import_internal49.add_location)(hr1, file47, 39, 0, 1071);
-      (0, import_internal49.add_location)(h32, file47, 40, 0, 1076);
-      (0, import_internal49.add_location)(h45, file47, 42, 0, 1107);
+      t41 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton20.$$.fragment);
+      t42 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton21.$$.fragment);
+      t43 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton22.$$.fragment);
+      t44 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(pushbutton23.$$.fragment);
+      t45 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(codeexample.$$.fragment);
+      t46 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(api.$$.fragment);
+      (0, import_internal50.add_location)(h2, file48, 0, 0, 0);
+      (0, import_internal50.add_location)(h30, file48, 2, 0, 22);
+      (0, import_internal50.add_location)(h40, file48, 4, 0, 39);
+      (0, import_internal50.add_location)(h41, file48, 10, 0, 209);
+      (0, import_internal50.add_location)(h42, file48, 16, 0, 411);
+      (0, import_internal50.add_location)(h43, file48, 22, 0, 618);
+      (0, import_internal50.add_location)(hr0, file48, 29, 0, 841);
+      (0, import_internal50.add_location)(h31, file48, 30, 0, 846);
+      (0, import_internal50.add_location)(h44, file48, 32, 0, 874);
+      (0, import_internal50.add_location)(hr1, file48, 39, 0, 1071);
+      (0, import_internal50.add_location)(h32, file48, 40, 0, 1076);
+      (0, import_internal50.add_location)(h45, file48, 42, 0, 1107);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal49.insert_dev)(target, h2, anchor);
-      (0, import_internal49.insert_dev)(target, t1, anchor);
-      (0, import_internal49.insert_dev)(target, h30, anchor);
-      (0, import_internal49.insert_dev)(target, t3, anchor);
-      (0, import_internal49.insert_dev)(target, h40, anchor);
-      (0, import_internal49.insert_dev)(target, t5, anchor);
-      (0, import_internal49.mount_component)(pushbutton0, target, anchor);
-      (0, import_internal49.insert_dev)(target, t6, anchor);
-      (0, import_internal49.mount_component)(pushbutton1, target, anchor);
-      (0, import_internal49.insert_dev)(target, t7, anchor);
-      (0, import_internal49.mount_component)(pushbutton2, target, anchor);
-      (0, import_internal49.insert_dev)(target, t8, anchor);
-      (0, import_internal49.mount_component)(pushbutton3, target, anchor);
-      (0, import_internal49.insert_dev)(target, t9, anchor);
-      (0, import_internal49.insert_dev)(target, h41, anchor);
-      (0, import_internal49.insert_dev)(target, t11, anchor);
-      (0, import_internal49.mount_component)(pushbutton4, target, anchor);
-      (0, import_internal49.insert_dev)(target, t12, anchor);
-      (0, import_internal49.mount_component)(pushbutton5, target, anchor);
-      (0, import_internal49.insert_dev)(target, t13, anchor);
-      (0, import_internal49.mount_component)(pushbutton6, target, anchor);
-      (0, import_internal49.insert_dev)(target, t14, anchor);
-      (0, import_internal49.mount_component)(pushbutton7, target, anchor);
-      (0, import_internal49.insert_dev)(target, t15, anchor);
-      (0, import_internal49.insert_dev)(target, h42, anchor);
-      (0, import_internal49.insert_dev)(target, t17, anchor);
-      (0, import_internal49.mount_component)(pushbutton8, target, anchor);
-      (0, import_internal49.insert_dev)(target, t18, anchor);
-      (0, import_internal49.mount_component)(pushbutton9, target, anchor);
-      (0, import_internal49.insert_dev)(target, t19, anchor);
-      (0, import_internal49.mount_component)(pushbutton10, target, anchor);
-      (0, import_internal49.insert_dev)(target, t20, anchor);
-      (0, import_internal49.mount_component)(pushbutton11, target, anchor);
-      (0, import_internal49.insert_dev)(target, t21, anchor);
-      (0, import_internal49.insert_dev)(target, h43, anchor);
-      (0, import_internal49.insert_dev)(target, t23, anchor);
-      (0, import_internal49.mount_component)(pushbutton12, target, anchor);
-      (0, import_internal49.insert_dev)(target, t24, anchor);
-      (0, import_internal49.mount_component)(pushbutton13, target, anchor);
-      (0, import_internal49.insert_dev)(target, t25, anchor);
-      (0, import_internal49.mount_component)(pushbutton14, target, anchor);
-      (0, import_internal49.insert_dev)(target, t26, anchor);
-      (0, import_internal49.mount_component)(pushbutton15, target, anchor);
-      (0, import_internal49.insert_dev)(target, t27, anchor);
-      (0, import_internal49.insert_dev)(target, hr0, anchor);
-      (0, import_internal49.insert_dev)(target, t28, anchor);
-      (0, import_internal49.insert_dev)(target, h31, anchor);
-      (0, import_internal49.insert_dev)(target, t30, anchor);
-      (0, import_internal49.insert_dev)(target, h44, anchor);
-      (0, import_internal49.insert_dev)(target, t32, anchor);
-      (0, import_internal49.mount_component)(pushbutton16, target, anchor);
-      (0, import_internal49.insert_dev)(target, t33, anchor);
-      (0, import_internal49.mount_component)(pushbutton17, target, anchor);
-      (0, import_internal49.insert_dev)(target, t34, anchor);
-      (0, import_internal49.mount_component)(pushbutton18, target, anchor);
-      (0, import_internal49.insert_dev)(target, t35, anchor);
-      (0, import_internal49.mount_component)(pushbutton19, target, anchor);
-      (0, import_internal49.insert_dev)(target, t36, anchor);
-      (0, import_internal49.insert_dev)(target, hr1, anchor);
-      (0, import_internal49.insert_dev)(target, t37, anchor);
-      (0, import_internal49.insert_dev)(target, h32, anchor);
-      (0, import_internal49.insert_dev)(target, t39, anchor);
-      (0, import_internal49.insert_dev)(target, h45, anchor);
-      (0, import_internal49.insert_dev)(target, t41, anchor);
-      (0, import_internal49.mount_component)(pushbutton20, target, anchor);
-      (0, import_internal49.insert_dev)(target, t42, anchor);
-      (0, import_internal49.mount_component)(pushbutton21, target, anchor);
-      (0, import_internal49.insert_dev)(target, t43, anchor);
-      (0, import_internal49.mount_component)(pushbutton22, target, anchor);
-      (0, import_internal49.insert_dev)(target, t44, anchor);
-      (0, import_internal49.mount_component)(pushbutton23, target, anchor);
-      (0, import_internal49.insert_dev)(target, t45, anchor);
-      (0, import_internal49.mount_component)(codeexample, target, anchor);
-      (0, import_internal49.insert_dev)(target, t46, anchor);
-      (0, import_internal49.mount_component)(api, target, anchor);
+      (0, import_internal50.insert_dev)(target, h2, anchor);
+      (0, import_internal50.insert_dev)(target, t1, anchor);
+      (0, import_internal50.insert_dev)(target, h30, anchor);
+      (0, import_internal50.insert_dev)(target, t3, anchor);
+      (0, import_internal50.insert_dev)(target, h40, anchor);
+      (0, import_internal50.insert_dev)(target, t5, anchor);
+      (0, import_internal50.mount_component)(pushbutton0, target, anchor);
+      (0, import_internal50.insert_dev)(target, t6, anchor);
+      (0, import_internal50.mount_component)(pushbutton1, target, anchor);
+      (0, import_internal50.insert_dev)(target, t7, anchor);
+      (0, import_internal50.mount_component)(pushbutton2, target, anchor);
+      (0, import_internal50.insert_dev)(target, t8, anchor);
+      (0, import_internal50.mount_component)(pushbutton3, target, anchor);
+      (0, import_internal50.insert_dev)(target, t9, anchor);
+      (0, import_internal50.insert_dev)(target, h41, anchor);
+      (0, import_internal50.insert_dev)(target, t11, anchor);
+      (0, import_internal50.mount_component)(pushbutton4, target, anchor);
+      (0, import_internal50.insert_dev)(target, t12, anchor);
+      (0, import_internal50.mount_component)(pushbutton5, target, anchor);
+      (0, import_internal50.insert_dev)(target, t13, anchor);
+      (0, import_internal50.mount_component)(pushbutton6, target, anchor);
+      (0, import_internal50.insert_dev)(target, t14, anchor);
+      (0, import_internal50.mount_component)(pushbutton7, target, anchor);
+      (0, import_internal50.insert_dev)(target, t15, anchor);
+      (0, import_internal50.insert_dev)(target, h42, anchor);
+      (0, import_internal50.insert_dev)(target, t17, anchor);
+      (0, import_internal50.mount_component)(pushbutton8, target, anchor);
+      (0, import_internal50.insert_dev)(target, t18, anchor);
+      (0, import_internal50.mount_component)(pushbutton9, target, anchor);
+      (0, import_internal50.insert_dev)(target, t19, anchor);
+      (0, import_internal50.mount_component)(pushbutton10, target, anchor);
+      (0, import_internal50.insert_dev)(target, t20, anchor);
+      (0, import_internal50.mount_component)(pushbutton11, target, anchor);
+      (0, import_internal50.insert_dev)(target, t21, anchor);
+      (0, import_internal50.insert_dev)(target, h43, anchor);
+      (0, import_internal50.insert_dev)(target, t23, anchor);
+      (0, import_internal50.mount_component)(pushbutton12, target, anchor);
+      (0, import_internal50.insert_dev)(target, t24, anchor);
+      (0, import_internal50.mount_component)(pushbutton13, target, anchor);
+      (0, import_internal50.insert_dev)(target, t25, anchor);
+      (0, import_internal50.mount_component)(pushbutton14, target, anchor);
+      (0, import_internal50.insert_dev)(target, t26, anchor);
+      (0, import_internal50.mount_component)(pushbutton15, target, anchor);
+      (0, import_internal50.insert_dev)(target, t27, anchor);
+      (0, import_internal50.insert_dev)(target, hr0, anchor);
+      (0, import_internal50.insert_dev)(target, t28, anchor);
+      (0, import_internal50.insert_dev)(target, h31, anchor);
+      (0, import_internal50.insert_dev)(target, t30, anchor);
+      (0, import_internal50.insert_dev)(target, h44, anchor);
+      (0, import_internal50.insert_dev)(target, t32, anchor);
+      (0, import_internal50.mount_component)(pushbutton16, target, anchor);
+      (0, import_internal50.insert_dev)(target, t33, anchor);
+      (0, import_internal50.mount_component)(pushbutton17, target, anchor);
+      (0, import_internal50.insert_dev)(target, t34, anchor);
+      (0, import_internal50.mount_component)(pushbutton18, target, anchor);
+      (0, import_internal50.insert_dev)(target, t35, anchor);
+      (0, import_internal50.mount_component)(pushbutton19, target, anchor);
+      (0, import_internal50.insert_dev)(target, t36, anchor);
+      (0, import_internal50.insert_dev)(target, hr1, anchor);
+      (0, import_internal50.insert_dev)(target, t37, anchor);
+      (0, import_internal50.insert_dev)(target, h32, anchor);
+      (0, import_internal50.insert_dev)(target, t39, anchor);
+      (0, import_internal50.insert_dev)(target, h45, anchor);
+      (0, import_internal50.insert_dev)(target, t41, anchor);
+      (0, import_internal50.mount_component)(pushbutton20, target, anchor);
+      (0, import_internal50.insert_dev)(target, t42, anchor);
+      (0, import_internal50.mount_component)(pushbutton21, target, anchor);
+      (0, import_internal50.insert_dev)(target, t43, anchor);
+      (0, import_internal50.mount_component)(pushbutton22, target, anchor);
+      (0, import_internal50.insert_dev)(target, t44, anchor);
+      (0, import_internal50.mount_component)(pushbutton23, target, anchor);
+      (0, import_internal50.insert_dev)(target, t45, anchor);
+      (0, import_internal50.mount_component)(codeexample, target, anchor);
+      (0, import_internal50.insert_dev)(target, t46, anchor);
+      (0, import_internal50.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -32085,202 +33055,202 @@ function create_fragment49(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal49.transition_in)(pushbutton0.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton1.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton2.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton3.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton4.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton5.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton6.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton7.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton8.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton9.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton10.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton11.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton12.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton13.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton14.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton15.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton16.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton17.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton18.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton19.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton20.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton21.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton22.$$.fragment, local);
-      (0, import_internal49.transition_in)(pushbutton23.$$.fragment, local);
-      (0, import_internal49.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal49.transition_in)(api.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton0.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton1.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton2.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton3.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton4.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton5.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton6.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton7.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton8.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton9.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton10.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton11.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton12.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton13.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton14.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton15.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton16.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton17.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton18.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton19.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton20.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton21.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton22.$$.fragment, local);
+      (0, import_internal50.transition_in)(pushbutton23.$$.fragment, local);
+      (0, import_internal50.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal50.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal49.transition_out)(pushbutton0.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton1.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton2.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton3.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton4.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton5.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton6.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton7.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton8.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton9.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton10.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton11.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton12.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton13.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton14.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton15.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton16.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton17.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton18.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton19.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton20.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton21.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton22.$$.fragment, local);
-      (0, import_internal49.transition_out)(pushbutton23.$$.fragment, local);
-      (0, import_internal49.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal49.transition_out)(api.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton0.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton1.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton2.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton3.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton4.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton5.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton6.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton7.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton8.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton9.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton10.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton11.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton12.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton13.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton14.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton15.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton16.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton17.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton18.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton19.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton20.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton21.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton22.$$.fragment, local);
+      (0, import_internal50.transition_out)(pushbutton23.$$.fragment, local);
+      (0, import_internal50.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal50.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal49.detach_dev)(h2);
+        (0, import_internal50.detach_dev)(h2);
       if (detaching)
-        (0, import_internal49.detach_dev)(t1);
+        (0, import_internal50.detach_dev)(t1);
       if (detaching)
-        (0, import_internal49.detach_dev)(h30);
+        (0, import_internal50.detach_dev)(h30);
       if (detaching)
-        (0, import_internal49.detach_dev)(t3);
+        (0, import_internal50.detach_dev)(t3);
       if (detaching)
-        (0, import_internal49.detach_dev)(h40);
+        (0, import_internal50.detach_dev)(h40);
       if (detaching)
-        (0, import_internal49.detach_dev)(t5);
-      (0, import_internal49.destroy_component)(pushbutton0, detaching);
+        (0, import_internal50.detach_dev)(t5);
+      (0, import_internal50.destroy_component)(pushbutton0, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t6);
-      (0, import_internal49.destroy_component)(pushbutton1, detaching);
+        (0, import_internal50.detach_dev)(t6);
+      (0, import_internal50.destroy_component)(pushbutton1, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t7);
-      (0, import_internal49.destroy_component)(pushbutton2, detaching);
+        (0, import_internal50.detach_dev)(t7);
+      (0, import_internal50.destroy_component)(pushbutton2, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t8);
-      (0, import_internal49.destroy_component)(pushbutton3, detaching);
+        (0, import_internal50.detach_dev)(t8);
+      (0, import_internal50.destroy_component)(pushbutton3, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t9);
+        (0, import_internal50.detach_dev)(t9);
       if (detaching)
-        (0, import_internal49.detach_dev)(h41);
+        (0, import_internal50.detach_dev)(h41);
       if (detaching)
-        (0, import_internal49.detach_dev)(t11);
-      (0, import_internal49.destroy_component)(pushbutton4, detaching);
+        (0, import_internal50.detach_dev)(t11);
+      (0, import_internal50.destroy_component)(pushbutton4, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t12);
-      (0, import_internal49.destroy_component)(pushbutton5, detaching);
+        (0, import_internal50.detach_dev)(t12);
+      (0, import_internal50.destroy_component)(pushbutton5, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t13);
-      (0, import_internal49.destroy_component)(pushbutton6, detaching);
+        (0, import_internal50.detach_dev)(t13);
+      (0, import_internal50.destroy_component)(pushbutton6, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t14);
-      (0, import_internal49.destroy_component)(pushbutton7, detaching);
+        (0, import_internal50.detach_dev)(t14);
+      (0, import_internal50.destroy_component)(pushbutton7, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t15);
+        (0, import_internal50.detach_dev)(t15);
       if (detaching)
-        (0, import_internal49.detach_dev)(h42);
+        (0, import_internal50.detach_dev)(h42);
       if (detaching)
-        (0, import_internal49.detach_dev)(t17);
-      (0, import_internal49.destroy_component)(pushbutton8, detaching);
+        (0, import_internal50.detach_dev)(t17);
+      (0, import_internal50.destroy_component)(pushbutton8, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t18);
-      (0, import_internal49.destroy_component)(pushbutton9, detaching);
+        (0, import_internal50.detach_dev)(t18);
+      (0, import_internal50.destroy_component)(pushbutton9, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t19);
-      (0, import_internal49.destroy_component)(pushbutton10, detaching);
+        (0, import_internal50.detach_dev)(t19);
+      (0, import_internal50.destroy_component)(pushbutton10, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t20);
-      (0, import_internal49.destroy_component)(pushbutton11, detaching);
+        (0, import_internal50.detach_dev)(t20);
+      (0, import_internal50.destroy_component)(pushbutton11, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t21);
+        (0, import_internal50.detach_dev)(t21);
       if (detaching)
-        (0, import_internal49.detach_dev)(h43);
+        (0, import_internal50.detach_dev)(h43);
       if (detaching)
-        (0, import_internal49.detach_dev)(t23);
-      (0, import_internal49.destroy_component)(pushbutton12, detaching);
+        (0, import_internal50.detach_dev)(t23);
+      (0, import_internal50.destroy_component)(pushbutton12, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t24);
-      (0, import_internal49.destroy_component)(pushbutton13, detaching);
+        (0, import_internal50.detach_dev)(t24);
+      (0, import_internal50.destroy_component)(pushbutton13, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t25);
-      (0, import_internal49.destroy_component)(pushbutton14, detaching);
+        (0, import_internal50.detach_dev)(t25);
+      (0, import_internal50.destroy_component)(pushbutton14, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t26);
-      (0, import_internal49.destroy_component)(pushbutton15, detaching);
+        (0, import_internal50.detach_dev)(t26);
+      (0, import_internal50.destroy_component)(pushbutton15, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t27);
+        (0, import_internal50.detach_dev)(t27);
       if (detaching)
-        (0, import_internal49.detach_dev)(hr0);
+        (0, import_internal50.detach_dev)(hr0);
       if (detaching)
-        (0, import_internal49.detach_dev)(t28);
+        (0, import_internal50.detach_dev)(t28);
       if (detaching)
-        (0, import_internal49.detach_dev)(h31);
+        (0, import_internal50.detach_dev)(h31);
       if (detaching)
-        (0, import_internal49.detach_dev)(t30);
+        (0, import_internal50.detach_dev)(t30);
       if (detaching)
-        (0, import_internal49.detach_dev)(h44);
+        (0, import_internal50.detach_dev)(h44);
       if (detaching)
-        (0, import_internal49.detach_dev)(t32);
-      (0, import_internal49.destroy_component)(pushbutton16, detaching);
+        (0, import_internal50.detach_dev)(t32);
+      (0, import_internal50.destroy_component)(pushbutton16, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t33);
-      (0, import_internal49.destroy_component)(pushbutton17, detaching);
+        (0, import_internal50.detach_dev)(t33);
+      (0, import_internal50.destroy_component)(pushbutton17, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t34);
-      (0, import_internal49.destroy_component)(pushbutton18, detaching);
+        (0, import_internal50.detach_dev)(t34);
+      (0, import_internal50.destroy_component)(pushbutton18, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t35);
-      (0, import_internal49.destroy_component)(pushbutton19, detaching);
+        (0, import_internal50.detach_dev)(t35);
+      (0, import_internal50.destroy_component)(pushbutton19, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t36);
+        (0, import_internal50.detach_dev)(t36);
       if (detaching)
-        (0, import_internal49.detach_dev)(hr1);
+        (0, import_internal50.detach_dev)(hr1);
       if (detaching)
-        (0, import_internal49.detach_dev)(t37);
+        (0, import_internal50.detach_dev)(t37);
       if (detaching)
-        (0, import_internal49.detach_dev)(h32);
+        (0, import_internal50.detach_dev)(h32);
       if (detaching)
-        (0, import_internal49.detach_dev)(t39);
+        (0, import_internal50.detach_dev)(t39);
       if (detaching)
-        (0, import_internal49.detach_dev)(h45);
+        (0, import_internal50.detach_dev)(h45);
       if (detaching)
-        (0, import_internal49.detach_dev)(t41);
-      (0, import_internal49.destroy_component)(pushbutton20, detaching);
+        (0, import_internal50.detach_dev)(t41);
+      (0, import_internal50.destroy_component)(pushbutton20, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t42);
-      (0, import_internal49.destroy_component)(pushbutton21, detaching);
+        (0, import_internal50.detach_dev)(t42);
+      (0, import_internal50.destroy_component)(pushbutton21, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t43);
-      (0, import_internal49.destroy_component)(pushbutton22, detaching);
+        (0, import_internal50.detach_dev)(t43);
+      (0, import_internal50.destroy_component)(pushbutton22, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t44);
-      (0, import_internal49.destroy_component)(pushbutton23, detaching);
+        (0, import_internal50.detach_dev)(t44);
+      (0, import_internal50.destroy_component)(pushbutton23, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t45);
-      (0, import_internal49.destroy_component)(codeexample, detaching);
+        (0, import_internal50.detach_dev)(t45);
+      (0, import_internal50.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t46);
-      (0, import_internal49.destroy_component)(api, detaching);
+        (0, import_internal50.detach_dev)(t46);
+      (0, import_internal50.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment49.name,
+    id: create_fragment50.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance49($$self, $$props, $$invalidate) {
+function instance50($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal49.validate_slots)("PushButton", slots, []);
+  (0, import_internal50.validate_slots)("PushButton", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -32376,24 +33346,24 @@ function onChange (e) {
   });
   return [apiProps, exampleHtml];
 }
-var PushButton_1 = class extends import_internal49.SvelteComponentDev {
+var PushButton_1 = class extends import_internal50.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal49.init)(this, options, instance49, create_fragment49, import_internal49.safe_not_equal, {});
-    (0, import_internal49.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal50.init)(this, options, instance50, create_fragment50, import_internal50.safe_not_equal, {});
+    (0, import_internal50.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "PushButton_1",
       options,
-      id: create_fragment49.name
+      id: create_fragment50.name
     });
   }
 };
 var PushButton_default2 = PushButton_1;
 
 // docs-src/components/select/Select.svelte
-var import_internal50 = __toESM(require_internal());
-var file48 = "docs-src/components/select/Select.svelte";
-function create_fragment50(ctx) {
+var import_internal51 = __toESM(require_internal());
+var file49 = "docs-src/components/select/Select.svelte";
+function create_fragment51(ctx) {
   let h2;
   let t1;
   let p;
@@ -32463,7 +33433,7 @@ function create_fragment50(ctx) {
     ctx[0];
   }
   select3 = new Select_default({ props: select3_props, $$inline: true });
-  import_internal50.binding_callbacks.push(() => (0, import_internal50.bind)(select3, "value", select3_value_binding));
+  import_internal51.binding_callbacks.push(() => (0, import_internal51.bind)(select3, "value", select3_value_binding));
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -32480,76 +33450,76 @@ function create_fragment50(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal50.element)("h2");
+      h2 = (0, import_internal51.element)("h2");
       h2.textContent = "Select";
-      t1 = (0, import_internal50.space)();
-      p = (0, import_internal50.element)("p");
+      t1 = (0, import_internal51.space)();
+      p = (0, import_internal51.element)("p");
       p.textContent = "Select component is based on the native HTML select control.\n	It provides some visual styling and also better data management,\n	i.e. it accepts an array of strings or objects.";
-      t3 = (0, import_internal50.space)();
-      h30 = (0, import_internal50.element)("h3");
+      t3 = (0, import_internal51.space)();
+      h30 = (0, import_internal51.element)("h3");
       h30.textContent = "Normal";
-      t5 = (0, import_internal50.space)();
-      (0, import_internal50.create_component)(select0.$$.fragment);
-      t6 = (0, import_internal50.space)();
-      h31 = (0, import_internal50.element)("h3");
+      t5 = (0, import_internal51.space)();
+      (0, import_internal51.create_component)(select0.$$.fragment);
+      t6 = (0, import_internal51.space)();
+      h31 = (0, import_internal51.element)("h3");
       h31.textContent = "Disabled";
-      t8 = (0, import_internal50.space)();
-      (0, import_internal50.create_component)(select1.$$.fragment);
-      t9 = (0, import_internal50.space)();
-      h32 = (0, import_internal50.element)("h3");
+      t8 = (0, import_internal51.space)();
+      (0, import_internal51.create_component)(select1.$$.fragment);
+      t9 = (0, import_internal51.space)();
+      h32 = (0, import_internal51.element)("h3");
       h32.textContent = "With placeholder";
-      t11 = (0, import_internal50.space)();
-      (0, import_internal50.create_component)(select2.$$.fragment);
-      t12 = (0, import_internal50.space)();
-      h33 = (0, import_internal50.element)("h3");
+      t11 = (0, import_internal51.space)();
+      (0, import_internal51.create_component)(select2.$$.fragment);
+      t12 = (0, import_internal51.space)();
+      h33 = (0, import_internal51.element)("h3");
       h33.textContent = "With initial value";
-      t14 = (0, import_internal50.space)();
-      (0, import_internal50.create_component)(select3.$$.fragment);
-      t15 = (0, import_internal50.text)(" Selected value: ");
-      t16 = (0, import_internal50.text)(
+      t14 = (0, import_internal51.space)();
+      (0, import_internal51.create_component)(select3.$$.fragment);
+      t15 = (0, import_internal51.text)(" Selected value: ");
+      t16 = (0, import_internal51.text)(
         /*val*/
         ctx[0]
       );
-      t17 = (0, import_internal50.space)();
-      (0, import_internal50.create_component)(codeexample.$$.fragment);
-      t18 = (0, import_internal50.space)();
-      (0, import_internal50.create_component)(api.$$.fragment);
-      (0, import_internal50.add_location)(h2, file48, 0, 0, 0);
-      (0, import_internal50.add_location)(p, file48, 1, 0, 16);
-      (0, import_internal50.add_location)(h30, file48, 6, 0, 201);
-      (0, import_internal50.add_location)(h31, file48, 9, 0, 269);
-      (0, import_internal50.add_location)(h32, file48, 12, 0, 340);
-      (0, import_internal50.add_location)(h33, file48, 15, 0, 422);
+      t17 = (0, import_internal51.space)();
+      (0, import_internal51.create_component)(codeexample.$$.fragment);
+      t18 = (0, import_internal51.space)();
+      (0, import_internal51.create_component)(api.$$.fragment);
+      (0, import_internal51.add_location)(h2, file49, 0, 0, 0);
+      (0, import_internal51.add_location)(p, file49, 1, 0, 16);
+      (0, import_internal51.add_location)(h30, file49, 6, 0, 201);
+      (0, import_internal51.add_location)(h31, file49, 9, 0, 269);
+      (0, import_internal51.add_location)(h32, file49, 12, 0, 340);
+      (0, import_internal51.add_location)(h33, file49, 15, 0, 422);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal50.insert_dev)(target, h2, anchor);
-      (0, import_internal50.insert_dev)(target, t1, anchor);
-      (0, import_internal50.insert_dev)(target, p, anchor);
-      (0, import_internal50.insert_dev)(target, t3, anchor);
-      (0, import_internal50.insert_dev)(target, h30, anchor);
-      (0, import_internal50.insert_dev)(target, t5, anchor);
-      (0, import_internal50.mount_component)(select0, target, anchor);
-      (0, import_internal50.insert_dev)(target, t6, anchor);
-      (0, import_internal50.insert_dev)(target, h31, anchor);
-      (0, import_internal50.insert_dev)(target, t8, anchor);
-      (0, import_internal50.mount_component)(select1, target, anchor);
-      (0, import_internal50.insert_dev)(target, t9, anchor);
-      (0, import_internal50.insert_dev)(target, h32, anchor);
-      (0, import_internal50.insert_dev)(target, t11, anchor);
-      (0, import_internal50.mount_component)(select2, target, anchor);
-      (0, import_internal50.insert_dev)(target, t12, anchor);
-      (0, import_internal50.insert_dev)(target, h33, anchor);
-      (0, import_internal50.insert_dev)(target, t14, anchor);
-      (0, import_internal50.mount_component)(select3, target, anchor);
-      (0, import_internal50.insert_dev)(target, t15, anchor);
-      (0, import_internal50.insert_dev)(target, t16, anchor);
-      (0, import_internal50.insert_dev)(target, t17, anchor);
-      (0, import_internal50.mount_component)(codeexample, target, anchor);
-      (0, import_internal50.insert_dev)(target, t18, anchor);
-      (0, import_internal50.mount_component)(api, target, anchor);
+      (0, import_internal51.insert_dev)(target, h2, anchor);
+      (0, import_internal51.insert_dev)(target, t1, anchor);
+      (0, import_internal51.insert_dev)(target, p, anchor);
+      (0, import_internal51.insert_dev)(target, t3, anchor);
+      (0, import_internal51.insert_dev)(target, h30, anchor);
+      (0, import_internal51.insert_dev)(target, t5, anchor);
+      (0, import_internal51.mount_component)(select0, target, anchor);
+      (0, import_internal51.insert_dev)(target, t6, anchor);
+      (0, import_internal51.insert_dev)(target, h31, anchor);
+      (0, import_internal51.insert_dev)(target, t8, anchor);
+      (0, import_internal51.mount_component)(select1, target, anchor);
+      (0, import_internal51.insert_dev)(target, t9, anchor);
+      (0, import_internal51.insert_dev)(target, h32, anchor);
+      (0, import_internal51.insert_dev)(target, t11, anchor);
+      (0, import_internal51.mount_component)(select2, target, anchor);
+      (0, import_internal51.insert_dev)(target, t12, anchor);
+      (0, import_internal51.insert_dev)(target, h33, anchor);
+      (0, import_internal51.insert_dev)(target, t14, anchor);
+      (0, import_internal51.mount_component)(select3, target, anchor);
+      (0, import_internal51.insert_dev)(target, t15, anchor);
+      (0, import_internal51.insert_dev)(target, t16, anchor);
+      (0, import_internal51.insert_dev)(target, t17, anchor);
+      (0, import_internal51.mount_component)(codeexample, target, anchor);
+      (0, import_internal51.insert_dev)(target, t18, anchor);
+      (0, import_internal51.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -32559,12 +33529,12 @@ function create_fragment50(ctx) {
         updating_value = true;
         select3_changes.value = /*val*/
         ctx2[0];
-        (0, import_internal50.add_flush_callback)(() => updating_value = false);
+        (0, import_internal51.add_flush_callback)(() => updating_value = false);
       }
       select3.$set(select3_changes);
       if (!current || dirty & /*val*/
       1)
-        (0, import_internal50.set_data_dev)(
+        (0, import_internal51.set_data_dev)(
           t16,
           /*val*/
           ctx2[0]
@@ -32573,82 +33543,82 @@ function create_fragment50(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal50.transition_in)(select0.$$.fragment, local);
-      (0, import_internal50.transition_in)(select1.$$.fragment, local);
-      (0, import_internal50.transition_in)(select2.$$.fragment, local);
-      (0, import_internal50.transition_in)(select3.$$.fragment, local);
-      (0, import_internal50.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal50.transition_in)(api.$$.fragment, local);
+      (0, import_internal51.transition_in)(select0.$$.fragment, local);
+      (0, import_internal51.transition_in)(select1.$$.fragment, local);
+      (0, import_internal51.transition_in)(select2.$$.fragment, local);
+      (0, import_internal51.transition_in)(select3.$$.fragment, local);
+      (0, import_internal51.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal51.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal50.transition_out)(select0.$$.fragment, local);
-      (0, import_internal50.transition_out)(select1.$$.fragment, local);
-      (0, import_internal50.transition_out)(select2.$$.fragment, local);
-      (0, import_internal50.transition_out)(select3.$$.fragment, local);
-      (0, import_internal50.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal50.transition_out)(api.$$.fragment, local);
+      (0, import_internal51.transition_out)(select0.$$.fragment, local);
+      (0, import_internal51.transition_out)(select1.$$.fragment, local);
+      (0, import_internal51.transition_out)(select2.$$.fragment, local);
+      (0, import_internal51.transition_out)(select3.$$.fragment, local);
+      (0, import_internal51.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal51.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal50.detach_dev)(h2);
+        (0, import_internal51.detach_dev)(h2);
       if (detaching)
-        (0, import_internal50.detach_dev)(t1);
+        (0, import_internal51.detach_dev)(t1);
       if (detaching)
-        (0, import_internal50.detach_dev)(p);
+        (0, import_internal51.detach_dev)(p);
       if (detaching)
-        (0, import_internal50.detach_dev)(t3);
+        (0, import_internal51.detach_dev)(t3);
       if (detaching)
-        (0, import_internal50.detach_dev)(h30);
+        (0, import_internal51.detach_dev)(h30);
       if (detaching)
-        (0, import_internal50.detach_dev)(t5);
-      (0, import_internal50.destroy_component)(select0, detaching);
+        (0, import_internal51.detach_dev)(t5);
+      (0, import_internal51.destroy_component)(select0, detaching);
       if (detaching)
-        (0, import_internal50.detach_dev)(t6);
+        (0, import_internal51.detach_dev)(t6);
       if (detaching)
-        (0, import_internal50.detach_dev)(h31);
+        (0, import_internal51.detach_dev)(h31);
       if (detaching)
-        (0, import_internal50.detach_dev)(t8);
-      (0, import_internal50.destroy_component)(select1, detaching);
+        (0, import_internal51.detach_dev)(t8);
+      (0, import_internal51.destroy_component)(select1, detaching);
       if (detaching)
-        (0, import_internal50.detach_dev)(t9);
+        (0, import_internal51.detach_dev)(t9);
       if (detaching)
-        (0, import_internal50.detach_dev)(h32);
+        (0, import_internal51.detach_dev)(h32);
       if (detaching)
-        (0, import_internal50.detach_dev)(t11);
-      (0, import_internal50.destroy_component)(select2, detaching);
+        (0, import_internal51.detach_dev)(t11);
+      (0, import_internal51.destroy_component)(select2, detaching);
       if (detaching)
-        (0, import_internal50.detach_dev)(t12);
+        (0, import_internal51.detach_dev)(t12);
       if (detaching)
-        (0, import_internal50.detach_dev)(h33);
+        (0, import_internal51.detach_dev)(h33);
       if (detaching)
-        (0, import_internal50.detach_dev)(t14);
-      (0, import_internal50.destroy_component)(select3, detaching);
+        (0, import_internal51.detach_dev)(t14);
+      (0, import_internal51.destroy_component)(select3, detaching);
       if (detaching)
-        (0, import_internal50.detach_dev)(t15);
+        (0, import_internal51.detach_dev)(t15);
       if (detaching)
-        (0, import_internal50.detach_dev)(t16);
+        (0, import_internal51.detach_dev)(t16);
       if (detaching)
-        (0, import_internal50.detach_dev)(t17);
-      (0, import_internal50.destroy_component)(codeexample, detaching);
+        (0, import_internal51.detach_dev)(t17);
+      (0, import_internal51.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal50.detach_dev)(t18);
-      (0, import_internal50.destroy_component)(api, detaching);
+        (0, import_internal51.detach_dev)(t18);
+      (0, import_internal51.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal51.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment50.name,
+    id: create_fragment51.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance50($$self, $$props, $$invalidate) {
+function instance51($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal50.validate_slots)("Select", slots, []);
+  (0, import_internal51.validate_slots)("Select", slots, []);
   let val = "Beta";
   const apiProps = [
     {
@@ -32845,39 +33815,39 @@ function onChange (e) {
   }
   return [val, apiProps, exampleHtml, selectItems, select3_value_binding];
 }
-var Select_1 = class extends import_internal50.SvelteComponentDev {
+var Select_1 = class extends import_internal51.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal50.init)(this, options, instance50, create_fragment50, import_internal50.safe_not_equal, {});
-    (0, import_internal50.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal51.init)(this, options, instance51, create_fragment51, import_internal51.safe_not_equal, {});
+    (0, import_internal51.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Select_1",
       options,
-      id: create_fragment50.name
+      id: create_fragment51.name
     });
   }
 };
 var Select_default2 = Select_1;
 
 // docs-src/components/splitter/Splitter.svelte
-var import_internal51 = __toESM(require_internal());
-var { console: console_16 } = import_internal51.globals;
-var file49 = "docs-src/components/splitter/Splitter.svelte";
+var import_internal52 = __toESM(require_internal());
+var { console: console_15 } = import_internal52.globals;
+var file50 = "docs-src/components/splitter/Splitter.svelte";
 function create_default_slot10(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal51.text)("Toggle");
+      t = (0, import_internal52.text)("Toggle");
     },
     m: function mount(target, anchor) {
-      (0, import_internal51.insert_dev)(target, t, anchor);
+      (0, import_internal52.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal51.detach_dev)(t);
+        (0, import_internal52.detach_dev)(t);
     }
   };
-  (0, import_internal51.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot10.name,
     type: "slot",
@@ -32886,7 +33856,7 @@ function create_default_slot10(ctx) {
   });
   return block;
 }
-function create_fragment51(ctx) {
+function create_fragment52(ctx) {
   let h2;
   let t1;
   let p;
@@ -32976,124 +33946,124 @@ function create_fragment51(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal51.element)("h2");
+      h2 = (0, import_internal52.element)("h2");
       h2.textContent = "Splitter";
-      t1 = (0, import_internal51.space)();
-      p = (0, import_internal51.element)("p");
+      t1 = (0, import_internal52.space)();
+      p = (0, import_internal52.element)("p");
       p.textContent = "Resizable splitter component.";
-      t3 = (0, import_internal51.space)();
-      ul = (0, import_internal51.element)("ul");
-      li0 = (0, import_internal51.element)("li");
-      t4 = (0, import_internal51.text)("It uses ");
-      em0 = (0, import_internal51.element)("em");
+      t3 = (0, import_internal52.space)();
+      ul = (0, import_internal52.element)("ul");
+      li0 = (0, import_internal52.element)("li");
+      t4 = (0, import_internal52.text)("It uses ");
+      em0 = (0, import_internal52.element)("em");
       em0.textContent = "flex flow";
-      t6 = (0, import_internal51.text)(" property to determine the direction of resizing (row=horizontal, column=vertical).\n	");
-      li1 = (0, import_internal51.element)("li");
-      t7 = (0, import_internal51.text)("It uses ");
-      em1 = (0, import_internal51.element)("em");
+      t6 = (0, import_internal52.text)(" property to determine the direction of resizing (row=horizontal, column=vertical).\n	");
+      li1 = (0, import_internal52.element)("li");
+      t7 = (0, import_internal52.text)("It uses ");
+      em1 = (0, import_internal52.element)("em");
       em1.textContent = "min-width";
-      t9 = (0, import_internal51.text)(" and ");
-      em2 = (0, import_internal51.element)("em");
+      t9 = (0, import_internal52.text)(" and ");
+      em2 = (0, import_internal52.element)("em");
       em2.textContent = "max-width";
-      t11 = (0, import_internal51.text)(" props to determine how much to resize;");
-      t12 = (0, import_internal51.space)();
-      hr = (0, import_internal51.element)("hr");
-      t13 = (0, import_internal51.space)();
-      (0, import_internal51.create_component)(button.$$.fragment);
-      t14 = (0, import_internal51.space)();
-      div2 = (0, import_internal51.element)("div");
-      div0 = (0, import_internal51.element)("div");
+      t11 = (0, import_internal52.text)(" props to determine how much to resize;");
+      t12 = (0, import_internal52.space)();
+      hr = (0, import_internal52.element)("hr");
+      t13 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(button.$$.fragment);
+      t14 = (0, import_internal52.space)();
+      div2 = (0, import_internal52.element)("div");
+      div0 = (0, import_internal52.element)("div");
       div0.textContent = "Left";
-      t16 = (0, import_internal51.space)();
-      (0, import_internal51.create_component)(splitter0.$$.fragment);
-      t17 = (0, import_internal51.space)();
-      div1 = (0, import_internal51.element)("div");
+      t16 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(splitter0.$$.fragment);
+      t17 = (0, import_internal52.space)();
+      div1 = (0, import_internal52.element)("div");
       div1.textContent = "Right";
-      t19 = (0, import_internal51.space)();
-      br = (0, import_internal51.element)("br");
-      t20 = (0, import_internal51.space)();
-      div5 = (0, import_internal51.element)("div");
-      div3 = (0, import_internal51.element)("div");
+      t19 = (0, import_internal52.space)();
+      br = (0, import_internal52.element)("br");
+      t20 = (0, import_internal52.space)();
+      div5 = (0, import_internal52.element)("div");
+      div3 = (0, import_internal52.element)("div");
       div3.textContent = "Top";
-      t22 = (0, import_internal51.space)();
-      (0, import_internal51.create_component)(splitter1_1.$$.fragment);
-      t23 = (0, import_internal51.space)();
-      div4 = (0, import_internal51.element)("div");
+      t22 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(splitter1_1.$$.fragment);
+      t23 = (0, import_internal52.space)();
+      div4 = (0, import_internal52.element)("div");
       div4.textContent = "Bottom";
-      t25 = (0, import_internal51.space)();
-      (0, import_internal51.create_component)(codeexample.$$.fragment);
-      t26 = (0, import_internal51.space)();
-      (0, import_internal51.create_component)(api0.$$.fragment);
-      t27 = (0, import_internal51.space)();
-      (0, import_internal51.create_component)(api1.$$.fragment);
-      (0, import_internal51.add_location)(h2, file49, 0, 0, 0);
-      (0, import_internal51.add_location)(p, file49, 1, 0, 18);
-      (0, import_internal51.add_location)(em0, file49, 3, 13, 73);
-      (0, import_internal51.add_location)(li0, file49, 3, 1, 61);
-      (0, import_internal51.add_location)(em1, file49, 4, 13, 188);
-      (0, import_internal51.add_location)(em2, file49, 4, 36, 211);
-      (0, import_internal51.add_location)(li1, file49, 4, 1, 176);
-      (0, import_internal51.add_location)(ul, file49, 2, 0, 55);
-      (0, import_internal51.add_location)(hr, file49, 7, 0, 276);
-      (0, import_internal51.attr_dev)(div0, "class", "split-box min-w");
-      (0, import_internal51.add_location)(div0, file49, 11, 1, 352);
-      (0, import_internal51.attr_dev)(div1, "class", "split-box");
-      (0, import_internal51.add_location)(div1, file49, 13, 1, 452);
-      (0, import_internal51.attr_dev)(div2, "class", "split-wrap");
-      (0, import_internal51.add_location)(div2, file49, 10, 0, 326);
-      (0, import_internal51.add_location)(br, file49, 15, 0, 494);
-      (0, import_internal51.attr_dev)(div3, "class", "split-box min-h");
-      (0, import_internal51.add_location)(div3, file49, 17, 1, 538);
-      (0, import_internal51.attr_dev)(div4, "class", "split-box");
-      (0, import_internal51.add_location)(div4, file49, 19, 1, 637);
-      (0, import_internal51.attr_dev)(div5, "class", "split-wrap split-wrap-v");
-      (0, import_internal51.add_location)(div5, file49, 16, 0, 499);
+      t25 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(codeexample.$$.fragment);
+      t26 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(api0.$$.fragment);
+      t27 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(api1.$$.fragment);
+      (0, import_internal52.add_location)(h2, file50, 0, 0, 0);
+      (0, import_internal52.add_location)(p, file50, 1, 0, 18);
+      (0, import_internal52.add_location)(em0, file50, 3, 13, 73);
+      (0, import_internal52.add_location)(li0, file50, 3, 1, 61);
+      (0, import_internal52.add_location)(em1, file50, 4, 13, 188);
+      (0, import_internal52.add_location)(em2, file50, 4, 36, 211);
+      (0, import_internal52.add_location)(li1, file50, 4, 1, 176);
+      (0, import_internal52.add_location)(ul, file50, 2, 0, 55);
+      (0, import_internal52.add_location)(hr, file50, 7, 0, 276);
+      (0, import_internal52.attr_dev)(div0, "class", "split-box min-w");
+      (0, import_internal52.add_location)(div0, file50, 11, 1, 352);
+      (0, import_internal52.attr_dev)(div1, "class", "split-box");
+      (0, import_internal52.add_location)(div1, file50, 13, 1, 452);
+      (0, import_internal52.attr_dev)(div2, "class", "split-wrap");
+      (0, import_internal52.add_location)(div2, file50, 10, 0, 326);
+      (0, import_internal52.add_location)(br, file50, 15, 0, 494);
+      (0, import_internal52.attr_dev)(div3, "class", "split-box min-h");
+      (0, import_internal52.add_location)(div3, file50, 17, 1, 538);
+      (0, import_internal52.attr_dev)(div4, "class", "split-box");
+      (0, import_internal52.add_location)(div4, file50, 19, 1, 637);
+      (0, import_internal52.attr_dev)(div5, "class", "split-wrap split-wrap-v");
+      (0, import_internal52.add_location)(div5, file50, 16, 0, 499);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal51.insert_dev)(target, h2, anchor);
-      (0, import_internal51.insert_dev)(target, t1, anchor);
-      (0, import_internal51.insert_dev)(target, p, anchor);
-      (0, import_internal51.insert_dev)(target, t3, anchor);
-      (0, import_internal51.insert_dev)(target, ul, anchor);
-      (0, import_internal51.append_dev)(ul, li0);
-      (0, import_internal51.append_dev)(li0, t4);
-      (0, import_internal51.append_dev)(li0, em0);
-      (0, import_internal51.append_dev)(li0, t6);
-      (0, import_internal51.append_dev)(ul, li1);
-      (0, import_internal51.append_dev)(li1, t7);
-      (0, import_internal51.append_dev)(li1, em1);
-      (0, import_internal51.append_dev)(li1, t9);
-      (0, import_internal51.append_dev)(li1, em2);
-      (0, import_internal51.append_dev)(li1, t11);
-      (0, import_internal51.insert_dev)(target, t12, anchor);
-      (0, import_internal51.insert_dev)(target, hr, anchor);
-      (0, import_internal51.insert_dev)(target, t13, anchor);
-      (0, import_internal51.mount_component)(button, target, anchor);
-      (0, import_internal51.insert_dev)(target, t14, anchor);
-      (0, import_internal51.insert_dev)(target, div2, anchor);
-      (0, import_internal51.append_dev)(div2, div0);
-      (0, import_internal51.append_dev)(div2, t16);
-      (0, import_internal51.mount_component)(splitter0, div2, null);
-      (0, import_internal51.append_dev)(div2, t17);
-      (0, import_internal51.append_dev)(div2, div1);
-      (0, import_internal51.insert_dev)(target, t19, anchor);
-      (0, import_internal51.insert_dev)(target, br, anchor);
-      (0, import_internal51.insert_dev)(target, t20, anchor);
-      (0, import_internal51.insert_dev)(target, div5, anchor);
-      (0, import_internal51.append_dev)(div5, div3);
-      (0, import_internal51.append_dev)(div5, t22);
-      (0, import_internal51.mount_component)(splitter1_1, div5, null);
-      (0, import_internal51.append_dev)(div5, t23);
-      (0, import_internal51.append_dev)(div5, div4);
-      (0, import_internal51.insert_dev)(target, t25, anchor);
-      (0, import_internal51.mount_component)(codeexample, target, anchor);
-      (0, import_internal51.insert_dev)(target, t26, anchor);
-      (0, import_internal51.mount_component)(api0, target, anchor);
-      (0, import_internal51.insert_dev)(target, t27, anchor);
-      (0, import_internal51.mount_component)(api1, target, anchor);
+      (0, import_internal52.insert_dev)(target, h2, anchor);
+      (0, import_internal52.insert_dev)(target, t1, anchor);
+      (0, import_internal52.insert_dev)(target, p, anchor);
+      (0, import_internal52.insert_dev)(target, t3, anchor);
+      (0, import_internal52.insert_dev)(target, ul, anchor);
+      (0, import_internal52.append_dev)(ul, li0);
+      (0, import_internal52.append_dev)(li0, t4);
+      (0, import_internal52.append_dev)(li0, em0);
+      (0, import_internal52.append_dev)(li0, t6);
+      (0, import_internal52.append_dev)(ul, li1);
+      (0, import_internal52.append_dev)(li1, t7);
+      (0, import_internal52.append_dev)(li1, em1);
+      (0, import_internal52.append_dev)(li1, t9);
+      (0, import_internal52.append_dev)(li1, em2);
+      (0, import_internal52.append_dev)(li1, t11);
+      (0, import_internal52.insert_dev)(target, t12, anchor);
+      (0, import_internal52.insert_dev)(target, hr, anchor);
+      (0, import_internal52.insert_dev)(target, t13, anchor);
+      (0, import_internal52.mount_component)(button, target, anchor);
+      (0, import_internal52.insert_dev)(target, t14, anchor);
+      (0, import_internal52.insert_dev)(target, div2, anchor);
+      (0, import_internal52.append_dev)(div2, div0);
+      (0, import_internal52.append_dev)(div2, t16);
+      (0, import_internal52.mount_component)(splitter0, div2, null);
+      (0, import_internal52.append_dev)(div2, t17);
+      (0, import_internal52.append_dev)(div2, div1);
+      (0, import_internal52.insert_dev)(target, t19, anchor);
+      (0, import_internal52.insert_dev)(target, br, anchor);
+      (0, import_internal52.insert_dev)(target, t20, anchor);
+      (0, import_internal52.insert_dev)(target, div5, anchor);
+      (0, import_internal52.append_dev)(div5, div3);
+      (0, import_internal52.append_dev)(div5, t22);
+      (0, import_internal52.mount_component)(splitter1_1, div5, null);
+      (0, import_internal52.append_dev)(div5, t23);
+      (0, import_internal52.append_dev)(div5, div4);
+      (0, import_internal52.insert_dev)(target, t25, anchor);
+      (0, import_internal52.mount_component)(codeexample, target, anchor);
+      (0, import_internal52.insert_dev)(target, t26, anchor);
+      (0, import_internal52.mount_component)(api0, target, anchor);
+      (0, import_internal52.insert_dev)(target, t27, anchor);
+      (0, import_internal52.mount_component)(api1, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -33111,71 +34081,71 @@ function create_fragment51(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal51.transition_in)(button.$$.fragment, local);
-      (0, import_internal51.transition_in)(splitter0.$$.fragment, local);
-      (0, import_internal51.transition_in)(splitter1_1.$$.fragment, local);
-      (0, import_internal51.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal51.transition_in)(api0.$$.fragment, local);
-      (0, import_internal51.transition_in)(api1.$$.fragment, local);
+      (0, import_internal52.transition_in)(button.$$.fragment, local);
+      (0, import_internal52.transition_in)(splitter0.$$.fragment, local);
+      (0, import_internal52.transition_in)(splitter1_1.$$.fragment, local);
+      (0, import_internal52.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal52.transition_in)(api0.$$.fragment, local);
+      (0, import_internal52.transition_in)(api1.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal51.transition_out)(button.$$.fragment, local);
-      (0, import_internal51.transition_out)(splitter0.$$.fragment, local);
-      (0, import_internal51.transition_out)(splitter1_1.$$.fragment, local);
-      (0, import_internal51.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal51.transition_out)(api0.$$.fragment, local);
-      (0, import_internal51.transition_out)(api1.$$.fragment, local);
+      (0, import_internal52.transition_out)(button.$$.fragment, local);
+      (0, import_internal52.transition_out)(splitter0.$$.fragment, local);
+      (0, import_internal52.transition_out)(splitter1_1.$$.fragment, local);
+      (0, import_internal52.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal52.transition_out)(api0.$$.fragment, local);
+      (0, import_internal52.transition_out)(api1.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal51.detach_dev)(h2);
+        (0, import_internal52.detach_dev)(h2);
       if (detaching)
-        (0, import_internal51.detach_dev)(t1);
+        (0, import_internal52.detach_dev)(t1);
       if (detaching)
-        (0, import_internal51.detach_dev)(p);
+        (0, import_internal52.detach_dev)(p);
       if (detaching)
-        (0, import_internal51.detach_dev)(t3);
+        (0, import_internal52.detach_dev)(t3);
       if (detaching)
-        (0, import_internal51.detach_dev)(ul);
+        (0, import_internal52.detach_dev)(ul);
       if (detaching)
-        (0, import_internal51.detach_dev)(t12);
+        (0, import_internal52.detach_dev)(t12);
       if (detaching)
-        (0, import_internal51.detach_dev)(hr);
+        (0, import_internal52.detach_dev)(hr);
       if (detaching)
-        (0, import_internal51.detach_dev)(t13);
-      (0, import_internal51.destroy_component)(button, detaching);
+        (0, import_internal52.detach_dev)(t13);
+      (0, import_internal52.destroy_component)(button, detaching);
       if (detaching)
-        (0, import_internal51.detach_dev)(t14);
+        (0, import_internal52.detach_dev)(t14);
       if (detaching)
-        (0, import_internal51.detach_dev)(div2);
+        (0, import_internal52.detach_dev)(div2);
       ctx[6](null);
-      (0, import_internal51.destroy_component)(splitter0);
+      (0, import_internal52.destroy_component)(splitter0);
       if (detaching)
-        (0, import_internal51.detach_dev)(t19);
+        (0, import_internal52.detach_dev)(t19);
       if (detaching)
-        (0, import_internal51.detach_dev)(br);
+        (0, import_internal52.detach_dev)(br);
       if (detaching)
-        (0, import_internal51.detach_dev)(t20);
+        (0, import_internal52.detach_dev)(t20);
       if (detaching)
-        (0, import_internal51.detach_dev)(div5);
+        (0, import_internal52.detach_dev)(div5);
       ctx[7](null);
-      (0, import_internal51.destroy_component)(splitter1_1);
+      (0, import_internal52.destroy_component)(splitter1_1);
       if (detaching)
-        (0, import_internal51.detach_dev)(t25);
-      (0, import_internal51.destroy_component)(codeexample, detaching);
+        (0, import_internal52.detach_dev)(t25);
+      (0, import_internal52.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal51.detach_dev)(t26);
-      (0, import_internal51.destroy_component)(api0, detaching);
+        (0, import_internal52.detach_dev)(t26);
+      (0, import_internal52.destroy_component)(api0, detaching);
       if (detaching)
-        (0, import_internal51.detach_dev)(t27);
-      (0, import_internal51.destroy_component)(api1, detaching);
+        (0, import_internal52.detach_dev)(t27);
+      (0, import_internal52.destroy_component)(api1, detaching);
     }
   };
-  (0, import_internal51.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment51.name,
+    id: create_fragment52.name,
     type: "component",
     source: "",
     ctx
@@ -33185,9 +34155,9 @@ function create_fragment51(ctx) {
 function onchange2(e) {
   console.log(e.detail);
 }
-function instance51($$self, $$props, $$invalidate) {
+function instance52($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal51.validate_slots)("Splitter", slots, []);
+  (0, import_internal52.validate_slots)("Splitter", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -33256,16 +34226,16 @@ function onchanged (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_16.warn(`<Splitter> was created with unknown prop '${key}'`);
+      console_15.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function splitter0_binding($$value) {
-    import_internal51.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal52.binding_callbacks[$$value ? "unshift" : "push"](() => {
       splitter1 = $$value;
       $$invalidate(0, splitter1);
     });
   }
   function splitter1_1_binding($$value) {
-    import_internal51.binding_callbacks[$$value ? "unshift" : "push"](() => {
+    import_internal52.binding_callbacks[$$value ? "unshift" : "push"](() => {
       splitter2 = $$value;
       $$invalidate(1, splitter2);
     });
@@ -33303,24 +34273,24 @@ function onchanged (e) {
     splitter1_1_binding
   ];
 }
-var Splitter_1 = class extends import_internal51.SvelteComponentDev {
+var Splitter_1 = class extends import_internal52.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal51.init)(this, options, instance51, create_fragment51, import_internal51.safe_not_equal, {});
-    (0, import_internal51.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal52.init)(this, options, instance52, create_fragment52, import_internal52.safe_not_equal, {});
+    (0, import_internal52.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Splitter_1",
       options,
-      id: create_fragment51.name
+      id: create_fragment52.name
     });
   }
 };
 var Splitter_default2 = Splitter_1;
 
 // docs-src/components/table/Table.svelte
-var import_internal52 = __toESM(require_internal());
-var { console: console_17 } = import_internal52.globals;
-var file50 = "docs-src/components/table/Table.svelte";
+var import_internal53 = __toESM(require_internal());
+var { console: console_16 } = import_internal53.globals;
+var file51 = "docs-src/components/table/Table.svelte";
 function create_default_slot11(ctx) {
   let thead0;
   let tr0;
@@ -33676,1322 +34646,1322 @@ function create_default_slot11(ctx) {
   let td190;
   const block = {
     c: function create() {
-      thead0 = (0, import_internal52.element)("thead");
-      tr0 = (0, import_internal52.element)("tr");
-      th0 = (0, import_internal52.element)("th");
+      thead0 = (0, import_internal53.element)("thead");
+      tr0 = (0, import_internal53.element)("tr");
+      th0 = (0, import_internal53.element)("th");
       th0.textContent = "Year";
-      th1 = (0, import_internal52.element)("th");
+      th1 = (0, import_internal53.element)("th");
       th1.textContent = "Month";
-      th2 = (0, import_internal52.element)("th");
+      th2 = (0, import_internal53.element)("th");
       th2.textContent = "Price";
-      t3 = (0, import_internal52.space)();
-      thead1 = (0, import_internal52.element)("thead");
-      tr1 = (0, import_internal52.element)("tr");
-      th3 = (0, import_internal52.element)("th");
+      t3 = (0, import_internal53.space)();
+      thead1 = (0, import_internal53.element)("thead");
+      tr1 = (0, import_internal53.element)("tr");
+      th3 = (0, import_internal53.element)("th");
       th3.textContent = "Year: 2021";
-      t5 = (0, import_internal52.space)();
-      tbody0 = (0, import_internal52.element)("tbody");
-      tr2 = (0, import_internal52.element)("tr");
-      td0 = (0, import_internal52.element)("td");
+      t5 = (0, import_internal53.space)();
+      tbody0 = (0, import_internal53.element)("tbody");
+      tr2 = (0, import_internal53.element)("tr");
+      td0 = (0, import_internal53.element)("td");
       td0.textContent = "2021";
-      td1 = (0, import_internal52.element)("td");
+      td1 = (0, import_internal53.element)("td");
       td1.textContent = "January";
-      td2 = (0, import_internal52.element)("td");
+      td2 = (0, import_internal53.element)("td");
       td2.textContent = "$100";
-      t9 = (0, import_internal52.space)();
-      tr3 = (0, import_internal52.element)("tr");
-      td3 = (0, import_internal52.element)("td");
+      t9 = (0, import_internal53.space)();
+      tr3 = (0, import_internal53.element)("tr");
+      td3 = (0, import_internal53.element)("td");
       td3.textContent = "2021";
-      td4 = (0, import_internal52.element)("td");
+      td4 = (0, import_internal53.element)("td");
       td4.textContent = "February";
-      td5 = (0, import_internal52.element)("td");
+      td5 = (0, import_internal53.element)("td");
       td5.textContent = "$80";
-      t13 = (0, import_internal52.space)();
-      tr4 = (0, import_internal52.element)("tr");
-      td6 = (0, import_internal52.element)("td");
+      t13 = (0, import_internal53.space)();
+      tr4 = (0, import_internal53.element)("tr");
+      td6 = (0, import_internal53.element)("td");
       td6.textContent = "2021";
-      td7 = (0, import_internal52.element)("td");
+      td7 = (0, import_internal53.element)("td");
       td7.textContent = "March";
-      td8 = (0, import_internal52.element)("td");
+      td8 = (0, import_internal53.element)("td");
       td8.textContent = "$80";
-      t17 = (0, import_internal52.space)();
-      tr5 = (0, import_internal52.element)("tr");
-      td9 = (0, import_internal52.element)("td");
+      t17 = (0, import_internal53.space)();
+      tr5 = (0, import_internal53.element)("tr");
+      td9 = (0, import_internal53.element)("td");
       td9.textContent = "2021";
-      td10 = (0, import_internal52.element)("td");
+      td10 = (0, import_internal53.element)("td");
       td10.textContent = "April";
-      td11 = (0, import_internal52.element)("td");
+      td11 = (0, import_internal53.element)("td");
       td11.textContent = "$80";
-      t21 = (0, import_internal52.space)();
-      tr6 = (0, import_internal52.element)("tr");
-      td12 = (0, import_internal52.element)("td");
+      t21 = (0, import_internal53.space)();
+      tr6 = (0, import_internal53.element)("tr");
+      td12 = (0, import_internal53.element)("td");
       td12.textContent = "2021";
-      td13 = (0, import_internal52.element)("td");
+      td13 = (0, import_internal53.element)("td");
       td13.textContent = "May";
-      td14 = (0, import_internal52.element)("td");
+      td14 = (0, import_internal53.element)("td");
       td14.textContent = "$80";
-      t25 = (0, import_internal52.space)();
-      tr7 = (0, import_internal52.element)("tr");
-      td15 = (0, import_internal52.element)("td");
+      t25 = (0, import_internal53.space)();
+      tr7 = (0, import_internal53.element)("tr");
+      td15 = (0, import_internal53.element)("td");
       td15.textContent = "2021";
-      td16 = (0, import_internal52.element)("td");
+      td16 = (0, import_internal53.element)("td");
       td16.textContent = "June";
-      td17 = (0, import_internal52.element)("td");
+      td17 = (0, import_internal53.element)("td");
       td17.textContent = "$80";
-      t29 = (0, import_internal52.space)();
-      tbody1 = (0, import_internal52.element)("tbody");
-      tr8 = (0, import_internal52.element)("tr");
-      td18 = (0, import_internal52.element)("td");
+      t29 = (0, import_internal53.space)();
+      tbody1 = (0, import_internal53.element)("tbody");
+      tr8 = (0, import_internal53.element)("tr");
+      td18 = (0, import_internal53.element)("td");
       td18.textContent = "2021";
-      td19 = (0, import_internal52.element)("td");
+      td19 = (0, import_internal53.element)("td");
       td19.textContent = "April 1";
-      td20 = (0, import_internal52.element)("td");
+      td20 = (0, import_internal53.element)("td");
       td20.textContent = "$80";
-      t33 = (0, import_internal52.space)();
-      tr9 = (0, import_internal52.element)("tr");
-      td21 = (0, import_internal52.element)("td");
+      t33 = (0, import_internal53.space)();
+      tr9 = (0, import_internal53.element)("tr");
+      td21 = (0, import_internal53.element)("td");
       td21.textContent = "2021";
-      td22 = (0, import_internal52.element)("td");
+      td22 = (0, import_internal53.element)("td");
       td22.textContent = "April 2";
-      td23 = (0, import_internal52.element)("td");
+      td23 = (0, import_internal53.element)("td");
       td23.textContent = "$80";
-      t37 = (0, import_internal52.space)();
-      tbody2 = (0, import_internal52.element)("tbody");
-      tr10 = (0, import_internal52.element)("tr");
-      td24 = (0, import_internal52.element)("td");
+      t37 = (0, import_internal53.space)();
+      tbody2 = (0, import_internal53.element)("tbody");
+      tr10 = (0, import_internal53.element)("tr");
+      td24 = (0, import_internal53.element)("td");
       td24.textContent = "2021";
-      td25 = (0, import_internal52.element)("td");
+      td25 = (0, import_internal53.element)("td");
       td25.textContent = "May";
-      td26 = (0, import_internal52.element)("td");
+      td26 = (0, import_internal53.element)("td");
       td26.textContent = "$80";
-      t41 = (0, import_internal52.space)();
-      tr11 = (0, import_internal52.element)("tr");
-      td27 = (0, import_internal52.element)("td");
+      t41 = (0, import_internal53.space)();
+      tr11 = (0, import_internal53.element)("tr");
+      td27 = (0, import_internal53.element)("td");
       td27.textContent = "2021";
-      td28 = (0, import_internal52.element)("td");
+      td28 = (0, import_internal53.element)("td");
       td28.textContent = "July";
-      td29 = (0, import_internal52.element)("td");
+      td29 = (0, import_internal53.element)("td");
       td29.textContent = "$80";
-      t45 = (0, import_internal52.space)();
-      tr12 = (0, import_internal52.element)("tr");
-      td30 = (0, import_internal52.element)("td");
+      t45 = (0, import_internal53.space)();
+      tr12 = (0, import_internal53.element)("tr");
+      td30 = (0, import_internal53.element)("td");
       td30.textContent = "2021";
-      td31 = (0, import_internal52.element)("td");
+      td31 = (0, import_internal53.element)("td");
       td31.textContent = "August";
-      td32 = (0, import_internal52.element)("td");
+      td32 = (0, import_internal53.element)("td");
       td32.textContent = "$80";
-      t49 = (0, import_internal52.space)();
-      tr13 = (0, import_internal52.element)("tr");
-      td33 = (0, import_internal52.element)("td");
+      t49 = (0, import_internal53.space)();
+      tr13 = (0, import_internal53.element)("tr");
+      td33 = (0, import_internal53.element)("td");
       td33.textContent = "2021";
-      td34 = (0, import_internal52.element)("td");
+      td34 = (0, import_internal53.element)("td");
       td34.textContent = "September";
-      td35 = (0, import_internal52.element)("td");
+      td35 = (0, import_internal53.element)("td");
       td35.textContent = "$80";
-      t53 = (0, import_internal52.space)();
-      tr14 = (0, import_internal52.element)("tr");
-      td36 = (0, import_internal52.element)("td");
+      t53 = (0, import_internal53.space)();
+      tr14 = (0, import_internal53.element)("tr");
+      td36 = (0, import_internal53.element)("td");
       td36.textContent = "2021";
-      td37 = (0, import_internal52.element)("td");
+      td37 = (0, import_internal53.element)("td");
       td37.textContent = "October";
-      td38 = (0, import_internal52.element)("td");
+      td38 = (0, import_internal53.element)("td");
       td38.textContent = "$80";
-      t57 = (0, import_internal52.space)();
-      tr15 = (0, import_internal52.element)("tr");
-      td39 = (0, import_internal52.element)("td");
+      t57 = (0, import_internal53.space)();
+      tr15 = (0, import_internal53.element)("tr");
+      td39 = (0, import_internal53.element)("td");
       td39.textContent = "2021";
-      td40 = (0, import_internal52.element)("td");
+      td40 = (0, import_internal53.element)("td");
       td40.textContent = "November";
-      td41 = (0, import_internal52.element)("td");
+      td41 = (0, import_internal53.element)("td");
       td41.textContent = "$80";
-      t61 = (0, import_internal52.space)();
-      tr16 = (0, import_internal52.element)("tr");
-      td42 = (0, import_internal52.element)("td");
+      t61 = (0, import_internal53.space)();
+      tr16 = (0, import_internal53.element)("tr");
+      td42 = (0, import_internal53.element)("td");
       td42.textContent = "2021";
-      td43 = (0, import_internal52.element)("td");
+      td43 = (0, import_internal53.element)("td");
       td43.textContent = "December";
-      td44 = (0, import_internal52.element)("td");
+      td44 = (0, import_internal53.element)("td");
       td44.textContent = "$80";
-      t65 = (0, import_internal52.space)();
-      thead2 = (0, import_internal52.element)("thead");
-      tr17 = (0, import_internal52.element)("tr");
-      th4 = (0, import_internal52.element)("th");
+      t65 = (0, import_internal53.space)();
+      thead2 = (0, import_internal53.element)("thead");
+      tr17 = (0, import_internal53.element)("tr");
+      th4 = (0, import_internal53.element)("th");
       th4.textContent = "Year: 2020";
-      t67 = (0, import_internal52.space)();
-      tbody3 = (0, import_internal52.element)("tbody");
-      tr18 = (0, import_internal52.element)("tr");
-      td45 = (0, import_internal52.element)("td");
+      t67 = (0, import_internal53.space)();
+      tbody3 = (0, import_internal53.element)("tbody");
+      tr18 = (0, import_internal53.element)("tr");
+      td45 = (0, import_internal53.element)("td");
       td45.textContent = "2020";
-      td46 = (0, import_internal52.element)("td");
+      td46 = (0, import_internal53.element)("td");
       td46.textContent = "January";
-      td47 = (0, import_internal52.element)("td");
+      td47 = (0, import_internal53.element)("td");
       td47.textContent = "$100";
-      t71 = (0, import_internal52.space)();
-      tr19 = (0, import_internal52.element)("tr");
-      td48 = (0, import_internal52.element)("td");
+      t71 = (0, import_internal53.space)();
+      tr19 = (0, import_internal53.element)("tr");
+      td48 = (0, import_internal53.element)("td");
       td48.textContent = "2020";
-      td49 = (0, import_internal52.element)("td");
+      td49 = (0, import_internal53.element)("td");
       td49.textContent = "February";
-      td50 = (0, import_internal52.element)("td");
+      td50 = (0, import_internal53.element)("td");
       td50.textContent = "$80";
-      t75 = (0, import_internal52.space)();
-      tr20 = (0, import_internal52.element)("tr");
-      td51 = (0, import_internal52.element)("td");
+      t75 = (0, import_internal53.space)();
+      tr20 = (0, import_internal53.element)("tr");
+      td51 = (0, import_internal53.element)("td");
       td51.textContent = "2020";
-      td52 = (0, import_internal52.element)("td");
+      td52 = (0, import_internal53.element)("td");
       td52.textContent = "March";
-      td53 = (0, import_internal52.element)("td");
+      td53 = (0, import_internal53.element)("td");
       td53.textContent = "$80";
-      t79 = (0, import_internal52.space)();
-      tr21 = (0, import_internal52.element)("tr");
-      td54 = (0, import_internal52.element)("td");
+      t79 = (0, import_internal53.space)();
+      tr21 = (0, import_internal53.element)("tr");
+      td54 = (0, import_internal53.element)("td");
       td54.textContent = "2020";
-      td55 = (0, import_internal52.element)("td");
+      td55 = (0, import_internal53.element)("td");
       td55.textContent = "April";
-      td56 = (0, import_internal52.element)("td");
+      td56 = (0, import_internal53.element)("td");
       td56.textContent = "$80";
-      t83 = (0, import_internal52.space)();
-      tr22 = (0, import_internal52.element)("tr");
-      td57 = (0, import_internal52.element)("td");
+      t83 = (0, import_internal53.space)();
+      tr22 = (0, import_internal53.element)("tr");
+      td57 = (0, import_internal53.element)("td");
       td57.textContent = "2020";
-      td58 = (0, import_internal52.element)("td");
+      td58 = (0, import_internal53.element)("td");
       td58.textContent = "May";
-      td59 = (0, import_internal52.element)("td");
+      td59 = (0, import_internal53.element)("td");
       td59.textContent = "$80";
-      t87 = (0, import_internal52.space)();
-      tr23 = (0, import_internal52.element)("tr");
-      td60 = (0, import_internal52.element)("td");
+      t87 = (0, import_internal53.space)();
+      tr23 = (0, import_internal53.element)("tr");
+      td60 = (0, import_internal53.element)("td");
       td60.textContent = "2020";
-      td61 = (0, import_internal52.element)("td");
+      td61 = (0, import_internal53.element)("td");
       td61.textContent = "June";
-      td62 = (0, import_internal52.element)("td");
+      td62 = (0, import_internal53.element)("td");
       td62.textContent = "$80";
-      t91 = (0, import_internal52.space)();
-      tr24 = (0, import_internal52.element)("tr");
-      td63 = (0, import_internal52.element)("td");
+      t91 = (0, import_internal53.space)();
+      tr24 = (0, import_internal53.element)("tr");
+      td63 = (0, import_internal53.element)("td");
       td63.textContent = "2020";
-      td64 = (0, import_internal52.element)("td");
+      td64 = (0, import_internal53.element)("td");
       td64.textContent = "July";
-      td65 = (0, import_internal52.element)("td");
+      td65 = (0, import_internal53.element)("td");
       td65.textContent = "$80";
-      t95 = (0, import_internal52.space)();
-      tr25 = (0, import_internal52.element)("tr");
-      td66 = (0, import_internal52.element)("td");
+      t95 = (0, import_internal53.space)();
+      tr25 = (0, import_internal53.element)("tr");
+      td66 = (0, import_internal53.element)("td");
       td66.textContent = "2020";
-      td67 = (0, import_internal52.element)("td");
+      td67 = (0, import_internal53.element)("td");
       td67.textContent = "August";
-      td68 = (0, import_internal52.element)("td");
+      td68 = (0, import_internal53.element)("td");
       td68.textContent = "$80";
-      t99 = (0, import_internal52.space)();
-      tr26 = (0, import_internal52.element)("tr");
-      td69 = (0, import_internal52.element)("td");
+      t99 = (0, import_internal53.space)();
+      tr26 = (0, import_internal53.element)("tr");
+      td69 = (0, import_internal53.element)("td");
       td69.textContent = "2020";
-      td70 = (0, import_internal52.element)("td");
+      td70 = (0, import_internal53.element)("td");
       td70.textContent = "September";
-      td71 = (0, import_internal52.element)("td");
+      td71 = (0, import_internal53.element)("td");
       td71.textContent = "$80";
-      t103 = (0, import_internal52.space)();
-      tr27 = (0, import_internal52.element)("tr");
-      td72 = (0, import_internal52.element)("td");
+      t103 = (0, import_internal53.space)();
+      tr27 = (0, import_internal53.element)("tr");
+      td72 = (0, import_internal53.element)("td");
       td72.textContent = "2020";
-      td73 = (0, import_internal52.element)("td");
+      td73 = (0, import_internal53.element)("td");
       td73.textContent = "October";
-      td74 = (0, import_internal52.element)("td");
+      td74 = (0, import_internal53.element)("td");
       td74.textContent = "$80";
-      t107 = (0, import_internal52.space)();
-      tr28 = (0, import_internal52.element)("tr");
-      td75 = (0, import_internal52.element)("td");
+      t107 = (0, import_internal53.space)();
+      tr28 = (0, import_internal53.element)("tr");
+      td75 = (0, import_internal53.element)("td");
       td75.textContent = "2020";
-      td76 = (0, import_internal52.element)("td");
+      td76 = (0, import_internal53.element)("td");
       td76.textContent = "November";
-      td77 = (0, import_internal52.element)("td");
+      td77 = (0, import_internal53.element)("td");
       td77.textContent = "$80";
-      t111 = (0, import_internal52.space)();
-      tr29 = (0, import_internal52.element)("tr");
-      td78 = (0, import_internal52.element)("td");
+      t111 = (0, import_internal53.space)();
+      tr29 = (0, import_internal53.element)("tr");
+      td78 = (0, import_internal53.element)("td");
       td78.textContent = "2020";
-      td79 = (0, import_internal52.element)("td");
+      td79 = (0, import_internal53.element)("td");
       td79.textContent = "December";
-      td80 = (0, import_internal52.element)("td");
+      td80 = (0, import_internal53.element)("td");
       td80.textContent = "$80";
-      t115 = (0, import_internal52.space)();
-      thead3 = (0, import_internal52.element)("thead");
-      tr30 = (0, import_internal52.element)("tr");
-      th5 = (0, import_internal52.element)("th");
+      t115 = (0, import_internal53.space)();
+      thead3 = (0, import_internal53.element)("thead");
+      tr30 = (0, import_internal53.element)("tr");
+      th5 = (0, import_internal53.element)("th");
       th5.textContent = "Year: 2019";
-      t117 = (0, import_internal52.space)();
-      tbody4 = (0, import_internal52.element)("tbody");
-      tr31 = (0, import_internal52.element)("tr");
-      td81 = (0, import_internal52.element)("td");
+      t117 = (0, import_internal53.space)();
+      tbody4 = (0, import_internal53.element)("tbody");
+      tr31 = (0, import_internal53.element)("tr");
+      td81 = (0, import_internal53.element)("td");
       td81.textContent = "2019";
-      td82 = (0, import_internal52.element)("td");
+      td82 = (0, import_internal53.element)("td");
       td82.textContent = "January";
-      td83 = (0, import_internal52.element)("td");
+      td83 = (0, import_internal53.element)("td");
       td83.textContent = "$100";
-      t121 = (0, import_internal52.space)();
-      tr32 = (0, import_internal52.element)("tr");
-      td84 = (0, import_internal52.element)("td");
+      t121 = (0, import_internal53.space)();
+      tr32 = (0, import_internal53.element)("tr");
+      td84 = (0, import_internal53.element)("td");
       td84.textContent = "2019";
-      td85 = (0, import_internal52.element)("td");
+      td85 = (0, import_internal53.element)("td");
       td85.textContent = "February";
-      td86 = (0, import_internal52.element)("td");
+      td86 = (0, import_internal53.element)("td");
       td86.textContent = "$80";
-      t125 = (0, import_internal52.space)();
-      tr33 = (0, import_internal52.element)("tr");
-      td87 = (0, import_internal52.element)("td");
+      t125 = (0, import_internal53.space)();
+      tr33 = (0, import_internal53.element)("tr");
+      td87 = (0, import_internal53.element)("td");
       td87.textContent = "2019";
-      td88 = (0, import_internal52.element)("td");
+      td88 = (0, import_internal53.element)("td");
       td88.textContent = "March";
-      td89 = (0, import_internal52.element)("td");
+      td89 = (0, import_internal53.element)("td");
       td89.textContent = "$80";
-      t129 = (0, import_internal52.space)();
-      tr34 = (0, import_internal52.element)("tr");
-      td90 = (0, import_internal52.element)("td");
+      t129 = (0, import_internal53.space)();
+      tr34 = (0, import_internal53.element)("tr");
+      td90 = (0, import_internal53.element)("td");
       td90.textContent = "2019";
-      td91 = (0, import_internal52.element)("td");
+      td91 = (0, import_internal53.element)("td");
       td91.textContent = "April";
-      td92 = (0, import_internal52.element)("td");
+      td92 = (0, import_internal53.element)("td");
       td92.textContent = "$80";
-      t133 = (0, import_internal52.space)();
-      tr35 = (0, import_internal52.element)("tr");
-      td93 = (0, import_internal52.element)("td");
+      t133 = (0, import_internal53.space)();
+      tr35 = (0, import_internal53.element)("tr");
+      td93 = (0, import_internal53.element)("td");
       td93.textContent = "2019";
-      td94 = (0, import_internal52.element)("td");
+      td94 = (0, import_internal53.element)("td");
       td94.textContent = "May";
-      td95 = (0, import_internal52.element)("td");
+      td95 = (0, import_internal53.element)("td");
       td95.textContent = "$80";
-      t137 = (0, import_internal52.space)();
-      tr36 = (0, import_internal52.element)("tr");
-      td96 = (0, import_internal52.element)("td");
+      t137 = (0, import_internal53.space)();
+      tr36 = (0, import_internal53.element)("tr");
+      td96 = (0, import_internal53.element)("td");
       td96.textContent = "2019";
-      td97 = (0, import_internal52.element)("td");
+      td97 = (0, import_internal53.element)("td");
       td97.textContent = "June";
-      td98 = (0, import_internal52.element)("td");
+      td98 = (0, import_internal53.element)("td");
       td98.textContent = "$80";
-      t141 = (0, import_internal52.space)();
-      tr37 = (0, import_internal52.element)("tr");
-      td99 = (0, import_internal52.element)("td");
+      t141 = (0, import_internal53.space)();
+      tr37 = (0, import_internal53.element)("tr");
+      td99 = (0, import_internal53.element)("td");
       td99.textContent = "2019";
-      td100 = (0, import_internal52.element)("td");
+      td100 = (0, import_internal53.element)("td");
       td100.textContent = "July";
-      td101 = (0, import_internal52.element)("td");
+      td101 = (0, import_internal53.element)("td");
       td101.textContent = "$80";
-      t145 = (0, import_internal52.space)();
-      tr38 = (0, import_internal52.element)("tr");
-      td102 = (0, import_internal52.element)("td");
+      t145 = (0, import_internal53.space)();
+      tr38 = (0, import_internal53.element)("tr");
+      td102 = (0, import_internal53.element)("td");
       td102.textContent = "2019";
-      td103 = (0, import_internal52.element)("td");
+      td103 = (0, import_internal53.element)("td");
       td103.textContent = "August";
-      td104 = (0, import_internal52.element)("td");
+      td104 = (0, import_internal53.element)("td");
       td104.textContent = "$80";
-      t149 = (0, import_internal52.space)();
-      tr39 = (0, import_internal52.element)("tr");
-      td105 = (0, import_internal52.element)("td");
+      t149 = (0, import_internal53.space)();
+      tr39 = (0, import_internal53.element)("tr");
+      td105 = (0, import_internal53.element)("td");
       td105.textContent = "2019";
-      td106 = (0, import_internal52.element)("td");
+      td106 = (0, import_internal53.element)("td");
       td106.textContent = "September";
-      td107 = (0, import_internal52.element)("td");
+      td107 = (0, import_internal53.element)("td");
       td107.textContent = "$80";
-      t153 = (0, import_internal52.space)();
-      tr40 = (0, import_internal52.element)("tr");
-      td108 = (0, import_internal52.element)("td");
+      t153 = (0, import_internal53.space)();
+      tr40 = (0, import_internal53.element)("tr");
+      td108 = (0, import_internal53.element)("td");
       td108.textContent = "2019";
-      td109 = (0, import_internal52.element)("td");
+      td109 = (0, import_internal53.element)("td");
       td109.textContent = "October";
-      td110 = (0, import_internal52.element)("td");
+      td110 = (0, import_internal53.element)("td");
       td110.textContent = "$80";
-      t157 = (0, import_internal52.space)();
-      tr41 = (0, import_internal52.element)("tr");
-      td111 = (0, import_internal52.element)("td");
+      t157 = (0, import_internal53.space)();
+      tr41 = (0, import_internal53.element)("tr");
+      td111 = (0, import_internal53.element)("td");
       td111.textContent = "2019";
-      td112 = (0, import_internal52.element)("td");
+      td112 = (0, import_internal53.element)("td");
       td112.textContent = "November";
-      td113 = (0, import_internal52.element)("td");
+      td113 = (0, import_internal53.element)("td");
       td113.textContent = "$80";
-      t161 = (0, import_internal52.space)();
-      tr42 = (0, import_internal52.element)("tr");
-      td114 = (0, import_internal52.element)("td");
+      t161 = (0, import_internal53.space)();
+      tr42 = (0, import_internal53.element)("tr");
+      td114 = (0, import_internal53.element)("td");
       td114.textContent = "2019";
-      td115 = (0, import_internal52.element)("td");
+      td115 = (0, import_internal53.element)("td");
       td115.textContent = "December";
-      td116 = (0, import_internal52.element)("td");
+      td116 = (0, import_internal53.element)("td");
       td116.textContent = "$80";
-      t165 = (0, import_internal52.space)();
-      thead4 = (0, import_internal52.element)("thead");
-      tr43 = (0, import_internal52.element)("tr");
-      th6 = (0, import_internal52.element)("th");
+      t165 = (0, import_internal53.space)();
+      thead4 = (0, import_internal53.element)("thead");
+      tr43 = (0, import_internal53.element)("tr");
+      th6 = (0, import_internal53.element)("th");
       th6.textContent = "Year: 2018";
-      t167 = (0, import_internal52.space)();
-      tbody5 = (0, import_internal52.element)("tbody");
-      tr44 = (0, import_internal52.element)("tr");
-      td117 = (0, import_internal52.element)("td");
+      t167 = (0, import_internal53.space)();
+      tbody5 = (0, import_internal53.element)("tbody");
+      tr44 = (0, import_internal53.element)("tr");
+      td117 = (0, import_internal53.element)("td");
       td117.textContent = "2018";
-      td118 = (0, import_internal52.element)("td");
+      td118 = (0, import_internal53.element)("td");
       td118.textContent = "January";
-      td119 = (0, import_internal52.element)("td");
+      td119 = (0, import_internal53.element)("td");
       td119.textContent = "$100";
-      t171 = (0, import_internal52.space)();
-      tr45 = (0, import_internal52.element)("tr");
-      td120 = (0, import_internal52.element)("td");
+      t171 = (0, import_internal53.space)();
+      tr45 = (0, import_internal53.element)("tr");
+      td120 = (0, import_internal53.element)("td");
       td120.textContent = "2018";
-      td121 = (0, import_internal52.element)("td");
+      td121 = (0, import_internal53.element)("td");
       td121.textContent = "February";
-      td122 = (0, import_internal52.element)("td");
+      td122 = (0, import_internal53.element)("td");
       td122.textContent = "$80";
-      t175 = (0, import_internal52.space)();
-      tr46 = (0, import_internal52.element)("tr");
-      td123 = (0, import_internal52.element)("td");
+      t175 = (0, import_internal53.space)();
+      tr46 = (0, import_internal53.element)("tr");
+      td123 = (0, import_internal53.element)("td");
       td123.textContent = "2018";
-      td124 = (0, import_internal52.element)("td");
+      td124 = (0, import_internal53.element)("td");
       td124.textContent = "March";
-      td125 = (0, import_internal52.element)("td");
+      td125 = (0, import_internal53.element)("td");
       td125.textContent = "$80";
-      t179 = (0, import_internal52.space)();
-      tr47 = (0, import_internal52.element)("tr");
-      td126 = (0, import_internal52.element)("td");
+      t179 = (0, import_internal53.space)();
+      tr47 = (0, import_internal53.element)("tr");
+      td126 = (0, import_internal53.element)("td");
       td126.textContent = "2018";
-      td127 = (0, import_internal52.element)("td");
+      td127 = (0, import_internal53.element)("td");
       td127.textContent = "April";
-      td128 = (0, import_internal52.element)("td");
+      td128 = (0, import_internal53.element)("td");
       td128.textContent = "$80";
-      t183 = (0, import_internal52.space)();
-      tr48 = (0, import_internal52.element)("tr");
-      td129 = (0, import_internal52.element)("td");
+      t183 = (0, import_internal53.space)();
+      tr48 = (0, import_internal53.element)("tr");
+      td129 = (0, import_internal53.element)("td");
       td129.textContent = "2018";
-      td130 = (0, import_internal52.element)("td");
+      td130 = (0, import_internal53.element)("td");
       td130.textContent = "May";
-      td131 = (0, import_internal52.element)("td");
+      td131 = (0, import_internal53.element)("td");
       td131.textContent = "$80";
-      t187 = (0, import_internal52.space)();
-      tr49 = (0, import_internal52.element)("tr");
-      td132 = (0, import_internal52.element)("td");
+      t187 = (0, import_internal53.space)();
+      tr49 = (0, import_internal53.element)("tr");
+      td132 = (0, import_internal53.element)("td");
       td132.textContent = "2018";
-      td133 = (0, import_internal52.element)("td");
+      td133 = (0, import_internal53.element)("td");
       td133.textContent = "June";
-      td134 = (0, import_internal52.element)("td");
+      td134 = (0, import_internal53.element)("td");
       td134.textContent = "$80";
-      t191 = (0, import_internal52.space)();
-      tr50 = (0, import_internal52.element)("tr");
-      td135 = (0, import_internal52.element)("td");
+      t191 = (0, import_internal53.space)();
+      tr50 = (0, import_internal53.element)("tr");
+      td135 = (0, import_internal53.element)("td");
       td135.textContent = "2018";
-      td136 = (0, import_internal52.element)("td");
+      td136 = (0, import_internal53.element)("td");
       td136.textContent = "July";
-      td137 = (0, import_internal52.element)("td");
+      td137 = (0, import_internal53.element)("td");
       td137.textContent = "$80";
-      t195 = (0, import_internal52.space)();
-      tr51 = (0, import_internal52.element)("tr");
-      td138 = (0, import_internal52.element)("td");
+      t195 = (0, import_internal53.space)();
+      tr51 = (0, import_internal53.element)("tr");
+      td138 = (0, import_internal53.element)("td");
       td138.textContent = "2018";
-      td139 = (0, import_internal52.element)("td");
+      td139 = (0, import_internal53.element)("td");
       td139.textContent = "August";
-      td140 = (0, import_internal52.element)("td");
+      td140 = (0, import_internal53.element)("td");
       td140.textContent = "$80";
-      t199 = (0, import_internal52.space)();
-      tr52 = (0, import_internal52.element)("tr");
-      td141 = (0, import_internal52.element)("td");
+      t199 = (0, import_internal53.space)();
+      tr52 = (0, import_internal53.element)("tr");
+      td141 = (0, import_internal53.element)("td");
       td141.textContent = "2018";
-      td142 = (0, import_internal52.element)("td");
+      td142 = (0, import_internal53.element)("td");
       td142.textContent = "September";
-      td143 = (0, import_internal52.element)("td");
+      td143 = (0, import_internal53.element)("td");
       td143.textContent = "$80";
-      t203 = (0, import_internal52.space)();
-      tr53 = (0, import_internal52.element)("tr");
-      td144 = (0, import_internal52.element)("td");
+      t203 = (0, import_internal53.space)();
+      tr53 = (0, import_internal53.element)("tr");
+      td144 = (0, import_internal53.element)("td");
       td144.textContent = "2018";
-      td145 = (0, import_internal52.element)("td");
+      td145 = (0, import_internal53.element)("td");
       td145.textContent = "October";
-      td146 = (0, import_internal52.element)("td");
+      td146 = (0, import_internal53.element)("td");
       td146.textContent = "$80";
-      t207 = (0, import_internal52.space)();
-      tr54 = (0, import_internal52.element)("tr");
-      td147 = (0, import_internal52.element)("td");
+      t207 = (0, import_internal53.space)();
+      tr54 = (0, import_internal53.element)("tr");
+      td147 = (0, import_internal53.element)("td");
       td147.textContent = "2018";
-      td148 = (0, import_internal52.element)("td");
+      td148 = (0, import_internal53.element)("td");
       td148.textContent = "November";
-      td149 = (0, import_internal52.element)("td");
+      td149 = (0, import_internal53.element)("td");
       td149.textContent = "$80";
-      t211 = (0, import_internal52.space)();
-      tr55 = (0, import_internal52.element)("tr");
-      td150 = (0, import_internal52.element)("td");
+      t211 = (0, import_internal53.space)();
+      tr55 = (0, import_internal53.element)("tr");
+      td150 = (0, import_internal53.element)("td");
       td150.textContent = "2018";
-      td151 = (0, import_internal52.element)("td");
+      td151 = (0, import_internal53.element)("td");
       td151.textContent = "December";
-      td152 = (0, import_internal52.element)("td");
+      td152 = (0, import_internal53.element)("td");
       td152.textContent = "$80";
-      t215 = (0, import_internal52.space)();
-      thead5 = (0, import_internal52.element)("thead");
-      tr56 = (0, import_internal52.element)("tr");
-      th7 = (0, import_internal52.element)("th");
+      t215 = (0, import_internal53.space)();
+      thead5 = (0, import_internal53.element)("thead");
+      tr56 = (0, import_internal53.element)("tr");
+      th7 = (0, import_internal53.element)("th");
       th7.textContent = "Year: 2017";
-      t217 = (0, import_internal52.space)();
-      tbody6 = (0, import_internal52.element)("tbody");
-      tr57 = (0, import_internal52.element)("tr");
-      td153 = (0, import_internal52.element)("td");
+      t217 = (0, import_internal53.space)();
+      tbody6 = (0, import_internal53.element)("tbody");
+      tr57 = (0, import_internal53.element)("tr");
+      td153 = (0, import_internal53.element)("td");
       td153.textContent = "2017";
-      td154 = (0, import_internal52.element)("td");
+      td154 = (0, import_internal53.element)("td");
       td154.textContent = "January";
-      td155 = (0, import_internal52.element)("td");
+      td155 = (0, import_internal53.element)("td");
       td155.textContent = "$100";
-      t221 = (0, import_internal52.space)();
-      tr58 = (0, import_internal52.element)("tr");
-      td156 = (0, import_internal52.element)("td");
+      t221 = (0, import_internal53.space)();
+      tr58 = (0, import_internal53.element)("tr");
+      td156 = (0, import_internal53.element)("td");
       td156.textContent = "2017";
-      td157 = (0, import_internal52.element)("td");
+      td157 = (0, import_internal53.element)("td");
       td157.textContent = "February";
-      td158 = (0, import_internal52.element)("td");
+      td158 = (0, import_internal53.element)("td");
       td158.textContent = "$80";
-      t225 = (0, import_internal52.space)();
-      tr59 = (0, import_internal52.element)("tr");
-      td159 = (0, import_internal52.element)("td");
+      t225 = (0, import_internal53.space)();
+      tr59 = (0, import_internal53.element)("tr");
+      td159 = (0, import_internal53.element)("td");
       td159.textContent = "2017";
-      td160 = (0, import_internal52.element)("td");
+      td160 = (0, import_internal53.element)("td");
       td160.textContent = "March";
-      td161 = (0, import_internal52.element)("td");
+      td161 = (0, import_internal53.element)("td");
       td161.textContent = "$80";
-      t229 = (0, import_internal52.space)();
-      tr60 = (0, import_internal52.element)("tr");
-      td162 = (0, import_internal52.element)("td");
+      t229 = (0, import_internal53.space)();
+      tr60 = (0, import_internal53.element)("tr");
+      td162 = (0, import_internal53.element)("td");
       td162.textContent = "2017";
-      td163 = (0, import_internal52.element)("td");
+      td163 = (0, import_internal53.element)("td");
       td163.textContent = "April";
-      td164 = (0, import_internal52.element)("td");
+      td164 = (0, import_internal53.element)("td");
       td164.textContent = "$80";
-      t233 = (0, import_internal52.space)();
-      tr61 = (0, import_internal52.element)("tr");
-      td165 = (0, import_internal52.element)("td");
+      t233 = (0, import_internal53.space)();
+      tr61 = (0, import_internal53.element)("tr");
+      td165 = (0, import_internal53.element)("td");
       td165.textContent = "2017";
-      td166 = (0, import_internal52.element)("td");
+      td166 = (0, import_internal53.element)("td");
       td166.textContent = "May";
-      td167 = (0, import_internal52.element)("td");
+      td167 = (0, import_internal53.element)("td");
       td167.textContent = "$80";
-      t237 = (0, import_internal52.space)();
-      tr62 = (0, import_internal52.element)("tr");
-      td168 = (0, import_internal52.element)("td");
+      t237 = (0, import_internal53.space)();
+      tr62 = (0, import_internal53.element)("tr");
+      td168 = (0, import_internal53.element)("td");
       td168.textContent = "2017";
-      td169 = (0, import_internal52.element)("td");
+      td169 = (0, import_internal53.element)("td");
       td169.textContent = "June";
-      td170 = (0, import_internal52.element)("td");
+      td170 = (0, import_internal53.element)("td");
       td170.textContent = "$80";
-      t241 = (0, import_internal52.space)();
-      tr63 = (0, import_internal52.element)("tr");
-      td171 = (0, import_internal52.element)("td");
+      t241 = (0, import_internal53.space)();
+      tr63 = (0, import_internal53.element)("tr");
+      td171 = (0, import_internal53.element)("td");
       td171.textContent = "2017";
-      td172 = (0, import_internal52.element)("td");
+      td172 = (0, import_internal53.element)("td");
       td172.textContent = "July";
-      td173 = (0, import_internal52.element)("td");
+      td173 = (0, import_internal53.element)("td");
       td173.textContent = "$80";
-      t245 = (0, import_internal52.space)();
-      tr64 = (0, import_internal52.element)("tr");
-      td174 = (0, import_internal52.element)("td");
+      t245 = (0, import_internal53.space)();
+      tr64 = (0, import_internal53.element)("tr");
+      td174 = (0, import_internal53.element)("td");
       td174.textContent = "2017";
-      td175 = (0, import_internal52.element)("td");
+      td175 = (0, import_internal53.element)("td");
       td175.textContent = "August";
-      td176 = (0, import_internal52.element)("td");
+      td176 = (0, import_internal53.element)("td");
       td176.textContent = "$80";
-      t249 = (0, import_internal52.space)();
-      tr65 = (0, import_internal52.element)("tr");
-      td177 = (0, import_internal52.element)("td");
+      t249 = (0, import_internal53.space)();
+      tr65 = (0, import_internal53.element)("tr");
+      td177 = (0, import_internal53.element)("td");
       td177.textContent = "2017";
-      td178 = (0, import_internal52.element)("td");
+      td178 = (0, import_internal53.element)("td");
       td178.textContent = "September";
-      td179 = (0, import_internal52.element)("td");
+      td179 = (0, import_internal53.element)("td");
       td179.textContent = "$80";
-      t253 = (0, import_internal52.space)();
-      tr66 = (0, import_internal52.element)("tr");
-      td180 = (0, import_internal52.element)("td");
+      t253 = (0, import_internal53.space)();
+      tr66 = (0, import_internal53.element)("tr");
+      td180 = (0, import_internal53.element)("td");
       td180.textContent = "2017";
-      td181 = (0, import_internal52.element)("td");
+      td181 = (0, import_internal53.element)("td");
       td181.textContent = "October";
-      td182 = (0, import_internal52.element)("td");
+      td182 = (0, import_internal53.element)("td");
       td182.textContent = "$80";
-      t257 = (0, import_internal52.space)();
-      tr67 = (0, import_internal52.element)("tr");
-      td183 = (0, import_internal52.element)("td");
+      t257 = (0, import_internal53.space)();
+      tr67 = (0, import_internal53.element)("tr");
+      td183 = (0, import_internal53.element)("td");
       td183.textContent = "2017";
-      td184 = (0, import_internal52.element)("td");
+      td184 = (0, import_internal53.element)("td");
       td184.textContent = "November";
-      td185 = (0, import_internal52.element)("td");
+      td185 = (0, import_internal53.element)("td");
       td185.textContent = "$80";
-      t261 = (0, import_internal52.space)();
-      tr68 = (0, import_internal52.element)("tr");
-      td186 = (0, import_internal52.element)("td");
+      t261 = (0, import_internal53.space)();
+      tr68 = (0, import_internal53.element)("tr");
+      td186 = (0, import_internal53.element)("td");
       td186.textContent = "2017";
-      td187 = (0, import_internal52.element)("td");
+      td187 = (0, import_internal53.element)("td");
       td187.textContent = "December";
-      td188 = (0, import_internal52.element)("td");
+      td188 = (0, import_internal53.element)("td");
       td188.textContent = "$80";
-      t265 = (0, import_internal52.space)();
-      tfoot = (0, import_internal52.element)("tfoot");
-      tr69 = (0, import_internal52.element)("tr");
-      td189 = (0, import_internal52.element)("td");
+      t265 = (0, import_internal53.space)();
+      tfoot = (0, import_internal53.element)("tfoot");
+      tr69 = (0, import_internal53.element)("tr");
+      td189 = (0, import_internal53.element)("td");
       td189.textContent = "Sum";
-      td190 = (0, import_internal52.element)("td");
+      td190 = (0, import_internal53.element)("td");
       td190.textContent = "$180";
-      (0, import_internal52.add_location)(th0, file50, 8, 7, 175);
-      (0, import_internal52.add_location)(th1, file50, 8, 20, 188);
-      (0, import_internal52.add_location)(th2, file50, 8, 34, 202);
-      (0, import_internal52.add_location)(tr0, file50, 8, 3, 171);
-      (0, import_internal52.add_location)(thead0, file50, 7, 2, 160);
-      (0, import_internal52.attr_dev)(th3, "colspan", "3");
-      (0, import_internal52.add_location)(th3, file50, 11, 7, 250);
-      (0, import_internal52.add_location)(tr1, file50, 11, 3, 246);
-      (0, import_internal52.add_location)(thead1, file50, 10, 2, 235);
-      (0, import_internal52.add_location)(td0, file50, 14, 23, 331);
-      (0, import_internal52.add_location)(td1, file50, 14, 36, 344);
-      (0, import_internal52.add_location)(td2, file50, 14, 52, 360);
-      (0, import_internal52.attr_dev)(tr2, "class", "row-sel");
-      (0, import_internal52.add_location)(tr2, file50, 14, 3, 311);
-      (0, import_internal52.add_location)(td3, file50, 15, 23, 402);
-      (0, import_internal52.add_location)(td4, file50, 15, 36, 415);
-      (0, import_internal52.add_location)(td5, file50, 15, 53, 432);
-      (0, import_internal52.attr_dev)(tr3, "class", "row-sel");
-      (0, import_internal52.add_location)(tr3, file50, 15, 3, 382);
-      (0, import_internal52.add_location)(td6, file50, 16, 23, 473);
-      (0, import_internal52.add_location)(td7, file50, 16, 36, 486);
-      (0, import_internal52.add_location)(td8, file50, 16, 50, 500);
-      (0, import_internal52.attr_dev)(tr4, "class", "row-sel");
-      (0, import_internal52.add_location)(tr4, file50, 16, 3, 453);
-      (0, import_internal52.add_location)(td9, file50, 17, 23, 541);
-      (0, import_internal52.add_location)(td10, file50, 17, 36, 554);
-      (0, import_internal52.add_location)(td11, file50, 17, 50, 568);
-      (0, import_internal52.attr_dev)(tr5, "class", "row-sel");
-      (0, import_internal52.add_location)(tr5, file50, 17, 3, 521);
-      (0, import_internal52.add_location)(td12, file50, 18, 23, 609);
-      (0, import_internal52.add_location)(td13, file50, 18, 36, 622);
-      (0, import_internal52.add_location)(td14, file50, 18, 48, 634);
-      (0, import_internal52.attr_dev)(tr6, "class", "row-sel");
-      (0, import_internal52.add_location)(tr6, file50, 18, 3, 589);
-      (0, import_internal52.add_location)(td15, file50, 19, 23, 675);
-      (0, import_internal52.add_location)(td16, file50, 19, 36, 688);
-      (0, import_internal52.add_location)(td17, file50, 19, 49, 701);
-      (0, import_internal52.attr_dev)(tr7, "class", "row-sel");
-      (0, import_internal52.add_location)(tr7, file50, 19, 3, 655);
-      (0, import_internal52.add_location)(tbody0, file50, 13, 2, 300);
-      (0, import_internal52.add_location)(td18, file50, 22, 7, 773);
-      (0, import_internal52.add_location)(td19, file50, 22, 20, 786);
-      (0, import_internal52.add_location)(td20, file50, 22, 36, 802);
-      (0, import_internal52.add_location)(tr8, file50, 22, 3, 769);
-      (0, import_internal52.add_location)(td21, file50, 23, 7, 827);
-      (0, import_internal52.add_location)(td22, file50, 23, 20, 840);
-      (0, import_internal52.add_location)(td23, file50, 23, 36, 856);
-      (0, import_internal52.add_location)(tr9, file50, 23, 3, 823);
-      (0, import_internal52.attr_dev)(tbody1, "class", "row-sel row-group");
-      (0, import_internal52.add_location)(tbody1, file50, 21, 2, 732);
-      (0, import_internal52.add_location)(td24, file50, 26, 23, 918);
-      (0, import_internal52.add_location)(td25, file50, 26, 36, 931);
-      (0, import_internal52.add_location)(td26, file50, 26, 48, 943);
-      (0, import_internal52.attr_dev)(tr10, "class", "row-sel");
-      (0, import_internal52.add_location)(tr10, file50, 26, 3, 898);
-      (0, import_internal52.add_location)(td27, file50, 27, 23, 984);
-      (0, import_internal52.add_location)(td28, file50, 27, 36, 997);
-      (0, import_internal52.add_location)(td29, file50, 27, 49, 1010);
-      (0, import_internal52.attr_dev)(tr11, "class", "row-sel");
-      (0, import_internal52.add_location)(tr11, file50, 27, 3, 964);
-      (0, import_internal52.add_location)(td30, file50, 28, 23, 1051);
-      (0, import_internal52.add_location)(td31, file50, 28, 36, 1064);
-      (0, import_internal52.add_location)(td32, file50, 28, 51, 1079);
-      (0, import_internal52.attr_dev)(tr12, "class", "row-sel");
-      (0, import_internal52.add_location)(tr12, file50, 28, 3, 1031);
-      (0, import_internal52.add_location)(td33, file50, 29, 23, 1120);
-      (0, import_internal52.add_location)(td34, file50, 29, 36, 1133);
-      (0, import_internal52.add_location)(td35, file50, 29, 54, 1151);
-      (0, import_internal52.attr_dev)(tr13, "class", "row-sel");
-      (0, import_internal52.add_location)(tr13, file50, 29, 3, 1100);
-      (0, import_internal52.add_location)(td36, file50, 30, 23, 1192);
-      (0, import_internal52.add_location)(td37, file50, 30, 36, 1205);
-      (0, import_internal52.add_location)(td38, file50, 30, 52, 1221);
-      (0, import_internal52.attr_dev)(tr14, "class", "row-sel");
-      (0, import_internal52.add_location)(tr14, file50, 30, 3, 1172);
-      (0, import_internal52.add_location)(td39, file50, 31, 23, 1262);
-      (0, import_internal52.add_location)(td40, file50, 31, 36, 1275);
-      (0, import_internal52.add_location)(td41, file50, 31, 53, 1292);
-      (0, import_internal52.attr_dev)(tr15, "class", "row-sel");
-      (0, import_internal52.add_location)(tr15, file50, 31, 3, 1242);
-      (0, import_internal52.add_location)(td42, file50, 32, 23, 1333);
-      (0, import_internal52.add_location)(td43, file50, 32, 36, 1346);
-      (0, import_internal52.add_location)(td44, file50, 32, 53, 1363);
-      (0, import_internal52.attr_dev)(tr16, "class", "row-sel");
-      (0, import_internal52.add_location)(tr16, file50, 32, 3, 1313);
-      (0, import_internal52.add_location)(tbody2, file50, 25, 2, 887);
-      (0, import_internal52.attr_dev)(th4, "colspan", "3");
-      (0, import_internal52.add_location)(th4, file50, 35, 7, 1409);
-      (0, import_internal52.add_location)(tr17, file50, 35, 3, 1405);
-      (0, import_internal52.add_location)(thead2, file50, 34, 2, 1394);
-      (0, import_internal52.add_location)(td45, file50, 38, 23, 1490);
-      (0, import_internal52.add_location)(td46, file50, 38, 36, 1503);
-      (0, import_internal52.add_location)(td47, file50, 38, 52, 1519);
-      (0, import_internal52.attr_dev)(tr18, "class", "row-sel");
-      (0, import_internal52.add_location)(tr18, file50, 38, 3, 1470);
-      (0, import_internal52.add_location)(td48, file50, 39, 23, 1561);
-      (0, import_internal52.add_location)(td49, file50, 39, 36, 1574);
-      (0, import_internal52.add_location)(td50, file50, 39, 53, 1591);
-      (0, import_internal52.attr_dev)(tr19, "class", "row-sel");
-      (0, import_internal52.add_location)(tr19, file50, 39, 3, 1541);
-      (0, import_internal52.add_location)(td51, file50, 40, 23, 1632);
-      (0, import_internal52.add_location)(td52, file50, 40, 36, 1645);
-      (0, import_internal52.add_location)(td53, file50, 40, 50, 1659);
-      (0, import_internal52.attr_dev)(tr20, "class", "row-sel");
-      (0, import_internal52.add_location)(tr20, file50, 40, 3, 1612);
-      (0, import_internal52.add_location)(td54, file50, 41, 23, 1700);
-      (0, import_internal52.add_location)(td55, file50, 41, 36, 1713);
-      (0, import_internal52.add_location)(td56, file50, 41, 50, 1727);
-      (0, import_internal52.attr_dev)(tr21, "class", "row-sel");
-      (0, import_internal52.add_location)(tr21, file50, 41, 3, 1680);
-      (0, import_internal52.add_location)(td57, file50, 42, 23, 1768);
-      (0, import_internal52.add_location)(td58, file50, 42, 36, 1781);
-      (0, import_internal52.add_location)(td59, file50, 42, 48, 1793);
-      (0, import_internal52.attr_dev)(tr22, "class", "row-sel");
-      (0, import_internal52.add_location)(tr22, file50, 42, 3, 1748);
-      (0, import_internal52.add_location)(td60, file50, 43, 23, 1834);
-      (0, import_internal52.add_location)(td61, file50, 43, 36, 1847);
-      (0, import_internal52.add_location)(td62, file50, 43, 49, 1860);
-      (0, import_internal52.attr_dev)(tr23, "class", "row-sel");
-      (0, import_internal52.add_location)(tr23, file50, 43, 3, 1814);
-      (0, import_internal52.add_location)(td63, file50, 44, 23, 1901);
-      (0, import_internal52.add_location)(td64, file50, 44, 36, 1914);
-      (0, import_internal52.add_location)(td65, file50, 44, 49, 1927);
-      (0, import_internal52.attr_dev)(tr24, "class", "row-sel");
-      (0, import_internal52.add_location)(tr24, file50, 44, 3, 1881);
-      (0, import_internal52.add_location)(td66, file50, 45, 23, 1968);
-      (0, import_internal52.add_location)(td67, file50, 45, 36, 1981);
-      (0, import_internal52.add_location)(td68, file50, 45, 51, 1996);
-      (0, import_internal52.attr_dev)(tr25, "class", "row-sel");
-      (0, import_internal52.add_location)(tr25, file50, 45, 3, 1948);
-      (0, import_internal52.add_location)(td69, file50, 46, 23, 2037);
-      (0, import_internal52.add_location)(td70, file50, 46, 36, 2050);
-      (0, import_internal52.add_location)(td71, file50, 46, 54, 2068);
-      (0, import_internal52.attr_dev)(tr26, "class", "row-sel");
-      (0, import_internal52.add_location)(tr26, file50, 46, 3, 2017);
-      (0, import_internal52.add_location)(td72, file50, 47, 23, 2109);
-      (0, import_internal52.add_location)(td73, file50, 47, 36, 2122);
-      (0, import_internal52.add_location)(td74, file50, 47, 52, 2138);
-      (0, import_internal52.attr_dev)(tr27, "class", "row-sel");
-      (0, import_internal52.add_location)(tr27, file50, 47, 3, 2089);
-      (0, import_internal52.add_location)(td75, file50, 48, 23, 2179);
-      (0, import_internal52.add_location)(td76, file50, 48, 36, 2192);
-      (0, import_internal52.add_location)(td77, file50, 48, 53, 2209);
-      (0, import_internal52.attr_dev)(tr28, "class", "row-sel");
-      (0, import_internal52.add_location)(tr28, file50, 48, 3, 2159);
-      (0, import_internal52.add_location)(td78, file50, 49, 23, 2250);
-      (0, import_internal52.add_location)(td79, file50, 49, 36, 2263);
-      (0, import_internal52.add_location)(td80, file50, 49, 53, 2280);
-      (0, import_internal52.attr_dev)(tr29, "class", "row-sel");
-      (0, import_internal52.add_location)(tr29, file50, 49, 3, 2230);
-      (0, import_internal52.add_location)(tbody3, file50, 37, 2, 1459);
-      (0, import_internal52.attr_dev)(th5, "colspan", "3");
-      (0, import_internal52.add_location)(th5, file50, 52, 7, 2326);
-      (0, import_internal52.add_location)(tr30, file50, 52, 3, 2322);
-      (0, import_internal52.add_location)(thead3, file50, 51, 2, 2311);
-      (0, import_internal52.add_location)(td81, file50, 55, 23, 2407);
-      (0, import_internal52.add_location)(td82, file50, 55, 36, 2420);
-      (0, import_internal52.add_location)(td83, file50, 55, 52, 2436);
-      (0, import_internal52.attr_dev)(tr31, "class", "row-sel");
-      (0, import_internal52.add_location)(tr31, file50, 55, 3, 2387);
-      (0, import_internal52.add_location)(td84, file50, 56, 23, 2478);
-      (0, import_internal52.add_location)(td85, file50, 56, 36, 2491);
-      (0, import_internal52.add_location)(td86, file50, 56, 53, 2508);
-      (0, import_internal52.attr_dev)(tr32, "class", "row-sel");
-      (0, import_internal52.add_location)(tr32, file50, 56, 3, 2458);
-      (0, import_internal52.add_location)(td87, file50, 57, 23, 2549);
-      (0, import_internal52.add_location)(td88, file50, 57, 36, 2562);
-      (0, import_internal52.add_location)(td89, file50, 57, 50, 2576);
-      (0, import_internal52.attr_dev)(tr33, "class", "row-sel");
-      (0, import_internal52.add_location)(tr33, file50, 57, 3, 2529);
-      (0, import_internal52.add_location)(td90, file50, 58, 23, 2617);
-      (0, import_internal52.add_location)(td91, file50, 58, 36, 2630);
-      (0, import_internal52.add_location)(td92, file50, 58, 50, 2644);
-      (0, import_internal52.attr_dev)(tr34, "class", "row-sel");
-      (0, import_internal52.add_location)(tr34, file50, 58, 3, 2597);
-      (0, import_internal52.add_location)(td93, file50, 59, 23, 2685);
-      (0, import_internal52.add_location)(td94, file50, 59, 36, 2698);
-      (0, import_internal52.add_location)(td95, file50, 59, 48, 2710);
-      (0, import_internal52.attr_dev)(tr35, "class", "row-sel");
-      (0, import_internal52.add_location)(tr35, file50, 59, 3, 2665);
-      (0, import_internal52.add_location)(td96, file50, 60, 23, 2751);
-      (0, import_internal52.add_location)(td97, file50, 60, 36, 2764);
-      (0, import_internal52.add_location)(td98, file50, 60, 49, 2777);
-      (0, import_internal52.attr_dev)(tr36, "class", "row-sel");
-      (0, import_internal52.add_location)(tr36, file50, 60, 3, 2731);
-      (0, import_internal52.add_location)(td99, file50, 61, 23, 2818);
-      (0, import_internal52.add_location)(td100, file50, 61, 36, 2831);
-      (0, import_internal52.add_location)(td101, file50, 61, 49, 2844);
-      (0, import_internal52.attr_dev)(tr37, "class", "row-sel");
-      (0, import_internal52.add_location)(tr37, file50, 61, 3, 2798);
-      (0, import_internal52.add_location)(td102, file50, 62, 23, 2885);
-      (0, import_internal52.add_location)(td103, file50, 62, 36, 2898);
-      (0, import_internal52.add_location)(td104, file50, 62, 51, 2913);
-      (0, import_internal52.attr_dev)(tr38, "class", "row-sel");
-      (0, import_internal52.add_location)(tr38, file50, 62, 3, 2865);
-      (0, import_internal52.add_location)(td105, file50, 63, 23, 2954);
-      (0, import_internal52.add_location)(td106, file50, 63, 36, 2967);
-      (0, import_internal52.add_location)(td107, file50, 63, 54, 2985);
-      (0, import_internal52.attr_dev)(tr39, "class", "row-sel");
-      (0, import_internal52.add_location)(tr39, file50, 63, 3, 2934);
-      (0, import_internal52.add_location)(td108, file50, 64, 23, 3026);
-      (0, import_internal52.add_location)(td109, file50, 64, 36, 3039);
-      (0, import_internal52.add_location)(td110, file50, 64, 52, 3055);
-      (0, import_internal52.attr_dev)(tr40, "class", "row-sel");
-      (0, import_internal52.add_location)(tr40, file50, 64, 3, 3006);
-      (0, import_internal52.add_location)(td111, file50, 65, 23, 3096);
-      (0, import_internal52.add_location)(td112, file50, 65, 36, 3109);
-      (0, import_internal52.add_location)(td113, file50, 65, 53, 3126);
-      (0, import_internal52.attr_dev)(tr41, "class", "row-sel");
-      (0, import_internal52.add_location)(tr41, file50, 65, 3, 3076);
-      (0, import_internal52.add_location)(td114, file50, 66, 23, 3167);
-      (0, import_internal52.add_location)(td115, file50, 66, 36, 3180);
-      (0, import_internal52.add_location)(td116, file50, 66, 53, 3197);
-      (0, import_internal52.attr_dev)(tr42, "class", "row-sel");
-      (0, import_internal52.add_location)(tr42, file50, 66, 3, 3147);
-      (0, import_internal52.add_location)(tbody4, file50, 54, 2, 2376);
-      (0, import_internal52.attr_dev)(th6, "colspan", "3");
-      (0, import_internal52.add_location)(th6, file50, 69, 7, 3243);
-      (0, import_internal52.add_location)(tr43, file50, 69, 3, 3239);
-      (0, import_internal52.add_location)(thead4, file50, 68, 2, 3228);
-      (0, import_internal52.add_location)(td117, file50, 72, 23, 3324);
-      (0, import_internal52.add_location)(td118, file50, 72, 36, 3337);
-      (0, import_internal52.add_location)(td119, file50, 72, 52, 3353);
-      (0, import_internal52.attr_dev)(tr44, "class", "row-sel");
-      (0, import_internal52.add_location)(tr44, file50, 72, 3, 3304);
-      (0, import_internal52.add_location)(td120, file50, 73, 23, 3395);
-      (0, import_internal52.add_location)(td121, file50, 73, 36, 3408);
-      (0, import_internal52.add_location)(td122, file50, 73, 53, 3425);
-      (0, import_internal52.attr_dev)(tr45, "class", "row-sel");
-      (0, import_internal52.add_location)(tr45, file50, 73, 3, 3375);
-      (0, import_internal52.add_location)(td123, file50, 74, 23, 3466);
-      (0, import_internal52.add_location)(td124, file50, 74, 36, 3479);
-      (0, import_internal52.add_location)(td125, file50, 74, 50, 3493);
-      (0, import_internal52.attr_dev)(tr46, "class", "row-sel");
-      (0, import_internal52.add_location)(tr46, file50, 74, 3, 3446);
-      (0, import_internal52.add_location)(td126, file50, 75, 23, 3534);
-      (0, import_internal52.add_location)(td127, file50, 75, 36, 3547);
-      (0, import_internal52.add_location)(td128, file50, 75, 50, 3561);
-      (0, import_internal52.attr_dev)(tr47, "class", "row-sel");
-      (0, import_internal52.add_location)(tr47, file50, 75, 3, 3514);
-      (0, import_internal52.add_location)(td129, file50, 76, 23, 3602);
-      (0, import_internal52.add_location)(td130, file50, 76, 36, 3615);
-      (0, import_internal52.add_location)(td131, file50, 76, 48, 3627);
-      (0, import_internal52.attr_dev)(tr48, "class", "row-sel");
-      (0, import_internal52.add_location)(tr48, file50, 76, 3, 3582);
-      (0, import_internal52.add_location)(td132, file50, 77, 23, 3668);
-      (0, import_internal52.add_location)(td133, file50, 77, 36, 3681);
-      (0, import_internal52.add_location)(td134, file50, 77, 49, 3694);
-      (0, import_internal52.attr_dev)(tr49, "class", "row-sel");
-      (0, import_internal52.add_location)(tr49, file50, 77, 3, 3648);
-      (0, import_internal52.add_location)(td135, file50, 78, 23, 3735);
-      (0, import_internal52.add_location)(td136, file50, 78, 36, 3748);
-      (0, import_internal52.add_location)(td137, file50, 78, 49, 3761);
-      (0, import_internal52.attr_dev)(tr50, "class", "row-sel");
-      (0, import_internal52.add_location)(tr50, file50, 78, 3, 3715);
-      (0, import_internal52.add_location)(td138, file50, 79, 23, 3802);
-      (0, import_internal52.add_location)(td139, file50, 79, 36, 3815);
-      (0, import_internal52.add_location)(td140, file50, 79, 51, 3830);
-      (0, import_internal52.attr_dev)(tr51, "class", "row-sel");
-      (0, import_internal52.add_location)(tr51, file50, 79, 3, 3782);
-      (0, import_internal52.add_location)(td141, file50, 80, 23, 3871);
-      (0, import_internal52.add_location)(td142, file50, 80, 36, 3884);
-      (0, import_internal52.add_location)(td143, file50, 80, 54, 3902);
-      (0, import_internal52.attr_dev)(tr52, "class", "row-sel");
-      (0, import_internal52.add_location)(tr52, file50, 80, 3, 3851);
-      (0, import_internal52.add_location)(td144, file50, 81, 23, 3943);
-      (0, import_internal52.add_location)(td145, file50, 81, 36, 3956);
-      (0, import_internal52.add_location)(td146, file50, 81, 52, 3972);
-      (0, import_internal52.attr_dev)(tr53, "class", "row-sel");
-      (0, import_internal52.add_location)(tr53, file50, 81, 3, 3923);
-      (0, import_internal52.add_location)(td147, file50, 82, 23, 4013);
-      (0, import_internal52.add_location)(td148, file50, 82, 36, 4026);
-      (0, import_internal52.add_location)(td149, file50, 82, 53, 4043);
-      (0, import_internal52.attr_dev)(tr54, "class", "row-sel");
-      (0, import_internal52.add_location)(tr54, file50, 82, 3, 3993);
-      (0, import_internal52.add_location)(td150, file50, 83, 23, 4084);
-      (0, import_internal52.add_location)(td151, file50, 83, 36, 4097);
-      (0, import_internal52.add_location)(td152, file50, 83, 53, 4114);
-      (0, import_internal52.attr_dev)(tr55, "class", "row-sel");
-      (0, import_internal52.add_location)(tr55, file50, 83, 3, 4064);
-      (0, import_internal52.add_location)(tbody5, file50, 71, 2, 3293);
-      (0, import_internal52.attr_dev)(th7, "colspan", "3");
-      (0, import_internal52.add_location)(th7, file50, 86, 7, 4160);
-      (0, import_internal52.add_location)(tr56, file50, 86, 3, 4156);
-      (0, import_internal52.add_location)(thead5, file50, 85, 2, 4145);
-      (0, import_internal52.add_location)(td153, file50, 89, 23, 4241);
-      (0, import_internal52.add_location)(td154, file50, 89, 36, 4254);
-      (0, import_internal52.add_location)(td155, file50, 89, 52, 4270);
-      (0, import_internal52.attr_dev)(tr57, "class", "row-sel");
-      (0, import_internal52.add_location)(tr57, file50, 89, 3, 4221);
-      (0, import_internal52.add_location)(td156, file50, 90, 23, 4312);
-      (0, import_internal52.add_location)(td157, file50, 90, 36, 4325);
-      (0, import_internal52.add_location)(td158, file50, 90, 53, 4342);
-      (0, import_internal52.attr_dev)(tr58, "class", "row-sel");
-      (0, import_internal52.add_location)(tr58, file50, 90, 3, 4292);
-      (0, import_internal52.add_location)(td159, file50, 91, 23, 4383);
-      (0, import_internal52.add_location)(td160, file50, 91, 36, 4396);
-      (0, import_internal52.add_location)(td161, file50, 91, 50, 4410);
-      (0, import_internal52.attr_dev)(tr59, "class", "row-sel");
-      (0, import_internal52.add_location)(tr59, file50, 91, 3, 4363);
-      (0, import_internal52.add_location)(td162, file50, 92, 23, 4451);
-      (0, import_internal52.add_location)(td163, file50, 92, 36, 4464);
-      (0, import_internal52.add_location)(td164, file50, 92, 50, 4478);
-      (0, import_internal52.attr_dev)(tr60, "class", "row-sel");
-      (0, import_internal52.add_location)(tr60, file50, 92, 3, 4431);
-      (0, import_internal52.add_location)(td165, file50, 93, 23, 4519);
-      (0, import_internal52.add_location)(td166, file50, 93, 36, 4532);
-      (0, import_internal52.add_location)(td167, file50, 93, 48, 4544);
-      (0, import_internal52.attr_dev)(tr61, "class", "row-sel");
-      (0, import_internal52.add_location)(tr61, file50, 93, 3, 4499);
-      (0, import_internal52.add_location)(td168, file50, 94, 23, 4585);
-      (0, import_internal52.add_location)(td169, file50, 94, 36, 4598);
-      (0, import_internal52.add_location)(td170, file50, 94, 49, 4611);
-      (0, import_internal52.attr_dev)(tr62, "class", "row-sel");
-      (0, import_internal52.add_location)(tr62, file50, 94, 3, 4565);
-      (0, import_internal52.add_location)(td171, file50, 95, 23, 4652);
-      (0, import_internal52.add_location)(td172, file50, 95, 36, 4665);
-      (0, import_internal52.add_location)(td173, file50, 95, 49, 4678);
-      (0, import_internal52.attr_dev)(tr63, "class", "row-sel");
-      (0, import_internal52.add_location)(tr63, file50, 95, 3, 4632);
-      (0, import_internal52.add_location)(td174, file50, 96, 23, 4719);
-      (0, import_internal52.add_location)(td175, file50, 96, 36, 4732);
-      (0, import_internal52.add_location)(td176, file50, 96, 51, 4747);
-      (0, import_internal52.attr_dev)(tr64, "class", "row-sel");
-      (0, import_internal52.add_location)(tr64, file50, 96, 3, 4699);
-      (0, import_internal52.add_location)(td177, file50, 97, 23, 4788);
-      (0, import_internal52.add_location)(td178, file50, 97, 36, 4801);
-      (0, import_internal52.add_location)(td179, file50, 97, 54, 4819);
-      (0, import_internal52.attr_dev)(tr65, "class", "row-sel");
-      (0, import_internal52.add_location)(tr65, file50, 97, 3, 4768);
-      (0, import_internal52.add_location)(td180, file50, 98, 23, 4860);
-      (0, import_internal52.add_location)(td181, file50, 98, 36, 4873);
-      (0, import_internal52.add_location)(td182, file50, 98, 52, 4889);
-      (0, import_internal52.attr_dev)(tr66, "class", "row-sel");
-      (0, import_internal52.add_location)(tr66, file50, 98, 3, 4840);
-      (0, import_internal52.add_location)(td183, file50, 99, 23, 4930);
-      (0, import_internal52.add_location)(td184, file50, 99, 36, 4943);
-      (0, import_internal52.add_location)(td185, file50, 99, 53, 4960);
-      (0, import_internal52.attr_dev)(tr67, "class", "row-sel");
-      (0, import_internal52.add_location)(tr67, file50, 99, 3, 4910);
-      (0, import_internal52.add_location)(td186, file50, 100, 23, 5001);
-      (0, import_internal52.add_location)(td187, file50, 100, 36, 5014);
-      (0, import_internal52.add_location)(td188, file50, 100, 53, 5031);
-      (0, import_internal52.attr_dev)(tr68, "class", "row-sel");
-      (0, import_internal52.add_location)(tr68, file50, 100, 3, 4981);
-      (0, import_internal52.add_location)(tbody6, file50, 88, 2, 4210);
-      (0, import_internal52.attr_dev)(td189, "colspan", "2");
-      (0, import_internal52.add_location)(td189, file50, 103, 7, 5077);
-      (0, import_internal52.add_location)(td190, file50, 103, 31, 5101);
-      (0, import_internal52.add_location)(tr69, file50, 103, 3, 5073);
-      (0, import_internal52.add_location)(tfoot, file50, 102, 2, 5062);
+      (0, import_internal53.add_location)(th0, file51, 8, 7, 175);
+      (0, import_internal53.add_location)(th1, file51, 8, 20, 188);
+      (0, import_internal53.add_location)(th2, file51, 8, 34, 202);
+      (0, import_internal53.add_location)(tr0, file51, 8, 3, 171);
+      (0, import_internal53.add_location)(thead0, file51, 7, 2, 160);
+      (0, import_internal53.attr_dev)(th3, "colspan", "3");
+      (0, import_internal53.add_location)(th3, file51, 11, 7, 250);
+      (0, import_internal53.add_location)(tr1, file51, 11, 3, 246);
+      (0, import_internal53.add_location)(thead1, file51, 10, 2, 235);
+      (0, import_internal53.add_location)(td0, file51, 14, 23, 331);
+      (0, import_internal53.add_location)(td1, file51, 14, 36, 344);
+      (0, import_internal53.add_location)(td2, file51, 14, 52, 360);
+      (0, import_internal53.attr_dev)(tr2, "class", "row-sel");
+      (0, import_internal53.add_location)(tr2, file51, 14, 3, 311);
+      (0, import_internal53.add_location)(td3, file51, 15, 23, 402);
+      (0, import_internal53.add_location)(td4, file51, 15, 36, 415);
+      (0, import_internal53.add_location)(td5, file51, 15, 53, 432);
+      (0, import_internal53.attr_dev)(tr3, "class", "row-sel");
+      (0, import_internal53.add_location)(tr3, file51, 15, 3, 382);
+      (0, import_internal53.add_location)(td6, file51, 16, 23, 473);
+      (0, import_internal53.add_location)(td7, file51, 16, 36, 486);
+      (0, import_internal53.add_location)(td8, file51, 16, 50, 500);
+      (0, import_internal53.attr_dev)(tr4, "class", "row-sel");
+      (0, import_internal53.add_location)(tr4, file51, 16, 3, 453);
+      (0, import_internal53.add_location)(td9, file51, 17, 23, 541);
+      (0, import_internal53.add_location)(td10, file51, 17, 36, 554);
+      (0, import_internal53.add_location)(td11, file51, 17, 50, 568);
+      (0, import_internal53.attr_dev)(tr5, "class", "row-sel");
+      (0, import_internal53.add_location)(tr5, file51, 17, 3, 521);
+      (0, import_internal53.add_location)(td12, file51, 18, 23, 609);
+      (0, import_internal53.add_location)(td13, file51, 18, 36, 622);
+      (0, import_internal53.add_location)(td14, file51, 18, 48, 634);
+      (0, import_internal53.attr_dev)(tr6, "class", "row-sel");
+      (0, import_internal53.add_location)(tr6, file51, 18, 3, 589);
+      (0, import_internal53.add_location)(td15, file51, 19, 23, 675);
+      (0, import_internal53.add_location)(td16, file51, 19, 36, 688);
+      (0, import_internal53.add_location)(td17, file51, 19, 49, 701);
+      (0, import_internal53.attr_dev)(tr7, "class", "row-sel");
+      (0, import_internal53.add_location)(tr7, file51, 19, 3, 655);
+      (0, import_internal53.add_location)(tbody0, file51, 13, 2, 300);
+      (0, import_internal53.add_location)(td18, file51, 22, 7, 773);
+      (0, import_internal53.add_location)(td19, file51, 22, 20, 786);
+      (0, import_internal53.add_location)(td20, file51, 22, 36, 802);
+      (0, import_internal53.add_location)(tr8, file51, 22, 3, 769);
+      (0, import_internal53.add_location)(td21, file51, 23, 7, 827);
+      (0, import_internal53.add_location)(td22, file51, 23, 20, 840);
+      (0, import_internal53.add_location)(td23, file51, 23, 36, 856);
+      (0, import_internal53.add_location)(tr9, file51, 23, 3, 823);
+      (0, import_internal53.attr_dev)(tbody1, "class", "row-sel row-group");
+      (0, import_internal53.add_location)(tbody1, file51, 21, 2, 732);
+      (0, import_internal53.add_location)(td24, file51, 26, 23, 918);
+      (0, import_internal53.add_location)(td25, file51, 26, 36, 931);
+      (0, import_internal53.add_location)(td26, file51, 26, 48, 943);
+      (0, import_internal53.attr_dev)(tr10, "class", "row-sel");
+      (0, import_internal53.add_location)(tr10, file51, 26, 3, 898);
+      (0, import_internal53.add_location)(td27, file51, 27, 23, 984);
+      (0, import_internal53.add_location)(td28, file51, 27, 36, 997);
+      (0, import_internal53.add_location)(td29, file51, 27, 49, 1010);
+      (0, import_internal53.attr_dev)(tr11, "class", "row-sel");
+      (0, import_internal53.add_location)(tr11, file51, 27, 3, 964);
+      (0, import_internal53.add_location)(td30, file51, 28, 23, 1051);
+      (0, import_internal53.add_location)(td31, file51, 28, 36, 1064);
+      (0, import_internal53.add_location)(td32, file51, 28, 51, 1079);
+      (0, import_internal53.attr_dev)(tr12, "class", "row-sel");
+      (0, import_internal53.add_location)(tr12, file51, 28, 3, 1031);
+      (0, import_internal53.add_location)(td33, file51, 29, 23, 1120);
+      (0, import_internal53.add_location)(td34, file51, 29, 36, 1133);
+      (0, import_internal53.add_location)(td35, file51, 29, 54, 1151);
+      (0, import_internal53.attr_dev)(tr13, "class", "row-sel");
+      (0, import_internal53.add_location)(tr13, file51, 29, 3, 1100);
+      (0, import_internal53.add_location)(td36, file51, 30, 23, 1192);
+      (0, import_internal53.add_location)(td37, file51, 30, 36, 1205);
+      (0, import_internal53.add_location)(td38, file51, 30, 52, 1221);
+      (0, import_internal53.attr_dev)(tr14, "class", "row-sel");
+      (0, import_internal53.add_location)(tr14, file51, 30, 3, 1172);
+      (0, import_internal53.add_location)(td39, file51, 31, 23, 1262);
+      (0, import_internal53.add_location)(td40, file51, 31, 36, 1275);
+      (0, import_internal53.add_location)(td41, file51, 31, 53, 1292);
+      (0, import_internal53.attr_dev)(tr15, "class", "row-sel");
+      (0, import_internal53.add_location)(tr15, file51, 31, 3, 1242);
+      (0, import_internal53.add_location)(td42, file51, 32, 23, 1333);
+      (0, import_internal53.add_location)(td43, file51, 32, 36, 1346);
+      (0, import_internal53.add_location)(td44, file51, 32, 53, 1363);
+      (0, import_internal53.attr_dev)(tr16, "class", "row-sel");
+      (0, import_internal53.add_location)(tr16, file51, 32, 3, 1313);
+      (0, import_internal53.add_location)(tbody2, file51, 25, 2, 887);
+      (0, import_internal53.attr_dev)(th4, "colspan", "3");
+      (0, import_internal53.add_location)(th4, file51, 35, 7, 1409);
+      (0, import_internal53.add_location)(tr17, file51, 35, 3, 1405);
+      (0, import_internal53.add_location)(thead2, file51, 34, 2, 1394);
+      (0, import_internal53.add_location)(td45, file51, 38, 23, 1490);
+      (0, import_internal53.add_location)(td46, file51, 38, 36, 1503);
+      (0, import_internal53.add_location)(td47, file51, 38, 52, 1519);
+      (0, import_internal53.attr_dev)(tr18, "class", "row-sel");
+      (0, import_internal53.add_location)(tr18, file51, 38, 3, 1470);
+      (0, import_internal53.add_location)(td48, file51, 39, 23, 1561);
+      (0, import_internal53.add_location)(td49, file51, 39, 36, 1574);
+      (0, import_internal53.add_location)(td50, file51, 39, 53, 1591);
+      (0, import_internal53.attr_dev)(tr19, "class", "row-sel");
+      (0, import_internal53.add_location)(tr19, file51, 39, 3, 1541);
+      (0, import_internal53.add_location)(td51, file51, 40, 23, 1632);
+      (0, import_internal53.add_location)(td52, file51, 40, 36, 1645);
+      (0, import_internal53.add_location)(td53, file51, 40, 50, 1659);
+      (0, import_internal53.attr_dev)(tr20, "class", "row-sel");
+      (0, import_internal53.add_location)(tr20, file51, 40, 3, 1612);
+      (0, import_internal53.add_location)(td54, file51, 41, 23, 1700);
+      (0, import_internal53.add_location)(td55, file51, 41, 36, 1713);
+      (0, import_internal53.add_location)(td56, file51, 41, 50, 1727);
+      (0, import_internal53.attr_dev)(tr21, "class", "row-sel");
+      (0, import_internal53.add_location)(tr21, file51, 41, 3, 1680);
+      (0, import_internal53.add_location)(td57, file51, 42, 23, 1768);
+      (0, import_internal53.add_location)(td58, file51, 42, 36, 1781);
+      (0, import_internal53.add_location)(td59, file51, 42, 48, 1793);
+      (0, import_internal53.attr_dev)(tr22, "class", "row-sel");
+      (0, import_internal53.add_location)(tr22, file51, 42, 3, 1748);
+      (0, import_internal53.add_location)(td60, file51, 43, 23, 1834);
+      (0, import_internal53.add_location)(td61, file51, 43, 36, 1847);
+      (0, import_internal53.add_location)(td62, file51, 43, 49, 1860);
+      (0, import_internal53.attr_dev)(tr23, "class", "row-sel");
+      (0, import_internal53.add_location)(tr23, file51, 43, 3, 1814);
+      (0, import_internal53.add_location)(td63, file51, 44, 23, 1901);
+      (0, import_internal53.add_location)(td64, file51, 44, 36, 1914);
+      (0, import_internal53.add_location)(td65, file51, 44, 49, 1927);
+      (0, import_internal53.attr_dev)(tr24, "class", "row-sel");
+      (0, import_internal53.add_location)(tr24, file51, 44, 3, 1881);
+      (0, import_internal53.add_location)(td66, file51, 45, 23, 1968);
+      (0, import_internal53.add_location)(td67, file51, 45, 36, 1981);
+      (0, import_internal53.add_location)(td68, file51, 45, 51, 1996);
+      (0, import_internal53.attr_dev)(tr25, "class", "row-sel");
+      (0, import_internal53.add_location)(tr25, file51, 45, 3, 1948);
+      (0, import_internal53.add_location)(td69, file51, 46, 23, 2037);
+      (0, import_internal53.add_location)(td70, file51, 46, 36, 2050);
+      (0, import_internal53.add_location)(td71, file51, 46, 54, 2068);
+      (0, import_internal53.attr_dev)(tr26, "class", "row-sel");
+      (0, import_internal53.add_location)(tr26, file51, 46, 3, 2017);
+      (0, import_internal53.add_location)(td72, file51, 47, 23, 2109);
+      (0, import_internal53.add_location)(td73, file51, 47, 36, 2122);
+      (0, import_internal53.add_location)(td74, file51, 47, 52, 2138);
+      (0, import_internal53.attr_dev)(tr27, "class", "row-sel");
+      (0, import_internal53.add_location)(tr27, file51, 47, 3, 2089);
+      (0, import_internal53.add_location)(td75, file51, 48, 23, 2179);
+      (0, import_internal53.add_location)(td76, file51, 48, 36, 2192);
+      (0, import_internal53.add_location)(td77, file51, 48, 53, 2209);
+      (0, import_internal53.attr_dev)(tr28, "class", "row-sel");
+      (0, import_internal53.add_location)(tr28, file51, 48, 3, 2159);
+      (0, import_internal53.add_location)(td78, file51, 49, 23, 2250);
+      (0, import_internal53.add_location)(td79, file51, 49, 36, 2263);
+      (0, import_internal53.add_location)(td80, file51, 49, 53, 2280);
+      (0, import_internal53.attr_dev)(tr29, "class", "row-sel");
+      (0, import_internal53.add_location)(tr29, file51, 49, 3, 2230);
+      (0, import_internal53.add_location)(tbody3, file51, 37, 2, 1459);
+      (0, import_internal53.attr_dev)(th5, "colspan", "3");
+      (0, import_internal53.add_location)(th5, file51, 52, 7, 2326);
+      (0, import_internal53.add_location)(tr30, file51, 52, 3, 2322);
+      (0, import_internal53.add_location)(thead3, file51, 51, 2, 2311);
+      (0, import_internal53.add_location)(td81, file51, 55, 23, 2407);
+      (0, import_internal53.add_location)(td82, file51, 55, 36, 2420);
+      (0, import_internal53.add_location)(td83, file51, 55, 52, 2436);
+      (0, import_internal53.attr_dev)(tr31, "class", "row-sel");
+      (0, import_internal53.add_location)(tr31, file51, 55, 3, 2387);
+      (0, import_internal53.add_location)(td84, file51, 56, 23, 2478);
+      (0, import_internal53.add_location)(td85, file51, 56, 36, 2491);
+      (0, import_internal53.add_location)(td86, file51, 56, 53, 2508);
+      (0, import_internal53.attr_dev)(tr32, "class", "row-sel");
+      (0, import_internal53.add_location)(tr32, file51, 56, 3, 2458);
+      (0, import_internal53.add_location)(td87, file51, 57, 23, 2549);
+      (0, import_internal53.add_location)(td88, file51, 57, 36, 2562);
+      (0, import_internal53.add_location)(td89, file51, 57, 50, 2576);
+      (0, import_internal53.attr_dev)(tr33, "class", "row-sel");
+      (0, import_internal53.add_location)(tr33, file51, 57, 3, 2529);
+      (0, import_internal53.add_location)(td90, file51, 58, 23, 2617);
+      (0, import_internal53.add_location)(td91, file51, 58, 36, 2630);
+      (0, import_internal53.add_location)(td92, file51, 58, 50, 2644);
+      (0, import_internal53.attr_dev)(tr34, "class", "row-sel");
+      (0, import_internal53.add_location)(tr34, file51, 58, 3, 2597);
+      (0, import_internal53.add_location)(td93, file51, 59, 23, 2685);
+      (0, import_internal53.add_location)(td94, file51, 59, 36, 2698);
+      (0, import_internal53.add_location)(td95, file51, 59, 48, 2710);
+      (0, import_internal53.attr_dev)(tr35, "class", "row-sel");
+      (0, import_internal53.add_location)(tr35, file51, 59, 3, 2665);
+      (0, import_internal53.add_location)(td96, file51, 60, 23, 2751);
+      (0, import_internal53.add_location)(td97, file51, 60, 36, 2764);
+      (0, import_internal53.add_location)(td98, file51, 60, 49, 2777);
+      (0, import_internal53.attr_dev)(tr36, "class", "row-sel");
+      (0, import_internal53.add_location)(tr36, file51, 60, 3, 2731);
+      (0, import_internal53.add_location)(td99, file51, 61, 23, 2818);
+      (0, import_internal53.add_location)(td100, file51, 61, 36, 2831);
+      (0, import_internal53.add_location)(td101, file51, 61, 49, 2844);
+      (0, import_internal53.attr_dev)(tr37, "class", "row-sel");
+      (0, import_internal53.add_location)(tr37, file51, 61, 3, 2798);
+      (0, import_internal53.add_location)(td102, file51, 62, 23, 2885);
+      (0, import_internal53.add_location)(td103, file51, 62, 36, 2898);
+      (0, import_internal53.add_location)(td104, file51, 62, 51, 2913);
+      (0, import_internal53.attr_dev)(tr38, "class", "row-sel");
+      (0, import_internal53.add_location)(tr38, file51, 62, 3, 2865);
+      (0, import_internal53.add_location)(td105, file51, 63, 23, 2954);
+      (0, import_internal53.add_location)(td106, file51, 63, 36, 2967);
+      (0, import_internal53.add_location)(td107, file51, 63, 54, 2985);
+      (0, import_internal53.attr_dev)(tr39, "class", "row-sel");
+      (0, import_internal53.add_location)(tr39, file51, 63, 3, 2934);
+      (0, import_internal53.add_location)(td108, file51, 64, 23, 3026);
+      (0, import_internal53.add_location)(td109, file51, 64, 36, 3039);
+      (0, import_internal53.add_location)(td110, file51, 64, 52, 3055);
+      (0, import_internal53.attr_dev)(tr40, "class", "row-sel");
+      (0, import_internal53.add_location)(tr40, file51, 64, 3, 3006);
+      (0, import_internal53.add_location)(td111, file51, 65, 23, 3096);
+      (0, import_internal53.add_location)(td112, file51, 65, 36, 3109);
+      (0, import_internal53.add_location)(td113, file51, 65, 53, 3126);
+      (0, import_internal53.attr_dev)(tr41, "class", "row-sel");
+      (0, import_internal53.add_location)(tr41, file51, 65, 3, 3076);
+      (0, import_internal53.add_location)(td114, file51, 66, 23, 3167);
+      (0, import_internal53.add_location)(td115, file51, 66, 36, 3180);
+      (0, import_internal53.add_location)(td116, file51, 66, 53, 3197);
+      (0, import_internal53.attr_dev)(tr42, "class", "row-sel");
+      (0, import_internal53.add_location)(tr42, file51, 66, 3, 3147);
+      (0, import_internal53.add_location)(tbody4, file51, 54, 2, 2376);
+      (0, import_internal53.attr_dev)(th6, "colspan", "3");
+      (0, import_internal53.add_location)(th6, file51, 69, 7, 3243);
+      (0, import_internal53.add_location)(tr43, file51, 69, 3, 3239);
+      (0, import_internal53.add_location)(thead4, file51, 68, 2, 3228);
+      (0, import_internal53.add_location)(td117, file51, 72, 23, 3324);
+      (0, import_internal53.add_location)(td118, file51, 72, 36, 3337);
+      (0, import_internal53.add_location)(td119, file51, 72, 52, 3353);
+      (0, import_internal53.attr_dev)(tr44, "class", "row-sel");
+      (0, import_internal53.add_location)(tr44, file51, 72, 3, 3304);
+      (0, import_internal53.add_location)(td120, file51, 73, 23, 3395);
+      (0, import_internal53.add_location)(td121, file51, 73, 36, 3408);
+      (0, import_internal53.add_location)(td122, file51, 73, 53, 3425);
+      (0, import_internal53.attr_dev)(tr45, "class", "row-sel");
+      (0, import_internal53.add_location)(tr45, file51, 73, 3, 3375);
+      (0, import_internal53.add_location)(td123, file51, 74, 23, 3466);
+      (0, import_internal53.add_location)(td124, file51, 74, 36, 3479);
+      (0, import_internal53.add_location)(td125, file51, 74, 50, 3493);
+      (0, import_internal53.attr_dev)(tr46, "class", "row-sel");
+      (0, import_internal53.add_location)(tr46, file51, 74, 3, 3446);
+      (0, import_internal53.add_location)(td126, file51, 75, 23, 3534);
+      (0, import_internal53.add_location)(td127, file51, 75, 36, 3547);
+      (0, import_internal53.add_location)(td128, file51, 75, 50, 3561);
+      (0, import_internal53.attr_dev)(tr47, "class", "row-sel");
+      (0, import_internal53.add_location)(tr47, file51, 75, 3, 3514);
+      (0, import_internal53.add_location)(td129, file51, 76, 23, 3602);
+      (0, import_internal53.add_location)(td130, file51, 76, 36, 3615);
+      (0, import_internal53.add_location)(td131, file51, 76, 48, 3627);
+      (0, import_internal53.attr_dev)(tr48, "class", "row-sel");
+      (0, import_internal53.add_location)(tr48, file51, 76, 3, 3582);
+      (0, import_internal53.add_location)(td132, file51, 77, 23, 3668);
+      (0, import_internal53.add_location)(td133, file51, 77, 36, 3681);
+      (0, import_internal53.add_location)(td134, file51, 77, 49, 3694);
+      (0, import_internal53.attr_dev)(tr49, "class", "row-sel");
+      (0, import_internal53.add_location)(tr49, file51, 77, 3, 3648);
+      (0, import_internal53.add_location)(td135, file51, 78, 23, 3735);
+      (0, import_internal53.add_location)(td136, file51, 78, 36, 3748);
+      (0, import_internal53.add_location)(td137, file51, 78, 49, 3761);
+      (0, import_internal53.attr_dev)(tr50, "class", "row-sel");
+      (0, import_internal53.add_location)(tr50, file51, 78, 3, 3715);
+      (0, import_internal53.add_location)(td138, file51, 79, 23, 3802);
+      (0, import_internal53.add_location)(td139, file51, 79, 36, 3815);
+      (0, import_internal53.add_location)(td140, file51, 79, 51, 3830);
+      (0, import_internal53.attr_dev)(tr51, "class", "row-sel");
+      (0, import_internal53.add_location)(tr51, file51, 79, 3, 3782);
+      (0, import_internal53.add_location)(td141, file51, 80, 23, 3871);
+      (0, import_internal53.add_location)(td142, file51, 80, 36, 3884);
+      (0, import_internal53.add_location)(td143, file51, 80, 54, 3902);
+      (0, import_internal53.attr_dev)(tr52, "class", "row-sel");
+      (0, import_internal53.add_location)(tr52, file51, 80, 3, 3851);
+      (0, import_internal53.add_location)(td144, file51, 81, 23, 3943);
+      (0, import_internal53.add_location)(td145, file51, 81, 36, 3956);
+      (0, import_internal53.add_location)(td146, file51, 81, 52, 3972);
+      (0, import_internal53.attr_dev)(tr53, "class", "row-sel");
+      (0, import_internal53.add_location)(tr53, file51, 81, 3, 3923);
+      (0, import_internal53.add_location)(td147, file51, 82, 23, 4013);
+      (0, import_internal53.add_location)(td148, file51, 82, 36, 4026);
+      (0, import_internal53.add_location)(td149, file51, 82, 53, 4043);
+      (0, import_internal53.attr_dev)(tr54, "class", "row-sel");
+      (0, import_internal53.add_location)(tr54, file51, 82, 3, 3993);
+      (0, import_internal53.add_location)(td150, file51, 83, 23, 4084);
+      (0, import_internal53.add_location)(td151, file51, 83, 36, 4097);
+      (0, import_internal53.add_location)(td152, file51, 83, 53, 4114);
+      (0, import_internal53.attr_dev)(tr55, "class", "row-sel");
+      (0, import_internal53.add_location)(tr55, file51, 83, 3, 4064);
+      (0, import_internal53.add_location)(tbody5, file51, 71, 2, 3293);
+      (0, import_internal53.attr_dev)(th7, "colspan", "3");
+      (0, import_internal53.add_location)(th7, file51, 86, 7, 4160);
+      (0, import_internal53.add_location)(tr56, file51, 86, 3, 4156);
+      (0, import_internal53.add_location)(thead5, file51, 85, 2, 4145);
+      (0, import_internal53.add_location)(td153, file51, 89, 23, 4241);
+      (0, import_internal53.add_location)(td154, file51, 89, 36, 4254);
+      (0, import_internal53.add_location)(td155, file51, 89, 52, 4270);
+      (0, import_internal53.attr_dev)(tr57, "class", "row-sel");
+      (0, import_internal53.add_location)(tr57, file51, 89, 3, 4221);
+      (0, import_internal53.add_location)(td156, file51, 90, 23, 4312);
+      (0, import_internal53.add_location)(td157, file51, 90, 36, 4325);
+      (0, import_internal53.add_location)(td158, file51, 90, 53, 4342);
+      (0, import_internal53.attr_dev)(tr58, "class", "row-sel");
+      (0, import_internal53.add_location)(tr58, file51, 90, 3, 4292);
+      (0, import_internal53.add_location)(td159, file51, 91, 23, 4383);
+      (0, import_internal53.add_location)(td160, file51, 91, 36, 4396);
+      (0, import_internal53.add_location)(td161, file51, 91, 50, 4410);
+      (0, import_internal53.attr_dev)(tr59, "class", "row-sel");
+      (0, import_internal53.add_location)(tr59, file51, 91, 3, 4363);
+      (0, import_internal53.add_location)(td162, file51, 92, 23, 4451);
+      (0, import_internal53.add_location)(td163, file51, 92, 36, 4464);
+      (0, import_internal53.add_location)(td164, file51, 92, 50, 4478);
+      (0, import_internal53.attr_dev)(tr60, "class", "row-sel");
+      (0, import_internal53.add_location)(tr60, file51, 92, 3, 4431);
+      (0, import_internal53.add_location)(td165, file51, 93, 23, 4519);
+      (0, import_internal53.add_location)(td166, file51, 93, 36, 4532);
+      (0, import_internal53.add_location)(td167, file51, 93, 48, 4544);
+      (0, import_internal53.attr_dev)(tr61, "class", "row-sel");
+      (0, import_internal53.add_location)(tr61, file51, 93, 3, 4499);
+      (0, import_internal53.add_location)(td168, file51, 94, 23, 4585);
+      (0, import_internal53.add_location)(td169, file51, 94, 36, 4598);
+      (0, import_internal53.add_location)(td170, file51, 94, 49, 4611);
+      (0, import_internal53.attr_dev)(tr62, "class", "row-sel");
+      (0, import_internal53.add_location)(tr62, file51, 94, 3, 4565);
+      (0, import_internal53.add_location)(td171, file51, 95, 23, 4652);
+      (0, import_internal53.add_location)(td172, file51, 95, 36, 4665);
+      (0, import_internal53.add_location)(td173, file51, 95, 49, 4678);
+      (0, import_internal53.attr_dev)(tr63, "class", "row-sel");
+      (0, import_internal53.add_location)(tr63, file51, 95, 3, 4632);
+      (0, import_internal53.add_location)(td174, file51, 96, 23, 4719);
+      (0, import_internal53.add_location)(td175, file51, 96, 36, 4732);
+      (0, import_internal53.add_location)(td176, file51, 96, 51, 4747);
+      (0, import_internal53.attr_dev)(tr64, "class", "row-sel");
+      (0, import_internal53.add_location)(tr64, file51, 96, 3, 4699);
+      (0, import_internal53.add_location)(td177, file51, 97, 23, 4788);
+      (0, import_internal53.add_location)(td178, file51, 97, 36, 4801);
+      (0, import_internal53.add_location)(td179, file51, 97, 54, 4819);
+      (0, import_internal53.attr_dev)(tr65, "class", "row-sel");
+      (0, import_internal53.add_location)(tr65, file51, 97, 3, 4768);
+      (0, import_internal53.add_location)(td180, file51, 98, 23, 4860);
+      (0, import_internal53.add_location)(td181, file51, 98, 36, 4873);
+      (0, import_internal53.add_location)(td182, file51, 98, 52, 4889);
+      (0, import_internal53.attr_dev)(tr66, "class", "row-sel");
+      (0, import_internal53.add_location)(tr66, file51, 98, 3, 4840);
+      (0, import_internal53.add_location)(td183, file51, 99, 23, 4930);
+      (0, import_internal53.add_location)(td184, file51, 99, 36, 4943);
+      (0, import_internal53.add_location)(td185, file51, 99, 53, 4960);
+      (0, import_internal53.attr_dev)(tr67, "class", "row-sel");
+      (0, import_internal53.add_location)(tr67, file51, 99, 3, 4910);
+      (0, import_internal53.add_location)(td186, file51, 100, 23, 5001);
+      (0, import_internal53.add_location)(td187, file51, 100, 36, 5014);
+      (0, import_internal53.add_location)(td188, file51, 100, 53, 5031);
+      (0, import_internal53.attr_dev)(tr68, "class", "row-sel");
+      (0, import_internal53.add_location)(tr68, file51, 100, 3, 4981);
+      (0, import_internal53.add_location)(tbody6, file51, 88, 2, 4210);
+      (0, import_internal53.attr_dev)(td189, "colspan", "2");
+      (0, import_internal53.add_location)(td189, file51, 103, 7, 5077);
+      (0, import_internal53.add_location)(td190, file51, 103, 31, 5101);
+      (0, import_internal53.add_location)(tr69, file51, 103, 3, 5073);
+      (0, import_internal53.add_location)(tfoot, file51, 102, 2, 5062);
     },
     m: function mount(target, anchor) {
-      (0, import_internal52.insert_dev)(target, thead0, anchor);
-      (0, import_internal52.append_dev)(thead0, tr0);
-      (0, import_internal52.append_dev)(tr0, th0);
-      (0, import_internal52.append_dev)(tr0, th1);
-      (0, import_internal52.append_dev)(tr0, th2);
-      (0, import_internal52.insert_dev)(target, t3, anchor);
-      (0, import_internal52.insert_dev)(target, thead1, anchor);
-      (0, import_internal52.append_dev)(thead1, tr1);
-      (0, import_internal52.append_dev)(tr1, th3);
-      (0, import_internal52.insert_dev)(target, t5, anchor);
-      (0, import_internal52.insert_dev)(target, tbody0, anchor);
-      (0, import_internal52.append_dev)(tbody0, tr2);
-      (0, import_internal52.append_dev)(tr2, td0);
-      (0, import_internal52.append_dev)(tr2, td1);
-      (0, import_internal52.append_dev)(tr2, td2);
-      (0, import_internal52.append_dev)(tbody0, t9);
-      (0, import_internal52.append_dev)(tbody0, tr3);
-      (0, import_internal52.append_dev)(tr3, td3);
-      (0, import_internal52.append_dev)(tr3, td4);
-      (0, import_internal52.append_dev)(tr3, td5);
-      (0, import_internal52.append_dev)(tbody0, t13);
-      (0, import_internal52.append_dev)(tbody0, tr4);
-      (0, import_internal52.append_dev)(tr4, td6);
-      (0, import_internal52.append_dev)(tr4, td7);
-      (0, import_internal52.append_dev)(tr4, td8);
-      (0, import_internal52.append_dev)(tbody0, t17);
-      (0, import_internal52.append_dev)(tbody0, tr5);
-      (0, import_internal52.append_dev)(tr5, td9);
-      (0, import_internal52.append_dev)(tr5, td10);
-      (0, import_internal52.append_dev)(tr5, td11);
-      (0, import_internal52.append_dev)(tbody0, t21);
-      (0, import_internal52.append_dev)(tbody0, tr6);
-      (0, import_internal52.append_dev)(tr6, td12);
-      (0, import_internal52.append_dev)(tr6, td13);
-      (0, import_internal52.append_dev)(tr6, td14);
-      (0, import_internal52.append_dev)(tbody0, t25);
-      (0, import_internal52.append_dev)(tbody0, tr7);
-      (0, import_internal52.append_dev)(tr7, td15);
-      (0, import_internal52.append_dev)(tr7, td16);
-      (0, import_internal52.append_dev)(tr7, td17);
-      (0, import_internal52.insert_dev)(target, t29, anchor);
-      (0, import_internal52.insert_dev)(target, tbody1, anchor);
-      (0, import_internal52.append_dev)(tbody1, tr8);
-      (0, import_internal52.append_dev)(tr8, td18);
-      (0, import_internal52.append_dev)(tr8, td19);
-      (0, import_internal52.append_dev)(tr8, td20);
-      (0, import_internal52.append_dev)(tbody1, t33);
-      (0, import_internal52.append_dev)(tbody1, tr9);
-      (0, import_internal52.append_dev)(tr9, td21);
-      (0, import_internal52.append_dev)(tr9, td22);
-      (0, import_internal52.append_dev)(tr9, td23);
-      (0, import_internal52.insert_dev)(target, t37, anchor);
-      (0, import_internal52.insert_dev)(target, tbody2, anchor);
-      (0, import_internal52.append_dev)(tbody2, tr10);
-      (0, import_internal52.append_dev)(tr10, td24);
-      (0, import_internal52.append_dev)(tr10, td25);
-      (0, import_internal52.append_dev)(tr10, td26);
-      (0, import_internal52.append_dev)(tbody2, t41);
-      (0, import_internal52.append_dev)(tbody2, tr11);
-      (0, import_internal52.append_dev)(tr11, td27);
-      (0, import_internal52.append_dev)(tr11, td28);
-      (0, import_internal52.append_dev)(tr11, td29);
-      (0, import_internal52.append_dev)(tbody2, t45);
-      (0, import_internal52.append_dev)(tbody2, tr12);
-      (0, import_internal52.append_dev)(tr12, td30);
-      (0, import_internal52.append_dev)(tr12, td31);
-      (0, import_internal52.append_dev)(tr12, td32);
-      (0, import_internal52.append_dev)(tbody2, t49);
-      (0, import_internal52.append_dev)(tbody2, tr13);
-      (0, import_internal52.append_dev)(tr13, td33);
-      (0, import_internal52.append_dev)(tr13, td34);
-      (0, import_internal52.append_dev)(tr13, td35);
-      (0, import_internal52.append_dev)(tbody2, t53);
-      (0, import_internal52.append_dev)(tbody2, tr14);
-      (0, import_internal52.append_dev)(tr14, td36);
-      (0, import_internal52.append_dev)(tr14, td37);
-      (0, import_internal52.append_dev)(tr14, td38);
-      (0, import_internal52.append_dev)(tbody2, t57);
-      (0, import_internal52.append_dev)(tbody2, tr15);
-      (0, import_internal52.append_dev)(tr15, td39);
-      (0, import_internal52.append_dev)(tr15, td40);
-      (0, import_internal52.append_dev)(tr15, td41);
-      (0, import_internal52.append_dev)(tbody2, t61);
-      (0, import_internal52.append_dev)(tbody2, tr16);
-      (0, import_internal52.append_dev)(tr16, td42);
-      (0, import_internal52.append_dev)(tr16, td43);
-      (0, import_internal52.append_dev)(tr16, td44);
-      (0, import_internal52.insert_dev)(target, t65, anchor);
-      (0, import_internal52.insert_dev)(target, thead2, anchor);
-      (0, import_internal52.append_dev)(thead2, tr17);
-      (0, import_internal52.append_dev)(tr17, th4);
-      (0, import_internal52.insert_dev)(target, t67, anchor);
-      (0, import_internal52.insert_dev)(target, tbody3, anchor);
-      (0, import_internal52.append_dev)(tbody3, tr18);
-      (0, import_internal52.append_dev)(tr18, td45);
-      (0, import_internal52.append_dev)(tr18, td46);
-      (0, import_internal52.append_dev)(tr18, td47);
-      (0, import_internal52.append_dev)(tbody3, t71);
-      (0, import_internal52.append_dev)(tbody3, tr19);
-      (0, import_internal52.append_dev)(tr19, td48);
-      (0, import_internal52.append_dev)(tr19, td49);
-      (0, import_internal52.append_dev)(tr19, td50);
-      (0, import_internal52.append_dev)(tbody3, t75);
-      (0, import_internal52.append_dev)(tbody3, tr20);
-      (0, import_internal52.append_dev)(tr20, td51);
-      (0, import_internal52.append_dev)(tr20, td52);
-      (0, import_internal52.append_dev)(tr20, td53);
-      (0, import_internal52.append_dev)(tbody3, t79);
-      (0, import_internal52.append_dev)(tbody3, tr21);
-      (0, import_internal52.append_dev)(tr21, td54);
-      (0, import_internal52.append_dev)(tr21, td55);
-      (0, import_internal52.append_dev)(tr21, td56);
-      (0, import_internal52.append_dev)(tbody3, t83);
-      (0, import_internal52.append_dev)(tbody3, tr22);
-      (0, import_internal52.append_dev)(tr22, td57);
-      (0, import_internal52.append_dev)(tr22, td58);
-      (0, import_internal52.append_dev)(tr22, td59);
-      (0, import_internal52.append_dev)(tbody3, t87);
-      (0, import_internal52.append_dev)(tbody3, tr23);
-      (0, import_internal52.append_dev)(tr23, td60);
-      (0, import_internal52.append_dev)(tr23, td61);
-      (0, import_internal52.append_dev)(tr23, td62);
-      (0, import_internal52.append_dev)(tbody3, t91);
-      (0, import_internal52.append_dev)(tbody3, tr24);
-      (0, import_internal52.append_dev)(tr24, td63);
-      (0, import_internal52.append_dev)(tr24, td64);
-      (0, import_internal52.append_dev)(tr24, td65);
-      (0, import_internal52.append_dev)(tbody3, t95);
-      (0, import_internal52.append_dev)(tbody3, tr25);
-      (0, import_internal52.append_dev)(tr25, td66);
-      (0, import_internal52.append_dev)(tr25, td67);
-      (0, import_internal52.append_dev)(tr25, td68);
-      (0, import_internal52.append_dev)(tbody3, t99);
-      (0, import_internal52.append_dev)(tbody3, tr26);
-      (0, import_internal52.append_dev)(tr26, td69);
-      (0, import_internal52.append_dev)(tr26, td70);
-      (0, import_internal52.append_dev)(tr26, td71);
-      (0, import_internal52.append_dev)(tbody3, t103);
-      (0, import_internal52.append_dev)(tbody3, tr27);
-      (0, import_internal52.append_dev)(tr27, td72);
-      (0, import_internal52.append_dev)(tr27, td73);
-      (0, import_internal52.append_dev)(tr27, td74);
-      (0, import_internal52.append_dev)(tbody3, t107);
-      (0, import_internal52.append_dev)(tbody3, tr28);
-      (0, import_internal52.append_dev)(tr28, td75);
-      (0, import_internal52.append_dev)(tr28, td76);
-      (0, import_internal52.append_dev)(tr28, td77);
-      (0, import_internal52.append_dev)(tbody3, t111);
-      (0, import_internal52.append_dev)(tbody3, tr29);
-      (0, import_internal52.append_dev)(tr29, td78);
-      (0, import_internal52.append_dev)(tr29, td79);
-      (0, import_internal52.append_dev)(tr29, td80);
-      (0, import_internal52.insert_dev)(target, t115, anchor);
-      (0, import_internal52.insert_dev)(target, thead3, anchor);
-      (0, import_internal52.append_dev)(thead3, tr30);
-      (0, import_internal52.append_dev)(tr30, th5);
-      (0, import_internal52.insert_dev)(target, t117, anchor);
-      (0, import_internal52.insert_dev)(target, tbody4, anchor);
-      (0, import_internal52.append_dev)(tbody4, tr31);
-      (0, import_internal52.append_dev)(tr31, td81);
-      (0, import_internal52.append_dev)(tr31, td82);
-      (0, import_internal52.append_dev)(tr31, td83);
-      (0, import_internal52.append_dev)(tbody4, t121);
-      (0, import_internal52.append_dev)(tbody4, tr32);
-      (0, import_internal52.append_dev)(tr32, td84);
-      (0, import_internal52.append_dev)(tr32, td85);
-      (0, import_internal52.append_dev)(tr32, td86);
-      (0, import_internal52.append_dev)(tbody4, t125);
-      (0, import_internal52.append_dev)(tbody4, tr33);
-      (0, import_internal52.append_dev)(tr33, td87);
-      (0, import_internal52.append_dev)(tr33, td88);
-      (0, import_internal52.append_dev)(tr33, td89);
-      (0, import_internal52.append_dev)(tbody4, t129);
-      (0, import_internal52.append_dev)(tbody4, tr34);
-      (0, import_internal52.append_dev)(tr34, td90);
-      (0, import_internal52.append_dev)(tr34, td91);
-      (0, import_internal52.append_dev)(tr34, td92);
-      (0, import_internal52.append_dev)(tbody4, t133);
-      (0, import_internal52.append_dev)(tbody4, tr35);
-      (0, import_internal52.append_dev)(tr35, td93);
-      (0, import_internal52.append_dev)(tr35, td94);
-      (0, import_internal52.append_dev)(tr35, td95);
-      (0, import_internal52.append_dev)(tbody4, t137);
-      (0, import_internal52.append_dev)(tbody4, tr36);
-      (0, import_internal52.append_dev)(tr36, td96);
-      (0, import_internal52.append_dev)(tr36, td97);
-      (0, import_internal52.append_dev)(tr36, td98);
-      (0, import_internal52.append_dev)(tbody4, t141);
-      (0, import_internal52.append_dev)(tbody4, tr37);
-      (0, import_internal52.append_dev)(tr37, td99);
-      (0, import_internal52.append_dev)(tr37, td100);
-      (0, import_internal52.append_dev)(tr37, td101);
-      (0, import_internal52.append_dev)(tbody4, t145);
-      (0, import_internal52.append_dev)(tbody4, tr38);
-      (0, import_internal52.append_dev)(tr38, td102);
-      (0, import_internal52.append_dev)(tr38, td103);
-      (0, import_internal52.append_dev)(tr38, td104);
-      (0, import_internal52.append_dev)(tbody4, t149);
-      (0, import_internal52.append_dev)(tbody4, tr39);
-      (0, import_internal52.append_dev)(tr39, td105);
-      (0, import_internal52.append_dev)(tr39, td106);
-      (0, import_internal52.append_dev)(tr39, td107);
-      (0, import_internal52.append_dev)(tbody4, t153);
-      (0, import_internal52.append_dev)(tbody4, tr40);
-      (0, import_internal52.append_dev)(tr40, td108);
-      (0, import_internal52.append_dev)(tr40, td109);
-      (0, import_internal52.append_dev)(tr40, td110);
-      (0, import_internal52.append_dev)(tbody4, t157);
-      (0, import_internal52.append_dev)(tbody4, tr41);
-      (0, import_internal52.append_dev)(tr41, td111);
-      (0, import_internal52.append_dev)(tr41, td112);
-      (0, import_internal52.append_dev)(tr41, td113);
-      (0, import_internal52.append_dev)(tbody4, t161);
-      (0, import_internal52.append_dev)(tbody4, tr42);
-      (0, import_internal52.append_dev)(tr42, td114);
-      (0, import_internal52.append_dev)(tr42, td115);
-      (0, import_internal52.append_dev)(tr42, td116);
-      (0, import_internal52.insert_dev)(target, t165, anchor);
-      (0, import_internal52.insert_dev)(target, thead4, anchor);
-      (0, import_internal52.append_dev)(thead4, tr43);
-      (0, import_internal52.append_dev)(tr43, th6);
-      (0, import_internal52.insert_dev)(target, t167, anchor);
-      (0, import_internal52.insert_dev)(target, tbody5, anchor);
-      (0, import_internal52.append_dev)(tbody5, tr44);
-      (0, import_internal52.append_dev)(tr44, td117);
-      (0, import_internal52.append_dev)(tr44, td118);
-      (0, import_internal52.append_dev)(tr44, td119);
-      (0, import_internal52.append_dev)(tbody5, t171);
-      (0, import_internal52.append_dev)(tbody5, tr45);
-      (0, import_internal52.append_dev)(tr45, td120);
-      (0, import_internal52.append_dev)(tr45, td121);
-      (0, import_internal52.append_dev)(tr45, td122);
-      (0, import_internal52.append_dev)(tbody5, t175);
-      (0, import_internal52.append_dev)(tbody5, tr46);
-      (0, import_internal52.append_dev)(tr46, td123);
-      (0, import_internal52.append_dev)(tr46, td124);
-      (0, import_internal52.append_dev)(tr46, td125);
-      (0, import_internal52.append_dev)(tbody5, t179);
-      (0, import_internal52.append_dev)(tbody5, tr47);
-      (0, import_internal52.append_dev)(tr47, td126);
-      (0, import_internal52.append_dev)(tr47, td127);
-      (0, import_internal52.append_dev)(tr47, td128);
-      (0, import_internal52.append_dev)(tbody5, t183);
-      (0, import_internal52.append_dev)(tbody5, tr48);
-      (0, import_internal52.append_dev)(tr48, td129);
-      (0, import_internal52.append_dev)(tr48, td130);
-      (0, import_internal52.append_dev)(tr48, td131);
-      (0, import_internal52.append_dev)(tbody5, t187);
-      (0, import_internal52.append_dev)(tbody5, tr49);
-      (0, import_internal52.append_dev)(tr49, td132);
-      (0, import_internal52.append_dev)(tr49, td133);
-      (0, import_internal52.append_dev)(tr49, td134);
-      (0, import_internal52.append_dev)(tbody5, t191);
-      (0, import_internal52.append_dev)(tbody5, tr50);
-      (0, import_internal52.append_dev)(tr50, td135);
-      (0, import_internal52.append_dev)(tr50, td136);
-      (0, import_internal52.append_dev)(tr50, td137);
-      (0, import_internal52.append_dev)(tbody5, t195);
-      (0, import_internal52.append_dev)(tbody5, tr51);
-      (0, import_internal52.append_dev)(tr51, td138);
-      (0, import_internal52.append_dev)(tr51, td139);
-      (0, import_internal52.append_dev)(tr51, td140);
-      (0, import_internal52.append_dev)(tbody5, t199);
-      (0, import_internal52.append_dev)(tbody5, tr52);
-      (0, import_internal52.append_dev)(tr52, td141);
-      (0, import_internal52.append_dev)(tr52, td142);
-      (0, import_internal52.append_dev)(tr52, td143);
-      (0, import_internal52.append_dev)(tbody5, t203);
-      (0, import_internal52.append_dev)(tbody5, tr53);
-      (0, import_internal52.append_dev)(tr53, td144);
-      (0, import_internal52.append_dev)(tr53, td145);
-      (0, import_internal52.append_dev)(tr53, td146);
-      (0, import_internal52.append_dev)(tbody5, t207);
-      (0, import_internal52.append_dev)(tbody5, tr54);
-      (0, import_internal52.append_dev)(tr54, td147);
-      (0, import_internal52.append_dev)(tr54, td148);
-      (0, import_internal52.append_dev)(tr54, td149);
-      (0, import_internal52.append_dev)(tbody5, t211);
-      (0, import_internal52.append_dev)(tbody5, tr55);
-      (0, import_internal52.append_dev)(tr55, td150);
-      (0, import_internal52.append_dev)(tr55, td151);
-      (0, import_internal52.append_dev)(tr55, td152);
-      (0, import_internal52.insert_dev)(target, t215, anchor);
-      (0, import_internal52.insert_dev)(target, thead5, anchor);
-      (0, import_internal52.append_dev)(thead5, tr56);
-      (0, import_internal52.append_dev)(tr56, th7);
-      (0, import_internal52.insert_dev)(target, t217, anchor);
-      (0, import_internal52.insert_dev)(target, tbody6, anchor);
-      (0, import_internal52.append_dev)(tbody6, tr57);
-      (0, import_internal52.append_dev)(tr57, td153);
-      (0, import_internal52.append_dev)(tr57, td154);
-      (0, import_internal52.append_dev)(tr57, td155);
-      (0, import_internal52.append_dev)(tbody6, t221);
-      (0, import_internal52.append_dev)(tbody6, tr58);
-      (0, import_internal52.append_dev)(tr58, td156);
-      (0, import_internal52.append_dev)(tr58, td157);
-      (0, import_internal52.append_dev)(tr58, td158);
-      (0, import_internal52.append_dev)(tbody6, t225);
-      (0, import_internal52.append_dev)(tbody6, tr59);
-      (0, import_internal52.append_dev)(tr59, td159);
-      (0, import_internal52.append_dev)(tr59, td160);
-      (0, import_internal52.append_dev)(tr59, td161);
-      (0, import_internal52.append_dev)(tbody6, t229);
-      (0, import_internal52.append_dev)(tbody6, tr60);
-      (0, import_internal52.append_dev)(tr60, td162);
-      (0, import_internal52.append_dev)(tr60, td163);
-      (0, import_internal52.append_dev)(tr60, td164);
-      (0, import_internal52.append_dev)(tbody6, t233);
-      (0, import_internal52.append_dev)(tbody6, tr61);
-      (0, import_internal52.append_dev)(tr61, td165);
-      (0, import_internal52.append_dev)(tr61, td166);
-      (0, import_internal52.append_dev)(tr61, td167);
-      (0, import_internal52.append_dev)(tbody6, t237);
-      (0, import_internal52.append_dev)(tbody6, tr62);
-      (0, import_internal52.append_dev)(tr62, td168);
-      (0, import_internal52.append_dev)(tr62, td169);
-      (0, import_internal52.append_dev)(tr62, td170);
-      (0, import_internal52.append_dev)(tbody6, t241);
-      (0, import_internal52.append_dev)(tbody6, tr63);
-      (0, import_internal52.append_dev)(tr63, td171);
-      (0, import_internal52.append_dev)(tr63, td172);
-      (0, import_internal52.append_dev)(tr63, td173);
-      (0, import_internal52.append_dev)(tbody6, t245);
-      (0, import_internal52.append_dev)(tbody6, tr64);
-      (0, import_internal52.append_dev)(tr64, td174);
-      (0, import_internal52.append_dev)(tr64, td175);
-      (0, import_internal52.append_dev)(tr64, td176);
-      (0, import_internal52.append_dev)(tbody6, t249);
-      (0, import_internal52.append_dev)(tbody6, tr65);
-      (0, import_internal52.append_dev)(tr65, td177);
-      (0, import_internal52.append_dev)(tr65, td178);
-      (0, import_internal52.append_dev)(tr65, td179);
-      (0, import_internal52.append_dev)(tbody6, t253);
-      (0, import_internal52.append_dev)(tbody6, tr66);
-      (0, import_internal52.append_dev)(tr66, td180);
-      (0, import_internal52.append_dev)(tr66, td181);
-      (0, import_internal52.append_dev)(tr66, td182);
-      (0, import_internal52.append_dev)(tbody6, t257);
-      (0, import_internal52.append_dev)(tbody6, tr67);
-      (0, import_internal52.append_dev)(tr67, td183);
-      (0, import_internal52.append_dev)(tr67, td184);
-      (0, import_internal52.append_dev)(tr67, td185);
-      (0, import_internal52.append_dev)(tbody6, t261);
-      (0, import_internal52.append_dev)(tbody6, tr68);
-      (0, import_internal52.append_dev)(tr68, td186);
-      (0, import_internal52.append_dev)(tr68, td187);
-      (0, import_internal52.append_dev)(tr68, td188);
-      (0, import_internal52.insert_dev)(target, t265, anchor);
-      (0, import_internal52.insert_dev)(target, tfoot, anchor);
-      (0, import_internal52.append_dev)(tfoot, tr69);
-      (0, import_internal52.append_dev)(tr69, td189);
-      (0, import_internal52.append_dev)(tr69, td190);
+      (0, import_internal53.insert_dev)(target, thead0, anchor);
+      (0, import_internal53.append_dev)(thead0, tr0);
+      (0, import_internal53.append_dev)(tr0, th0);
+      (0, import_internal53.append_dev)(tr0, th1);
+      (0, import_internal53.append_dev)(tr0, th2);
+      (0, import_internal53.insert_dev)(target, t3, anchor);
+      (0, import_internal53.insert_dev)(target, thead1, anchor);
+      (0, import_internal53.append_dev)(thead1, tr1);
+      (0, import_internal53.append_dev)(tr1, th3);
+      (0, import_internal53.insert_dev)(target, t5, anchor);
+      (0, import_internal53.insert_dev)(target, tbody0, anchor);
+      (0, import_internal53.append_dev)(tbody0, tr2);
+      (0, import_internal53.append_dev)(tr2, td0);
+      (0, import_internal53.append_dev)(tr2, td1);
+      (0, import_internal53.append_dev)(tr2, td2);
+      (0, import_internal53.append_dev)(tbody0, t9);
+      (0, import_internal53.append_dev)(tbody0, tr3);
+      (0, import_internal53.append_dev)(tr3, td3);
+      (0, import_internal53.append_dev)(tr3, td4);
+      (0, import_internal53.append_dev)(tr3, td5);
+      (0, import_internal53.append_dev)(tbody0, t13);
+      (0, import_internal53.append_dev)(tbody0, tr4);
+      (0, import_internal53.append_dev)(tr4, td6);
+      (0, import_internal53.append_dev)(tr4, td7);
+      (0, import_internal53.append_dev)(tr4, td8);
+      (0, import_internal53.append_dev)(tbody0, t17);
+      (0, import_internal53.append_dev)(tbody0, tr5);
+      (0, import_internal53.append_dev)(tr5, td9);
+      (0, import_internal53.append_dev)(tr5, td10);
+      (0, import_internal53.append_dev)(tr5, td11);
+      (0, import_internal53.append_dev)(tbody0, t21);
+      (0, import_internal53.append_dev)(tbody0, tr6);
+      (0, import_internal53.append_dev)(tr6, td12);
+      (0, import_internal53.append_dev)(tr6, td13);
+      (0, import_internal53.append_dev)(tr6, td14);
+      (0, import_internal53.append_dev)(tbody0, t25);
+      (0, import_internal53.append_dev)(tbody0, tr7);
+      (0, import_internal53.append_dev)(tr7, td15);
+      (0, import_internal53.append_dev)(tr7, td16);
+      (0, import_internal53.append_dev)(tr7, td17);
+      (0, import_internal53.insert_dev)(target, t29, anchor);
+      (0, import_internal53.insert_dev)(target, tbody1, anchor);
+      (0, import_internal53.append_dev)(tbody1, tr8);
+      (0, import_internal53.append_dev)(tr8, td18);
+      (0, import_internal53.append_dev)(tr8, td19);
+      (0, import_internal53.append_dev)(tr8, td20);
+      (0, import_internal53.append_dev)(tbody1, t33);
+      (0, import_internal53.append_dev)(tbody1, tr9);
+      (0, import_internal53.append_dev)(tr9, td21);
+      (0, import_internal53.append_dev)(tr9, td22);
+      (0, import_internal53.append_dev)(tr9, td23);
+      (0, import_internal53.insert_dev)(target, t37, anchor);
+      (0, import_internal53.insert_dev)(target, tbody2, anchor);
+      (0, import_internal53.append_dev)(tbody2, tr10);
+      (0, import_internal53.append_dev)(tr10, td24);
+      (0, import_internal53.append_dev)(tr10, td25);
+      (0, import_internal53.append_dev)(tr10, td26);
+      (0, import_internal53.append_dev)(tbody2, t41);
+      (0, import_internal53.append_dev)(tbody2, tr11);
+      (0, import_internal53.append_dev)(tr11, td27);
+      (0, import_internal53.append_dev)(tr11, td28);
+      (0, import_internal53.append_dev)(tr11, td29);
+      (0, import_internal53.append_dev)(tbody2, t45);
+      (0, import_internal53.append_dev)(tbody2, tr12);
+      (0, import_internal53.append_dev)(tr12, td30);
+      (0, import_internal53.append_dev)(tr12, td31);
+      (0, import_internal53.append_dev)(tr12, td32);
+      (0, import_internal53.append_dev)(tbody2, t49);
+      (0, import_internal53.append_dev)(tbody2, tr13);
+      (0, import_internal53.append_dev)(tr13, td33);
+      (0, import_internal53.append_dev)(tr13, td34);
+      (0, import_internal53.append_dev)(tr13, td35);
+      (0, import_internal53.append_dev)(tbody2, t53);
+      (0, import_internal53.append_dev)(tbody2, tr14);
+      (0, import_internal53.append_dev)(tr14, td36);
+      (0, import_internal53.append_dev)(tr14, td37);
+      (0, import_internal53.append_dev)(tr14, td38);
+      (0, import_internal53.append_dev)(tbody2, t57);
+      (0, import_internal53.append_dev)(tbody2, tr15);
+      (0, import_internal53.append_dev)(tr15, td39);
+      (0, import_internal53.append_dev)(tr15, td40);
+      (0, import_internal53.append_dev)(tr15, td41);
+      (0, import_internal53.append_dev)(tbody2, t61);
+      (0, import_internal53.append_dev)(tbody2, tr16);
+      (0, import_internal53.append_dev)(tr16, td42);
+      (0, import_internal53.append_dev)(tr16, td43);
+      (0, import_internal53.append_dev)(tr16, td44);
+      (0, import_internal53.insert_dev)(target, t65, anchor);
+      (0, import_internal53.insert_dev)(target, thead2, anchor);
+      (0, import_internal53.append_dev)(thead2, tr17);
+      (0, import_internal53.append_dev)(tr17, th4);
+      (0, import_internal53.insert_dev)(target, t67, anchor);
+      (0, import_internal53.insert_dev)(target, tbody3, anchor);
+      (0, import_internal53.append_dev)(tbody3, tr18);
+      (0, import_internal53.append_dev)(tr18, td45);
+      (0, import_internal53.append_dev)(tr18, td46);
+      (0, import_internal53.append_dev)(tr18, td47);
+      (0, import_internal53.append_dev)(tbody3, t71);
+      (0, import_internal53.append_dev)(tbody3, tr19);
+      (0, import_internal53.append_dev)(tr19, td48);
+      (0, import_internal53.append_dev)(tr19, td49);
+      (0, import_internal53.append_dev)(tr19, td50);
+      (0, import_internal53.append_dev)(tbody3, t75);
+      (0, import_internal53.append_dev)(tbody3, tr20);
+      (0, import_internal53.append_dev)(tr20, td51);
+      (0, import_internal53.append_dev)(tr20, td52);
+      (0, import_internal53.append_dev)(tr20, td53);
+      (0, import_internal53.append_dev)(tbody3, t79);
+      (0, import_internal53.append_dev)(tbody3, tr21);
+      (0, import_internal53.append_dev)(tr21, td54);
+      (0, import_internal53.append_dev)(tr21, td55);
+      (0, import_internal53.append_dev)(tr21, td56);
+      (0, import_internal53.append_dev)(tbody3, t83);
+      (0, import_internal53.append_dev)(tbody3, tr22);
+      (0, import_internal53.append_dev)(tr22, td57);
+      (0, import_internal53.append_dev)(tr22, td58);
+      (0, import_internal53.append_dev)(tr22, td59);
+      (0, import_internal53.append_dev)(tbody3, t87);
+      (0, import_internal53.append_dev)(tbody3, tr23);
+      (0, import_internal53.append_dev)(tr23, td60);
+      (0, import_internal53.append_dev)(tr23, td61);
+      (0, import_internal53.append_dev)(tr23, td62);
+      (0, import_internal53.append_dev)(tbody3, t91);
+      (0, import_internal53.append_dev)(tbody3, tr24);
+      (0, import_internal53.append_dev)(tr24, td63);
+      (0, import_internal53.append_dev)(tr24, td64);
+      (0, import_internal53.append_dev)(tr24, td65);
+      (0, import_internal53.append_dev)(tbody3, t95);
+      (0, import_internal53.append_dev)(tbody3, tr25);
+      (0, import_internal53.append_dev)(tr25, td66);
+      (0, import_internal53.append_dev)(tr25, td67);
+      (0, import_internal53.append_dev)(tr25, td68);
+      (0, import_internal53.append_dev)(tbody3, t99);
+      (0, import_internal53.append_dev)(tbody3, tr26);
+      (0, import_internal53.append_dev)(tr26, td69);
+      (0, import_internal53.append_dev)(tr26, td70);
+      (0, import_internal53.append_dev)(tr26, td71);
+      (0, import_internal53.append_dev)(tbody3, t103);
+      (0, import_internal53.append_dev)(tbody3, tr27);
+      (0, import_internal53.append_dev)(tr27, td72);
+      (0, import_internal53.append_dev)(tr27, td73);
+      (0, import_internal53.append_dev)(tr27, td74);
+      (0, import_internal53.append_dev)(tbody3, t107);
+      (0, import_internal53.append_dev)(tbody3, tr28);
+      (0, import_internal53.append_dev)(tr28, td75);
+      (0, import_internal53.append_dev)(tr28, td76);
+      (0, import_internal53.append_dev)(tr28, td77);
+      (0, import_internal53.append_dev)(tbody3, t111);
+      (0, import_internal53.append_dev)(tbody3, tr29);
+      (0, import_internal53.append_dev)(tr29, td78);
+      (0, import_internal53.append_dev)(tr29, td79);
+      (0, import_internal53.append_dev)(tr29, td80);
+      (0, import_internal53.insert_dev)(target, t115, anchor);
+      (0, import_internal53.insert_dev)(target, thead3, anchor);
+      (0, import_internal53.append_dev)(thead3, tr30);
+      (0, import_internal53.append_dev)(tr30, th5);
+      (0, import_internal53.insert_dev)(target, t117, anchor);
+      (0, import_internal53.insert_dev)(target, tbody4, anchor);
+      (0, import_internal53.append_dev)(tbody4, tr31);
+      (0, import_internal53.append_dev)(tr31, td81);
+      (0, import_internal53.append_dev)(tr31, td82);
+      (0, import_internal53.append_dev)(tr31, td83);
+      (0, import_internal53.append_dev)(tbody4, t121);
+      (0, import_internal53.append_dev)(tbody4, tr32);
+      (0, import_internal53.append_dev)(tr32, td84);
+      (0, import_internal53.append_dev)(tr32, td85);
+      (0, import_internal53.append_dev)(tr32, td86);
+      (0, import_internal53.append_dev)(tbody4, t125);
+      (0, import_internal53.append_dev)(tbody4, tr33);
+      (0, import_internal53.append_dev)(tr33, td87);
+      (0, import_internal53.append_dev)(tr33, td88);
+      (0, import_internal53.append_dev)(tr33, td89);
+      (0, import_internal53.append_dev)(tbody4, t129);
+      (0, import_internal53.append_dev)(tbody4, tr34);
+      (0, import_internal53.append_dev)(tr34, td90);
+      (0, import_internal53.append_dev)(tr34, td91);
+      (0, import_internal53.append_dev)(tr34, td92);
+      (0, import_internal53.append_dev)(tbody4, t133);
+      (0, import_internal53.append_dev)(tbody4, tr35);
+      (0, import_internal53.append_dev)(tr35, td93);
+      (0, import_internal53.append_dev)(tr35, td94);
+      (0, import_internal53.append_dev)(tr35, td95);
+      (0, import_internal53.append_dev)(tbody4, t137);
+      (0, import_internal53.append_dev)(tbody4, tr36);
+      (0, import_internal53.append_dev)(tr36, td96);
+      (0, import_internal53.append_dev)(tr36, td97);
+      (0, import_internal53.append_dev)(tr36, td98);
+      (0, import_internal53.append_dev)(tbody4, t141);
+      (0, import_internal53.append_dev)(tbody4, tr37);
+      (0, import_internal53.append_dev)(tr37, td99);
+      (0, import_internal53.append_dev)(tr37, td100);
+      (0, import_internal53.append_dev)(tr37, td101);
+      (0, import_internal53.append_dev)(tbody4, t145);
+      (0, import_internal53.append_dev)(tbody4, tr38);
+      (0, import_internal53.append_dev)(tr38, td102);
+      (0, import_internal53.append_dev)(tr38, td103);
+      (0, import_internal53.append_dev)(tr38, td104);
+      (0, import_internal53.append_dev)(tbody4, t149);
+      (0, import_internal53.append_dev)(tbody4, tr39);
+      (0, import_internal53.append_dev)(tr39, td105);
+      (0, import_internal53.append_dev)(tr39, td106);
+      (0, import_internal53.append_dev)(tr39, td107);
+      (0, import_internal53.append_dev)(tbody4, t153);
+      (0, import_internal53.append_dev)(tbody4, tr40);
+      (0, import_internal53.append_dev)(tr40, td108);
+      (0, import_internal53.append_dev)(tr40, td109);
+      (0, import_internal53.append_dev)(tr40, td110);
+      (0, import_internal53.append_dev)(tbody4, t157);
+      (0, import_internal53.append_dev)(tbody4, tr41);
+      (0, import_internal53.append_dev)(tr41, td111);
+      (0, import_internal53.append_dev)(tr41, td112);
+      (0, import_internal53.append_dev)(tr41, td113);
+      (0, import_internal53.append_dev)(tbody4, t161);
+      (0, import_internal53.append_dev)(tbody4, tr42);
+      (0, import_internal53.append_dev)(tr42, td114);
+      (0, import_internal53.append_dev)(tr42, td115);
+      (0, import_internal53.append_dev)(tr42, td116);
+      (0, import_internal53.insert_dev)(target, t165, anchor);
+      (0, import_internal53.insert_dev)(target, thead4, anchor);
+      (0, import_internal53.append_dev)(thead4, tr43);
+      (0, import_internal53.append_dev)(tr43, th6);
+      (0, import_internal53.insert_dev)(target, t167, anchor);
+      (0, import_internal53.insert_dev)(target, tbody5, anchor);
+      (0, import_internal53.append_dev)(tbody5, tr44);
+      (0, import_internal53.append_dev)(tr44, td117);
+      (0, import_internal53.append_dev)(tr44, td118);
+      (0, import_internal53.append_dev)(tr44, td119);
+      (0, import_internal53.append_dev)(tbody5, t171);
+      (0, import_internal53.append_dev)(tbody5, tr45);
+      (0, import_internal53.append_dev)(tr45, td120);
+      (0, import_internal53.append_dev)(tr45, td121);
+      (0, import_internal53.append_dev)(tr45, td122);
+      (0, import_internal53.append_dev)(tbody5, t175);
+      (0, import_internal53.append_dev)(tbody5, tr46);
+      (0, import_internal53.append_dev)(tr46, td123);
+      (0, import_internal53.append_dev)(tr46, td124);
+      (0, import_internal53.append_dev)(tr46, td125);
+      (0, import_internal53.append_dev)(tbody5, t179);
+      (0, import_internal53.append_dev)(tbody5, tr47);
+      (0, import_internal53.append_dev)(tr47, td126);
+      (0, import_internal53.append_dev)(tr47, td127);
+      (0, import_internal53.append_dev)(tr47, td128);
+      (0, import_internal53.append_dev)(tbody5, t183);
+      (0, import_internal53.append_dev)(tbody5, tr48);
+      (0, import_internal53.append_dev)(tr48, td129);
+      (0, import_internal53.append_dev)(tr48, td130);
+      (0, import_internal53.append_dev)(tr48, td131);
+      (0, import_internal53.append_dev)(tbody5, t187);
+      (0, import_internal53.append_dev)(tbody5, tr49);
+      (0, import_internal53.append_dev)(tr49, td132);
+      (0, import_internal53.append_dev)(tr49, td133);
+      (0, import_internal53.append_dev)(tr49, td134);
+      (0, import_internal53.append_dev)(tbody5, t191);
+      (0, import_internal53.append_dev)(tbody5, tr50);
+      (0, import_internal53.append_dev)(tr50, td135);
+      (0, import_internal53.append_dev)(tr50, td136);
+      (0, import_internal53.append_dev)(tr50, td137);
+      (0, import_internal53.append_dev)(tbody5, t195);
+      (0, import_internal53.append_dev)(tbody5, tr51);
+      (0, import_internal53.append_dev)(tr51, td138);
+      (0, import_internal53.append_dev)(tr51, td139);
+      (0, import_internal53.append_dev)(tr51, td140);
+      (0, import_internal53.append_dev)(tbody5, t199);
+      (0, import_internal53.append_dev)(tbody5, tr52);
+      (0, import_internal53.append_dev)(tr52, td141);
+      (0, import_internal53.append_dev)(tr52, td142);
+      (0, import_internal53.append_dev)(tr52, td143);
+      (0, import_internal53.append_dev)(tbody5, t203);
+      (0, import_internal53.append_dev)(tbody5, tr53);
+      (0, import_internal53.append_dev)(tr53, td144);
+      (0, import_internal53.append_dev)(tr53, td145);
+      (0, import_internal53.append_dev)(tr53, td146);
+      (0, import_internal53.append_dev)(tbody5, t207);
+      (0, import_internal53.append_dev)(tbody5, tr54);
+      (0, import_internal53.append_dev)(tr54, td147);
+      (0, import_internal53.append_dev)(tr54, td148);
+      (0, import_internal53.append_dev)(tr54, td149);
+      (0, import_internal53.append_dev)(tbody5, t211);
+      (0, import_internal53.append_dev)(tbody5, tr55);
+      (0, import_internal53.append_dev)(tr55, td150);
+      (0, import_internal53.append_dev)(tr55, td151);
+      (0, import_internal53.append_dev)(tr55, td152);
+      (0, import_internal53.insert_dev)(target, t215, anchor);
+      (0, import_internal53.insert_dev)(target, thead5, anchor);
+      (0, import_internal53.append_dev)(thead5, tr56);
+      (0, import_internal53.append_dev)(tr56, th7);
+      (0, import_internal53.insert_dev)(target, t217, anchor);
+      (0, import_internal53.insert_dev)(target, tbody6, anchor);
+      (0, import_internal53.append_dev)(tbody6, tr57);
+      (0, import_internal53.append_dev)(tr57, td153);
+      (0, import_internal53.append_dev)(tr57, td154);
+      (0, import_internal53.append_dev)(tr57, td155);
+      (0, import_internal53.append_dev)(tbody6, t221);
+      (0, import_internal53.append_dev)(tbody6, tr58);
+      (0, import_internal53.append_dev)(tr58, td156);
+      (0, import_internal53.append_dev)(tr58, td157);
+      (0, import_internal53.append_dev)(tr58, td158);
+      (0, import_internal53.append_dev)(tbody6, t225);
+      (0, import_internal53.append_dev)(tbody6, tr59);
+      (0, import_internal53.append_dev)(tr59, td159);
+      (0, import_internal53.append_dev)(tr59, td160);
+      (0, import_internal53.append_dev)(tr59, td161);
+      (0, import_internal53.append_dev)(tbody6, t229);
+      (0, import_internal53.append_dev)(tbody6, tr60);
+      (0, import_internal53.append_dev)(tr60, td162);
+      (0, import_internal53.append_dev)(tr60, td163);
+      (0, import_internal53.append_dev)(tr60, td164);
+      (0, import_internal53.append_dev)(tbody6, t233);
+      (0, import_internal53.append_dev)(tbody6, tr61);
+      (0, import_internal53.append_dev)(tr61, td165);
+      (0, import_internal53.append_dev)(tr61, td166);
+      (0, import_internal53.append_dev)(tr61, td167);
+      (0, import_internal53.append_dev)(tbody6, t237);
+      (0, import_internal53.append_dev)(tbody6, tr62);
+      (0, import_internal53.append_dev)(tr62, td168);
+      (0, import_internal53.append_dev)(tr62, td169);
+      (0, import_internal53.append_dev)(tr62, td170);
+      (0, import_internal53.append_dev)(tbody6, t241);
+      (0, import_internal53.append_dev)(tbody6, tr63);
+      (0, import_internal53.append_dev)(tr63, td171);
+      (0, import_internal53.append_dev)(tr63, td172);
+      (0, import_internal53.append_dev)(tr63, td173);
+      (0, import_internal53.append_dev)(tbody6, t245);
+      (0, import_internal53.append_dev)(tbody6, tr64);
+      (0, import_internal53.append_dev)(tr64, td174);
+      (0, import_internal53.append_dev)(tr64, td175);
+      (0, import_internal53.append_dev)(tr64, td176);
+      (0, import_internal53.append_dev)(tbody6, t249);
+      (0, import_internal53.append_dev)(tbody6, tr65);
+      (0, import_internal53.append_dev)(tr65, td177);
+      (0, import_internal53.append_dev)(tr65, td178);
+      (0, import_internal53.append_dev)(tr65, td179);
+      (0, import_internal53.append_dev)(tbody6, t253);
+      (0, import_internal53.append_dev)(tbody6, tr66);
+      (0, import_internal53.append_dev)(tr66, td180);
+      (0, import_internal53.append_dev)(tr66, td181);
+      (0, import_internal53.append_dev)(tr66, td182);
+      (0, import_internal53.append_dev)(tbody6, t257);
+      (0, import_internal53.append_dev)(tbody6, tr67);
+      (0, import_internal53.append_dev)(tr67, td183);
+      (0, import_internal53.append_dev)(tr67, td184);
+      (0, import_internal53.append_dev)(tr67, td185);
+      (0, import_internal53.append_dev)(tbody6, t261);
+      (0, import_internal53.append_dev)(tbody6, tr68);
+      (0, import_internal53.append_dev)(tr68, td186);
+      (0, import_internal53.append_dev)(tr68, td187);
+      (0, import_internal53.append_dev)(tr68, td188);
+      (0, import_internal53.insert_dev)(target, t265, anchor);
+      (0, import_internal53.insert_dev)(target, tfoot, anchor);
+      (0, import_internal53.append_dev)(tfoot, tr69);
+      (0, import_internal53.append_dev)(tr69, td189);
+      (0, import_internal53.append_dev)(tr69, td190);
     },
-    p: import_internal52.noop,
+    p: import_internal53.noop,
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal52.detach_dev)(thead0);
+        (0, import_internal53.detach_dev)(thead0);
       if (detaching)
-        (0, import_internal52.detach_dev)(t3);
+        (0, import_internal53.detach_dev)(t3);
       if (detaching)
-        (0, import_internal52.detach_dev)(thead1);
+        (0, import_internal53.detach_dev)(thead1);
       if (detaching)
-        (0, import_internal52.detach_dev)(t5);
+        (0, import_internal53.detach_dev)(t5);
       if (detaching)
-        (0, import_internal52.detach_dev)(tbody0);
+        (0, import_internal53.detach_dev)(tbody0);
       if (detaching)
-        (0, import_internal52.detach_dev)(t29);
+        (0, import_internal53.detach_dev)(t29);
       if (detaching)
-        (0, import_internal52.detach_dev)(tbody1);
+        (0, import_internal53.detach_dev)(tbody1);
       if (detaching)
-        (0, import_internal52.detach_dev)(t37);
+        (0, import_internal53.detach_dev)(t37);
       if (detaching)
-        (0, import_internal52.detach_dev)(tbody2);
+        (0, import_internal53.detach_dev)(tbody2);
       if (detaching)
-        (0, import_internal52.detach_dev)(t65);
+        (0, import_internal53.detach_dev)(t65);
       if (detaching)
-        (0, import_internal52.detach_dev)(thead2);
+        (0, import_internal53.detach_dev)(thead2);
       if (detaching)
-        (0, import_internal52.detach_dev)(t67);
+        (0, import_internal53.detach_dev)(t67);
       if (detaching)
-        (0, import_internal52.detach_dev)(tbody3);
+        (0, import_internal53.detach_dev)(tbody3);
       if (detaching)
-        (0, import_internal52.detach_dev)(t115);
+        (0, import_internal53.detach_dev)(t115);
       if (detaching)
-        (0, import_internal52.detach_dev)(thead3);
+        (0, import_internal53.detach_dev)(thead3);
       if (detaching)
-        (0, import_internal52.detach_dev)(t117);
+        (0, import_internal53.detach_dev)(t117);
       if (detaching)
-        (0, import_internal52.detach_dev)(tbody4);
+        (0, import_internal53.detach_dev)(tbody4);
       if (detaching)
-        (0, import_internal52.detach_dev)(t165);
+        (0, import_internal53.detach_dev)(t165);
       if (detaching)
-        (0, import_internal52.detach_dev)(thead4);
+        (0, import_internal53.detach_dev)(thead4);
       if (detaching)
-        (0, import_internal52.detach_dev)(t167);
+        (0, import_internal53.detach_dev)(t167);
       if (detaching)
-        (0, import_internal52.detach_dev)(tbody5);
+        (0, import_internal53.detach_dev)(tbody5);
       if (detaching)
-        (0, import_internal52.detach_dev)(t215);
+        (0, import_internal53.detach_dev)(t215);
       if (detaching)
-        (0, import_internal52.detach_dev)(thead5);
+        (0, import_internal53.detach_dev)(thead5);
       if (detaching)
-        (0, import_internal52.detach_dev)(t217);
+        (0, import_internal53.detach_dev)(t217);
       if (detaching)
-        (0, import_internal52.detach_dev)(tbody6);
+        (0, import_internal53.detach_dev)(tbody6);
       if (detaching)
-        (0, import_internal52.detach_dev)(t265);
+        (0, import_internal53.detach_dev)(t265);
       if (detaching)
-        (0, import_internal52.detach_dev)(tfoot);
+        (0, import_internal53.detach_dev)(tfoot);
     }
   };
-  (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal53.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot11.name,
     type: "slot",
@@ -35000,7 +35970,7 @@ function create_default_slot11(ctx) {
   });
   return block;
 }
-function create_fragment52(ctx) {
+function create_fragment53(ctx) {
   let h2;
   let t1;
   let div;
@@ -35038,31 +36008,31 @@ function create_fragment52(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal52.element)("h2");
+      h2 = (0, import_internal53.element)("h2");
       h2.textContent = "Table";
-      t1 = (0, import_internal52.space)();
-      div = (0, import_internal52.element)("div");
-      (0, import_internal52.create_component)(table.$$.fragment);
-      t2 = (0, import_internal52.space)();
-      (0, import_internal52.create_component)(codeexample.$$.fragment);
-      t3 = (0, import_internal52.space)();
-      (0, import_internal52.create_component)(api.$$.fragment);
-      (0, import_internal52.add_location)(h2, file50, 0, 0, 0);
-      (0, import_internal52.attr_dev)(div, "class", "table-viewport");
-      (0, import_internal52.add_location)(div, file50, 2, 0, 16);
+      t1 = (0, import_internal53.space)();
+      div = (0, import_internal53.element)("div");
+      (0, import_internal53.create_component)(table.$$.fragment);
+      t2 = (0, import_internal53.space)();
+      (0, import_internal53.create_component)(codeexample.$$.fragment);
+      t3 = (0, import_internal53.space)();
+      (0, import_internal53.create_component)(api.$$.fragment);
+      (0, import_internal53.add_location)(h2, file51, 0, 0, 0);
+      (0, import_internal53.attr_dev)(div, "class", "table-viewport");
+      (0, import_internal53.add_location)(div, file51, 2, 0, 16);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal52.insert_dev)(target, h2, anchor);
-      (0, import_internal52.insert_dev)(target, t1, anchor);
-      (0, import_internal52.insert_dev)(target, div, anchor);
-      (0, import_internal52.mount_component)(table, div, null);
-      (0, import_internal52.insert_dev)(target, t2, anchor);
-      (0, import_internal52.mount_component)(codeexample, target, anchor);
-      (0, import_internal52.insert_dev)(target, t3, anchor);
-      (0, import_internal52.mount_component)(api, target, anchor);
+      (0, import_internal53.insert_dev)(target, h2, anchor);
+      (0, import_internal53.insert_dev)(target, t1, anchor);
+      (0, import_internal53.insert_dev)(target, div, anchor);
+      (0, import_internal53.mount_component)(table, div, null);
+      (0, import_internal53.insert_dev)(target, t2, anchor);
+      (0, import_internal53.mount_component)(codeexample, target, anchor);
+      (0, import_internal53.insert_dev)(target, t3, anchor);
+      (0, import_internal53.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -35076,36 +36046,36 @@ function create_fragment52(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal52.transition_in)(table.$$.fragment, local);
-      (0, import_internal52.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal52.transition_in)(api.$$.fragment, local);
+      (0, import_internal53.transition_in)(table.$$.fragment, local);
+      (0, import_internal53.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal53.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal52.transition_out)(table.$$.fragment, local);
-      (0, import_internal52.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal52.transition_out)(api.$$.fragment, local);
+      (0, import_internal53.transition_out)(table.$$.fragment, local);
+      (0, import_internal53.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal53.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal52.detach_dev)(h2);
+        (0, import_internal53.detach_dev)(h2);
       if (detaching)
-        (0, import_internal52.detach_dev)(t1);
+        (0, import_internal53.detach_dev)(t1);
       if (detaching)
-        (0, import_internal52.detach_dev)(div);
-      (0, import_internal52.destroy_component)(table);
+        (0, import_internal53.detach_dev)(div);
+      (0, import_internal53.destroy_component)(table);
       if (detaching)
-        (0, import_internal52.detach_dev)(t2);
-      (0, import_internal52.destroy_component)(codeexample, detaching);
+        (0, import_internal53.detach_dev)(t2);
+      (0, import_internal53.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal52.detach_dev)(t3);
-      (0, import_internal52.destroy_component)(api, detaching);
+        (0, import_internal53.detach_dev)(t3);
+      (0, import_internal53.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal53.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment52.name,
+    id: create_fragment53.name,
     type: "component",
     source: "",
     ctx
@@ -35121,9 +36091,9 @@ function onSelect(e) {
   const { selectedItem } = e.detail;
   console.log(e.type, selectedItem);
 }
-function instance52($$self, $$props, $$invalidate) {
+function instance53($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal52.validate_slots)("Table", slots, []);
+  (0, import_internal53.validate_slots)("Table", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -35221,7 +36191,7 @@ function instance52($$self, $$props, $$invalidate) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_17.warn(`<Table> was created with unknown prop '${key}'`);
+      console_16.warn(`<Table> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Table: Table_default,
@@ -35234,39 +36204,39 @@ function instance52($$self, $$props, $$invalidate) {
   });
   return [apiProps, exampleHtml];
 }
-var Table_1 = class extends import_internal52.SvelteComponentDev {
+var Table_1 = class extends import_internal53.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal52.init)(this, options, instance52, create_fragment52, import_internal52.safe_not_equal, {});
-    (0, import_internal52.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal53.init)(this, options, instance53, create_fragment53, import_internal53.safe_not_equal, {});
+    (0, import_internal53.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Table_1",
       options,
-      id: create_fragment52.name
+      id: create_fragment53.name
     });
   }
 };
 var Table_default2 = Table_1;
 
 // docs-src/components/text-fit/TextFit.svelte
-var import_internal53 = __toESM(require_internal());
-var file51 = "docs-src/components/text-fit/TextFit.svelte";
+var import_internal54 = __toESM(require_internal());
+var file52 = "docs-src/components/text-fit/TextFit.svelte";
 function create_default_slot_214(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal53.text)(
+      t = (0, import_internal54.text)(
         /*textFitText*/
         ctx[0]
       );
     },
     m: function mount(target, anchor) {
-      (0, import_internal53.insert_dev)(target, t, anchor);
+      (0, import_internal54.insert_dev)(target, t, anchor);
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*textFitText*/
       1)
-        (0, import_internal53.set_data_dev)(
+        (0, import_internal54.set_data_dev)(
           t,
           /*textFitText*/
           ctx2[0]
@@ -35274,10 +36244,10 @@ function create_default_slot_214(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal53.detach_dev)(t);
+        (0, import_internal54.detach_dev)(t);
     }
   };
-  (0, import_internal53.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal54.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_214.name,
     type: "slot",
@@ -35290,18 +36260,18 @@ function create_default_slot_117(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal53.text)(
+      t = (0, import_internal54.text)(
         /*textFitText*/
         ctx[0]
       );
     },
     m: function mount(target, anchor) {
-      (0, import_internal53.insert_dev)(target, t, anchor);
+      (0, import_internal54.insert_dev)(target, t, anchor);
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*textFitText*/
       1)
-        (0, import_internal53.set_data_dev)(
+        (0, import_internal54.set_data_dev)(
           t,
           /*textFitText*/
           ctx2[0]
@@ -35309,10 +36279,10 @@ function create_default_slot_117(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal53.detach_dev)(t);
+        (0, import_internal54.detach_dev)(t);
     }
   };
-  (0, import_internal53.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal54.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_117.name,
     type: "slot",
@@ -35325,18 +36295,18 @@ function create_default_slot12(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal53.text)(
+      t = (0, import_internal54.text)(
         /*textFitText*/
         ctx[0]
       );
     },
     m: function mount(target, anchor) {
-      (0, import_internal53.insert_dev)(target, t, anchor);
+      (0, import_internal54.insert_dev)(target, t, anchor);
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*textFitText*/
       1)
-        (0, import_internal53.set_data_dev)(
+        (0, import_internal54.set_data_dev)(
           t,
           /*textFitText*/
           ctx2[0]
@@ -35344,10 +36314,10 @@ function create_default_slot12(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal53.detach_dev)(t);
+        (0, import_internal54.detach_dev)(t);
     }
   };
-  (0, import_internal53.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal54.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot12.name,
     type: "slot",
@@ -35356,7 +36326,7 @@ function create_default_slot12(ctx) {
   });
   return block;
 }
-function create_fragment53(ctx) {
+function create_fragment54(ctx) {
   let h2;
   let t1;
   let p0;
@@ -35424,93 +36394,93 @@ function create_fragment53(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal53.element)("h2");
+      h2 = (0, import_internal54.element)("h2");
       h2.textContent = "Text-fit";
-      t1 = (0, import_internal53.space)();
-      p0 = (0, import_internal53.element)("p");
+      t1 = (0, import_internal54.space)();
+      p0 = (0, import_internal54.element)("p");
       p0.textContent = "Auto-adjusts font size of the block of text, so that the text takes full width of the block.";
-      t3 = (0, import_internal53.space)();
-      p1 = (0, import_internal53.element)("p");
-      t4 = (0, import_internal53.text)("This is using matrix transformation, so the text will not be super sharp.");
-      br = (0, import_internal53.element)("br");
-      t5 = (0, import_internal53.text)("\n	It is advised to set the ");
-      em = (0, import_internal53.element)("em");
+      t3 = (0, import_internal54.space)();
+      p1 = (0, import_internal54.element)("p");
+      t4 = (0, import_internal54.text)("This is using matrix transformation, so the text will not be super sharp.");
+      br = (0, import_internal54.element)("br");
+      t5 = (0, import_internal54.text)("\n	It is advised to set the ");
+      em = (0, import_internal54.element)("em");
       em.textContent = "font-size";
-      t7 = (0, import_internal53.text)(" (on the parent or the component itself) that is closest to the average size of the text.");
-      t8 = (0, import_internal53.space)();
-      hr = (0, import_internal53.element)("hr");
-      t9 = (0, import_internal53.space)();
-      input = (0, import_internal53.element)("input");
-      t10 = (0, import_internal53.space)();
-      div0 = (0, import_internal53.element)("div");
-      (0, import_internal53.create_component)(textfit0.$$.fragment);
-      t11 = (0, import_internal53.space)();
-      div1 = (0, import_internal53.element)("div");
-      (0, import_internal53.create_component)(textfit1.$$.fragment);
-      t12 = (0, import_internal53.space)();
-      div2 = (0, import_internal53.element)("div");
-      (0, import_internal53.create_component)(textfit2.$$.fragment);
-      t13 = (0, import_internal53.space)();
-      (0, import_internal53.create_component)(codeexample.$$.fragment);
-      t14 = (0, import_internal53.space)();
-      (0, import_internal53.create_component)(api.$$.fragment);
-      (0, import_internal53.add_location)(h2, file51, 0, 0, 0);
-      (0, import_internal53.add_location)(p0, file51, 1, 0, 18);
-      (0, import_internal53.add_location)(br, file51, 2, 76, 194);
-      (0, import_internal53.add_location)(em, file51, 3, 26, 225);
-      (0, import_internal53.add_location)(p1, file51, 2, 0, 118);
-      (0, import_internal53.add_location)(hr, file51, 5, 0, 338);
-      (0, import_internal53.attr_dev)(input, "type", "text");
-      (0, import_internal53.add_location)(input, file51, 7, 0, 344);
-      (0, import_internal53.attr_dev)(div0, "class", "text-fit-div");
-      (0, import_internal53.set_style)(div0, "width", "100px");
-      (0, import_internal53.add_location)(div0, file51, 8, 0, 391);
-      (0, import_internal53.attr_dev)(div1, "class", "text-fit-div");
-      (0, import_internal53.set_style)(div1, "width", "200px");
-      (0, import_internal53.add_location)(div1, file51, 9, 0, 477);
-      (0, import_internal53.attr_dev)(div2, "class", "text-fit-div");
-      (0, import_internal53.set_style)(div2, "width", "300px");
-      (0, import_internal53.add_location)(div2, file51, 10, 0, 563);
+      t7 = (0, import_internal54.text)(" (on the parent or the component itself) that is closest to the average size of the text.");
+      t8 = (0, import_internal54.space)();
+      hr = (0, import_internal54.element)("hr");
+      t9 = (0, import_internal54.space)();
+      input = (0, import_internal54.element)("input");
+      t10 = (0, import_internal54.space)();
+      div0 = (0, import_internal54.element)("div");
+      (0, import_internal54.create_component)(textfit0.$$.fragment);
+      t11 = (0, import_internal54.space)();
+      div1 = (0, import_internal54.element)("div");
+      (0, import_internal54.create_component)(textfit1.$$.fragment);
+      t12 = (0, import_internal54.space)();
+      div2 = (0, import_internal54.element)("div");
+      (0, import_internal54.create_component)(textfit2.$$.fragment);
+      t13 = (0, import_internal54.space)();
+      (0, import_internal54.create_component)(codeexample.$$.fragment);
+      t14 = (0, import_internal54.space)();
+      (0, import_internal54.create_component)(api.$$.fragment);
+      (0, import_internal54.add_location)(h2, file52, 0, 0, 0);
+      (0, import_internal54.add_location)(p0, file52, 1, 0, 18);
+      (0, import_internal54.add_location)(br, file52, 2, 76, 194);
+      (0, import_internal54.add_location)(em, file52, 3, 26, 225);
+      (0, import_internal54.add_location)(p1, file52, 2, 0, 118);
+      (0, import_internal54.add_location)(hr, file52, 5, 0, 338);
+      (0, import_internal54.attr_dev)(input, "type", "text");
+      (0, import_internal54.add_location)(input, file52, 7, 0, 344);
+      (0, import_internal54.attr_dev)(div0, "class", "text-fit-div");
+      (0, import_internal54.set_style)(div0, "width", "100px");
+      (0, import_internal54.add_location)(div0, file52, 8, 0, 391);
+      (0, import_internal54.attr_dev)(div1, "class", "text-fit-div");
+      (0, import_internal54.set_style)(div1, "width", "200px");
+      (0, import_internal54.add_location)(div1, file52, 9, 0, 477);
+      (0, import_internal54.attr_dev)(div2, "class", "text-fit-div");
+      (0, import_internal54.set_style)(div2, "width", "300px");
+      (0, import_internal54.add_location)(div2, file52, 10, 0, 563);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal53.insert_dev)(target, h2, anchor);
-      (0, import_internal53.insert_dev)(target, t1, anchor);
-      (0, import_internal53.insert_dev)(target, p0, anchor);
-      (0, import_internal53.insert_dev)(target, t3, anchor);
-      (0, import_internal53.insert_dev)(target, p1, anchor);
-      (0, import_internal53.append_dev)(p1, t4);
-      (0, import_internal53.append_dev)(p1, br);
-      (0, import_internal53.append_dev)(p1, t5);
-      (0, import_internal53.append_dev)(p1, em);
-      (0, import_internal53.append_dev)(p1, t7);
-      (0, import_internal53.insert_dev)(target, t8, anchor);
-      (0, import_internal53.insert_dev)(target, hr, anchor);
-      (0, import_internal53.insert_dev)(target, t9, anchor);
-      (0, import_internal53.insert_dev)(target, input, anchor);
-      (0, import_internal53.set_input_value)(
+      (0, import_internal54.insert_dev)(target, h2, anchor);
+      (0, import_internal54.insert_dev)(target, t1, anchor);
+      (0, import_internal54.insert_dev)(target, p0, anchor);
+      (0, import_internal54.insert_dev)(target, t3, anchor);
+      (0, import_internal54.insert_dev)(target, p1, anchor);
+      (0, import_internal54.append_dev)(p1, t4);
+      (0, import_internal54.append_dev)(p1, br);
+      (0, import_internal54.append_dev)(p1, t5);
+      (0, import_internal54.append_dev)(p1, em);
+      (0, import_internal54.append_dev)(p1, t7);
+      (0, import_internal54.insert_dev)(target, t8, anchor);
+      (0, import_internal54.insert_dev)(target, hr, anchor);
+      (0, import_internal54.insert_dev)(target, t9, anchor);
+      (0, import_internal54.insert_dev)(target, input, anchor);
+      (0, import_internal54.set_input_value)(
         input,
         /*textFitText*/
         ctx[0]
       );
-      (0, import_internal53.insert_dev)(target, t10, anchor);
-      (0, import_internal53.insert_dev)(target, div0, anchor);
-      (0, import_internal53.mount_component)(textfit0, div0, null);
-      (0, import_internal53.insert_dev)(target, t11, anchor);
-      (0, import_internal53.insert_dev)(target, div1, anchor);
-      (0, import_internal53.mount_component)(textfit1, div1, null);
-      (0, import_internal53.insert_dev)(target, t12, anchor);
-      (0, import_internal53.insert_dev)(target, div2, anchor);
-      (0, import_internal53.mount_component)(textfit2, div2, null);
-      (0, import_internal53.insert_dev)(target, t13, anchor);
-      (0, import_internal53.mount_component)(codeexample, target, anchor);
-      (0, import_internal53.insert_dev)(target, t14, anchor);
-      (0, import_internal53.mount_component)(api, target, anchor);
+      (0, import_internal54.insert_dev)(target, t10, anchor);
+      (0, import_internal54.insert_dev)(target, div0, anchor);
+      (0, import_internal54.mount_component)(textfit0, div0, null);
+      (0, import_internal54.insert_dev)(target, t11, anchor);
+      (0, import_internal54.insert_dev)(target, div1, anchor);
+      (0, import_internal54.mount_component)(textfit1, div1, null);
+      (0, import_internal54.insert_dev)(target, t12, anchor);
+      (0, import_internal54.insert_dev)(target, div2, anchor);
+      (0, import_internal54.mount_component)(textfit2, div2, null);
+      (0, import_internal54.insert_dev)(target, t13, anchor);
+      (0, import_internal54.mount_component)(codeexample, target, anchor);
+      (0, import_internal54.insert_dev)(target, t14, anchor);
+      (0, import_internal54.mount_component)(api, target, anchor);
       current = true;
       if (!mounted) {
-        dispose = (0, import_internal53.listen_dev)(
+        dispose = (0, import_internal54.listen_dev)(
           input,
           "input",
           /*input_input_handler*/
@@ -35523,7 +36493,7 @@ function create_fragment53(ctx) {
       if (dirty & /*textFitText*/
       1 && input.value !== /*textFitText*/
       ctx2[0]) {
-        (0, import_internal53.set_input_value)(
+        (0, import_internal54.set_input_value)(
           input,
           /*textFitText*/
           ctx2[0]
@@ -35551,77 +36521,77 @@ function create_fragment53(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal53.transition_in)(textfit0.$$.fragment, local);
-      (0, import_internal53.transition_in)(textfit1.$$.fragment, local);
-      (0, import_internal53.transition_in)(textfit2.$$.fragment, local);
-      (0, import_internal53.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal53.transition_in)(api.$$.fragment, local);
+      (0, import_internal54.transition_in)(textfit0.$$.fragment, local);
+      (0, import_internal54.transition_in)(textfit1.$$.fragment, local);
+      (0, import_internal54.transition_in)(textfit2.$$.fragment, local);
+      (0, import_internal54.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal54.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal53.transition_out)(textfit0.$$.fragment, local);
-      (0, import_internal53.transition_out)(textfit1.$$.fragment, local);
-      (0, import_internal53.transition_out)(textfit2.$$.fragment, local);
-      (0, import_internal53.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal53.transition_out)(api.$$.fragment, local);
+      (0, import_internal54.transition_out)(textfit0.$$.fragment, local);
+      (0, import_internal54.transition_out)(textfit1.$$.fragment, local);
+      (0, import_internal54.transition_out)(textfit2.$$.fragment, local);
+      (0, import_internal54.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal54.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal53.detach_dev)(h2);
+        (0, import_internal54.detach_dev)(h2);
       if (detaching)
-        (0, import_internal53.detach_dev)(t1);
+        (0, import_internal54.detach_dev)(t1);
       if (detaching)
-        (0, import_internal53.detach_dev)(p0);
+        (0, import_internal54.detach_dev)(p0);
       if (detaching)
-        (0, import_internal53.detach_dev)(t3);
+        (0, import_internal54.detach_dev)(t3);
       if (detaching)
-        (0, import_internal53.detach_dev)(p1);
+        (0, import_internal54.detach_dev)(p1);
       if (detaching)
-        (0, import_internal53.detach_dev)(t8);
+        (0, import_internal54.detach_dev)(t8);
       if (detaching)
-        (0, import_internal53.detach_dev)(hr);
+        (0, import_internal54.detach_dev)(hr);
       if (detaching)
-        (0, import_internal53.detach_dev)(t9);
+        (0, import_internal54.detach_dev)(t9);
       if (detaching)
-        (0, import_internal53.detach_dev)(input);
+        (0, import_internal54.detach_dev)(input);
       if (detaching)
-        (0, import_internal53.detach_dev)(t10);
+        (0, import_internal54.detach_dev)(t10);
       if (detaching)
-        (0, import_internal53.detach_dev)(div0);
-      (0, import_internal53.destroy_component)(textfit0);
+        (0, import_internal54.detach_dev)(div0);
+      (0, import_internal54.destroy_component)(textfit0);
       if (detaching)
-        (0, import_internal53.detach_dev)(t11);
+        (0, import_internal54.detach_dev)(t11);
       if (detaching)
-        (0, import_internal53.detach_dev)(div1);
-      (0, import_internal53.destroy_component)(textfit1);
+        (0, import_internal54.detach_dev)(div1);
+      (0, import_internal54.destroy_component)(textfit1);
       if (detaching)
-        (0, import_internal53.detach_dev)(t12);
+        (0, import_internal54.detach_dev)(t12);
       if (detaching)
-        (0, import_internal53.detach_dev)(div2);
-      (0, import_internal53.destroy_component)(textfit2);
+        (0, import_internal54.detach_dev)(div2);
+      (0, import_internal54.destroy_component)(textfit2);
       if (detaching)
-        (0, import_internal53.detach_dev)(t13);
-      (0, import_internal53.destroy_component)(codeexample, detaching);
+        (0, import_internal54.detach_dev)(t13);
+      (0, import_internal54.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal53.detach_dev)(t14);
-      (0, import_internal53.destroy_component)(api, detaching);
+        (0, import_internal54.detach_dev)(t14);
+      (0, import_internal54.destroy_component)(api, detaching);
       mounted = false;
       dispose();
     }
   };
-  (0, import_internal53.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal54.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment53.name,
+    id: create_fragment54.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance53($$self, $$props, $$invalidate) {
+function instance54($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal53.validate_slots)("TextFit", slots, []);
+  (0, import_internal54.validate_slots)("TextFit", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -35665,24 +36635,24 @@ function instance53($$self, $$props, $$invalidate) {
   }
   return [textFitText, apiProps, exampleHtml, input_input_handler];
 }
-var TextFit_1 = class extends import_internal53.SvelteComponentDev {
+var TextFit_1 = class extends import_internal54.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal53.init)(this, options, instance53, create_fragment53, import_internal53.safe_not_equal, {});
-    (0, import_internal53.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal54.init)(this, options, instance54, create_fragment54, import_internal54.safe_not_equal, {});
+    (0, import_internal54.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "TextFit_1",
       options,
-      id: create_fragment53.name
+      id: create_fragment54.name
     });
   }
 };
 var TextFit_default2 = TextFit_1;
 
 // docs-src/components/textarea/Textarea.svelte
-var import_internal54 = __toESM(require_internal());
-var file52 = "docs-src/components/textarea/Textarea.svelte";
-function create_fragment54(ctx) {
+var import_internal55 = __toESM(require_internal());
+var file53 = "docs-src/components/textarea/Textarea.svelte";
+function create_fragment55(ctx) {
   let h2;
   let t1;
   let h30;
@@ -35734,137 +36704,137 @@ function create_fragment54(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal54.element)("h2");
+      h2 = (0, import_internal55.element)("h2");
       h2.textContent = "Textarea";
-      t1 = (0, import_internal54.space)();
-      h30 = (0, import_internal54.element)("h3");
+      t1 = (0, import_internal55.space)();
+      h30 = (0, import_internal55.element)("h3");
       h30.textContent = "Default";
-      t3 = (0, import_internal54.space)();
-      (0, import_internal54.create_component)(textarea0.$$.fragment);
-      t4 = (0, import_internal54.space)();
-      h31 = (0, import_internal54.element)("h3");
+      t3 = (0, import_internal55.space)();
+      (0, import_internal55.create_component)(textarea0.$$.fragment);
+      t4 = (0, import_internal55.space)();
+      h31 = (0, import_internal55.element)("h3");
       h31.textContent = "Disabled";
-      t6 = (0, import_internal54.space)();
-      (0, import_internal54.create_component)(textarea1.$$.fragment);
-      t7 = (0, import_internal54.space)();
-      h32 = (0, import_internal54.element)("h3");
+      t6 = (0, import_internal55.space)();
+      (0, import_internal55.create_component)(textarea1.$$.fragment);
+      t7 = (0, import_internal55.space)();
+      h32 = (0, import_internal55.element)("h3");
       h32.textContent = "Placeholder";
-      t9 = (0, import_internal54.space)();
-      (0, import_internal54.create_component)(textarea2.$$.fragment);
-      t10 = (0, import_internal54.space)();
-      h33 = (0, import_internal54.element)("h3");
+      t9 = (0, import_internal55.space)();
+      (0, import_internal55.create_component)(textarea2.$$.fragment);
+      t10 = (0, import_internal55.space)();
+      h33 = (0, import_internal55.element)("h3");
       h33.textContent = "Autogrow";
-      t12 = (0, import_internal54.space)();
-      (0, import_internal54.create_component)(textarea3.$$.fragment);
-      t13 = (0, import_internal54.space)();
-      (0, import_internal54.create_component)(codeexample.$$.fragment);
-      t14 = (0, import_internal54.space)();
-      (0, import_internal54.create_component)(api.$$.fragment);
-      (0, import_internal54.add_location)(h2, file52, 0, 0, 0);
-      (0, import_internal54.add_location)(h30, file52, 2, 0, 19);
-      (0, import_internal54.add_location)(h31, file52, 5, 0, 59);
-      (0, import_internal54.add_location)(h32, file52, 8, 0, 109);
-      (0, import_internal54.add_location)(h33, file52, 12, 0, 182);
+      t12 = (0, import_internal55.space)();
+      (0, import_internal55.create_component)(textarea3.$$.fragment);
+      t13 = (0, import_internal55.space)();
+      (0, import_internal55.create_component)(codeexample.$$.fragment);
+      t14 = (0, import_internal55.space)();
+      (0, import_internal55.create_component)(api.$$.fragment);
+      (0, import_internal55.add_location)(h2, file53, 0, 0, 0);
+      (0, import_internal55.add_location)(h30, file53, 2, 0, 19);
+      (0, import_internal55.add_location)(h31, file53, 5, 0, 59);
+      (0, import_internal55.add_location)(h32, file53, 8, 0, 109);
+      (0, import_internal55.add_location)(h33, file53, 12, 0, 182);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal54.insert_dev)(target, h2, anchor);
-      (0, import_internal54.insert_dev)(target, t1, anchor);
-      (0, import_internal54.insert_dev)(target, h30, anchor);
-      (0, import_internal54.insert_dev)(target, t3, anchor);
-      (0, import_internal54.mount_component)(textarea0, target, anchor);
-      (0, import_internal54.insert_dev)(target, t4, anchor);
-      (0, import_internal54.insert_dev)(target, h31, anchor);
-      (0, import_internal54.insert_dev)(target, t6, anchor);
-      (0, import_internal54.mount_component)(textarea1, target, anchor);
-      (0, import_internal54.insert_dev)(target, t7, anchor);
-      (0, import_internal54.insert_dev)(target, h32, anchor);
-      (0, import_internal54.insert_dev)(target, t9, anchor);
-      (0, import_internal54.mount_component)(textarea2, target, anchor);
-      (0, import_internal54.insert_dev)(target, t10, anchor);
-      (0, import_internal54.insert_dev)(target, h33, anchor);
-      (0, import_internal54.insert_dev)(target, t12, anchor);
-      (0, import_internal54.mount_component)(textarea3, target, anchor);
-      (0, import_internal54.insert_dev)(target, t13, anchor);
-      (0, import_internal54.mount_component)(codeexample, target, anchor);
-      (0, import_internal54.insert_dev)(target, t14, anchor);
-      (0, import_internal54.mount_component)(api, target, anchor);
+      (0, import_internal55.insert_dev)(target, h2, anchor);
+      (0, import_internal55.insert_dev)(target, t1, anchor);
+      (0, import_internal55.insert_dev)(target, h30, anchor);
+      (0, import_internal55.insert_dev)(target, t3, anchor);
+      (0, import_internal55.mount_component)(textarea0, target, anchor);
+      (0, import_internal55.insert_dev)(target, t4, anchor);
+      (0, import_internal55.insert_dev)(target, h31, anchor);
+      (0, import_internal55.insert_dev)(target, t6, anchor);
+      (0, import_internal55.mount_component)(textarea1, target, anchor);
+      (0, import_internal55.insert_dev)(target, t7, anchor);
+      (0, import_internal55.insert_dev)(target, h32, anchor);
+      (0, import_internal55.insert_dev)(target, t9, anchor);
+      (0, import_internal55.mount_component)(textarea2, target, anchor);
+      (0, import_internal55.insert_dev)(target, t10, anchor);
+      (0, import_internal55.insert_dev)(target, h33, anchor);
+      (0, import_internal55.insert_dev)(target, t12, anchor);
+      (0, import_internal55.mount_component)(textarea3, target, anchor);
+      (0, import_internal55.insert_dev)(target, t13, anchor);
+      (0, import_internal55.mount_component)(codeexample, target, anchor);
+      (0, import_internal55.insert_dev)(target, t14, anchor);
+      (0, import_internal55.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal54.noop,
+    p: import_internal55.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal54.transition_in)(textarea0.$$.fragment, local);
-      (0, import_internal54.transition_in)(textarea1.$$.fragment, local);
-      (0, import_internal54.transition_in)(textarea2.$$.fragment, local);
-      (0, import_internal54.transition_in)(textarea3.$$.fragment, local);
-      (0, import_internal54.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal54.transition_in)(api.$$.fragment, local);
+      (0, import_internal55.transition_in)(textarea0.$$.fragment, local);
+      (0, import_internal55.transition_in)(textarea1.$$.fragment, local);
+      (0, import_internal55.transition_in)(textarea2.$$.fragment, local);
+      (0, import_internal55.transition_in)(textarea3.$$.fragment, local);
+      (0, import_internal55.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal55.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal54.transition_out)(textarea0.$$.fragment, local);
-      (0, import_internal54.transition_out)(textarea1.$$.fragment, local);
-      (0, import_internal54.transition_out)(textarea2.$$.fragment, local);
-      (0, import_internal54.transition_out)(textarea3.$$.fragment, local);
-      (0, import_internal54.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal54.transition_out)(api.$$.fragment, local);
+      (0, import_internal55.transition_out)(textarea0.$$.fragment, local);
+      (0, import_internal55.transition_out)(textarea1.$$.fragment, local);
+      (0, import_internal55.transition_out)(textarea2.$$.fragment, local);
+      (0, import_internal55.transition_out)(textarea3.$$.fragment, local);
+      (0, import_internal55.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal55.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal54.detach_dev)(h2);
+        (0, import_internal55.detach_dev)(h2);
       if (detaching)
-        (0, import_internal54.detach_dev)(t1);
+        (0, import_internal55.detach_dev)(t1);
       if (detaching)
-        (0, import_internal54.detach_dev)(h30);
+        (0, import_internal55.detach_dev)(h30);
       if (detaching)
-        (0, import_internal54.detach_dev)(t3);
-      (0, import_internal54.destroy_component)(textarea0, detaching);
+        (0, import_internal55.detach_dev)(t3);
+      (0, import_internal55.destroy_component)(textarea0, detaching);
       if (detaching)
-        (0, import_internal54.detach_dev)(t4);
+        (0, import_internal55.detach_dev)(t4);
       if (detaching)
-        (0, import_internal54.detach_dev)(h31);
+        (0, import_internal55.detach_dev)(h31);
       if (detaching)
-        (0, import_internal54.detach_dev)(t6);
-      (0, import_internal54.destroy_component)(textarea1, detaching);
+        (0, import_internal55.detach_dev)(t6);
+      (0, import_internal55.destroy_component)(textarea1, detaching);
       if (detaching)
-        (0, import_internal54.detach_dev)(t7);
+        (0, import_internal55.detach_dev)(t7);
       if (detaching)
-        (0, import_internal54.detach_dev)(h32);
+        (0, import_internal55.detach_dev)(h32);
       if (detaching)
-        (0, import_internal54.detach_dev)(t9);
-      (0, import_internal54.destroy_component)(textarea2, detaching);
+        (0, import_internal55.detach_dev)(t9);
+      (0, import_internal55.destroy_component)(textarea2, detaching);
       if (detaching)
-        (0, import_internal54.detach_dev)(t10);
+        (0, import_internal55.detach_dev)(t10);
       if (detaching)
-        (0, import_internal54.detach_dev)(h33);
+        (0, import_internal55.detach_dev)(h33);
       if (detaching)
-        (0, import_internal54.detach_dev)(t12);
-      (0, import_internal54.destroy_component)(textarea3, detaching);
+        (0, import_internal55.detach_dev)(t12);
+      (0, import_internal55.destroy_component)(textarea3, detaching);
       if (detaching)
-        (0, import_internal54.detach_dev)(t13);
-      (0, import_internal54.destroy_component)(codeexample, detaching);
+        (0, import_internal55.detach_dev)(t13);
+      (0, import_internal55.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal54.detach_dev)(t14);
-      (0, import_internal54.destroy_component)(api, detaching);
+        (0, import_internal55.detach_dev)(t14);
+      (0, import_internal55.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal54.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment54.name,
+    id: create_fragment55.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance54($$self, $$props, $$invalidate) {
+function instance55($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal54.validate_slots)("Textarea", slots, []);
+  (0, import_internal55.validate_slots)("Textarea", slots, []);
   const apiProps = [
     {
       name: "autogrow",
@@ -35942,39 +36912,39 @@ function onChange (e) {
   });
   return [apiProps, exampleHtml];
 }
-var Textarea_1 = class extends import_internal54.SvelteComponentDev {
+var Textarea_1 = class extends import_internal55.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal54.init)(this, options, instance54, create_fragment54, import_internal54.safe_not_equal, {});
-    (0, import_internal54.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal55.init)(this, options, instance55, create_fragment55, import_internal55.safe_not_equal, {});
+    (0, import_internal55.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Textarea_1",
       options,
-      id: create_fragment54.name
+      id: create_fragment55.name
     });
   }
 };
 var Textarea_default2 = Textarea_1;
 
 // docs-src/components/toaster/Toaster.svelte
-var import_internal55 = __toESM(require_internal());
-var { console: console_18 } = import_internal55.globals;
-var file53 = "docs-src/components/toaster/Toaster.svelte";
+var import_internal56 = __toESM(require_internal());
+var { console: console_17 } = import_internal56.globals;
+var file54 = "docs-src/components/toaster/Toaster.svelte";
 function create_default_slot_55(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal55.text)("Show info");
+      t = (0, import_internal56.text)("Show info");
     },
     m: function mount(target, anchor) {
-      (0, import_internal55.insert_dev)(target, t, anchor);
+      (0, import_internal56.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal55.detach_dev)(t);
+        (0, import_internal56.detach_dev)(t);
     }
   };
-  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_55.name,
     type: "slot",
@@ -35987,17 +36957,17 @@ function create_default_slot_45(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal55.text)("Show success");
+      t = (0, import_internal56.text)("Show success");
     },
     m: function mount(target, anchor) {
-      (0, import_internal55.insert_dev)(target, t, anchor);
+      (0, import_internal56.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal55.detach_dev)(t);
+        (0, import_internal56.detach_dev)(t);
     }
   };
-  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_45.name,
     type: "slot",
@@ -36010,17 +36980,17 @@ function create_default_slot_38(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal55.text)("Show warning");
+      t = (0, import_internal56.text)("Show warning");
     },
     m: function mount(target, anchor) {
-      (0, import_internal55.insert_dev)(target, t, anchor);
+      (0, import_internal56.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal55.detach_dev)(t);
+        (0, import_internal56.detach_dev)(t);
     }
   };
-  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_38.name,
     type: "slot",
@@ -36033,17 +37003,17 @@ function create_default_slot_215(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal55.text)("Show error");
+      t = (0, import_internal56.text)("Show error");
     },
     m: function mount(target, anchor) {
-      (0, import_internal55.insert_dev)(target, t, anchor);
+      (0, import_internal56.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal55.detach_dev)(t);
+        (0, import_internal56.detach_dev)(t);
     }
   };
-  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_215.name,
     type: "slot",
@@ -36056,17 +37026,17 @@ function create_default_slot_118(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal55.text)("Show long-lasting error");
+      t = (0, import_internal56.text)("Show long-lasting error");
     },
     m: function mount(target, anchor) {
-      (0, import_internal55.insert_dev)(target, t, anchor);
+      (0, import_internal56.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal55.detach_dev)(t);
+        (0, import_internal56.detach_dev)(t);
     }
   };
-  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_118.name,
     type: "slot",
@@ -36079,17 +37049,17 @@ function create_default_slot13(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal55.text)("A very long message");
+      t = (0, import_internal56.text)("A very long message");
     },
     m: function mount(target, anchor) {
-      (0, import_internal55.insert_dev)(target, t, anchor);
+      (0, import_internal56.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal55.detach_dev)(t);
+        (0, import_internal56.detach_dev)(t);
     }
   };
-  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot13.name,
     type: "slot",
@@ -36098,7 +37068,7 @@ function create_default_slot13(ctx) {
   });
   return block;
 }
-function create_fragment55(ctx) {
+function create_fragment56(ctx) {
   let h2;
   let t1;
   let toaster;
@@ -36241,59 +37211,59 @@ function create_fragment55(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal55.element)("h2");
+      h2 = (0, import_internal56.element)("h2");
       h2.textContent = "Toaster";
-      t1 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(toaster.$$.fragment);
-      t2 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(button0.$$.fragment);
-      t3 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(button1.$$.fragment);
-      t4 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(button2.$$.fragment);
-      t5 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(button3.$$.fragment);
-      t6 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(button4.$$.fragment);
-      t7 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(button5.$$.fragment);
-      t8 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(codeexample.$$.fragment);
-      t9 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(api0.$$.fragment);
-      t10 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(api1.$$.fragment);
-      t11 = (0, import_internal55.space)();
-      (0, import_internal55.create_component)(api2.$$.fragment);
-      (0, import_internal55.add_location)(h2, file53, 0, 0, 0);
+      t1 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(toaster.$$.fragment);
+      t2 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(button0.$$.fragment);
+      t3 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(button1.$$.fragment);
+      t4 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(button2.$$.fragment);
+      t5 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(button3.$$.fragment);
+      t6 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(button4.$$.fragment);
+      t7 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(button5.$$.fragment);
+      t8 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(codeexample.$$.fragment);
+      t9 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(api0.$$.fragment);
+      t10 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(api1.$$.fragment);
+      t11 = (0, import_internal56.space)();
+      (0, import_internal56.create_component)(api2.$$.fragment);
+      (0, import_internal56.add_location)(h2, file54, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal55.insert_dev)(target, h2, anchor);
-      (0, import_internal55.insert_dev)(target, t1, anchor);
-      (0, import_internal55.mount_component)(toaster, target, anchor);
-      (0, import_internal55.insert_dev)(target, t2, anchor);
-      (0, import_internal55.mount_component)(button0, target, anchor);
-      (0, import_internal55.insert_dev)(target, t3, anchor);
-      (0, import_internal55.mount_component)(button1, target, anchor);
-      (0, import_internal55.insert_dev)(target, t4, anchor);
-      (0, import_internal55.mount_component)(button2, target, anchor);
-      (0, import_internal55.insert_dev)(target, t5, anchor);
-      (0, import_internal55.mount_component)(button3, target, anchor);
-      (0, import_internal55.insert_dev)(target, t6, anchor);
-      (0, import_internal55.mount_component)(button4, target, anchor);
-      (0, import_internal55.insert_dev)(target, t7, anchor);
-      (0, import_internal55.mount_component)(button5, target, anchor);
-      (0, import_internal55.insert_dev)(target, t8, anchor);
-      (0, import_internal55.mount_component)(codeexample, target, anchor);
-      (0, import_internal55.insert_dev)(target, t9, anchor);
-      (0, import_internal55.mount_component)(api0, target, anchor);
-      (0, import_internal55.insert_dev)(target, t10, anchor);
-      (0, import_internal55.mount_component)(api1, target, anchor);
-      (0, import_internal55.insert_dev)(target, t11, anchor);
-      (0, import_internal55.mount_component)(api2, target, anchor);
+      (0, import_internal56.insert_dev)(target, h2, anchor);
+      (0, import_internal56.insert_dev)(target, t1, anchor);
+      (0, import_internal56.mount_component)(toaster, target, anchor);
+      (0, import_internal56.insert_dev)(target, t2, anchor);
+      (0, import_internal56.mount_component)(button0, target, anchor);
+      (0, import_internal56.insert_dev)(target, t3, anchor);
+      (0, import_internal56.mount_component)(button1, target, anchor);
+      (0, import_internal56.insert_dev)(target, t4, anchor);
+      (0, import_internal56.mount_component)(button2, target, anchor);
+      (0, import_internal56.insert_dev)(target, t5, anchor);
+      (0, import_internal56.mount_component)(button3, target, anchor);
+      (0, import_internal56.insert_dev)(target, t6, anchor);
+      (0, import_internal56.mount_component)(button4, target, anchor);
+      (0, import_internal56.insert_dev)(target, t7, anchor);
+      (0, import_internal56.mount_component)(button5, target, anchor);
+      (0, import_internal56.insert_dev)(target, t8, anchor);
+      (0, import_internal56.mount_component)(codeexample, target, anchor);
+      (0, import_internal56.insert_dev)(target, t9, anchor);
+      (0, import_internal56.mount_component)(api0, target, anchor);
+      (0, import_internal56.insert_dev)(target, t10, anchor);
+      (0, import_internal56.mount_component)(api1, target, anchor);
+      (0, import_internal56.insert_dev)(target, t11, anchor);
+      (0, import_internal56.mount_component)(api2, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -36337,83 +37307,83 @@ function create_fragment55(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal55.transition_in)(toaster.$$.fragment, local);
-      (0, import_internal55.transition_in)(button0.$$.fragment, local);
-      (0, import_internal55.transition_in)(button1.$$.fragment, local);
-      (0, import_internal55.transition_in)(button2.$$.fragment, local);
-      (0, import_internal55.transition_in)(button3.$$.fragment, local);
-      (0, import_internal55.transition_in)(button4.$$.fragment, local);
-      (0, import_internal55.transition_in)(button5.$$.fragment, local);
-      (0, import_internal55.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal55.transition_in)(api0.$$.fragment, local);
-      (0, import_internal55.transition_in)(api1.$$.fragment, local);
-      (0, import_internal55.transition_in)(api2.$$.fragment, local);
+      (0, import_internal56.transition_in)(toaster.$$.fragment, local);
+      (0, import_internal56.transition_in)(button0.$$.fragment, local);
+      (0, import_internal56.transition_in)(button1.$$.fragment, local);
+      (0, import_internal56.transition_in)(button2.$$.fragment, local);
+      (0, import_internal56.transition_in)(button3.$$.fragment, local);
+      (0, import_internal56.transition_in)(button4.$$.fragment, local);
+      (0, import_internal56.transition_in)(button5.$$.fragment, local);
+      (0, import_internal56.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal56.transition_in)(api0.$$.fragment, local);
+      (0, import_internal56.transition_in)(api1.$$.fragment, local);
+      (0, import_internal56.transition_in)(api2.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal55.transition_out)(toaster.$$.fragment, local);
-      (0, import_internal55.transition_out)(button0.$$.fragment, local);
-      (0, import_internal55.transition_out)(button1.$$.fragment, local);
-      (0, import_internal55.transition_out)(button2.$$.fragment, local);
-      (0, import_internal55.transition_out)(button3.$$.fragment, local);
-      (0, import_internal55.transition_out)(button4.$$.fragment, local);
-      (0, import_internal55.transition_out)(button5.$$.fragment, local);
-      (0, import_internal55.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal55.transition_out)(api0.$$.fragment, local);
-      (0, import_internal55.transition_out)(api1.$$.fragment, local);
-      (0, import_internal55.transition_out)(api2.$$.fragment, local);
+      (0, import_internal56.transition_out)(toaster.$$.fragment, local);
+      (0, import_internal56.transition_out)(button0.$$.fragment, local);
+      (0, import_internal56.transition_out)(button1.$$.fragment, local);
+      (0, import_internal56.transition_out)(button2.$$.fragment, local);
+      (0, import_internal56.transition_out)(button3.$$.fragment, local);
+      (0, import_internal56.transition_out)(button4.$$.fragment, local);
+      (0, import_internal56.transition_out)(button5.$$.fragment, local);
+      (0, import_internal56.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal56.transition_out)(api0.$$.fragment, local);
+      (0, import_internal56.transition_out)(api1.$$.fragment, local);
+      (0, import_internal56.transition_out)(api2.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal55.detach_dev)(h2);
+        (0, import_internal56.detach_dev)(h2);
       if (detaching)
-        (0, import_internal55.detach_dev)(t1);
-      (0, import_internal55.destroy_component)(toaster, detaching);
+        (0, import_internal56.detach_dev)(t1);
+      (0, import_internal56.destroy_component)(toaster, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t2);
-      (0, import_internal55.destroy_component)(button0, detaching);
+        (0, import_internal56.detach_dev)(t2);
+      (0, import_internal56.destroy_component)(button0, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t3);
-      (0, import_internal55.destroy_component)(button1, detaching);
+        (0, import_internal56.detach_dev)(t3);
+      (0, import_internal56.destroy_component)(button1, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t4);
-      (0, import_internal55.destroy_component)(button2, detaching);
+        (0, import_internal56.detach_dev)(t4);
+      (0, import_internal56.destroy_component)(button2, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t5);
-      (0, import_internal55.destroy_component)(button3, detaching);
+        (0, import_internal56.detach_dev)(t5);
+      (0, import_internal56.destroy_component)(button3, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t6);
-      (0, import_internal55.destroy_component)(button4, detaching);
+        (0, import_internal56.detach_dev)(t6);
+      (0, import_internal56.destroy_component)(button4, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t7);
-      (0, import_internal55.destroy_component)(button5, detaching);
+        (0, import_internal56.detach_dev)(t7);
+      (0, import_internal56.destroy_component)(button5, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t8);
-      (0, import_internal55.destroy_component)(codeexample, detaching);
+        (0, import_internal56.detach_dev)(t8);
+      (0, import_internal56.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t9);
-      (0, import_internal55.destroy_component)(api0, detaching);
+        (0, import_internal56.detach_dev)(t9);
+      (0, import_internal56.destroy_component)(api0, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t10);
-      (0, import_internal55.destroy_component)(api1, detaching);
+        (0, import_internal56.detach_dev)(t10);
+      (0, import_internal56.destroy_component)(api1, detaching);
       if (detaching)
-        (0, import_internal55.detach_dev)(t11);
-      (0, import_internal55.destroy_component)(api2, detaching);
+        (0, import_internal56.detach_dev)(t11);
+      (0, import_internal56.destroy_component)(api2, detaching);
     }
   };
-  (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment55.name,
+    id: create_fragment56.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance55($$self, $$props, $$invalidate) {
+function instance56($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal55.validate_slots)("Toaster", slots, []);
+  (0, import_internal56.validate_slots)("Toaster", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -36486,7 +37456,7 @@ function cb (id) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_18.warn(`<Toaster> was created with unknown prop '${key}'`);
+      console_17.warn(`<Toaster> was created with unknown prop '${key}'`);
   });
   const click_handler = () => showToast("Hello");
   const click_handler_1 = () => showToast("Hello", "success");
@@ -36521,25 +37491,25 @@ function cb (id) {
     click_handler_5
   ];
 }
-var Toaster_1 = class extends import_internal55.SvelteComponentDev {
+var Toaster_1 = class extends import_internal56.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal55.init)(this, options, instance55, create_fragment55, import_internal55.safe_not_equal, {});
-    (0, import_internal55.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal56.init)(this, options, instance56, create_fragment56, import_internal56.safe_not_equal, {});
+    (0, import_internal56.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Toaster_1",
       options,
-      id: create_fragment55.name
+      id: create_fragment56.name
     });
   }
 };
 var Toaster_default2 = Toaster_1;
 
 // docs-src/components/toggle/Toggle.svelte
-var import_internal56 = __toESM(require_internal());
-var { console: console_19 } = import_internal56.globals;
-var file54 = "docs-src/components/toggle/Toggle.svelte";
-function create_fragment56(ctx) {
+var import_internal57 = __toESM(require_internal());
+var { console: console_18 } = import_internal57.globals;
+var file55 = "docs-src/components/toggle/Toggle.svelte";
+function create_fragment57(ctx) {
   let h2;
   let t1;
   let ul;
@@ -36595,7 +37565,7 @@ function create_fragment56(ctx) {
     ctx[0];
   }
   toggle0 = new Toggle_default({ props: toggle0_props, $$inline: true });
-  import_internal56.binding_callbacks.push(() => (0, import_internal56.bind)(toggle0, "value", toggle0_value_binding));
+  import_internal57.binding_callbacks.push(() => (0, import_internal57.bind)(toggle0, "value", toggle0_value_binding));
   toggle0.$on("change", onchange3);
   toggle1 = new Toggle_default({ $$inline: true });
   toggle2 = new Toggle_default({ props: { value: "true" }, $$inline: true });
@@ -36619,126 +37589,126 @@ function create_fragment56(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal56.element)("h2");
+      h2 = (0, import_internal57.element)("h2");
       h2.textContent = "Toggle";
-      t1 = (0, import_internal56.text)("\n\nThe perfect toggle component in Svelte:\n");
-      ul = (0, import_internal56.element)("ul");
-      li0 = (0, import_internal56.element)("li");
-      t2 = (0, import_internal56.text)("allows ");
-      em0 = (0, import_internal56.element)("em");
+      t1 = (0, import_internal57.text)("\n\nThe perfect toggle component in Svelte:\n");
+      ul = (0, import_internal57.element)("ul");
+      li0 = (0, import_internal57.element)("li");
+      t2 = (0, import_internal57.text)("allows ");
+      em0 = (0, import_internal57.element)("em");
       em0.textContent = "click";
-      t4 = (0, import_internal56.text)(" as well as ");
-      em1 = (0, import_internal56.element)("em");
+      t4 = (0, import_internal57.text)(" as well as ");
+      em1 = (0, import_internal57.element)("em");
       em1.textContent = "drag";
-      t6 = (0, import_internal56.text)(" to toggle\n	");
-      li1 = (0, import_internal56.element)("li");
-      t7 = (0, import_internal56.text)("keyboard support: press ");
-      em2 = (0, import_internal56.element)("em");
+      t6 = (0, import_internal57.text)(" to toggle\n	");
+      li1 = (0, import_internal57.element)("li");
+      t7 = (0, import_internal57.text)("keyboard support: press ");
+      em2 = (0, import_internal57.element)("em");
       em2.textContent = "Enter";
-      t9 = (0, import_internal56.text)(" or ");
-      em3 = (0, import_internal56.element)("em");
+      t9 = (0, import_internal57.text)(" or ");
+      em3 = (0, import_internal57.element)("em");
       em3.textContent = "Space";
-      t11 = (0, import_internal56.text)(" to toggle\n	");
-      li2 = (0, import_internal56.element)("li");
+      t11 = (0, import_internal57.text)(" to toggle\n	");
+      li2 = (0, import_internal57.element)("li");
       li2.textContent = "accessible (based on a checkbox input)\n	";
-      li3 = (0, import_internal56.element)("li");
+      li3 = (0, import_internal57.element)("li");
       li3.textContent = "no bloat, no dependencies";
-      t14 = (0, import_internal56.space)();
-      br0 = (0, import_internal56.element)("br");
-      t15 = (0, import_internal56.space)();
-      (0, import_internal56.create_component)(toggle0.$$.fragment);
-      t16 = (0, import_internal56.space)();
-      t17 = (0, import_internal56.text)(
+      t14 = (0, import_internal57.space)();
+      br0 = (0, import_internal57.element)("br");
+      t15 = (0, import_internal57.space)();
+      (0, import_internal57.create_component)(toggle0.$$.fragment);
+      t16 = (0, import_internal57.space)();
+      t17 = (0, import_internal57.text)(
         /*toggleValue*/
         ctx[0]
       );
-      t18 = (0, import_internal56.space)();
-      div = (0, import_internal56.element)("div");
-      (0, import_internal56.create_component)(toggle1.$$.fragment);
-      t19 = (0, import_internal56.text)(" hidden initially");
-      br1 = (0, import_internal56.element)("br");
-      t20 = (0, import_internal56.space)();
-      (0, import_internal56.create_component)(toggle2.$$.fragment);
-      t21 = (0, import_internal56.text)(" hidden initially");
-      t22 = (0, import_internal56.space)();
-      br2 = (0, import_internal56.element)("br");
-      br3 = (0, import_internal56.element)("br");
-      br4 = (0, import_internal56.element)("br");
-      t23 = (0, import_internal56.space)();
-      (0, import_internal56.create_component)(toggle3.$$.fragment);
-      t24 = (0, import_internal56.text)(" (disabled)\n\n\n\n");
-      (0, import_internal56.create_component)(codeexample.$$.fragment);
-      t25 = (0, import_internal56.space)();
-      (0, import_internal56.create_component)(api.$$.fragment);
-      (0, import_internal56.add_location)(h2, file54, 0, 0, 0);
-      (0, import_internal56.add_location)(em0, file54, 4, 12, 74);
-      (0, import_internal56.add_location)(em1, file54, 4, 38, 100);
-      (0, import_internal56.add_location)(li0, file54, 4, 1, 63);
-      (0, import_internal56.add_location)(em2, file54, 5, 29, 153);
-      (0, import_internal56.add_location)(em3, file54, 5, 47, 171);
-      (0, import_internal56.add_location)(li1, file54, 5, 1, 125);
-      (0, import_internal56.add_location)(li2, file54, 6, 1, 197);
-      (0, import_internal56.add_location)(li3, file54, 7, 1, 241);
-      (0, import_internal56.add_location)(ul, file54, 3, 0, 57);
-      (0, import_internal56.add_location)(br0, file54, 9, 0, 277);
-      (0, import_internal56.add_location)(br1, file54, 13, 28, 441);
-      (0, import_internal56.attr_dev)(div, "class", "toggle-box");
-      (0, import_internal56.toggle_class)(
+      t18 = (0, import_internal57.space)();
+      div = (0, import_internal57.element)("div");
+      (0, import_internal57.create_component)(toggle1.$$.fragment);
+      t19 = (0, import_internal57.text)(" hidden initially");
+      br1 = (0, import_internal57.element)("br");
+      t20 = (0, import_internal57.space)();
+      (0, import_internal57.create_component)(toggle2.$$.fragment);
+      t21 = (0, import_internal57.text)(" hidden initially");
+      t22 = (0, import_internal57.space)();
+      br2 = (0, import_internal57.element)("br");
+      br3 = (0, import_internal57.element)("br");
+      br4 = (0, import_internal57.element)("br");
+      t23 = (0, import_internal57.space)();
+      (0, import_internal57.create_component)(toggle3.$$.fragment);
+      t24 = (0, import_internal57.text)(" (disabled)\n\n\n\n");
+      (0, import_internal57.create_component)(codeexample.$$.fragment);
+      t25 = (0, import_internal57.space)();
+      (0, import_internal57.create_component)(api.$$.fragment);
+      (0, import_internal57.add_location)(h2, file55, 0, 0, 0);
+      (0, import_internal57.add_location)(em0, file55, 4, 12, 74);
+      (0, import_internal57.add_location)(em1, file55, 4, 38, 100);
+      (0, import_internal57.add_location)(li0, file55, 4, 1, 63);
+      (0, import_internal57.add_location)(em2, file55, 5, 29, 153);
+      (0, import_internal57.add_location)(em3, file55, 5, 47, 171);
+      (0, import_internal57.add_location)(li1, file55, 5, 1, 125);
+      (0, import_internal57.add_location)(li2, file55, 6, 1, 197);
+      (0, import_internal57.add_location)(li3, file55, 7, 1, 241);
+      (0, import_internal57.add_location)(ul, file55, 3, 0, 57);
+      (0, import_internal57.add_location)(br0, file55, 9, 0, 277);
+      (0, import_internal57.add_location)(br1, file55, 13, 28, 441);
+      (0, import_internal57.attr_dev)(div, "class", "toggle-box");
+      (0, import_internal57.toggle_class)(
         div,
         "visible",
         /*toggleValue*/
         ctx[0]
       );
-      (0, import_internal56.add_location)(div, file54, 12, 0, 358);
-      (0, import_internal56.add_location)(br2, file54, 16, 0, 494);
-      (0, import_internal56.add_location)(br3, file54, 16, 4, 498);
-      (0, import_internal56.add_location)(br4, file54, 16, 8, 502);
+      (0, import_internal57.add_location)(div, file55, 12, 0, 358);
+      (0, import_internal57.add_location)(br2, file55, 16, 0, 494);
+      (0, import_internal57.add_location)(br3, file55, 16, 4, 498);
+      (0, import_internal57.add_location)(br4, file55, 16, 8, 502);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal56.insert_dev)(target, h2, anchor);
-      (0, import_internal56.insert_dev)(target, t1, anchor);
-      (0, import_internal56.insert_dev)(target, ul, anchor);
-      (0, import_internal56.append_dev)(ul, li0);
-      (0, import_internal56.append_dev)(li0, t2);
-      (0, import_internal56.append_dev)(li0, em0);
-      (0, import_internal56.append_dev)(li0, t4);
-      (0, import_internal56.append_dev)(li0, em1);
-      (0, import_internal56.append_dev)(li0, t6);
-      (0, import_internal56.append_dev)(ul, li1);
-      (0, import_internal56.append_dev)(li1, t7);
-      (0, import_internal56.append_dev)(li1, em2);
-      (0, import_internal56.append_dev)(li1, t9);
-      (0, import_internal56.append_dev)(li1, em3);
-      (0, import_internal56.append_dev)(li1, t11);
-      (0, import_internal56.append_dev)(ul, li2);
-      (0, import_internal56.append_dev)(ul, li3);
-      (0, import_internal56.insert_dev)(target, t14, anchor);
-      (0, import_internal56.insert_dev)(target, br0, anchor);
-      (0, import_internal56.insert_dev)(target, t15, anchor);
-      (0, import_internal56.mount_component)(toggle0, target, anchor);
-      (0, import_internal56.insert_dev)(target, t16, anchor);
-      (0, import_internal56.insert_dev)(target, t17, anchor);
-      (0, import_internal56.insert_dev)(target, t18, anchor);
-      (0, import_internal56.insert_dev)(target, div, anchor);
-      (0, import_internal56.mount_component)(toggle1, div, null);
-      (0, import_internal56.append_dev)(div, t19);
-      (0, import_internal56.append_dev)(div, br1);
-      (0, import_internal56.append_dev)(div, t20);
-      (0, import_internal56.mount_component)(toggle2, div, null);
-      (0, import_internal56.append_dev)(div, t21);
-      (0, import_internal56.insert_dev)(target, t22, anchor);
-      (0, import_internal56.insert_dev)(target, br2, anchor);
-      (0, import_internal56.insert_dev)(target, br3, anchor);
-      (0, import_internal56.insert_dev)(target, br4, anchor);
-      (0, import_internal56.insert_dev)(target, t23, anchor);
-      (0, import_internal56.mount_component)(toggle3, target, anchor);
-      (0, import_internal56.insert_dev)(target, t24, anchor);
-      (0, import_internal56.mount_component)(codeexample, target, anchor);
-      (0, import_internal56.insert_dev)(target, t25, anchor);
-      (0, import_internal56.mount_component)(api, target, anchor);
+      (0, import_internal57.insert_dev)(target, h2, anchor);
+      (0, import_internal57.insert_dev)(target, t1, anchor);
+      (0, import_internal57.insert_dev)(target, ul, anchor);
+      (0, import_internal57.append_dev)(ul, li0);
+      (0, import_internal57.append_dev)(li0, t2);
+      (0, import_internal57.append_dev)(li0, em0);
+      (0, import_internal57.append_dev)(li0, t4);
+      (0, import_internal57.append_dev)(li0, em1);
+      (0, import_internal57.append_dev)(li0, t6);
+      (0, import_internal57.append_dev)(ul, li1);
+      (0, import_internal57.append_dev)(li1, t7);
+      (0, import_internal57.append_dev)(li1, em2);
+      (0, import_internal57.append_dev)(li1, t9);
+      (0, import_internal57.append_dev)(li1, em3);
+      (0, import_internal57.append_dev)(li1, t11);
+      (0, import_internal57.append_dev)(ul, li2);
+      (0, import_internal57.append_dev)(ul, li3);
+      (0, import_internal57.insert_dev)(target, t14, anchor);
+      (0, import_internal57.insert_dev)(target, br0, anchor);
+      (0, import_internal57.insert_dev)(target, t15, anchor);
+      (0, import_internal57.mount_component)(toggle0, target, anchor);
+      (0, import_internal57.insert_dev)(target, t16, anchor);
+      (0, import_internal57.insert_dev)(target, t17, anchor);
+      (0, import_internal57.insert_dev)(target, t18, anchor);
+      (0, import_internal57.insert_dev)(target, div, anchor);
+      (0, import_internal57.mount_component)(toggle1, div, null);
+      (0, import_internal57.append_dev)(div, t19);
+      (0, import_internal57.append_dev)(div, br1);
+      (0, import_internal57.append_dev)(div, t20);
+      (0, import_internal57.mount_component)(toggle2, div, null);
+      (0, import_internal57.append_dev)(div, t21);
+      (0, import_internal57.insert_dev)(target, t22, anchor);
+      (0, import_internal57.insert_dev)(target, br2, anchor);
+      (0, import_internal57.insert_dev)(target, br3, anchor);
+      (0, import_internal57.insert_dev)(target, br4, anchor);
+      (0, import_internal57.insert_dev)(target, t23, anchor);
+      (0, import_internal57.mount_component)(toggle3, target, anchor);
+      (0, import_internal57.insert_dev)(target, t24, anchor);
+      (0, import_internal57.mount_component)(codeexample, target, anchor);
+      (0, import_internal57.insert_dev)(target, t25, anchor);
+      (0, import_internal57.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -36748,19 +37718,19 @@ function create_fragment56(ctx) {
         updating_value = true;
         toggle0_changes.value = /*toggleValue*/
         ctx2[0];
-        (0, import_internal56.add_flush_callback)(() => updating_value = false);
+        (0, import_internal57.add_flush_callback)(() => updating_value = false);
       }
       toggle0.$set(toggle0_changes);
       if (!current || dirty & /*toggleValue*/
       1)
-        (0, import_internal56.set_data_dev)(
+        (0, import_internal57.set_data_dev)(
           t17,
           /*toggleValue*/
           ctx2[0]
         );
       if (!current || dirty & /*toggleValue*/
       1) {
-        (0, import_internal56.toggle_class)(
+        (0, import_internal57.toggle_class)(
           div,
           "visible",
           /*toggleValue*/
@@ -36771,69 +37741,69 @@ function create_fragment56(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal56.transition_in)(toggle0.$$.fragment, local);
-      (0, import_internal56.transition_in)(toggle1.$$.fragment, local);
-      (0, import_internal56.transition_in)(toggle2.$$.fragment, local);
-      (0, import_internal56.transition_in)(toggle3.$$.fragment, local);
-      (0, import_internal56.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal56.transition_in)(api.$$.fragment, local);
+      (0, import_internal57.transition_in)(toggle0.$$.fragment, local);
+      (0, import_internal57.transition_in)(toggle1.$$.fragment, local);
+      (0, import_internal57.transition_in)(toggle2.$$.fragment, local);
+      (0, import_internal57.transition_in)(toggle3.$$.fragment, local);
+      (0, import_internal57.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal57.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal56.transition_out)(toggle0.$$.fragment, local);
-      (0, import_internal56.transition_out)(toggle1.$$.fragment, local);
-      (0, import_internal56.transition_out)(toggle2.$$.fragment, local);
-      (0, import_internal56.transition_out)(toggle3.$$.fragment, local);
-      (0, import_internal56.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal56.transition_out)(api.$$.fragment, local);
+      (0, import_internal57.transition_out)(toggle0.$$.fragment, local);
+      (0, import_internal57.transition_out)(toggle1.$$.fragment, local);
+      (0, import_internal57.transition_out)(toggle2.$$.fragment, local);
+      (0, import_internal57.transition_out)(toggle3.$$.fragment, local);
+      (0, import_internal57.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal57.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal56.detach_dev)(h2);
+        (0, import_internal57.detach_dev)(h2);
       if (detaching)
-        (0, import_internal56.detach_dev)(t1);
+        (0, import_internal57.detach_dev)(t1);
       if (detaching)
-        (0, import_internal56.detach_dev)(ul);
+        (0, import_internal57.detach_dev)(ul);
       if (detaching)
-        (0, import_internal56.detach_dev)(t14);
+        (0, import_internal57.detach_dev)(t14);
       if (detaching)
-        (0, import_internal56.detach_dev)(br0);
+        (0, import_internal57.detach_dev)(br0);
       if (detaching)
-        (0, import_internal56.detach_dev)(t15);
-      (0, import_internal56.destroy_component)(toggle0, detaching);
+        (0, import_internal57.detach_dev)(t15);
+      (0, import_internal57.destroy_component)(toggle0, detaching);
       if (detaching)
-        (0, import_internal56.detach_dev)(t16);
+        (0, import_internal57.detach_dev)(t16);
       if (detaching)
-        (0, import_internal56.detach_dev)(t17);
+        (0, import_internal57.detach_dev)(t17);
       if (detaching)
-        (0, import_internal56.detach_dev)(t18);
+        (0, import_internal57.detach_dev)(t18);
       if (detaching)
-        (0, import_internal56.detach_dev)(div);
-      (0, import_internal56.destroy_component)(toggle1);
-      (0, import_internal56.destroy_component)(toggle2);
+        (0, import_internal57.detach_dev)(div);
+      (0, import_internal57.destroy_component)(toggle1);
+      (0, import_internal57.destroy_component)(toggle2);
       if (detaching)
-        (0, import_internal56.detach_dev)(t22);
+        (0, import_internal57.detach_dev)(t22);
       if (detaching)
-        (0, import_internal56.detach_dev)(br2);
+        (0, import_internal57.detach_dev)(br2);
       if (detaching)
-        (0, import_internal56.detach_dev)(br3);
+        (0, import_internal57.detach_dev)(br3);
       if (detaching)
-        (0, import_internal56.detach_dev)(br4);
+        (0, import_internal57.detach_dev)(br4);
       if (detaching)
-        (0, import_internal56.detach_dev)(t23);
-      (0, import_internal56.destroy_component)(toggle3, detaching);
+        (0, import_internal57.detach_dev)(t23);
+      (0, import_internal57.destroy_component)(toggle3, detaching);
       if (detaching)
-        (0, import_internal56.detach_dev)(t24);
-      (0, import_internal56.destroy_component)(codeexample, detaching);
+        (0, import_internal57.detach_dev)(t24);
+      (0, import_internal57.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal56.detach_dev)(t25);
-      (0, import_internal56.destroy_component)(api, detaching);
+        (0, import_internal57.detach_dev)(t25);
+      (0, import_internal57.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment56.name,
+    id: create_fragment57.name,
     type: "component",
     source: "",
     ctx
@@ -36843,9 +37813,9 @@ function create_fragment56(ctx) {
 function onchange3(e) {
   console.log("onchange", e.detail);
 }
-function instance56($$self, $$props, $$invalidate) {
+function instance57($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal56.validate_slots)("Toggle", slots, []);
+  (0, import_internal57.validate_slots)("Toggle", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -36899,7 +37869,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_19.warn(`<Toggle> was created with unknown prop '${key}'`);
+      console_18.warn(`<Toggle> was created with unknown prop '${key}'`);
   });
   function toggle0_value_binding(value) {
     toggleValue = value;
@@ -36923,38 +37893,38 @@ function onChange (e) {
   }
   return [toggleValue, apiProps, exampleHtml, toggle0_value_binding];
 }
-var Toggle_1 = class extends import_internal56.SvelteComponentDev {
+var Toggle_1 = class extends import_internal57.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal56.init)(this, options, instance56, create_fragment56, import_internal56.safe_not_equal, {});
-    (0, import_internal56.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal57.init)(this, options, instance57, create_fragment57, import_internal57.safe_not_equal, {});
+    (0, import_internal57.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Toggle_1",
       options,
-      id: create_fragment56.name
+      id: create_fragment57.name
     });
   }
 };
 var Toggle_default2 = Toggle_1;
 
 // docs-src/components/tooltip/Tooltip.svelte
-var import_internal57 = __toESM(require_internal());
-var file55 = "docs-src/components/tooltip/Tooltip.svelte";
+var import_internal58 = __toESM(require_internal());
+var file56 = "docs-src/components/tooltip/Tooltip.svelte";
 function create_default_slot_75(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal57.text)("Some tooltip text");
+      t = (0, import_internal58.text)("Some tooltip text");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, t, anchor);
+      (0, import_internal58.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(t);
+        (0, import_internal58.detach_dev)(t);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_75.name,
     type: "slot",
@@ -36972,37 +37942,37 @@ function create_default_slot_65(ctx) {
   let t4;
   const block = {
     c: function create() {
-      h1 = (0, import_internal57.element)("h1");
+      h1 = (0, import_internal58.element)("h1");
       h1.textContent = "Some Title";
-      t1 = (0, import_internal57.space)();
-      p = (0, import_internal57.element)("p");
-      t2 = (0, import_internal57.text)("Some ");
-      b = (0, import_internal57.element)("b");
+      t1 = (0, import_internal58.space)();
+      p = (0, import_internal58.element)("p");
+      t2 = (0, import_internal58.text)("Some ");
+      b = (0, import_internal58.element)("b");
       b.textContent = "html";
-      t4 = (0, import_internal57.text)(" tooltip content");
-      (0, import_internal57.add_location)(h1, file55, 10, 1, 241);
-      (0, import_internal57.add_location)(b, file55, 11, 9, 270);
-      (0, import_internal57.add_location)(p, file55, 11, 1, 262);
+      t4 = (0, import_internal58.text)(" tooltip content");
+      (0, import_internal58.add_location)(h1, file56, 10, 1, 241);
+      (0, import_internal58.add_location)(b, file56, 11, 9, 270);
+      (0, import_internal58.add_location)(p, file56, 11, 1, 262);
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, h1, anchor);
-      (0, import_internal57.insert_dev)(target, t1, anchor);
-      (0, import_internal57.insert_dev)(target, p, anchor);
-      (0, import_internal57.append_dev)(p, t2);
-      (0, import_internal57.append_dev)(p, b);
-      (0, import_internal57.append_dev)(p, t4);
+      (0, import_internal58.insert_dev)(target, h1, anchor);
+      (0, import_internal58.insert_dev)(target, t1, anchor);
+      (0, import_internal58.insert_dev)(target, p, anchor);
+      (0, import_internal58.append_dev)(p, t2);
+      (0, import_internal58.append_dev)(p, b);
+      (0, import_internal58.append_dev)(p, t4);
     },
-    p: import_internal57.noop,
+    p: import_internal58.noop,
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(h1);
+        (0, import_internal58.detach_dev)(h1);
       if (detaching)
-        (0, import_internal57.detach_dev)(t1);
+        (0, import_internal58.detach_dev)(t1);
       if (detaching)
-        (0, import_internal57.detach_dev)(p);
+        (0, import_internal58.detach_dev)(p);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_65.name,
     type: "slot",
@@ -37015,17 +37985,17 @@ function create_default_slot_56(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal57.text)("Some tooltip text");
+      t = (0, import_internal58.text)("Some tooltip text");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, t, anchor);
+      (0, import_internal58.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(t);
+        (0, import_internal58.detach_dev)(t);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_56.name,
     type: "slot",
@@ -37038,17 +38008,17 @@ function create_default_slot_46(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal57.text)("Smaller offset");
+      t = (0, import_internal58.text)("Smaller offset");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, t, anchor);
+      (0, import_internal58.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(t);
+        (0, import_internal58.detach_dev)(t);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_46.name,
     type: "slot",
@@ -37061,17 +38031,17 @@ function create_default_slot_39(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal57.text)("Bigger offset");
+      t = (0, import_internal58.text)("Bigger offset");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, t, anchor);
+      (0, import_internal58.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(t);
+        (0, import_internal58.detach_dev)(t);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_39.name,
     type: "slot",
@@ -37084,17 +38054,17 @@ function create_default_slot_216(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal57.text)("Showing on click");
+      t = (0, import_internal58.text)("Showing on click");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, t, anchor);
+      (0, import_internal58.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(t);
+        (0, import_internal58.detach_dev)(t);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_216.name,
     type: "slot",
@@ -37107,17 +38077,17 @@ function create_default_slot_119(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal57.text)("Showing on click");
+      t = (0, import_internal58.text)("Showing on click");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, t, anchor);
+      (0, import_internal58.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(t);
+        (0, import_internal58.detach_dev)(t);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot_119.name,
     type: "slot",
@@ -37130,17 +38100,17 @@ function create_default_slot14(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal57.text)("Showing with a delay");
+      t = (0, import_internal58.text)("Showing with a delay");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, t, anchor);
+      (0, import_internal58.insert_dev)(target, t, anchor);
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(t);
+        (0, import_internal58.detach_dev)(t);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
     id: create_default_slot14.name,
     type: "slot",
@@ -37149,7 +38119,7 @@ function create_default_slot14(ctx) {
   });
   return block;
 }
-function create_fragment57(ctx) {
+function create_fragment58(ctx) {
   let h2;
   let t1;
   let h30;
@@ -37289,158 +38259,158 @@ function create_fragment57(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal57.element)("h2");
+      h2 = (0, import_internal58.element)("h2");
       h2.textContent = "Tooltip";
-      t1 = (0, import_internal57.space)();
-      h30 = (0, import_internal57.element)("h3");
+      t1 = (0, import_internal58.space)();
+      h30 = (0, import_internal58.element)("h3");
       h30.textContent = "Normal";
-      t3 = (0, import_internal57.space)();
-      span0 = (0, import_internal57.element)("span");
+      t3 = (0, import_internal58.space)();
+      span0 = (0, import_internal58.element)("span");
       span0.textContent = "box with a tooltip";
-      t5 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip0.$$.fragment);
-      t6 = (0, import_internal57.space)();
-      br = (0, import_internal57.element)("br");
-      t7 = (0, import_internal57.space)();
-      span1 = (0, import_internal57.element)("span");
+      t5 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip0.$$.fragment);
+      t6 = (0, import_internal58.space)();
+      br = (0, import_internal58.element)("br");
+      t7 = (0, import_internal58.space)();
+      span1 = (0, import_internal58.element)("span");
       span1.textContent = "box with a tooltip";
-      t9 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip1.$$.fragment);
-      t10 = (0, import_internal57.space)();
-      h31 = (0, import_internal57.element)("h3");
+      t9 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip1.$$.fragment);
+      t10 = (0, import_internal58.space)();
+      h31 = (0, import_internal58.element)("h3");
       h31.textContent = "Show below target";
-      t12 = (0, import_internal57.space)();
-      span2 = (0, import_internal57.element)("span");
+      t12 = (0, import_internal58.space)();
+      span2 = (0, import_internal58.element)("span");
       span2.textContent = "box with a tooltip";
-      t14 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip2.$$.fragment);
-      t15 = (0, import_internal57.space)();
-      h32 = (0, import_internal57.element)("h3");
+      t14 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip2.$$.fragment);
+      t15 = (0, import_internal58.space)();
+      h32 = (0, import_internal58.element)("h3");
       h32.textContent = "Custom offset";
-      t17 = (0, import_internal57.space)();
-      span3 = (0, import_internal57.element)("span");
+      t17 = (0, import_internal58.space)();
+      span3 = (0, import_internal58.element)("span");
       span3.textContent = "box with a tooltip";
-      t19 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip3.$$.fragment);
-      t20 = (0, import_internal57.space)();
-      span4 = (0, import_internal57.element)("span");
+      t19 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip3.$$.fragment);
+      t20 = (0, import_internal58.space)();
+      span4 = (0, import_internal58.element)("span");
       span4.textContent = "box with a tooltip";
-      t22 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip4.$$.fragment);
-      t23 = (0, import_internal57.space)();
-      h33 = (0, import_internal57.element)("h3");
+      t22 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip4.$$.fragment);
+      t23 = (0, import_internal58.space)();
+      h33 = (0, import_internal58.element)("h3");
       h33.textContent = "On Click";
-      t25 = (0, import_internal57.space)();
-      span5 = (0, import_internal57.element)("span");
+      t25 = (0, import_internal58.space)();
+      span5 = (0, import_internal58.element)("span");
       span5.textContent = "box with a tooltip";
-      t27 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip5.$$.fragment);
-      t28 = (0, import_internal57.space)();
-      h34 = (0, import_internal57.element)("h3");
+      t27 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip5.$$.fragment);
+      t28 = (0, import_internal58.space)();
+      h34 = (0, import_internal58.element)("h3");
       h34.textContent = "On Click and on Focus";
-      t30 = (0, import_internal57.space)();
-      button0 = (0, import_internal57.element)("button");
+      t30 = (0, import_internal58.space)();
+      button0 = (0, import_internal58.element)("button");
       button0.textContent = "button with a tooltip on-focus & on-click";
-      t32 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip6.$$.fragment);
-      t33 = (0, import_internal57.space)();
-      h35 = (0, import_internal57.element)("h3");
+      t32 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip6.$$.fragment);
+      t33 = (0, import_internal58.space)();
+      h35 = (0, import_internal58.element)("h3");
       h35.textContent = "On-hover & on-focus, with show-delay";
-      t35 = (0, import_internal57.space)();
-      button1 = (0, import_internal57.element)("button");
+      t35 = (0, import_internal58.space)();
+      button1 = (0, import_internal58.element)("button");
       button1.textContent = "button";
-      t37 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(tooltip7.$$.fragment);
-      t38 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(codeexample.$$.fragment);
-      t39 = (0, import_internal57.space)();
-      (0, import_internal57.create_component)(api.$$.fragment);
-      (0, import_internal57.add_location)(h2, file55, 0, 0, 0);
-      (0, import_internal57.add_location)(h30, file55, 2, 0, 18);
-      (0, import_internal57.attr_dev)(span0, "class", "tooltip-box");
-      (0, import_internal57.attr_dev)(span0, "id", "box1");
-      (0, import_internal57.add_location)(span0, file55, 3, 0, 34);
-      (0, import_internal57.add_location)(br, file55, 6, 0, 148);
-      (0, import_internal57.attr_dev)(span1, "class", "tooltip-box");
-      (0, import_internal57.attr_dev)(span1, "id", "box2");
-      (0, import_internal57.add_location)(span1, file55, 8, 0, 154);
-      (0, import_internal57.add_location)(h31, file55, 14, 0, 314);
-      (0, import_internal57.attr_dev)(span2, "class", "tooltip-box");
-      (0, import_internal57.attr_dev)(span2, "id", "box-below");
-      (0, import_internal57.add_location)(span2, file55, 15, 0, 341);
-      (0, import_internal57.add_location)(h32, file55, 18, 0, 483);
-      (0, import_internal57.attr_dev)(span3, "class", "tooltip-box");
-      (0, import_internal57.attr_dev)(span3, "id", "box-offset");
-      (0, import_internal57.add_location)(span3, file55, 19, 0, 506);
-      (0, import_internal57.attr_dev)(span4, "class", "tooltip-box");
-      (0, import_internal57.attr_dev)(span4, "id", "box-offset2");
-      (0, import_internal57.add_location)(span4, file55, 22, 0, 642);
-      (0, import_internal57.add_location)(h33, file55, 26, 0, 779);
-      (0, import_internal57.attr_dev)(span5, "class", "tooltip-box");
-      (0, import_internal57.attr_dev)(span5, "id", "box3");
-      (0, import_internal57.add_location)(span5, file55, 27, 0, 797);
-      (0, import_internal57.add_location)(h34, file55, 30, 0, 925);
-      (0, import_internal57.attr_dev)(button0, "id", "box4");
-      (0, import_internal57.add_location)(button0, file55, 31, 0, 956);
-      (0, import_internal57.add_location)(h35, file55, 34, 0, 1097);
-      (0, import_internal57.attr_dev)(button1, "id", "box5");
-      (0, import_internal57.add_location)(button1, file55, 35, 0, 1143);
+      t37 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(tooltip7.$$.fragment);
+      t38 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(codeexample.$$.fragment);
+      t39 = (0, import_internal58.space)();
+      (0, import_internal58.create_component)(api.$$.fragment);
+      (0, import_internal58.add_location)(h2, file56, 0, 0, 0);
+      (0, import_internal58.add_location)(h30, file56, 2, 0, 18);
+      (0, import_internal58.attr_dev)(span0, "class", "tooltip-box");
+      (0, import_internal58.attr_dev)(span0, "id", "box1");
+      (0, import_internal58.add_location)(span0, file56, 3, 0, 34);
+      (0, import_internal58.add_location)(br, file56, 6, 0, 148);
+      (0, import_internal58.attr_dev)(span1, "class", "tooltip-box");
+      (0, import_internal58.attr_dev)(span1, "id", "box2");
+      (0, import_internal58.add_location)(span1, file56, 8, 0, 154);
+      (0, import_internal58.add_location)(h31, file56, 14, 0, 314);
+      (0, import_internal58.attr_dev)(span2, "class", "tooltip-box");
+      (0, import_internal58.attr_dev)(span2, "id", "box-below");
+      (0, import_internal58.add_location)(span2, file56, 15, 0, 341);
+      (0, import_internal58.add_location)(h32, file56, 18, 0, 483);
+      (0, import_internal58.attr_dev)(span3, "class", "tooltip-box");
+      (0, import_internal58.attr_dev)(span3, "id", "box-offset");
+      (0, import_internal58.add_location)(span3, file56, 19, 0, 506);
+      (0, import_internal58.attr_dev)(span4, "class", "tooltip-box");
+      (0, import_internal58.attr_dev)(span4, "id", "box-offset2");
+      (0, import_internal58.add_location)(span4, file56, 22, 0, 642);
+      (0, import_internal58.add_location)(h33, file56, 26, 0, 779);
+      (0, import_internal58.attr_dev)(span5, "class", "tooltip-box");
+      (0, import_internal58.attr_dev)(span5, "id", "box3");
+      (0, import_internal58.add_location)(span5, file56, 27, 0, 797);
+      (0, import_internal58.add_location)(h34, file56, 30, 0, 925);
+      (0, import_internal58.attr_dev)(button0, "id", "box4");
+      (0, import_internal58.add_location)(button0, file56, 31, 0, 956);
+      (0, import_internal58.add_location)(h35, file56, 34, 0, 1097);
+      (0, import_internal58.attr_dev)(button1, "id", "box5");
+      (0, import_internal58.add_location)(button1, file56, 35, 0, 1143);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal57.insert_dev)(target, h2, anchor);
-      (0, import_internal57.insert_dev)(target, t1, anchor);
-      (0, import_internal57.insert_dev)(target, h30, anchor);
-      (0, import_internal57.insert_dev)(target, t3, anchor);
-      (0, import_internal57.insert_dev)(target, span0, anchor);
-      (0, import_internal57.insert_dev)(target, t5, anchor);
-      (0, import_internal57.mount_component)(tooltip0, target, anchor);
-      (0, import_internal57.insert_dev)(target, t6, anchor);
-      (0, import_internal57.insert_dev)(target, br, anchor);
-      (0, import_internal57.insert_dev)(target, t7, anchor);
-      (0, import_internal57.insert_dev)(target, span1, anchor);
-      (0, import_internal57.insert_dev)(target, t9, anchor);
-      (0, import_internal57.mount_component)(tooltip1, target, anchor);
-      (0, import_internal57.insert_dev)(target, t10, anchor);
-      (0, import_internal57.insert_dev)(target, h31, anchor);
-      (0, import_internal57.insert_dev)(target, t12, anchor);
-      (0, import_internal57.insert_dev)(target, span2, anchor);
-      (0, import_internal57.insert_dev)(target, t14, anchor);
-      (0, import_internal57.mount_component)(tooltip2, target, anchor);
-      (0, import_internal57.insert_dev)(target, t15, anchor);
-      (0, import_internal57.insert_dev)(target, h32, anchor);
-      (0, import_internal57.insert_dev)(target, t17, anchor);
-      (0, import_internal57.insert_dev)(target, span3, anchor);
-      (0, import_internal57.insert_dev)(target, t19, anchor);
-      (0, import_internal57.mount_component)(tooltip3, target, anchor);
-      (0, import_internal57.insert_dev)(target, t20, anchor);
-      (0, import_internal57.insert_dev)(target, span4, anchor);
-      (0, import_internal57.insert_dev)(target, t22, anchor);
-      (0, import_internal57.mount_component)(tooltip4, target, anchor);
-      (0, import_internal57.insert_dev)(target, t23, anchor);
-      (0, import_internal57.insert_dev)(target, h33, anchor);
-      (0, import_internal57.insert_dev)(target, t25, anchor);
-      (0, import_internal57.insert_dev)(target, span5, anchor);
-      (0, import_internal57.insert_dev)(target, t27, anchor);
-      (0, import_internal57.mount_component)(tooltip5, target, anchor);
-      (0, import_internal57.insert_dev)(target, t28, anchor);
-      (0, import_internal57.insert_dev)(target, h34, anchor);
-      (0, import_internal57.insert_dev)(target, t30, anchor);
-      (0, import_internal57.insert_dev)(target, button0, anchor);
-      (0, import_internal57.insert_dev)(target, t32, anchor);
-      (0, import_internal57.mount_component)(tooltip6, target, anchor);
-      (0, import_internal57.insert_dev)(target, t33, anchor);
-      (0, import_internal57.insert_dev)(target, h35, anchor);
-      (0, import_internal57.insert_dev)(target, t35, anchor);
-      (0, import_internal57.insert_dev)(target, button1, anchor);
-      (0, import_internal57.insert_dev)(target, t37, anchor);
-      (0, import_internal57.mount_component)(tooltip7, target, anchor);
-      (0, import_internal57.insert_dev)(target, t38, anchor);
-      (0, import_internal57.mount_component)(codeexample, target, anchor);
-      (0, import_internal57.insert_dev)(target, t39, anchor);
-      (0, import_internal57.mount_component)(api, target, anchor);
+      (0, import_internal58.insert_dev)(target, h2, anchor);
+      (0, import_internal58.insert_dev)(target, t1, anchor);
+      (0, import_internal58.insert_dev)(target, h30, anchor);
+      (0, import_internal58.insert_dev)(target, t3, anchor);
+      (0, import_internal58.insert_dev)(target, span0, anchor);
+      (0, import_internal58.insert_dev)(target, t5, anchor);
+      (0, import_internal58.mount_component)(tooltip0, target, anchor);
+      (0, import_internal58.insert_dev)(target, t6, anchor);
+      (0, import_internal58.insert_dev)(target, br, anchor);
+      (0, import_internal58.insert_dev)(target, t7, anchor);
+      (0, import_internal58.insert_dev)(target, span1, anchor);
+      (0, import_internal58.insert_dev)(target, t9, anchor);
+      (0, import_internal58.mount_component)(tooltip1, target, anchor);
+      (0, import_internal58.insert_dev)(target, t10, anchor);
+      (0, import_internal58.insert_dev)(target, h31, anchor);
+      (0, import_internal58.insert_dev)(target, t12, anchor);
+      (0, import_internal58.insert_dev)(target, span2, anchor);
+      (0, import_internal58.insert_dev)(target, t14, anchor);
+      (0, import_internal58.mount_component)(tooltip2, target, anchor);
+      (0, import_internal58.insert_dev)(target, t15, anchor);
+      (0, import_internal58.insert_dev)(target, h32, anchor);
+      (0, import_internal58.insert_dev)(target, t17, anchor);
+      (0, import_internal58.insert_dev)(target, span3, anchor);
+      (0, import_internal58.insert_dev)(target, t19, anchor);
+      (0, import_internal58.mount_component)(tooltip3, target, anchor);
+      (0, import_internal58.insert_dev)(target, t20, anchor);
+      (0, import_internal58.insert_dev)(target, span4, anchor);
+      (0, import_internal58.insert_dev)(target, t22, anchor);
+      (0, import_internal58.mount_component)(tooltip4, target, anchor);
+      (0, import_internal58.insert_dev)(target, t23, anchor);
+      (0, import_internal58.insert_dev)(target, h33, anchor);
+      (0, import_internal58.insert_dev)(target, t25, anchor);
+      (0, import_internal58.insert_dev)(target, span5, anchor);
+      (0, import_internal58.insert_dev)(target, t27, anchor);
+      (0, import_internal58.mount_component)(tooltip5, target, anchor);
+      (0, import_internal58.insert_dev)(target, t28, anchor);
+      (0, import_internal58.insert_dev)(target, h34, anchor);
+      (0, import_internal58.insert_dev)(target, t30, anchor);
+      (0, import_internal58.insert_dev)(target, button0, anchor);
+      (0, import_internal58.insert_dev)(target, t32, anchor);
+      (0, import_internal58.mount_component)(tooltip6, target, anchor);
+      (0, import_internal58.insert_dev)(target, t33, anchor);
+      (0, import_internal58.insert_dev)(target, h35, anchor);
+      (0, import_internal58.insert_dev)(target, t35, anchor);
+      (0, import_internal58.insert_dev)(target, button1, anchor);
+      (0, import_internal58.insert_dev)(target, t37, anchor);
+      (0, import_internal58.mount_component)(tooltip7, target, anchor);
+      (0, import_internal58.insert_dev)(target, t38, anchor);
+      (0, import_internal58.mount_component)(codeexample, target, anchor);
+      (0, import_internal58.insert_dev)(target, t39, anchor);
+      (0, import_internal58.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -37496,138 +38466,138 @@ function create_fragment57(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal57.transition_in)(tooltip0.$$.fragment, local);
-      (0, import_internal57.transition_in)(tooltip1.$$.fragment, local);
-      (0, import_internal57.transition_in)(tooltip2.$$.fragment, local);
-      (0, import_internal57.transition_in)(tooltip3.$$.fragment, local);
-      (0, import_internal57.transition_in)(tooltip4.$$.fragment, local);
-      (0, import_internal57.transition_in)(tooltip5.$$.fragment, local);
-      (0, import_internal57.transition_in)(tooltip6.$$.fragment, local);
-      (0, import_internal57.transition_in)(tooltip7.$$.fragment, local);
-      (0, import_internal57.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal57.transition_in)(api.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip0.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip1.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip2.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip3.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip4.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip5.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip6.$$.fragment, local);
+      (0, import_internal58.transition_in)(tooltip7.$$.fragment, local);
+      (0, import_internal58.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal58.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal57.transition_out)(tooltip0.$$.fragment, local);
-      (0, import_internal57.transition_out)(tooltip1.$$.fragment, local);
-      (0, import_internal57.transition_out)(tooltip2.$$.fragment, local);
-      (0, import_internal57.transition_out)(tooltip3.$$.fragment, local);
-      (0, import_internal57.transition_out)(tooltip4.$$.fragment, local);
-      (0, import_internal57.transition_out)(tooltip5.$$.fragment, local);
-      (0, import_internal57.transition_out)(tooltip6.$$.fragment, local);
-      (0, import_internal57.transition_out)(tooltip7.$$.fragment, local);
-      (0, import_internal57.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal57.transition_out)(api.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip0.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip1.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip2.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip3.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip4.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip5.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip6.$$.fragment, local);
+      (0, import_internal58.transition_out)(tooltip7.$$.fragment, local);
+      (0, import_internal58.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal58.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal57.detach_dev)(h2);
+        (0, import_internal58.detach_dev)(h2);
       if (detaching)
-        (0, import_internal57.detach_dev)(t1);
+        (0, import_internal58.detach_dev)(t1);
       if (detaching)
-        (0, import_internal57.detach_dev)(h30);
+        (0, import_internal58.detach_dev)(h30);
       if (detaching)
-        (0, import_internal57.detach_dev)(t3);
+        (0, import_internal58.detach_dev)(t3);
       if (detaching)
-        (0, import_internal57.detach_dev)(span0);
+        (0, import_internal58.detach_dev)(span0);
       if (detaching)
-        (0, import_internal57.detach_dev)(t5);
-      (0, import_internal57.destroy_component)(tooltip0, detaching);
+        (0, import_internal58.detach_dev)(t5);
+      (0, import_internal58.destroy_component)(tooltip0, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t6);
+        (0, import_internal58.detach_dev)(t6);
       if (detaching)
-        (0, import_internal57.detach_dev)(br);
+        (0, import_internal58.detach_dev)(br);
       if (detaching)
-        (0, import_internal57.detach_dev)(t7);
+        (0, import_internal58.detach_dev)(t7);
       if (detaching)
-        (0, import_internal57.detach_dev)(span1);
+        (0, import_internal58.detach_dev)(span1);
       if (detaching)
-        (0, import_internal57.detach_dev)(t9);
-      (0, import_internal57.destroy_component)(tooltip1, detaching);
+        (0, import_internal58.detach_dev)(t9);
+      (0, import_internal58.destroy_component)(tooltip1, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t10);
+        (0, import_internal58.detach_dev)(t10);
       if (detaching)
-        (0, import_internal57.detach_dev)(h31);
+        (0, import_internal58.detach_dev)(h31);
       if (detaching)
-        (0, import_internal57.detach_dev)(t12);
+        (0, import_internal58.detach_dev)(t12);
       if (detaching)
-        (0, import_internal57.detach_dev)(span2);
+        (0, import_internal58.detach_dev)(span2);
       if (detaching)
-        (0, import_internal57.detach_dev)(t14);
-      (0, import_internal57.destroy_component)(tooltip2, detaching);
+        (0, import_internal58.detach_dev)(t14);
+      (0, import_internal58.destroy_component)(tooltip2, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t15);
+        (0, import_internal58.detach_dev)(t15);
       if (detaching)
-        (0, import_internal57.detach_dev)(h32);
+        (0, import_internal58.detach_dev)(h32);
       if (detaching)
-        (0, import_internal57.detach_dev)(t17);
+        (0, import_internal58.detach_dev)(t17);
       if (detaching)
-        (0, import_internal57.detach_dev)(span3);
+        (0, import_internal58.detach_dev)(span3);
       if (detaching)
-        (0, import_internal57.detach_dev)(t19);
-      (0, import_internal57.destroy_component)(tooltip3, detaching);
+        (0, import_internal58.detach_dev)(t19);
+      (0, import_internal58.destroy_component)(tooltip3, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t20);
+        (0, import_internal58.detach_dev)(t20);
       if (detaching)
-        (0, import_internal57.detach_dev)(span4);
+        (0, import_internal58.detach_dev)(span4);
       if (detaching)
-        (0, import_internal57.detach_dev)(t22);
-      (0, import_internal57.destroy_component)(tooltip4, detaching);
+        (0, import_internal58.detach_dev)(t22);
+      (0, import_internal58.destroy_component)(tooltip4, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t23);
+        (0, import_internal58.detach_dev)(t23);
       if (detaching)
-        (0, import_internal57.detach_dev)(h33);
+        (0, import_internal58.detach_dev)(h33);
       if (detaching)
-        (0, import_internal57.detach_dev)(t25);
+        (0, import_internal58.detach_dev)(t25);
       if (detaching)
-        (0, import_internal57.detach_dev)(span5);
+        (0, import_internal58.detach_dev)(span5);
       if (detaching)
-        (0, import_internal57.detach_dev)(t27);
-      (0, import_internal57.destroy_component)(tooltip5, detaching);
+        (0, import_internal58.detach_dev)(t27);
+      (0, import_internal58.destroy_component)(tooltip5, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t28);
+        (0, import_internal58.detach_dev)(t28);
       if (detaching)
-        (0, import_internal57.detach_dev)(h34);
+        (0, import_internal58.detach_dev)(h34);
       if (detaching)
-        (0, import_internal57.detach_dev)(t30);
+        (0, import_internal58.detach_dev)(t30);
       if (detaching)
-        (0, import_internal57.detach_dev)(button0);
+        (0, import_internal58.detach_dev)(button0);
       if (detaching)
-        (0, import_internal57.detach_dev)(t32);
-      (0, import_internal57.destroy_component)(tooltip6, detaching);
+        (0, import_internal58.detach_dev)(t32);
+      (0, import_internal58.destroy_component)(tooltip6, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t33);
+        (0, import_internal58.detach_dev)(t33);
       if (detaching)
-        (0, import_internal57.detach_dev)(h35);
+        (0, import_internal58.detach_dev)(h35);
       if (detaching)
-        (0, import_internal57.detach_dev)(t35);
+        (0, import_internal58.detach_dev)(t35);
       if (detaching)
-        (0, import_internal57.detach_dev)(button1);
+        (0, import_internal58.detach_dev)(button1);
       if (detaching)
-        (0, import_internal57.detach_dev)(t37);
-      (0, import_internal57.destroy_component)(tooltip7, detaching);
+        (0, import_internal58.detach_dev)(t37);
+      (0, import_internal58.destroy_component)(tooltip7, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t38);
-      (0, import_internal57.destroy_component)(codeexample, detaching);
+        (0, import_internal58.detach_dev)(t38);
+      (0, import_internal58.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal57.detach_dev)(t39);
-      (0, import_internal57.destroy_component)(api, detaching);
+        (0, import_internal58.detach_dev)(t39);
+      (0, import_internal58.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment57.name,
+    id: create_fragment58.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance57($$self, $$props, $$invalidate) {
+function instance58($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal57.validate_slots)("Tooltip", slots, []);
+  (0, import_internal58.validate_slots)("Tooltip", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -37686,25 +38656,25 @@ function instance57($$self, $$props, $$invalidate) {
   });
   return [apiProps, exampleHtml];
 }
-var Tooltip_1 = class extends import_internal57.SvelteComponentDev {
+var Tooltip_1 = class extends import_internal58.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal57.init)(this, options, instance57, create_fragment57, import_internal57.safe_not_equal, {});
-    (0, import_internal57.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal58.init)(this, options, instance58, create_fragment58, import_internal58.safe_not_equal, {});
+    (0, import_internal58.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Tooltip_1",
       options,
-      id: create_fragment57.name
+      id: create_fragment58.name
     });
   }
 };
 var Tooltip_default2 = Tooltip_1;
 
 // docs-src/components/tree/Tree.svelte
-var import_internal58 = __toESM(require_internal());
-var { console: console_110 } = import_internal58.globals;
-var file56 = "docs-src/components/tree/Tree.svelte";
-function create_fragment58(ctx) {
+var import_internal59 = __toESM(require_internal());
+var { console: console_19 } = import_internal59.globals;
+var file57 = "docs-src/components/tree/Tree.svelte";
+function create_fragment59(ctx) {
   let h2;
   let t1;
   let div;
@@ -37738,68 +38708,68 @@ function create_fragment58(ctx) {
   });
   const block = {
     c: function create() {
-      h2 = (0, import_internal58.element)("h2");
+      h2 = (0, import_internal59.element)("h2");
       h2.textContent = "Tree";
-      t1 = (0, import_internal58.space)();
-      div = (0, import_internal58.element)("div");
-      (0, import_internal58.create_component)(tree.$$.fragment);
-      t2 = (0, import_internal58.space)();
-      (0, import_internal58.create_component)(codeexample.$$.fragment);
-      t3 = (0, import_internal58.space)();
-      (0, import_internal58.create_component)(api.$$.fragment);
-      (0, import_internal58.add_location)(h2, file56, 0, 0, 0);
-      (0, import_internal58.set_style)(div, "display", "inline-block");
-      (0, import_internal58.set_style)(div, "width", "200px");
-      (0, import_internal58.add_location)(div, file56, 2, 0, 15);
+      t1 = (0, import_internal59.space)();
+      div = (0, import_internal59.element)("div");
+      (0, import_internal59.create_component)(tree.$$.fragment);
+      t2 = (0, import_internal59.space)();
+      (0, import_internal59.create_component)(codeexample.$$.fragment);
+      t3 = (0, import_internal59.space)();
+      (0, import_internal59.create_component)(api.$$.fragment);
+      (0, import_internal59.add_location)(h2, file57, 0, 0, 0);
+      (0, import_internal59.set_style)(div, "display", "inline-block");
+      (0, import_internal59.set_style)(div, "width", "200px");
+      (0, import_internal59.add_location)(div, file57, 2, 0, 15);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal58.insert_dev)(target, h2, anchor);
-      (0, import_internal58.insert_dev)(target, t1, anchor);
-      (0, import_internal58.insert_dev)(target, div, anchor);
-      (0, import_internal58.mount_component)(tree, div, null);
-      (0, import_internal58.insert_dev)(target, t2, anchor);
-      (0, import_internal58.mount_component)(codeexample, target, anchor);
-      (0, import_internal58.insert_dev)(target, t3, anchor);
-      (0, import_internal58.mount_component)(api, target, anchor);
+      (0, import_internal59.insert_dev)(target, h2, anchor);
+      (0, import_internal59.insert_dev)(target, t1, anchor);
+      (0, import_internal59.insert_dev)(target, div, anchor);
+      (0, import_internal59.mount_component)(tree, div, null);
+      (0, import_internal59.insert_dev)(target, t2, anchor);
+      (0, import_internal59.mount_component)(codeexample, target, anchor);
+      (0, import_internal59.insert_dev)(target, t3, anchor);
+      (0, import_internal59.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal58.noop,
+    p: import_internal59.noop,
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal58.transition_in)(tree.$$.fragment, local);
-      (0, import_internal58.transition_in)(codeexample.$$.fragment, local);
-      (0, import_internal58.transition_in)(api.$$.fragment, local);
+      (0, import_internal59.transition_in)(tree.$$.fragment, local);
+      (0, import_internal59.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal59.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal58.transition_out)(tree.$$.fragment, local);
-      (0, import_internal58.transition_out)(codeexample.$$.fragment, local);
-      (0, import_internal58.transition_out)(api.$$.fragment, local);
+      (0, import_internal59.transition_out)(tree.$$.fragment, local);
+      (0, import_internal59.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal59.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal58.detach_dev)(h2);
+        (0, import_internal59.detach_dev)(h2);
       if (detaching)
-        (0, import_internal58.detach_dev)(t1);
+        (0, import_internal59.detach_dev)(t1);
       if (detaching)
-        (0, import_internal58.detach_dev)(div);
-      (0, import_internal58.destroy_component)(tree);
+        (0, import_internal59.detach_dev)(div);
+      (0, import_internal59.destroy_component)(tree);
       if (detaching)
-        (0, import_internal58.detach_dev)(t2);
-      (0, import_internal58.destroy_component)(codeexample, detaching);
+        (0, import_internal59.detach_dev)(t2);
+      (0, import_internal59.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal58.detach_dev)(t3);
-      (0, import_internal58.destroy_component)(api, detaching);
+        (0, import_internal59.detach_dev)(t3);
+      (0, import_internal59.destroy_component)(api, detaching);
     }
   };
-  (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal59.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment58.name,
+    id: create_fragment59.name,
     type: "component",
     source: "",
     ctx
@@ -37809,9 +38779,9 @@ function create_fragment58(ctx) {
 function onSelect2(e) {
   console.log(e.detail);
 }
-function instance58($$self, $$props, $$invalidate) {
+function instance59($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal58.validate_slots)("Tree", slots, []);
+  (0, import_internal59.validate_slots)("Tree", slots, []);
   const apiProps = [
     {
       name: "class",
@@ -37922,7 +38892,7 @@ function onSelect (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_110.warn(`<Tree> was created with unknown prop '${key}'`);
+      console_19.warn(`<Tree> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Tree: Tree_default,
@@ -37935,24 +38905,24 @@ function onSelect (e) {
   });
   return [apiProps, exampleHtml, items];
 }
-var Tree_1 = class extends import_internal58.SvelteComponentDev {
+var Tree_1 = class extends import_internal59.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal58.init)(this, options, instance58, create_fragment58, import_internal58.safe_not_equal, {});
-    (0, import_internal58.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal59.init)(this, options, instance59, create_fragment59, import_internal59.safe_not_equal, {});
+    (0, import_internal59.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Tree_1",
       options,
-      id: create_fragment58.name
+      id: create_fragment59.name
     });
   }
 };
 var Tree_default2 = Tree_1;
 
 // docs-src/nav/Nav.svelte
-var { window: window_1 } = import_internal59.globals;
-var file57 = "docs-src/nav/Nav.svelte";
-function create_fragment59(ctx) {
+var { window: window_1 } = import_internal60.globals;
+var file58 = "docs-src/nav/Nav.svelte";
+function create_fragment60(ctx) {
   let uibutton;
   let t0;
   let aside;
@@ -37966,9 +38936,9 @@ function create_fragment59(ctx) {
   let t5;
   let navitem0;
   let t6;
-  let h31;
-  let t8;
   let navitem1;
+  let t7;
+  let h31;
   let t9;
   let navitem2;
   let t10;
@@ -37994,9 +38964,9 @@ function create_fragment59(ctx) {
   let t20;
   let navitem13;
   let t21;
-  let h32;
-  let t23;
   let navitem14;
+  let t22;
+  let h32;
   let t24;
   let navitem15;
   let t25;
@@ -38010,9 +38980,9 @@ function create_fragment59(ctx) {
   let t29;
   let navitem20;
   let t30;
-  let h33;
-  let t32;
   let navitem21;
+  let t31;
+  let h33;
   let t33;
   let navitem22;
   let t34;
@@ -38021,6 +38991,8 @@ function create_fragment59(ctx) {
   let navitem24;
   let t36;
   let navitem25;
+  let t37;
+  let navitem26;
   let current;
   let mounted;
   let dispose;
@@ -38052,7 +39024,7 @@ function create_fragment59(ctx) {
   });
   navitem1 = new NavItem_default({
     props: {
-      name: "Autocomplete",
+      name: "Changelog",
       active: (
         /*active*/
         ctx[0]
@@ -38062,7 +39034,7 @@ function create_fragment59(ctx) {
   });
   navitem2 = new NavItem_default({
     props: {
-      name: "Button",
+      name: "Autocomplete",
       active: (
         /*active*/
         ctx[0]
@@ -38072,7 +39044,7 @@ function create_fragment59(ctx) {
   });
   navitem3 = new NavItem_default({
     props: {
-      name: "Push Button",
+      name: "Button",
       active: (
         /*active*/
         ctx[0]
@@ -38082,7 +39054,7 @@ function create_fragment59(ctx) {
   });
   navitem4 = new NavItem_default({
     props: {
-      name: "Button Group",
+      name: "Push Button",
       active: (
         /*active*/
         ctx[0]
@@ -38092,7 +39064,7 @@ function create_fragment59(ctx) {
   });
   navitem5 = new NavItem_default({
     props: {
-      name: "Button Toggle",
+      name: "Button Group",
       active: (
         /*active*/
         ctx[0]
@@ -38102,7 +39074,7 @@ function create_fragment59(ctx) {
   });
   navitem6 = new NavItem_default({
     props: {
-      name: "Checkbox",
+      name: "Button Toggle",
       active: (
         /*active*/
         ctx[0]
@@ -38112,7 +39084,7 @@ function create_fragment59(ctx) {
   });
   navitem7 = new NavItem_default({
     props: {
-      name: "Datepicker",
+      name: "Checkbox",
       active: (
         /*active*/
         ctx[0]
@@ -38121,13 +39093,23 @@ function create_fragment59(ctx) {
     $$inline: true
   });
   navitem8 = new NavItem_default({
+    props: {
+      name: "Datepicker",
+      active: (
+        /*active*/
+        ctx[0]
+      )
+    },
+    $$inline: true
+  });
+  navitem9 = new NavItem_default({
     props: { name: "Input", active: (
       /*active*/
       ctx[0]
     ) },
     $$inline: true
   });
-  navitem9 = new NavItem_default({
+  navitem10 = new NavItem_default({
     props: {
       name: "Input Math",
       active: (
@@ -38137,7 +39119,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem10 = new NavItem_default({
+  navitem11 = new NavItem_default({
     props: {
       name: "Password",
       hash: "InputPassword",
@@ -38148,7 +39130,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem11 = new NavItem_default({
+  navitem12 = new NavItem_default({
     props: {
       name: "Select",
       active: (
@@ -38158,7 +39140,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem12 = new NavItem_default({
+  navitem13 = new NavItem_default({
     props: {
       name: "Textarea",
       active: (
@@ -38168,7 +39150,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem13 = new NavItem_default({
+  navitem14 = new NavItem_default({
     props: {
       name: "Toggle",
       active: (
@@ -38178,7 +39160,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem14 = new NavItem_default({
+  navitem15 = new NavItem_default({
     props: {
       name: "Dialog",
       active: (
@@ -38188,7 +39170,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem15 = new NavItem_default({
+  navitem16 = new NavItem_default({
     props: {
       name: "Drawer",
       active: (
@@ -38198,21 +39180,21 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem16 = new NavItem_default({
+  navitem17 = new NavItem_default({
     props: { name: "Menu", active: (
       /*active*/
       ctx[0]
     ) },
     $$inline: true
   });
-  navitem17 = new NavItem_default({
+  navitem18 = new NavItem_default({
     props: { name: "Panel", active: (
       /*active*/
       ctx[0]
     ) },
     $$inline: true
   });
-  navitem18 = new NavItem_default({
+  navitem19 = new NavItem_default({
     props: {
       name: "Splitter",
       active: (
@@ -38222,28 +39204,28 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem19 = new NavItem_default({
+  navitem20 = new NavItem_default({
     props: { name: "Table", active: (
       /*active*/
       ctx[0]
     ) },
     $$inline: true
   });
-  navitem20 = new NavItem_default({
+  navitem21 = new NavItem_default({
     props: { name: "Tree", active: (
       /*active*/
       ctx[0]
     ) },
     $$inline: true
   });
-  navitem21 = new NavItem_default({
+  navitem22 = new NavItem_default({
     props: { name: "Icon", active: (
       /*active*/
       ctx[0]
     ) },
     $$inline: true
   });
-  navitem22 = new NavItem_default({
+  navitem23 = new NavItem_default({
     props: {
       name: "TextFit",
       active: (
@@ -38253,7 +39235,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem23 = new NavItem_default({
+  navitem24 = new NavItem_default({
     props: {
       name: "Toaster",
       active: (
@@ -38263,7 +39245,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem24 = new NavItem_default({
+  navitem25 = new NavItem_default({
     props: {
       name: "Tooltip",
       active: (
@@ -38273,7 +39255,7 @@ function create_fragment59(ctx) {
     },
     $$inline: true
   });
-  navitem25 = new NavItem_default({
+  navitem26 = new NavItem_default({
     props: {
       name: "Color Palette",
       active: (
@@ -38285,170 +39267,174 @@ function create_fragment59(ctx) {
   });
   const block = {
     c: function create() {
-      (0, import_internal59.create_component)(uibutton.$$.fragment);
-      t0 = (0, import_internal59.space)();
-      aside = (0, import_internal59.element)("aside");
-      menu = (0, import_internal59.element)("menu");
-      div = (0, import_internal59.element)("div");
-      span = (0, import_internal59.element)("span");
+      (0, import_internal60.create_component)(uibutton.$$.fragment);
+      t0 = (0, import_internal60.space)();
+      aside = (0, import_internal60.element)("aside");
+      menu = (0, import_internal60.element)("menu");
+      div = (0, import_internal60.element)("div");
+      span = (0, import_internal60.element)("span");
       span.textContent = "Dark mode:";
-      t2 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(actualtoggle.$$.fragment);
-      t3 = (0, import_internal59.space)();
-      h30 = (0, import_internal59.element)("h3");
+      t2 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(actualtoggle.$$.fragment);
+      t3 = (0, import_internal60.space)();
+      h30 = (0, import_internal60.element)("h3");
       h30.textContent = "Intro";
-      t5 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem0.$$.fragment);
-      t6 = (0, import_internal59.space)();
-      h31 = (0, import_internal59.element)("h3");
+      t5 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem0.$$.fragment);
+      t6 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem1.$$.fragment);
+      t7 = (0, import_internal60.space)();
+      h31 = (0, import_internal60.element)("h3");
       h31.textContent = "Form Controls";
-      t8 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem1.$$.fragment);
-      t9 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem2.$$.fragment);
-      t10 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem3.$$.fragment);
-      t11 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem4.$$.fragment);
-      t12 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem5.$$.fragment);
-      t13 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem6.$$.fragment);
-      t14 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem7.$$.fragment);
-      t15 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem8.$$.fragment);
-      t16 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem9.$$.fragment);
-      t17 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem10.$$.fragment);
-      t18 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem11.$$.fragment);
-      t19 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem12.$$.fragment);
-      t20 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem13.$$.fragment);
-      t21 = (0, import_internal59.space)();
-      h32 = (0, import_internal59.element)("h3");
+      t9 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem2.$$.fragment);
+      t10 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem3.$$.fragment);
+      t11 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem4.$$.fragment);
+      t12 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem5.$$.fragment);
+      t13 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem6.$$.fragment);
+      t14 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem7.$$.fragment);
+      t15 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem8.$$.fragment);
+      t16 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem9.$$.fragment);
+      t17 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem10.$$.fragment);
+      t18 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem11.$$.fragment);
+      t19 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem12.$$.fragment);
+      t20 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem13.$$.fragment);
+      t21 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem14.$$.fragment);
+      t22 = (0, import_internal60.space)();
+      h32 = (0, import_internal60.element)("h3");
       h32.textContent = "Containers";
-      t23 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem14.$$.fragment);
-      t24 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem15.$$.fragment);
-      t25 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem16.$$.fragment);
-      t26 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem17.$$.fragment);
-      t27 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem18.$$.fragment);
-      t28 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem19.$$.fragment);
-      t29 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem20.$$.fragment);
-      t30 = (0, import_internal59.space)();
-      h33 = (0, import_internal59.element)("h3");
+      t24 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem15.$$.fragment);
+      t25 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem16.$$.fragment);
+      t26 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem17.$$.fragment);
+      t27 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem18.$$.fragment);
+      t28 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem19.$$.fragment);
+      t29 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem20.$$.fragment);
+      t30 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem21.$$.fragment);
+      t31 = (0, import_internal60.space)();
+      h33 = (0, import_internal60.element)("h3");
       h33.textContent = "Generic";
-      t32 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem21.$$.fragment);
-      t33 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem22.$$.fragment);
-      t34 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem23.$$.fragment);
-      t35 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem24.$$.fragment);
-      t36 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(navitem25.$$.fragment);
-      (0, import_internal59.add_location)(span, file57, 8, 3, 197);
-      (0, import_internal59.attr_dev)(div, "class", "nav-toolbar");
-      (0, import_internal59.add_location)(div, file57, 7, 2, 168);
-      (0, import_internal59.add_location)(h30, file57, 12, 2, 295);
-      (0, import_internal59.add_location)(h31, file57, 15, 2, 355);
-      (0, import_internal59.add_location)(h32, file57, 30, 2, 920);
-      (0, import_internal59.add_location)(h33, file57, 39, 2, 1198);
-      (0, import_internal59.add_location)(menu, file57, 6, 1, 159);
-      (0, import_internal59.toggle_class)(
+      t33 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem22.$$.fragment);
+      t34 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem23.$$.fragment);
+      t35 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem24.$$.fragment);
+      t36 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem25.$$.fragment);
+      t37 = (0, import_internal60.space)();
+      (0, import_internal60.create_component)(navitem26.$$.fragment);
+      (0, import_internal60.add_location)(span, file58, 8, 3, 197);
+      (0, import_internal60.attr_dev)(div, "class", "nav-toolbar");
+      (0, import_internal60.add_location)(div, file58, 7, 2, 168);
+      (0, import_internal60.add_location)(h30, file58, 12, 2, 295);
+      (0, import_internal60.add_location)(h31, file58, 16, 2, 395);
+      (0, import_internal60.add_location)(h32, file58, 31, 2, 960);
+      (0, import_internal60.add_location)(h33, file58, 40, 2, 1238);
+      (0, import_internal60.add_location)(menu, file58, 6, 1, 159);
+      (0, import_internal60.toggle_class)(
         aside,
         "mobile-show",
         /*navMobileShow*/
         ctx[1]
       );
-      (0, import_internal59.add_location)(aside, file57, 5, 0, 114);
+      (0, import_internal60.add_location)(aside, file58, 5, 0, 114);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal59.mount_component)(uibutton, target, anchor);
-      (0, import_internal59.insert_dev)(target, t0, anchor);
-      (0, import_internal59.insert_dev)(target, aside, anchor);
-      (0, import_internal59.append_dev)(aside, menu);
-      (0, import_internal59.append_dev)(menu, div);
-      (0, import_internal59.append_dev)(div, span);
-      (0, import_internal59.append_dev)(div, t2);
-      (0, import_internal59.mount_component)(actualtoggle, div, null);
-      (0, import_internal59.append_dev)(menu, t3);
-      (0, import_internal59.append_dev)(menu, h30);
-      (0, import_internal59.append_dev)(menu, t5);
-      (0, import_internal59.mount_component)(navitem0, menu, null);
-      (0, import_internal59.append_dev)(menu, t6);
-      (0, import_internal59.append_dev)(menu, h31);
-      (0, import_internal59.append_dev)(menu, t8);
-      (0, import_internal59.mount_component)(navitem1, menu, null);
-      (0, import_internal59.append_dev)(menu, t9);
-      (0, import_internal59.mount_component)(navitem2, menu, null);
-      (0, import_internal59.append_dev)(menu, t10);
-      (0, import_internal59.mount_component)(navitem3, menu, null);
-      (0, import_internal59.append_dev)(menu, t11);
-      (0, import_internal59.mount_component)(navitem4, menu, null);
-      (0, import_internal59.append_dev)(menu, t12);
-      (0, import_internal59.mount_component)(navitem5, menu, null);
-      (0, import_internal59.append_dev)(menu, t13);
-      (0, import_internal59.mount_component)(navitem6, menu, null);
-      (0, import_internal59.append_dev)(menu, t14);
-      (0, import_internal59.mount_component)(navitem7, menu, null);
-      (0, import_internal59.append_dev)(menu, t15);
-      (0, import_internal59.mount_component)(navitem8, menu, null);
-      (0, import_internal59.append_dev)(menu, t16);
-      (0, import_internal59.mount_component)(navitem9, menu, null);
-      (0, import_internal59.append_dev)(menu, t17);
-      (0, import_internal59.mount_component)(navitem10, menu, null);
-      (0, import_internal59.append_dev)(menu, t18);
-      (0, import_internal59.mount_component)(navitem11, menu, null);
-      (0, import_internal59.append_dev)(menu, t19);
-      (0, import_internal59.mount_component)(navitem12, menu, null);
-      (0, import_internal59.append_dev)(menu, t20);
-      (0, import_internal59.mount_component)(navitem13, menu, null);
-      (0, import_internal59.append_dev)(menu, t21);
-      (0, import_internal59.append_dev)(menu, h32);
-      (0, import_internal59.append_dev)(menu, t23);
-      (0, import_internal59.mount_component)(navitem14, menu, null);
-      (0, import_internal59.append_dev)(menu, t24);
-      (0, import_internal59.mount_component)(navitem15, menu, null);
-      (0, import_internal59.append_dev)(menu, t25);
-      (0, import_internal59.mount_component)(navitem16, menu, null);
-      (0, import_internal59.append_dev)(menu, t26);
-      (0, import_internal59.mount_component)(navitem17, menu, null);
-      (0, import_internal59.append_dev)(menu, t27);
-      (0, import_internal59.mount_component)(navitem18, menu, null);
-      (0, import_internal59.append_dev)(menu, t28);
-      (0, import_internal59.mount_component)(navitem19, menu, null);
-      (0, import_internal59.append_dev)(menu, t29);
-      (0, import_internal59.mount_component)(navitem20, menu, null);
-      (0, import_internal59.append_dev)(menu, t30);
-      (0, import_internal59.append_dev)(menu, h33);
-      (0, import_internal59.append_dev)(menu, t32);
-      (0, import_internal59.mount_component)(navitem21, menu, null);
-      (0, import_internal59.append_dev)(menu, t33);
-      (0, import_internal59.mount_component)(navitem22, menu, null);
-      (0, import_internal59.append_dev)(menu, t34);
-      (0, import_internal59.mount_component)(navitem23, menu, null);
-      (0, import_internal59.append_dev)(menu, t35);
-      (0, import_internal59.mount_component)(navitem24, menu, null);
-      (0, import_internal59.append_dev)(menu, t36);
-      (0, import_internal59.mount_component)(navitem25, menu, null);
+      (0, import_internal60.mount_component)(uibutton, target, anchor);
+      (0, import_internal60.insert_dev)(target, t0, anchor);
+      (0, import_internal60.insert_dev)(target, aside, anchor);
+      (0, import_internal60.append_dev)(aside, menu);
+      (0, import_internal60.append_dev)(menu, div);
+      (0, import_internal60.append_dev)(div, span);
+      (0, import_internal60.append_dev)(div, t2);
+      (0, import_internal60.mount_component)(actualtoggle, div, null);
+      (0, import_internal60.append_dev)(menu, t3);
+      (0, import_internal60.append_dev)(menu, h30);
+      (0, import_internal60.append_dev)(menu, t5);
+      (0, import_internal60.mount_component)(navitem0, menu, null);
+      (0, import_internal60.append_dev)(menu, t6);
+      (0, import_internal60.mount_component)(navitem1, menu, null);
+      (0, import_internal60.append_dev)(menu, t7);
+      (0, import_internal60.append_dev)(menu, h31);
+      (0, import_internal60.append_dev)(menu, t9);
+      (0, import_internal60.mount_component)(navitem2, menu, null);
+      (0, import_internal60.append_dev)(menu, t10);
+      (0, import_internal60.mount_component)(navitem3, menu, null);
+      (0, import_internal60.append_dev)(menu, t11);
+      (0, import_internal60.mount_component)(navitem4, menu, null);
+      (0, import_internal60.append_dev)(menu, t12);
+      (0, import_internal60.mount_component)(navitem5, menu, null);
+      (0, import_internal60.append_dev)(menu, t13);
+      (0, import_internal60.mount_component)(navitem6, menu, null);
+      (0, import_internal60.append_dev)(menu, t14);
+      (0, import_internal60.mount_component)(navitem7, menu, null);
+      (0, import_internal60.append_dev)(menu, t15);
+      (0, import_internal60.mount_component)(navitem8, menu, null);
+      (0, import_internal60.append_dev)(menu, t16);
+      (0, import_internal60.mount_component)(navitem9, menu, null);
+      (0, import_internal60.append_dev)(menu, t17);
+      (0, import_internal60.mount_component)(navitem10, menu, null);
+      (0, import_internal60.append_dev)(menu, t18);
+      (0, import_internal60.mount_component)(navitem11, menu, null);
+      (0, import_internal60.append_dev)(menu, t19);
+      (0, import_internal60.mount_component)(navitem12, menu, null);
+      (0, import_internal60.append_dev)(menu, t20);
+      (0, import_internal60.mount_component)(navitem13, menu, null);
+      (0, import_internal60.append_dev)(menu, t21);
+      (0, import_internal60.mount_component)(navitem14, menu, null);
+      (0, import_internal60.append_dev)(menu, t22);
+      (0, import_internal60.append_dev)(menu, h32);
+      (0, import_internal60.append_dev)(menu, t24);
+      (0, import_internal60.mount_component)(navitem15, menu, null);
+      (0, import_internal60.append_dev)(menu, t25);
+      (0, import_internal60.mount_component)(navitem16, menu, null);
+      (0, import_internal60.append_dev)(menu, t26);
+      (0, import_internal60.mount_component)(navitem17, menu, null);
+      (0, import_internal60.append_dev)(menu, t27);
+      (0, import_internal60.mount_component)(navitem18, menu, null);
+      (0, import_internal60.append_dev)(menu, t28);
+      (0, import_internal60.mount_component)(navitem19, menu, null);
+      (0, import_internal60.append_dev)(menu, t29);
+      (0, import_internal60.mount_component)(navitem20, menu, null);
+      (0, import_internal60.append_dev)(menu, t30);
+      (0, import_internal60.mount_component)(navitem21, menu, null);
+      (0, import_internal60.append_dev)(menu, t31);
+      (0, import_internal60.append_dev)(menu, h33);
+      (0, import_internal60.append_dev)(menu, t33);
+      (0, import_internal60.mount_component)(navitem22, menu, null);
+      (0, import_internal60.append_dev)(menu, t34);
+      (0, import_internal60.mount_component)(navitem23, menu, null);
+      (0, import_internal60.append_dev)(menu, t35);
+      (0, import_internal60.mount_component)(navitem24, menu, null);
+      (0, import_internal60.append_dev)(menu, t36);
+      (0, import_internal60.mount_component)(navitem25, menu, null);
+      (0, import_internal60.append_dev)(menu, t37);
+      (0, import_internal60.mount_component)(navitem26, menu, null);
       current = true;
       if (!mounted) {
-        dispose = (0, import_internal59.listen_dev)(
+        dispose = (0, import_internal60.listen_dev)(
           window_1,
           "hashchange",
           /*onhashchange*/
@@ -38623,9 +39609,15 @@ function create_fragment59(ctx) {
         navitem25_changes.active = /*active*/
         ctx2[0];
       navitem25.$set(navitem25_changes);
+      const navitem26_changes = {};
+      if (dirty & /*active*/
+      1)
+        navitem26_changes.active = /*active*/
+        ctx2[0];
+      navitem26.$set(navitem26_changes);
       if (!current || dirty & /*navMobileShow*/
       2) {
-        (0, import_internal59.toggle_class)(
+        (0, import_internal60.toggle_class)(
           aside,
           "mobile-show",
           /*navMobileShow*/
@@ -38636,107 +39628,110 @@ function create_fragment59(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal59.transition_in)(uibutton.$$.fragment, local);
-      (0, import_internal59.transition_in)(actualtoggle.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem0.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem1.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem2.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem3.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem4.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem5.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem6.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem7.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem8.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem9.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem10.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem11.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem12.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem13.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem14.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem15.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem16.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem17.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem18.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem19.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem20.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem21.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem22.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem23.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem24.$$.fragment, local);
-      (0, import_internal59.transition_in)(navitem25.$$.fragment, local);
+      (0, import_internal60.transition_in)(uibutton.$$.fragment, local);
+      (0, import_internal60.transition_in)(actualtoggle.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem0.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem1.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem2.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem3.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem4.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem5.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem6.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem7.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem8.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem9.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem10.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem11.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem12.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem13.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem14.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem15.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem16.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem17.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem18.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem19.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem20.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem21.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem22.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem23.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem24.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem25.$$.fragment, local);
+      (0, import_internal60.transition_in)(navitem26.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal59.transition_out)(uibutton.$$.fragment, local);
-      (0, import_internal59.transition_out)(actualtoggle.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem0.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem1.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem2.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem3.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem4.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem5.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem6.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem7.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem8.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem9.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem10.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem11.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem12.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem13.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem14.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem15.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem16.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem17.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem18.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem19.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem20.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem21.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem22.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem23.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem24.$$.fragment, local);
-      (0, import_internal59.transition_out)(navitem25.$$.fragment, local);
+      (0, import_internal60.transition_out)(uibutton.$$.fragment, local);
+      (0, import_internal60.transition_out)(actualtoggle.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem0.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem1.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem2.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem3.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem4.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem5.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem6.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem7.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem8.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem9.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem10.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem11.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem12.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem13.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem14.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem15.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem16.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem17.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem18.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem19.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem20.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem21.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem22.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem23.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem24.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem25.$$.fragment, local);
+      (0, import_internal60.transition_out)(navitem26.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal59.destroy_component)(uibutton, detaching);
+      (0, import_internal60.destroy_component)(uibutton, detaching);
       if (detaching)
-        (0, import_internal59.detach_dev)(t0);
+        (0, import_internal60.detach_dev)(t0);
       if (detaching)
-        (0, import_internal59.detach_dev)(aside);
-      (0, import_internal59.destroy_component)(actualtoggle);
-      (0, import_internal59.destroy_component)(navitem0);
-      (0, import_internal59.destroy_component)(navitem1);
-      (0, import_internal59.destroy_component)(navitem2);
-      (0, import_internal59.destroy_component)(navitem3);
-      (0, import_internal59.destroy_component)(navitem4);
-      (0, import_internal59.destroy_component)(navitem5);
-      (0, import_internal59.destroy_component)(navitem6);
-      (0, import_internal59.destroy_component)(navitem7);
-      (0, import_internal59.destroy_component)(navitem8);
-      (0, import_internal59.destroy_component)(navitem9);
-      (0, import_internal59.destroy_component)(navitem10);
-      (0, import_internal59.destroy_component)(navitem11);
-      (0, import_internal59.destroy_component)(navitem12);
-      (0, import_internal59.destroy_component)(navitem13);
-      (0, import_internal59.destroy_component)(navitem14);
-      (0, import_internal59.destroy_component)(navitem15);
-      (0, import_internal59.destroy_component)(navitem16);
-      (0, import_internal59.destroy_component)(navitem17);
-      (0, import_internal59.destroy_component)(navitem18);
-      (0, import_internal59.destroy_component)(navitem19);
-      (0, import_internal59.destroy_component)(navitem20);
-      (0, import_internal59.destroy_component)(navitem21);
-      (0, import_internal59.destroy_component)(navitem22);
-      (0, import_internal59.destroy_component)(navitem23);
-      (0, import_internal59.destroy_component)(navitem24);
-      (0, import_internal59.destroy_component)(navitem25);
+        (0, import_internal60.detach_dev)(aside);
+      (0, import_internal60.destroy_component)(actualtoggle);
+      (0, import_internal60.destroy_component)(navitem0);
+      (0, import_internal60.destroy_component)(navitem1);
+      (0, import_internal60.destroy_component)(navitem2);
+      (0, import_internal60.destroy_component)(navitem3);
+      (0, import_internal60.destroy_component)(navitem4);
+      (0, import_internal60.destroy_component)(navitem5);
+      (0, import_internal60.destroy_component)(navitem6);
+      (0, import_internal60.destroy_component)(navitem7);
+      (0, import_internal60.destroy_component)(navitem8);
+      (0, import_internal60.destroy_component)(navitem9);
+      (0, import_internal60.destroy_component)(navitem10);
+      (0, import_internal60.destroy_component)(navitem11);
+      (0, import_internal60.destroy_component)(navitem12);
+      (0, import_internal60.destroy_component)(navitem13);
+      (0, import_internal60.destroy_component)(navitem14);
+      (0, import_internal60.destroy_component)(navitem15);
+      (0, import_internal60.destroy_component)(navitem16);
+      (0, import_internal60.destroy_component)(navitem17);
+      (0, import_internal60.destroy_component)(navitem18);
+      (0, import_internal60.destroy_component)(navitem19);
+      (0, import_internal60.destroy_component)(navitem20);
+      (0, import_internal60.destroy_component)(navitem21);
+      (0, import_internal60.destroy_component)(navitem22);
+      (0, import_internal60.destroy_component)(navitem23);
+      (0, import_internal60.destroy_component)(navitem24);
+      (0, import_internal60.destroy_component)(navitem25);
+      (0, import_internal60.destroy_component)(navitem26);
       mounted = false;
       dispose();
     }
   };
-  (0, import_internal59.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal60.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment59.name,
+    id: create_fragment60.name,
     type: "component",
     source: "",
     ctx
@@ -38746,10 +39741,10 @@ function create_fragment59(ctx) {
 function switchColorMode(e) {
   document.documentElement.className = e.detail ? "theme-dark" : "theme-light";
 }
-function instance59($$self, $$props, $$invalidate) {
+function instance60($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal59.validate_slots)("Nav", slots, []);
-  const components = { GetStarted: start_default, ...components_exports };
+  (0, import_internal60.validate_slots)("Nav", slots, []);
+  const components = { GetStarted: start_default, Changelog: changelog_default, ...components_exports };
   let active = location.hash.substr(1) || "GetStarted";
   let { component = components[active] } = $$props;
   let navMobileShow = false;
@@ -38777,6 +39772,7 @@ function instance59($$self, $$props, $$invalidate) {
     ActualToggle: Toggle_default,
     NavItem: NavItem_default,
     GetStarted: start_default,
+    Changelog: changelog_default,
     TestComponents: components_exports,
     components,
     active,
@@ -38799,15 +39795,15 @@ function instance59($$self, $$props, $$invalidate) {
   }
   return [active, navMobileShow, onhashchange, toggleNav, component];
 }
-var Nav = class extends import_internal59.SvelteComponentDev {
+var Nav = class extends import_internal60.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal59.init)(this, options, instance59, create_fragment59, import_internal59.safe_not_equal, { component: 4 });
-    (0, import_internal59.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal60.init)(this, options, instance60, create_fragment60, import_internal60.safe_not_equal, { component: 4 });
+    (0, import_internal60.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Nav",
       options,
-      id: create_fragment59.name
+      id: create_fragment60.name
     });
   }
   get component() {
@@ -38820,8 +39816,8 @@ var Nav = class extends import_internal59.SvelteComponentDev {
 var Nav_default = Nav;
 
 // docs-src/app/App.svelte
-var file58 = "docs-src/app/App.svelte";
-function create_fragment60(ctx) {
+var file59 = "docs-src/app/App.svelte";
+function create_fragment61(ctx) {
   let nav;
   let updating_component;
   let t;
@@ -38840,7 +39836,7 @@ function create_fragment60(ctx) {
     ctx[0];
   }
   nav = new Nav_default({ props: nav_props, $$inline: true });
-  import_internal60.binding_callbacks.push(() => (0, import_internal60.bind)(nav, "component", nav_component_binding));
+  import_internal61.binding_callbacks.push(() => (0, import_internal61.bind)(nav, "component", nav_component_binding));
   var switch_value = (
     /*component*/
     ctx[0]
@@ -38849,26 +39845,26 @@ function create_fragment60(ctx) {
     return { $$inline: true };
   }
   if (switch_value) {
-    switch_instance = (0, import_internal60.construct_svelte_component_dev)(switch_value, switch_props(ctx));
+    switch_instance = (0, import_internal61.construct_svelte_component_dev)(switch_value, switch_props(ctx));
   }
   const block = {
     c: function create() {
-      (0, import_internal60.create_component)(nav.$$.fragment);
-      t = (0, import_internal60.space)();
-      main = (0, import_internal60.element)("main");
+      (0, import_internal61.create_component)(nav.$$.fragment);
+      t = (0, import_internal61.space)();
+      main = (0, import_internal61.element)("main");
       if (switch_instance)
-        (0, import_internal60.create_component)(switch_instance.$$.fragment);
-      (0, import_internal60.add_location)(main, file58, 1, 0, 37);
+        (0, import_internal61.create_component)(switch_instance.$$.fragment);
+      (0, import_internal61.add_location)(main, file59, 1, 0, 37);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal60.mount_component)(nav, target, anchor);
-      (0, import_internal60.insert_dev)(target, t, anchor);
-      (0, import_internal60.insert_dev)(target, main, anchor);
+      (0, import_internal61.mount_component)(nav, target, anchor);
+      (0, import_internal61.insert_dev)(target, t, anchor);
+      (0, import_internal61.insert_dev)(target, main, anchor);
       if (switch_instance)
-        (0, import_internal60.mount_component)(switch_instance, main, null);
+        (0, import_internal61.mount_component)(switch_instance, main, null);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -38878,24 +39874,24 @@ function create_fragment60(ctx) {
         updating_component = true;
         nav_changes.component = /*component*/
         ctx2[0];
-        (0, import_internal60.add_flush_callback)(() => updating_component = false);
+        (0, import_internal61.add_flush_callback)(() => updating_component = false);
       }
       nav.$set(nav_changes);
       if (switch_value !== (switch_value = /*component*/
       ctx2[0])) {
         if (switch_instance) {
-          (0, import_internal60.group_outros)();
+          (0, import_internal61.group_outros)();
           const old_component = switch_instance;
-          (0, import_internal60.transition_out)(old_component.$$.fragment, 1, 0, () => {
-            (0, import_internal60.destroy_component)(old_component, 1);
+          (0, import_internal61.transition_out)(old_component.$$.fragment, 1, 0, () => {
+            (0, import_internal61.destroy_component)(old_component, 1);
           });
-          (0, import_internal60.check_outros)();
+          (0, import_internal61.check_outros)();
         }
         if (switch_value) {
-          switch_instance = (0, import_internal60.construct_svelte_component_dev)(switch_value, switch_props(ctx2));
-          (0, import_internal60.create_component)(switch_instance.$$.fragment);
-          (0, import_internal60.transition_in)(switch_instance.$$.fragment, 1);
-          (0, import_internal60.mount_component)(switch_instance, main, null);
+          switch_instance = (0, import_internal61.construct_svelte_component_dev)(switch_value, switch_props(ctx2));
+          (0, import_internal61.create_component)(switch_instance.$$.fragment);
+          (0, import_internal61.transition_in)(switch_instance.$$.fragment, 1);
+          (0, import_internal61.mount_component)(switch_instance, main, null);
         } else {
           switch_instance = null;
         }
@@ -38905,39 +39901,39 @@ function create_fragment60(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal60.transition_in)(nav.$$.fragment, local);
+      (0, import_internal61.transition_in)(nav.$$.fragment, local);
       if (switch_instance)
-        (0, import_internal60.transition_in)(switch_instance.$$.fragment, local);
+        (0, import_internal61.transition_in)(switch_instance.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal60.transition_out)(nav.$$.fragment, local);
+      (0, import_internal61.transition_out)(nav.$$.fragment, local);
       if (switch_instance)
-        (0, import_internal60.transition_out)(switch_instance.$$.fragment, local);
+        (0, import_internal61.transition_out)(switch_instance.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
-      (0, import_internal60.destroy_component)(nav, detaching);
+      (0, import_internal61.destroy_component)(nav, detaching);
       if (detaching)
-        (0, import_internal60.detach_dev)(t);
+        (0, import_internal61.detach_dev)(t);
       if (detaching)
-        (0, import_internal60.detach_dev)(main);
+        (0, import_internal61.detach_dev)(main);
       if (switch_instance)
-        (0, import_internal60.destroy_component)(switch_instance);
+        (0, import_internal61.destroy_component)(switch_instance);
     }
   };
-  (0, import_internal60.dispatch_dev)("SvelteRegisterBlock", {
+  (0, import_internal61.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment60.name,
+    id: create_fragment61.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance60($$self, $$props, $$invalidate) {
+function instance61($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal60.validate_slots)("App", slots, []);
+  (0, import_internal61.validate_slots)("App", slots, []);
   let component = void 0;
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
@@ -38958,15 +39954,15 @@ function instance60($$self, $$props, $$invalidate) {
   }
   return [component, nav_component_binding];
 }
-var App = class extends import_internal60.SvelteComponentDev {
+var App = class extends import_internal61.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal60.init)(this, options, instance60, create_fragment60, import_internal60.safe_not_equal, {});
-    (0, import_internal60.dispatch_dev)("SvelteRegisterComponent", {
+    (0, import_internal61.init)(this, options, instance61, create_fragment61, import_internal61.safe_not_equal, {});
+    (0, import_internal61.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "App",
       options,
-      id: create_fragment60.name
+      id: create_fragment61.name
     });
   }
 };

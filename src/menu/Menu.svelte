@@ -212,8 +212,6 @@ export function open (e) {
 		dispatch('open');
 		addEventListeners();
 		requestAnimationFrame(resolve);
-		// focusNext();
-		console.log(menuEl);
 		if (menuEl) menuEl.focus();
 	}));
 }

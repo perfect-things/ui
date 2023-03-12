@@ -38,3 +38,12 @@
 	white-space: nowrap;
 }
 .logotype .small:last-child { text-align: right; }
+
+
+
+h2 { display: inline-flex; align-items: center; gap: 0.5em; }
+h2 small {
+	display: inline;
+	color: var(--ui-color-text-semi);
+	margin: 0;
+}
