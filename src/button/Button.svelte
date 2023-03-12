@@ -12,12 +12,14 @@
 	class:success
 	class:warning
 	class:danger
-
+	class:active="{touching}"
 	{...props}
 
 	on:focus
 	on:keydown
 	on:mousedown
+	on:touchstart="{() => touching = true}"
+	on:touchend="{() => touching = false}"
 	on:click>
 
 	{#if icon}<Icon name="{icon}"/>{/if}
@@ -42,6 +44,8 @@ export let round = undefined;	// round button
 
 let className = '';
 export { className as class };
+
+let touching = false;
 
 $:props = pluck($$props, ['id', 'title', 'disabled', 'form', 'aria-pressed']);
 

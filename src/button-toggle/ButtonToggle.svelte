@@ -5,6 +5,7 @@
 			class="button button-normal"
 			class:selected="{value === item.value}"
 			class:button-has-text="{item.name}"
+			on:touchstart="{onmousedown}"
 			on:mousedown="{onmousedown}">
 				{#if item.icon}
 					<Icon name="{item.icon}"/>
@@ -41,6 +42,7 @@ let el;
 
 function onmousedown (e) {
 	const btn = e.target.querySelector('input');
+	if (btn === document.activeElement || btn.checked) return;
 	if (btn) {
 		e.preventDefault();
 		btn.focus();

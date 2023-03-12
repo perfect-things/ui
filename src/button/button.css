@@ -23,6 +23,8 @@
 	vertical-align: middle;
 	border-radius: var(--ui-border-radius);
 	text-decoration: none;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
 }
 
 .button:hover { text-decoration: none; }
@@ -32,6 +34,7 @@
 	outline: 1px solid transparent;
 }
 
+.button.active,
 .button:active {
 	outline: 1px solid transparent;
 	box-shadow: none;

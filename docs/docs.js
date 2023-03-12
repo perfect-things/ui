@@ -6337,7 +6337,7 @@ function create_if_block2(ctx) {
     block,
     id: create_if_block2.name,
     type: "if",
-    source: "(23:1) {#if icon}",
+    source: "(25:1) {#if icon}",
     ctx
   });
   return block;
@@ -6356,13 +6356,13 @@ function create_fragment3(ctx) {
   );
   const default_slot_template = (
     /*#slots*/
-    ctx[14].default
+    ctx[15].default
   );
   const default_slot = (0, import_internal3.create_slot)(
     default_slot_template,
     ctx,
     /*$$scope*/
-    ctx[13],
+    ctx[14],
     null
   );
   let button_levels = [
@@ -6375,7 +6375,7 @@ function create_fragment3(ctx) {
       ctx[10]
     },
     /*props*/
-    ctx[11]
+    ctx[12]
   ];
   let button_data = {};
   for (let i = 0; i < button_levels.length; i += 1) {
@@ -6416,7 +6416,7 @@ function create_fragment3(ctx) {
         button,
         "button-has-text",
         /*$$slots*/
-        ctx[12].default
+        ctx[13].default
       );
       (0, import_internal3.toggle_class)(
         button,
@@ -6442,6 +6442,12 @@ function create_fragment3(ctx) {
         /*danger*/
         ctx[3]
       );
+      (0, import_internal3.toggle_class)(
+        button,
+        "active",
+        /*touching*/
+        ctx[11]
+      );
       (0, import_internal3.add_location)(button, file2, 0, 0, 0);
     },
     l: function claim(nodes) {
@@ -6457,7 +6463,7 @@ function create_fragment3(ctx) {
       }
       if (button.autofocus)
         button.focus();
-      ctx[19](button);
+      ctx[20](button);
       current = true;
       if (!mounted) {
         dispose = [
@@ -6465,7 +6471,7 @@ function create_fragment3(ctx) {
             button,
             "focus",
             /*focus_handler*/
-            ctx[15],
+            ctx[16],
             false,
             false,
             false
@@ -6474,7 +6480,7 @@ function create_fragment3(ctx) {
             button,
             "keydown",
             /*keydown_handler*/
-            ctx[16],
+            ctx[17],
             false,
             false,
             false
@@ -6483,8 +6489,26 @@ function create_fragment3(ctx) {
             button,
             "mousedown",
             /*mousedown_handler*/
-            ctx[17],
+            ctx[18],
             false,
+            false,
+            false
+          ),
+          (0, import_internal3.listen_dev)(
+            button,
+            "touchstart",
+            /*touchstart_handler*/
+            ctx[21],
+            { passive: true },
+            false,
+            false
+          ),
+          (0, import_internal3.listen_dev)(
+            button,
+            "touchend",
+            /*touchend_handler*/
+            ctx[22],
+            { passive: true },
             false,
             false
           ),
@@ -6492,7 +6516,7 @@ function create_fragment3(ctx) {
             button,
             "click",
             /*click_handler*/
-            ctx[18],
+            ctx[19],
             false,
             false,
             false
@@ -6527,20 +6551,20 @@ function create_fragment3(ctx) {
       }
       if (default_slot) {
         if (default_slot.p && (!current || dirty & /*$$scope*/
-        8192)) {
+        16384)) {
           (0, import_internal3.update_slot_base)(
             default_slot,
             default_slot_template,
             ctx2,
             /*$$scope*/
-            ctx2[13],
+            ctx2[14],
             !current ? (0, import_internal3.get_all_dirty_from_scope)(
               /*$$scope*/
-              ctx2[13]
+              ctx2[14]
             ) : (0, import_internal3.get_slot_changes)(
               default_slot_template,
               /*$$scope*/
-              ctx2[13],
+              ctx2[14],
               dirty,
               null
             ),
@@ -6556,8 +6580,8 @@ function create_fragment3(ctx) {
         1024 && button_class_value !== (button_class_value = "button " + /*className*/
         ctx2[10])) && { class: button_class_value },
         dirty & /*props*/
-        2048 && /*props*/
-        ctx2[11]
+        4096 && /*props*/
+        ctx2[12]
       ]));
       (0, import_internal3.toggle_class)(button, "button-normal", !/*link*/
       ctx2[6] && !/*text*/
@@ -6585,7 +6609,7 @@ function create_fragment3(ctx) {
         button,
         "button-has-text",
         /*$$slots*/
-        ctx2[12].default
+        ctx2[13].default
       );
       (0, import_internal3.toggle_class)(
         button,
@@ -6611,6 +6635,12 @@ function create_fragment3(ctx) {
         /*danger*/
         ctx2[3]
       );
+      (0, import_internal3.toggle_class)(
+        button,
+        "active",
+        /*touching*/
+        ctx2[11]
+      );
     },
     i: function intro(local) {
       if (current)
@@ -6631,7 +6661,7 @@ function create_fragment3(ctx) {
         if_block.d();
       if (default_slot)
         default_slot.d(detaching);
-      ctx[19](null);
+      ctx[20](null);
       mounted = false;
       (0, import_internal3.run_all)(dispose);
     }
@@ -6661,6 +6691,7 @@ function instance3($$self, $$props, $$invalidate) {
   let { icon = void 0 } = $$props;
   let { round = void 0 } = $$props;
   let { class: className = "" } = $$props;
+  let touching = false;
   function focus_handler(event) {
     import_internal3.bubble.call(this, $$self, event);
   }
@@ -6679,8 +6710,10 @@ function instance3($$self, $$props, $$invalidate) {
       $$invalidate(0, _this);
     });
   }
+  const touchstart_handler = () => $$invalidate(11, touching = true);
+  const touchend_handler = () => $$invalidate(11, touching = false);
   $$self.$$set = ($$new_props) => {
-    $$invalidate(20, $$props = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props), (0, import_internal3.exclude_internal_props)($$new_props)));
+    $$invalidate(23, $$props = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props), (0, import_internal3.exclude_internal_props)($$new_props)));
     if ("_this" in $$new_props)
       $$invalidate(0, _this = $$new_props._this);
     if ("success" in $$new_props)
@@ -6704,7 +6737,7 @@ function instance3($$self, $$props, $$invalidate) {
     if ("class" in $$new_props)
       $$invalidate(10, className = $$new_props.class);
     if ("$$scope" in $$new_props)
-      $$invalidate(13, $$scope = $$new_props.$$scope);
+      $$invalidate(14, $$scope = $$new_props.$$scope);
   };
   $$self.$capture_state = () => ({
     Icon: Icon_default,
@@ -6720,10 +6753,11 @@ function instance3($$self, $$props, $$invalidate) {
     icon,
     round,
     className,
+    touching,
     props
   });
   $$self.$inject_state = ($$new_props) => {
-    $$invalidate(20, $$props = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props), $$new_props));
+    $$invalidate(23, $$props = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props), $$new_props));
     if ("_this" in $$props)
       $$invalidate(0, _this = $$new_props._this);
     if ("success" in $$props)
@@ -6746,15 +6780,17 @@ function instance3($$self, $$props, $$invalidate) {
       $$invalidate(9, round = $$new_props.round);
     if ("className" in $$props)
       $$invalidate(10, className = $$new_props.className);
+    if ("touching" in $$props)
+      $$invalidate(11, touching = $$new_props.touching);
     if ("props" in $$props)
-      $$invalidate(11, props = $$new_props.props);
+      $$invalidate(12, props = $$new_props.props);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
     $:
-      $$invalidate(11, props = pluck($$props, ["id", "title", "disabled", "form", "aria-pressed"]));
+      $$invalidate(12, props = pluck($$props, ["id", "title", "disabled", "form", "aria-pressed"]));
   };
   $$props = (0, import_internal3.exclude_internal_props)($$props);
   return [
@@ -6769,6 +6805,7 @@ function instance3($$self, $$props, $$invalidate) {
     icon,
     round,
     className,
+    touching,
     props,
     $$slots,
     $$scope,
@@ -6777,7 +6814,9 @@ function instance3($$self, $$props, $$invalidate) {
     keydown_handler,
     mousedown_handler,
     click_handler,
-    button_binding
+    button_binding,
+    touchstart_handler,
+    touchend_handler
   ];
 }
 var Button = class extends import_internal3.SvelteComponentDev {
@@ -7090,7 +7129,7 @@ function create_if_block3(ctx) {
     block,
     id: create_if_block3.name,
     type: "if",
-    source: "(9:4) {#if item.icon}",
+    source: "(10:4) {#if item.icon}",
     ctx
   });
   return block;
@@ -7156,7 +7195,7 @@ function create_each_block2(ctx) {
       ctx[0];
       input.value = input_value_value = /*item*/
       ctx[12].value;
-      (0, import_internal5.add_location)(input, file4, 12, 4, 379);
+      (0, import_internal5.add_location)(input, file4, 13, 4, 412);
       (0, import_internal5.attr_dev)(
         label,
         "disabled",
@@ -7192,6 +7231,7 @@ function create_each_block2(ctx) {
       if (!mounted) {
         dispose = [
           (0, import_internal5.listen_dev)(input, "change", change_handler, false, false, false),
+          (0, import_internal5.listen_dev)(label, "touchstart", onmousedown, false, false, false),
           (0, import_internal5.listen_dev)(label, "mousedown", onmousedown, false, false, false)
         ];
         mounted = true;
@@ -7452,6 +7492,8 @@ function create_fragment5(ctx) {
 }
 function onmousedown(e) {
   const btn = e.target.querySelector("input");
+  if (btn === document.activeElement || btn.checked)
+    return;
   if (btn) {
     e.preventDefault();
     btn.focus();
