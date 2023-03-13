@@ -2,6 +2,7 @@
 <ul
 	class="menu {className}"
 	class:hidden="{!opened}"
+	role="menu"
 	bind:this="{menuEl}"
 	tabindex="0">
 		<slot></slot>
@@ -205,6 +206,10 @@ export function open (e) {
 
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 	if (type !== 'context') targetEl = e.target;
+	if (targetEl) {
+		targetEl.setAttribute('aria-haspopup', 'true');
+		targetEl.setAttribute('aria-expanded', 'true');
+	}
 
 	return new Promise(resolve => requestAnimationFrame(() => {
 		// needs to finish rendering first
@@ -237,6 +242,8 @@ export function close (e) {
 function _close () {
 	if (!opened) return Promise.resolve();
 	opened = false;
+	if (targetEl) targetEl.setAttribute('aria-expanded', 'false');
+
 	return new Promise(resolve => requestAnimationFrame(() => {
 		dispatch('close');
 		removeEventListeners();

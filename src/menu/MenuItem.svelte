@@ -1,4 +1,4 @@
-<li class="menu-item">
+<li class="menu-item" role="menuitem">
 	<button class="menu-button" on:mousedown|preventDefault on:click|capture="{onclick}">
 		<span class="menu-item-content"><slot /></span>
 		<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>

@@ -12,6 +12,16 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 
 ### TODO
+- [ ] add wai-aria roles: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques
+
+- [ ] rebranding to `@perfectthings/ui`:
+  - [ ] change `start.svelte` page & logotype
+  - [ ] `change package.json` name
+  - [ ] publish to npm
+  - [ ] update github repo name
+  - [ ] update github pages
+
+
 - [ ] unit-tests backfill & coverage
 - [ ] https://github.com/davipon/svelte-component-test-recipes#testing-the-bind-directive-two-way-binding
 

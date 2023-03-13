@@ -1,6 +1,8 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div aria-modal="true"
+<div
+	role="dialog"
+	aria-modal="true"
 	aria-label="{title}"
 	class="dialog-backdrop {className}"
 	class:opened
