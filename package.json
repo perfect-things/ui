@@ -1,11 +1,15 @@
 {
   "name": "@perfectthings/ui",
   "description": "Perfect UI components",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "type": "module",
   "main": "src/index.js",
   "license": "GPL-3.0-or-later",
-  "keywords": ["UI", "svelte", "PerfectThings"],
+  "keywords": [
+    "UI",
+    "svelte",
+    "PerfectThings"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/perfect-things/ui.git"
