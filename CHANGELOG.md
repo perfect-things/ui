@@ -1,5 +1,6 @@
-@perfectthings/ui
-=================
+Changelog
+=========
+
 
 ## v6.0.0, v6.0.1, v6.0.2 (2023-03-13)
 - rebrand `simple-ui-components-in-svelte` to `@perfectthings/ui`
