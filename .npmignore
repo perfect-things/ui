@@ -10,9 +10,15 @@ docs/index.html
 docs/logo-white.png
 docs/logo.png
 docs/logo2.png
+docs/prism-tomorrow.min.css
 docs/zxcvbn.js.map
 docs-src/
+tests/
 .*
+babel.config.js
+CHANGELOG.md
+jest.config.js
+jsconfig.json
 gulpfile.js
 release.sh
 screen.png
