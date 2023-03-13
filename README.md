@@ -1,6 +1,9 @@
 simple-ui-components-in-svelte
 ==============================
 
+`simple-ui-components-in-svelte` is rebranding to `@perfectthings/ui`.
+
+
 A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).
 
 ### Github pages site with docs
@@ -9,39 +12,6 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 ![Screenshot](screen.png)
 
-
-
-### TODO
-- [ ] add wai-aria roles: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques
-
-- [ ] rebranding to `@perfectthings/ui`:
-  - [ ] change `start.svelte` page & logotype
-  - [ ] `change package.json` name
-  - [ ] publish to npm
-  - [ ] update github repo name
-  - [ ] update github pages
-
-
-- [ ] unit-tests backfill & coverage
-- [ ] https://github.com/davipon/svelte-component-test-recipes#testing-the-bind-directive-two-way-binding
-
-
-
-
-- [ ] upgrade dialogs? (https://web.dev/building-a-dialog-component/)
-- [ ] consider rem vs em (https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/)
-
-
-- [ ] Bug: toggle doesn't work on mobile
-- [ ] Bug: splitter doesn't work on mobile
-
-
-
-- [ ] color palette
-  - reduce text & bg
-  - colors
-  - text-primary, secondary
-  - rm semi, etc
 
 
 
