@@ -11,6 +11,7 @@
 <ul>
 	<li><a href="https://perfect-things.github.io/ui/">Homepage and docs</a>
 	<li><a href="https://github.com/perfect-things/ui/">Github Repo</a>
+	<li><a href="https://www.npmjs.com/package/@perfectthings/ui">NPM Page</a>
 </ul>
 
 
