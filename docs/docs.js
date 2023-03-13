@@ -51,7 +51,8 @@ var Fc=Object.create;var Zs=Object.defineProperty;var Oc=Object.getOwnPropertyDe
 	<h1 class="logotype"><span class="small">PerfectThings</span> 
 		<span>UI Components</span> 
 		<span class="small"></span></h1>`,n=(0,ne.space)(),i=(0,ne.element)("p"),i.textContent="A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).",s=(0,ne.space)(),o=(0,ne.element)("ul"),o.innerHTML=`<li><a href="https://perfect-things.github.io/ui/">Homepage and docs</a> 
-	</li><li><a href="https://github.com/perfect-things/ui/">Github Repo</a></li>`,l=(0,ne.space)(),r=(0,ne.element)("h2"),r.textContent="Get started",a=(0,ne.space)(),u=(0,ne.element)("h3"),u.textContent="1. Firstly, install the module as a dev dependency:",c=(0,ne.space)(),f=(0,ne.element)("pre"),f.innerHTML=`<code class="language-bash">
+	</li><li><a href="https://github.com/perfect-things/ui/">Github Repo</a> 
+	</li><li><a href="https://www.npmjs.com/package/@perfectthings/ui">NPM Page</a></li>`,l=(0,ne.space)(),r=(0,ne.element)("h2"),r.textContent="Get started",a=(0,ne.space)(),u=(0,ne.element)("h3"),u.textContent="1. Firstly, install the module as a dev dependency:",c=(0,ne.space)(),f=(0,ne.element)("pre"),f.innerHTML=`<code class="language-bash">
 	npm i -D @perfectthings/ui
 </code>`,p=(0,ne.space)(),d=(0,ne.element)("h3"),d.textContent="2. Import the CSS",_=(0,ne.space)(),h=(0,ne.element)("p"),h.innerHTML=`You need to import the <i>docs/ui.css</i> into your bundle.<br/>
 There are many ways to do that. I specifically didn&#39;t use any css-to-js imports as these restrict the tools &amp; the setup you may want to have.<br/>
