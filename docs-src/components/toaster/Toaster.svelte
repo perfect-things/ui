@@ -45,7 +45,7 @@ const exampleHtml = `
 <Button danger on:click="{() => showToast('Hello', 'error', 10000, 'Undo', cb)}">Show error</Button>
 
 <script>
-import { Toaster, showToast, hideToast, Button } from 'simple-ui-components-in-svelte';
+import { Toaster, showToast, hideToast, Button } from '@perfectthings/ui';
 
 function cb (id) {
 	hideToast(id);

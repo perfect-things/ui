@@ -1,16 +1,16 @@
 <header class="main-header">
 	<img class="logo" src="logo2.png" alt="Logo"/>
 	<h1 class="logotype">
-		<span class="small">simple</span>
+		<span class="small">PerfectThings</span>
 		<span>UI Components</span>
-		<span class="small">in svelte</span>
+		<span class="small"></span>
 	</h1>
 </header>
 
 <p>A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).</p>
 <ul>
-	<li><a href="https://perfect-things.github.io/simple-ui-components-in-svelte/">Homepage and docs</a>
-	<li><a href="https://github.com/perfect-things/simple-ui-components-in-svelte">Github Repo</a>
+	<li><a href="https://perfect-things.github.io/ui/">Homepage and docs</a>
+	<li><a href="https://github.com/perfect-things/ui/">Github Repo</a>
 </ul>
 
 
@@ -19,7 +19,7 @@
 <h3>1. Firstly, install the module as a dev dependency:</h3>
 
 <pre><code class="language-bash">
-	npm i -D simple-ui-components-in-svelte
+	npm i -D @perfectthings/ui
 </code></pre>
 
 
@@ -31,7 +31,7 @@ The easiest way is probably to add a <i>postinstall</i> script into your <i>pack
 
 <pre><code class="language-json">
 "scripts": &lbrace;
-    "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css"
+    "postinstall": "cp node_modules/@perfectthings/ui/docs/ui.css ./dist/ui.css"
 &rbrace;
 </code></pre>
 
@@ -44,7 +44,7 @@ The easiest way is probably to add a <i>postinstall</i> script into your <i>pack
 Just <i>import</i> them from the module, as normal:
 
 <pre><code class="language-js">
-	import &lbrace; Button &rbrace; from 'simple-ui-components-in-svelte';
+	import &lbrace; Button &rbrace; from '@perfectthings/ui';
 </code></pre>
 
 <p>
@@ -61,7 +61,7 @@ Just <i>import</i> them from the module, as normal:
 <p>This script file is available in SUICIS npm package, and can be copied over to your <i>dist</i> folder, similarly to the css in the previous example, e.g.:</p>
 <pre><code class="language-json">
 "scripts": &lbrace;
-    "postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css dist/ui.css && cp node_modules/simple-ui-components-in-svelte/docs/zxcvbn.js dist/zxcvbn.js"
+    "postinstall": "cp node_modules/@perfectthings/ui/docs/ui.css dist/ui.css && cp node_modules/@perfectthings/ui/docs/zxcvbn.js dist/zxcvbn.js"
 &rbrace;
 </code></pre>
 
@@ -71,8 +71,8 @@ Just <i>import</i> them from the module, as normal:
 You need node & npm (obviously). Then, run these:
 
 <pre><code class="language-bash">
-git clone git@github.com:perfect-things/simple-ui-components-in-svelte.git
-cd simple-ui-components-in-svelte
+git clone git@github.com:perfect-things/ui.git perfectthings-ui
+cd perfectthings-ui
 npm i && npm start
 </code></pre>
 

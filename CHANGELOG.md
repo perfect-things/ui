@@ -1,5 +1,5 @@
-simple-ui-components-in-svelte
-==============================
+@perfectthings/ui
+=================
 
 ## v5.1.0 (2023-03-12)
 - Better Menu highlighting (doesn't hl first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS
