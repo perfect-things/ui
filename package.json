@@ -1,13 +1,14 @@
 {
-  "name": "simple-ui-components-in-svelte",
-  "description": "Simple UI components written in Svelte",
-  "version": "5.1.1",
+  "name": "@perfectthings/ui",
+  "description": "Perfect UI components",
+  "version": "6.0.0",
   "type": "module",
   "main": "src/index.js",
   "license": "GPL-3.0-or-later",
+  "keywords": ["UI", "svelte", "PerfectThings"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/perfect-things/simple-ui-components-in-svelte.git"
+    "url": "https://github.com/perfect-things/ui.git"
   },
   "scripts": {
     "lint": "gulp lint",
