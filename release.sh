@@ -22,4 +22,4 @@ if [ $v != none ]; then
 	npm version $v
 fi
 git push
-npm publish
+npm publish --access public
