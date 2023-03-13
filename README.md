@@ -1,13 +1,11 @@
-simple-ui-components-in-svelte
+PerfectThings/UI
 ==============================
-
-`simple-ui-components-in-svelte` is rebranding to `@perfectthings/ui`.
 
 
 A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).
 
 ### Github pages site with docs
-https://perfect-things.github.io/simple-ui-components-in-svelte/
+https://perfect-things.github.io/ui/
 
 
 ![Screenshot](screen.png)
@@ -19,7 +17,7 @@ https://perfect-things.github.io/simple-ui-components-in-svelte/
 
 ### Firstly, install the module as a dev dependency:
 ```sh
-npm i -D simple-ui-components-in-svelte
+npm i -D @perfectthings/ui
 ```
 
 ### Importing the CSS
@@ -29,7 +27,7 @@ There are many ways to do that. I specifically didn't use any css-to-js imports 
 The easiest way is probably to add a `postinstall` script into your `package.json` that will just copy the file into your `dist` folder:
 ```sh
 ...
-"postinstall": "cp node_modules/simple-ui-components-in-svelte/docs/ui.css ./dist/ui.css"
+"postinstall": "cp node_modules/@perfectthings/ui/docs/ui.css ./dist/ui.css"
 ...
 ```
 From there - you can just add it directly to the `index.html`.
@@ -37,7 +35,7 @@ From there - you can just add it directly to the `index.html`.
 ### Svelte components
 Just `import` them from the module, as normal:
 ```js
-import { Button } from 'simple-ui-components-in-svelte';
+import { Button } from '@perfectthings/ui';
 ```
 
 
@@ -45,8 +43,8 @@ import { Button } from 'simple-ui-components-in-svelte';
 
 You need node & npm (obviously). Run these:
 ```sh
-git clone git@github.com:perfect-things/simple-ui-components-in-svelte.git
-cd simple-ui-components-in-svelte
+git clone git@github.com:perfect-things/ui.git perfectthings-ui
+cd perfectthings-ui
 npm i && npm start
 ```
 A browser window should open with the demo of the components.
