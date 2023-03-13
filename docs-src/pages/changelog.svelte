@@ -1,6 +1,11 @@
 <h1>Changelog</h1>
 
 
+<h2>v6.0.0, v6.0.1, v6.0.2 <small>(2023-03-13)</small></h2>
+<ul>
+	<li>rebrand <em>simple-ui-components-in-svelte</em> to <em>@perfectthings/ui</em>
+</ul>
+
 <h2>v5.1.0 <small>(2023-03-12)</small></h2>
 <ul>
 	<li>Better Menu highlighting (doesn't highlight first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS
