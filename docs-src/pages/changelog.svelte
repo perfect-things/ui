@@ -112,7 +112,3 @@
 </ul>
 
 <h2>v1.7.12 <small>(2022-12-01)</small></h2>
-
-
-<script>
-</script>
