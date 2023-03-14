@@ -14,8 +14,10 @@ export default {
 		'@testing-library/jest-dom/extend-expect'
 	],
 	coveragePathIgnorePatterns: [
-		'<rootDir>/*.js',
-		'<rootDir>/coverage/',
-		'<rootDir>/tests/helpers',
+		'coverage',
+		'tests/helpers',
+		'src/icon/svg',
+		'index.js',
+		'icons.js',
 	]
 };
