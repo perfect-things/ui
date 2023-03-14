@@ -16,9 +16,9 @@
 <script>
 import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
 import { pluck } from '../utils';
+import { getMouseX, initialMeasure, isTouchDevice } from './utils';
 
 const dispatch = createEventDispatcher();
-const isTouchDevice = 'ontouchstart' in document.documentElement;
 
 export let value = false;
 export let disabled = undefined;
@@ -30,11 +30,11 @@ let isClick = false, isDragging = false;
 let oldValue;
 
 $:title = $$props.title;
-$:inputProps = pluck($$props, ['id', 'name', 'title', 'disabled', 'required']);
+$:inputProps = pluck($$props, ['id', 'name', 'disabled', 'required']);
 
 
 onMount(() => {
-	initialMeasure(el);
+	({ maxX, minX } = initialMeasure(el));
 });
 
 
@@ -43,37 +43,6 @@ afterUpdate(() => {
 	setValue(value);
 });
 
-
-
-function getMouseX (e) {
-	return (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
-}
-
-
-function _outerWidth (_el) {
-	return _el.getBoundingClientRect().width;
-}
-
-
-function _innerWidth (_el) {
-	const css = getComputedStyle(_el);
-	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
-	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
-	return _el.getBoundingClientRect().width - borders - padding;
-}
-
-
-function initialMeasure (_el) {
-	const isHidden = _el.offsetParent === null;
-	if (isHidden) {
-		_el = _el.cloneNode(true);
-		document.body.appendChild(_el);
-	}
-	const _handle = _el.querySelector('.toggle-handle');
-	maxX = _innerWidth(_el);
-	minX = _outerWidth(_handle);
-	if (isHidden && _el) _el.remove();
-}
 
 
 function setValue (v, skipEvent = false, force = false) {
