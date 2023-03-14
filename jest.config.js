@@ -6,7 +6,7 @@ export default {
 		'^.+\\.svg$': '<rootDir>/tests/helpers/svgTransform.js',
 	},
 	transformIgnorePatterns: [
-		'node_modules/(?!(vanillajs-datepicker)/)'
+		'node_modules/(?!(vanillajs-datepicker)/)',
 	],
 	moduleFileExtensions: ['js', 'svelte'],
 	testEnvironment: 'jsdom',
@@ -15,7 +15,7 @@ export default {
 	],
 	coveragePathIgnorePatterns: [
 		'<rootDir>/*.js',
-		'<rootDir>/tests/coverage/',
+		'<rootDir>/coverage/',
 		'<rootDir>/tests/helpers',
 	]
 };

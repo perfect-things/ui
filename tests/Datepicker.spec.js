@@ -1,6 +1,8 @@
 import { Datepicker } from '../src/datepicker';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
+import userEvent from '@testing-library/user-event';
+
 
 
 test('Datepicker', async () => {
@@ -13,7 +15,9 @@ test('Datepicker', async () => {
 		class: 'test-class',
 		showOnFocus: true
 	};
-	const { container } = render(Datepicker, props);
+	const { container, component } = render(Datepicker, props);
+	const mock = jest.fn();
+	component.$on('change', mock);
 
 	const cmp = container.querySelector('.test-class');
 	const input = cmp.querySelector('input');
@@ -33,7 +37,12 @@ test('Datepicker', async () => {
 
 	await fireEvent.focus(input);
 	await waitForTimeout();
-
 	expect(dropdown).toHaveClass('active');
 
+	await userEvent.clear(input);
+	await userEvent.type(input, '2020-01-01');
+	await userEvent.keyboard('[Enter]');
+
+	expect(mock).toHaveBeenCalled();
+	expect(dropdown).not.toHaveClass('active');
 });
