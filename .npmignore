@@ -16,7 +16,7 @@ docs-src/
 coverage/
 tests/
 .*
-babel.config.js
+babel.config.json
 CHANGELOG.md
 jest.config.js
 jsconfig.json
