@@ -13,6 +13,7 @@ docs/logo2.png
 docs/prism-tomorrow.min.css
 docs/zxcvbn.js.map
 docs-src/
+coverage/
 tests/
 .*
 babel.config.js
