@@ -42,7 +42,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	height: 48px;
 }
 
-.nav-toolbar .toggle { --ui-toggle-size: 1.2em; }
+.nav-toolbar .toggle { --toggle-width: 45px; }
 
 .nav-toggler {
 	--ui-button-size: 1.1em;

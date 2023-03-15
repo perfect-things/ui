@@ -8,15 +8,19 @@
 	on:mousedown={dragStart}
 	on:contextmenu|preventDefault
 	on:click|preventDefault>
-	<label class="toggle-label" {title} bind:this="{label}">
-		<span class="toggle-handle" bind:this="{handle}"></span>
-		<input {...inputProps} type="checkbox" class="toggle-input" bind:checked="{value}">
+	<label class="toggle-inner" {title} bind:this="{label}">
+		<div class="toggle-scroller" bind:this="{scroller}">
+			<div class="toggle-option"></div>
+			<div class="toggle-handle" bind:this="{handle}"><div class="toggle-knob"></div></div>
+			<div class="toggle-option"></div>
+			<input {...inputProps} type="checkbox" class="toggle-input" bind:checked="{value}">
+		</div>
 	</label>
 </div>
 <script>
 import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
 import { pluck } from '../utils';
-import { getMouseX, initialMeasure, isTouchDevice } from './utils';
+import { getMouseX, isTouchDevice, initialMeasure } from './utils';
 
 const dispatch = createEventDispatcher();
 
@@ -25,7 +29,8 @@ export let disabled = undefined;
 let className = '';
 export { className as class };
 
-let el, label, handle, startX, maxX, minX, currentX = 0;
+let el, label, scroller, handle, startX, currentX = 0;
+let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
 let isClick = false, isDragging = false;
 let oldValue;
 
@@ -34,7 +39,8 @@ $:inputProps = pluck($$props, ['id', 'name', 'disabled', 'required']);
 
 
 onMount(() => {
-	({ maxX, minX } = initialMeasure(el));
+	toggleTransitions(false);
+	({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
 });
 
 
@@ -45,19 +51,19 @@ afterUpdate(() => {
 
 
 
-function setValue (v, skipEvent = false, force = false) {
-	if (typeof v === 'undefined') v = false;
+function setValue (v = false, force = false) {
 	if (typeof v !== 'boolean') v = !!v;
 	if (v !== value) return value = v;
 	if (value === oldValue && !force) return;
-	startX = currentX = value ? maxX : minX;
-	label.style.width = `${Math.round(currentX)}px`;
+	startX = currentX = value ? scrollerEndX : scrollerStartX;
 	oldValue = value;
-	if (!skipEvent) dispatch('change', value);
+	setKnobPosition();
+	dispatch('change', value);
 }
 
 
 function onKey (e) {
+	toggleTransitions(true);
 	if (e.key === 'Enter' || e.key === ' ') {
 		e.preventDefault();
 		setValue(!value);
@@ -77,7 +83,7 @@ function dragStart (e) {
 		document.addEventListener('mouseup', dragEnd);
 		document.addEventListener('mousemove', drag, { passive: false });
 	}
-	label.style.transition = 'none';
+	toggleTransitions(false);
 	startX = getMouseX(e) - currentX;
 	isDragging = true;
 	isClick = true;
@@ -89,10 +95,13 @@ function dragEnd () {
 	document.removeEventListener('mousemove', drag);
 	document.removeEventListener('touchend', dragEnd);
 	document.removeEventListener('touchmove', drag);
-	label.style.transition = '';
+	toggleTransitions(true);
 	isDragging = false;
 	if (isClick) setValue(!value);
-	else setValue(currentX - minX >= (maxX - minX) / 2, false, true);
+	else {
+		// drag-end left knob at over 50% of the toggle width
+		setValue(currentX - scrollerStartX >= (scrollerEndX - scrollerStartX) / 2, true);
+	}
 }
 
 
@@ -100,9 +109,25 @@ function drag (e) {
 	if (!isDragging) return;
 	isClick = false;
 	e.preventDefault();
-	currentX = getMouseX(e) - startX;
-	if (currentX > maxX) currentX = maxX;
-	if (currentX < minX) currentX = minX;
-	label.style.width = `${Math.round(currentX)}px`;
+	currentX = (getMouseX(e) - startX) - scrollerEndX;
+	setKnobPosition();
 }
+
+
+function toggleTransitions (enable) {
+	handle.style.transition = enable ? '' : 'none';
+	scroller.style.transition = enable ? '' : 'none';
+}
+
+function setKnobPosition () {
+	if (currentX < scrollerStartX) currentX = scrollerStartX;
+	if (currentX > scrollerEndX) currentX = scrollerEndX;
+	scroller.style.marginLeft = Math.round(currentX) + 'px';
+
+	let handleLeft = handleStartX;
+	if (isDragging || value) handleLeft -= scrollerStartX;
+	if (isDragging) handleLeft += currentX;
+	handle.style.left = `${Math.round(handleLeft)}px`;
+}
+
 </script>

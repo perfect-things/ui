@@ -114,47 +114,6 @@ code {
 
 code[class*=language-] { padding: 0; margin: 0; }
 
-.main-header {
-	height: 30vw;
-	max-height: 300px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 2.4vw;
-	margin: -2em -2em 2em;
-	padding: 2em;
-	overflow: hidden;
-}
-
-.logo {
-	width: 14vw;
-	height: 14vw;
-	max-width: 180px;
-	max-height: 180px;
-	opacity: 0.9;
-	filter: drop-shadow(0 1px 2px #0009);
-}
-
-.logotype {
-	font-size: clamp(32px, 5vw, 72px);
-	font-weight: 100;
-	margin: -0.3em 0 0;
-	display: flex;
-	flex-flow: row;
-	white-space: nowrap;
-	filter: drop-shadow(0 1px 2px #0009);
-	gap: 0.2em;
-}
-.logotype em { font-weight: 500; }
-
-
-h2 { display: inline-flex; align-items: center; gap: 0.5em; }
-h2 small {
-	display: inline;
-	color: var(--ui-color-text-semi);
-	margin: 0;
-}
-
 aside {
 	padding: 1rem 1rem 4rem;
 	border-right: 1px solid var(--ui-color-border-dark-2);
@@ -199,7 +158,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	height: 48px;
 }
 
-.nav-toolbar .toggle { --ui-toggle-size: 1.2em; }
+.nav-toolbar .toggle { --toggle-width: 45px; }
 
 .nav-toggler {
 	--ui-button-size: 1.1em;
@@ -232,6 +191,47 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	}
 	main { padding-top: 5em; }
 	.main-header { margin-top: -5em; }
+}
+
+.main-header {
+	height: 30vw;
+	max-height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2.4vw;
+	margin: -2em -2em 2em;
+	padding: 2em;
+	overflow: hidden;
+}
+
+.logo {
+	width: 14vw;
+	height: 14vw;
+	max-width: 180px;
+	max-height: 180px;
+	opacity: 0.9;
+	filter: drop-shadow(0 1px 2px #0009);
+}
+
+.logotype {
+	font-size: clamp(32px, 5vw, 72px);
+	font-weight: 100;
+	margin: -0.3em 0 0;
+	display: flex;
+	flex-flow: row;
+	white-space: nowrap;
+	filter: drop-shadow(0 1px 2px #0009);
+	gap: 0.2em;
+}
+.logotype em { font-weight: 500; }
+
+
+h2 { display: inline-flex; align-items: center; gap: 0.5em; }
+h2 small {
+	display: inline;
+	color: var(--ui-color-text-semi);
+	margin: 0;
 }
 
 .button-toggle-wrapper-wide { width: 400px; }

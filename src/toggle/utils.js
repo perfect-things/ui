@@ -5,30 +5,23 @@ export function getMouseX (e) {
 	return (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
 }
 
-
-function outerWidth (el) {
-	return el.getBoundingClientRect().width;
-}
-
-
-function innerWidth (el) {
-	const css = getComputedStyle(el);
-	const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
-	const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
-	return el.getBoundingClientRect().width - borders - padding;
-}
-
-
-export function initialMeasure (el) {
-	const isHidden = el.offsetParent === null;
+export function initialMeasure (toggleEl) {
+	const isHidden = toggleEl.offsetParent === null;
 	if (isHidden) {
-		el = el.cloneNode(true);
-		document.body.appendChild(el);
+		toggleEl = toggleEl.cloneNode(true);
+		document.body.appendChild(toggleEl);
 	}
-	const handle = el.querySelector('.toggle-handle');
-	const maxX = innerWidth(el);
-	const minX = outerWidth(handle);
-	if (isHidden && el) el.remove();
+	const toggleInnerEl = toggleEl.querySelector('.toggle-inner');
+	const toggleInner = toggleInnerEl.getBoundingClientRect();
+	const toggle = getComputedStyle(toggleEl);
+	const togglePadding = parseFloat(toggle.paddingBlock);
 
-	return { maxX, minX };
+	if (isHidden && toggleEl) toggleEl.remove();
+
+	return {
+		scrollerStartX: toggleInner.height - toggleInner.width,
+		scrollerEndX: 0,
+		handleStartX: toggleInner.height / 2 + togglePadding,
+		handleEndX: toggleInner.width + togglePadding - toggleInner.height / 2,
+	};
 }

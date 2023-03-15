@@ -1,6 +1,12 @@
 <h1>Changelog</h1>
 
 
+<h2>v6.1.0 <small>(2023-03-15)</small></h2>
+<ul>
+	<li><em>Toggle</em> component has been completely rewritten to make it more flexible and perfect.
+</ul>
+
+
 <h2>v6.0.0, v6.0.1, v6.0.2 <small>(2023-03-13)</small></h2>
 <ul>
 	<li>rebrand <em>simple-ui-components-in-svelte</em> to <em>@perfectthings/ui</em>

@@ -406,6 +406,12 @@ var require_internal = __commonJS({
         return fn.call(this, event);
       };
     }
+    function stop_immediate_propagation(fn) {
+      return function(event) {
+        event.stopImmediatePropagation();
+        return fn.call(this, event);
+      };
+    }
     function self2(fn) {
       return function(event) {
         if (event.target === this)
@@ -457,6 +463,9 @@ var require_internal = __commonJS({
         attr(node, prop, value);
       }
     }
+    function set_dynamic_element_data(tag) {
+      return /-/.test(tag) ? set_custom_element_data_map : set_attributes10;
+    }
     function xlink_attr(node, attribute, value) {
       node.setAttributeNS("http://www.w3.org/1999/xlink", attribute, value);
     }
@@ -470,6 +479,55 @@ var require_internal = __commonJS({
         value.delete(__value);
       }
       return Array.from(value);
+    }
+    function init_binding_group(group) {
+      let _inputs;
+      return {
+        /* push */
+        p(...inputs) {
+          _inputs = inputs;
+          _inputs.forEach((input) => group.push(input));
+        },
+        /* remove */
+        r() {
+          _inputs.forEach((input) => group.splice(group.indexOf(input), 1));
+        }
+      };
+    }
+    function init_binding_group_dynamic(group, indexes) {
+      let _group = get_binding_group(group);
+      let _inputs;
+      function get_binding_group(group2) {
+        for (let i = 0; i < indexes.length; i++) {
+          group2 = group2[indexes[i]] = group2[indexes[i]] || [];
+        }
+        return group2;
+      }
+      function push() {
+        _inputs.forEach((input) => _group.push(input));
+      }
+      function remove() {
+        _inputs.forEach((input) => _group.splice(_group.indexOf(input), 1));
+      }
+      return {
+        /* update */
+        u(new_indexes) {
+          indexes = new_indexes;
+          const new_group = get_binding_group(group);
+          if (new_group !== _group) {
+            remove();
+            _group = new_group;
+            push();
+          }
+        },
+        /* push */
+        p(...inputs) {
+          _inputs = inputs;
+          push();
+        },
+        /* remove */
+        r: remove
+      };
     }
     function to_number2(value) {
       return value === "" ? null : +value;
@@ -634,8 +692,15 @@ var require_internal = __commonJS({
         option.selected = ~value.indexOf(option.__value);
       }
     }
+    function first_enabled_option(select) {
+      for (const option of select.options) {
+        if (!option.disabled) {
+          return option;
+        }
+      }
+    }
     function select_value2(select) {
-      const selected_option = select.querySelector(":checked") || select.options[0];
+      const selected_option = select.querySelector(":checked") || first_enabled_option(select);
       return selected_option && selected_option.__value;
     }
     function select_multiple_value(select) {
@@ -676,6 +741,7 @@ var require_internal = __commonJS({
         iframe.src = "about:blank";
         iframe.onload = () => {
           unsubscribe = listen(iframe.contentWindow, "resize", fn);
+          fn();
         };
       }
       append(node, iframe);
@@ -732,15 +798,15 @@ var require_internal = __commonJS({
           if (this.is_svg)
             this.e = svg_element(target.nodeName);
           else
-            this.e = element60(target.nodeName);
-          this.t = target;
+            this.e = element60(target.nodeType === 11 ? "TEMPLATE" : target.nodeName);
+          this.t = target.tagName !== "TEMPLATE" ? target : target.content;
           this.c(html);
         }
         this.i(anchor);
       }
       h(html) {
         this.e.innerHTML = html;
-        this.n = Array.from(this.e.childNodes);
+        this.n = Array.from(this.e.nodeName === "TEMPLATE" ? this.e.content.childNodes : this.e.childNodes);
       }
       i(anchor) {
         for (let i = 0; i < this.n.length; i += 1) {
@@ -986,7 +1052,7 @@ var require_internal = __commonJS({
     var binding_callbacks29 = [];
     var render_callbacks = [];
     var flush_callbacks = [];
-    var resolved_promise = Promise.resolve();
+    var resolved_promise = /* @__PURE__ */ Promise.resolve();
     var update_scheduled = false;
     function schedule_update() {
       if (!update_scheduled) {
@@ -1054,6 +1120,13 @@ var require_internal = __commonJS({
         $$.fragment && $$.fragment.p($$.ctx, dirty);
         $$.after_update.forEach(add_render_callback5);
       }
+    }
+    function flush_render_callbacks(fns) {
+      const filtered = [];
+      const targets = [];
+      render_callbacks.forEach((c) => fns.indexOf(c) === -1 ? filtered.push(c) : targets.push(c));
+      targets.forEach((c) => c());
+      render_callbacks = filtered;
     }
     var promise;
     function wait() {
@@ -1426,6 +1499,7 @@ var require_internal = __commonJS({
       const new_blocks = [];
       const new_lookup = /* @__PURE__ */ new Map();
       const deltas = /* @__PURE__ */ new Map();
+      const updates = [];
       i = n;
       while (i--) {
         const child_ctx = get_context(ctx, list, i);
@@ -1435,7 +1509,7 @@ var require_internal = __commonJS({
           block = create_each_block9(key, child_ctx);
           block.c();
         } else if (dynamic) {
-          block.p(child_ctx, dirty);
+          updates.push(() => block.p(child_ctx, dirty));
         }
         new_lookup.set(key, new_blocks[i] = block);
         if (key in old_indexes)
@@ -1481,6 +1555,7 @@ var require_internal = __commonJS({
       }
       while (n)
         insert2(new_blocks[n - 1]);
+      run_all18(updates);
       return new_blocks;
     }
     function validate_each_keys2(ctx, list, get_context, get_key) {
@@ -1528,7 +1603,7 @@ var require_internal = __commonJS({
     function get_spread_object3(spread_props) {
       return typeof spread_props === "object" && spread_props !== null ? spread_props : {};
     }
-    var boolean_attributes = /* @__PURE__ */ new Set([
+    var _boolean_attributes = [
       "allowfullscreen",
       "allowpaymentrequest",
       "async",
@@ -1555,7 +1630,8 @@ var require_internal = __commonJS({
       "required",
       "reversed",
       "selected"
-    ]);
+    ];
+    var boolean_attributes = /* @__PURE__ */ new Set([..._boolean_attributes]);
     var void_element_names = /^(?:area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)$/;
     function is_void(name) {
       return void_element_names.test(name) || name.toLowerCase() === "!doctype";
@@ -1752,6 +1828,7 @@ var require_internal = __commonJS({
     function destroy_component39(component, detaching) {
       const $$ = component.$$;
       if ($$.fragment !== null) {
+        flush_render_callbacks($$.after_update);
         run_all18($$.on_destroy);
         $$.fragment && $$.fragment.d(detaching);
         $$.on_destroy = $$.fragment = null;
@@ -1893,7 +1970,7 @@ var require_internal = __commonJS({
       }
     };
     function dispatch_dev62(type, detail) {
-      document.dispatchEvent(custom_event(type, Object.assign({ version: "3.55.1" }, detail), { bubbles: true }));
+      document.dispatchEvent(custom_event(type, Object.assign({ version: "3.56.0" }, detail), { bubbles: true }));
     }
     function append_dev40(target, node) {
       dispatch_dev62("SvelteDOMInsert", { target, node });
@@ -1930,12 +2007,14 @@ var require_internal = __commonJS({
         detach_dev62(before.nextSibling);
       }
     }
-    function listen_dev25(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+    function listen_dev25(node, event, handler, options, has_prevent_default, has_stop_propagation, has_stop_immediate_propagation) {
       const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
       if (has_prevent_default)
         modifiers.push("preventDefault");
       if (has_stop_propagation)
         modifiers.push("stopPropagation");
+      if (has_stop_immediate_propagation)
+        modifiers.push("stopImmediatePropagation");
       dispatch_dev62("SvelteDOMAddEventListener", { node, event, handler, modifiers });
       const dispose = listen(node, event, handler, options);
       return () => {
@@ -2118,6 +2197,7 @@ var require_internal = __commonJS({
     exports.fix_and_outro_and_destroy_block = fix_and_outro_and_destroy_block;
     exports.fix_position = fix_position;
     exports.flush = flush4;
+    exports.flush_render_callbacks = flush_render_callbacks;
     exports.getAllContexts = getAllContexts;
     exports.getContext = getContext;
     exports.get_all_dirty_from_scope = get_all_dirty_from_scope12;
@@ -2137,6 +2217,8 @@ var require_internal = __commonJS({
     exports.head_selector = head_selector;
     exports.identity = identity;
     exports.init = init62;
+    exports.init_binding_group = init_binding_group;
+    exports.init_binding_group_dynamic = init_binding_group_dynamic;
     exports.insert = insert;
     exports.insert_dev = insert_dev62;
     exports.insert_hydration = insert_hydration;
@@ -2183,6 +2265,7 @@ var require_internal = __commonJS({
     exports.set_custom_element_data_map = set_custom_element_data_map;
     exports.set_data = set_data;
     exports.set_data_dev = set_data_dev20;
+    exports.set_dynamic_element_data = set_dynamic_element_data;
     exports.set_input_type = set_input_type;
     exports.set_input_value = set_input_value8;
     exports.set_now = set_now;
@@ -2194,6 +2277,7 @@ var require_internal = __commonJS({
     exports.spread = spread;
     exports.src_url_equal = src_url_equal2;
     exports.start_hydrating = start_hydrating;
+    exports.stop_immediate_propagation = stop_immediate_propagation;
     exports.stop_propagation = stop_propagation2;
     exports.subscribe = subscribe;
     exports.svg_element = svg_element;
@@ -2515,21 +2599,24 @@ var require_transition = __commonJS({
 			opacity: ${target_opacity - od * u}`
       };
     }
-    function slide(node, { delay = 0, duration = 400, easing: easing$1 = easing.cubicOut } = {}) {
+    function slide(node, { delay = 0, duration = 400, easing: easing$1 = easing.cubicOut, axis = "y" } = {}) {
       const style = getComputedStyle(node);
       const opacity = +style.opacity;
-      const height = parseFloat(style.height);
-      const padding_top = parseFloat(style.paddingTop);
-      const padding_bottom = parseFloat(style.paddingBottom);
-      const margin_top = parseFloat(style.marginTop);
-      const margin_bottom = parseFloat(style.marginBottom);
-      const border_top_width = parseFloat(style.borderTopWidth);
-      const border_bottom_width = parseFloat(style.borderBottomWidth);
+      const primary_property = axis === "y" ? "height" : "width";
+      const primary_property_value = parseFloat(style[primary_property]);
+      const secondary_properties = axis === "y" ? ["top", "bottom"] : ["left", "right"];
+      const capitalized_secondary_properties = secondary_properties.map((e) => `${e[0].toUpperCase()}${e.slice(1)}`);
+      const padding_start_value = parseFloat(style[`padding${capitalized_secondary_properties[0]}`]);
+      const padding_end_value = parseFloat(style[`padding${capitalized_secondary_properties[1]}`]);
+      const margin_start_value = parseFloat(style[`margin${capitalized_secondary_properties[0]}`]);
+      const margin_end_value = parseFloat(style[`margin${capitalized_secondary_properties[1]}`]);
+      const border_width_start_value = parseFloat(style[`border${capitalized_secondary_properties[0]}Width`]);
+      const border_width_end_value = parseFloat(style[`border${capitalized_secondary_properties[1]}Width`]);
       return {
         delay,
         duration,
         easing: easing$1,
-        css: (t) => `overflow: hidden;opacity: ${Math.min(t * 20, 1) * opacity};height: ${t * height}px;padding-top: ${t * padding_top}px;padding-bottom: ${t * padding_bottom}px;margin-top: ${t * margin_top}px;margin-bottom: ${t * margin_bottom}px;border-top-width: ${t * border_top_width}px;border-bottom-width: ${t * border_bottom_width}px;`
+        css: (t) => `overflow: hidden;opacity: ${Math.min(t * 20, 1) * opacity};${primary_property}: ${t * primary_property_value}px;padding-${secondary_properties[0]}: ${t * padding_start_value}px;padding-${secondary_properties[1]}: ${t * padding_end_value}px;margin-${secondary_properties[0]}: ${t * margin_start_value}px;margin-${secondary_properties[1]}: ${t * margin_end_value}px;border-${secondary_properties[0]}-width: ${t * border_width_start_value}px;border-${secondary_properties[1]}-width: ${t * border_width_end_value}px;`
       };
     }
     function scale2(node, { delay = 0, duration = 400, easing: easing$1 = easing.cubicOut, start = 0, opacity = 0 } = {}) {
@@ -2577,8 +2664,9 @@ var require_transition = __commonJS({
       var { fallback } = _a, defaults = __rest(_a, ["fallback"]);
       const to_receive = /* @__PURE__ */ new Map();
       const to_send = /* @__PURE__ */ new Map();
-      function crossfade2(from, node, params) {
+      function crossfade2(from_node, node, params) {
         const { delay = 0, duration = (d2) => Math.sqrt(d2) * 30, easing: easing$1 = easing.cubicOut } = internal.assign(internal.assign({}, defaults), params);
+        const from = from_node.getBoundingClientRect();
         const to = node.getBoundingClientRect();
         const dx = from.left - to.left;
         const dy = from.top - to.top;
@@ -2601,14 +2689,12 @@ var require_transition = __commonJS({
       }
       function transition(items, counterparts, intro) {
         return (node, params) => {
-          items.set(params.key, {
-            rect: node.getBoundingClientRect()
-          });
+          items.set(params.key, node);
           return () => {
             if (counterparts.has(params.key)) {
-              const { rect } = counterparts.get(params.key);
+              const other_node = counterparts.get(params.key);
               counterparts.delete(params.key);
-              return crossfade2(rect, node, params);
+              return crossfade2(other_node, node, params);
             }
             items.delete(params.key);
             return fallback && fallback(node, params, intro);
@@ -2675,7 +2761,7 @@ var require_store = __commonJS({
         run(value);
         return () => {
           subscribers.delete(subscriber);
-          if (subscribers.size === 0) {
+          if (subscribers.size === 0 && stop) {
             stop();
             stop = null;
           }
@@ -2721,6 +2807,11 @@ var require_store = __commonJS({
         };
       });
     }
+    function readonly(store) {
+      return {
+        subscribe: store.subscribe.bind(store)
+      };
+    }
     Object.defineProperty(exports, "get", {
       enumerable: true,
       get: function() {
@@ -2729,6 +2820,7 @@ var require_store = __commonJS({
     });
     exports.derived = derived;
     exports.readable = readable;
+    exports.readonly = readonly;
     exports.writable = writable2;
   }
 });
@@ -5018,7 +5110,9 @@ function create_if_block_1(ctx) {
     },
     m: function mount(target, anchor) {
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(target, anchor);
+        if (each_blocks[i]) {
+          each_blocks[i].m(target, anchor);
+        }
       }
       (0, import_internal2.insert_dev)(target, each_1_anchor, anchor);
     },
@@ -5118,7 +5212,9 @@ function create_if_block_2(ctx) {
     },
     m: function mount(target, anchor) {
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(target, anchor);
+        if (each_blocks[i]) {
+          each_blocks[i].m(target, anchor);
+        }
       }
       (0, import_internal2.insert_dev)(target, each_1_anchor, anchor);
     },
@@ -5203,7 +5299,7 @@ function create_each_block_1(ctx) {
       html_tag.m(raw_value, div);
       (0, import_internal2.append_dev)(div, t);
       if (!mounted) {
-        dispose = (0, import_internal2.listen_dev)(div, "click", click_handler, false, false, false);
+        dispose = (0, import_internal2.listen_dev)(div, "click", click_handler, false, false, false, false);
         mounted = true;
       }
     },
@@ -5369,6 +5465,7 @@ function create_if_block(ctx) {
           ctx[31],
           false,
           false,
+          false,
           false
         );
         mounted = true;
@@ -5496,7 +5593,9 @@ function create_fragment2(ctx) {
       (0, import_internal2.mount_component)(icon, div1, null);
       (0, import_internal2.append_dev)(div1, t0);
       (0, import_internal2.append_dev)(div1, input);
-      input.value = input_data.value;
+      if ("value" in input_data) {
+        input.value = input_data.value;
+      }
       if (input.autofocus)
         input.focus();
       ctx[29](input);
@@ -5519,6 +5618,7 @@ function create_fragment2(ctx) {
             ctx[15],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal2.listen_dev)(
@@ -5526,6 +5626,7 @@ function create_fragment2(ctx) {
             "focus",
             /*onfocus*/
             ctx[14],
+            false,
             false,
             false,
             false
@@ -5537,6 +5638,7 @@ function create_fragment2(ctx) {
             ctx[13],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal2.listen_dev)(
@@ -5544,6 +5646,7 @@ function create_fragment2(ctx) {
             "blur",
             /*onblur*/
             ctx[16],
+            false,
             false,
             false,
             false
@@ -5555,6 +5658,7 @@ function create_fragment2(ctx) {
             ctx[19],
             true,
             false,
+            false,
             false
           ),
           (0, import_internal2.listen_dev)(
@@ -5562,6 +5666,7 @@ function create_fragment2(ctx) {
             "keypress",
             /*onkeypress*/
             ctx[20],
+            false,
             false,
             false,
             false
@@ -5573,6 +5678,7 @@ function create_fragment2(ctx) {
             ctx[32],
             true,
             false,
+            false,
             false
           ),
           (0, import_internal2.listen_dev)(
@@ -5582,6 +5688,7 @@ function create_fragment2(ctx) {
             ctx[33],
             true,
             false,
+            false,
             false
           ),
           (0, import_internal2.listen_dev)(
@@ -5589,6 +5696,7 @@ function create_fragment2(ctx) {
             "mousedown",
             /*onListMouseDown*/
             ctx[17],
+            false,
             false,
             false,
             false
@@ -6479,6 +6587,7 @@ function create_fragment3(ctx) {
             ctx[16],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal3.listen_dev)(
@@ -6486,6 +6595,7 @@ function create_fragment3(ctx) {
             "keydown",
             /*keydown_handler*/
             ctx[17],
+            false,
             false,
             false,
             false
@@ -6497,6 +6607,7 @@ function create_fragment3(ctx) {
             ctx[18],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal3.listen_dev)(
@@ -6505,6 +6616,7 @@ function create_fragment3(ctx) {
             /*touchstart_handler*/
             ctx[21],
             { passive: true },
+            false,
             false,
             false
           ),
@@ -6515,6 +6627,7 @@ function create_fragment3(ctx) {
             ctx[22],
             { passive: true },
             false,
+            false,
             false
           ),
           (0, import_internal3.listen_dev)(
@@ -6522,6 +6635,7 @@ function create_fragment3(ctx) {
             "click",
             /*click_handler*/
             ctx[19],
+            false,
             false,
             false,
             false
@@ -7235,9 +7349,9 @@ function create_each_block2(ctx) {
       current = true;
       if (!mounted) {
         dispose = [
-          (0, import_internal5.listen_dev)(input, "change", change_handler, false, false, false),
-          (0, import_internal5.listen_dev)(label, "touchstart", onmousedown, false, false, false),
-          (0, import_internal5.listen_dev)(label, "mousedown", onmousedown, false, false, false)
+          (0, import_internal5.listen_dev)(input, "change", change_handler, false, false, false, false),
+          (0, import_internal5.listen_dev)(label, "touchstart", onmousedown, false, false, false, false),
+          (0, import_internal5.listen_dev)(label, "mousedown", onmousedown, false, false, false, false)
         ];
         mounted = true;
       }
@@ -7410,7 +7524,9 @@ function create_fragment5(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal5.insert_dev)(target, div, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(div, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(div, null);
+        }
       }
       ctx[10](div);
       current = true;
@@ -7733,6 +7849,7 @@ function create_fragment6(ctx) {
             ctx[5],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal6.listen_dev)(
@@ -7740,6 +7857,7 @@ function create_fragment6(ctx) {
             "change",
             /*change_handler*/
             ctx[6],
+            false,
             false,
             false,
             false
@@ -8056,6 +8174,7 @@ function create_fragment7(ctx) {
             ctx[9],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal7.listen_dev)(
@@ -8065,6 +8184,7 @@ function create_fragment7(ctx) {
             ctx[8],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal7.listen_dev)(
@@ -8072,6 +8192,7 @@ function create_fragment7(ctx) {
             "click",
             /*onBackdropClick*/
             ctx[10],
+            false,
             false,
             false,
             false
@@ -8541,7 +8662,7 @@ function stripTime(timeValue) {
   return new Date(timeValue).setHours(0, 0, 0, 0);
 }
 function today() {
-  return new Date().setHours(0, 0, 0, 0);
+  return (/* @__PURE__ */ new Date()).setHours(0, 0, 0, 0);
 }
 function dateValue(...args) {
   switch (args.length) {
@@ -8550,7 +8671,7 @@ function dateValue(...args) {
     case 1:
       return stripTime(args[0]);
   }
-  const newDate = new Date(0);
+  const newDate = /* @__PURE__ */ new Date(0);
   newDate.setFullYear(...args);
   return newDate.setHours(0, 0, 0, 0);
 }
@@ -10960,6 +11081,7 @@ function create_fragment8(ctx) {
             ctx[8],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal8.listen_dev)(
@@ -10967,6 +11089,7 @@ function create_fragment8(ctx) {
             "input",
             /*oninput*/
             ctx[7],
+            false,
             false,
             false,
             false
@@ -10978,6 +11101,7 @@ function create_fragment8(ctx) {
             ctx[6],
             true,
             false,
+            false,
             false
           ),
           (0, import_internal8.listen_dev)(
@@ -10987,6 +11111,7 @@ function create_fragment8(ctx) {
             ctx[9],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal8.listen_dev)(
@@ -10994,6 +11119,7 @@ function create_fragment8(ctx) {
             "hide",
             /*onhide*/
             ctx[10],
+            false,
             false,
             false,
             false
@@ -11433,6 +11559,7 @@ function create_if_block4(ctx) {
             ctx[8],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal9.listen_dev)(
@@ -11440,6 +11567,7 @@ function create_if_block4(ctx) {
             "focus",
             /*focusFirst*/
             ctx[7],
+            false,
             false,
             false,
             false
@@ -11857,6 +11985,7 @@ function create_fragment10(ctx) {
             ctx[3],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal10.listen_dev)(
@@ -11864,6 +11993,7 @@ function create_fragment10(ctx) {
             "change",
             /*onchange*/
             ctx[4],
+            false,
             false,
             false,
             false
@@ -12090,6 +12220,7 @@ function create_fragment11(ctx) {
             ctx[4],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal11.listen_dev)(
@@ -12097,6 +12228,7 @@ function create_fragment11(ctx) {
             "change",
             /*onchange*/
             ctx[5],
+            false,
             false,
             false,
             false
@@ -12108,6 +12240,7 @@ function create_fragment11(ctx) {
             ctx[6],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal11.listen_dev)(
@@ -12115,6 +12248,7 @@ function create_fragment11(ctx) {
             "blur",
             /*blur_handler*/
             ctx[7],
+            false,
             false,
             false,
             false
@@ -12605,6 +12739,7 @@ function create_fragment12(ctx) {
             ctx[15],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal12.listen_dev)(
@@ -12612,6 +12747,7 @@ function create_fragment12(ctx) {
             "change",
             /*change_handler*/
             ctx[16],
+            false,
             false,
             false,
             false
@@ -12623,6 +12759,7 @@ function create_fragment12(ctx) {
             ctx[17],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal12.listen_dev)(
@@ -12630,6 +12767,7 @@ function create_fragment12(ctx) {
             "blur",
             /*blur_handler*/
             ctx[18],
+            false,
             false,
             false,
             false
@@ -13669,13 +13807,14 @@ function create_fragment14(ctx) {
           (0, import_internal14.listen_dev)(button, "mousedown", (0, import_internal14.prevent_default)(
             /*mousedown_handler*/
             ctx[4]
-          ), false, true, false),
+          ), false, true, false, false),
           (0, import_internal14.listen_dev)(
             button,
             "click",
             /*onclick*/
             ctx[1],
             true,
+            false,
             false,
             false
           )
@@ -13968,6 +14107,7 @@ function create_fragment16(ctx) {
             ctx[7],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal16.listen_dev)(
@@ -13975,6 +14115,7 @@ function create_fragment16(ctx) {
             "click",
             /*toggle*/
             ctx[7],
+            false,
             false,
             false,
             false
@@ -14964,7 +15105,9 @@ function create_if_block7(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal18.insert_dev)(target, optgroup, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(optgroup, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(optgroup, null);
+        }
       }
     },
     p: function update(ctx2, dirty) {
@@ -15167,9 +15310,11 @@ function create_fragment18(ctx) {
         if_block.m(select, null);
       (0, import_internal18.append_dev)(select, if_block_anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(select, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(select, null);
+        }
       }
-      (select_data.multiple ? import_internal18.select_options : import_internal18.select_option)(select, select_data.value);
+      "value" in select_data && (select_data.multiple ? import_internal18.select_options : import_internal18.select_option)(select, select_data.value);
       if (select.autofocus)
         select.focus();
       (0, import_internal18.select_option)(
@@ -15191,6 +15336,7 @@ function create_fragment18(ctx) {
             "change",
             /*change_handler*/
             ctx[7],
+            false,
             false,
             false,
             false
@@ -15457,6 +15603,7 @@ function create_fragment19(ctx) {
           "mousedown",
           /*mousedown*/
           ctx[4],
+          false,
           false,
           false,
           false
@@ -15857,6 +16004,7 @@ function create_fragment20(ctx) {
             ctx[4],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal20.listen_dev)(
@@ -15864,6 +16012,7 @@ function create_fragment20(ctx) {
             "dblclick",
             /*onDblClick*/
             ctx[5],
+            false,
             false,
             false,
             false
@@ -16391,6 +16540,7 @@ function create_fragment21(ctx) {
             ctx[4],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal21.listen_dev)(
@@ -16398,6 +16548,7 @@ function create_fragment21(ctx) {
             "input",
             /*input_handler*/
             ctx[5],
+            false,
             false,
             false,
             false
@@ -16824,7 +16975,7 @@ function create_if_block_13(ctx) {
       (0, import_internal23.insert_dev)(target, button, anchor);
       (0, import_internal23.append_dev)(button, t);
       if (!mounted) {
-        dispose = (0, import_internal23.listen_dev)(button, "click", (0, import_internal23.prevent_default)(click_handler), false, true, false);
+        dispose = (0, import_internal23.listen_dev)(button, "click", (0, import_internal23.prevent_default)(click_handler), false, true, false, false);
         mounted = true;
       }
     },
@@ -16978,7 +17129,7 @@ function create_each_block4(key_1, ctx) {
       (0, import_internal23.append_dev)(div1, t4);
       current = true;
       if (!mounted) {
-        dispose = (0, import_internal23.listen_dev)(button, "click", (0, import_internal23.stop_propagation)(click_handler_1), false, false, true);
+        dispose = (0, import_internal23.listen_dev)(button, "click", (0, import_internal23.stop_propagation)(click_handler_1), false, false, true, false);
         mounted = true;
       }
     },
@@ -17101,7 +17252,9 @@ function create_fragment23(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal23.insert_dev)(target, div, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(div, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(div, null);
+        }
       }
       current = true;
     },
@@ -17252,44 +17405,47 @@ var isTouchDevice = "ontouchstart" in document.documentElement;
 function getMouseX2(e) {
   return e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
 }
-function outerWidth(el) {
-  return el.getBoundingClientRect().width;
-}
-function innerWidth2(el) {
-  const css = getComputedStyle(el);
-  const borders = parseFloat(css.borderLeftWidth) + parseFloat(css.borderRightWidth);
-  const padding = parseFloat(css.paddingLeft) + parseFloat(css.paddingRight);
-  return el.getBoundingClientRect().width - borders - padding;
-}
-function initialMeasure(el) {
-  const isHidden = el.offsetParent === null;
+function initialMeasure(toggleEl) {
+  const isHidden = toggleEl.offsetParent === null;
   if (isHidden) {
-    el = el.cloneNode(true);
-    document.body.appendChild(el);
+    toggleEl = toggleEl.cloneNode(true);
+    document.body.appendChild(toggleEl);
   }
-  const handle = el.querySelector(".toggle-handle");
-  const maxX = innerWidth2(el);
-  const minX = outerWidth(handle);
-  if (isHidden && el)
-    el.remove();
-  return { maxX, minX };
+  const toggleInnerEl = toggleEl.querySelector(".toggle-inner");
+  const toggleInner = toggleInnerEl.getBoundingClientRect();
+  const toggle = getComputedStyle(toggleEl);
+  const togglePadding = parseFloat(toggle.paddingBlock);
+  if (isHidden && toggleEl)
+    toggleEl.remove();
+  return {
+    scrollerStartX: toggleInner.height - toggleInner.width,
+    scrollerEndX: 0,
+    handleStartX: toggleInner.height / 2 + togglePadding,
+    handleEndX: toggleInner.width + togglePadding - toggleInner.height / 2
+  };
 }
 
 // src/toggle/Toggle.svelte
 var file22 = "src/toggle/Toggle.svelte";
 function create_fragment24(ctx) {
-  let div;
+  let div5;
   let label_1;
-  let span;
-  let t;
+  let div4;
+  let div0;
+  let t0;
+  let div2;
+  let div1;
+  let t1;
+  let div3;
+  let t2;
   let input;
-  let div_class_value;
-  let div_tabindex_value;
+  let div5_class_value;
+  let div5_tabindex_value;
   let mounted;
   let dispose;
   let input_levels = [
     /*inputProps*/
-    ctx[6],
+    ctx[7],
     { type: "checkbox" },
     { class: "toggle-input" }
   ];
@@ -17299,134 +17455,158 @@ function create_fragment24(ctx) {
   }
   const block = {
     c: function create() {
-      div = (0, import_internal24.element)("div");
+      div5 = (0, import_internal24.element)("div");
       label_1 = (0, import_internal24.element)("label");
-      span = (0, import_internal24.element)("span");
-      t = (0, import_internal24.space)();
+      div4 = (0, import_internal24.element)("div");
+      div0 = (0, import_internal24.element)("div");
+      t0 = (0, import_internal24.space)();
+      div2 = (0, import_internal24.element)("div");
+      div1 = (0, import_internal24.element)("div");
+      t1 = (0, import_internal24.space)();
+      div3 = (0, import_internal24.element)("div");
+      t2 = (0, import_internal24.space)();
       input = (0, import_internal24.element)("input");
-      (0, import_internal24.attr_dev)(span, "class", "toggle-handle");
-      (0, import_internal24.add_location)(span, file22, 11, 2, 307);
+      (0, import_internal24.attr_dev)(div0, "class", "toggle-option");
+      (0, import_internal24.add_location)(div0, file22, 12, 3, 363);
+      (0, import_internal24.attr_dev)(div1, "class", "toggle-knob");
+      (0, import_internal24.add_location)(div1, file22, 13, 51, 448);
+      (0, import_internal24.attr_dev)(div2, "class", "toggle-handle");
+      (0, import_internal24.add_location)(div2, file22, 13, 3, 400);
+      (0, import_internal24.attr_dev)(div3, "class", "toggle-option");
+      (0, import_internal24.add_location)(div3, file22, 14, 3, 489);
       (0, import_internal24.set_attributes)(input, input_data);
-      (0, import_internal24.add_location)(input, file22, 12, 2, 366);
-      (0, import_internal24.attr_dev)(label_1, "class", "toggle-label");
+      (0, import_internal24.add_location)(input, file22, 15, 3, 526);
+      (0, import_internal24.attr_dev)(div4, "class", "toggle-scroller");
+      (0, import_internal24.add_location)(div4, file22, 11, 2, 307);
+      (0, import_internal24.attr_dev)(label_1, "class", "toggle-inner");
       (0, import_internal24.attr_dev)(
         label_1,
         "title",
         /*title*/
-        ctx[7]
+        ctx[8]
       );
       (0, import_internal24.add_location)(label_1, file22, 10, 1, 248);
-      (0, import_internal24.attr_dev)(div, "class", div_class_value = "toggle " + /*className*/
+      (0, import_internal24.attr_dev)(div5, "class", div5_class_value = "toggle " + /*className*/
       ctx[2]);
-      (0, import_internal24.attr_dev)(div, "tabindex", div_tabindex_value = /*disabled*/
+      (0, import_internal24.attr_dev)(div5, "tabindex", div5_tabindex_value = /*disabled*/
       ctx[1] ? void 0 : 0);
       (0, import_internal24.toggle_class)(
-        div,
+        div5,
         "checked",
         /*value*/
         ctx[0]
       );
-      (0, import_internal24.add_location)(div, file22, 0, 0, 0);
+      (0, import_internal24.add_location)(div5, file22, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal24.insert_dev)(target, div, anchor);
-      (0, import_internal24.append_dev)(div, label_1);
-      (0, import_internal24.append_dev)(label_1, span);
-      ctx[12](span);
-      (0, import_internal24.append_dev)(label_1, t);
-      (0, import_internal24.append_dev)(label_1, input);
+      (0, import_internal24.insert_dev)(target, div5, anchor);
+      (0, import_internal24.append_dev)(div5, label_1);
+      (0, import_internal24.append_dev)(label_1, div4);
+      (0, import_internal24.append_dev)(div4, div0);
+      (0, import_internal24.append_dev)(div4, t0);
+      (0, import_internal24.append_dev)(div4, div2);
+      (0, import_internal24.append_dev)(div2, div1);
+      ctx[13](div2);
+      (0, import_internal24.append_dev)(div4, t1);
+      (0, import_internal24.append_dev)(div4, div3);
+      (0, import_internal24.append_dev)(div4, t2);
+      (0, import_internal24.append_dev)(div4, input);
       if (input.autofocus)
         input.focus();
       input.checked = /*value*/
       ctx[0];
-      ctx[14](label_1);
-      ctx[15](div);
+      ctx[15](div4);
+      ctx[16](label_1);
+      ctx[17](div5);
       if (!mounted) {
         dispose = [
           (0, import_internal24.listen_dev)(
             input,
             "change",
             /*input_change_handler*/
-            ctx[13]
+            ctx[14]
           ),
           (0, import_internal24.listen_dev)(
-            div,
+            div5,
             "keydown",
             /*onKey*/
-            ctx[8],
+            ctx[9],
+            false,
             false,
             false,
             false
           ),
           (0, import_internal24.listen_dev)(
-            div,
+            div5,
             "touchstart",
             /*dragStart*/
-            ctx[9],
+            ctx[10],
+            false,
             false,
             false,
             false
           ),
           (0, import_internal24.listen_dev)(
-            div,
+            div5,
             "mousedown",
             /*dragStart*/
-            ctx[9],
+            ctx[10],
+            false,
             false,
             false,
             false
           ),
-          (0, import_internal24.listen_dev)(div, "contextmenu", (0, import_internal24.prevent_default)(
+          (0, import_internal24.listen_dev)(div5, "contextmenu", (0, import_internal24.prevent_default)(
             /*contextmenu_handler*/
-            ctx[10]
-          ), false, true, false),
-          (0, import_internal24.listen_dev)(div, "click", (0, import_internal24.prevent_default)(
-            /*click_handler*/
             ctx[11]
-          ), false, true, false)
+          ), false, true, false, false),
+          (0, import_internal24.listen_dev)(div5, "click", (0, import_internal24.prevent_default)(
+            /*click_handler*/
+            ctx[12]
+          ), false, true, false, false)
         ];
         mounted = true;
       }
     },
-    p: function update(ctx2, [dirty]) {
+    p: function update(ctx2, dirty) {
       (0, import_internal24.set_attributes)(input, input_data = (0, import_internal24.get_spread_update)(input_levels, [
-        dirty & /*inputProps*/
-        64 && /*inputProps*/
-        ctx2[6],
+        dirty[0] & /*inputProps*/
+        128 && /*inputProps*/
+        ctx2[7],
         { type: "checkbox" },
         { class: "toggle-input" }
       ]));
-      if (dirty & /*value*/
+      if (dirty[0] & /*value*/
       1) {
         input.checked = /*value*/
         ctx2[0];
       }
-      if (dirty & /*title*/
-      128) {
+      if (dirty[0] & /*title*/
+      256) {
         (0, import_internal24.attr_dev)(
           label_1,
           "title",
           /*title*/
-          ctx2[7]
+          ctx2[8]
         );
       }
-      if (dirty & /*className*/
-      4 && div_class_value !== (div_class_value = "toggle " + /*className*/
+      if (dirty[0] & /*className*/
+      4 && div5_class_value !== (div5_class_value = "toggle " + /*className*/
       ctx2[2])) {
-        (0, import_internal24.attr_dev)(div, "class", div_class_value);
+        (0, import_internal24.attr_dev)(div5, "class", div5_class_value);
       }
-      if (dirty & /*disabled*/
-      2 && div_tabindex_value !== (div_tabindex_value = /*disabled*/
+      if (dirty[0] & /*disabled*/
+      2 && div5_tabindex_value !== (div5_tabindex_value = /*disabled*/
       ctx2[1] ? void 0 : 0)) {
-        (0, import_internal24.attr_dev)(div, "tabindex", div_tabindex_value);
+        (0, import_internal24.attr_dev)(div5, "tabindex", div5_tabindex_value);
       }
-      if (dirty & /*className, value*/
+      if (dirty[0] & /*className, value*/
       5) {
         (0, import_internal24.toggle_class)(
-          div,
+          div5,
           "checked",
           /*value*/
           ctx2[0]
@@ -17437,10 +17617,11 @@ function create_fragment24(ctx) {
     o: import_internal24.noop,
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal24.detach_dev)(div);
-      ctx[12](null);
-      ctx[14](null);
+        (0, import_internal24.detach_dev)(div5);
+      ctx[13](null);
       ctx[15](null);
+      ctx[16](null);
+      ctx[17](null);
       mounted = false;
       (0, import_internal24.run_all)(dispose);
     }
@@ -17463,33 +17644,33 @@ function instance24($$self, $$props, $$invalidate) {
   let { value = false } = $$props;
   let { disabled = void 0 } = $$props;
   let { class: className = "" } = $$props;
-  let el, label, handle, startX2, maxX, minX, currentX = 0;
+  let el, label, scroller, handle, startX2, currentX = 0;
+  let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
   let isClick = false, isDragging = false;
   let oldValue;
   (0, import_svelte15.onMount)(() => {
-    ({ maxX, minX } = initialMeasure(el));
+    toggleTransitions(false);
+    ({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
   });
   (0, import_svelte15.afterUpdate)(() => {
     if (typeof value !== "boolean")
       $$invalidate(0, value = !!value);
     setValue(value);
   });
-  function setValue(v, skipEvent = false, force = false) {
-    if (typeof v === "undefined")
-      v = false;
+  function setValue(v = false, force = false) {
     if (typeof v !== "boolean")
       v = !!v;
     if (v !== value)
       return $$invalidate(0, value = v);
     if (value === oldValue && !force)
       return;
-    startX2 = currentX = value ? maxX : minX;
-    $$invalidate(4, label.style.width = `${Math.round(currentX)}px`, label);
+    startX2 = currentX = value ? scrollerEndX : scrollerStartX;
     oldValue = value;
-    if (!skipEvent)
-      dispatch("change", value);
+    setKnobPosition();
+    dispatch("change", value);
   }
   function onKey2(e) {
+    toggleTransitions(true);
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       setValue(!value);
@@ -17505,7 +17686,7 @@ function instance24($$self, $$props, $$invalidate) {
       document.addEventListener("mouseup", dragEnd);
       document.addEventListener("mousemove", drag, { passive: false });
     }
-    $$invalidate(4, label.style.transition = "none", label);
+    toggleTransitions(false);
     startX2 = getMouseX2(e) - currentX;
     isDragging = true;
     isClick = true;
@@ -17515,24 +17696,38 @@ function instance24($$self, $$props, $$invalidate) {
     document.removeEventListener("mousemove", drag);
     document.removeEventListener("touchend", dragEnd);
     document.removeEventListener("touchmove", drag);
-    $$invalidate(4, label.style.transition = "", label);
+    toggleTransitions(true);
     isDragging = false;
     if (isClick)
       setValue(!value);
-    else
-      setValue(currentX - minX >= (maxX - minX) / 2, false, true);
+    else {
+      setValue(currentX - scrollerStartX >= (scrollerEndX - scrollerStartX) / 2, true);
+    }
   }
   function drag(e) {
     if (!isDragging)
       return;
     isClick = false;
     e.preventDefault();
-    currentX = getMouseX2(e) - startX2;
-    if (currentX > maxX)
-      currentX = maxX;
-    if (currentX < minX)
-      currentX = minX;
-    $$invalidate(4, label.style.width = `${Math.round(currentX)}px`, label);
+    currentX = getMouseX2(e) - startX2 - scrollerEndX;
+    setKnobPosition();
+  }
+  function toggleTransitions(enable) {
+    $$invalidate(6, handle.style.transition = enable ? "" : "none", handle);
+    $$invalidate(5, scroller.style.transition = enable ? "" : "none", scroller);
+  }
+  function setKnobPosition() {
+    if (currentX < scrollerStartX)
+      currentX = scrollerStartX;
+    if (currentX > scrollerEndX)
+      currentX = scrollerEndX;
+    $$invalidate(5, scroller.style.marginLeft = Math.round(currentX) + "px", scroller);
+    let handleLeft = handleStartX;
+    if (isDragging || value)
+      handleLeft -= scrollerStartX;
+    if (isDragging)
+      handleLeft += currentX;
+    $$invalidate(6, handle.style.left = `${Math.round(handleLeft)}px`, handle);
   }
   function contextmenu_handler(event) {
     import_internal24.bubble.call(this, $$self, event);
@@ -17540,15 +17735,21 @@ function instance24($$self, $$props, $$invalidate) {
   function click_handler(event) {
     import_internal24.bubble.call(this, $$self, event);
   }
-  function span_binding($$value) {
+  function div2_binding($$value) {
     import_internal24.binding_callbacks[$$value ? "unshift" : "push"](() => {
       handle = $$value;
-      $$invalidate(5, handle);
+      $$invalidate(6, handle);
     });
   }
   function input_change_handler() {
     value = this.checked;
     $$invalidate(0, value);
+  }
+  function div4_binding($$value) {
+    import_internal24.binding_callbacks[$$value ? "unshift" : "push"](() => {
+      scroller = $$value;
+      $$invalidate(5, scroller);
+    });
   }
   function label_1_binding($$value) {
     import_internal24.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -17556,14 +17757,14 @@ function instance24($$self, $$props, $$invalidate) {
       $$invalidate(4, label);
     });
   }
-  function div_binding($$value) {
+  function div5_binding($$value) {
     import_internal24.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
       $$invalidate(3, el);
     });
   }
   $$self.$$set = ($$new_props) => {
-    $$invalidate(27, $$props = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props), (0, import_internal24.exclude_internal_props)($$new_props)));
+    $$invalidate(33, $$props = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props), (0, import_internal24.exclude_internal_props)($$new_props)));
     if ("value" in $$new_props)
       $$invalidate(0, value = $$new_props.value);
     if ("disabled" in $$new_props)
@@ -17577,19 +17778,22 @@ function instance24($$self, $$props, $$invalidate) {
     createEventDispatcher: import_svelte15.createEventDispatcher,
     pluck,
     getMouseX: getMouseX2,
-    initialMeasure,
     isTouchDevice,
+    initialMeasure,
     dispatch,
     value,
     disabled,
     className,
     el,
     label,
+    scroller,
     handle,
     startX: startX2,
-    maxX,
-    minX,
     currentX,
+    scrollerStartX,
+    scrollerEndX,
+    handleStartX,
+    handleEndX,
     isClick,
     isDragging,
     oldValue,
@@ -17598,11 +17802,13 @@ function instance24($$self, $$props, $$invalidate) {
     dragStart,
     dragEnd,
     drag,
+    toggleTransitions,
+    setKnobPosition,
     inputProps,
     title
   });
   $$self.$inject_state = ($$new_props) => {
-    $$invalidate(27, $$props = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props), $$new_props));
+    $$invalidate(33, $$props = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props), $$new_props));
     if ("value" in $$props)
       $$invalidate(0, value = $$new_props.value);
     if ("disabled" in $$props)
@@ -17613,16 +17819,22 @@ function instance24($$self, $$props, $$invalidate) {
       $$invalidate(3, el = $$new_props.el);
     if ("label" in $$props)
       $$invalidate(4, label = $$new_props.label);
+    if ("scroller" in $$props)
+      $$invalidate(5, scroller = $$new_props.scroller);
     if ("handle" in $$props)
-      $$invalidate(5, handle = $$new_props.handle);
+      $$invalidate(6, handle = $$new_props.handle);
     if ("startX" in $$props)
       startX2 = $$new_props.startX;
-    if ("maxX" in $$props)
-      maxX = $$new_props.maxX;
-    if ("minX" in $$props)
-      minX = $$new_props.minX;
     if ("currentX" in $$props)
       currentX = $$new_props.currentX;
+    if ("scrollerStartX" in $$props)
+      scrollerStartX = $$new_props.scrollerStartX;
+    if ("scrollerEndX" in $$props)
+      scrollerEndX = $$new_props.scrollerEndX;
+    if ("handleStartX" in $$props)
+      handleStartX = $$new_props.handleStartX;
+    if ("handleEndX" in $$props)
+      handleEndX = $$new_props.handleEndX;
     if ("isClick" in $$props)
       isClick = $$new_props.isClick;
     if ("isDragging" in $$props)
@@ -17630,18 +17842,18 @@ function instance24($$self, $$props, $$invalidate) {
     if ("oldValue" in $$props)
       oldValue = $$new_props.oldValue;
     if ("inputProps" in $$props)
-      $$invalidate(6, inputProps = $$new_props.inputProps);
+      $$invalidate(7, inputProps = $$new_props.inputProps);
     if ("title" in $$props)
-      $$invalidate(7, title = $$new_props.title);
+      $$invalidate(8, title = $$new_props.title);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
     $:
-      $$invalidate(7, title = $$props.title);
+      $$invalidate(8, title = $$props.title);
     $:
-      $$invalidate(6, inputProps = pluck($$props, ["id", "name", "disabled", "required"]));
+      $$invalidate(7, inputProps = pluck($$props, ["id", "name", "disabled", "required"]));
   };
   $$props = (0, import_internal24.exclude_internal_props)($$props);
   return [
@@ -17650,6 +17862,7 @@ function instance24($$self, $$props, $$invalidate) {
     className,
     el,
     label,
+    scroller,
     handle,
     inputProps,
     title,
@@ -17657,16 +17870,17 @@ function instance24($$self, $$props, $$invalidate) {
     dragStart,
     contextmenu_handler,
     click_handler,
-    span_binding,
+    div2_binding,
     input_change_handler,
+    div4_binding,
     label_1_binding,
-    div_binding
+    div5_binding
   ];
 }
 var Toggle = class extends import_internal24.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal24.init)(this, options, instance24, create_fragment24, import_internal24.safe_not_equal, { value: 0, disabled: 1, class: 2 });
+    (0, import_internal24.init)(this, options, instance24, create_fragment24, import_internal24.safe_not_equal, { value: 0, disabled: 1, class: 2 }, null, [-1, -1]);
     (0, import_internal24.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Toggle",
@@ -18296,7 +18510,9 @@ function create_if_block10(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal26.insert_dev)(target, ul, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(ul, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(ul, null);
+        }
       }
       current = true;
     },
@@ -18504,7 +18720,9 @@ function create_fragment26(ctx) {
       (0, import_internal26.insert_dev)(target, li, anchor);
       (0, import_internal26.append_dev)(li, div2);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(div2, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(div2, null);
+        }
       }
       (0, import_internal26.append_dev)(div2, t0);
       (0, import_internal26.append_dev)(div2, div0);
@@ -18533,6 +18751,7 @@ function create_fragment26(ctx) {
                 ctx[5]
               ) : void 0).apply(this, arguments);
           },
+          false,
           false,
           false,
           false
@@ -18850,7 +19069,9 @@ function create_fragment27(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal27.insert_dev)(target, ul, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(ul, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(ul, null);
+        }
       }
       ctx[6](ul);
       current = true;
@@ -18863,6 +19084,7 @@ function create_fragment27(ctx) {
             ctx[4],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal27.listen_dev)(
@@ -18872,6 +19094,7 @@ function create_fragment27(ctx) {
             ctx[3],
             false,
             false,
+            false,
             false
           ),
           (0, import_internal27.listen_dev)(
@@ -18879,6 +19102,7 @@ function create_fragment27(ctx) {
             "keydown",
             /*onkeydown*/
             ctx[5],
+            false,
             false,
             false,
             false
@@ -19789,607 +20013,632 @@ function create_fragment30(ctx) {
   let t4;
   let ul0;
   let li0;
-  let t5;
   let em0;
+  let t6;
   let t7;
-  let em1;
-  let t9;
   let h21;
-  let t10;
+  let t8;
   let small1;
-  let t12;
+  let t10;
   let ul1;
   let li1;
-  let li2;
-  let t14;
+  let t11;
+  let em1;
+  let t13;
   let em2;
-  let t16;
-  let li3;
-  let li4;
-  let t19;
+  let t15;
   let h22;
-  let t20;
+  let t16;
   let small2;
-  let t22;
+  let t18;
   let ul2;
+  let li2;
+  let li3;
+  let t20;
+  let em3;
+  let t22;
+  let li4;
   let li5;
-  let t24;
-  let h23;
   let t25;
+  let h23;
+  let t26;
   let small3;
-  let t27;
+  let t28;
   let ul3;
   let li6;
-  let t29;
-  let h24;
   let t30;
+  let h24;
+  let t31;
   let small4;
-  let t32;
+  let t33;
   let ul4;
   let li7;
-  let t33;
-  let em3;
   let t35;
-  let t36;
   let h25;
-  let t37;
+  let t36;
   let small5;
-  let t39;
+  let t38;
   let ul5;
   let li8;
-  let t40;
+  let t39;
   let em4;
+  let t41;
   let t42;
-  let t43;
   let h26;
-  let t44;
+  let t43;
   let small6;
-  let t46;
+  let t45;
   let ul6;
   let li9;
-  let li10;
+  let t46;
+  let em5;
+  let t48;
   let t49;
   let h27;
   let t50;
   let small7;
   let t52;
   let ul7;
+  let li10;
   let li11;
-  let t54;
-  let h28;
   let t55;
+  let h28;
+  let t56;
   let small8;
-  let t57;
+  let t58;
   let ul8;
   let li12;
-  let li13;
   let t60;
   let h29;
   let t61;
   let small9;
   let t63;
   let ul9;
+  let li13;
   let li14;
-  let t64;
-  let em5;
   let t66;
-  let t67;
   let h210;
-  let t68;
+  let t67;
   let small10;
-  let t70;
+  let t69;
   let ul10;
   let li15;
-  let t71;
+  let t70;
   let em6;
+  let t72;
   let t73;
-  let em7;
-  let t75;
-  let em8;
-  let t77;
+  let h211;
+  let t74;
+  let small11;
+  let t76;
+  let ul11;
   let li16;
-  let t78;
+  let t77;
+  let em7;
+  let t79;
+  let em8;
+  let t81;
   let em9;
-  let t80;
+  let t83;
   let li17;
+  let t84;
+  let em10;
+  let t86;
   let li18;
   let li19;
-  let t83;
-  let em10;
-  let t85;
-  let em11;
-  let t87;
-  let t88;
-  let h211;
-  let t89;
-  let small11;
-  let t91;
-  let ul11;
   let li20;
-  let t92;
+  let t89;
+  let em11;
+  let t91;
   let em12;
+  let t93;
   let t94;
-  let em13;
-  let t96;
-  let em14;
-  let t98;
-  let em15;
-  let t100;
-  let li21;
-  let t102;
   let h212;
-  let t103;
+  let t95;
   let small12;
-  let t105;
+  let t97;
   let ul12;
-  let li22;
-  let t106;
+  let li21;
+  let t98;
+  let em13;
+  let t100;
+  let em14;
+  let t102;
+  let em15;
+  let t104;
   let em16;
+  let t106;
+  let li22;
   let t108;
-  let em17;
-  let t110;
-  let t111;
   let h213;
-  let t112;
+  let t109;
   let small13;
-  let t114;
+  let t111;
   let ul13;
   let li23;
-  let t115;
+  let t112;
+  let em17;
+  let t114;
   let em18;
+  let t116;
   let t117;
-  let li24;
-  let t118;
-  let em19;
-  let t120;
-  let t121;
   let h214;
-  let t122;
+  let t118;
   let small14;
-  let t124;
+  let t120;
   let ul14;
+  let li24;
+  let t121;
+  let em19;
+  let t123;
   let li25;
-  let t125;
+  let t124;
   let em20;
+  let t126;
   let t127;
-  let em21;
-  let t129;
-  let li26;
-  let li27;
-  let t132;
   let h215;
-  let t133;
+  let t128;
   let small15;
-  let t135;
+  let t130;
   let ul15;
+  let li26;
+  let t131;
+  let em21;
+  let t133;
+  let em22;
+  let t135;
+  let li27;
   let li28;
-  let t137;
-  let h216;
   let t138;
+  let h216;
+  let t139;
   let small16;
-  let t140;
+  let t141;
   let ul16;
   let li29;
-  let t141;
-  let em22;
   let t143;
-  let em23;
-  let t145;
-  let li30;
-  let t146;
-  let em24;
-  let t148;
-  let t149;
   let h217;
-  let t150;
+  let t144;
   let small17;
-  let t152;
+  let t146;
   let ul17;
+  let li30;
+  let t147;
+  let em23;
+  let t149;
+  let em24;
+  let t151;
   let li31;
-  let t153;
+  let t152;
   let em25;
+  let t154;
   let t155;
-  let em26;
-  let t157;
-  let t158;
   let h218;
-  let t159;
+  let t156;
   let small18;
+  let t158;
+  let ul18;
+  let li32;
+  let t159;
+  let em26;
+  let t161;
+  let em27;
+  let t163;
+  let t164;
+  let h219;
+  let t165;
+  let small19;
   const block = {
     c: function create() {
       h1 = (0, import_internal30.element)("h1");
       h1.textContent = "Changelog";
       t1 = (0, import_internal30.space)();
       h20 = (0, import_internal30.element)("h2");
-      t2 = (0, import_internal30.text)("v6.0.0, v6.0.1, v6.0.2 ");
+      t2 = (0, import_internal30.text)("v6.1.0 ");
       small0 = (0, import_internal30.element)("small");
-      small0.textContent = "(2023-03-13)";
+      small0.textContent = "(2023-03-15)";
       t4 = (0, import_internal30.space)();
       ul0 = (0, import_internal30.element)("ul");
       li0 = (0, import_internal30.element)("li");
-      t5 = (0, import_internal30.text)("rebrand ");
       em0 = (0, import_internal30.element)("em");
-      em0.textContent = "simple-ui-components-in-svelte";
-      t7 = (0, import_internal30.text)(" to ");
-      em1 = (0, import_internal30.element)("em");
-      em1.textContent = "@perfectthings/ui";
-      t9 = (0, import_internal30.space)();
+      em0.textContent = "Toggle";
+      t6 = (0, import_internal30.text)(" component has been completely rewritten to make it more flexible and perfect.");
+      t7 = (0, import_internal30.space)();
       h21 = (0, import_internal30.element)("h2");
-      t10 = (0, import_internal30.text)("v5.1.0 ");
+      t8 = (0, import_internal30.text)("v6.0.0, v6.0.1, v6.0.2 ");
       small1 = (0, import_internal30.element)("small");
-      small1.textContent = "(2023-03-12)";
-      t12 = (0, import_internal30.space)();
+      small1.textContent = "(2023-03-13)";
+      t10 = (0, import_internal30.space)();
       ul1 = (0, import_internal30.element)("ul");
       li1 = (0, import_internal30.element)("li");
-      li1.textContent = "Better Menu highlighting (doesn't highlight first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS\n	";
-      li2 = (0, import_internal30.element)("li");
-      t14 = (0, import_internal30.text)("Mobile friendlier buttons (touchstart invokes ");
+      t11 = (0, import_internal30.text)("rebrand ");
+      em1 = (0, import_internal30.element)("em");
+      em1.textContent = "simple-ui-components-in-svelte";
+      t13 = (0, import_internal30.text)(" to ");
       em2 = (0, import_internal30.element)("em");
-      em2.textContent = ":active";
-      t16 = (0, import_internal30.text)(" styling)\n	");
-      li3 = (0, import_internal30.element)("li");
-      li3.textContent = "unit tests for some components\n	";
-      li4 = (0, import_internal30.element)("li");
-      li4.textContent = "changelog page in docs";
-      t19 = (0, import_internal30.space)();
+      em2.textContent = "@perfectthings/ui";
+      t15 = (0, import_internal30.space)();
       h22 = (0, import_internal30.element)("h2");
-      t20 = (0, import_internal30.text)("v5.0.8 ");
+      t16 = (0, import_internal30.text)("v5.1.0 ");
       small2 = (0, import_internal30.element)("small");
-      small2.textContent = "(2023-03-03)";
-      t22 = (0, import_internal30.space)();
+      small2.textContent = "(2023-03-12)";
+      t18 = (0, import_internal30.space)();
       ul2 = (0, import_internal30.element)("ul");
+      li2 = (0, import_internal30.element)("li");
+      li2.textContent = "Better Menu highlighting (doesn't highlight first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS\n	";
+      li3 = (0, import_internal30.element)("li");
+      t20 = (0, import_internal30.text)("Mobile friendlier buttons (touchstart invokes ");
+      em3 = (0, import_internal30.element)("em");
+      em3.textContent = ":active";
+      t22 = (0, import_internal30.text)(" styling)\n	");
+      li4 = (0, import_internal30.element)("li");
+      li4.textContent = "unit tests for some components\n	";
       li5 = (0, import_internal30.element)("li");
-      li5.textContent = "Tooltip offset parameter";
-      t24 = (0, import_internal30.space)();
+      li5.textContent = "changelog page in docs";
+      t25 = (0, import_internal30.space)();
       h23 = (0, import_internal30.element)("h2");
-      t25 = (0, import_internal30.text)("v5.0.7 ");
+      t26 = (0, import_internal30.text)("v5.0.8 ");
       small3 = (0, import_internal30.element)("small");
       small3.textContent = "(2023-03-03)";
-      t27 = (0, import_internal30.space)();
+      t28 = (0, import_internal30.space)();
       ul3 = (0, import_internal30.element)("ul");
       li6 = (0, import_internal30.element)("li");
-      li6.textContent = "PushButton fix (pushed class was not applied)";
-      t29 = (0, import_internal30.space)();
+      li6.textContent = "Tooltip offset parameter";
+      t30 = (0, import_internal30.space)();
       h24 = (0, import_internal30.element)("h2");
-      t30 = (0, import_internal30.text)("v5.0.6 ");
+      t31 = (0, import_internal30.text)("v5.0.7 ");
       small4 = (0, import_internal30.element)("small");
-      small4.textContent = "(2023-03-02)";
-      t32 = (0, import_internal30.space)();
+      small4.textContent = "(2023-03-03)";
+      t33 = (0, import_internal30.space)();
       ul4 = (0, import_internal30.element)("ul");
       li7 = (0, import_internal30.element)("li");
-      t33 = (0, import_internal30.text)("Add back ");
-      em3 = (0, import_internal30.element)("em");
-      em3.textContent = "form";
-      t35 = (0, import_internal30.text)(" property to a button");
-      t36 = (0, import_internal30.space)();
+      li7.textContent = "PushButton fix (pushed class was not applied)";
+      t35 = (0, import_internal30.space)();
       h25 = (0, import_internal30.element)("h2");
-      t37 = (0, import_internal30.text)("v5.0.5 ");
+      t36 = (0, import_internal30.text)("v5.0.6 ");
       small5 = (0, import_internal30.element)("small");
       small5.textContent = "(2023-03-02)";
-      t39 = (0, import_internal30.space)();
+      t38 = (0, import_internal30.space)();
       ul5 = (0, import_internal30.element)("ul");
       li8 = (0, import_internal30.element)("li");
-      t40 = (0, import_internal30.text)("Reduce memory footprint (removed some of the ");
+      t39 = (0, import_internal30.text)("Add back ");
       em4 = (0, import_internal30.element)("em");
-      em4.textContent = "transform";
-      t42 = (0, import_internal30.text)(" props that were no longer necessary)");
-      t43 = (0, import_internal30.space)();
+      em4.textContent = "form";
+      t41 = (0, import_internal30.text)(" property to a button");
+      t42 = (0, import_internal30.space)();
       h26 = (0, import_internal30.element)("h2");
-      t44 = (0, import_internal30.text)("v5.0.4 ");
+      t43 = (0, import_internal30.text)("v5.0.5 ");
       small6 = (0, import_internal30.element)("small");
       small6.textContent = "(2023-03-02)";
-      t46 = (0, import_internal30.space)();
+      t45 = (0, import_internal30.space)();
       ul6 = (0, import_internal30.element)("ul");
       li9 = (0, import_internal30.element)("li");
-      li9.textContent = "esbuild replaced rollup for speed and simplicity\n	";
-      li10 = (0, import_internal30.element)("li");
-      li10.textContent = "cleanup & refactoring";
+      t46 = (0, import_internal30.text)("Reduce memory footprint (removed some of the ");
+      em5 = (0, import_internal30.element)("em");
+      em5.textContent = "transform";
+      t48 = (0, import_internal30.text)(" props that were no longer necessary)");
       t49 = (0, import_internal30.space)();
       h27 = (0, import_internal30.element)("h2");
-      t50 = (0, import_internal30.text)("v5.0.3 ");
+      t50 = (0, import_internal30.text)("v5.0.4 ");
       small7 = (0, import_internal30.element)("small");
-      small7.textContent = "(2023-03-01)";
+      small7.textContent = "(2023-03-02)";
       t52 = (0, import_internal30.space)();
       ul7 = (0, import_internal30.element)("ul");
+      li10 = (0, import_internal30.element)("li");
+      li10.textContent = "esbuild replaced rollup for speed and simplicity\n	";
       li11 = (0, import_internal30.element)("li");
-      li11.textContent = "Tooltip hiding fix (wasn't hiding when hovering target)";
-      t54 = (0, import_internal30.space)();
+      li11.textContent = "cleanup & refactoring";
+      t55 = (0, import_internal30.space)();
       h28 = (0, import_internal30.element)("h2");
-      t55 = (0, import_internal30.text)("v5.0.2 ");
+      t56 = (0, import_internal30.text)("v5.0.3 ");
       small8 = (0, import_internal30.element)("small");
       small8.textContent = "(2023-03-01)";
-      t57 = (0, import_internal30.space)();
+      t58 = (0, import_internal30.space)();
       ul8 = (0, import_internal30.element)("ul");
       li12 = (0, import_internal30.element)("li");
-      li12.textContent = "Toaster import fix\n	";
-      li13 = (0, import_internal30.element)("li");
-      li13.textContent = "Tooltip fix (some console errors were popping up)";
+      li12.textContent = "Tooltip hiding fix (wasn't hiding when hovering target)";
       t60 = (0, import_internal30.space)();
       h29 = (0, import_internal30.element)("h2");
-      t61 = (0, import_internal30.text)("v5.0.1 ");
+      t61 = (0, import_internal30.text)("v5.0.2 ");
       small9 = (0, import_internal30.element)("small");
-      small9.textContent = "(2023-02-28)";
+      small9.textContent = "(2023-03-01)";
       t63 = (0, import_internal30.space)();
       ul9 = (0, import_internal30.element)("ul");
+      li13 = (0, import_internal30.element)("li");
+      li13.textContent = "Toaster import fix\n	";
       li14 = (0, import_internal30.element)("li");
-      t64 = (0, import_internal30.text)("Bring back ");
-      em5 = (0, import_internal30.element)("em");
-      em5.textContent = "button-outline.css";
-      t66 = (0, import_internal30.text)(" (it was accidentally deleted in v5.0.0)");
-      t67 = (0, import_internal30.space)();
+      li14.textContent = "Tooltip fix (some console errors were popping up)";
+      t66 = (0, import_internal30.space)();
       h210 = (0, import_internal30.element)("h2");
-      t68 = (0, import_internal30.text)("v5.0.0 ");
+      t67 = (0, import_internal30.text)("v5.0.1 ");
       small10 = (0, import_internal30.element)("small");
       small10.textContent = "(2023-02-28)";
-      t70 = (0, import_internal30.space)();
+      t69 = (0, import_internal30.space)();
       ul10 = (0, import_internal30.element)("ul");
       li15 = (0, import_internal30.element)("li");
-      t71 = (0, import_internal30.text)("Breaking change: renamed props for all components: ");
+      t70 = (0, import_internal30.text)("Bring back ");
       em6 = (0, import_internal30.element)("em");
-      em6.textContent = "className";
-      t73 = (0, import_internal30.text)(" -> ");
-      em7 = (0, import_internal30.element)("em");
-      em7.textContent = "class";
-      t75 = (0, import_internal30.text)(" (as it turns out it is possible to use ");
-      em8 = (0, import_internal30.element)("em");
-      em8.textContent = "class";
-      t77 = (0, import_internal30.text)(" as a prop name in svelte)\n	");
-      li16 = (0, import_internal30.element)("li");
-      t78 = (0, import_internal30.text)("Almost all components now have a ");
-      em9 = (0, import_internal30.element)("em");
-      em9.textContent = "class";
-      t80 = (0, import_internal30.text)(" prop, which can be used to add custom classes to the component\n	");
-      li17 = (0, import_internal30.element)("li");
-      li17.textContent = "Updated docs to reflect the above changes\n	";
-      li18 = (0, import_internal30.element)("li");
-      li18.textContent = "Docs API table is now alphabetically sorted\n	";
-      li19 = (0, import_internal30.element)("li");
-      t83 = (0, import_internal30.text)("Components don't use ");
-      em10 = (0, import_internal30.element)("em");
-      em10.textContent = "$$props";
-      t85 = (0, import_internal30.text)(" anymore, as it was causing issues with the ");
-      em11 = (0, import_internal30.element)("em");
-      em11.textContent = "class";
-      t87 = (0, import_internal30.text)(" prop. Instead, the props are now explicitly passed down to the component. This is a good thing to do, as it makes the components more explicit and easier to understand.");
-      t88 = (0, import_internal30.space)();
+      em6.textContent = "button-outline.css";
+      t72 = (0, import_internal30.text)(" (it was accidentally deleted in v5.0.0)");
+      t73 = (0, import_internal30.space)();
       h211 = (0, import_internal30.element)("h2");
-      t89 = (0, import_internal30.text)("v4.0.0 ");
+      t74 = (0, import_internal30.text)("v5.0.0 ");
       small11 = (0, import_internal30.element)("small");
       small11.textContent = "(2023-02-28)";
-      t91 = (0, import_internal30.space)();
+      t76 = (0, import_internal30.space)();
       ul11 = (0, import_internal30.element)("ul");
+      li16 = (0, import_internal30.element)("li");
+      t77 = (0, import_internal30.text)("Breaking change: renamed props for all components: ");
+      em7 = (0, import_internal30.element)("em");
+      em7.textContent = "className";
+      t79 = (0, import_internal30.text)(" -> ");
+      em8 = (0, import_internal30.element)("em");
+      em8.textContent = "class";
+      t81 = (0, import_internal30.text)(" (as it turns out it is possible to use ");
+      em9 = (0, import_internal30.element)("em");
+      em9.textContent = "class";
+      t83 = (0, import_internal30.text)(" as a prop name in svelte)\n	");
+      li17 = (0, import_internal30.element)("li");
+      t84 = (0, import_internal30.text)("Almost all components now have a ");
+      em10 = (0, import_internal30.element)("em");
+      em10.textContent = "class";
+      t86 = (0, import_internal30.text)(" prop, which can be used to add custom classes to the component\n	");
+      li18 = (0, import_internal30.element)("li");
+      li18.textContent = "Updated docs to reflect the above changes\n	";
+      li19 = (0, import_internal30.element)("li");
+      li19.textContent = "Docs API table is now alphabetically sorted\n	";
       li20 = (0, import_internal30.element)("li");
-      t92 = (0, import_internal30.text)("Breaking change: renamed components: ");
+      t89 = (0, import_internal30.text)("Components don't use ");
+      em11 = (0, import_internal30.element)("em");
+      em11.textContent = "$$props";
+      t91 = (0, import_internal30.text)(" anymore, as it was causing issues with the ");
       em12 = (0, import_internal30.element)("em");
-      em12.textContent = "Item";
-      t94 = (0, import_internal30.text)(" -> ");
-      em13 = (0, import_internal30.element)("em");
-      em13.textContent = "MenuItem";
-      t96 = (0, import_internal30.text)(", ");
-      em14 = (0, import_internal30.element)("em");
-      em14.textContent = "Separator";
-      t98 = (0, import_internal30.text)(" -> ");
-      em15 = (0, import_internal30.element)("em");
-      em15.textContent = "MenuSeparator";
-      t100 = (0, import_internal30.space)();
-      li21 = (0, import_internal30.element)("li");
-      li21.textContent = "Refactored the folder structure";
-      t102 = (0, import_internal30.space)();
+      em12.textContent = "class";
+      t93 = (0, import_internal30.text)(" prop. Instead, the props are now explicitly passed down to the component. This is a good thing to do, as it makes the components more explicit and easier to understand.");
+      t94 = (0, import_internal30.space)();
       h212 = (0, import_internal30.element)("h2");
-      t103 = (0, import_internal30.text)("v3.1.2 ");
+      t95 = (0, import_internal30.text)("v4.0.0 ");
       small12 = (0, import_internal30.element)("small");
-      small12.textContent = "(2023-01-04)";
-      t105 = (0, import_internal30.space)();
+      small12.textContent = "(2023-02-28)";
+      t97 = (0, import_internal30.space)();
       ul12 = (0, import_internal30.element)("ul");
-      li22 = (0, import_internal30.element)("li");
-      t106 = (0, import_internal30.text)("Toggle's ");
+      li21 = (0, import_internal30.element)("li");
+      t98 = (0, import_internal30.text)("Breaking change: renamed components: ");
+      em13 = (0, import_internal30.element)("em");
+      em13.textContent = "Item";
+      t100 = (0, import_internal30.text)(" -> ");
+      em14 = (0, import_internal30.element)("em");
+      em14.textContent = "MenuItem";
+      t102 = (0, import_internal30.text)(", ");
+      em15 = (0, import_internal30.element)("em");
+      em15.textContent = "Separator";
+      t104 = (0, import_internal30.text)(" -> ");
       em16 = (0, import_internal30.element)("em");
-      em16.textContent = "innerWidth";
-      t108 = (0, import_internal30.text)(" function was somehow overwriting ");
-      em17 = (0, import_internal30.element)("em");
-      em17.textContent = "window.innerWidth";
-      t110 = (0, import_internal30.text)(" property (maybe a compiler issue?)");
-      t111 = (0, import_internal30.space)();
+      em16.textContent = "MenuSeparator";
+      t106 = (0, import_internal30.space)();
+      li22 = (0, import_internal30.element)("li");
+      li22.textContent = "Refactored the folder structure";
+      t108 = (0, import_internal30.space)();
       h213 = (0, import_internal30.element)("h2");
-      t112 = (0, import_internal30.text)("v3.1.1 ");
+      t109 = (0, import_internal30.text)("v3.1.2 ");
       small13 = (0, import_internal30.element)("small");
       small13.textContent = "(2023-01-04)";
-      t114 = (0, import_internal30.space)();
+      t111 = (0, import_internal30.space)();
       ul13 = (0, import_internal30.element)("ul");
       li23 = (0, import_internal30.element)("li");
-      t115 = (0, import_internal30.text)("Fix ");
+      t112 = (0, import_internal30.text)("Toggle's ");
+      em17 = (0, import_internal30.element)("em");
+      em17.textContent = "innerWidth";
+      t114 = (0, import_internal30.text)(" function was somehow overwriting ");
       em18 = (0, import_internal30.element)("em");
-      em18.textContent = "input-number";
-      t117 = (0, import_internal30.text)(" (could not enter decimals)\n	");
-      li24 = (0, import_internal30.element)("li");
-      t118 = (0, import_internal30.text)("Fix ");
-      em19 = (0, import_internal30.element)("em");
-      em19.textContent = "input-math";
-      t120 = (0, import_internal30.text)(" (math didn't work)");
-      t121 = (0, import_internal30.space)();
+      em18.textContent = "window.innerWidth";
+      t116 = (0, import_internal30.text)(" property (maybe a compiler issue?)");
+      t117 = (0, import_internal30.space)();
       h214 = (0, import_internal30.element)("h2");
-      t122 = (0, import_internal30.text)("v3.1.0 ");
+      t118 = (0, import_internal30.text)("v3.1.1 ");
       small14 = (0, import_internal30.element)("small");
-      small14.textContent = "(2023-01-03)";
-      t124 = (0, import_internal30.space)();
+      small14.textContent = "(2023-01-04)";
+      t120 = (0, import_internal30.space)();
       ul14 = (0, import_internal30.element)("ul");
+      li24 = (0, import_internal30.element)("li");
+      t121 = (0, import_internal30.text)("Fix ");
+      em19 = (0, import_internal30.element)("em");
+      em19.textContent = "input-number";
+      t123 = (0, import_internal30.text)(" (could not enter decimals)\n	");
       li25 = (0, import_internal30.element)("li");
-      t125 = (0, import_internal30.text)("UX change: autocomplete will not close on scroll or resize events from now on (it can be changed using new properties ");
+      t124 = (0, import_internal30.text)("Fix ");
       em20 = (0, import_internal30.element)("em");
-      em20.textContent = "hideOnScroll";
-      t127 = (0, import_internal30.text)(" and ");
-      em21 = (0, import_internal30.element)("em");
-      em21.textContent = "hideOnResize";
-      t129 = (0, import_internal30.text)(").\n	");
-      li26 = (0, import_internal30.element)("li");
-      li26.textContent = "fixed: autocomplete issue, where clicking on a filtered list would not select.\n	";
-      li27 = (0, import_internal30.element)("li");
-      li27.textContent = 'tweak: autocomplete will now show "create new item" always (when enabled), not only when the query did not match anything. Except when the query matches an item exactly.';
-      t132 = (0, import_internal30.space)();
+      em20.textContent = "input-math";
+      t126 = (0, import_internal30.text)(" (math didn't work)");
+      t127 = (0, import_internal30.space)();
       h215 = (0, import_internal30.element)("h2");
-      t133 = (0, import_internal30.text)("v3.0.1 ");
+      t128 = (0, import_internal30.text)("v3.1.0 ");
       small15 = (0, import_internal30.element)("small");
-      small15.textContent = "(2022-12-30)";
-      t135 = (0, import_internal30.space)();
+      small15.textContent = "(2023-01-03)";
+      t130 = (0, import_internal30.space)();
       ul15 = (0, import_internal30.element)("ul");
+      li26 = (0, import_internal30.element)("li");
+      t131 = (0, import_internal30.text)("UX change: autocomplete will not close on scroll or resize events from now on (it can be changed using new properties ");
+      em21 = (0, import_internal30.element)("em");
+      em21.textContent = "hideOnScroll";
+      t133 = (0, import_internal30.text)(" and ");
+      em22 = (0, import_internal30.element)("em");
+      em22.textContent = "hideOnResize";
+      t135 = (0, import_internal30.text)(").\n	");
+      li27 = (0, import_internal30.element)("li");
+      li27.textContent = "fixed: autocomplete issue, where clicking on a filtered list would not select.\n	";
       li28 = (0, import_internal30.element)("li");
-      li28.textContent = "autocomplete should revert when entered value is not on the list";
-      t137 = (0, import_internal30.space)();
+      li28.textContent = 'tweak: autocomplete will now show "create new item" always (when enabled), not only when the query did not match anything. Except when the query matches an item exactly.';
+      t138 = (0, import_internal30.space)();
       h216 = (0, import_internal30.element)("h2");
-      t138 = (0, import_internal30.text)("v3.0.0 ");
+      t139 = (0, import_internal30.text)("v3.0.1 ");
       small16 = (0, import_internal30.element)("small");
-      small16.textContent = "(2022-12-28)";
-      t140 = (0, import_internal30.space)();
+      small16.textContent = "(2022-12-30)";
+      t141 = (0, import_internal30.space)();
       ul16 = (0, import_internal30.element)("ul");
       li29 = (0, import_internal30.element)("li");
-      t141 = (0, import_internal30.text)("breaking change: ");
-      em22 = (0, import_internal30.element)("em");
-      em22.textContent = "cssClass";
-      t143 = (0, import_internal30.text)(" property available on some components has been renamed to ");
-      em23 = (0, import_internal30.element)("em");
-      em23.textContent = "className";
-      t145 = (0, import_internal30.text)(" (to be more aligned with the standard workaround in other libs/frameworks).\n	");
-      li30 = (0, import_internal30.element)("li");
-      t146 = (0, import_internal30.text)("some components (where possible) are now using ");
-      em24 = (0, import_internal30.element)("em");
-      em24.textContent = "$$props";
-      t148 = (0, import_internal30.text)(" to pass-through the properties of the instance down to the component.");
-      t149 = (0, import_internal30.space)();
+      li29.textContent = "autocomplete should revert when entered value is not on the list";
+      t143 = (0, import_internal30.space)();
       h217 = (0, import_internal30.element)("h2");
-      t150 = (0, import_internal30.text)("v2.1.1 ");
+      t144 = (0, import_internal30.text)("v3.0.0 ");
       small17 = (0, import_internal30.element)("small");
-      small17.textContent = "(2022-12-24)";
-      t152 = (0, import_internal30.space)();
+      small17.textContent = "(2022-12-28)";
+      t146 = (0, import_internal30.space)();
       ul17 = (0, import_internal30.element)("ul");
+      li30 = (0, import_internal30.element)("li");
+      t147 = (0, import_internal30.text)("breaking change: ");
+      em23 = (0, import_internal30.element)("em");
+      em23.textContent = "cssClass";
+      t149 = (0, import_internal30.text)(" property available on some components has been renamed to ");
+      em24 = (0, import_internal30.element)("em");
+      em24.textContent = "className";
+      t151 = (0, import_internal30.text)(" (to be more aligned with the standard workaround in other libs/frameworks).\n	");
       li31 = (0, import_internal30.element)("li");
-      t153 = (0, import_internal30.text)("breaking change: ");
+      t152 = (0, import_internal30.text)("some components (where possible) are now using ");
       em25 = (0, import_internal30.element)("em");
-      em25.textContent = "dist";
-      t155 = (0, import_internal30.text)(" folder has been renamed to ");
-      em26 = (0, import_internal30.element)("em");
-      em26.textContent = "docs";
-      t157 = (0, import_internal30.text)(", as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).");
-      t158 = (0, import_internal30.space)();
+      em25.textContent = "$$props";
+      t154 = (0, import_internal30.text)(" to pass-through the properties of the instance down to the component.");
+      t155 = (0, import_internal30.space)();
       h218 = (0, import_internal30.element)("h2");
-      t159 = (0, import_internal30.text)("v1.7.12 ");
+      t156 = (0, import_internal30.text)("v2.1.1 ");
       small18 = (0, import_internal30.element)("small");
-      small18.textContent = "(2022-12-01)";
+      small18.textContent = "(2022-12-24)";
+      t158 = (0, import_internal30.space)();
+      ul18 = (0, import_internal30.element)("ul");
+      li32 = (0, import_internal30.element)("li");
+      t159 = (0, import_internal30.text)("breaking change: ");
+      em26 = (0, import_internal30.element)("em");
+      em26.textContent = "dist";
+      t161 = (0, import_internal30.text)(" folder has been renamed to ");
+      em27 = (0, import_internal30.element)("em");
+      em27.textContent = "docs";
+      t163 = (0, import_internal30.text)(", as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).");
+      t164 = (0, import_internal30.space)();
+      h219 = (0, import_internal30.element)("h2");
+      t165 = (0, import_internal30.text)("v1.7.12 ");
+      small19 = (0, import_internal30.element)("small");
+      small19.textContent = "(2022-12-01)";
       (0, import_internal30.add_location)(h1, file28, 0, 0, 0);
-      (0, import_internal30.add_location)(small0, file28, 3, 27, 48);
+      (0, import_internal30.add_location)(small0, file28, 3, 11, 32);
       (0, import_internal30.add_location)(h20, file28, 3, 0, 21);
-      (0, import_internal30.add_location)(em0, file28, 5, 13, 99);
-      (0, import_internal30.add_location)(em1, file28, 5, 56, 142);
-      (0, import_internal30.add_location)(li0, file28, 5, 1, 87);
-      (0, import_internal30.add_location)(ul0, file28, 4, 0, 81);
-      (0, import_internal30.add_location)(small1, file28, 8, 11, 187);
-      (0, import_internal30.add_location)(h21, file28, 8, 0, 176);
-      (0, import_internal30.add_location)(li1, file28, 10, 1, 226);
-      (0, import_internal30.add_location)(em2, file28, 11, 51, 424);
-      (0, import_internal30.add_location)(li2, file28, 11, 1, 374);
-      (0, import_internal30.add_location)(li3, file28, 12, 1, 451);
-      (0, import_internal30.add_location)(li4, file28, 13, 1, 487);
-      (0, import_internal30.add_location)(ul1, file28, 9, 0, 220);
-      (0, import_internal30.add_location)(small2, file28, 16, 11, 532);
-      (0, import_internal30.add_location)(h22, file28, 16, 0, 521);
-      (0, import_internal30.add_location)(li5, file28, 18, 1, 571);
-      (0, import_internal30.add_location)(ul2, file28, 17, 0, 565);
-      (0, import_internal30.add_location)(small3, file28, 21, 11, 618);
-      (0, import_internal30.add_location)(h23, file28, 21, 0, 607);
-      (0, import_internal30.add_location)(li6, file28, 23, 1, 657);
-      (0, import_internal30.add_location)(ul3, file28, 22, 0, 651);
-      (0, import_internal30.add_location)(small4, file28, 26, 11, 725);
-      (0, import_internal30.add_location)(h24, file28, 26, 0, 714);
-      (0, import_internal30.add_location)(em3, file28, 28, 14, 777);
-      (0, import_internal30.add_location)(li7, file28, 28, 1, 764);
-      (0, import_internal30.add_location)(ul4, file28, 27, 0, 758);
-      (0, import_internal30.add_location)(small5, file28, 31, 11, 830);
-      (0, import_internal30.add_location)(h25, file28, 31, 0, 819);
-      (0, import_internal30.add_location)(em4, file28, 33, 50, 918);
-      (0, import_internal30.add_location)(li8, file28, 33, 1, 869);
-      (0, import_internal30.add_location)(ul5, file28, 32, 0, 863);
-      (0, import_internal30.add_location)(small6, file28, 36, 11, 992);
-      (0, import_internal30.add_location)(h26, file28, 36, 0, 981);
-      (0, import_internal30.add_location)(li9, file28, 38, 1, 1031);
-      (0, import_internal30.add_location)(li10, file28, 39, 1, 1085);
-      (0, import_internal30.add_location)(ul6, file28, 37, 0, 1025);
-      (0, import_internal30.add_location)(small7, file28, 42, 11, 1129);
-      (0, import_internal30.add_location)(h27, file28, 42, 0, 1118);
-      (0, import_internal30.add_location)(li11, file28, 44, 1, 1168);
-      (0, import_internal30.add_location)(ul7, file28, 43, 0, 1162);
-      (0, import_internal30.add_location)(small8, file28, 47, 11, 1246);
-      (0, import_internal30.add_location)(h28, file28, 47, 0, 1235);
-      (0, import_internal30.add_location)(li12, file28, 49, 1, 1285);
-      (0, import_internal30.add_location)(li13, file28, 50, 1, 1309);
-      (0, import_internal30.add_location)(ul8, file28, 48, 0, 1279);
-      (0, import_internal30.add_location)(small9, file28, 53, 11, 1381);
-      (0, import_internal30.add_location)(h29, file28, 53, 0, 1370);
-      (0, import_internal30.add_location)(em5, file28, 55, 16, 1435);
-      (0, import_internal30.add_location)(li14, file28, 55, 1, 1420);
-      (0, import_internal30.add_location)(ul9, file28, 54, 0, 1414);
-      (0, import_internal30.add_location)(small10, file28, 59, 11, 1522);
-      (0, import_internal30.add_location)(h210, file28, 59, 0, 1511);
-      (0, import_internal30.add_location)(em6, file28, 61, 56, 1616);
-      (0, import_internal30.add_location)(em7, file28, 61, 78, 1638);
-      (0, import_internal30.add_location)(em8, file28, 61, 132, 1692);
-      (0, import_internal30.add_location)(li15, file28, 61, 1, 1561);
-      (0, import_internal30.add_location)(em9, file28, 62, 38, 1771);
-      (0, import_internal30.add_location)(li16, file28, 62, 1, 1734);
-      (0, import_internal30.add_location)(li17, file28, 63, 1, 1850);
-      (0, import_internal30.add_location)(li18, file28, 64, 1, 1897);
-      (0, import_internal30.add_location)(em10, file28, 65, 26, 1971);
-      (0, import_internal30.add_location)(em11, file28, 65, 86, 2031);
-      (0, import_internal30.add_location)(li19, file28, 65, 1, 1946);
-      (0, import_internal30.add_location)(ul10, file28, 60, 0, 1555);
-      (0, import_internal30.add_location)(small11, file28, 69, 11, 2234);
-      (0, import_internal30.add_location)(h211, file28, 69, 0, 2223);
-      (0, import_internal30.add_location)(em12, file28, 71, 42, 2314);
-      (0, import_internal30.add_location)(em13, file28, 71, 59, 2331);
-      (0, import_internal30.add_location)(em14, file28, 71, 78, 2350);
-      (0, import_internal30.add_location)(em15, file28, 71, 100, 2372);
-      (0, import_internal30.add_location)(li20, file28, 71, 1, 2273);
-      (0, import_internal30.add_location)(li21, file28, 72, 1, 2396);
-      (0, import_internal30.add_location)(ul11, file28, 70, 0, 2267);
-      (0, import_internal30.add_location)(small12, file28, 76, 11, 2451);
-      (0, import_internal30.add_location)(h212, file28, 76, 0, 2440);
-      (0, import_internal30.add_location)(em16, file28, 78, 14, 2503);
-      (0, import_internal30.add_location)(em17, file28, 78, 67, 2556);
-      (0, import_internal30.add_location)(li22, file28, 78, 1, 2490);
-      (0, import_internal30.add_location)(ul12, file28, 77, 0, 2484);
-      (0, import_internal30.add_location)(small13, file28, 82, 11, 2637);
-      (0, import_internal30.add_location)(h213, file28, 82, 0, 2626);
-      (0, import_internal30.add_location)(em18, file28, 84, 9, 2684);
-      (0, import_internal30.add_location)(li23, file28, 84, 1, 2676);
-      (0, import_internal30.add_location)(em19, file28, 85, 9, 2742);
-      (0, import_internal30.add_location)(li24, file28, 85, 1, 2734);
-      (0, import_internal30.add_location)(ul13, file28, 83, 0, 2670);
-      (0, import_internal30.add_location)(small14, file28, 89, 11, 2800);
-      (0, import_internal30.add_location)(h214, file28, 89, 0, 2789);
-      (0, import_internal30.add_location)(em20, file28, 91, 123, 2961);
-      (0, import_internal30.add_location)(em21, file28, 91, 149, 2987);
-      (0, import_internal30.add_location)(li25, file28, 91, 1, 2839);
-      (0, import_internal30.add_location)(li26, file28, 92, 1, 3012);
-      (0, import_internal30.add_location)(li27, file28, 93, 1, 3096);
-      (0, import_internal30.add_location)(ul14, file28, 90, 0, 2833);
-      (0, import_internal30.add_location)(small15, file28, 97, 11, 3289);
-      (0, import_internal30.add_location)(h215, file28, 97, 0, 3278);
-      (0, import_internal30.add_location)(li28, file28, 99, 1, 3328);
-      (0, import_internal30.add_location)(ul15, file28, 98, 0, 3322);
-      (0, import_internal30.add_location)(small16, file28, 102, 11, 3415);
-      (0, import_internal30.add_location)(h216, file28, 102, 0, 3404);
-      (0, import_internal30.add_location)(em22, file28, 104, 22, 3475);
-      (0, import_internal30.add_location)(em23, file28, 104, 98, 3551);
-      (0, import_internal30.add_location)(li29, file28, 104, 1, 3454);
-      (0, import_internal30.add_location)(em24, file28, 105, 52, 3698);
-      (0, import_internal30.add_location)(li30, file28, 105, 1, 3647);
-      (0, import_internal30.add_location)(ul16, file28, 103, 0, 3448);
-      (0, import_internal30.add_location)(small17, file28, 108, 11, 3803);
-      (0, import_internal30.add_location)(h217, file28, 108, 0, 3792);
-      (0, import_internal30.add_location)(em25, file28, 110, 22, 3863);
-      (0, import_internal30.add_location)(em26, file28, 110, 63, 3904);
-      (0, import_internal30.add_location)(li31, file28, 110, 1, 3842);
-      (0, import_internal30.add_location)(ul17, file28, 109, 0, 3836);
-      (0, import_internal30.add_location)(small18, file28, 113, 12, 4094);
-      (0, import_internal30.add_location)(h218, file28, 113, 0, 4082);
+      (0, import_internal30.add_location)(em0, file28, 5, 5, 75);
+      (0, import_internal30.add_location)(li0, file28, 5, 1, 71);
+      (0, import_internal30.add_location)(ul0, file28, 4, 0, 65);
+      (0, import_internal30.add_location)(small1, file28, 9, 27, 204);
+      (0, import_internal30.add_location)(h21, file28, 9, 0, 177);
+      (0, import_internal30.add_location)(em1, file28, 11, 13, 255);
+      (0, import_internal30.add_location)(em2, file28, 11, 56, 298);
+      (0, import_internal30.add_location)(li1, file28, 11, 1, 243);
+      (0, import_internal30.add_location)(ul1, file28, 10, 0, 237);
+      (0, import_internal30.add_location)(small2, file28, 14, 11, 343);
+      (0, import_internal30.add_location)(h22, file28, 14, 0, 332);
+      (0, import_internal30.add_location)(li2, file28, 16, 1, 382);
+      (0, import_internal30.add_location)(em3, file28, 17, 51, 580);
+      (0, import_internal30.add_location)(li3, file28, 17, 1, 530);
+      (0, import_internal30.add_location)(li4, file28, 18, 1, 607);
+      (0, import_internal30.add_location)(li5, file28, 19, 1, 643);
+      (0, import_internal30.add_location)(ul2, file28, 15, 0, 376);
+      (0, import_internal30.add_location)(small3, file28, 22, 11, 688);
+      (0, import_internal30.add_location)(h23, file28, 22, 0, 677);
+      (0, import_internal30.add_location)(li6, file28, 24, 1, 727);
+      (0, import_internal30.add_location)(ul3, file28, 23, 0, 721);
+      (0, import_internal30.add_location)(small4, file28, 27, 11, 774);
+      (0, import_internal30.add_location)(h24, file28, 27, 0, 763);
+      (0, import_internal30.add_location)(li7, file28, 29, 1, 813);
+      (0, import_internal30.add_location)(ul4, file28, 28, 0, 807);
+      (0, import_internal30.add_location)(small5, file28, 32, 11, 881);
+      (0, import_internal30.add_location)(h25, file28, 32, 0, 870);
+      (0, import_internal30.add_location)(em4, file28, 34, 14, 933);
+      (0, import_internal30.add_location)(li8, file28, 34, 1, 920);
+      (0, import_internal30.add_location)(ul5, file28, 33, 0, 914);
+      (0, import_internal30.add_location)(small6, file28, 37, 11, 986);
+      (0, import_internal30.add_location)(h26, file28, 37, 0, 975);
+      (0, import_internal30.add_location)(em5, file28, 39, 50, 1074);
+      (0, import_internal30.add_location)(li9, file28, 39, 1, 1025);
+      (0, import_internal30.add_location)(ul6, file28, 38, 0, 1019);
+      (0, import_internal30.add_location)(small7, file28, 42, 11, 1148);
+      (0, import_internal30.add_location)(h27, file28, 42, 0, 1137);
+      (0, import_internal30.add_location)(li10, file28, 44, 1, 1187);
+      (0, import_internal30.add_location)(li11, file28, 45, 1, 1241);
+      (0, import_internal30.add_location)(ul7, file28, 43, 0, 1181);
+      (0, import_internal30.add_location)(small8, file28, 48, 11, 1285);
+      (0, import_internal30.add_location)(h28, file28, 48, 0, 1274);
+      (0, import_internal30.add_location)(li12, file28, 50, 1, 1324);
+      (0, import_internal30.add_location)(ul8, file28, 49, 0, 1318);
+      (0, import_internal30.add_location)(small9, file28, 53, 11, 1402);
+      (0, import_internal30.add_location)(h29, file28, 53, 0, 1391);
+      (0, import_internal30.add_location)(li13, file28, 55, 1, 1441);
+      (0, import_internal30.add_location)(li14, file28, 56, 1, 1465);
+      (0, import_internal30.add_location)(ul9, file28, 54, 0, 1435);
+      (0, import_internal30.add_location)(small10, file28, 59, 11, 1537);
+      (0, import_internal30.add_location)(h210, file28, 59, 0, 1526);
+      (0, import_internal30.add_location)(em6, file28, 61, 16, 1591);
+      (0, import_internal30.add_location)(li15, file28, 61, 1, 1576);
+      (0, import_internal30.add_location)(ul10, file28, 60, 0, 1570);
+      (0, import_internal30.add_location)(small11, file28, 65, 11, 1678);
+      (0, import_internal30.add_location)(h211, file28, 65, 0, 1667);
+      (0, import_internal30.add_location)(em7, file28, 67, 56, 1772);
+      (0, import_internal30.add_location)(em8, file28, 67, 78, 1794);
+      (0, import_internal30.add_location)(em9, file28, 67, 132, 1848);
+      (0, import_internal30.add_location)(li16, file28, 67, 1, 1717);
+      (0, import_internal30.add_location)(em10, file28, 68, 38, 1927);
+      (0, import_internal30.add_location)(li17, file28, 68, 1, 1890);
+      (0, import_internal30.add_location)(li18, file28, 69, 1, 2006);
+      (0, import_internal30.add_location)(li19, file28, 70, 1, 2053);
+      (0, import_internal30.add_location)(em11, file28, 71, 26, 2127);
+      (0, import_internal30.add_location)(em12, file28, 71, 86, 2187);
+      (0, import_internal30.add_location)(li20, file28, 71, 1, 2102);
+      (0, import_internal30.add_location)(ul11, file28, 66, 0, 1711);
+      (0, import_internal30.add_location)(small12, file28, 75, 11, 2390);
+      (0, import_internal30.add_location)(h212, file28, 75, 0, 2379);
+      (0, import_internal30.add_location)(em13, file28, 77, 42, 2470);
+      (0, import_internal30.add_location)(em14, file28, 77, 59, 2487);
+      (0, import_internal30.add_location)(em15, file28, 77, 78, 2506);
+      (0, import_internal30.add_location)(em16, file28, 77, 100, 2528);
+      (0, import_internal30.add_location)(li21, file28, 77, 1, 2429);
+      (0, import_internal30.add_location)(li22, file28, 78, 1, 2552);
+      (0, import_internal30.add_location)(ul12, file28, 76, 0, 2423);
+      (0, import_internal30.add_location)(small13, file28, 82, 11, 2607);
+      (0, import_internal30.add_location)(h213, file28, 82, 0, 2596);
+      (0, import_internal30.add_location)(em17, file28, 84, 14, 2659);
+      (0, import_internal30.add_location)(em18, file28, 84, 67, 2712);
+      (0, import_internal30.add_location)(li23, file28, 84, 1, 2646);
+      (0, import_internal30.add_location)(ul13, file28, 83, 0, 2640);
+      (0, import_internal30.add_location)(small14, file28, 88, 11, 2793);
+      (0, import_internal30.add_location)(h214, file28, 88, 0, 2782);
+      (0, import_internal30.add_location)(em19, file28, 90, 9, 2840);
+      (0, import_internal30.add_location)(li24, file28, 90, 1, 2832);
+      (0, import_internal30.add_location)(em20, file28, 91, 9, 2898);
+      (0, import_internal30.add_location)(li25, file28, 91, 1, 2890);
+      (0, import_internal30.add_location)(ul14, file28, 89, 0, 2826);
+      (0, import_internal30.add_location)(small15, file28, 95, 11, 2956);
+      (0, import_internal30.add_location)(h215, file28, 95, 0, 2945);
+      (0, import_internal30.add_location)(em21, file28, 97, 123, 3117);
+      (0, import_internal30.add_location)(em22, file28, 97, 149, 3143);
+      (0, import_internal30.add_location)(li26, file28, 97, 1, 2995);
+      (0, import_internal30.add_location)(li27, file28, 98, 1, 3168);
+      (0, import_internal30.add_location)(li28, file28, 99, 1, 3252);
+      (0, import_internal30.add_location)(ul15, file28, 96, 0, 2989);
+      (0, import_internal30.add_location)(small16, file28, 103, 11, 3445);
+      (0, import_internal30.add_location)(h216, file28, 103, 0, 3434);
+      (0, import_internal30.add_location)(li29, file28, 105, 1, 3484);
+      (0, import_internal30.add_location)(ul16, file28, 104, 0, 3478);
+      (0, import_internal30.add_location)(small17, file28, 108, 11, 3571);
+      (0, import_internal30.add_location)(h217, file28, 108, 0, 3560);
+      (0, import_internal30.add_location)(em23, file28, 110, 22, 3631);
+      (0, import_internal30.add_location)(em24, file28, 110, 98, 3707);
+      (0, import_internal30.add_location)(li30, file28, 110, 1, 3610);
+      (0, import_internal30.add_location)(em25, file28, 111, 52, 3854);
+      (0, import_internal30.add_location)(li31, file28, 111, 1, 3803);
+      (0, import_internal30.add_location)(ul17, file28, 109, 0, 3604);
+      (0, import_internal30.add_location)(small18, file28, 114, 11, 3959);
+      (0, import_internal30.add_location)(h218, file28, 114, 0, 3948);
+      (0, import_internal30.add_location)(em26, file28, 116, 22, 4019);
+      (0, import_internal30.add_location)(em27, file28, 116, 63, 4060);
+      (0, import_internal30.add_location)(li32, file28, 116, 1, 3998);
+      (0, import_internal30.add_location)(ul18, file28, 115, 0, 3992);
+      (0, import_internal30.add_location)(small19, file28, 119, 12, 4250);
+      (0, import_internal30.add_location)(h219, file28, 119, 0, 4238);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -20403,212 +20652,221 @@ function create_fragment30(ctx) {
       (0, import_internal30.insert_dev)(target, t4, anchor);
       (0, import_internal30.insert_dev)(target, ul0, anchor);
       (0, import_internal30.append_dev)(ul0, li0);
-      (0, import_internal30.append_dev)(li0, t5);
       (0, import_internal30.append_dev)(li0, em0);
-      (0, import_internal30.append_dev)(li0, t7);
-      (0, import_internal30.append_dev)(li0, em1);
-      (0, import_internal30.insert_dev)(target, t9, anchor);
+      (0, import_internal30.append_dev)(li0, t6);
+      (0, import_internal30.insert_dev)(target, t7, anchor);
       (0, import_internal30.insert_dev)(target, h21, anchor);
-      (0, import_internal30.append_dev)(h21, t10);
+      (0, import_internal30.append_dev)(h21, t8);
       (0, import_internal30.append_dev)(h21, small1);
-      (0, import_internal30.insert_dev)(target, t12, anchor);
+      (0, import_internal30.insert_dev)(target, t10, anchor);
       (0, import_internal30.insert_dev)(target, ul1, anchor);
       (0, import_internal30.append_dev)(ul1, li1);
-      (0, import_internal30.append_dev)(ul1, li2);
-      (0, import_internal30.append_dev)(li2, t14);
-      (0, import_internal30.append_dev)(li2, em2);
-      (0, import_internal30.append_dev)(li2, t16);
-      (0, import_internal30.append_dev)(ul1, li3);
-      (0, import_internal30.append_dev)(ul1, li4);
-      (0, import_internal30.insert_dev)(target, t19, anchor);
+      (0, import_internal30.append_dev)(li1, t11);
+      (0, import_internal30.append_dev)(li1, em1);
+      (0, import_internal30.append_dev)(li1, t13);
+      (0, import_internal30.append_dev)(li1, em2);
+      (0, import_internal30.insert_dev)(target, t15, anchor);
       (0, import_internal30.insert_dev)(target, h22, anchor);
-      (0, import_internal30.append_dev)(h22, t20);
+      (0, import_internal30.append_dev)(h22, t16);
       (0, import_internal30.append_dev)(h22, small2);
-      (0, import_internal30.insert_dev)(target, t22, anchor);
+      (0, import_internal30.insert_dev)(target, t18, anchor);
       (0, import_internal30.insert_dev)(target, ul2, anchor);
+      (0, import_internal30.append_dev)(ul2, li2);
+      (0, import_internal30.append_dev)(ul2, li3);
+      (0, import_internal30.append_dev)(li3, t20);
+      (0, import_internal30.append_dev)(li3, em3);
+      (0, import_internal30.append_dev)(li3, t22);
+      (0, import_internal30.append_dev)(ul2, li4);
       (0, import_internal30.append_dev)(ul2, li5);
-      (0, import_internal30.insert_dev)(target, t24, anchor);
+      (0, import_internal30.insert_dev)(target, t25, anchor);
       (0, import_internal30.insert_dev)(target, h23, anchor);
-      (0, import_internal30.append_dev)(h23, t25);
+      (0, import_internal30.append_dev)(h23, t26);
       (0, import_internal30.append_dev)(h23, small3);
-      (0, import_internal30.insert_dev)(target, t27, anchor);
+      (0, import_internal30.insert_dev)(target, t28, anchor);
       (0, import_internal30.insert_dev)(target, ul3, anchor);
       (0, import_internal30.append_dev)(ul3, li6);
-      (0, import_internal30.insert_dev)(target, t29, anchor);
+      (0, import_internal30.insert_dev)(target, t30, anchor);
       (0, import_internal30.insert_dev)(target, h24, anchor);
-      (0, import_internal30.append_dev)(h24, t30);
+      (0, import_internal30.append_dev)(h24, t31);
       (0, import_internal30.append_dev)(h24, small4);
-      (0, import_internal30.insert_dev)(target, t32, anchor);
+      (0, import_internal30.insert_dev)(target, t33, anchor);
       (0, import_internal30.insert_dev)(target, ul4, anchor);
       (0, import_internal30.append_dev)(ul4, li7);
-      (0, import_internal30.append_dev)(li7, t33);
-      (0, import_internal30.append_dev)(li7, em3);
-      (0, import_internal30.append_dev)(li7, t35);
-      (0, import_internal30.insert_dev)(target, t36, anchor);
+      (0, import_internal30.insert_dev)(target, t35, anchor);
       (0, import_internal30.insert_dev)(target, h25, anchor);
-      (0, import_internal30.append_dev)(h25, t37);
+      (0, import_internal30.append_dev)(h25, t36);
       (0, import_internal30.append_dev)(h25, small5);
-      (0, import_internal30.insert_dev)(target, t39, anchor);
+      (0, import_internal30.insert_dev)(target, t38, anchor);
       (0, import_internal30.insert_dev)(target, ul5, anchor);
       (0, import_internal30.append_dev)(ul5, li8);
-      (0, import_internal30.append_dev)(li8, t40);
+      (0, import_internal30.append_dev)(li8, t39);
       (0, import_internal30.append_dev)(li8, em4);
-      (0, import_internal30.append_dev)(li8, t42);
-      (0, import_internal30.insert_dev)(target, t43, anchor);
+      (0, import_internal30.append_dev)(li8, t41);
+      (0, import_internal30.insert_dev)(target, t42, anchor);
       (0, import_internal30.insert_dev)(target, h26, anchor);
-      (0, import_internal30.append_dev)(h26, t44);
+      (0, import_internal30.append_dev)(h26, t43);
       (0, import_internal30.append_dev)(h26, small6);
-      (0, import_internal30.insert_dev)(target, t46, anchor);
+      (0, import_internal30.insert_dev)(target, t45, anchor);
       (0, import_internal30.insert_dev)(target, ul6, anchor);
       (0, import_internal30.append_dev)(ul6, li9);
-      (0, import_internal30.append_dev)(ul6, li10);
+      (0, import_internal30.append_dev)(li9, t46);
+      (0, import_internal30.append_dev)(li9, em5);
+      (0, import_internal30.append_dev)(li9, t48);
       (0, import_internal30.insert_dev)(target, t49, anchor);
       (0, import_internal30.insert_dev)(target, h27, anchor);
       (0, import_internal30.append_dev)(h27, t50);
       (0, import_internal30.append_dev)(h27, small7);
       (0, import_internal30.insert_dev)(target, t52, anchor);
       (0, import_internal30.insert_dev)(target, ul7, anchor);
+      (0, import_internal30.append_dev)(ul7, li10);
       (0, import_internal30.append_dev)(ul7, li11);
-      (0, import_internal30.insert_dev)(target, t54, anchor);
+      (0, import_internal30.insert_dev)(target, t55, anchor);
       (0, import_internal30.insert_dev)(target, h28, anchor);
-      (0, import_internal30.append_dev)(h28, t55);
+      (0, import_internal30.append_dev)(h28, t56);
       (0, import_internal30.append_dev)(h28, small8);
-      (0, import_internal30.insert_dev)(target, t57, anchor);
+      (0, import_internal30.insert_dev)(target, t58, anchor);
       (0, import_internal30.insert_dev)(target, ul8, anchor);
       (0, import_internal30.append_dev)(ul8, li12);
-      (0, import_internal30.append_dev)(ul8, li13);
       (0, import_internal30.insert_dev)(target, t60, anchor);
       (0, import_internal30.insert_dev)(target, h29, anchor);
       (0, import_internal30.append_dev)(h29, t61);
       (0, import_internal30.append_dev)(h29, small9);
       (0, import_internal30.insert_dev)(target, t63, anchor);
       (0, import_internal30.insert_dev)(target, ul9, anchor);
+      (0, import_internal30.append_dev)(ul9, li13);
       (0, import_internal30.append_dev)(ul9, li14);
-      (0, import_internal30.append_dev)(li14, t64);
-      (0, import_internal30.append_dev)(li14, em5);
-      (0, import_internal30.append_dev)(li14, t66);
-      (0, import_internal30.insert_dev)(target, t67, anchor);
+      (0, import_internal30.insert_dev)(target, t66, anchor);
       (0, import_internal30.insert_dev)(target, h210, anchor);
-      (0, import_internal30.append_dev)(h210, t68);
+      (0, import_internal30.append_dev)(h210, t67);
       (0, import_internal30.append_dev)(h210, small10);
-      (0, import_internal30.insert_dev)(target, t70, anchor);
+      (0, import_internal30.insert_dev)(target, t69, anchor);
       (0, import_internal30.insert_dev)(target, ul10, anchor);
       (0, import_internal30.append_dev)(ul10, li15);
-      (0, import_internal30.append_dev)(li15, t71);
+      (0, import_internal30.append_dev)(li15, t70);
       (0, import_internal30.append_dev)(li15, em6);
-      (0, import_internal30.append_dev)(li15, t73);
-      (0, import_internal30.append_dev)(li15, em7);
-      (0, import_internal30.append_dev)(li15, t75);
-      (0, import_internal30.append_dev)(li15, em8);
-      (0, import_internal30.append_dev)(li15, t77);
-      (0, import_internal30.append_dev)(ul10, li16);
-      (0, import_internal30.append_dev)(li16, t78);
-      (0, import_internal30.append_dev)(li16, em9);
-      (0, import_internal30.append_dev)(li16, t80);
-      (0, import_internal30.append_dev)(ul10, li17);
-      (0, import_internal30.append_dev)(ul10, li18);
-      (0, import_internal30.append_dev)(ul10, li19);
-      (0, import_internal30.append_dev)(li19, t83);
-      (0, import_internal30.append_dev)(li19, em10);
-      (0, import_internal30.append_dev)(li19, t85);
-      (0, import_internal30.append_dev)(li19, em11);
-      (0, import_internal30.append_dev)(li19, t87);
-      (0, import_internal30.insert_dev)(target, t88, anchor);
+      (0, import_internal30.append_dev)(li15, t72);
+      (0, import_internal30.insert_dev)(target, t73, anchor);
       (0, import_internal30.insert_dev)(target, h211, anchor);
-      (0, import_internal30.append_dev)(h211, t89);
+      (0, import_internal30.append_dev)(h211, t74);
       (0, import_internal30.append_dev)(h211, small11);
-      (0, import_internal30.insert_dev)(target, t91, anchor);
+      (0, import_internal30.insert_dev)(target, t76, anchor);
       (0, import_internal30.insert_dev)(target, ul11, anchor);
+      (0, import_internal30.append_dev)(ul11, li16);
+      (0, import_internal30.append_dev)(li16, t77);
+      (0, import_internal30.append_dev)(li16, em7);
+      (0, import_internal30.append_dev)(li16, t79);
+      (0, import_internal30.append_dev)(li16, em8);
+      (0, import_internal30.append_dev)(li16, t81);
+      (0, import_internal30.append_dev)(li16, em9);
+      (0, import_internal30.append_dev)(li16, t83);
+      (0, import_internal30.append_dev)(ul11, li17);
+      (0, import_internal30.append_dev)(li17, t84);
+      (0, import_internal30.append_dev)(li17, em10);
+      (0, import_internal30.append_dev)(li17, t86);
+      (0, import_internal30.append_dev)(ul11, li18);
+      (0, import_internal30.append_dev)(ul11, li19);
       (0, import_internal30.append_dev)(ul11, li20);
-      (0, import_internal30.append_dev)(li20, t92);
+      (0, import_internal30.append_dev)(li20, t89);
+      (0, import_internal30.append_dev)(li20, em11);
+      (0, import_internal30.append_dev)(li20, t91);
       (0, import_internal30.append_dev)(li20, em12);
-      (0, import_internal30.append_dev)(li20, t94);
-      (0, import_internal30.append_dev)(li20, em13);
-      (0, import_internal30.append_dev)(li20, t96);
-      (0, import_internal30.append_dev)(li20, em14);
-      (0, import_internal30.append_dev)(li20, t98);
-      (0, import_internal30.append_dev)(li20, em15);
-      (0, import_internal30.append_dev)(li20, t100);
-      (0, import_internal30.append_dev)(ul11, li21);
-      (0, import_internal30.insert_dev)(target, t102, anchor);
+      (0, import_internal30.append_dev)(li20, t93);
+      (0, import_internal30.insert_dev)(target, t94, anchor);
       (0, import_internal30.insert_dev)(target, h212, anchor);
-      (0, import_internal30.append_dev)(h212, t103);
+      (0, import_internal30.append_dev)(h212, t95);
       (0, import_internal30.append_dev)(h212, small12);
-      (0, import_internal30.insert_dev)(target, t105, anchor);
+      (0, import_internal30.insert_dev)(target, t97, anchor);
       (0, import_internal30.insert_dev)(target, ul12, anchor);
+      (0, import_internal30.append_dev)(ul12, li21);
+      (0, import_internal30.append_dev)(li21, t98);
+      (0, import_internal30.append_dev)(li21, em13);
+      (0, import_internal30.append_dev)(li21, t100);
+      (0, import_internal30.append_dev)(li21, em14);
+      (0, import_internal30.append_dev)(li21, t102);
+      (0, import_internal30.append_dev)(li21, em15);
+      (0, import_internal30.append_dev)(li21, t104);
+      (0, import_internal30.append_dev)(li21, em16);
+      (0, import_internal30.append_dev)(li21, t106);
       (0, import_internal30.append_dev)(ul12, li22);
-      (0, import_internal30.append_dev)(li22, t106);
-      (0, import_internal30.append_dev)(li22, em16);
-      (0, import_internal30.append_dev)(li22, t108);
-      (0, import_internal30.append_dev)(li22, em17);
-      (0, import_internal30.append_dev)(li22, t110);
-      (0, import_internal30.insert_dev)(target, t111, anchor);
+      (0, import_internal30.insert_dev)(target, t108, anchor);
       (0, import_internal30.insert_dev)(target, h213, anchor);
-      (0, import_internal30.append_dev)(h213, t112);
+      (0, import_internal30.append_dev)(h213, t109);
       (0, import_internal30.append_dev)(h213, small13);
-      (0, import_internal30.insert_dev)(target, t114, anchor);
+      (0, import_internal30.insert_dev)(target, t111, anchor);
       (0, import_internal30.insert_dev)(target, ul13, anchor);
       (0, import_internal30.append_dev)(ul13, li23);
-      (0, import_internal30.append_dev)(li23, t115);
+      (0, import_internal30.append_dev)(li23, t112);
+      (0, import_internal30.append_dev)(li23, em17);
+      (0, import_internal30.append_dev)(li23, t114);
       (0, import_internal30.append_dev)(li23, em18);
-      (0, import_internal30.append_dev)(li23, t117);
-      (0, import_internal30.append_dev)(ul13, li24);
-      (0, import_internal30.append_dev)(li24, t118);
-      (0, import_internal30.append_dev)(li24, em19);
-      (0, import_internal30.append_dev)(li24, t120);
-      (0, import_internal30.insert_dev)(target, t121, anchor);
+      (0, import_internal30.append_dev)(li23, t116);
+      (0, import_internal30.insert_dev)(target, t117, anchor);
       (0, import_internal30.insert_dev)(target, h214, anchor);
-      (0, import_internal30.append_dev)(h214, t122);
+      (0, import_internal30.append_dev)(h214, t118);
       (0, import_internal30.append_dev)(h214, small14);
-      (0, import_internal30.insert_dev)(target, t124, anchor);
+      (0, import_internal30.insert_dev)(target, t120, anchor);
       (0, import_internal30.insert_dev)(target, ul14, anchor);
+      (0, import_internal30.append_dev)(ul14, li24);
+      (0, import_internal30.append_dev)(li24, t121);
+      (0, import_internal30.append_dev)(li24, em19);
+      (0, import_internal30.append_dev)(li24, t123);
       (0, import_internal30.append_dev)(ul14, li25);
-      (0, import_internal30.append_dev)(li25, t125);
+      (0, import_internal30.append_dev)(li25, t124);
       (0, import_internal30.append_dev)(li25, em20);
-      (0, import_internal30.append_dev)(li25, t127);
-      (0, import_internal30.append_dev)(li25, em21);
-      (0, import_internal30.append_dev)(li25, t129);
-      (0, import_internal30.append_dev)(ul14, li26);
-      (0, import_internal30.append_dev)(ul14, li27);
-      (0, import_internal30.insert_dev)(target, t132, anchor);
+      (0, import_internal30.append_dev)(li25, t126);
+      (0, import_internal30.insert_dev)(target, t127, anchor);
       (0, import_internal30.insert_dev)(target, h215, anchor);
-      (0, import_internal30.append_dev)(h215, t133);
+      (0, import_internal30.append_dev)(h215, t128);
       (0, import_internal30.append_dev)(h215, small15);
-      (0, import_internal30.insert_dev)(target, t135, anchor);
+      (0, import_internal30.insert_dev)(target, t130, anchor);
       (0, import_internal30.insert_dev)(target, ul15, anchor);
+      (0, import_internal30.append_dev)(ul15, li26);
+      (0, import_internal30.append_dev)(li26, t131);
+      (0, import_internal30.append_dev)(li26, em21);
+      (0, import_internal30.append_dev)(li26, t133);
+      (0, import_internal30.append_dev)(li26, em22);
+      (0, import_internal30.append_dev)(li26, t135);
+      (0, import_internal30.append_dev)(ul15, li27);
       (0, import_internal30.append_dev)(ul15, li28);
-      (0, import_internal30.insert_dev)(target, t137, anchor);
+      (0, import_internal30.insert_dev)(target, t138, anchor);
       (0, import_internal30.insert_dev)(target, h216, anchor);
-      (0, import_internal30.append_dev)(h216, t138);
+      (0, import_internal30.append_dev)(h216, t139);
       (0, import_internal30.append_dev)(h216, small16);
-      (0, import_internal30.insert_dev)(target, t140, anchor);
+      (0, import_internal30.insert_dev)(target, t141, anchor);
       (0, import_internal30.insert_dev)(target, ul16, anchor);
       (0, import_internal30.append_dev)(ul16, li29);
-      (0, import_internal30.append_dev)(li29, t141);
-      (0, import_internal30.append_dev)(li29, em22);
-      (0, import_internal30.append_dev)(li29, t143);
-      (0, import_internal30.append_dev)(li29, em23);
-      (0, import_internal30.append_dev)(li29, t145);
-      (0, import_internal30.append_dev)(ul16, li30);
-      (0, import_internal30.append_dev)(li30, t146);
-      (0, import_internal30.append_dev)(li30, em24);
-      (0, import_internal30.append_dev)(li30, t148);
-      (0, import_internal30.insert_dev)(target, t149, anchor);
+      (0, import_internal30.insert_dev)(target, t143, anchor);
       (0, import_internal30.insert_dev)(target, h217, anchor);
-      (0, import_internal30.append_dev)(h217, t150);
+      (0, import_internal30.append_dev)(h217, t144);
       (0, import_internal30.append_dev)(h217, small17);
-      (0, import_internal30.insert_dev)(target, t152, anchor);
+      (0, import_internal30.insert_dev)(target, t146, anchor);
       (0, import_internal30.insert_dev)(target, ul17, anchor);
+      (0, import_internal30.append_dev)(ul17, li30);
+      (0, import_internal30.append_dev)(li30, t147);
+      (0, import_internal30.append_dev)(li30, em23);
+      (0, import_internal30.append_dev)(li30, t149);
+      (0, import_internal30.append_dev)(li30, em24);
+      (0, import_internal30.append_dev)(li30, t151);
       (0, import_internal30.append_dev)(ul17, li31);
-      (0, import_internal30.append_dev)(li31, t153);
+      (0, import_internal30.append_dev)(li31, t152);
       (0, import_internal30.append_dev)(li31, em25);
-      (0, import_internal30.append_dev)(li31, t155);
-      (0, import_internal30.append_dev)(li31, em26);
-      (0, import_internal30.append_dev)(li31, t157);
-      (0, import_internal30.insert_dev)(target, t158, anchor);
+      (0, import_internal30.append_dev)(li31, t154);
+      (0, import_internal30.insert_dev)(target, t155, anchor);
       (0, import_internal30.insert_dev)(target, h218, anchor);
-      (0, import_internal30.append_dev)(h218, t159);
+      (0, import_internal30.append_dev)(h218, t156);
       (0, import_internal30.append_dev)(h218, small18);
+      (0, import_internal30.insert_dev)(target, t158, anchor);
+      (0, import_internal30.insert_dev)(target, ul18, anchor);
+      (0, import_internal30.append_dev)(ul18, li32);
+      (0, import_internal30.append_dev)(li32, t159);
+      (0, import_internal30.append_dev)(li32, em26);
+      (0, import_internal30.append_dev)(li32, t161);
+      (0, import_internal30.append_dev)(li32, em27);
+      (0, import_internal30.append_dev)(li32, t163);
+      (0, import_internal30.insert_dev)(target, t164, anchor);
+      (0, import_internal30.insert_dev)(target, h219, anchor);
+      (0, import_internal30.append_dev)(h219, t165);
+      (0, import_internal30.append_dev)(h219, small19);
     },
     p: import_internal30.noop,
     i: import_internal30.noop,
@@ -20625,51 +20883,51 @@ function create_fragment30(ctx) {
       if (detaching)
         (0, import_internal30.detach_dev)(ul0);
       if (detaching)
-        (0, import_internal30.detach_dev)(t9);
+        (0, import_internal30.detach_dev)(t7);
       if (detaching)
         (0, import_internal30.detach_dev)(h21);
       if (detaching)
-        (0, import_internal30.detach_dev)(t12);
+        (0, import_internal30.detach_dev)(t10);
       if (detaching)
         (0, import_internal30.detach_dev)(ul1);
       if (detaching)
-        (0, import_internal30.detach_dev)(t19);
+        (0, import_internal30.detach_dev)(t15);
       if (detaching)
         (0, import_internal30.detach_dev)(h22);
       if (detaching)
-        (0, import_internal30.detach_dev)(t22);
+        (0, import_internal30.detach_dev)(t18);
       if (detaching)
         (0, import_internal30.detach_dev)(ul2);
       if (detaching)
-        (0, import_internal30.detach_dev)(t24);
+        (0, import_internal30.detach_dev)(t25);
       if (detaching)
         (0, import_internal30.detach_dev)(h23);
       if (detaching)
-        (0, import_internal30.detach_dev)(t27);
+        (0, import_internal30.detach_dev)(t28);
       if (detaching)
         (0, import_internal30.detach_dev)(ul3);
       if (detaching)
-        (0, import_internal30.detach_dev)(t29);
+        (0, import_internal30.detach_dev)(t30);
       if (detaching)
         (0, import_internal30.detach_dev)(h24);
       if (detaching)
-        (0, import_internal30.detach_dev)(t32);
+        (0, import_internal30.detach_dev)(t33);
       if (detaching)
         (0, import_internal30.detach_dev)(ul4);
       if (detaching)
-        (0, import_internal30.detach_dev)(t36);
+        (0, import_internal30.detach_dev)(t35);
       if (detaching)
         (0, import_internal30.detach_dev)(h25);
       if (detaching)
-        (0, import_internal30.detach_dev)(t39);
+        (0, import_internal30.detach_dev)(t38);
       if (detaching)
         (0, import_internal30.detach_dev)(ul5);
       if (detaching)
-        (0, import_internal30.detach_dev)(t43);
+        (0, import_internal30.detach_dev)(t42);
       if (detaching)
         (0, import_internal30.detach_dev)(h26);
       if (detaching)
-        (0, import_internal30.detach_dev)(t46);
+        (0, import_internal30.detach_dev)(t45);
       if (detaching)
         (0, import_internal30.detach_dev)(ul6);
       if (detaching)
@@ -20681,11 +20939,11 @@ function create_fragment30(ctx) {
       if (detaching)
         (0, import_internal30.detach_dev)(ul7);
       if (detaching)
-        (0, import_internal30.detach_dev)(t54);
+        (0, import_internal30.detach_dev)(t55);
       if (detaching)
         (0, import_internal30.detach_dev)(h28);
       if (detaching)
-        (0, import_internal30.detach_dev)(t57);
+        (0, import_internal30.detach_dev)(t58);
       if (detaching)
         (0, import_internal30.detach_dev)(ul8);
       if (detaching)
@@ -20697,73 +20955,81 @@ function create_fragment30(ctx) {
       if (detaching)
         (0, import_internal30.detach_dev)(ul9);
       if (detaching)
-        (0, import_internal30.detach_dev)(t67);
+        (0, import_internal30.detach_dev)(t66);
       if (detaching)
         (0, import_internal30.detach_dev)(h210);
       if (detaching)
-        (0, import_internal30.detach_dev)(t70);
+        (0, import_internal30.detach_dev)(t69);
       if (detaching)
         (0, import_internal30.detach_dev)(ul10);
       if (detaching)
-        (0, import_internal30.detach_dev)(t88);
+        (0, import_internal30.detach_dev)(t73);
       if (detaching)
         (0, import_internal30.detach_dev)(h211);
       if (detaching)
-        (0, import_internal30.detach_dev)(t91);
+        (0, import_internal30.detach_dev)(t76);
       if (detaching)
         (0, import_internal30.detach_dev)(ul11);
       if (detaching)
-        (0, import_internal30.detach_dev)(t102);
+        (0, import_internal30.detach_dev)(t94);
       if (detaching)
         (0, import_internal30.detach_dev)(h212);
       if (detaching)
-        (0, import_internal30.detach_dev)(t105);
+        (0, import_internal30.detach_dev)(t97);
       if (detaching)
         (0, import_internal30.detach_dev)(ul12);
       if (detaching)
-        (0, import_internal30.detach_dev)(t111);
+        (0, import_internal30.detach_dev)(t108);
       if (detaching)
         (0, import_internal30.detach_dev)(h213);
       if (detaching)
-        (0, import_internal30.detach_dev)(t114);
+        (0, import_internal30.detach_dev)(t111);
       if (detaching)
         (0, import_internal30.detach_dev)(ul13);
       if (detaching)
-        (0, import_internal30.detach_dev)(t121);
+        (0, import_internal30.detach_dev)(t117);
       if (detaching)
         (0, import_internal30.detach_dev)(h214);
       if (detaching)
-        (0, import_internal30.detach_dev)(t124);
+        (0, import_internal30.detach_dev)(t120);
       if (detaching)
         (0, import_internal30.detach_dev)(ul14);
       if (detaching)
-        (0, import_internal30.detach_dev)(t132);
+        (0, import_internal30.detach_dev)(t127);
       if (detaching)
         (0, import_internal30.detach_dev)(h215);
       if (detaching)
-        (0, import_internal30.detach_dev)(t135);
+        (0, import_internal30.detach_dev)(t130);
       if (detaching)
         (0, import_internal30.detach_dev)(ul15);
       if (detaching)
-        (0, import_internal30.detach_dev)(t137);
+        (0, import_internal30.detach_dev)(t138);
       if (detaching)
         (0, import_internal30.detach_dev)(h216);
       if (detaching)
-        (0, import_internal30.detach_dev)(t140);
+        (0, import_internal30.detach_dev)(t141);
       if (detaching)
         (0, import_internal30.detach_dev)(ul16);
       if (detaching)
-        (0, import_internal30.detach_dev)(t149);
+        (0, import_internal30.detach_dev)(t143);
       if (detaching)
         (0, import_internal30.detach_dev)(h217);
       if (detaching)
-        (0, import_internal30.detach_dev)(t152);
+        (0, import_internal30.detach_dev)(t146);
       if (detaching)
         (0, import_internal30.detach_dev)(ul17);
       if (detaching)
-        (0, import_internal30.detach_dev)(t158);
+        (0, import_internal30.detach_dev)(t155);
       if (detaching)
         (0, import_internal30.detach_dev)(h218);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t158);
+      if (detaching)
+        (0, import_internal30.detach_dev)(ul18);
+      if (detaching)
+        (0, import_internal30.detach_dev)(t164);
+      if (detaching)
+        (0, import_internal30.detach_dev)(h219);
     }
   };
   (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
@@ -21001,7 +21267,9 @@ function create_default_slot2(ctx) {
       (0, import_internal31.insert_dev)(target, t3, anchor);
       (0, import_internal31.insert_dev)(target, tbody, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(tbody, null);
+        if (each_blocks[i]) {
+          each_blocks[i].m(tbody, null);
+        }
       }
     },
     p: function update(ctx2, dirty) {
@@ -28256,7 +28524,9 @@ function create_fragment44(ctx) {
       (0, import_internal44.insert_dev)(target, h2, anchor);
       (0, import_internal44.insert_dev)(target, t1, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(target, anchor);
+        if (each_blocks[i]) {
+          each_blocks[i].m(target, anchor);
+        }
       }
       (0, import_internal44.insert_dev)(target, t2, anchor);
       (0, import_internal44.mount_component)(codeexample, target, anchor);
@@ -28556,7 +28826,7 @@ function create_fragment45(ctx) {
       (0, import_internal45.mount_component)(codeexample, target, anchor);
       current = true;
       if (!mounted) {
-        dispose = (0, import_internal45.listen_dev)(input0, "input", oninput, false, false, false);
+        dispose = (0, import_internal45.listen_dev)(input0, "input", oninput, false, false, false, false);
         mounted = true;
       }
     },
@@ -39506,6 +39776,7 @@ function create_fragment60(ctx) {
           ctx[2],
           false,
           false,
+          false,
           false
         );
         mounted = true;
@@ -39942,7 +40213,8 @@ function create_fragment61(ctx) {
         (0, import_internal61.add_flush_callback)(() => updating_component = false);
       }
       nav.$set(nav_changes);
-      if (switch_value !== (switch_value = /*component*/
+      if (dirty & /*component*/
+      1 && switch_value !== (switch_value = /*component*/
       ctx2[0])) {
         if (switch_instance) {
           (0, import_internal61.group_outros)();
