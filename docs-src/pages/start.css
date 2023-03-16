@@ -32,7 +32,7 @@
 .logotype em { font-weight: 500; }
 
 
-h2 { display: inline-flex; align-items: center; gap: 0.5em; }
+h2 { display: flex; align-items: center; gap: 0.5em; }
 h2 small {
 	display: inline;
 	color: var(--ui-color-text-semi);
