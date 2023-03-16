@@ -29,12 +29,12 @@
 	--ui-color-warning: #71580d;
 	--ui-color-warning-semi: #71580d66;
 	--ui-color-warning-dark-1: #57440b;
-	--ui-color-warning-dark-2: #433407;
+	--ui-color-warning-dark-2: #443504;
 
 	--ui-color-danger: #943737;
 	--ui-color-danger-semi: #94373766;
 	--ui-color-danger-dark-1: #792f2f;
-	--ui-color-danger-dark-2: #5b3134;
+	--ui-color-danger-dark-2: #582121;
 
 	--ui-color-border: #1b1b1b;
 	--ui-color-border-semi: #1b1b1b66;
@@ -47,7 +47,7 @@
 	--ui-color-background-semi: #22222266;
 	--ui-color-background-light-1: #353535;
 	--ui-color-background-light-2: #535353;
-	--ui-color-background-dark-1: #222;
+	--ui-color-background-dark-1: #232323;
 	--ui-color-background-dark-2: #1a1a1a;
 
 	--ui-color-background-input: #222;

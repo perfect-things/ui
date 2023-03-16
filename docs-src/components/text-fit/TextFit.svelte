@@ -3,13 +3,13 @@
 <p>This is using matrix transformation, so the text will not be super sharp.<br>
 	It is advised to set the <em>font-size</em> (on the parent or the component itself) that is closest to the average size of the text.</p>
 
-<hr>
 
-<input type="text" bind:value="{textFitText}">
 <div class="text-fit-div" style="width: 100px"><TextFit>{textFitText}</TextFit></div>
 <div class="text-fit-div" style="width: 200px"><TextFit>{textFitText}</TextFit></div>
 <div class="text-fit-div" style="width: 300px"><TextFit>{textFitText}</TextFit></div>
 
+<h2>Change text</h2>
+<input type="text" bind:value="{textFitText}">
 
 <CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>

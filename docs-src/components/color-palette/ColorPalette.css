@@ -1,12 +1,13 @@
 .group {
-	background: #222;
-	padding: 10px;
+	background: #333;
+	padding: 6px;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-	grid-gap: 10px;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	grid-gap: 6px;
+	border-radius: var(--ui-border-radius-m);
 }
 
-.group-light { background: #eee; }
+.theme-dark .group { background: #ccc; }
 
 .palette-box {
 	padding: 10px 0;
@@ -14,5 +15,6 @@
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
+	border-radius: calc(var(--ui-border-radius-m) - 3px);
 	background-color: var(--ui-color-background-dark-2);
 }
