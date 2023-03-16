@@ -4620,7 +4620,7 @@ function pluck(obj, keys) {
   keys.forEach((key) => newObj[key] = obj[key]);
   return newObj;
 }
-var FOCUSABLE_SELECTOR = "a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]";
+var FOCUSABLE_SELECTOR = "a[href]:not([disabled]),button:not([disabled]),iframe:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]:not(.focus-trap)";
 function getMouseX(e) {
   return e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
 }
@@ -11475,7 +11475,7 @@ function create_if_block4(ctx) {
       round: true,
       text: true,
       icon: "close",
-      className: "btn-close",
+      class: "btn-close",
       title: "Close"
     },
     $$inline: true
@@ -11522,10 +11522,10 @@ function create_if_block4(ctx) {
       (0, import_internal9.attr_dev)(header, "class", "drawer-header");
       (0, import_internal9.add_location)(header, file8, 9, 2, 373);
       (0, import_internal9.attr_dev)(div1, "class", "drawer-content");
-      (0, import_internal9.add_location)(div1, file8, 13, 2, 554);
+      (0, import_internal9.add_location)(div1, file8, 13, 2, 550);
       (0, import_internal9.attr_dev)(div2, "tabindex", "0");
       (0, import_internal9.attr_dev)(div2, "class", "focus-trap focus-trap-bottom");
-      (0, import_internal9.add_location)(div2, file8, 14, 2, 604);
+      (0, import_internal9.add_location)(div2, file8, 14, 2, 600);
       (0, import_internal9.attr_dev)(div3, "class", div3_class_value = "drawer " + /*className*/
       ctx[1]);
       (0, import_internal9.attr_dev)(div3, "tabindex", "-1");
@@ -11779,17 +11779,17 @@ function instance9($$self, $$props, $$invalidate) {
   function focusFirst() {
     const first = getFocusableElements().shift();
     const last = getFocusableElements().pop();
-    if (last)
+    if (last && last.scrollIntoView)
       last.scrollIntoView({ block: "end" });
-    if (first)
+    if (first && first.focus)
       first.focus();
   }
   function focusLast() {
     const first = getFocusableElements().shift();
     const last = getFocusableElements().pop();
-    if (first)
+    if (first && first.scrollIntoView)
       first.scrollIntoView({ block: "end" });
-    if (last)
+    if (last && last.focus)
       last.focus();
   }
   function getFocusableElements() {

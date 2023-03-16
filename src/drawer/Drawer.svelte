@@ -9,7 +9,7 @@
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<header class="drawer-header" bind:this="{headerEl}" >
 			<h2>{title}</h2>
-			<Button round text icon="close" className="btn-close" title="Close" on:click="{close}"/>
+			<Button round text icon="close" class="btn-close" title="Close" on:click="{close}"/>
 		</header>
 		<div class="drawer-content"><slot></slot></div>
 		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
@@ -73,16 +73,16 @@ export function close () {
 function focusFirst () {
 	const first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
-	if (last) last.scrollIntoView({ block: 'end' });
-	if (first) first.focus();
+	if (last && last.scrollIntoView) last.scrollIntoView({ block: 'end' });
+	if (first && first.focus) first.focus();
 }
 
 
 function focusLast () {
 	const first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
-	if (first) first.scrollIntoView({ block: 'end' });
-	if (last) last.focus();
+	if (first && first.scrollIntoView) first.scrollIntoView({ block: 'end' });
+	if (last && last.focus) last.focus();
 }
 
 

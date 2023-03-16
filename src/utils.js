@@ -35,8 +35,8 @@ export function pluck (obj, keys) {
 }
 
 
-export const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
-	'select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]';
+export const FOCUSABLE_SELECTOR = 'a[href]:not([disabled]),button:not([disabled]),iframe:not([disabled]),input:not([disabled]),' +
+	'select:not([disabled]),textarea:not([disabled]),[contentEditable],[tabindex]:not(.focus-trap)';
 
 
 export function getMouseX (e) {

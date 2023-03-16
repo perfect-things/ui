@@ -1,3 +1,19 @@
+.api-table {
+	height: unset;
+	overflow-y: visible;
+	overflow-x: auto;
+	overscroll-behavior-y: unset;
+}
+.api-table .table { table-layout: fixed; min-width: 900px; }
+
+.api-table tr td { vertical-align: top; }
+
+.api-table tr th:first-child,
+.api-table tr td:first-child { width: 200px; }
+
+.api-table tr th:nth-child(2),
+.api-table tr td:nth-child(2) { width: 200px; }
+
 html,
 body {
 	box-sizing: border-box;
@@ -79,40 +95,6 @@ hr {
 	z-index: 1;
 	position: relative;
 }
-
-.api-table {
-	height: unset;
-	overflow-y: visible;
-	overflow-x: auto;
-	overscroll-behavior-y: unset;
-}
-.api-table .table { table-layout: fixed; min-width: 900px; }
-
-.api-table tr td { vertical-align: top; }
-
-.api-table tr th:first-child,
-.api-table tr td:first-child { width: 200px; }
-
-.api-table tr th:nth-child(2),
-.api-table tr td:nth-child(2) { width: 200px; }
-
-main pre[class],
-code {
-	background-color: #1a1a1a;
-	border-radius: var(--ui-border-radius-s);
-}
-
-code {
-	display: block;
-	width: 100%;
-	padding: 1em;
-	margin-block: 1em;
-	line-height: 2;
-	white-space: pre;
-	overflow: auto;
-}
-
-code[class*=language-] { padding: 0; margin: 0; }
 
 aside {
 	padding: 1rem 1rem 4rem;
@@ -234,6 +216,24 @@ h2 small {
 	margin: 0;
 }
 
+main pre[class],
+code {
+	background-color: #1a1a1a;
+	border-radius: var(--ui-border-radius-s);
+}
+
+code {
+	display: block;
+	width: 100%;
+	padding: 1em;
+	margin-block: 1em;
+	line-height: 2;
+	white-space: pre;
+	overflow: auto;
+}
+
+code[class*=language-] { padding: 0; margin: 0; }
+
 .button-toggle-wrapper-wide { width: 400px; }
 .button-toggle-wrapper-wide .button-toggle { width: 100%; }
 
@@ -315,18 +315,6 @@ small { display: block; margin: 5px 0 15px; }
 	float: right;
 }
 
-.text-fit-div {
-	border: 1px dotted red;
-	margin: 1em 0;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	resize: horizontal;
-	font-size: 32px;
-}
-
 .split-wrap {
 	width: 400px;
 	height: 200px;
@@ -347,6 +335,18 @@ small { display: block; margin: 5px 0 15px; }
 	height: 500px;
 	border: 1px dashed red;
 	padding: 4px;
+}
+
+.text-fit-div {
+	border: 1px dotted red;
+	margin: 1em 0;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	resize: horizontal;
+	font-size: 32px;
 }
 
 .toggle-box {
