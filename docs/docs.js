@@ -36,7 +36,7 @@ var require_internal = __commonJS({
     function noop32() {
     }
     var identity = (x) => x;
-    function assign12(tar, src) {
+    function assign13(tar, src) {
       for (const k in src)
         tar[k] = src[k];
       return tar;
@@ -105,7 +105,7 @@ var require_internal = __commonJS({
       }
     }
     function get_slot_context(definition, ctx, $$scope, fn) {
-      return definition[1] && fn ? assign12($$scope.ctx.slice(), definition[1](fn(ctx))) : $$scope.ctx;
+      return definition[1] && fn ? assign13($$scope.ctx.slice(), definition[1](fn(ctx))) : $$scope.ctx;
     }
     function get_slot_changes12(definition, $$scope, dirty, fn) {
       if (definition[2] && fn) {
@@ -146,7 +146,7 @@ var require_internal = __commonJS({
       }
       return -1;
     }
-    function exclude_internal_props11(props) {
+    function exclude_internal_props12(props) {
       const result = {};
       for (const k in props)
         if (k[0] !== "$")
@@ -430,7 +430,7 @@ var require_internal = __commonJS({
       else if (node.getAttribute(attribute) !== value)
         node.setAttribute(attribute, value);
     }
-    function set_attributes10(node, attributes) {
+    function set_attributes11(node, attributes) {
       const descriptors = Object.getOwnPropertyDescriptors(node.__proto__);
       for (const key in attributes) {
         if (attributes[key] == null) {
@@ -464,7 +464,7 @@ var require_internal = __commonJS({
       }
     }
     function set_dynamic_element_data(tag) {
-      return /-/.test(tag) ? set_custom_element_data_map : set_attributes10;
+      return /-/.test(tag) ? set_custom_element_data_map : set_attributes11;
     }
     function xlink_attr(node, attribute, value) {
       node.setAttributeNS("http://www.w3.org/1999/xlink", attribute, value);
@@ -1471,7 +1471,7 @@ var require_internal = __commonJS({
       }
       info.block.p(child_ctx, dirty);
     }
-    var globals14 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
+    var globals13 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
     function destroy_block(block, lookup) {
       block.d(1);
       lookup.delete(block.key);
@@ -1568,7 +1568,7 @@ var require_internal = __commonJS({
         keys.add(key);
       }
     }
-    function get_spread_update12(levels, updates) {
+    function get_spread_update13(levels, updates) {
       const update2 = {};
       const to_null_out = {};
       const accounted_for = { $$scope: 1 };
@@ -2140,7 +2140,7 @@ var require_internal = __commonJS({
     exports.append_hydration = append_hydration;
     exports.append_hydration_dev = append_hydration_dev;
     exports.append_styles = append_styles;
-    exports.assign = assign12;
+    exports.assign = assign13;
     exports.attr = attr;
     exports.attr_dev = attr_dev45;
     exports.attribute_to_object = attribute_to_object;
@@ -2192,7 +2192,7 @@ var require_internal = __commonJS({
     exports.escape = escape;
     exports.escape_attribute_value = escape_attribute_value;
     exports.escape_object = escape_object;
-    exports.exclude_internal_props = exclude_internal_props11;
+    exports.exclude_internal_props = exclude_internal_props12;
     exports.fix_and_destroy_block = fix_and_destroy_block;
     exports.fix_and_outro_and_destroy_block = fix_and_outro_and_destroy_block;
     exports.fix_position = fix_position;
@@ -2207,9 +2207,9 @@ var require_internal = __commonJS({
     exports.get_root_for_style = get_root_for_style;
     exports.get_slot_changes = get_slot_changes12;
     exports.get_spread_object = get_spread_object3;
-    exports.get_spread_update = get_spread_update12;
+    exports.get_spread_update = get_spread_update13;
     exports.get_store_value = get_store_value;
-    exports.globals = globals14;
+    exports.globals = globals13;
     exports.group_outros = group_outros12;
     exports.handle_promise = handle_promise;
     exports.hasContext = hasContext;
@@ -2259,7 +2259,7 @@ var require_internal = __commonJS({
     exports.select_value = select_value2;
     exports.self = self2;
     exports.setContext = setContext;
-    exports.set_attributes = set_attributes10;
+    exports.set_attributes = set_attributes11;
     exports.set_current_component = set_current_component;
     exports.set_custom_element_data = set_custom_element_data;
     exports.set_custom_element_data_map = set_custom_element_data_map;
@@ -4281,7 +4281,7 @@ var require_prism_normalize_whitespace = __commonJS({
       if (typeof Prism === "undefined") {
         return;
       }
-      var assign12 = Object.assign || function(obj1, obj2) {
+      var assign13 = Object.assign || function(obj1, obj2) {
         for (var name in obj2) {
           if (obj2.hasOwnProperty(name)) {
             obj1[name] = obj2[name];
@@ -4290,7 +4290,7 @@ var require_prism_normalize_whitespace = __commonJS({
         return obj1;
       };
       function NormalizeWhitespace(defaults) {
-        this.defaults = assign12({}, defaults);
+        this.defaults = assign13({}, defaults);
       }
       function toCamelCase(value) {
         return value.replace(/-(\w)/g, function(match, firstChar) {
@@ -4319,10 +4319,10 @@ var require_prism_normalize_whitespace = __commonJS({
       };
       NormalizeWhitespace.prototype = {
         setDefaults: function(defaults) {
-          this.defaults = assign12(this.defaults, defaults);
+          this.defaults = assign13(this.defaults, defaults);
         },
         normalize: function(input, settings) {
-          settings = assign12(this.defaults, settings);
+          settings = assign13(this.defaults, settings);
           for (var name in settings) {
             var methodName = toCamelCase(name);
             if (name !== "normalize" && methodName !== "setDefaults" && settings[name] && this[methodName]) {
@@ -12490,7 +12490,6 @@ var InputMath_default = InputMath;
 // src/input-password/InputPassword.svelte
 var import_internal12 = __toESM(require_internal());
 var import_svelte7 = __toESM(require_svelte());
-var { console: console_1 } = import_internal12.globals;
 var file11 = "src/input-password/InputPassword.svelte";
 function create_if_block5(ctx) {
   let div2;
@@ -12514,35 +12513,34 @@ function create_if_block5(ctx) {
       h2 = (0, import_internal12.element)("h2");
       t1 = (0, import_internal12.text)(
         /*label*/
-        ctx[9]
+        ctx[5]
       );
       t2 = (0, import_internal12.space)();
       small = (0, import_internal12.element)("small");
       (0, import_internal12.attr_dev)(div0, "class", div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx[12]);
+      ctx[8]);
       (0, import_internal12.set_style)(
         div0,
         "width",
         /*percent*/
-        ctx[10] + "%"
+        ctx[6] + "%"
       );
-      (0, import_internal12.add_location)(div0, file11, 21, 4, 559);
+      (0, import_internal12.add_location)(div0, file11, 18, 4, 504);
       (0, import_internal12.attr_dev)(div1, "class", "password-strength");
-      (0, import_internal12.attr_dev)(div1, "id", "password-strength");
       (0, import_internal12.attr_dev)(
         div1,
         "title",
         /*label*/
-        ctx[9]
+        ctx[5]
       );
-      (0, import_internal12.add_location)(div1, file11, 20, 3, 484);
+      (0, import_internal12.add_location)(div1, file11, 17, 3, 452);
       (0, import_internal12.attr_dev)(div2, "class", "input-password-row");
-      (0, import_internal12.add_location)(div2, file11, 19, 2, 448);
-      (0, import_internal12.add_location)(h2, file11, 25, 3, 738);
-      (0, import_internal12.add_location)(small, file11, 26, 3, 758);
+      (0, import_internal12.add_location)(div2, file11, 16, 2, 416);
+      (0, import_internal12.add_location)(h2, file11, 22, 3, 683);
+      (0, import_internal12.add_location)(small, file11, 23, 3, 703);
       (0, import_internal12.attr_dev)(div3, "class", div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
-      ctx[12]);
-      (0, import_internal12.add_location)(div3, file11, 24, 2, 666);
+      ctx[8]);
+      (0, import_internal12.add_location)(div3, file11, 21, 2, 611);
     },
     m: function mount(target, anchor) {
       (0, import_internal12.insert_dev)(target, div2, anchor);
@@ -12555,47 +12553,47 @@ function create_if_block5(ctx) {
       (0, import_internal12.append_dev)(div3, t2);
       (0, import_internal12.append_dev)(div3, small);
       small.innerHTML = /*strengthInfoText*/
-      ctx[11];
+      ctx[7];
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*colorClass*/
-      4096 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx2[12])) {
+      256 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
+      ctx2[8])) {
         (0, import_internal12.attr_dev)(div0, "class", div0_class_value);
       }
       if (dirty & /*percent*/
-      1024) {
+      64) {
         (0, import_internal12.set_style)(
           div0,
           "width",
           /*percent*/
-          ctx2[10] + "%"
+          ctx2[6] + "%"
         );
       }
       if (dirty & /*label*/
-      512) {
+      32) {
         (0, import_internal12.attr_dev)(
           div1,
           "title",
           /*label*/
-          ctx2[9]
+          ctx2[5]
         );
       }
       if (dirty & /*label*/
-      512)
+      32)
         (0, import_internal12.set_data_dev)(
           t1,
           /*label*/
-          ctx2[9]
+          ctx2[5]
         );
       if (dirty & /*strengthInfoText*/
-      2048)
+      128)
         small.innerHTML = /*strengthInfoText*/
-        ctx2[11];
+        ctx2[7];
       ;
       if (dirty & /*colorClass*/
-      4096 && div3_class_value !== (div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
-      ctx2[12])) {
+      256 && div3_class_value !== (div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
+      ctx2[8])) {
         (0, import_internal12.attr_dev)(div3, "class", div3_class_value);
       }
     },
@@ -12612,7 +12610,7 @@ function create_if_block5(ctx) {
     block,
     id: create_if_block5.name,
     type: "if",
-    source: "(19:1) {#if strength && lib && value}",
+    source: "(16:1) {#if strength && lib && value}",
     ctx
   });
   return block;
@@ -12628,12 +12626,23 @@ function create_fragment12(ctx) {
   let current;
   let mounted;
   let dispose;
+  let input_levels = [
+    { type: "password" },
+    { class: "input-password" },
+    { autocomplete: "off" },
+    /*props*/
+    ctx[10]
+  ];
+  let input_data = {};
+  for (let i = 0; i < input_levels.length; i += 1) {
+    input_data = (0, import_internal12.assign)(input_data, input_levels[i]);
+  }
   button = new Button_default({
     props: {
       link: true,
       icon: (
         /*visible*/
-        ctx[7] ? "eyeOff" : "eye"
+        ctx[3] ? "eyeOff" : "eye"
       )
     },
     $$inline: true
@@ -12641,12 +12650,12 @@ function create_fragment12(ctx) {
   button.$on(
     "click",
     /*toggle*/
-    ctx[14]
+    ctx[11]
   );
   let if_block = (
     /*strength*/
-    ctx[5] && /*lib*/
-    ctx[8] && /*value*/
+    ctx[1] && /*lib*/
+    ctx[4] && /*value*/
     ctx[0] && create_if_block5(ctx)
   );
   const block = {
@@ -12659,49 +12668,23 @@ function create_fragment12(ctx) {
       t1 = (0, import_internal12.space)();
       if (if_block)
         if_block.c();
-      (0, import_internal12.attr_dev)(input, "type", "password");
-      (0, import_internal12.attr_dev)(input, "class", "input-password");
-      (0, import_internal12.attr_dev)(input, "autocomplete", "off");
-      (0, import_internal12.attr_dev)(
-        input,
-        "id",
-        /*id*/
-        ctx[1]
-      );
-      (0, import_internal12.attr_dev)(
-        input,
-        "name",
-        /*name*/
-        ctx[2]
-      );
-      (0, import_internal12.attr_dev)(
-        input,
-        "title",
-        /*title*/
-        ctx[3]
-      );
-      (0, import_internal12.attr_dev)(
-        input,
-        "placeholder",
-        /*placeholder*/
-        ctx[4]
-      );
+      (0, import_internal12.set_attributes)(input, input_data);
       (0, import_internal12.add_location)(input, file11, 2, 2, 113);
       (0, import_internal12.attr_dev)(div0, "class", "input-password-row");
       (0, import_internal12.toggle_class)(
         div0,
         "visible",
         /*visible*/
-        ctx[7]
+        ctx[3]
       );
       (0, import_internal12.add_location)(div0, file11, 1, 1, 64);
       (0, import_internal12.attr_dev)(div1, "class", div1_class_value = "input-password-wrapper " + /*className*/
-      ctx[6]);
+      ctx[2]);
       (0, import_internal12.toggle_class)(
         div1,
         "visible",
         /*visible*/
-        ctx[7]
+        ctx[3]
       );
       (0, import_internal12.add_location)(div1, file11, 0, 0, 0);
     },
@@ -12712,7 +12695,9 @@ function create_fragment12(ctx) {
       (0, import_internal12.insert_dev)(target, div1, anchor);
       (0, import_internal12.append_dev)(div1, div0);
       (0, import_internal12.append_dev)(div0, input);
-      ctx[19](input);
+      if (input.autofocus)
+        input.focus();
+      ctx[16](input);
       (0, import_internal12.set_input_value)(
         input,
         /*value*/
@@ -12730,13 +12715,13 @@ function create_fragment12(ctx) {
             input,
             "input",
             /*input_input_handler*/
-            ctx[20]
+            ctx[17]
           ),
           (0, import_internal12.listen_dev)(
             input,
             "keydown",
             /*keydown_handler*/
-            ctx[15],
+            ctx[12],
             false,
             false,
             false,
@@ -12746,7 +12731,7 @@ function create_fragment12(ctx) {
             input,
             "change",
             /*change_handler*/
-            ctx[16],
+            ctx[13],
             false,
             false,
             false,
@@ -12756,7 +12741,7 @@ function create_fragment12(ctx) {
             input,
             "focus",
             /*focus_handler*/
-            ctx[17],
+            ctx[14],
             false,
             false,
             false,
@@ -12766,7 +12751,7 @@ function create_fragment12(ctx) {
             input,
             "blur",
             /*blur_handler*/
-            ctx[18],
+            ctx[15],
             false,
             false,
             false,
@@ -12777,42 +12762,14 @@ function create_fragment12(ctx) {
       }
     },
     p: function update(ctx2, [dirty]) {
-      if (!current || dirty & /*id*/
-      2) {
-        (0, import_internal12.attr_dev)(
-          input,
-          "id",
-          /*id*/
-          ctx2[1]
-        );
-      }
-      if (!current || dirty & /*name*/
-      4) {
-        (0, import_internal12.attr_dev)(
-          input,
-          "name",
-          /*name*/
-          ctx2[2]
-        );
-      }
-      if (!current || dirty & /*title*/
-      8) {
-        (0, import_internal12.attr_dev)(
-          input,
-          "title",
-          /*title*/
-          ctx2[3]
-        );
-      }
-      if (!current || dirty & /*placeholder*/
-      16) {
-        (0, import_internal12.attr_dev)(
-          input,
-          "placeholder",
-          /*placeholder*/
-          ctx2[4]
-        );
-      }
+      (0, import_internal12.set_attributes)(input, input_data = (0, import_internal12.get_spread_update)(input_levels, [
+        { type: "password" },
+        { class: "input-password" },
+        { autocomplete: "off" },
+        dirty & /*props*/
+        1024 && /*props*/
+        ctx2[10]
+      ]));
       if (dirty & /*value*/
       1 && input.value !== /*value*/
       ctx2[0]) {
@@ -12824,23 +12781,23 @@ function create_fragment12(ctx) {
       }
       const button_changes = {};
       if (dirty & /*visible*/
-      128)
+      8)
         button_changes.icon = /*visible*/
-        ctx2[7] ? "eyeOff" : "eye";
+        ctx2[3] ? "eyeOff" : "eye";
       button.$set(button_changes);
       if (!current || dirty & /*visible*/
-      128) {
+      8) {
         (0, import_internal12.toggle_class)(
           div0,
           "visible",
           /*visible*/
-          ctx2[7]
+          ctx2[3]
         );
       }
       if (
         /*strength*/
-        ctx2[5] && /*lib*/
-        ctx2[8] && /*value*/
+        ctx2[1] && /*lib*/
+        ctx2[4] && /*value*/
         ctx2[0]
       ) {
         if (if_block) {
@@ -12855,17 +12812,17 @@ function create_fragment12(ctx) {
         if_block = null;
       }
       if (!current || dirty & /*className*/
-      64 && div1_class_value !== (div1_class_value = "input-password-wrapper " + /*className*/
-      ctx2[6])) {
+      4 && div1_class_value !== (div1_class_value = "input-password-wrapper " + /*className*/
+      ctx2[2])) {
         (0, import_internal12.attr_dev)(div1, "class", div1_class_value);
       }
       if (!current || dirty & /*className, visible*/
-      192) {
+      12) {
         (0, import_internal12.toggle_class)(
           div1,
           "visible",
           /*visible*/
-          ctx2[7]
+          ctx2[3]
         );
       }
     },
@@ -12882,7 +12839,7 @@ function create_fragment12(ctx) {
     d: function destroy(detaching) {
       if (detaching)
         (0, import_internal12.detach_dev)(div1);
-      ctx[19](null);
+      ctx[16](null);
       (0, import_internal12.destroy_component)(button);
       if (if_block)
         if_block.d();
@@ -12900,13 +12857,10 @@ function create_fragment12(ctx) {
   return block;
 }
 function instance12($$self, $$props, $$invalidate) {
+  let props;
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal12.validate_slots)("InputPassword", slots, []);
   let { value = "" } = $$props;
-  let { id = void 0 } = $$props;
-  let { name = void 0 } = $$props;
-  let { title = void 0 } = $$props;
-  let { placeholder = void 0 } = $$props;
   let { strength = false } = $$props;
   let { class: className = "" } = $$props;
   const labels = ["Very Poor", "Poor", "Average", "Safe", "Excellent"];
@@ -12920,13 +12874,13 @@ function instance12($$self, $$props, $$invalidate) {
   let inputEl;
   (0, import_svelte7.onMount)(() => requestAnimationFrame(checkLib));
   function checkLib() {
-    $$invalidate(8, lib = window.zxcvbn);
+    $$invalidate(4, lib = window.zxcvbn);
     if (strength && !lib)
       console.error("zxcvbn library is missing.");
   }
   function measure(pass) {
     if (strength && !lib)
-      $$invalidate(8, lib = window.zxcvbn);
+      $$invalidate(4, lib = window.zxcvbn);
     if (!lib || !pass || !strength)
       return { score: 0, info: "" };
     const res = lib(pass);
@@ -12936,14 +12890,9 @@ function instance12($$self, $$props, $$invalidate) {
     return { score: res.score, info };
   }
   function toggle() {
-    $$invalidate(7, visible = !visible);
-    $$invalidate(13, inputEl.type = visible ? "text" : "password", inputEl);
+    $$invalidate(3, visible = !visible);
+    $$invalidate(9, inputEl.type = visible ? "text" : "password", inputEl);
   }
-  const writable_props = ["value", "id", "name", "title", "placeholder", "strength", "class"];
-  Object.keys($$props).forEach((key) => {
-    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_1.warn(`<InputPassword> was created with unknown prop '${key}'`);
-  });
   function keydown_handler(event) {
     import_internal12.bubble.call(this, $$self, event);
   }
@@ -12959,37 +12908,27 @@ function instance12($$self, $$props, $$invalidate) {
   function input_binding($$value) {
     import_internal12.binding_callbacks[$$value ? "unshift" : "push"](() => {
       inputEl = $$value;
-      $$invalidate(13, inputEl);
+      $$invalidate(9, inputEl);
     });
   }
   function input_input_handler() {
     value = this.value;
     $$invalidate(0, value);
   }
-  $$self.$$set = ($$props2) => {
-    if ("value" in $$props2)
-      $$invalidate(0, value = $$props2.value);
-    if ("id" in $$props2)
-      $$invalidate(1, id = $$props2.id);
-    if ("name" in $$props2)
-      $$invalidate(2, name = $$props2.name);
-    if ("title" in $$props2)
-      $$invalidate(3, title = $$props2.title);
-    if ("placeholder" in $$props2)
-      $$invalidate(4, placeholder = $$props2.placeholder);
-    if ("strength" in $$props2)
-      $$invalidate(5, strength = $$props2.strength);
-    if ("class" in $$props2)
-      $$invalidate(6, className = $$props2.class);
+  $$self.$$set = ($$new_props) => {
+    $$invalidate(22, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), (0, import_internal12.exclude_internal_props)($$new_props)));
+    if ("value" in $$new_props)
+      $$invalidate(0, value = $$new_props.value);
+    if ("strength" in $$new_props)
+      $$invalidate(1, strength = $$new_props.strength);
+    if ("class" in $$new_props)
+      $$invalidate(2, className = $$new_props.class);
   };
   $$self.$capture_state = () => ({
     onMount: import_svelte7.onMount,
     Button: Button_default,
+    pluck,
     value,
-    id,
-    name,
-    title,
-    placeholder,
     strength,
     className,
     labels,
@@ -13003,59 +12942,54 @@ function instance12($$self, $$props, $$invalidate) {
     inputEl,
     checkLib,
     measure,
-    toggle
+    toggle,
+    props
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("value" in $$props2)
-      $$invalidate(0, value = $$props2.value);
-    if ("id" in $$props2)
-      $$invalidate(1, id = $$props2.id);
-    if ("name" in $$props2)
-      $$invalidate(2, name = $$props2.name);
-    if ("title" in $$props2)
-      $$invalidate(3, title = $$props2.title);
-    if ("placeholder" in $$props2)
-      $$invalidate(4, placeholder = $$props2.placeholder);
-    if ("strength" in $$props2)
-      $$invalidate(5, strength = $$props2.strength);
-    if ("className" in $$props2)
-      $$invalidate(6, className = $$props2.className);
-    if ("visible" in $$props2)
-      $$invalidate(7, visible = $$props2.visible);
-    if ("lib" in $$props2)
-      $$invalidate(8, lib = $$props2.lib);
-    if ("label" in $$props2)
-      $$invalidate(9, label = $$props2.label);
-    if ("percent" in $$props2)
-      $$invalidate(10, percent = $$props2.percent);
-    if ("strengthInfoText" in $$props2)
-      $$invalidate(11, strengthInfoText = $$props2.strengthInfoText);
-    if ("colorClass" in $$props2)
-      $$invalidate(12, colorClass = $$props2.colorClass);
-    if ("inputEl" in $$props2)
-      $$invalidate(13, inputEl = $$props2.inputEl);
+  $$self.$inject_state = ($$new_props) => {
+    $$invalidate(22, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), $$new_props));
+    if ("value" in $$props)
+      $$invalidate(0, value = $$new_props.value);
+    if ("strength" in $$props)
+      $$invalidate(1, strength = $$new_props.strength);
+    if ("className" in $$props)
+      $$invalidate(2, className = $$new_props.className);
+    if ("visible" in $$props)
+      $$invalidate(3, visible = $$new_props.visible);
+    if ("lib" in $$props)
+      $$invalidate(4, lib = $$new_props.lib);
+    if ("label" in $$props)
+      $$invalidate(5, label = $$new_props.label);
+    if ("percent" in $$props)
+      $$invalidate(6, percent = $$new_props.percent);
+    if ("strengthInfoText" in $$props)
+      $$invalidate(7, strengthInfoText = $$new_props.strengthInfoText);
+    if ("colorClass" in $$props)
+      $$invalidate(8, colorClass = $$new_props.colorClass);
+    if ("inputEl" in $$props)
+      $$invalidate(9, inputEl = $$new_props.inputEl);
+    if ("props" in $$props)
+      $$invalidate(10, props = $$new_props.props);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
+    $:
+      $$invalidate(10, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
     if ($$self.$$.dirty & /*value*/
     1) {
       $: {
         const { score, info } = measure(value);
-        $$invalidate(9, label = labels[score]);
-        $$invalidate(10, percent = score ? score * 25 : 5);
-        $$invalidate(12, colorClass = colorClassNames[score]);
-        $$invalidate(11, strengthInfoText = info);
+        $$invalidate(5, label = labels[score]);
+        $$invalidate(6, percent = score ? score * 25 : 5);
+        $$invalidate(8, colorClass = colorClassNames[score]);
+        $$invalidate(7, strengthInfoText = info);
       }
     }
   };
+  $$props = (0, import_internal12.exclude_internal_props)($$props);
   return [
     value,
-    id,
-    name,
-    title,
-    placeholder,
     strength,
     className,
     visible,
@@ -13065,6 +12999,7 @@ function instance12($$self, $$props, $$invalidate) {
     strengthInfoText,
     colorClass,
     inputEl,
+    props,
     toggle,
     keydown_handler,
     change_handler,
@@ -13077,15 +13012,7 @@ function instance12($$self, $$props, $$invalidate) {
 var InputPassword = class extends import_internal12.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal12.init)(this, options, instance12, create_fragment12, import_internal12.safe_not_equal, {
-      value: 0,
-      id: 1,
-      name: 2,
-      title: 3,
-      placeholder: 4,
-      strength: 5,
-      class: 6
-    });
+    (0, import_internal12.init)(this, options, instance12, create_fragment12, import_internal12.safe_not_equal, { value: 0, strength: 1, class: 2 });
     (0, import_internal12.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputPassword",
@@ -13097,30 +13024,6 @@ var InputPassword = class extends import_internal12.SvelteComponentDev {
     throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   set value(value) {
-    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get id() {
-    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set id(value) {
-    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get name() {
-    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set name(value) {
-    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get title() {
-    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set title(value) {
-    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get placeholder() {
-    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set placeholder(value) {
     throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get strength() {
@@ -21830,7 +21733,7 @@ var CodeBox = class extends import_internal33.SvelteComponentDev {
 var CodeBox_default = CodeBox;
 
 // docs-src/components/autocomplete/Autocomplete.svelte
-var { console: console_12 } = import_internal34.globals;
+var { console: console_1 } = import_internal34.globals;
 var file32 = "docs-src/components/autocomplete/Autocomplete.svelte";
 function create_fragment34(ctx) {
   let h20;
@@ -22602,7 +22505,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_12.warn(`<Autocomplete> was created with unknown prop '${key}'`);
+      console_1.warn(`<Autocomplete> was created with unknown prop '${key}'`);
   });
   function autocomplete0_value_binding(value) {
     autocompleteValue = value;
@@ -25412,7 +25315,7 @@ var ButtonToggle_default2 = ButtonToggle_1;
 
 // docs-src/components/checkbox/Checkbox.svelte
 var import_internal38 = __toESM(require_internal());
-var { console: console_13 } = import_internal38.globals;
+var { console: console_12 } = import_internal38.globals;
 var file36 = "docs-src/components/checkbox/Checkbox.svelte";
 function create_fragment38(ctx) {
   let h2;
@@ -25707,7 +25610,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_13.warn(`<Checkbox> was created with unknown prop '${key}'`);
+      console_12.warn(`<Checkbox> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Checkbox: Checkbox_default,
@@ -28645,7 +28548,7 @@ var Icon_default2 = Icon_1;
 
 // docs-src/components/input/Input.svelte
 var import_internal45 = __toESM(require_internal());
-var { console: console_14 } = import_internal45.globals;
+var { console: console_13 } = import_internal45.globals;
 var file43 = "docs-src/components/input/Input.svelte";
 function create_fragment45(ctx) {
   let h2;
@@ -28948,7 +28851,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_14.warn(`<Input> was created with unknown prop '${key}'`);
+      console_13.warn(`<Input> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     InputNumber: InputNumber_default,
@@ -29178,7 +29081,13 @@ function create_fragment47(ctx) {
   let t14;
   let api;
   let current;
-  inputpassword0 = new InputPassword_default({ $$inline: true });
+  inputpassword0 = new InputPassword_default({
+    props: {
+      name: "password",
+      placeholder: "Not 123456"
+    },
+    $$inline: true
+  });
   inputpassword1 = new InputPassword_default({
     props: { strength: true },
     $$inline: true
@@ -29226,11 +29135,11 @@ function create_fragment47(ctx) {
       (0, import_internal47.create_component)(api.$$.fragment);
       (0, import_internal47.add_location)(h2, file45, 0, 0, 0);
       (0, import_internal47.add_location)(h30, file45, 2, 0, 25);
-      (0, import_internal47.add_location)(h31, file45, 5, 0, 61);
+      (0, import_internal47.add_location)(h31, file45, 5, 0, 101);
       (0, import_internal47.attr_dev)(a, "href", "https://github.com/dropbox/zxcvbn");
-      (0, import_internal47.add_location)(a, file45, 6, 5, 108);
-      (0, import_internal47.add_location)(em, file45, 6, 99, 202);
-      (0, import_internal47.add_location)(p, file45, 6, 0, 103);
+      (0, import_internal47.add_location)(a, file45, 6, 5, 148);
+      (0, import_internal47.add_location)(em, file45, 6, 99, 242);
+      (0, import_internal47.add_location)(p, file45, 6, 0, 143);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -34166,7 +34075,7 @@ var Select_default2 = Select_1;
 
 // docs-src/components/splitter/Splitter.svelte
 var import_internal52 = __toESM(require_internal());
-var { console: console_15 } = import_internal52.globals;
+var { console: console_14 } = import_internal52.globals;
 var file50 = "docs-src/components/splitter/Splitter.svelte";
 function create_default_slot10(ctx) {
   let t;
@@ -34561,7 +34470,7 @@ function onchanged (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_15.warn(`<Splitter> was created with unknown prop '${key}'`);
+      console_14.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function splitter0_binding($$value) {
     import_internal52.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -34624,7 +34533,7 @@ var Splitter_default2 = Splitter_1;
 
 // docs-src/components/table/Table.svelte
 var import_internal53 = __toESM(require_internal());
-var { console: console_16 } = import_internal53.globals;
+var { console: console_15 } = import_internal53.globals;
 var file51 = "docs-src/components/table/Table.svelte";
 function create_default_slot11(ctx) {
   let thead0;
@@ -36526,7 +36435,7 @@ function instance53($$self, $$props, $$invalidate) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_16.warn(`<Table> was created with unknown prop '${key}'`);
+      console_15.warn(`<Table> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Table: Table_default,
@@ -37264,7 +37173,7 @@ var Textarea_default2 = Textarea_1;
 
 // docs-src/components/toaster/Toaster.svelte
 var import_internal56 = __toESM(require_internal());
-var { console: console_17 } = import_internal56.globals;
+var { console: console_16 } = import_internal56.globals;
 var file54 = "docs-src/components/toaster/Toaster.svelte";
 function create_default_slot_55(ctx) {
   let t;
@@ -37792,7 +37701,7 @@ function cb (id) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_17.warn(`<Toaster> was created with unknown prop '${key}'`);
+      console_16.warn(`<Toaster> was created with unknown prop '${key}'`);
   });
   const click_handler = () => showToast("Hello");
   const click_handler_1 = () => showToast("Hello", "success");
@@ -37843,7 +37752,7 @@ var Toaster_default2 = Toaster_1;
 
 // docs-src/components/toggle/Toggle.svelte
 var import_internal57 = __toESM(require_internal());
-var { console: console_18 } = import_internal57.globals;
+var { console: console_17 } = import_internal57.globals;
 var file55 = "docs-src/components/toggle/Toggle.svelte";
 function create_fragment57(ctx) {
   let h2;
@@ -38205,7 +38114,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_18.warn(`<Toggle> was created with unknown prop '${key}'`);
+      console_17.warn(`<Toggle> was created with unknown prop '${key}'`);
   });
   function toggle0_value_binding(value) {
     toggleValue = value;
@@ -39008,7 +38917,7 @@ var Tooltip_default2 = Tooltip_1;
 
 // docs-src/components/tree/Tree.svelte
 var import_internal59 = __toESM(require_internal());
-var { console: console_19 } = import_internal59.globals;
+var { console: console_18 } = import_internal59.globals;
 var file57 = "docs-src/components/tree/Tree.svelte";
 function create_fragment59(ctx) {
   let h2;
@@ -39228,7 +39137,7 @@ function onSelect (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_19.warn(`<Tree> was created with unknown prop '${key}'`);
+      console_18.warn(`<Tree> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Tree: Tree_default,

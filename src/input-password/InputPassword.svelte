@@ -4,21 +4,18 @@
 			type="password"
 			class="input-password"
 			autocomplete="off"
-			{id}
-			{name}
-			{title}
-			{placeholder}
+			{...props}
 			bind:this="{inputEl}"
 			bind:value="{value}"
 			on:keydown
 			on:change
 			on:focus
 			on:blur>
-		<Button link icon="{visible ? 'eyeOff' : 'eye'}" on:click="{toggle}"/>
+		<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
 	</div>
 	{#if strength && lib && value}
 		<div class="input-password-row">
-			<div class="password-strength" id="password-strength" title="{label}">
+			<div class="password-strength" title="{label}">
 				<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
 			</div>
 		</div>
@@ -31,12 +28,11 @@
 <script>
 import { onMount } from 'svelte';
 import { Button } from '../button';
+import { pluck } from '../utils';
 
 export let value = '';
-export let id = undefined;
-export let name = undefined;
-export let title = undefined;
-export let placeholder = undefined;
+$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
+
 export let strength = false;
 let className = '';
 export { className as class };

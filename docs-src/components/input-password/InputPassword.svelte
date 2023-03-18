@@ -1,7 +1,7 @@
 <h2>Input Password</h2>
 
 <h3>Default</h3>
-<InputPassword />
+<InputPassword name="password" placeholder="Not 123456"/>
 
 <h3>With password strength indicator</h3>
 <p>* <a href="https://github.com/dropbox/zxcvbn">zxcvbn</a> lib must be available and loaded via a <em>&lt;script&gt;</em> tag.</p>
