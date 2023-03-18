@@ -42,13 +42,14 @@ function calcHeights () {
 	});
 }
 
-function toggle (e) {
+export function toggle (e) {
+	e ||= { target: null, type: 'click', preventDefault: () => {} };
 	const skipToggleOn = ['BUTTON', 'INPUT', 'A', 'SELECT', 'TEXTAREA'];
-	if (skipToggleOn.includes(e.target.tagName)) return;
-	if (e.target.closest('.panel-content')) return;
+	if (e.target && skipToggleOn.includes(e.target.tagName)) return;
+	if (e.target && e.target.closest('.panel-content')) return;
 	// toggling works for space key natively, but on keyup, which adds a delay
 	// as user needs to release the key for the animation to start
-	// manually handling space on keydown - fixes that
+	// manually handling space on keydown fixes that
 	if (e.type === 'keydown' && e.key !== ' ') return;
 	e.preventDefault();
 	if (expanded) {
