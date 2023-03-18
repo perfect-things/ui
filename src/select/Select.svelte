@@ -33,7 +33,7 @@ export { className as class };
 
 let el, groups = [];
 
-$:props = pluck($$props, ['id', 'title', 'disabled', 'required']);
+$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'required']);
 
 $: {
 	const nogroup = [];
