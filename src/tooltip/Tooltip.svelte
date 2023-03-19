@@ -1,5 +1,5 @@
 {#if visible}
-	<div class="tooltip-plate tooltip-{_position} {className}" class:visible bind:this="{el}">
+	<div class="tooltip-plate tooltip-{_position}" class:visible bind:this="{el}">
 		<div class="tooltip">
 			<div class="tooltip-content {className}">
 				<slot/>
