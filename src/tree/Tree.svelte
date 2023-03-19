@@ -3,7 +3,7 @@
 	class="tree {className}"
 	role="tree"
 	aria-label="{title}"
-	title="{title}"
+	{title}
 	tabindex="0"
 	bind:this="{el}"
 	on:focus="{selectFirst}"
@@ -20,7 +20,7 @@ import { createEventDispatcher } from 'svelte';
 import TreeNode from './TreeNode.svelte';
 
 export let items = [];
-export let title = 'Tree';
+export let title = undefined;
 let className = '';
 export { className as class };
 
