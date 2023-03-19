@@ -1,6 +1,8 @@
 {#if isVisible}
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-	<div class="drawer {className}" tabindex="-1"
+	<div
+		class="drawer {className}"
+		tabindex="-1"
 		use:docclick
 		bind:this="{el}"
 		in:fly="{{ x: 300, duration: ANIMATION_SPEED }}"

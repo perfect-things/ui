@@ -1,4 +1,4 @@
-<div class="button-group {className}" class:round>
+<div class="button-group {className}" class:round role="group">
 	<slot/>
 </div>
 

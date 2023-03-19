@@ -1,6 +1,9 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <ul
 	class="tree {className}"
+	role="tree"
+	aria-label="{title}"
+	title="{title}"
 	tabindex="0"
 	bind:this="{el}"
 	on:focus="{selectFirst}"
@@ -17,6 +20,7 @@ import { createEventDispatcher } from 'svelte';
 import TreeNode from './TreeNode.svelte';
 
 export let items = [];
+export let title = 'Tree';
 let className = '';
 export { className as class };
 
@@ -58,10 +62,11 @@ function selectFirst () {
 	select(getVisibleNodes()[0]);
 }
 
-
-function selectLast () {
-	if (!selectedItem) select(getVisibleNodes().pop());
-	else select(selectedItem.closest('ul').querySelector('li:last-child .tree-node'));
+function selectFirstChild () {
+	const children = selectedItem.nextElementSibling;
+	if (!children) return;
+	const firstChild = children.querySelector('.tree-node');
+	if (firstChild) select(firstChild);
 }
 
 
@@ -86,11 +91,16 @@ function selectParent () {
 }
 
 
+function sendKeyToNode (key) {
+	const event = new CustomEvent('key', { detail: { key } });
+	selectedItem.dispatchEvent(event);
+}
+
 function goLeft () {
 	const isFolder = selectedItem.dataset.type === 'folder';
 	if (isFolder) {
 		const isExpanded = selectedItem.dataset.expanded === 'true';
-		if (isExpanded) selectedItem.click();
+		if (isExpanded) sendKeyToNode('left');
 		else selectParent();
 	}
 	else selectParent();
@@ -99,8 +109,16 @@ function goLeft () {
 
 function goRight () {
 	const isFolder = selectedItem.dataset.type === 'folder';
+	if (isFolder) {
+		const isExpanded = selectedItem.dataset.expanded === 'true';
+		if (isExpanded) selectFirstChild();
+		else sendKeyToNode('right');
+	}
+}
+
+function toggle () {
+	const isFolder = selectedItem.dataset.type === 'folder';
 	if (isFolder) selectedItem.click();
-	else selectLast();
 }
 
 
@@ -110,6 +128,7 @@ function onkeydown (e) {
 		ArrowDown: selectNext,
 		ArrowLeft: goLeft,
 		ArrowRight: goRight,
+		Enter: toggle,
 	};
 	if (typeof keyMap[e.key] === 'function') {
 		e.preventDefault();
@@ -129,7 +148,8 @@ function tryToGetSelectedItem () {
 function findItem (id, nodes) {
 	if (!nodes) nodes = items;
 	for (let found, node, i = 0; node = nodes[i]; i++) {
-		if (node.id === id) return node;
+		// eqeq must stay here, because id can be a number
+		if (node.id == id) return node;
 		if (node.items) found = findItem(id, node.items);
 		if (found) return found;
 	}

@@ -2,12 +2,17 @@
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="tree-node"
+		role="{item.items ? 'group' : 'treeitem'}"
+		aria-selected="false"
+		aria-label="{item.name}"
+		aria-expanded="{item.items ? expanded : undefined}"
 		class:expanded
 		data-type="{nodeType}"
 		data-level="{level}"
 		data-expanded="{item.items ? expanded : undefined}"
 		data-id="{item.id || undefined}"
-		on:click={item.items ? toggle : undefined}>
+		on:click={item.items ? toggle : undefined}
+		on:key="{onkey}">
 
 		{#each indents as indent}
 			<div class="tree-indent indent-{indent}"></div>
@@ -38,4 +43,9 @@ function toggle () {
 	expanded = !expanded;
 }
 
+function onkey (e) {
+	const key = e && e.detail && e.detail.key;
+	if (key === 'right') expanded = true;
+	else if (key === 'left') expanded = false;
+}
 </script>

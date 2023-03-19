@@ -3,6 +3,10 @@
 	<Icon name="dots"/>
 	<input
 		type="text"
+		role="combobox"
+		aria-autocomplete="list"
+		aria-controls="autocomplete-list-{gui}"
+		aria-expanded="{opened}"
 		autocomplete="off"
 		class="autocomplete-input"
 		value="{value && value.name || ''}"
@@ -17,7 +21,10 @@
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
 
-	<div class="autocomplete-list {opened ? '' : 'hidden'}"
+	<div
+		id="autocomplete-list-{gui}"
+		class="autocomplete-list {opened ? '' : 'hidden'}"
+		role="listbox"
 		on:mouseenter|capture="{() => mouseOverList = true}"
 		on:mouseleave|capture="{() => mouseOverList = false}"
 		on:mousedown={onListMouseDown}
@@ -30,6 +37,8 @@
 				{#if group.items}
 					{#each group.items as item}
 						<div
+							role="option"
+							aria-selected="{item.idx === highlightIndex}"
 							class="autocomplete-list-item"
 							class:in-group="{!!item.group}"
 							class:selected="{item.idx === highlightIndex}"
@@ -58,7 +67,7 @@
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './utils';
-import { pluck } from '../utils';
+import { pluck, uuid } from '../utils';
 import { Icon } from '../icon';
 export let data = [];
 export let value = null;
@@ -79,6 +88,7 @@ $:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i
 $:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputEl && inputEl.value && !valueMatchesItem;
 
 const dispatch = createEventDispatcher();
+const gui = uuid();
 let el, inputEl, listEl;
 let opened = false;
 let hasEdited = false;

@@ -1,4 +1,9 @@
-<div {disabled} class="button-group button-toggle {className}" class:round bind:this="{el}">
+<div {disabled}
+	class="button-group button-toggle {className}"
+	class:round
+	bind:this="{el}"
+	role="radiogroup">
+
 	{#each items as item, idx}
 		<label
 			{disabled}
