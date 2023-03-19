@@ -1,6 +1,13 @@
 // workaround for structuredClone not being available in JSDOM
 window.structuredClone = (val) => JSON.parse(JSON.stringify(val));
 
+// workaround for ResizeObserver not being available in JSDOM
+window.ResizeObserver = jest.fn().mockImplementation(() => ({
+	disconnect: jest.fn(),
+	observe: jest.fn(),
+	unobserve: jest.fn(),
+}));
+
 // workaround for window.matchMedia not being available in JSDOM
 window.matchMedia = jest.fn().mockImplementation(() => ({ matches: false }));
 

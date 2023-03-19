@@ -16,7 +16,7 @@ function resize () {
 	el.style.transform = '';
 	const textW = el.getBoundingClientRect().width;
 	const parentW = parent.getBoundingClientRect().width;
-	const val = (parentW - margin) / textW;
+	const val = ((parentW - margin) / textW) || 0;
 	el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`;
 }
 
