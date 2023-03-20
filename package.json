@@ -15,7 +15,6 @@
     "url": "https://github.com/perfect-things/ui.git"
   },
   "scripts": {
-    "pre-commit": "gulp prod",
     "lint": "gulp lint",
     "dist": "gulp prod",
     "serve": "http-server ./docs --silent --port 3123 -oa localhost",
