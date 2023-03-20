@@ -93,6 +93,7 @@ function hide (e) {
 	if (shownEvent === 'mouseover' && e.type === 'mouseout') return hideTimer = setTimeout(_hide, 50);
 	if (shownEvent === 'focus' && e.type === 'blur' && !noHide) return _hide();
 	if (shownEvent === 'mousedown' && e.type === 'mousedown') return _hide();
+	if (e.type === 'keydown') return _hide();
 }
 
 
@@ -137,6 +138,7 @@ function addTooltipEvents () {
 	}
 	window.addEventListener('resize', hide);
 	document.addEventListener('scroll', hide, true);
+	document.addEventListener('keydown', hide);
 }
 
 
@@ -153,6 +155,7 @@ function removeTooltipEvents () {
 	}
 	window.removeEventListener('resize', hide);
 	document.removeEventListener('scroll', hide, true);
+	document.removeEventListener('keydown', hide);
 }
 
 

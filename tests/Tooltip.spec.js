@@ -13,12 +13,20 @@ test('Tooltip', async () => {
 	const btn = container.querySelector('#box1');
 	await userEvent.hover(btn);
 
-	const tooltip = container.querySelector('.tooltip-content');
+	let tooltip = container.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
 	expect(tooltip).toHaveClass('test-class');
 	expect(tooltip).toHaveTextContent('Some tooltip text');
 
 	await userEvent.unhover(btn);
 	await waitForTimeout();
+	expect(tooltip).not.toBeInTheDocument();
+
+	await userEvent.hover(btn);
+	await waitForTimeout();
+	tooltip = container.querySelector('.tooltip-content');
+	expect(tooltip).toBeInTheDocument();
+
+	await userEvent.keyboard('[Escape]');
 	expect(tooltip).not.toBeInTheDocument();
 });
