@@ -1,6 +1,20 @@
 <h1>Changelog</h1>
 
 
+
+<h2>v6.2.0 <small>(2023-03-20)</small></h2>
+<ul>
+	<li>Review accessibility of all components (added <em>aria-</em> roles and attributes where necessary).
+	<li>Tweaked some components (e.g. close <em>Tooltip</em> on Escape)
+	<li>Added unit tests for all components.
+	<li>Docs pages style tweaks (e.g. color palette page)
+</ul>
+
+
+<h2>v6.1.1 <small>(2023-03-15)</small></h2>
+- Remove <em>coverage</em> folder from the npm package.
+
+
 <h2>v6.1.0 <small>(2023-03-15)</small></h2>
 <ul>
 	<li><em>Toggle</em> component has been completely rewritten to make it more flexible and perfect.

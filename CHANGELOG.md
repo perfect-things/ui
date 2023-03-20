@@ -2,6 +2,17 @@ Changelog
 =========
 
 
+## v6.2.0 (2023-03-20)
+- Review accessibility of all components (added `aria-` roles and attributes where necessary).
+- Tweaked some components (e.g. close Tooltip on Escape)
+- Added unit tests for all components.
+- Docs pages style tweaks (e.g. color palette)
+
+
+## v6.1.1 (2023-03-15)
+- Remove `coverage` folder from the npm package.
+
+
 ## v6.1.0 (2023-03-15)
 - `Toggle` component has been completely rewritten to make it more flexible and perfect.
 
