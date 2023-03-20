@@ -16,6 +16,7 @@ case $ans in
 esac
 
 npm run dist
+npm run changelog
 git add --all
 git commit -am 'release'
 if [ $v != none ]; then

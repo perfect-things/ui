@@ -32,9 +32,20 @@
 .logotype em { font-weight: 500; }
 
 
-h2 { display: flex; align-items: center; gap: 0.5em; }
-h2 small {
+h2 {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	font-weight: 400;
+}
+/* stylelint-disable-next-line no-descending-specificity */
+h2 em { color: var(--ui-color-text-semi); font-size: 0.8em; }
+
+li code {
 	display: inline;
-	color: var(--ui-color-text-semi);
+	padding: 0;
 	margin: 0;
+	background: none;
+	color: var(--ui-color-accent);
+	font: inherit;
 }
