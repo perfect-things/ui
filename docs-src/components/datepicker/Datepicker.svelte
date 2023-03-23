@@ -3,7 +3,7 @@
 <br>
 
 <h3>Normal</h3>
-<Datepicker />
+<Datepicker on:keydown="{onkey}"/>
 
 <h3>Show on focus</h3>
 <Datepicker showOnFocus="true" placeholder="Custom placeholder" />
@@ -61,4 +61,10 @@ function onChange (e) {
 &lt;/script>
 
 `;
+
+
+
+function onkey (e) {
+	console.log(1111, e.detail.event.key);
+}
 </script>

@@ -56,21 +56,26 @@ onMount(() => {
 
 
 function onkeydown (e) {
+	const isActive = picker.active;
+	const params = { event: e, component: picker };
 	if (e.key === 'Escape') {
-		if (picker.active) e.stopPropagation();
+		if (isActive) e.stopPropagation();
+		else dispatch('keydown', params);
 		requestAnimationFrame(() => picker.hide());
 	}
 	else if (e.key === 'Enter') {
-		if (picker.active) e.preventDefault();
+		if (isActive) e.preventDefault();
+		else dispatch('keydown', params);
 		requestAnimationFrame(() => picker.hide());
 	}
+
+	else dispatch('keydown', params);
 
 	// prevents picker's events in Safari
 	// if (e.key.includes('Arrow') && picker.active) {
 	// 	e.stopPropagation();
 	// }
 
-	dispatch('keydown', { event: e, component: picker });
 }
 
 function oninput () {

@@ -2,6 +2,9 @@ Changelog
 =========
 
 
+## v6.2.1 *(2023-03-23)*
+- Datepicker should stopPropagation on Escape, when the calendar is open.
+
 ## v6.2.0 *(2023-03-20)*
 - Review accessibility of all components (added `aria-` roles and attributes where necessary).
 - Tweaked some components (e.g. close Tooltip on Escape)
