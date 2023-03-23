@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v621-2023-03-23">v6.2.1 <em>(2023-03-23)</em></h2>
+<ul>
+<li>Datepicker should stopPropagation on Escape, when the calendar is open.</li>
+</ul>
 <h2 id="v620-2023-03-20">v6.2.0 <em>(2023-03-20)</em></h2>
 <ul>
 <li>Review accessibility of all components (added <code>aria-</code> roles and attributes where necessary).</li>
