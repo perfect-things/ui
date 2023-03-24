@@ -69,10 +69,7 @@
 }
 .toast-progressbar {
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	top: 0;
+	inset: 0;
 	border-radius: var(--toaster-border-radius);
 	overflow: hidden;
 	z-index: -1;
