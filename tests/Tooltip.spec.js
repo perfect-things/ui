@@ -15,7 +15,7 @@ test('Tooltip', async () => {
 
 	let tooltip = container.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
-	expect(tooltip).toHaveClass('test-class');
+	expect(tooltip.parentNode).toHaveClass('test-class');
 	expect(tooltip).toHaveTextContent('Some tooltip text');
 
 	await userEvent.unhover(btn);
