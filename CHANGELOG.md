@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.2.8 *(2023-03-24)*
+- move tooltip custom class attribute to the tooltip itself, not the content (so that it can easily overwrite the background color).
+
+
 ## v6.2.7 *(2023-03-24)*
 - revert some tooltip changes (`events` prop is actually useful)
 

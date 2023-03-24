@@ -1,7 +1,7 @@
 {#if visible}
 	<div class="tooltip-plate tooltip-{_position}" class:visible bind:this="{el}">
-		<div class="tooltip" role="tooltip">
-			<div class="tooltip-content {className}"><slot/> </div>
+		<div class="tooltip {className}" role="tooltip">
+			<div class="tooltip-content"><slot/> </div>
 		</div>
 	</div>
 {/if}
