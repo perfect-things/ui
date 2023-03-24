@@ -41,6 +41,8 @@
 	font-weight: 400;
 	margin: 0;
 	padding: 0.4em 1em 0;
+	border-top-left-radius: var(--ui-popup-border-radius);
+	border-top-right-radius: var(--ui-popup-border-radius);
 }
 
 .dialog-content {
@@ -60,6 +62,8 @@
 	flex-flow: row-reverse;
 	padding: 0.7em 1em;
 	gap: 0.3em;
+	border-bottom-left-radius: var(--ui-popup-border-radius);
+	border-bottom-right-radius: var(--ui-popup-border-radius);
 }
 
 .draw-borders .dialog-header { border-bottom: var(--ui-popup-border); padding: 0.4em 0.5em; }
