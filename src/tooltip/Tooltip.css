@@ -5,6 +5,7 @@
 	top: 0;
 	right: 0;
 	transform: translateZ(1px);
+	--ui-tooltip-color: var(--ui-color-accent);
 }
 
 .tooltip-plate {
@@ -17,7 +18,7 @@
 }
 
 .tooltip {
-	background-color: var(--ui-color-background-semi);
+	background-color: var(--ui-tooltip-color);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -34,7 +35,7 @@
 	bottom: calc(var(--tip-height) * -1);
 	border-style: solid;
 	border-width: var(--tip-height) var(--tip-width) 0;
-	border-color: var(--ui-popup-background) transparent transparent;
+	border-color: var(--ui-tooltip-color) transparent transparent;
 }
 
 .tooltip-bottom { padding-bottom: 0; padding-top: var(--tip-height); }
@@ -42,27 +43,11 @@
 	bottom: auto;
 	top: calc(var(--tip-height) * -1);
 	border-width: 0 var(--tip-width) var(--tip-height);
-	border-color: transparent transparent var(--ui-popup-background);
+	border-color: transparent transparent var(--ui-tooltip-color);
 }
 
 
 
 .theme-light .tooltip-plate {
 	filter: drop-shadow(0 0 4px rgb(0 0 0 / 0.8));
-}
-
-
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	.tooltip {
-		background-color: var(--ui-color-background-semi);
-		-webkit-backdrop-filter: blur(15px);
-		backdrop-filter: blur(15px);
-	}
-
-	.tooltip::after {
-		border-color: var(--ui-color-background) transparent transparent;
-	}
-	.tooltip-bottom .tooltip::after {
-		border-color: transparent transparent var(--ui-color-background);
-	}
 }

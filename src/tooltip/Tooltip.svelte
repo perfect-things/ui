@@ -1,16 +1,13 @@
 {#if visible}
 	<div class="tooltip-plate tooltip-{_position}" class:visible bind:this="{el}">
 		<div class="tooltip" role="tooltip">
-			<div class="tooltip-content {className}">
-				<slot/>
-			</div>
+			<div class="tooltip-content {className}"><slot/> </div>
 		</div>
 	</div>
 {/if}
 <script>
 import { afterUpdate, onDestroy, onMount } from 'svelte';
 export let target = '';
-export let events = 'hover';	// hover, click, focus
 export let delay = '0';
 export let position = 'auto';
 export let offset = 2;
@@ -125,72 +122,52 @@ function initContainer () {
 }
 
 
+function onKey (e) {
+	if (e.key === 'Escape') hide(e);
+}
+
+
 function addTooltipEvents () {
 	if (!el) return;
 	el.addEventListener('mousedown', preventHiding);
-	if (events.includes('focus')) {
-		el.addEventListener('focus', show);
-		el.addEventListener('blur', hide);
-	}
-	if (events.includes('hover')) {
-		el.addEventListener('mouseover', show);
-		el.addEventListener('mouseout', hide);
-	}
+	el.addEventListener('focus', show);
+	el.addEventListener('blur', hide);
+	el.addEventListener('mouseover', show);
+	el.addEventListener('mouseout', hide);
+
 	window.addEventListener('resize', hide);
 	document.addEventListener('scroll', hide, true);
-	document.addEventListener('keydown', hide);
+	document.addEventListener('keydown', onKey);
 }
 
 
 function removeTooltipEvents () {
 	if (!el) return;
 	el.removeEventListener('mousedown', preventHiding);
-	if (events.includes('focus')) {
-		el.removeEventListener('focus', show);
-		el.removeEventListener('blur', hide);
-	}
-	if (events.includes('hover')) {
-		el.removeEventListener('mouseover', show);
-		el.removeEventListener('mouseout', hide);
-	}
+	el.removeEventListener('focus', show);
+	el.removeEventListener('blur', hide);
+	el.removeEventListener('mouseover', show);
+	el.removeEventListener('mouseout', hide);
 	window.removeEventListener('resize', hide);
 	document.removeEventListener('scroll', hide, true);
-	document.removeEventListener('keydown', hide);
+	document.removeEventListener('keydown', onKey);
 }
 
 
 function addTargetEvents () {
 	if (!targetEl) return;
-	if (events.includes('click')) {
-		targetEl.addEventListener('mousedown', show);
-		document.addEventListener('mousedown', hide);
-		document.addEventListener('click', hide);
-	}
-	if (events.includes('focus')) {
-		targetEl.addEventListener('focus', show);
-		targetEl.addEventListener('blur', hide);
-	}
-	if (events.includes('hover')) {
-		targetEl.addEventListener('mouseover', show);
-		targetEl.addEventListener('mouseout', hide);
-	}
+	targetEl.addEventListener('focus', show);
+	targetEl.addEventListener('blur', hide);
+	targetEl.addEventListener('mouseover', show);
+	targetEl.addEventListener('mouseout', hide);
 }
 
 
 function removeTargetEvents () {
 	if (!targetEl) return;
-	if (events.includes('click')) {
-		targetEl.removeEventListener('mousedown', show);
-		document.removeEventListener('mousedown', hide);
-		document.removeEventListener('click', hide);
-	}
-	if (events.includes('focus')) {
-		targetEl.removeEventListener('focus', show);
-		targetEl.removeEventListener('blur', hide);
-	}
-	if (events.includes('hover')) {
-		targetEl.removeEventListener('mouseover', show);
-		targetEl.removeEventListener('mouseout', hide);
-	}
+	targetEl.removeEventListener('focus', show);
+	targetEl.removeEventListener('blur', hide);
+	targetEl.removeEventListener('mouseover', show);
+	targetEl.removeEventListener('mouseout', hide);
 }
 </script>
