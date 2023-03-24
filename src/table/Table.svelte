@@ -57,20 +57,27 @@ onDestroy(() => {
 });
 
 
-function getSelectableItems () {
-	const rows = _this.querySelectorAll(`.table ${rowSelector}`);
+/**
+ * Finds all selectable rows.
+ * Only for marking them as selectable, do we need to use the current table.
+ * For finding next/prev rows, we need to use all tables.
+ * @param getFromAllTables
+ */
+function getSelectableItems (getFromAllTables = true) {
+	const rootEl = getFromAllTables ? _this.parentNode : _this;
+	const rows = rootEl.querySelectorAll(`.table ${rowSelector}`);
 	if (rows && rows.length) return Array.from(rows);
 	return [];
 }
 
 
 function makeRowsSelectable () {
-	getSelectableItems().forEach(item => item.setAttribute('tabindex', 0));
+	getSelectableItems(false).forEach(item => item.setAttribute('tabindex', 0));
 }
 
 
 function makeRowsNotSelectable () {
-	getSelectableItems().forEach(item => item.removeAttribute('tabindex'));
+	getSelectableItems(false).forEach(item => item.removeAttribute('tabindex'));
 }
 
 
