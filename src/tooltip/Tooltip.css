@@ -5,7 +5,7 @@
 	top: 0;
 	right: 0;
 	transform: translateZ(1px);
-	--ui-tooltip-color: var(--ui-color-accent);
+	--ui-tooltip-color: var(--ui-color-info);
 }
 
 .tooltip-plate {
@@ -14,7 +14,6 @@
 	position: absolute;
 	font-size: 0.9em;
 	padding-bottom: var(--tip-height);
-	filter: drop-shadow(0 1px 5px rgb(0 0 0 / 0.9));
 }
 
 .tooltip {
@@ -24,6 +23,7 @@
 	justify-content: center;
 	border-radius: var(--ui-border-radius-s);
 	position: relative;
+	filter: drop-shadow(0 1px 4px rgb(0 0 0 / 0.7));
 }
 
 .tooltip-content { padding: 0.75em; text-align: center; }
@@ -44,10 +44,4 @@
 	top: calc(var(--tip-height) * -1);
 	border-width: 0 var(--tip-width) var(--tip-height);
 	border-color: transparent transparent var(--ui-tooltip-color);
-}
-
-
-
-.theme-light .tooltip-plate {
-	filter: drop-shadow(0 0 4px rgb(0 0 0 / 0.8));
 }

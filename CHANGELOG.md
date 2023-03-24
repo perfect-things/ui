@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.2.7 *(2023-03-24)*
+- revert some tooltip changes (`events` prop is actually useful)
+
+
 ## v6.2.6 *(2023-03-24)*
 - simplify tooltip (change bg color to `accent`, drop `events` prop and default to focus + hover)
 
