@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v627-2023-03-24">v6.2.7 <em>(2023-03-24)</em></h2>
+<ul>
+<li>revert some tooltip changes (<code>events</code> prop is actually useful)</li>
+</ul>
 <h2 id="v626-2023-03-24">v6.2.6 <em>(2023-03-24)</em></h2>
 <ul>
 <li>simplify tooltip (change bg color to <code>accent</code>, drop <code>events</code> prop and default to focus + hover)</li>
