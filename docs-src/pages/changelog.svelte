@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v622-2023-03-24">v6.2.2 <em>(2023-03-24)</em></h2>
+<ul>
+<li>Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.</li>
+</ul>
 <h2 id="v621-2023-03-23">v6.2.1 <em>(2023-03-23)</em></h2>
 <ul>
 <li>Datepicker should stopPropagation on Escape, when the calendar is open.</li>

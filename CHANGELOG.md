@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.2.2 *(2023-03-24)*
+- Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.
+
+
 ## v6.2.1 *(2023-03-23)*
 - Datepicker should stopPropagation on Escape, when the calendar is open.
 
