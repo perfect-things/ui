@@ -1,9 +1,18 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v622-v623-2023-03-24">v6.2.2, v6.2.3 <em>(2023-03-24)</em></h2>
+<h2 id="v626-2023-03-24">v6.2.6 <em>(2023-03-24)</em></h2>
 <ul>
+<li>simplify tooltip (change bg color to <code>accent</code>, drop <code>events</code> prop and default to focus + hover)</li>
+</ul>
+<h2 id="v625-2023-03-24">v6.2.5 <em>(2023-03-24)</em></h2>
+<ul>
+<li>disable svelte false-positive a11y warnings. See <a href="https://github.com/sveltejs/svelte/pull/8402">svelte#8402</a></li>
+</ul>
+<h2 id="v624-2023-03-24">v6.2.4 <em>(2023-03-24)</em></h2>
+<ul>
+<li>update table docs (missing <code>data</code> prop)</li>
 <li>change button&#39;s <code>active</code> class to <code>touching</code> for touch events (to not conflict with popular <code>active</code> class name that may be used by consumers)</li>
 </ul>
-<h2 id="v622-v623-2023-03-24-1">v6.2.2, v6.2.3 <em>(2023-03-24)</em></h2>
+<h2 id="v622-v623-2023-03-24">v6.2.2, v6.2.3 <em>(2023-03-24)</em></h2>
 <ul>
 <li>Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.</li>
 </ul>

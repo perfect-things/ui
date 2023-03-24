@@ -2,7 +2,16 @@ Changelog
 =========
 
 
-## v6.2.2, v6.2.3 *(2023-03-24)*
+## v6.2.6 *(2023-03-24)*
+- simplify tooltip (change bg color to `accent`, drop `events` prop and default to focus + hover)
+
+
+## v6.2.5 *(2023-03-24)*
+- disable svelte false-positive a11y warnings. See [svelte#8402](https://github.com/sveltejs/svelte/pull/8402)
+
+
+## v6.2.4 *(2023-03-24)*
+- update table docs (missing `data` prop)
 - change button's `active` class to `touching` for touch events (to not conflict with popular `active` class name that may be used by consumers)
 
 
@@ -12,6 +21,7 @@ Changelog
 
 ## v6.2.1 *(2023-03-23)*
 - Datepicker should stopPropagation on Escape, when the calendar is open.
+
 
 ## v6.2.0 *(2023-03-20)*
 - Review accessibility of all components (added `aria-` roles and attributes where necessary).
