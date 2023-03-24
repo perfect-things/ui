@@ -118,6 +118,7 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'data', type: 'object', description: 'Props to attach to the element\'s <em>dataset</em> attribute.' },
 	{ name: 'round', description: 'Adds rounded corners to the table.' },
 	{ name: 'rowSelector', type: 'string', default: 'tbody tr', description: 'A selector for a table row.<br>This is useful if a table needs row groups, in which case it would have a mix of TRs and TBODYs for rows. Both can have the same class, e.g. <em>.row</em> and this selector should then be provided here.' },
 	{ name: 'scrollContainer', type: ['string','Element'], default: 'table wrapper', description: 'Selector or HTML Element to the scroll container. If table wrapper\'s height is not set to 100% of the container, and is taller than the container - the container will have to be scrollable, and in this case it must be provided here.' },
@@ -132,7 +133,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<Table rowSelector=".row-sel" round>
+<Table rowSelector=".row-sel" round data="{{ id: 'table-id-1' }}">
 		<thead>
 			<tr><th>Year</th><th>Month</th><th>Price</th></tr>
 		</thead>
