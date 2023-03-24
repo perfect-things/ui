@@ -1,6 +1,10 @@
 <h1 id="changelog">Changelog</h1>
 <h2 id="v622-v623-2023-03-24">v6.2.2, v6.2.3 <em>(2023-03-24)</em></h2>
 <ul>
+<li>change button&#39;s <code>active</code> class to <code>touching</code> for touch events (to not conflict with popular <code>active</code> class name that may be used by consumers)</li>
+</ul>
+<h2 id="v622-v623-2023-03-24-1">v6.2.2, v6.2.3 <em>(2023-03-24)</em></h2>
+<ul>
 <li>Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.</li>
 </ul>
 <h2 id="v621-2023-03-23">v6.2.1 <em>(2023-03-23)</em></h2>
