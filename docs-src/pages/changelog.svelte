@@ -1,5 +1,5 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v622-2023-03-24">v6.2.2 <em>(2023-03-24)</em></h2>
+<h2 id="v622-v623-2023-03-24">v6.2.2, v6.2.3 <em>(2023-03-24)</em></h2>
 <ul>
 <li>Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.</li>
 </ul>
