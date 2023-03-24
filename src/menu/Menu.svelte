@@ -1,4 +1,4 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-to-interactive-role -->
 <ul
 	class="menu {className}"
 	class:hidden="{!opened}"

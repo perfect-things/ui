@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
 <li class="menu-item" role="menuitem">
 	<button class="menu-button" on:mousedown|preventDefault on:click|capture="{onclick}">
 		<span class="menu-item-content"><slot /></span>
