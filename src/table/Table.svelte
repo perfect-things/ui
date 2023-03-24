@@ -58,7 +58,7 @@ onDestroy(() => {
 
 
 function getSelectableItems () {
-	const rows = _this.parentNode.querySelectorAll(`.table ${rowSelector}`);
+	const rows = _this.querySelectorAll(`.table ${rowSelector}`);
 	if (rows && rows.length) return Array.from(rows);
 	return [];
 }
