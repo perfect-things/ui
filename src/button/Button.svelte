@@ -12,7 +12,7 @@
 	class:success
 	class:warning
 	class:danger
-	class:active="{touching}"
+	class:touching
 	{...props}
 
 	on:focus

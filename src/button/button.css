@@ -34,7 +34,7 @@
 	outline: 1px solid transparent;
 }
 
-.button.active,
+.button.touching,
 .button:active {
 	outline: 1px solid transparent;
 	box-shadow: none;

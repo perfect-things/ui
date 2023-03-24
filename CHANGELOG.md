@@ -3,6 +3,10 @@ Changelog
 
 
 ## v6.2.2, v6.2.3 *(2023-03-24)*
+- change button's `active` class to `touching` for touch events (to not conflict with popular `active` class name that may be used by consumers)
+
+
+## v6.2.2, v6.2.3 *(2023-03-24)*
 - Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.
 
 
