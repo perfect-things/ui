@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v6210-2023-03-25">v6.2.10 <em>(2023-03-25)</em></h2>
+<ul>
+<li>Also pass event target in menu <code>on:close</code> event.</li>
+</ul>
 <h2 id="v629-2023-03-25">v6.2.9 <em>(2023-03-25)</em></h2>
 <ul>
 <li>Fix: menu <code>on:open</code> event was missing.</li>
