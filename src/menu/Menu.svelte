@@ -245,7 +245,7 @@ function _close () {
 	if (targetEl) targetEl.setAttribute('aria-expanded', 'false');
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		dispatch('close');
+		dispatch('close', { target: targetEl });
 		removeEventListeners();
 		requestAnimationFrame(resolve);
 		focusTarget();
