@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.2.9 *(2023-03-25)*
+- Fix: menu `on:open` event was missing.
+
+
 ## v6.2.8 *(2023-03-24)*
 - move tooltip custom class attribute to the tooltip itself, not the content (so that it can easily overwrite the background color).
 

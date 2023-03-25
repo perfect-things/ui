@@ -111,7 +111,7 @@ function onContextMenu (e) {
 	e.stopPropagation();
 	e.preventDefault();
 	updatePosition(e);
-	open();
+	open(e);
 }
 
 
@@ -214,7 +214,7 @@ export function open (e) {
 	return new Promise(resolve => requestAnimationFrame(() => {
 		// needs to finish rendering first
 		updatePosition(e);
-		dispatch('open');
+		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
 		if (menuEl) menuEl.focus();
