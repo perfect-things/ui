@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v629-2023-03-25">v6.2.9 <em>(2023-03-25)</em></h2>
+<ul>
+<li>Fix: menu <code>on:open</code> event was missing.</li>
+</ul>
 <h2 id="v628-2023-03-24">v6.2.8 <em>(2023-03-24)</em></h2>
 <ul>
 <li>move tooltip custom class attribute to the tooltip itself, not the content (so that it can easily overwrite the background color).</li>
