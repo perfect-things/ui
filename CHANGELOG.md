@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.2.10 *(2023-03-25)*
+- Also pass event target in menu `on:close` event.
+
+
 ## v6.2.9 *(2023-03-25)*
 - Fix: menu `on:open` event was missing.
 
