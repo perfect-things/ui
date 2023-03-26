@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.3.0 *(2023-03-26)*
+- enhance `MenuItem` component (add props: class, disabled, icon, success, warning, danger)
+
+
 ## v6.2.10 *(2023-03-25)*
 - Also pass event target in menu `on:close` event.
 

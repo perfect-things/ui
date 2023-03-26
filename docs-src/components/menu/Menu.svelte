@@ -3,7 +3,7 @@
 <h3>Normal menu</h3>
 <Button on:click="{thingsMenu.open}">Show menu</Button>
 <Menu bind:this="{thingsMenu}">
-	<MenuItem><Icon name="plus"/> Add a thing</MenuItem>
+	<MenuItem success icon="plus">Add a thing (success)</MenuItem>
 	<MenuItem>Add another one</MenuItem>
 	<MenuSeparator />
 	<MenuItem shortcut="cmd+shift+c">Third option</MenuItem>
@@ -14,8 +14,9 @@
 	<MenuItem shortcut="escape">Eight, so go ahead and try typing</MenuItem>
 	<MenuItem shortcut="cmd+option+s">Ninth, the beginning of the menu item text</MenuItem>
 	<MenuItem>Tenth, and it should be focused</MenuItem>
+	<MenuItem disabled>A disabled option too</MenuItem>
 	<MenuSeparator />
-	<MenuItem on:click="{menuCloseThings}"><Icon name="close"/> {closeThingsText}</MenuItem>
+	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
 </Menu>
 
 
@@ -105,7 +106,15 @@ const instanceApiProps = [
 ];
 
 const itemApiProps = [
+	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the menu item.' },
+	{ name: 'danger', description: 'Button type: danger' },
+	{ name: 'disabled', description: 'Makes the menu item (button) <i>disabled</i>' },
+	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
+	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
 	{ name: 'shortcut', type: 'string', description: 'A string representation of a keyboard shortcut. e.g. <em>cmd+alt+c</em>.<br>Keys should be separated by a <em>+</em> sign (which will be hidden in the rendered item).<br>Special keys (like cmd, alt, ctrl, shift, escape, enter, etc.) will be replaced by a corresponding symbol.<br>Keyboard handling must be done elsewhere.' },
+	{ name: 'success', description: 'Button type: success' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
+	{ name: 'warning', description: 'Button type: warning' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
 ];
 

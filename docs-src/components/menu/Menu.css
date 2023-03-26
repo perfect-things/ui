@@ -17,6 +17,4 @@ small { display: block; margin: 5px 0 15px; }
 	z-index: 5;
 }
 
-.docs-menu-align-right {
-	float: right;
-}
+.docs-menu-align-right { float: right; }

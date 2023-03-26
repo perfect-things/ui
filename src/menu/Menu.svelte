@@ -98,8 +98,16 @@ function updatePosition (e) {
 	const winW = window.innerWidth;
 	const padding = 10;
 
-	if (y > winH - height - padding) menuEl.style.top = (winH - height - padding) + 'px';
-	if (x > winW - width - padding) menuEl.style.left = (winW - width - padding) + 'px';
+	if (y > winH - height - padding) {
+		let top = winH - height - padding;
+		if (top < 0) top = 2;
+		menuEl.style.top = top + 'px';
+	}
+	if (x > winW - width - padding) {
+		let left = winW - width - padding;
+		if (left < 0) left = 2;
+		menuEl.style.left = left + 'px';
+	}
 }
 
 
@@ -119,13 +127,14 @@ function onDocumentClick (e) {
 	if (!menuEl.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
-		const clickedOnItem = !!e.target.closest('.menu-item:not(.menu-separator)');
+		const clickedOnItem = !!e.target.closest('.menu-item:not(.menu-separator,.disabled)');
 		if (shouldClose && clickedOnItem) close(e);
 	}
 }
 
 
-function onscroll () {
+function onscroll (e) {
+	if (e.target.closest('.menu')) return;
 	if (opened) _close();
 }
 

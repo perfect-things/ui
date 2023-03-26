@@ -6,9 +6,11 @@
 	flex-flow: column;
 	align-items: stretch;
 	list-style: none;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 	cursor: default;
 	z-index: 999;
+	max-height: calc(100vh - 4px);
 	-webkit-user-select: none;
 	user-select: none;
 	overscroll-behavior-y: contain;
@@ -27,6 +29,7 @@
 .menu.hidden { display: none; }
 
 .menu-item {
+	flex-shrink: 0;
 	padding: 0.1em 0;
 	margin: 0;
 	position: relative;
@@ -73,16 +76,18 @@
 	border-radius: var(--ui-border-radius);
 }
 
+.menu-button:disabled { pointer-events: none; opacity: 0.6; }
+
 .menu-button:focus-within,
-.menu-button:focus {
-	background-color: var(--ui-color-highlight);
-	outline: 1px solid transparent;
-}
+.menu-button:focus { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
 
 .menu-button:focus .menu-item-shortcut { opacity: 1; }
 
 
-.mobile .menu-button { padding: 1em; }
+.menu-button.success:focus { background-color: var(--ui-color-success); }
+.menu-button.warning:focus { background-color: var(--ui-color-warning); }
+.menu-button.danger:focus { background-color: var(--ui-color-danger); }
+
 
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
