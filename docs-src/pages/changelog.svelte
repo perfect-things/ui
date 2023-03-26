@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v631-2023-03-26">v6.3.1 <em>(2023-03-26)</em></h2>
+<ul>
+<li>ButtonGroup styling tweaks (edge buttons padding alignment)</li>
+</ul>
 <h2 id="v630-2023-03-26">v6.3.0 <em>(2023-03-26)</em></h2>
 <ul>
 <li>enhance <code>MenuItem</code> component (add props: class, disabled, icon, success, warning, danger)</li>
