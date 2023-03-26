@@ -43,3 +43,9 @@
 	border-top-right-radius: var(--ui-border-radius-xl);
 	border-bottom-right-radius: var(--ui-border-radius-xl);
 }
+
+
+.button-group .button:not(.button-has-text):first-of-type { padding-left: 9px; }
+.button-group .button:not(.button-has-text):last-of-type { padding-right: 9px; }
+.button-group.round .button:not(.button-has-text):first-of-type { padding-right: 6px; padding-left: 11px; }
+.button-group.round .button:not(.button-has-text):last-of-type { padding-left: 6px; padding-right: 11px; }
