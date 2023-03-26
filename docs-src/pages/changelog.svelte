@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v630-2023-03-26">v6.3.0 <em>(2023-03-26)</em></h2>
+<ul>
+<li>enhance <code>MenuItem</code> component (add props: class, disabled, icon, success, warning, danger)</li>
+</ul>
 <h2 id="v6210-2023-03-25">v6.2.10 <em>(2023-03-25)</em></h2>
 <ul>
 <li>Also pass event target in menu <code>on:close</code> event.</li>
