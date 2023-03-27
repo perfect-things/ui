@@ -3,7 +3,7 @@ Changelog
 
 
 ## v6.3.1 *(2023-03-26)*
-- ButtonGroup styling tweaks (edge buttons padding alignment)
+- `ButtonGroup` styling tweaks (edge buttons padding alignment)
 
 
 ## v6.3.0 *(2023-03-26)*
