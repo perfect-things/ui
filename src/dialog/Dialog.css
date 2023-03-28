@@ -54,6 +54,12 @@
 	outline: 1px solid transparent;
 }
 
+.dialog-content:focus {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus) inset;
+	outline: 1px solid transparent;
+}
+
 .dialog-footer [slot="footer"] {
 	width: 100%;
 	display: flex;

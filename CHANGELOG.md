@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.3.2 *(2023-03-?)*
+- `Table` will not listen to events when it's not the target.
+
+
 ## v6.3.1 *(2023-03-26)*
 - `ButtonGroup` styling tweaks (edge buttons padding alignment)
 

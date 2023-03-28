@@ -1,7 +1,8 @@
 <h2>Table</h2>
 
 <div class="table-viewport">
-	<Table rowSelector=".row-sel" round
+	<Table round
+		rowSelector=".row-sel"
 		on:keydown="{onKey}"
 		on:dblclick="{onSelect}"
 		on:select="{onSelect}">

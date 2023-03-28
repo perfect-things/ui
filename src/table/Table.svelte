@@ -5,6 +5,8 @@
 	class:selectable
 	bind:this="{_this}"
 	on:click="{onClick}"
+	on:focus|capture="{onFocus}"
+	on:keydown="{onKeyDown}"
 	on:dblclick="{onDblClick}">
 
 	<table class="table"><slot /></table>
@@ -36,9 +38,7 @@ let previousKey;
 
 onMount(() => {
 	Object.assign(_this.dataset, data);
-	if (selectable) {
-		document.addEventListener('keydown', onKeyDown);
-		document.addEventListener('focus', onFocus, true);
+	if (selectable === true || selectable === 'true') {
 		makeRowsSelectable();
 		requestAnimationFrame(() => {
 			const head = _this && _this.querySelector('thead');
@@ -49,11 +49,7 @@ onMount(() => {
 
 
 onDestroy(() => {
-	if (selectable) {
-		document.removeEventListener('keydown', onKeyDown);
-		document.removeEventListener('focus', onFocus, true);
-		makeRowsNotSelectable();
-	}
+	if (selectable === true || selectable === 'true') makeRowsNotSelectable();
 });
 
 
@@ -143,6 +139,7 @@ function selectFocusedRow (rowEl) {
 
 
 function onFocus (e) {
+	if (selectable !== true && selectable !== 'true') return;
 	if (!_this.contains(e.target)) return;
 	if (!e || !e.target || shouldSkipNav(e)) return;
 	if (e.target === document) return;
@@ -173,6 +170,7 @@ function onClick (e) {
 
 
 function onDblClick (e) {
+	if (selectable !== true && selectable !== 'true') return;
 	if (!_this.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
@@ -186,6 +184,7 @@ function onDblClick (e) {
 
 
 function onKeyDown (e) {
+	if (selectable !== true && selectable !== 'true') return;
 	if (!_this.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 

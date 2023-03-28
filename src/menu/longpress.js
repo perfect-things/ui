@@ -43,7 +43,8 @@ function startTimer (e) {
 
 
 function clearTimer () {
-	if (timer) clearTimeout(timer);
+	if (!timer) return;
+	clearTimeout(timer);
 	timer = null;
 }
 
@@ -87,7 +88,7 @@ export default function init (delay = 500, eventName = 'longpress') {
 	document.addEventListener(mouseDown, mouseDownHandler, true);
 	document.addEventListener(mouseMove, mouseMoveHandler, true);
 	document.addEventListener(mouseUp, clearTimer, true);
-	document.addEventListener('wheel', clearTimer, true);
+	// document.addEventListener('wheel', clearTimer, true);
 	document.addEventListener('scroll', clearTimer, true);
 	window['longPressEventInitialised'] = true;
 }

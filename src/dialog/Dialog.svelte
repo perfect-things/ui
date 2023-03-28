@@ -12,8 +12,8 @@
 	<div class="dialog" bind:this="{dialogEl}">
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<h1 class="dialog-header">{title}</h1>
-		<div class="dialog-content" bind:this="{contentEl}"><slot></slot></div>
-		<div class="dialog-footer" bind:this="{footerEl}"><slot name="footer"></slot></div>
+		<div class="dialog-content" bind:this="{contentEl}"><slot/></div>
+		<div class="dialog-footer" bind:this="{footerEl}"><slot name="footer"/></div>
 		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
 	</div>
 </div>
@@ -32,9 +32,12 @@ export { className as class };
 const dispatch = createEventDispatcher();
 let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
 
+
+
 onMount(() => {
 	document.body.appendChild(backdropEl);
 });
+
 
 function focusFirst () {
 	let first = getFocusableElements().shift();
@@ -47,6 +50,7 @@ function focusFirst () {
 	if (first) first.focus();
 }
 
+
 function focusLast () {
 	const first = getFocusableElements().shift();
 	let last = getFocusableElements().pop();
@@ -58,11 +62,13 @@ function focusLast () {
 	if (last) last.focus();
 }
 
+
 function getFocusableElements () {
 	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	return [...contentElements, ...footerElements];
 }
+
 
 function onBackdropClick (e) {
 	if (!dialogEl.contains(e.target)) {
@@ -71,8 +77,10 @@ function onBackdropClick (e) {
 	}
 }
 
+
 function onDocKeydown (e) {
 	const hasFocus = backdropEl.contains(document.activeElement);
+	if (e.key === 'Tab' && opened && !hasFocus) focusFirst();
 	if (e.key === 'Escape' && opened && hasFocus) {
 		e.stopPropagation();
 		close();
@@ -93,6 +101,7 @@ export function open (openedBy) {
 		dispatch('open');
 	}, 100);
 }
+
 
 export function close () {
 	if (!opened) return;
