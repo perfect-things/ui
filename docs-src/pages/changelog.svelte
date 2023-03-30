@@ -1,4 +1,9 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v632-2023-03-30">v6.3.2 <em>(2023-03-30)</em></h2>
+<ul>
+<li><code>Table</code> will not listen to events when it&#39;s not the target.</li>
+<li><code>Dialog</code> buttons can now be navigated with left &amp; right arrow keys for convenience.</li>
+</ul>
 <h2 id="v631-2023-03-26">v6.3.1 <em>(2023-03-26)</em></h2>
 <ul>
 <li><code>ButtonGroup</code> styling tweaks (edge buttons padding alignment)</li>
