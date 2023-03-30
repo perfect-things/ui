@@ -78,12 +78,29 @@ function onBackdropClick (e) {
 }
 
 
+function focusOtherButton (target, key) {
+	// footer has `flex-flow: row-reverse;` so left is right
+	const btnMap = {
+		ArrowLeft: 'nextElementSibling',
+		ArrowRight: 'previousElementSibling',
+	};
+	const otherBtn = btnMap[key] && target[btnMap[key]];
+	if (otherBtn && otherBtn.tagName === 'BUTTON') otherBtn.focus();
+}
+
+
 function onDocKeydown (e) {
+	if (!opened) return;
 	const hasFocus = backdropEl.contains(document.activeElement);
-	if (e.key === 'Tab' && opened && !hasFocus) focusFirst();
-	if (e.key === 'Escape' && opened && hasFocus) {
+	if (e.key === 'Tab' && !hasFocus) return focusFirst();
+	if (e.key === 'Escape' && hasFocus) {
 		e.stopPropagation();
-		close();
+		return close();
+	}
+	const target = e.target && e.target.closest('button');
+	if (target && e.key.startsWith('Arrow')) {
+		e.preventDefault();
+		focusOtherButton(target, e.key);
 	}
 }
 

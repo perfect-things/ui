@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v6.3.2 *(2023-03-?)*
+## v6.3.2 *(2023-03-30)*
 - `Table` will not listen to events when it's not the target.
+- `Dialog` buttons can now be navigated with left & right arrow keys for convenience.
 
 
 ## v6.3.1 *(2023-03-26)*
