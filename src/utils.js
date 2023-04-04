@@ -26,6 +26,7 @@ export function animate (el, from, to, _options = {}) {
 
 const pluckOne = (obj, key) => obj[key];
 
+
 export function pluck (obj, keys) {
 	if (!obj) return {};
 	if (!Array.isArray(keys)) return pluckOne(obj, keys);
