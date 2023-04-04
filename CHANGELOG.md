@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v6.3.3 *(2023-?-?)*
+- `Tooltip` tip was upgraded to take advantage of the new `clip-path` property.
+
+
+
 ## v6.3.2 *(2023-03-30)*
 - `Table` will not listen to events when it's not the target.
 - `Dialog` buttons can now be navigated with left & right arrow keys for convenience.
