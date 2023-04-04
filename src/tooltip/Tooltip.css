@@ -9,11 +9,16 @@
 }
 
 .tooltip-plate {
-	--tip-height: 10px;
-	--tip-width: 8px;
+	--tip-height: 8px;
+	--tip-width: 12px;
 	position: absolute;
 	font-size: 0.9em;
 	padding-bottom: var(--tip-height);
+	filter:
+		drop-shadow(0 0 1px #000)
+		drop-shadow(0 1px 5px rgb(0 0 0 / 0.3))
+		drop-shadow(0 4px 10px rgb(0 0 0 / 0.1));
+
 }
 
 .tooltip {
@@ -23,7 +28,6 @@
 	justify-content: center;
 	border-radius: var(--ui-border-radius-s);
 	position: relative;
-	filter: drop-shadow(0 1px 4px rgb(0 0 0 / 0.7));
 }
 
 .tooltip-content { padding: 0.75em; text-align: center; }
@@ -32,16 +36,20 @@
 	content: "";
 	display: block;
 	position: absolute;
+	height: var(--tip-height);
+	width: var(--tip-width);
 	bottom: calc(var(--tip-height) * -1);
-	border-style: solid;
-	border-width: var(--tip-height) var(--tip-width) 0;
-	border-color: var(--ui-tooltip-color) transparent transparent;
+	background-color: inherit;
+	clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
+
 
 .tooltip-bottom { padding-bottom: 0; padding-top: var(--tip-height); }
 .tooltip-bottom .tooltip::after {
 	bottom: auto;
 	top: calc(var(--tip-height) * -1);
-	border-width: 0 var(--tip-width) var(--tip-height);
-	border-color: transparent transparent var(--ui-tooltip-color);
+	clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
+
+
+.theme-dark .tooltip { text-shadow: 0 1px 1px rgb(0 0 0 / 0.3); }

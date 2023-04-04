@@ -9,7 +9,10 @@ window.ResizeObserver = jest.fn().mockImplementation(() => ({
 }));
 
 // workaround for window.matchMedia not being available in JSDOM
-window.matchMedia = jest.fn().mockImplementation(() => ({ matches: false }));
+window.matchMedia = jest.fn().mockImplementation(() => ({
+	matches: false,
+	addEventListener: jest.fn(),
+}));
 
 // workaround for element.animate not being available in JSDOM
 window.Element.prototype.animate = jest.fn().mockImplementation(() => {

@@ -5,8 +5,8 @@
 		tabindex="-1"
 		use:docclick
 		bind:this="{el}"
-		in:fly="{{ x: 300, duration: ANIMATION_SPEED }}"
-		out:fly="{{ x: 300, duration: ANIMATION_SPEED ? ANIMATION_SPEED + 100 : 0 }}"
+		in:fly="{{ x: 300, duration: $ANIMATION_SPEED }}"
+		out:fly="{{ x: 300, duration: $ANIMATION_SPEED ? $ANIMATION_SPEED + 100 : 0 }}"
 	>
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<header class="drawer-header" bind:this="{headerEl}" >

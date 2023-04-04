@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import { deleteAsync } from 'del';
+import livereload from 'gulp-livereload';
 import throught2 from 'through2';
 import concat from 'gulp-concat';
 // eslint-disable-next-line import/no-unresolved
@@ -28,9 +29,10 @@ export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
 
 export function html () {
 	const comment = '<!-- scripts-go-here -->';
+	const reloadScript = '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
 	const analyticsScript = '<script defer data-domain="perfect-things.github.io" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
 
-	const script = isProd ? analyticsScript : '';
+	const script = isProd ? analyticsScript : reloadScript;
 	return src('docs-src/index.html')
 		.pipe(inject.replace(comment, script))
 		.pipe(dest(DIST_PATH));
@@ -100,7 +102,8 @@ export function js () {
 	return src('./docs-src/index.js', { sourcemaps: !isProd })
 		// @ts-ignore
 		.pipe(gulpEsbuild(cfg))
-		.pipe(dest(DIST_PATH, { sourcemaps: '.' }));
+		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
+		.pipe(livereload());
 }
 
 
@@ -109,7 +112,8 @@ export function libCSS () {
 	return src('src/**/*.css', { sourcemaps: !isProd })
 		.pipe(concat('ui.css'))
 		.pipe(isProd ? cleanCSS() : noop())
-		.pipe(dest(DIST_PATH, { sourcemaps: '.' }));
+		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
+		.pipe(livereload());
 }
 
 
@@ -117,13 +121,14 @@ export function docsCSS () {
 	return src('docs-src/**/*.css', { sourcemaps: !isProd })
 		.pipe(concat('docs.css'))
 		.pipe(isProd ? cleanCSS() : noop())
-		.pipe(dest(DIST_PATH, { sourcemaps: '.' }));
+		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
+		.pipe(livereload());
 }
 
 
 function watchTask (done) {
 	if (isProd) return done();
-
+	livereload.listen();
 	gulpEsbuild = createGulpEsbuild({ incremental: true });
 	gulp.watch('src/**/*.css', series(libCSS, stylelint));
 	gulp.watch('docs-src/**/*.css', series(docsCSS, stylelint));
@@ -133,7 +138,7 @@ function watchTask (done) {
 
 
 function serveTask () {
-	return gulp.src(DIST_PATH).pipe(server({ livereload: true, open: true, port: 3123, }));
+	return gulp.src(DIST_PATH).pipe(server({ livereload: false, open: true, port: 3123, }));
 }
 
 

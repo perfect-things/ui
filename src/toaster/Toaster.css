@@ -71,7 +71,6 @@
 	position: absolute;
 	inset: 0;
 	border-radius: var(--toaster-border-radius);
-	overflow: hidden;
 	z-index: -1;
 }
 .toast-progress {
@@ -79,9 +78,9 @@
 	border-radius: var(--toaster-border-radius);
 	background-color: #ffffff15;
 	border: 1px solid #ffffff25;
+	margin: 0;
 	width: 0;
 	transition: width .2s;
-	will-change: width;
 }
 
 

@@ -1,17 +1,28 @@
-// Grab the prefers reduced media query.
-function getAnimationSpeed () {
-	const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : false;
-	const shouldReduce = (!reducedMotion || reducedMotion.matches);
-	if (shouldReduce) return 0;
-	return 200;
+import { writable, get } from 'svelte/store';
+
+export const ANIMATION_SPEED = writable(200);
+export const PREFERS_DARK = writable(false);
+
+const setReducedMotion = query => ANIMATION_SPEED.set((!query || query.matches) ? 0 : 200);
+const setPrefersDark = query => PREFERS_DARK.set(query && query.matches);
+
+if (window.matchMedia) {
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+	setReducedMotion(reducedMotion);
+	reducedMotion.addEventListener('change', setReducedMotion);
+
+	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+	setPrefersDark(prefersDark);
+	prefersDark.addEventListener('change', setPrefersDark);
 }
 
-export const ANIMATION_SPEED = getAnimationSpeed();
+
+
 
 
 // native js animation
 export function animate (el, from, to, _options = {}) {
-	const dflt = { duration: ANIMATION_SPEED, easing: 'ease-out', fill: 'forwards' };
+	const dflt = { duration: get(ANIMATION_SPEED), easing: 'ease-out', fill: 'forwards' };
 	const opts = Object.assign({}, dflt, _options);
 
 	return new Promise(resolve => {

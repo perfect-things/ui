@@ -41,7 +41,7 @@ test('Drawer', async () => {
 	expect(cmp.contains(document.activeElement)).toBeTruthy();
 
 	await fireEvent.click(document.body);
-	await waitForTimeout();
+	await waitForTimeout(400);
 	expect(closeMock).toHaveBeenCalled();
 	cmp = container.querySelector('.test-class');
 	expect(cmp).not.toBeInTheDocument();
@@ -53,7 +53,7 @@ test('Drawer', async () => {
 
 	const closer = container.querySelector('.test-class .drawer-header .btn-close');
 	await fireEvent.click(closer);
-	await waitForTimeout();
+	await waitForTimeout(400);
 	cmp = container.querySelector('.test-class');
 	expect(cmp).not.toBeInTheDocument();
 });

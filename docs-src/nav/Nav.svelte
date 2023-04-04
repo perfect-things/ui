@@ -7,7 +7,7 @@
 	<menu>
 		<div class="nav-toolbar">
 			<span>Dark mode:</span>
-			<ActualToggle value="true" on:change="{switchColorMode}"/>
+			<ActualToggle value="{$PREFERS_DARK}" on:change="{switchColorMode}"/>
 		</div>
 
 		<h3>Intro</h3>
@@ -53,8 +53,9 @@ import { Button as UIButton, Toggle as ActualToggle } from '../../src';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
-
+import { PREFERS_DARK } from '../../src/utils';
 import * as TestComponents from '../components';
+
 
 const components = { GetStarted, Changelog, ...TestComponents, };
 

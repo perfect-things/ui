@@ -1,11 +1,12 @@
 import './helpers/utils';
 import * as util from '../src/utils';
 import { screen } from '@testing-library/dom';
+import { get } from 'svelte/store';
 
 
 
 test('util - matchMedia', () => {
-	expect(util.ANIMATION_SPEED).toStrictEqual(200);
+	expect(get(util.ANIMATION_SPEED)).toStrictEqual(200);
 });
 
 

@@ -130,7 +130,7 @@ export function close () {
 		backdropEl.style.display = 'none';
 		document.removeEventListener('keydown', onDocKeydown);
 		dispatch('close');
-	}, ANIMATION_SPEED);
+	}, $ANIMATION_SPEED);
 }
 
 </script>
