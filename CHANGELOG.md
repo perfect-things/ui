@@ -2,9 +2,9 @@ Changelog
 =========
 
 
-## v6.3.3 *(2023-?-?)*
+## v6.3.3 *(2023-04-05)*
 - `Tooltip` tip was upgraded to take advantage of the new `clip-path` property.
-
+- `Tooltip` tip was enhanced with color variations: `success`, `warning` and `danger`.
 
 
 ## v6.3.2 *(2023-03-30)*
