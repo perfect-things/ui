@@ -1,4 +1,9 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v633-2023-04-05">v6.3.3 <em>(2023-04-05)</em></h2>
+<ul>
+<li><code>Tooltip</code> tip was upgraded to take advantage of the new <code>clip-path</code> property.</li>
+<li><code>Tooltip</code> tip was enhanced with color variations: <code>success</code>, <code>warning</code> and <code>danger</code>.</li>
+</ul>
 <h2 id="v632-2023-03-30">v6.3.2 <em>(2023-03-30)</em></h2>
 <ul>
 <li><code>Table</code> will not listen to events when it&#39;s not the target.</li>
