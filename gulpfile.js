@@ -16,12 +16,31 @@ import sveltePlugin from 'esbuild-svelte';
 
 const { series, parallel, src, dest, watch } = gulp;
 const noop = throught2.obj;
-const DIST_PATH = 'docs/';
 let isProd = false;
 let gulpEsbuild = createGulpEsbuild({ incremental: false });
 
 const setProd = (done) => { isProd = true; done(); };
-const cleanup = () => deleteAsync([DIST_PATH + '/*']);
+const cleanup = () => deleteAsync([PATHS.DIST + '/*']);
+
+const PATHS = {
+	HTML: 'docs-src/index.html',
+	JS: {
+		INPUT: './docs-src/index.js',
+		OUT: 'index.js',
+		LINT: ['{src,docs-src}/**/*.{js,svelte}', '*.js']
+	},
+	CSS: {
+		LIB: { INPUT: 'src/**/*.css', OUT: 'ui.css' },
+		DOCS: { INPUT: 'docs-src/**/*.css', OUT: 'docs.css' },
+		LINT: ['{src,docs-src}/**/*.css']
+	},
+	ASSETS: ['assets/*.png', 'assets/favicon.svg'],
+	EXTERNAL: [
+		'node_modules/zxcvbn/dist/zxcvbn.js*',
+		'node_modules/prismjs/themes/prism-tomorrow.min.css',
+	],
+	DIST: 'docs/',
+};
 
 
 export function html () {
@@ -30,27 +49,24 @@ export function html () {
 	const analyticsScript = '<script defer data-domain="perfect-things.github.io" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
 
 	const script = isProd ? analyticsScript : reloadScript;
-	return src('docs-src/index.html')
+	return src(PATHS.HTML)
 		.pipe(inject.replace(comment, script))
-		.pipe(dest(DIST_PATH));
+		.pipe(dest(PATHS.DIST));
 }
 
 
 export function assets () {
-	return src(['assets/*.png', 'assets/favicon.svg']).pipe(dest(DIST_PATH));
+	return src(PATHS.ASSETS).pipe(dest(PATHS.DIST));
 }
 
 
 export function externals () {
-	return src([
-		'node_modules/zxcvbn/dist/zxcvbn.js*',
-		'node_modules/prismjs/themes/prism-tomorrow.min.css',
-	]).pipe(dest(DIST_PATH));
+	return src(PATHS.EXTERNAL).pipe(dest(PATHS.DIST));
 }
 
 
 export function eslint () {
-	return src(['{src,docs-src}/**/*.{js,svelte}', '*.js'])
+	return src(PATHS.JS.LINT)
 		.pipe(gulpEslint({ fix: true }))   // Lint files, create fixes.
 		.pipe(gulpEslint.fix())            // Fix files if necessary.
 		.pipe(gulpEslint.format())
@@ -61,16 +77,12 @@ export function eslint () {
 
 
 export function stylelint () {
-	return src(['{src,docs-src}/**/*.css'])
-		.pipe(gulpStylelint({
-			// fix: true,
-			reporters: [{ formatter: 'string', console: true }]
-		}))
+	return src(PATHS.CSS.LINT)
+		.pipe(gulpStylelint({ reporters: [{ formatter: 'string', console: true }] }))
 		.on('error', function () {
 			console.log('\x07');    // beep
 			this.emit('end');
 		});
-	// .pipe(dest('.'));	// causes infinite loop with watcher
 }
 
 
@@ -96,29 +108,29 @@ export function js () {
 		],
 	};
 
-	return src('./docs-src/index.js', { sourcemaps: !isProd })
+	return src(PATHS.JS.INPUT, { sourcemaps: !isProd })
 		// @ts-ignore
 		.pipe(gulpEsbuild(cfg))
-		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
+		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
 
 
 
 export function libCSS () {
-	return src('src/**/*.css', { sourcemaps: !isProd })
-		.pipe(concat('ui.css'))
+	return src(PATHS.CSS.LIB.INPUT, { sourcemaps: !isProd })
+		.pipe(concat(PATHS.CSS.LIB.OUT))
 		.pipe(isProd ? cleanCSS() : noop())
-		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
+		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
 
 
 export function docsCSS () {
-	return src('docs-src/**/*.css', { sourcemaps: !isProd })
-		.pipe(concat('docs.css'))
+	return src(PATHS.CSS.DOCS.INPUT, { sourcemaps: !isProd })
+		.pipe(concat(PATHS.CSS.DOCS.OUT))
 		.pipe(isProd ? cleanCSS() : noop())
-		.pipe(dest(DIST_PATH, { sourcemaps: '.' }))
+		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
 
@@ -127,15 +139,15 @@ function watchTask (done) {
 	if (isProd) return done();
 	livereload.listen();
 	gulpEsbuild = createGulpEsbuild({ incremental: true });
-	watch('src/**/*.css', series(libCSS, stylelint));
-	watch('docs-src/**/*.css', series(docsCSS, stylelint));
-	watch('docs-src/**/*.html', html);
-	watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
+	watch(PATHS.CSS.LIB.INPUT, series(libCSS, stylelint));
+	watch(PATHS.CSS.DOCS.INPUT, series(docsCSS, stylelint));
+	watch(PATHS.HTML, html);
+	watch(PATHS.JS.LINT[0], series(js, eslint));
 }
 
 
 function serveTask () {
-	return src(DIST_PATH).pipe(server({ livereload: false, open: true, port: 3123, }));
+	return src(PATHS.DIST).pipe(server({ livereload: false, open: true, port: 3123, }));
 }
 
 
