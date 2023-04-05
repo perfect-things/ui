@@ -1,5 +1,12 @@
 {#if visible}
-	<div class="tooltip-plate tooltip-{_position}" class:visible bind:this="{el}">
+	<div
+		class="tooltip-plate tooltip-{_position}"
+		class:visible
+		class:success
+		class:warning
+		class:danger
+		bind:this="{el}">
+
 		<div class="tooltip {className}" role="tooltip">
 			<div class="tooltip-content"><slot/> </div>
 		</div>
@@ -15,6 +22,9 @@ export let offset = 2;
 let className = '';
 export { className as class };
 export let events = 'hover,focus';	// hover, click, focus
+export let success = false;
+export let warning = false;
+export let danger = false;
 
 let _position = 'top';
 let visible = false;

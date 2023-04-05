@@ -18,7 +18,6 @@
 		drop-shadow(0 0 1px #000)
 		drop-shadow(0 1px 5px rgb(0 0 0 / 0.3))
 		drop-shadow(0 4px 10px rgb(0 0 0 / 0.1));
-
 }
 
 .tooltip {
@@ -36,10 +35,10 @@
 	content: "";
 	display: block;
 	position: absolute;
+	background-color: inherit;
 	height: var(--tip-height);
 	width: var(--tip-width);
 	bottom: calc(var(--tip-height) * -1);
-	background-color: inherit;
 	clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
@@ -53,3 +52,7 @@
 
 
 .theme-dark .tooltip { text-shadow: 0 1px 1px rgb(0 0 0 / 0.3); }
+
+.success .tooltip { --ui-tooltip-color: var(--ui-color-success); }
+.danger .tooltip { --ui-tooltip-color: var(--ui-color-danger); }
+.warning .tooltip { --ui-tooltip-color: var(--ui-color-warning); }

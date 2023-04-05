@@ -1,30 +1,27 @@
-import gulp from 'gulp';
+import { createGulpEsbuild } from 'gulp-esbuild';
+import { default as throught2 } from 'through2';
 import { deleteAsync } from 'del';
-import livereload from 'gulp-livereload';
-import throught2 from 'through2';
+import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
+import gulp from 'gulp';
 // eslint-disable-next-line import/no-unresolved
 import gulpEslint from 'gulp-eslint-new';
 import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
-import cleanCSS from 'gulp-clean-css';
 import inject from 'gulp-inject-string';
-import { createGulpEsbuild } from 'gulp-esbuild';
-import sveltePlugin from 'esbuild-svelte';
+import livereload from 'gulp-livereload';
 import NodeResolve from '@esbuild-plugins/node-resolve';
 import server from 'gulp-webserver';
+import sveltePlugin from 'esbuild-svelte';
 
 
-const { series, parallel, src, dest } = gulp;
+const { series, parallel, src, dest, watch } = gulp;
 const noop = throught2.obj;
 const DIST_PATH = 'docs/';
 let isProd = false;
-
 let gulpEsbuild = createGulpEsbuild({ incremental: false });
 
-
 const setProd = (done) => { isProd = true; done(); };
-
-export const cleanup = () => deleteAsync([DIST_PATH + '/*']);
+const cleanup = () => deleteAsync([DIST_PATH + '/*']);
 
 
 export function html () {
@@ -130,15 +127,15 @@ function watchTask (done) {
 	if (isProd) return done();
 	livereload.listen();
 	gulpEsbuild = createGulpEsbuild({ incremental: true });
-	gulp.watch('src/**/*.css', series(libCSS, stylelint));
-	gulp.watch('docs-src/**/*.css', series(docsCSS, stylelint));
-	gulp.watch('docs-src/**/*.html', html);
-	gulp.watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
+	watch('src/**/*.css', series(libCSS, stylelint));
+	watch('docs-src/**/*.css', series(docsCSS, stylelint));
+	watch('docs-src/**/*.html', html);
+	watch('{src,docs-src}/**/*.{js,svelte}', series(js, eslint));
 }
 
 
 function serveTask () {
-	return gulp.src(DIST_PATH).pipe(server({ livereload: false, open: true, port: 3123, }));
+	return src(DIST_PATH).pipe(server({ livereload: false, open: true, port: 3123, }));
 }
 
 

@@ -5,7 +5,7 @@ import { waitForTimeout } from './helpers/utils';
 
 
 test('Tooltip', async () => {
-	const { container } = render(Tooltip);
+	const { container, component } = render(Tooltip);
 
 	const cmp = container.querySelector('.tooltip-container');
 	expect(cmp).toBeInTheDocument();
@@ -27,6 +27,21 @@ test('Tooltip', async () => {
 	tooltip = container.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
 
+	// test color variations
+	const plate = container.querySelector('.tooltip-plate');
+	await component.$set({ success: true });
+	expect(plate).toHaveClass('success');
+	await component.$set({ success: false });
+
+	await component.$set({ danger: true });
+	expect(plate).toHaveClass('danger');
+	await component.$set({ danger: false });
+
+	await component.$set({ warning: true });
+	expect(plate).toHaveClass('warning');
+	await component.$set({ warning: false });
+
+	// test closing with Escape
 	await userEvent.keyboard('[Escape]');
 	expect(tooltip).not.toBeInTheDocument();
 });

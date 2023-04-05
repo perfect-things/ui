@@ -5,14 +5,25 @@
 <div class="tooltip-box" tabindex="0" id="box1">box with a tooltip</div>
 <Tooltip target="box1">Some tooltip text</Tooltip>
 
-<br>
-
 <!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
 <div class="tooltip-box" tabindex="0" id="box2">box with a tooltip</div>
-<Tooltip target="box2">
-	<h1>Some Title</h1>
-	<p>Some <b>html</b> tooltip content</p>
-</Tooltip>
+<Tooltip target="box2"><h1>Some Title</h1> <p>Some <b>html</b> tooltip content</p></Tooltip>
+
+
+<h3>Colour variants</h3>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-success">success</div>
+<Tooltip success target="box-success">Some tooltip text</Tooltip>
+
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-warning">warning</div>
+<Tooltip warning target="box-warning">Some tooltip text</Tooltip>
+
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-error">danger</div>
+<Tooltip danger target="box-error">Some tooltip text</Tooltip>
+
+
 
 <h3>Show below target</h3>
 <!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
@@ -30,7 +41,8 @@
 
 
 <h3>Show delay</h3>
-<Button id="box5">button</Button>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box5">box with a tooltip</div>
 <Tooltip target="box5" delay="700">Showing with a delay</Tooltip>
 
 
