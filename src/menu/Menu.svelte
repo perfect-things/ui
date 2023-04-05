@@ -18,10 +18,12 @@ const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
 const contextmenu = isMobileSafari ? 'longpress' : 'contextmenu';
 
-export let type = undefined;          // can be undefined or 'context'
+export let type = undefined;          // can be undefined, 'context' or 'input'
 export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
 export let elevate = false;
+export let offset = 2;
+
 let className = '';
 export { className as class };
 
@@ -31,13 +33,19 @@ let menuEl, targetEl, focusedEl, opened = false;
 const menuButtons = [];
 let typeQuery = '';
 let typeTimer;
+let isBelowTarget = true;	// default - screen size may change that
 
 
 
 onMount(() => {
-	initLongPressEvent();
-
-	if (type === 'context') document.addEventListener(contextmenu, onContextMenu);
+	if (type === 'context') {
+		initLongPressEvent();
+		document.addEventListener(contextmenu, onContextMenu);
+	}
+	else if (type === 'input') {
+		document.addEventListener('focus', onDocFocus, true);
+		addTargetKeyEvent();
+	}
 	if (elevated) document.body.appendChild(menuEl);
 	indexButtons();
 });
@@ -45,8 +53,13 @@ onMount(() => {
 
 onDestroy(() => {
 	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
+	else if (type === 'input') {
+		document.removeEventListener('focus', onDocFocus, true);
+		removeTargetKeyEvent();
+	}
 	if (elevated) menuEl.remove();
 });
+
 
 
 function indexButtons () {
@@ -86,9 +99,9 @@ function updatePosition (e) {
 	}
 
 	// regular menu
-	else if (etype === 'click') {
+	else if (etype === 'click' || etype === 'focus') {
 		const btnBox = e.target.getBoundingClientRect();
-		menuEl.style.top = (btnBox.top + btnBox.height + 3) + 'px';
+		menuEl.style.top = (btnBox.top + btnBox.height + offset) + 'px';
 		menuEl.style.left = btnBox.left + 'px';
 	}
 
@@ -98,11 +111,27 @@ function updatePosition (e) {
 	const winW = window.innerWidth;
 	const padding = 10;
 
-	if (y > winH - height - padding) {
+	// regular menu - position above target
+	if (etype === 'click' || etype === 'focus') {
+		const btnBox = e.target.getBoundingClientRect();
+		const spaceAbove = btnBox.top - padding;
+		const spaceBelow = winH - btnBox.top - btnBox.height - padding;
+		menuEl.style.maxHeight = Math.max(spaceAbove, spaceBelow) + 'px';
+		if (spaceAbove > spaceBelow) {
+			isBelowTarget = false;
+			const top = winH - height - padding;
+			if (top < y) {
+				menuEl.style.top = (btnBox.top - height - offset) + 'px';
+			}
+		}
+		else isBelowTarget = true;
+	}
+	else if (y > winH - height - padding) {
 		let top = winH - height - padding;
 		if (top < 0) top = 2;
 		menuEl.style.top = top + 'px';
 	}
+
 	if (x > winW - width - padding) {
 		let left = winW - width - padding;
 		if (left < 0) left = 2;
@@ -124,14 +153,29 @@ function onContextMenu (e) {
 
 
 function onDocumentClick (e) {
+	if (type === 'input') {
+		if (e.target && e.target.closest(targetSelector)) return;
+	}
 	if (!menuEl.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
 		const clickedOnItem = !!e.target.closest('.menu-item:not(.menu-separator,.disabled)');
 		if (shouldClose && clickedOnItem) close(e);
+
+		if (type === 'input') requestAnimationFrame(() => targetEl.focus());
 	}
 }
 
+
+function onDocFocus (e) {
+	const target = e.target && e.target.closest(targetSelector);
+	if (target) {
+		targetEl = target;
+		return open(e);
+	}
+	if (menuEl.contains(e.target)) return;
+	_close();
+}
 
 function onscroll (e) {
 	if (e.target.closest('.menu')) return;
@@ -145,24 +189,42 @@ function onmousemove (e) {
 		focusedEl = btn;
 		focusedEl.focus();
 	}
+	if (type === 'input') {
+		if (!e.target.closest('.menu,' + targetSelector)) targetEl.focus();
+	}
 }
 
-function onmouseout () {
+function onmouseout (e) {
 	focusedEl = null;
-	menuEl.focus();
+	if (type === 'input') {
+		if (!e.target.closest('.menu,' + targetSelector)) targetEl.focus();
+	}
+	else menuEl.focus();
 }
 
 
 function onKeydown (e) {
 	if (e.key === 'Escape') _close();
+	const isInput = type === 'input' && e.target.closest(targetSelector);
+	if (!menuEl.contains(e.target) && !isInput) return;
 
-	if (!menuEl.contains(e.target)) return;
+	if (e.key === 'ArrowDown') {
+		e.preventDefault();
+		if (isInput && !opened) return open(e).then(focusFirst);
+		if (isInput && !isBelowTarget) return;
+		return focusNext();
+	}
+	if (e.key === 'ArrowUp') {
+		e.preventDefault();
+		if (isInput && !opened) return open(e).then(focusFirst);
+		if (isInput && isBelowTarget) return;
+		return focusPrev();
+	}
 
-	if (e.key.startsWith('Arrow')) e.preventDefault();
-	if (e.key.startsWith(' ')) e.preventDefault();
+	if (isInput) return;
 
-	if (e.key === 'ArrowDown') focusNext();
-	else if (e.key === 'ArrowUp') focusPrev();
+	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
+
 	else if (e.key === 'ArrowLeft') focusFirst();
 	else if (e.key === 'ArrowRight') focusLast();
 
@@ -191,6 +253,7 @@ function focusLast () {
 
 function focusNext () {
 	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	if (type === 'input' && !isBelowTarget) buttons.push(targetEl);
 	let idx = -1;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx >= buttons.length - 1) return;
@@ -201,6 +264,7 @@ function focusNext () {
 
 function focusPrev () {
 	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	if (type === 'input' && isBelowTarget) buttons.unshift(targetEl);
 	let idx = buttons.length;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx <= 0) return;
@@ -226,7 +290,7 @@ export function open (e) {
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
-		if (menuEl) menuEl.focus();
+		if (menuEl && type !== 'input') menuEl.focus();
 	}));
 }
 
@@ -257,7 +321,7 @@ function _close () {
 		dispatch('close', { target: targetEl });
 		removeEventListeners();
 		requestAnimationFrame(resolve);
-		focusTarget();
+		if (type !== 'input') focusTarget();
 	}));
 }
 
@@ -268,6 +332,7 @@ function addEventListeners () {
 	document.addEventListener('wheel', onscroll);
 	document.addEventListener('mousemove', onmousemove);
 	document.addEventListener('mouseout', onmouseout);
+	removeTargetKeyEvent();	// so that there's only 1 onkeydown
 }
 
 
@@ -277,6 +342,18 @@ function removeEventListeners () {
 	document.removeEventListener('wheel', onscroll);
 	document.removeEventListener('mousemove', onmousemove);
 	document.removeEventListener('mouseout', onmouseout);
+	addTargetKeyEvent();	// so that there's only 1 onkeydown
+}
+
+
+function addTargetKeyEvent () {
+	const inp = document.querySelector(targetSelector);
+	if (inp) inp.addEventListener('keydown', onKeydown);
+}
+
+function removeTargetKeyEvent () {
+	const inp = document.querySelector(targetSelector);
+	if (inp) inp.removeEventListener('keydown', onKeydown);
 }
 
 </script>

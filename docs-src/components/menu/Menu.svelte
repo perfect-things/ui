@@ -20,6 +20,19 @@
 </Menu>
 
 
+
+<h3>Input menu</h3>
+<input id="inputMenuTarget"/>
+<Menu bind:this="{inputMenu}" type="input" targetSelector="#inputMenuTarget" >
+	<MenuItem>Option 1</MenuItem>
+	<MenuItem>Option 2</MenuItem>
+	<MenuSeparator />
+	<MenuItem>Option 3</MenuItem>
+</Menu>
+
+
+
+
 <h3>In a container with <em>overflow: hidden</em></h3>
 <p>Where parent container has <em>overflow: hidden</em>, and/or another container is covering the menu,
 	<em>elevate="true"</em> property must be set on the component.</p>
@@ -55,6 +68,9 @@
 </div>
 <p>This option should only be used when absolutely necessary, because it makes the component less accessible
 	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
+
+
+
 
 
 <h3>Context menu</h3>
@@ -148,7 +164,7 @@ const exampleHtml = `
 `;
 
 
-let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
+let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu, inputMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;
