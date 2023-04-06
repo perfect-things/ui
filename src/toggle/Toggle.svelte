@@ -3,7 +3,7 @@
 	class:checked="{value}"
 	role="switch"
 	aria-checked="{value}"
-	tabIndex="{disabled ? undefined : 0}"
+	tabindex="{disabled ? undefined : 0}"
 	bind:this="{el}"
 	on:keydown="{onKey}"
 	on:touchstart={dragStart}

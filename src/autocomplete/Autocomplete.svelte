@@ -21,6 +21,7 @@
 		on:keydown|capture="{onkeydown}"
 		on:keypress="{onkeypress}">
 
+	<!-- svelte-ignore a11y-interactive-supports-focus -->
 	<div
 		id="autocomplete-list-{gui}"
 		class="autocomplete-list {opened ? '' : 'hidden'}"
@@ -36,6 +37,7 @@
 				{/if}
 				{#if group.items}
 					{#each group.items as item}
+						<!-- svelte-ignore a11y-interactive-supports-focus -->
 						<div
 							role="option"
 							aria-selected="{item.idx === highlightIndex}"
