@@ -1,8 +1,9 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v634-v635-2023-04-06">v6.3.4, v6.3.5 <em>(2023-04-06)</em></h2>
+<h2 id="v634-v635-v636-2023-04-06">v6.3.4, v6.3.5, v6.3.6 <em>(2023-04-06)</em></h2>
 <ul>
 <li>Handle svelte&#39;s newest a11y warnings.</li>
 <li>Tweak media query notation.</li>
+<li>Fix menu of type=&#39;input&#39;, to allow to pass the html elements to the <code>on:click</code> function.</li>
 </ul>
 <h2 id="v633-2023-04-05">v6.3.3 <em>(2023-04-05)</em></h2>
 <ul>
