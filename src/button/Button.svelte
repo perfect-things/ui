@@ -47,7 +47,7 @@ export { className as class };
 
 let touching = false;
 
-$:props = pluck($$props, ['id', 'title', 'disabled', 'form', 'aria-pressed']);
+$:props = pluck($$props, ['id', 'title', 'disabled', 'form', 'aria-pressed', 'data-']);
 
 
 </script>

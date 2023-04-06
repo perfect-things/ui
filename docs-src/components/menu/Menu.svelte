@@ -1,9 +1,9 @@
 <h2>Menu</h2>
 
 <h3>Normal menu</h3>
-<Button on:click="{thingsMenu.open}">Show menu</Button>
+<Button data-name="show-menu-button" on:click="{thingsMenu.open}">Show menu</Button>
 <Menu bind:this="{thingsMenu}">
-	<MenuItem success icon="plus">Add a thing (success)</MenuItem>
+	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
 	<MenuItem>Add another one</MenuItem>
 	<MenuSeparator />
 	<MenuItem shortcut="cmd+shift+c">Third option</MenuItem>
@@ -18,21 +18,6 @@
 	<MenuSeparator />
 	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
 </Menu>
-
-
-
-<h3>Input menu</h3>
-<input name="input1" class="input-menu-target"/>
-<input name="input2" class="input-menu-target"/>
-
-<Menu type="input" targetSelector=".input-menu-target" >
-	<MenuItem data-value="value1" on:click="{onInputMenuItemClick}">Option 1</MenuItem>
-	<MenuItem data-value="value2" on:click="{onInputMenuItemClick}">Option 2</MenuItem>
-	<MenuSeparator />
-	<MenuItem data-value="value3" on:click="{onInputMenuItemClick}">Option 3</MenuItem>
-</Menu>
-
-
 
 
 <h3>In a container with <em>overflow: hidden</em></h3>
@@ -134,19 +119,19 @@ const itemApiProps = [
 	{ name: 'success', description: 'Button type: success' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
 	{ name: 'warning', description: 'Button type: warning' },
-	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.<br><em>event.detail</em> will contain a <em>button</em> property, and if menu type=<em>input</em>, also an <em>input</em> property, that are references to the corresponding html elements. It is possible to pass the data using <em>data-</em> attributes on <em>input</em> and <em>MenuItem</em> elements (see the example code above).<br>You can pass data directly to the event listener in your code, if the menu corresponds to a single input. The approach described above is useful, as it allows to have a single input menu instance that will handle multiple input elements.' },
+	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.<br><em>event.detail</em> will contain a <em>button</em> and <em>target</em> properties, that are references to the corresponding html elements.<br>It is possible to pass the data using <em>data-</em> attributes on the <em>target</em> element and on the <em>MenuItem</em>.' },
 ];
 
 const exampleHtml = `
 <!-- Regular menu -->
 <Menu bind:this="{menu1}">
-    <MenuItem><Icon name="plus"/> Add some</MenuItem>
+    <MenuItem data-value="add-something"><Icon name="plus"/> Add some</MenuItem>
     <MenuItem>Add some more</MenuItem>
     <MenuSeparator />
     <MenuItem on:click="{closeSomething}"><Icon name="close"/> Close something</MenuItem>
 </Menu>
 
-<Button on:click="{() => menu1.open()}">Show menu</Button>
+<Button data-name="button-with-menu" on:click="{menu1.open}">Show menu</Button>
 
 <!-- Context menu -->
 <div class="div1">Tab</div>
@@ -157,25 +142,15 @@ const exampleHtml = `
     <MenuItem shortcut="cmd+shift+q" on:click="{action3}">Close All Windows</MenuItem>
 </Menu>
 
-
-<!-- Input menu -->
-<input name="input1" class="input-menu-target"/>
-<Menu type="input" targetSelector=".input-menu-target" >
-	<MenuItem data-value="value1" on:click="{onInputMenuItemClick}">Option 1</MenuItem>
-	<MenuItem data-value="value2" on:click="{onInputMenuItemClick}">Option 2</MenuItem>
-</Menu>
-
-
 <script>
     let menu1, menu2;
     function closeSomething (e) {
         e.preventDefault();   // prevents menu auto-closing
         menu1.close();       // manually close the menu
     }
-
-    function onInputMenuItemClick (e) {
-        const { input, button } = e.detail;
-        console.log(input.name, button.dataset.value);
+    function onMenuClick (e) {
+        const { target, button } = e.detail;
+        console.log(target.dataset, button.dataset);
     }
 &lt;/script>
 `;
@@ -185,6 +160,12 @@ let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;
+
+
+function onMenuClick (e) {
+	const { target, button } = e.detail;
+	console.log(target.dataset, button.dataset);
+}
 
 
 function menuCloseThings (e) {
@@ -242,9 +223,4 @@ function closeWindows () {
 	windowsMenu.close().then(() => alert('Windows closed!'));
 }
 
-
-function onInputMenuItemClick (e) {
-	const { input, button } = e.detail;
-	console.log(input.name, button.dataset.value);
-}
 </script>

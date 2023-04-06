@@ -57,8 +57,8 @@ function onclick (e) {
 	const btn = e.target.closest('.menu-button');
 	btn.focus();
 	blink(btn, 200).then(() => {
-		const input = targetEl();
-		const res = dispatch('click', { event: e, input, button: btn }, { cancelable: true });
+		const target = targetEl();
+		const res = dispatch('click', { event: e, target, button: btn }, { cancelable: true });
 		if (res === false) {
 			e.stopPropagation();
 			e.preventDefault();

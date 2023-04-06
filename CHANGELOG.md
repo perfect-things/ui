@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-## v6.3.4, v6.3.5, v6.3.6 *(2023-04-06)*
+## v6.3.4, v6.3.5, v6.3.6, v6.3.7 *(2023-04-06)*
 - Handle svelte's newest a11y warnings.
 - Tweak media query notation.
-- Fix menu of type='input', to allow to pass the html elements to the `on:click` function.
+- Remove menu of type='input'.
+- Allow `data-` attributes on `Button` and `MenuItem`.
 
 
 ## v6.3.3 *(2023-04-05)*

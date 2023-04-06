@@ -1,5 +1,3 @@
-
-
 let typeQuery;
 let typeTimer;
 
@@ -24,15 +22,6 @@ export function addArias (el) {
 	el.setAttribute('aria-haspopup', 'true');
 	el.setAttribute('aria-expanded', 'true');
 }
-
-
-export function onEachCall (selector, fn) {
-	const elems = document.querySelectorAll(selector);
-	if (elems && elems.length) {
-		elems.forEach(fn);
-	}
-}
-
 
 
 export function updatePosition (e, type, menuEl, offset, isBelowTarget) {
