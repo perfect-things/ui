@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v634-2023-04-06">v6.3.4 <em>(2023-04-06)</em></h2>
+<ul>
+<li>Handle svelte&#39;s newest a11y warnings.</li>
+</ul>
 <h2 id="v633-2023-04-05">v6.3.3 <em>(2023-04-05)</em></h2>
 <ul>
 <li><code>Tooltip</code> tip was upgraded to take advantage of the new <code>clip-path</code> property.</li>
