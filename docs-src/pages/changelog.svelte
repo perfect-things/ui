@@ -1,7 +1,8 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v634-2023-04-06">v6.3.4 <em>(2023-04-06)</em></h2>
+<h2 id="v634-v635-2023-04-06">v6.3.4, v6.3.5 <em>(2023-04-06)</em></h2>
 <ul>
 <li>Handle svelte&#39;s newest a11y warnings.</li>
+<li>Tweak media query notation.</li>
 </ul>
 <h2 id="v633-2023-04-05">v6.3.3 <em>(2023-04-05)</em></h2>
 <ul>
