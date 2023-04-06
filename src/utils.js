@@ -35,15 +35,32 @@ export function animate (el, from, to, _options = {}) {
 }
 
 
-const pluckOne = (obj, key) => obj[key];
+function pluckOne (obj, key) {
+	if (key in obj) return obj[key];
+	for (const k in obj) {
+		if (k.startsWith(key)) return obj[k];
+	}
+}
+
+
+function pluckMany (obj, keys) {
+	const newObj = {};
+	keys.forEach(key => {
+		if (key in obj) newObj[key] = obj[key];
+		else {
+			for (const k in obj) {
+				if (k.startsWith(key)) newObj[k] = obj[k];
+			}
+		}
+	});
+	return newObj;
+}
 
 
 export function pluck (obj, keys) {
 	if (!obj) return {};
 	if (!Array.isArray(keys)) return pluckOne(obj, keys);
-	const newObj = {};
-	keys.forEach(key => newObj[key] = obj[key]);
-	return newObj;
+	return pluckMany(obj, keys);
 }
 
 

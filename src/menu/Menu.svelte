@@ -11,8 +11,9 @@
 <svelte:options accessors={true}/>
 
 <script>
-import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
 import initLongPressEvent from './longpress.js';
+import { addArias, removeArias, onEachCall, matchQuery, updatePosition } from './utils.js';
 
 const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
@@ -29,13 +30,15 @@ export { className as class };
 
 
 $:elevated = elevate === 'true' || elevate === true;
-let menuEl, targetEl, focusedEl, opened = false;
 const menuButtons = [];
-let typeQuery = '';
-let typeTimer;
+let menuEl, targetEl, focusedEl, opened = false;
 let isBelowTarget = true;	// default - screen size may change that
+let isClicking = false;		// used to allow to focus input after menuItem was clicked, without opening the menu again
 
 
+setContext('MenuContext', {
+	targetEl: () => targetEl
+});
 
 onMount(() => {
 	if (type === 'context') {
@@ -44,7 +47,7 @@ onMount(() => {
 	}
 	else if (type === 'input') {
 		document.addEventListener('focus', onDocFocus, true);
-		addTargetKeyEvent();
+		addTargetEventListeners();
 	}
 	if (elevated) document.body.appendChild(menuEl);
 	indexButtons();
@@ -55,7 +58,7 @@ onDestroy(() => {
 	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
 	else if (type === 'input') {
 		document.removeEventListener('focus', onDocFocus, true);
-		removeTargetKeyEvent();
+		removeTargetEventListeners();
 	}
 	if (elevated) menuEl.remove();
 });
@@ -70,72 +73,10 @@ function indexButtons () {
 
 
 function matchTypeQuery (key) {
-	if (!/^\w| $/i.test(key)) return;
-	if (typeTimer) clearTimeout(typeTimer);
-	typeTimer = setTimeout(() => typeQuery = '', 300);
-	typeQuery += key;
-	const btn = menuButtons.find(b => b.text.startsWith(typeQuery));
+	const btn = matchQuery(menuButtons, key);
 	if (btn) {
 		btn.el.focus();
 		focusedEl = btn.el;
-	}
-}
-
-
-function updatePosition (e) {
-	if (e && e.detail && e.detail instanceof Event) e = e.detail;
-
-	const etype = e && e.type;
-
-	if (type === 'context') {
-		if (etype === 'contextmenu') {
-			menuEl.style.top = e.y + 'px';
-			menuEl.style.left = e.x + 'px';
-		}
-		else if (etype === 'longpress') {
-			menuEl.style.top = e.detail.y + 'px';
-			menuEl.style.left = e.detail.x + 'px';
-		}
-	}
-
-	// regular menu
-	else if (etype === 'click' || etype === 'focus') {
-		const btnBox = e.target.getBoundingClientRect();
-		menuEl.style.top = (btnBox.top + btnBox.height + offset) + 'px';
-		menuEl.style.left = btnBox.left + 'px';
-	}
-
-	// ensure it stays on screen
-	const { x, y, width, height } = menuEl.getBoundingClientRect();
-	const winH = window.innerHeight;
-	const winW = window.innerWidth;
-	const padding = 10;
-
-	// regular menu - position above target
-	if (etype === 'click' || etype === 'focus') {
-		const btnBox = e.target.getBoundingClientRect();
-		const spaceAbove = btnBox.top - padding;
-		const spaceBelow = winH - btnBox.top - btnBox.height - padding;
-		menuEl.style.maxHeight = Math.max(spaceAbove, spaceBelow) + 'px';
-		if (spaceAbove > spaceBelow) {
-			isBelowTarget = false;
-			const top = winH - height - padding;
-			if (top < y) {
-				menuEl.style.top = (btnBox.top - height - offset) + 'px';
-			}
-		}
-		else isBelowTarget = true;
-	}
-	else if (y > winH - height - padding) {
-		let top = winH - height - padding;
-		if (top < 0) top = 2;
-		menuEl.style.top = top + 'px';
-	}
-
-	if (x > winW - width - padding) {
-		let left = winW - width - padding;
-		if (left < 0) left = 2;
-		menuEl.style.left = left + 'px';
 	}
 }
 
@@ -147,27 +88,32 @@ function onContextMenu (e) {
 
 	e.stopPropagation();
 	e.preventDefault();
-	updatePosition(e);
+	isBelowTarget = updatePosition(e, type, menuEl, offset, isBelowTarget);
 	open(e);
 }
 
 
 function onDocumentClick (e) {
 	if (type === 'input') {
-		if (e.target && e.target.closest(targetSelector)) return;
+		const isMyTarget = e.target && e.target.closest(targetSelector);
+		if (isMyTarget) return;
 	}
 	if (!menuEl.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
 		const clickedOnItem = !!e.target.closest('.menu-item:not(.menu-separator,.disabled)');
 		if (shouldClose && clickedOnItem) close(e);
-
-		if (type === 'input') requestAnimationFrame(() => targetEl.focus());
+		if (type === 'input') {
+			isClicking = true;
+			setTimeout(() => targetEl.focus(), 300);
+		}
 	}
 }
 
 
 function onDocFocus (e) {
+	if (isClicking) return isClicking = false;
+
 	const target = e.target && e.target.closest(targetSelector);
 	if (target) {
 		targetEl = target;
@@ -176,6 +122,7 @@ function onDocFocus (e) {
 	if (menuEl.contains(e.target)) return;
 	_close();
 }
+
 
 function onscroll (e) {
 	if (e.target.closest('.menu')) return;
@@ -280,13 +227,13 @@ export function open (e) {
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 	if (type !== 'context') targetEl = e.target;
 	if (targetEl) {
-		targetEl.setAttribute('aria-haspopup', 'true');
-		targetEl.setAttribute('aria-expanded', 'true');
+		removeArias(targetSelector);
+		addArias(targetEl);
 	}
 
 	return new Promise(resolve => requestAnimationFrame(() => {
 		// needs to finish rendering first
-		updatePosition(e);
+		isBelowTarget = updatePosition(e, type, menuEl, offset, isBelowTarget);
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
@@ -314,14 +261,15 @@ export function close (e) {
 
 function _close () {
 	if (!opened) return Promise.resolve();
+
 	opened = false;
-	if (targetEl) targetEl.setAttribute('aria-expanded', 'false');
+	if (targetEl) removeArias(targetSelector);
 
 	return new Promise(resolve => requestAnimationFrame(() => {
 		dispatch('close', { target: targetEl });
 		removeEventListeners();
-		requestAnimationFrame(resolve);
 		if (type !== 'input') focusTarget();
+		requestAnimationFrame(resolve);
 	}));
 }
 
@@ -332,7 +280,7 @@ function addEventListeners () {
 	document.addEventListener('wheel', onscroll);
 	document.addEventListener('mousemove', onmousemove);
 	document.addEventListener('mouseout', onmouseout);
-	removeTargetKeyEvent();	// so that there's only 1 onkeydown
+	if (type === 'input') removeTargetEventListeners();	// so that there's only 1 onkeydown
 }
 
 
@@ -342,18 +290,22 @@ function removeEventListeners () {
 	document.removeEventListener('wheel', onscroll);
 	document.removeEventListener('mousemove', onmousemove);
 	document.removeEventListener('mouseout', onmouseout);
-	addTargetKeyEvent();	// so that there's only 1 onkeydown
+	if (type === 'input') addTargetEventListeners();	// so that there's only 1 onkeydown
 }
 
 
-function addTargetKeyEvent () {
-	const inp = document.querySelector(targetSelector);
-	if (inp) inp.addEventListener('keydown', onKeydown);
+function addTargetEventListeners () {
+	onEachCall(targetSelector, inp => {
+		inp.addEventListener('keydown', onKeydown);
+		inp.addEventListener('click', open);
+	});
 }
 
-function removeTargetKeyEvent () {
-	const inp = document.querySelector(targetSelector);
-	if (inp) inp.removeEventListener('keydown', onKeydown);
+function removeTargetEventListeners () {
+	onEachCall(targetSelector, inp => {
+		inp.removeEventListener('keydown', onKeydown);
+		inp.removeEventListener('click', open);
+	});
 }
 
 </script>

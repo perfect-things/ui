@@ -22,12 +22,14 @@
 
 
 <h3>Input menu</h3>
-<input id="inputMenuTarget"/>
-<Menu bind:this="{inputMenu}" type="input" targetSelector="#inputMenuTarget" >
-	<MenuItem>Option 1</MenuItem>
-	<MenuItem>Option 2</MenuItem>
+<input name="input1" class="input-menu-target"/>
+<input name="input2" class="input-menu-target"/>
+
+<Menu type="input" targetSelector=".input-menu-target" >
+	<MenuItem data-value="value1" on:click="{onInputMenuItemClick}">Option 1</MenuItem>
+	<MenuItem data-value="value2" on:click="{onInputMenuItemClick}">Option 2</MenuItem>
 	<MenuSeparator />
-	<MenuItem>Option 3</MenuItem>
+	<MenuItem data-value="value3" on:click="{onInputMenuItemClick}">Option 3</MenuItem>
 </Menu>
 
 
@@ -124,6 +126,7 @@ const instanceApiProps = [
 const itemApiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the menu item.' },
 	{ name: 'danger', description: 'Button type: danger' },
+	{ name: 'data-', description: 'Dataset attribute allows to pass some data of a primitive type (string, number, boolean), which will be accessible in the <em>on:click</em> event listener, via button reference.' },
 	{ name: 'disabled', description: 'Makes the menu item (button) <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
@@ -131,7 +134,7 @@ const itemApiProps = [
 	{ name: 'success', description: 'Button type: success' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
 	{ name: 'warning', description: 'Button type: warning' },
-	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.' },
+	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.<br><em>event.detail</em> will contain a <em>button</em> property, and if menu type=<em>input</em>, also an <em>input</em> property, that are references to the corresponding html elements. It is possible to pass the data using <em>data-</em> attributes on <em>input</em> and <em>MenuItem</em> elements (see the example code above).<br>You can pass data directly to the event listener in your code, if the menu corresponds to a single input. The approach described above is useful, as it allows to have a single input menu instance that will handle multiple input elements.' },
 ];
 
 const exampleHtml = `
@@ -154,17 +157,31 @@ const exampleHtml = `
     <MenuItem shortcut="cmd+shift+q" on:click="{action3}">Close All Windows</MenuItem>
 </Menu>
 
+
+<!-- Input menu -->
+<input name="input1" class="input-menu-target"/>
+<Menu type="input" targetSelector=".input-menu-target" >
+	<MenuItem data-value="value1" on:click="{onInputMenuItemClick}">Option 1</MenuItem>
+	<MenuItem data-value="value2" on:click="{onInputMenuItemClick}">Option 2</MenuItem>
+</Menu>
+
+
 <script>
     let menu1, menu2;
     function closeSomething (e) {
         e.preventDefault();   // prevents menu auto-closing
         menu1.close();       // manually close the menu
     }
+
+    function onInputMenuItemClick (e) {
+        const { input, button } = e.detail;
+        console.log(input.name, button.dataset.value);
+    }
 &lt;/script>
 `;
 
 
-let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu, inputMenu;
+let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;
@@ -226,4 +243,8 @@ function closeWindows () {
 }
 
 
+function onInputMenuItemClick (e) {
+	const { input, button } = e.detail;
+	console.log(input.name, button.dataset.value);
+}
 </script>

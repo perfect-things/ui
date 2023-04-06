@@ -20,7 +20,7 @@
 </li>
 
 <script>
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, getContext } from 'svelte';
 import { Icon } from '../icon';
 import { pluck, blink } from '../utils';
 
@@ -32,11 +32,11 @@ export let success = false;
 export let warning = false;
 export let danger = false;
 
+$:props = pluck($$props, ['id', 'title', 'disabled', 'data']);
 
-$:props = pluck($$props, ['id', 'title', 'disabled']);
 
 const dispatch = createEventDispatcher();
-
+const { targetEl } = getContext('MenuContext');
 
 function replaceKeySymbols (txt) {
 	return ('' + txt)
@@ -57,7 +57,8 @@ function onclick (e) {
 	const btn = e.target.closest('.menu-button');
 	btn.focus();
 	blink(btn, 200).then(() => {
-		const res = dispatch('click', e, { cancelable: true });
+		const input = targetEl();
+		const res = dispatch('click', { event: e, input, button: btn }, { cancelable: true });
 		if (res === false) {
 			e.stopPropagation();
 			e.preventDefault();
