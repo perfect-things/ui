@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-## v6.3.4, v6.3.5, v6.3.6, v6.3.7 *(2023-04-06)*
+## v6.3.4, v6.3.5, v6.3.6, v6.3.7, v6.3.8 *(2023-04-06)*
 - Handle svelte's newest a11y warnings.
 - Tweak media query notation.
 - Remove menu of type='input'.
 - Allow `data-` attributes on `Button` and `MenuItem`.
+- Fix Menu target button's `aria-expanded` attribute (wasn't set to `false` on menu close).
 
 
 ## v6.3.3 *(2023-04-05)*
