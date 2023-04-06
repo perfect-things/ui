@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.3.4 *(2023-04-06)*
+- Handle svelte's newest a11y warnings.
+
+
 ## v6.3.3 *(2023-04-05)*
 - `Tooltip` tip was upgraded to take advantage of the new `clip-path` property.
 - `Tooltip` tip was enhanced with color variations: `success`, `warning` and `danger`.
