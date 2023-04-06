@@ -211,7 +211,8 @@ function _close () {
 	if (!opened) return Promise.resolve();
 
 	opened = false;
-	if (targetEl) removeArias(targetSelector);
+	removeArias(targetSelector);
+	removeArias(targetEl);
 
 	return new Promise(resolve => requestAnimationFrame(() => {
 		dispatch('close', { target: targetEl });
