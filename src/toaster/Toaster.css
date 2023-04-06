@@ -84,7 +84,7 @@
 }
 
 
-@media (max-width: 700px) {
+@media (1px <= width <= 700px) {
 	.toaster { width: calc(100vw - 1em); }
 }
 

@@ -62,7 +62,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 
 .nav-toggler.visible { left: 230px; }
 
-@media (max-width: 700px) {
+@media (1px <= width <= 700px) {
 	.mobile-show { margin-left: 0; }
 	.nav-toggler { display: flex; }
 	aside {
