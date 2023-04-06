@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v6.3.4 *(2023-04-06)*
+## v6.3.4, v6.3.5 *(2023-04-06)*
 - Handle svelte's newest a11y warnings.
+- Tweak media query notation.
 
 
 ## v6.3.3 *(2023-04-05)*
