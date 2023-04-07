@@ -194,6 +194,8 @@ export function open (e) {
  * Highlights the clicked button and closes the menu (provided that the button's event handler did not call preventDefault())
  */
 export function close (e) {
+	if (!opened) return Promise.resolve();
+
 	if (e && e.detail && e.detail.target) e = e.detail;
 	if (e && e.target) e.target.focus();
 	// need to wait for the button to trigger click and check if it's not cancelled by consumers

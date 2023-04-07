@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.3.9 *(2023-04-07)*
+- `Menu` on-close should resolve instantly, when the menu is already closed.
+
+
 ## v6.3.4, v6.3.5, v6.3.6, v6.3.7, v6.3.8 *(2023-04-06)*
 - Handle svelte's newest a11y warnings.
 - Tweak media query notation.
