@@ -38,4 +38,4 @@ body * { box-sizing: inherit; }
 svg { width: 24px; height: 24px; }
 
 /* meatballs icon is misaligned */
-.icon-tabler-dots-vertical svg { margin-left: -1px; }
+.icon-tabler-dots-vertical { margin-left: -1px; }
