@@ -1,7 +1,8 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v639-2023-04-07">v6.3.9 <em>(2023-04-07)</em></h2>
+<h2 id="v639-v6310-2023-04-07">v6.3.9, v6.3.10 <em>(2023-04-07)</em></h2>
 <ul>
 <li><code>Menu</code> on-close should resolve instantly, when the menu is already closed.</li>
+<li><code>Menu</code> new attribute <code>align</code> allows to align the menu to the right with the target.</li>
 </ul>
 <h2 id="v634-v635-v636-v637-v638-2023-04-06">v6.3.4, v6.3.5, v6.3.6, v6.3.7, v6.3.8 <em>(2023-04-06)</em></h2>
 <ul>
