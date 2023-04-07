@@ -1,10 +1,15 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v634-v635-v636-v637-2023-04-06">v6.3.4, v6.3.5, v6.3.6, v6.3.7 <em>(2023-04-06)</em></h2>
+<h2 id="v639-2023-04-07">v6.3.9 <em>(2023-04-07)</em></h2>
+<ul>
+<li><code>Menu</code> on-close should resolve instantly, when the menu is already closed.</li>
+</ul>
+<h2 id="v634-v635-v636-v637-v638-2023-04-06">v6.3.4, v6.3.5, v6.3.6, v6.3.7, v6.3.8 <em>(2023-04-06)</em></h2>
 <ul>
 <li>Handle svelte&#39;s newest a11y warnings.</li>
 <li>Tweak media query notation.</li>
 <li>Remove menu of type=&#39;input&#39;.</li>
 <li>Allow <code>data-</code> attributes on <code>Button</code> and <code>MenuItem</code>.</li>
+<li>Fix Menu target button&#39;s <code>aria-expanded</code> attribute (wasn&#39;t set to <code>false</code> on menu close).</li>
 </ul>
 <h2 id="v633-2023-04-05">v6.3.3 <em>(2023-04-05)</em></h2>
 <ul>
