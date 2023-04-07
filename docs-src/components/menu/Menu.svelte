@@ -2,6 +2,8 @@
 
 <h3>Normal menu</h3>
 <Button data-name="show-menu-button" on:click="{thingsMenu.open}">Show menu</Button>
+<Button data-name="show-menu-button" on:click="{thingsMenu2.open}">Show menu aligned to right</Button>
+
 <Menu bind:this="{thingsMenu}">
 	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
 	<MenuItem>Add another one</MenuItem>
@@ -18,6 +20,16 @@
 	<MenuSeparator />
 	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
 </Menu>
+
+
+<Menu align="right" bind:this="{thingsMenu2}">
+	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
+	<MenuItem>Add another one</MenuItem>
+	<MenuSeparator />
+	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
+</Menu>
+
+
 
 
 <h3>In a container with <em>overflow: hidden</em></h3>
@@ -94,6 +106,7 @@ import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
 const apiProps = [
+	{ name: 'align', type: ['left', 'right'], default: 'left', description: 'Align to the <em>left</em> or <em>right</em> edge of the target.' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the menu will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
@@ -156,7 +169,7 @@ const exampleHtml = `
 `;
 
 
-let someMenu1, someMenu2, someMenu3, thingsMenu, tabsMenu, windowsMenu;
+let someMenu1, someMenu2, someMenu3, thingsMenu, thingsMenu2, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;

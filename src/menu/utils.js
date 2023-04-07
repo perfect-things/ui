@@ -29,7 +29,7 @@ export function addArias (el) {
 }
 
 
-export function updatePosition (e, type, menuEl, offset, isBelowTarget) {
+export function updatePosition (e, type, menuEl, offset, align, isBelowTarget) {
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 
 	const etype = e && e.type;
@@ -50,6 +50,9 @@ export function updatePosition (e, type, menuEl, offset, isBelowTarget) {
 		const btnBox = e.target.getBoundingClientRect();
 		menuEl.style.top = (btnBox.top + btnBox.height + offset) + 'px';
 		menuEl.style.left = btnBox.left + 'px';
+		if (align === 'right') {
+			menuEl.style.left = (btnBox.left + btnBox.width - menuEl.offsetWidth) + 'px';
+		}
 	}
 
 	// ensure it stays on screen
@@ -73,16 +76,23 @@ export function updatePosition (e, type, menuEl, offset, isBelowTarget) {
 		}
 		else isBelowTarget = true;
 	}
+
+	// context menu - check if not outside of the screen
 	else if (y > winH - height - padding) {
 		let top = winH - height - padding;
 		if (top < 0) top = 2;
 		menuEl.style.top = top + 'px';
 	}
 
+	// check if the menu is off the right side of the screen
 	if (x > winW - width - padding) {
 		let left = winW - width - padding;
 		if (left < 0) left = 2;
 		menuEl.style.left = left + 'px';
 	}
+
+	// check if the menu is off the left side of the screen
+	if (x < padding) menuEl.style.left = padding + 'px';
+
 	return isBelowTarget;
 }

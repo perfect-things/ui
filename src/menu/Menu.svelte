@@ -24,6 +24,7 @@ export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
 export let elevate = false;
 export let offset = 2;
+export let align = 'left';			// can be 'left' or 'right'
 
 let className = '';
 export { className as class };
@@ -79,7 +80,7 @@ function onContextMenu (e) {
 
 	e.stopPropagation();
 	e.preventDefault();
-	isBelowTarget = updatePosition(e, type, menuEl, offset, isBelowTarget);
+	isBelowTarget = updatePosition(e, type, menuEl, offset, align, isBelowTarget);
 	open(e);
 }
 
@@ -181,7 +182,7 @@ export function open (e) {
 
 	return new Promise(resolve => requestAnimationFrame(() => {
 		// needs to finish rendering first
-		isBelowTarget = updatePosition(e, type, menuEl, offset, isBelowTarget);
+		isBelowTarget = updatePosition(e, type, menuEl, offset, align, isBelowTarget);
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
