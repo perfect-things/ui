@@ -10,12 +10,7 @@
 .table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
 .table-wrapper.round { border-radius: var(--ui-border-radius-s); }
 
-.table {
-	border-spacing: 0;
-	cursor: default;
-	width: calc(100% + 1px);
-	margin-left: -1px;
-}
+.table { border-spacing: 0; cursor: default; width: 100%; }
 
 .table thead,
 .table tfoot { position: sticky; z-index: 2; }
