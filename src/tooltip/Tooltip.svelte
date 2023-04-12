@@ -2,6 +2,7 @@
 	<div
 		class="tooltip-plate tooltip-{_position}"
 		class:visible
+		class:info
 		class:success
 		class:warning
 		class:danger
@@ -15,13 +16,15 @@
 <script>
 import { afterUpdate, onDestroy, onMount } from 'svelte';
 export let target = '';
-export let delay = '0';
+export let delay = 0;
 export let position = 'auto';
 export let offset = 2;
+export let screenPadding = 5;
 
 let className = '';
 export { className as class };
 export let events = 'hover,focus';	// hover, click, focus
+export let info = false;
 export let success = false;
 export let warning = false;
 export let danger = false;
@@ -84,7 +87,7 @@ function _hide () {
  * @param e - hide event
  */
 function hide (e) {
-	const targetIsSelf = targetEl && e.target && targetEl.contains(e.target);
+	const targetIsSelf = (targetEl instanceof Node) && (e.target instanceof Node) && targetEl.contains(e.target);
 	const targetIsTooltip = el && e.target && el.contains(e.target);
 
 	if ((e.type === 'mousedown' || e.type === 'click') && targetIsSelf) return;
@@ -114,7 +117,7 @@ function align () {
 	let top = targetBox.top - tooltipBox.height - (parseFloat(offset) || 2);
 	const left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
 
-	if (top < 0 || position === 'bottom') {
+	if (top < screenPadding || position === 'bottom') {
 		top = targetBox.top + targetBox.height + (parseFloat(offset) || 2);
 		_position = 'bottom';
 	}

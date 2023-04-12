@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.3.12 *(2023-04-12)*
+- `Tooltip` style tweaks, so it's finally perfect.
+
+
 ## v6.3.9, v6.3.10, v6.3.11 *(2023-04-07)*
 - `Menu` on-close should resolve instantly, when the menu is already closed.
 - `Menu` new attribute `align` allows to align the menu to the right with the target.
