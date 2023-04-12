@@ -1,7 +1,8 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v6313-2023-04-12">v6.3.13 <em>(2023-04-12)</em></h2>
+<h2 id="v6313-v6314-2023-04-12">v6.3.13, v6.3.14 <em>(2023-04-12)</em></h2>
 <ul>
 <li><code>Tooltip</code> style tweaks, so it&#39;s finally perfect.</li>
+<li>Minor fix in <code>Tooltip</code>.</li>
 </ul>
 <h2 id="v6312-2023-04-09">v6.3.12 <em>(2023-04-09)</em></h2>
 <ul>
