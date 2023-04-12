@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v6.3.13 *(2023-04-12)*
+## v6.3.13, v6.3.14 *(2023-04-12)*
 - `Tooltip` style tweaks, so it's finally perfect.
+- Minor fix in `Tooltip`.
 
 
 ## v6.3.12 *(2023-04-09)*
