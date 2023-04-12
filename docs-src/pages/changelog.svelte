@@ -1,9 +1,13 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v6312-2023-04-12">v6.3.12 <em>(2023-04-12)</em></h2>
+<h2 id="v6313-2023-04-12">v6.3.13 <em>(2023-04-12)</em></h2>
 <ul>
 <li><code>Tooltip</code> style tweaks, so it&#39;s finally perfect.</li>
 </ul>
-<h2 id="v639-v6310-v6311-2023-04-07">v6.3.9, v6.3.10, v6.3.11 <em>(2023-04-07)</em></h2>
+<h2 id="v6312-2023-04-09">v6.3.12 <em>(2023-04-09)</em></h2>
+<ul>
+<li>Cleanup.</li>
+</ul>
+<h2 id="v639-v6310-v6311-v6312-2023-04-07">v6.3.9, v6.3.10, v6.3.11, v6.3.12 <em>(2023-04-07)</em></h2>
 <ul>
 <li><code>Menu</code> on-close should resolve instantly, when the menu is already closed.</li>
 <li><code>Menu</code> new attribute <code>align</code> allows to align the menu to the right with the target.</li>
