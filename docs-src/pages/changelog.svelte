@@ -1,7 +1,8 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v6315-2023-04-15">v6.3.15 <em>(2023-04-15)</em></h2>
+<h2 id="v6315-v6315-2023-04-15">v6.3.15, v6.3.15 <em>(2023-04-15)</em></h2>
 <ul>
 <li>New icons: <code>undo</code> and <code>redo</code>.</li>
+<li>Fix <code>ButtonGroup</code> styling for other button types.</li>
 </ul>
 <h2 id="v6313-v6314-2023-04-12">v6.3.13, v6.3.14 <em>(2023-04-12)</em></h2>
 <ul>
