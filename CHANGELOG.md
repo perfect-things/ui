@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v6.3.15 *(2023-04-15)*
+## v6.3.15, v6.3.15 *(2023-04-15)*
 - New icons: `undo` and `redo`.
+- Fix `ButtonGroup` styling for other button types.
 
 
 ## v6.3.13, v6.3.14 *(2023-04-12)*

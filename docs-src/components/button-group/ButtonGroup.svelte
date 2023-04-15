@@ -1,10 +1,30 @@
 <h2>Button Group</h2>
 
+
 <h3>Normal</h3>
 <ButtonGroup>
 	<Button>One</Button>
-	<Button>Two</Button>
+	<Button>Disabled</Button>
 	<Button>Three</Button>
+	<Button>Four</Button>
+</ButtonGroup>
+
+
+<h3>Outline Buttons</h3>
+<ButtonGroup>
+	<Button outline>One</Button>
+	<Button outline>Two</Button>
+	<Button outline disabled>Disabled</Button>
+	<Button outline>Four</Button>
+</ButtonGroup>
+
+
+<h3>Text Buttons</h3>
+<ButtonGroup>
+	<Button text>One</Button>
+	<Button text disabled>Disabled</Button>
+	<Button text>Three</Button>
+	<Button text>Four</Button>
 </ButtonGroup>
 
 
@@ -13,14 +33,6 @@
 	<PushButton>One</PushButton>
 	<PushButton>Two</PushButton>
 	<PushButton>Three</PushButton>
-</ButtonGroup>
-
-
-<h3>Disabled button</h3>
-<ButtonGroup>
-	<Button>One</Button>
-	<Button disabled>Two</Button>
-	<Button>Three</Button>
 </ButtonGroup>
 
 
