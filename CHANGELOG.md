@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.3.15 *(2023-04-15)*
+- New icons: `undo` and `redo`.
+
+
 ## v6.3.13, v6.3.14 *(2023-04-12)*
 - `Tooltip` style tweaks, so it's finally perfect.
 - Minor fix in `Tooltip`.
