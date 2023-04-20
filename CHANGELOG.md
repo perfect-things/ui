@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.4.0 *(2023-04-20)*
+- Tweaks to allow it to be used with SvelteKit.
+
+
 ## v6.3.15, v6.3.16 *(2023-04-15)*
 - New icons: `undo` and `redo`.
 - Fix `ButtonGroup` styling for other button types.
