@@ -63,6 +63,35 @@ Just <i>import</i> them from the module, as normal:
 </code></pre>
 
 
+
+
+<h2>Usage with SvelteKit</h2>
+Available from <em>v6.4.0</em>.
+
+<h3>1. Configs</h3>
+Because this is a purely front-end framework and requires browser to work, it will not work with SSR so you need to disable it.
+Create a file: <em>src/routes/+layout.js</em> and add this:
+<pre><code class="language-js">
+export const ssr = false;
+</code></pre>
+
+
+<h3>2. CSS</h3>
+If you're using SvelteKit, you need to add the <em>ui.css</em> file to the <em>static</em> folder,
+and then either import it into your <em>global.css</em> file or add it to the <em>head</em> section of your <em>app.html</em> file:
+<pre><code class="language-html">
+	&lt;head&gt;
+	...
+	&lt;link rel="stylesheet" href="%sveltekit.assets%/ui.css" /&gt;
+	&lt;/head&gt;
+</code></pre>
+
+Once that's done, you can import the components as normal.
+
+
+
+
+
 <h2>Development</h2>
 
 You need node & npm (obviously). Then, run these:
