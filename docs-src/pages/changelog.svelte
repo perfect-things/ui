@@ -1,5 +1,9 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v6315-v6315-2023-04-15">v6.3.15, v6.3.15 <em>(2023-04-15)</em></h2>
+<h2 id="v640-2023-04-20">v6.4.0 <em>(2023-04-20)</em></h2>
+<ul>
+<li>Tweaks to allow it to be used with SvelteKit.</li>
+</ul>
+<h2 id="v6315-v6316-2023-04-15">v6.3.15, v6.3.16 <em>(2023-04-15)</em></h2>
 <ul>
 <li>New icons: <code>undo</code> and <code>redo</code>.</li>
 <li>Fix <code>ButtonGroup</code> styling for other button types.</li>
