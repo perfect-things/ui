@@ -174,7 +174,7 @@ export function open (e) {
 	focusedEl = null;
 
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
-	if (type !== 'context') targetEl = e.target;
+	if (type !== 'context') targetEl = e && e.target;
 	if (targetEl) {
 		removeArias(targetSelector);
 		addArias(targetEl);

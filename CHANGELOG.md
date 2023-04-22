@@ -2,9 +2,10 @@ Changelog
 =========
 
 
-## v6.4.1 *(2023-04-22)*
+## v6.4.1, v6.4.2 *(2023-04-22)*
 - Remove the need to inline svg icons in the consumer's build.
 - Add `addIcon` function to allow adding custom icons.
+- Fix `menu.open` issue when event was not passed.
 
 
 ## v6.4.0 *(2023-04-20)*
