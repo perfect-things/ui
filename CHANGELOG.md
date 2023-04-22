@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v6.4.1 *(2023-04-22)*
+- Remove the need to inline svg icons in the consumer's build.
+- Add `addIcon` function to allow adding custom icons.
+
+
 ## v6.4.0 *(2023-04-20)*
 - Tweaks to allow it to be used with SvelteKit.
 

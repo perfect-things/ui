@@ -50,6 +50,7 @@ import { Toaster, showToast, hideToast, Button } from '@perfectthings/ui';
 function cb (id) {
 	hideToast(id);
 }
+&lt;/script>
 `;
 
 

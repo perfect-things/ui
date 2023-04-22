@@ -1,7 +1,7 @@
 {@html svg}
 
 <script>
-import * as icons from './icons.js';
+import { icons } from './icons.js';
 export let name = '';
 
 const aliases = {
