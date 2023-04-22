@@ -1,8 +1,9 @@
 <h1 id="changelog">Changelog</h1>
-<h2 id="v641-2023-04-22">v6.4.1 <em>(2023-04-22)</em></h2>
+<h2 id="v641-v642-2023-04-22">v6.4.1, v6.4.2 <em>(2023-04-22)</em></h2>
 <ul>
 <li>Remove the need to inline svg icons in the consumer&#39;s build.</li>
 <li>Add <code>addIcon</code> function to allow adding custom icons.</li>
+<li>Fix <code>menu.open</code> issue when event was not passed.</li>
 </ul>
 <h2 id="v640-2023-04-20">v6.4.0 <em>(2023-04-20)</em></h2>
 <ul>
