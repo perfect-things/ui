@@ -14,7 +14,7 @@ menu {
 	margin: 0;
 }
 
-menu h3 { margin: 0 -1rem; padding: 0.5rem 1rem; }
+menu h3 { margin: 0 -1rem; padding: 0.5rem 1rem; white-space: nowrap; }
 menu h3:not(:first-child) { margin-top: 1rem; }
 
 menu a {

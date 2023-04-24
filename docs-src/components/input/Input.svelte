@@ -1,7 +1,7 @@
 <h2>Input</h2>
 
 <p>The basic inputs are not componentised, only styled with css.</p>
-<p>Only <i>NumberInput</i> is a special component here.</p>
+<p>Only <em>InputNumber</em> (Better Number Input) is a special component here.</p>
 <br>
 
 <h3>Text</h3>
@@ -13,7 +13,8 @@
 <h3>Number</h3>
 <input type="number" />
 
-<h3>Better Number</h3>
+<h3>Better Number Input</h3>
+<p>Only allows numbers, a single dot (for decimals) and the minus sign (which is only allowed as a first character)</p>
 <InputNumber />
 
 <h3>Search</h3>

@@ -1,16 +1,28 @@
-<div class="input-password-wrapper {className}" class:visible>
+<div class="input-password-wrapper {className}" class:visible bind:this="{el}">
 	<div class="input-password-row" class:visible>
-		<input
-			type="password"
-			class="input-password"
-			autocomplete="off"
-			{...props}
-			bind:this="{inputEl}"
-			bind:value="{value}"
-			on:keydown
-			on:change
-			on:focus
-			on:blur>
+		{#if type === 'text'}
+			<input
+				type="text"
+				class="input-password"
+				autocomplete="off"
+				{...props}
+				bind:value="{value}"
+				on:keydown
+				on:change
+				on:focus
+				on:blur>
+		{:else}
+			<input
+				type="password"
+				class="input-password"
+				autocomplete="off"
+				{...props}
+				bind:value="{value}"
+				on:keydown
+				on:change
+				on:focus
+				on:blur>
+		{/if}
 		<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
 	</div>
 	{#if strength && lib && value}
@@ -32,6 +44,8 @@ import { pluck } from '../utils';
 
 export let value = '';
 $:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
+$:type = visible ? 'text' : 'password';
+
 
 export let strength = false;
 let className = '';
@@ -53,7 +67,7 @@ let label = '';
 let percent = 0;
 let strengthInfoText = '';
 let colorClass = '';
-let inputEl;
+let el;
 
 
 $: {
@@ -88,7 +102,7 @@ function measure (pass) {
 
 function toggle () {
 	visible = !visible;
-	inputEl.type = visible ? 'text' : 'password';
+	requestAnimationFrame(() => el.querySelector('input').focus());
 }
 
 </script>

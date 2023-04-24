@@ -191,11 +191,13 @@ function menuCloseThings (e) {
 		thingsMenuTimer = setTimeout(() => closeThingsText = initial, 2000);
 	}
 	else {
-		thingsMenu.close().then(() => {
-			closeThingsText = initial;
-			if (thingsMenuTimer) clearTimeout(thingsMenuTimer);
-			alert('Closed all things!');
-		});
+		Promise
+			.all([thingsMenu.close(), thingsMenu2.close()])
+			.then(() => {
+				closeThingsText = initial;
+				if (thingsMenuTimer) clearTimeout(thingsMenuTimer);
+				alert('Closed all things!');
+			});
 	}
 }
 
