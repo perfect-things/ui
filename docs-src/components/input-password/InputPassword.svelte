@@ -1,7 +1,8 @@
 <h2>Input Password</h2>
 
 <h3>Default</h3>
-<InputPassword name="password" placeholder="Not 123456"/>
+<InputPassword name="password" placeholder="Not 123456" bind:value="{val}"/><br>
+Your secret password is: {val}
 
 <h3>With password strength indicator</h3>
 <p>* <a href="https://github.com/dropbox/zxcvbn">zxcvbn</a> lib must be available and loaded via a <em>&lt;script&gt;</em> tag.</p>
@@ -18,6 +19,7 @@
 import { InputPassword } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+let val;
 
 const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },

@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v6.4.3 *(2023-)*
+- Improve `<InputPassword/>` component: don't rerender when eye button is clicked, minor alignment style tweak.
+
+
+
 ## v6.4.1, v6.4.2 *(2023-04-22)*
 - Remove the need to inline svg icons in the consumer's build.
 - Add `addIcon` function to allow adding custom icons.

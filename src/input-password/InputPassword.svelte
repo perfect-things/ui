@@ -1,28 +1,16 @@
 <div class="input-password-wrapper {className}" class:visible bind:this="{el}">
 	<div class="input-password-row" class:visible>
-		{#if type === 'text'}
-			<input
-				type="text"
-				class="input-password"
-				autocomplete="off"
-				{...props}
-				bind:value="{value}"
-				on:keydown
-				on:change
-				on:focus
-				on:blur>
-		{:else}
-			<input
-				type="password"
-				class="input-password"
-				autocomplete="off"
-				{...props}
-				bind:value="{value}"
-				on:keydown
-				on:change
-				on:focus
-				on:blur>
-		{/if}
+		<input
+			class="input-password"
+			autocomplete="off"
+			{...props}
+			{type}
+			{value}
+			on:input={e => value = e.target.value}
+			on:keydown
+			on:change
+			on:focus
+			on:blur>
 		<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
 	</div>
 	{#if strength && lib && value}

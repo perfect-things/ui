@@ -66,6 +66,6 @@ test('InputMath', async () => {
 	// test "show password" button
 	expect(input.type).toBe('password');
 	const showPasswordBtn = container.querySelector('.input-password-button');
-	fireEvent.click(showPasswordBtn);
+	await fireEvent.click(showPasswordBtn);
 	expect(input.type).toBe('text');
 });
