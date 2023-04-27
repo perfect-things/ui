@@ -15,15 +15,17 @@ export function groupData (items) {
 export function highlight (listEl) {
 	requestAnimationFrame(() => {
 		const selectedEl = listEl.querySelector('.selected');
-		if (!selectedEl) return;
+		if (!selectedEl || !listEl.scrollTo) return;
 
 		// going up
-		let top = selectedEl.offsetTop;
+		const paddingTop = 3;
+		let top = selectedEl.offsetTop - paddingTop;
 		if (listEl.scrollTop > top) listEl.scrollTo({ top });
 
 		// going down
 		else {
-			top = selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight;
+			const paddingBottom = 6;
+			top = selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight + paddingBottom;
 			if (listEl.scrollTop < top) listEl.scrollTo({ top });
 		}
 	});

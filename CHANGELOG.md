@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v6.4.3 *(2023-)*
+## v6.4.3 *(2023-04-27)*
 - Improve `<InputPassword/>` component: don't rerender when eye button is clicked, minor alignment style tweak.
+- `Autocomplete` keyboard scrolling alignment fix (highlighted item was partially cropped).
 
 
 

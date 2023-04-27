@@ -56,7 +56,7 @@ test('Autocomplete-utils - highlight', () => {
 	selectedEl.classList.add('selected');
 
 	utils.highlight(listEl);
-	expect(listEl.scrollTop).toBe(0);
+	expect(listEl.scrollTop).toBe(-3);
 
 	selectedEl.classList.remove('selected');
 
@@ -65,7 +65,7 @@ test('Autocomplete-utils - highlight', () => {
 	selectedEl.classList.add('selected');
 
 	utils.highlight(listEl);
-	expect(listEl.scrollTop).toBe(450);
+	expect(listEl.scrollTop).toBe(456);
 });
 
 
