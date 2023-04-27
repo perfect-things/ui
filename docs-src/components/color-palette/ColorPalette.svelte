@@ -12,6 +12,12 @@
 	<PaletteBox bg="color-accent-light-2" text="color-border" />
 </div>
 
+<h4>Secondary</h4>
+<div class="group">
+	<PaletteBox bg="color-secondary" />
+	<PaletteBox bg="color-secondary-semi" />
+</div>
+
 <h4>Info</h4>
 <div class="group">
 	<PaletteBox bg="color-info" />

@@ -9,6 +9,7 @@
 	class:button-text="{text}"
 	class:button-has-text="{$$slots.default}"
 	class:round
+	class:info
 	class:success
 	class:warning
 	class:danger
@@ -31,6 +32,7 @@ import { pluck } from '../utils';
 
 export let _this = undefined;
 
+export let info = false;
 export let success = false;
 export let warning = false;
 export let danger = false;

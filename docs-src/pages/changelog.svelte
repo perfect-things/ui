@@ -1,4 +1,9 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v650-2023-04-">v6.5.0 <em>(2023-04-?)</em></h2>
+<ul>
+<li>Change the default color for a secondary button.</li>
+<li>Add <code>info</code> type to <code>Button</code> component (that takes the colour of the previous <code>default</code>).</li>
+</ul>
 <h2 id="v643-2023-04-27">v6.4.3 <em>(2023-04-27)</em></h2>
 <ul>
 <li>Improve <code>&lt;InputPassword/&gt;</code> component: don&#39;t rerender when eye button is clicked, minor alignment style tweak.</li>

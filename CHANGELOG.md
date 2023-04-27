@@ -2,10 +2,14 @@ Changelog
 =========
 
 
+## v6.5.0 *(2023-04-?)*
+- Change the default color for a secondary button.
+- Add `info` type to `Button` component (that takes the colour of the previous `default`).
+
+
 ## v6.4.3 *(2023-04-27)*
 - Improve `<InputPassword/>` component: don't rerender when eye button is clicked, minor alignment style tweak.
 - `Autocomplete` keyboard scrolling alignment fix (highlighted item was partially cropped).
-
 
 
 ## v6.4.1, v6.4.2 *(2023-04-22)*

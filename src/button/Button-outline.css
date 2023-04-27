@@ -1,12 +1,16 @@
 .button-outline {
 	background: transparent;
-	border: 0.1em solid var(--ui-color-info);
+	border: 0.1em solid var(--ui-color-secondary);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
 }
 
 .button-outline:focus,
-.button-outline:hover { background-color: var(--ui-color-info-semi); }
+.button-outline:hover { background-color: var(--ui-color-secondary-semi); }
+
+.button-outline.info { border-color: var(--ui-color-info); }
+.button-outline.info:focus,
+.button-outline.info:hover { background-color: var(--ui-color-info-semi); }
 
 .button-outline.success { border-color: var(--ui-color-success); }
 .button-outline.success:focus,

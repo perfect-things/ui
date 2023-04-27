@@ -9,6 +9,14 @@
 	<Button>Four</Button>
 </ButtonGroup>
 
+<h3>Normal, info</h3>
+<ButtonGroup>
+	<Button info>One</Button>
+	<Button success>Disabled</Button>
+	<Button warning>Three</Button>
+	<Button danger>Four</Button>
+</ButtonGroup>
+
 
 <h3>Outline Buttons</h3>
 <ButtonGroup>

@@ -20,7 +20,7 @@
 		<h4>Style</h4>
 		<ButtonToggle items="{buttonStyles}" value="" on:change="{onStyleChange}" />
 		<h4>Type</h4>
-		<ButtonToggle items="{buttonTypes}" value="default" on:change="{onTypeChange}" />
+		<ButtonToggle items="{buttonTypes}" value="" on:change="{onTypeChange}" />
 		<h4>Icon</h4>
 		<ButtonToggle items="{buttonIcons}" value="" on:change="{onIconChange}" />
 		<h4>Round</h4>
@@ -47,6 +47,7 @@ const apiProps = [
 	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
+	{ name: 'info', description: 'Button type: info' },
 	{ name: 'link', description: 'Button style: link' },
 	{ name: 'outline', description: 'Button style: outline' },
 	{ name: 'round', description: 'Makes the button round' },
@@ -69,7 +70,8 @@ const buttonStyles = [
 ];
 
 const buttonTypes = [
-	{ name: 'Default', value: 'default' },
+	{ name: 'Default', value: '' },
+	{ name: 'Info', value: 'info' },
 	{ name: 'Success', value: 'success' },
 	{ name: 'Warning', value: 'warning' },
 	{ name: 'Danger', value: 'danger' },
@@ -93,7 +95,7 @@ function onStyleChange (e) {
 }
 
 function onTypeChange (e) {
-	props.default = false;
+	props.info = false;
 	props.success = false;
 	props.warning = false;
 	props.danger = false;

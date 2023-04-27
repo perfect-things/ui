@@ -3,6 +3,7 @@
 		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
+		{info}
 		{success}
 		{warning}
 		{danger}
@@ -17,6 +18,7 @@
 		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
+		{info}
 		{success}
 		{warning}
 		{danger}
@@ -33,6 +35,7 @@ import { pluck } from '../utils';
 export let _this = undefined;
 export let pressed = false;
 
+export let info = false;
 export let success = false;
 export let warning = false;
 export let danger = false;

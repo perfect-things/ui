@@ -151,6 +151,15 @@
 
 
 
-
 .theme-light .datepicker-cell.next:not(.disabled),
 .theme-light .datepicker-cell.prev:not(.disabled) { color: var(--ui-color-background-dark-2); }
+
+
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+	.datepicker-picker {
+		background-color: var(--ui-color-background-semi);
+		-webkit-backdrop-filter: blur(30px);
+		backdrop-filter: blur(30px);
+	}
+}

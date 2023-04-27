@@ -16,6 +16,9 @@
 .button.button-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 
 
+.button-link.info:focus,
+.button-link.info:hover { text-decoration-color: var(--ui-color-info); }
+
 .button-link.success:focus,
 .button-link.success:hover { text-decoration-color: var(--ui-color-success); }
 
