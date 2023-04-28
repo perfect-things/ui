@@ -3,7 +3,7 @@ Changelog
 
 
 
-## v6.5.1 *(2023-04-28)*
+## v6.5.0 *(2023-04-28)*
 - Change the default color for a secondary button.
 - Add `info` type to `Button` component (that takes the colour of the previous `default`).
 - Fix round button (with text) aspect-ratio lock.
