@@ -65,9 +65,9 @@
 .button.round {
 	min-width: 28px;
 	min-height: 28px;
-	aspect-ratio: 1/1;
 	padding: var(--ui-margin);
 	border-radius: var(--ui-border-radius-xl);
 }
+.button.round:not(.button-has-text) { aspect-ratio: 1/1; }
 
 .button-has-text.round { padding-inline: var(--ui-margin-l); }
