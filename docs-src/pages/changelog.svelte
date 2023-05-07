@@ -1,4 +1,8 @@
 <h1 id="changelog">Changelog</h1>
+<h2 id="v651-2023-05-07">v6.5.1 <em>(2023-05-07)</em></h2>
+<ul>
+<li><code>Menu</code> highlighting upgrade: <code>ArrowDown</code> on the last item will highlight the first item, <code>ArrowUp</code> on the first item will highlight the last item.</li>
+</ul>
 <h2 id="v650-2023-04-28">v6.5.0 <em>(2023-04-28)</em></h2>
 <ul>
 <li>Change the default color for a secondary button.</li>
