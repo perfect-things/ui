@@ -2,6 +2,9 @@ Changelog
 =========
 
 
+## v6.5.1 *(2023-05-07)*
+- `Menu` highlighting upgrade: `ArrowDown` on the last item will highlight the first item, `ArrowUp` on the first item will highlight the last item.
+
 
 ## v6.5.0 *(2023-04-28)*
 - Change the default color for a secondary button.

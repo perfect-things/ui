@@ -32,6 +32,8 @@ export { className as class };
 
 $:elevated = elevate === 'true' || elevate === true;
 const menuButtons = [];
+const buttonSelector = '.menu-button:not([disabled])';
+
 let menuEl, targetEl, focusedEl, opened = false;
 let isBelowTarget = true;	// default - screen size may change that
 
@@ -60,7 +62,7 @@ onDestroy(() => {
 function indexButtons () {
 	if (!menuEl) return;
 	const addBtn = el => menuButtons.push({ el, text: el.textContent.trim().toLowerCase() });
-	menuEl.querySelectorAll('.menu-button').forEach(addBtn);
+	menuEl.querySelectorAll(buttonSelector).forEach(addBtn);
 }
 
 
@@ -136,34 +138,34 @@ function focusTarget () {
 
 
 function focusFirst () {
-	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
 	focusedEl = buttons[0];
 	if (focusedEl) focusedEl.focus();
 }
 
 
 function focusLast () {
-	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
 	focusedEl = buttons[buttons.length - 1];
 	if (focusedEl) focusedEl.focus();
 }
 
 
 function focusNext () {
-	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
 	let idx = -1;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
-	if (idx >= buttons.length - 1) return;
+	if (idx >= buttons.length - 1) idx = -1;
 	focusedEl = buttons[idx + 1];
 	if (focusedEl) focusedEl.focus();
 }
 
 
 function focusPrev () {
-	const buttons = Array.from(menuEl.querySelectorAll('.menu-button'));
+	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
 	let idx = buttons.length;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
-	if (idx <= 0) return;
+	if (idx <= 0) idx = buttons.length;
 	focusedEl = buttons[idx - 1];
 	if (focusedEl) focusedEl.focus();
 }
