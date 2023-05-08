@@ -17,7 +17,7 @@
   "scripts": {
     "test-coverage": "jest --coverage",
     "test": "jest",
-    "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.svelte",
+    "changelog": "marked --no-mangle --no-header-ids --gfm -i CHANGELOG.md -o docs-src/pages/changelog.svelte",
     "lint": "gulp lint",
     "dist": "gulp prod",
     "build": "gulp build",
