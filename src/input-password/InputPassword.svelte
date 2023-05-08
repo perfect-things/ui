@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-autocomplete-valid -->
 <div class="input-password-wrapper {className}" class:visible bind:this="{el}">
 	<div class="input-password-row" class:visible>
 		<input
