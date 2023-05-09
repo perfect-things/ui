@@ -4,12 +4,22 @@
 	on:click="{toggleNav}"/>
 
 <aside class:mobile-show="{navMobileShow}">
-	<menu>
-		<div class="nav-toolbar">
-			<span>Dark mode:</span>
-			<ActualToggle value="{$PREFERS_DARK}" on:change="{switchColorMode}"/>
+	<div class="nav-toolbar">
+		<div class="nav-toolbar-row">
+			<label for="dark-mode-switch">Dark mode:</label>
+			<ActualToggle id="dark-mode-switch"
+				value="{$PREFERS_DARK}"
+				on:change="{switchColorMode}"/>
 		</div>
+		<!-- <div class="nav-toolbar-row">
+			<label for="scale-switch">Scale:</label>
+			<input id="scale-switch" type="number" value="1"
+				min="0.5" max="3" step="0.1"
+				on:input="{scaleChange}"/>
+		</div> -->
+	</div>
 
+	<menu>
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
 		<NavItem name="Changelog" {active} />
@@ -45,6 +55,7 @@
 		<NavItem name="Tooltip" {active} />
 		<NavItem name="Color Palette" {active} />
 	</menu>
+
 </aside>
 
 <svelte:window on:hashchange="{onhashchange}" />
@@ -68,6 +79,7 @@ function onhashchange () {
 	active = location.hash.substr(1);
 	component = components[active];
 	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
+	document.querySelector('main').scrollTop = 0;
 }
 
 function switchColorMode (e) {
@@ -78,6 +90,11 @@ function switchColorMode (e) {
 function toggleNav () {
 	navMobileShow = !navMobileShow;
 }
+
+
+// function scaleChange (e) {
+// 	document.body.style.setProperty('--ui-scale', e.target.value);
+// }
 
 window.addEventListener('popstate', () => navMobileShow = false);
 

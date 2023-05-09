@@ -13,7 +13,7 @@
 }
 
 .button.button-link:focus,
-.button.button-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.button.button-link:hover { text-decoration: underline; text-underline-offset: 0.2rem; }
 
 
 .button-link.info:focus,

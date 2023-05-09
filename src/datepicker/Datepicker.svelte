@@ -42,7 +42,7 @@ let open = false;
 onMount(() => {
 	picker = new Datepicker(inputEl, {
 		autohide: true,
-		buttonClass: 'button button-normal button-text',
+		buttonClass: 'button button-text info',
 		container: elevated ? document.body : undefined,
 		format,
 		todayBtn: true,

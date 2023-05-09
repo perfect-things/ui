@@ -1,7 +1,7 @@
 .toaster {
 	--toaster-border-radius: var(--ui-border-radius-s);
 	position: fixed;
-	width: 30em;
+	width: 30rem;
 	left: 50%;
 	transform: translateX(-50%) translateZ(1px);
 	display: flex;
@@ -15,7 +15,7 @@
 .toaster-bottom { bottom: 0; }
 
 .toast {
-	font-size: 1em;
+	font-size: 1rem;
 	position: relative;
 	overflow: hidden;
 	flex: 1;
@@ -23,7 +23,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	min-height: 2em;
+	min-height: 2rem;
 	margin-top: var(--ui-margin);
 	margin-bottom: var(--ui-margin);
 	box-shadow: var(--ui-shadow-fancy);
@@ -33,24 +33,24 @@
 	background: none;
 	border: none;
 	color: var(--ui-color-text);
-	height: 32px;
+	height: 1.8rem;
+	min-width: 1.6rem;
 	font-size: inherit;
-	min-width: 1.6em;
 	padding: 0 var(--ui-margin-m);
 	margin: 0 var(--ui-margin-m) 0 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 5px;
+	border-radius: var(--ui-border-radius);
 }
 .toast button:hover { color: var(--ui-color-text-light-2); background: #2228; }
 .toast button:active { color: var(--ui-color-text-dark-2); background: #0008; }
 
 .toast .toast-close {
-	font-size: 1.4em;
+	font-size: 1.4rem;
 	font-weight: 200;
 	position: relative;
-	padding-bottom: 0.15em;
+	padding-bottom: 0.15rem;
 }
 
 .toast,
@@ -64,7 +64,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0.8em 0.8em 0.8em 1.5em;
+	padding: 0.8rem 0.8rem 0.8rem 1.5rem;
 	line-height: 1.4;
 }
 .toast-progressbar {
@@ -85,7 +85,7 @@
 
 
 @media (1px <= width <= 700px) {
-	.toaster { width: calc(100vw - 1em); }
+	.toaster { width: calc(100vw - 1rem); }
 }
 
 

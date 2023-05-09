@@ -4,7 +4,7 @@
 <h3>Normal</h3>
 <ButtonGroup>
 	<Button>One</Button>
-	<Button>Disabled</Button>
+	<Button disabled>Disabled</Button>
 	<Button>Three</Button>
 	<Button>Four</Button>
 </ButtonGroup>
@@ -12,7 +12,7 @@
 <h3>Normal, info</h3>
 <ButtonGroup>
 	<Button info>One</Button>
-	<Button success>Disabled</Button>
+	<Button success disabled>Disabled</Button>
 	<Button warning>Three</Button>
 	<Button danger>Four</Button>
 </ButtonGroup>

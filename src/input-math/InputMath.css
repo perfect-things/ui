@@ -11,8 +11,8 @@
 .input-math-wrapper .icon {
 	position: absolute;
 	left: 7px;
-	width: 1.5em;
-	height: 1.5em;
+	width: 1.5rem;
+	height: 1.5rem;
 	pointer-events: none;
 	color: var(--ui-color-text-dark-2);
 	z-index: 1;

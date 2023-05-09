@@ -1,6 +1,6 @@
 .menu {
 	position: fixed;
-	padding: 0.2em 0.25em;
+	padding: 0.2rem 0.25rem;
 	margin: 0;
 	display: flex;
 	flex-flow: column;
@@ -17,9 +17,9 @@
 
 	color: var(--ui-color-text);
 	border: var(--ui-popup-border);
-	border-radius: var(--ui-popup-border-radius);
+	border-radius: calc(var(--ui-border-radius) + 2px);
 	background: var(--ui-popup-background);
-	box-shadow: var(--ui-popup-shadow);
+	box-shadow: var(--ui-shadow-fancy);
 	transform: translateZ(1px);
 }
 
@@ -30,7 +30,7 @@
 
 .menu-item {
 	flex-shrink: 0;
-	padding: 0.1em 0;
+	padding: 0;
 	margin: 0;
 	position: relative;
 	overflow: hidden;
@@ -39,29 +39,29 @@
 	justify-content: space-between;
 }
 
-.menu-item svg { width: 1.3em; height: 1.3em; margin: -0.1em 0.5em -0.1em 0; }
+.menu-item svg { width: 1.1rem; height: 1.1rem; margin: -0.1rem 0.5rem -0.1rem 0; }
 
 .menu-item-content {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-right: 2em;
+	margin-right: 2rem;
 }
 
-.menu-item-shortcut { margin: -0.1em 0 -0.1em auto; letter-spacing: 0.1em; opacity: 0.5; }
+.menu-item-shortcut { margin: -0.1rem 0 -0.1rem auto; letter-spacing: 0.1rem; opacity: 0.5; }
 
 .menu-item-shortcut:empty { visibility: hidden; }
 
 .menu-separator {
 	height: 0;
 	padding: 0;
-	margin: var(--ui-margin) 0.6em;
+	margin: var(--ui-margin) 0.6rem;
 	border-bottom: var(--ui-popup-border);
 }
 
 
 .menu-button {
-	font-size: 0.86em;
+	font-size: 0.86rem;
 	border: 0;
 	margin: 0;
 	background: none;
@@ -72,7 +72,7 @@
 	align-items: center;
 	white-space: nowrap;
 	cursor: pointer;
-	padding: 0.6em 1em;
+	padding: 0.6rem 0.9rem;
 	border-radius: var(--ui-border-radius);
 }
 

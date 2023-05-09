@@ -1,29 +1,28 @@
 :root {
-	--ui-border-radius: 0.3em;
-	--ui-border-radius-s: 0.5em;
-	--ui-border-radius-m: 0.7em;
-	--ui-border-radius-l: 1em;
-	--ui-border-radius-xl: 5em;
+	--ui-scale: 1;
+
+	--ui-border-radius: 0.3rem;
+	--ui-border-radius-s: 0.5rem;
+	--ui-border-radius-m: 0.7rem;
+	--ui-border-radius-l: 1rem;
+	--ui-border-radius-xl: 5rem;
 
 	/* margins & padding values */
-	--ui-margin: 0.3em;
-	--ui-margin-s: 0.1em;
-	--ui-margin-m: 0.5em;
-	--ui-margin-l: 1em;
-	--ui-margin-xl: 1.4em;
-	--ui-margin-xxl: 2em;
+	--ui-margin: 0.3rem;
+	--ui-margin-s: 0.1rem;
+	--ui-margin-m: 0.5rem;
+	--ui-margin-l: 1rem;
+	--ui-margin-xl: 1.5rem;
+	--ui-margin-xxl: 2rem;
 
-	/* popup vars */
-	--ui-popup-border-radius: var(--ui-border-radius);
-	--ui-popup-shadow: var(--ui-shadow-fancy);
+	--ui-animation-speed: .3s;
+
 
 	/* shadows */
-	--ui-animation-speed: .3s;
-	--ui-shadow-button: 0 1px 0 #000000cc;
+	--ui-shadow-button: 0 1px 0 #000c;
 	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);
 	--ui-shadow-invalid: 0 0 2px 1px var(--ui-color-danger);
-	--ui-shadow-small: 0 0 0 0.5px #ffffff44, 0 3px 10px #00000066;
-	--ui-shadow-large: 0 5px 20px #000000aa;
+	--ui-shadow-large: 0 5px 20px #000a;
 	--ui-shadow-fancy:
 		0 0 0 0.5px #111111,
 		0 1px 5px rgb(0 0 0 / 30%),
@@ -35,7 +34,10 @@
 body { box-sizing: border-box; }
 body * { box-sizing: inherit; }
 
-svg { width: 24px; height: 24px; }
+svg {
+	width: calc(24px * var(--ui-scale));
+	height: calc(24px * var(--ui-scale));
+}
 
 /* meatballs icon is misaligned */
 .icon-tabler-dots-vertical { margin-left: -1px; }

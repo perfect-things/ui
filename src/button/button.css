@@ -1,5 +1,5 @@
 .button {
-	--ui-button-size: 1em;
+	--ui-button-size: 1rem;
 
 	font: inherit;
 	line-height: 1.4;
@@ -12,7 +12,7 @@
 	gap: var(--ui-margin-m);
 
 	height: auto;
-	min-height: 2.2em;
+	min-height: 2.2rem;
 	margin: 0;
 	padding: 0 var(--ui-margin-l);
 	color: var(--ui-color-text);

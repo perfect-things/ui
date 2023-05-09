@@ -1,7 +1,7 @@
 .checkbox {
 	appearance: none;
-	width: 1.4em;
-	height: 1.4em;
+	width: 1.4rem;
+	height: 1.4rem;
 	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
@@ -17,7 +17,7 @@
 	content: "✕";
 	display: block;
 	opacity: 0;
-	font-size: 1em;
+	font-size: 1rem;
 	line-height: 1;
 	align-self: center;
 	color: inherit;

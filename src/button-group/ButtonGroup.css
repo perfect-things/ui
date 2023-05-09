@@ -27,10 +27,10 @@
 	border-bottom-right-radius: var(--ui-border-radius);
 }
 
-.button-group .button-normal:not(:first-of-type) { border-left: 1px solid var(--ui-color-background-semi); }
-.button-group .button-normal:first-of-type { border-left: none; }
-.button-group .button-normal:last-of-type { border-right: none; }
-.button-group .button-outline:not(:first-of-type) { border-left: none; }
+.button-group .button-outline:not(:first-of-type) { margin-left: -2px; }
+.button-group .button-normal:not(:first-of-type) {
+	border-left: 1px solid var(--ui-color-background-semi);
+}
 
 
 .button-group.round { border-radius: var(--ui-border-radius-xl); }

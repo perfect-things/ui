@@ -43,7 +43,7 @@
 }
 
 .tooltip-content {
-	padding: 0.5em 0.7em;
+	padding: 0.5rem 0.7rem;
 	text-align: center;
 	position: relative;
 	border-radius: inherit;
@@ -60,7 +60,6 @@
 }
 
 
-
 /* TOOLTIP BELOW TARGET  */
 .tooltip-bottom { padding-bottom: 0; padding-top: var(--tooltip-tip-size); }
 
@@ -70,12 +69,15 @@
 .tooltip-bottom .tooltip::before { border-radius: 3px 0 0; }
 .tooltip-bottom .tooltip-content::before { border-radius: 2px 0 0; }
 
+
+
 /* THEME LIGHT  */
 .theme-light .tooltip {
 	--tooltip-color: #fff;
 	--tooltip-border: 1px solid #fff;
 	--tooltip-shadow: 0 0 1px #0002, 0 0 5px #0006;
 }
+
 
 
 /* COLOR VARIATIONS */

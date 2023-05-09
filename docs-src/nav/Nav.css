@@ -1,5 +1,5 @@
 aside {
-	padding: 1rem 1rem 4rem;
+	padding: 0 1rem 1rem;
 	border-right: 1px solid var(--ui-color-border-dark-2);
 	height: 100%;
 	overflow-y: auto;
@@ -10,8 +10,8 @@ menu {
 	width: 100%;
 	display: flex;
 	flex-flow: column;
-	padding: 0;
-	margin: 0;
+	padding: 1rem 0 0;
+	margin: 0 0 2rem;
 }
 
 menu h3 { margin: 0 -1rem; padding: 0.5rem 1rem; white-space: nowrap; }
@@ -32,14 +32,35 @@ menu a.active { background-color: var(--ui-color-highlight); }
 
 
 .nav-toolbar {
-	margin: -1rem -1rem 0;
-	padding: 1rem;
-	background-color: var(--ui-color-background-dark-2);
+	position: sticky;
+	top: 0;
+	margin: 0 -1rem;
+	padding: 0.5rem 1rem;
+	border-bottom: 1px solid var(--ui-color-background-dark-2);
+	background: var(--ui-color-background-semi);
+	-webkit-backdrop-filter: blur(15px);
+	backdrop-filter: blur(15px);
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+	flex-wrap: wrap;
+}
+.nav-toolbar-row {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	position: relative;
-	height: 48px;
+	flex-wrap: wrap;
+	padding-block: 0.3rem;
+}
+
+
+.nav-toolbar-row input[type="number"] {
+	height: 1.5rem;
+	width: 51px;
+	text-align: center;
+	padding: 0 0.1rem 0 0.3rem;
+	border-radius: 20px;
+	border: 1px solid var(--ui-color-text-dark-2);
 }
 
 .nav-toolbar .toggle { --toggle-width: 45px; }

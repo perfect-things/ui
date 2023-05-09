@@ -8,7 +8,7 @@ input::placeholder { color: var(--ui-color-text-dark-2); }
 
 input:not([type=radio],[type=checkbox]) {
 	font: inherit;
-	height: 2.2em;
+	height: 2.2rem;
 	border: 1px solid transparent;
 	line-height: 1;
 	color: var(--ui-color-text);
@@ -28,7 +28,7 @@ input:is([type=radio]) {
 	vertical-align: inherit;
 	transform: scale(1.6);
 	filter: saturate(0.8);
-	margin-right: 1em;
+	margin-right: 1rem;
 }
 
 input:not([type=radio]):focus {
@@ -64,7 +64,7 @@ input[type=color] {
 }
 
 .label {
-	height: 2.2em;
+	height: 2.2rem;
 	line-height: 1.6;
 	padding: 0 var(--ui-margin-s);
 	display: inline-flex;

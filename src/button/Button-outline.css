@@ -1,6 +1,6 @@
 .button-outline {
 	background: transparent;
-	border: 0.1em solid var(--ui-color-secondary);
+	border: 2px solid var(--ui-color-secondary);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
 }

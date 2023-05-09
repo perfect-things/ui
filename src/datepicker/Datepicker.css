@@ -12,18 +12,16 @@
 	position: absolute;
 	cursor: pointer;
 	margin-top: -1px; /* calendar icon visually appears a bit lower, so moving it up */
-	right: 7px;
-	width: 1.5em;
-	height: 1.5em;
+	right: 5px;
+	width: 1.5rem;
+	height: 1.5rem;
 	color: var(--ui-color-text-dark-2);
 	z-index: 1;
 }
-.theme-light .datepicker-wrapper .icon-wrap {
-	color: var(--ui-color-text-light-2);
-}
+.theme-light .datepicker-wrapper .icon-wrap { color: var(--ui-color-text-light-2); }
 .datepicker-wrapper .icon-wrap svg { width: 100%; height: 100%; }
 
-.datepicker-wrapper .datepicker-input { width: 100%; padding-right: 30px; }
+.datepicker-wrapper .datepicker-input { width: 100%; padding-right: 28px; }
 .datepicker { display: none; transform: translateZ(1px); }
 .datepicker.active { display: block; }
 
@@ -32,17 +30,18 @@
 	top: 0;
 	left: 0;
 	z-index: 100;
-	padding-top: 0.2em;
+	padding-top: 0.2rem;
 }
 
 .datepicker-dropdown.datepicker-orient-top { padding-top: 0; padding-bottom: 4px; }
 
 .datepicker-picker {
 	display: inline-block;
-	border-radius: 0.3em;
-	background-color: var(--ui-color-background);
 	overflow: hidden;
-	box-shadow: var(--ui-shadow-small);
+	border-radius: 0.4em;
+	background-color: var(--ui-color-background);
+	border: var(--ui-popup-border);
+	box-shadow: var(--ui-shadow-fancy);
 }
 
 
@@ -58,7 +57,7 @@
 	user-select: none;
 }
 
-.datepicker-main { padding: 0.1em; }
+.datepicker-main { padding: 0.1rem; }
 
 
 .datepicker-grid,
@@ -83,11 +82,8 @@
 
 .datepicker-title { padding: 0.375rem 0.75rem; text-align: center; }
 
-.datepicker-header,
-.datepicker-footer { background-color: var(--ui-color-background-input); }
-
 .datepicker-header .datepicker-controls,
-.datepicker-footer .datepicker-controls { padding: 0.2em; }
+.datepicker-footer .datepicker-controls { padding: 0.2rem; }
 
 .datepicker-controls .button {
 	padding: 0;

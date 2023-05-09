@@ -5,8 +5,8 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	width: 24em;
-	min-height: 20em;
+	width: 24rem;
+	min-height: 20rem;
 	box-shadow: var(--ui-shadow-large);
 	z-index: 11;
 	color: var(--ui-color-text);
@@ -25,13 +25,13 @@
 	background-color: inherit;
 	top: 0;
 	width: 100%;
-	margin: 0 0 1em;
-	padding: 0 1em 0 1.4em;
+	margin: 0 0 1rem;
+	padding: 0 1rem 0 1.4rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.drawer-header h2 { margin: 0; padding: 0.5em 0; }
+.drawer-header h2 { margin: 0; padding: 0.5rem 0; }
 
-.drawer-content { padding: 0 1.4em; }
+.drawer-content { padding: 0 1.4rem; }

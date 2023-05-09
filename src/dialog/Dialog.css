@@ -22,7 +22,7 @@
 	min-width: 16em;
 	max-width: 95vw;
 	color: var(--ui-color-text);
-	border-radius: var(--ui-popup-border-radius);
+	border-radius: var(--ui-border-radius);
 	border: var(--ui-popup-border);
 	background: var(--ui-popup-background);
 	box-shadow: var(--ui-shadow-large);
@@ -41,8 +41,8 @@
 	font-weight: 400;
 	margin: 0;
 	padding: 0.4em 1em 0;
-	border-top-left-radius: var(--ui-popup-border-radius);
-	border-top-right-radius: var(--ui-popup-border-radius);
+	border-top-left-radius: var(--ui-border-radius);
+	border-top-right-radius: var(--ui-border-radius);
 }
 
 .dialog-content {
@@ -68,8 +68,8 @@
 	flex-flow: row-reverse;
 	padding: 0.7em 1em;
 	gap: 0.3em;
-	border-bottom-left-radius: var(--ui-popup-border-radius);
-	border-bottom-right-radius: var(--ui-popup-border-radius);
+	border-bottom-left-radius: var(--ui-border-radius);
+	border-bottom-right-radius: var(--ui-border-radius);
 }
 
 .draw-borders .dialog-header { border-bottom: var(--ui-popup-border); padding: 0.4em 0.5em; }

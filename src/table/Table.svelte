@@ -118,12 +118,13 @@ function selectClicked (skipEvent = false) {
 	const topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
 
 	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
+	if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top: Math.round(top) });
 
-	if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top });
 	else {
+		const paddingBottom = 4;
 		top = rowEl.offsetTop + rowEl.offsetHeight - scrlCont.offsetHeight +
-			headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
-		if (scrlCont.scrollTop < top) scrlCont.scrollTo({ top });
+			headerHeight + topMargin + parseFloat(scrollCorrectionOffset) + paddingBottom;
+		if (scrlCont.scrollTop < top) scrlCont.scrollTo({ top: Math.round(top) });
 	}
 
 	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
