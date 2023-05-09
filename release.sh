@@ -15,10 +15,10 @@ case $ans in
     *  ) echo "Whats that?" && exit ;;
 esac
 
-npm run dist
 npm run changelog
+npm run dist
 git add --all
-git commit -am 'release'
+git commit -am 'release' --no-verify
 if [ $v != none ]; then
 	npm version $v
 fi
