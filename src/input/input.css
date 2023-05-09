@@ -2,7 +2,9 @@
 .theme-light input { color-scheme: light; }
 
 
-input::placeholder { color: var(--ui-color-text-dark-1); }
+input::placeholder { color: var(--ui-color-text-dark-2); }
+.theme-light input::placeholder { color: var(--ui-color-text-light-2); }
+
 
 input:not([type=radio],[type=checkbox]) {
 	font: inherit;

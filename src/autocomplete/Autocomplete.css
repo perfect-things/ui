@@ -7,19 +7,23 @@
 	user-select: none;
 	border-radius: var(--ui-border-radius);
 	width: 25ch;
+	vertical-align: middle;
 }
 
-.autocomplete > .icon {
+.autocomplete .icon-wrap {
+	cursor: pointer;
 	position: absolute;
-	right: 5px;
+	right: 7px;
 	width: 22px;
 	height: 22px;
-	pointer-events: none;
-	color: var(--ui-color-text-dark-1);
+	color: var(--ui-color-text-dark-2);
 	z-index: 1;
-	opacity: 0.6;
 }
-.autocomplete .autocomplete-input { width: 100%; padding-right: 28px; }
+.theme-light .autocomplete .icon-wrap {
+	color: var(--ui-color-text-light-2);
+}
+
+.autocomplete .autocomplete-input { width: 100%; padding-right: 30px; }
 
 .autocomplete-list {
 	position: absolute;

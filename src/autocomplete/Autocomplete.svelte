@@ -1,6 +1,8 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="autocomplete {className}" class:open="{opened}" bind:this="{el}">
-	<Icon name="dots"/>
+	<div class="icon-wrap" on:click="{onIconClick}">
+		<Icon name="dots"/>
+	</div>
 	<input
 		type="text"
 		role="combobox"
@@ -352,6 +354,12 @@ function onEsc (e) {
 		return close();
 	}
 	dispatch('keydown', e);
+}
+
+
+function onIconClick () {
+	inputEl.focus();
+	inputEl.click();
 }
 
 

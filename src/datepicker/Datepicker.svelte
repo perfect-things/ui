@@ -1,4 +1,8 @@
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="datepicker-wrapper {className}" class:open >
+	<div class="icon-wrap" on:click="{onIconClick}">
+		<Icon name="calendar"/>
+	</div>
 	<input
 		type="text"
 		autocomplete="off"
@@ -11,7 +15,6 @@
 		on:hide="{onhide}"
 		bind:this="{inputEl}"
 		bind:value="{value}">
-	<Icon name="calendar"/>
 </div>
 
 <script>
@@ -101,6 +104,12 @@ function onshow () {
 
 function onhide () {
 	open = false;
+}
+
+
+function onIconClick () {
+	inputEl.focus();
+	picker.show();
 }
 
 </script>

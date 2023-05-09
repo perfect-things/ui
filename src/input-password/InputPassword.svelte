@@ -1,6 +1,7 @@
 <!-- svelte-ignore a11y-autocomplete-valid -->
 <div class="input-password-wrapper {className}" class:visible bind:this="{el}">
 	<div class="input-password-row" class:visible>
+		<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
 		<input
 			class="input-password"
 			autocomplete="off"
@@ -12,7 +13,6 @@
 			on:change
 			on:focus
 			on:blur>
-		<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
 	</div>
 	{#if strength && lib && value}
 		<div class="input-password-row">

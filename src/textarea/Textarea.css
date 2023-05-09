@@ -17,6 +17,9 @@
 	grid-area: 1 / 1 / 2 / 2;
 }
 
+.textarea-input::placeholder { color: var(--ui-color-text-dark-2); }
+.theme-light .textarea-input::placeholder { color: var(--ui-color-text-light-2); }
+
 
 .textarea.autogrow::after {
 	content: attr(data-value) " ";

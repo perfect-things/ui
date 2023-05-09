@@ -5,21 +5,25 @@
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-between;
+	vertical-align: middle;
 }
 
-.datepicker-wrapper > .icon {
+.datepicker-wrapper .icon-wrap {
 	position: absolute;
-	right: 5px;
+	cursor: pointer;
 	margin-top: -1px; /* calendar icon visually appears a bit lower, so moving it up */
+	right: 7px;
 	width: 22px;
 	height: 22px;
-	pointer-events: none;
-	color: var(--ui-color-text-dark-1);
+	color: var(--ui-color-text-dark-2);
 	z-index: 1;
-	opacity: 0.6;
+}
+.theme-light .datepicker-wrapper .icon-wrap {
+	color: var(--ui-color-text-light-2);
 }
 
-.datepicker-wrapper .datepicker-input { width: 100%; padding-right: 28px; }
+
+.datepicker-wrapper .datepicker-input { width: 100%; padding-right: 30px; }
 .datepicker { display: none; transform: translateZ(1px); }
 .datepicker.active { display: block; }
 

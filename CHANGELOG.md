@@ -3,8 +3,10 @@ Changelog
 
 
 
-## v6.5.3 *(2023-05-09)*
+## v6.5.3, v6.5.4 *(2023-05-09)*
 - Standardise button height to match all the other controls.
+- Standardise placeholder and input-icon colours.
+- Enhance Autocomplete's and DatePicker's input-icon click experience.
 
 
 ## v6.5.2 *(2023-05-08)*
