@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v6.5.3 <em>(2023-05-09)</em></h2>
+<ul>
+<li>Standardise button height to match all the other controls.</li>
+</ul>
 <h2>v6.5.2 <em>(2023-05-08)</em></h2>
 <ul>
 <li>Maintenance update: upgrade dependencies, remove yet another useless a11y warning from svelte zealots.</li>

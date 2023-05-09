@@ -3,6 +3,10 @@ Changelog
 
 
 
+## v6.5.3 *(2023-05-09)*
+- Standardise button height to match all the other controls.
+
+
 ## v6.5.2 *(2023-05-08)*
 - Maintenance update: upgrade dependencies, remove yet another useless a11y warning from svelte zealots.
 

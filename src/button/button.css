@@ -12,6 +12,7 @@
 	gap: var(--ui-margin-m);
 
 	height: auto;
+	min-height: 2.2em;
 	margin: 0;
 	padding: 0 var(--ui-margin-l);
 	color: var(--ui-color-text);
