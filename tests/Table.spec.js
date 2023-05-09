@@ -18,8 +18,6 @@ test('Table', async () => {
 	expect(rows.length).toBe(14);
 
 	const row = rows[3];
-	fireEvent.click(row);
-
 	await fireEvent.click(row);
 	expect(clickMock).toHaveBeenCalled();
 

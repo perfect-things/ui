@@ -103,8 +103,7 @@ function getScrollContainer () {
 		if (typeof scrollContainer === 'string') scrlCont = _this.closest(scrollContainer);
 		else scrlCont = scrollContainer;
 	}
-	if (scrlCont) return scrlCont;
-	return _this;
+	return scrlCont || _this;
 }
 
 
@@ -115,6 +114,8 @@ function selectClicked (skipEvent = false) {
 	if (rowEl != document.activeElement) rowEl.focus();
 
 	const scrlCont = getScrollContainer();
+	if (!scrlCont || !scrlCont.scrollTo) return;
+
 	const topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
 
 	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
