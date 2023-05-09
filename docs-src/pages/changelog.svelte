@@ -1,9 +1,10 @@
 <h1>Changelog</h1>
-<h2>v6.5.3, v6.5.4 <em>(2023-05-09)</em></h2>
+<h2>v6.5.3, v6.5.4, v6.5.5 <em>(2023-05-09)</em></h2>
 <ul>
 <li>Standardise button height to match all the other controls.</li>
 <li>Standardise placeholder and input-icon colours.</li>
 <li>Enhance Autocomplete&#39;s and DatePicker&#39;s input-icon click experience.</li>
+<li>Size the icons in <code>em</code> not <code>px</code>.</li>
 </ul>
 <h2>v6.5.2 <em>(2023-05-08)</em></h2>
 <ul>
