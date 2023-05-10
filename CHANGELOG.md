@@ -2,6 +2,8 @@ Changelog
 =========
 
 
+## v6.5.6 *(2023-05-?)*
+- `em` to `rem`, as it's more consistent and predictable.
 
 ## v6.5.3, v6.5.4, v6.5.5 *(2023-05-09)*
 - Standardise button height to match all the other controls.
