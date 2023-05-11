@@ -32,6 +32,9 @@
 <h3>Icon only, and round</h3>
 <ButtonToggle round items="{icons}" value="2" /><br><br>
 
+<h3>Array of strings for <em>items</em></h3>
+<ButtonToggle items="{strings}" value="One" /><br><br>
+
 
 
 
@@ -53,7 +56,7 @@ const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'disabled', description: 'Makes the component disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign id to the first radio button in the group (useful for the associate label\'s <i>for</i> attribute)' },
-	{ name: 'items', type: 'array', required: true, description: 'An array of objects in the following format: <code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>' },
+	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>' },
 	{ name: 'name', type: 'string', description: 'Assign name to the underlying radio group' },
 	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Assign initial value to the underlying radio group' },
@@ -102,5 +105,7 @@ const icons = [
 	{ icon: 'check', value: '2' },
 	{ icon: 'alert', value: '3' },
 ];
+
+const strings = ['One', 'Two', 'Three'];
 
 </script>

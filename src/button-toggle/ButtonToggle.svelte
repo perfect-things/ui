@@ -4,7 +4,7 @@
 	bind:this="{el}"
 	role="radiogroup">
 
-	{#each items as item, idx}
+	{#each _items as item, idx}
 		<label
 			{disabled}
 			class="button button-normal"
@@ -44,6 +44,14 @@ export { className as class };
 
 const dispatch = createEventDispatcher();
 let el;
+
+$:_items = items.map(item => {
+	if (typeof item === 'string') {
+		return { name: item, value: item };
+	}
+	return item;
+});
+
 
 function onmousedown (e) {
 	const btn = e.target.querySelector('input');

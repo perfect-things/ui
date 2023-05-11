@@ -1,7 +1,8 @@
 <h1>Changelog</h1>
-<h2>v6.6.0 <em>(2023-05-11)</em></h2>
+<h2>v6.6.0, v6.6.1 <em>(2023-05-11)</em></h2>
 <ul>
 <li><code>Select</code> now also accepts an array of strings for items.</li>
+<li><code>ButtonToggle</code> now also accepts an array of strings for items.</li>
 <li><code>em</code> to <code>rem</code>, as it&#39;s more consistent and predictable.</li>
 </ul>
 <h2>v6.5.3, v6.5.4, v6.5.5 <em>(2023-05-09)</em></h2>
