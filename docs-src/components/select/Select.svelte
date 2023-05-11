@@ -16,6 +16,9 @@
 <h3>With initial value</h3>
 <Select placeholder="Empty" items="{selectItems}" bind:value="{val}"/> Selected value: {val}
 
+<h3>With array of strings for <em>items</em></h3>
+<Select placeholder="Please select..." items="{stringItems}" bind:value="{val}"/> Selected value: {val}
+
 
 <CodeExample html="{exampleHtml}" />
 
@@ -86,6 +89,13 @@ const selectItems = [
 	{ id: 'Kappa', name: 'Kappa', group: 'Group 4' },
 	{ id: 'Lambda', name: 'Lambda', group: 'Group 4' },
 	{ id: 'long-one', name: 'A very long text', group: 'Group 4' },
+];
+
+const stringItems = [
+	'Alpha',
+	'Beta',
+	'Gamma',
+	'Delta',
 ];
 
 </script>

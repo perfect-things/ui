@@ -43,7 +43,12 @@ $: {
 		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
 		_groups[item.group].items.push(item);
 	});
-	groups = [...nogroup, ...Object.values(_groups)];
+	let all = [...nogroup, ...Object.values(_groups)];
+
+	if (typeof all[0] === 'string') {
+		all = all.map(item => ({ id: item, name: item }));
+	}
+	groups = all;
 }
 
 </script>
