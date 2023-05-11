@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## v6.6.0, v6.6.1, v6.6.2 *(2023-05-11)*
+## v6.6.0, v6.6.1, v6.6.2, v6.6.3 *(2023-05-11)*
 - `Select` now also accepts an array of strings for items.
 - `ButtonToggle` now also accepts an array of strings for items.
 - `em` to `rem`, as it's more consistent and predictable.

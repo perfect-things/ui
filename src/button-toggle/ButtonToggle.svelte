@@ -56,11 +56,9 @@ $:_items = items.map(item => {
 function onmousedown (e) {
 	const btn = e.target.querySelector('input');
 	e.preventDefault();
+	if (btn) btn.focus();
 	if (btn === document.activeElement || btn.checked) return;
-	if (btn) {
-		btn.focus();
-		btn.click();
-	}
+	if (btn) btn.click();
 }
 
 function onchange (e, button) {
