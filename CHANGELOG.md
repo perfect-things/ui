@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.6.4 *(2023-05-12)*
+- Bring back `--ui-shadow-small` property.
+
+
 ## v6.6.0, v6.6.1, v6.6.2, v6.6.3 *(2023-05-11)*
 - `Select` now also accepts an array of strings for items.
 - `ButtonToggle` now also accepts an array of strings for items.
