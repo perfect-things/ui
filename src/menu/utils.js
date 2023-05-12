@@ -1,4 +1,4 @@
-let typeQuery;
+let typeQuery = '';
 let typeTimer;
 
 export function matchQuery (buttons, key) {
@@ -30,6 +30,7 @@ export function addArias (el) {
 
 
 export function updatePosition (e, type, menuEl, offset, align, isBelowTarget) {
+	if (!menuEl) return isBelowTarget;
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 
 	const etype = e && e.type;

@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v6.6.4 *(2023-05-12)*
+## v6.6.4, v6.6.5 *(2023-05-12)*
 - Bring back `--ui-shadow-small` property.
+- `Menu` performance improvements: menu will not be rendered until it's opened.
 
 
 ## v6.6.0, v6.6.1, v6.6.2, v6.6.3 *(2023-05-11)*

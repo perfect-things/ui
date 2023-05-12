@@ -7,23 +7,24 @@ test('Menu', async () => {
 	const props = {};
 	const { container } = render(Menu, props);
 
-	const cmp = container.querySelector('.test-menu');
-	expect(cmp).toBeInTheDocument();
-	expect(cmp).toHaveClass('hidden');
+	let cmp = container.querySelector('.test-menu');
+	expect(cmp).not.toBeInTheDocument();
 
 	const btn = container.querySelector('.open-menu-button');
 	await fireEvent.click(btn);
 	await waitForTimeout();
-	expect(cmp).not.toHaveClass('hidden');
+	cmp = container.querySelector('.test-menu');
+	expect(cmp).toBeInTheDocument();
 
 	fireEvent.click(document.body);
 	await waitForTimeout();
-	expect(cmp).toHaveClass('hidden');
+	expect(cmp).not.toBeInTheDocument();
 
 
 	fireEvent.click(btn);
 	await waitForTimeout();
-	expect(cmp).not.toHaveClass('hidden');
+	cmp = container.querySelector('.test-menu');
+	expect(cmp).toBeInTheDocument();
 
 	const menuItem = container.querySelector('.test-menu .menu-button');
 
@@ -32,5 +33,5 @@ test('Menu', async () => {
 
 	fireEvent.click(menuItem);
 	await waitForTimeout();
-	expect(cmp).toHaveClass('hidden');
+	expect(cmp).not.toBeInTheDocument();
 });

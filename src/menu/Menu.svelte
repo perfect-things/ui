@@ -1,12 +1,13 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-to-interactive-role -->
-<ul
-	class="menu {className}"
-	class:hidden="{!opened}"
-	role="menu"
-	bind:this="{menuEl}"
-	tabindex="0">
-		<slot></slot>
-</ul>
+{#if opened}
+	<ul
+		class="menu {className}"
+		role="menu"
+		bind:this="{menuEl}"
+		tabindex="0">
+			<slot></slot>
+	</ul>
+{/if}
 
 <svelte:options accessors={true}/>
 
@@ -47,8 +48,6 @@ onMount(() => {
 		initLongPressEvent();
 		document.addEventListener(contextmenu, onContextMenu);
 	}
-	if (elevated) document.body.appendChild(menuEl);
-	indexButtons();
 });
 
 
@@ -82,7 +81,6 @@ function onContextMenu (e) {
 
 	e.stopPropagation();
 	e.preventDefault();
-	isBelowTarget = updatePosition(e, type, menuEl, offset, align, isBelowTarget);
 	open(e);
 }
 
@@ -172,6 +170,10 @@ function focusPrev () {
 
 
 export function open (e) {
+	if (opened) {
+		if (type !== 'context') return close();
+		return Promise.resolve();
+	}
 	opened = true;
 	focusedEl = null;
 
@@ -183,6 +185,9 @@ export function open (e) {
 	}
 
 	return new Promise(resolve => requestAnimationFrame(() => {
+		if (elevated) document.body.appendChild(menuEl);
+		indexButtons();
+
 		// needs to finish rendering first
 		isBelowTarget = updatePosition(e, type, menuEl, offset, align, isBelowTarget);
 		dispatch('open', { event: e, target: targetEl });

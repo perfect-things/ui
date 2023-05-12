@@ -26,8 +26,6 @@
 .menu:focus { outline: none; }
 
 
-.menu.hidden { display: none; }
-
 .menu-item {
 	flex-shrink: 0;
 	padding: 0;
