@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v6.6.6 <em>(2023-05-31)</em></h2>
+<ul>
+<li>Fix <code>button-toggle</code> not working on mobile.</li>
+</ul>
 <h2>v6.6.4, v6.6.5 <em>(2023-05-12)</em></h2>
 <ul>
 <li>Bring back <code>--ui-shadow-small</code> property.</li>
