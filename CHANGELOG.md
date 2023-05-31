@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.6.6 *(2023-05-31)*
+- Fix `button-toggle` not working on mobile.
+
+
 ## v6.6.4, v6.6.5 *(2023-05-12)*
 - Bring back `--ui-shadow-small` property.
 - `Menu` performance improvements: menu will not be rendered until it's opened.
