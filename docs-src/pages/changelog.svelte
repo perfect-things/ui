@@ -1,4 +1,13 @@
 <h1>Changelog</h1>
+<h2>v6.6.7 <em>(2023-06-01)</em></h2>
+<ul>
+<li><code>Toaster</code> enhancements:<ul>
+<li>Improve contrast (reduce the transparency).</li>
+<li>Make toasts focusable (so that they can be closed with <code>Escape</code>).</li>
+<li>When toasts are focused or mouse is over them, the auto-close progress will pause.</li>
+</ul>
+</li>
+</ul>
 <h2>v6.6.6 <em>(2023-05-31)</em></h2>
 <ul>
 <li>Fix <code>button-toggle</code> not working on mobile.</li>

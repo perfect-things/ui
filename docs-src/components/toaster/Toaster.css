@@ -1,0 +1,10 @@
+.toaster-testing-background {
+	display: flex;
+	flex-flow: row;
+	align-items: stretch;
+	justify-items: stretch;
+	height: 600px;
+	margin-top: 3em;
+}
+.toaster-testing-background-light { flex: 0.8; background-color: #fff; }
+.toaster-testing-background-dark { flex: 1; background-color: #000; }

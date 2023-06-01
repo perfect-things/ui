@@ -1,7 +1,14 @@
 <div class="toaster toaster-{position} {className}">
 	{#each toasts as toast (toast.id)}
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
 		<div
 			class="toast toast-{toast.type}"
+			tabindex="0"
+			on:mouseover="{() => clearTimer(toast)}"
+			on:focus="{() => clearTimer(toast)}"
+			on:mouseleave="{e => createTimer(toast, e.target)}"
+			on:blur="{e => createTimer(toast, e.target)}"
+			on:keydown="{e => onkeydown(toast, e)}"
 			transition:scale="{{ start: 0.5, duration: $ANIMATION_SPEED }}">
 
 			<div
@@ -36,19 +43,40 @@ let toasts = [];
 const timers = {};
 const progress = {};
 
-$:role =
+
 _toasts.subscribe(val => {
 	toasts = Object.values(val);
 	toasts.forEach(t => {
-		if (!timers[t.id]) createTimer(t.id, t.timeout);
+		if (!timers[t.id]) createTimer(t);
 	});
 });
 
-function createTimer (id, timeout) {
-	progress[id] = 0;
+
+function createTimer (toast, targetEl) {
+	if (!toast.showProgress) return;
+
+	// don't restart the timer if toast is focused
+	if (targetEl && targetEl === document.activeElement) return;
+
+	const id = toast.id;
+	progress[id] = progress[id] || 0;
 	timers[id] = setInterval(() => {
 		progress[id] += 1;
-		if (progress[id] >= 100) clearInterval(timers[id]);
-	}, timeout / 100);
+		if (progress[id] >= 110) {
+			clearInterval(timers[id]);
+			hideToast(id);
+		}
+	}, toast.timeout / 100);
 }
+
+
+function clearTimer (toast) {
+	clearInterval(timers[toast.id]);
+}
+
+
+function onkeydown (toast, e) {
+	if (e.key === 'Escape') hideToast(toast.id);
+}
+
 </script>

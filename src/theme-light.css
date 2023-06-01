@@ -16,26 +16,27 @@
 	--ui-color-highlight-dark-1: #7aafec;
 	--ui-color-highlight-dark-2: #6ba0de;
 
-	--ui-color-info: #bbd3f0;
-	--ui-color-info-semi: #bbd3f066;
-	--ui-color-info-dark-1: #acc4e1;
-	--ui-color-info-dark-2: #99b4d4;
-
 	--ui-color-secondary: #bbb;
 	--ui-color-secondary-semi: #bbb6;
 
+
+	--ui-color-info: #bbd3f0;
+	--ui-color-info-semi: #bbd3f099;
+	--ui-color-info-dark-1: #acc4e1;
+	--ui-color-info-dark-2: #99b4d4;
+
 	--ui-color-success: #7bd7ae;
-	--ui-color-success-semi: #7bd7ae66;
+	--ui-color-success-semi: #7bd7ae99;
 	--ui-color-success-dark-1: #6acda0;
 	--ui-color-success-dark-2: #5bc495;
 
 	--ui-color-warning: #eec64e;
-	--ui-color-warning-semi: #eec64e66;
+	--ui-color-warning-semi: #eec64e99;
 	--ui-color-warning-dark-1: #d6b141;
 	--ui-color-warning-dark-2: #b89221;
 
 	--ui-color-danger: #e86c6c;
-	--ui-color-danger-semi: #e86c6c66;
+	--ui-color-danger-semi: #e86c6c99;
 	--ui-color-danger-dark-1: #d75e5e;
 	--ui-color-danger-dark-2: #da4242;
 

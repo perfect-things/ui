@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+## v6.6.7 *(2023-06-01)*
+- `Toaster` enhancements:
+  - Improve contrast (reduce the transparency).
+  - Make toasts focusable (so that they can be closed with `Escape`).
+  - When toasts are focused or mouse is over them, the auto-close progress will pause.
+
+
 ## v6.6.6 *(2023-05-31)*
 - Fix `button-toggle` not working on mobile.
 

@@ -2,14 +2,10 @@ import { writable } from 'svelte/store';
 
 export const _toasts = writable({});
 
+
 export function showToast (msg, type = 'info', timeout = 5000, btn, cb = () => {}) {
 	const id = guid();
-	let showProgress = false;
-	if (typeof timeout === 'number') {
-		setTimeout(() => hideToast(id), timeout);
-		showProgress = true;
-		timeout = timeout - 500;
-	}
+	const showProgress = (typeof timeout === 'number');
 	_toasts.update(list => {
 		list[id] = { type, msg, id, timeout, cb, showProgress, btn };
 		return list;
@@ -17,12 +13,14 @@ export function showToast (msg, type = 'info', timeout = 5000, btn, cb = () => {
 	return id;
 }
 
+
 export function hideToast (id) {
 	_toasts.update(list => {
 		delete list[id];
 		return list;
 	});
 }
+
 
 function guid () {
 	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
