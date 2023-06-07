@@ -12,7 +12,7 @@ export function matchQuery (buttons, key) {
 
 
 export function removeArias (selectorOrEl) {
-	if (typeof selectorOrEl === 'string') {
+	if (typeof selectorOrEl === 'string' && selectorOrEl !== 'body') {
 		const elems = document.querySelectorAll(selectorOrEl);
 		if (elems && elems.length) elems.forEach(el => el.setAttribute('aria-expanded', 'false'));
 	}

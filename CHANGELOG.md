@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v6.6.8 *(2023-06-01)*
+- `Menu` improvements:
+  - `aria-expanded` attribute was incorrectly being added to the `body` on menu open (apart from the target button).
+  - Tabbing out of the menu will close it.
+
 ## v6.6.7 *(2023-06-01)*
 - `Toaster` enhancements:
   - Improve contrast (reduce the transparency).

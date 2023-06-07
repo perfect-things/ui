@@ -1,6 +1,7 @@
-<!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
 <li class="menu-item {className}" class:disabled="{props.disabled}" role="menuitem">
-	<button
+	<div
+		role="menuitem"
+		tabindex="-1"
 		class="menu-button"
 		class:success
 		class:warning
@@ -16,7 +17,7 @@
 			<slot />
 		</span>
 		<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
-	</button>
+	</div>
 </li>
 
 <script>

@@ -76,15 +76,12 @@
 
 .menu-button:disabled { pointer-events: none; opacity: 0.6; }
 
-.menu-button:focus-within,
-.menu-button:focus { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
 
-.menu-button:focus .menu-item-shortcut { opacity: 1; }
-
-
-.menu-button.success:focus { background-color: var(--ui-color-success); }
-.menu-button.warning:focus { background-color: var(--ui-color-warning); }
-.menu-button.danger:focus { background-color: var(--ui-color-danger); }
+.menu-button.active { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
+.menu-button.active .menu-item-shortcut { opacity: 1; }
+.menu-button.active.success { background-color: var(--ui-color-success); }
+.menu-button.active.warning { background-color: var(--ui-color-warning); }
+.menu-button.active.danger { background-color: var(--ui-color-danger); }
 
 
 

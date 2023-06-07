@@ -1,4 +1,12 @@
 <h1>Changelog</h1>
+<h2>v6.6.8 <em>(2023-06-01)</em></h2>
+<ul>
+<li><code>Menu</code> improvements:<ul>
+<li><code>aria-expanded</code> attribute was incorrectly being added to the <code>body</code> on menu open (apart from the target button).</li>
+<li>Tabbing out of the menu will close it.</li>
+</ul>
+</li>
+</ul>
 <h2>v6.6.7 <em>(2023-06-01)</em></h2>
 <ul>
 <li><code>Toaster</code> enhancements:<ul>

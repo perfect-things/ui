@@ -53,7 +53,7 @@ onMount(() => {
 
 onDestroy(() => {
 	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
-	if (elevated) menuEl.remove();
+	if (elevated && menuEl) menuEl.remove();
 });
 
 
@@ -68,7 +68,7 @@ function indexButtons () {
 function matchTypeQuery (key) {
 	const btn = matchQuery(menuButtons, key);
 	if (btn) {
-		btn.el.focus();
+		// btn.el.focus();
 		focusedEl = btn.el;
 	}
 }
@@ -105,19 +105,35 @@ function onmousemove (e) {
 	const btn = e.target.closest('.menu-button');
 	if (btn) {
 		focusedEl = btn;
-		focusedEl.focus();
+		// focusedEl.focus();
 	}
 }
 
 function onmouseout () {
 	focusedEl = null;
-	menuEl.focus();
 }
 
 
+function closeOnBlur (e) {
+	if (e.key !== 'Tab' || !e || !e.target || !(e.target instanceof Node)) return;
+	if (!menuEl.contains(e.target)) return close();
+	if (!document.activeElement || !document.activeElement.closest('.menu')) return close();
+	requestAnimationFrame(() => {
+		if (!menuEl.contains(e.target)) return close();
+		if (!document.activeElement || !document.activeElement.closest('.menu')) return close();
+	});
+}
+
+
+function onKeyup (e) {
+	closeOnBlur(e);
+}
+
 function onKeydown (e) {
+	closeOnBlur(e);
+
 	if (e.key === 'Escape') _close();
-	if (!menuEl.contains(e.target)) return;
+	// if (!menuEl.contains(e.target)) return;
 
 	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
 
@@ -131,21 +147,21 @@ function onKeydown (e) {
 
 
 function focusTarget () {
-	if (targetEl && targetEl.focus) targetEl.focus();
+	// if (targetEl && targetEl.focus) targetEl.focus();
 }
 
 
 function focusFirst () {
 	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
 	focusedEl = buttons[0];
-	if (focusedEl) focusedEl.focus();
+	// if (focusedEl) focusedEl.focus();
 }
 
 
 function focusLast () {
 	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
 	focusedEl = buttons[buttons.length - 1];
-	if (focusedEl) focusedEl.focus();
+	// if (focusedEl) focusedEl.focus();
 }
 
 
@@ -155,7 +171,7 @@ function focusNext () {
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx >= buttons.length - 1) idx = -1;
 	focusedEl = buttons[idx + 1];
-	if (focusedEl) focusedEl.focus();
+	// if (focusedEl) focusedEl.focus();
 }
 
 
@@ -165,7 +181,7 @@ function focusPrev () {
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx <= 0) idx = buttons.length;
 	focusedEl = buttons[idx - 1];
-	if (focusedEl) focusedEl.focus();
+	// if (focusedEl) focusedEl.focus();
 }
 
 
@@ -193,7 +209,7 @@ export function open (e) {
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
-		if (menuEl) menuEl.focus();
+		// if (menuEl) menuEl.focus();
 	}));
 }
 
@@ -205,7 +221,7 @@ export function close (e) {
 	if (!opened) return Promise.resolve();
 
 	if (e && e.detail && e.detail.target) e = e.detail;
-	if (e && e.target) e.target.focus();
+	// if (e && e.target) e.target.focus();
 	// need to wait for the button to trigger click and check if it's not cancelled by consumers
 	// the timeout must be longer than the menu-item blink + some 20ms
 	return new Promise(resolve => {
@@ -236,6 +252,7 @@ function _close () {
 function addEventListeners () {
 	document.addEventListener('click', onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
+	document.addEventListener('keyup', onKeyup);
 	document.addEventListener('wheel', onscroll);
 	document.addEventListener('mousemove', onmousemove);
 	document.addEventListener('mouseout', onmouseout);
@@ -245,6 +262,7 @@ function addEventListeners () {
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
+	document.removeEventListener('keyup', onKeyup);
 	document.removeEventListener('wheel', onscroll);
 	document.removeEventListener('mousemove', onmousemove);
 	document.removeEventListener('mouseout', onmouseout);
