@@ -103,6 +103,10 @@ function highlightElement (el) {
 }
 
 function onmousemove (e) {
+	// mousemove is triggered when shift key is pressed
+	// if there is no movement, it means the false positive
+	if (e.movementX + e.movementY === 0) return;
+
 	const btn = e.target.closest(buttonSelector);
 	highlightElement(btn);
 }
@@ -112,21 +116,15 @@ function onmouseout () {
 }
 
 
-function closeOnBlur (e) {
-	if (e.key !== 'Tab' || !e || !e.target || !(e.target instanceof Node)) return;
-	if (!menuEl.contains(e.target)) return close();
-	if (!document.activeElement || !document.activeElement.closest('.menu')) return close();
-	requestAnimationFrame(() => {
-		if (!menuEl.contains(e.target)) return close();
-		if (!document.activeElement || !document.activeElement.closest('.menu')) return close();
-	});
-}
-
-
 function onKeydown (e) {
 	if (e.key === 'Escape' || !menuEl.contains(e.target)) return _close();
 	if (e.key === 'Enter' || e.key === ' ') return;
-	if (e.key === 'Tab') return e.preventDefault();
+	if (e.key === 'Tab') {
+		e.preventDefault();
+		e.stopPropagation();
+		if (e.shiftKey) return focusPrev();
+		return focusNext();
+	}
 	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
 
 	if (e.key === 'ArrowDown') return focusNext();
@@ -243,7 +241,6 @@ function addEventListeners () {
 	document.addEventListener('wheel', onscroll);
 	document.addEventListener('mousemove', onmousemove);
 	document.addEventListener('mouseout', onmouseout);
-	if (targetEl) targetEl.addEventListener('blur', closeOnBlur);
 }
 
 
@@ -253,7 +250,6 @@ function removeEventListeners () {
 	document.removeEventListener('wheel', onscroll);
 	document.removeEventListener('mousemove', onmousemove);
 	document.removeEventListener('mouseout', onmouseout);
-	if (targetEl) targetEl.removeEventListener('blur', closeOnBlur);
 }
 
 </script>
