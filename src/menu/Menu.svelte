@@ -1,11 +1,6 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-to-interactive-role -->
 {#if opened}
-	<ul
-		class="menu {className}"
-		role="menu"
-		bind:this="{menuEl}"
-		tabindex="0">
-			<slot></slot>
+	<ul class="menu {className}" role="menu" bind:this="{menuEl}">
+		<slot></slot>
 	</ul>
 {/if}
 
@@ -33,7 +28,7 @@ export { className as class };
 
 $:elevated = elevate === 'true' || elevate === true;
 const menuButtons = [];
-const buttonSelector = '.menu-button:not([disabled])';
+const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
 let menuEl, targetEl, focusedEl, opened = false;
 let isBelowTarget = true;	// default - screen size may change that
@@ -67,10 +62,7 @@ function indexButtons () {
 
 function matchTypeQuery (key) {
 	const btn = matchQuery(menuButtons, key);
-	if (btn) {
-		// btn.el.focus();
-		focusedEl = btn.el;
-	}
+	if (btn && btn.el) highlightElement(btn.el);
 }
 
 
@@ -89,7 +81,7 @@ function onDocumentClick (e) {
 	if (!menuEl.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
-		const clickedOnItem = !!e.target.closest('.menu-item:not(.menu-separator,.disabled)');
+		const clickedOnItem = !!e.target.closest(buttonSelector);
 		if (shouldClose && clickedOnItem) close(e);
 	}
 }
@@ -101,16 +93,22 @@ function onscroll (e) {
 }
 
 
-function onmousemove (e) {
-	const btn = e.target.closest('.menu-button');
-	if (btn) {
-		focusedEl = btn;
-		// focusedEl.focus();
+function highlightElement (el) {
+	focusedEl = el;
+	menuEl.querySelectorAll('.menu-item.active').forEach(mni => mni.classList.remove('active'));
+	if (focusedEl) {
+		focusedEl.classList.add('active');
+		focusedEl.scrollIntoView({ block: 'nearest' });
 	}
 }
 
+function onmousemove (e) {
+	const btn = e.target.closest(buttonSelector);
+	highlightElement(btn);
+}
+
 function onmouseout () {
-	focusedEl = null;
+	highlightElement(null);
 }
 
 
@@ -125,18 +123,10 @@ function closeOnBlur (e) {
 }
 
 
-function onKeyup (e) {
-	closeOnBlur(e);
-}
-
 function onKeydown (e) {
-	closeOnBlur(e);
-
-	if (e.key === 'Escape') _close();
-	// if (!menuEl.contains(e.target)) return;
-
+	if (e.key === 'Escape') return _close();
+	if (e.key === 'Enter' || e.key === ' ') return;
 	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
-
 	if (e.key === 'ArrowDown') focusNext();
 	else if (e.key === 'ArrowUp') focusPrev();
 	else if (e.key === 'ArrowLeft') focusFirst();
@@ -146,22 +136,15 @@ function onKeydown (e) {
 }
 
 
-function focusTarget () {
-	// if (targetEl && targetEl.focus) targetEl.focus();
-}
-
-
 function focusFirst () {
 	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
-	focusedEl = buttons[0];
-	// if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[0]);
 }
 
 
 function focusLast () {
 	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
-	focusedEl = buttons[buttons.length - 1];
-	// if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[buttons.length - 1]);
 }
 
 
@@ -170,8 +153,7 @@ function focusNext () {
 	let idx = -1;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx >= buttons.length - 1) idx = -1;
-	focusedEl = buttons[idx + 1];
-	// if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[idx + 1]);
 }
 
 
@@ -180,8 +162,7 @@ function focusPrev () {
 	let idx = buttons.length;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx <= 0) idx = buttons.length;
-	focusedEl = buttons[idx - 1];
-	// if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[idx - 1]);
 }
 
 
@@ -209,7 +190,6 @@ export function open (e) {
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
-		// if (menuEl) menuEl.focus();
 	}));
 }
 
@@ -243,7 +223,6 @@ function _close () {
 	return new Promise(resolve => requestAnimationFrame(() => {
 		dispatch('close', { target: targetEl });
 		removeEventListeners();
-		focusTarget();
 		requestAnimationFrame(resolve);
 	}));
 }
@@ -252,20 +231,20 @@ function _close () {
 function addEventListeners () {
 	document.addEventListener('click', onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
-	document.addEventListener('keyup', onKeyup);
 	document.addEventListener('wheel', onscroll);
 	document.addEventListener('mousemove', onmousemove);
 	document.addEventListener('mouseout', onmouseout);
+	if (targetEl) targetEl.addEventListener('blur', closeOnBlur);
 }
 
 
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
-	document.removeEventListener('keyup', onKeyup);
 	document.removeEventListener('wheel', onscroll);
 	document.removeEventListener('mousemove', onmousemove);
 	document.removeEventListener('mouseout', onmouseout);
+	if (targetEl) targetEl.removeEventListener('blur', closeOnBlur);
 }
 
 </script>

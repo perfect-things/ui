@@ -1,24 +1,23 @@
-<li class="menu-item {className}" class:disabled="{props.disabled}" role="menuitem">
-	<div
-		role="menuitem"
-		tabindex="-1"
-		class="menu-button"
-		class:success
-		class:warning
-		class:danger
-		{...props}
-		on:mousedown|preventDefault
-		on:click|capture="{onclick}">
+<div
+	role="menuitem"
+	class="menu-item {className}"
+	class:disabled="{props.disabled}"
+	tabindex="-1"
+	class:success
+	class:warning
+	class:danger
+	{...props}
+	on:mousedown|preventDefault
+	on:click|capture="{onclick}"
+	on:keydown|capture="{onKeydown}"
+	>
 
-		<span class="menu-item-content">
-			{#if icon}
-				<Icon name="{icon}" />
-			{/if}
-			<slot />
-		</span>
-		<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
-	</div>
-</li>
+	<span class="menu-item-content">
+		{#if icon}<Icon name="{icon}" />{/if}
+		<slot />
+	</span>
+	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
+</div>
 
 <script>
 import { createEventDispatcher, getContext } from 'svelte';
@@ -53,10 +52,25 @@ function replaceKeySymbols (txt) {
 		.replace(/ESCAPE|ESC/g, '⎋');
 }
 
+function highlightElement (btn) {
+	btn
+		.closest('.menu')
+		.querySelectorAll('.menu-item.active')
+		.forEach(mni => mni.classList.remove('active'));
+	if (btn) {
+		btn.classList.add('active');
+		btn.scrollIntoView({ block: 'nearest' });
+	}
+}
+
+function onKeydown (e) {
+	console.log(e);
+	if (e.key === 'Enter' || e.key === ' ') onclick(e);
+}
 
 function onclick (e) {
-	const btn = e.target.closest('.menu-button');
-	btn.focus();
+	const btn = e.target.closest('.menu-item');
+	highlightElement(btn);
 	blink(btn, 200).then(() => {
 		const target = targetEl();
 		const res = dispatch('click', { event: e, target, button: btn }, { cancelable: true });
