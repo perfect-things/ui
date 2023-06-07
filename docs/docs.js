@@ -13323,8 +13323,8 @@ function updatePosition(e, type, menuEl, offset, align, isBelowTarget) {
 // src/menu/Menu.svelte
 var file12 = "src/menu/Menu.svelte";
 function create_if_block6(ctx) {
-  let ul;
-  let ul_class_value;
+  let menu;
+  let menu_class_value;
   let current;
   const default_slot_template = (
     /*#slots*/
@@ -13339,20 +13339,20 @@ function create_if_block6(ctx) {
   );
   const block = {
     c: function create() {
-      ul = (0, import_internal13.element)("ul");
+      menu = (0, import_internal13.element)("menu");
       if (default_slot)
         default_slot.c();
-      (0, import_internal13.attr_dev)(ul, "class", ul_class_value = "menu " + /*className*/
+      (0, import_internal13.attr_dev)(menu, "class", menu_class_value = "menu " + /*className*/
       ctx[0]);
-      (0, import_internal13.attr_dev)(ul, "role", "menu");
-      (0, import_internal13.add_location)(ul, file12, 1, 1, 14);
+      (0, import_internal13.attr_dev)(menu, "tabindex", "0");
+      (0, import_internal13.add_location)(menu, file12, 2, 1, 69);
     },
     m: function mount(target, anchor) {
-      (0, import_internal13.insert_dev)(target, ul, anchor);
+      (0, import_internal13.insert_dev)(target, menu, anchor);
       if (default_slot) {
-        default_slot.m(ul, null);
+        default_slot.m(menu, null);
       }
-      ctx[13](ul);
+      ctx[13](menu);
       current = true;
     },
     p: function update(ctx2, dirty) {
@@ -13380,9 +13380,9 @@ function create_if_block6(ctx) {
         }
       }
       if (!current || dirty[0] & /*className*/
-      1 && ul_class_value !== (ul_class_value = "menu " + /*className*/
+      1 && menu_class_value !== (menu_class_value = "menu " + /*className*/
       ctx2[0])) {
-        (0, import_internal13.attr_dev)(ul, "class", ul_class_value);
+        (0, import_internal13.attr_dev)(menu, "class", menu_class_value);
       }
     },
     i: function intro(local) {
@@ -13397,7 +13397,7 @@ function create_if_block6(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal13.detach_dev)(ul);
+        (0, import_internal13.detach_dev)(menu);
       if (default_slot)
         default_slot.d(detaching);
       ctx[13](null);
@@ -13407,7 +13407,7 @@ function create_if_block6(ctx) {
     block,
     id: create_if_block6.name,
     type: "if",
-    source: "(1:0) {#if opened}",
+    source: "(2:0) {#if opened}",
     ctx
   });
   return block;
@@ -13528,7 +13528,7 @@ function instance13($$self, $$props, $$invalidate) {
   function matchTypeQuery(key) {
     const btn = matchQuery(menuButtons, key);
     if (btn && btn.el)
-      highlightElement2(btn.el);
+      highlightElement(btn.el);
   }
   function onContextMenu(e) {
     _close();
@@ -13555,20 +13555,19 @@ function instance13($$self, $$props, $$invalidate) {
     if (opened)
       _close();
   }
-  function highlightElement2(el) {
+  function highlightElement(el) {
     focusedEl = el;
-    menuEl.querySelectorAll(".menu-item.active").forEach((mni) => mni.classList.remove("active"));
     if (focusedEl) {
-      focusedEl.classList.add("active");
       focusedEl.scrollIntoView({ block: "nearest" });
+      focusedEl.focus();
     }
   }
   function onmousemove(e) {
     const btn = e.target.closest(buttonSelector);
-    highlightElement2(btn);
+    highlightElement(btn);
   }
   function onmouseout() {
-    highlightElement2(null);
+    highlightElement(null);
   }
   function closeOnBlur(e) {
     if (e.key !== "Tab" || !e || !e.target || !(e.target instanceof Node))
@@ -13585,30 +13584,31 @@ function instance13($$self, $$props, $$invalidate) {
     });
   }
   function onKeydown2(e) {
-    if (e.key === "Escape")
+    if (e.key === "Escape" || !menuEl.contains(e.target))
       return _close();
     if (e.key === "Enter" || e.key === " ")
       return;
+    if (e.key === "Tab")
+      return e.preventDefault();
     if (e.key.startsWith("Arrow") || e.key.startsWith(" "))
       e.preventDefault();
     if (e.key === "ArrowDown")
-      focusNext();
-    else if (e.key === "ArrowUp")
-      focusPrev();
-    else if (e.key === "ArrowLeft")
-      focusFirst();
-    else if (e.key === "ArrowRight")
-      focusLast();
-    else
-      matchTypeQuery(e.key);
+      return focusNext();
+    if (e.key === "ArrowUp")
+      return focusPrev();
+    if (e.key === "ArrowLeft")
+      return focusFirst();
+    if (e.key === "ArrowRight")
+      return focusLast();
+    matchTypeQuery(e.key);
   }
   function focusFirst() {
     const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
-    highlightElement2(buttons[0]);
+    highlightElement(buttons[0]);
   }
   function focusLast() {
     const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
-    highlightElement2(buttons[buttons.length - 1]);
+    highlightElement(buttons[buttons.length - 1]);
   }
   function focusNext() {
     const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
@@ -13617,7 +13617,7 @@ function instance13($$self, $$props, $$invalidate) {
       idx = buttons.findIndex((el) => el === focusedEl);
     if (idx >= buttons.length - 1)
       idx = -1;
-    highlightElement2(buttons[idx + 1]);
+    highlightElement(buttons[idx + 1]);
   }
   function focusPrev() {
     const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
@@ -13626,7 +13626,7 @@ function instance13($$self, $$props, $$invalidate) {
       idx = buttons.findIndex((el) => el === focusedEl);
     if (idx <= 0)
       idx = buttons.length;
-    highlightElement2(buttons[idx - 1]);
+    highlightElement(buttons[idx - 1]);
   }
   function open(e) {
     if (opened) {
@@ -13652,6 +13652,8 @@ function instance13($$self, $$props, $$invalidate) {
       dispatch("open", { event: e, target: targetEl });
       addEventListeners();
       requestAnimationFrame(resolve);
+      if (menuEl)
+        menuEl.focus();
     }));
   }
   function close(e) {
@@ -13659,6 +13661,8 @@ function instance13($$self, $$props, $$invalidate) {
       return Promise.resolve();
     if (e && e.detail && e.detail.target)
       e = e.detail;
+    if (e && e.target)
+      e.target.focus();
     return new Promise((resolve) => {
       setTimeout(
         () => {
@@ -13714,7 +13718,7 @@ function instance13($$self, $$props, $$invalidate) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Menu> was created with unknown prop '${key}'`);
   });
-  function ul_binding($$value) {
+  function menu_binding($$value) {
     import_internal13.binding_callbacks[$$value ? "unshift" : "push"](() => {
       menuEl = $$value;
       $$invalidate(1, menuEl);
@@ -13770,7 +13774,7 @@ function instance13($$self, $$props, $$invalidate) {
     onContextMenu,
     onDocumentClick,
     onscroll,
-    highlightElement: highlightElement2,
+    highlightElement,
     onmousemove,
     onmouseout,
     closeOnBlur,
@@ -13838,7 +13842,7 @@ function instance13($$self, $$props, $$invalidate) {
     close,
     $$scope,
     slots,
-    ul_binding
+    menu_binding
   ];
 }
 var Menu = class extends import_internal13.SvelteComponentDev {
@@ -13983,13 +13987,13 @@ function create_if_block7(ctx) {
     block,
     id: create_if_block7.name,
     type: "if",
-    source: "(16:2) {#if icon}",
+    source: "(14:2) {#if icon}",
     ctx
   });
   return block;
 }
 function create_fragment14(ctx) {
-  let div;
+  let button;
   let span0;
   let t0;
   let t1;
@@ -13999,7 +14003,7 @@ function create_fragment14(ctx) {
     ctx[0]
   ) + "";
   let t2;
-  let div_class_value;
+  let button_class_value;
   let current;
   let mounted;
   let dispose;
@@ -14009,32 +14013,31 @@ function create_fragment14(ctx) {
   );
   const default_slot_template = (
     /*#slots*/
-    ctx[10].default
+    ctx[9].default
   );
   const default_slot = (0, import_internal14.create_slot)(
     default_slot_template,
     ctx,
     /*$$scope*/
-    ctx[9],
+    ctx[8],
     null
   );
-  let div_levels = [
+  let button_levels = [
     { role: "menuitem" },
     {
-      class: div_class_value = "menu-item " + /*className*/
+      class: button_class_value = "menu-item " + /*className*/
       ctx[2]
     },
-    { tabindex: "-1" },
     /*props*/
     ctx[6]
   ];
-  let div_data = {};
-  for (let i = 0; i < div_levels.length; i += 1) {
-    div_data = (0, import_internal14.assign)(div_data, div_levels[i]);
+  let button_data = {};
+  for (let i = 0; i < button_levels.length; i += 1) {
+    button_data = (0, import_internal14.assign)(button_data, button_levels[i]);
   }
   const block = {
     c: function create() {
-      div = (0, import_internal14.element)("div");
+      button = (0, import_internal14.element)("button");
       span0 = (0, import_internal14.element)("span");
       if (if_block)
         if_block.c();
@@ -14045,72 +14048,64 @@ function create_fragment14(ctx) {
       span1 = (0, import_internal14.element)("span");
       t2 = (0, import_internal14.text)(t2_value);
       (0, import_internal14.attr_dev)(span0, "class", "menu-item-content");
-      (0, import_internal14.add_location)(span0, file13, 14, 1, 257);
+      (0, import_internal14.add_location)(span0, file13, 12, 1, 211);
       (0, import_internal14.attr_dev)(span1, "class", "menu-item-shortcut");
-      (0, import_internal14.add_location)(span1, file13, 18, 1, 351);
-      (0, import_internal14.set_attributes)(div, div_data);
+      (0, import_internal14.add_location)(span1, file13, 16, 1, 305);
+      (0, import_internal14.set_attributes)(button, button_data);
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "disabled",
         /*props*/
         ctx[6].disabled
       );
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "success",
         /*success*/
         ctx[3]
       );
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "warning",
         /*warning*/
         ctx[4]
       );
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "danger",
         /*danger*/
         ctx[5]
       );
-      (0, import_internal14.add_location)(div, file13, 0, 0, 0);
+      (0, import_internal14.add_location)(button, file13, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal14.insert_dev)(target, div, anchor);
-      (0, import_internal14.append_dev)(div, span0);
+      (0, import_internal14.insert_dev)(target, button, anchor);
+      (0, import_internal14.append_dev)(button, span0);
       if (if_block)
         if_block.m(span0, null);
       (0, import_internal14.append_dev)(span0, t0);
       if (default_slot) {
         default_slot.m(span0, null);
       }
-      (0, import_internal14.append_dev)(div, t1);
-      (0, import_internal14.append_dev)(div, span1);
+      (0, import_internal14.append_dev)(button, t1);
+      (0, import_internal14.append_dev)(button, span1);
       (0, import_internal14.append_dev)(span1, t2);
+      if (button.autofocus)
+        button.focus();
       current = true;
       if (!mounted) {
         dispose = [
-          (0, import_internal14.listen_dev)(div, "mousedown", (0, import_internal14.prevent_default)(
+          (0, import_internal14.listen_dev)(button, "mousedown", (0, import_internal14.prevent_default)(
             /*mousedown_handler*/
-            ctx[11]
+            ctx[10]
           ), false, true, false, false),
           (0, import_internal14.listen_dev)(
-            div,
+            button,
             "click",
             /*onclick*/
-            ctx[8],
-            true,
-            false,
-            false,
-            false
-          ),
-          (0, import_internal14.listen_dev)(
-            div,
-            "keydown",
-            /*onKeydown*/
             ctx[7],
             true,
             false,
@@ -14147,20 +14142,20 @@ function create_fragment14(ctx) {
       }
       if (default_slot) {
         if (default_slot.p && (!current || dirty & /*$$scope*/
-        512)) {
+        256)) {
           (0, import_internal14.update_slot_base)(
             default_slot,
             default_slot_template,
             ctx2,
             /*$$scope*/
-            ctx2[9],
+            ctx2[8],
             !current ? (0, import_internal14.get_all_dirty_from_scope)(
               /*$$scope*/
-              ctx2[9]
+              ctx2[8]
             ) : (0, import_internal14.get_slot_changes)(
               default_slot_template,
               /*$$scope*/
-              ctx2[9],
+              ctx2[8],
               dirty,
               null
             ),
@@ -14174,36 +14169,35 @@ function create_fragment14(ctx) {
         ctx2[0]
       ) + ""))
         (0, import_internal14.set_data_dev)(t2, t2_value);
-      (0, import_internal14.set_attributes)(div, div_data = (0, import_internal14.get_spread_update)(div_levels, [
+      (0, import_internal14.set_attributes)(button, button_data = (0, import_internal14.get_spread_update)(button_levels, [
         { role: "menuitem" },
         (!current || dirty & /*className*/
-        4 && div_class_value !== (div_class_value = "menu-item " + /*className*/
-        ctx2[2])) && { class: div_class_value },
-        { tabindex: "-1" },
+        4 && button_class_value !== (button_class_value = "menu-item " + /*className*/
+        ctx2[2])) && { class: button_class_value },
         dirty & /*props*/
         64 && /*props*/
         ctx2[6]
       ]));
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "disabled",
         /*props*/
         ctx2[6].disabled
       );
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "success",
         /*success*/
         ctx2[3]
       );
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "warning",
         /*warning*/
         ctx2[4]
       );
       (0, import_internal14.toggle_class)(
-        div,
+        button,
         "danger",
         /*danger*/
         ctx2[5]
@@ -14223,7 +14217,7 @@ function create_fragment14(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal14.detach_dev)(div);
+        (0, import_internal14.detach_dev)(button);
       if (if_block)
         if_block.d();
       if (default_slot)
@@ -14244,13 +14238,6 @@ function create_fragment14(ctx) {
 function replaceKeySymbols(txt) {
   return ("" + txt).trim().toUpperCase().replace(/\+/g, "").replace(/CMD/g, "\u2318").replace(/ALT|OPTION/g, "\u2325").replace(/SHIFT/g, "\u21E7").replace(/CONTROL|CTRL/g, "\u2303").replace(/DELETE|DEL|BACKSPACE/g, "\u232B").replace(/ENTER|RETURN/g, "\u21A9").replace(/ESCAPE|ESC/g, "\u238B");
 }
-function highlightElement(btn) {
-  btn.closest(".menu").querySelectorAll(".menu-item.active").forEach((mni) => mni.classList.remove("active"));
-  if (btn) {
-    btn.classList.add("active");
-    btn.scrollIntoView({ block: "nearest" });
-  }
-}
 function instance14($$self, $$props, $$invalidate) {
   let props;
   let { $$slots: slots = {}, $$scope } = $$props;
@@ -14263,14 +14250,10 @@ function instance14($$self, $$props, $$invalidate) {
   let { danger = false } = $$props;
   const dispatch = (0, import_svelte9.createEventDispatcher)();
   const { targetEl } = (0, import_svelte9.getContext)("MenuContext");
-  function onKeydown2(e) {
-    console.log(e);
-    if (e.key === "Enter" || e.key === " ")
-      onclick(e);
-  }
   function onclick(e) {
     const btn = e.target.closest(".menu-item");
-    highlightElement(btn);
+    if (btn)
+      btn.focus();
     blink(btn, 200).then(() => {
       const target = targetEl();
       const res = dispatch("click", { event: e, target, button: btn }, { cancelable: true });
@@ -14284,7 +14267,7 @@ function instance14($$self, $$props, $$invalidate) {
     import_internal14.bubble.call(this, $$self, event);
   }
   $$self.$$set = ($$new_props) => {
-    $$invalidate(14, $$props = (0, import_internal14.assign)((0, import_internal14.assign)({}, $$props), (0, import_internal14.exclude_internal_props)($$new_props)));
+    $$invalidate(13, $$props = (0, import_internal14.assign)((0, import_internal14.assign)({}, $$props), (0, import_internal14.exclude_internal_props)($$new_props)));
     if ("shortcut" in $$new_props)
       $$invalidate(0, shortcut = $$new_props.shortcut);
     if ("icon" in $$new_props)
@@ -14298,7 +14281,7 @@ function instance14($$self, $$props, $$invalidate) {
     if ("danger" in $$new_props)
       $$invalidate(5, danger = $$new_props.danger);
     if ("$$scope" in $$new_props)
-      $$invalidate(9, $$scope = $$new_props.$$scope);
+      $$invalidate(8, $$scope = $$new_props.$$scope);
   };
   $$self.$capture_state = () => ({
     createEventDispatcher: import_svelte9.createEventDispatcher,
@@ -14315,13 +14298,11 @@ function instance14($$self, $$props, $$invalidate) {
     dispatch,
     targetEl,
     replaceKeySymbols,
-    highlightElement,
-    onKeydown: onKeydown2,
     onclick,
     props
   });
   $$self.$inject_state = ($$new_props) => {
-    $$invalidate(14, $$props = (0, import_internal14.assign)((0, import_internal14.assign)({}, $$props), $$new_props));
+    $$invalidate(13, $$props = (0, import_internal14.assign)((0, import_internal14.assign)({}, $$props), $$new_props));
     if ("shortcut" in $$props)
       $$invalidate(0, shortcut = $$new_props.shortcut);
     if ("icon" in $$props)
@@ -14353,7 +14334,6 @@ function instance14($$self, $$props, $$invalidate) {
     warning,
     danger,
     props,
-    onKeydown2,
     onclick,
     $$scope,
     slots,

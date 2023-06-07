@@ -1,7 +1,8 @@
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#if opened}
-	<ul class="menu {className}" role="menu" bind:this="{menuEl}">
+	<menu class="menu {className}" bind:this="{menuEl}" tabindex="0">
 		<slot></slot>
-	</ul>
+	</menu>
 {/if}
 
 <svelte:options accessors={true}/>
@@ -95,10 +96,9 @@ function onscroll (e) {
 
 function highlightElement (el) {
 	focusedEl = el;
-	menuEl.querySelectorAll('.menu-item.active').forEach(mni => mni.classList.remove('active'));
 	if (focusedEl) {
-		focusedEl.classList.add('active');
 		focusedEl.scrollIntoView({ block: 'nearest' });
+		focusedEl.focus();
 	}
 }
 
@@ -124,15 +124,17 @@ function closeOnBlur (e) {
 
 
 function onKeydown (e) {
-	if (e.key === 'Escape') return _close();
+	if (e.key === 'Escape' || !menuEl.contains(e.target)) return _close();
 	if (e.key === 'Enter' || e.key === ' ') return;
+	if (e.key === 'Tab') return e.preventDefault();
 	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
-	if (e.key === 'ArrowDown') focusNext();
-	else if (e.key === 'ArrowUp') focusPrev();
-	else if (e.key === 'ArrowLeft') focusFirst();
-	else if (e.key === 'ArrowRight') focusLast();
 
-	else matchTypeQuery(e.key);
+	if (e.key === 'ArrowDown') return focusNext();
+	if (e.key === 'ArrowUp') return focusPrev();
+	if (e.key === 'ArrowLeft') return focusFirst();
+	if (e.key === 'ArrowRight') return focusLast();
+
+	matchTypeQuery(e.key);
 }
 
 
@@ -190,6 +192,7 @@ export function open (e) {
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
+		if (menuEl) menuEl.focus();
 	}));
 }
 
@@ -201,7 +204,7 @@ export function close (e) {
 	if (!opened) return Promise.resolve();
 
 	if (e && e.detail && e.detail.target) e = e.detail;
-	// if (e && e.target) e.target.focus();
+	if (e && e.target) e.target.focus();
 	// need to wait for the button to trigger click and check if it's not cancelled by consumers
 	// the timeout must be longer than the menu-item blink + some 20ms
 	return new Promise(resolve => {

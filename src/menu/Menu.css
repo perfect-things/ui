@@ -3,6 +3,7 @@
 	padding: 0.2rem 0.25rem;
 	margin: 0;
 	display: flex;
+	width: auto;
 	flex-flow: column;
 	align-items: stretch;
 	list-style: none;
@@ -27,9 +28,12 @@
 
 
 .menu-item {
+	font-family: inherit;
 	align-items: center;
 	border-radius: var(--ui-border-radius);
 	color: inherit;
+	background: none;
+	border: none;
 	display: flex;
 	flex-shrink: 0;
 	font-size: 0.86rem;
@@ -37,7 +41,7 @@
 	justify-content: space-between;
 	margin: 0;
 	overflow: hidden;
-	padding: 0.4rem 0.9rem;
+	padding: 0.5rem 0.9rem;
 	position: relative;
 	text-align: left;
 	white-space: nowrap;
@@ -49,13 +53,13 @@
 
 .menu-item.disabled { pointer-events: none; opacity: 0.6; }
 
-.menu-item.active { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
+.menu-item:focus { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
 
-.menu-item.active.success { background-color: var(--ui-color-success); }
-.menu-item.active.warning { background-color: var(--ui-color-warning); }
-.menu-item.active.danger { background-color: var(--ui-color-danger); }
+.menu-item:focus.success { background-color: var(--ui-color-success); }
+.menu-item:focus.warning { background-color: var(--ui-color-warning); }
+.menu-item:focus.danger { background-color: var(--ui-color-danger); }
 
-.menu-item.active .menu-item-shortcut { opacity: 1; }
+.menu-item:focus .menu-item-shortcut { opacity: 1; }
 
 .menu-item svg { width: 1.1rem; height: 1.1rem; margin: -0.1rem 0.5rem -0.1rem 0; }
 
