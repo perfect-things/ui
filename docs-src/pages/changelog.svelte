@@ -1,9 +1,10 @@
 <h1>Changelog</h1>
-<h2>v6.6.8 <em>(2023-06-01)</em></h2>
+<h2>v6.6.8 <em>(2023-06-07)</em></h2>
 <ul>
 <li><code>Menu</code> improvements:<ul>
 <li><code>aria-expanded</code> attribute was incorrectly being added to the <code>body</code> on menu open (apart from the target button).</li>
-<li>Tabbing out of the menu will close it.</li>
+<li>Tabbing does not move focus out of the menu anymore (it will cycle through the menu items).</li>
+<li>simplify html structure (<code>ul</code> -&gt; <code>menu</code>, <code>li/button</code> -&gt; <code>button</code>)</li>
 </ul>
 </li>
 </ul>
