@@ -138,6 +138,11 @@ function onKeydown (e) {
 }
 
 
+function focusTarget () {
+	if (targetEl && targetEl.focus) targetEl.focus();
+}
+
+
 function focusFirst () {
 	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
 	highlightElement(buttons[0]);
@@ -226,6 +231,7 @@ function _close () {
 	return new Promise(resolve => requestAnimationFrame(() => {
 		dispatch('close', { target: targetEl });
 		removeEventListeners();
+		focusTarget();
 		requestAnimationFrame(resolve);
 	}));
 }
