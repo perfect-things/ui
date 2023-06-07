@@ -2,10 +2,12 @@ Changelog
 =========
 
 
-## v6.6.8 *(2023-06-01)*
+## v6.6.8 *(2023-06-07)*
 - `Menu` improvements:
   - `aria-expanded` attribute was incorrectly being added to the `body` on menu open (apart from the target button).
-  - Tabbing out of the menu will close it.
+  - Tabbing does not move focus out of the menu anymore (it will cycle through the menu items).
+  - simplify html structure (`ul` -> `menu`, `li/button` -> `button`)
+
 
 ## v6.6.7 *(2023-06-01)*
 - `Toaster` enhancements:
