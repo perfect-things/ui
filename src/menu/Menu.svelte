@@ -1,12 +1,8 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-to-interactive-role -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#if opened}
-	<ul
-		class="menu {className}"
-		role="menu"
-		bind:this="{menuEl}"
-		tabindex="0">
-			<slot></slot>
-	</ul>
+	<menu class="menu {className}" bind:this="{menuEl}" tabindex="0">
+		<slot></slot>
+	</menu>
 {/if}
 
 <svelte:options accessors={true}/>
@@ -33,7 +29,7 @@ export { className as class };
 
 $:elevated = elevate === 'true' || elevate === true;
 const menuButtons = [];
-const buttonSelector = '.menu-button:not([disabled])';
+const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
 let menuEl, targetEl, focusedEl, opened = false;
 let isBelowTarget = true;	// default - screen size may change that
@@ -53,7 +49,7 @@ onMount(() => {
 
 onDestroy(() => {
 	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
-	if (elevated) menuEl.remove();
+	if (elevated && menuEl) menuEl.remove();
 });
 
 
@@ -67,10 +63,7 @@ function indexButtons () {
 
 function matchTypeQuery (key) {
 	const btn = matchQuery(menuButtons, key);
-	if (btn) {
-		btn.el.focus();
-		focusedEl = btn.el;
-	}
+	if (btn && btn.el) highlightElement(btn.el);
 }
 
 
@@ -89,7 +82,7 @@ function onDocumentClick (e) {
 	if (!menuEl.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
-		const clickedOnItem = !!e.target.closest('.menu-item:not(.menu-separator,.disabled)');
+		const clickedOnItem = !!e.target.closest(buttonSelector);
 		if (shouldClose && clickedOnItem) close(e);
 	}
 }
@@ -101,32 +94,45 @@ function onscroll (e) {
 }
 
 
-function onmousemove (e) {
-	const btn = e.target.closest('.menu-button');
-	if (btn) {
-		focusedEl = btn;
+function highlightElement (el) {
+	focusedEl = el;
+	if (focusedEl) {
+		focusedEl.scrollIntoView({ block: 'nearest' });
 		focusedEl.focus();
 	}
 }
 
+function onmousemove (e) {
+	// mousemove is triggered when shift key is pressed
+	// if there is no movement, it means the false positive
+	if (e.movementX + e.movementY === 0) return;
+
+	const btn = e.target.closest(buttonSelector);
+	highlightElement(btn);
+}
+
 function onmouseout () {
-	focusedEl = null;
-	menuEl.focus();
+	highlightElement(null);
 }
 
 
 function onKeydown (e) {
-	if (e.key === 'Escape') _close();
-	if (!menuEl.contains(e.target)) return;
-
+	if (e.key === 'Escape' || !menuEl.contains(e.target)) return _close();
+	if (e.key === 'Enter' || e.key === ' ') return;
+	if (e.key === 'Tab') {
+		e.preventDefault();
+		e.stopPropagation();
+		if (e.shiftKey) return focusPrev();
+		return focusNext();
+	}
 	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
 
-	if (e.key === 'ArrowDown') focusNext();
-	else if (e.key === 'ArrowUp') focusPrev();
-	else if (e.key === 'ArrowLeft') focusFirst();
-	else if (e.key === 'ArrowRight') focusLast();
+	if (e.key === 'ArrowDown') return focusNext();
+	if (e.key === 'ArrowUp') return focusPrev();
+	if (e.key === 'ArrowLeft') return focusFirst();
+	if (e.key === 'ArrowRight') return focusLast();
 
-	else matchTypeQuery(e.key);
+	matchTypeQuery(e.key);
 }
 
 
@@ -137,15 +143,13 @@ function focusTarget () {
 
 function focusFirst () {
 	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
-	focusedEl = buttons[0];
-	if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[0]);
 }
 
 
 function focusLast () {
 	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
-	focusedEl = buttons[buttons.length - 1];
-	if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[buttons.length - 1]);
 }
 
 
@@ -154,8 +158,7 @@ function focusNext () {
 	let idx = -1;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx >= buttons.length - 1) idx = -1;
-	focusedEl = buttons[idx + 1];
-	if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[idx + 1]);
 }
 
 
@@ -164,8 +167,7 @@ function focusPrev () {
 	let idx = buttons.length;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx <= 0) idx = buttons.length;
-	focusedEl = buttons[idx - 1];
-	if (focusedEl) focusedEl.focus();
+	highlightElement(buttons[idx - 1]);
 }
 
 

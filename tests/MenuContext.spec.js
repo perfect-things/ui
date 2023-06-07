@@ -28,7 +28,7 @@ test('Context Menu', async () => {
 	expect(cmp).toBeInTheDocument();
 
 
-	const menuItem = container.querySelector('.test-menu .menu-button');
+	const menuItem = container.querySelector('.test-menu .menu-item');
 
 	expect(menuItem).toBeInTheDocument();
 	expect(menuItem).toHaveTextContent('New Tab');

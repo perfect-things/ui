@@ -1,23 +1,21 @@
-<!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
-<li class="menu-item {className}" class:disabled="{props.disabled}" role="menuitem">
-	<button
-		class="menu-button"
-		class:success
-		class:warning
-		class:danger
-		{...props}
-		on:mousedown|preventDefault
-		on:click|capture="{onclick}">
+<button
+	role="menuitem"
+	class="menu-item {className}"
+	class:disabled="{props.disabled}"
+	class:success
+	class:warning
+	class:danger
+	{...props}
+	on:mousedown|preventDefault
+	on:click|capture="{onclick}"
+	>
 
-		<span class="menu-item-content">
-			{#if icon}
-				<Icon name="{icon}" />
-			{/if}
-			<slot />
-		</span>
-		<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
-	</button>
-</li>
+	<span class="menu-item-content">
+		{#if icon}<Icon name="{icon}" />{/if}
+		<slot />
+	</span>
+	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
+</button>
 
 <script>
 import { createEventDispatcher, getContext } from 'svelte';
@@ -54,8 +52,8 @@ function replaceKeySymbols (txt) {
 
 
 function onclick (e) {
-	const btn = e.target.closest('.menu-button');
-	btn.focus();
+	const btn = e.target.closest('.menu-item');
+	if (btn) btn.focus();
 	blink(btn, 200).then(() => {
 		const target = targetEl();
 		const res = dispatch('click', { event: e, target, button: btn }, { cancelable: true });

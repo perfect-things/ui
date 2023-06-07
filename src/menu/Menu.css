@@ -3,6 +3,7 @@
 	padding: 0.2rem 0.25rem;
 	margin: 0;
 	display: flex;
+	width: auto;
 	flex-flow: column;
 	align-items: stretch;
 	list-style: none;
@@ -27,15 +28,38 @@
 
 
 .menu-item {
-	flex-shrink: 0;
-	padding: 0;
-	margin: 0;
-	position: relative;
-	overflow: hidden;
-	display: flex;
+	font-family: inherit;
 	align-items: center;
+	border-radius: var(--ui-border-radius);
+	color: inherit;
+	background: none;
+	border: none;
+	display: flex;
+	flex-shrink: 0;
+	font-size: 0.86rem;
+	letter-spacing: 0.1px;
 	justify-content: space-between;
+	margin: 0;
+	overflow: hidden;
+	padding: 0.5rem 0.9rem;
+	position: relative;
+	text-align: left;
+	white-space: nowrap;
+	width: 100%;
 }
+
+.menu-item-shortcut { margin: -0.1rem 0 -0.1rem auto; letter-spacing: 0.1rem; opacity: 0.5; }
+.menu-item-shortcut:empty { visibility: hidden; }
+
+.menu-item.disabled { pointer-events: none; opacity: 0.6; }
+
+.menu-item:focus { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
+
+.menu-item:focus.success { background-color: var(--ui-color-success); }
+.menu-item:focus.warning { background-color: var(--ui-color-warning); }
+.menu-item:focus.danger { background-color: var(--ui-color-danger); }
+
+.menu-item:focus .menu-item-shortcut { opacity: 1; }
 
 .menu-item svg { width: 1.1rem; height: 1.1rem; margin: -0.1rem 0.5rem -0.1rem 0; }
 
@@ -46,46 +70,12 @@
 	margin-right: 2rem;
 }
 
-.menu-item-shortcut { margin: -0.1rem 0 -0.1rem auto; letter-spacing: 0.1rem; opacity: 0.5; }
-
-.menu-item-shortcut:empty { visibility: hidden; }
-
 .menu-separator {
 	height: 0;
 	padding: 0;
 	margin: var(--ui-margin) 0.6rem;
 	border-bottom: var(--ui-popup-border);
 }
-
-
-.menu-button {
-	font-size: 0.86rem;
-	border: 0;
-	margin: 0;
-	background: none;
-	color: inherit;
-	width: 100%;
-	text-align: left;
-	display: flex;
-	align-items: center;
-	white-space: nowrap;
-	cursor: pointer;
-	padding: 0.6rem 0.9rem;
-	border-radius: var(--ui-border-radius);
-}
-
-.menu-button:disabled { pointer-events: none; opacity: 0.6; }
-
-.menu-button:focus-within,
-.menu-button:focus { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
-
-.menu-button:focus .menu-item-shortcut { opacity: 1; }
-
-
-.menu-button.success:focus { background-color: var(--ui-color-success); }
-.menu-button.warning:focus { background-color: var(--ui-color-warning); }
-.menu-button.danger:focus { background-color: var(--ui-color-danger); }
-
 
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
