@@ -24,7 +24,7 @@
 	border-radius: var(--ui-border-radius-s);
 }
 
-.notification-archive h2 { color: inherit; font-size: 1.3rem; margin: 0; }
+.notification-archive h2 { color: inherit; font-size: 1.1rem; margin: 0; }
 .notification-archive-buttons {
 	white-space: nowrap;
 	display: flex;
@@ -43,7 +43,7 @@
 
 .notification-timestamp {
 	color: var(--ui-color-text-semi);
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	margin-inline: 0.5rem;
 }
 
