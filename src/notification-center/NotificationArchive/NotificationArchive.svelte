@@ -3,9 +3,9 @@
 		<h2>Recent notifications</h2>
 		<div class="notification-archive-buttons">
 			{#if archived.length}
-				<Button text round on:click="{clearAll}">Clear all</Button>
+				<Button text on:click="{clearAll}">Clear all</Button>
 			{/if}
-			<Button text round icon="close" on:click="{hideArchive}" />
+			<Button text class="btn-close" on:click="{hideArchive}">&times;</Button>
 		</div>
 	</header>
 	{#if archived.length}

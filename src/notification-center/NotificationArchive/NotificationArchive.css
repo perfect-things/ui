@@ -20,19 +20,37 @@
 	color: var(--ui-color-text);
 	z-index: 1;
 	background-color: var(--ui-color-background-dark-1);
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0.5rem 0.5rem 1rem;
 	border-radius: var(--ui-border-radius-s);
 }
 
+
 .notification-archive h2 { color: inherit; font-size: 1.1rem; margin: 0; }
+
 .notification-archive-buttons {
 	white-space: nowrap;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 0.2rem;
 }
-.notification-archive-buttons button { color: inherit; }
-.notification-archive-buttons .button.button-link { vertical-align: middle; }
+
+.notification-archive-buttons button {
+	color: inherit;
+	font-size: 1.1rem;
+	font-weight: 200;
+	min-width: 1.8rem;
+	min-height: 1.8rem;
+}
+
+.notification-archive-buttons .btn-close {
+	font-size: 1.4rem;
+	height: 1.8rem;
+	width: 1.7rem;
+	font-weight: 200;
+	position: relative;
+	padding-bottom: 0.15rem;
+}
 
 
 .notification.archived {
