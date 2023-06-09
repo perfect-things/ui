@@ -1793,10 +1793,10 @@ input[type=color] {
 	align-items: stretch;
 	justify-content: flex-start;
 	padding: 0 1rem;
-	width: calc(var(--notification-width) + 2rem);
-	gap: var(--notification-gap);
-	margin-left: calc(var(--notification-width) + var(--notification-gap) + 1rem);
-	transition: margin-left .2s;
+	width: calc(var(--ui-notification-width) + 2rem);
+	gap: var(--ui-notification-gap);
+	margin-left: calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem);
+	transition: margin-left var(--ui-animation-speed) ease-out;
 	min-height: 8.2rem;
 }
 
@@ -1809,7 +1809,7 @@ input[type=color] {
 	color: var(--ui-color-text);
 	z-index: 1;
 	background-color: var(--ui-color-background-dark-1);
-	padding: 0.5rem 0.5rem 0.5rem 1rem;
+	padding: 0.75rem 0.5rem 0.75rem 1rem;
 	border-radius: var(--ui-border-radius-s);
 }
 
@@ -1842,30 +1842,16 @@ input[type=color] {
 }
 
 
-.notification.archived {
-	filter: saturate(0.3);
-	margin-left: calc(var(--notification-width) + var(--notification-gap));
-	transition: margin-left .2s;
-}
-
-.notification-timestamp {
-	color: var(--ui-color-text-semi);
-	font-size: 0.85rem;
-	margin-inline: 0.5rem;
-}
-
-.notification-archive-empty {
-	justify-content: center;
-	padding: 1rem;
-}
+.notification.archived { filter: saturate(0.3); }
+.notification-timestamp { color: var(--ui-color-text-semi); font-size: 0.85rem; margin-inline: 0.5rem; }
+.notification-archive-empty { justify-content: center; padding: 1rem; }
 
 .show-archive .notification-archive { margin-left: -1rem; }
-.show-archive .notification.archived { margin-left: 0; }
 
 .notification-center {
-	--notification-border-radius: var(--ui-border-radius-s);
-	--notification-gap: 0.75rem;
-	--notification-width: 30rem;
+	--ui-notification-border-radius: var(--ui-border-radius-s);
+	--ui-notification-gap: 0.75rem;
+	--ui-notification-width: 30rem;
 
 	position: fixed;
 	transform: translateZ(1px);
@@ -1875,13 +1861,13 @@ input[type=color] {
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: space-around;
-	width: var(--notification-width);
-	right: var(--notification-gap);
-	gap: var(--notification-gap);
+	width: var(--ui-notification-width);
+	right: var(--ui-notification-gap);
+	gap: var(--ui-notification-gap);
 }
 
-.notification-center-top { top: var(--notification-gap); }
-.notification-center-bottom { bottom: var(--notification-gap); }
+.notification-center-top { top: var(--ui-notification-gap); }
+.notification-center-bottom { bottom: var(--ui-notification-gap); }
 
 .notification {
 	font-size: 1rem;
@@ -1895,9 +1881,9 @@ input[type=color] {
 	justify-content: space-between;
 	min-height: 2rem;
 	border: 1px solid transparent;
-	width: var(--notification-width);
+	width: var(--ui-notification-width);
 	box-shadow: var(--ui-shadow-fancy);
-	border-radius: var(--notification-border-radius);
+	border-radius: var(--ui-notification-border-radius);
 }
 
 
@@ -1950,12 +1936,12 @@ input[type=color] {
 .notification-progressbar {
 	position: absolute;
 	inset: 0;
-	border-radius: var(--notification-border-radius);
+	border-radius: var(--ui-notification-border-radius);
 	z-index: -1;
 }
 .notification-progress {
 	height: 100%;
-	border-radius: var(--notification-border-radius);
+	border-radius: var(--ui-notification-border-radius);
 	background-color: #ffffff15;
 	border: 1px solid #ffffff25;
 	margin: 0;

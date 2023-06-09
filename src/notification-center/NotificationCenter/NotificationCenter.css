@@ -1,7 +1,7 @@
 .notification-center {
-	--notification-border-radius: var(--ui-border-radius-s);
-	--notification-gap: 0.75rem;
-	--notification-width: 30rem;
+	--ui-notification-border-radius: var(--ui-border-radius-s);
+	--ui-notification-gap: 0.75rem;
+	--ui-notification-width: 30rem;
 
 	position: fixed;
 	transform: translateZ(1px);
@@ -11,13 +11,13 @@
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: space-around;
-	width: var(--notification-width);
-	right: var(--notification-gap);
-	gap: var(--notification-gap);
+	width: var(--ui-notification-width);
+	right: var(--ui-notification-gap);
+	gap: var(--ui-notification-gap);
 }
 
-.notification-center-top { top: var(--notification-gap); }
-.notification-center-bottom { bottom: var(--notification-gap); }
+.notification-center-top { top: var(--ui-notification-gap); }
+.notification-center-bottom { bottom: var(--ui-notification-gap); }
 
 .notification {
 	font-size: 1rem;
@@ -31,9 +31,9 @@
 	justify-content: space-between;
 	min-height: 2rem;
 	border: 1px solid transparent;
-	width: var(--notification-width);
+	width: var(--ui-notification-width);
 	box-shadow: var(--ui-shadow-fancy);
-	border-radius: var(--notification-border-radius);
+	border-radius: var(--ui-notification-border-radius);
 }
 
 
@@ -86,12 +86,12 @@
 .notification-progressbar {
 	position: absolute;
 	inset: 0;
-	border-radius: var(--notification-border-radius);
+	border-radius: var(--ui-notification-border-radius);
 	z-index: -1;
 }
 .notification-progress {
 	height: 100%;
-	border-radius: var(--notification-border-radius);
+	border-radius: var(--ui-notification-border-radius);
 	background-color: #ffffff15;
 	border: 1px solid #ffffff25;
 	margin: 0;
