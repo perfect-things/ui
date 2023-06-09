@@ -15,7 +15,9 @@
 				tabindex="0"
 				class="notification notification-{notification.type} archived"
 				on:keydown="{() => removeFromArchive(notification.id)}"
-				transition:fly="{{ duration: $ANIMATION_SPEED, x: 500, opacity: 1 }}">
+				in:_receive="{{ key: notification.id }}"
+				out:fly
+				animate:flip>
 
 				<div class="notification-msg" role="{notification.type === 'info' ? 'status' : 'alert'}">{@html notification.msg}</div>
 				<div class="notification-timestamp">{timeAgo(notification.timestamp, now)}</div>
@@ -30,17 +32,19 @@
 
 <script>
 import { onDestroy, onMount } from 'svelte';
-import { fly } from 'svelte/transition';
 import { Button } from '../../button';
-import { ArchivedNotifications, removeFromArchive } from '../store.js';
+import { ArchivedNotifications, removeFromArchive, receive, fly, flip } from '../store.js';
 import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
 
 export let position = 'top';
 export let show = false;
 
+const duration = $ANIMATION_SPEED;
+
 let archived = [];
 let now = new Date().getTime();
 let timer;
+
 
 onMount(() => {
 	timer = setInterval(() => (now = new Date().getTime()), 10000);
@@ -64,5 +68,11 @@ function clearAll (e) {
 function hideArchive () {
 	show = false;
 }
+
+function _receive (node, params) {
+	if (!show) return fly(node, { duration: 0 });
+	return receive(node, { ...params, delay: 100, duration });
+}
+
 
 </script>

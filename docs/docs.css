@@ -366,6 +366,15 @@ small { display: block; margin: 5px 0 15px; }
 	margin: 0;
 }
 
+
+.prop-row {
+	padding: 1rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1rem;
+}
+
 .split-wrap {
 	width: 400px;
 	height: 200px;

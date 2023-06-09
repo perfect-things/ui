@@ -12,11 +12,22 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 
 <hr>
 
-<h3>Top aligned (default)</h3>
-<NotificationCenter outline round />
+<h3>Notification button</h3>
 
-<h3>Bottom aligned, no button</h3>
-<NotificationCenter outline round position="bottom" hideButton="true" />
+<div class="prop-row">
+	<!-- svelte-ignore a11y-label-has-associated-control -->
+	<label>Toggle notification center: </label>
+	<NotificationCenter outline round bind:position="{position}" {hideButton} />
+</div>
+<div class="prop-row">
+	<label for="position-toggle">Position: </label>
+	<ButtonToggle id="position-toggle" items="{['top', 'bottom']}" bind:value="{position}" />
+</div>
+<div class="prop-row">
+	<label for="button-toggle">Hide button: </label>
+	<Toggle id="button-toggle" bind:value="{hideButton}" />
+</div>
+
 
 
 <h3>Notifications</h3>
@@ -42,10 +53,12 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 
 
 <script>
-import { Button, NotificationCenter, showNotification, hideNotification } from '../../../src';
+import { Button, NotificationCenter, showNotification, hideNotification, ButtonToggle, Toggle } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
+let position = 'top';
+let hideButton = false;
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
