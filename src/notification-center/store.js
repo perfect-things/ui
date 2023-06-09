@@ -1,10 +1,11 @@
 import { writable, get } from 'svelte/store';
-import { pluck } from '../../utils';
+import { pluck, uuid } from '../utils';
 
 export const Notifications = writable({});
 export const ArchivedNotifications = writable({});
 export const Progress = writable({});
 export const timers = {};
+
 
 
 export function createTimer (notification, targetEl) {
@@ -45,10 +46,11 @@ export function clearTimer (notification) {
 
 
 export function showNotification (msg, type = 'info', timeout = 5000, btn, cb = () => {}) {
-	const id = guid();
+	const id = uuid();
 	const showProgress = (typeof timeout === 'number');
+	const timestamp = new Date().getTime();
 	Notifications.update(list => {
-		list[id] = { type, msg, id, timeout, cb, showProgress, btn };
+		list[id] = { type, msg, id, timeout, cb, showProgress, btn, timestamp };
 		return list;
 	});
 	return id;
@@ -66,7 +68,7 @@ export function hideNotification (id) {
 
 function addToArchive (notification) {
 	if (!notification) return;
-	notification = pluck(notification, ['type', 'msg', 'id']);
+	notification = pluck(notification, ['type', 'msg', 'id', 'timestamp']);
 	ArchivedNotifications.update(list => {
 		list[notification.id] = notification;
 		return list;
@@ -78,13 +80,5 @@ export function removeFromArchive (id) {
 	ArchivedNotifications.update(list => {
 		delete list[id];
 		return list;
-	});
-}
-
-function guid () {
-	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-		const r = Math.random() * 16 | 0;
-		const v = c === 'x' ? r : (r & 0x3 | 0x8);
-		return v.toString(16);
 	});
 }

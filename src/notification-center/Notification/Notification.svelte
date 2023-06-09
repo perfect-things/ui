@@ -27,7 +27,7 @@
 
 <script>
 import { fly } from 'svelte/transition';
-import { hideNotification, createTimer, clearTimer, Progress } from '../NotificationCenter';
+import { hideNotification, createTimer, clearTimer, Progress } from '../store.js';
 import { ANIMATION_SPEED } from '../../utils.js';
 
 export let notification = {};

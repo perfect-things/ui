@@ -22,6 +22,7 @@
 	justify-content: space-between;
 	margin: 0 0 0 0.2rem;
 	color: var(--ui-color-text-dark-1);
+	z-index: 1;
 }
 
 .notification-archive h2 { color: inherit; font-size: 1.3rem; margin: 0; }
@@ -29,7 +30,7 @@
 	white-space: nowrap;
 	display: flex;
 	align-items: center;
-	justify-items: space-between;
+	justify-content: space-between;
 	gap: 0.5rem;
 }
 .notification-archive-buttons button { color: inherit; }
@@ -43,13 +44,15 @@
 	transition: margin-left .2s;
 }
 
-.show-archive .notification-archive { margin-left: -2rem; }
-.show-archive .notification.archived { margin-left: 0; }
-
+.notification-timestamp {
+	color: var(--ui-color-text-semi);
+	font-size: 0.9rem;
+	margin-inline: 0.5rem;
+}
 
 .notification-archive-empty {
 	position: absolute;
-	color: var(--ui-color-text-semi);
+	color: var(--ui-color-text-dark-1);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -57,6 +60,9 @@
 	width: 100%;
 	top: 0.5rem;
 }
+
+.show-archive .notification-archive { margin-left: -2rem; }
+.show-archive .notification.archived { margin-left: 0; }
 
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {

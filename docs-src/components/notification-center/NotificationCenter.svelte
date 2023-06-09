@@ -1,10 +1,22 @@
 <h2>Notification Center</h2>
 
+<p>With the aim of improving accessibility and usability, the <b>Toaster</b> component has been redesigned into a <b>NotificationCenter</b>.</p>
+
+<p>This component renders a bell button that shows a list of "archived" notifications when clicked.<br>
+Button can be hidden using the <em>hideButton="true"</em> property, in which case the <b>NotificationCenter</b> will work as a regular <b>Toaster</b> component.</p>
+
+<p>A notification first shows normally on screen, then, when it's dismissed or auto-closed, it's moved to the "archive" and available in the <b>NotificationCenter</b>.<br>
+Notifications remain in the archive as long as the user remains on the page. When the user navigates away from the page, or reloads it, the archive is cleared.</p>
+
+<p>The goal of the <b>NotificationCenter</b> is to allow the user to read the notifications that they may have missed.</p>
+
+<hr>
+
 <h3>Top aligned (default)</h3>
 <NotificationCenter outline round />
 
-<h3>Bottom aligned</h3>
-<NotificationCenter outline round position="bottom" />
+<h3>Bottom aligned, no button</h3>
+<NotificationCenter outline round position="bottom" hideButton="true" />
 
 
 <h3>Notifications</h3>
@@ -29,12 +41,6 @@
 <API props="{hideNotificationAPI}" title="hideNotification function" description="A component exports a global <em>hideNotification</em> function with the following arguments:"/>
 
 
-<div class="toaster-testing-background">
-	<div class="toaster-testing-background-light"></div>
-	<div class="toaster-testing-background-dark"></div>
-</div>
-
-
 <script>
 import { Button, NotificationCenter, showNotification, hideNotification } from '../../../src';
 import { API } from '../../api-table';
@@ -43,15 +49,18 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'hideButton', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> the button will be hidden.' },
+	{ name: 'outline', description: 'Notification center button style: outline' },
+	{ name: 'round', description: 'Makes the notification center button round' },
 	{ name: 'position', type: ['top', 'bottom'], default: 'top', description: 'Notifications position on screen.' },
 ];
 
 const showNotificationAPI = [
-	{ name: 'button', type: 'string', description: 'Label of the optional button on the toast.' },
-	{ name: 'callback', type: 'function', description: 'Callback function triggered when the button is clicked.<br>The function receives 1 parameter, which is the ID of the toast.' },
-	{ name: 'message', type: 'string', required: true, description: 'Message to show.' },
-	{ name: 'timeout', type: ['number', 'false'], default: 5000, description: 'How long the toast should remain on screen (in milliseconds).<br>If the value is not a number (e.g. "false") - the toast will not auto-close.' },
-	{ name: 'type', type: ['info', 'success', 'warning', 'error'], default: 'info', description: 'Type of the message.' },
+	{ name: '1. message', type: 'string', required: true, description: 'Message to show.' },
+	{ name: '2. type', type: ['info', 'success', 'warning', 'error'], default: 'info', description: 'Type of the message.' },
+	{ name: '3. timeout', type: ['number', 'false'], default: 5000, description: 'How long the toast should remain on screen (in milliseconds).<br>If the value is not a number (e.g. "false") - the toast will not auto-close.' },
+	{ name: '4. button', type: 'string', description: 'Label of the optional button on the toast.' },
+	{ name: '5. callback', type: 'function', description: 'Callback function triggered when the button is clicked.<br>The function receives 1 parameter, which is the ID of the toast.' },
 ];
 
 const hideNotificationAPI = [
@@ -59,7 +68,7 @@ const hideNotificationAPI = [
 ];
 
 const exampleHtml = `
-<NotificationCenter position="bottom"/>
+<NotificationCenter position="bottom" outline round/>
 
 <Button on:click="{() => showNotification('Hello')}">Show info</Button>
 <Button success on:click="{() => showNotification('Hello', 'success')}">Show success</Button>

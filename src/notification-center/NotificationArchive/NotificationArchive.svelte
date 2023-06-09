@@ -5,7 +5,7 @@
 			{#if archived.length}
 				<Button link on:click="{clearAll}">Clear all</Button>
 			{/if}
-			<Button text round icon="close" on:click="{closeArchive}" />
+			<Button text round icon="close" on:click="{hideArchive}" />
 		</div>
 	</header>
 	{#if archived.length}
@@ -18,6 +18,7 @@
 				transition:fly="{{ duration: $ANIMATION_SPEED, x: 500, opacity: 1 }}">
 
 				<div class="notification-msg" role="{notification.type === 'info' ? 'status' : 'alert'}">{@html notification.msg}</div>
+				<div class="notification-timestamp">{timeAgo(notification.timestamp, now)}</div>
 				<button class="notification-close" on:click|stopPropagation="{() => removeFromArchive(notification.id)}">&times;</button>
 			</div>
 		{/each}
@@ -28,14 +29,26 @@
 
 
 <script>
+import { onDestroy, onMount } from 'svelte';
 import { fly } from 'svelte/transition';
 import { Button } from '../../button';
-import { ArchivedNotifications, removeFromArchive } from '../NotificationCenter';
-import { ANIMATION_SPEED } from '../../utils.js';
+import { ArchivedNotifications, removeFromArchive } from '../store.js';
+import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
 
 export let position = 'top';
+export let show = false;
 
 let archived = [];
+let now = new Date().getTime();
+let timer;
+
+onMount(() => {
+	timer = setInterval(() => (now = new Date().getTime()), 10000);
+});
+
+onDestroy(() => {
+	clearInterval(timer);
+});
 
 
 ArchivedNotifications.subscribe(val => {
@@ -43,12 +56,13 @@ ArchivedNotifications.subscribe(val => {
 });
 
 
-function clearAll () {
+function clearAll (e) {
+	e.stopPropagation();
 	ArchivedNotifications.set({});
 }
 
-function closeArchive () {
-	ArchivedNotifications.set({});
+function hideArchive () {
+	show = false;
 }
 
 </script>

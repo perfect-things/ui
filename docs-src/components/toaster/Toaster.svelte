@@ -1,4 +1,4 @@
-<h2>Toaster (Deprecated. Please use NotificationCenter instead)</h2>
+<h2>Toaster (Deprecated. Please use <a href="#NotificationCenter">NotificationCenter</a> instead)</h2>
 
 <Toaster position="bottom" />
 
