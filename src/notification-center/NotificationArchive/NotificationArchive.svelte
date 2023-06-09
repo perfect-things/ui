@@ -3,7 +3,7 @@
 		<h2>Recent notifications</h2>
 		<div class="notification-archive-buttons">
 			{#if archived.length}
-				<Button link on:click="{clearAll}">Clear all</Button>
+				<Button text round on:click="{clearAll}">Clear all</Button>
 			{/if}
 			<Button text round icon="close" on:click="{hideArchive}" />
 		</div>
@@ -23,7 +23,7 @@
 			</div>
 		{/each}
 	{:else}
-		<p class="notification-archive-empty">No recent notifications</p>
+		<div class="notification-archive-empty">No recent notifications</div>
 	{/if}
 </div>
 
