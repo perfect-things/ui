@@ -10,7 +10,7 @@ test('PushButton', async () => {
 	};
 	const { getByTitle, component } = render(PushButton, props);
 	const mock = jest.fn();
-	component.$on('click', mock);
+	component.$on('change', mock);
 
 	const btn = getByTitle('Button1');
 	expect(btn).toBeInTheDocument();

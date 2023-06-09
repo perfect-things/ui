@@ -17,7 +17,9 @@ if (window.matchMedia) {
 }
 
 
-
+export function deepCopy (o) {
+	return structuredClone(o);
+}
 
 
 // native js animation

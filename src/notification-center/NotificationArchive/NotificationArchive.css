@@ -1,0 +1,70 @@
+.notification-archive {
+	--archive-border-radius: calc(var(--ui-border-radius-s) + 0.5rem);
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	padding: 1rem;
+	background-color: var(--ui-color-background);
+	border-radius: var(--archive-border-radius);
+	border: 1px solid #fff3;
+	width: calc(var(--notification-width) + 2rem);
+	gap: var(--notification-gap);
+	margin-left: calc(var(--notification-width) + var(--notification-gap) + 1rem);
+	transition: margin-left .2s;
+	position: relative;
+	min-height: 8.2rem;
+}
+
+.notification-archive header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 0 0 0.2rem;
+	color: var(--ui-color-text-dark-1);
+}
+
+.notification-archive h2 { color: inherit; font-size: 1.3rem; margin: 0; }
+.notification-archive-buttons {
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	justify-items: space-between;
+	gap: 0.5rem;
+}
+.notification-archive-buttons button { color: inherit; }
+.notification-archive-buttons .button.button-link { vertical-align: middle; }
+
+
+.notification.archived {
+	opacity: 0.9;
+	filter: saturate(0.4);
+	margin-left: calc(var(--notification-width) + var(--notification-gap));
+	transition: margin-left .2s;
+}
+
+.show-archive .notification-archive { margin-left: -2rem; }
+.show-archive .notification.archived { margin-left: 0; }
+
+
+.notification-archive-empty {
+	position: absolute;
+	color: var(--ui-color-text-semi);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	top: 0.5rem;
+}
+
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+	.notification-archive {
+		background-color: #000a;
+		-webkit-backdrop-filter: blur(30px);
+		backdrop-filter: blur(30px);
+	}
+	.theme-light .notification-archive { background-color: #fffa; border-color: #0008; }
+	.theme-light .notification-archive h2 { color: var(--ui-color-text); }
+}

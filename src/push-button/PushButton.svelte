@@ -3,6 +3,7 @@
 		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
+		{outline}
 		{info}
 		{success}
 		{warning}
@@ -18,6 +19,7 @@
 		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
+		{outline}
 		{info}
 		{success}
 		{warning}
@@ -39,6 +41,7 @@ export let info = false;
 export let success = false;
 export let warning = false;
 export let danger = false;
+export let outline = false;		// button without background, but with border
 
 export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button
@@ -53,6 +56,6 @@ const dispatch = createEventDispatcher();
 
 function onMouseDown (e) {
 	pressed = !pressed;
-	dispatch('click', e);
+	dispatch('change', { ...e, pressed });
 }
 </script>

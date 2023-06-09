@@ -3,3 +3,9 @@
 	transform: translateY(1px);
 	box-shadow: none;
 }
+
+.push-button[aria-pressed="true"].button-outline { background-color: var(--ui-color-secondary-semi); }
+.push-button[aria-pressed="true"].button-outline.info { background-color: var(--ui-color-info-semi); }
+.push-button[aria-pressed="true"].button-outline.success { background-color: var(--ui-color-success-semi); }
+.push-button[aria-pressed="true"].button-outline.warning { background-color: var(--ui-color-warning-semi); }
+.push-button[aria-pressed="true"].button-outline.danger { background-color: var(--ui-color-danger-semi); }

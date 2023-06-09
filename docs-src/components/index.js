@@ -20,6 +20,7 @@ export { Table } from './table';
 export { TextFit } from './text-fit';
 export { Textarea } from './textarea';
 export { Toaster } from './toaster';
+export { NotificationCenter } from './notification-center';
 export { Toggle } from './toggle';
 export { Tooltip } from './tooltip';
 export { Tree } from './tree';
