@@ -1,15 +1,15 @@
 .notification-archive {
-	display: flex;
+	display: none;
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: flex-start;
-	padding: 0 1rem;
+	padding: 0 1rem 1rem;
 	width: calc(var(--ui-notification-width) + 2rem);
 	gap: var(--ui-notification-gap);
 	margin-left: calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem);
 	transition: margin-left var(--ui-animation-speed) ease-out;
-	min-height: 8.2rem;
 }
+
 
 .notification-archive header,
 .notification-archive-empty {
@@ -57,4 +57,5 @@
 .notification-timestamp { color: var(--ui-color-text-semi); font-size: 0.85rem; margin-inline: 0.5rem; }
 .notification-archive-empty { justify-content: center; padding: 1rem; }
 
-.show-archive .notification-archive { margin-left: -1rem; }
+/* anim has to be done in js, to set display=none at the right time */
+/* .show-archive .notification-archive { margin-left: -1rem; height: auto; overflow: visible; } */

@@ -1,11 +1,11 @@
-<div class="notification-archive">
+<div class="notification-archive" bind:this="{el}">
 	<header>
 		<h2>Recent notifications</h2>
 		<div class="notification-archive-buttons">
 			{#if archived.length}
 				<Button text on:click="{clearAll}">Clear all</Button>
 			{/if}
-			<Button text class="btn-close" on:click="{hideArchive}">&times;</Button>
+			<Button text class="btn-close" on:click="{() => (show = false)}">&times;</Button>
 		</div>
 	</header>
 	{#if archived.length}
@@ -14,7 +14,7 @@
 			<div
 				tabindex="0"
 				class="notification notification-{notification.type} archived"
-				on:keydown="{() => removeFromArchive(notification.id)}"
+				on:keydown="{e => onKeydown(e, notification)}"
 				in:_receive="{{ key: notification.id }}"
 				out:fly
 				animate:flip>
@@ -31,16 +31,18 @@
 
 
 <script>
-import { onDestroy, onMount } from 'svelte';
+import { onDestroy, onMount, afterUpdate } from 'svelte';
 import { Button } from '../../button';
 import { ArchivedNotifications, removeFromArchive, receive, fly, flip } from '../store.js';
 import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
 
 export let position = 'top';
 export let show = false;
+let isVisible = false;
 
 const duration = $ANIMATION_SPEED;
 
+let el;
 let archived = [];
 let now = new Date().getTime();
 let timer;
@@ -48,16 +50,37 @@ let timer;
 
 onMount(() => {
 	timer = setInterval(() => (now = new Date().getTime()), 10000);
+
+	ArchivedNotifications.subscribe(val => {
+		archived = position === 'top' ? Object.values(val).reverse() : Object.values(val);
+	});
+
 });
 
 onDestroy(() => {
 	clearInterval(timer);
 });
 
-
-ArchivedNotifications.subscribe(val => {
-	archived = position === 'top' ? Object.values(val).reverse() : Object.values(val);
+afterUpdate(() => {
+	if (show) openArchive();
+	else closeArchive();
 });
+
+
+function openArchive () {
+	if (isVisible) return;
+	el.style.display = 'flex';
+	requestAnimationFrame(() => (el.style.marginLeft = '-1rem'));
+	isVisible = true;
+}
+
+
+function closeArchive () {
+	if (!isVisible) return;
+	el.style.marginLeft = 'calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem)';
+	el.addEventListener('transitionend', () => (el.style.display = 'none'), { once: true });
+	isVisible = false;
+}
 
 
 function clearAll (e) {
@@ -65,9 +88,7 @@ function clearAll (e) {
 	ArchivedNotifications.set({});
 }
 
-function hideArchive () {
-	show = false;
-}
+
 
 function _receive (node, params) {
 	if (!show) return fly(node, { duration: 0 });
@@ -75,4 +96,7 @@ function _receive (node, params) {
 }
 
 
+function onKeydown (e, notification) {
+	if (e.key === 'Escape') removeFromArchive(notification.id);
+}
 </script>

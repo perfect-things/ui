@@ -5,37 +5,37 @@
 
 	position: fixed;
 	transform: translateZ(1px);
-	user-select: none;
-	z-index: 999;
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
-	justify-content: space-around;
-	width: var(--ui-notification-width);
-	right: var(--ui-notification-gap);
+	justify-content: flex-start;
+	width: calc(var(--ui-notification-width) + var(--ui-notification-gap) * 2);
+	right: 0;
 	gap: var(--ui-notification-gap);
+	padding: var(--ui-notification-gap);
+	z-index: 999;
+	max-height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
-.notification-center-top { top: var(--ui-notification-gap); }
-.notification-center-bottom { bottom: var(--ui-notification-gap); }
+.notification-center-top { top: 0; }
+.notification-center-bottom { bottom: 0; }
 
 .notification {
 	font-size: 1rem;
 	position: relative;
 	overflow: hidden;
-	flex: 1;
 	flex-grow: 0;
-	z-index: 999;
+	flex-shrink: 0;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	min-height: 2rem;
 	border: 1px solid transparent;
-	width: var(--ui-notification-width);
 	box-shadow: var(--ui-shadow-fancy);
 	border-radius: var(--ui-notification-border-radius);
 }
-
 
 
 .notification button {
