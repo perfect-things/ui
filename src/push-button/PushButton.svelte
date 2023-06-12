@@ -11,6 +11,7 @@
 		{round}
 		{icon}
 		bind:this="{_this}"
+		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}">
 			<slot></slot>
 	</Button>
@@ -27,6 +28,7 @@
 		{round}
 		{icon}
 		bind:this="{_this}"
+		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}"/>
 {/if}
 <script>
@@ -53,6 +55,14 @@ $:props = pluck($$props, ['id', 'title', 'disabled']);
 
 
 const dispatch = createEventDispatcher();
+
+function onKeydown (e) {
+	if (e.key === 'Enter' || e.key === ' ') {
+		e.preventDefault();
+		pressed = !pressed;
+		dispatch('change', { ...e, pressed });
+	}
+}
 
 function onMouseDown (e) {
 	pressed = !pressed;

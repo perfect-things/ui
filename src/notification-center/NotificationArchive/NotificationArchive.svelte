@@ -1,4 +1,4 @@
-<div class="notification-archive" bind:this="{el}">
+<div class="notification-archive" bind:this="{el}" inert="{!show}">
 	<header>
 		<h2>Recent notifications</h2>
 		<div class="notification-archive-buttons">
@@ -31,14 +31,13 @@
 
 
 <script>
-import { onDestroy, onMount, afterUpdate } from 'svelte';
+import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
 import { ArchivedNotifications, removeFromArchive, receive, fly, flip } from '../store.js';
 import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
 
 export let position = 'top';
 export let show = false;
-let isVisible = false;
 
 const duration = $ANIMATION_SPEED;
 
@@ -61,27 +60,6 @@ onDestroy(() => {
 	clearInterval(timer);
 });
 
-afterUpdate(() => {
-	if (show) openArchive();
-	else closeArchive();
-});
-
-
-function openArchive () {
-	if (isVisible) return;
-	el.style.display = 'flex';
-	requestAnimationFrame(() => (el.style.marginLeft = '-1rem'));
-	isVisible = true;
-}
-
-
-function closeArchive () {
-	if (!isVisible) return;
-	el.style.marginLeft = 'calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem)';
-	el.addEventListener('transitionend', () => (el.style.display = 'none'), { once: true });
-	isVisible = false;
-}
-
 
 function clearAll (e) {
 	e.stopPropagation();
@@ -91,6 +69,7 @@ function clearAll (e) {
 
 
 function _receive (node, params) {
+	console.log('receive', node, params, show);
 	if (!show) return fly(node, { duration: 0 });
 	return receive(node, { ...params, delay: 100, duration });
 }

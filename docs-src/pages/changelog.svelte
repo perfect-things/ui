@@ -1,12 +1,13 @@
 <h1>Changelog</h1>
-<h2>v6.6.9 <em>(2023-06-?)</em></h2>
+<h2>v6.7.0 <em>(2023-06-?)</em></h2>
 <ul>
-<li><code>NotificationCenter</code> component added. This will eventually replace <code>Toaster</code>, as it&#39;s more accessible and powerful.</li>
-<li><code>Toaster</code> component is now deprecated and will be removed in the next major version.</li>
+<li><strong>New:</strong> <code>NotificationCenter</code> component. This will eventually replace <code>Toaster</code>, as it&#39;s more accessible and powerful.</li>
+<li><code>Toaster</code> component is now <strong>deprecated</strong> and will be removed in the next major version.</li>
 <li><code>PushButton</code> changes:<ul>
 <li>remove <code>link</code> and <code>text</code> types, as they don&#39;t make sense (pushed state would not be visible).</li>
 <li>fix <code>outline</code> type styling.</li>
 <li>update the event passed to the <code>on:change</code> callback (rename property from <code>event.detail.value</code> to <code>event.detail.pressed</code>).</li>
+<li>fix <code>PushButton</code> keyboard events (pressing Space or Enter would not trigger the <code>on:change</code> event).</li>
 </ul>
 </li>
 </ul>

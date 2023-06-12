@@ -9,6 +9,7 @@ Changelog
   - remove `link` and `text` types, as they don't make sense (pushed state would not be visible).
   - fix `outline` type styling.
   - update the event passed to the `on:change` callback (rename property from `event.detail.value` to `event.detail.pressed`).
+  - fix `PushButton` keyboard events (pressing Space or Enter would not trigger the `on:change` event).
 
 
 ## v6.6.8 *(2023-06-07)*
