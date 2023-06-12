@@ -25,13 +25,16 @@
 			in:fly
 			animate:flip>
 
+			<div class="notification-icon"><Icon name="{notification.type}"/></div>
 			<div class="notification-msg" role="{notification.type === 'info' ? 'status' : 'alert'}">{@html notification.msg}</div>
 
-			{#if notification.btn}
-				<button on:click|preventDefault="{() => notification.cb(notification.id)}">{notification.btn}</button>
-			{/if}
+			<div class="notification-buttons">
+				{#if notification.btn}
+					<button on:click|preventDefault="{() => notification.cb(notification.id)}">{notification.btn}</button>
+				{/if}
 
-			<button class="notification-close" on:click|stopPropagation="{() => hideNotification(notification.id)}">&times;</button>
+				<button class="notification-close" on:click|stopPropagation="{() => hideNotification(notification.id)}">&times;</button>
+			</div>
 
 			{#if notification.showProgress}
 				<div class="notification-progressbar">
@@ -51,6 +54,7 @@
 <script>
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
+import { Icon } from '../../icon';
 import { PushButton } from '../../push-button';
 import { Notifications, ArchivedNotifications, createTimer, timers, hideNotification, clearTimer,
 	send, flip, fly } from '../store.js';

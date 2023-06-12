@@ -69,7 +69,6 @@ function clearAll (e) {
 
 
 function _receive (node, params) {
-	console.log('receive', node, params, show);
 	if (!show) return fly(node, { duration: 0 });
 	return receive(node, { ...params, delay: 100, duration });
 }
