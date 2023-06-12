@@ -3,20 +3,17 @@
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: flex-start;
-	padding: 0 1rem 1rem;
-	width: calc(var(--ui-notification-width) + 2rem);
-	gap: var(--ui-notification-gap);
+	width: 100%;
 	margin-left: calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem);
 	transition: margin-left var(--ui-animation-speed) ease-out;
 }
 
 
-.notification-archive header,
-.notification-archive-empty {
+.notification-archive header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin: 0;
+	margin: var(--ui-notification-gap) var(--ui-notification-gap) 0;
 	color: var(--ui-color-text);
 	z-index: 1;
 	background-color: var(--ui-color-background-dark-1);
@@ -26,6 +23,11 @@
 
 
 .notification-archive h2 { color: inherit; font-size: 1.1rem; margin: 0; }
+.notification-archive h2 .button { font-size: inherit; padding-inline: var(--ui-margin-s) var(--ui-margin-m); }
+.notification-archive h2 .button svg { transition: transform var(--ui-animation-speed); }
+
+.notification-archive.expanded h2 .button svg { transform: rotate(90deg); }
+.notification-archive.inert { pointer-events: none; }
 
 .notification-archive-buttons {
 	white-space: nowrap;
@@ -55,6 +57,5 @@
 
 .notification.archived { filter: saturate(0.3); }
 .notification-timestamp { color: var(--ui-color-text-semi); font-size: 0.85rem; margin-inline: 0.5rem; }
-.notification-archive-empty { justify-content: center; padding: 1rem; }
 
-.show-archive .notification-archive { margin-left: -1rem; height: auto; overflow: visible; }
+.show-archive .notification-archive { margin-left: 0; height: auto; overflow: visible; }

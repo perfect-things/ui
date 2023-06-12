@@ -6,7 +6,12 @@
 		bind:pressed={$showArchive}/>
 {/if}
 
-<div class="notification-center notification-center-{position} {className}" class:show-archive="{$showArchive}">
+<div
+	class="notification-center notification-center-{position} {className}"
+	class:show-archive="{$showArchive}"
+	class:archive-is-visible="{archiveIsVisible}"
+	class:has-active-notifications="{hasActiveNotifications}"
+	bind:this="{el}">
 
 	{#if position === 'bottom' && !hideButton}<NotificationArchive {position} bind:show="{$showArchive}"/>{/if}
 
@@ -70,21 +75,31 @@ export let hideButton = false;
 
 const showArchive = writable(false);
 const duration = $ANIMATION_SPEED;
+let archiveIsVisible = false;
 
+let el;
 let notifications = [];
 let archived = [];
+let initial = true;
+let hasActiveNotifications = false;
 
 
-$:hasNotifications = (notifications.length + archived.length) > 0 ? 'has-notifications' : '';
 $:hasArchivedNotifications = archived.length > 0 ? 'has-archived-notifications' : '';
+$:hasNotifications = (notifications.length + archived.length) > 0 ? 'has-notifications' : '';
 
 
 onMount(() => {
+	document.body.appendChild(el);
+
 	Notifications.subscribe(val => {
 		notifications = position === 'top' ? Object.values(val).reverse() : Object.values(val);
 		notifications.forEach(t => {
 			if (!timers[t.id]) createTimer(t);
 		});
+
+		if (notifications.length > 0) hasActiveNotifications = true;
+		// letting the last toast finish sliding out before pushing the main component to z-index -1
+		else setTimeout(() => hasActiveNotifications = false, $ANIMATION_SPEED);
 	});
 
 	ArchivedNotifications.subscribe(val => {
@@ -92,13 +107,16 @@ onMount(() => {
 	});
 
 	showArchive.subscribe(val => {
+		if (initial) return;
 		if (val) addEvents();
 		else removeEvents();
 	});
+	requestAnimationFrame(() => initial = false);
 });
 
 
 function addEvents () {
+	archiveIsVisible = true;
 	document.addEventListener('click', onDocClick);
 	document.addEventListener('keydown', onDocClick);
 }
@@ -106,6 +124,9 @@ function addEvents () {
 function removeEvents () {
 	document.removeEventListener('click', onDocClick);
 	document.removeEventListener('keydown', onDocClick);
+	el
+		.querySelector('.notification-archive')
+		.addEventListener('transitionend', () => archiveIsVisible = false, { once: true });
 }
 
 
