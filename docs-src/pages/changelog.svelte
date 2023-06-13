@@ -1,5 +1,5 @@
 <h1>Changelog</h1>
-<h2>v6.7.0 <em>(2023-06-?)</em></h2>
+<h2>v6.7.0 <em>(2023-06-13)</em></h2>
 <ul>
 <li><strong>New:</strong> <code>NotificationCenter</code> component. This will eventually replace <code>Toaster</code>, as it&#39;s more accessible and powerful.</li>
 <li><code>Toaster</code> component is now <strong>deprecated</strong> and will be removed in the next major version.</li>
