@@ -7,13 +7,11 @@
 {/if}
 
 <div
-	class="notification-center notification-center-{position} {className}"
+	class="notification-center {className}"
 	class:show-archive="{$showArchive}"
 	class:archive-is-visible="{archiveIsVisible}"
 	class:has-active-notifications="{hasActiveNotifications}"
 	bind:this="{el}">
-
-	{#if position === 'bottom' && !hideButton}<NotificationArchive {position} bind:show="{$showArchive}"/>{/if}
 
 	{#each notifications as notification (notification.id)}
 		<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
@@ -25,7 +23,7 @@
 			on:focus="{() => clearTimer(notification)}"
 			on:mouseleave="{e => createTimer(notification, e.target)}"
 			on:blur="{e => createTimer(notification, e.target)}"
-			on:keydown="{onkeydown}"
+			on:keydown="{e => onKeydown(e, notification)}"
 			out:_send="{{ key: notification.id }}"
 			in:fly
 			animate:flip>
@@ -47,10 +45,9 @@
 				</div>
 			{/if}
 		</div>
-
 	{/each}
 
-	{#if position === 'top' && !hideButton}<NotificationArchive {position} bind:show="{$showArchive}"/>{/if}
+	{#if !hideButton}<NotificationArchive bind:show="{$showArchive}" bind:expanded="{archiveIsExpanded}"/>{/if}
 
 </div>
 
@@ -62,11 +59,10 @@ import { writable } from 'svelte/store';
 import { Icon } from '../../icon';
 import { PushButton } from '../../push-button';
 import { Notifications, ArchivedNotifications, createTimer, timers, hideNotification, clearTimer,
-	send, flip, fly } from '../store.js';
+	send, flip, fly, slideDown } from '../store.js';
 import { NotificationArchive } from '../NotificationArchive';
 import { ANIMATION_SPEED } from '../../utils.js';
 
-export let position = 'top';
 let className = '';
 export { className as class };
 export let round = false;
@@ -76,23 +72,23 @@ export let hideButton = false;
 const showArchive = writable(false);
 const duration = $ANIMATION_SPEED;
 let archiveIsVisible = false;
+let archiveIsExpanded = false;
 
 let el;
 let notifications = [];
-let archived = [];
 let initial = true;
 let hasActiveNotifications = false;
 
 
-$:hasArchivedNotifications = archived.length > 0 ? 'has-archived-notifications' : '';
-$:hasNotifications = (notifications.length + archived.length) > 0 ? 'has-notifications' : '';
+$:hasArchivedNotifications = Object.keys($ArchivedNotifications).length ? 'has-archived-notifications' : '';
+$:hasNotifications = (notifications.length || hasArchivedNotifications) ? 'has-notifications' : '';
 
 
 onMount(() => {
 	document.body.appendChild(el);
 
 	Notifications.subscribe(val => {
-		notifications = position === 'top' ? Object.values(val).reverse() : Object.values(val);
+		notifications = Object.values(val).reverse();
 		notifications.forEach(t => {
 			if (!timers[t.id]) createTimer(t);
 		});
@@ -102,16 +98,13 @@ onMount(() => {
 		else setTimeout(() => hasActiveNotifications = false, $ANIMATION_SPEED);
 	});
 
-	ArchivedNotifications.subscribe(val => {
-		archived = position === 'top' ? Object.values(val).reverse() : Object.values(val);
-	});
 
 	showArchive.subscribe(val => {
 		if (initial) return;
 		if (val) addEvents();
 		else removeEvents();
 	});
-	requestAnimationFrame(() => initial = false);
+	if (initial) requestAnimationFrame(() => initial = false);
 });
 
 
@@ -138,9 +131,14 @@ function onDocClick (e) {
 
 
 function _send (node, params) {
-	if (!$showArchive) return fly(node);
+	if (!$showArchive) return fly(node);						// dismissing with archive hidden
+	if (!archiveIsExpanded) return slideDown(node, params);		// dismissing with archive visible but collapsed
 	return send(node, { ...params, duration });
 }
 
+
+function onKeydown (e, notification) {
+	if (e.key === 'Escape') hideNotification(notification.id);
+}
 
 </script>

@@ -6,6 +6,7 @@
 	width: 100%;
 	margin-left: calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem);
 	transition: margin-left var(--ui-animation-speed) ease-out;
+	z-index: 1;
 }
 
 

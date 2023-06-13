@@ -17,11 +17,7 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 <div class="prop-row">
 	<!-- svelte-ignore a11y-label-has-associated-control -->
 	<label>Toggle notification center: </label>
-	<NotificationCenter outline round bind:position="{position}" {hideButton} />
-</div>
-<div class="prop-row">
-	<label for="position-toggle">Position: </label>
-	<ButtonToggle id="position-toggle" items="{['top', 'bottom']}" bind:value="{position}" />
+	<NotificationCenter outline round {hideButton} />
 </div>
 <div class="prop-row">
 	<label for="button-toggle">Hide button: </label>
@@ -53,11 +49,10 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 
 
 <script>
-import { Button, NotificationCenter, showNotification, hideNotification, ButtonToggle, Toggle } from '../../../src';
+import { Button, NotificationCenter, showNotification, hideNotification, Toggle } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-let position = 'top';
 let hideButton = false;
 
 const apiProps = [
@@ -65,7 +60,6 @@ const apiProps = [
 	{ name: 'hideButton', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> the button will be hidden.' },
 	{ name: 'outline', description: 'Notification center button style: outline' },
 	{ name: 'round', description: 'Makes the notification center button round' },
-	{ name: 'position', type: ['top', 'bottom'], default: 'top', description: 'Notifications position on screen.' },
 ];
 
 const showNotificationAPI = [
@@ -81,7 +75,7 @@ const hideNotificationAPI = [
 ];
 
 const exampleHtml = `
-<NotificationCenter position="bottom" outline round/>
+<NotificationCenter outline round/>
 
 <Button on:click="{() => showNotification('Hello')}">Show info</Button>
 <Button success on:click="{() => showNotification('Hello', 'success')}">Show success</Button>

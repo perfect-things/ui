@@ -13,6 +13,8 @@ const duration = get(ANIMATION_SPEED);
 
 export const fly = (node, params) => _fly(node, { duration, x: 500, opacity: 1, ...params });
 export const slideUp = (node, params) => _fly(node, { duration, y: -100, ...params });
+export const slideDown = (node, params) => _fly(node, { duration, y: 100, ...params });
+
 export const flip = (node, animations, params) => _flip(node, animations, { duration, ...params });
 
 export const [send, receive] = crossfade({
@@ -26,8 +28,6 @@ export const [send, receive] = crossfade({
 		};
 	}
 });
-
-
 
 
 

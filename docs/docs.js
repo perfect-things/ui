@@ -6042,7 +6042,7 @@ function instance2($$self, $$props, $$invalidate) {
       close();
     });
   }
-  function onkeydown2(e) {
+  function onkeydown(e) {
     if (e.key === "Tab") {
       selectItem();
       return close();
@@ -6211,7 +6211,7 @@ function instance2($$self, $$props, $$invalidate) {
     onblur,
     onListMouseDown,
     onclick,
-    onkeydown: onkeydown2,
+    onkeydown,
     onkeypress,
     onEsc,
     onIconClick,
@@ -6323,7 +6323,7 @@ function instance2($$self, $$props, $$invalidate) {
     onblur,
     onListMouseDown,
     onclick,
-    onkeydown2,
+    onkeydown,
     onkeypress,
     onIconClick,
     data,
@@ -11370,7 +11370,7 @@ function instance8($$self, $$props, $$invalidate) {
       }
     );
   });
-  function onkeydown2(e) {
+  function onkeydown(e) {
     const isActive = picker.active;
     const params = { event: e, component: picker };
     if (e.key === "Escape") {
@@ -11459,7 +11459,7 @@ function instance8($$self, $$props, $$invalidate) {
     picker,
     inputEl,
     open,
-    onkeydown: onkeydown2,
+    onkeydown,
     oninput: oninput2,
     onchange: onchange4,
     onshow,
@@ -11515,7 +11515,7 @@ function instance8($$self, $$props, $$invalidate) {
     inputEl,
     open,
     props,
-    onkeydown2,
+    onkeydown,
     oninput2,
     onchange4,
     onshow,
@@ -12236,7 +12236,7 @@ function instance10($$self, $$props, $$invalidate) {
     "Tab",
     "Meta"
   ];
-  function onkeydown2(e) {
+  function onkeydown(e) {
     if (allowedKeys.includes(e.key))
       return;
     if (e.key === "-" && !("" + value).includes("-"))
@@ -12266,7 +12266,7 @@ function instance10($$self, $$props, $$invalidate) {
     className,
     DECIMAL_SEPARATOR,
     allowedKeys,
-    onkeydown: onkeydown2,
+    onkeydown,
     onchange: onchange4,
     props
   });
@@ -12287,7 +12287,7 @@ function instance10($$self, $$props, $$invalidate) {
       $$invalidate(2, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
   };
   $$props = (0, import_internal10.exclude_internal_props)($$props);
-  return [value, className, props, onkeydown2, onchange4, input_input_handler];
+  return [value, className, props, onkeydown, onchange4, input_input_handler];
 }
 var InputNumber = class extends import_internal10.SvelteComponentDev {
   constructor(options) {
@@ -12511,7 +12511,7 @@ function instance11($$self, $$props, $$invalidate) {
     "Enter",
     "Ctrl"
   ];
-  function onkeydown2(e) {
+  function onkeydown(e) {
     dispatch("keydown", e);
     if (e.key === "Enter") {
       const num = parseAmount(value);
@@ -12584,7 +12584,7 @@ function instance11($$self, $$props, $$invalidate) {
     dispatch,
     DECIMAL_SEPARATOR: DECIMAL_SEPARATOR2,
     allowedKeys,
-    onkeydown: onkeydown2,
+    onkeydown,
     onchange: onchange4,
     save_eval,
     parseAmount,
@@ -12614,7 +12614,7 @@ function instance11($$self, $$props, $$invalidate) {
     value,
     className,
     props,
-    onkeydown2,
+    onkeydown,
     onchange4,
     focus_handler,
     blur_handler,
@@ -18062,7 +18062,7 @@ function instance23($$self, $$props, $$invalidate) {
   function clearTimer3(toast) {
     clearInterval(timers2[toast.id]);
   }
-  function onkeydown2(toast, e) {
+  function onkeydown(toast, e) {
     if (e.key === "Escape")
       hideToast(toast.id);
   }
@@ -18077,7 +18077,7 @@ function instance23($$self, $$props, $$invalidate) {
   const focus_handler = (toast) => clearTimer3(toast);
   const mouseleave_handler = (toast, e) => createTimer2(toast, e.target);
   const blur_handler = (toast, e) => createTimer2(toast, e.target);
-  const keydown_handler = (toast, e) => onkeydown2(toast, e);
+  const keydown_handler = (toast, e) => onkeydown(toast, e);
   $$self.$$set = ($$props2) => {
     if ("position" in $$props2)
       $$invalidate(0, position = $$props2.position);
@@ -18096,7 +18096,7 @@ function instance23($$self, $$props, $$invalidate) {
     progress,
     createTimer: createTimer2,
     clearTimer: clearTimer3,
-    onkeydown: onkeydown2,
+    onkeydown,
     $ANIMATION_SPEED
   });
   $$self.$inject_state = ($$props2) => {
@@ -18118,7 +18118,7 @@ function instance23($$self, $$props, $$invalidate) {
     $ANIMATION_SPEED,
     createTimer2,
     clearTimer3,
-    onkeydown2,
+    onkeydown,
     click_handler,
     click_handler_1,
     mouseover_handler,
@@ -18170,6 +18170,7 @@ var timers = {};
 var duration = (0, import_store3.get)(ANIMATION_SPEED);
 var fly2 = (node, params) => (0, import_transition3.fly)(node, { duration, x: 500, opacity: 1, ...params });
 var slideUp = (node, params) => (0, import_transition3.fly)(node, { duration, y: -100, ...params });
+var slideDown = (node, params) => (0, import_transition3.fly)(node, { duration, y: 100, ...params });
 var flip = (node, animations, params) => (0, import_animate.flip)(node, animations, { duration, ...params });
 var [send, receive] = (0, import_transition3.crossfade)({
   duration: (d) => d,
@@ -18258,7 +18259,7 @@ var { Object: Object_13 } = import_internal24.globals;
 var file22 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
 function get_each_context5(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[19] = list[i];
+  child_ctx[18] = list[i];
   return child_ctx;
 }
 function create_else_block3(ctx) {
@@ -18279,7 +18280,7 @@ function create_else_block3(ctx) {
   button.$on(
     "click",
     /*click_handler_1*/
-    ctx[12]
+    ctx[11]
   );
   const block = {
     c: function create() {
@@ -18302,7 +18303,7 @@ function create_else_block3(ctx) {
     p: function update(ctx2, dirty) {
       const button_changes = {};
       if (dirty & /*$$scope*/
-      4194304) {
+      2097152) {
         button_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button.$set(button_changes);
@@ -18384,7 +18385,7 @@ function create_if_block_14(ctx) {
   button2.$on(
     "click",
     /*click_handler*/
-    ctx[11]
+    ctx[10]
   );
   const block = {
     c: function create() {
@@ -18412,19 +18413,19 @@ function create_if_block_14(ctx) {
     p: function update(ctx2, dirty) {
       const button0_changes = {};
       if (dirty & /*$$scope, archived*/
-      4194308) {
+      2097160) {
         button0_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button0.$set(button0_changes);
       const button1_changes = {};
       if (dirty & /*$$scope*/
-      4194304) {
+      2097152) {
         button1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button1.$set(button1_changes);
       const button2_changes = {};
       if (dirty & /*$$scope*/
-      4194304) {
+      2097152) {
         button2_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button2.$set(button2_changes);
@@ -18491,7 +18492,7 @@ function create_default_slot_2(ctx) {
   let t0;
   let t1_value = (
     /*archived*/
-    ctx[2].length + ""
+    ctx[3].length + ""
   );
   let t1;
   let t2;
@@ -18508,8 +18509,8 @@ function create_default_slot_2(ctx) {
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*archived*/
-      4 && t1_value !== (t1_value = /*archived*/
-      ctx2[2].length + ""))
+      8 && t1_value !== (t1_value = /*archived*/
+      ctx2[3].length + ""))
         (0, import_internal24.set_data_dev)(t1, t1_value);
     },
     d: function destroy(detaching) {
@@ -18583,12 +18584,12 @@ function create_if_block11(ctx) {
   let current;
   let each_value = (
     /*archived*/
-    ctx[2]
+    ctx[3]
   );
   (0, import_internal24.validate_each_argument)(each_value);
   const get_key = (ctx2) => (
     /*notification*/
-    ctx2[19].id
+    ctx2[18].id
   );
   (0, import_internal24.validate_each_keys)(ctx, each_value, get_each_context5, get_key);
   for (let i = 0; i < each_value.length; i += 1) {
@@ -18614,9 +18615,9 @@ function create_if_block11(ctx) {
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*archived, onKeydown, removeFromArchive, timeAgo, now*/
-      140) {
+      152) {
         each_value = /*archived*/
-        ctx2[2];
+        ctx2[3];
         (0, import_internal24.validate_each_argument)(each_value);
         (0, import_internal24.group_outros)();
         for (let i = 0; i < each_blocks.length; i += 1)
@@ -18664,16 +18665,16 @@ function create_each_block5(key_1, ctx) {
   let div0;
   let raw_value = (
     /*notification*/
-    ctx[19].msg + ""
+    ctx[18].msg + ""
   );
   let div0_role_value;
   let t0;
   let div1;
   let t1_value = timeAgo(
     /*notification*/
-    ctx[19].timestamp,
+    ctx[18].timestamp,
     /*now*/
-    ctx[3]
+    ctx[4]
   ) + "";
   let t1;
   let t2;
@@ -18690,18 +18691,18 @@ function create_each_block5(key_1, ctx) {
   function click_handler_2() {
     return (
       /*click_handler_2*/
-      ctx[13](
+      ctx[12](
         /*notification*/
-        ctx[19]
+        ctx[18]
       )
     );
   }
   function keydown_handler(...args) {
     return (
       /*keydown_handler*/
-      ctx[14](
+      ctx[13](
         /*notification*/
-        ctx[19],
+        ctx[18],
         ...args
       )
     );
@@ -18721,7 +18722,7 @@ function create_each_block5(key_1, ctx) {
       t4 = (0, import_internal24.space)();
       (0, import_internal24.attr_dev)(div0, "class", "notification-msg");
       (0, import_internal24.attr_dev)(div0, "role", div0_role_value = /*notification*/
-      ctx[19].type === "info" ? "status" : "alert");
+      ctx[18].type === "info" ? "status" : "alert");
       (0, import_internal24.add_location)(div0, file22, 26, 4, 1028);
       (0, import_internal24.attr_dev)(div1, "class", "notification-timestamp");
       (0, import_internal24.add_location)(div1, file22, 27, 4, 1152);
@@ -18729,7 +18730,7 @@ function create_each_block5(key_1, ctx) {
       (0, import_internal24.add_location)(button, file22, 28, 4, 1237);
       (0, import_internal24.attr_dev)(div2, "tabindex", "0");
       (0, import_internal24.attr_dev)(div2, "class", div2_class_value = "notification notification-" + /*notification*/
-      ctx[19].type + " archived");
+      ctx[18].type + " archived");
       (0, import_internal24.add_location)(div2, file22, 18, 3, 812);
       this.first = div2;
     },
@@ -18755,26 +18756,26 @@ function create_each_block5(key_1, ctx) {
     p: function update(new_ctx, dirty) {
       ctx = new_ctx;
       if ((!current || dirty & /*archived*/
-      4) && raw_value !== (raw_value = /*notification*/
-      ctx[19].msg + ""))
+      8) && raw_value !== (raw_value = /*notification*/
+      ctx[18].msg + ""))
         div0.innerHTML = raw_value;
       ;
       if (!current || dirty & /*archived*/
-      4 && div0_role_value !== (div0_role_value = /*notification*/
-      ctx[19].type === "info" ? "status" : "alert")) {
+      8 && div0_role_value !== (div0_role_value = /*notification*/
+      ctx[18].type === "info" ? "status" : "alert")) {
         (0, import_internal24.attr_dev)(div0, "role", div0_role_value);
       }
       if ((!current || dirty & /*archived, now*/
-      12) && t1_value !== (t1_value = timeAgo(
+      24) && t1_value !== (t1_value = timeAgo(
         /*notification*/
-        ctx[19].timestamp,
+        ctx[18].timestamp,
         /*now*/
-        ctx[3]
+        ctx[4]
       ) + ""))
         (0, import_internal24.set_data_dev)(t1, t1_value);
       if (!current || dirty & /*archived*/
-      4 && div2_class_value !== (div2_class_value = "notification notification-" + /*notification*/
-      ctx[19].type + " archived")) {
+      8 && div2_class_value !== (div2_class_value = "notification notification-" + /*notification*/
+      ctx[18].type + " archived")) {
         (0, import_internal24.attr_dev)(div2, "class", div2_class_value);
       }
     },
@@ -18804,7 +18805,7 @@ function create_each_block5(key_1, ctx) {
           ctx[8],
           { key: (
             /*notification*/
-            ctx[19].id
+            ctx[18].id
           ) }
         );
         div2_intro.start();
@@ -18853,7 +18854,7 @@ function create_fragment24(ctx) {
   function select_block_type(ctx2, dirty) {
     if (
       /*archived*/
-      ctx2[2].length
+      ctx2[3].length
     )
       return 0;
     return 1;
@@ -18862,8 +18863,8 @@ function create_fragment24(ctx) {
   if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
   let if_block1 = (
     /*archived*/
-    ctx[2].length && /*expanded*/
-    ctx[4] && create_if_block11(ctx)
+    ctx[3].length && /*expanded*/
+    ctx[1] && create_if_block11(ctx)
   );
   const block = {
     c: function create() {
@@ -18881,7 +18882,7 @@ function create_fragment24(ctx) {
         div,
         "expanded",
         /*expanded*/
-        ctx[4]
+        ctx[1]
       );
       (0, import_internal24.toggle_class)(div, "inert", !/*show*/
       ctx[0]);
@@ -18897,7 +18898,7 @@ function create_fragment24(ctx) {
       (0, import_internal24.append_dev)(div, t);
       if (if_block1)
         if_block1.m(div, null);
-      ctx[15](div);
+      ctx[14](div);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
@@ -18923,13 +18924,13 @@ function create_fragment24(ctx) {
       }
       if (
         /*archived*/
-        ctx2[2].length && /*expanded*/
-        ctx2[4]
+        ctx2[3].length && /*expanded*/
+        ctx2[1]
       ) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
           if (dirty & /*archived, expanded*/
-          20) {
+          10) {
             (0, import_internal24.transition_in)(if_block1, 1);
           }
         } else {
@@ -18951,12 +18952,12 @@ function create_fragment24(ctx) {
         (0, import_internal24.prop_dev)(div, "inert", div_inert_value);
       }
       if (!current || dirty & /*expanded*/
-      16) {
+      2) {
         (0, import_internal24.toggle_class)(
           div,
           "expanded",
           /*expanded*/
-          ctx2[4]
+          ctx2[1]
         );
       }
       if (!current || dirty & /*show*/
@@ -18983,7 +18984,7 @@ function create_fragment24(ctx) {
       if_blocks[current_block_type_index].d();
       if (if_block1)
         if_block1.d();
-      ctx[15](null);
+      ctx[14](null);
     }
   };
   (0, import_internal24.dispatch_dev)("SvelteRegisterBlock", {
@@ -18998,28 +18999,27 @@ function create_fragment24(ctx) {
 function instance24($$self, $$props, $$invalidate) {
   let $ANIMATION_SPEED;
   (0, import_internal24.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal24.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(17, $ANIMATION_SPEED = $$value));
+  (0, import_internal24.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(16, $ANIMATION_SPEED = $$value));
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal24.validate_slots)("NotificationArchive", slots, []);
-  let { position = "top" } = $$props;
   let { show = false } = $$props;
+  let { expanded = false } = $$props;
   const duration2 = 1e5;
   let el;
   let archived = [];
   let now = (/* @__PURE__ */ new Date()).getTime();
   let timer2;
-  let expanded = false;
   (0, import_svelte15.onMount)(() => {
-    timer2 = setInterval(() => $$invalidate(3, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
+    timer2 = setInterval(() => $$invalidate(4, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
     ArchivedNotifications.subscribe((val) => {
-      $$invalidate(2, archived = position === "top" ? Object.values(val).reverse() : Object.values(val));
+      $$invalidate(3, archived = Object.values(val).reverse());
     });
   });
   (0, import_svelte15.onDestroy)(() => {
     clearInterval(timer2);
   });
   function toggle() {
-    $$invalidate(4, expanded = !expanded);
+    $$invalidate(1, expanded = !expanded);
   }
   function clearAll(e) {
     e.stopPropagation();
@@ -19043,7 +19043,7 @@ function instance24($$self, $$props, $$invalidate) {
       return slideUp(node, params);
     return slideUp(node, { duration: 0 });
   }
-  const writable_props = ["position", "show"];
+  const writable_props = ["show", "expanded"];
   Object_13.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<NotificationArchive> was created with unknown prop '${key}'`);
@@ -19055,14 +19055,14 @@ function instance24($$self, $$props, $$invalidate) {
   function div_binding($$value) {
     import_internal24.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(1, el);
+      $$invalidate(2, el);
     });
   }
   $$self.$$set = ($$props2) => {
-    if ("position" in $$props2)
-      $$invalidate(10, position = $$props2.position);
     if ("show" in $$props2)
       $$invalidate(0, show = $$props2.show);
+    if ("expanded" in $$props2)
+      $$invalidate(1, expanded = $$props2.expanded);
   };
   $$self.$capture_state = () => ({
     onDestroy: import_svelte15.onDestroy,
@@ -19076,14 +19076,13 @@ function instance24($$self, $$props, $$invalidate) {
     flip,
     ANIMATION_SPEED,
     timeAgo,
-    position,
     show,
+    expanded,
     duration: duration2,
     el,
     archived,
     now,
     timer: timer2,
-    expanded,
     toggle,
     clearAll,
     onKeydown: onKeydown2,
@@ -19092,45 +19091,42 @@ function instance24($$self, $$props, $$invalidate) {
     $ANIMATION_SPEED
   });
   $$self.$inject_state = ($$props2) => {
-    if ("position" in $$props2)
-      $$invalidate(10, position = $$props2.position);
     if ("show" in $$props2)
       $$invalidate(0, show = $$props2.show);
+    if ("expanded" in $$props2)
+      $$invalidate(1, expanded = $$props2.expanded);
     if ("el" in $$props2)
-      $$invalidate(1, el = $$props2.el);
+      $$invalidate(2, el = $$props2.el);
     if ("archived" in $$props2)
-      $$invalidate(2, archived = $$props2.archived);
+      $$invalidate(3, archived = $$props2.archived);
     if ("now" in $$props2)
-      $$invalidate(3, now = $$props2.now);
+      $$invalidate(4, now = $$props2.now);
     if ("timer" in $$props2)
       timer2 = $$props2.timer;
-    if ("expanded" in $$props2)
-      $$invalidate(4, expanded = $$props2.expanded);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
     if ($$self.$$.dirty & /*show, el*/
-    3) {
+    5) {
       $: {
         if (!show && el)
-          el.addEventListener("transitionend", () => $$invalidate(4, expanded = false), { once: true });
+          el.addEventListener("transitionend", () => $$invalidate(1, expanded = false), { once: true });
       }
     }
   };
   return [
     show,
+    expanded,
     el,
     archived,
     now,
-    expanded,
     toggle,
     clearAll,
     onKeydown2,
     _in,
     _out,
-    position,
     click_handler,
     click_handler_1,
     click_handler_2,
@@ -19141,7 +19137,7 @@ function instance24($$self, $$props, $$invalidate) {
 var NotificationArchive = class extends import_internal24.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal24.init)(this, options, instance24, create_fragment24, import_internal24.safe_not_equal, { position: 10, show: 0 });
+    (0, import_internal24.init)(this, options, instance24, create_fragment24, import_internal24.safe_not_equal, { show: 0, expanded: 1 });
     (0, import_internal24.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "NotificationArchive",
@@ -19149,16 +19145,16 @@ var NotificationArchive = class extends import_internal24.SvelteComponentDev {
       id: create_fragment24.name
     });
   }
-  get position() {
-    throw new Error("<NotificationArchive>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set position(value) {
-    throw new Error("<NotificationArchive>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
   get show() {
     throw new Error("<NotificationArchive>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   set show(value) {
+    throw new Error("<NotificationArchive>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get expanded() {
+    throw new Error("<NotificationArchive>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set expanded(value) {
     throw new Error("<NotificationArchive>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -19169,29 +19165,29 @@ var { Object: Object_14 } = import_internal25.globals;
 var file23 = "src/notification-center/NotificationCenter/NotificationCenter.svelte";
 function get_each_context6(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[31] = list[i];
+  child_ctx[33] = list[i];
   return child_ctx;
 }
-function create_if_block_42(ctx) {
+function create_if_block_32(ctx) {
   let pushbutton;
   let updating_pressed;
   let current;
   function pushbutton_pressed_binding(value) {
-    ctx[15](value);
+    ctx[16](value);
   }
   let pushbutton_props = {
     icon: "bell",
     outline: (
       /*outline*/
-      ctx[3]
+      ctx[2]
     ),
     round: (
       /*round*/
-      ctx[2]
+      ctx[1]
     ),
     class: "notification-center-button " + /*hasNotifications*/
-    ctx[9] + " " + /*hasArchivedNotifications*/
-    ctx[10]
+    ctx[10] + " " + /*hasArchivedNotifications*/
+    ctx[5]
   };
   if (
     /*$showArchive*/
@@ -19213,18 +19209,18 @@ function create_if_block_42(ctx) {
     p: function update(ctx2, dirty) {
       const pushbutton_changes = {};
       if (dirty[0] & /*outline*/
-      8)
-        pushbutton_changes.outline = /*outline*/
-        ctx2[3];
-      if (dirty[0] & /*round*/
       4)
-        pushbutton_changes.round = /*round*/
+        pushbutton_changes.outline = /*outline*/
         ctx2[2];
+      if (dirty[0] & /*round*/
+      2)
+        pushbutton_changes.round = /*round*/
+        ctx2[1];
       if (dirty[0] & /*hasNotifications, hasArchivedNotifications*/
-      1536)
+      1056)
         pushbutton_changes.class = "notification-center-button " + /*hasNotifications*/
-        ctx2[9] + " " + /*hasArchivedNotifications*/
-        ctx2[10];
+        ctx2[10] + " " + /*hasArchivedNotifications*/
+        ctx2[5];
       if (!updating_pressed && dirty[0] & /*$showArchive*/
       2048) {
         updating_pressed = true;
@@ -19250,78 +19246,9 @@ function create_if_block_42(ctx) {
   };
   (0, import_internal25.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_42.name,
-    type: "if",
-    source: "(1:0) {#if !hideButton}",
-    ctx
-  });
-  return block;
-}
-function create_if_block_32(ctx) {
-  let notificationarchive;
-  let updating_show;
-  let current;
-  function notificationarchive_show_binding(value) {
-    ctx[16](value);
-  }
-  let notificationarchive_props = { position: (
-    /*position*/
-    ctx[0]
-  ) };
-  if (
-    /*$showArchive*/
-    ctx[11] !== void 0
-  ) {
-    notificationarchive_props.show = /*$showArchive*/
-    ctx[11];
-  }
-  notificationarchive = new NotificationArchive_default({
-    props: notificationarchive_props,
-    $$inline: true
-  });
-  import_internal25.binding_callbacks.push(() => (0, import_internal25.bind)(notificationarchive, "show", notificationarchive_show_binding));
-  const block = {
-    c: function create() {
-      (0, import_internal25.create_component)(notificationarchive.$$.fragment);
-    },
-    m: function mount(target, anchor) {
-      (0, import_internal25.mount_component)(notificationarchive, target, anchor);
-      current = true;
-    },
-    p: function update(ctx2, dirty) {
-      const notificationarchive_changes = {};
-      if (dirty[0] & /*position*/
-      1)
-        notificationarchive_changes.position = /*position*/
-        ctx2[0];
-      if (!updating_show && dirty[0] & /*$showArchive*/
-      2048) {
-        updating_show = true;
-        notificationarchive_changes.show = /*$showArchive*/
-        ctx2[11];
-        (0, import_internal25.add_flush_callback)(() => updating_show = false);
-      }
-      notificationarchive.$set(notificationarchive_changes);
-    },
-    i: function intro(local) {
-      if (current)
-        return;
-      (0, import_internal25.transition_in)(notificationarchive.$$.fragment, local);
-      current = true;
-    },
-    o: function outro(local) {
-      (0, import_internal25.transition_out)(notificationarchive.$$.fragment, local);
-      current = false;
-    },
-    d: function destroy(detaching) {
-      (0, import_internal25.destroy_component)(notificationarchive, detaching);
-    }
-  };
-  (0, import_internal25.dispatch_dev)("SvelteRegisterBlock", {
-    block,
     id: create_if_block_32.name,
     type: "if",
-    source: "(16:1) {#if position === 'bottom' && !hideButton}",
+    source: "(1:0) {#if !hideButton}",
     ctx
   });
   return block;
@@ -19330,7 +19257,7 @@ function create_if_block_22(ctx) {
   let button;
   let t_value = (
     /*notification*/
-    ctx[31].btn + ""
+    ctx[33].btn + ""
   );
   let t;
   let mounted;
@@ -19340,7 +19267,7 @@ function create_if_block_22(ctx) {
       /*click_handler*/
       ctx[17](
         /*notification*/
-        ctx[31]
+        ctx[33]
       )
     );
   }
@@ -19348,7 +19275,7 @@ function create_if_block_22(ctx) {
     c: function create() {
       button = (0, import_internal25.element)("button");
       t = (0, import_internal25.text)(t_value);
-      (0, import_internal25.add_location)(button, file23, 37, 5, 1346);
+      (0, import_internal25.add_location)(button, file23, 35, 5, 1227);
     },
     m: function mount(target, anchor) {
       (0, import_internal25.insert_dev)(target, button, anchor);
@@ -19361,8 +19288,8 @@ function create_if_block_22(ctx) {
     p: function update(new_ctx, dirty) {
       ctx = new_ctx;
       if (dirty[0] & /*notifications*/
-      32 && t_value !== (t_value = /*notification*/
-      ctx[31].btn + ""))
+      16 && t_value !== (t_value = /*notification*/
+      ctx[33].btn + ""))
         (0, import_internal25.set_data_dev)(t, t_value);
     },
     d: function destroy(detaching) {
@@ -19376,7 +19303,7 @@ function create_if_block_22(ctx) {
     block,
     id: create_if_block_22.name,
     type: "if",
-    source: "(37:4) {#if notification.btn}",
+    source: "(35:4) {#if notification.btn}",
     ctx
   });
   return block;
@@ -19390,9 +19317,9 @@ function create_if_block_15(ctx) {
       div0 = (0, import_internal25.element)("div");
       (0, import_internal25.attr_dev)(div0, "role", "progressbar");
       (0, import_internal25.attr_dev)(div0, "class", "notification-progress");
-      (0, import_internal25.add_location)(div0, file23, 45, 5, 1679);
+      (0, import_internal25.add_location)(div0, file23, 43, 5, 1560);
       (0, import_internal25.attr_dev)(div1, "class", "notification-progressbar");
-      (0, import_internal25.add_location)(div1, file23, 44, 4, 1635);
+      (0, import_internal25.add_location)(div1, file23, 42, 4, 1516);
     },
     m: function mount(target, anchor) {
       (0, import_internal25.insert_dev)(target, div1, anchor);
@@ -19407,7 +19334,7 @@ function create_if_block_15(ctx) {
     block,
     id: create_if_block_15.name,
     type: "if",
-    source: "(44:3) {#if notification.showProgress}",
+    source: "(42:3) {#if notification.showProgress}",
     ctx
   });
   return block;
@@ -19420,7 +19347,7 @@ function create_each_block6(key_1, ctx) {
   let div1;
   let raw_value = (
     /*notification*/
-    ctx[31].msg + ""
+    ctx[33].msg + ""
   );
   let div1_role_value;
   let t1;
@@ -19440,33 +19367,33 @@ function create_each_block6(key_1, ctx) {
   icon = new Icon_default({
     props: { name: (
       /*notification*/
-      ctx[31].type
+      ctx[33].type
     ) },
     $$inline: true
   });
   let if_block0 = (
     /*notification*/
-    ctx[31].btn && create_if_block_22(ctx)
+    ctx[33].btn && create_if_block_22(ctx)
   );
   function click_handler_1() {
     return (
       /*click_handler_1*/
       ctx[18](
         /*notification*/
-        ctx[31]
+        ctx[33]
       )
     );
   }
   let if_block1 = (
     /*notification*/
-    ctx[31].showProgress && create_if_block_15(ctx)
+    ctx[33].showProgress && create_if_block_15(ctx)
   );
   function mouseover_handler() {
     return (
       /*mouseover_handler*/
       ctx[19](
         /*notification*/
-        ctx[31]
+        ctx[33]
       )
     );
   }
@@ -19475,7 +19402,7 @@ function create_each_block6(key_1, ctx) {
       /*focus_handler*/
       ctx[20](
         /*notification*/
-        ctx[31]
+        ctx[33]
       )
     );
   }
@@ -19484,7 +19411,7 @@ function create_each_block6(key_1, ctx) {
       /*mouseleave_handler*/
       ctx[21](
         /*notification*/
-        ctx[31],
+        ctx[33],
         ...args
       )
     );
@@ -19494,7 +19421,17 @@ function create_each_block6(key_1, ctx) {
       /*blur_handler*/
       ctx[22](
         /*notification*/
-        ctx[31],
+        ctx[33],
+        ...args
+      )
+    );
+  }
+  function keydown_handler(...args) {
+    return (
+      /*keydown_handler*/
+      ctx[23](
+        /*notification*/
+        ctx[33],
         ...args
       )
     );
@@ -19519,21 +19456,21 @@ function create_each_block6(key_1, ctx) {
       if (if_block1)
         if_block1.c();
       (0, import_internal25.attr_dev)(div0, "class", "notification-icon");
-      (0, import_internal25.add_location)(div0, file23, 32, 3, 1080);
+      (0, import_internal25.add_location)(div0, file23, 30, 3, 961);
       (0, import_internal25.attr_dev)(div1, "class", "notification-msg");
       (0, import_internal25.attr_dev)(div1, "role", div1_role_value = /*notification*/
-      ctx[31].type === "info" ? "status" : "alert");
-      (0, import_internal25.add_location)(div1, file23, 33, 3, 1155);
+      ctx[33].type === "info" ? "status" : "alert");
+      (0, import_internal25.add_location)(div1, file23, 31, 3, 1036);
       (0, import_internal25.attr_dev)(button, "class", "notification-close");
-      (0, import_internal25.add_location)(button, file23, 40, 4, 1464);
+      (0, import_internal25.add_location)(button, file23, 38, 4, 1345);
       (0, import_internal25.attr_dev)(div2, "class", "notification-buttons");
-      (0, import_internal25.add_location)(div2, file23, 35, 3, 1279);
+      (0, import_internal25.add_location)(div2, file23, 33, 3, 1160);
       (0, import_internal25.attr_dev)(div3, "class", div3_class_value = "notification notification-" + /*notification*/
-      ctx[31].type);
+      ctx[33].type);
       (0, import_internal25.attr_dev)(div3, "data-id", div3_data_id_value = /*notification*/
-      ctx[31].id);
+      ctx[33].id);
       (0, import_internal25.attr_dev)(div3, "tabindex", "0");
-      (0, import_internal25.add_location)(div3, file23, 19, 2, 654);
+      (0, import_internal25.add_location)(div3, file23, 17, 2, 513);
       this.first = div3;
     },
     m: function mount(target, anchor) {
@@ -19560,7 +19497,7 @@ function create_each_block6(key_1, ctx) {
           (0, import_internal25.listen_dev)(div3, "focus", focus_handler, false, false, false, false),
           (0, import_internal25.listen_dev)(div3, "mouseleave", mouseleave_handler, false, false, false, false),
           (0, import_internal25.listen_dev)(div3, "blur", blur_handler, false, false, false, false),
-          (0, import_internal25.listen_dev)(div3, "keydown", onkeydown, false, false, false, false)
+          (0, import_internal25.listen_dev)(div3, "keydown", keydown_handler, false, false, false, false)
         ];
         mounted = true;
       }
@@ -19569,23 +19506,23 @@ function create_each_block6(key_1, ctx) {
       ctx = new_ctx;
       const icon_changes = {};
       if (dirty[0] & /*notifications*/
-      32)
+      16)
         icon_changes.name = /*notification*/
-        ctx[31].type;
+        ctx[33].type;
       icon.$set(icon_changes);
       if ((!current || dirty[0] & /*notifications*/
-      32) && raw_value !== (raw_value = /*notification*/
-      ctx[31].msg + ""))
+      16) && raw_value !== (raw_value = /*notification*/
+      ctx[33].msg + ""))
         div1.innerHTML = raw_value;
       ;
       if (!current || dirty[0] & /*notifications*/
-      32 && div1_role_value !== (div1_role_value = /*notification*/
-      ctx[31].type === "info" ? "status" : "alert")) {
+      16 && div1_role_value !== (div1_role_value = /*notification*/
+      ctx[33].type === "info" ? "status" : "alert")) {
         (0, import_internal25.attr_dev)(div1, "role", div1_role_value);
       }
       if (
         /*notification*/
-        ctx[31].btn
+        ctx[33].btn
       ) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
@@ -19600,7 +19537,7 @@ function create_each_block6(key_1, ctx) {
       }
       if (
         /*notification*/
-        ctx[31].showProgress
+        ctx[33].showProgress
       ) {
         if (if_block1) {
         } else {
@@ -19613,13 +19550,13 @@ function create_each_block6(key_1, ctx) {
         if_block1 = null;
       }
       if (!current || dirty[0] & /*notifications*/
-      32 && div3_class_value !== (div3_class_value = "notification notification-" + /*notification*/
-      ctx[31].type)) {
+      16 && div3_class_value !== (div3_class_value = "notification notification-" + /*notification*/
+      ctx[33].type)) {
         (0, import_internal25.attr_dev)(div3, "class", div3_class_value);
       }
       if (!current || dirty[0] & /*notifications*/
-      32 && div3_data_id_value !== (div3_data_id_value = /*notification*/
-      ctx[31].id)) {
+      16 && div3_data_id_value !== (div3_data_id_value = /*notification*/
+      ctx[33].id)) {
         (0, import_internal25.attr_dev)(div3, "data-id", div3_data_id_value);
       }
     },
@@ -19659,7 +19596,7 @@ function create_each_block6(key_1, ctx) {
         ctx[13],
         { key: (
           /*notification*/
-          ctx[31].id
+          ctx[33].id
         ) }
       );
       current = false;
@@ -19682,7 +19619,7 @@ function create_each_block6(key_1, ctx) {
     block,
     id: create_each_block6.name,
     type: "each",
-    source: "(18:1) {#each notifications as notification (notification.id)}",
+    source: "(16:1) {#each notifications as notification (notification.id)}",
     ctx
   });
   return block;
@@ -19690,14 +19627,15 @@ function create_each_block6(key_1, ctx) {
 function create_if_block12(ctx) {
   let notificationarchive;
   let updating_show;
+  let updating_expanded;
   let current;
-  function notificationarchive_show_binding_1(value) {
-    ctx[23](value);
+  function notificationarchive_show_binding(value) {
+    ctx[24](value);
   }
-  let notificationarchive_props = { position: (
-    /*position*/
-    ctx[0]
-  ) };
+  function notificationarchive_expanded_binding(value) {
+    ctx[25](value);
+  }
+  let notificationarchive_props = {};
   if (
     /*$showArchive*/
     ctx[11] !== void 0
@@ -19705,11 +19643,19 @@ function create_if_block12(ctx) {
     notificationarchive_props.show = /*$showArchive*/
     ctx[11];
   }
+  if (
+    /*archiveIsExpanded*/
+    ctx[7] !== void 0
+  ) {
+    notificationarchive_props.expanded = /*archiveIsExpanded*/
+    ctx[7];
+  }
   notificationarchive = new NotificationArchive_default({
     props: notificationarchive_props,
     $$inline: true
   });
-  import_internal25.binding_callbacks.push(() => (0, import_internal25.bind)(notificationarchive, "show", notificationarchive_show_binding_1));
+  import_internal25.binding_callbacks.push(() => (0, import_internal25.bind)(notificationarchive, "show", notificationarchive_show_binding));
+  import_internal25.binding_callbacks.push(() => (0, import_internal25.bind)(notificationarchive, "expanded", notificationarchive_expanded_binding));
   const block = {
     c: function create() {
       (0, import_internal25.create_component)(notificationarchive.$$.fragment);
@@ -19720,16 +19666,19 @@ function create_if_block12(ctx) {
     },
     p: function update(ctx2, dirty) {
       const notificationarchive_changes = {};
-      if (dirty[0] & /*position*/
-      1)
-        notificationarchive_changes.position = /*position*/
-        ctx2[0];
       if (!updating_show && dirty[0] & /*$showArchive*/
       2048) {
         updating_show = true;
         notificationarchive_changes.show = /*$showArchive*/
         ctx2[11];
         (0, import_internal25.add_flush_callback)(() => updating_show = false);
+      }
+      if (!updating_expanded && dirty[0] & /*archiveIsExpanded*/
+      128) {
+        updating_expanded = true;
+        notificationarchive_changes.expanded = /*archiveIsExpanded*/
+        ctx2[7];
+        (0, import_internal25.add_flush_callback)(() => updating_expanded = false);
       }
       notificationarchive.$set(notificationarchive_changes);
     },
@@ -19751,7 +19700,7 @@ function create_if_block12(ctx) {
     block,
     id: create_if_block12.name,
     type: "if",
-    source: "(53:1) {#if position === 'top' && !hideButton}",
+    source: "(50:1) {#if !hideButton}",
     ctx
   });
   return block;
@@ -19759,27 +19708,21 @@ function create_if_block12(ctx) {
 function create_fragment25(ctx) {
   let t0;
   let div;
-  let t1;
   let each_blocks = [];
   let each_1_lookup = /* @__PURE__ */ new Map();
-  let t2;
+  let t1;
   let div_class_value;
   let current;
   let if_block0 = !/*hideButton*/
-  ctx[4] && create_if_block_42(ctx);
-  let if_block1 = (
-    /*position*/
-    ctx[0] === "bottom" && !/*hideButton*/
-    ctx[4] && create_if_block_32(ctx)
-  );
+  ctx[3] && create_if_block_32(ctx);
   let each_value = (
     /*notifications*/
-    ctx[5]
+    ctx[4]
   );
   (0, import_internal25.validate_each_argument)(each_value);
   const get_key = (ctx2) => (
     /*notification*/
-    ctx2[31].id
+    ctx2[33].id
   );
   (0, import_internal25.validate_each_keys)(ctx, each_value, get_each_context6, get_key);
   for (let i = 0; i < each_value.length; i += 1) {
@@ -19787,29 +19730,22 @@ function create_fragment25(ctx) {
     let key = get_key(child_ctx);
     each_1_lookup.set(key, each_blocks[i] = create_each_block6(key, child_ctx));
   }
-  let if_block2 = (
-    /*position*/
-    ctx[0] === "top" && !/*hideButton*/
-    ctx[4] && create_if_block12(ctx)
-  );
+  let if_block1 = !/*hideButton*/
+  ctx[3] && create_if_block12(ctx);
   const block = {
     c: function create() {
       if (if_block0)
         if_block0.c();
       t0 = (0, import_internal25.space)();
       div = (0, import_internal25.element)("div");
-      if (if_block1)
-        if_block1.c();
-      t1 = (0, import_internal25.space)();
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      t2 = (0, import_internal25.space)();
-      if (if_block2)
-        if_block2.c();
-      (0, import_internal25.attr_dev)(div, "class", div_class_value = "notification-center notification-center-" + /*position*/
-      ctx[0] + " " + /*className*/
-      ctx[1]);
+      t1 = (0, import_internal25.space)();
+      if (if_block1)
+        if_block1.c();
+      (0, import_internal25.attr_dev)(div, "class", div_class_value = "notification-center " + /*className*/
+      ctx[0]);
       (0, import_internal25.toggle_class)(
         div,
         "show-archive",
@@ -19826,7 +19762,7 @@ function create_fragment25(ctx) {
         div,
         "has-active-notifications",
         /*hasActiveNotifications*/
-        ctx[8]
+        ctx[9]
       );
       (0, import_internal25.add_location)(div, file23, 8, 0, 187);
     },
@@ -19838,31 +19774,28 @@ function create_fragment25(ctx) {
         if_block0.m(target, anchor);
       (0, import_internal25.insert_dev)(target, t0, anchor);
       (0, import_internal25.insert_dev)(target, div, anchor);
-      if (if_block1)
-        if_block1.m(div, null);
-      (0, import_internal25.append_dev)(div, t1);
       for (let i = 0; i < each_blocks.length; i += 1) {
         if (each_blocks[i]) {
           each_blocks[i].m(div, null);
         }
       }
-      (0, import_internal25.append_dev)(div, t2);
-      if (if_block2)
-        if_block2.m(div, null);
-      ctx[24](div);
+      (0, import_internal25.append_dev)(div, t1);
+      if (if_block1)
+        if_block1.m(div, null);
+      ctx[26](div);
       current = true;
     },
     p: function update(ctx2, dirty) {
       if (!/*hideButton*/
-      ctx2[4]) {
+      ctx2[3]) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
           if (dirty[0] & /*hideButton*/
-          16) {
+          8) {
             (0, import_internal25.transition_in)(if_block0, 1);
           }
         } else {
-          if_block0 = create_if_block_42(ctx2);
+          if_block0 = create_if_block_32(ctx2);
           if_block0.c();
           (0, import_internal25.transition_in)(if_block0, 1);
           if_block0.m(t0.parentNode, t0);
@@ -19874,22 +19807,33 @@ function create_fragment25(ctx) {
         });
         (0, import_internal25.check_outros)();
       }
-      if (
-        /*position*/
-        ctx2[0] === "bottom" && !/*hideButton*/
-        ctx2[4]
-      ) {
+      if (dirty[0] & /*notifications, onKeydown*/
+      16400) {
+        each_value = /*notifications*/
+        ctx2[4];
+        (0, import_internal25.validate_each_argument)(each_value);
+        (0, import_internal25.group_outros)();
+        for (let i = 0; i < each_blocks.length; i += 1)
+          each_blocks[i].r();
+        (0, import_internal25.validate_each_keys)(ctx2, each_value, get_each_context6, get_key);
+        each_blocks = (0, import_internal25.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, import_internal25.fix_and_outro_and_destroy_block, create_each_block6, t1, get_each_context6);
+        for (let i = 0; i < each_blocks.length; i += 1)
+          each_blocks[i].a();
+        (0, import_internal25.check_outros)();
+      }
+      if (!/*hideButton*/
+      ctx2[3]) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
-          if (dirty[0] & /*position, hideButton*/
-          17) {
+          if (dirty[0] & /*hideButton*/
+          8) {
             (0, import_internal25.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block_32(ctx2);
+          if_block1 = create_if_block12(ctx2);
           if_block1.c();
           (0, import_internal25.transition_in)(if_block1, 1);
-          if_block1.m(div, t1);
+          if_block1.m(div, null);
         }
       } else if (if_block1) {
         (0, import_internal25.group_outros)();
@@ -19898,52 +19842,13 @@ function create_fragment25(ctx) {
         });
         (0, import_internal25.check_outros)();
       }
-      if (dirty[0] & /*notifications*/
-      32) {
-        each_value = /*notifications*/
-        ctx2[5];
-        (0, import_internal25.validate_each_argument)(each_value);
-        (0, import_internal25.group_outros)();
-        for (let i = 0; i < each_blocks.length; i += 1)
-          each_blocks[i].r();
-        (0, import_internal25.validate_each_keys)(ctx2, each_value, get_each_context6, get_key);
-        each_blocks = (0, import_internal25.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, import_internal25.fix_and_outro_and_destroy_block, create_each_block6, t2, get_each_context6);
-        for (let i = 0; i < each_blocks.length; i += 1)
-          each_blocks[i].a();
-        (0, import_internal25.check_outros)();
-      }
-      if (
-        /*position*/
-        ctx2[0] === "top" && !/*hideButton*/
-        ctx2[4]
-      ) {
-        if (if_block2) {
-          if_block2.p(ctx2, dirty);
-          if (dirty[0] & /*position, hideButton*/
-          17) {
-            (0, import_internal25.transition_in)(if_block2, 1);
-          }
-        } else {
-          if_block2 = create_if_block12(ctx2);
-          if_block2.c();
-          (0, import_internal25.transition_in)(if_block2, 1);
-          if_block2.m(div, null);
-        }
-      } else if (if_block2) {
-        (0, import_internal25.group_outros)();
-        (0, import_internal25.transition_out)(if_block2, 1, 1, () => {
-          if_block2 = null;
-        });
-        (0, import_internal25.check_outros)();
-      }
-      if (!current || dirty[0] & /*position, className*/
-      3 && div_class_value !== (div_class_value = "notification-center notification-center-" + /*position*/
-      ctx2[0] + " " + /*className*/
-      ctx2[1])) {
+      if (!current || dirty[0] & /*className*/
+      1 && div_class_value !== (div_class_value = "notification-center " + /*className*/
+      ctx2[0])) {
         (0, import_internal25.attr_dev)(div, "class", div_class_value);
       }
-      if (!current || dirty[0] & /*position, className, $showArchive*/
-      2051) {
+      if (!current || dirty[0] & /*className, $showArchive*/
+      2049) {
         (0, import_internal25.toggle_class)(
           div,
           "show-archive",
@@ -19951,8 +19856,8 @@ function create_fragment25(ctx) {
           ctx2[11]
         );
       }
-      if (!current || dirty[0] & /*position, className, archiveIsVisible*/
-      67) {
+      if (!current || dirty[0] & /*className, archiveIsVisible*/
+      65) {
         (0, import_internal25.toggle_class)(
           div,
           "archive-is-visible",
@@ -19960,13 +19865,13 @@ function create_fragment25(ctx) {
           ctx2[6]
         );
       }
-      if (!current || dirty[0] & /*position, className, hasActiveNotifications*/
-      259) {
+      if (!current || dirty[0] & /*className, hasActiveNotifications*/
+      513) {
         (0, import_internal25.toggle_class)(
           div,
           "has-active-notifications",
           /*hasActiveNotifications*/
-          ctx2[8]
+          ctx2[9]
         );
       }
     },
@@ -19974,20 +19879,18 @@ function create_fragment25(ctx) {
       if (current)
         return;
       (0, import_internal25.transition_in)(if_block0);
-      (0, import_internal25.transition_in)(if_block1);
       for (let i = 0; i < each_value.length; i += 1) {
         (0, import_internal25.transition_in)(each_blocks[i]);
       }
-      (0, import_internal25.transition_in)(if_block2);
+      (0, import_internal25.transition_in)(if_block1);
       current = true;
     },
     o: function outro(local) {
       (0, import_internal25.transition_out)(if_block0);
-      (0, import_internal25.transition_out)(if_block1);
       for (let i = 0; i < each_blocks.length; i += 1) {
         (0, import_internal25.transition_out)(each_blocks[i]);
       }
-      (0, import_internal25.transition_out)(if_block2);
+      (0, import_internal25.transition_out)(if_block1);
       current = false;
     },
     d: function destroy(detaching) {
@@ -19997,14 +19900,12 @@ function create_fragment25(ctx) {
         (0, import_internal25.detach_dev)(t0);
       if (detaching)
         (0, import_internal25.detach_dev)(div);
-      if (if_block1)
-        if_block1.d();
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].d();
       }
-      if (if_block2)
-        if_block2.d();
-      ctx[24](null);
+      if (if_block1)
+        if_block1.d();
+      ctx[26](null);
     }
   };
   (0, import_internal25.dispatch_dev)("SvelteRegisterBlock", {
@@ -20021,11 +19922,13 @@ function instance25($$self, $$props, $$invalidate) {
   let hasNotifications;
   let $showArchive;
   let $ANIMATION_SPEED;
+  let $ArchivedNotifications;
   (0, import_internal25.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal25.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(26, $ANIMATION_SPEED = $$value));
+  (0, import_internal25.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(28, $ANIMATION_SPEED = $$value));
+  (0, import_internal25.validate_store)(ArchivedNotifications, "ArchivedNotifications");
+  (0, import_internal25.component_subscribe)($$self, ArchivedNotifications, ($$value) => $$invalidate(15, $ArchivedNotifications = $$value));
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal25.validate_slots)("NotificationCenter", slots, []);
-  let { position = "top" } = $$props;
   let { class: className = "" } = $$props;
   let { round = false } = $$props;
   let { outline = false } = $$props;
@@ -20035,26 +19938,23 @@ function instance25($$self, $$props, $$invalidate) {
   (0, import_internal25.component_subscribe)($$self, showArchive, (value) => $$invalidate(11, $showArchive = value));
   const duration2 = $ANIMATION_SPEED;
   let archiveIsVisible = false;
+  let archiveIsExpanded = false;
   let el;
   let notifications = [];
-  let archived = [];
   let initial = true;
   let hasActiveNotifications = false;
   (0, import_svelte16.onMount)(() => {
     document.body.appendChild(el);
     Notifications.subscribe((val) => {
-      $$invalidate(5, notifications = position === "top" ? Object.values(val).reverse() : Object.values(val));
+      $$invalidate(4, notifications = Object.values(val).reverse());
       notifications.forEach((t) => {
         if (!timers[t.id])
           createTimer(t);
       });
       if (notifications.length > 0)
-        $$invalidate(8, hasActiveNotifications = true);
+        $$invalidate(9, hasActiveNotifications = true);
       else
-        setTimeout(() => $$invalidate(8, hasActiveNotifications = false), $ANIMATION_SPEED);
-    });
-    ArchivedNotifications.subscribe((val) => {
-      $$invalidate(14, archived = position === "top" ? Object.values(val).reverse() : Object.values(val));
+        setTimeout(() => $$invalidate(9, hasActiveNotifications = false), $ANIMATION_SPEED);
     });
     showArchive.subscribe((val) => {
       if (initial)
@@ -20064,7 +19964,8 @@ function instance25($$self, $$props, $$invalidate) {
       else
         removeEvents();
     });
-    requestAnimationFrame(() => initial = false);
+    if (initial)
+      requestAnimationFrame(() => initial = false);
   });
   function addEvents() {
     $$invalidate(6, archiveIsVisible = true);
@@ -20086,18 +19987,20 @@ function instance25($$self, $$props, $$invalidate) {
   function _send(node, params) {
     if (!$showArchive)
       return fly2(node);
+    if (!archiveIsExpanded)
+      return slideDown(node, params);
     return send(node, { ...params, duration: duration2 });
   }
-  const writable_props = ["position", "class", "round", "outline", "hideButton"];
+  function onKeydown2(e, notification) {
+    if (e.key === "Escape")
+      hideNotification(notification.id);
+  }
+  const writable_props = ["class", "round", "outline", "hideButton"];
   Object_14.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
   });
   function pushbutton_pressed_binding(value) {
-    $showArchive = value;
-    showArchive.set($showArchive);
-  }
-  function notificationarchive_show_binding(value) {
     $showArchive = value;
     showArchive.set($showArchive);
   }
@@ -20107,27 +20010,30 @@ function instance25($$self, $$props, $$invalidate) {
   const focus_handler = (notification) => clearTimer2(notification);
   const mouseleave_handler = (notification, e) => createTimer(notification, e.target);
   const blur_handler = (notification, e) => createTimer(notification, e.target);
-  function notificationarchive_show_binding_1(value) {
+  const keydown_handler = (notification, e) => onKeydown2(e, notification);
+  function notificationarchive_show_binding(value) {
     $showArchive = value;
     showArchive.set($showArchive);
+  }
+  function notificationarchive_expanded_binding(value) {
+    archiveIsExpanded = value;
+    $$invalidate(7, archiveIsExpanded);
   }
   function div_binding($$value) {
     import_internal25.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(7, el);
+      $$invalidate(8, el);
     });
   }
   $$self.$$set = ($$props2) => {
-    if ("position" in $$props2)
-      $$invalidate(0, position = $$props2.position);
     if ("class" in $$props2)
-      $$invalidate(1, className = $$props2.class);
+      $$invalidate(0, className = $$props2.class);
     if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
+      $$invalidate(1, round = $$props2.round);
     if ("outline" in $$props2)
-      $$invalidate(3, outline = $$props2.outline);
+      $$invalidate(2, outline = $$props2.outline);
     if ("hideButton" in $$props2)
-      $$invalidate(4, hideButton = $$props2.hideButton);
+      $$invalidate(3, hideButton = $$props2.hideButton);
   };
   $$self.$capture_state = () => ({
     onMount: import_svelte16.onMount,
@@ -20143,9 +20049,9 @@ function instance25($$self, $$props, $$invalidate) {
     send,
     flip,
     fly: fly2,
+    slideDown,
     NotificationArchive: NotificationArchive_default,
     ANIMATION_SPEED,
-    position,
     className,
     round,
     outline,
@@ -20153,88 +20059,90 @@ function instance25($$self, $$props, $$invalidate) {
     showArchive,
     duration: duration2,
     archiveIsVisible,
+    archiveIsExpanded,
     el,
     notifications,
-    archived,
     initial,
     hasActiveNotifications,
     addEvents,
     removeEvents,
     onDocClick,
     _send,
-    hasNotifications,
+    onKeydown: onKeydown2,
     hasArchivedNotifications,
+    hasNotifications,
     $showArchive,
-    $ANIMATION_SPEED
+    $ANIMATION_SPEED,
+    $ArchivedNotifications
   });
   $$self.$inject_state = ($$props2) => {
-    if ("position" in $$props2)
-      $$invalidate(0, position = $$props2.position);
     if ("className" in $$props2)
-      $$invalidate(1, className = $$props2.className);
+      $$invalidate(0, className = $$props2.className);
     if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
+      $$invalidate(1, round = $$props2.round);
     if ("outline" in $$props2)
-      $$invalidate(3, outline = $$props2.outline);
+      $$invalidate(2, outline = $$props2.outline);
     if ("hideButton" in $$props2)
-      $$invalidate(4, hideButton = $$props2.hideButton);
+      $$invalidate(3, hideButton = $$props2.hideButton);
     if ("archiveIsVisible" in $$props2)
       $$invalidate(6, archiveIsVisible = $$props2.archiveIsVisible);
+    if ("archiveIsExpanded" in $$props2)
+      $$invalidate(7, archiveIsExpanded = $$props2.archiveIsExpanded);
     if ("el" in $$props2)
-      $$invalidate(7, el = $$props2.el);
+      $$invalidate(8, el = $$props2.el);
     if ("notifications" in $$props2)
-      $$invalidate(5, notifications = $$props2.notifications);
-    if ("archived" in $$props2)
-      $$invalidate(14, archived = $$props2.archived);
+      $$invalidate(4, notifications = $$props2.notifications);
     if ("initial" in $$props2)
       initial = $$props2.initial;
     if ("hasActiveNotifications" in $$props2)
-      $$invalidate(8, hasActiveNotifications = $$props2.hasActiveNotifications);
-    if ("hasNotifications" in $$props2)
-      $$invalidate(9, hasNotifications = $$props2.hasNotifications);
+      $$invalidate(9, hasActiveNotifications = $$props2.hasActiveNotifications);
     if ("hasArchivedNotifications" in $$props2)
-      $$invalidate(10, hasArchivedNotifications = $$props2.hasArchivedNotifications);
+      $$invalidate(5, hasArchivedNotifications = $$props2.hasArchivedNotifications);
+    if ("hasNotifications" in $$props2)
+      $$invalidate(10, hasNotifications = $$props2.hasNotifications);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & /*archived*/
-    16384) {
+    if ($$self.$$.dirty[0] & /*$ArchivedNotifications*/
+    32768) {
       $:
-        $$invalidate(10, hasArchivedNotifications = archived.length > 0 ? "has-archived-notifications" : "");
+        $$invalidate(5, hasArchivedNotifications = Object.keys($ArchivedNotifications).length ? "has-archived-notifications" : "");
     }
-    if ($$self.$$.dirty[0] & /*notifications, archived*/
-    16416) {
+    if ($$self.$$.dirty[0] & /*notifications, hasArchivedNotifications*/
+    48) {
       $:
-        $$invalidate(9, hasNotifications = notifications.length + archived.length > 0 ? "has-notifications" : "");
+        $$invalidate(10, hasNotifications = notifications.length || hasArchivedNotifications ? "has-notifications" : "");
     }
   };
   return [
-    position,
     className,
     round,
     outline,
     hideButton,
     notifications,
+    hasArchivedNotifications,
     archiveIsVisible,
+    archiveIsExpanded,
     el,
     hasActiveNotifications,
     hasNotifications,
-    hasArchivedNotifications,
     $showArchive,
     showArchive,
     _send,
-    archived,
+    onKeydown2,
+    $ArchivedNotifications,
     pushbutton_pressed_binding,
-    notificationarchive_show_binding,
     click_handler,
     click_handler_1,
     mouseover_handler,
     focus_handler,
     mouseleave_handler,
     blur_handler,
-    notificationarchive_show_binding_1,
+    keydown_handler,
+    notificationarchive_show_binding,
+    notificationarchive_expanded_binding,
     div_binding
   ];
 }
@@ -20248,11 +20156,10 @@ var NotificationCenter = class extends import_internal25.SvelteComponentDev {
       create_fragment25,
       import_internal25.safe_not_equal,
       {
-        position: 0,
-        class: 1,
-        round: 2,
-        outline: 3,
-        hideButton: 4
+        class: 0,
+        round: 1,
+        outline: 2,
+        hideButton: 3
       },
       null,
       [-1, -1]
@@ -20263,12 +20170,6 @@ var NotificationCenter = class extends import_internal25.SvelteComponentDev {
       options,
       id: create_fragment25.name
     });
-  }
-  get position() {
-    throw new Error("<NotificationCenter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set position(value) {
-    throw new Error("<NotificationCenter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<NotificationCenter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
@@ -22422,7 +22323,7 @@ function instance29($$self, $$props, $$invalidate) {
     if (isFolder)
       selectedItem.click();
   }
-  function onkeydown2(e) {
+  function onkeydown(e) {
     const keyMap = {
       ArrowUp: selectPrev,
       ArrowDown: selectNext,
@@ -22495,7 +22396,7 @@ function instance29($$self, $$props, $$invalidate) {
     goLeft,
     goRight,
     toggle,
-    onkeydown: onkeydown2,
+    onkeydown,
     tryToGetSelectedItem,
     findItem
   });
@@ -22514,7 +22415,7 @@ function instance29($$self, $$props, $$invalidate) {
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
-  return [items, title, className, el, selectClicked, selectFirst, onkeydown2, ul_binding];
+  return [items, title, className, el, selectClicked, selectFirst, onkeydown, ul_binding];
 }
 var Tree = class extends import_internal29.SvelteComponentDev {
   constructor(options) {
@@ -45252,7 +45153,7 @@ function create_default_slot_76(ctx) {
     block,
     id: create_default_slot_76.name,
     type: "slot",
-    source: `(35:1) <Button info on:click=\\"{() => showNotification('Hello')}\\">`,
+    source: `(31:1) <Button info on:click=\\"{() => showNotification('Hello')}\\">`,
     ctx
   });
   return block;
@@ -45275,7 +45176,7 @@ function create_default_slot_66(ctx) {
     block,
     id: create_default_slot_66.name,
     type: "slot",
-    source: `(36:1) <Button success on:click=\\"{() => showNotification('Hello', 'success')}\\">`,
+    source: `(32:1) <Button success on:click=\\"{() => showNotification('Hello', 'success')}\\">`,
     ctx
   });
   return block;
@@ -45298,7 +45199,7 @@ function create_default_slot_56(ctx) {
     block,
     id: create_default_slot_56.name,
     type: "slot",
-    source: `(37:1) <Button warning on:click=\\"{() => showNotification('Hello', 'warning')}\\">`,
+    source: `(33:1) <Button warning on:click=\\"{() => showNotification('Hello', 'warning')}\\">`,
     ctx
   });
   return block;
@@ -45321,7 +45222,7 @@ function create_default_slot_46(ctx) {
     block,
     id: create_default_slot_46.name,
     type: "slot",
-    source: `(38:1) <Button danger on:click=\\"{() => showNotification('Hello', 'error', 10000, 'Undo', cb)}\\">`,
+    source: `(34:1) <Button danger on:click=\\"{() => showNotification('Hello', 'error', 10000, 'Undo', cb)}\\">`,
     ctx
   });
   return block;
@@ -45344,7 +45245,7 @@ function create_default_slot_314(ctx) {
     block,
     id: create_default_slot_314.name,
     type: "slot",
-    source: `(43:1) <Button info on:click=\\"{() => showNotification('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', false)}\\">`,
+    source: `(39:1) <Button info on:click=\\"{() => showNotification('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', false)}\\">`,
     ctx
   });
   return block;
@@ -45367,7 +45268,7 @@ function create_default_slot_220(ctx) {
     block,
     id: create_default_slot_220.name,
     type: "slot",
-    source: `(44:1) <Button success on:click=\\"{() => showNotification('Hello', 'success', false)}\\">`,
+    source: `(40:1) <Button success on:click=\\"{() => showNotification('Hello', 'success', false)}\\">`,
     ctx
   });
   return block;
@@ -45390,7 +45291,7 @@ function create_default_slot_120(ctx) {
     block,
     id: create_default_slot_120.name,
     type: "slot",
-    source: `(45:1) <Button warning on:click=\\"{() => showNotification('Hello', 'warning', false)}\\">`,
+    source: `(41:1) <Button warning on:click=\\"{() => showNotification('Hello', 'warning', false)}\\">`,
     ctx
   });
   return block;
@@ -45413,7 +45314,7 @@ function create_default_slot16(ctx) {
     block,
     id: create_default_slot16.name,
     type: "slot",
-    source: `(46:1) <Button danger on:click=\\"{() => showNotification('Hello', 'error', false)}\\">`,
+    source: `(42:1) <Button danger on:click=\\"{() => showNotification('Hello', 'error', false)}\\">`,
     ctx
   });
   return block;
@@ -45459,102 +45360,64 @@ function create_fragment59(ctx) {
   let label0;
   let t30;
   let notificationcenter;
-  let updating_position;
   let t31;
   let div1;
   let label1;
   let t33;
-  let buttontoggle;
+  let toggle;
   let updating_value;
   let t34;
-  let div2;
-  let label2;
-  let t36;
-  let toggle;
-  let updating_value_1;
-  let t37;
   let h31;
-  let t39;
-  let div3;
+  let t36;
+  let div2;
   let button0;
-  let t40;
+  let t37;
   let button1;
-  let t41;
+  let t38;
   let button2;
-  let t42;
+  let t39;
   let button3;
-  let t43;
+  let t40;
   let h32;
-  let t45;
-  let div4;
+  let t42;
+  let div3;
   let button4;
-  let t46;
+  let t43;
   let button5;
-  let t47;
+  let t44;
   let button6;
-  let t48;
+  let t45;
   let button7;
-  let t49;
+  let t46;
   let codeexample;
-  let t50;
+  let t47;
   let api0;
-  let t51;
+  let t48;
   let api1;
-  let t52;
+  let t49;
   let api2;
   let current;
-  function notificationcenter_position_binding(value) {
-    ctx[7](value);
-  }
-  let notificationcenter_props = {
-    outline: true,
-    round: true,
-    hideButton: (
-      /*hideButton*/
-      ctx[1]
-    )
-  };
-  if (
-    /*position*/
-    ctx[0] !== void 0
-  ) {
-    notificationcenter_props.position = /*position*/
-    ctx[0];
-  }
   notificationcenter = new NotificationCenter_default({
-    props: notificationcenter_props,
+    props: {
+      outline: true,
+      round: true,
+      hideButton: (
+        /*hideButton*/
+        ctx[0]
+      )
+    },
     $$inline: true
   });
-  import_internal59.binding_callbacks.push(() => (0, import_internal59.bind)(notificationcenter, "position", notificationcenter_position_binding));
-  function buttontoggle_value_binding(value) {
-    ctx[8](value);
-  }
-  let buttontoggle_props = {
-    id: "position-toggle",
-    items: ["top", "bottom"]
-  };
-  if (
-    /*position*/
-    ctx[0] !== void 0
-  ) {
-    buttontoggle_props.value = /*position*/
-    ctx[0];
-  }
-  buttontoggle = new ButtonToggle_default({
-    props: buttontoggle_props,
-    $$inline: true
-  });
-  import_internal59.binding_callbacks.push(() => (0, import_internal59.bind)(buttontoggle, "value", buttontoggle_value_binding));
   function toggle_value_binding(value) {
-    ctx[9](value);
+    ctx[6](value);
   }
   let toggle_props = { id: "button-toggle" };
   if (
     /*hideButton*/
-    ctx[1] !== void 0
+    ctx[0] !== void 0
   ) {
     toggle_props.value = /*hideButton*/
-    ctx[1];
+    ctx[0];
   }
   toggle = new Toggle_default({ props: toggle_props, $$inline: true });
   import_internal59.binding_callbacks.push(() => (0, import_internal59.bind)(toggle, "value", toggle_value_binding));
@@ -45569,7 +45432,7 @@ function create_fragment59(ctx) {
   button0.$on(
     "click",
     /*click_handler*/
-    ctx[10]
+    ctx[7]
   );
   button1 = new Button_default({
     props: {
@@ -45582,7 +45445,7 @@ function create_fragment59(ctx) {
   button1.$on(
     "click",
     /*click_handler_1*/
-    ctx[11]
+    ctx[8]
   );
   button2 = new Button_default({
     props: {
@@ -45595,7 +45458,7 @@ function create_fragment59(ctx) {
   button2.$on(
     "click",
     /*click_handler_2*/
-    ctx[12]
+    ctx[9]
   );
   button3 = new Button_default({
     props: {
@@ -45608,7 +45471,7 @@ function create_fragment59(ctx) {
   button3.$on(
     "click",
     /*click_handler_3*/
-    ctx[13]
+    ctx[10]
   );
   button4 = new Button_default({
     props: {
@@ -45621,7 +45484,7 @@ function create_fragment59(ctx) {
   button4.$on(
     "click",
     /*click_handler_4*/
-    ctx[14]
+    ctx[11]
   );
   button5 = new Button_default({
     props: {
@@ -45634,7 +45497,7 @@ function create_fragment59(ctx) {
   button5.$on(
     "click",
     /*click_handler_5*/
-    ctx[15]
+    ctx[12]
   );
   button6 = new Button_default({
     props: {
@@ -45647,7 +45510,7 @@ function create_fragment59(ctx) {
   button6.$on(
     "click",
     /*click_handler_6*/
-    ctx[16]
+    ctx[13]
   );
   button7 = new Button_default({
     props: {
@@ -45660,19 +45523,19 @@ function create_fragment59(ctx) {
   button7.$on(
     "click",
     /*click_handler_7*/
-    ctx[17]
+    ctx[14]
   );
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
-      ctx[5]
+      ctx[4]
     ) },
     $$inline: true
   });
   api0 = new ApiTable_default({
     props: { props: (
       /*apiProps*/
-      ctx[2]
+      ctx[1]
     ) },
     $$inline: true
   });
@@ -45680,7 +45543,7 @@ function create_fragment59(ctx) {
     props: {
       props: (
         /*showNotificationAPI*/
-        ctx[3]
+        ctx[2]
       ),
       title: "showNotification function",
       description: "A component exports a global <em>showNotification</em> function with the following arguments:"
@@ -45691,7 +45554,7 @@ function create_fragment59(ctx) {
     props: {
       props: (
         /*hideNotificationAPI*/
-        ctx[4]
+        ctx[3]
       ),
       title: "hideNotification function",
       description: "A component exports a global <em>hideNotification</em> function with the following arguments:"
@@ -45753,46 +45616,40 @@ function create_fragment59(ctx) {
       t31 = (0, import_internal59.space)();
       div1 = (0, import_internal59.element)("div");
       label1 = (0, import_internal59.element)("label");
-      label1.textContent = "Position:";
+      label1.textContent = "Hide button:";
       t33 = (0, import_internal59.space)();
-      (0, import_internal59.create_component)(buttontoggle.$$.fragment);
-      t34 = (0, import_internal59.space)();
-      div2 = (0, import_internal59.element)("div");
-      label2 = (0, import_internal59.element)("label");
-      label2.textContent = "Hide button:";
-      t36 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(toggle.$$.fragment);
-      t37 = (0, import_internal59.space)();
+      t34 = (0, import_internal59.space)();
       h31 = (0, import_internal59.element)("h3");
       h31.textContent = "Notifications";
-      t39 = (0, import_internal59.space)();
-      div3 = (0, import_internal59.element)("div");
+      t36 = (0, import_internal59.space)();
+      div2 = (0, import_internal59.element)("div");
       (0, import_internal59.create_component)(button0.$$.fragment);
-      t40 = (0, import_internal59.space)();
+      t37 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(button1.$$.fragment);
-      t41 = (0, import_internal59.space)();
+      t38 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(button2.$$.fragment);
-      t42 = (0, import_internal59.space)();
+      t39 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(button3.$$.fragment);
-      t43 = (0, import_internal59.space)();
+      t40 = (0, import_internal59.space)();
       h32 = (0, import_internal59.element)("h3");
       h32.textContent = "No auto-close";
-      t45 = (0, import_internal59.space)();
-      div4 = (0, import_internal59.element)("div");
+      t42 = (0, import_internal59.space)();
+      div3 = (0, import_internal59.element)("div");
       (0, import_internal59.create_component)(button4.$$.fragment);
-      t46 = (0, import_internal59.space)();
+      t43 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(button5.$$.fragment);
-      t47 = (0, import_internal59.space)();
+      t44 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(button6.$$.fragment);
-      t48 = (0, import_internal59.space)();
+      t45 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(button7.$$.fragment);
-      t49 = (0, import_internal59.space)();
+      t46 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(codeexample.$$.fragment);
-      t50 = (0, import_internal59.space)();
+      t47 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(api0.$$.fragment);
-      t51 = (0, import_internal59.space)();
+      t48 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(api1.$$.fragment);
-      t52 = (0, import_internal59.space)();
+      t49 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(api2.$$.fragment);
       (0, import_internal59.add_location)(h2, file57, 0, 0, 0);
       (0, import_internal59.add_location)(b0, file57, 2, 62, 92);
@@ -45813,18 +45670,14 @@ function create_fragment59(ctx) {
       (0, import_internal59.add_location)(label0, file57, 18, 1, 1025);
       (0, import_internal59.attr_dev)(div0, "class", "prop-row");
       (0, import_internal59.add_location)(div0, file57, 16, 0, 943);
-      (0, import_internal59.attr_dev)(label1, "for", "position-toggle");
-      (0, import_internal59.add_location)(label1, file57, 22, 1, 1178);
+      (0, import_internal59.attr_dev)(label1, "for", "button-toggle");
+      (0, import_internal59.add_location)(label1, file57, 22, 1, 1151);
       (0, import_internal59.attr_dev)(div1, "class", "prop-row");
-      (0, import_internal59.add_location)(div1, file57, 21, 0, 1154);
-      (0, import_internal59.attr_dev)(label2, "for", "button-toggle");
-      (0, import_internal59.add_location)(label2, file57, 26, 1, 1348);
-      (0, import_internal59.attr_dev)(div2, "class", "prop-row");
-      (0, import_internal59.add_location)(div2, file57, 25, 0, 1324);
-      (0, import_internal59.add_location)(h31, file57, 32, 0, 1464);
-      (0, import_internal59.add_location)(div3, file57, 33, 0, 1487);
-      (0, import_internal59.add_location)(h32, file57, 40, 0, 1886);
-      (0, import_internal59.add_location)(div4, file57, 41, 0, 1909);
+      (0, import_internal59.add_location)(div1, file57, 21, 0, 1127);
+      (0, import_internal59.add_location)(h31, file57, 28, 0, 1267);
+      (0, import_internal59.add_location)(div2, file57, 29, 0, 1290);
+      (0, import_internal59.add_location)(h32, file57, 36, 0, 1689);
+      (0, import_internal59.add_location)(div3, file57, 37, 0, 1712);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -45874,121 +45727,100 @@ function create_fragment59(ctx) {
       (0, import_internal59.insert_dev)(target, div1, anchor);
       (0, import_internal59.append_dev)(div1, label1);
       (0, import_internal59.append_dev)(div1, t33);
-      (0, import_internal59.mount_component)(buttontoggle, div1, null);
+      (0, import_internal59.mount_component)(toggle, div1, null);
       (0, import_internal59.insert_dev)(target, t34, anchor);
-      (0, import_internal59.insert_dev)(target, div2, anchor);
-      (0, import_internal59.append_dev)(div2, label2);
-      (0, import_internal59.append_dev)(div2, t36);
-      (0, import_internal59.mount_component)(toggle, div2, null);
-      (0, import_internal59.insert_dev)(target, t37, anchor);
       (0, import_internal59.insert_dev)(target, h31, anchor);
-      (0, import_internal59.insert_dev)(target, t39, anchor);
-      (0, import_internal59.insert_dev)(target, div3, anchor);
-      (0, import_internal59.mount_component)(button0, div3, null);
-      (0, import_internal59.append_dev)(div3, t40);
-      (0, import_internal59.mount_component)(button1, div3, null);
-      (0, import_internal59.append_dev)(div3, t41);
-      (0, import_internal59.mount_component)(button2, div3, null);
-      (0, import_internal59.append_dev)(div3, t42);
-      (0, import_internal59.mount_component)(button3, div3, null);
-      (0, import_internal59.insert_dev)(target, t43, anchor);
+      (0, import_internal59.insert_dev)(target, t36, anchor);
+      (0, import_internal59.insert_dev)(target, div2, anchor);
+      (0, import_internal59.mount_component)(button0, div2, null);
+      (0, import_internal59.append_dev)(div2, t37);
+      (0, import_internal59.mount_component)(button1, div2, null);
+      (0, import_internal59.append_dev)(div2, t38);
+      (0, import_internal59.mount_component)(button2, div2, null);
+      (0, import_internal59.append_dev)(div2, t39);
+      (0, import_internal59.mount_component)(button3, div2, null);
+      (0, import_internal59.insert_dev)(target, t40, anchor);
       (0, import_internal59.insert_dev)(target, h32, anchor);
-      (0, import_internal59.insert_dev)(target, t45, anchor);
-      (0, import_internal59.insert_dev)(target, div4, anchor);
-      (0, import_internal59.mount_component)(button4, div4, null);
-      (0, import_internal59.append_dev)(div4, t46);
-      (0, import_internal59.mount_component)(button5, div4, null);
-      (0, import_internal59.append_dev)(div4, t47);
-      (0, import_internal59.mount_component)(button6, div4, null);
-      (0, import_internal59.append_dev)(div4, t48);
-      (0, import_internal59.mount_component)(button7, div4, null);
-      (0, import_internal59.insert_dev)(target, t49, anchor);
+      (0, import_internal59.insert_dev)(target, t42, anchor);
+      (0, import_internal59.insert_dev)(target, div3, anchor);
+      (0, import_internal59.mount_component)(button4, div3, null);
+      (0, import_internal59.append_dev)(div3, t43);
+      (0, import_internal59.mount_component)(button5, div3, null);
+      (0, import_internal59.append_dev)(div3, t44);
+      (0, import_internal59.mount_component)(button6, div3, null);
+      (0, import_internal59.append_dev)(div3, t45);
+      (0, import_internal59.mount_component)(button7, div3, null);
+      (0, import_internal59.insert_dev)(target, t46, anchor);
       (0, import_internal59.mount_component)(codeexample, target, anchor);
-      (0, import_internal59.insert_dev)(target, t50, anchor);
+      (0, import_internal59.insert_dev)(target, t47, anchor);
       (0, import_internal59.mount_component)(api0, target, anchor);
-      (0, import_internal59.insert_dev)(target, t51, anchor);
+      (0, import_internal59.insert_dev)(target, t48, anchor);
       (0, import_internal59.mount_component)(api1, target, anchor);
-      (0, import_internal59.insert_dev)(target, t52, anchor);
+      (0, import_internal59.insert_dev)(target, t49, anchor);
       (0, import_internal59.mount_component)(api2, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
       const notificationcenter_changes = {};
       if (dirty & /*hideButton*/
-      2)
+      1)
         notificationcenter_changes.hideButton = /*hideButton*/
-        ctx2[1];
-      if (!updating_position && dirty & /*position*/
-      1) {
-        updating_position = true;
-        notificationcenter_changes.position = /*position*/
         ctx2[0];
-        (0, import_internal59.add_flush_callback)(() => updating_position = false);
-      }
       notificationcenter.$set(notificationcenter_changes);
-      const buttontoggle_changes = {};
-      if (!updating_value && dirty & /*position*/
+      const toggle_changes = {};
+      if (!updating_value && dirty & /*hideButton*/
       1) {
         updating_value = true;
-        buttontoggle_changes.value = /*position*/
+        toggle_changes.value = /*hideButton*/
         ctx2[0];
         (0, import_internal59.add_flush_callback)(() => updating_value = false);
-      }
-      buttontoggle.$set(buttontoggle_changes);
-      const toggle_changes = {};
-      if (!updating_value_1 && dirty & /*hideButton*/
-      2) {
-        updating_value_1 = true;
-        toggle_changes.value = /*hideButton*/
-        ctx2[1];
-        (0, import_internal59.add_flush_callback)(() => updating_value_1 = false);
       }
       toggle.$set(toggle_changes);
       const button0_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button0_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button0.$set(button0_changes);
       const button1_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button1.$set(button1_changes);
       const button2_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button2_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button2.$set(button2_changes);
       const button3_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button3_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button3.$set(button3_changes);
       const button4_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button4_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button4.$set(button4_changes);
       const button5_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button5_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button5.$set(button5_changes);
       const button6_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button6_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button6.$set(button6_changes);
       const button7_changes = {};
       if (dirty & /*$$scope*/
-      262144) {
+      32768) {
         button7_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button7.$set(button7_changes);
@@ -45997,7 +45829,6 @@ function create_fragment59(ctx) {
       if (current)
         return;
       (0, import_internal59.transition_in)(notificationcenter.$$.fragment, local);
-      (0, import_internal59.transition_in)(buttontoggle.$$.fragment, local);
       (0, import_internal59.transition_in)(toggle.$$.fragment, local);
       (0, import_internal59.transition_in)(button0.$$.fragment, local);
       (0, import_internal59.transition_in)(button1.$$.fragment, local);
@@ -46015,7 +45846,6 @@ function create_fragment59(ctx) {
     },
     o: function outro(local) {
       (0, import_internal59.transition_out)(notificationcenter.$$.fragment, local);
-      (0, import_internal59.transition_out)(buttontoggle.$$.fragment, local);
       (0, import_internal59.transition_out)(toggle.$$.fragment, local);
       (0, import_internal59.transition_out)(button0.$$.fragment, local);
       (0, import_internal59.transition_out)(button1.$$.fragment, local);
@@ -46067,47 +45897,42 @@ function create_fragment59(ctx) {
         (0, import_internal59.detach_dev)(t31);
       if (detaching)
         (0, import_internal59.detach_dev)(div1);
-      (0, import_internal59.destroy_component)(buttontoggle);
+      (0, import_internal59.destroy_component)(toggle);
       if (detaching)
         (0, import_internal59.detach_dev)(t34);
       if (detaching)
-        (0, import_internal59.detach_dev)(div2);
-      (0, import_internal59.destroy_component)(toggle);
-      if (detaching)
-        (0, import_internal59.detach_dev)(t37);
-      if (detaching)
         (0, import_internal59.detach_dev)(h31);
       if (detaching)
-        (0, import_internal59.detach_dev)(t39);
+        (0, import_internal59.detach_dev)(t36);
       if (detaching)
-        (0, import_internal59.detach_dev)(div3);
+        (0, import_internal59.detach_dev)(div2);
       (0, import_internal59.destroy_component)(button0);
       (0, import_internal59.destroy_component)(button1);
       (0, import_internal59.destroy_component)(button2);
       (0, import_internal59.destroy_component)(button3);
       if (detaching)
-        (0, import_internal59.detach_dev)(t43);
+        (0, import_internal59.detach_dev)(t40);
       if (detaching)
         (0, import_internal59.detach_dev)(h32);
       if (detaching)
-        (0, import_internal59.detach_dev)(t45);
+        (0, import_internal59.detach_dev)(t42);
       if (detaching)
-        (0, import_internal59.detach_dev)(div4);
+        (0, import_internal59.detach_dev)(div3);
       (0, import_internal59.destroy_component)(button4);
       (0, import_internal59.destroy_component)(button5);
       (0, import_internal59.destroy_component)(button6);
       (0, import_internal59.destroy_component)(button7);
       if (detaching)
-        (0, import_internal59.detach_dev)(t49);
+        (0, import_internal59.detach_dev)(t46);
       (0, import_internal59.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal59.detach_dev)(t50);
+        (0, import_internal59.detach_dev)(t47);
       (0, import_internal59.destroy_component)(api0, detaching);
       if (detaching)
-        (0, import_internal59.detach_dev)(t51);
+        (0, import_internal59.detach_dev)(t48);
       (0, import_internal59.destroy_component)(api1, detaching);
       if (detaching)
-        (0, import_internal59.detach_dev)(t52);
+        (0, import_internal59.detach_dev)(t49);
       (0, import_internal59.destroy_component)(api2, detaching);
     }
   };
@@ -46123,7 +45948,6 @@ function create_fragment59(ctx) {
 function instance59($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal59.validate_slots)("NotificationCenter", slots, []);
-  let position = "top";
   let hideButton = false;
   const apiProps = [
     {
@@ -46144,12 +45968,6 @@ function instance59($$self, $$props, $$invalidate) {
     {
       name: "round",
       description: "Makes the notification center button round"
-    },
-    {
-      name: "position",
-      type: ["top", "bottom"],
-      default: "top",
-      description: "Notifications position on screen."
     }
   ];
   const showNotificationAPI = [
@@ -46190,7 +46008,7 @@ function instance59($$self, $$props, $$invalidate) {
     }
   ];
   const exampleHtml = `
-<NotificationCenter position="bottom" outline round/>
+<NotificationCenter outline round/>
 
 <Button on:click="{() => showNotification('Hello')}">Show info</Button>
 <Button success on:click="{() => showNotification('Hello', 'success')}">Show success</Button>
@@ -46216,17 +46034,9 @@ function cb (id) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_19.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
   });
-  function notificationcenter_position_binding(value) {
-    position = value;
-    $$invalidate(0, position);
-  }
-  function buttontoggle_value_binding(value) {
-    position = value;
-    $$invalidate(0, position);
-  }
   function toggle_value_binding(value) {
     hideButton = value;
-    $$invalidate(1, hideButton);
+    $$invalidate(0, hideButton);
   }
   const click_handler = () => showNotification("Hello");
   const click_handler_1 = () => showNotification("Hello", "success");
@@ -46241,11 +46051,9 @@ function cb (id) {
     NotificationCenter: NotificationCenter_default,
     showNotification,
     hideNotification,
-    ButtonToggle: ButtonToggle_default,
     Toggle: Toggle_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
-    position,
     hideButton,
     apiProps,
     showNotificationAPI,
@@ -46254,24 +46062,19 @@ function cb (id) {
     cb
   });
   $$self.$inject_state = ($$props2) => {
-    if ("position" in $$props2)
-      $$invalidate(0, position = $$props2.position);
     if ("hideButton" in $$props2)
-      $$invalidate(1, hideButton = $$props2.hideButton);
+      $$invalidate(0, hideButton = $$props2.hideButton);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   return [
-    position,
     hideButton,
     apiProps,
     showNotificationAPI,
     hideNotificationAPI,
     exampleHtml,
     cb,
-    notificationcenter_position_binding,
-    buttontoggle_value_binding,
     toggle_value_binding,
     click_handler,
     click_handler_1,

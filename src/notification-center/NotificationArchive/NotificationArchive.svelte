@@ -39,8 +39,8 @@ import { Button } from '../../button';
 import { ArchivedNotifications, removeFromArchive, receive, fly, slideUp, flip } from '../store.js';
 import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
 
-export let position = 'top';
 export let show = false;
+export let expanded = false;
 
 const duration = 100000 || $ANIMATION_SPEED;
 
@@ -48,7 +48,6 @@ let el;
 let archived = [];
 let now = new Date().getTime();
 let timer;
-let expanded = false;
 
 
 $: {
@@ -59,7 +58,7 @@ onMount(() => {
 	timer = setInterval(() => (now = new Date().getTime()), 10000);
 
 	ArchivedNotifications.subscribe(val => {
-		archived = position === 'top' ? Object.values(val).reverse() : Object.values(val);
+		archived = Object.values(val).reverse();
 	});
 
 });
@@ -93,9 +92,9 @@ function _in (node, params) {
 
 
 function _out (node, params) {
-	if (show && expanded) return fly(node);
-	if (show && !expanded) return slideUp(node, params);
-	return slideUp(node, { duration: 0 });
+	if (show && expanded) return fly(node);					// deleting
+	if (show && !expanded) return slideUp(node, params);	// collapsing with archive visible
+	return slideUp(node, { duration: 0 });					// collapsing with archive hidden
 }
 
 
