@@ -30,6 +30,14 @@
 <PushButton icon="trash" danger>Delete</PushButton>
 
 
+<h4>Outline</h4>
+<PushButton outline>Hello</PushButton>
+<PushButton outline info>Info</PushButton>
+<PushButton outline success>Warning</PushButton>
+<PushButton outline warning>Warning</PushButton>
+<PushButton outline danger>Danger</PushButton>
+
+
 <hr>
 <h3>Icon only buttons</h3>
 
@@ -65,13 +73,11 @@ const apiProps = [
 	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
-	{ name: 'link', description: 'Button style: link' },
 	{ name: 'outline', description: 'Button style: outline' },
 	{ name: 'pressed', type: ['true', 'false'], default: 'false', description: 'Initial <i>pressed</i> state of the button.' },
 	{ name: 'round', description: 'Makes the button round' },
 	{ name: 'submit', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
 	{ name: 'success', description: 'Button type: success' },
-	{ name: 'text', description: 'Button style: text' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
 	{ name: 'warning', description: 'Button type: warning' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
@@ -82,8 +88,8 @@ const exampleHtml = `
 
 <script>
 function onChange (e) {
-    const { value, oldValue } = e.detail;
-    console.log({ value, oldValue });
+    const { pressed } = e.detail;
+    console.log('is pressed:', pressed);
 }
 &lt;/script>
 `;

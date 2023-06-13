@@ -7,6 +7,8 @@ export let name = '';
 const aliases = {
 	add: 'plus',
 	report: 'reportAnalytics',
+	success: 'checkCircle',
+	warning: 'alert',
 };
 
 $:svg = findIcon(name);

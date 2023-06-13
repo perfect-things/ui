@@ -1,0 +1,24 @@
+.notification-center-header {
+	margin-bottom: 1rem;
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 2rem;
+}
+
+.notification-center-header h2 {
+	display: inline-block;
+	width: auto;
+	padding: 0;
+	margin: 0;
+}
+
+
+.prop-row {
+	padding: 1rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1rem;
+}

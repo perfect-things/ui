@@ -3,6 +3,7 @@
 		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
+		{outline}
 		{info}
 		{success}
 		{warning}
@@ -10,6 +11,7 @@
 		{round}
 		{icon}
 		bind:this="{_this}"
+		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}">
 			<slot></slot>
 	</Button>
@@ -18,6 +20,7 @@
 		class="push-button {className}"
 		aria-pressed="{pressed}"
 		{...props}
+		{outline}
 		{info}
 		{success}
 		{warning}
@@ -25,6 +28,7 @@
 		{round}
 		{icon}
 		bind:this="{_this}"
+		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}"/>
 {/if}
 <script>
@@ -39,6 +43,7 @@ export let info = false;
 export let success = false;
 export let warning = false;
 export let danger = false;
+export let outline = false;		// button without background, but with border
 
 export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button
@@ -51,8 +56,16 @@ $:props = pluck($$props, ['id', 'title', 'disabled']);
 
 const dispatch = createEventDispatcher();
 
+function onKeydown (e) {
+	if (e.key === 'Enter' || e.key === ' ') {
+		e.preventDefault();
+		pressed = !pressed;
+		dispatch('change', { ...e, pressed });
+	}
+}
+
 function onMouseDown (e) {
 	pressed = !pressed;
-	dispatch('click', e);
+	dispatch('change', { ...e, pressed });
 }
 </script>

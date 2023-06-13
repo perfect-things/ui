@@ -19,6 +19,7 @@ export * from './table/index.js';
 export * from './textarea/index.js';
 export * from './text-fit/index.js';
 export * from './toaster/index.js';
+export * from './notification-center/index.js';
 export * from './toggle/index.js';
 export * from './tooltip/index.js';
 export * from './tree/index.js';

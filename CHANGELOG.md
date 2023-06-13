@@ -2,6 +2,16 @@ Changelog
 =========
 
 
+## v6.7.0 *(2023-06-?)*
+- **New:** `NotificationCenter` component. This will eventually replace `Toaster`, as it's more accessible and powerful.
+- `Toaster` component is now **deprecated** and will be removed in the next major version.
+- `PushButton` changes:
+  - remove `link` and `text` types, as they don't make sense (pushed state would not be visible).
+  - fix `outline` type styling.
+  - update the event passed to the `on:change` callback (rename property from `event.detail.value` to `event.detail.pressed`).
+  - fix `PushButton` keyboard events (pressing Space or Enter would not trigger the `on:change` event).
+
+
 ## v6.6.8 *(2023-06-07)*
 - `Menu` improvements:
   - `aria-expanded` attribute was incorrectly being added to the `body` on menu open (apart from the target button).

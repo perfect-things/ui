@@ -11,12 +11,6 @@
 				value="{$PREFERS_DARK}"
 				on:change="{switchColorMode}"/>
 		</div>
-		<!-- <div class="nav-toolbar-row">
-			<label for="scale-switch">Scale:</label>
-			<input id="scale-switch" type="number" value="1"
-				min="0.5" max="3" step="0.1"
-				on:input="{scaleChange}"/>
-		</div> -->
 	</div>
 
 	<menu>
@@ -50,6 +44,7 @@
 
 		<h3>Generic</h3>
 		<NavItem name="Icon" {active} />
+		<NavItem name="Notification Center" {active} />
 		<NavItem name="TextFit" {active} />
 		<NavItem name="Toaster" {active} />
 		<NavItem name="Tooltip" {active} />
@@ -91,10 +86,6 @@ function toggleNav () {
 	navMobileShow = !navMobileShow;
 }
 
-
-// function scaleChange (e) {
-// 	document.body.style.setProperty('--ui-scale', e.target.value);
-// }
 
 window.addEventListener('popstate', () => navMobileShow = false);
 
