@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v6.7.1 <em>(2023-06-13)</em></h2>
+<ul>
+<li>Fix <code>Menu</code> show and hide events and clearing the highlight on mouse out.</li>
+</ul>
 <h2>v6.7.0 <em>(2023-06-13)</em></h2>
 <ul>
 <li><strong>New:</strong> <code>NotificationCenter</code> component. This will eventually replace <code>Toaster</code>, as it&#39;s more accessible and powerful.</li>
