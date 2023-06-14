@@ -1,6 +1,6 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-mouse-events-have-key-events -->
 {#if opened}
-	<menu class="menu {className}" bind:this="{menuEl}" tabindex="0">
+	<menu tabindex="0" class="menu {className}" bind:this="{menuEl}">
 		<slot></slot>
 	</menu>
 {/if}
@@ -9,8 +9,8 @@
 
 <script>
 import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
-import initLongPressEvent from './longpress.js';
 import { addArias, removeArias, matchQuery, updatePosition } from './utils.js';
+import initLongPressEvent from './longpress.js';
 
 const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
@@ -33,7 +33,7 @@ const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
 let menuEl, targetEl, focusedEl, opened = false;
 let isBelowTarget = true;	// default - screen size may change that
-
+let hovering = false;
 
 setContext('MenuContext', {
 	targetEl: () => targetEl
@@ -88,10 +88,24 @@ function onDocumentClick (e) {
 }
 
 
-function onscroll (e) {
-	if (e.target.closest('.menu')) return;
-	if (opened) _close();
+function onscroll () {
+	if (!hovering && opened) return _close();
 }
+
+
+function onmouseover (e) {
+	const isOverMenu = e.target.closest('.menu');
+
+	if (isOverMenu && !hovering) hovering = true;
+	else if (!isOverMenu && hovering) hovering = false;
+
+	if (hovering) {
+		const btn = e.target.closest(buttonSelector);
+		if (btn) highlightElement(btn);
+	}
+	else highlightElement(null);
+}
+
 
 
 function highlightElement (el) {
@@ -100,19 +114,7 @@ function highlightElement (el) {
 		focusedEl.scrollIntoView({ block: 'nearest' });
 		focusedEl.focus();
 	}
-}
-
-function onmousemove (e) {
-	// mousemove is triggered when shift key is pressed
-	// if there is no movement, it means the false positive
-	if (e.movementX + e.movementY === 0) return;
-
-	const btn = e.target.closest(buttonSelector);
-	highlightElement(btn);
-}
-
-function onmouseout () {
-	highlightElement(null);
+	else menuEl && menuEl.focus();
 }
 
 
@@ -238,18 +240,16 @@ function _close () {
 function addEventListeners () {
 	document.addEventListener('click', onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
-	document.addEventListener('wheel', onscroll);
-	document.addEventListener('mousemove', onmousemove);
-	document.addEventListener('mouseout', onmouseout);
+	document.addEventListener('scroll', onscroll, true);
+	document.addEventListener('mouseover', onmouseover);
 }
 
 
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
-	document.removeEventListener('wheel', onscroll);
-	document.removeEventListener('mousemove', onmousemove);
-	document.removeEventListener('mouseout', onmouseout);
+	document.removeEventListener('scroll', onscroll, true);
+	document.removeEventListener('mouseover', onmouseover);
 }
 
 </script>

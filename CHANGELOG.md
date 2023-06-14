@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.7.1 *(2023-06-13)*
+- Fix `Menu` show and hide events and clearing the highlight on mouse out.
+
+
 ## v6.7.0 *(2023-06-13)*
 - **New:** `NotificationCenter` component. This will eventually replace `Toaster`, as it's more accessible and powerful.
 - `Toaster` component is now **deprecated** and will be removed in the next major version.
