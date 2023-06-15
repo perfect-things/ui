@@ -1,6 +1,7 @@
 <header class="main-header">
 	<img class="logo" src="logo2.png" alt="Logo"/>
-	<h1 class="logotype">PerfectThings <em>UI</em></h1>
+	<h1 class="logotype">PerfectThings <em>UI</em><sub>v{window.UI_VERSION || ''}</sub></h1>
+
 </header>
 
 <p>A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).</p>

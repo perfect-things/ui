@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { createGulpEsbuild } from 'gulp-esbuild';
 import { default as throught2 } from 'through2';
 import { deleteAsync } from 'del';
@@ -42,13 +43,23 @@ const PATHS = {
 	DIST: 'docs/',
 };
 
+function getVersion () {
+	const pkg = fs.readFileSync('./package.json', 'utf8');
+	let json;
+	try { json = JSON.parse(pkg); }
+	catch { json = {}; }
+	return json.version || '';
+}
+
 
 export function html () {
 	const comment = '<!-- scripts-go-here -->';
 	const reloadScript = '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
 	const analyticsScript = '<script defer data-domain="perfect-things.github.io" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
 
-	const script = isProd ? analyticsScript : reloadScript;
+	let script = isProd ? analyticsScript : reloadScript;
+	const version = getVersion();
+	script += `\n\t<script>window.UI_VERSION='${version}';</script>`;
 	return src(PATHS.HTML)
 		.pipe(inject.replace(comment, script))
 		.pipe(dest(PATHS.DIST));

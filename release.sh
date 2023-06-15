@@ -15,12 +15,12 @@ case $ans in
     *  ) echo "Whats that?" && exit ;;
 esac
 
+if [ $v != none ]; then
+	npm version $v
+fi
 npm run changelog
 npm run dist
 git add --all
 git commit -am 'release' --no-verify
-if [ $v != none ]; then
-	npm version $v
-fi
 git push
 npm publish --access public
