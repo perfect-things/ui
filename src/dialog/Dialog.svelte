@@ -93,7 +93,7 @@ function onDocKeydown (e) {
 	if (!opened) return;
 	const hasFocus = backdropEl.contains(document.activeElement);
 	if (e.key === 'Tab' && !hasFocus) return focusFirst();
-	if (e.key === 'Escape' && hasFocus) {
+	if (e.key === 'Escape') {
 		e.stopPropagation();
 		return close();
 	}

@@ -1,63 +1,71 @@
 <h2>MessageBox</h2>
 
-
-<p>It uses the Dialog component by adding it to the body once (so it's lightweight) and re-using it for every call</p>
+<p>It uses the Dialog component by adding it to the body once (so it's lightweight)
+	and re-using it for every call</p>
 
 <br>
 
 <h3>Info</h3>
-<Button on:click="{() => msgBox.show('Info messagebox')}">Show Info</Button>
-<Button on:click="{() => msgBox.show('Info messagebox', msgBox.Type.INFO, 'Info title')}">Show Info with title</Button>
-<Button on:click="{() => msgBox.show('Info messagebox', msgBox.Type.INFO, 'Info title', 'Close')}">Show Info with title and button label</Button>
-<Button on:click="{() => msgBox.show('Info messagebox', msgBox.Type.INFO, 'Info title', 'Close', onclose)}">Show Info with title and button label and callback</Button>
+<Button on:click="{() => showMessage('Info messagebox')}">Show Info</Button>
+<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}">Show Info with title</Button>
+<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close')}">Show Info with title and button label</Button>
+<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}">Show Info with title and button label and callback</Button>
 
 
 <h3>Warning</h3>
-<Button on:click="{() => msgBox.show('Warning messagebox', msgBox.Type.WARNING)}">Show warning message</Button>
+<Button on:click="{() => showMessage('Warning messagebox', MessageType.WARNING)}">Show warning message</Button>
 
 
 <h3>Error</h3>
-<Button on:click="{() => msgBox.show('Error messagebox', msgBox.Type.ERROR)}">Show error message</Button>
+<Button on:click="{() => showMessage('Error messagebox', MessageType.ERROR)}">Show error message</Button>
 
 
 
 
-
-<MessageBox bind:this="{msgBox}" />
+<MessageBox />
 
 
 <CodeExample html="{exampleHtml}" />
 
-<API props="{instanceApiProps}" title="Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<API
+	props="{apiProps}"
+	title="Function API - arguments"
+	description="A component exports a <em>showMessage</em> function which accepts either
+	a config object or a list of arguments.  If it is a list of arguments - this is the API:"/>
+
 
 <script>
-import { Button, MessageBox } from '../../../src';
+import { Button, MessageBox, MessageType, showMessage } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-let msgBox;
 
 function onclose (res) {
 	alert(`You clicked ${res}`);
 }
 
 
-const instanceApiProps = [
-	{ name: 'show', type: 'function', description: 'Shows a message box.' },
+const apiProps = [
+	{ name: '1. message', type: 'string', description: 'A message to show.' },
+	{ name: '2. type', type: 'string', default: 'info', description: 'A message type (for icon and button styling).' },
+	{ name: '3. title', type: 'string', default: '', description: 'A title of the message box.' },
+	{ name: '4. label', type: 'string', default: 'OK', description: 'A label for the default button (if there\'s inly one).' },
+	{ name: '5. cb', type: 'function', description: 'A callback function that will be called on close. A value of the clicked button will be passed to the function.' },
 ];
 
+
 const exampleHtml = `
-<MessageBox bind:this="{msgBox}" />
+<MessageBox />
 
 <script>
-    let msgBox;
+	import { MessageBox, MessageType, showMessage } from '@perfectthings/ui';
 
-    MessageBox('Some info with the OK button');
+    showMessage('Some info with the OK button');
 
-    MessageBox('Some warning with the OK button', 'warning');
-    MessageBox('Some error with the OK button and title', 'error', 'Error', 'Close');
+    showMessage('Some warning with the OK button', MessageType.WARNING);
+    showMessage('Some error with the OK button and title', MessageType.ERROR, 'Error', 'Close');
 
-    MessageBox({
+    showMessage({
         message: '',
         title: '',
         type: '',

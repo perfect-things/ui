@@ -290,6 +290,36 @@ svg {
 	}
 }
 
+.button-outline {
+	background: transparent;
+	border: 2px solid var(--ui-color-secondary);
+	min-width: calc(var(--ui-button-size) * 4);
+	min-height: calc(var(--ui-button-size) * 2);
+}
+
+.button-outline:focus,
+.button-outline:hover { background-color: var(--ui-color-secondary-semi); }
+
+.button-outline.info { border-color: var(--ui-color-info); }
+.button-outline.info:focus,
+.button-outline.info:hover { background-color: var(--ui-color-info-semi); }
+
+.button-outline.success { border-color: var(--ui-color-success); }
+.button-outline.success:focus,
+.button-outline.success:hover { background-color: var(--ui-color-success-semi); }
+
+.button-outline.warning { border-color: var(--ui-color-warning); }
+.button-outline.warning:focus,
+.button-outline.warning:hover { background-color: var(--ui-color-warning-semi); }
+
+.button-outline.error,
+.button-outline.danger { border-color: var(--ui-color-danger); }
+
+.button-outline.error:focus,
+.button-outline.error:hover,
+.button-outline.danger:focus,
+.button-outline.danger:hover { background-color: var(--ui-color-danger-semi); }
+
 .button-link {
 	background: none;
 	border: none;
@@ -335,36 +365,6 @@ svg {
 .button-normal.warning { background: var(--ui-color-warning); }
 .button-normal.error,
 .button-normal.danger { background: var(--ui-color-danger); }
-
-.button-outline {
-	background: transparent;
-	border: 2px solid var(--ui-color-secondary);
-	min-width: calc(var(--ui-button-size) * 4);
-	min-height: calc(var(--ui-button-size) * 2);
-}
-
-.button-outline:focus,
-.button-outline:hover { background-color: var(--ui-color-secondary-semi); }
-
-.button-outline.info { border-color: var(--ui-color-info); }
-.button-outline.info:focus,
-.button-outline.info:hover { background-color: var(--ui-color-info-semi); }
-
-.button-outline.success { border-color: var(--ui-color-success); }
-.button-outline.success:focus,
-.button-outline.success:hover { background-color: var(--ui-color-success-semi); }
-
-.button-outline.warning { border-color: var(--ui-color-warning); }
-.button-outline.warning:focus,
-.button-outline.warning:hover { background-color: var(--ui-color-warning-semi); }
-
-.button-outline.error,
-.button-outline.danger { border-color: var(--ui-color-danger); }
-
-.button-outline.error:focus,
-.button-outline.error:hover,
-.button-outline.danger:focus,
-.button-outline.danger:hover { background-color: var(--ui-color-danger-semi); }
 
 .button-text {
 	background: transparent;

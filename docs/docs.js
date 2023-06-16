@@ -78,7 +78,7 @@ var require_internal = __commonJS({
     function is_empty(obj) {
       return Object.keys(obj).length === 0;
     }
-    function validate_store7(store, name) {
+    function validate_store8(store, name) {
       if (store != null && typeof store.subscribe !== "function") {
         throw new Error(`'${name}' is not a store with a 'subscribe' method`);
       }
@@ -95,7 +95,7 @@ var require_internal = __commonJS({
       subscribe(store, (_) => value = _)();
       return value;
     }
-    function component_subscribe7(component, store, callback) {
+    function component_subscribe8(component, store, callback) {
       component.$$.on_destroy.push(subscribe(store, callback));
     }
     function create_slot12(definition, ctx, $$scope, fn) {
@@ -180,7 +180,7 @@ var require_internal = __commonJS({
     function null_to_empty(value) {
       return value == null ? "" : value;
     }
-    function set_store_value(store, ret, value) {
+    function set_store_value2(store, ret, value) {
       store.set(value);
       return ret;
     }
@@ -418,7 +418,7 @@ var require_internal = __commonJS({
     function space50() {
       return text40(" ");
     }
-    function empty9() {
+    function empty10() {
       return text40("");
     }
     function comment(content) {
@@ -1058,7 +1058,7 @@ var require_internal = __commonJS({
     function beforeUpdate(fn) {
       get_current_component().$$.before_update.push(fn);
     }
-    function onMount14(fn) {
+    function onMount15(fn) {
       get_current_component().$$.on_mount.push(fn);
     }
     function afterUpdate5(fn) {
@@ -1102,7 +1102,7 @@ var require_internal = __commonJS({
     }
     var dirty_components = [];
     var intros = { enabled: false };
-    var binding_callbacks35 = [];
+    var binding_callbacks34 = [];
     var render_callbacks = [];
     var flush_callbacks = [];
     var resolved_promise = /* @__PURE__ */ Promise.resolve();
@@ -1146,8 +1146,8 @@ var require_internal = __commonJS({
         set_current_component(null);
         dirty_components.length = 0;
         flushidx = 0;
-        while (binding_callbacks35.length)
-          binding_callbacks35.pop()();
+        while (binding_callbacks34.length)
+          binding_callbacks34.pop()();
         for (let i = 0; i < render_callbacks.length; i += 1) {
           const callback = render_callbacks[i];
           if (!seen_callbacks.has(callback)) {
@@ -1237,7 +1237,7 @@ var require_internal = __commonJS({
     var null_transition = { duration: 0 };
     function create_in_transition4(node, fn, params) {
       const options = { direction: "in" };
-      let config = fn(node, params, options);
+      let config2 = fn(node, params, options);
       let running = false;
       let animation_name;
       let task;
@@ -1247,7 +1247,7 @@ var require_internal = __commonJS({
           delete_rule(node, animation_name);
       }
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop33, css } = config || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 0, 1, duration2, delay, easing, css, uid++);
         tick2(0, 1);
@@ -1280,8 +1280,8 @@ var require_internal = __commonJS({
             return;
           started = true;
           delete_rule(node);
-          if (is_function3(config)) {
-            config = config(options);
+          if (is_function3(config2)) {
+            config2 = config2(options);
             wait().then(go);
           } else {
             go();
@@ -1300,13 +1300,13 @@ var require_internal = __commonJS({
     }
     function create_out_transition4(node, fn, params) {
       const options = { direction: "out" };
-      let config = fn(node, params, options);
+      let config2 = fn(node, params, options);
       let running = true;
       let animation_name;
       const group = outros;
       group.r += 1;
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop33, css } = config || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 1, 0, duration2, delay, easing, css);
         const start_time = exports.now() + delay;
@@ -1330,9 +1330,9 @@ var require_internal = __commonJS({
           return running;
         });
       }
-      if (is_function3(config)) {
+      if (is_function3(config2)) {
         wait().then(() => {
-          config = config(options);
+          config2 = config2(options);
           go();
         });
       } else {
@@ -1340,8 +1340,8 @@ var require_internal = __commonJS({
       }
       return {
         end(reset) {
-          if (reset && config.tick) {
-            config.tick(1, 0);
+          if (reset && config2.tick) {
+            config2.tick(1, 0);
           }
           if (running) {
             if (animation_name)
@@ -1353,7 +1353,7 @@ var require_internal = __commonJS({
     }
     function create_bidirectional_transition2(node, fn, params, intro) {
       const options = { direction: "both" };
-      let config = fn(node, params, options);
+      let config2 = fn(node, params, options);
       let t = intro ? 0 : 1;
       let running_program = null;
       let pending_program = null;
@@ -1376,7 +1376,7 @@ var require_internal = __commonJS({
         };
       }
       function go(b) {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop33, css } = config || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
         const program = {
           start: exports.now() + delay,
           b
@@ -1403,7 +1403,7 @@ var require_internal = __commonJS({
               dispatch(node, running_program.b, "start");
               if (css) {
                 clear_animation();
-                animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
+                animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config2.css);
               }
             }
             if (running_program) {
@@ -1431,9 +1431,9 @@ var require_internal = __commonJS({
       }
       return {
         run(b) {
-          if (is_function3(config)) {
+          if (is_function3(config2)) {
             wait().then(() => {
-              config = config(options);
+              config2 = config2(options);
               go(b);
             });
           } else {
@@ -2212,7 +2212,7 @@ var require_internal = __commonJS({
     exports.attribute_to_object = attribute_to_object;
     exports.beforeUpdate = beforeUpdate;
     exports.bind = bind9;
-    exports.binding_callbacks = binding_callbacks35;
+    exports.binding_callbacks = binding_callbacks34;
     exports.blank_object = blank_object;
     exports.bubble = bubble9;
     exports.check_outros = check_outros16;
@@ -2226,7 +2226,7 @@ var require_internal = __commonJS({
     exports.claim_text = claim_text;
     exports.clear_loops = clear_loops;
     exports.comment = comment;
-    exports.component_subscribe = component_subscribe7;
+    exports.component_subscribe = component_subscribe8;
     exports.compute_rest_props = compute_rest_props;
     exports.compute_slots = compute_slots3;
     exports.construct_svelte_component = construct_svelte_component;
@@ -2256,7 +2256,7 @@ var require_internal = __commonJS({
     exports.each = each;
     exports.element = element65;
     exports.element_is = element_is;
-    exports.empty = empty9;
+    exports.empty = empty10;
     exports.end_hydrating = end_hydrating;
     exports.escape = escape;
     exports.escape_attribute_value = escape_attribute_value;
@@ -2312,7 +2312,7 @@ var require_internal = __commonJS({
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
     exports.onDestroy = onDestroy7;
-    exports.onMount = onMount14;
+    exports.onMount = onMount15;
     exports.once = once;
     exports.outro_and_destroy_block = outro_and_destroy_block2;
     exports.prevent_default = prevent_default5;
@@ -2346,7 +2346,7 @@ var require_internal = __commonJS({
     exports.set_input_value = set_input_value7;
     exports.set_now = set_now;
     exports.set_raf = set_raf;
-    exports.set_store_value = set_store_value;
+    exports.set_store_value = set_store_value2;
     exports.set_style = set_style6;
     exports.set_svg_attributes = set_svg_attributes;
     exports.space = space50;
@@ -2375,7 +2375,7 @@ var require_internal = __commonJS({
     exports.validate_each_argument = validate_each_argument12;
     exports.validate_each_keys = validate_each_keys4;
     exports.validate_slots = validate_slots67;
-    exports.validate_store = validate_store7;
+    exports.validate_store = validate_store8;
     exports.validate_void_dynamic_element = validate_void_dynamic_element;
     exports.xlink_attr = xlink_attr;
   }
@@ -2471,10 +2471,10 @@ var require_store = __commonJS({
     var subscriber_queue = [];
     function readable(value, start) {
       return {
-        subscribe: writable5(value, start).subscribe
+        subscribe: writable6(value, start).subscribe
       };
     }
-    function writable5(value, start = internal.noop) {
+    function writable6(value, start = internal.noop) {
       let stop;
       const subscribers = /* @__PURE__ */ new Set();
       function set(new_value) {
@@ -2568,7 +2568,7 @@ var require_store = __commonJS({
     exports.derived = derived;
     exports.readable = readable;
     exports.readonly = readonly;
-    exports.writable = writable5;
+    exports.writable = writable6;
   }
 });
 
@@ -8515,7 +8515,7 @@ function instance7($$self, $$props, $$invalidate) {
     const hasFocus = backdropEl.contains(document.activeElement);
     if (e.key === "Tab" && !hasFocus)
       return focusFirst();
-    if (e.key === "Escape" && hasFocus) {
+    if (e.key === "Escape") {
       e.stopPropagation();
       return close();
     }
@@ -9219,11 +9219,11 @@ function determineGetWeekMethod(numberingMode, weekStart) {
       return getMidEasternWeek;
   }
 }
-function updateWeekStart(newValue, config, weekNumbers) {
-  config.weekStart = newValue;
-  config.weekEnd = (newValue + 6) % 7;
+function updateWeekStart(newValue, config2, weekNumbers) {
+  config2.weekStart = newValue;
+  config2.weekEnd = (newValue + 6) % 7;
   if (weekNumbers === 4) {
-    config.getWeekNumber = determineGetWeekMethod(4, newValue);
+    config2.getWeekNumber = determineGetWeekMethod(4, newValue);
   }
   return newValue;
 }
@@ -9245,7 +9245,7 @@ function replaceOptions(options, from, to, convert = void 0) {
 }
 function processOptions(options, datepicker) {
   const inOpts = Object.assign({}, options);
-  const config = {};
+  const config2 = {};
   const locales = datepicker.constructor.locales;
   const rangeEnd = !!datepicker.rangeSideIndex;
   let {
@@ -9279,7 +9279,7 @@ function processOptions(options, datepicker) {
     }
     delete inOpts.language;
     if (lang) {
-      language = config.language = lang;
+      language = config2.language = lang;
       const origLocale = locale || locales[defaultLang];
       locale = Object.assign({
         format: defaultFormat,
@@ -9288,12 +9288,12 @@ function processOptions(options, datepicker) {
       if (language !== defaultLang) {
         Object.assign(locale, locales[language]);
       }
-      config.locale = locale;
+      config2.locale = locale;
       if (format === origLocale.format) {
-        format = config.format = locale.format;
+        format = config2.format = locale.format;
       }
       if (weekStart === origLocale.weekStart) {
-        weekStart = updateWeekStart(locale.weekStart, config, weekNumbers);
+        weekStart = updateWeekStart(locale.weekStart, config2, weekNumbers);
       }
     }
   }
@@ -9302,7 +9302,7 @@ function processOptions(options, datepicker) {
     const hasToValue = typeof inOpts.format.toValue === "function";
     const validFormatString = reFormatTokens.test(inOpts.format);
     if (hasToDisplay && hasToValue || validFormatString) {
-      format = config.format = inOpts.format;
+      format = config2.format = inOpts.format;
     }
     delete inOpts.format;
   }
@@ -9323,7 +9323,7 @@ function processOptions(options, datepicker) {
     if (datesDisabled && !inOpts.datesDisabled) {
       inOpts.datesDisabled = [];
     }
-    pickLevel = config.pickLevel = newPickLevel;
+    pickLevel = config2.pickLevel = newPickLevel;
   }
   let minDt = minDate;
   let maxDt = maxDate;
@@ -9343,54 +9343,54 @@ function processOptions(options, datepicker) {
     delete inOpts.maxDate;
   }
   if (maxDt < minDt) {
-    minDate = config.minDate = maxDt;
-    maxDate = config.maxDate = minDt;
+    minDate = config2.minDate = maxDt;
+    maxDate = config2.maxDate = minDt;
   } else {
     if (minDate !== minDt) {
-      minDate = config.minDate = minDt;
+      minDate = config2.minDate = minDt;
     }
     if (maxDate !== maxDt) {
-      maxDate = config.maxDate = maxDt;
+      maxDate = config2.maxDate = maxDt;
     }
   }
   if (inOpts.datesDisabled) {
     const dtsDisabled = inOpts.datesDisabled;
     if (typeof dtsDisabled === "function") {
-      config.datesDisabled = null;
-      config.checkDisabled = (timeValue, viewId) => dtsDisabled(
+      config2.datesDisabled = null;
+      config2.checkDisabled = (timeValue, viewId) => dtsDisabled(
         new Date(timeValue),
         viewId,
         rangeEnd
       );
     } else {
-      const disabled = config.datesDisabled = dtsDisabled.reduce((dates, dt) => {
+      const disabled = config2.datesDisabled = dtsDisabled.reduce((dates, dt) => {
         const date = parseDate(dt, format, locale);
         return date !== void 0 ? pushUnique(dates, regularizeDate(date, pickLevel, rangeEnd)) : dates;
       }, []);
-      config.checkDisabled = (timeValue) => disabled.includes(timeValue);
+      config2.checkDisabled = (timeValue) => disabled.includes(timeValue);
     }
     delete inOpts.datesDisabled;
   }
   if ("defaultViewDate" in inOpts) {
     const viewDate = parseDate(inOpts.defaultViewDate, format, locale);
     if (viewDate !== void 0) {
-      config.defaultViewDate = viewDate;
+      config2.defaultViewDate = viewDate;
     }
     delete inOpts.defaultViewDate;
   }
   if ("weekStart" in inOpts) {
     const wkStart = Number(inOpts.weekStart) % 7;
     if (!isNaN(wkStart)) {
-      weekStart = updateWeekStart(wkStart, config, weekNumbers);
+      weekStart = updateWeekStart(wkStart, config2, weekNumbers);
     }
     delete inOpts.weekStart;
   }
   if (inOpts.daysOfWeekDisabled) {
-    config.daysOfWeekDisabled = inOpts.daysOfWeekDisabled.reduce(sanitizeDOW, []);
+    config2.daysOfWeekDisabled = inOpts.daysOfWeekDisabled.reduce(sanitizeDOW, []);
     delete inOpts.daysOfWeekDisabled;
   }
   if (inOpts.daysOfWeekHighlighted) {
-    config.daysOfWeekHighlighted = inOpts.daysOfWeekHighlighted.reduce(sanitizeDOW, []);
+    config2.daysOfWeekHighlighted = inOpts.daysOfWeekHighlighted.reduce(sanitizeDOW, []);
     delete inOpts.daysOfWeekHighlighted;
   }
   if ("weekNumbers" in inOpts) {
@@ -9398,25 +9398,25 @@ function processOptions(options, datepicker) {
     if (method) {
       const getWeekNumber = typeof method === "function" ? (timeValue, startOfWeek) => method(new Date(timeValue), startOfWeek) : determineGetWeekMethod(method = parseInt(method, 10), weekStart);
       if (getWeekNumber) {
-        weekNumbers = config.weekNumbers = method;
-        config.getWeekNumber = getWeekNumber;
+        weekNumbers = config2.weekNumbers = method;
+        config2.getWeekNumber = getWeekNumber;
       }
     } else {
-      weekNumbers = config.weekNumbers = 0;
-      config.getWeekNumber = null;
+      weekNumbers = config2.weekNumbers = 0;
+      config2.getWeekNumber = null;
     }
     delete inOpts.weekNumbers;
   }
   if ("maxNumberOfDates" in inOpts) {
     const maxNumberOfDates = parseInt(inOpts.maxNumberOfDates, 10);
     if (maxNumberOfDates >= 0) {
-      config.maxNumberOfDates = maxNumberOfDates;
-      config.multidate = maxNumberOfDates !== 1;
+      config2.maxNumberOfDates = maxNumberOfDates;
+      config2.multidate = maxNumberOfDates !== 1;
     }
     delete inOpts.maxNumberOfDates;
   }
   if (inOpts.dateDelimiter) {
-    config.dateDelimiter = String(inOpts.dateDelimiter);
+    config2.dateDelimiter = String(inOpts.dateDelimiter);
     delete inOpts.dateDelimiter;
   }
   let newMaxView = maxView;
@@ -9426,7 +9426,7 @@ function processOptions(options, datepicker) {
   }
   newMaxView = pickLevel > newMaxView ? pickLevel : newMaxView;
   if (newMaxView !== maxView) {
-    maxView = config.maxView = newMaxView;
+    maxView = config2.maxView = newMaxView;
   }
   let newStartView = startView;
   if ("startView" in inOpts) {
@@ -9439,29 +9439,29 @@ function processOptions(options, datepicker) {
     newStartView = maxView;
   }
   if (newStartView !== startView) {
-    config.startView = newStartView;
+    config2.startView = newStartView;
   }
   if (inOpts.prevArrow) {
     const prevArrow = parseHTML(inOpts.prevArrow);
     if (prevArrow.childNodes.length > 0) {
-      config.prevArrow = prevArrow.childNodes;
+      config2.prevArrow = prevArrow.childNodes;
     }
     delete inOpts.prevArrow;
   }
   if (inOpts.nextArrow) {
     const nextArrow = parseHTML(inOpts.nextArrow);
     if (nextArrow.childNodes.length > 0) {
-      config.nextArrow = nextArrow.childNodes;
+      config2.nextArrow = nextArrow.childNodes;
     }
     delete inOpts.nextArrow;
   }
   if ("disableTouchKeyboard" in inOpts) {
-    config.disableTouchKeyboard = "ontouchstart" in document && !!inOpts.disableTouchKeyboard;
+    config2.disableTouchKeyboard = "ontouchstart" in document && !!inOpts.disableTouchKeyboard;
     delete inOpts.disableTouchKeyboard;
   }
   if (inOpts.orientation) {
     const orientation = inOpts.orientation.toLowerCase().split(/\s+/g);
-    config.orientation = {
+    config2.orientation = {
       x: orientation.find((x) => x === "left" || x === "right") || "auto",
       y: orientation.find((y) => y === "top" || y === "bottom") || "auto"
     };
@@ -9471,16 +9471,16 @@ function processOptions(options, datepicker) {
     switch (inOpts.todayButtonMode) {
       case 0:
       case 1:
-        config.todayButtonMode = inOpts.todayButtonMode;
+        config2.todayButtonMode = inOpts.todayButtonMode;
     }
     delete inOpts.todayButtonMode;
   }
   Object.entries(inOpts).forEach(([key, value]) => {
     if (value !== void 0 && key in defaultOptions_default) {
-      config[key] = value;
+      config2[key] = value;
     }
   });
-  return config;
+  return config2;
 }
 
 // node_modules/vanillajs-datepicker/js/options/shortcutKeys.js
@@ -9550,8 +9550,8 @@ var weekNumbersTemplate_default = optimizeTemplateHTML(`<div class="week-numbers
 
 // node_modules/vanillajs-datepicker/js/picker/views/View.js
 var View = class {
-  constructor(picker, config) {
-    Object.assign(this, config, {
+  constructor(picker, config2) {
+    Object.assign(this, config2, {
       picker,
       element: parseHTML(`<div class="datepicker-view"></div>`).firstChild,
       selected: [],
@@ -9969,8 +9969,8 @@ function toTitleCase(word) {
   return [...word].reduce((str, ch, ix) => str += ix ? ch : ch.toUpperCase(), "");
 }
 var YearsView = class extends View {
-  constructor(picker, config) {
-    super(picker, config);
+  constructor(picker, config2) {
+    super(picker, config2);
   }
   init(options, onConstruction = true) {
     if (onConstruction) {
@@ -10076,7 +10076,7 @@ function triggerDatepickerEvent(datepicker, type) {
   datepicker.element.dispatchEvent(new CustomEvent(type, { detail }));
 }
 function goToPrevOrNext(datepicker, direction) {
-  const { config, picker } = datepicker;
+  const { config: config2, picker } = datepicker;
   const { currentView, viewDate } = picker;
   let newViewDate;
   switch (currentView.id) {
@@ -10089,7 +10089,7 @@ function goToPrevOrNext(datepicker, direction) {
     default:
       newViewDate = addYears(viewDate, direction * currentView.navStep);
   }
-  newViewDate = limitToRange(newViewDate, config.minDate, config.maxDate);
+  newViewDate = limitToRange(newViewDate, config2.minDate, config2.maxDate);
   picker.changeFocus(newViewDate).render();
 }
 function switchView(datepicker) {
@@ -10217,9 +10217,9 @@ function processPickerOptions(picker, options) {
   }
 }
 function computeResetViewDate(datepicker) {
-  const { dates, config, rangeSideIndex } = datepicker;
-  const viewDate = dates.length > 0 ? lastItemOf(dates) : regularizeDate(config.defaultViewDate, config.pickLevel, rangeSideIndex);
-  return limitToRange(viewDate, config.minDate, config.maxDate);
+  const { dates, config: config2, rangeSideIndex } = datepicker;
+  const viewDate = dates.length > 0 ? lastItemOf(dates) : regularizeDate(config2.defaultViewDate, config2.pickLevel, rangeSideIndex);
+  return limitToRange(viewDate, config2.minDate, config2.maxDate);
 }
 function setViewDate(picker, newDate) {
   if (!("_oldViewDate" in picker) && newDate !== picker.viewDate) {
@@ -10249,8 +10249,8 @@ function findScrollParents(el) {
 }
 var Picker = class {
   constructor(datepicker) {
-    const { config, inputField } = this.datepicker = datepicker;
-    const template = pickerTemplate_default.replace(/%buttonClass%/g, config.buttonClass);
+    const { config: config2, inputField } = this.datepicker = datepicker;
+    const template = pickerTemplate_default.replace(/%buttonClass%/g, config2.buttonClass);
     const element65 = this.element = parseHTML(template).firstChild;
     const [header, main, footer] = element65.firstChild.children;
     const title = header.firstElementChild;
@@ -10268,7 +10268,7 @@ var Picker = class {
     this.controls = controls;
     const elementClass = inputField ? "dropdown" : "inline";
     element65.classList.add(`datepicker-${elementClass}`);
-    processPickerOptions(this, config);
+    processPickerOptions(this, config2);
     this.viewDate = computeResetViewDate(datepicker);
     registerListeners(datepicker, [
       [element65, "mousedown", onMousedownPicker],
@@ -10285,11 +10285,11 @@ var Picker = class {
       new YearsView(this, { id: 2, name: "years", cellClass: "year", step: 1 }),
       new YearsView(this, { id: 3, name: "decades", cellClass: "decade", step: 10 })
     ];
-    this.currentView = this.views[config.startView];
+    this.currentView = this.views[config2.startView];
     this.currentView.render();
     this.main.appendChild(this.currentView.element);
-    if (config.container) {
-      config.container.appendChild(this.element);
+    if (config2.container) {
+      config2.container.appendChild(this.element);
     } else {
       inputField.after(this.element);
     }
@@ -10341,7 +10341,7 @@ var Picker = class {
   }
   place() {
     const { classList, offsetParent, style } = this.element;
-    const { config, inputField } = this.datepicker;
+    const { config: config2, inputField } = this.datepicker;
     const {
       width: calendarWidth,
       height: calendarHeight
@@ -10354,7 +10354,7 @@ var Picker = class {
       width: inputWidth,
       height: inputHeight
     } = inputField.getBoundingClientRect();
-    let { x: orientX, y: orientY } = config.orientation;
+    let { x: orientX, y: orientY } = config2.orientation;
     let left = inputLeft;
     let top = inputTop;
     if (offsetParent === document.body || !offsetParent) {
@@ -10530,7 +10530,7 @@ function moveByArrowKey(datepicker, direction, vertical) {
   }
 }
 function onKeydown(datepicker, ev) {
-  const { config, picker, editMode } = datepicker;
+  const { config: config2, picker, editMode } = datepicker;
   const active = picker.active;
   const { key, altKey, shiftKey } = ev;
   const ctrlOrMetaKey = ev.ctrlKey || ev.metaKey;
@@ -10546,7 +10546,7 @@ function onKeydown(datepicker, ev) {
     if (!active) {
       datepicker.update();
     } else if (editMode) {
-      datepicker.exitEditMode({ update: true, autohide: config.autohide });
+      datepicker.exitEditMode({ update: true, autohide: config2.autohide });
     } else {
       const currentView = picker.currentView;
       if (currentView.isMinView) {
@@ -10558,7 +10558,7 @@ function onKeydown(datepicker, ev) {
     }
     return;
   }
-  const shortcutKeys = config.shortcutKeys;
+  const shortcutKeys = config2.shortcutKeys;
   const keyInfo = { key, ctrlOrMetaKey, altKey, shiftKey };
   const shortcut = Object.keys(shortcutKeys).find((item) => {
     const keyDef = shortcutKeys[item];
@@ -10581,9 +10581,9 @@ function onKeydown(datepicker, ev) {
         action = [goToPrevOrNext, [datepicker, 1]];
       } else if (shortcut === "viewSwitch") {
         action = [switchView, [datepicker]];
-      } else if (config.clearButton && shortcut === "clearButton") {
+      } else if (config2.clearButton && shortcut === "clearButton") {
         action = [clearSelection, [datepicker]];
-      } else if (config.todayButton && shortcut === "todayButton") {
+      } else if (config2.todayButton && shortcut === "todayButton") {
         action = [goToOrSelectToday, [datepicker]];
       }
     } else if (shortcut === "show") {
@@ -10672,22 +10672,22 @@ function onClickOutside(datepicker, ev) {
 }
 
 // node_modules/vanillajs-datepicker/js/Datepicker.js
-function stringifyDates(dates, config) {
-  return dates.map((dt) => formatDate(dt, config.format, config.locale)).join(config.dateDelimiter);
+function stringifyDates(dates, config2) {
+  return dates.map((dt) => formatDate(dt, config2.format, config2.locale)).join(config2.dateDelimiter);
 }
 function processInputDates(datepicker, inputDates, clear = false) {
   if (inputDates.length === 0) {
     return clear ? [] : void 0;
   }
-  const { config, dates: origDates, rangeSideIndex } = datepicker;
-  const { pickLevel, maxNumberOfDates } = config;
+  const { config: config2, dates: origDates, rangeSideIndex } = datepicker;
+  const { pickLevel, maxNumberOfDates } = config2;
   let newDates = inputDates.reduce((dates, dt) => {
-    let date = parseDate(dt, config.format, config.locale);
+    let date = parseDate(dt, config2.format, config2.locale);
     if (date === void 0) {
       return dates;
     }
     date = regularizeDate(date, pickLevel, rangeSideIndex);
-    if (isInRange(date, config.minDate, config.maxDate) && !dates.includes(date) && !config.checkDisabled(date, pickLevel) && (pickLevel > 0 || !config.daysOfWeekDisabled.includes(new Date(date).getDay()))) {
+    if (isInRange(date, config2.minDate, config2.maxDate) && !dates.includes(date) && !config2.checkDisabled(date, pickLevel) && (pickLevel > 0 || !config2.daysOfWeekDisabled.includes(new Date(date).getDay()))) {
       dates.push(date);
     }
     return dates;
@@ -10695,7 +10695,7 @@ function processInputDates(datepicker, inputDates, clear = false) {
   if (newDates.length === 0) {
     return;
   }
-  if (config.multidate && !clear) {
+  if (config2.multidate && !clear) {
     newDates = newDates.reduce((dates, date) => {
       if (!origDates.includes(date)) {
         dates.push(date);
@@ -10706,17 +10706,17 @@ function processInputDates(datepicker, inputDates, clear = false) {
   return maxNumberOfDates && newDates.length > maxNumberOfDates ? newDates.slice(maxNumberOfDates * -1) : newDates;
 }
 function refreshUI(datepicker, mode = 3, quickRender = true, viewDate = void 0) {
-  const { config, picker, inputField } = datepicker;
+  const { config: config2, picker, inputField } = datepicker;
   if (mode & 2) {
-    const newView = picker.active ? config.pickLevel : config.startView;
+    const newView = picker.active ? config2.pickLevel : config2.startView;
     picker.update(viewDate).changeView(newView).render(quickRender);
   }
   if (mode & 1 && inputField) {
-    inputField.value = stringifyDates(datepicker.dates, config);
+    inputField.value = stringifyDates(datepicker.dates, config2);
   }
 }
 function setDate(datepicker, inputDates, options) {
-  const config = datepicker.config;
+  const config2 = datepicker.config;
   let { clear, render, autohide, revert, forceRefresh, viewDate } = options;
   if (render === void 0) {
     render = true;
@@ -10724,9 +10724,9 @@ function setDate(datepicker, inputDates, options) {
   if (!render) {
     autohide = forceRefresh = false;
   } else if (autohide === void 0) {
-    autohide = config.autohide;
+    autohide = config2.autohide;
   }
-  viewDate = parseDate(viewDate, config.format, config.locale);
+  viewDate = parseDate(viewDate, config2.format, config2.locale);
   const newDates = processInputDates(datepicker, inputDates, clear);
   if (!newDates && !revert) {
     return;
@@ -10758,7 +10758,7 @@ var Datepicker = class {
     element65.datepicker = this;
     this.element = element65;
     this.dates = [];
-    const config = this.config = Object.assign({
+    const config2 = this.config = Object.assign({
       buttonClass: options.buttonClass && String(options.buttonClass) || "button",
       container: null,
       defaultViewDate: today(),
@@ -10770,10 +10770,10 @@ var Datepicker = class {
       inputField = this.inputField = element65;
       inputField.classList.add("datepicker-input");
       if (options.container) {
-        config.container = options.container instanceof HTMLElement ? options.container : document.querySelector(options.container);
+        config2.container = options.container instanceof HTMLElement ? options.container : document.querySelector(options.container);
       }
     } else {
-      config.container = element65;
+      config2.container = element65;
     }
     if (rangepicker) {
       const index = rangepicker.inputs.indexOf(inputField);
@@ -10786,11 +10786,11 @@ var Datepicker = class {
       this.rangeSideIndex = index;
     }
     this._options = options;
-    Object.assign(config, processOptions(options, this));
-    config.shortcutKeys = createShortcutKeyConfig(options.shortcutKeys || {});
+    Object.assign(config2, processOptions(options, this));
+    config2.shortcutKeys = createShortcutKeyConfig(options.shortcutKeys || {});
     const initialDates = stringToArray(
       element65.value || element65.dataset.date,
-      config.dateDelimiter
+      config2.dateDelimiter
     );
     delete element65.dataset.date;
     const inputDateValues = processInputDates(this, initialDates);
@@ -10798,7 +10798,7 @@ var Datepicker = class {
       this.dates = inputDateValues;
     }
     if (inputField) {
-      inputField.value = stringifyDates(this.dates, config);
+      inputField.value = stringifyDates(this.dates, config2);
     }
     const picker = this.picker = new Picker(this);
     const keydownListener = [element65, "keydown", onKeydown.bind(null, this)];
@@ -10893,11 +10893,11 @@ var Datepicker = class {
    */
   show() {
     if (this.inputField) {
-      const { config, inputField } = this;
-      if (inputField.disabled || inputField.readOnly && !config.enableOnReadonly) {
+      const { config: config2, inputField } = this;
+      if (inputField.disabled || inputField.readOnly && !config2.enableOnReadonly) {
         return;
       }
-      if (!isActiveElement(inputField) && !config.disableTouchKeyboard) {
+      if (!isActiveElement(inputField) && !config2.disableTouchKeyboard) {
         this._showing = true;
         inputField.focus();
         delete this._showing;
@@ -11088,9 +11088,9 @@ var Datepicker = class {
    * hidden
    */
   setFocusedDate(viewDate, resetView = false) {
-    const { config, picker, active, rangeSideIndex } = this;
-    const pickLevel = config.pickLevel;
-    const newViewDate = parseDate(viewDate, config.format, config.locale);
+    const { config: config2, picker, active, rangeSideIndex } = this;
+    const pickLevel = config2.pickLevel;
+    const newViewDate = parseDate(viewDate, config2.format, config2.locale);
     if (newViewDate === void 0) {
       return;
     }
@@ -14542,10 +14542,40 @@ var MenuSeparator_default = MenuSeparator;
 
 // src/message-box/MessageBox.svelte
 var import_internal16 = __toESM(require_internal());
+var import_svelte10 = __toESM(require_svelte());
+
+// src/message-box/MessageBox.js
+var import_store2 = __toESM(require_store());
+var config = (0, import_store2.writable)({});
+var MessageType = {
+  INFO: "info",
+  WARNING: "warning",
+  ERROR: "error"
+};
+function showMessage(messageOrConfig, _type = MessageType.INFO, _title = "", btnLabel = "OK", _cb = () => {
+}) {
+  let cfg = {};
+  if (typeof messageOrConfig === "string") {
+    cfg = {
+      message: messageOrConfig,
+      type: _type,
+      title: _title,
+      cb: _cb,
+      buttons: [{ label: btnLabel, value: btnLabel }]
+    };
+  } else
+    cfg = messageOrConfig;
+  if (cfg.buttons.length === 1) {
+    cfg.buttons[0].type = cfg.type;
+  }
+  config.set(cfg);
+}
+
+// src/message-box/MessageBox.svelte
 var file15 = "src/message-box/MessageBox.svelte";
 function get_each_context3(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[8] = list[i];
+  child_ctx[6] = list[i];
   return child_ctx;
 }
 function create_default_slot(ctx) {
@@ -14553,14 +14583,14 @@ function create_default_slot(ctx) {
   let t0;
   let div;
   let t1_value = (
-    /*config*/
+    /*$config*/
     ctx[1].message + ""
   );
   let t1;
   let current;
   icon = new Icon_default({
     props: { name: (
-      /*config*/
+      /*$config*/
       ctx[1].type
     ) },
     $$inline: true
@@ -14572,7 +14602,7 @@ function create_default_slot(ctx) {
       div = (0, import_internal16.element)("div");
       t1 = (0, import_internal16.text)(t1_value);
       (0, import_internal16.attr_dev)(div, "class", "message");
-      (0, import_internal16.add_location)(div, file15, 6, 2, 153);
+      (0, import_internal16.add_location)(div, file15, 6, 2, 156);
     },
     m: function mount(target, anchor) {
       (0, import_internal16.mount_component)(icon, target, anchor);
@@ -14583,13 +14613,13 @@ function create_default_slot(ctx) {
     },
     p: function update(ctx2, dirty) {
       const icon_changes = {};
-      if (dirty & /*config*/
+      if (dirty & /*$config*/
       2)
-        icon_changes.name = /*config*/
+        icon_changes.name = /*$config*/
         ctx2[1].type;
       icon.$set(icon_changes);
-      if ((!current || dirty & /*config*/
-      2) && t1_value !== (t1_value = /*config*/
+      if ((!current || dirty & /*$config*/
+      2) && t1_value !== (t1_value = /*$config*/
       ctx2[1].message + ""))
         (0, import_internal16.set_data_dev)(t1, t1_value);
     },
@@ -14615,7 +14645,71 @@ function create_default_slot(ctx) {
     block,
     id: create_default_slot.name,
     type: "slot",
-    source: '(1:0) <Dialog  title=\\"{config.title}\\"  class=\\"message-box message-{config.type}\\"  bind:this=\\"{dialog}\\"  on:close=\\"{onclose}\\">',
+    source: '(1:0) <Dialog  title=\\"{$config.title}\\"  class=\\"message-box message-{$config.type}\\"  bind:this=\\"{dialog}\\"  on:close=\\"{onclose}\\">',
+    ctx
+  });
+  return block;
+}
+function create_if_block8(ctx) {
+  let each_1_anchor;
+  let each_value = (
+    /*$config*/
+    ctx[1].buttons
+  );
+  (0, import_internal16.validate_each_argument)(each_value);
+  let each_blocks = [];
+  for (let i = 0; i < each_value.length; i += 1) {
+    each_blocks[i] = create_each_block3(get_each_context3(ctx, each_value, i));
+  }
+  const block = {
+    c: function create() {
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        each_blocks[i].c();
+      }
+      each_1_anchor = (0, import_internal16.empty)();
+    },
+    m: function mount(target, anchor) {
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        if (each_blocks[i]) {
+          each_blocks[i].m(target, anchor);
+        }
+      }
+      (0, import_internal16.insert_dev)(target, each_1_anchor, anchor);
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty & /*$config, onclick*/
+      6) {
+        each_value = /*$config*/
+        ctx2[1].buttons;
+        (0, import_internal16.validate_each_argument)(each_value);
+        let i;
+        for (i = 0; i < each_value.length; i += 1) {
+          const child_ctx = get_each_context3(ctx2, each_value, i);
+          if (each_blocks[i]) {
+            each_blocks[i].p(child_ctx, dirty);
+          } else {
+            each_blocks[i] = create_each_block3(child_ctx);
+            each_blocks[i].c();
+            each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+          }
+        }
+        for (; i < each_blocks.length; i += 1) {
+          each_blocks[i].d(1);
+        }
+        each_blocks.length = each_value.length;
+      }
+    },
+    d: function destroy(detaching) {
+      (0, import_internal16.destroy_each)(each_blocks, detaching);
+      if (detaching)
+        (0, import_internal16.detach_dev)(each_1_anchor);
+    }
+  };
+  (0, import_internal16.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block8.name,
+    type: "if",
+    source: "(9:3) {#if $config.buttons}",
     ctx
   });
   return block;
@@ -14624,7 +14718,7 @@ function create_each_block3(ctx) {
   let button;
   let t_value = (
     /*button*/
-    ctx[8].label + ""
+    ctx[6].label + ""
   );
   let t;
   let button_class_value;
@@ -14633,9 +14727,9 @@ function create_each_block3(ctx) {
   function click_handler(...args) {
     return (
       /*click_handler*/
-      ctx[6](
+      ctx[4](
         /*button*/
-        ctx[8],
+        ctx[6],
         ...args
       )
     );
@@ -14644,9 +14738,9 @@ function create_each_block3(ctx) {
     c: function create() {
       button = (0, import_internal16.element)("button");
       t = (0, import_internal16.text)(t_value);
-      (0, import_internal16.attr_dev)(button, "class", button_class_value = "button button-normal button-has-text round " + /*button*/
-      (ctx[8].type || ""));
-      (0, import_internal16.add_location)(button, file15, 9, 4, 259);
+      (0, import_internal16.attr_dev)(button, "class", button_class_value = "button button-normal button-has-text " + /*button*/
+      (ctx[6].type || ""));
+      (0, import_internal16.add_location)(button, file15, 10, 5, 291);
     },
     m: function mount(target, anchor) {
       (0, import_internal16.insert_dev)(target, button, anchor);
@@ -14658,13 +14752,13 @@ function create_each_block3(ctx) {
     },
     p: function update(new_ctx, dirty) {
       ctx = new_ctx;
-      if (dirty & /*config*/
+      if (dirty & /*$config*/
       2 && t_value !== (t_value = /*button*/
-      ctx[8].label + ""))
+      ctx[6].label + ""))
         (0, import_internal16.set_data_dev)(t, t_value);
-      if (dirty & /*config*/
-      2 && button_class_value !== (button_class_value = "button button-normal button-has-text round " + /*button*/
-      (ctx[8].type || ""))) {
+      if (dirty & /*$config*/
+      2 && button_class_value !== (button_class_value = "button button-normal button-has-text " + /*button*/
+      (ctx[6].type || ""))) {
         (0, import_internal16.attr_dev)(button, "class", button_class_value);
       }
     },
@@ -14679,66 +14773,52 @@ function create_each_block3(ctx) {
     block,
     id: create_each_block3.name,
     type: "each",
-    source: "(9:3) {#each config.buttons as button}",
+    source: "(10:4) {#each $config.buttons as button}",
     ctx
   });
   return block;
 }
 function create_footer_slot(ctx) {
   let div;
-  let each_value = (
-    /*config*/
-    ctx[1].buttons
+  let if_block = (
+    /*$config*/
+    ctx[1].buttons && create_if_block8(ctx)
   );
-  (0, import_internal16.validate_each_argument)(each_value);
-  let each_blocks = [];
-  for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block3(get_each_context3(ctx, each_value, i));
-  }
   const block = {
     c: function create() {
       div = (0, import_internal16.element)("div");
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
+      if (if_block)
+        if_block.c();
       (0, import_internal16.attr_dev)(div, "slot", "footer");
-      (0, import_internal16.add_location)(div, file15, 7, 2, 199);
+      (0, import_internal16.add_location)(div, file15, 7, 2, 203);
     },
     m: function mount(target, anchor) {
       (0, import_internal16.insert_dev)(target, div, anchor);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(div, null);
-        }
-      }
+      if (if_block)
+        if_block.m(div, null);
     },
     p: function update(ctx2, dirty) {
-      if (dirty & /*config, onclick*/
-      6) {
-        each_value = /*config*/
-        ctx2[1].buttons;
-        (0, import_internal16.validate_each_argument)(each_value);
-        let i;
-        for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context3(ctx2, each_value, i);
-          if (each_blocks[i]) {
-            each_blocks[i].p(child_ctx, dirty);
-          } else {
-            each_blocks[i] = create_each_block3(child_ctx);
-            each_blocks[i].c();
-            each_blocks[i].m(div, null);
-          }
+      if (
+        /*$config*/
+        ctx2[1].buttons
+      ) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block = create_if_block8(ctx2);
+          if_block.c();
+          if_block.m(div, null);
         }
-        for (; i < each_blocks.length; i += 1) {
-          each_blocks[i].d(1);
-        }
-        each_blocks.length = each_value.length;
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
       }
     },
     d: function destroy(detaching) {
       if (detaching)
         (0, import_internal16.detach_dev)(div);
-      (0, import_internal16.destroy_each)(each_blocks, detaching);
+      if (if_block)
+        if_block.d();
     }
   };
   (0, import_internal16.dispatch_dev)("SvelteRegisterBlock", {
@@ -14755,10 +14835,10 @@ function create_fragment16(ctx) {
   let current;
   let dialog_1_props = {
     title: (
-      /*config*/
+      /*$config*/
       ctx[1].title
     ),
-    class: "message-box message-" + /*config*/
+    class: "message-box message-" + /*$config*/
     ctx[1].type,
     $$slots: {
       footer: [create_footer_slot],
@@ -14767,7 +14847,7 @@ function create_fragment16(ctx) {
     $$scope: { ctx }
   };
   dialog_1 = new Dialog_default({ props: dialog_1_props, $$inline: true });
-  ctx[7](dialog_1);
+  ctx[5](dialog_1);
   dialog_1.$on(
     "close",
     /*onclose*/
@@ -14786,16 +14866,16 @@ function create_fragment16(ctx) {
     },
     p: function update(ctx2, [dirty]) {
       const dialog_1_changes = {};
-      if (dirty & /*config*/
+      if (dirty & /*$config*/
       2)
-        dialog_1_changes.title = /*config*/
+        dialog_1_changes.title = /*$config*/
         ctx2[1].title;
-      if (dirty & /*config*/
+      if (dirty & /*$config*/
       2)
-        dialog_1_changes.class = "message-box message-" + /*config*/
+        dialog_1_changes.class = "message-box message-" + /*$config*/
         ctx2[1].type;
-      if (dirty & /*$$scope, config*/
-      2050) {
+      if (dirty & /*$$scope, $config*/
+      514) {
         dialog_1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       dialog_1.$set(dialog_1_changes);
@@ -14811,7 +14891,7 @@ function create_fragment16(ctx) {
       current = false;
     },
     d: function destroy(detaching) {
-      ctx[7](null);
+      ctx[5](null);
       (0, import_internal16.destroy_component)(dialog_1, detaching);
     }
   };
@@ -14825,46 +14905,29 @@ function create_fragment16(ctx) {
   return block;
 }
 function instance16($$self, $$props, $$invalidate) {
+  let $config;
+  (0, import_internal16.validate_store)(config, "config");
+  (0, import_internal16.component_subscribe)($$self, config, ($$value) => $$invalidate(1, $config = $$value));
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal16.validate_slots)("MessageBox", slots, []);
   let dialog;
-  let config = {
-    message: "",
-    type: "",
-    title: "",
-    buttons: [],
-    cb: () => {
-    }
-  };
-  const Type = {
-    INFO: "info",
-    WARNING: "warning",
-    ERROR: "error"
-  };
-  function show(messageOrConfig, _type = Type.INFO, _title = "", btnLabel = "OK", _cb = () => {
-  }) {
-    if (typeof messageOrConfig === "string") {
-      $$invalidate(1, config = {
-        message: messageOrConfig,
-        type: _type,
-        title: _title,
-        cb: _cb,
-        buttons: [{ label: btnLabel, value: btnLabel }]
-      });
-    } else
-      $$invalidate(1, config = messageOrConfig);
-    if (config.buttons.length === 1) {
-      $$invalidate(1, config.buttons[0].type = config.type, config);
-    }
-    dialog.open();
-  }
+  (0, import_svelte10.onMount)(() => {
+    config.subscribe((cfg) => {
+      if (!dialog)
+        return;
+      if (cfg && cfg.message)
+        dialog.open();
+      else
+        dialog.close();
+    });
+  });
   function onclick(e, button) {
     e.preventDefault();
-    $$invalidate(1, config.res = button.value, config);
+    (0, import_internal16.set_store_value)(config, $config.result = button.value, $config);
     dialog.close();
   }
   function onclose2() {
-    config.cb(config.res);
+    $config.cb($config.result);
   }
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
@@ -14879,30 +14942,28 @@ function instance16($$self, $$props, $$invalidate) {
     });
   }
   $$self.$capture_state = () => ({
+    onMount: import_svelte10.onMount,
+    config,
     Dialog: Dialog_default,
     Icon: Icon_default,
     dialog,
-    config,
-    Type,
-    show,
     onclick,
-    onclose: onclose2
+    onclose: onclose2,
+    $config
   });
   $$self.$inject_state = ($$props2) => {
     if ("dialog" in $$props2)
       $$invalidate(0, dialog = $$props2.dialog);
-    if ("config" in $$props2)
-      $$invalidate(1, config = $$props2.config);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
-  return [dialog, config, onclick, onclose2, Type, show, click_handler, dialog_1_binding];
+  return [dialog, $config, onclick, onclose2, click_handler, dialog_1_binding];
 }
 var MessageBox = class extends import_internal16.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal16.init)(this, options, instance16, create_fragment16, import_internal16.safe_not_equal, { Type: 4, show: 5 });
+    (0, import_internal16.init)(this, options, instance16, create_fragment16, import_internal16.safe_not_equal, {});
     (0, import_internal16.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "MessageBox",
@@ -14910,24 +14971,12 @@ var MessageBox = class extends import_internal16.SvelteComponentDev {
       id: create_fragment16.name
     });
   }
-  get Type() {
-    return this.$$.ctx[4];
-  }
-  set Type(value) {
-    throw new Error("<MessageBox>: Cannot set read-only property 'Type'");
-  }
-  get show() {
-    return this.$$.ctx[5];
-  }
-  set show(value) {
-    throw new Error("<MessageBox>: Cannot set read-only property 'show'");
-  }
 };
 var MessageBox_default = MessageBox;
 
 // src/panel/Panel.svelte
 var import_internal17 = __toESM(require_internal());
-var import_svelte10 = __toESM(require_svelte());
+var import_svelte11 = __toESM(require_svelte());
 var file16 = "src/panel/Panel.svelte";
 function create_fragment17(ctx) {
   let div2;
@@ -15137,7 +15186,7 @@ function create_fragment17(ctx) {
 function instance17($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal17.validate_slots)("Panel", slots, ["default"]);
-  const dispatch = (0, import_svelte10.createEventDispatcher)();
+  const dispatch = (0, import_svelte11.createEventDispatcher)();
   let { title = "" } = $$props;
   let { open = false } = $$props;
   let { round = false } = $$props;
@@ -15145,7 +15194,7 @@ function instance17($$self, $$props, $$invalidate) {
   let wrapEl, headerEl, expanded = open;
   const expandedProps = { height: 0 };
   const collapsedProps = { height: 0 };
-  (0, import_svelte10.onMount)(calcHeights);
+  (0, import_svelte11.onMount)(calcHeights);
   function calcHeights() {
     const wasOpen = open;
     $$invalidate(0, open = true);
@@ -15219,8 +15268,8 @@ function instance17($$self, $$props, $$invalidate) {
       $$invalidate(8, $$scope = $$props2.$$scope);
   };
   $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte10.createEventDispatcher,
-    onMount: import_svelte10.onMount,
+    createEventDispatcher: import_svelte11.createEventDispatcher,
+    onMount: import_svelte11.onMount,
     icons,
     animate,
     dispatch,
@@ -15322,7 +15371,7 @@ var Panel_default = Panel;
 
 // src/push-button/PushButton.svelte
 var import_internal18 = __toESM(require_internal());
-var import_svelte11 = __toESM(require_svelte());
+var import_svelte12 = __toESM(require_svelte());
 function create_else_block(ctx) {
   let button;
   let current;
@@ -15470,7 +15519,7 @@ function create_else_block(ctx) {
   });
   return block;
 }
-function create_if_block8(ctx) {
+function create_if_block9(ctx) {
   let button;
   let current;
   const button_spread_levels = [
@@ -15617,7 +15666,7 @@ function create_if_block8(ctx) {
   };
   (0, import_internal18.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block8.name,
+    id: create_if_block9.name,
     type: "if",
     source: "(1:0) {#if $$slots.default}",
     ctx
@@ -15702,7 +15751,7 @@ function create_fragment18(ctx) {
   let if_block;
   let if_block_anchor;
   let current;
-  const if_block_creators = [create_if_block8, create_else_block];
+  const if_block_creators = [create_if_block9, create_else_block];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -15789,7 +15838,7 @@ function instance18($$self, $$props, $$invalidate) {
   let { icon = void 0 } = $$props;
   let { round = void 0 } = $$props;
   let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte11.createEventDispatcher)();
+  const dispatch = (0, import_svelte12.createEventDispatcher)();
   function onKeydown2(e) {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -15839,7 +15888,7 @@ function instance18($$self, $$props, $$invalidate) {
       $$invalidate(17, $$scope = $$new_props.$$scope);
   };
   $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte11.createEventDispatcher,
+    createEventDispatcher: import_svelte12.createEventDispatcher,
     Button: Button_default,
     pluck,
     _this,
@@ -16097,7 +16146,7 @@ function create_else_block2(ctx) {
   });
   return block;
 }
-function create_if_block9(ctx) {
+function create_if_block10(ctx) {
   let optgroup;
   let optgroup_label_value;
   let each_value_1 = (
@@ -16163,7 +16212,7 @@ function create_if_block9(ctx) {
   };
   (0, import_internal19.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block9.name,
+    id: create_if_block10.name,
     type: "if",
     source: "(12:3) {#if group.items}",
     ctx
@@ -16224,7 +16273,7 @@ function create_each_block4(ctx) {
       /*group*/
       ctx2[11].items
     )
-      return create_if_block9;
+      return create_if_block10;
     return create_else_block2;
   }
   let current_block_type = select_block_type(ctx, -1);
@@ -16587,7 +16636,7 @@ var Select_default = Select;
 
 // src/splitter/Splitter.svelte
 var import_internal20 = __toESM(require_internal());
-var import_svelte12 = __toESM(require_svelte());
+var import_svelte13 = __toESM(require_svelte());
 var file18 = "src/splitter/Splitter.svelte";
 function create_fragment20(ctx) {
   let div;
@@ -16681,7 +16730,7 @@ function instance20($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal20.validate_slots)("Splitter", slots, []);
   let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte12.createEventDispatcher)();
+  const dispatch = (0, import_svelte13.createEventDispatcher)();
   const size = 8, halfsize = size / 2;
   const Box = {};
   let isVertical = false;
@@ -16689,7 +16738,7 @@ function instance20($$self, $$props, $$invalidate) {
   let initialTargetBox, startX2, startY2;
   let mousedownTargetBox;
   let isDragging = false, bodyCursor;
-  (0, import_svelte12.onMount)(() => {
+  (0, import_svelte13.onMount)(() => {
     requestAnimationFrame(init67);
   });
   function toggle() {
@@ -16832,8 +16881,8 @@ function instance20($$self, $$props, $$invalidate) {
       $$invalidate(0, className = $$props2.class);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte12.onMount,
-    createEventDispatcher: import_svelte12.createEventDispatcher,
+    onMount: import_svelte13.onMount,
+    createEventDispatcher: import_svelte13.createEventDispatcher,
     getMouseX,
     getMouseY,
     innerWidth,
@@ -16961,7 +17010,7 @@ var Splitter_default = Splitter;
 
 // src/table/Table.svelte
 var import_internal21 = __toESM(require_internal());
-var import_svelte13 = __toESM(require_svelte());
+var import_svelte14 = __toESM(require_svelte());
 var { Object: Object_1 } = import_internal21.globals;
 var file19 = "src/table/Table.svelte";
 function create_fragment21(ctx) {
@@ -17153,7 +17202,7 @@ function shouldSkipNav(e) {
 function instance21($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal21.validate_slots)("Table", slots, ["default"]);
-  const dispatch = (0, import_svelte13.createEventDispatcher)();
+  const dispatch = (0, import_svelte14.createEventDispatcher)();
   let { _this = void 0 } = $$props;
   let { selectable = true } = $$props;
   let { round = false } = $$props;
@@ -17166,7 +17215,7 @@ function instance21($$self, $$props, $$invalidate) {
   let headerHeight = 0;
   let clickTimer;
   let previousKey;
-  (0, import_svelte13.onMount)(() => {
+  (0, import_svelte14.onMount)(() => {
     Object.assign(_this.dataset, data);
     if (selectable === true || selectable === "true") {
       makeRowsSelectable();
@@ -17177,7 +17226,7 @@ function instance21($$self, $$props, $$invalidate) {
       });
     }
   });
-  (0, import_svelte13.onDestroy)(() => {
+  (0, import_svelte14.onDestroy)(() => {
     if (selectable === true || selectable === "true")
       makeRowsNotSelectable();
   });
@@ -17371,9 +17420,9 @@ function instance21($$self, $$props, $$invalidate) {
       $$invalidate(12, $$scope = $$props2.$$scope);
   };
   $$self.$capture_state = () => ({
-    onDestroy: import_svelte13.onDestroy,
-    onMount: import_svelte13.onMount,
-    createEventDispatcher: import_svelte13.createEventDispatcher,
+    onDestroy: import_svelte14.onDestroy,
+    onMount: import_svelte14.onMount,
+    createEventDispatcher: import_svelte14.createEventDispatcher,
     dispatch,
     _this,
     selectable,
@@ -17747,7 +17796,7 @@ var Textarea_default = Textarea;
 
 // src/text-fit/TextFit.svelte
 var import_internal23 = __toESM(require_internal());
-var import_svelte14 = __toESM(require_svelte());
+var import_svelte15 = __toESM(require_svelte());
 var file21 = "src/text-fit/TextFit.svelte";
 function create_fragment23(ctx) {
   let span;
@@ -17855,7 +17904,7 @@ function instance23($$self, $$props, $$invalidate) {
     const val = (parentW - margin) / textW || 0;
     $$invalidate(1, el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`, el);
   }
-  (0, import_svelte14.onMount)(() => {
+  (0, import_svelte15.onMount)(() => {
     parent = el.parentNode;
     resizeObserver = new ResizeObserver(() => {
       if (timer2)
@@ -17867,7 +17916,7 @@ function instance23($$self, $$props, $$invalidate) {
     mutationObserver.observe(el.firstChild, { characterData: true });
     resize();
   });
-  (0, import_svelte14.onDestroy)(() => {
+  (0, import_svelte15.onDestroy)(() => {
     resizeObserver.unobserve(parent);
     mutationObserver.disconnect();
   });
@@ -17891,8 +17940,8 @@ function instance23($$self, $$props, $$invalidate) {
       $$invalidate(3, $$scope = $$props2.$$scope);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte14.onMount,
-    onDestroy: import_svelte14.onDestroy,
+    onMount: import_svelte15.onMount,
+    onDestroy: import_svelte15.onDestroy,
     margin,
     className,
     DEBOUNCE_RESIZE,
@@ -17955,8 +18004,8 @@ var import_internal24 = __toESM(require_internal());
 var import_transition2 = __toESM(require_transition());
 
 // src/toaster/toaster.js
-var import_store2 = __toESM(require_store());
-var _toasts = (0, import_store2.writable)({});
+var import_store3 = __toESM(require_store());
+var _toasts = (0, import_store3.writable)({});
 function showToast(msg, type = "info", timeout = 5e3, btn, cb = () => {
 }) {
   const id = guid();
@@ -18044,7 +18093,7 @@ function create_if_block_13(ctx) {
   });
   return block;
 }
-function create_if_block10(ctx) {
+function create_if_block11(ctx) {
   let div1;
   let div0;
   const block = {
@@ -18091,7 +18140,7 @@ function create_if_block10(ctx) {
   };
   (0, import_internal24.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block10.name,
+    id: create_if_block11.name,
     type: "if",
     source: "(23:3) {#if toast.showProgress}",
     ctx
@@ -18131,7 +18180,7 @@ function create_each_block5(key_1, ctx) {
   }
   let if_block1 = (
     /*toast*/
-    ctx[16].showProgress && create_if_block10(ctx)
+    ctx[16].showProgress && create_if_block11(ctx)
   );
   function mouseover_handler() {
     return (
@@ -18269,7 +18318,7 @@ function create_each_block5(key_1, ctx) {
         if (if_block1) {
           if_block1.p(ctx, dirty);
         } else {
-          if_block1 = create_if_block10(ctx);
+          if_block1 = create_if_block11(ctx);
           if_block1.c();
           if_block1.m(div1, t4);
         }
@@ -18571,18 +18620,18 @@ var Toaster_default = Toaster;
 
 // src/notification-center/NotificationCenter/NotificationCenter.svelte
 var import_internal26 = __toESM(require_internal());
-var import_svelte16 = __toESM(require_svelte());
-var import_store5 = __toESM(require_store());
+var import_svelte17 = __toESM(require_svelte());
+var import_store6 = __toESM(require_store());
 
 // src/notification-center/store.js
-var import_store3 = __toESM(require_store());
+var import_store4 = __toESM(require_store());
 var import_transition3 = __toESM(require_transition());
 var import_animate = __toESM(require_animate());
-var Notifications = (0, import_store3.writable)({});
-var ArchivedNotifications = (0, import_store3.writable)({});
-var Progress = (0, import_store3.writable)({});
+var Notifications = (0, import_store4.writable)({});
+var ArchivedNotifications = (0, import_store4.writable)({});
+var Progress = (0, import_store4.writable)({});
 var timers = {};
-var duration = (0, import_store3.get)(ANIMATION_SPEED);
+var duration = (0, import_store4.get)(ANIMATION_SPEED);
 var fly2 = (node, params) => (0, import_transition3.fly)(node, { duration, x: 500, opacity: 1, ...params });
 var slideUp = (node, params) => (0, import_transition3.fly)(node, { duration, y: -50, ...params });
 var slideDown = (node, params) => (0, import_transition3.fly)(node, { duration, y: 50, ...params });
@@ -18622,7 +18671,7 @@ function setProgress(id, val) {
   });
 }
 function getProgress(id) {
-  const progress = (0, import_store3.get)(Progress) || {};
+  const progress = (0, import_store4.get)(Progress) || {};
   return progress[id] || 0;
 }
 function applyProgress(id, progress) {
@@ -18669,7 +18718,7 @@ function removeFromArchive(id) {
 
 // src/notification-center/NotificationArchive/NotificationArchive.svelte
 var import_internal25 = __toESM(require_internal());
-var import_svelte15 = __toESM(require_svelte());
+var import_svelte16 = __toESM(require_svelte());
 var { Object: Object_13 } = import_internal25.globals;
 var file23 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
 function get_each_context6(ctx, list, i) {
@@ -18992,7 +19041,7 @@ function create_default_slot3(ctx) {
   });
   return block;
 }
-function create_if_block11(ctx) {
+function create_if_block12(ctx) {
   let each_blocks = [];
   let each_1_lookup = /* @__PURE__ */ new Map();
   let each_1_anchor;
@@ -19068,7 +19117,7 @@ function create_if_block11(ctx) {
   };
   (0, import_internal25.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block11.name,
+    id: create_if_block12.name,
     type: "if",
     source: "(16:1) {#if archived.length && expanded}",
     ctx
@@ -19279,7 +19328,7 @@ function create_fragment25(ctx) {
   let if_block1 = (
     /*archived*/
     ctx[3].length && /*expanded*/
-    ctx[1] && create_if_block11(ctx)
+    ctx[1] && create_if_block12(ctx)
   );
   const block = {
     c: function create() {
@@ -19349,7 +19398,7 @@ function create_fragment25(ctx) {
             (0, import_internal25.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block11(ctx2);
+          if_block1 = create_if_block12(ctx2);
           if_block1.c();
           (0, import_internal25.transition_in)(if_block1, 1);
           if_block1.m(div, null);
@@ -19424,13 +19473,13 @@ function instance25($$self, $$props, $$invalidate) {
   let archived = [];
   let now = (/* @__PURE__ */ new Date()).getTime();
   let timer2;
-  (0, import_svelte15.onMount)(() => {
+  (0, import_svelte16.onMount)(() => {
     timer2 = setInterval(() => $$invalidate(4, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
     ArchivedNotifications.subscribe((val) => {
       $$invalidate(3, archived = Object.values(val).reverse());
     });
   });
-  (0, import_svelte15.onDestroy)(() => {
+  (0, import_svelte16.onDestroy)(() => {
     clearInterval(timer2);
   });
   function toggle() {
@@ -19480,8 +19529,8 @@ function instance25($$self, $$props, $$invalidate) {
       $$invalidate(1, expanded = $$props2.expanded);
   };
   $$self.$capture_state = () => ({
-    onDestroy: import_svelte15.onDestroy,
-    onMount: import_svelte15.onMount,
+    onDestroy: import_svelte16.onDestroy,
+    onMount: import_svelte16.onMount,
     Button: Button_default,
     ArchivedNotifications,
     removeFromArchive,
@@ -20039,7 +20088,7 @@ function create_each_block7(key_1, ctx) {
   });
   return block;
 }
-function create_if_block12(ctx) {
+function create_if_block13(ctx) {
   let notificationarchive;
   let updating_show;
   let updating_expanded;
@@ -20113,7 +20162,7 @@ function create_if_block12(ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block12.name,
+    id: create_if_block13.name,
     type: "if",
     source: "(50:1) {#if !hideButton}",
     ctx
@@ -20146,7 +20195,7 @@ function create_fragment26(ctx) {
     each_1_lookup.set(key, each_blocks[i] = create_each_block7(key, child_ctx));
   }
   let if_block1 = !/*hideButton*/
-  ctx[3] && create_if_block12(ctx);
+  ctx[3] && create_if_block13(ctx);
   const block = {
     c: function create() {
       if (if_block0)
@@ -20245,7 +20294,7 @@ function create_fragment26(ctx) {
             (0, import_internal26.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block12(ctx2);
+          if_block1 = create_if_block13(ctx2);
           if_block1.c();
           (0, import_internal26.transition_in)(if_block1, 1);
           if_block1.m(div, null);
@@ -20348,7 +20397,7 @@ function instance26($$self, $$props, $$invalidate) {
   let { round = false } = $$props;
   let { outline = false } = $$props;
   let { hideButton = false } = $$props;
-  const showArchive = (0, import_store5.writable)(false);
+  const showArchive = (0, import_store6.writable)(false);
   (0, import_internal26.validate_store)(showArchive, "showArchive");
   (0, import_internal26.component_subscribe)($$self, showArchive, (value) => $$invalidate(11, $showArchive = value));
   const duration2 = $ANIMATION_SPEED;
@@ -20358,7 +20407,7 @@ function instance26($$self, $$props, $$invalidate) {
   let notifications = [];
   let initial = true;
   let hasActiveNotifications = false;
-  (0, import_svelte16.onMount)(() => {
+  (0, import_svelte17.onMount)(() => {
     document.body.appendChild(el);
     Notifications.subscribe((val) => {
       $$invalidate(4, notifications = Object.values(val).reverse());
@@ -20451,8 +20500,8 @@ function instance26($$self, $$props, $$invalidate) {
       $$invalidate(3, hideButton = $$props2.hideButton);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte16.onMount,
-    writable: import_store5.writable,
+    onMount: import_svelte17.onMount,
+    writable: import_store6.writable,
     Icon: Icon_default,
     PushButton: PushButton_default,
     Notifications,
@@ -20615,7 +20664,7 @@ var NotificationCenter_default = NotificationCenter;
 
 // src/toggle/Toggle.svelte
 var import_internal27 = __toESM(require_internal());
-var import_svelte17 = __toESM(require_svelte());
+var import_svelte18 = __toESM(require_svelte());
 
 // src/toggle/utils.js
 var isTouchDevice = "ontouchstart" in document.documentElement;
@@ -20873,7 +20922,7 @@ function instance27($$self, $$props, $$invalidate) {
   let inputProps;
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal27.validate_slots)("Toggle", slots, []);
-  const dispatch = (0, import_svelte17.createEventDispatcher)();
+  const dispatch = (0, import_svelte18.createEventDispatcher)();
   let { value = false } = $$props;
   let { disabled = void 0 } = $$props;
   let { class: className = "" } = $$props;
@@ -20881,11 +20930,11 @@ function instance27($$self, $$props, $$invalidate) {
   let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
   let isClick = false, isDragging = false;
   let oldValue;
-  (0, import_svelte17.onMount)(() => {
+  (0, import_svelte18.onMount)(() => {
     toggleTransitions(false);
     ({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
   });
-  (0, import_svelte17.afterUpdate)(() => {
+  (0, import_svelte18.afterUpdate)(() => {
     if (typeof value !== "boolean")
       $$invalidate(0, value = !!value);
     setValue(value);
@@ -21006,9 +21055,9 @@ function instance27($$self, $$props, $$invalidate) {
       $$invalidate(2, className = $$new_props.class);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte17.onMount,
-    afterUpdate: import_svelte17.afterUpdate,
-    createEventDispatcher: import_svelte17.createEventDispatcher,
+    onMount: import_svelte18.onMount,
+    afterUpdate: import_svelte18.afterUpdate,
+    createEventDispatcher: import_svelte18.createEventDispatcher,
     pluck,
     getMouseX: getMouseX2,
     isTouchDevice,
@@ -21144,9 +21193,9 @@ var Toggle_default = Toggle;
 
 // src/tooltip/Tooltip.svelte
 var import_internal28 = __toESM(require_internal());
-var import_svelte18 = __toESM(require_svelte());
+var import_svelte19 = __toESM(require_svelte());
 var file26 = "src/tooltip/Tooltip.svelte";
-function create_if_block13(ctx) {
+function create_if_block14(ctx) {
   let div2;
   let div1;
   let div0;
@@ -21321,7 +21370,7 @@ function create_if_block13(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block13.name,
+    id: create_if_block14.name,
     type: "if",
     source: "(1:0) {#if visible}",
     ctx
@@ -21333,7 +21382,7 @@ function create_fragment28(ctx) {
   let current;
   let if_block = (
     /*visible*/
-    ctx[6] && create_if_block13(ctx)
+    ctx[6] && create_if_block14(ctx)
   );
   const block = {
     c: function create() {
@@ -21362,7 +21411,7 @@ function create_fragment28(ctx) {
             (0, import_internal28.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block13(ctx2);
+          if_block = create_if_block14(ctx2);
           if_block.c();
           (0, import_internal28.transition_in)(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -21419,13 +21468,13 @@ function instance28($$self, $$props, $$invalidate) {
   let visible = false;
   let showTimer, hideTimer, shownEvent, noHide = false;
   let el, targetEl, tooltipContainer;
-  (0, import_svelte18.onMount)(() => {
+  (0, import_svelte19.onMount)(() => {
     initContainer();
     targetEl = target ? document.querySelector("#" + target) : document.body;
     addTargetEvents();
   });
-  (0, import_svelte18.onDestroy)(removeTargetEvents);
-  (0, import_svelte18.afterUpdate)(align);
+  (0, import_svelte19.onDestroy)(removeTargetEvents);
+  (0, import_svelte19.afterUpdate)(align);
   function show(e) {
     if (hideTimer) {
       clearTimeout(hideTimer);
@@ -21623,9 +21672,9 @@ function instance28($$self, $$props, $$invalidate) {
       $$invalidate(14, $$scope = $$props2.$$scope);
   };
   $$self.$capture_state = () => ({
-    afterUpdate: import_svelte18.afterUpdate,
-    onDestroy: import_svelte18.onDestroy,
-    onMount: import_svelte18.onMount,
+    afterUpdate: import_svelte19.afterUpdate,
+    onDestroy: import_svelte19.onDestroy,
+    onMount: import_svelte19.onMount,
     target,
     delay,
     position,
@@ -21827,7 +21876,7 @@ var Tooltip_default = Tooltip;
 
 // src/tree/Tree.svelte
 var import_internal30 = __toESM(require_internal());
-var import_svelte19 = __toESM(require_svelte());
+var import_svelte20 = __toESM(require_svelte());
 
 // src/tree/TreeNode.svelte
 var import_internal29 = __toESM(require_internal());
@@ -21876,7 +21925,7 @@ function create_each_block_13(ctx) {
   });
   return block;
 }
-function create_if_block14(ctx) {
+function create_if_block15(ctx) {
   let ul;
   let current;
   let each_value = (
@@ -21957,7 +22006,7 @@ function create_if_block14(ctx) {
   };
   (0, import_internal29.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block14.name,
+    id: create_if_block15.name,
     type: "if",
     source: "(24:1) {#if item.items && expanded}",
     ctx
@@ -22057,7 +22106,7 @@ function create_fragment29(ctx) {
   let if_block = (
     /*item*/
     ctx[1].items && /*expanded*/
-    ctx[0] && create_if_block14(ctx)
+    ctx[0] && create_if_block15(ctx)
   );
   const block = {
     c: function create() {
@@ -22278,7 +22327,7 @@ function create_fragment29(ctx) {
             (0, import_internal29.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block14(ctx);
+          if_block = create_if_block15(ctx);
           if_block.c();
           (0, import_internal29.transition_in)(if_block, 1);
           if_block.m(li, null);
@@ -22655,7 +22704,7 @@ function instance30($$self, $$props, $$invalidate) {
   let { items = [] } = $$props;
   let { title = void 0 } = $$props;
   let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte19.createEventDispatcher)();
+  const dispatch = (0, import_svelte20.createEventDispatcher)();
   let el;
   let selectedItem;
   function getVisibleNodes() {
@@ -22790,7 +22839,7 @@ function instance30($$self, $$props, $$invalidate) {
       $$invalidate(2, className = $$props2.class);
   };
   $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte19.createEventDispatcher,
+    createEventDispatcher: import_svelte20.createEventDispatcher,
     TreeNode: TreeNode_default,
     items,
     title,
@@ -26906,7 +26955,7 @@ function get_each_context10(ctx, list, i) {
   child_ctx[3] = list[i];
   return child_ctx;
 }
-function create_if_block15(ctx) {
+function create_if_block16(ctx) {
   let p;
   const block = {
     c: function create() {
@@ -26932,7 +26981,7 @@ function create_if_block15(ctx) {
   };
   (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block15.name,
+    id: create_if_block16.name,
     type: "if",
     source: "(2:0) {#if description}",
     ctx
@@ -27123,7 +27172,7 @@ function create_fragment34(ctx) {
   let current;
   let if_block = (
     /*description*/
-    ctx[1] && create_if_block15(ctx)
+    ctx[1] && create_if_block16(ctx)
   );
   table = new Table_default({
     props: {
@@ -27175,7 +27224,7 @@ function create_fragment34(ctx) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
-          if_block = create_if_block15(ctx2);
+          if_block = create_if_block16(ctx2);
           if_block.c();
           if_block.m(t2.parentNode, t2);
         }
@@ -27315,7 +27364,7 @@ var ApiTable_default = ApiTable;
 // docs-src/code-example/CodeExample.svelte
 var import_internal35 = __toESM(require_internal());
 var file33 = "docs-src/code-example/CodeExample.svelte";
-function create_if_block16(ctx) {
+function create_if_block17(ctx) {
   let hr;
   let h3;
   const block = {
@@ -27339,7 +27388,7 @@ function create_if_block16(ctx) {
   };
   (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block16.name,
+    id: create_if_block17.name,
     type: "if",
     source: "(1:0) {#if !notitle}",
     ctx
@@ -27358,7 +27407,7 @@ function create_fragment35(ctx) {
   ) + "";
   let t2;
   let if_block = !/*notitle*/
-  ctx[1] && create_if_block16(ctx);
+  ctx[1] && create_if_block17(ctx);
   const block = {
     c: function create() {
       if (if_block)
@@ -27392,7 +27441,7 @@ function create_fragment35(ctx) {
       ctx2[1]) {
         if (if_block) {
         } else {
-          if_block = create_if_block16(ctx2);
+          if_block = create_if_block17(ctx2);
           if_block.c();
           if_block.m(t0.parentNode, t0);
         }
@@ -27486,7 +27535,7 @@ var CodeExample_default = CodeExample;
 
 // docs-src/code-example/CodeBox.svelte
 var import_internal36 = __toESM(require_internal());
-var import_svelte20 = __toESM(require_svelte());
+var import_svelte21 = __toESM(require_svelte());
 var file34 = "docs-src/code-example/CodeBox.svelte";
 function create_fragment36(ctx) {
   let pre;
@@ -27538,7 +27587,7 @@ function instance36($$self, $$props, $$invalidate) {
   let { props = {} } = $$props;
   let { text: text40 = "" } = $$props;
   let html = "";
-  (0, import_svelte20.afterUpdate)(() => {
+  (0, import_svelte21.afterUpdate)(() => {
     requestAnimationFrame(update);
   });
   function update() {
@@ -27574,7 +27623,7 @@ function instance36($$self, $$props, $$invalidate) {
       $$invalidate(3, text40 = $$props2.text);
   };
   $$self.$capture_state = () => ({
-    afterUpdate: import_svelte20.afterUpdate,
+    afterUpdate: import_svelte21.afterUpdate,
     tag,
     props,
     text: text40,
@@ -28543,7 +28592,7 @@ function create_else_block4(ctx) {
   });
   return block;
 }
-function create_if_block17(ctx) {
+function create_if_block18(ctx) {
   let button;
   let current;
   const button_spread_levels = [
@@ -28594,7 +28643,7 @@ function create_if_block17(ctx) {
   };
   (0, import_internal38.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block17.name,
+    id: create_if_block18.name,
     type: "if",
     source: "(6:2) {#if buttonText}",
     ctx
@@ -28687,7 +28736,7 @@ function create_fragment38(ctx) {
   let current;
   let mounted;
   let dispose;
-  const if_block_creators = [create_if_block17, create_else_block4];
+  const if_block_creators = [create_if_block18, create_else_block4];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -39183,7 +39232,7 @@ function create_default_slot_54(ctx) {
     block,
     id: create_default_slot_54.name,
     type: "slot",
-    source: `(9:0) <Button on:click=\\"{() => msgBox.show('Info messagebox')}\\">`,
+    source: `(9:0) <Button on:click=\\"{() => showMessage('Info messagebox')}\\">`,
     ctx
   });
   return block;
@@ -39206,7 +39255,7 @@ function create_default_slot_44(ctx) {
     block,
     id: create_default_slot_44.name,
     type: "slot",
-    source: `(10:0) <Button on:click=\\"{() => msgBox.show('Info messagebox', msgBox.Type.INFO, 'Info title')}\\">`,
+    source: `(10:0) <Button on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}\\">`,
     ctx
   });
   return block;
@@ -39229,7 +39278,7 @@ function create_default_slot_311(ctx) {
     block,
     id: create_default_slot_311.name,
     type: "slot",
-    source: `(11:0) <Button on:click=\\"{() => msgBox.show('Info messagebox', msgBox.Type.INFO, 'Info title', 'Close')}\\">`,
+    source: `(11:0) <Button on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close')}\\">`,
     ctx
   });
   return block;
@@ -39252,7 +39301,7 @@ function create_default_slot_215(ctx) {
     block,
     id: create_default_slot_215.name,
     type: "slot",
-    source: `(12:0) <Button on:click=\\"{() => msgBox.show('Info messagebox', msgBox.Type.INFO, 'Info title', 'Close', onclose)}\\">`,
+    source: `(12:0) <Button on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}\\">`,
     ctx
   });
   return block;
@@ -39275,7 +39324,7 @@ function create_default_slot_115(ctx) {
     block,
     id: create_default_slot_115.name,
     type: "slot",
-    source: `(16:0) <Button on:click=\\"{() => msgBox.show('Warning messagebox', msgBox.Type.WARNING)}\\">`,
+    source: `(16:0) <Button on:click=\\"{() => showMessage('Warning messagebox', MessageType.WARNING)}\\">`,
     ctx
   });
   return block;
@@ -39298,7 +39347,7 @@ function create_default_slot11(ctx) {
     block,
     id: create_default_slot11.name,
     type: "slot",
-    source: `(20:0) <Button on:click=\\"{() => msgBox.show('Error messagebox', msgBox.Type.ERROR)}\\">`,
+    source: `(20:0) <Button on:click=\\"{() => showMessage('Error messagebox', MessageType.ERROR)}\\">`,
     ctx
   });
   return block;
@@ -39344,7 +39393,7 @@ function create_fragment52(ctx) {
   button0.$on(
     "click",
     /*click_handler*/
-    ctx[3]
+    ctx[2]
   );
   button1 = new Button_default({
     props: {
@@ -39356,7 +39405,7 @@ function create_fragment52(ctx) {
   button1.$on(
     "click",
     /*click_handler_1*/
-    ctx[4]
+    ctx[3]
   );
   button2 = new Button_default({
     props: {
@@ -39368,7 +39417,7 @@ function create_fragment52(ctx) {
   button2.$on(
     "click",
     /*click_handler_2*/
-    ctx[5]
+    ctx[4]
   );
   button3 = new Button_default({
     props: {
@@ -39380,7 +39429,7 @@ function create_fragment52(ctx) {
   button3.$on(
     "click",
     /*click_handler_3*/
-    ctx[6]
+    ctx[5]
   );
   button4 = new Button_default({
     props: {
@@ -39392,7 +39441,7 @@ function create_fragment52(ctx) {
   button4.$on(
     "click",
     /*click_handler_4*/
-    ctx[7]
+    ctx[6]
   );
   button5 = new Button_default({
     props: {
@@ -39404,26 +39453,24 @@ function create_fragment52(ctx) {
   button5.$on(
     "click",
     /*click_handler_5*/
-    ctx[8]
+    ctx[7]
   );
-  let messagebox_props = {};
-  messagebox = new MessageBox_default({ props: messagebox_props, $$inline: true });
-  ctx[9](messagebox);
+  messagebox = new MessageBox_default({ $$inline: true });
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
-      ctx[2]
+      ctx[1]
     ) },
     $$inline: true
   });
   api = new ApiTable_default({
     props: {
       props: (
-        /*instanceApiProps*/
-        ctx[1]
+        /*apiProps*/
+        ctx[0]
       ),
-      title: "Instance API",
-      description: "A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"
+      title: "Function API - arguments",
+      description: "A component exports a <em>showMessage</em> function which accepts either\n	a config object or a list of arguments.  If it is a list of arguments - this is the API:"
     },
     $$inline: true
   });
@@ -39433,7 +39480,7 @@ function create_fragment52(ctx) {
       h2.textContent = "MessageBox";
       t1 = (0, import_internal52.space)();
       p = (0, import_internal52.element)("p");
-      p.textContent = "It uses the Dialog component by adding it to the body once (so it's lightweight) and re-using it for every call";
+      p.textContent = "It uses the Dialog component by adding it to the body once (so it's lightweight)\n	and re-using it for every call";
       t3 = (0, import_internal52.space)();
       br = (0, import_internal52.element)("br");
       t4 = (0, import_internal52.space)();
@@ -39464,7 +39511,7 @@ function create_fragment52(ctx) {
       t18 = (0, import_internal52.space)();
       (0, import_internal52.create_component)(api.$$.fragment);
       (0, import_internal52.add_location)(h2, file50, 0, 0, 0);
-      (0, import_internal52.add_location)(p, file50, 3, 0, 22);
+      (0, import_internal52.add_location)(p, file50, 2, 0, 21);
       (0, import_internal52.add_location)(br, file50, 5, 0, 142);
       (0, import_internal52.add_location)(h30, file50, 7, 0, 148);
       (0, import_internal52.add_location)(h31, file50, 14, 0, 675);
@@ -39508,42 +39555,40 @@ function create_fragment52(ctx) {
     p: function update(ctx2, [dirty]) {
       const button0_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      256) {
         button0_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button0.$set(button0_changes);
       const button1_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      256) {
         button1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button1.$set(button1_changes);
       const button2_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      256) {
         button2_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button2.$set(button2_changes);
       const button3_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      256) {
         button3_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button3.$set(button3_changes);
       const button4_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      256) {
         button4_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button4.$set(button4_changes);
       const button5_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      256) {
         button5_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button5.$set(button5_changes);
-      const messagebox_changes = {};
-      messagebox.$set(messagebox_changes);
     },
     i: function intro(local) {
       if (current)
@@ -39614,7 +39659,6 @@ function create_fragment52(ctx) {
       (0, import_internal52.destroy_component)(button5, detaching);
       if (detaching)
         (0, import_internal52.detach_dev)(t16);
-      ctx[9](null);
       (0, import_internal52.destroy_component)(messagebox, detaching);
       if (detaching)
         (0, import_internal52.detach_dev)(t17);
@@ -39639,26 +39683,48 @@ function onclose(res) {
 function instance52($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal52.validate_slots)("MessageBox", slots, []);
-  let msgBox;
-  const instanceApiProps = [
+  const apiProps = [
     {
-      name: "show",
+      name: "1. message",
+      type: "string",
+      description: "A message to show."
+    },
+    {
+      name: "2. type",
+      type: "string",
+      default: "info",
+      description: "A message type (for icon and button styling)."
+    },
+    {
+      name: "3. title",
+      type: "string",
+      default: "",
+      description: "A title of the message box."
+    },
+    {
+      name: "4. label",
+      type: "string",
+      default: "OK",
+      description: "A label for the default button (if there's inly one)."
+    },
+    {
+      name: "5. cb",
       type: "function",
-      description: "Shows a message box."
+      description: "A callback function that will be called on close. A value of the clicked button will be passed to the function."
     }
   ];
   const exampleHtml = `
-<MessageBox bind:this="{msgBox}" />
+<MessageBox />
 
 <script>
-    let msgBox;
+	import { MessageBox, MessageType, showMessage } from '@perfectthings/ui';
 
-    MessageBox('Some info with the OK button');
+    showMessage('Some info with the OK button');
 
-    MessageBox('Some warning with the OK button', 'warning');
-    MessageBox('Some error with the OK button and title', 'error', 'Error', 'Close');
+    showMessage('Some warning with the OK button', MessageType.WARNING);
+    showMessage('Some error with the OK button and title', MessageType.ERROR, 'Error', 'Close');
 
-    MessageBox({
+    showMessage({
         message: '',
         title: '',
         type: '',
@@ -39676,46 +39742,32 @@ function instance52($$self, $$props, $$invalidate) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<MessageBox> was created with unknown prop '${key}'`);
   });
-  const click_handler = () => msgBox.show("Info messagebox");
-  const click_handler_1 = () => msgBox.show("Info messagebox", msgBox.Type.INFO, "Info title");
-  const click_handler_2 = () => msgBox.show("Info messagebox", msgBox.Type.INFO, "Info title", "Close");
-  const click_handler_3 = () => msgBox.show("Info messagebox", msgBox.Type.INFO, "Info title", "Close", onclose);
-  const click_handler_4 = () => msgBox.show("Warning messagebox", msgBox.Type.WARNING);
-  const click_handler_5 = () => msgBox.show("Error messagebox", msgBox.Type.ERROR);
-  function messagebox_binding($$value) {
-    import_internal52.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      msgBox = $$value;
-      $$invalidate(0, msgBox);
-    });
-  }
+  const click_handler = () => showMessage("Info messagebox");
+  const click_handler_1 = () => showMessage("Info messagebox", MessageType.INFO, "Info title");
+  const click_handler_2 = () => showMessage("Info messagebox", MessageType.INFO, "Info title", "Close");
+  const click_handler_3 = () => showMessage("Info messagebox", MessageType.INFO, "Info title", "Close", onclose);
+  const click_handler_4 = () => showMessage("Warning messagebox", MessageType.WARNING);
+  const click_handler_5 = () => showMessage("Error messagebox", MessageType.ERROR);
   $$self.$capture_state = () => ({
     Button: Button_default,
     MessageBox: MessageBox_default,
+    MessageType,
+    showMessage,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
-    msgBox,
     onclose,
-    instanceApiProps,
+    apiProps,
     exampleHtml
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("msgBox" in $$props2)
-      $$invalidate(0, msgBox = $$props2.msgBox);
-  };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
-  }
   return [
-    msgBox,
-    instanceApiProps,
+    apiProps,
     exampleHtml,
     click_handler,
     click_handler_1,
     click_handler_2,
     click_handler_3,
     click_handler_4,
-    click_handler_5,
-    messagebox_binding
+    click_handler_5
   ];
 }
 var MessageBox_1 = class extends import_internal52.SvelteComponentDev {
