@@ -25,5 +25,7 @@
 .button-link.warning:focus,
 .button-link.warning:hover { text-decoration-color: var(--ui-color-warning); }
 
+.button-link.error:focus,
+.button-link.error:hover,
 .button-link.danger:focus,
 .button-link.danger:hover { text-decoration-color: var(--ui-color-danger); }

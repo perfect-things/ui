@@ -37,6 +37,7 @@
 		<NavItem name="Dialog" {active} />
 		<NavItem name="Drawer" {active} />
 		<NavItem name="Menu" {active} />
+		<NavItem name="MessageBox" {active} />
 		<NavItem name="Panel" {active} />
 		<NavItem name="Splitter" {active} />
 		<NavItem name="Table" {active} />

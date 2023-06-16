@@ -9,4 +9,5 @@
 .button-normal.info { background: var(--ui-color-info); }
 .button-normal.success { background: var(--ui-color-success); }
 .button-normal.warning { background: var(--ui-color-warning); }
+.button-normal.error,
 .button-normal.danger { background: var(--ui-color-danger); }
