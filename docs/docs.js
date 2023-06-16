@@ -229,11 +229,11 @@ var require_internal = __commonJS({
         }
       };
     }
-    var globals18 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
+    var globals19 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
     var ResizeObserverSingleton = class {
       constructor(options) {
         this.options = options;
-        this._listeners = "WeakMap" in globals18 ? /* @__PURE__ */ new WeakMap() : void 0;
+        this._listeners = "WeakMap" in globals19 ? /* @__PURE__ */ new WeakMap() : void 0;
       }
       observe(element66, listener) {
         this._listeners.set(element66, listener);
@@ -254,7 +254,7 @@ var require_internal = __commonJS({
         });
       }
     };
-    ResizeObserverSingleton.entries = "WeakMap" in globals18 ? /* @__PURE__ */ new WeakMap() : void 0;
+    ResizeObserverSingleton.entries = "WeakMap" in globals19 ? /* @__PURE__ */ new WeakMap() : void 0;
     var is_hydrating = false;
     function start_hydrating() {
       is_hydrating = true;
@@ -1064,7 +1064,7 @@ var require_internal = __commonJS({
     function afterUpdate5(fn) {
       get_current_component().$$.after_update.push(fn);
     }
-    function onDestroy7(fn) {
+    function onDestroy8(fn) {
       get_current_component().$$.on_destroy.push(fn);
     }
     function createEventDispatcher15() {
@@ -2278,7 +2278,7 @@ var require_internal = __commonJS({
     exports.get_spread_object = get_spread_object3;
     exports.get_spread_update = get_spread_update14;
     exports.get_store_value = get_store_value;
-    exports.globals = globals18;
+    exports.globals = globals19;
     exports.group_outros = group_outros16;
     exports.handle_promise = handle_promise;
     exports.hasContext = hasContext;
@@ -2311,7 +2311,7 @@ var require_internal = __commonJS({
     exports.not_equal = not_equal;
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
-    exports.onDestroy = onDestroy7;
+    exports.onDestroy = onDestroy8;
     exports.onMount = onMount15;
     exports.once = once;
     exports.outro_and_destroy_block = outro_and_destroy_block2;
@@ -14575,7 +14575,7 @@ function showMessage(messageOrConfig, _type = MessageType.INFO, _title = "", btn
 var file15 = "src/message-box/MessageBox.svelte";
 function get_each_context3(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[6] = list[i];
+  child_ctx[7] = list[i];
   return child_ctx;
 }
 function create_default_slot(ctx) {
@@ -14718,7 +14718,7 @@ function create_each_block3(ctx) {
   let button;
   let t_value = (
     /*button*/
-    ctx[6].label + ""
+    ctx[7].label + ""
   );
   let t;
   let button_class_value;
@@ -14729,7 +14729,7 @@ function create_each_block3(ctx) {
       /*click_handler*/
       ctx[4](
         /*button*/
-        ctx[6],
+        ctx[7],
         ...args
       )
     );
@@ -14739,7 +14739,7 @@ function create_each_block3(ctx) {
       button = (0, import_internal16.element)("button");
       t = (0, import_internal16.text)(t_value);
       (0, import_internal16.attr_dev)(button, "class", button_class_value = "button button-normal button-has-text " + /*button*/
-      (ctx[6].type || ""));
+      (ctx[7].type || ""));
       (0, import_internal16.add_location)(button, file15, 10, 5, 291);
     },
     m: function mount(target, anchor) {
@@ -14754,11 +14754,11 @@ function create_each_block3(ctx) {
       ctx = new_ctx;
       if (dirty & /*$config*/
       2 && t_value !== (t_value = /*button*/
-      ctx[6].label + ""))
+      ctx[7].label + ""))
         (0, import_internal16.set_data_dev)(t, t_value);
       if (dirty & /*$config*/
       2 && button_class_value !== (button_class_value = "button button-normal button-has-text " + /*button*/
-      (ctx[6].type || ""))) {
+      (ctx[7].type || ""))) {
         (0, import_internal16.attr_dev)(button, "class", button_class_value);
       }
     },
@@ -14875,7 +14875,7 @@ function create_fragment16(ctx) {
         dialog_1_changes.class = "message-box message-" + /*$config*/
         ctx2[1].type;
       if (dirty & /*$$scope, $config*/
-      514) {
+      1026) {
         dialog_1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       dialog_1.$set(dialog_1_changes);
@@ -14910,9 +14910,9 @@ function instance16($$self, $$props, $$invalidate) {
   (0, import_internal16.component_subscribe)($$self, config, ($$value) => $$invalidate(1, $config = $$value));
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal16.validate_slots)("MessageBox", slots, []);
-  let dialog;
+  let dialog, sub;
   (0, import_svelte10.onMount)(() => {
-    config.subscribe((cfg) => {
+    sub = config.subscribe((cfg) => {
       if (!dialog)
         return;
       if (cfg && cfg.message)
@@ -14921,13 +14921,18 @@ function instance16($$self, $$props, $$invalidate) {
         dialog.close();
     });
   });
+  (0, import_svelte10.onDestroy)(() => {
+    sub();
+    config.set({});
+  });
   function onclick(e, button) {
     e.preventDefault();
-    (0, import_internal16.set_store_value)(config, $config.result = button.value, $config);
+    (0, import_internal16.set_store_value)(config, $config.result = button.value || button.label, $config);
     dialog.close();
   }
   function onclose2() {
-    $config.cb($config.result);
+    if (typeof $config.cb === "function")
+      $config.cb($config.result);
   }
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
@@ -14942,11 +14947,13 @@ function instance16($$self, $$props, $$invalidate) {
     });
   }
   $$self.$capture_state = () => ({
+    onDestroy: import_svelte10.onDestroy,
     onMount: import_svelte10.onMount,
     config,
     Dialog: Dialog_default,
     Icon: Icon_default,
     dialog,
+    sub,
     onclick,
     onclose: onclose2,
     $config
@@ -14954,6 +14961,8 @@ function instance16($$self, $$props, $$invalidate) {
   $$self.$inject_state = ($$props2) => {
     if ("dialog" in $$props2)
       $$invalidate(0, dialog = $$props2.dialog);
+    if ("sub" in $$props2)
+      sub = $$props2.sub;
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
@@ -39213,8 +39222,9 @@ var Menu_default2 = Menu_1;
 
 // docs-src/components/message-box/MessageBox.svelte
 var import_internal52 = __toESM(require_internal());
+var { console: console_16 } = import_internal52.globals;
 var file50 = "docs-src/components/message-box/MessageBox.svelte";
-function create_default_slot_54(ctx) {
+function create_default_slot_64(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -39230,14 +39240,14 @@ function create_default_slot_54(ctx) {
   };
   (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_54.name,
+    id: create_default_slot_64.name,
     type: "slot",
     source: `(9:0) <Button on:click=\\"{() => showMessage('Info messagebox')}\\">`,
     ctx
   });
   return block;
 }
-function create_default_slot_44(ctx) {
+function create_default_slot_54(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -39253,14 +39263,14 @@ function create_default_slot_44(ctx) {
   };
   (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_44.name,
+    id: create_default_slot_54.name,
     type: "slot",
     source: `(10:0) <Button on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}\\">`,
     ctx
   });
   return block;
 }
-function create_default_slot_311(ctx) {
+function create_default_slot_44(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -39276,14 +39286,14 @@ function create_default_slot_311(ctx) {
   };
   (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_311.name,
+    id: create_default_slot_44.name,
     type: "slot",
     source: `(11:0) <Button on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close')}\\">`,
     ctx
   });
   return block;
 }
-function create_default_slot_215(ctx) {
+function create_default_slot_311(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -39299,14 +39309,14 @@ function create_default_slot_215(ctx) {
   };
   (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_215.name,
+    id: create_default_slot_311.name,
     type: "slot",
     source: `(12:0) <Button on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}\\">`,
     ctx
   });
   return block;
 }
-function create_default_slot_115(ctx) {
+function create_default_slot_215(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -39322,14 +39332,14 @@ function create_default_slot_115(ctx) {
   };
   (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_115.name,
+    id: create_default_slot_215.name,
     type: "slot",
     source: `(16:0) <Button on:click=\\"{() => showMessage('Warning messagebox', MessageType.WARNING)}\\">`,
     ctx
   });
   return block;
 }
-function create_default_slot11(ctx) {
+function create_default_slot_115(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -39345,9 +39355,32 @@ function create_default_slot11(ctx) {
   };
   (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot11.name,
+    id: create_default_slot_115.name,
     type: "slot",
     source: `(20:0) <Button on:click=\\"{() => showMessage('Error messagebox', MessageType.ERROR)}\\">`,
+    ctx
+  });
+  return block;
+}
+function create_default_slot11(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = (0, import_internal52.text)("Show complex message");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal52.insert_dev)(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal52.detach_dev)(t);
+    }
+  };
+  (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot11.name,
+    type: "slot",
+    source: '(24:0) <Button on:click=\\"{showComplex}\\">',
     ctx
   });
   return block;
@@ -39377,15 +39410,19 @@ function create_fragment52(ctx) {
   let t15;
   let button5;
   let t16;
-  let messagebox;
-  let t17;
-  let codeexample;
+  let h33;
   let t18;
+  let button6;
+  let t19;
+  let messagebox;
+  let t20;
+  let codeexample;
+  let t21;
   let api;
   let current;
   button0 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_54] },
+      $$slots: { default: [create_default_slot_64] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -39393,11 +39430,11 @@ function create_fragment52(ctx) {
   button0.$on(
     "click",
     /*click_handler*/
-    ctx[2]
+    ctx[3]
   );
   button1 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_44] },
+      $$slots: { default: [create_default_slot_54] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -39405,11 +39442,11 @@ function create_fragment52(ctx) {
   button1.$on(
     "click",
     /*click_handler_1*/
-    ctx[3]
+    ctx[4]
   );
   button2 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_311] },
+      $$slots: { default: [create_default_slot_44] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -39417,11 +39454,11 @@ function create_fragment52(ctx) {
   button2.$on(
     "click",
     /*click_handler_2*/
-    ctx[4]
+    ctx[5]
   );
   button3 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_215] },
+      $$slots: { default: [create_default_slot_311] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -39429,11 +39466,11 @@ function create_fragment52(ctx) {
   button3.$on(
     "click",
     /*click_handler_3*/
-    ctx[5]
+    ctx[6]
   );
   button4 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_115] },
+      $$slots: { default: [create_default_slot_215] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -39441,11 +39478,11 @@ function create_fragment52(ctx) {
   button4.$on(
     "click",
     /*click_handler_4*/
-    ctx[6]
+    ctx[7]
   );
   button5 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot11] },
+      $$slots: { default: [create_default_slot_115] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -39453,13 +39490,25 @@ function create_fragment52(ctx) {
   button5.$on(
     "click",
     /*click_handler_5*/
-    ctx[7]
+    ctx[8]
+  );
+  button6 = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot11] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button6.$on(
+    "click",
+    /*showComplex*/
+    ctx[0]
   );
   messagebox = new MessageBox_default({ $$inline: true });
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
-      ctx[1]
+      ctx[2]
     ) },
     $$inline: true
   });
@@ -39467,7 +39516,7 @@ function create_fragment52(ctx) {
     props: {
       props: (
         /*apiProps*/
-        ctx[0]
+        ctx[1]
       ),
       title: "Function API - arguments",
       description: "A component exports a <em>showMessage</em> function which accepts either\n	a config object or a list of arguments.  If it is a list of arguments - this is the API:"
@@ -39505,10 +39554,15 @@ function create_fragment52(ctx) {
       t15 = (0, import_internal52.space)();
       (0, import_internal52.create_component)(button5.$$.fragment);
       t16 = (0, import_internal52.space)();
-      (0, import_internal52.create_component)(messagebox.$$.fragment);
-      t17 = (0, import_internal52.space)();
-      (0, import_internal52.create_component)(codeexample.$$.fragment);
+      h33 = (0, import_internal52.element)("h3");
+      h33.textContent = "Complex Message";
       t18 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(button6.$$.fragment);
+      t19 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(messagebox.$$.fragment);
+      t20 = (0, import_internal52.space)();
+      (0, import_internal52.create_component)(codeexample.$$.fragment);
+      t21 = (0, import_internal52.space)();
       (0, import_internal52.create_component)(api.$$.fragment);
       (0, import_internal52.add_location)(h2, file50, 0, 0, 0);
       (0, import_internal52.add_location)(p, file50, 2, 0, 21);
@@ -39516,6 +39570,7 @@ function create_fragment52(ctx) {
       (0, import_internal52.add_location)(h30, file50, 7, 0, 148);
       (0, import_internal52.add_location)(h31, file50, 14, 0, 675);
       (0, import_internal52.add_location)(h32, file50, 18, 0, 806);
+      (0, import_internal52.add_location)(h33, file50, 22, 0, 929);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -39545,50 +39600,60 @@ function create_fragment52(ctx) {
       (0, import_internal52.insert_dev)(target, t15, anchor);
       (0, import_internal52.mount_component)(button5, target, anchor);
       (0, import_internal52.insert_dev)(target, t16, anchor);
-      (0, import_internal52.mount_component)(messagebox, target, anchor);
-      (0, import_internal52.insert_dev)(target, t17, anchor);
-      (0, import_internal52.mount_component)(codeexample, target, anchor);
+      (0, import_internal52.insert_dev)(target, h33, anchor);
       (0, import_internal52.insert_dev)(target, t18, anchor);
+      (0, import_internal52.mount_component)(button6, target, anchor);
+      (0, import_internal52.insert_dev)(target, t19, anchor);
+      (0, import_internal52.mount_component)(messagebox, target, anchor);
+      (0, import_internal52.insert_dev)(target, t20, anchor);
+      (0, import_internal52.mount_component)(codeexample, target, anchor);
+      (0, import_internal52.insert_dev)(target, t21, anchor);
       (0, import_internal52.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
       const button0_changes = {};
       if (dirty & /*$$scope*/
-      256) {
+      512) {
         button0_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button0.$set(button0_changes);
       const button1_changes = {};
       if (dirty & /*$$scope*/
-      256) {
+      512) {
         button1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button1.$set(button1_changes);
       const button2_changes = {};
       if (dirty & /*$$scope*/
-      256) {
+      512) {
         button2_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button2.$set(button2_changes);
       const button3_changes = {};
       if (dirty & /*$$scope*/
-      256) {
+      512) {
         button3_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button3.$set(button3_changes);
       const button4_changes = {};
       if (dirty & /*$$scope*/
-      256) {
+      512) {
         button4_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button4.$set(button4_changes);
       const button5_changes = {};
       if (dirty & /*$$scope*/
-      256) {
+      512) {
         button5_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button5.$set(button5_changes);
+      const button6_changes = {};
+      if (dirty & /*$$scope*/
+      512) {
+        button6_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      button6.$set(button6_changes);
     },
     i: function intro(local) {
       if (current)
@@ -39599,6 +39664,7 @@ function create_fragment52(ctx) {
       (0, import_internal52.transition_in)(button3.$$.fragment, local);
       (0, import_internal52.transition_in)(button4.$$.fragment, local);
       (0, import_internal52.transition_in)(button5.$$.fragment, local);
+      (0, import_internal52.transition_in)(button6.$$.fragment, local);
       (0, import_internal52.transition_in)(messagebox.$$.fragment, local);
       (0, import_internal52.transition_in)(codeexample.$$.fragment, local);
       (0, import_internal52.transition_in)(api.$$.fragment, local);
@@ -39611,6 +39677,7 @@ function create_fragment52(ctx) {
       (0, import_internal52.transition_out)(button3.$$.fragment, local);
       (0, import_internal52.transition_out)(button4.$$.fragment, local);
       (0, import_internal52.transition_out)(button5.$$.fragment, local);
+      (0, import_internal52.transition_out)(button6.$$.fragment, local);
       (0, import_internal52.transition_out)(messagebox.$$.fragment, local);
       (0, import_internal52.transition_out)(codeexample.$$.fragment, local);
       (0, import_internal52.transition_out)(api.$$.fragment, local);
@@ -39659,12 +39726,19 @@ function create_fragment52(ctx) {
       (0, import_internal52.destroy_component)(button5, detaching);
       if (detaching)
         (0, import_internal52.detach_dev)(t16);
-      (0, import_internal52.destroy_component)(messagebox, detaching);
       if (detaching)
-        (0, import_internal52.detach_dev)(t17);
-      (0, import_internal52.destroy_component)(codeexample, detaching);
+        (0, import_internal52.detach_dev)(h33);
       if (detaching)
         (0, import_internal52.detach_dev)(t18);
+      (0, import_internal52.destroy_component)(button6, detaching);
+      if (detaching)
+        (0, import_internal52.detach_dev)(t19);
+      (0, import_internal52.destroy_component)(messagebox, detaching);
+      if (detaching)
+        (0, import_internal52.detach_dev)(t20);
+      (0, import_internal52.destroy_component)(codeexample, detaching);
+      if (detaching)
+        (0, import_internal52.detach_dev)(t21);
       (0, import_internal52.destroy_component)(api, detaching);
     }
   };
@@ -39683,6 +39757,25 @@ function onclose(res) {
 function instance52($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal52.validate_slots)("MessageBox", slots, []);
+  function showComplex(e) {
+    showMessage({
+      message: "Are you sure you want to delete this thing?",
+      type: MessageType.WARNING,
+      title: "Warning",
+      buttons: [
+        {
+          label: "Yes",
+          value: "yes",
+          type: "success"
+        },
+        { label: "No" }
+      ],
+      target: e.target,
+      cb: (res) => {
+        console.log(`You clicked ${res}`);
+      }
+    });
+  }
   const apiProps = [
     {
       name: "1. message",
@@ -39740,7 +39833,7 @@ function instance52($$self, $$props, $$invalidate) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console.warn(`<MessageBox> was created with unknown prop '${key}'`);
+      console_16.warn(`<MessageBox> was created with unknown prop '${key}'`);
   });
   const click_handler = () => showMessage("Info messagebox");
   const click_handler_1 = () => showMessage("Info messagebox", MessageType.INFO, "Info title");
@@ -39756,10 +39849,12 @@ function instance52($$self, $$props, $$invalidate) {
     API: ApiTable_default,
     CodeExample: CodeExample_default,
     onclose,
+    showComplex,
     apiProps,
     exampleHtml
   });
   return [
+    showComplex,
     apiProps,
     exampleHtml,
     click_handler,
@@ -40574,7 +40669,7 @@ function create_default_slot_74(ctx) {
   });
   return block;
 }
-function create_default_slot_64(ctx) {
+function create_default_slot_65(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -40590,7 +40685,7 @@ function create_default_slot_64(ctx) {
   };
   (0, import_internal54.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_64.name,
+    id: create_default_slot_65.name,
     type: "slot",
     source: '(29:0) <PushButton icon=\\"alert\\" warning>',
     ctx
@@ -40979,7 +41074,7 @@ function create_fragment54(ctx) {
     props: {
       icon: "alert",
       warning: true,
-      $$slots: { default: [create_default_slot_64] },
+      $$slots: { default: [create_default_slot_65] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -42364,7 +42459,7 @@ var Select_default2 = Select_1;
 
 // docs-src/components/splitter/Splitter.svelte
 var import_internal56 = __toESM(require_internal());
-var { console: console_16 } = import_internal56.globals;
+var { console: console_17 } = import_internal56.globals;
 var file54 = "docs-src/components/splitter/Splitter.svelte";
 function create_default_slot14(ctx) {
   let t;
@@ -42759,7 +42854,7 @@ function onchanged (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_16.warn(`<Splitter> was created with unknown prop '${key}'`);
+      console_17.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function splitter0_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -42822,7 +42917,7 @@ var Splitter_default2 = Splitter_1;
 
 // docs-src/components/table/Table.svelte
 var import_internal57 = __toESM(require_internal());
-var { console: console_17 } = import_internal57.globals;
+var { console: console_18 } = import_internal57.globals;
 var file55 = "docs-src/components/table/Table.svelte";
 function create_default_slot15(ctx) {
   let thead0;
@@ -44729,7 +44824,7 @@ function instance57($$self, $$props, $$invalidate) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_17.warn(`<Table> was created with unknown prop '${key}'`);
+      console_18.warn(`<Table> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Table: Table_default,
@@ -45467,7 +45562,7 @@ var Textarea_default2 = Textarea_1;
 
 // docs-src/components/toaster/Toaster.svelte
 var import_internal60 = __toESM(require_internal());
-var { console: console_18 } = import_internal60.globals;
+var { console: console_19 } = import_internal60.globals;
 var file58 = "docs-src/components/toaster/Toaster.svelte";
 function create_default_slot_75(ctx) {
   let t;
@@ -45492,7 +45587,7 @@ function create_default_slot_75(ctx) {
   });
   return block;
 }
-function create_default_slot_65(ctx) {
+function create_default_slot_66(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -45508,7 +45603,7 @@ function create_default_slot_65(ctx) {
   };
   (0, import_internal60.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_65.name,
+    id: create_default_slot_66.name,
     type: "slot",
     source: `(8:1) <Button success on:click=\\"{() => showToast('Hello', 'success')}\\">`,
     ctx
@@ -45716,7 +45811,7 @@ function create_fragment60(ctx) {
   button1 = new Button_default({
     props: {
       success: true,
-      $$slots: { default: [create_default_slot_65] },
+      $$slots: { default: [create_default_slot_66] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -46166,7 +46261,7 @@ function cb (id) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_18.warn(`<Toaster> was created with unknown prop '${key}'`);
+      console_19.warn(`<Toaster> was created with unknown prop '${key}'`);
   });
   const click_handler = () => showToast("Hello");
   const click_handler_1 = () => showToast("Hello", "success");
@@ -46221,7 +46316,7 @@ var Toaster_default2 = Toaster_1;
 
 // docs-src/components/notification-center/NotificationCenter.svelte
 var import_internal61 = __toESM(require_internal());
-var { console: console_19 } = import_internal61.globals;
+var { console: console_110 } = import_internal61.globals;
 var file59 = "docs-src/components/notification-center/NotificationCenter.svelte";
 function create_default_slot_76(ctx) {
   let t;
@@ -46246,7 +46341,7 @@ function create_default_slot_76(ctx) {
   });
   return block;
 }
-function create_default_slot_66(ctx) {
+function create_default_slot_67(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -46262,7 +46357,7 @@ function create_default_slot_66(ctx) {
   };
   (0, import_internal61.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_66.name,
+    id: create_default_slot_67.name,
     type: "slot",
     source: `(32:1) <Button success on:click=\\"{() => showNotification('Hello', 'success')}\\">`,
     ctx
@@ -46525,7 +46620,7 @@ function create_fragment61(ctx) {
   button1 = new Button_default({
     props: {
       success: true,
-      $$slots: { default: [create_default_slot_66] },
+      $$slots: { default: [create_default_slot_67] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -47120,7 +47215,7 @@ function cb (id) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_19.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
+      console_110.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
   });
   function toggle_value_binding(value) {
     hideButton = value;
@@ -47190,7 +47285,7 @@ var NotificationCenter_default2 = NotificationCenter_1;
 
 // docs-src/components/toggle/Toggle.svelte
 var import_internal62 = __toESM(require_internal());
-var { console: console_110 } = import_internal62.globals;
+var { console: console_111 } = import_internal62.globals;
 var file60 = "docs-src/components/toggle/Toggle.svelte";
 function create_fragment62(ctx) {
   let h2;
@@ -47552,7 +47647,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_110.warn(`<Toggle> was created with unknown prop '${key}'`);
+      console_111.warn(`<Toggle> was created with unknown prop '${key}'`);
   });
   function toggle0_value_binding(value) {
     toggleValue = value;
@@ -47762,7 +47857,7 @@ function create_default_slot_77(ctx) {
   });
   return block;
 }
-function create_default_slot_67(ctx) {
+function create_default_slot_68(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -47778,7 +47873,7 @@ function create_default_slot_67(ctx) {
   };
   (0, import_internal63.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_67.name,
+    id: create_default_slot_68.name,
     type: "slot",
     source: '(38:0) <Tooltip position=\\"bottom\\" target=\\"box-below\\">',
     ctx
@@ -48049,7 +48144,7 @@ function create_fragment63(ctx) {
     props: {
       position: "bottom",
       target: "box-below",
-      $$slots: { default: [create_default_slot_67] },
+      $$slots: { default: [create_default_slot_68] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -48682,7 +48777,7 @@ var Tooltip_default2 = Tooltip_1;
 
 // docs-src/components/tree/Tree.svelte
 var import_internal64 = __toESM(require_internal());
-var { console: console_111 } = import_internal64.globals;
+var { console: console_112 } = import_internal64.globals;
 var file62 = "docs-src/components/tree/Tree.svelte";
 function create_fragment64(ctx) {
   let h2;
@@ -48907,7 +49002,7 @@ function onSelect (e) {
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_111.warn(`<Tree> was created with unknown prop '${key}'`);
+      console_112.warn(`<Tree> was created with unknown prop '${key}'`);
   });
   $$self.$capture_state = () => ({
     Tree: Tree_default,

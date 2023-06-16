@@ -16,31 +16,36 @@
 </Dialog>
 
 <script>
-import { onMount } from 'svelte';
+import { onDestroy, onMount } from 'svelte';
 import { config } from './MessageBox.js';
 import { Dialog } from '../dialog';
 import { Icon } from '../icon';
 
-let dialog;
+let dialog, sub;
 
 onMount(() => {
-	config.subscribe(cfg => {
+	sub = config.subscribe(cfg => {
 		if (!dialog) return;
 		if (cfg && cfg.message) dialog.open();
 		else dialog.close();
 	});
 });
 
+onDestroy(() => {
+	sub();
+	config.set({});
+});
+
 
 function onclick (e, button) {
 	e.preventDefault();
-	$config.result = button.value;
+	$config.result = button.value || button.label;
 	dialog.close();
 }
 
 
 function onclose () {
-	$config.cb($config.result);
+	if (typeof $config.cb === 'function') $config.cb($config.result);
 }
 
 

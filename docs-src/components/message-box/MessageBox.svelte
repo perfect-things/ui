@@ -20,6 +20,10 @@
 <Button on:click="{() => showMessage('Error messagebox', MessageType.ERROR)}">Show error message</Button>
 
 
+<h3>Complex Message</h3>
+<Button on:click="{showComplex}">Show complex message</Button>
+
+
 
 
 <MessageBox />
@@ -44,6 +48,21 @@ function onclose (res) {
 	alert(`You clicked ${res}`);
 }
 
+function showComplex (e) {
+	showMessage({
+		message: 'Are you sure you want to delete this thing?',
+		type: MessageType.WARNING,
+		title: 'Warning',
+		buttons: [
+			{ label: 'Yes', value: 'yes', type: 'success' },
+			{ label: 'No' }
+		],
+		target: e.target,
+		cb: (res) => {
+			console.log(`You clicked ${res}`);
+		}
+	});
+}
 
 const apiProps = [
 	{ name: '1. message', type: 'string', description: 'A message to show.' },

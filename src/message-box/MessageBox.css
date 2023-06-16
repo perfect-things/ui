@@ -1,13 +1,18 @@
 .message-box .dialog-content {
 	display: flex;
 	flex-flow: row;
-	margin: 1rem auto 0;
-	padding: 0 2rem 1rem;
+	margin: 0 auto;
+	padding: 1rem 2rem;
 	gap: 1rem;
 	align-items: center;
 	justify-content: flex-start;
+	border-top: 1px solid var(--ui-color-border);
 	border-bottom: 1px solid var(--ui-color-border);
+}
 
+.message-box .dialog-header,
+.message-box .dialog-footer {
+	background: var(--ui-color-background-dark-1);
 }
 
 .message-box .dialog-content .icon {

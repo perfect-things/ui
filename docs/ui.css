@@ -782,7 +782,7 @@ svg {
 	font-size: 1.4rem;
 	font-weight: 400;
 	margin: 0;
-	padding: 0.4rem 1rem 0;
+	padding: 0.5rem 1rem;
 	border-top-left-radius: var(--ui-border-radius);
 	border-top-right-radius: var(--ui-border-radius);
 }
@@ -1158,13 +1158,18 @@ input[type=color] {
 .message-box .dialog-content {
 	display: flex;
 	flex-flow: row;
-	margin: 1rem auto 0;
-	padding: 0 2rem 1rem;
+	margin: 0 auto;
+	padding: 1rem 2rem;
 	gap: 1rem;
 	align-items: center;
 	justify-content: flex-start;
+	border-top: 1px solid var(--ui-color-border);
 	border-bottom: 1px solid var(--ui-color-border);
+}
 
+.message-box .dialog-header,
+.message-box .dialog-footer {
+	background: var(--ui-color-background-dark-1);
 }
 
 .message-box .dialog-content .icon {
