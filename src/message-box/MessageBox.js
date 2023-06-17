@@ -1,6 +1,5 @@
 import { writable } from 'svelte/store';
 
-// export const visible = writable(false);
 export const config = writable({});
 
 export const MessageType = {
