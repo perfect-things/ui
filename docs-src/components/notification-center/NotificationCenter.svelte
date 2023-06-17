@@ -27,7 +27,7 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 
 
 <h3>Notifications</h3>
-<div>
+<div class="docs-buttons-row">
 	<Button info on:click="{() => showNotification('Hello')}">Show info</Button>
 	<Button success on:click="{() => showNotification('Hello', 'success')}">Show success</Button>
 	<Button warning on:click="{() => showNotification('Hello', 'warning')}">Show warning</Button>
@@ -35,12 +35,13 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 </div>
 
 <h3>No auto-close</h3>
-<div>
+<div class="docs-buttons-row">
 	<Button info on:click="{() => showNotification('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', false)}">A very long message</Button>
 	<Button success on:click="{() => showNotification('Hello', 'success', false)}">Show success</Button>
 	<Button warning on:click="{() => showNotification('Hello', 'warning', false)}">Show warning</Button>
 	<Button danger on:click="{() => showNotification('Hello', 'error', false)}">Show error</Button>
 </div>
+
 
 <CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>

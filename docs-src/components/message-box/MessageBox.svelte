@@ -6,11 +6,12 @@
 <br>
 
 <h3>Info</h3>
-<Button on:click="{() => showMessage('Info messagebox')}">Show Info</Button>
-<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}">Show Info with title</Button>
-<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close')}">Show Info with title and button label</Button>
-<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}">Show Info with title and button label and callback</Button>
-
+<div class="docs-buttons-row">
+	<Button on:click="{() => showMessage('Info messagebox')}">Show Info</Button>
+	<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}">Show Info with title</Button>
+	<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close')}">Show Info with title and button label</Button>
+	<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}">Show Info with title and button label and callback</Button>
+</div>
 
 <h3>Warning</h3>
 <Button on:click="{() => showMessage('Warning messagebox', MessageType.WARNING)}">Show warning message</Button>

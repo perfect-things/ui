@@ -3,20 +3,23 @@
 <Toaster position="bottom" />
 
 <h3>Normal</h3>
-<div>
+<div class="docs-buttons-row">
 	<Button info on:click="{() => showToast('Hello')}">Show info</Button>
 	<Button success on:click="{() => showToast('Hello', 'success')}">Show success</Button>
 	<Button warning on:click="{() => showToast('Hello', 'warning')}">Show warning</Button>
 	<Button danger on:click="{() => showToast('Hello', 'error', 10000, 'Undo', cb)}">Show error for 10s</Button>
 </div>
 
+
 <h3>No auto-close</h3>
-<div>
+<div class="docs-buttons-row">
 	<Button info on:click="{() => showToast('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', false)}">A very long message</Button>
 	<Button success on:click="{() => showToast('Hello', 'success', false)}">Show success</Button>
 	<Button warning on:click="{() => showToast('Hello', 'warning', false)}">Show warning</Button>
 	<Button danger on:click="{() => showToast('Hello', 'error', false)}">Show error</Button>
 </div>
+
+
 
 <CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>

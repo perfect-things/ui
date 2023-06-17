@@ -4,10 +4,15 @@
 	<li>simple, small, no dependencies
 	<li>accessible (full keyboard support, focus trap)
 </ul>
+
 <br>
-<Button on:click="{() => dialog1.open()}">Show dialog 1</Button>
-<Button on:click="{() => dialog2.open()}">Show dialog 2</Button>
-<Button on:click="{() => dialog3.open()}">Show dialog 3</Button>
+
+<div class="docs-buttons-row">
+	<Button on:click="{() => dialog1.open()}">Show dialog 1</Button>
+	<Button on:click="{() => dialog2.open()}">Show dialog 2</Button>
+	<Button on:click="{() => dialog3.open()}">Show dialog 3</Button>
+</div>
+
 
 <Dialog bind:this="{dialog1}" title="Hello" drawborders="true">
 	dialog contents<br>
