@@ -20,6 +20,10 @@
 .button-outline.warning:focus,
 .button-outline.warning:hover { background-color: var(--ui-color-warning-semi); }
 
+.button-outline.error,
 .button-outline.danger { border-color: var(--ui-color-danger); }
+
+.button-outline.error:focus,
+.button-outline.error:hover,
 .button-outline.danger:focus,
 .button-outline.danger:hover { background-color: var(--ui-color-danger-semi); }

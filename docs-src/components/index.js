@@ -12,6 +12,7 @@ export { Input } from './input';
 export { InputMath } from './input-math';
 export { InputPassword } from './input-password';
 export { Menu } from './menu';
+export { MessageBox } from './message-box';
 export { Panel } from './panel';
 export { PushButton } from './push-button';
 export { Select } from './select';

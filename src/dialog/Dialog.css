@@ -19,7 +19,7 @@
 		opacity var(--ui-animation-speed) ease-out,
 		transform var(--ui-animation-speed) ease-out;
 	max-height: 90vh;
-	min-width: 16em;
+	min-width: 16rem;
 	max-width: 95vw;
 	color: var(--ui-color-text);
 	border-radius: var(--ui-border-radius);
@@ -37,16 +37,16 @@
 
 .dialog-header {
 	text-align: center;
-	font-size: 1.4em;
+	font-size: 1.4rem;
 	font-weight: 400;
 	margin: 0;
-	padding: 0.4em 1em 0;
+	padding: 0.5rem 1rem;
 	border-top-left-radius: var(--ui-border-radius);
 	border-top-right-radius: var(--ui-border-radius);
 }
 
 .dialog-content {
-	padding: 1em;
+	padding: 1rem;
 	min-width: 200px;
 	flex: 1;
 	overflow-y: auto;
@@ -66,13 +66,13 @@
 	align-items: center;
 	justify-content: center;
 	flex-flow: row-reverse;
-	padding: 0.7em 1em;
-	gap: 0.3em;
+	padding: 0.7rem 1rem;
+	gap: 0.3rem;
 	border-bottom-left-radius: var(--ui-border-radius);
 	border-bottom-right-radius: var(--ui-border-radius);
 }
 
-.draw-borders .dialog-header { border-bottom: var(--ui-popup-border); padding: 0.4em 0.5em; }
+.draw-borders .dialog-header { border-bottom: var(--ui-popup-border); padding: 0.4rem 0.5rem; }
 .draw-borders .dialog-footer { border-top: var(--ui-popup-border); }
 
 .dialog-header:empty,

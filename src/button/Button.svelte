@@ -13,6 +13,7 @@
 	class:success
 	class:warning
 	class:danger
+	class:error
 	class:touching
 	{...props}
 
@@ -36,6 +37,7 @@ export let info = false;
 export let success = false;
 export let warning = false;
 export let danger = false;
+export let error = false;
 export let submit = false;
 
 export let outline = false;		// button without background, but with border

@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.8.0 *(2023-06-17)*
+- **New:** `MessageBox` component for displaying quick info/warning/error messages or confirmation dialogs (replacement for browser's native `alert` and `confirm`).
+
+
 ## v6.7.1 *(2023-06-13)*
 - Fix `Menu` show and hide events and clearing the highlight on mouse out.
 

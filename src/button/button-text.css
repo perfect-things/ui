@@ -18,5 +18,7 @@
 .button-text.warning:focus,
 .button-text.warning:hover { background-color: var(--ui-color-warning); }
 
+.button-text.error:focus,
+.button-text.error:hover,
 .button-text.danger:focus,
 .button-text.danger:hover { background-color: var(--ui-color-danger); }

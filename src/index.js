@@ -11,6 +11,7 @@ export * from './input-number/index.js';
 export * from './input-math/index.js';
 export * from './input-password/index.js';
 export * from './menu/index.js';
+export * from './message-box/index.js';
 export * from './panel/index.js';
 export * from './push-button/index.js';
 export * from './select/index.js';

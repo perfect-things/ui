@@ -1,0 +1,31 @@
+.message-box .dialog-content {
+	display: flex;
+	flex-flow: row;
+	margin: 0 auto;
+	padding: 1rem 2rem;
+	gap: 1rem;
+	align-items: center;
+	justify-content: flex-start;
+	border-top: 1px solid var(--ui-color-border);
+	border-bottom: 1px solid var(--ui-color-border);
+}
+
+.message-box .dialog-header,
+.message-box .dialog-footer {
+	background: var(--ui-color-background-dark-1);
+}
+
+.message-box .dialog-content .icon {
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--primary-color);
+	color: var(--primary-text-color);
+}
+
+.message-info .dialog-content .icon { color: var(--ui-color-info); }
+.message-warning .dialog-content .icon { color: var(--ui-color-warning); }
+.message-error .dialog-content .icon { color: var(--ui-color-danger); }

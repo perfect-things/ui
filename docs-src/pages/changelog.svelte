@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v6.8.0 <em>(2023-06-17)</em></h2>
+<ul>
+<li><strong>New:</strong> <code>MessageBox</code> component for displaying quick info/warning/error messages or confirmation dialogs (replacement for browser&#39;s native <code>alert</code> and <code>confirm</code>).</li>
+</ul>
 <h2>v6.7.1 <em>(2023-06-13)</em></h2>
 <ul>
 <li>Fix <code>Menu</code> show and hide events and clearing the highlight on mouse out.</li>
