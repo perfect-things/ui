@@ -24,6 +24,8 @@ window.Element.prototype.animate = jest.fn().mockImplementation(() => {
 	return obj;
 });
 
+window.Element.prototype.scrollIntoView = jest.fn().mockImplementation(() => {});
+
 
 export function offsetHeight (el, value = 50) {
 	Object.defineProperty(el, 'offsetHeight', { configurable: true, value });
