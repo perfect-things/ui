@@ -14550,25 +14550,14 @@ var config = (0, import_store2.writable)({});
 var MessageType = {
   INFO: "info",
   WARNING: "warning",
-  ERROR: "error"
+  ERROR: "error",
+  DANGER: "error"
 };
-function showMessage(messageOrConfig, _type = MessageType.INFO, _title = "", btnLabel = "OK", _cb = () => {
-}) {
-  let cfg = {};
-  if (typeof messageOrConfig === "string") {
-    cfg = {
-      message: messageOrConfig,
-      type: _type,
-      title: _title,
-      cb: _cb,
-      buttons: [{ label: btnLabel, value: btnLabel }]
-    };
-  } else
-    cfg = messageOrConfig;
-  if (cfg.buttons.length === 1) {
-    cfg.buttons[0].type = cfg.type;
-  }
-  config.set(cfg);
+function showMessage(message, type = MessageType.INFO, title = "", btnLabel = "OK", cb) {
+  if (typeof message === "object")
+    return config.set(message);
+  const buttons = [{ label: btnLabel, value: btnLabel, type }];
+  return config.set({ message, title, cb, type, buttons });
 }
 
 // src/message-box/MessageBox.svelte
@@ -14589,10 +14578,13 @@ function create_default_slot(ctx) {
   let t1;
   let current;
   icon = new Icon_default({
-    props: { name: (
-      /*$config*/
-      ctx[1].type
-    ) },
+    props: {
+      name: (
+        /*$config*/
+        ctx[1].icon || /*$config*/
+        ctx[1].type
+      )
+    },
     $$inline: true
   });
   const block = {
@@ -14602,7 +14594,7 @@ function create_default_slot(ctx) {
       div = (0, import_internal16.element)("div");
       t1 = (0, import_internal16.text)(t1_value);
       (0, import_internal16.attr_dev)(div, "class", "message");
-      (0, import_internal16.add_location)(div, file15, 6, 2, 156);
+      (0, import_internal16.add_location)(div, file15, 6, 2, 172);
     },
     m: function mount(target, anchor) {
       (0, import_internal16.mount_component)(icon, target, anchor);
@@ -14616,6 +14608,7 @@ function create_default_slot(ctx) {
       if (dirty & /*$config*/
       2)
         icon_changes.name = /*$config*/
+        ctx2[1].icon || /*$config*/
         ctx2[1].type;
       icon.$set(icon_changes);
       if ((!current || dirty & /*$config*/
@@ -14740,7 +14733,7 @@ function create_each_block3(ctx) {
       t = (0, import_internal16.text)(t_value);
       (0, import_internal16.attr_dev)(button, "class", button_class_value = "button button-normal button-has-text " + /*button*/
       (ctx[7].type || ""));
-      (0, import_internal16.add_location)(button, file15, 10, 5, 291);
+      (0, import_internal16.add_location)(button, file15, 10, 5, 307);
     },
     m: function mount(target, anchor) {
       (0, import_internal16.insert_dev)(target, button, anchor);
@@ -14790,7 +14783,7 @@ function create_footer_slot(ctx) {
       if (if_block)
         if_block.c();
       (0, import_internal16.attr_dev)(div, "slot", "footer");
-      (0, import_internal16.add_location)(div, file15, 7, 2, 203);
+      (0, import_internal16.add_location)(div, file15, 7, 2, 219);
     },
     m: function mount(target, anchor) {
       (0, import_internal16.insert_dev)(target, div, anchor);
@@ -14933,6 +14926,8 @@ function instance16($$self, $$props, $$invalidate) {
   function onclose2() {
     if (typeof $config.cb === "function")
       $config.cb($config.result);
+    const target = $config.target || document.body;
+    requestAnimationFrame(() => target.focus());
   }
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
@@ -39760,17 +39755,18 @@ function instance52($$self, $$props, $$invalidate) {
   function showComplex(e) {
     showMessage({
       message: "Are you sure you want to delete this thing?",
-      type: MessageType.WARNING,
-      title: "Warning",
+      type: MessageType.DANGER,
+      title: "Confirm",
       buttons: [
         {
           label: "Yes",
           value: "yes",
-          type: "success"
+          type: "danger"
         },
         { label: "No" }
       ],
       target: e.target,
+      icon: "help",
       cb: (res) => {
         console.log(`You clicked ${res}`);
       }
@@ -39798,7 +39794,7 @@ function instance52($$self, $$props, $$invalidate) {
       name: "4. label",
       type: "string",
       default: "OK",
-      description: "A label for the default button (if there's inly one)."
+      description: "A label for the button."
     },
     {
       name: "5. cb",
@@ -39818,13 +39814,15 @@ function instance52($$self, $$props, $$invalidate) {
     showMessage('Some error with the OK button and title', MessageType.ERROR, 'Error', 'Close');
 
     showMessage({
-        message: '',
-        title: '',
-        type: '',
+        message: 'Are you sure you want to delete this item?',
+        title: 'Confirm',
+        type: MessageType.DANGER,
+		icon: 'help'
         buttons: [
-            { label: 'OK', value: 'ok' },
+            { label: 'OK', value: 'ok', type: 'danger' },
             { label: 'Cancel' }
         ],
+		target: buttonElement,  // to be focused on close
         cb: (res) => {}
     });
 

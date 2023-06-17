@@ -3,7 +3,7 @@
 	class="message-box message-{$config.type}"
 	bind:this="{dialog}"
 	on:close="{onclose}">
-		<Icon name="{$config.type}"/>
+		<Icon name="{$config.icon || $config.type}"/>
 		<div class="message">{$config.message}</div>
 		<div slot="footer">
 			{#if $config.buttons}
@@ -46,6 +46,8 @@ function onclick (e, button) {
 
 function onclose () {
 	if (typeof $config.cb === 'function') $config.cb($config.result);
+	const target = $config.target || document.body;
+	requestAnimationFrame(() => target.focus());
 }
 
 
