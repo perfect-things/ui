@@ -90,7 +90,7 @@ const exampleHtml = `
         message: 'Are you sure you want to delete this item?',
         title: 'Confirm',
         type: MessageType.DANGER,
-		icon: 'help'
+		icon: 'help',
         buttons: [
             { label: 'OK', value: 'ok', type: 'danger' },
             { label: 'Cancel' }
