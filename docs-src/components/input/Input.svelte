@@ -7,6 +7,12 @@
 <h3>Text</h3>
 <input type="text" on:input="{oninput}" />
 
+<h3>Disabled</h3>
+<input type="text" disabled value="disabled value"/>
+
+<h3>Invalid</h3>
+<input type="text" class="error" />
+
 <h3>Password</h3>
 <input type="password" />
 
