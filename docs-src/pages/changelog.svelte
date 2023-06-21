@@ -1,7 +1,8 @@
 <h1>Changelog</h1>
-<h2>v6.8.1 <em>(2023-06-21)</em></h2>
+<h2>v6.8.1, v6.8.2 <em>(2023-06-21)</em></h2>
 <ul>
 <li>Allow HTML in <code>MessageBox</code>.</li>
+<li>Improve styling for multi-line messages in <code>MessageBox</code>.</li>
 </ul>
 <h2>v6.8.0 <em>(2023-06-17)</em></h2>
 <ul>
