@@ -37,6 +37,10 @@ input:not([type=radio]):focus {
 }
 
 
+input:not([type=radio]).error,
+input:not([type=radio]).error:focus,
+input:not([type=radio]).invalid,
+input:not([type=radio]).invalid:focus,
 input:not([type=radio]):invalid {
 	border-color: var(--ui-color-danger);
 	box-shadow: var(--ui-shadow-invalid);
