@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v6.8.1 *(2023-06-21)*
+- Allow HTML in `MessageBox`.
+
+
 ## v6.8.0 *(2023-06-17)*
 - **New:** `MessageBox` component for displaying quick info/warning/error messages or confirmation dialogs (replacement for browser's native `alert` and `confirm`).
 
