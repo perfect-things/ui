@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v6.8.1 *(2023-06-21)*
+## v6.8.1, v6.8.2 *(2023-06-21)*
 - Allow HTML in `MessageBox`.
+- Improve styling for multi-line messages in `MessageBox`.
 
 
 ## v6.8.0 *(2023-06-17)*

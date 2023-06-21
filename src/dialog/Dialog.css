@@ -19,7 +19,7 @@
 		opacity var(--ui-animation-speed) ease-out,
 		transform var(--ui-animation-speed) ease-out;
 	max-height: 90vh;
-	min-width: 16rem;
+	min-width: 15rem;
 	max-width: 95vw;
 	color: var(--ui-color-text);
 	border-radius: var(--ui-border-radius);

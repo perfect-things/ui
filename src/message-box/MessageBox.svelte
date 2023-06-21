@@ -4,7 +4,9 @@
 	bind:this="{dialog}"
 	on:close="{onclose}">
 		<Icon name="{$config.icon || $config.type}"/>
-		<div class="message">{@html $config.message}</div>
+		<div class="message">
+			<div class="message-content">{@html $config.message}</div>
+		</div>
 		<div slot="footer">
 			{#if $config.buttons}
 				{#each $config.buttons as button}

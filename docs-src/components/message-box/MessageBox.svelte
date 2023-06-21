@@ -7,22 +7,34 @@
 
 <h3>Info</h3>
 <div class="docs-buttons-row">
-	<Button on:click="{() => showMessage('Info messagebox')}">Show Info</Button>
-	<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}">Show Info with title</Button>
-	<Button on:click="{() => showMessage('Info messagebox with <i>html</i>', MessageType.INFO, 'Info title', 'Close')}">Show Info with title and button label</Button>
-	<Button on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}">Show Info with title and button label and callback</Button>
+	<Button info on:click="{() => showMessage('Info messagebox')}">Show info message</Button>
+	<Button info on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}">Show info message with title</Button>
+	<Button info on:click="{() => showMessage(longMessage, MessageType.INFO, 'Info title')}">Show long message</Button>
 </div>
 
+
+<h3>Message with HTML</h3>
+<div class="docs-buttons-row">
+	<Button info on:click="{() => showMessage('Info messagebox with <i>html</i><br><a href="#MessageBox" target="_blank">Link</a>', MessageType.INFO, 'Info title', 'Close')}">Show message</Button>
+</div>
+
+
+<h3>MessageBox with callback action</h3>
+<div class="docs-buttons-row">
+	<Button info on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}">Show Info with title and button label and callback</Button>
+</div>
+
+
 <h3>Warning</h3>
-<Button on:click="{() => showMessage('Warning messagebox', MessageType.WARNING)}">Show warning message</Button>
+<Button warning on:click="{() => showMessage('Warning messagebox', MessageType.WARNING)}">Show warning message</Button>
 
 
 <h3>Error</h3>
-<Button on:click="{() => showMessage('Error messagebox', MessageType.ERROR)}">Show error message</Button>
+<Button danger on:click="{() => showMessage('Error messagebox', MessageType.ERROR)}">Show error message</Button>
 
 
 <h3>Complex Message</h3>
-<Button on:click="{showComplex}">Show complex message</Button>
+<Button info on:click="{showComplex}">Show complex message</Button>
 
 
 
@@ -44,6 +56,7 @@ import { Button, MessageBox, MessageType, showMessage } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
+const longMessage = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec euismod turpis. Aliquam aliquam varius dignissim. Sed sit amet leo tempor, dignissim ex euismod, volutpat ante. Etiam sed lacus pharetra, commodo lectus ac, bibendum purus. In vel aliquam arcu, nec aliquam tortor. Cras feugiat porta eros. Nulla eget quam mattis, laoreet elit et, volutpat lacus. Phasellus eget risus in lacus facilisis porta vitae vel nibh. Nam condimentum est risus, sed volutpat metus sodales non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus ac euismod arcu. Proin varius, ligula vel ullamcorper rutrum, tortor est imperdiet est, et accumsan nunc mi vitae risus.';
 
 function onclose (res) {
 	alert(`You clicked ${res}`);
