@@ -1,0 +1,43 @@
+.theme-dark input { color-scheme: dark; }
+.theme-light input { color-scheme: light; }
+
+
+input::placeholder { color: var(--ui-color-text-dark-2); }
+.theme-light input::placeholder { color: var(--ui-color-text-light-2); }
+
+
+:where(input:not([type=radio],[type=checkbox])) {
+	font: inherit;
+	height: 2.2rem;
+	border: 1px solid transparent;
+	line-height: 1;
+	color: var(--ui-color-text);
+	background-color: var(--ui-color-background-input);
+	border-radius: var(--ui-border-radius);
+	padding: 0 var(--ui-margin-m);
+	width: 25ch;
+}
+
+:where(input:focus) { outline: 0; }
+:where(input:disabled) { opacity: 0.75; }
+
+:where(input:not([type=radio]):focus) {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+
+:where(input:not([type=radio]):invalid) {
+	border-color: var(--ui-color-danger);
+	box-shadow: var(--ui-shadow-invalid);
+}
+
+
+input[type=color] {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}

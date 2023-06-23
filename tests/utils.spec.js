@@ -97,8 +97,8 @@ test('util - innerWidth', async () => {
 });
 
 
-test('util - uuid', () => {
-	const id = util.uuid();
+test('util - guid', () => {
+	const id = util.guid();
 	expect(id).toBeTruthy();
 });
 

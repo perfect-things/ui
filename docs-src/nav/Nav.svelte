@@ -24,11 +24,14 @@
 		<NavItem name="Push Button" {active} />
 		<NavItem name="Button Group" {active} />
 		<NavItem name="Button Toggle" {active} />
+
 		<NavItem name="Checkbox" {active} />
 		<NavItem name="Datepicker" {active} />
-		<NavItem name="Input" {active} />
+		<NavItem name="Input Text" {active} />
+		<NavItem name="Input Number" {active} />
 		<NavItem name="Input Math" {active} />
-		<NavItem name="Password" hash="InputPassword" {active} />
+		<NavItem name="Input Password" {active} />
+		<NavItem name="Radio" {active} />
 		<NavItem name="Select" {active} />
 		<NavItem name="Textarea" {active} />
 		<NavItem name="Toggle" {active} />

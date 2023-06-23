@@ -71,7 +71,7 @@
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './utils';
-import { pluck, uuid } from '../utils';
+import { pluck, guid } from '../utils';
 import { Icon } from '../icon';
 export let data = [];
 export let value = null;
@@ -92,7 +92,7 @@ $:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i
 $:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputEl && inputEl.value && !valueMatchesItem;
 
 const dispatch = createEventDispatcher();
-const gui = uuid();
+const gui = guid();
 let el, inputEl, listEl;
 let opened = false;
 let hasEdited = false;

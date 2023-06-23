@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import { ANIMATION_SPEED, pluck, uuid } from '../utils';
+import { ANIMATION_SPEED, pluck, guid } from '../utils';
 import { fly as _fly, crossfade } from 'svelte/transition';
 import { flip as _flip } from 'svelte/animate';
 
@@ -80,7 +80,7 @@ export function clearTimer (notification) {
 
 
 export function showNotification (msg, type = 'info', timeout = 5000, btn, cb = () => {}) {
-	const id = uuid();
+	const id = guid();
 	const showProgress = (typeof timeout === 'number');
 	const timestamp = new Date().getTime();
 	Notifications.update(list => {
