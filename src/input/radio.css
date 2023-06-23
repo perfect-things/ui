@@ -1,0 +1,33 @@
+
+input:is([type=radio]) {
+	vertical-align: inherit;
+	transform: scale(1.6);
+	filter: brightness(1.4);
+	margin-right: 1rem;
+	accent-color: var(--ui-color-highlight);
+	border-radius: 50px;
+}
+
+
+input:is([type=radio]):focus {
+	box-shadow: 0 0 0 1px var(--ui-color-accent), var(--ui-shadow-focus);
+	filter:
+		brightness(1.4)
+		drop-shadow(0 1px 0 var(--ui-color-accent))
+		drop-shadow(0 -1px 0 var(--ui-color-accent))
+		drop-shadow(1px 0 0 var(--ui-color-accent))
+		drop-shadow(-1px 0 0 var(--ui-color-accent));
+}
+
+
+
+.theme-light input:is([type=radio]) { filter: brightness(0.9); }
+
+.theme-light input:is([type=radio]):focus {
+	filter:
+		brightness(0.9)
+		drop-shadow(0 1px 0 var(--ui-color-accent))
+		drop-shadow(0 -1px 0 var(--ui-color-accent))
+		drop-shadow(1px 0 0 var(--ui-color-accent))
+		drop-shadow(-1px 0 0 var(--ui-color-accent));
+}

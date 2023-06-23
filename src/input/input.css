@@ -24,13 +24,6 @@ input:focus { outline: 0; }
 input:disabled { opacity: 0.75; }
 
 
-input:is([type=radio]) {
-	vertical-align: inherit;
-	transform: scale(1.6);
-	filter: saturate(0.8);
-	margin-right: 1rem;
-}
-
 input:not([type=radio]):focus {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
@@ -46,15 +39,10 @@ input:not([type=radio]):invalid {
 	box-shadow: var(--ui-shadow-invalid);
 }
 
-
-input:is([type=radio]):focus {
-	box-shadow: 0 0 0 1px var(--ui-color-accent), var(--ui-shadow-focus);
-	filter:
-		saturate(0.8)
-		drop-shadow(0 1px 0 var(--ui-color-accent))
-		drop-shadow(0 -1px 0 var(--ui-color-accent))
-		drop-shadow(1px 0 0 var(--ui-color-accent))
-		drop-shadow(-1px 0 0 var(--ui-color-accent));
+input.has-error-message {
+	border-top: none;
+	border-top-left-radius: 1px;
+	border-top-right-radius: 1px;
 }
 
 input[type=color] {
@@ -73,4 +61,22 @@ input[type=color] {
 	padding: 0 var(--ui-margin-s);
 	display: inline-flex;
 	align-items: center;
+}
+
+
+.input-error {
+	margin: 0.5rem 0 -1px;
+	padding-block: 0.3rem;
+	padding-inline: 0.4rem 0.8rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.5rem;
+	width: 25ch;
+	color: var(--ui-color-text);
+	border: 1px solid var(--ui-color-danger);
+	border-radius: var(--ui-border-radius) var(--ui-border-radius) 1px 1px;
+	background-color: var(--ui-color-danger-dark-1);
+	box-shadow: var(--ui-shadow-invalid);
+	border-bottom: none;
 }

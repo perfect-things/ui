@@ -35490,38 +35490,45 @@ function create_fragment48(ctx) {
   let t14;
   let h32;
   let t16;
-  let input2;
-  let t17;
-  let h33;
-  let t19;
-  let input3;
-  let t20;
-  let h34;
-  let t22;
-  let input4;
-  let t23;
-  let h35;
-  let t25;
+  let label;
+  let t18;
   let p2;
+  let icon;
+  let t19;
+  let t20;
+  let input2;
+  let t21;
+  let h33;
+  let t23;
+  let input3;
+  let t24;
+  let h34;
+  let t26;
+  let input4;
   let t27;
-  let inputnumber;
-  let t28;
-  let h36;
-  let t30;
-  let input5;
+  let h35;
+  let t29;
+  let p3;
   let t31;
-  let h37;
-  let t33;
-  let input6;
+  let inputnumber;
+  let t32;
+  let h36;
   let t34;
-  let input7;
+  let input5;
   let t35;
+  let h37;
+  let t37;
+  let input6;
+  let t38;
+  let input7;
+  let t39;
   let input8;
-  let t36;
+  let t40;
   let codeexample;
   let current;
   let mounted;
   let dispose;
+  icon = new Icon_default({ props: { name: "error" }, $$inline: true });
   inputnumber = new InputNumber_default({ $$inline: true });
   codeexample = new CodeExample_default({
     props: { html: (
@@ -35559,40 +35566,47 @@ function create_fragment48(ctx) {
       h32 = (0, import_internal48.element)("h3");
       h32.textContent = "Invalid";
       t16 = (0, import_internal48.space)();
+      label = (0, import_internal48.element)("label");
+      label.textContent = "Invalid input";
+      t18 = (0, import_internal48.space)();
+      p2 = (0, import_internal48.element)("p");
+      (0, import_internal48.create_component)(icon.$$.fragment);
+      t19 = (0, import_internal48.text)(" This field is required.");
+      t20 = (0, import_internal48.space)();
       input2 = (0, import_internal48.element)("input");
-      t17 = (0, import_internal48.space)();
+      t21 = (0, import_internal48.space)();
       h33 = (0, import_internal48.element)("h3");
       h33.textContent = "Password";
-      t19 = (0, import_internal48.space)();
+      t23 = (0, import_internal48.space)();
       input3 = (0, import_internal48.element)("input");
-      t20 = (0, import_internal48.space)();
+      t24 = (0, import_internal48.space)();
       h34 = (0, import_internal48.element)("h3");
       h34.textContent = "Number";
-      t22 = (0, import_internal48.space)();
+      t26 = (0, import_internal48.space)();
       input4 = (0, import_internal48.element)("input");
-      t23 = (0, import_internal48.space)();
+      t27 = (0, import_internal48.space)();
       h35 = (0, import_internal48.element)("h3");
       h35.textContent = "Better Number Input";
-      t25 = (0, import_internal48.space)();
-      p2 = (0, import_internal48.element)("p");
-      p2.textContent = "Only allows numbers, a single dot (for decimals) and the minus sign (which is only allowed as a first character)";
-      t27 = (0, import_internal48.space)();
+      t29 = (0, import_internal48.space)();
+      p3 = (0, import_internal48.element)("p");
+      p3.textContent = "Only allows numbers, a single dot (for decimals) and the minus sign (which is only allowed as a first character)";
+      t31 = (0, import_internal48.space)();
       (0, import_internal48.create_component)(inputnumber.$$.fragment);
-      t28 = (0, import_internal48.space)();
+      t32 = (0, import_internal48.space)();
       h36 = (0, import_internal48.element)("h3");
       h36.textContent = "Search";
-      t30 = (0, import_internal48.space)();
+      t34 = (0, import_internal48.space)();
       input5 = (0, import_internal48.element)("input");
-      t31 = (0, import_internal48.space)();
+      t35 = (0, import_internal48.space)();
       h37 = (0, import_internal48.element)("h3");
       h37.textContent = "Radio button";
-      t33 = (0, import_internal48.space)();
+      t37 = (0, import_internal48.space)();
       input6 = (0, import_internal48.element)("input");
-      t34 = (0, import_internal48.space)();
+      t38 = (0, import_internal48.space)();
       input7 = (0, import_internal48.element)("input");
-      t35 = (0, import_internal48.space)();
+      t39 = (0, import_internal48.space)();
       input8 = (0, import_internal48.element)("input");
-      t36 = (0, import_internal48.space)();
+      t40 = (0, import_internal48.space)();
       (0, import_internal48.create_component)(codeexample.$$.fragment);
       (0, import_internal48.add_location)(h2, file46, 0, 0, 0);
       (0, import_internal48.add_location)(p0, file46, 2, 0, 16);
@@ -35608,31 +35622,36 @@ function create_fragment48(ctx) {
       input1.value = "disabled value";
       (0, import_internal48.add_location)(input1, file46, 10, 0, 251);
       (0, import_internal48.add_location)(h32, file46, 12, 0, 305);
+      (0, import_internal48.attr_dev)(label, "for", "invalid-input");
+      (0, import_internal48.add_location)(label, file46, 13, 0, 322);
+      (0, import_internal48.attr_dev)(p2, "class", "input-error");
+      (0, import_internal48.add_location)(p2, file46, 14, 0, 371);
+      (0, import_internal48.attr_dev)(input2, "id", "invalid-input");
       (0, import_internal48.attr_dev)(input2, "type", "text");
-      (0, import_internal48.attr_dev)(input2, "class", "error");
-      (0, import_internal48.add_location)(input2, file46, 13, 0, 322);
-      (0, import_internal48.add_location)(h33, file46, 15, 0, 359);
+      (0, import_internal48.attr_dev)(input2, "class", "error has-error-message");
+      (0, import_internal48.add_location)(input2, file46, 15, 0, 444);
+      (0, import_internal48.add_location)(h33, file46, 17, 0, 518);
       (0, import_internal48.attr_dev)(input3, "type", "password");
-      (0, import_internal48.add_location)(input3, file46, 16, 0, 377);
-      (0, import_internal48.add_location)(h34, file46, 18, 0, 404);
+      (0, import_internal48.add_location)(input3, file46, 18, 0, 536);
+      (0, import_internal48.add_location)(h34, file46, 20, 0, 563);
       (0, import_internal48.attr_dev)(input4, "type", "number");
-      (0, import_internal48.add_location)(input4, file46, 19, 0, 420);
-      (0, import_internal48.add_location)(h35, file46, 21, 0, 445);
-      (0, import_internal48.add_location)(p2, file46, 22, 0, 474);
-      (0, import_internal48.add_location)(h36, file46, 25, 0, 611);
+      (0, import_internal48.add_location)(input4, file46, 21, 0, 579);
+      (0, import_internal48.add_location)(h35, file46, 23, 0, 604);
+      (0, import_internal48.add_location)(p3, file46, 24, 0, 633);
+      (0, import_internal48.add_location)(h36, file46, 27, 0, 770);
       (0, import_internal48.attr_dev)(input5, "type", "search");
-      (0, import_internal48.add_location)(input5, file46, 26, 0, 627);
-      (0, import_internal48.add_location)(h37, file46, 28, 0, 652);
+      (0, import_internal48.add_location)(input5, file46, 28, 0, 786);
+      (0, import_internal48.add_location)(h37, file46, 30, 0, 811);
       (0, import_internal48.attr_dev)(input6, "name", "radio-group");
       (0, import_internal48.attr_dev)(input6, "type", "radio");
       input6.disabled = true;
-      (0, import_internal48.add_location)(input6, file46, 29, 0, 674);
+      (0, import_internal48.add_location)(input6, file46, 31, 0, 833);
       (0, import_internal48.attr_dev)(input7, "name", "radio-group");
       (0, import_internal48.attr_dev)(input7, "type", "radio");
-      (0, import_internal48.add_location)(input7, file46, 30, 0, 725);
+      (0, import_internal48.add_location)(input7, file46, 32, 0, 884);
       (0, import_internal48.attr_dev)(input8, "name", "radio-group");
       (0, import_internal48.attr_dev)(input8, "type", "radio");
-      (0, import_internal48.add_location)(input8, file46, 31, 0, 767);
+      (0, import_internal48.add_location)(input8, file46, 33, 0, 926);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35659,34 +35678,40 @@ function create_fragment48(ctx) {
       (0, import_internal48.insert_dev)(target, t14, anchor);
       (0, import_internal48.insert_dev)(target, h32, anchor);
       (0, import_internal48.insert_dev)(target, t16, anchor);
-      (0, import_internal48.insert_dev)(target, input2, anchor);
-      (0, import_internal48.insert_dev)(target, t17, anchor);
-      (0, import_internal48.insert_dev)(target, h33, anchor);
-      (0, import_internal48.insert_dev)(target, t19, anchor);
-      (0, import_internal48.insert_dev)(target, input3, anchor);
-      (0, import_internal48.insert_dev)(target, t20, anchor);
-      (0, import_internal48.insert_dev)(target, h34, anchor);
-      (0, import_internal48.insert_dev)(target, t22, anchor);
-      (0, import_internal48.insert_dev)(target, input4, anchor);
-      (0, import_internal48.insert_dev)(target, t23, anchor);
-      (0, import_internal48.insert_dev)(target, h35, anchor);
-      (0, import_internal48.insert_dev)(target, t25, anchor);
+      (0, import_internal48.insert_dev)(target, label, anchor);
+      (0, import_internal48.insert_dev)(target, t18, anchor);
       (0, import_internal48.insert_dev)(target, p2, anchor);
+      (0, import_internal48.mount_component)(icon, p2, null);
+      (0, import_internal48.append_dev)(p2, t19);
+      (0, import_internal48.insert_dev)(target, t20, anchor);
+      (0, import_internal48.insert_dev)(target, input2, anchor);
+      (0, import_internal48.insert_dev)(target, t21, anchor);
+      (0, import_internal48.insert_dev)(target, h33, anchor);
+      (0, import_internal48.insert_dev)(target, t23, anchor);
+      (0, import_internal48.insert_dev)(target, input3, anchor);
+      (0, import_internal48.insert_dev)(target, t24, anchor);
+      (0, import_internal48.insert_dev)(target, h34, anchor);
+      (0, import_internal48.insert_dev)(target, t26, anchor);
+      (0, import_internal48.insert_dev)(target, input4, anchor);
       (0, import_internal48.insert_dev)(target, t27, anchor);
-      (0, import_internal48.mount_component)(inputnumber, target, anchor);
-      (0, import_internal48.insert_dev)(target, t28, anchor);
-      (0, import_internal48.insert_dev)(target, h36, anchor);
-      (0, import_internal48.insert_dev)(target, t30, anchor);
-      (0, import_internal48.insert_dev)(target, input5, anchor);
+      (0, import_internal48.insert_dev)(target, h35, anchor);
+      (0, import_internal48.insert_dev)(target, t29, anchor);
+      (0, import_internal48.insert_dev)(target, p3, anchor);
       (0, import_internal48.insert_dev)(target, t31, anchor);
-      (0, import_internal48.insert_dev)(target, h37, anchor);
-      (0, import_internal48.insert_dev)(target, t33, anchor);
-      (0, import_internal48.insert_dev)(target, input6, anchor);
+      (0, import_internal48.mount_component)(inputnumber, target, anchor);
+      (0, import_internal48.insert_dev)(target, t32, anchor);
+      (0, import_internal48.insert_dev)(target, h36, anchor);
       (0, import_internal48.insert_dev)(target, t34, anchor);
-      (0, import_internal48.insert_dev)(target, input7, anchor);
+      (0, import_internal48.insert_dev)(target, input5, anchor);
       (0, import_internal48.insert_dev)(target, t35, anchor);
+      (0, import_internal48.insert_dev)(target, h37, anchor);
+      (0, import_internal48.insert_dev)(target, t37, anchor);
+      (0, import_internal48.insert_dev)(target, input6, anchor);
+      (0, import_internal48.insert_dev)(target, t38, anchor);
+      (0, import_internal48.insert_dev)(target, input7, anchor);
+      (0, import_internal48.insert_dev)(target, t39, anchor);
       (0, import_internal48.insert_dev)(target, input8, anchor);
-      (0, import_internal48.insert_dev)(target, t36, anchor);
+      (0, import_internal48.insert_dev)(target, t40, anchor);
       (0, import_internal48.mount_component)(codeexample, target, anchor);
       current = true;
       if (!mounted) {
@@ -35698,11 +35723,13 @@ function create_fragment48(ctx) {
     i: function intro(local) {
       if (current)
         return;
+      (0, import_internal48.transition_in)(icon.$$.fragment, local);
       (0, import_internal48.transition_in)(inputnumber.$$.fragment, local);
       (0, import_internal48.transition_in)(codeexample.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
+      (0, import_internal48.transition_out)(icon.$$.fragment, local);
       (0, import_internal48.transition_out)(inputnumber.$$.fragment, local);
       (0, import_internal48.transition_out)(codeexample.$$.fragment, local);
       current = false;
@@ -35745,60 +35772,69 @@ function create_fragment48(ctx) {
       if (detaching)
         (0, import_internal48.detach_dev)(t16);
       if (detaching)
-        (0, import_internal48.detach_dev)(input2);
+        (0, import_internal48.detach_dev)(label);
       if (detaching)
-        (0, import_internal48.detach_dev)(t17);
+        (0, import_internal48.detach_dev)(t18);
       if (detaching)
-        (0, import_internal48.detach_dev)(h33);
-      if (detaching)
-        (0, import_internal48.detach_dev)(t19);
-      if (detaching)
-        (0, import_internal48.detach_dev)(input3);
+        (0, import_internal48.detach_dev)(p2);
+      (0, import_internal48.destroy_component)(icon);
       if (detaching)
         (0, import_internal48.detach_dev)(t20);
       if (detaching)
-        (0, import_internal48.detach_dev)(h34);
+        (0, import_internal48.detach_dev)(input2);
       if (detaching)
-        (0, import_internal48.detach_dev)(t22);
+        (0, import_internal48.detach_dev)(t21);
       if (detaching)
-        (0, import_internal48.detach_dev)(input4);
+        (0, import_internal48.detach_dev)(h33);
       if (detaching)
         (0, import_internal48.detach_dev)(t23);
       if (detaching)
-        (0, import_internal48.detach_dev)(h35);
+        (0, import_internal48.detach_dev)(input3);
       if (detaching)
-        (0, import_internal48.detach_dev)(t25);
+        (0, import_internal48.detach_dev)(t24);
       if (detaching)
-        (0, import_internal48.detach_dev)(p2);
+        (0, import_internal48.detach_dev)(h34);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t26);
+      if (detaching)
+        (0, import_internal48.detach_dev)(input4);
       if (detaching)
         (0, import_internal48.detach_dev)(t27);
+      if (detaching)
+        (0, import_internal48.detach_dev)(h35);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t29);
+      if (detaching)
+        (0, import_internal48.detach_dev)(p3);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t31);
       (0, import_internal48.destroy_component)(inputnumber, detaching);
       if (detaching)
-        (0, import_internal48.detach_dev)(t28);
+        (0, import_internal48.detach_dev)(t32);
       if (detaching)
         (0, import_internal48.detach_dev)(h36);
       if (detaching)
-        (0, import_internal48.detach_dev)(t30);
+        (0, import_internal48.detach_dev)(t34);
       if (detaching)
         (0, import_internal48.detach_dev)(input5);
       if (detaching)
-        (0, import_internal48.detach_dev)(t31);
+        (0, import_internal48.detach_dev)(t35);
       if (detaching)
         (0, import_internal48.detach_dev)(h37);
       if (detaching)
-        (0, import_internal48.detach_dev)(t33);
+        (0, import_internal48.detach_dev)(t37);
       if (detaching)
         (0, import_internal48.detach_dev)(input6);
       if (detaching)
-        (0, import_internal48.detach_dev)(t34);
+        (0, import_internal48.detach_dev)(t38);
       if (detaching)
         (0, import_internal48.detach_dev)(input7);
       if (detaching)
-        (0, import_internal48.detach_dev)(t35);
+        (0, import_internal48.detach_dev)(t39);
       if (detaching)
         (0, import_internal48.detach_dev)(input8);
       if (detaching)
-        (0, import_internal48.detach_dev)(t36);
+        (0, import_internal48.detach_dev)(t40);
       (0, import_internal48.destroy_component)(codeexample, detaching);
       mounted = false;
       dispose();
@@ -35836,6 +35872,7 @@ function onChange (e) {
   });
   $$self.$capture_state = () => ({
     InputNumber: InputNumber_default,
+    Icon: Icon_default,
     CodeExample: CodeExample_default,
     exampleHtml,
     oninput

@@ -11,7 +11,9 @@
 <input type="text" disabled value="disabled value"/>
 
 <h3>Invalid</h3>
-<input type="text" class="error" />
+<label for="invalid-input">Invalid input</label>
+<p class="input-error"><Icon name="error"/> This field is required. </p>
+<input id="invalid-input" type="text" class="error has-error-message" />
 
 <h3>Password</h3>
 <input type="password" />
@@ -36,7 +38,7 @@
 
 
 <script>
-import { InputNumber } from '../../../src';
+import { InputNumber, Icon } from '../../../src';
 import { CodeExample } from '../../code-example';
 
 const exampleHtml = `
