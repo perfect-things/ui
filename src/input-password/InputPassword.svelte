@@ -13,6 +13,7 @@
 			class="input-password"
 			autocomplete="off"
 			{...props}
+			id="{_id}"
 			{type}
 			{value}
 			on:input={e => value = e.target.value}
