@@ -26,6 +26,7 @@
 
 <InputText
 	label="Validate on input"
+	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
 	required
 	error="{error2}"
 	value="{val}"
@@ -47,6 +48,7 @@ const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'disabled', description: 'Make the input disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
+	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },

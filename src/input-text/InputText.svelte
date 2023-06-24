@@ -6,10 +6,16 @@
 	{#if label}
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
+	{#if info}
+		<div class="input-info">
+			<Icon name="info"/>
+			<p>{info}</p>
+		</div>
+	{/if}
 
 	<div class="input-text-inner" class:initial>
 		{#if error}
-			<div class="input-text-error" transition:slide="{{ axis: 'y', duration }}">
+			<div class="input-error" transition:slide="{{ axis: 'y', duration }}">
 				<Icon name="error"/>
 				<p id="{errorMessageId}">{error}</p>
 			</div>
@@ -48,6 +54,7 @@ export let required = false;
 export let value = '';
 export let label = '';
 export let error = '';
+export let info = '';
 
 $:_id = id || name || guid();
 $:duration = initial ? 0 : $ANIMATION_SPEED;

@@ -41,3 +41,12 @@ input[type=color] {
 	padding: 0;
 	cursor: pointer;
 }
+
+
+.label {
+	height: 2.2rem;
+	line-height: 1.6;
+	padding: 0 var(--ui-margin-s);
+	display: inline-flex;
+	align-items: center;
+}

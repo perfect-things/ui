@@ -1,5 +1,12 @@
 <!-- svelte-ignore a11y-autocomplete-valid -->
-<div class="input-password-wrapper {className}" class:visible bind:this="{el}">
+<div
+	class="input-password-wrapper {className}"
+	class:has-label="{label}"
+	class:visible
+	bind:this="{el}">
+	{#if label}
+		<label class="label" for="{_id}">{label}</label>
+	{/if}
 	<div class="input-password-row" class:visible>
 		<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
 		<input
@@ -16,12 +23,12 @@
 	</div>
 	{#if strength && lib && value}
 		<div class="input-password-row">
-			<div class="password-strength" title="{label}">
+			<div class="password-strength" title="{quality}">
 				<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
 			</div>
 		</div>
 		<div class="input-password-row password-strength-info {colorClass}">
-			<h2>{label}</h2>
+			<h2>{quality}</h2>
 			<small>{@html strengthInfoText}</small>
 		</div>
 	{/if}
@@ -29,7 +36,7 @@
 <script>
 import { onMount } from 'svelte';
 import { Button } from '../button';
-import { pluck } from '../utils';
+import { pluck, guid } from '../utils';
 
 export let value = '';
 $:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
@@ -39,6 +46,7 @@ $:type = visible ? 'text' : 'password';
 export let strength = false;
 let className = '';
 export { className as class };
+export let label = '';
 
 // score:
 // 0 - too guessable: risky password. (guesses < 10^3)
@@ -46,22 +54,23 @@ export { className as class };
 // 2 - somewhat guessable: protection from unthrottled online attacks. (guesses < 10^8)
 // 3 - safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 10^10)
 // 4 - very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10^10)
-const labels = ['Very Poor', 'Poor', 'Average', 'Safe', 'Excellent'];
+const qualities = ['Very Poor', 'Poor', 'Average', 'Safe', 'Excellent'];
 const colorClassNames = ['danger', 'danger', 'warning', 'info', 'success'];
 
 
 let visible = false;	// show pass as text
 let lib;
-let label = '';
+let quality = '';
 let percent = 0;
 let strengthInfoText = '';
 let colorClass = '';
 let el;
 
+$:_id = props.id || props.name || guid();
 
 $: {
 	const { score, info } = measure(value);
-	label = labels[score];
+	quality = qualities[score];
 	percent = score ? score * 25 : 5;
 	colorClass = colorClassNames[score];
 	strengthInfoText = info;

@@ -1,6 +1,6 @@
 <h2>InputMath (allow + - * /)</h2>
 
-<InputMath />
+<InputMath label="Enter amount" />
 
 
 
@@ -29,7 +29,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<InputMath on:change="{onChange}" />
+<InputMath label="Enter amount" on:change="{onChange}" />
 
 <script>
 function onChange (e) {

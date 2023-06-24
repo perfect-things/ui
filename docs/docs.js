@@ -33,7 +33,7 @@ var require_internal = __commonJS({
   "node_modules/svelte/internal/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function noop34() {
+    function noop35() {
     }
     var identity = (x) => x;
     function assign16(tar, src) {
@@ -85,7 +85,7 @@ var require_internal = __commonJS({
     }
     function subscribe(store, ...callbacks) {
       if (store == null) {
-        return noop34;
+        return noop35;
       }
       const unsub = store.subscribe(...callbacks);
       return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
@@ -186,7 +186,7 @@ var require_internal = __commonJS({
     }
     var has_prop = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
     function action_destroyer2(action_result) {
-      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop34;
+      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop35;
     }
     function split_css_unit(value) {
       const split = typeof value === "string" && value.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
@@ -195,7 +195,7 @@ var require_internal = __commonJS({
     var contenteditable_truthy_values = ["", true, 1, "true", "contenteditable"];
     var is_client = typeof window !== "undefined";
     exports.now = is_client ? () => window.performance.now() : () => Date.now();
-    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop34;
+    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop35;
     function set_now(fn) {
       exports.now = fn;
     }
@@ -412,14 +412,14 @@ var require_internal = __commonJS({
     function svg_element(name2) {
       return document.createElementNS("http://www.w3.org/2000/svg", name2);
     }
-    function text43(data) {
+    function text42(data) {
       return document.createTextNode(data);
     }
-    function space54() {
-      return text43(" ");
+    function space53() {
+      return text42(" ");
     }
     function empty10() {
-      return text43("");
+      return text42("");
     }
     function comment(content) {
       return document.createComment(content);
@@ -656,7 +656,7 @@ var require_internal = __commonJS({
             node.data = dataStr;
           }
         },
-        () => text43(data),
+        () => text42(data),
         true
         // Text nodes should not update last index since it is likely not worth it to eliminate an increasing subsequence of actual elements
       );
@@ -670,10 +670,10 @@ var require_internal = __commonJS({
         return void 0;
       }, () => comment(data), true);
     }
-    function find_comment(nodes, text44, start) {
+    function find_comment(nodes, text43, start) {
       for (let i = start; i < nodes.length; i += 1) {
         const node = nodes[i];
-        if (node.nodeType === 8 && node.textContent.trim() === text44) {
+        if (node.nodeType === 8 && node.textContent.trim() === text43) {
           return i;
         }
       }
@@ -696,23 +696,23 @@ var require_internal = __commonJS({
       }
       return new HtmlTagHydration(claimed_nodes, is_svg);
     }
-    function set_data(text44, data) {
+    function set_data(text43, data) {
       data = "" + data;
-      if (text44.data === data)
+      if (text43.data === data)
         return;
-      text44.data = data;
+      text43.data = data;
     }
-    function set_data_contenteditable(text44, data) {
+    function set_data_contenteditable(text43, data) {
       data = "" + data;
-      if (text44.wholeText === data)
+      if (text43.wholeText === data)
         return;
-      text44.data = data;
+      text43.data = data;
     }
-    function set_data_maybe_contenteditable(text44, data, attr_value) {
+    function set_data_maybe_contenteditable(text43, data, attr_value) {
       if (~contenteditable_truthy_values.indexOf(attr_value)) {
-        set_data_contenteditable(text44, data);
+        set_data_contenteditable(text43, data);
       } else {
-        set_data(text44, data);
+        set_data(text43, data);
       }
     }
     function set_input_value8(input, value) {
@@ -724,7 +724,7 @@ var require_internal = __commonJS({
       } catch (e) {
       }
     }
-    function set_style7(node, key, value, important) {
+    function set_style6(node, key, value, important) {
       if (value == null) {
         node.style.removeProperty(key);
       } else {
@@ -807,7 +807,7 @@ var require_internal = __commonJS({
     var resize_observer_content_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "content-box" });
     var resize_observer_border_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "border-box" });
     var resize_observer_device_pixel_content_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "device-pixel-content-box" });
-    function toggle_class24(element70, name2, toggle) {
+    function toggle_class23(element70, name2, toggle) {
       element70.classList[toggle ? "add" : "remove"](name2);
     }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
@@ -975,10 +975,10 @@ var require_internal = __commonJS({
     }
     function create_animation3(node, from, fn, params) {
       if (!from)
-        return noop34;
+        return noop35;
       const to = node.getBoundingClientRect();
       if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom)
-        return noop34;
+        return noop35;
       const {
         delay = 0,
         duration: duration2 = 300,
@@ -987,7 +987,7 @@ var require_internal = __commonJS({
         start: start_time = exports.now() + delay,
         // @ts-ignore todo:
         end = start_time + duration2,
-        tick: tick2 = noop34,
+        tick: tick2 = noop35,
         css
       } = fn(node, { from, to }, params);
       let running = true;
@@ -1058,7 +1058,7 @@ var require_internal = __commonJS({
     function beforeUpdate(fn) {
       get_current_component().$$.before_update.push(fn);
     }
-    function onMount17(fn) {
+    function onMount16(fn) {
       get_current_component().$$.on_mount.push(fn);
     }
     function afterUpdate5(fn) {
@@ -1102,7 +1102,7 @@ var require_internal = __commonJS({
     }
     var dirty_components = [];
     var intros = { enabled: false };
-    var binding_callbacks36 = [];
+    var binding_callbacks35 = [];
     var render_callbacks = [];
     var flush_callbacks = [];
     var resolved_promise = /* @__PURE__ */ Promise.resolve();
@@ -1146,8 +1146,8 @@ var require_internal = __commonJS({
         set_current_component(null);
         dirty_components.length = 0;
         flushidx = 0;
-        while (binding_callbacks36.length)
-          binding_callbacks36.pop()();
+        while (binding_callbacks35.length)
+          binding_callbacks35.pop()();
         for (let i = 0; i < render_callbacks.length; i += 1) {
           const callback = render_callbacks[i];
           if (!seen_callbacks.has(callback)) {
@@ -1210,13 +1210,13 @@ var require_internal = __commonJS({
       }
       outros = outros.p;
     }
-    function transition_in57(block, local) {
+    function transition_in56(block, local) {
       if (block && block.i) {
         outroing.delete(block);
         block.i(local);
       }
     }
-    function transition_out57(block, local, detach2, callback) {
+    function transition_out56(block, local, detach2, callback) {
       if (block && block.o) {
         if (outroing.has(block))
           return;
@@ -1247,7 +1247,7 @@ var require_internal = __commonJS({
           delete_rule(node, animation_name);
       }
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop34, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop35, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 0, 1, duration2, delay, easing, css, uid++);
         tick2(0, 1);
@@ -1306,7 +1306,7 @@ var require_internal = __commonJS({
       const group = outros;
       group.r += 1;
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop34, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop35, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 1, 0, duration2, delay, easing, css);
         const start_time = exports.now() + delay;
@@ -1376,7 +1376,7 @@ var require_internal = __commonJS({
         };
       }
       function go(b) {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop34, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop35, css } = config2 || null_transition;
         const program = {
           start: exports.now() + delay,
           b
@@ -1464,7 +1464,7 @@ var require_internal = __commonJS({
             info.blocks.forEach((block2, i) => {
               if (i !== index && block2) {
                 group_outros17();
-                transition_out57(block2, 1, 1, () => {
+                transition_out56(block2, 1, 1, () => {
                   if (info.blocks[i] === block2) {
                     info.blocks[i] = null;
                   }
@@ -1476,7 +1476,7 @@ var require_internal = __commonJS({
             info.block.d(1);
           }
           block.c();
-          transition_in57(block, 1);
+          transition_in56(block, 1);
           block.m(info.mount(), info.anchor);
           needs_flush = true;
         }
@@ -1529,7 +1529,7 @@ var require_internal = __commonJS({
       lookup.delete(block.key);
     }
     function outro_and_destroy_block2(block, lookup) {
-      transition_out57(block, 1, 1, () => {
+      transition_out56(block, 1, 1, () => {
         lookup.delete(block.key);
       });
     }
@@ -1570,7 +1570,7 @@ var require_internal = __commonJS({
       const will_move = /* @__PURE__ */ new Set();
       const did_move = /* @__PURE__ */ new Set();
       function insert2(block) {
-        transition_in57(block, 1);
+        transition_in56(block, 1);
         block.m(node, next);
         lookup.set(block.key, block);
         next = block.first;
@@ -1854,13 +1854,13 @@ var require_internal = __commonJS({
         callback(component.$$.ctx[index]);
       }
     }
-    function create_component49(block) {
+    function create_component48(block) {
       block && block.c();
     }
     function claim_component(block, parent_nodes) {
       block && block.l(parent_nodes);
     }
-    function mount_component49(component, target, anchor, customElement) {
+    function mount_component48(component, target, anchor, customElement) {
       const { fragment, after_update } = component.$$;
       fragment && fragment.m(target, anchor);
       if (!customElement) {
@@ -1876,7 +1876,7 @@ var require_internal = __commonJS({
       }
       after_update.forEach(add_render_callback8);
     }
-    function destroy_component49(component, detaching) {
+    function destroy_component48(component, detaching) {
       const $$ = component.$$;
       if ($$.fragment !== null) {
         flush_render_callbacks($$.after_update);
@@ -1902,7 +1902,7 @@ var require_internal = __commonJS({
         ctx: [],
         // state
         props,
-        update: noop34,
+        update: noop35,
         not_equal: not_equal2,
         bound: blank_object(),
         // lifecycle
@@ -1944,8 +1944,8 @@ var require_internal = __commonJS({
           $$.fragment && $$.fragment.c();
         }
         if (options.intro)
-          transition_in57(component.$$.fragment);
-        mount_component49(component, options.target, options.anchor, options.customElement);
+          transition_in56(component.$$.fragment);
+        mount_component48(component, options.target, options.anchor, options.customElement);
         end_hydrating();
         flush4();
       }
@@ -1971,12 +1971,12 @@ var require_internal = __commonJS({
           run_all24(this.$$.on_disconnect);
         }
         $destroy() {
-          destroy_component49(this, 1);
-          this.$destroy = noop34;
+          destroy_component48(this, 1);
+          this.$destroy = noop35;
         }
         $on(type, callback) {
           if (!is_function3(callback)) {
-            return noop34;
+            return noop35;
           }
           const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
           callbacks.push(callback);
@@ -1997,12 +1997,12 @@ var require_internal = __commonJS({
     }
     var SvelteComponent = class {
       $destroy() {
-        destroy_component49(this, 1);
-        this.$destroy = noop34;
+        destroy_component48(this, 1);
+        this.$destroy = noop35;
       }
       $on(type, callback) {
         if (!is_function3(callback)) {
-          return noop34;
+          return noop35;
         }
         const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
         callbacks.push(callback);
@@ -2088,25 +2088,25 @@ var require_internal = __commonJS({
       node.dataset[property] = value;
       dispatch_dev71("SvelteDOMSetDataset", { node, property, value });
     }
-    function set_data_dev27(text44, data) {
+    function set_data_dev26(text43, data) {
       data = "" + data;
-      if (text44.data === data)
+      if (text43.data === data)
         return;
-      dispatch_dev71("SvelteDOMSetData", { node: text44, data });
-      text44.data = data;
+      dispatch_dev71("SvelteDOMSetData", { node: text43, data });
+      text43.data = data;
     }
-    function set_data_contenteditable_dev(text44, data) {
+    function set_data_contenteditable_dev(text43, data) {
       data = "" + data;
-      if (text44.wholeText === data)
+      if (text43.wholeText === data)
         return;
-      dispatch_dev71("SvelteDOMSetData", { node: text44, data });
-      text44.data = data;
+      dispatch_dev71("SvelteDOMSetData", { node: text43, data });
+      text43.data = data;
     }
-    function set_data_maybe_contenteditable_dev(text44, data, attr_value) {
+    function set_data_maybe_contenteditable_dev(text43, data, attr_value) {
       if (~contenteditable_truthy_values.indexOf(attr_value)) {
-        set_data_contenteditable_dev(text44, data);
+        set_data_contenteditable_dev(text43, data);
       } else {
-        set_data_dev27(text44, data);
+        set_data_dev26(text43, data);
       }
     }
     function validate_each_argument12(arg) {
@@ -2212,7 +2212,7 @@ var require_internal = __commonJS({
     exports.attribute_to_object = attribute_to_object;
     exports.beforeUpdate = beforeUpdate;
     exports.bind = bind10;
-    exports.binding_callbacks = binding_callbacks36;
+    exports.binding_callbacks = binding_callbacks35;
     exports.blank_object = blank_object;
     exports.bubble = bubble11;
     exports.check_outros = check_outros17;
@@ -2235,7 +2235,7 @@ var require_internal = __commonJS({
     exports.createEventDispatcher = createEventDispatcher15;
     exports.create_animation = create_animation3;
     exports.create_bidirectional_transition = create_bidirectional_transition3;
-    exports.create_component = create_component49;
+    exports.create_component = create_component48;
     exports.create_in_transition = create_in_transition4;
     exports.create_out_transition = create_out_transition4;
     exports.create_slot = create_slot12;
@@ -2244,7 +2244,7 @@ var require_internal = __commonJS({
     exports.dataset_dev = dataset_dev;
     exports.debug = debug;
     exports.destroy_block = destroy_block;
-    exports.destroy_component = destroy_component49;
+    exports.destroy_component = destroy_component48;
     exports.destroy_each = destroy_each9;
     exports.detach = detach;
     exports.detach_after_dev = detach_after_dev;
@@ -2306,13 +2306,13 @@ var require_internal = __commonJS({
     exports.loop_guard = loop_guard;
     exports.merge_ssr_styles = merge_ssr_styles;
     exports.missing_component = missing_component;
-    exports.mount_component = mount_component49;
-    exports.noop = noop34;
+    exports.mount_component = mount_component48;
+    exports.noop = noop35;
     exports.not_equal = not_equal;
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
     exports.onDestroy = onDestroy8;
-    exports.onMount = onMount17;
+    exports.onMount = onMount16;
     exports.once = once;
     exports.outro_and_destroy_block = outro_and_destroy_block2;
     exports.prevent_default = prevent_default5;
@@ -2338,7 +2338,7 @@ var require_internal = __commonJS({
     exports.set_data = set_data;
     exports.set_data_contenteditable = set_data_contenteditable;
     exports.set_data_contenteditable_dev = set_data_contenteditable_dev;
-    exports.set_data_dev = set_data_dev27;
+    exports.set_data_dev = set_data_dev26;
     exports.set_data_maybe_contenteditable = set_data_maybe_contenteditable;
     exports.set_data_maybe_contenteditable_dev = set_data_maybe_contenteditable_dev;
     exports.set_dynamic_element_data = set_dynamic_element_data;
@@ -2347,9 +2347,9 @@ var require_internal = __commonJS({
     exports.set_now = set_now;
     exports.set_raf = set_raf;
     exports.set_store_value = set_store_value2;
-    exports.set_style = set_style7;
+    exports.set_style = set_style6;
     exports.set_svg_attributes = set_svg_attributes;
-    exports.space = space54;
+    exports.space = space53;
     exports.split_css_unit = split_css_unit;
     exports.spread = spread;
     exports.src_url_equal = src_url_equal2;
@@ -2358,13 +2358,13 @@ var require_internal = __commonJS({
     exports.stop_propagation = stop_propagation4;
     exports.subscribe = subscribe;
     exports.svg_element = svg_element;
-    exports.text = text43;
+    exports.text = text42;
     exports.tick = tick;
     exports.time_ranges_to_array = time_ranges_to_array;
     exports.to_number = to_number2;
-    exports.toggle_class = toggle_class24;
-    exports.transition_in = transition_in57;
-    exports.transition_out = transition_out57;
+    exports.toggle_class = toggle_class23;
+    exports.transition_in = transition_in56;
+    exports.transition_out = transition_out56;
     exports.trusted = trusted;
     exports.update_await_block_branch = update_await_block_branch;
     exports.update_keyed_each = update_keyed_each4;
@@ -3504,9 +3504,9 @@ var require_prism = __commonJS({
          * @example
          * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
          */
-        highlight: function(text43, grammar, language) {
+        highlight: function(text42, grammar, language) {
           var env = {
-            code: text43,
+            code: text42,
             grammar,
             language
           };
@@ -3542,7 +3542,7 @@ var require_prism = __commonJS({
          *     }
          * });
          */
-        tokenize: function(text43, grammar) {
+        tokenize: function(text42, grammar) {
           var rest = grammar.rest;
           if (rest) {
             for (var token in rest) {
@@ -3551,8 +3551,8 @@ var require_prism = __commonJS({
             delete grammar.rest;
           }
           var tokenList = new LinkedList();
-          addAfter(tokenList, tokenList.head, text43);
-          matchGrammar(text43, tokenList, grammar, tokenList.head, 0);
+          addAfter(tokenList, tokenList.head, text42);
+          matchGrammar(text42, tokenList, grammar, tokenList.head, 0);
           return toArray(tokenList);
         },
         /**
@@ -3641,9 +3641,9 @@ var require_prism = __commonJS({
         }
         return "<" + env.tag + ' class="' + env.classes.join(" ") + '"' + attributes + ">" + env.content + "</" + env.tag + ">";
       };
-      function matchPattern(pattern, pos, text43, lookbehind) {
+      function matchPattern(pattern, pos, text42, lookbehind) {
         pattern.lastIndex = pos;
-        var match = pattern.exec(text43);
+        var match = pattern.exec(text42);
         if (match && lookbehind && match[1]) {
           var lookbehindLength = match[1].length;
           match.index += lookbehindLength;
@@ -3651,7 +3651,7 @@ var require_prism = __commonJS({
         }
         return match;
       }
-      function matchGrammar(text43, tokenList, grammar, startNode, startPos, rematch) {
+      function matchGrammar(text42, tokenList, grammar, startNode, startPos, rematch) {
         for (var token in grammar) {
           if (!grammar.hasOwnProperty(token) || !grammar[token]) {
             continue;
@@ -3677,7 +3677,7 @@ var require_prism = __commonJS({
                 break;
               }
               var str = currentNode.value;
-              if (tokenList.length > text43.length) {
+              if (tokenList.length > text42.length) {
                 return;
               }
               if (str instanceof Token) {
@@ -3686,8 +3686,8 @@ var require_prism = __commonJS({
               var removeCount = 1;
               var match;
               if (greedy) {
-                match = matchPattern(pattern, pos, text43, lookbehind);
-                if (!match || match.index >= text43.length) {
+                match = matchPattern(pattern, pos, text42, lookbehind);
+                if (!match || match.index >= text42.length) {
                   break;
                 }
                 var from = match.index;
@@ -3708,7 +3708,7 @@ var require_prism = __commonJS({
                   p += k.value.length;
                 }
                 removeCount--;
-                str = text43.slice(pos, p);
+                str = text42.slice(pos, p);
                 match.index -= pos;
               } else {
                 match = matchPattern(pattern, 0, str, lookbehind);
@@ -3740,7 +3740,7 @@ var require_prism = __commonJS({
                   cause: token + "," + j,
                   reach
                 };
-                matchGrammar(text43, tokenList, grammar, currentNode.prev, pos, nestedRematch);
+                matchGrammar(text42, tokenList, grammar, currentNode.prev, pos, nestedRematch);
                 if (rematch && nestedRematch.reach > rematch.reach) {
                   rematch.reach = nestedRematch.reach;
                 }
@@ -4329,11 +4329,11 @@ var require_prism = __commonJS({
           }
           loadFile(
             src,
-            function(text43) {
+            function(text42) {
               pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
               var range2 = parseRange(pre.getAttribute("data-range"));
               if (range2) {
-                var lines = text43.split(/\r\n?|\n/g);
+                var lines = text42.split(/\r\n?|\n/g);
                 var start = range2[0];
                 var end = range2[1] == null ? lines.length : range2[1];
                 if (start < 0) {
@@ -4344,12 +4344,12 @@ var require_prism = __commonJS({
                   end += lines.length;
                 }
                 end = Math.max(0, Math.min(end, lines.length));
-                text43 = lines.slice(start, end).join("\n");
+                text42 = lines.slice(start, end).join("\n");
                 if (!pre.hasAttribute("data-start")) {
                   pre.setAttribute("data-start", String(start + 1));
                 }
               }
-              code.textContent = text43;
+              code.textContent = text42;
               Prism2.highlightElement(code);
             },
             function(error) {
@@ -6866,7 +6866,7 @@ function instance3($$self, $$props, $$invalidate) {
   let { submit = false } = $$props;
   let { outline = false } = $$props;
   let { link = false } = $$props;
-  let { text: text43 = false } = $$props;
+  let { text: text42 = false } = $$props;
   let { icon = void 0 } = $$props;
   let { round = void 0 } = $$props;
   let { class: className = "" } = $$props;
@@ -6912,7 +6912,7 @@ function instance3($$self, $$props, $$invalidate) {
     if ("link" in $$new_props)
       $$invalidate(8, link = $$new_props.link);
     if ("text" in $$new_props)
-      $$invalidate(9, text43 = $$new_props.text);
+      $$invalidate(9, text42 = $$new_props.text);
     if ("icon" in $$new_props)
       $$invalidate(10, icon = $$new_props.icon);
     if ("round" in $$new_props)
@@ -6934,7 +6934,7 @@ function instance3($$self, $$props, $$invalidate) {
     submit,
     outline,
     link,
-    text: text43,
+    text: text42,
     icon,
     round,
     className,
@@ -6962,7 +6962,7 @@ function instance3($$self, $$props, $$invalidate) {
     if ("link" in $$props)
       $$invalidate(8, link = $$new_props.link);
     if ("text" in $$props)
-      $$invalidate(9, text43 = $$new_props.text);
+      $$invalidate(9, text42 = $$new_props.text);
     if ("icon" in $$props)
       $$invalidate(10, icon = $$new_props.icon);
     if ("round" in $$props)
@@ -6992,7 +6992,7 @@ function instance3($$self, $$props, $$invalidate) {
     submit,
     outline,
     link,
-    text43,
+    text42,
     icon,
     round,
     className,
@@ -12684,6 +12684,61 @@ var InputMath_default = InputMath;
 var import_internal12 = __toESM(require_internal());
 var import_svelte7 = __toESM(require_svelte());
 var file11 = "src/input-password/InputPassword.svelte";
+function create_if_block_12(ctx) {
+  let label_1;
+  let t;
+  const block = {
+    c: function create() {
+      label_1 = (0, import_internal12.element)("label");
+      t = (0, import_internal12.text)(
+        /*label*/
+        ctx[3]
+      );
+      (0, import_internal12.attr_dev)(label_1, "class", "label");
+      (0, import_internal12.attr_dev)(
+        label_1,
+        "for",
+        /*_id*/
+        ctx[12]
+      );
+      (0, import_internal12.add_location)(label_1, file11, 7, 2, 172);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal12.insert_dev)(target, label_1, anchor);
+      (0, import_internal12.append_dev)(label_1, t);
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty & /*label*/
+      8)
+        (0, import_internal12.set_data_dev)(
+          t,
+          /*label*/
+          ctx2[3]
+        );
+      if (dirty & /*_id*/
+      4096) {
+        (0, import_internal12.attr_dev)(
+          label_1,
+          "for",
+          /*_id*/
+          ctx2[12]
+        );
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal12.detach_dev)(label_1);
+    }
+  };
+  (0, import_internal12.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_12.name,
+    type: "if",
+    source: "(7:1) {#if label}",
+    ctx
+  });
+  return block;
+}
 function create_if_block5(ctx) {
   let div2;
   let div1;
@@ -12705,35 +12760,35 @@ function create_if_block5(ctx) {
       div3 = (0, import_internal12.element)("div");
       h2 = (0, import_internal12.element)("h2");
       t1 = (0, import_internal12.text)(
-        /*label*/
-        ctx[5]
+        /*quality*/
+        ctx[7]
       );
       t2 = (0, import_internal12.space)();
       small = (0, import_internal12.element)("small");
       (0, import_internal12.attr_dev)(div0, "class", div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx[8]);
+      ctx[10]);
       (0, import_internal12.set_style)(
         div0,
         "width",
         /*percent*/
-        ctx[6] + "%"
+        ctx[8] + "%"
       );
-      (0, import_internal12.add_location)(div0, file11, 19, 4, 593);
+      (0, import_internal12.add_location)(div0, file11, 26, 4, 696);
       (0, import_internal12.attr_dev)(div1, "class", "password-strength");
       (0, import_internal12.attr_dev)(
         div1,
         "title",
-        /*label*/
-        ctx[5]
+        /*quality*/
+        ctx[7]
       );
-      (0, import_internal12.add_location)(div1, file11, 18, 3, 541);
+      (0, import_internal12.add_location)(div1, file11, 25, 3, 642);
       (0, import_internal12.attr_dev)(div2, "class", "input-password-row");
-      (0, import_internal12.add_location)(div2, file11, 17, 2, 505);
-      (0, import_internal12.add_location)(h2, file11, 23, 3, 772);
-      (0, import_internal12.add_location)(small, file11, 24, 3, 792);
+      (0, import_internal12.add_location)(div2, file11, 24, 2, 606);
+      (0, import_internal12.add_location)(h2, file11, 30, 3, 875);
+      (0, import_internal12.add_location)(small, file11, 31, 3, 897);
       (0, import_internal12.attr_dev)(div3, "class", div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
-      ctx[8]);
-      (0, import_internal12.add_location)(div3, file11, 22, 2, 700);
+      ctx[10]);
+      (0, import_internal12.add_location)(div3, file11, 29, 2, 803);
     },
     m: function mount(target, anchor) {
       (0, import_internal12.insert_dev)(target, div2, anchor);
@@ -12746,47 +12801,47 @@ function create_if_block5(ctx) {
       (0, import_internal12.append_dev)(div3, t2);
       (0, import_internal12.append_dev)(div3, small);
       small.innerHTML = /*strengthInfoText*/
-      ctx[7];
+      ctx[9];
     },
     p: function update(ctx2, dirty) {
       if (dirty & /*colorClass*/
-      256 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx2[8])) {
+      1024 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
+      ctx2[10])) {
         (0, import_internal12.attr_dev)(div0, "class", div0_class_value);
       }
       if (dirty & /*percent*/
-      64) {
+      256) {
         (0, import_internal12.set_style)(
           div0,
           "width",
           /*percent*/
-          ctx2[6] + "%"
+          ctx2[8] + "%"
         );
       }
-      if (dirty & /*label*/
-      32) {
+      if (dirty & /*quality*/
+      128) {
         (0, import_internal12.attr_dev)(
           div1,
           "title",
-          /*label*/
-          ctx2[5]
+          /*quality*/
+          ctx2[7]
         );
       }
-      if (dirty & /*label*/
-      32)
+      if (dirty & /*quality*/
+      128)
         (0, import_internal12.set_data_dev)(
           t1,
-          /*label*/
-          ctx2[5]
+          /*quality*/
+          ctx2[7]
         );
       if (dirty & /*strengthInfoText*/
-      128)
+      512)
         small.innerHTML = /*strengthInfoText*/
-        ctx2[7];
+        ctx2[9];
       ;
       if (dirty & /*colorClass*/
-      256 && div3_class_value !== (div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
-      ctx2[8])) {
+      1024 && div3_class_value !== (div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
+      ctx2[10])) {
         (0, import_internal12.attr_dev)(div3, "class", div3_class_value);
       }
     },
@@ -12803,28 +12858,33 @@ function create_if_block5(ctx) {
     block,
     id: create_if_block5.name,
     type: "if",
-    source: "(17:1) {#if strength && lib && value}",
+    source: "(24:1) {#if strength && lib && value}",
     ctx
   });
   return block;
 }
 function create_fragment12(ctx) {
   let div1;
+  let t0;
   let div0;
   let button;
-  let t0;
-  let input;
   let t1;
+  let input;
+  let t2;
   let div1_class_value;
   let current;
   let mounted;
   let dispose;
+  let if_block0 = (
+    /*label*/
+    ctx[3] && create_if_block_12(ctx)
+  );
   button = new Button_default({
     props: {
       link: true,
       icon: (
         /*visible*/
-        ctx[3] ? "eyeOff" : "eye"
+        ctx[4] ? "eyeOff" : "eye"
       ),
       class: "input-password-button"
     },
@@ -12833,16 +12893,16 @@ function create_fragment12(ctx) {
   button.$on(
     "click",
     /*toggle*/
-    ctx[12]
+    ctx[14]
   );
   let input_levels = [
     { class: "input-password" },
     { autocomplete: "off" },
     /*props*/
-    ctx[11],
+    ctx[5],
     { type: (
       /*type*/
-      ctx[10]
+      ctx[13]
     ) },
     { value: (
       /*value*/
@@ -12853,39 +12913,48 @@ function create_fragment12(ctx) {
   for (let i = 0; i < input_levels.length; i += 1) {
     input_data = (0, import_internal12.assign)(input_data, input_levels[i]);
   }
-  let if_block = (
+  let if_block1 = (
     /*strength*/
     ctx[1] && /*lib*/
-    ctx[4] && /*value*/
+    ctx[6] && /*value*/
     ctx[0] && create_if_block5(ctx)
   );
   const block = {
     c: function create() {
       div1 = (0, import_internal12.element)("div");
+      if (if_block0)
+        if_block0.c();
+      t0 = (0, import_internal12.space)();
       div0 = (0, import_internal12.element)("div");
       (0, import_internal12.create_component)(button.$$.fragment);
-      t0 = (0, import_internal12.space)();
-      input = (0, import_internal12.element)("input");
       t1 = (0, import_internal12.space)();
-      if (if_block)
-        if_block.c();
+      input = (0, import_internal12.element)("input");
+      t2 = (0, import_internal12.space)();
+      if (if_block1)
+        if_block1.c();
       (0, import_internal12.set_attributes)(input, input_data);
-      (0, import_internal12.add_location)(input, file11, 4, 2, 280);
+      (0, import_internal12.add_location)(input, file11, 11, 2, 381);
       (0, import_internal12.attr_dev)(div0, "class", "input-password-row");
       (0, import_internal12.toggle_class)(
         div0,
         "visible",
         /*visible*/
-        ctx[3]
+        ctx[4]
       );
-      (0, import_internal12.add_location)(div0, file11, 2, 1, 128);
+      (0, import_internal12.add_location)(div0, file11, 9, 1, 229);
       (0, import_internal12.attr_dev)(div1, "class", div1_class_value = "input-password-wrapper " + /*className*/
       ctx[2]);
       (0, import_internal12.toggle_class)(
         div1,
+        "has-label",
+        /*label*/
+        ctx[3]
+      );
+      (0, import_internal12.toggle_class)(
+        div1,
         "visible",
         /*visible*/
-        ctx[3]
+        ctx[4]
       );
       (0, import_internal12.add_location)(div1, file11, 1, 0, 47);
     },
@@ -12894,19 +12963,22 @@ function create_fragment12(ctx) {
     },
     m: function mount(target, anchor) {
       (0, import_internal12.insert_dev)(target, div1, anchor);
+      if (if_block0)
+        if_block0.m(div1, null);
+      (0, import_internal12.append_dev)(div1, t0);
       (0, import_internal12.append_dev)(div1, div0);
       (0, import_internal12.mount_component)(button, div0, null);
-      (0, import_internal12.append_dev)(div0, t0);
+      (0, import_internal12.append_dev)(div0, t1);
       (0, import_internal12.append_dev)(div0, input);
       if ("value" in input_data) {
         input.value = input_data.value;
       }
       if (input.autofocus)
         input.focus();
-      (0, import_internal12.append_dev)(div1, t1);
-      if (if_block)
-        if_block.m(div1, null);
-      ctx[18](div1);
+      (0, import_internal12.append_dev)(div1, t2);
+      if (if_block1)
+        if_block1.m(div1, null);
+      ctx[20](div1);
       current = true;
       if (!mounted) {
         dispose = [
@@ -12914,7 +12986,7 @@ function create_fragment12(ctx) {
             input,
             "input",
             /*input_handler*/
-            ctx[17],
+            ctx[19],
             false,
             false,
             false,
@@ -12924,7 +12996,7 @@ function create_fragment12(ctx) {
             input,
             "keydown",
             /*keydown_handler*/
-            ctx[13],
+            ctx[15],
             false,
             false,
             false,
@@ -12934,7 +13006,7 @@ function create_fragment12(ctx) {
             input,
             "change",
             /*change_handler*/
-            ctx[14],
+            ctx[16],
             false,
             false,
             false,
@@ -12944,7 +13016,7 @@ function create_fragment12(ctx) {
             input,
             "focus",
             /*focus_handler*/
-            ctx[15],
+            ctx[17],
             false,
             false,
             false,
@@ -12954,7 +13026,7 @@ function create_fragment12(ctx) {
             input,
             "blur",
             /*blur_handler*/
-            ctx[16],
+            ctx[18],
             false,
             false,
             false,
@@ -12965,22 +13037,37 @@ function create_fragment12(ctx) {
       }
     },
     p: function update(ctx2, [dirty]) {
+      if (
+        /*label*/
+        ctx2[3]
+      ) {
+        if (if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
+          if_block0 = create_if_block_12(ctx2);
+          if_block0.c();
+          if_block0.m(div1, t0);
+        }
+      } else if (if_block0) {
+        if_block0.d(1);
+        if_block0 = null;
+      }
       const button_changes = {};
       if (dirty & /*visible*/
-      8)
+      16)
         button_changes.icon = /*visible*/
-        ctx2[3] ? "eyeOff" : "eye";
+        ctx2[4] ? "eyeOff" : "eye";
       button.$set(button_changes);
       (0, import_internal12.set_attributes)(input, input_data = (0, import_internal12.get_spread_update)(input_levels, [
         { class: "input-password" },
         { autocomplete: "off" },
         dirty & /*props*/
-        2048 && /*props*/
-        ctx2[11],
+        32 && /*props*/
+        ctx2[5],
         (!current || dirty & /*type*/
-        1024) && { type: (
+        8192) && { type: (
           /*type*/
-          ctx2[10]
+          ctx2[13]
         ) },
         (!current || dirty & /*value*/
         1 && input.value !== /*value*/
@@ -12993,43 +13080,52 @@ function create_fragment12(ctx) {
         input.value = input_data.value;
       }
       if (!current || dirty & /*visible*/
-      8) {
+      16) {
         (0, import_internal12.toggle_class)(
           div0,
           "visible",
           /*visible*/
-          ctx2[3]
+          ctx2[4]
         );
       }
       if (
         /*strength*/
         ctx2[1] && /*lib*/
-        ctx2[4] && /*value*/
+        ctx2[6] && /*value*/
         ctx2[0]
       ) {
-        if (if_block) {
-          if_block.p(ctx2, dirty);
+        if (if_block1) {
+          if_block1.p(ctx2, dirty);
         } else {
-          if_block = create_if_block5(ctx2);
-          if_block.c();
-          if_block.m(div1, null);
+          if_block1 = create_if_block5(ctx2);
+          if_block1.c();
+          if_block1.m(div1, null);
         }
-      } else if (if_block) {
-        if_block.d(1);
-        if_block = null;
+      } else if (if_block1) {
+        if_block1.d(1);
+        if_block1 = null;
       }
       if (!current || dirty & /*className*/
       4 && div1_class_value !== (div1_class_value = "input-password-wrapper " + /*className*/
       ctx2[2])) {
         (0, import_internal12.attr_dev)(div1, "class", div1_class_value);
       }
-      if (!current || dirty & /*className, visible*/
+      if (!current || dirty & /*className, label*/
       12) {
+        (0, import_internal12.toggle_class)(
+          div1,
+          "has-label",
+          /*label*/
+          ctx2[3]
+        );
+      }
+      if (!current || dirty & /*className, visible*/
+      20) {
         (0, import_internal12.toggle_class)(
           div1,
           "visible",
           /*visible*/
-          ctx2[3]
+          ctx2[4]
         );
       }
     },
@@ -13046,10 +13142,12 @@ function create_fragment12(ctx) {
     d: function destroy(detaching) {
       if (detaching)
         (0, import_internal12.detach_dev)(div1);
+      if (if_block0)
+        if_block0.d();
       (0, import_internal12.destroy_component)(button);
-      if (if_block)
-        if_block.d();
-      ctx[18](null);
+      if (if_block1)
+        if_block1.d();
+      ctx[20](null);
       mounted = false;
       (0, import_internal12.run_all)(dispose);
     }
@@ -13066,29 +13164,31 @@ function create_fragment12(ctx) {
 function instance12($$self, $$props, $$invalidate) {
   let props;
   let type;
+  let _id;
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal12.validate_slots)("InputPassword", slots, []);
   let { value = "" } = $$props;
   let { strength = false } = $$props;
   let { class: className = "" } = $$props;
-  const labels = ["Very Poor", "Poor", "Average", "Safe", "Excellent"];
+  let { label = "" } = $$props;
+  const qualities = ["Very Poor", "Poor", "Average", "Safe", "Excellent"];
   const colorClassNames = ["danger", "danger", "warning", "info", "success"];
   let visible = false;
   let lib;
-  let label = "";
+  let quality = "";
   let percent = 0;
   let strengthInfoText = "";
   let colorClass = "";
   let el;
   (0, import_svelte7.onMount)(() => requestAnimationFrame(checkLib));
   function checkLib() {
-    $$invalidate(4, lib = window.zxcvbn);
+    $$invalidate(6, lib = window.zxcvbn);
     if (strength && !lib)
       console.error("zxcvbn library is missing.");
   }
   function measure(pass) {
     if (strength && !lib)
-      $$invalidate(4, lib = window.zxcvbn);
+      $$invalidate(6, lib = window.zxcvbn);
     if (!lib || !pass || !strength)
       return { score: 0, info: "" };
     const res = lib(pass);
@@ -13098,7 +13198,7 @@ function instance12($$self, $$props, $$invalidate) {
     return { score: res.score, info };
   }
   function toggle() {
-    $$invalidate(3, visible = !visible);
+    $$invalidate(4, visible = !visible);
     requestAnimationFrame(() => el.querySelector("input").focus());
   }
   function keydown_handler(event) {
@@ -13117,30 +13217,34 @@ function instance12($$self, $$props, $$invalidate) {
   function div1_binding($$value) {
     import_internal12.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(9, el);
+      $$invalidate(11, el);
     });
   }
   $$self.$$set = ($$new_props) => {
-    $$invalidate(23, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), (0, import_internal12.exclude_internal_props)($$new_props)));
+    $$invalidate(25, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), (0, import_internal12.exclude_internal_props)($$new_props)));
     if ("value" in $$new_props)
       $$invalidate(0, value = $$new_props.value);
     if ("strength" in $$new_props)
       $$invalidate(1, strength = $$new_props.strength);
     if ("class" in $$new_props)
       $$invalidate(2, className = $$new_props.class);
+    if ("label" in $$new_props)
+      $$invalidate(3, label = $$new_props.label);
   };
   $$self.$capture_state = () => ({
     onMount: import_svelte7.onMount,
     Button: Button_default,
     pluck,
+    guid,
     value,
     strength,
     className,
-    labels,
+    label,
+    qualities,
     colorClassNames,
     visible,
     lib,
-    label,
+    quality,
     percent,
     strengthInfoText,
     colorClass,
@@ -13148,55 +13252,65 @@ function instance12($$self, $$props, $$invalidate) {
     checkLib,
     measure,
     toggle,
-    type,
-    props
+    props,
+    _id,
+    type
   });
   $$self.$inject_state = ($$new_props) => {
-    $$invalidate(23, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), $$new_props));
+    $$invalidate(25, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), $$new_props));
     if ("value" in $$props)
       $$invalidate(0, value = $$new_props.value);
     if ("strength" in $$props)
       $$invalidate(1, strength = $$new_props.strength);
     if ("className" in $$props)
       $$invalidate(2, className = $$new_props.className);
-    if ("visible" in $$props)
-      $$invalidate(3, visible = $$new_props.visible);
-    if ("lib" in $$props)
-      $$invalidate(4, lib = $$new_props.lib);
     if ("label" in $$props)
-      $$invalidate(5, label = $$new_props.label);
+      $$invalidate(3, label = $$new_props.label);
+    if ("visible" in $$props)
+      $$invalidate(4, visible = $$new_props.visible);
+    if ("lib" in $$props)
+      $$invalidate(6, lib = $$new_props.lib);
+    if ("quality" in $$props)
+      $$invalidate(7, quality = $$new_props.quality);
     if ("percent" in $$props)
-      $$invalidate(6, percent = $$new_props.percent);
+      $$invalidate(8, percent = $$new_props.percent);
     if ("strengthInfoText" in $$props)
-      $$invalidate(7, strengthInfoText = $$new_props.strengthInfoText);
+      $$invalidate(9, strengthInfoText = $$new_props.strengthInfoText);
     if ("colorClass" in $$props)
-      $$invalidate(8, colorClass = $$new_props.colorClass);
+      $$invalidate(10, colorClass = $$new_props.colorClass);
     if ("el" in $$props)
-      $$invalidate(9, el = $$new_props.el);
-    if ("type" in $$props)
-      $$invalidate(10, type = $$new_props.type);
+      $$invalidate(11, el = $$new_props.el);
     if ("props" in $$props)
-      $$invalidate(11, props = $$new_props.props);
+      $$invalidate(5, props = $$new_props.props);
+    if ("_id" in $$props)
+      $$invalidate(12, _id = $$new_props._id);
+    if ("type" in $$props)
+      $$invalidate(13, type = $$new_props.type);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
     $:
-      $$invalidate(11, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
+      $$invalidate(5, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
     if ($$self.$$.dirty & /*visible*/
-    8) {
+    16) {
       $:
-        $$invalidate(10, type = visible ? "text" : "password");
+        $$invalidate(13, type = visible ? "text" : "password");
+    }
+    if ($$self.$$.dirty & /*props*/
+    32) {
+      $:
+        $$invalidate(12, _id = props.id || props.name || guid());
     }
     if ($$self.$$.dirty & /*value*/
     1) {
       $: {
         const { score, info } = measure(value);
-        $$invalidate(5, label = labels[score]);
-        $$invalidate(6, percent = score ? score * 25 : 5);
-        $$invalidate(8, colorClass = colorClassNames[score]);
-        $$invalidate(7, strengthInfoText = info);
+        $$invalidate(7, quality = qualities[score]);
+        $$invalidate(8, percent = score ? score * 25 : 5);
+        $$invalidate(10, colorClass = colorClassNames[score]);
+        $$invalidate(9, strengthInfoText = info);
       }
     }
   };
@@ -13205,15 +13319,17 @@ function instance12($$self, $$props, $$invalidate) {
     value,
     strength,
     className,
-    visible,
-    lib,
     label,
+    visible,
+    props,
+    lib,
+    quality,
     percent,
     strengthInfoText,
     colorClass,
     el,
+    _id,
     type,
-    props,
     toggle,
     keydown_handler,
     change_handler,
@@ -13226,7 +13342,12 @@ function instance12($$self, $$props, $$invalidate) {
 var InputPassword = class extends import_internal12.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal12.init)(this, options, instance12, create_fragment12, import_internal12.safe_not_equal, { value: 0, strength: 1, class: 2 });
+    (0, import_internal12.init)(this, options, instance12, create_fragment12, import_internal12.safe_not_equal, {
+      value: 0,
+      strength: 1,
+      class: 2,
+      label: 3
+    });
     (0, import_internal12.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputPassword",
@@ -13252,6 +13373,12 @@ var InputPassword = class extends import_internal12.SvelteComponentDev {
   set class(value) {
     throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
+  get label() {
+    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set label(value) {
+    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
 };
 var InputPassword_default = InputPassword;
 
@@ -13260,7 +13387,7 @@ var import_internal13 = __toESM(require_internal());
 var import_svelte8 = __toESM(require_svelte());
 var import_transition2 = __toESM(require_transition());
 var file12 = "src/input-text/InputText.svelte";
-function create_if_block_12(ctx) {
+function create_if_block_22(ctx) {
   let label_1;
   let t;
   const block = {
@@ -13275,7 +13402,7 @@ function create_if_block_12(ctx) {
         label_1,
         "for",
         /*_id*/
-        ctx[7]
+        ctx[8]
       );
       (0, import_internal13.add_location)(label_1, file12, 6, 2, 128);
     },
@@ -13292,12 +13419,12 @@ function create_if_block_12(ctx) {
           ctx2[3]
         );
       if (dirty & /*_id*/
-      128) {
+      256) {
         (0, import_internal13.attr_dev)(
           label_1,
           "for",
           /*_id*/
-          ctx2[7]
+          ctx2[8]
         );
       }
     },
@@ -13308,9 +13435,73 @@ function create_if_block_12(ctx) {
   };
   (0, import_internal13.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_12.name,
+    id: create_if_block_22.name,
     type: "if",
     source: "(6:1) {#if label}",
+    ctx
+  });
+  return block;
+}
+function create_if_block_13(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let current;
+  icon = new Icon_default({ props: { name: "info" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal13.element)("div");
+      (0, import_internal13.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal13.space)();
+      p = (0, import_internal13.element)("p");
+      t1 = (0, import_internal13.text)(
+        /*info*/
+        ctx[5]
+      );
+      (0, import_internal13.add_location)(p, file12, 11, 3, 249);
+      (0, import_internal13.attr_dev)(div, "class", "input-info");
+      (0, import_internal13.add_location)(div, file12, 9, 2, 198);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal13.insert_dev)(target, div, anchor);
+      (0, import_internal13.mount_component)(icon, div, null);
+      (0, import_internal13.append_dev)(div, t0);
+      (0, import_internal13.append_dev)(div, p);
+      (0, import_internal13.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(ctx2, dirty) {
+      if (!current || dirty & /*info*/
+      32)
+        (0, import_internal13.set_data_dev)(
+          t1,
+          /*info*/
+          ctx2[5]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal13.transition_in)(icon.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal13.transition_out)(icon.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal13.detach_dev)(div);
+      (0, import_internal13.destroy_component)(icon);
+    }
+  };
+  (0, import_internal13.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_13.name,
+    type: "if",
+    source: "(9:1) {#if info}",
     ctx
   });
   return block;
@@ -13338,11 +13529,11 @@ function create_if_block6(ctx) {
         p,
         "id",
         /*errorMessageId*/
-        ctx[9]
+        ctx[10]
       );
-      (0, import_internal13.add_location)(p, file12, 13, 4, 353);
-      (0, import_internal13.attr_dev)(div, "class", "input-text-error");
-      (0, import_internal13.add_location)(div, file12, 11, 3, 248);
+      (0, import_internal13.add_location)(p, file12, 19, 4, 443);
+      (0, import_internal13.attr_dev)(div, "class", "input-error");
+      (0, import_internal13.add_location)(div, file12, 17, 3, 343);
     },
     m: function mount(target, anchor) {
       (0, import_internal13.insert_dev)(target, div, anchor);
@@ -13372,7 +13563,7 @@ function create_if_block6(ctx) {
         if (!div_transition)
           div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition2.slide, { axis: "y", duration: (
             /*duration*/
-            ctx[6]
+            ctx[7]
           ) }, true);
         div_transition.run(1);
       });
@@ -13383,7 +13574,7 @@ function create_if_block6(ctx) {
       if (!div_transition)
         div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition2.slide, { axis: "y", duration: (
           /*duration*/
-          ctx[6]
+          ctx[7]
         ) }, false);
       div_transition.run(0);
       current = false;
@@ -13400,7 +13591,7 @@ function create_if_block6(ctx) {
     block,
     id: create_if_block6.name,
     type: "if",
-    source: "(11:2) {#if error}",
+    source: "(17:2) {#if error}",
     ctx
   });
   return block;
@@ -13408,8 +13599,9 @@ function create_if_block6(ctx) {
 function create_fragment13(ctx) {
   let div1;
   let t0;
-  let div0;
   let t1;
+  let div0;
+  let t2;
   let input;
   let input_aria_errormessage_value;
   let div1_class_value;
@@ -13418,9 +13610,13 @@ function create_fragment13(ctx) {
   let dispose;
   let if_block0 = (
     /*label*/
-    ctx[3] && create_if_block_12(ctx)
+    ctx[3] && create_if_block_22(ctx)
   );
   let if_block1 = (
+    /*info*/
+    ctx[5] && create_if_block_13(ctx)
+  );
+  let if_block2 = (
     /*error*/
     ctx[4] && create_if_block6(ctx)
   );
@@ -13428,10 +13624,10 @@ function create_fragment13(ctx) {
     { autocomplete: "off" },
     { type: "text" },
     /*props*/
-    ctx[8],
+    ctx[9],
     { id: (
       /*_id*/
-      ctx[7]
+      ctx[8]
     ) },
     { "aria-invalid": (
       /*error*/
@@ -13441,7 +13637,7 @@ function create_fragment13(ctx) {
       "aria-errormessage": input_aria_errormessage_value = /*error*/
       ctx[4] ? (
         /*errorMessageId*/
-        ctx[9]
+        ctx[10]
       ) : void 0
     },
     { "aria-required": (
@@ -13459,21 +13655,24 @@ function create_fragment13(ctx) {
       if (if_block0)
         if_block0.c();
       t0 = (0, import_internal13.space)();
-      div0 = (0, import_internal13.element)("div");
       if (if_block1)
         if_block1.c();
       t1 = (0, import_internal13.space)();
+      div0 = (0, import_internal13.element)("div");
+      if (if_block2)
+        if_block2.c();
+      t2 = (0, import_internal13.space)();
       input = (0, import_internal13.element)("input");
       (0, import_internal13.set_attributes)(input, input_data);
-      (0, import_internal13.add_location)(input, file12, 17, 2, 411);
+      (0, import_internal13.add_location)(input, file12, 23, 2, 501);
       (0, import_internal13.attr_dev)(div0, "class", "input-text-inner");
       (0, import_internal13.toggle_class)(
         div0,
         "initial",
         /*initial*/
-        ctx[5]
+        ctx[6]
       );
-      (0, import_internal13.add_location)(div0, file12, 9, 1, 186);
+      (0, import_internal13.add_location)(div0, file12, 15, 1, 281);
       (0, import_internal13.attr_dev)(div1, "class", div1_class_value = "input-text " + /*className*/
       ctx[1]);
       (0, import_internal13.toggle_class)(
@@ -13492,10 +13691,13 @@ function create_fragment13(ctx) {
       if (if_block0)
         if_block0.m(div1, null);
       (0, import_internal13.append_dev)(div1, t0);
-      (0, import_internal13.append_dev)(div1, div0);
       if (if_block1)
-        if_block1.m(div0, null);
-      (0, import_internal13.append_dev)(div0, t1);
+        if_block1.m(div1, null);
+      (0, import_internal13.append_dev)(div1, t1);
+      (0, import_internal13.append_dev)(div1, div0);
+      if (if_block2)
+        if_block2.m(div0, null);
+      (0, import_internal13.append_dev)(div0, t2);
       (0, import_internal13.append_dev)(div0, input);
       if (input.autofocus)
         input.focus();
@@ -13511,13 +13713,13 @@ function create_fragment13(ctx) {
             input,
             "input",
             /*input_input_handler*/
-            ctx[17]
+            ctx[18]
           ),
           (0, import_internal13.listen_dev)(
             input,
             "input",
             /*input_handler*/
-            ctx[12],
+            ctx[13],
             false,
             false,
             false,
@@ -13527,7 +13729,7 @@ function create_fragment13(ctx) {
             input,
             "keydown",
             /*keydown_handler*/
-            ctx[13],
+            ctx[14],
             false,
             false,
             false,
@@ -13537,7 +13739,7 @@ function create_fragment13(ctx) {
             input,
             "change",
             /*change_handler*/
-            ctx[14],
+            ctx[15],
             false,
             false,
             false,
@@ -13547,7 +13749,7 @@ function create_fragment13(ctx) {
             input,
             "focus",
             /*focus_handler*/
-            ctx[15],
+            ctx[16],
             false,
             false,
             false,
@@ -13557,7 +13759,7 @@ function create_fragment13(ctx) {
             input,
             "blur",
             /*blur_handler*/
-            ctx[16],
+            ctx[17],
             false,
             false,
             false,
@@ -13575,7 +13777,7 @@ function create_fragment13(ctx) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
         } else {
-          if_block0 = create_if_block_12(ctx2);
+          if_block0 = create_if_block_22(ctx2);
           if_block0.c();
           if_block0.m(div1, t0);
         }
@@ -13584,20 +13786,20 @@ function create_fragment13(ctx) {
         if_block0 = null;
       }
       if (
-        /*error*/
-        ctx2[4]
+        /*info*/
+        ctx2[5]
       ) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
-          if (dirty & /*error*/
-          16) {
+          if (dirty & /*info*/
+          32) {
             (0, import_internal13.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block6(ctx2);
+          if_block1 = create_if_block_13(ctx2);
           if_block1.c();
           (0, import_internal13.transition_in)(if_block1, 1);
-          if_block1.m(div0, t1);
+          if_block1.m(div1, t1);
         }
       } else if (if_block1) {
         (0, import_internal13.group_outros)();
@@ -13606,16 +13808,39 @@ function create_fragment13(ctx) {
         });
         (0, import_internal13.check_outros)();
       }
+      if (
+        /*error*/
+        ctx2[4]
+      ) {
+        if (if_block2) {
+          if_block2.p(ctx2, dirty);
+          if (dirty & /*error*/
+          16) {
+            (0, import_internal13.transition_in)(if_block2, 1);
+          }
+        } else {
+          if_block2 = create_if_block6(ctx2);
+          if_block2.c();
+          (0, import_internal13.transition_in)(if_block2, 1);
+          if_block2.m(div0, t2);
+        }
+      } else if (if_block2) {
+        (0, import_internal13.group_outros)();
+        (0, import_internal13.transition_out)(if_block2, 1, 1, () => {
+          if_block2 = null;
+        });
+        (0, import_internal13.check_outros)();
+      }
       (0, import_internal13.set_attributes)(input, input_data = (0, import_internal13.get_spread_update)(input_levels, [
         { autocomplete: "off" },
         { type: "text" },
         dirty & /*props*/
-        256 && /*props*/
-        ctx2[8],
+        512 && /*props*/
+        ctx2[9],
         (!current || dirty & /*_id*/
-        128) && { id: (
+        256) && { id: (
           /*_id*/
-          ctx2[7]
+          ctx2[8]
         ) },
         (!current || dirty & /*error*/
         16) && { "aria-invalid": (
@@ -13626,7 +13851,7 @@ function create_fragment13(ctx) {
         16 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
         ctx2[4] ? (
           /*errorMessageId*/
-          ctx2[9]
+          ctx2[10]
         ) : void 0)) && {
           "aria-errormessage": input_aria_errormessage_value
         },
@@ -13646,12 +13871,12 @@ function create_fragment13(ctx) {
         );
       }
       if (!current || dirty & /*initial*/
-      32) {
+      64) {
         (0, import_internal13.toggle_class)(
           div0,
           "initial",
           /*initial*/
-          ctx2[5]
+          ctx2[6]
         );
       }
       if (!current || dirty & /*className*/
@@ -13673,10 +13898,12 @@ function create_fragment13(ctx) {
       if (current)
         return;
       (0, import_internal13.transition_in)(if_block1);
+      (0, import_internal13.transition_in)(if_block2);
       current = true;
     },
     o: function outro(local) {
       (0, import_internal13.transition_out)(if_block1);
+      (0, import_internal13.transition_out)(if_block2);
       current = false;
     },
     d: function destroy(detaching) {
@@ -13686,6 +13913,8 @@ function create_fragment13(ctx) {
         if_block0.d();
       if (if_block1)
         if_block1.d();
+      if (if_block2)
+        if_block2.d();
       mounted = false;
       (0, import_internal13.run_all)(dispose);
     }
@@ -13705,7 +13934,7 @@ function instance13($$self, $$props, $$invalidate) {
   let duration2;
   let $ANIMATION_SPEED;
   (0, import_internal13.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal13.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(11, $ANIMATION_SPEED = $$value));
+  (0, import_internal13.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(12, $ANIMATION_SPEED = $$value));
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal13.validate_slots)("InputText", slots, []);
   let initial = true;
@@ -13715,9 +13944,10 @@ function instance13($$self, $$props, $$invalidate) {
   let { value = "" } = $$props;
   let { label = "" } = $$props;
   let { error = "" } = $$props;
+  let { info = "" } = $$props;
   const errorMessageId = guid();
   (0, import_svelte8.onMount)(() => {
-    $$invalidate(5, initial = false);
+    $$invalidate(6, initial = false);
   });
   function input_handler(event) {
     import_internal13.bubble.call(this, $$self, event);
@@ -13739,11 +13969,11 @@ function instance13($$self, $$props, $$invalidate) {
     $$invalidate(0, value);
   }
   $$self.$$set = ($$new_props) => {
-    $$invalidate(18, $$props = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props), (0, import_internal13.exclude_internal_props)($$new_props)));
+    $$invalidate(19, $$props = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props), (0, import_internal13.exclude_internal_props)($$new_props)));
     if ("class" in $$new_props)
       $$invalidate(1, className = $$new_props.class);
     if ("id" in $$new_props)
-      $$invalidate(10, id = $$new_props.id);
+      $$invalidate(11, id = $$new_props.id);
     if ("required" in $$new_props)
       $$invalidate(2, required = $$new_props.required);
     if ("value" in $$new_props)
@@ -13752,6 +13982,8 @@ function instance13($$self, $$props, $$invalidate) {
       $$invalidate(3, label = $$new_props.label);
     if ("error" in $$new_props)
       $$invalidate(4, error = $$new_props.error);
+    if ("info" in $$new_props)
+      $$invalidate(5, info = $$new_props.info);
   };
   $$self.$capture_state = () => ({
     onMount: import_svelte8.onMount,
@@ -13767,6 +13999,7 @@ function instance13($$self, $$props, $$invalidate) {
     value,
     label,
     error,
+    info,
     errorMessageId,
     duration: duration2,
     _id,
@@ -13774,13 +14007,13 @@ function instance13($$self, $$props, $$invalidate) {
     $ANIMATION_SPEED
   });
   $$self.$inject_state = ($$new_props) => {
-    $$invalidate(18, $$props = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props), $$new_props));
+    $$invalidate(19, $$props = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props), $$new_props));
     if ("initial" in $$props)
-      $$invalidate(5, initial = $$new_props.initial);
+      $$invalidate(6, initial = $$new_props.initial);
     if ("className" in $$props)
       $$invalidate(1, className = $$new_props.className);
     if ("id" in $$props)
-      $$invalidate(10, id = $$new_props.id);
+      $$invalidate(11, id = $$new_props.id);
     if ("required" in $$props)
       $$invalidate(2, required = $$new_props.required);
     if ("value" in $$props)
@@ -13789,28 +14022,30 @@ function instance13($$self, $$props, $$invalidate) {
       $$invalidate(3, label = $$new_props.label);
     if ("error" in $$props)
       $$invalidate(4, error = $$new_props.error);
+    if ("info" in $$props)
+      $$invalidate(5, info = $$new_props.info);
     if ("duration" in $$props)
-      $$invalidate(6, duration2 = $$new_props.duration);
+      $$invalidate(7, duration2 = $$new_props.duration);
     if ("_id" in $$props)
-      $$invalidate(7, _id = $$new_props._id);
+      $$invalidate(8, _id = $$new_props._id);
     if ("props" in $$props)
-      $$invalidate(8, props = $$new_props.props);
+      $$invalidate(9, props = $$new_props.props);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
     $:
-      $$invalidate(8, props = pluck($$props, ["title", "name", "disabled", "placeholder"]));
+      $$invalidate(9, props = pluck($$props, ["title", "name", "disabled", "placeholder"]));
     if ($$self.$$.dirty & /*id*/
-    1024) {
+    2048) {
       $:
-        $$invalidate(7, _id = id || name || guid());
+        $$invalidate(8, _id = id || name || guid());
     }
     if ($$self.$$.dirty & /*initial, $ANIMATION_SPEED*/
-    2080) {
+    4160) {
       $:
-        $$invalidate(6, duration2 = initial ? 0 : $ANIMATION_SPEED);
+        $$invalidate(7, duration2 = initial ? 0 : $ANIMATION_SPEED);
     }
   };
   $$props = (0, import_internal13.exclude_internal_props)($$props);
@@ -13820,6 +14055,7 @@ function instance13($$self, $$props, $$invalidate) {
     required,
     label,
     error,
+    info,
     initial,
     duration2,
     _id,
@@ -13840,11 +14076,12 @@ var InputText = class extends import_internal13.SvelteComponentDev {
     super(options);
     (0, import_internal13.init)(this, options, instance13, create_fragment13, import_internal13.safe_not_equal, {
       class: 1,
-      id: 10,
+      id: 11,
       required: 2,
       value: 0,
       label: 3,
-      error: 4
+      error: 4,
+      info: 5
     });
     (0, import_internal13.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
@@ -13887,6 +14124,12 @@ var InputText = class extends import_internal13.SvelteComponentDev {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   set error(value) {
+    throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get info() {
+    throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set info(value) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -16692,7 +16935,6 @@ var PushButton_default = PushButton;
 
 // src/radio/Radio.svelte
 var import_internal20 = __toESM(require_internal());
-var import_svelte14 = __toESM(require_svelte());
 
 // src/select/Select.svelte
 var import_internal21 = __toESM(require_internal());
@@ -16707,7 +16949,7 @@ function get_each_context_12(ctx, list, i) {
   child_ctx[14] = list[i];
   return child_ctx;
 }
-function create_if_block_13(ctx) {
+function create_if_block_14(ctx) {
   let option;
   let t;
   const block = {
@@ -16741,7 +16983,7 @@ function create_if_block_13(ctx) {
   };
   (0, import_internal21.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_13.name,
+    id: create_if_block_14.name,
     type: "if",
     source: "(8:2) {#if placeholder}",
     ctx
@@ -16972,7 +17214,7 @@ function create_fragment20(ctx) {
   let dispose;
   let if_block = (
     /*placeholder*/
-    ctx[1] && create_if_block_13(ctx)
+    ctx[1] && create_if_block_14(ctx)
   );
   let each_value = (
     /*groups*/
@@ -17069,7 +17311,7 @@ function create_fragment20(ctx) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
-          if_block = create_if_block_13(ctx2);
+          if_block = create_if_block_14(ctx2);
           if_block.c();
           if_block.m(select, if_block_anchor);
         }
@@ -17285,7 +17527,7 @@ var Select_default = Select;
 
 // src/splitter/Splitter.svelte
 var import_internal22 = __toESM(require_internal());
-var import_svelte15 = __toESM(require_svelte());
+var import_svelte14 = __toESM(require_svelte());
 var file19 = "src/splitter/Splitter.svelte";
 function create_fragment21(ctx) {
   let div;
@@ -17379,7 +17621,7 @@ function instance21($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal22.validate_slots)("Splitter", slots, []);
   let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte15.createEventDispatcher)();
+  const dispatch = (0, import_svelte14.createEventDispatcher)();
   const size = 8, halfsize = size / 2;
   const Box = {};
   let isVertical = false;
@@ -17387,7 +17629,7 @@ function instance21($$self, $$props, $$invalidate) {
   let initialTargetBox, startX2, startY2;
   let mousedownTargetBox;
   let isDragging = false, bodyCursor;
-  (0, import_svelte15.onMount)(() => {
+  (0, import_svelte14.onMount)(() => {
     requestAnimationFrame(init71);
   });
   function toggle() {
@@ -17530,8 +17772,8 @@ function instance21($$self, $$props, $$invalidate) {
       $$invalidate(0, className = $$props2.class);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte15.onMount,
-    createEventDispatcher: import_svelte15.createEventDispatcher,
+    onMount: import_svelte14.onMount,
+    createEventDispatcher: import_svelte14.createEventDispatcher,
     getMouseX,
     getMouseY,
     innerWidth,
@@ -17659,7 +17901,7 @@ var Splitter_default = Splitter;
 
 // src/table/Table.svelte
 var import_internal23 = __toESM(require_internal());
-var import_svelte16 = __toESM(require_svelte());
+var import_svelte15 = __toESM(require_svelte());
 var { Object: Object_1 } = import_internal23.globals;
 var file20 = "src/table/Table.svelte";
 function create_fragment22(ctx) {
@@ -17851,7 +18093,7 @@ function shouldSkipNav(e) {
 function instance22($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal23.validate_slots)("Table", slots, ["default"]);
-  const dispatch = (0, import_svelte16.createEventDispatcher)();
+  const dispatch = (0, import_svelte15.createEventDispatcher)();
   let { _this = void 0 } = $$props;
   let { selectable = true } = $$props;
   let { round = false } = $$props;
@@ -17864,7 +18106,7 @@ function instance22($$self, $$props, $$invalidate) {
   let headerHeight = 0;
   let clickTimer;
   let previousKey;
-  (0, import_svelte16.onMount)(() => {
+  (0, import_svelte15.onMount)(() => {
     Object.assign(_this.dataset, data);
     if (selectable === true || selectable === "true") {
       makeRowsSelectable();
@@ -17875,7 +18117,7 @@ function instance22($$self, $$props, $$invalidate) {
       });
     }
   });
-  (0, import_svelte16.onDestroy)(() => {
+  (0, import_svelte15.onDestroy)(() => {
     if (selectable === true || selectable === "true")
       makeRowsNotSelectable();
   });
@@ -18069,9 +18311,9 @@ function instance22($$self, $$props, $$invalidate) {
       $$invalidate(12, $$scope = $$props2.$$scope);
   };
   $$self.$capture_state = () => ({
-    onDestroy: import_svelte16.onDestroy,
-    onMount: import_svelte16.onMount,
-    createEventDispatcher: import_svelte16.createEventDispatcher,
+    onDestroy: import_svelte15.onDestroy,
+    onMount: import_svelte15.onMount,
+    createEventDispatcher: import_svelte15.createEventDispatcher,
     dispatch,
     _this,
     selectable,
@@ -18445,7 +18687,7 @@ var Textarea_default = Textarea;
 
 // src/text-fit/TextFit.svelte
 var import_internal25 = __toESM(require_internal());
-var import_svelte17 = __toESM(require_svelte());
+var import_svelte16 = __toESM(require_svelte());
 var file22 = "src/text-fit/TextFit.svelte";
 function create_fragment24(ctx) {
   let span;
@@ -18553,7 +18795,7 @@ function instance24($$self, $$props, $$invalidate) {
     const val = (parentW - margin) / textW || 0;
     $$invalidate(1, el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`, el);
   }
-  (0, import_svelte17.onMount)(() => {
+  (0, import_svelte16.onMount)(() => {
     parent = el.parentNode;
     resizeObserver = new ResizeObserver(() => {
       if (timer2)
@@ -18565,7 +18807,7 @@ function instance24($$self, $$props, $$invalidate) {
     mutationObserver.observe(el.firstChild, { characterData: true });
     resize();
   });
-  (0, import_svelte17.onDestroy)(() => {
+  (0, import_svelte16.onDestroy)(() => {
     resizeObserver.unobserve(parent);
     mutationObserver.disconnect();
   });
@@ -18589,8 +18831,8 @@ function instance24($$self, $$props, $$invalidate) {
       $$invalidate(3, $$scope = $$props2.$$scope);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte17.onMount,
-    onDestroy: import_svelte17.onDestroy,
+    onMount: import_svelte16.onMount,
+    onDestroy: import_svelte16.onDestroy,
     margin,
     className,
     DEBOUNCE_RESIZE,
@@ -18687,7 +18929,7 @@ function get_each_context5(ctx, list, i) {
   child_ctx[16] = list[i];
   return child_ctx;
 }
-function create_if_block_14(ctx) {
+function create_if_block_15(ctx) {
   let button;
   let t_value = (
     /*toast*/
@@ -18735,7 +18977,7 @@ function create_if_block_14(ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_14.name,
+    id: create_if_block_15.name,
     type: "if",
     source: "(19:3) {#if toast.btn}",
     ctx
@@ -18816,7 +19058,7 @@ function create_each_block5(key_1, ctx) {
   let dispose;
   let if_block0 = (
     /*toast*/
-    ctx[16].btn && create_if_block_14(ctx)
+    ctx[16].btn && create_if_block_15(ctx)
   );
   function click_handler_1() {
     return (
@@ -18952,7 +19194,7 @@ function create_each_block5(key_1, ctx) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
         } else {
-          if_block0 = create_if_block_14(ctx);
+          if_block0 = create_if_block_15(ctx);
           if_block0.c();
           if_block0.m(div1, t1);
         }
@@ -19269,7 +19511,7 @@ var Toaster_default = Toaster;
 
 // src/notification-center/NotificationCenter/NotificationCenter.svelte
 var import_internal28 = __toESM(require_internal());
-var import_svelte19 = __toESM(require_svelte());
+var import_svelte18 = __toESM(require_svelte());
 var import_store6 = __toESM(require_store());
 
 // src/notification-center/store.js
@@ -19367,7 +19609,7 @@ function removeFromArchive(id) {
 
 // src/notification-center/NotificationArchive/NotificationArchive.svelte
 var import_internal27 = __toESM(require_internal());
-var import_svelte18 = __toESM(require_svelte());
+var import_svelte17 = __toESM(require_svelte());
 var { Object: Object_13 } = import_internal27.globals;
 var file24 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
 function get_each_context6(ctx, list, i) {
@@ -19450,7 +19692,7 @@ function create_else_block3(ctx) {
   });
   return block;
 }
-function create_if_block_15(ctx) {
+function create_if_block_16(ctx) {
   let h2;
   let button0;
   let t0;
@@ -19571,7 +19813,7 @@ function create_if_block_15(ctx) {
   };
   (0, import_internal27.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_15.name,
+    id: create_if_block_16.name,
     type: "if",
     source: "(3:2) {#if archived.length}",
     ctx
@@ -19962,7 +20204,7 @@ function create_fragment26(ctx) {
   let t;
   let div_inert_value;
   let current;
-  const if_block_creators = [create_if_block_15, create_else_block3];
+  const if_block_creators = [create_if_block_16, create_else_block3];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -20122,13 +20364,13 @@ function instance26($$self, $$props, $$invalidate) {
   let archived = [];
   let now = (/* @__PURE__ */ new Date()).getTime();
   let timer2;
-  (0, import_svelte18.onMount)(() => {
+  (0, import_svelte17.onMount)(() => {
     timer2 = setInterval(() => $$invalidate(4, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
     ArchivedNotifications.subscribe((val) => {
       $$invalidate(3, archived = Object.values(val).reverse());
     });
   });
-  (0, import_svelte18.onDestroy)(() => {
+  (0, import_svelte17.onDestroy)(() => {
     clearInterval(timer2);
   });
   function toggle() {
@@ -20178,8 +20420,8 @@ function instance26($$self, $$props, $$invalidate) {
       $$invalidate(1, expanded = $$props2.expanded);
   };
   $$self.$capture_state = () => ({
-    onDestroy: import_svelte18.onDestroy,
-    onMount: import_svelte18.onMount,
+    onDestroy: import_svelte17.onDestroy,
+    onMount: import_svelte17.onMount,
     Button: Button_default,
     ArchivedNotifications,
     removeFromArchive,
@@ -20366,7 +20608,7 @@ function create_if_block_32(ctx) {
   });
   return block;
 }
-function create_if_block_22(ctx) {
+function create_if_block_23(ctx) {
   let button;
   let t_value = (
     /*notification*/
@@ -20414,14 +20656,14 @@ function create_if_block_22(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_22.name,
+    id: create_if_block_23.name,
     type: "if",
     source: "(35:4) {#if notification.btn}",
     ctx
   });
   return block;
 }
-function create_if_block_16(ctx) {
+function create_if_block_17(ctx) {
   let div1;
   let div0;
   const block = {
@@ -20445,7 +20687,7 @@ function create_if_block_16(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_16.name,
+    id: create_if_block_17.name,
     type: "if",
     source: "(42:3) {#if notification.showProgress}",
     ctx
@@ -20486,7 +20728,7 @@ function create_each_block7(key_1, ctx) {
   });
   let if_block0 = (
     /*notification*/
-    ctx[33].btn && create_if_block_22(ctx)
+    ctx[33].btn && create_if_block_23(ctx)
   );
   function click_handler_1() {
     return (
@@ -20499,7 +20741,7 @@ function create_each_block7(key_1, ctx) {
   }
   let if_block1 = (
     /*notification*/
-    ctx[33].showProgress && create_if_block_16(ctx)
+    ctx[33].showProgress && create_if_block_17(ctx)
   );
   function mouseover_handler() {
     return (
@@ -20640,7 +20882,7 @@ function create_each_block7(key_1, ctx) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
         } else {
-          if_block0 = create_if_block_22(ctx);
+          if_block0 = create_if_block_23(ctx);
           if_block0.c();
           if_block0.m(div2, t2);
         }
@@ -20654,7 +20896,7 @@ function create_each_block7(key_1, ctx) {
       ) {
         if (if_block1) {
         } else {
-          if_block1 = create_if_block_16(ctx);
+          if_block1 = create_if_block_17(ctx);
           if_block1.c();
           if_block1.m(div3, null);
         }
@@ -21056,7 +21298,7 @@ function instance27($$self, $$props, $$invalidate) {
   let notifications = [];
   let initial = true;
   let hasActiveNotifications = false;
-  (0, import_svelte19.onMount)(() => {
+  (0, import_svelte18.onMount)(() => {
     document.body.appendChild(el);
     Notifications.subscribe((val) => {
       $$invalidate(4, notifications = Object.values(val).reverse());
@@ -21149,7 +21391,7 @@ function instance27($$self, $$props, $$invalidate) {
       $$invalidate(3, hideButton = $$props2.hideButton);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte19.onMount,
+    onMount: import_svelte18.onMount,
     writable: import_store6.writable,
     Icon: Icon_default,
     PushButton: PushButton_default,
@@ -21313,7 +21555,7 @@ var NotificationCenter_default = NotificationCenter;
 
 // src/toggle/Toggle.svelte
 var import_internal29 = __toESM(require_internal());
-var import_svelte20 = __toESM(require_svelte());
+var import_svelte19 = __toESM(require_svelte());
 
 // src/toggle/utils.js
 var isTouchDevice = "ontouchstart" in document.documentElement;
@@ -21571,7 +21813,7 @@ function instance28($$self, $$props, $$invalidate) {
   let inputProps;
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal29.validate_slots)("Toggle", slots, []);
-  const dispatch = (0, import_svelte20.createEventDispatcher)();
+  const dispatch = (0, import_svelte19.createEventDispatcher)();
   let { value = false } = $$props;
   let { disabled = void 0 } = $$props;
   let { class: className = "" } = $$props;
@@ -21579,11 +21821,11 @@ function instance28($$self, $$props, $$invalidate) {
   let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
   let isClick = false, isDragging = false;
   let oldValue;
-  (0, import_svelte20.onMount)(() => {
+  (0, import_svelte19.onMount)(() => {
     toggleTransitions(false);
     ({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
   });
-  (0, import_svelte20.afterUpdate)(() => {
+  (0, import_svelte19.afterUpdate)(() => {
     if (typeof value !== "boolean")
       $$invalidate(0, value = !!value);
     setValue(value);
@@ -21704,9 +21946,9 @@ function instance28($$self, $$props, $$invalidate) {
       $$invalidate(2, className = $$new_props.class);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte20.onMount,
-    afterUpdate: import_svelte20.afterUpdate,
-    createEventDispatcher: import_svelte20.createEventDispatcher,
+    onMount: import_svelte19.onMount,
+    afterUpdate: import_svelte19.afterUpdate,
+    createEventDispatcher: import_svelte19.createEventDispatcher,
     pluck,
     getMouseX: getMouseX2,
     isTouchDevice,
@@ -21842,7 +22084,7 @@ var Toggle_default = Toggle;
 
 // src/tooltip/Tooltip.svelte
 var import_internal30 = __toESM(require_internal());
-var import_svelte21 = __toESM(require_svelte());
+var import_svelte20 = __toESM(require_svelte());
 var file27 = "src/tooltip/Tooltip.svelte";
 function create_if_block15(ctx) {
   let div2;
@@ -22117,13 +22359,13 @@ function instance29($$self, $$props, $$invalidate) {
   let visible = false;
   let showTimer, hideTimer, shownEvent, noHide = false;
   let el, targetEl, tooltipContainer;
-  (0, import_svelte21.onMount)(() => {
+  (0, import_svelte20.onMount)(() => {
     initContainer();
     targetEl = target ? document.querySelector("#" + target) : document.body;
     addTargetEvents();
   });
-  (0, import_svelte21.onDestroy)(removeTargetEvents);
-  (0, import_svelte21.afterUpdate)(align);
+  (0, import_svelte20.onDestroy)(removeTargetEvents);
+  (0, import_svelte20.afterUpdate)(align);
   function show(e) {
     if (hideTimer) {
       clearTimeout(hideTimer);
@@ -22321,9 +22563,9 @@ function instance29($$self, $$props, $$invalidate) {
       $$invalidate(14, $$scope = $$props2.$$scope);
   };
   $$self.$capture_state = () => ({
-    afterUpdate: import_svelte21.afterUpdate,
-    onDestroy: import_svelte21.onDestroy,
-    onMount: import_svelte21.onMount,
+    afterUpdate: import_svelte20.afterUpdate,
+    onDestroy: import_svelte20.onDestroy,
+    onMount: import_svelte20.onMount,
     target,
     delay,
     position,
@@ -22525,7 +22767,7 @@ var Tooltip_default = Tooltip;
 
 // src/tree/Tree.svelte
 var import_internal32 = __toESM(require_internal());
-var import_svelte22 = __toESM(require_svelte());
+var import_svelte21 = __toESM(require_svelte());
 
 // src/tree/TreeNode.svelte
 var import_internal31 = __toESM(require_internal());
@@ -23353,7 +23595,7 @@ function instance31($$self, $$props, $$invalidate) {
   let { items = [] } = $$props;
   let { title = void 0 } = $$props;
   let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte22.createEventDispatcher)();
+  const dispatch = (0, import_svelte21.createEventDispatcher)();
   let el;
   let selectedItem;
   function getVisibleNodes() {
@@ -23488,7 +23730,7 @@ function instance31($$self, $$props, $$invalidate) {
       $$invalidate(2, className = $$props2.class);
   };
   $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte22.createEventDispatcher,
+    createEventDispatcher: import_svelte21.createEventDispatcher,
     TreeNode: TreeNode_default,
     items,
     title,
@@ -28315,7 +28557,7 @@ var CodeExample_default = CodeExample;
 
 // docs-src/code-example/CodeBox.svelte
 var import_internal38 = __toESM(require_internal());
-var import_svelte23 = __toESM(require_svelte());
+var import_svelte22 = __toESM(require_svelte());
 var file35 = "docs-src/code-example/CodeBox.svelte";
 function create_fragment37(ctx) {
   let pre;
@@ -28365,9 +28607,9 @@ function instance37($$self, $$props, $$invalidate) {
   (0, import_internal38.validate_slots)("CodeBox", slots, []);
   let { tag = "div" } = $$props;
   let { props = {} } = $$props;
-  let { text: text43 = "" } = $$props;
+  let { text: text42 = "" } = $$props;
   let html = "";
-  (0, import_svelte23.afterUpdate)(() => {
+  (0, import_svelte22.afterUpdate)(() => {
     requestAnimationFrame(update);
   });
   function update() {
@@ -28385,9 +28627,9 @@ function instance37($$self, $$props, $$invalidate) {
     let propsStr = JSON.stringify(_props).replace(/"([^"]+)":/g, "$1:").replace(/(:)/g, "=").replace(/,/g, " ").replace(/({|}|=true|default)/g, "").trim();
     if (propsStr)
       propsStr = " " + propsStr;
-    if (!text43)
+    if (!text42)
       return `<${tag}${propsStr}/>`;
-    return `<${tag}${propsStr}>${text43}</${tag}>`;
+    return `<${tag}${propsStr}>${text42}</${tag}>`;
   }
   const writable_props = ["tag", "props", "text"];
   Object.keys($$props).forEach((key) => {
@@ -28400,13 +28642,13 @@ function instance37($$self, $$props, $$invalidate) {
     if ("props" in $$props2)
       $$invalidate(2, props = $$props2.props);
     if ("text" in $$props2)
-      $$invalidate(3, text43 = $$props2.text);
+      $$invalidate(3, text42 = $$props2.text);
   };
   $$self.$capture_state = () => ({
-    afterUpdate: import_svelte23.afterUpdate,
+    afterUpdate: import_svelte22.afterUpdate,
     tag,
     props,
-    text: text43,
+    text: text42,
     html,
     update,
     buildHtml
@@ -28417,14 +28659,14 @@ function instance37($$self, $$props, $$invalidate) {
     if ("props" in $$props2)
       $$invalidate(2, props = $$props2.props);
     if ("text" in $$props2)
-      $$invalidate(3, text43 = $$props2.text);
+      $$invalidate(3, text42 = $$props2.text);
     if ("html" in $$props2)
       $$invalidate(0, html = $$props2.html);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
-  return [html, tag, props, text43];
+  return [html, tag, props, text42];
 }
 var CodeBox = class extends import_internal38.SvelteComponentDev {
   constructor(options) {
@@ -35136,7 +35378,10 @@ function create_fragment45(ctx) {
   let t3;
   let api;
   let current;
-  inputmath = new InputMath_default({ $$inline: true });
+  inputmath = new InputMath_default({
+    props: { label: "Enter amount" },
+    $$inline: true
+  });
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -35268,7 +35513,7 @@ function instance45($$self, $$props, $$invalidate) {
     }
   ];
   const exampleHtml = `
-<InputMath on:change="{onChange}" />
+<InputMath label="Enter amount" on:change="{onChange}" />
 
 <script>
 function onChange (e) {
@@ -35323,7 +35568,10 @@ function create_fragment46(ctx) {
   let t9;
   let codeexample;
   let current;
-  inputnumber = new InputNumber_default({ $$inline: true });
+  inputnumber = new InputNumber_default({
+    props: { label: "Enter amount" },
+    $$inline: true
+  });
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -35429,7 +35677,7 @@ function instance46($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal47.validate_slots)("InputNumber", slots, []);
   const exampleHtml = `
-<InputNumber />
+<InputNumber label="Enter amount"/>
 `;
   const writable_props = [];
   Object.keys($$props).forEach((key) => {
@@ -35486,6 +35734,7 @@ function create_fragment47(ctx) {
     ctx[3](value);
   }
   let inputpassword0_props = {
+    label: "Current password",
     name: "password",
     placeholder: "Not 123456"
   };
@@ -35502,7 +35751,7 @@ function create_fragment47(ctx) {
   });
   import_internal48.binding_callbacks.push(() => (0, import_internal48.bind)(inputpassword0, "value", inputpassword0_value_binding));
   inputpassword1 = new InputPassword_default({
-    props: { strength: true },
+    props: { strength: true, label: "New password" },
     $$inline: true
   });
   codeexample = new CodeExample_default({
@@ -35554,12 +35803,12 @@ function create_fragment47(ctx) {
       (0, import_internal48.create_component)(api.$$.fragment);
       (0, import_internal48.add_location)(h2, file45, 0, 0, 0);
       (0, import_internal48.add_location)(h30, file45, 2, 0, 25);
-      (0, import_internal48.add_location)(br, file45, 3, 76, 118);
-      (0, import_internal48.add_location)(h31, file45, 6, 0, 155);
+      (0, import_internal48.add_location)(br, file45, 3, 101, 143);
+      (0, import_internal48.add_location)(h31, file45, 6, 0, 180);
       (0, import_internal48.attr_dev)(a, "href", "https://github.com/dropbox/zxcvbn");
-      (0, import_internal48.add_location)(a, file45, 7, 5, 202);
-      (0, import_internal48.add_location)(em, file45, 7, 99, 296);
-      (0, import_internal48.add_location)(p, file45, 7, 0, 197);
+      (0, import_internal48.add_location)(a, file45, 7, 5, 227);
+      (0, import_internal48.add_location)(em, file45, 7, 99, 321);
+      (0, import_internal48.add_location)(p, file45, 7, 0, 222);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35674,14 +35923,23 @@ function instance47($$self, $$props, $$invalidate) {
   let val;
   const apiProps = [
     {
+      name: "class",
+      type: "string",
+      description: "Additional css class name to be added to the component."
+    },
+    {
+      name: "disabled",
+      description: "Make the input disabled."
+    },
+    {
       name: "id",
       type: "string",
       description: "Assign ID to the underlying input."
     },
     {
-      name: "title",
+      name: "label",
       type: "string",
-      description: "Assign title to the underlying input."
+      description: "Label for the input."
     },
     {
       name: "name",
@@ -35698,22 +35956,18 @@ function instance47($$self, $$props, $$invalidate) {
       description: "Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled."
     },
     {
-      name: "disabled",
-      description: "Make the input disabled."
+      name: "strength",
+      description: "Provide the password strength UI (zxcvbn lib must be loaded)."
     },
     {
-      name: "class",
+      name: "title",
       type: "string",
-      description: "Additional css class name to be added to the component."
+      description: "Assign title to the underlying input."
     },
     {
       name: "value",
       type: ["string", "number"],
       description: "Initial value of the input."
-    },
-    {
-      name: "strength",
-      description: "Provide the password strength UI (zxcvbn lib must be loaded)."
     },
     {
       name: "on:change",
@@ -35727,7 +35981,7 @@ function instance47($$self, $$props, $$invalidate) {
     }
   ];
   const exampleHtml = `
-<InputPassword strength on:change="{onChange}" />
+<InputPassword strength label="Current password" on:change="{onChange}" />
 
 <script>
 function onChange (e) {
@@ -35863,6 +36117,7 @@ function create_fragment48(ctx) {
   inputtext3 = new InputText_default({
     props: {
       label: "Validate on input",
+      info: "This should be avoided in most cases. Validating input as user is typing is a bad UX.",
       required: true,
       error: (
         /*error2*/
@@ -36126,6 +36381,11 @@ function instance48($$self, $$props, $$invalidate) {
       name: "id",
       type: "string",
       description: "Assign ID to the underlying input."
+    },
+    {
+      name: "info",
+      type: "string",
+      description: "Show info message above the input."
     },
     {
       name: "error",
@@ -49589,7 +49849,7 @@ function instance66($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal67.validate_slots)("ColorPaletteBox", slots, []);
   let { bg = "color-background" } = $$props;
-  let { text: text43 = "color-text" } = $$props;
+  let { text: text42 = "color-text" } = $$props;
   const writable_props = ["bg", "text"];
   Object.keys($$props).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
@@ -49599,19 +49859,19 @@ function instance66($$self, $$props, $$invalidate) {
     if ("bg" in $$props2)
       $$invalidate(0, bg = $$props2.bg);
     if ("text" in $$props2)
-      $$invalidate(1, text43 = $$props2.text);
+      $$invalidate(1, text42 = $$props2.text);
   };
-  $$self.$capture_state = () => ({ bg, text: text43 });
+  $$self.$capture_state = () => ({ bg, text: text42 });
   $$self.$inject_state = ($$props2) => {
     if ("bg" in $$props2)
       $$invalidate(0, bg = $$props2.bg);
     if ("text" in $$props2)
-      $$invalidate(1, text43 = $$props2.text);
+      $$invalidate(1, text42 = $$props2.text);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
-  return [bg, text43];
+  return [bg, text42];
 }
 var ColorPaletteBox = class extends import_internal67.SvelteComponentDev {
   constructor(options) {

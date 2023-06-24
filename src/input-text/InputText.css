@@ -14,7 +14,7 @@
 
 .has-error .input-text-inner  {
 	border-color: var(--ui-color-danger);
-	background-color: var(--ui-color-danger-dark-1);
+	background-color: var(--ui-color-danger-semi);
 	box-shadow: var(--ui-shadow-invalid);
 }
 
@@ -24,26 +24,30 @@
 }
 
 
-.input-text-error {
-	margin: 0;
+.input-error,
+.input-info {
 	width: 100%;
-	padding-block: 0.3rem;
-	padding-inline: 0.4rem 0.8rem;
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
 	gap: 0.5rem;
+	padding: 0.4rem;
+}
+
+.input-error p,
+.input-info p { margin: 0; font-size: 0.9rem; line-height: 1.5rem; }
+
+.input-error {
+	margin: 0;
 	border-top-left-radius: var(--ui-border-radius);
 	border-top-right-radius: var(--ui-border-radius);
 }
 
-.input-text-error p { margin: 0; line-height: 1.5rem; }
-
-
-.label {
-	height: 2.2rem;
-	line-height: 1.6;
-	padding: 0 var(--ui-margin-s);
-	display: inline-flex;
-	align-items: center;
+.input-info {
+	margin: 0 0 0.75rem;
+	background-color: var(--ui-color-info-semi);
+	border-radius: var(--ui-border-radius);
+	border: 1px solid var(--ui-color-info);
+	box-shadow: 0 0 2px 1px var(--ui-color-info);
 }
+.input-info .icon { flex-shrink: 0; margin-top: 0.1rem; }

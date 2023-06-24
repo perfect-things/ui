@@ -6,7 +6,7 @@
 
 <h3>Better InputNumber</h3>
 <p>Only allows numbers, a single dot (for decimals) and the minus sign (which is only allowed as a first character)</p>
-<InputNumber />
+<InputNumber label="Enter amount" />
 
 
 
@@ -18,6 +18,6 @@ import { InputNumber } from '../../../src';
 import { CodeExample } from '../../code-example';
 
 const exampleHtml = `
-<InputNumber />
+<InputNumber label="Enter amount"/>
 `;
 </script>
