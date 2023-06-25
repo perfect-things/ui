@@ -46,7 +46,7 @@ h2:first-child,
 h3:first-of-type { margin-top: 0; }
 
 ul,
-p { line-height: 1.7; margin-block: 1.5rem; max-width: 100ch; }
+p { line-height: 1.7; margin-block: 1.5rem; max-width: 120ch; }
 p b { font-weight: 700; letter-spacing: 0.5px; }
 
 em { color: var(--ui-color-accent); font-style: normal; }

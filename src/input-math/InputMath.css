@@ -1,14 +1,14 @@
-.input-math-wrapper {
-	width: 25ch;
+.input-math {
 	position: relative;
 	display: inline-flex;
-	flex-flow: row;
-	align-items: center;
+	flex-flow: column;
+	align-items: stretch;
 	justify-content: space-between;
-	vertical-align: middle;
 }
 
-.input-math-wrapper .icon {
+.input-math input { padding-left: 30px; text-align: right; }
+
+.input-math-row .icon {
 	position: absolute;
 	left: 7px;
 	width: 1.5rem;
@@ -17,15 +17,16 @@
 	color: var(--ui-color-text-dark-2);
 	z-index: 1;
 }
-.input-math-wrapper svg { width: 100%; height: 100%; }
-.theme-light .input-math-wrapper > .icon { color: var(--ui-color-text-light-2); }
+.theme-light .input-math-row > .icon { color: var(--ui-color-text-light-2); }
 
-.input-math-wrapper .input-math {
+
+
+.input-math-row {
 	width: 100%;
-	padding-left: 30px;
-	text-align: right;
-	-moz-appearance: textfield;
-}
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
 
-.input-math::-webkit-inner-spin-button,
-.input-math::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+}

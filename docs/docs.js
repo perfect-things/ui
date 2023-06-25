@@ -33,7 +33,7 @@ var require_internal = __commonJS({
   "node_modules/svelte/internal/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function noop35() {
+    function noop33() {
     }
     var identity = (x) => x;
     function assign16(tar, src) {
@@ -41,8 +41,8 @@ var require_internal = __commonJS({
         tar[k] = src[k];
       return tar;
     }
-    function is_promise(value) {
-      return !!value && (typeof value === "object" || typeof value === "function") && typeof value.then === "function";
+    function is_promise(value2) {
+      return !!value2 && (typeof value2 === "object" || typeof value2 === "function") && typeof value2.then === "function";
     }
     function add_location69(element70, file68, line, column, char) {
       element70.__svelte_meta = {
@@ -78,67 +78,67 @@ var require_internal = __commonJS({
     function is_empty(obj) {
       return Object.keys(obj).length === 0;
     }
-    function validate_store9(store, name2) {
+    function validate_store12(store, name2) {
       if (store != null && typeof store.subscribe !== "function") {
         throw new Error(`'${name2}' is not a store with a 'subscribe' method`);
       }
     }
     function subscribe(store, ...callbacks) {
       if (store == null) {
-        return noop35;
+        return noop33;
       }
       const unsub = store.subscribe(...callbacks);
       return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
     }
     function get_store_value(store) {
-      let value;
-      subscribe(store, (_) => value = _)();
-      return value;
+      let value2;
+      subscribe(store, (_) => value2 = _)();
+      return value2;
     }
-    function component_subscribe9(component, store, callback) {
+    function component_subscribe12(component, store, callback) {
       component.$$.on_destroy.push(subscribe(store, callback));
     }
-    function create_slot12(definition, ctx, $$scope, fn) {
+    function create_slot12(definition, ctx, $$scope2, fn) {
       if (definition) {
-        const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+        const slot_ctx = get_slot_context(definition, ctx, $$scope2, fn);
         return definition[0](slot_ctx);
       }
     }
-    function get_slot_context(definition, ctx, $$scope, fn) {
-      return definition[1] && fn ? assign16($$scope.ctx.slice(), definition[1](fn(ctx))) : $$scope.ctx;
+    function get_slot_context(definition, ctx, $$scope2, fn) {
+      return definition[1] && fn ? assign16($$scope2.ctx.slice(), definition[1](fn(ctx))) : $$scope2.ctx;
     }
-    function get_slot_changes12(definition, $$scope, dirty, fn) {
+    function get_slot_changes12(definition, $$scope2, dirty, fn) {
       if (definition[2] && fn) {
         const lets = definition[2](fn(dirty));
-        if ($$scope.dirty === void 0) {
+        if ($$scope2.dirty === void 0) {
           return lets;
         }
         if (typeof lets === "object") {
           const merged = [];
-          const len = Math.max($$scope.dirty.length, lets.length);
+          const len = Math.max($$scope2.dirty.length, lets.length);
           for (let i = 0; i < len; i += 1) {
-            merged[i] = $$scope.dirty[i] | lets[i];
+            merged[i] = $$scope2.dirty[i] | lets[i];
           }
           return merged;
         }
-        return $$scope.dirty | lets;
+        return $$scope2.dirty | lets;
       }
-      return $$scope.dirty;
+      return $$scope2.dirty;
     }
-    function update_slot_base12(slot, slot_definition, ctx, $$scope, slot_changes, get_slot_context_fn) {
+    function update_slot_base12(slot, slot_definition, ctx, $$scope2, slot_changes, get_slot_context_fn) {
       if (slot_changes) {
-        const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
+        const slot_context = get_slot_context(slot_definition, ctx, $$scope2, get_slot_context_fn);
         slot.p(slot_context, slot_changes);
       }
     }
-    function update_slot(slot, slot_definition, ctx, $$scope, dirty, get_slot_changes_fn, get_slot_context_fn) {
-      const slot_changes = get_slot_changes12(slot_definition, $$scope, dirty, get_slot_changes_fn);
-      update_slot_base12(slot, slot_definition, ctx, $$scope, slot_changes, get_slot_context_fn);
+    function update_slot(slot, slot_definition, ctx, $$scope2, dirty, get_slot_changes_fn, get_slot_context_fn) {
+      const slot_changes = get_slot_changes12(slot_definition, $$scope2, dirty, get_slot_changes_fn);
+      update_slot_base12(slot, slot_definition, ctx, $$scope2, slot_changes, get_slot_context_fn);
     }
-    function get_all_dirty_from_scope12($$scope) {
-      if ($$scope.ctx.length > 32) {
+    function get_all_dirty_from_scope12($$scope2) {
+      if ($$scope2.ctx.length > 32) {
         const dirty = [];
-        const length = $$scope.ctx.length / 32;
+        const length = $$scope2.ctx.length / 32;
         for (let i = 0; i < length; i++) {
           dirty[i] = -1;
         }
@@ -146,24 +146,24 @@ var require_internal = __commonJS({
       }
       return -1;
     }
-    function exclude_internal_props15(props) {
+    function exclude_internal_props15(props2) {
       const result = {};
-      for (const k in props)
+      for (const k in props2)
         if (k[0] !== "$")
-          result[k] = props[k];
+          result[k] = props2[k];
       return result;
     }
-    function compute_rest_props(props, keys) {
+    function compute_rest_props(props2, keys) {
       const rest = {};
       keys = new Set(keys);
-      for (const k in props)
+      for (const k in props2)
         if (!keys.has(k) && k[0] !== "$")
-          rest[k] = props[k];
+          rest[k] = props2[k];
       return rest;
     }
-    function compute_slots3(slots) {
+    function compute_slots3(slots2) {
       const result = {};
-      for (const key in slots) {
+      for (const key in slots2) {
         result[key] = true;
       }
       return result;
@@ -177,25 +177,25 @@ var require_internal = __commonJS({
         fn.call(this, ...args);
       };
     }
-    function null_to_empty(value) {
-      return value == null ? "" : value;
+    function null_to_empty(value2) {
+      return value2 == null ? "" : value2;
     }
-    function set_store_value2(store, ret, value) {
-      store.set(value);
+    function set_store_value2(store, ret, value2) {
+      store.set(value2);
       return ret;
     }
     var has_prop = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
     function action_destroyer2(action_result) {
-      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop35;
+      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop33;
     }
-    function split_css_unit(value) {
-      const split = typeof value === "string" && value.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
-      return split ? [parseFloat(split[1]), split[2] || "px"] : [value, "px"];
+    function split_css_unit(value2) {
+      const split = typeof value2 === "string" && value2.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
+      return split ? [parseFloat(split[1]), split[2] || "px"] : [value2, "px"];
     }
     var contenteditable_truthy_values = ["", true, 1, "true", "contenteditable"];
     var is_client = typeof window !== "undefined";
     exports.now = is_client ? () => window.performance.now() : () => Date.now();
-    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop35;
+    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop33;
     function set_now(fn) {
       exports.now = fn;
     }
@@ -262,10 +262,10 @@ var require_internal = __commonJS({
     function end_hydrating() {
       is_hydrating = false;
     }
-    function upper_bound(low, high, key, value) {
+    function upper_bound(low, high, key, value2) {
       while (low < high) {
         const mid = low + (high - low >> 1);
-        if (key(mid) <= value) {
+        if (key(mid) <= value2) {
           low = mid + 1;
         } else {
           high = mid;
@@ -412,57 +412,57 @@ var require_internal = __commonJS({
     function svg_element(name2) {
       return document.createElementNS("http://www.w3.org/2000/svg", name2);
     }
-    function text42(data) {
+    function text45(data) {
       return document.createTextNode(data);
     }
-    function space53() {
-      return text42(" ");
+    function space54() {
+      return text45(" ");
     }
     function empty10() {
-      return text42("");
+      return text45("");
     }
     function comment(content) {
       return document.createComment(content);
     }
-    function listen(node, event, handler, options) {
-      node.addEventListener(event, handler, options);
-      return () => node.removeEventListener(event, handler, options);
+    function listen(node, event2, handler, options) {
+      node.addEventListener(event2, handler, options);
+      return () => node.removeEventListener(event2, handler, options);
     }
     function prevent_default5(fn) {
-      return function(event) {
-        event.preventDefault();
-        return fn.call(this, event);
+      return function(event2) {
+        event2.preventDefault();
+        return fn.call(this, event2);
       };
     }
     function stop_propagation4(fn) {
-      return function(event) {
-        event.stopPropagation();
-        return fn.call(this, event);
+      return function(event2) {
+        event2.stopPropagation();
+        return fn.call(this, event2);
       };
     }
     function stop_immediate_propagation(fn) {
-      return function(event) {
-        event.stopImmediatePropagation();
-        return fn.call(this, event);
+      return function(event2) {
+        event2.stopImmediatePropagation();
+        return fn.call(this, event2);
       };
     }
     function self2(fn) {
-      return function(event) {
-        if (event.target === this)
-          fn.call(this, event);
+      return function(event2) {
+        if (event2.target === this)
+          fn.call(this, event2);
       };
     }
     function trusted(fn) {
-      return function(event) {
-        if (event.isTrusted)
-          fn.call(this, event);
+      return function(event2) {
+        if (event2.isTrusted)
+          fn.call(this, event2);
       };
     }
-    function attr(node, attribute, value) {
-      if (value == null)
+    function attr(node, attribute, value2) {
+      if (value2 == null)
         node.removeAttribute(attribute);
-      else if (node.getAttribute(attribute) !== value)
-        node.setAttribute(attribute, value);
+      else if (node.getAttribute(attribute) !== value2)
+        node.setAttribute(attribute, value2);
     }
     var always_set_through_set_attribute = ["width", "height"];
     function set_attributes14(node, attributes) {
@@ -491,29 +491,29 @@ var require_internal = __commonJS({
         set_custom_element_data(node, key, data_map[key]);
       });
     }
-    function set_custom_element_data(node, prop, value) {
+    function set_custom_element_data(node, prop, value2) {
       if (prop in node) {
-        node[prop] = typeof node[prop] === "boolean" && value === "" ? true : value;
+        node[prop] = typeof node[prop] === "boolean" && value2 === "" ? true : value2;
       } else {
-        attr(node, prop, value);
+        attr(node, prop, value2);
       }
     }
     function set_dynamic_element_data(tag) {
       return /-/.test(tag) ? set_custom_element_data_map : set_attributes14;
     }
-    function xlink_attr(node, attribute, value) {
-      node.setAttributeNS("http://www.w3.org/1999/xlink", attribute, value);
+    function xlink_attr(node, attribute, value2) {
+      node.setAttributeNS("http://www.w3.org/1999/xlink", attribute, value2);
     }
     function get_binding_group_value(group, __value, checked) {
-      const value = /* @__PURE__ */ new Set();
+      const value2 = /* @__PURE__ */ new Set();
       for (let i = 0; i < group.length; i += 1) {
         if (group[i].checked)
-          value.add(group[i].__value);
+          value2.add(group[i].__value);
       }
       if (!checked) {
-        value.delete(__value);
+        value2.delete(__value);
       }
-      return Array.from(value);
+      return Array.from(value2);
     }
     function init_binding_group(group) {
       let _inputs;
@@ -564,8 +564,8 @@ var require_internal = __commonJS({
         r: remove
       };
     }
-    function to_number2(value) {
-      return value === "" ? null : +value;
+    function to_number(value2) {
+      return value2 === "" ? null : +value2;
     }
     function time_ranges_to_array(ranges) {
       const array = [];
@@ -656,7 +656,7 @@ var require_internal = __commonJS({
             node.data = dataStr;
           }
         },
-        () => text42(data),
+        () => text45(data),
         true
         // Text nodes should not update last index since it is likely not worth it to eliminate an increasing subsequence of actual elements
       );
@@ -670,10 +670,10 @@ var require_internal = __commonJS({
         return void 0;
       }, () => comment(data), true);
     }
-    function find_comment(nodes, text43, start) {
+    function find_comment(nodes, text46, start) {
       for (let i = start; i < nodes.length; i += 1) {
         const node = nodes[i];
-        if (node.nodeType === 8 && node.textContent.trim() === text43) {
+        if (node.nodeType === 8 && node.textContent.trim() === text46) {
           return i;
         }
       }
@@ -696,27 +696,27 @@ var require_internal = __commonJS({
       }
       return new HtmlTagHydration(claimed_nodes, is_svg);
     }
-    function set_data(text43, data) {
+    function set_data(text46, data) {
       data = "" + data;
-      if (text43.data === data)
+      if (text46.data === data)
         return;
-      text43.data = data;
+      text46.data = data;
     }
-    function set_data_contenteditable(text43, data) {
+    function set_data_contenteditable(text46, data) {
       data = "" + data;
-      if (text43.wholeText === data)
+      if (text46.wholeText === data)
         return;
-      text43.data = data;
+      text46.data = data;
     }
-    function set_data_maybe_contenteditable(text43, data, attr_value) {
+    function set_data_maybe_contenteditable(text46, data, attr_value) {
       if (~contenteditable_truthy_values.indexOf(attr_value)) {
-        set_data_contenteditable(text43, data);
+        set_data_contenteditable(text46, data);
       } else {
-        set_data(text43, data);
+        set_data(text46, data);
       }
     }
-    function set_input_value8(input, value) {
-      input.value = value == null ? "" : value;
+    function set_input_value8(input, value2) {
+      input.value = value2 == null ? "" : value2;
     }
     function set_input_type(input, type) {
       try {
@@ -724,29 +724,29 @@ var require_internal = __commonJS({
       } catch (e) {
       }
     }
-    function set_style6(node, key, value, important) {
-      if (value == null) {
+    function set_style6(node, key, value2, important) {
+      if (value2 == null) {
         node.style.removeProperty(key);
       } else {
-        node.style.setProperty(key, value, important ? "important" : "");
+        node.style.setProperty(key, value2, important ? "important" : "");
       }
     }
-    function select_option2(select, value, mounting) {
+    function select_option2(select, value2, mounting) {
       for (let i = 0; i < select.options.length; i += 1) {
         const option = select.options[i];
-        if (option.__value === value) {
+        if (option.__value === value2) {
           option.selected = true;
           return;
         }
       }
-      if (!mounting || value !== void 0) {
+      if (!mounting || value2 !== void 0) {
         select.selectedIndex = -1;
       }
     }
-    function select_options2(select, value) {
+    function select_options2(select, value2) {
       for (let i = 0; i < select.options.length; i += 1) {
         const option = select.options[i];
-        option.selected = ~value.indexOf(option.__value);
+        option.selected = ~value2.indexOf(option.__value);
       }
     }
     function select_value2(select) {
@@ -764,7 +764,7 @@ var require_internal = __commonJS({
           if (typeof window !== "undefined" && window.parent) {
             void window.parent.document;
           }
-        } catch (error) {
+        } catch (error2) {
           crossorigin = true;
         }
       }
@@ -783,8 +783,8 @@ var require_internal = __commonJS({
       let unsubscribe;
       if (crossorigin2) {
         iframe.src = "data:text/html,<script>onresize=function(){parent.postMessage(0,'*')}<\/script>";
-        unsubscribe = listen(window, "message", (event) => {
-          if (event.source === iframe.contentWindow)
+        unsubscribe = listen(window, "message", (event2) => {
+          if (event2.source === iframe.contentWindow)
             fn();
         });
       } else {
@@ -807,7 +807,7 @@ var require_internal = __commonJS({
     var resize_observer_content_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "content-box" });
     var resize_observer_border_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "border-box" });
     var resize_observer_device_pixel_content_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "device-pixel-content-box" });
-    function toggle_class23(element70, name2, toggle) {
+    function toggle_class25(element70, name2, toggle) {
       element70.classList[toggle ? "add" : "remove"](name2);
     }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
@@ -908,8 +908,8 @@ var require_internal = __commonJS({
       });
       return result;
     }
-    function construct_svelte_component(component, props) {
-      return new component(props);
+    function construct_svelte_component(component, props2) {
+      return new component(props2);
     }
     var managed_styles = /* @__PURE__ */ new Map();
     var active = 0;
@@ -921,12 +921,12 @@ var require_internal = __commonJS({
       return hash2 >>> 0;
     }
     function create_style_information(doc, node) {
-      const info = { stylesheet: append_empty_stylesheet(node), rules: {} };
-      managed_styles.set(doc, info);
-      return info;
+      const info2 = { stylesheet: append_empty_stylesheet(node), rules: {} };
+      managed_styles.set(doc, info2);
+      return info2;
     }
-    function create_rule(node, a, b, duration2, delay, ease, fn, uid = 0) {
-      const step = 16.666 / duration2;
+    function create_rule(node, a, b, duration3, delay, ease, fn, uid = 0) {
+      const step = 16.666 / duration3;
       let keyframes = "{\n";
       for (let p = 0; p <= 1; p += step) {
         const t = a + (b - a) * ease(p);
@@ -943,7 +943,7 @@ var require_internal = __commonJS({
         stylesheet.insertRule(`@keyframes ${name2} ${rule}`, stylesheet.cssRules.length);
       }
       const animation = node.style.animation || "";
-      node.style.animation = `${animation ? `${animation}, ` : ""}${name2} ${duration2}ms linear ${delay}ms 1 both`;
+      node.style.animation = `${animation ? `${animation}, ` : ""}${name2} ${duration3}ms linear ${delay}ms 1 both`;
       active += 1;
       return name2;
     }
@@ -965,8 +965,8 @@ var require_internal = __commonJS({
       exports.raf(() => {
         if (active)
           return;
-        managed_styles.forEach((info) => {
-          const { ownerNode } = info.stylesheet;
+        managed_styles.forEach((info2) => {
+          const { ownerNode } = info2.stylesheet;
           if (ownerNode)
             detach(ownerNode);
         });
@@ -975,19 +975,19 @@ var require_internal = __commonJS({
     }
     function create_animation3(node, from, fn, params) {
       if (!from)
-        return noop35;
+        return noop33;
       const to = node.getBoundingClientRect();
       if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom)
-        return noop35;
+        return noop33;
       const {
         delay = 0,
-        duration: duration2 = 300,
+        duration: duration3 = 300,
         easing = identity,
         // @ts-ignore todo: should this be separated from destructuring? Or start/end added to public api and documentation?
         start: start_time = exports.now() + delay,
         // @ts-ignore todo:
-        end = start_time + duration2,
-        tick: tick2 = noop35,
+        end = start_time + duration3,
+        tick: tick2 = noop33,
         css
       } = fn(node, { from, to }, params);
       let running = true;
@@ -995,7 +995,7 @@ var require_internal = __commonJS({
       let name2;
       function start() {
         if (css) {
-          name2 = create_rule(node, 0, 1, duration2, delay, easing, css);
+          name2 = create_rule(node, 0, 1, duration3, delay, easing, css);
         }
         if (!delay) {
           started = true;
@@ -1019,7 +1019,7 @@ var require_internal = __commonJS({
         }
         if (started) {
           const p = now - start_time;
-          const t = 0 + 1 * easing(p / duration2);
+          const t = 0 + 1 * easing(p / duration3);
           tick2(t, 1 - t);
         }
         return true;
@@ -1058,7 +1058,7 @@ var require_internal = __commonJS({
     function beforeUpdate(fn) {
       get_current_component().$$.before_update.push(fn);
     }
-    function onMount16(fn) {
+    function onMount18(fn) {
       get_current_component().$$.on_mount.push(fn);
     }
     function afterUpdate5(fn) {
@@ -1067,16 +1067,16 @@ var require_internal = __commonJS({
     function onDestroy8(fn) {
       get_current_component().$$.on_destroy.push(fn);
     }
-    function createEventDispatcher15() {
+    function createEventDispatcher17() {
       const component = get_current_component();
       return (type, detail, { cancelable = false } = {}) => {
         const callbacks = component.$$.callbacks[type];
         if (callbacks) {
-          const event = custom_event(type, detail, { cancelable });
+          const event2 = custom_event(type, detail, { cancelable });
           callbacks.slice().forEach((fn) => {
-            fn.call(component, event);
+            fn.call(component, event2);
           });
-          return !event.defaultPrevented;
+          return !event2.defaultPrevented;
         }
         return true;
       };
@@ -1094,15 +1094,15 @@ var require_internal = __commonJS({
     function hasContext(key) {
       return get_current_component().$$.context.has(key);
     }
-    function bubble11(component, event) {
-      const callbacks = component.$$.callbacks[event.type];
+    function bubble12(component, event2) {
+      const callbacks = component.$$.callbacks[event2.type];
       if (callbacks) {
-        callbacks.slice().forEach((fn) => fn.call(this, event));
+        callbacks.slice().forEach((fn) => fn.call(this, event2));
       }
     }
     var dirty_components = [];
     var intros = { enabled: false };
-    var binding_callbacks35 = [];
+    var binding_callbacks36 = [];
     var render_callbacks = [];
     var flush_callbacks = [];
     var resolved_promise = /* @__PURE__ */ Promise.resolve();
@@ -1117,10 +1117,10 @@ var require_internal = __commonJS({
       schedule_update();
       return resolved_promise;
     }
-    function add_render_callback8(fn) {
+    function add_render_callback11(fn) {
       render_callbacks.push(fn);
     }
-    function add_flush_callback10(fn) {
+    function add_flush_callback11(fn) {
       flush_callbacks.push(fn);
     }
     var seen_callbacks = /* @__PURE__ */ new Set();
@@ -1146,8 +1146,8 @@ var require_internal = __commonJS({
         set_current_component(null);
         dirty_components.length = 0;
         flushidx = 0;
-        while (binding_callbacks35.length)
-          binding_callbacks35.pop()();
+        while (binding_callbacks36.length)
+          binding_callbacks36.pop()();
         for (let i = 0; i < render_callbacks.length; i += 1) {
           const callback = render_callbacks[i];
           if (!seen_callbacks.has(callback)) {
@@ -1171,7 +1171,7 @@ var require_internal = __commonJS({
         const dirty = $$.dirty;
         $$.dirty = [-1];
         $$.fragment && $$.fragment.p($$.ctx, dirty);
-        $$.after_update.forEach(add_render_callback8);
+        $$.after_update.forEach(add_render_callback11);
       }
     }
     function flush_render_callbacks(fns) {
@@ -1191,12 +1191,12 @@ var require_internal = __commonJS({
       }
       return promise;
     }
-    function dispatch(node, direction, kind) {
+    function dispatch2(node, direction, kind) {
       node.dispatchEvent(custom_event(`${direction ? "intro" : "outro"}${kind}`));
     }
     var outroing = /* @__PURE__ */ new Set();
     var outros;
-    function group_outros17() {
+    function group_outros20() {
       outros = {
         r: 0,
         c: [],
@@ -1204,19 +1204,19 @@ var require_internal = __commonJS({
         // parent group
       };
     }
-    function check_outros17() {
+    function check_outros20() {
       if (!outros.r) {
         run_all24(outros.c);
       }
       outros = outros.p;
     }
-    function transition_in56(block, local) {
+    function transition_in57(block, local) {
       if (block && block.i) {
         outroing.delete(block);
         block.i(local);
       }
     }
-    function transition_out56(block, local, detach2, callback) {
+    function transition_out57(block, local, detach2, callback) {
       if (block && block.o) {
         if (outroing.has(block))
           return;
@@ -1247,26 +1247,26 @@ var require_internal = __commonJS({
           delete_rule(node, animation_name);
       }
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop35, css } = config2 || null_transition;
+        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
         if (css)
-          animation_name = create_rule(node, 0, 1, duration2, delay, easing, css, uid++);
+          animation_name = create_rule(node, 0, 1, duration3, delay, easing, css, uid++);
         tick2(0, 1);
         const start_time = exports.now() + delay;
-        const end_time = start_time + duration2;
+        const end_time = start_time + duration3;
         if (task)
           task.abort();
         running = true;
-        add_render_callback8(() => dispatch(node, true, "start"));
+        add_render_callback11(() => dispatch2(node, true, "start"));
         task = loop((now) => {
           if (running) {
             if (now >= end_time) {
               tick2(1, 0);
-              dispatch(node, true, "end");
+              dispatch2(node, true, "end");
               cleanup();
               return running = false;
             }
             if (now >= start_time) {
-              const t = easing((now - start_time) / duration2);
+              const t = easing((now - start_time) / duration3);
               tick2(t, 1 - t);
             }
           }
@@ -1306,24 +1306,24 @@ var require_internal = __commonJS({
       const group = outros;
       group.r += 1;
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop35, css } = config2 || null_transition;
+        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
         if (css)
-          animation_name = create_rule(node, 1, 0, duration2, delay, easing, css);
+          animation_name = create_rule(node, 1, 0, duration3, delay, easing, css);
         const start_time = exports.now() + delay;
-        const end_time = start_time + duration2;
-        add_render_callback8(() => dispatch(node, false, "start"));
+        const end_time = start_time + duration3;
+        add_render_callback11(() => dispatch2(node, false, "start"));
         loop((now) => {
           if (running) {
             if (now >= end_time) {
               tick2(0, 1);
-              dispatch(node, false, "end");
+              dispatch2(node, false, "end");
               if (!--group.r) {
                 run_all24(group.c);
               }
               return false;
             }
             if (now >= start_time) {
-              const t = easing((now - start_time) / duration2);
+              const t = easing((now - start_time) / duration3);
               tick2(1 - t, t);
             }
           }
@@ -1351,7 +1351,7 @@ var require_internal = __commonJS({
         }
       };
     }
-    function create_bidirectional_transition3(node, fn, params, intro) {
+    function create_bidirectional_transition6(node, fn, params, intro) {
       const options = { direction: "both" };
       let config2 = fn(node, params, options);
       let t = intro ? 0 : 1;
@@ -1362,21 +1362,21 @@ var require_internal = __commonJS({
         if (animation_name)
           delete_rule(node, animation_name);
       }
-      function init72(program, duration2) {
+      function init72(program, duration3) {
         const d = program.b - t;
-        duration2 *= Math.abs(d);
+        duration3 *= Math.abs(d);
         return {
           a: t,
           b: program.b,
           d,
-          duration: duration2,
+          duration: duration3,
           start: program.start,
-          end: program.start + duration2,
+          end: program.start + duration3,
           group: program.group
         };
       }
       function go(b) {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop35, css } = config2 || null_transition;
+        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
         const program = {
           start: exports.now() + delay,
           b
@@ -1390,17 +1390,17 @@ var require_internal = __commonJS({
         } else {
           if (css) {
             clear_animation();
-            animation_name = create_rule(node, t, b, duration2, delay, easing, css);
+            animation_name = create_rule(node, t, b, duration3, delay, easing, css);
           }
           if (b)
             tick2(0, 1);
-          running_program = init72(program, duration2);
-          add_render_callback8(() => dispatch(node, b, "start"));
+          running_program = init72(program, duration3);
+          add_render_callback11(() => dispatch2(node, b, "start"));
           loop((now) => {
             if (pending_program && now > pending_program.start) {
-              running_program = init72(pending_program, duration2);
+              running_program = init72(pending_program, duration3);
               pending_program = null;
-              dispatch(node, running_program.b, "start");
+              dispatch2(node, running_program.b, "start");
               if (css) {
                 clear_animation();
                 animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config2.css);
@@ -1409,7 +1409,7 @@ var require_internal = __commonJS({
             if (running_program) {
               if (now >= running_program.end) {
                 tick2(t = running_program.b, 1 - t);
-                dispatch(node, running_program.b, "end");
+                dispatch2(node, running_program.b, "end");
                 if (!pending_program) {
                   if (running_program.b) {
                     clear_animation();
@@ -1446,90 +1446,90 @@ var require_internal = __commonJS({
         }
       };
     }
-    function handle_promise(promise2, info) {
-      const token = info.token = {};
-      function update2(type, index, key, value) {
-        if (info.token !== token)
+    function handle_promise(promise2, info2) {
+      const token = info2.token = {};
+      function update2(type, index, key, value2) {
+        if (info2.token !== token)
           return;
-        info.resolved = value;
-        let child_ctx = info.ctx;
+        info2.resolved = value2;
+        let child_ctx = info2.ctx;
         if (key !== void 0) {
           child_ctx = child_ctx.slice();
-          child_ctx[key] = value;
+          child_ctx[key] = value2;
         }
-        const block = type && (info.current = type)(child_ctx);
+        const block = type && (info2.current = type)(child_ctx);
         let needs_flush = false;
-        if (info.block) {
-          if (info.blocks) {
-            info.blocks.forEach((block2, i) => {
+        if (info2.block) {
+          if (info2.blocks) {
+            info2.blocks.forEach((block2, i) => {
               if (i !== index && block2) {
-                group_outros17();
-                transition_out56(block2, 1, 1, () => {
-                  if (info.blocks[i] === block2) {
-                    info.blocks[i] = null;
+                group_outros20();
+                transition_out57(block2, 1, 1, () => {
+                  if (info2.blocks[i] === block2) {
+                    info2.blocks[i] = null;
                   }
                 });
-                check_outros17();
+                check_outros20();
               }
             });
           } else {
-            info.block.d(1);
+            info2.block.d(1);
           }
           block.c();
-          transition_in56(block, 1);
-          block.m(info.mount(), info.anchor);
+          transition_in57(block, 1);
+          block.m(info2.mount(), info2.anchor);
           needs_flush = true;
         }
-        info.block = block;
-        if (info.blocks)
-          info.blocks[index] = block;
+        info2.block = block;
+        if (info2.blocks)
+          info2.blocks[index] = block;
         if (needs_flush) {
           flush4();
         }
       }
       if (is_promise(promise2)) {
         const current_component = get_current_component();
-        promise2.then((value) => {
+        promise2.then((value2) => {
           set_current_component(current_component);
-          update2(info.then, 1, info.value, value);
+          update2(info2.then, 1, info2.value, value2);
           set_current_component(null);
-        }, (error) => {
+        }, (error2) => {
           set_current_component(current_component);
-          update2(info.catch, 2, info.error, error);
+          update2(info2.catch, 2, info2.error, error2);
           set_current_component(null);
-          if (!info.hasCatch) {
-            throw error;
+          if (!info2.hasCatch) {
+            throw error2;
           }
         });
-        if (info.current !== info.pending) {
-          update2(info.pending, 0);
+        if (info2.current !== info2.pending) {
+          update2(info2.pending, 0);
           return true;
         }
       } else {
-        if (info.current !== info.then) {
-          update2(info.then, 1, info.value, promise2);
+        if (info2.current !== info2.then) {
+          update2(info2.then, 1, info2.value, promise2);
           return true;
         }
-        info.resolved = promise2;
+        info2.resolved = promise2;
       }
     }
-    function update_await_block_branch(info, ctx, dirty) {
+    function update_await_block_branch(info2, ctx, dirty) {
       const child_ctx = ctx.slice();
-      const { resolved } = info;
-      if (info.current === info.then) {
-        child_ctx[info.value] = resolved;
+      const { resolved } = info2;
+      if (info2.current === info2.then) {
+        child_ctx[info2.value] = resolved;
       }
-      if (info.current === info.catch) {
-        child_ctx[info.error] = resolved;
+      if (info2.current === info2.catch) {
+        child_ctx[info2.error] = resolved;
       }
-      info.block.p(child_ctx, dirty);
+      info2.block.p(child_ctx, dirty);
     }
     function destroy_block(block, lookup) {
       block.d(1);
       lookup.delete(block.key);
     }
     function outro_and_destroy_block2(block, lookup) {
-      transition_out56(block, 1, 1, () => {
+      transition_out57(block, 1, 1, () => {
         lookup.delete(block.key);
       });
     }
@@ -1570,7 +1570,7 @@ var require_internal = __commonJS({
       const will_move = /* @__PURE__ */ new Set();
       const did_move = /* @__PURE__ */ new Set();
       function insert2(block) {
-        transition_in56(block, 1);
+        transition_in57(block, 1);
         block.m(node, next);
         lookup.set(block.key, block);
         next = block.first;
@@ -1712,14 +1712,14 @@ var require_internal = __commonJS({
       Object.keys(attributes).forEach((name2) => {
         if (invalid_attribute_name_character.test(name2))
           return;
-        const value = attributes[name2];
-        if (value === true)
+        const value2 = attributes[name2];
+        if (value2 === true)
           str += " " + name2;
         else if (boolean_attributes.has(name2.toLowerCase())) {
-          if (value)
+          if (value2)
             str += " " + name2;
-        } else if (value != null) {
-          str += ` ${name2}="${value}"`;
+        } else if (value2 != null) {
+          str += ` ${name2}="${value2}"`;
         }
       });
       return str;
@@ -1729,15 +1729,15 @@ var require_internal = __commonJS({
       for (const individual_style of style_attribute.split(";")) {
         const colon_index = individual_style.indexOf(":");
         const name2 = individual_style.slice(0, colon_index).trim();
-        const value = individual_style.slice(colon_index + 1).trim();
+        const value2 = individual_style.slice(colon_index + 1).trim();
         if (!name2)
           continue;
-        style_object[name2] = value;
+        style_object[name2] = value2;
       }
       for (const name2 in style_directive) {
-        const value = style_directive[name2];
-        if (value) {
-          style_object[name2] = value;
+        const value2 = style_directive[name2];
+        if (value2) {
+          style_object[name2] = value2;
         } else {
           delete style_object[name2];
         }
@@ -1746,8 +1746,8 @@ var require_internal = __commonJS({
     }
     var ATTR_REGEX = /[&"]/g;
     var CONTENT_REGEX = /[&<]/g;
-    function escape(value, is_attr = false) {
-      const str = String(value);
+    function escape(value2, is_attr = false) {
+      const str = String(value2);
       const pattern = is_attr ? ATTR_REGEX : CONTENT_REGEX;
       pattern.lastIndex = 0;
       let escaped = "";
@@ -1760,9 +1760,9 @@ var require_internal = __commonJS({
       }
       return escaped + str.substring(last);
     }
-    function escape_attribute_value(value) {
-      const should_escape = typeof value === "string" || value && typeof value === "object";
-      return should_escape ? escape(value, true) : value;
+    function escape_attribute_value(value2) {
+      const should_escape = typeof value2 === "string" || value2 && typeof value2 === "object";
+      return should_escape ? escape(value2, true) : value2;
     }
     function escape_object(obj) {
       const result = {};
@@ -1796,7 +1796,7 @@ var require_internal = __commonJS({
     }
     var on_destroy;
     function create_ssr_component(fn) {
-      function $$render(result, props, bindings, slots, context) {
+      function $$render(result, props2, bindings, slots2, context) {
         const parent_component = exports.current_component;
         const $$ = {
           on_destroy,
@@ -1808,15 +1808,15 @@ var require_internal = __commonJS({
           callbacks: blank_object()
         };
         set_current_component({ $$ });
-        const html = fn(result, props, bindings, slots);
+        const html = fn(result, props2, bindings, slots2);
         set_current_component(parent_component);
         return html;
       }
       return {
-        render: (props = {}, { $$slots = {}, context = /* @__PURE__ */ new Map() } = {}) => {
+        render: (props2 = {}, { $$slots = {}, context = /* @__PURE__ */ new Map() } = {}) => {
           on_destroy = [];
           const result = { title: "", head: "", css: /* @__PURE__ */ new Set() };
-          const html = $$render(result, props, {}, $$slots, context);
+          const html = $$render(result, props2, {}, $$slots, context);
           run_all24(on_destroy);
           return {
             html,
@@ -1831,10 +1831,10 @@ var require_internal = __commonJS({
         $$render
       };
     }
-    function add_attribute(name2, value, boolean) {
-      if (value == null || boolean && !value)
+    function add_attribute(name2, value2, boolean) {
+      if (value2 == null || boolean && !value2)
         return "";
-      const assignment = boolean && value === true ? "" : `="${escape(value, true)}"`;
+      const assignment = boolean && value2 === true ? "" : `="${escape(value2, true)}"`;
       return ` ${name2}${assignment}`;
     }
     function add_classes(classes) {
@@ -1847,24 +1847,24 @@ var require_internal = __commonJS({
       const styles = style_object_to_string(style_object);
       return styles ? ` style="${styles}"` : "";
     }
-    function bind10(component, name2, callback) {
+    function bind11(component, name2, callback) {
       const index = component.$$.props[name2];
       if (index !== void 0) {
         component.$$.bound[index] = callback;
         callback(component.$$.ctx[index]);
       }
     }
-    function create_component48(block) {
+    function create_component49(block) {
       block && block.c();
     }
     function claim_component(block, parent_nodes) {
       block && block.l(parent_nodes);
     }
-    function mount_component48(component, target, anchor, customElement) {
+    function mount_component49(component, target, anchor, customElement) {
       const { fragment, after_update } = component.$$;
       fragment && fragment.m(target, anchor);
       if (!customElement) {
-        add_render_callback8(() => {
+        add_render_callback11(() => {
           const new_on_destroy = component.$$.on_mount.map(run).filter(is_function3);
           if (component.$$.on_destroy) {
             component.$$.on_destroy.push(...new_on_destroy);
@@ -1874,9 +1874,9 @@ var require_internal = __commonJS({
           component.$$.on_mount = [];
         });
       }
-      after_update.forEach(add_render_callback8);
+      after_update.forEach(add_render_callback11);
     }
-    function destroy_component48(component, detaching) {
+    function destroy_component49(component, detaching) {
       const $$ = component.$$;
       if ($$.fragment !== null) {
         flush_render_callbacks($$.after_update);
@@ -1894,15 +1894,15 @@ var require_internal = __commonJS({
       }
       component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
     }
-    function init71(component, options, instance70, create_fragment70, not_equal2, props, append_styles2, dirty = [-1]) {
+    function init71(component, options, instance70, create_fragment70, not_equal2, props2, append_styles2, dirty = [-1]) {
       const parent_component = exports.current_component;
       set_current_component(component);
       const $$ = component.$$ = {
         fragment: null,
         ctx: [],
         // state
-        props,
-        update: noop35,
+        props: props2,
+        update: noop33,
         not_equal: not_equal2,
         bound: blank_object(),
         // lifecycle
@@ -1921,10 +1921,10 @@ var require_internal = __commonJS({
       append_styles2 && append_styles2($$.root);
       let ready = false;
       $$.ctx = instance70 ? instance70(component, options.props || {}, (i, ret, ...rest) => {
-        const value = rest.length ? rest[0] : ret;
-        if ($$.ctx && not_equal2($$.ctx[i], $$.ctx[i] = value)) {
+        const value2 = rest.length ? rest[0] : ret;
+        if ($$.ctx && not_equal2($$.ctx[i], $$.ctx[i] = value2)) {
           if (!$$.skip_bound && $$.bound[i])
-            $$.bound[i](value);
+            $$.bound[i](value2);
           if (ready)
             make_dirty(component, i);
         }
@@ -1944,8 +1944,8 @@ var require_internal = __commonJS({
           $$.fragment && $$.fragment.c();
         }
         if (options.intro)
-          transition_in56(component.$$.fragment);
-        mount_component48(component, options.target, options.anchor, options.customElement);
+          transition_in57(component.$$.fragment);
+        mount_component49(component, options.target, options.anchor, options.customElement);
         end_hydrating();
         flush4();
       }
@@ -1971,12 +1971,12 @@ var require_internal = __commonJS({
           run_all24(this.$$.on_disconnect);
         }
         $destroy() {
-          destroy_component48(this, 1);
-          this.$destroy = noop35;
+          destroy_component49(this, 1);
+          this.$destroy = noop33;
         }
         $on(type, callback) {
           if (!is_function3(callback)) {
-            return noop35;
+            return noop33;
           }
           const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
           callbacks.push(callback);
@@ -1986,10 +1986,10 @@ var require_internal = __commonJS({
               callbacks.splice(index, 1);
           };
         }
-        $set($$props) {
-          if (this.$$set && !is_empty($$props)) {
+        $set($$props2) {
+          if (this.$$set && !is_empty($$props2)) {
             this.$$.skip_bound = true;
-            this.$$set($$props);
+            this.$$set($$props2);
             this.$$.skip_bound = false;
           }
         }
@@ -1997,12 +1997,12 @@ var require_internal = __commonJS({
     }
     var SvelteComponent = class {
       $destroy() {
-        destroy_component48(this, 1);
-        this.$destroy = noop35;
+        destroy_component49(this, 1);
+        this.$destroy = noop33;
       }
       $on(type, callback) {
         if (!is_function3(callback)) {
-          return noop35;
+          return noop33;
         }
         const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
         callbacks.push(callback);
@@ -2012,10 +2012,10 @@ var require_internal = __commonJS({
             callbacks.splice(index, 1);
         };
       }
-      $set($$props) {
-        if (this.$$set && !is_empty($$props)) {
+      $set($$props2) {
+        if (this.$$set && !is_empty($$props2)) {
           this.$$.skip_bound = true;
-          this.$$set($$props);
+          this.$$set($$props2);
           this.$$.skip_bound = false;
         }
       }
@@ -2023,7 +2023,7 @@ var require_internal = __commonJS({
     function dispatch_dev71(type, detail) {
       document.dispatchEvent(custom_event(type, Object.assign({ version: "3.59.2" }, detail), { bubbles: true }));
     }
-    function append_dev52(target, node) {
+    function append_dev54(target, node) {
       dispatch_dev71("SvelteDOMInsert", { target, node });
       append(target, node);
     }
@@ -2058,7 +2058,7 @@ var require_internal = __commonJS({
         detach_dev71(before.nextSibling);
       }
     }
-    function listen_dev29(node, event, handler, options, has_prevent_default, has_stop_propagation, has_stop_immediate_propagation) {
+    function listen_dev29(node, event2, handler, options, has_prevent_default, has_stop_propagation, has_stop_immediate_propagation) {
       const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
       if (has_prevent_default)
         modifiers.push("preventDefault");
@@ -2066,47 +2066,47 @@ var require_internal = __commonJS({
         modifiers.push("stopPropagation");
       if (has_stop_immediate_propagation)
         modifiers.push("stopImmediatePropagation");
-      dispatch_dev71("SvelteDOMAddEventListener", { node, event, handler, modifiers });
-      const dispose = listen(node, event, handler, options);
+      dispatch_dev71("SvelteDOMAddEventListener", { node, event: event2, handler, modifiers });
+      const dispose = listen(node, event2, handler, options);
       return () => {
-        dispatch_dev71("SvelteDOMRemoveEventListener", { node, event, handler, modifiers });
+        dispatch_dev71("SvelteDOMRemoveEventListener", { node, event: event2, handler, modifiers });
         dispose();
       };
     }
-    function attr_dev56(node, attribute, value) {
-      attr(node, attribute, value);
-      if (value == null)
+    function attr_dev56(node, attribute, value2) {
+      attr(node, attribute, value2);
+      if (value2 == null)
         dispatch_dev71("SvelteDOMRemoveAttribute", { node, attribute });
       else
-        dispatch_dev71("SvelteDOMSetAttribute", { node, attribute, value });
+        dispatch_dev71("SvelteDOMSetAttribute", { node, attribute, value: value2 });
     }
-    function prop_dev5(node, property, value) {
-      node[property] = value;
-      dispatch_dev71("SvelteDOMSetProperty", { node, property, value });
+    function prop_dev5(node, property, value2) {
+      node[property] = value2;
+      dispatch_dev71("SvelteDOMSetProperty", { node, property, value: value2 });
     }
-    function dataset_dev(node, property, value) {
-      node.dataset[property] = value;
-      dispatch_dev71("SvelteDOMSetDataset", { node, property, value });
+    function dataset_dev(node, property, value2) {
+      node.dataset[property] = value2;
+      dispatch_dev71("SvelteDOMSetDataset", { node, property, value: value2 });
     }
-    function set_data_dev26(text43, data) {
+    function set_data_dev28(text46, data) {
       data = "" + data;
-      if (text43.data === data)
+      if (text46.data === data)
         return;
-      dispatch_dev71("SvelteDOMSetData", { node: text43, data });
-      text43.data = data;
+      dispatch_dev71("SvelteDOMSetData", { node: text46, data });
+      text46.data = data;
     }
-    function set_data_contenteditable_dev(text43, data) {
+    function set_data_contenteditable_dev(text46, data) {
       data = "" + data;
-      if (text43.wholeText === data)
+      if (text46.wholeText === data)
         return;
-      dispatch_dev71("SvelteDOMSetData", { node: text43, data });
-      text43.data = data;
+      dispatch_dev71("SvelteDOMSetData", { node: text46, data });
+      text46.data = data;
     }
-    function set_data_maybe_contenteditable_dev(text43, data, attr_value) {
+    function set_data_maybe_contenteditable_dev(text46, data, attr_value) {
       if (~contenteditable_truthy_values.indexOf(attr_value)) {
-        set_data_contenteditable_dev(text43, data);
+        set_data_contenteditable_dev(text46, data);
       } else {
-        set_data_dev26(text43, data);
+        set_data_dev28(text46, data);
       }
     }
     function validate_each_argument12(arg) {
@@ -2136,10 +2136,10 @@ var require_internal = __commonJS({
         console.warn(`<svelte:element this="${tag}"> is self-closing and cannot have content.`);
       }
     }
-    function construct_svelte_component_dev2(component, props) {
+    function construct_svelte_component_dev2(component, props2) {
       const error_message = "this={...} of <svelte:component> should specify a Svelte component.";
       try {
-        const instance70 = new component(props);
+        const instance70 = new component(props2);
         if (!instance70.$$ || !instance70.$set || !instance70.$on || !instance70.$destroy) {
           throw new Error(error_message);
         }
@@ -2193,15 +2193,15 @@ var require_internal = __commonJS({
     exports.action_destroyer = action_destroyer2;
     exports.add_attribute = add_attribute;
     exports.add_classes = add_classes;
-    exports.add_flush_callback = add_flush_callback10;
+    exports.add_flush_callback = add_flush_callback11;
     exports.add_iframe_resize_listener = add_iframe_resize_listener;
     exports.add_location = add_location69;
-    exports.add_render_callback = add_render_callback8;
+    exports.add_render_callback = add_render_callback11;
     exports.add_styles = add_styles;
     exports.add_transform = add_transform3;
     exports.afterUpdate = afterUpdate5;
     exports.append = append;
-    exports.append_dev = append_dev52;
+    exports.append_dev = append_dev54;
     exports.append_empty_stylesheet = append_empty_stylesheet;
     exports.append_hydration = append_hydration;
     exports.append_hydration_dev = append_hydration_dev;
@@ -2211,11 +2211,11 @@ var require_internal = __commonJS({
     exports.attr_dev = attr_dev56;
     exports.attribute_to_object = attribute_to_object;
     exports.beforeUpdate = beforeUpdate;
-    exports.bind = bind10;
-    exports.binding_callbacks = binding_callbacks35;
+    exports.bind = bind11;
+    exports.binding_callbacks = binding_callbacks36;
     exports.blank_object = blank_object;
-    exports.bubble = bubble11;
-    exports.check_outros = check_outros17;
+    exports.bubble = bubble12;
+    exports.check_outros = check_outros20;
     exports.children = children;
     exports.claim_comment = claim_comment;
     exports.claim_component = claim_component;
@@ -2226,16 +2226,16 @@ var require_internal = __commonJS({
     exports.claim_text = claim_text;
     exports.clear_loops = clear_loops;
     exports.comment = comment;
-    exports.component_subscribe = component_subscribe9;
+    exports.component_subscribe = component_subscribe12;
     exports.compute_rest_props = compute_rest_props;
     exports.compute_slots = compute_slots3;
     exports.construct_svelte_component = construct_svelte_component;
     exports.construct_svelte_component_dev = construct_svelte_component_dev2;
     exports.contenteditable_truthy_values = contenteditable_truthy_values;
-    exports.createEventDispatcher = createEventDispatcher15;
+    exports.createEventDispatcher = createEventDispatcher17;
     exports.create_animation = create_animation3;
-    exports.create_bidirectional_transition = create_bidirectional_transition3;
-    exports.create_component = create_component48;
+    exports.create_bidirectional_transition = create_bidirectional_transition6;
+    exports.create_component = create_component49;
     exports.create_in_transition = create_in_transition4;
     exports.create_out_transition = create_out_transition4;
     exports.create_slot = create_slot12;
@@ -2244,7 +2244,7 @@ var require_internal = __commonJS({
     exports.dataset_dev = dataset_dev;
     exports.debug = debug;
     exports.destroy_block = destroy_block;
-    exports.destroy_component = destroy_component48;
+    exports.destroy_component = destroy_component49;
     exports.destroy_each = destroy_each9;
     exports.detach = detach;
     exports.detach_after_dev = detach_after_dev;
@@ -2279,7 +2279,7 @@ var require_internal = __commonJS({
     exports.get_spread_update = get_spread_update16;
     exports.get_store_value = get_store_value;
     exports.globals = globals19;
-    exports.group_outros = group_outros17;
+    exports.group_outros = group_outros20;
     exports.handle_promise = handle_promise;
     exports.hasContext = hasContext;
     exports.has_prop = has_prop;
@@ -2306,13 +2306,13 @@ var require_internal = __commonJS({
     exports.loop_guard = loop_guard;
     exports.merge_ssr_styles = merge_ssr_styles;
     exports.missing_component = missing_component;
-    exports.mount_component = mount_component48;
-    exports.noop = noop35;
+    exports.mount_component = mount_component49;
+    exports.noop = noop33;
     exports.not_equal = not_equal;
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
     exports.onDestroy = onDestroy8;
-    exports.onMount = onMount16;
+    exports.onMount = onMount18;
     exports.once = once;
     exports.outro_and_destroy_block = outro_and_destroy_block2;
     exports.prevent_default = prevent_default5;
@@ -2338,7 +2338,7 @@ var require_internal = __commonJS({
     exports.set_data = set_data;
     exports.set_data_contenteditable = set_data_contenteditable;
     exports.set_data_contenteditable_dev = set_data_contenteditable_dev;
-    exports.set_data_dev = set_data_dev26;
+    exports.set_data_dev = set_data_dev28;
     exports.set_data_maybe_contenteditable = set_data_maybe_contenteditable;
     exports.set_data_maybe_contenteditable_dev = set_data_maybe_contenteditable_dev;
     exports.set_dynamic_element_data = set_dynamic_element_data;
@@ -2349,7 +2349,7 @@ var require_internal = __commonJS({
     exports.set_store_value = set_store_value2;
     exports.set_style = set_style6;
     exports.set_svg_attributes = set_svg_attributes;
-    exports.space = space53;
+    exports.space = space54;
     exports.split_css_unit = split_css_unit;
     exports.spread = spread;
     exports.src_url_equal = src_url_equal2;
@@ -2358,13 +2358,13 @@ var require_internal = __commonJS({
     exports.stop_propagation = stop_propagation4;
     exports.subscribe = subscribe;
     exports.svg_element = svg_element;
-    exports.text = text42;
+    exports.text = text45;
     exports.tick = tick;
     exports.time_ranges_to_array = time_ranges_to_array;
-    exports.to_number = to_number2;
-    exports.toggle_class = toggle_class23;
-    exports.transition_in = transition_in56;
-    exports.transition_out = transition_out56;
+    exports.to_number = to_number;
+    exports.toggle_class = toggle_class25;
+    exports.transition_in = transition_in57;
+    exports.transition_out = transition_out57;
     exports.trusted = trusted;
     exports.update_await_block_branch = update_await_block_branch;
     exports.update_keyed_each = update_keyed_each4;
@@ -2375,7 +2375,7 @@ var require_internal = __commonJS({
     exports.validate_each_argument = validate_each_argument12;
     exports.validate_each_keys = validate_each_keys4;
     exports.validate_slots = validate_slots71;
-    exports.validate_store = validate_store9;
+    exports.validate_store = validate_store12;
     exports.validate_void_dynamic_element = validate_void_dynamic_element;
     exports.xlink_attr = xlink_attr;
   }
@@ -2469,22 +2469,22 @@ var require_store = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var internal = require_internal();
     var subscriber_queue = [];
-    function readable(value, start) {
+    function readable(value2, start) {
       return {
-        subscribe: writable6(value, start).subscribe
+        subscribe: writable6(value2, start).subscribe
       };
     }
-    function writable6(value, start = internal.noop) {
+    function writable6(value2, start = internal.noop) {
       let stop;
       const subscribers = /* @__PURE__ */ new Set();
       function set(new_value) {
-        if (internal.safe_not_equal(value, new_value)) {
-          value = new_value;
+        if (internal.safe_not_equal(value2, new_value)) {
+          value2 = new_value;
           if (stop) {
             const run_queue = !subscriber_queue.length;
             for (const subscriber of subscribers) {
               subscriber[1]();
-              subscriber_queue.push(subscriber, value);
+              subscriber_queue.push(subscriber, value2);
             }
             if (run_queue) {
               for (let i = 0; i < subscriber_queue.length; i += 2) {
@@ -2496,7 +2496,7 @@ var require_store = __commonJS({
         }
       }
       function update(fn) {
-        set(fn(value));
+        set(fn(value2));
       }
       function subscribe(run, invalidate = internal.noop) {
         const subscriber = [run, invalidate];
@@ -2504,7 +2504,7 @@ var require_store = __commonJS({
         if (subscribers.size === 1) {
           stop = start(set) || internal.noop;
         }
-        run(value);
+        run(value2);
         return () => {
           subscribers.delete(subscriber);
           if (subscribers.size === 0 && stop) {
@@ -2536,8 +2536,8 @@ var require_store = __commonJS({
             cleanup = internal.is_function(result) ? result : internal.noop;
           }
         };
-        const unsubscribers = stores_array.map((store, i) => internal.subscribe(store, (value) => {
-          values[i] = value;
+        const unsubscribers = stores_array.map((store, i) => internal.subscribe(store, (value2) => {
+          values[i] = value2;
           pending &= ~(1 << i);
           if (started) {
             sync();
@@ -2751,29 +2751,29 @@ var require_transition = __commonJS({
         }
       return t;
     }
-    function blur(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicInOut, amount = 5, opacity = 0 } = {}) {
+    function blur(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicInOut, amount: amount2 = 5, opacity = 0 } = {}) {
       const style = getComputedStyle(node);
       const target_opacity = +style.opacity;
       const f = style.filter === "none" ? "" : style.filter;
       const od = target_opacity * (1 - opacity);
-      const [value, unit] = internal.split_css_unit(amount);
+      const [value2, unit] = internal.split_css_unit(amount2);
       return {
         delay,
-        duration: duration2,
+        duration: duration3,
         easing: easing$1,
-        css: (_t, u) => `opacity: ${target_opacity - od * u}; filter: ${f} blur(${u * value}${unit});`
+        css: (_t, u) => `opacity: ${target_opacity - od * u}; filter: ${f} blur(${u * value2}${unit});`
       };
     }
-    function fade(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.linear } = {}) {
+    function fade(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.linear } = {}) {
       const o = +getComputedStyle(node).opacity;
       return {
         delay,
-        duration: duration2,
+        duration: duration3,
         easing: easing$1,
         css: (t) => `opacity: ${t * o}`
       };
     }
-    function fly3(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicOut, x = 0, y = 0, opacity = 0 } = {}) {
+    function fly3(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicOut, x = 0, y = 0, opacity = 0 } = {}) {
       const style = getComputedStyle(node);
       const target_opacity = +style.opacity;
       const transform = style.transform === "none" ? "" : style.transform;
@@ -2782,14 +2782,14 @@ var require_transition = __commonJS({
       const [yValue, yUnit] = internal.split_css_unit(y);
       return {
         delay,
-        duration: duration2,
+        duration: duration3,
         easing: easing$1,
         css: (t, u) => `
 			transform: ${transform} translate(${(1 - t) * xValue}${xUnit}, ${(1 - t) * yValue}${yUnit});
 			opacity: ${target_opacity - od * u}`
       };
     }
-    function slide2(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicOut, axis = "y" } = {}) {
+    function slide5(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicOut, axis = "y" } = {}) {
       const style = getComputedStyle(node);
       const opacity = +style.opacity;
       const primary_property = axis === "y" ? "height" : "width";
@@ -2804,12 +2804,12 @@ var require_transition = __commonJS({
       const border_width_end_value = parseFloat(style[`border${capitalized_secondary_properties[1]}Width`]);
       return {
         delay,
-        duration: duration2,
+        duration: duration3,
         easing: easing$1,
         css: (t) => `overflow: hidden;opacity: ${Math.min(t * 20, 1) * opacity};${primary_property}: ${t * primary_property_value}px;padding-${secondary_properties[0]}: ${t * padding_start_value}px;padding-${secondary_properties[1]}: ${t * padding_end_value}px;margin-${secondary_properties[0]}: ${t * margin_start_value}px;margin-${secondary_properties[1]}: ${t * margin_end_value}px;border-${secondary_properties[0]}-width: ${t * border_width_start_value}px;border-${secondary_properties[1]}-width: ${t * border_width_end_value}px;`
       };
     }
-    function scale2(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicOut, start = 0, opacity = 0 } = {}) {
+    function scale2(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicOut, start = 0, opacity = 0 } = {}) {
       const style = getComputedStyle(node);
       const target_opacity = +style.opacity;
       const transform = style.transform === "none" ? "" : style.transform;
@@ -2817,7 +2817,7 @@ var require_transition = __commonJS({
       const od = target_opacity * (1 - opacity);
       return {
         delay,
-        duration: duration2,
+        duration: duration3,
         easing: easing$1,
         css: (_t, u) => `
 			transform: ${transform} scale(${1 - sd * u});
@@ -2825,24 +2825,24 @@ var require_transition = __commonJS({
 		`
       };
     }
-    function draw(node, { delay = 0, speed, duration: duration2, easing: easing$1 = easing.cubicInOut } = {}) {
+    function draw(node, { delay = 0, speed, duration: duration3, easing: easing$1 = easing.cubicInOut } = {}) {
       let len = node.getTotalLength();
       const style = getComputedStyle(node);
       if (style.strokeLinecap !== "butt") {
         len += parseInt(style.strokeWidth);
       }
-      if (duration2 === void 0) {
+      if (duration3 === void 0) {
         if (speed === void 0) {
-          duration2 = 800;
+          duration3 = 800;
         } else {
-          duration2 = len / speed;
+          duration3 = len / speed;
         }
-      } else if (typeof duration2 === "function") {
-        duration2 = duration2(len);
+      } else if (typeof duration3 === "function") {
+        duration3 = duration3(len);
       }
       return {
         delay,
-        duration: duration2,
+        duration: duration3,
         easing: easing$1,
         css: (_, u) => `
 			stroke-dasharray: ${len};
@@ -2855,7 +2855,7 @@ var require_transition = __commonJS({
       const to_receive = /* @__PURE__ */ new Map();
       const to_send = /* @__PURE__ */ new Map();
       function crossfade3(from_node, node, params) {
-        const { delay = 0, duration: duration2 = (d2) => Math.sqrt(d2) * 30, easing: easing$1 = easing.cubicOut } = internal.assign(internal.assign({}, defaults), params);
+        const { delay = 0, duration: duration3 = (d2) => Math.sqrt(d2) * 30, easing: easing$1 = easing.cubicOut } = internal.assign(internal.assign({}, defaults), params);
         const from = from_node.getBoundingClientRect();
         const to = node.getBoundingClientRect();
         const dx = from.left - to.left;
@@ -2868,7 +2868,7 @@ var require_transition = __commonJS({
         const opacity = +style.opacity;
         return {
           delay,
-          duration: internal.is_function(duration2) ? duration2(d) : duration2,
+          duration: internal.is_function(duration3) ? duration3(d) : duration3,
           easing: easing$1,
           css: (t, u) => `
 				opacity: ${t * opacity};
@@ -2902,7 +2902,7 @@ var require_transition = __commonJS({
     exports.fade = fade;
     exports.fly = fly3;
     exports.scale = scale2;
-    exports.slide = slide2;
+    exports.slide = slide5;
   }
 });
 
@@ -2919,10 +2919,10 @@ var require_animate = __commonJS({
       const [ox, oy] = style.transformOrigin.split(" ").map(parseFloat);
       const dx = from.left + from.width * ox / to.width - (to.left + ox);
       const dy = from.top + from.height * oy / to.height - (to.top + oy);
-      const { delay = 0, duration: duration2 = (d) => Math.sqrt(d) * 120, easing: easing$1 = easing.cubicOut } = params;
+      const { delay = 0, duration: duration3 = (d) => Math.sqrt(d) * 120, easing: easing$1 = easing.cubicOut } = params;
       return {
         delay,
-        duration: internal.is_function(duration2) ? duration2(Math.sqrt(dx * dx + dy * dy)) : duration2,
+        duration: internal.is_function(duration3) ? duration3(Math.sqrt(dx * dx + dy * dy)) : duration3,
         easing: easing$1,
         css: (t, u) => {
           const x = u * dx;
@@ -3053,16 +3053,16 @@ var require_prism = __commonJS({
           clone: function deepClone(o, visited) {
             visited = visited || {};
             var clone;
-            var id;
+            var id2;
             switch (_.util.type(o)) {
               case "Object":
-                id = _.util.objId(o);
-                if (visited[id]) {
-                  return visited[id];
+                id2 = _.util.objId(o);
+                if (visited[id2]) {
+                  return visited[id2];
                 }
                 clone = /** @type {Record<string, any>} */
                 {};
-                visited[id] = clone;
+                visited[id2] = clone;
                 for (var key in o) {
                   if (o.hasOwnProperty(key)) {
                     clone[key] = deepClone(o[key], visited);
@@ -3073,12 +3073,12 @@ var require_prism = __commonJS({
                   clone
                 );
               case "Array":
-                id = _.util.objId(o);
-                if (visited[id]) {
-                  return visited[id];
+                id2 = _.util.objId(o);
+                if (visited[id2]) {
+                  return visited[id2];
                 }
                 clone = [];
-                visited[id] = clone;
+                visited[id2] = clone;
                 /** @type {Array} */
                 /** @type {any} */
                 o.forEach(function(v, i) {
@@ -3172,11 +3172,11 @@ var require_prism = __commonJS({
            * @param {boolean} [defaultActivation=false]
            * @returns {boolean}
            */
-          isActive: function(element69, className, defaultActivation) {
-            var no = "no-" + className;
+          isActive: function(element69, className2, defaultActivation) {
+            var no = "no-" + className2;
             while (element69) {
               var classList = element69.classList;
-              if (classList.contains(className)) {
+              if (classList.contains(className2)) {
                 return true;
               }
               if (classList.contains(no)) {
@@ -3230,8 +3230,8 @@ var require_prism = __commonJS({
            *     'color': /\b(?:red|green|blue)\b/
            * });
            */
-          extend: function(id, redef) {
-            var lang2 = _.util.clone(_.languages[id]);
+          extend: function(id2, redef) {
+            var lang2 = _.util.clone(_.languages[id2]);
             for (var key in redef) {
               lang2[key] = redef[key];
             }
@@ -3333,8 +3333,8 @@ var require_prism = __commonJS({
             }
             var old = root[inside];
             root[inside] = ret;
-            _.languages.DFS(_.languages, function(key, value) {
-              if (value === old && key != inside) {
+            _.languages.DFS(_.languages, function(key, value2) {
+              if (value2 === old && key != inside) {
                 this[key] = ret;
               }
             });
@@ -3504,9 +3504,9 @@ var require_prism = __commonJS({
          * @example
          * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
          */
-        highlight: function(text42, grammar, language) {
+        highlight: function(text45, grammar, language) {
           var env = {
-            code: text42,
+            code: text45,
             grammar,
             language
           };
@@ -3542,7 +3542,7 @@ var require_prism = __commonJS({
          *     }
          * });
          */
-        tokenize: function(text42, grammar) {
+        tokenize: function(text45, grammar) {
           var rest = grammar.rest;
           if (rest) {
             for (var token in rest) {
@@ -3551,8 +3551,8 @@ var require_prism = __commonJS({
             delete grammar.rest;
           }
           var tokenList = new LinkedList();
-          addAfter(tokenList, tokenList.head, text42);
-          matchGrammar(text42, tokenList, grammar, tokenList.head, 0);
+          addAfter(tokenList, tokenList.head, text45);
+          matchGrammar(text45, tokenList, grammar, tokenList.head, 0);
           return toArray(tokenList);
         },
         /**
@@ -3641,9 +3641,9 @@ var require_prism = __commonJS({
         }
         return "<" + env.tag + ' class="' + env.classes.join(" ") + '"' + attributes + ">" + env.content + "</" + env.tag + ">";
       };
-      function matchPattern(pattern, pos, text42, lookbehind) {
+      function matchPattern(pattern, pos, text45, lookbehind) {
         pattern.lastIndex = pos;
-        var match = pattern.exec(text42);
+        var match = pattern.exec(text45);
         if (match && lookbehind && match[1]) {
           var lookbehindLength = match[1].length;
           match.index += lookbehindLength;
@@ -3651,7 +3651,7 @@ var require_prism = __commonJS({
         }
         return match;
       }
-      function matchGrammar(text42, tokenList, grammar, startNode, startPos, rematch) {
+      function matchGrammar(text45, tokenList, grammar, startNode, startPos, rematch) {
         for (var token in grammar) {
           if (!grammar.hasOwnProperty(token) || !grammar[token]) {
             continue;
@@ -3677,7 +3677,7 @@ var require_prism = __commonJS({
                 break;
               }
               var str = currentNode.value;
-              if (tokenList.length > text42.length) {
+              if (tokenList.length > text45.length) {
                 return;
               }
               if (str instanceof Token) {
@@ -3686,8 +3686,8 @@ var require_prism = __commonJS({
               var removeCount = 1;
               var match;
               if (greedy) {
-                match = matchPattern(pattern, pos, text42, lookbehind);
-                if (!match || match.index >= text42.length) {
+                match = matchPattern(pattern, pos, text45, lookbehind);
+                if (!match || match.index >= text45.length) {
                   break;
                 }
                 var from = match.index;
@@ -3708,7 +3708,7 @@ var require_prism = __commonJS({
                   p += k.value.length;
                 }
                 removeCount--;
-                str = text42.slice(pos, p);
+                str = text45.slice(pos, p);
                 match.index -= pos;
               } else {
                 match = matchPattern(pattern, 0, str, lookbehind);
@@ -3740,7 +3740,7 @@ var require_prism = __commonJS({
                   cause: token + "," + j,
                   reach
                 };
-                matchGrammar(text42, tokenList, grammar, currentNode.prev, pos, nestedRematch);
+                matchGrammar(text45, tokenList, grammar, currentNode.prev, pos, nestedRematch);
                 if (rematch && nestedRematch.reach > rematch.reach) {
                   rematch.reach = nestedRematch.reach;
                 }
@@ -3757,9 +3757,9 @@ var require_prism = __commonJS({
         this.tail = tail;
         this.length = 0;
       }
-      function addAfter(list, node, value) {
+      function addAfter(list, node, value2) {
         var next = node.next;
-        var newNode = { value, prev: node, next };
+        var newNode = { value: value2, prev: node, next };
         node.next = newNode;
         next.prev = newNode;
         list.length++;
@@ -4268,7 +4268,7 @@ var require_prism = __commonJS({
       var STATUS_LOADED = "loaded";
       var STATUS_FAILED = "failed";
       var SELECTOR = "pre[data-src]:not([" + STATUS_ATTR + '="' + STATUS_LOADED + '"]):not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
-      function loadFile(src, success, error) {
+      function loadFile(src, success, error2) {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", src, true);
         xhr.onreadystatechange = function() {
@@ -4277,9 +4277,9 @@ var require_prism = __commonJS({
               success(xhr.responseText);
             } else {
               if (xhr.status >= 400) {
-                error(FAILURE_MESSAGE(xhr.status, xhr.statusText));
+                error2(FAILURE_MESSAGE(xhr.status, xhr.statusText));
               } else {
-                error(FAILURE_EMPTY_MESSAGE);
+                error2(FAILURE_EMPTY_MESSAGE);
               }
             }
           }
@@ -4329,11 +4329,11 @@ var require_prism = __commonJS({
           }
           loadFile(
             src,
-            function(text42) {
+            function(text45) {
               pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
               var range2 = parseRange(pre.getAttribute("data-range"));
               if (range2) {
-                var lines = text42.split(/\r\n?|\n/g);
+                var lines = text45.split(/\r\n?|\n/g);
                 var start = range2[0];
                 var end = range2[1] == null ? lines.length : range2[1];
                 if (start < 0) {
@@ -4344,17 +4344,17 @@ var require_prism = __commonJS({
                   end += lines.length;
                 }
                 end = Math.max(0, Math.min(end, lines.length));
-                text42 = lines.slice(start, end).join("\n");
+                text45 = lines.slice(start, end).join("\n");
                 if (!pre.hasAttribute("data-start")) {
                   pre.setAttribute("data-start", String(start + 1));
                 }
               }
-              code.textContent = text42;
+              code.textContent = text45;
               Prism2.highlightElement(code);
             },
-            function(error) {
+            function(error2) {
               pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
-              code.textContent = error;
+              code.textContent = error2;
             }
           );
         }
@@ -4404,8 +4404,8 @@ var require_prism_normalize_whitespace = __commonJS({
       function NormalizeWhitespace(defaults) {
         this.defaults = assign16({}, defaults);
       }
-      function toCamelCase(value) {
-        return value.replace(/-(\w)/g, function(match, firstChar) {
+      function toCamelCase(value2) {
+        return value2.replace(/-(\w)/g, function(match, firstChar) {
           return firstChar.toUpperCase();
         });
       }
@@ -4543,9 +4543,9 @@ var require_prism_normalize_whitespace = __commonJS({
             var settingType = settingsConfig[key];
             if (pre.hasAttribute("data-" + key)) {
               try {
-                var value = JSON.parse(pre.getAttribute("data-" + key) || "true");
-                if (typeof value === settingType) {
-                  env.settings[key] = value;
+                var value2 = JSON.parse(pre.getAttribute("data-" + key) || "true");
+                if (typeof value2 === settingType) {
+                  env.settings[key] = value2;
                 }
               } catch (_error) {
               }
@@ -4799,12 +4799,12 @@ function roundAmount(val, precision = 2) {
   const multiplier = Math.pow(10, precision);
   return Math.round(val * multiplier) / multiplier;
 }
-function blink(el, duration2 = 160) {
+function blink(el, duration3 = 160) {
   return animate(
     el,
     { opacity: 1 },
     { opacity: 0.5 },
-    { duration: duration2 / 2, fill: "backwards" }
+    { duration: duration3 / 2, fill: "backwards" }
   );
 }
 function timeAgo(date, now) {
@@ -4958,11 +4958,11 @@ function create_fragment(ctx) {
   });
   return block;
 }
-function instance($$self, $$props, $$invalidate) {
+function instance($$self2, $$props2, $$invalidate2) {
   let svg;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal.validate_slots)("Icon", slots, []);
-  let { name: name2 = "" } = $$props;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal.validate_slots)("Icon", slots2, []);
+  let { name: name2 = "" } = $$props2;
   const aliases = {
     add: "plus",
     report: "reportAnalytics",
@@ -4977,29 +4977,29 @@ function instance($$self, $$props, $$invalidate) {
     return `<svg width="20" height="20" title="${_name}"></svg>`;
   }
   const writable_props = ["name"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Icon> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("name" in $$props2)
-      $$invalidate(1, name2 = $$props2.name);
+  $$self2.$$set = ($$props3) => {
+    if ("name" in $$props3)
+      $$invalidate2(1, name2 = $$props3.name);
   };
-  $$self.$capture_state = () => ({ icons, name: name2, aliases, findIcon, svg });
-  $$self.$inject_state = ($$props2) => {
-    if ("name" in $$props2)
-      $$invalidate(1, name2 = $$props2.name);
-    if ("svg" in $$props2)
-      $$invalidate(0, svg = $$props2.svg);
+  $$self2.$capture_state = () => ({ icons, name: name2, aliases, findIcon, svg });
+  $$self2.$inject_state = ($$props3) => {
+    if ("name" in $$props3)
+      $$invalidate2(1, name2 = $$props3.name);
+    if ("svg" in $$props3)
+      $$invalidate2(0, svg = $$props3.svg);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*name*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty & /*name*/
     2) {
       $:
-        $$invalidate(0, svg = findIcon(name2));
+        $$invalidate2(0, svg = findIcon(name2));
     }
   };
   return [svg, name2];
@@ -5018,7 +5018,7 @@ var Icon = class extends import_internal.SvelteComponentDev {
   get name() {
     throw new Error("<Icon>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set name(value) {
+  set name(value2) {
     throw new Error("<Icon>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -5826,24 +5826,24 @@ function create_fragment2(ctx) {
   });
   return block;
 }
-function instance2($$self, $$props, $$invalidate) {
+function instance2($$self2, $$props2, $$invalidate2) {
   let elevated;
-  let props;
+  let props2;
   let valueMatchesItem;
   let shouldShowNewItem;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal2.validate_slots)("Autocomplete", slots, []);
-  let { data = [] } = $$props;
-  let { value = null } = $$props;
-  let { allowNew = false } = $$props;
-  let { showAllInitially = true } = $$props;
-  let { clearOnEsc = false } = $$props;
-  let { elevate = false } = $$props;
-  let { showOnFocus = false } = $$props;
-  let { hideOnScroll = false } = $$props;
-  let { hideOnResize = false } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte.createEventDispatcher)();
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal2.validate_slots)("Autocomplete", slots2, []);
+  let { data = [] } = $$props2;
+  let { value: value2 = null } = $$props2;
+  let { allowNew = false } = $$props2;
+  let { showAllInitially = true } = $$props2;
+  let { clearOnEsc = false } = $$props2;
+  let { elevate = false } = $$props2;
+  let { showOnFocus = false } = $$props2;
+  let { hideOnScroll = false } = $$props2;
+  let { hideOnResize = false } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte.createEventDispatcher)();
   const gui = guid();
   let el, inputEl, listEl;
   let opened = false;
@@ -5865,7 +5865,7 @@ function instance2($$self, $$props, $$invalidate) {
   (0, import_svelte.afterUpdate)(() => {
     if (!opened && data.length) {
       if (data.length && typeof data[0] === "string") {
-        $$invalidate(23, data = data.map((item) => ({ name: item })));
+        $$invalidate2(23, data = data.map((item) => ({ name: item })));
       }
       filter();
       setInitialValue();
@@ -5894,22 +5894,22 @@ function instance2($$self, $$props, $$invalidate) {
         item.highlightedName = emphasize(item.name, q);
       });
     }
-    $$invalidate(10, groupedData = groupData(filtered));
+    $$invalidate2(10, groupedData = groupData(filtered));
     const filteredAndSorted = [];
     let idx = 0;
     groupedData.forEach((g) => {
       g.items.forEach((i) => i.idx = idx++);
       filteredAndSorted.push(...g.items);
     });
-    $$invalidate(4, filteredData = filteredAndSorted);
-    $$invalidate(9, highlightIndex = 0);
+    $$invalidate2(4, filteredData = filteredAndSorted);
+    $$invalidate2(9, highlightIndex = 0);
     if (listEl)
       highlight(listEl);
   }
   function open(e) {
     if (opened)
       return;
-    $$invalidate(7, opened = true);
+    $$invalidate2(7, opened = true);
     hasEdited = false;
     addEventListeners();
     recalculateListPosition(listEl, inputEl, elevated);
@@ -5923,43 +5923,43 @@ function instance2($$self, $$props, $$invalidate) {
     if (!opened)
       return;
     removeEventListeners();
-    $$invalidate(8, mouseOverList = false);
-    $$invalidate(7, opened = false);
+    $$invalidate2(8, mouseOverList = false);
+    $$invalidate2(7, opened = false);
     isSelecting = false;
   }
   function selectItem() {
     if (hasSetValue)
       return;
-    const oldValue = value;
+    const oldValue = value2;
     if (filteredData[highlightIndex]) {
-      $$invalidate(0, value = filteredData[highlightIndex]);
-      if (value && value.name && inputEl.value !== value.name)
-        $$invalidate(3, inputEl.value = value.name, inputEl);
+      $$invalidate2(0, value2 = filteredData[highlightIndex]);
+      if (value2 && value2.name && inputEl.value !== value2.name)
+        $$invalidate2(3, inputEl.value = value2.name, inputEl);
     } else if (allowNew) {
-      $$invalidate(0, value = { name: inputEl.value });
+      $$invalidate2(0, value2 = { name: inputEl.value });
     } else {
-      if (value && value.name && inputEl.value !== value.name)
-        $$invalidate(3, inputEl.value = value.name, inputEl);
+      if (value2 && value2.name && inputEl.value !== value2.name)
+        $$invalidate2(3, inputEl.value = value2.name, inputEl);
     }
     hasSetValue = true;
-    dispatch("change", { value, oldValue });
+    dispatch2("change", { value: value2, oldValue });
     close();
   }
   function setInitialValue() {
     if (filteredData && filteredData.length) {
-      let itemId = value;
-      if (typeof value === "object" && value !== null) {
-        itemId = value.id || value.name;
+      let itemId = value2;
+      if (typeof value2 === "object" && value2 !== null) {
+        itemId = value2.id || value2.name;
       }
       if (itemId) {
         const idx = filteredData.findIndex((i) => i.id === itemId || i.name === itemId);
         if (idx > -1) {
-          $$invalidate(9, highlightIndex = idx);
-          $$invalidate(3, inputEl.value = filteredData[highlightIndex].name, inputEl);
+          $$invalidate2(9, highlightIndex = idx);
+          $$invalidate2(3, inputEl.value = filteredData[highlightIndex].name, inputEl);
         }
         highlight(listEl);
       } else
-        $$invalidate(3, inputEl.value = "", inputEl);
+        $$invalidate2(3, inputEl.value = "", inputEl);
     }
   }
   function up() {
@@ -5969,7 +5969,7 @@ function instance2($$self, $$props, $$invalidate) {
     while (idx > 0 && !filteredData[idx])
       idx -= 1;
     if (idx !== highlightIndex && filteredData[idx]) {
-      $$invalidate(9, highlightIndex = filteredData[idx].idx);
+      $$invalidate2(9, highlightIndex = filteredData[idx].idx);
       highlight(listEl);
     }
   }
@@ -5984,20 +5984,20 @@ function instance2($$self, $$props, $$invalidate) {
       item = { idx: filteredData.length };
     }
     if (idx !== highlightIndex && item) {
-      $$invalidate(9, highlightIndex = item.idx);
+      $$invalidate2(9, highlightIndex = item.idx);
       highlight(listEl);
     }
   }
   function revert() {
     if (originalText && originalText !== inputEl.value)
-      $$invalidate(3, inputEl.value = originalText, inputEl);
-    else if (value && value.name)
-      $$invalidate(3, inputEl.value = value.name, inputEl);
+      $$invalidate2(3, inputEl.value = originalText, inputEl);
+    else if (value2 && value2.name)
+      $$invalidate2(3, inputEl.value = value2.name, inputEl);
     else
-      $$invalidate(3, inputEl.value = "", inputEl);
+      $$invalidate2(3, inputEl.value = "", inputEl);
   }
   function clear() {
-    $$invalidate(3, inputEl.value = "", inputEl);
+    $$invalidate2(3, inputEl.value = "", inputEl);
     filter();
     requestAnimationFrame(() => inputEl.focus());
   }
@@ -6007,7 +6007,7 @@ function instance2($$self, $$props, $$invalidate) {
       open();
   }
   function oninput() {
-    $$invalidate(3, inputEl);
+    $$invalidate2(3, inputEl);
     open();
     requestAnimationFrame(filter);
     recalculateListPosition(listEl, inputEl, elevated);
@@ -6032,17 +6032,17 @@ function instance2($$self, $$props, $$invalidate) {
     isSelecting = true;
   }
   function onclick(item) {
-    const oldValue = value;
-    $$invalidate(0, value = item);
-    $$invalidate(3, inputEl.value = item.name, inputEl);
-    $$invalidate(9, highlightIndex = item.idx);
-    dispatch("change", { value, oldValue });
+    const oldValue = value2;
+    $$invalidate2(0, value2 = item);
+    $$invalidate2(3, inputEl.value = item.name, inputEl);
+    $$invalidate2(9, highlightIndex = item.idx);
+    dispatch2("change", { value: value2, oldValue });
     requestAnimationFrame(() => {
       inputEl.focus();
       close();
     });
   }
-  function onkeydown(e) {
+  function onkeydown2(e) {
     if (e.key === "Tab") {
       selectItem();
       return close();
@@ -6075,7 +6075,7 @@ function instance2($$self, $$props, $$invalidate) {
       inputEl.focus();
       return close();
     }
-    dispatch("keydown", e);
+    dispatch2("keydown", e);
   }
   function onIconClick() {
     inputEl.focus();
@@ -6111,10 +6111,10 @@ function instance2($$self, $$props, $$invalidate) {
     document.removeEventListener("scroll", onScrollOrResize, true);
     document.removeEventListener("click", onDocumentClick, true);
   }
-  function input_binding($$value) {
+  function input_binding2($$value) {
     import_internal2.binding_callbacks[$$value ? "unshift" : "push"](() => {
       inputEl = $$value;
-      $$invalidate(3, inputEl);
+      $$invalidate2(3, inputEl);
     });
   }
   const click_handler = (item) => onclick(item);
@@ -6122,44 +6122,44 @@ function instance2($$self, $$props, $$invalidate) {
     name: inputEl.value,
     idx: filteredData.length
   });
-  const mouseenter_handler = () => $$invalidate(8, mouseOverList = true);
-  const mouseleave_handler = () => $$invalidate(8, mouseOverList = false);
+  const mouseenter_handler = () => $$invalidate2(8, mouseOverList = true);
+  const mouseleave_handler = () => $$invalidate2(8, mouseOverList = false);
   function div1_binding($$value) {
     import_internal2.binding_callbacks[$$value ? "unshift" : "push"](() => {
       listEl = $$value;
-      $$invalidate(6, listEl);
+      $$invalidate2(6, listEl);
     });
   }
   function div2_binding($$value) {
     import_internal2.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(5, el);
+      $$invalidate2(5, el);
     });
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(57, $$props = (0, import_internal2.assign)((0, import_internal2.assign)({}, $$props), (0, import_internal2.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(57, $$props2 = (0, import_internal2.assign)((0, import_internal2.assign)({}, $$props2), (0, import_internal2.exclude_internal_props)($$new_props)));
     if ("data" in $$new_props)
-      $$invalidate(23, data = $$new_props.data);
+      $$invalidate2(23, data = $$new_props.data);
     if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
+      $$invalidate2(0, value2 = $$new_props.value);
     if ("allowNew" in $$new_props)
-      $$invalidate(1, allowNew = $$new_props.allowNew);
+      $$invalidate2(1, allowNew = $$new_props.allowNew);
     if ("showAllInitially" in $$new_props)
-      $$invalidate(24, showAllInitially = $$new_props.showAllInitially);
+      $$invalidate2(24, showAllInitially = $$new_props.showAllInitially);
     if ("clearOnEsc" in $$new_props)
-      $$invalidate(25, clearOnEsc = $$new_props.clearOnEsc);
+      $$invalidate2(25, clearOnEsc = $$new_props.clearOnEsc);
     if ("elevate" in $$new_props)
-      $$invalidate(26, elevate = $$new_props.elevate);
+      $$invalidate2(26, elevate = $$new_props.elevate);
     if ("showOnFocus" in $$new_props)
-      $$invalidate(27, showOnFocus = $$new_props.showOnFocus);
+      $$invalidate2(27, showOnFocus = $$new_props.showOnFocus);
     if ("hideOnScroll" in $$new_props)
-      $$invalidate(28, hideOnScroll = $$new_props.hideOnScroll);
+      $$invalidate2(28, hideOnScroll = $$new_props.hideOnScroll);
     if ("hideOnResize" in $$new_props)
-      $$invalidate(29, hideOnResize = $$new_props.hideOnResize);
+      $$invalidate2(29, hideOnResize = $$new_props.hideOnResize);
     if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
+      $$invalidate2(2, className2 = $$new_props.class);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     afterUpdate: import_svelte.afterUpdate,
     createEventDispatcher: import_svelte.createEventDispatcher,
     onDestroy: import_svelte.onDestroy,
@@ -6174,7 +6174,7 @@ function instance2($$self, $$props, $$invalidate) {
     guid,
     Icon: Icon_default,
     data,
-    value,
+    value: value2,
     allowNew,
     showAllInitially,
     clearOnEsc,
@@ -6182,8 +6182,8 @@ function instance2($$self, $$props, $$invalidate) {
     showOnFocus,
     hideOnScroll,
     hideOnResize,
-    className,
-    dispatch,
+    className: className2,
+    dispatch: dispatch2,
     gui,
     el,
     inputEl,
@@ -6211,7 +6211,7 @@ function instance2($$self, $$props, $$invalidate) {
     onblur,
     onListMouseDown,
     onclick,
-    onkeydown,
+    onkeydown: onkeydown2,
     onkeypress,
     onEsc,
     onIconClick,
@@ -6222,90 +6222,90 @@ function instance2($$self, $$props, $$invalidate) {
     elevated,
     shouldShowNewItem,
     valueMatchesItem,
-    props
+    props: props2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(57, $$props = (0, import_internal2.assign)((0, import_internal2.assign)({}, $$props), $$new_props));
-    if ("data" in $$props)
-      $$invalidate(23, data = $$new_props.data);
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("allowNew" in $$props)
-      $$invalidate(1, allowNew = $$new_props.allowNew);
-    if ("showAllInitially" in $$props)
-      $$invalidate(24, showAllInitially = $$new_props.showAllInitially);
-    if ("clearOnEsc" in $$props)
-      $$invalidate(25, clearOnEsc = $$new_props.clearOnEsc);
-    if ("elevate" in $$props)
-      $$invalidate(26, elevate = $$new_props.elevate);
-    if ("showOnFocus" in $$props)
-      $$invalidate(27, showOnFocus = $$new_props.showOnFocus);
-    if ("hideOnScroll" in $$props)
-      $$invalidate(28, hideOnScroll = $$new_props.hideOnScroll);
-    if ("hideOnResize" in $$props)
-      $$invalidate(29, hideOnResize = $$new_props.hideOnResize);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("el" in $$props)
-      $$invalidate(5, el = $$new_props.el);
-    if ("inputEl" in $$props)
-      $$invalidate(3, inputEl = $$new_props.inputEl);
-    if ("listEl" in $$props)
-      $$invalidate(6, listEl = $$new_props.listEl);
-    if ("opened" in $$props)
-      $$invalidate(7, opened = $$new_props.opened);
-    if ("hasEdited" in $$props)
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(57, $$props2 = (0, import_internal2.assign)((0, import_internal2.assign)({}, $$props2), $$new_props));
+    if ("data" in $$props2)
+      $$invalidate2(23, data = $$new_props.data);
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("allowNew" in $$props2)
+      $$invalidate2(1, allowNew = $$new_props.allowNew);
+    if ("showAllInitially" in $$props2)
+      $$invalidate2(24, showAllInitially = $$new_props.showAllInitially);
+    if ("clearOnEsc" in $$props2)
+      $$invalidate2(25, clearOnEsc = $$new_props.clearOnEsc);
+    if ("elevate" in $$props2)
+      $$invalidate2(26, elevate = $$new_props.elevate);
+    if ("showOnFocus" in $$props2)
+      $$invalidate2(27, showOnFocus = $$new_props.showOnFocus);
+    if ("hideOnScroll" in $$props2)
+      $$invalidate2(28, hideOnScroll = $$new_props.hideOnScroll);
+    if ("hideOnResize" in $$props2)
+      $$invalidate2(29, hideOnResize = $$new_props.hideOnResize);
+    if ("className" in $$props2)
+      $$invalidate2(2, className2 = $$new_props.className);
+    if ("el" in $$props2)
+      $$invalidate2(5, el = $$new_props.el);
+    if ("inputEl" in $$props2)
+      $$invalidate2(3, inputEl = $$new_props.inputEl);
+    if ("listEl" in $$props2)
+      $$invalidate2(6, listEl = $$new_props.listEl);
+    if ("opened" in $$props2)
+      $$invalidate2(7, opened = $$new_props.opened);
+    if ("hasEdited" in $$props2)
       hasEdited = $$new_props.hasEdited;
-    if ("mouseOverList" in $$props)
-      $$invalidate(8, mouseOverList = $$new_props.mouseOverList);
-    if ("highlightIndex" in $$props)
-      $$invalidate(9, highlightIndex = $$new_props.highlightIndex);
-    if ("filteredData" in $$props)
-      $$invalidate(4, filteredData = $$new_props.filteredData);
-    if ("groupedData" in $$props)
-      $$invalidate(10, groupedData = $$new_props.groupedData);
-    if ("originalText" in $$props)
+    if ("mouseOverList" in $$props2)
+      $$invalidate2(8, mouseOverList = $$new_props.mouseOverList);
+    if ("highlightIndex" in $$props2)
+      $$invalidate2(9, highlightIndex = $$new_props.highlightIndex);
+    if ("filteredData" in $$props2)
+      $$invalidate2(4, filteredData = $$new_props.filteredData);
+    if ("groupedData" in $$props2)
+      $$invalidate2(10, groupedData = $$new_props.groupedData);
+    if ("originalText" in $$props2)
       originalText = $$new_props.originalText;
-    if ("hasSetValue" in $$props)
+    if ("hasSetValue" in $$props2)
       hasSetValue = $$new_props.hasSetValue;
-    if ("isSelecting" in $$props)
+    if ("isSelecting" in $$props2)
       isSelecting = $$new_props.isSelecting;
-    if ("elevated" in $$props)
+    if ("elevated" in $$props2)
       elevated = $$new_props.elevated;
-    if ("shouldShowNewItem" in $$props)
-      $$invalidate(11, shouldShowNewItem = $$new_props.shouldShowNewItem);
-    if ("valueMatchesItem" in $$props)
-      $$invalidate(30, valueMatchesItem = $$new_props.valueMatchesItem);
-    if ("props" in $$props)
-      $$invalidate(12, props = $$new_props.props);
+    if ("shouldShowNewItem" in $$props2)
+      $$invalidate2(11, shouldShowNewItem = $$new_props.shouldShowNewItem);
+    if ("valueMatchesItem" in $$props2)
+      $$invalidate2(30, valueMatchesItem = $$new_props.valueMatchesItem);
+    if ("props" in $$props2)
+      $$invalidate2(12, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & /*elevate*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty[0] & /*elevate*/
     67108864) {
       $:
         elevated = elevate === "true" || elevate === true;
     }
     $:
-      $$invalidate(12, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
-    if ($$self.$$.dirty[0] & /*filteredData, inputEl*/
+      $$invalidate2(12, props2 = pluck($$props2, ["id", "title", "name", "disabled", "placeholder", "required"]));
+    if ($$self2.$$.dirty[0] & /*filteredData, inputEl*/
     24) {
       $:
-        $$invalidate(30, valueMatchesItem = filteredData && filteredData.length && filteredData.find((i) => i.name === inputEl.value));
+        $$invalidate2(30, valueMatchesItem = filteredData && filteredData.length && filteredData.find((i) => i.name === inputEl.value));
     }
-    if ($$self.$$.dirty[0] & /*allowNew, inputEl, valueMatchesItem*/
+    if ($$self2.$$.dirty[0] & /*allowNew, inputEl, valueMatchesItem*/
     1073741834) {
       $:
-        $$invalidate(11, shouldShowNewItem = (allowNew === true || allowNew === "true") && inputEl && inputEl.value && !valueMatchesItem);
+        $$invalidate2(11, shouldShowNewItem = (allowNew === true || allowNew === "true") && inputEl && inputEl.value && !valueMatchesItem);
     }
   };
-  $$props = (0, import_internal2.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal2.exclude_internal_props)($$props2);
   return [
-    value,
+    value2,
     allowNew,
-    className,
+    className2,
     inputEl,
     filteredData,
     el,
@@ -6315,7 +6315,7 @@ function instance2($$self, $$props, $$invalidate) {
     highlightIndex,
     groupedData,
     shouldShowNewItem,
-    props,
+    props2,
     gui,
     open,
     onfocus,
@@ -6323,7 +6323,7 @@ function instance2($$self, $$props, $$invalidate) {
     onblur,
     onListMouseDown,
     onclick,
-    onkeydown,
+    onkeydown2,
     onkeypress,
     onIconClick,
     data,
@@ -6334,7 +6334,7 @@ function instance2($$self, $$props, $$invalidate) {
     hideOnScroll,
     hideOnResize,
     valueMatchesItem,
-    input_binding,
+    input_binding2,
     click_handler,
     click_handler_1,
     mouseenter_handler,
@@ -6377,61 +6377,61 @@ var Autocomplete = class extends import_internal2.SvelteComponentDev {
   get data() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set data(value) {
+  set data(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get value() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get allowNew() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set allowNew(value) {
+  set allowNew(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get showAllInitially() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set showAllInitially(value) {
+  set showAllInitially(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get clearOnEsc() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set clearOnEsc(value) {
+  set clearOnEsc(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get elevate() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set elevate(value) {
+  set elevate(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get showOnFocus() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set showOnFocus(value) {
+  set showOnFocus(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get hideOnScroll() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set hideOnScroll(value) {
+  set hideOnScroll(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get hideOnResize() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set hideOnResize(value) {
+  set hideOnResize(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Autocomplete>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Autocomplete>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -6852,156 +6852,156 @@ function create_fragment3(ctx) {
   });
   return block;
 }
-function instance3($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal3.validate_slots)("Button", slots, ["default"]);
-  const $$slots = (0, import_internal3.compute_slots)(slots);
-  let { _this = void 0 } = $$props;
-  let { info = false } = $$props;
-  let { success = false } = $$props;
-  let { warning = false } = $$props;
-  let { danger = false } = $$props;
-  let { error = false } = $$props;
-  let { submit = false } = $$props;
-  let { outline = false } = $$props;
-  let { link = false } = $$props;
-  let { text: text42 = false } = $$props;
-  let { icon = void 0 } = $$props;
-  let { round = void 0 } = $$props;
-  let { class: className = "" } = $$props;
+function instance3($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal3.validate_slots)("Button", slots2, ["default"]);
+  const $$slots = (0, import_internal3.compute_slots)(slots2);
+  let { _this: _this2 = void 0 } = $$props2;
+  let { info: info2 = false } = $$props2;
+  let { success = false } = $$props2;
+  let { warning = false } = $$props2;
+  let { danger = false } = $$props2;
+  let { error: error2 = false } = $$props2;
+  let { submit = false } = $$props2;
+  let { outline = false } = $$props2;
+  let { link = false } = $$props2;
+  let { text: text45 = false } = $$props2;
+  let { icon = void 0 } = $$props2;
+  let { round = void 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
   let touching = false;
-  function focus_handler(event) {
-    import_internal3.bubble.call(this, $$self, event);
+  function focus_handler2(event2) {
+    import_internal3.bubble.call(this, $$self2, event2);
   }
-  function keydown_handler(event) {
-    import_internal3.bubble.call(this, $$self, event);
+  function keydown_handler(event2) {
+    import_internal3.bubble.call(this, $$self2, event2);
   }
-  function mousedown_handler(event) {
-    import_internal3.bubble.call(this, $$self, event);
+  function mousedown_handler(event2) {
+    import_internal3.bubble.call(this, $$self2, event2);
   }
-  function click_handler(event) {
-    import_internal3.bubble.call(this, $$self, event);
+  function click_handler(event2) {
+    import_internal3.bubble.call(this, $$self2, event2);
   }
   function button_binding($$value) {
     import_internal3.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      _this = $$value;
-      $$invalidate(0, _this);
+      _this2 = $$value;
+      $$invalidate2(0, _this2);
     });
   }
-  const touchstart_handler = () => $$invalidate(13, touching = true);
-  const touchend_handler = () => $$invalidate(13, touching = false);
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(25, $$props = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props), (0, import_internal3.exclude_internal_props)($$new_props)));
+  const touchstart_handler = () => $$invalidate2(13, touching = true);
+  const touchend_handler = () => $$invalidate2(13, touching = false);
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(25, $$props2 = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props2), (0, import_internal3.exclude_internal_props)($$new_props)));
     if ("_this" in $$new_props)
-      $$invalidate(0, _this = $$new_props._this);
+      $$invalidate2(0, _this2 = $$new_props._this);
     if ("info" in $$new_props)
-      $$invalidate(1, info = $$new_props.info);
+      $$invalidate2(1, info2 = $$new_props.info);
     if ("success" in $$new_props)
-      $$invalidate(2, success = $$new_props.success);
+      $$invalidate2(2, success = $$new_props.success);
     if ("warning" in $$new_props)
-      $$invalidate(3, warning = $$new_props.warning);
+      $$invalidate2(3, warning = $$new_props.warning);
     if ("danger" in $$new_props)
-      $$invalidate(4, danger = $$new_props.danger);
+      $$invalidate2(4, danger = $$new_props.danger);
     if ("error" in $$new_props)
-      $$invalidate(5, error = $$new_props.error);
+      $$invalidate2(5, error2 = $$new_props.error);
     if ("submit" in $$new_props)
-      $$invalidate(6, submit = $$new_props.submit);
+      $$invalidate2(6, submit = $$new_props.submit);
     if ("outline" in $$new_props)
-      $$invalidate(7, outline = $$new_props.outline);
+      $$invalidate2(7, outline = $$new_props.outline);
     if ("link" in $$new_props)
-      $$invalidate(8, link = $$new_props.link);
+      $$invalidate2(8, link = $$new_props.link);
     if ("text" in $$new_props)
-      $$invalidate(9, text42 = $$new_props.text);
+      $$invalidate2(9, text45 = $$new_props.text);
     if ("icon" in $$new_props)
-      $$invalidate(10, icon = $$new_props.icon);
+      $$invalidate2(10, icon = $$new_props.icon);
     if ("round" in $$new_props)
-      $$invalidate(11, round = $$new_props.round);
+      $$invalidate2(11, round = $$new_props.round);
     if ("class" in $$new_props)
-      $$invalidate(12, className = $$new_props.class);
+      $$invalidate2(12, className2 = $$new_props.class);
     if ("$$scope" in $$new_props)
-      $$invalidate(16, $$scope = $$new_props.$$scope);
+      $$invalidate2(16, $$scope2 = $$new_props.$$scope);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Icon: Icon_default,
     pluck,
-    _this,
-    info,
+    _this: _this2,
+    info: info2,
     success,
     warning,
     danger,
-    error,
+    error: error2,
     submit,
     outline,
     link,
-    text: text42,
+    text: text45,
     icon,
     round,
-    className,
+    className: className2,
     touching,
-    props
+    props: props2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(25, $$props = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props), $$new_props));
-    if ("_this" in $$props)
-      $$invalidate(0, _this = $$new_props._this);
-    if ("info" in $$props)
-      $$invalidate(1, info = $$new_props.info);
-    if ("success" in $$props)
-      $$invalidate(2, success = $$new_props.success);
-    if ("warning" in $$props)
-      $$invalidate(3, warning = $$new_props.warning);
-    if ("danger" in $$props)
-      $$invalidate(4, danger = $$new_props.danger);
-    if ("error" in $$props)
-      $$invalidate(5, error = $$new_props.error);
-    if ("submit" in $$props)
-      $$invalidate(6, submit = $$new_props.submit);
-    if ("outline" in $$props)
-      $$invalidate(7, outline = $$new_props.outline);
-    if ("link" in $$props)
-      $$invalidate(8, link = $$new_props.link);
-    if ("text" in $$props)
-      $$invalidate(9, text42 = $$new_props.text);
-    if ("icon" in $$props)
-      $$invalidate(10, icon = $$new_props.icon);
-    if ("round" in $$props)
-      $$invalidate(11, round = $$new_props.round);
-    if ("className" in $$props)
-      $$invalidate(12, className = $$new_props.className);
-    if ("touching" in $$props)
-      $$invalidate(13, touching = $$new_props.touching);
-    if ("props" in $$props)
-      $$invalidate(14, props = $$new_props.props);
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(25, $$props2 = (0, import_internal3.assign)((0, import_internal3.assign)({}, $$props2), $$new_props));
+    if ("_this" in $$props2)
+      $$invalidate2(0, _this2 = $$new_props._this);
+    if ("info" in $$props2)
+      $$invalidate2(1, info2 = $$new_props.info);
+    if ("success" in $$props2)
+      $$invalidate2(2, success = $$new_props.success);
+    if ("warning" in $$props2)
+      $$invalidate2(3, warning = $$new_props.warning);
+    if ("danger" in $$props2)
+      $$invalidate2(4, danger = $$new_props.danger);
+    if ("error" in $$props2)
+      $$invalidate2(5, error2 = $$new_props.error);
+    if ("submit" in $$props2)
+      $$invalidate2(6, submit = $$new_props.submit);
+    if ("outline" in $$props2)
+      $$invalidate2(7, outline = $$new_props.outline);
+    if ("link" in $$props2)
+      $$invalidate2(8, link = $$new_props.link);
+    if ("text" in $$props2)
+      $$invalidate2(9, text45 = $$new_props.text);
+    if ("icon" in $$props2)
+      $$invalidate2(10, icon = $$new_props.icon);
+    if ("round" in $$props2)
+      $$invalidate2(11, round = $$new_props.round);
+    if ("className" in $$props2)
+      $$invalidate2(12, className2 = $$new_props.className);
+    if ("touching" in $$props2)
+      $$invalidate2(13, touching = $$new_props.touching);
+    if ("props" in $$props2)
+      $$invalidate2(14, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(14, props = pluck($$props, ["id", "title", "disabled", "form", "aria-pressed", "data-"]));
+      $$invalidate2(14, props2 = pluck($$props2, ["id", "title", "disabled", "form", "aria-pressed", "data-"]));
   };
-  $$props = (0, import_internal3.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal3.exclude_internal_props)($$props2);
   return [
-    _this,
-    info,
+    _this2,
+    info2,
     success,
     warning,
     danger,
-    error,
+    error2,
     submit,
     outline,
     link,
-    text42,
+    text45,
     icon,
     round,
-    className,
+    className2,
     touching,
-    props,
+    props2,
     $$slots,
-    $$scope,
-    slots,
-    focus_handler,
+    $$scope2,
+    slots2,
+    focus_handler2,
     keydown_handler,
     mousedown_handler,
     click_handler,
@@ -7038,79 +7038,79 @@ var Button = class extends import_internal3.SvelteComponentDev {
   get _this() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set _this(value) {
+  set _this(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get info() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set info(value) {
+  set info(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get success() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set success(value) {
+  set success(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get warning() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set warning(value) {
+  set warning(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get danger() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set danger(value) {
+  set danger(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get error() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set error(value) {
+  set error(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get submit() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set submit(value) {
+  set submit(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get outline() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set outline(value) {
+  set outline(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get link() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set link(value) {
+  set link(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get text() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set text(value) {
+  set text(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get icon() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set icon(value) {
+  set icon(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get round() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set round(value) {
+  set round(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -7225,35 +7225,35 @@ function create_fragment4(ctx) {
   });
   return block;
 }
-function instance4($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal4.validate_slots)("ButtonGroup", slots, ["default"]);
-  let { round = void 0 } = $$props;
-  let { class: className = "" } = $$props;
+function instance4($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal4.validate_slots)("ButtonGroup", slots2, ["default"]);
+  let { round = void 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
   const writable_props = ["round", "class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ButtonGroup> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("round" in $$props2)
-      $$invalidate(0, round = $$props2.round);
-    if ("class" in $$props2)
-      $$invalidate(1, className = $$props2.class);
-    if ("$$scope" in $$props2)
-      $$invalidate(2, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("round" in $$props3)
+      $$invalidate2(0, round = $$props3.round);
+    if ("class" in $$props3)
+      $$invalidate2(1, className2 = $$props3.class);
+    if ("$$scope" in $$props3)
+      $$invalidate2(2, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({ round, className });
-  $$self.$inject_state = ($$props2) => {
-    if ("round" in $$props2)
-      $$invalidate(0, round = $$props2.round);
-    if ("className" in $$props2)
-      $$invalidate(1, className = $$props2.className);
+  $$self2.$capture_state = () => ({ round, className: className2 });
+  $$self2.$inject_state = ($$props3) => {
+    if ("round" in $$props3)
+      $$invalidate2(0, round = $$props3.round);
+    if ("className" in $$props3)
+      $$invalidate2(1, className2 = $$props3.className);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  return [round, className, $$scope, slots];
+  return [round, className2, $$scope2, slots2];
 }
 var ButtonGroup = class extends import_internal4.SvelteComponentDev {
   constructor(options) {
@@ -7269,13 +7269,13 @@ var ButtonGroup = class extends import_internal4.SvelteComponentDev {
   get round() {
     throw new Error("<ButtonGroup>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set round(value) {
+  set round(value2) {
     throw new Error("<ButtonGroup>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<ButtonGroup>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<ButtonGroup>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -7341,7 +7341,7 @@ function create_if_block3(ctx) {
   return block;
 }
 function create_each_block2(ctx) {
-  let label;
+  let label2;
   let t0;
   let t1_value = (
     /*item*/
@@ -7373,7 +7373,7 @@ function create_each_block2(ctx) {
   }
   const block = {
     c: function create() {
-      label = (0, import_internal5.element)("label");
+      label2 = (0, import_internal5.element)("label");
       if (if_block)
         if_block.c();
       t0 = (0, import_internal5.space)();
@@ -7403,42 +7403,42 @@ function create_each_block2(ctx) {
       ctx[14].value;
       (0, import_internal5.add_location)(input, file4, 18, 4, 436);
       (0, import_internal5.attr_dev)(
-        label,
+        label2,
         "disabled",
         /*disabled*/
         ctx[1]
       );
-      (0, import_internal5.attr_dev)(label, "class", "button button-normal");
+      (0, import_internal5.attr_dev)(label2, "class", "button button-normal");
       (0, import_internal5.toggle_class)(
-        label,
+        label2,
         "selected",
         /*value*/
         ctx[0] === /*item*/
         ctx[14].value
       );
       (0, import_internal5.toggle_class)(
-        label,
+        label2,
         "button-has-text",
         /*item*/
         ctx[14].name
       );
-      (0, import_internal5.add_location)(label, file4, 7, 2, 147);
+      (0, import_internal5.add_location)(label2, file4, 7, 2, 147);
     },
     m: function mount(target, anchor) {
-      (0, import_internal5.insert_dev)(target, label, anchor);
+      (0, import_internal5.insert_dev)(target, label2, anchor);
       if (if_block)
-        if_block.m(label, null);
-      (0, import_internal5.append_dev)(label, t0);
-      (0, import_internal5.append_dev)(label, t1);
-      (0, import_internal5.append_dev)(label, t2);
-      (0, import_internal5.append_dev)(label, input);
-      (0, import_internal5.append_dev)(label, t3);
+        if_block.m(label2, null);
+      (0, import_internal5.append_dev)(label2, t0);
+      (0, import_internal5.append_dev)(label2, t1);
+      (0, import_internal5.append_dev)(label2, t2);
+      (0, import_internal5.append_dev)(label2, input);
+      (0, import_internal5.append_dev)(label2, t3);
       current = true;
       if (!mounted) {
         dispose = [
           (0, import_internal5.listen_dev)(input, "change", change_handler, false, false, false, false),
           (0, import_internal5.listen_dev)(
-            label,
+            label2,
             "touchstart",
             /*onmousedown*/
             ctx[8],
@@ -7448,7 +7448,7 @@ function create_each_block2(ctx) {
             false
           ),
           (0, import_internal5.listen_dev)(
-            label,
+            label2,
             "mousedown",
             /*onmousedown*/
             ctx[8],
@@ -7477,7 +7477,7 @@ function create_each_block2(ctx) {
           if_block = create_if_block3(ctx);
           if_block.c();
           (0, import_internal5.transition_in)(if_block, 1);
-          if_block.m(label, t0);
+          if_block.m(label2, t0);
         }
       } else if (if_block) {
         (0, import_internal5.group_outros)();
@@ -7531,7 +7531,7 @@ function create_each_block2(ctx) {
       if (!current || dirty & /*disabled*/
       2) {
         (0, import_internal5.attr_dev)(
-          label,
+          label2,
           "disabled",
           /*disabled*/
           ctx[1]
@@ -7540,7 +7540,7 @@ function create_each_block2(ctx) {
       if (!current || dirty & /*value, _items*/
       129) {
         (0, import_internal5.toggle_class)(
-          label,
+          label2,
           "selected",
           /*value*/
           ctx[0] === /*item*/
@@ -7550,7 +7550,7 @@ function create_each_block2(ctx) {
       if (!current || dirty & /*_items*/
       128) {
         (0, import_internal5.toggle_class)(
-          label,
+          label2,
           "button-has-text",
           /*item*/
           ctx[14].name
@@ -7569,7 +7569,7 @@ function create_each_block2(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal5.detach_dev)(label);
+        (0, import_internal5.detach_dev)(label2);
       if (if_block)
         if_block.d();
       mounted = false;
@@ -7717,18 +7717,18 @@ function create_fragment5(ctx) {
   });
   return block;
 }
-function instance5($$self, $$props, $$invalidate) {
+function instance5($$self2, $$props2, $$invalidate2) {
   let _items;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal5.validate_slots)("ButtonToggle", slots, []);
-  let { disabled = void 0 } = $$props;
-  let { round = void 0 } = $$props;
-  let { items = "" } = $$props;
-  let { id = "" } = $$props;
-  let { name: name2 = guid() } = $$props;
-  let { value = "" } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte2.createEventDispatcher)();
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal5.validate_slots)("ButtonToggle", slots2, []);
+  let { disabled = void 0 } = $$props2;
+  let { round = void 0 } = $$props2;
+  let { items = "" } = $$props2;
+  let { id: id2 = "" } = $$props2;
+  let { name: name2 = guid() } = $$props2;
+  let { value: value2 = "" } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte2.createEventDispatcher)();
   let el;
   function onmousedown(e) {
     const btn = e.target.querySelector("input");
@@ -7736,87 +7736,87 @@ function instance5($$self, $$props, $$invalidate) {
       return;
     e.preventDefault();
     btn.focus();
-    if (btn.value === value)
+    if (btn.value === value2)
       return;
-    onchange4(e, btn);
+    onchange5(e, btn);
   }
-  function onchange4(e, button) {
-    $$invalidate(0, value = button.value);
-    dispatch("change", value);
+  function onchange5(e, button) {
+    $$invalidate2(0, value2 = button.value);
+    dispatch2("change", value2);
   }
   const writable_props = ["disabled", "round", "items", "id", "name", "value", "class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ButtonToggle> was created with unknown prop '${key}'`);
   });
-  const change_handler = (item, e) => onchange4(e, item);
+  const change_handler = (item, e) => onchange5(e, item);
   function div_binding($$value) {
     import_internal5.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(6, el);
+      $$invalidate2(6, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("disabled" in $$props2)
-      $$invalidate(1, disabled = $$props2.disabled);
-    if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
-    if ("items" in $$props2)
-      $$invalidate(10, items = $$props2.items);
-    if ("id" in $$props2)
-      $$invalidate(3, id = $$props2.id);
-    if ("name" in $$props2)
-      $$invalidate(4, name2 = $$props2.name);
-    if ("value" in $$props2)
-      $$invalidate(0, value = $$props2.value);
-    if ("class" in $$props2)
-      $$invalidate(5, className = $$props2.class);
+  $$self2.$$set = ($$props3) => {
+    if ("disabled" in $$props3)
+      $$invalidate2(1, disabled = $$props3.disabled);
+    if ("round" in $$props3)
+      $$invalidate2(2, round = $$props3.round);
+    if ("items" in $$props3)
+      $$invalidate2(10, items = $$props3.items);
+    if ("id" in $$props3)
+      $$invalidate2(3, id2 = $$props3.id);
+    if ("name" in $$props3)
+      $$invalidate2(4, name2 = $$props3.name);
+    if ("value" in $$props3)
+      $$invalidate2(0, value2 = $$props3.value);
+    if ("class" in $$props3)
+      $$invalidate2(5, className2 = $$props3.class);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     createEventDispatcher: import_svelte2.createEventDispatcher,
     guid,
     Icon: Icon_default,
     disabled,
     round,
     items,
-    id,
+    id: id2,
     name: name2,
-    value,
-    className,
-    dispatch,
+    value: value2,
+    className: className2,
+    dispatch: dispatch2,
     el,
     onmousedown,
-    onchange: onchange4,
+    onchange: onchange5,
     _items
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("disabled" in $$props2)
-      $$invalidate(1, disabled = $$props2.disabled);
-    if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
-    if ("items" in $$props2)
-      $$invalidate(10, items = $$props2.items);
-    if ("id" in $$props2)
-      $$invalidate(3, id = $$props2.id);
-    if ("name" in $$props2)
-      $$invalidate(4, name2 = $$props2.name);
-    if ("value" in $$props2)
-      $$invalidate(0, value = $$props2.value);
-    if ("className" in $$props2)
-      $$invalidate(5, className = $$props2.className);
-    if ("el" in $$props2)
-      $$invalidate(6, el = $$props2.el);
-    if ("_items" in $$props2)
-      $$invalidate(7, _items = $$props2._items);
+  $$self2.$inject_state = ($$props3) => {
+    if ("disabled" in $$props3)
+      $$invalidate2(1, disabled = $$props3.disabled);
+    if ("round" in $$props3)
+      $$invalidate2(2, round = $$props3.round);
+    if ("items" in $$props3)
+      $$invalidate2(10, items = $$props3.items);
+    if ("id" in $$props3)
+      $$invalidate2(3, id2 = $$props3.id);
+    if ("name" in $$props3)
+      $$invalidate2(4, name2 = $$props3.name);
+    if ("value" in $$props3)
+      $$invalidate2(0, value2 = $$props3.value);
+    if ("className" in $$props3)
+      $$invalidate2(5, className2 = $$props3.className);
+    if ("el" in $$props3)
+      $$invalidate2(6, el = $$props3.el);
+    if ("_items" in $$props3)
+      $$invalidate2(7, _items = $$props3._items);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*items*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty & /*items*/
     1024) {
       $:
-        $$invalidate(7, _items = items.map((item) => {
+        $$invalidate2(7, _items = items.map((item) => {
           if (typeof item === "string") {
             return { name: item, value: item };
           }
@@ -7825,16 +7825,16 @@ function instance5($$self, $$props, $$invalidate) {
     }
   };
   return [
-    value,
+    value2,
     disabled,
     round,
-    id,
+    id2,
     name2,
-    className,
+    className2,
     el,
     _items,
     onmousedown,
-    onchange4,
+    onchange5,
     items,
     change_handler,
     div_binding
@@ -7862,43 +7862,43 @@ var ButtonToggle = class extends import_internal5.SvelteComponentDev {
   get disabled() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set disabled(value) {
+  set disabled(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get round() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set round(value) {
+  set round(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get items() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set items(value) {
+  set items(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get id() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set id(value) {
+  set id(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get name() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set name(value) {
+  set name(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get value() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -8036,81 +8036,81 @@ function create_fragment6(ctx) {
   });
   return block;
 }
-function instance6($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal6.validate_slots)("Checkbox", slots, []);
-  let { _this = void 0 } = $$props;
-  let { indeterminate = false } = $$props;
-  let { checked = false } = $$props;
-  let { class: className = "" } = $$props;
-  function focus_handler(event) {
-    import_internal6.bubble.call(this, $$self, event);
+function instance6($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal6.validate_slots)("Checkbox", slots2, []);
+  let { _this: _this2 = void 0 } = $$props2;
+  let { indeterminate = false } = $$props2;
+  let { checked = false } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  function focus_handler2(event2) {
+    import_internal6.bubble.call(this, $$self2, event2);
   }
-  function change_handler(event) {
-    import_internal6.bubble.call(this, $$self, event);
+  function change_handler(event2) {
+    import_internal6.bubble.call(this, $$self2, event2);
   }
-  function input_binding($$value) {
+  function input_binding2($$value) {
     import_internal6.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      _this = $$value;
-      $$invalidate(0, _this);
+      _this2 = $$value;
+      $$invalidate2(0, _this2);
     });
   }
   function input_change_handler() {
     checked = this.checked;
     indeterminate = this.indeterminate;
-    $$invalidate(2, checked);
-    $$invalidate(1, indeterminate);
+    $$invalidate2(2, checked);
+    $$invalidate2(1, indeterminate);
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(9, $$props = (0, import_internal6.assign)((0, import_internal6.assign)({}, $$props), (0, import_internal6.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(9, $$props2 = (0, import_internal6.assign)((0, import_internal6.assign)({}, $$props2), (0, import_internal6.exclude_internal_props)($$new_props)));
     if ("_this" in $$new_props)
-      $$invalidate(0, _this = $$new_props._this);
+      $$invalidate2(0, _this2 = $$new_props._this);
     if ("indeterminate" in $$new_props)
-      $$invalidate(1, indeterminate = $$new_props.indeterminate);
+      $$invalidate2(1, indeterminate = $$new_props.indeterminate);
     if ("checked" in $$new_props)
-      $$invalidate(2, checked = $$new_props.checked);
+      $$invalidate2(2, checked = $$new_props.checked);
     if ("class" in $$new_props)
-      $$invalidate(3, className = $$new_props.class);
+      $$invalidate2(3, className2 = $$new_props.class);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     pluck,
-    _this,
+    _this: _this2,
     indeterminate,
     checked,
-    className,
-    props
+    className: className2,
+    props: props2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(9, $$props = (0, import_internal6.assign)((0, import_internal6.assign)({}, $$props), $$new_props));
-    if ("_this" in $$props)
-      $$invalidate(0, _this = $$new_props._this);
-    if ("indeterminate" in $$props)
-      $$invalidate(1, indeterminate = $$new_props.indeterminate);
-    if ("checked" in $$props)
-      $$invalidate(2, checked = $$new_props.checked);
-    if ("className" in $$props)
-      $$invalidate(3, className = $$new_props.className);
-    if ("props" in $$props)
-      $$invalidate(4, props = $$new_props.props);
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(9, $$props2 = (0, import_internal6.assign)((0, import_internal6.assign)({}, $$props2), $$new_props));
+    if ("_this" in $$props2)
+      $$invalidate2(0, _this2 = $$new_props._this);
+    if ("indeterminate" in $$props2)
+      $$invalidate2(1, indeterminate = $$new_props.indeterminate);
+    if ("checked" in $$props2)
+      $$invalidate2(2, checked = $$new_props.checked);
+    if ("className" in $$props2)
+      $$invalidate2(3, className2 = $$new_props.className);
+    if ("props" in $$props2)
+      $$invalidate2(4, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(4, props = pluck($$props, ["id", "title", "name", "disabled", "required"]));
+      $$invalidate2(4, props2 = pluck($$props2, ["id", "title", "name", "disabled", "required"]));
   };
-  $$props = (0, import_internal6.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal6.exclude_internal_props)($$props2);
   return [
-    _this,
+    _this2,
     indeterminate,
     checked,
-    className,
-    props,
-    focus_handler,
+    className2,
+    props2,
+    focus_handler2,
     change_handler,
-    input_binding,
+    input_binding2,
     input_change_handler
   ];
 }
@@ -8133,25 +8133,25 @@ var Checkbox = class extends import_internal6.SvelteComponentDev {
   get _this() {
     throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set _this(value) {
+  set _this(value2) {
     throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get indeterminate() {
     throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set indeterminate(value) {
+  set indeterminate(value2) {
     throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get checked() {
     throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set checked(value) {
+  set checked(value2) {
     throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -8458,18 +8458,18 @@ function focusOtherButton(target, key) {
   if (otherBtn && otherBtn.tagName === "BUTTON")
     otherBtn.focus();
 }
-function instance7($$self, $$props, $$invalidate) {
-  let $ANIMATION_SPEED;
+function instance7($$self2, $$props2, $$invalidate2) {
+  let $ANIMATION_SPEED2;
   (0, import_internal7.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal7.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(23, $ANIMATION_SPEED = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal7.validate_slots)("Dialog", slots, ["default", "footer"]);
-  let { title = "" } = $$props;
-  let { opened = false } = $$props;
-  let { drawborders = false } = $$props;
-  let { skipFirstFocus = false } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte3.createEventDispatcher)();
+  (0, import_internal7.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(23, $ANIMATION_SPEED2 = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal7.validate_slots)("Dialog", slots2, ["default", "footer"]);
+  let { title = "" } = $$props2;
+  let { opened = false } = $$props2;
+  let { drawborders = false } = $$props2;
+  let { skipFirstFocus = false } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte3.createEventDispatcher)();
   let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
   (0, import_svelte3.onMount)(() => {
     document.body.appendChild(backdropEl);
@@ -8529,17 +8529,17 @@ function instance7($$self, $$props, $$invalidate) {
     if (opened)
       return;
     triggerEl = openedBy || document.activeElement;
-    $$invalidate(4, backdropEl.style.display = "flex", backdropEl);
+    $$invalidate2(4, backdropEl.style.display = "flex", backdropEl);
     if (openTimer)
       clearTimeout(openTimer);
     openTimer = setTimeout(
       () => {
-        $$invalidate(0, opened = true);
-        $$invalidate(4, backdropEl.style.display = "flex", backdropEl);
+        $$invalidate2(0, opened = true);
+        $$invalidate2(4, backdropEl.style.display = "flex", backdropEl);
         if (skipFirstFocus !== true && skipFirstFocus !== "true")
           focusFirst();
         document.addEventListener("keydown", onDocKeydown);
-        dispatch("open");
+        dispatch2("open");
       },
       100
     );
@@ -8547,65 +8547,65 @@ function instance7($$self, $$props, $$invalidate) {
   function close() {
     if (!opened)
       return;
-    $$invalidate(0, opened = false);
+    $$invalidate2(0, opened = false);
     if (triggerEl && triggerEl.focus)
       triggerEl.focus();
     if (closeTimer)
       clearTimeout(closeTimer);
     closeTimer = setTimeout(
       () => {
-        $$invalidate(0, opened = false);
-        $$invalidate(4, backdropEl.style.display = "none", backdropEl);
+        $$invalidate2(0, opened = false);
+        $$invalidate2(4, backdropEl.style.display = "none", backdropEl);
         document.removeEventListener("keydown", onDocKeydown);
-        dispatch("close");
+        dispatch2("close");
       },
-      $ANIMATION_SPEED
+      $ANIMATION_SPEED2
     );
   }
   const writable_props = ["title", "opened", "drawborders", "skipFirstFocus", "class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Dialog> was created with unknown prop '${key}'`);
   });
   function div1_binding($$value) {
     import_internal7.binding_callbacks[$$value ? "unshift" : "push"](() => {
       contentEl = $$value;
-      $$invalidate(6, contentEl);
+      $$invalidate2(6, contentEl);
     });
   }
   function div2_binding($$value) {
     import_internal7.binding_callbacks[$$value ? "unshift" : "push"](() => {
       footerEl = $$value;
-      $$invalidate(7, footerEl);
+      $$invalidate2(7, footerEl);
     });
   }
   function div4_binding($$value) {
     import_internal7.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialogEl = $$value;
-      $$invalidate(5, dialogEl);
+      $$invalidate2(5, dialogEl);
     });
   }
   function div5_binding($$value) {
     import_internal7.binding_callbacks[$$value ? "unshift" : "push"](() => {
       backdropEl = $$value;
-      $$invalidate(4, backdropEl);
+      $$invalidate2(4, backdropEl);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(1, title = $$props2.title);
-    if ("opened" in $$props2)
-      $$invalidate(0, opened = $$props2.opened);
-    if ("drawborders" in $$props2)
-      $$invalidate(2, drawborders = $$props2.drawborders);
-    if ("skipFirstFocus" in $$props2)
-      $$invalidate(11, skipFirstFocus = $$props2.skipFirstFocus);
-    if ("class" in $$props2)
-      $$invalidate(3, className = $$props2.class);
-    if ("$$scope" in $$props2)
-      $$invalidate(14, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(1, title = $$props3.title);
+    if ("opened" in $$props3)
+      $$invalidate2(0, opened = $$props3.opened);
+    if ("drawborders" in $$props3)
+      $$invalidate2(2, drawborders = $$props3.drawborders);
+    if ("skipFirstFocus" in $$props3)
+      $$invalidate2(11, skipFirstFocus = $$props3.skipFirstFocus);
+    if ("class" in $$props3)
+      $$invalidate2(3, className2 = $$props3.class);
+    if ("$$scope" in $$props3)
+      $$invalidate2(14, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     createEventDispatcher: import_svelte3.createEventDispatcher,
     onMount: import_svelte3.onMount,
     ANIMATION_SPEED,
@@ -8614,8 +8614,8 @@ function instance7($$self, $$props, $$invalidate) {
     opened,
     drawborders,
     skipFirstFocus,
-    className,
-    dispatch,
+    className: className2,
+    dispatch: dispatch2,
     backdropEl,
     dialogEl,
     contentEl,
@@ -8631,42 +8631,42 @@ function instance7($$self, $$props, $$invalidate) {
     onDocKeydown,
     open,
     close,
-    $ANIMATION_SPEED
+    $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(1, title = $$props2.title);
-    if ("opened" in $$props2)
-      $$invalidate(0, opened = $$props2.opened);
-    if ("drawborders" in $$props2)
-      $$invalidate(2, drawborders = $$props2.drawborders);
-    if ("skipFirstFocus" in $$props2)
-      $$invalidate(11, skipFirstFocus = $$props2.skipFirstFocus);
-    if ("className" in $$props2)
-      $$invalidate(3, className = $$props2.className);
-    if ("backdropEl" in $$props2)
-      $$invalidate(4, backdropEl = $$props2.backdropEl);
-    if ("dialogEl" in $$props2)
-      $$invalidate(5, dialogEl = $$props2.dialogEl);
-    if ("contentEl" in $$props2)
-      $$invalidate(6, contentEl = $$props2.contentEl);
-    if ("footerEl" in $$props2)
-      $$invalidate(7, footerEl = $$props2.footerEl);
-    if ("triggerEl" in $$props2)
-      triggerEl = $$props2.triggerEl;
-    if ("openTimer" in $$props2)
-      openTimer = $$props2.openTimer;
-    if ("closeTimer" in $$props2)
-      closeTimer = $$props2.closeTimer;
+  $$self2.$inject_state = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(1, title = $$props3.title);
+    if ("opened" in $$props3)
+      $$invalidate2(0, opened = $$props3.opened);
+    if ("drawborders" in $$props3)
+      $$invalidate2(2, drawborders = $$props3.drawborders);
+    if ("skipFirstFocus" in $$props3)
+      $$invalidate2(11, skipFirstFocus = $$props3.skipFirstFocus);
+    if ("className" in $$props3)
+      $$invalidate2(3, className2 = $$props3.className);
+    if ("backdropEl" in $$props3)
+      $$invalidate2(4, backdropEl = $$props3.backdropEl);
+    if ("dialogEl" in $$props3)
+      $$invalidate2(5, dialogEl = $$props3.dialogEl);
+    if ("contentEl" in $$props3)
+      $$invalidate2(6, contentEl = $$props3.contentEl);
+    if ("footerEl" in $$props3)
+      $$invalidate2(7, footerEl = $$props3.footerEl);
+    if ("triggerEl" in $$props3)
+      triggerEl = $$props3.triggerEl;
+    if ("openTimer" in $$props3)
+      openTimer = $$props3.openTimer;
+    if ("closeTimer" in $$props3)
+      closeTimer = $$props3.closeTimer;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     opened,
     title,
     drawborders,
-    className,
+    className2,
     backdropEl,
     dialogEl,
     contentEl,
@@ -8677,8 +8677,8 @@ function instance7($$self, $$props, $$invalidate) {
     skipFirstFocus,
     open,
     close,
-    $$scope,
-    slots,
+    $$scope2,
+    slots2,
     div1_binding,
     div2_binding,
     div4_binding,
@@ -8735,20 +8735,20 @@ var Dialog = class extends import_internal7.SvelteComponentDev {
   get class() {
     return this.$$.ctx[3];
   }
-  set class(className) {
-    this.$$set({ class: className });
+  set class(className2) {
+    this.$$set({ class: className2 });
     (0, import_internal7.flush)();
   }
   get open() {
     return this.$$.ctx[12];
   }
-  set open(value) {
+  set open(value2) {
     throw new Error("<Dialog>: Cannot set read-only property 'open'");
   }
   get close() {
     return this.$$.ctx[13];
   }
-  set close(value) {
+  set close(value2) {
     throw new Error("<Dialog>: Cannot set read-only property 'close'");
   }
 };
@@ -8822,16 +8822,16 @@ function dateValue(...args) {
   newDate.setFullYear(...args);
   return newDate.setHours(0, 0, 0, 0);
 }
-function addDays(date, amount) {
+function addDays(date, amount2) {
   const newDate = new Date(date);
-  return newDate.setDate(newDate.getDate() + amount);
+  return newDate.setDate(newDate.getDate() + amount2);
 }
-function addWeeks(date, amount) {
-  return addDays(date, amount * 7);
+function addWeeks(date, amount2) {
+  return addDays(date, amount2 * 7);
 }
-function addMonths(date, amount) {
+function addMonths(date, amount2) {
   const newDate = new Date(date);
-  const monthsToSet = newDate.getMonth() + amount;
+  const monthsToSet = newDate.getMonth() + amount2;
   let expectedMonth = monthsToSet % 12;
   if (expectedMonth < 0) {
     expectedMonth += 12;
@@ -8839,10 +8839,10 @@ function addMonths(date, amount) {
   const time = newDate.setMonth(monthsToSet);
   return newDate.getMonth() !== expectedMonth ? newDate.setDate(0) : time;
 }
-function addYears(date, amount) {
+function addYears(date, amount2) {
   const newDate = new Date(date);
   const expectedMonth = newDate.getMonth();
-  const time = newDate.setFullYear(newDate.getFullYear() + amount);
+  const time = newDate.setFullYear(newDate.getFullYear() + amount2);
   return expectedMonth === 1 && newDate.getMonth() === 2 ? newDate.setDate(0) : time;
 }
 function dayDiff(day, from) {
@@ -8963,8 +8963,8 @@ var formatFns = {
 function normalizeMonth(monthIndex) {
   return monthIndex > -1 ? monthIndex % 12 : normalizeMonth(monthIndex + 12);
 }
-function padZero(num, length) {
-  return num.toString().padStart(length, "0");
+function padZero(num2, length) {
+  return num2.toString().padStart(length, "0");
 }
 function parseFormatString(format) {
   if (typeof format !== "string") {
@@ -9227,12 +9227,12 @@ function updateWeekStart(newValue, config2, weekNumbers) {
   }
   return newValue;
 }
-function validateDate(value, format, locale, origValue) {
-  const date = parseDate(value, format, locale);
+function validateDate(value2, format, locale, origValue) {
+  const date = parseDate(value2, format, locale);
   return date !== void 0 ? date : origValue;
 }
-function validateViewId(value, origValue, max = 3) {
-  const viewId = parseInt(value, 10);
+function validateViewId(value2, origValue, max = 3) {
+  const viewId = parseInt(value2, 10);
   return viewId >= 0 && viewId <= max ? viewId : origValue;
 }
 function replaceOptions(options, from, to, convert = void 0) {
@@ -9475,9 +9475,9 @@ function processOptions(options, datepicker) {
     }
     delete inOpts.todayButtonMode;
   }
-  Object.entries(inOpts).forEach(([key, value]) => {
-    if (value !== void 0 && key in defaultOptions_default) {
-      config2[key] = value;
+  Object.entries(inOpts).forEach(([key, value2]) => {
+    if (value2 !== void 0 && key in defaultOptions_default) {
+      config2[key] = value2;
     }
   });
   return config2;
@@ -10149,11 +10149,11 @@ function onClickView(datepicker, ev) {
   if (!target || target.classList.contains("disabled")) {
     return;
   }
-  const { id, isMinView } = datepicker.picker.currentView;
+  const { id: id2, isMinView } = datepicker.picker.currentView;
   const data = target.dataset;
   if (isMinView) {
     datepicker.setDate(Number(data.date));
-  } else if (id === 1) {
+  } else if (id2 === 1) {
     goToSelectedMonthOrYear(datepicker, Number(data.month));
   } else {
     goToSelectedMonthOrYear(datepicker, Number(data.year));
@@ -10168,7 +10168,7 @@ var orientClasses = ["left", "top", "right", "bottom"].reduce((obj, key) => {
   obj[key] = `datepicker-orient-${key}`;
   return obj;
 }, {});
-var toPx = (num) => num ? `${num}px` : num;
+var toPx = (num2) => num2 ? `${num2}px` : num2;
 function processPickerOptions(picker, options) {
   if ("title" in options) {
     if (options.title) {
@@ -10226,9 +10226,9 @@ function setViewDate(picker, newDate) {
     picker._oldViewDate = picker.viewDate;
   }
   picker.viewDate = newDate;
-  const { id, year, first, last } = picker.currentView;
+  const { id: id2, year, first, last } = picker.currentView;
   const viewYear = new Date(newDate).getFullYear();
-  switch (id) {
+  switch (id2) {
     case 0:
       return newDate < first || newDate > last;
     case 1:
@@ -11361,19 +11361,19 @@ function create_fragment8(ctx) {
   });
   return block;
 }
-function instance8($$self, $$props, $$invalidate) {
+function instance8($$self2, $$props2, $$invalidate2) {
   let elevated;
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal8.validate_slots)("Datepicker", slots, []);
-  let { format = "yyyy-mm-dd" } = $$props;
-  let { value = "" } = $$props;
-  let { placeholder = format } = $$props;
-  let { elevate = false } = $$props;
-  let { showOnFocus = false } = $$props;
-  let { orientation = "auto" } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte4.createEventDispatcher)();
+  let props2;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal8.validate_slots)("Datepicker", slots2, []);
+  let { format = "yyyy-mm-dd" } = $$props2;
+  let { value: value2 = "" } = $$props2;
+  let { placeholder = format } = $$props2;
+  let { elevate = false } = $$props2;
+  let { showOnFocus = false } = $$props2;
+  let { orientation = "auto" } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte4.createEventDispatcher)();
   let picker, inputEl;
   let open = false;
   (0, import_svelte4.onMount)(() => {
@@ -11396,78 +11396,78 @@ function instance8($$self, $$props, $$invalidate) {
       }
     );
   });
-  function onkeydown(e) {
+  function onkeydown2(e) {
     const isActive = picker.active;
     const params = { event: e, component: picker };
     if (e.key === "Escape") {
       if (isActive)
         e.stopPropagation();
       else
-        dispatch("keydown", params);
+        dispatch2("keydown", params);
       requestAnimationFrame(() => picker.hide());
     } else if (e.key === "Enter") {
       if (isActive)
         e.preventDefault();
       else
-        dispatch("keydown", params);
+        dispatch2("keydown", params);
       requestAnimationFrame(() => picker.hide());
     } else
-      dispatch("keydown", params);
+      dispatch2("keydown", params);
   }
   function oninput() {
     const wasOpen = open;
     requestAnimationFrame(() => {
-      const d = Datepicker.parseDate(value, format);
+      const d = Datepicker.parseDate(value2, format);
       const df = Datepicker.formatDate(d, format);
-      if (df === value) {
-        picker.setDate(value);
+      if (df === value2) {
+        picker.setDate(value2);
         if (wasOpen)
           picker.show();
       }
     });
   }
-  function onchange4() {
-    $$invalidate(0, value = picker.getDate(format));
-    dispatch("change", value);
+  function onchange5() {
+    $$invalidate2(0, value2 = picker.getDate(format));
+    dispatch2("change", value2);
   }
   function onshow() {
-    $$invalidate(4, open = true);
+    $$invalidate2(4, open = true);
   }
   function onhide() {
-    $$invalidate(4, open = false);
+    $$invalidate2(4, open = false);
   }
   function onIconClick() {
     inputEl.focus();
     picker.show();
   }
-  function input_binding($$value) {
+  function input_binding2($$value) {
     import_internal8.binding_callbacks[$$value ? "unshift" : "push"](() => {
       inputEl = $$value;
-      $$invalidate(3, inputEl);
+      $$invalidate2(3, inputEl);
     });
   }
-  function input_input_handler() {
-    value = this.value;
-    $$invalidate(0, value);
+  function input_input_handler2() {
+    value2 = this.value;
+    $$invalidate2(0, value2);
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(21, $$props = (0, import_internal8.assign)((0, import_internal8.assign)({}, $$props), (0, import_internal8.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(21, $$props2 = (0, import_internal8.assign)((0, import_internal8.assign)({}, $$props2), (0, import_internal8.exclude_internal_props)($$new_props)));
     if ("format" in $$new_props)
-      $$invalidate(12, format = $$new_props.format);
+      $$invalidate2(12, format = $$new_props.format);
     if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
+      $$invalidate2(0, value2 = $$new_props.value);
     if ("placeholder" in $$new_props)
-      $$invalidate(1, placeholder = $$new_props.placeholder);
+      $$invalidate2(1, placeholder = $$new_props.placeholder);
     if ("elevate" in $$new_props)
-      $$invalidate(13, elevate = $$new_props.elevate);
+      $$invalidate2(13, elevate = $$new_props.elevate);
     if ("showOnFocus" in $$new_props)
-      $$invalidate(14, showOnFocus = $$new_props.showOnFocus);
+      $$invalidate2(14, showOnFocus = $$new_props.showOnFocus);
     if ("orientation" in $$new_props)
-      $$invalidate(15, orientation = $$new_props.orientation);
+      $$invalidate2(15, orientation = $$new_props.orientation);
     if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
+      $$invalidate2(2, className2 = $$new_props.class);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     onMount: import_svelte4.onMount,
     createEventDispatcher: import_svelte4.createEventDispatcher,
     Datepicker,
@@ -11475,75 +11475,75 @@ function instance8($$self, $$props, $$invalidate) {
     icons,
     pluck,
     format,
-    value,
+    value: value2,
     placeholder,
     elevate,
     showOnFocus,
     orientation,
-    className,
-    dispatch,
+    className: className2,
+    dispatch: dispatch2,
     picker,
     inputEl,
     open,
-    onkeydown,
+    onkeydown: onkeydown2,
     oninput,
-    onchange: onchange4,
+    onchange: onchange5,
     onshow,
     onhide,
     onIconClick,
     elevated,
-    props
+    props: props2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(21, $$props = (0, import_internal8.assign)((0, import_internal8.assign)({}, $$props), $$new_props));
-    if ("format" in $$props)
-      $$invalidate(12, format = $$new_props.format);
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("placeholder" in $$props)
-      $$invalidate(1, placeholder = $$new_props.placeholder);
-    if ("elevate" in $$props)
-      $$invalidate(13, elevate = $$new_props.elevate);
-    if ("showOnFocus" in $$props)
-      $$invalidate(14, showOnFocus = $$new_props.showOnFocus);
-    if ("orientation" in $$props)
-      $$invalidate(15, orientation = $$new_props.orientation);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("picker" in $$props)
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(21, $$props2 = (0, import_internal8.assign)((0, import_internal8.assign)({}, $$props2), $$new_props));
+    if ("format" in $$props2)
+      $$invalidate2(12, format = $$new_props.format);
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("placeholder" in $$props2)
+      $$invalidate2(1, placeholder = $$new_props.placeholder);
+    if ("elevate" in $$props2)
+      $$invalidate2(13, elevate = $$new_props.elevate);
+    if ("showOnFocus" in $$props2)
+      $$invalidate2(14, showOnFocus = $$new_props.showOnFocus);
+    if ("orientation" in $$props2)
+      $$invalidate2(15, orientation = $$new_props.orientation);
+    if ("className" in $$props2)
+      $$invalidate2(2, className2 = $$new_props.className);
+    if ("picker" in $$props2)
       picker = $$new_props.picker;
-    if ("inputEl" in $$props)
-      $$invalidate(3, inputEl = $$new_props.inputEl);
-    if ("open" in $$props)
-      $$invalidate(4, open = $$new_props.open);
-    if ("elevated" in $$props)
+    if ("inputEl" in $$props2)
+      $$invalidate2(3, inputEl = $$new_props.inputEl);
+    if ("open" in $$props2)
+      $$invalidate2(4, open = $$new_props.open);
+    if ("elevated" in $$props2)
       elevated = $$new_props.elevated;
-    if ("props" in $$props)
-      $$invalidate(5, props = $$new_props.props);
+    if ("props" in $$props2)
+      $$invalidate2(5, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*elevate*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty & /*elevate*/
     8192) {
       $:
         elevated = elevate === true || elevate === "true";
     }
     $:
-      $$invalidate(5, props = pluck($$props, ["id", "title", "name", "disabled", "required"]));
+      $$invalidate2(5, props2 = pluck($$props2, ["id", "title", "name", "disabled", "required"]));
   };
-  $$props = (0, import_internal8.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal8.exclude_internal_props)($$props2);
   return [
-    value,
+    value2,
     placeholder,
-    className,
+    className2,
     inputEl,
     open,
-    props,
-    onkeydown,
+    props2,
+    onkeydown2,
     oninput,
-    onchange4,
+    onchange5,
     onshow,
     onhide,
     onIconClick,
@@ -11551,8 +11551,8 @@ function instance8($$self, $$props, $$invalidate) {
     elevate,
     showOnFocus,
     orientation,
-    input_binding,
-    input_input_handler
+    input_binding2,
+    input_input_handler2
   ];
 }
 var Datepicker_1 = class extends import_internal8.SvelteComponentDev {
@@ -11577,43 +11577,43 @@ var Datepicker_1 = class extends import_internal8.SvelteComponentDev {
   get format() {
     throw new Error("<Datepicker>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set format(value) {
+  set format(value2) {
     throw new Error("<Datepicker>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get value() {
     throw new Error("<Datepicker>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<Datepicker>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get placeholder() {
     throw new Error("<Datepicker>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set placeholder(value) {
+  set placeholder(value2) {
     throw new Error("<Datepicker>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get elevate() {
     throw new Error("<Datepicker>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set elevate(value) {
+  set elevate(value2) {
     throw new Error("<Datepicker>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get showOnFocus() {
     throw new Error("<Datepicker>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set showOnFocus(value) {
+  set showOnFocus(value2) {
     throw new Error("<Datepicker>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get orientation() {
     throw new Error("<Datepicker>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set orientation(value) {
+  set orientation(value2) {
     throw new Error("<Datepicker>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Datepicker>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Datepicker>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -11924,15 +11924,15 @@ function create_fragment9(ctx) {
   });
   return block;
 }
-function instance9($$self, $$props, $$invalidate) {
-  let $ANIMATION_SPEED;
+function instance9($$self2, $$props2, $$invalidate2) {
+  let $ANIMATION_SPEED2;
   (0, import_internal9.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal9.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(6, $ANIMATION_SPEED = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal9.validate_slots)("Drawer", slots, ["default"]);
-  let { title = "Drawer" } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte5.createEventDispatcher)();
+  (0, import_internal9.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(6, $ANIMATION_SPEED2 = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal9.validate_slots)("Drawer", slots2, ["default"]);
+  let { title = "Drawer" } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte5.createEventDispatcher)();
   let isVisible = false;
   let el, headerEl, targetBtn;
   function docclick() {
@@ -11957,15 +11957,15 @@ function instance9($$self, $$props, $$invalidate) {
   }
   function open(target) {
     targetBtn = target || document.activeElement;
-    $$invalidate(3, isVisible = true);
+    $$invalidate2(3, isVisible = true);
     requestAnimationFrame(() => headerEl.querySelector(".btn-close").focus());
-    dispatch("open");
+    dispatch2("open");
   }
   function close() {
-    $$invalidate(3, isVisible = false);
+    $$invalidate2(3, isVisible = false);
     if (targetBtn)
       targetBtn.focus();
-    dispatch("close");
+    dispatch2("close");
   }
   function focusFirst() {
     const first = getFocusableElements().shift();
@@ -11987,39 +11987,39 @@ function instance9($$self, $$props, $$invalidate) {
     return Array.from(el.querySelectorAll(FOCUSABLE_SELECTOR));
   }
   const writable_props = ["title", "class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Drawer> was created with unknown prop '${key}'`);
   });
   function header_binding($$value) {
     import_internal9.binding_callbacks[$$value ? "unshift" : "push"](() => {
       headerEl = $$value;
-      $$invalidate(5, headerEl);
+      $$invalidate2(5, headerEl);
     });
   }
   function div3_binding($$value) {
     import_internal9.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(4, el);
+      $$invalidate2(4, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(0, title = $$props2.title);
-    if ("class" in $$props2)
-      $$invalidate(1, className = $$props2.class);
-    if ("$$scope" in $$props2)
-      $$invalidate(12, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(0, title = $$props3.title);
+    if ("class" in $$props3)
+      $$invalidate2(1, className2 = $$props3.class);
+    if ("$$scope" in $$props3)
+      $$invalidate2(12, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     createEventDispatcher: import_svelte5.createEventDispatcher,
     fly: import_transition.fly,
     ANIMATION_SPEED,
     FOCUSABLE_SELECTOR,
     Button: Button_default,
     title,
-    className,
-    dispatch,
+    className: className2,
+    dispatch: dispatch2,
     isVisible,
     el,
     headerEl,
@@ -12032,40 +12032,40 @@ function instance9($$self, $$props, $$invalidate) {
     focusFirst,
     focusLast,
     getFocusableElements,
-    $ANIMATION_SPEED
+    $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(0, title = $$props2.title);
-    if ("className" in $$props2)
-      $$invalidate(1, className = $$props2.className);
-    if ("isVisible" in $$props2)
-      $$invalidate(3, isVisible = $$props2.isVisible);
-    if ("el" in $$props2)
-      $$invalidate(4, el = $$props2.el);
-    if ("headerEl" in $$props2)
-      $$invalidate(5, headerEl = $$props2.headerEl);
-    if ("targetBtn" in $$props2)
-      targetBtn = $$props2.targetBtn;
+  $$self2.$inject_state = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(0, title = $$props3.title);
+    if ("className" in $$props3)
+      $$invalidate2(1, className2 = $$props3.className);
+    if ("isVisible" in $$props3)
+      $$invalidate2(3, isVisible = $$props3.isVisible);
+    if ("el" in $$props3)
+      $$invalidate2(4, el = $$props3.el);
+    if ("headerEl" in $$props3)
+      $$invalidate2(5, headerEl = $$props3.headerEl);
+    if ("targetBtn" in $$props3)
+      targetBtn = $$props3.targetBtn;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     title,
-    className,
+    className2,
     close,
     isVisible,
     el,
     headerEl,
-    $ANIMATION_SPEED,
+    $ANIMATION_SPEED2,
     docclick,
     focusFirst,
     focusLast,
     toggle,
     open,
-    $$scope,
-    slots,
+    $$scope2,
+    slots2,
     header_binding,
     div3_binding
   ];
@@ -12097,26 +12097,26 @@ var Drawer = class extends import_internal9.SvelteComponentDev {
   get class() {
     return this.$$.ctx[1];
   }
-  set class(className) {
-    this.$$set({ class: className });
+  set class(className2) {
+    this.$$set({ class: className2 });
     (0, import_internal9.flush)();
   }
   get toggle() {
     return this.$$.ctx[10];
   }
-  set toggle(value) {
+  set toggle(value2) {
     throw new Error("<Drawer>: Cannot set read-only property 'toggle'");
   }
   get open() {
     return this.$$.ctx[11];
   }
-  set open(value) {
+  set open(value2) {
     throw new Error("<Drawer>: Cannot set read-only property 'open'");
   }
   get close() {
     return this.$$.ctx[2];
   }
-  set close(value) {
+  set close(value2) {
     throw new Error("<Drawer>: Cannot set read-only property 'close'");
   }
 };
@@ -12124,22 +12124,268 @@ var Drawer_default = Drawer;
 
 // src/input-number/InputNumber.svelte
 var import_internal10 = __toESM(require_internal());
+var import_svelte6 = __toESM(require_svelte());
+var import_transition2 = __toESM(require_transition());
 var file9 = "src/input-number/InputNumber.svelte";
+function create_if_block_22(ctx) {
+  let label_1;
+  let t;
+  const block = {
+    c: function create() {
+      label_1 = (0, import_internal10.element)("label");
+      t = (0, import_internal10.text)(
+        /*label*/
+        ctx[3]
+      );
+      (0, import_internal10.attr_dev)(label_1, "class", "label");
+      (0, import_internal10.attr_dev)(
+        label_1,
+        "for",
+        /*_id*/
+        ctx[8]
+      );
+      (0, import_internal10.add_location)(label_1, file9, 2, 2, 91);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal10.insert_dev)(target, label_1, anchor);
+      (0, import_internal10.append_dev)(label_1, t);
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty & /*label*/
+      8)
+        (0, import_internal10.set_data_dev)(
+          t,
+          /*label*/
+          ctx2[3]
+        );
+      if (dirty & /*_id*/
+      256) {
+        (0, import_internal10.attr_dev)(
+          label_1,
+          "for",
+          /*_id*/
+          ctx2[8]
+        );
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal10.detach_dev)(label_1);
+    }
+  };
+  (0, import_internal10.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_22.name,
+    type: "if",
+    source: "(2:1) {#if label}",
+    ctx
+  });
+  return block;
+}
+function create_if_block_12(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let current;
+  icon = new Icon_default({ props: { name: "info" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal10.element)("div");
+      (0, import_internal10.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal10.space)();
+      p = (0, import_internal10.element)("p");
+      t1 = (0, import_internal10.text)(
+        /*info*/
+        ctx[5]
+      );
+      (0, import_internal10.add_location)(p, file9, 7, 3, 212);
+      (0, import_internal10.attr_dev)(div, "class", "input-info");
+      (0, import_internal10.add_location)(div, file9, 5, 2, 161);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal10.insert_dev)(target, div, anchor);
+      (0, import_internal10.mount_component)(icon, div, null);
+      (0, import_internal10.append_dev)(div, t0);
+      (0, import_internal10.append_dev)(div, p);
+      (0, import_internal10.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(ctx2, dirty) {
+      if (!current || dirty & /*info*/
+      32)
+        (0, import_internal10.set_data_dev)(
+          t1,
+          /*info*/
+          ctx2[5]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal10.transition_in)(icon.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal10.transition_out)(icon.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal10.detach_dev)(div);
+      (0, import_internal10.destroy_component)(icon);
+    }
+  };
+  (0, import_internal10.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_12.name,
+    type: "if",
+    source: "(5:1) {#if info}",
+    ctx
+  });
+  return block;
+}
+function create_if_block5(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let div_transition;
+  let current;
+  icon = new Icon_default({ props: { name: "error" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal10.element)("div");
+      (0, import_internal10.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal10.space)();
+      p = (0, import_internal10.element)("p");
+      t1 = (0, import_internal10.text)(
+        /*error*/
+        ctx[4]
+      );
+      (0, import_internal10.attr_dev)(
+        p,
+        "id",
+        /*errorMessageId*/
+        ctx[10]
+      );
+      (0, import_internal10.add_location)(p, file9, 15, 4, 406);
+      (0, import_internal10.attr_dev)(div, "class", "input-error");
+      (0, import_internal10.add_location)(div, file9, 13, 3, 306);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal10.insert_dev)(target, div, anchor);
+      (0, import_internal10.mount_component)(icon, div, null);
+      (0, import_internal10.append_dev)(div, t0);
+      (0, import_internal10.append_dev)(div, p);
+      (0, import_internal10.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(new_ctx, dirty) {
+      ctx = new_ctx;
+      if (!current || dirty & /*error*/
+      16)
+        (0, import_internal10.set_data_dev)(
+          t1,
+          /*error*/
+          ctx[4]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal10.transition_in)(icon.$$.fragment, local);
+      (0, import_internal10.add_render_callback)(() => {
+        if (!current)
+          return;
+        if (!div_transition)
+          div_transition = (0, import_internal10.create_bidirectional_transition)(div, import_transition2.slide, { axis: "y", duration: (
+            /*duration*/
+            ctx[7]
+          ) }, true);
+        div_transition.run(1);
+      });
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal10.transition_out)(icon.$$.fragment, local);
+      if (!div_transition)
+        div_transition = (0, import_internal10.create_bidirectional_transition)(div, import_transition2.slide, { axis: "y", duration: (
+          /*duration*/
+          ctx[7]
+        ) }, false);
+      div_transition.run(0);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal10.detach_dev)(div);
+      (0, import_internal10.destroy_component)(icon);
+      if (detaching && div_transition)
+        div_transition.end();
+    }
+  };
+  (0, import_internal10.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block5.name,
+    type: "if",
+    source: "(13:2) {#if error}",
+    ctx
+  });
+  return block;
+}
 function create_fragment10(ctx) {
+  let div1;
+  let t0;
+  let t1;
+  let div0;
+  let t2;
   let input;
-  let input_class_value;
+  let input_aria_errormessage_value;
+  let div1_class_value;
+  let current;
   let mounted;
   let dispose;
+  let if_block0 = (
+    /*label*/
+    ctx[3] && create_if_block_22(ctx)
+  );
+  let if_block1 = (
+    /*info*/
+    ctx[5] && create_if_block_12(ctx)
+  );
+  let if_block2 = (
+    /*error*/
+    ctx[4] && create_if_block5(ctx)
+  );
   let input_levels = [
-    { type: "number" },
+    { type: "text" },
+    { inputmode: "numeric" },
+    { pattern: "-?\\d+(\\.\\d+)?" },
     { autocomplete: "off" },
-    {
-      class: input_class_value = "number-input " + /*className*/
-      ctx[1]
-    },
-    { step: "any" },
     /*props*/
-    ctx[2]
+    ctx[9],
+    { id: (
+      /*_id*/
+      ctx[8]
+    ) },
+    { "aria-invalid": (
+      /*error*/
+      ctx[4]
+    ) },
+    {
+      "aria-errormessage": input_aria_errormessage_value = /*error*/
+      ctx[4] ? (
+        /*errorMessageId*/
+        ctx[10]
+      ) : void 0
+    },
+    { "aria-required": (
+      /*required*/
+      ctx[2]
+    ) }
   ];
   let input_data = {};
   for (let i = 0; i < input_levels.length; i += 1) {
@@ -12147,15 +12393,54 @@ function create_fragment10(ctx) {
   }
   const block = {
     c: function create() {
+      div1 = (0, import_internal10.element)("div");
+      if (if_block0)
+        if_block0.c();
+      t0 = (0, import_internal10.space)();
+      if (if_block1)
+        if_block1.c();
+      t1 = (0, import_internal10.space)();
+      div0 = (0, import_internal10.element)("div");
+      if (if_block2)
+        if_block2.c();
+      t2 = (0, import_internal10.space)();
       input = (0, import_internal10.element)("input");
       (0, import_internal10.set_attributes)(input, input_data);
-      (0, import_internal10.add_location)(input, file9, 0, 0, 0);
+      (0, import_internal10.add_location)(input, file9, 18, 2, 463);
+      (0, import_internal10.attr_dev)(div0, "class", "input-text-inner");
+      (0, import_internal10.toggle_class)(
+        div0,
+        "initial",
+        /*initial*/
+        ctx[6]
+      );
+      (0, import_internal10.add_location)(div0, file9, 11, 1, 244);
+      (0, import_internal10.attr_dev)(div1, "class", div1_class_value = "input-text input-number " + /*className*/
+      ctx[1]);
+      (0, import_internal10.toggle_class)(
+        div1,
+        "has-error",
+        /*error*/
+        ctx[4]
+      );
+      (0, import_internal10.add_location)(div1, file9, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal10.insert_dev)(target, input, anchor);
+      (0, import_internal10.insert_dev)(target, div1, anchor);
+      if (if_block0)
+        if_block0.m(div1, null);
+      (0, import_internal10.append_dev)(div1, t0);
+      if (if_block1)
+        if_block1.m(div1, null);
+      (0, import_internal10.append_dev)(div1, t1);
+      (0, import_internal10.append_dev)(div1, div0);
+      if (if_block2)
+        if_block2.m(div0, null);
+      (0, import_internal10.append_dev)(div0, t2);
+      (0, import_internal10.append_dev)(div0, input);
       if (input.autofocus)
         input.focus();
       (0, import_internal10.set_input_value)(
@@ -12163,19 +12448,20 @@ function create_fragment10(ctx) {
         /*value*/
         ctx[0]
       );
+      current = true;
       if (!mounted) {
         dispose = [
           (0, import_internal10.listen_dev)(
             input,
             "input",
             /*input_input_handler*/
-            ctx[5]
+            ctx[19]
           ),
           (0, import_internal10.listen_dev)(
             input,
             "keydown",
             /*onkeydown*/
-            ctx[3],
+            ctx[11],
             false,
             false,
             false,
@@ -12185,834 +12471,23 @@ function create_fragment10(ctx) {
             input,
             "change",
             /*onchange*/
-            ctx[4],
-            false,
-            false,
-            false,
-            false
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p: function update(ctx2, [dirty]) {
-      (0, import_internal10.set_attributes)(input, input_data = (0, import_internal10.get_spread_update)(input_levels, [
-        { type: "number" },
-        { autocomplete: "off" },
-        dirty & /*className*/
-        2 && input_class_value !== (input_class_value = "number-input " + /*className*/
-        ctx2[1]) && { class: input_class_value },
-        { step: "any" },
-        dirty & /*props*/
-        4 && /*props*/
-        ctx2[2]
-      ]));
-      if (dirty & /*value*/
-      1 && (0, import_internal10.to_number)(input.value) !== /*value*/
-      ctx2[0]) {
-        (0, import_internal10.set_input_value)(
-          input,
-          /*value*/
-          ctx2[0]
-        );
-      }
-    },
-    i: import_internal10.noop,
-    o: import_internal10.noop,
-    d: function destroy(detaching) {
-      if (detaching)
-        (0, import_internal10.detach_dev)(input);
-      mounted = false;
-      (0, import_internal10.run_all)(dispose);
-    }
-  };
-  (0, import_internal10.dispatch_dev)("SvelteRegisterBlock", {
-    block,
-    id: create_fragment10.name,
-    type: "component",
-    source: "",
-    ctx
-  });
-  return block;
-}
-var DECIMAL_SEPARATOR = ".";
-function instance10($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal10.validate_slots)("InputNumber", slots, []);
-  let { value = "" } = $$props;
-  let { class: className = "" } = $$props;
-  const allowedKeys = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "ArrowLeft",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowRight",
-    "Backspace",
-    "Delete",
-    "Tab",
-    "Meta"
-  ];
-  function onkeydown(e) {
-    if (allowedKeys.includes(e.key))
-      return;
-    if (e.key === "-" && !("" + value).includes("-"))
-      return;
-    if (e.key === DECIMAL_SEPARATOR && !("" + value).includes(DECIMAL_SEPARATOR))
-      return;
-    e.preventDefault();
-  }
-  function onchange4() {
-    const num = parseFloat(value);
-    $$invalidate(0, value = isNaN(num) ? "" : num);
-  }
-  function input_input_handler() {
-    value = (0, import_internal10.to_number)(this.value);
-    $$invalidate(0, value);
-  }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(7, $$props = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props), (0, import_internal10.exclude_internal_props)($$new_props)));
-    if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("class" in $$new_props)
-      $$invalidate(1, className = $$new_props.class);
-  };
-  $$self.$capture_state = () => ({
-    pluck,
-    value,
-    className,
-    DECIMAL_SEPARATOR,
-    allowedKeys,
-    onkeydown,
-    onchange: onchange4,
-    props
-  });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(7, $$props = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props), $$new_props));
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("className" in $$props)
-      $$invalidate(1, className = $$new_props.className);
-    if ("props" in $$props)
-      $$invalidate(2, props = $$new_props.props);
-  };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
-  }
-  $$self.$$.update = () => {
-    $:
-      $$invalidate(2, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
-  };
-  $$props = (0, import_internal10.exclude_internal_props)($$props);
-  return [value, className, props, onkeydown, onchange4, input_input_handler];
-}
-var InputNumber = class extends import_internal10.SvelteComponentDev {
-  constructor(options) {
-    super(options);
-    (0, import_internal10.init)(this, options, instance10, create_fragment10, import_internal10.safe_not_equal, { value: 0, class: 1 });
-    (0, import_internal10.dispatch_dev)("SvelteRegisterComponent", {
-      component: this,
-      tagName: "InputNumber",
-      options,
-      id: create_fragment10.name
-    });
-  }
-  get value() {
-    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set value(value) {
-    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get class() {
-    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set class(value) {
-    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-};
-var InputNumber_default = InputNumber;
-
-// src/input-math/InputMath.svelte
-var import_internal11 = __toESM(require_internal());
-var import_svelte6 = __toESM(require_svelte());
-var file10 = "src/input-math/InputMath.svelte";
-function create_fragment11(ctx) {
-  let div;
-  let icon;
-  let t;
-  let input;
-  let div_class_value;
-  let current;
-  let mounted;
-  let dispose;
-  icon = new Icon_default({
-    props: { name: "calculator" },
-    $$inline: true
-  });
-  let input_levels = [
-    { type: "text" },
-    { autocomplete: "off" },
-    { class: "input-math" },
-    /*props*/
-    ctx[3]
-  ];
-  let input_data = {};
-  for (let i = 0; i < input_levels.length; i += 1) {
-    input_data = (0, import_internal11.assign)(input_data, input_levels[i]);
-  }
-  const block = {
-    c: function create() {
-      div = (0, import_internal11.element)("div");
-      (0, import_internal11.create_component)(icon.$$.fragment);
-      t = (0, import_internal11.space)();
-      input = (0, import_internal11.element)("input");
-      (0, import_internal11.set_attributes)(input, input_data);
-      (0, import_internal11.add_location)(input, file10, 2, 1, 73);
-      (0, import_internal11.attr_dev)(div, "class", div_class_value = "input-math-wrapper " + /*className*/
-      ctx[2]);
-      (0, import_internal11.add_location)(div, file10, 0, 0, 0);
-    },
-    l: function claim(nodes) {
-      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    },
-    m: function mount(target, anchor) {
-      (0, import_internal11.insert_dev)(target, div, anchor);
-      (0, import_internal11.mount_component)(icon, div, null);
-      (0, import_internal11.append_dev)(div, t);
-      (0, import_internal11.append_dev)(div, input);
-      if (input.autofocus)
-        input.focus();
-      ctx[8](input);
-      (0, import_internal11.set_input_value)(
-        input,
-        /*value*/
-        ctx[1]
-      );
-      current = true;
-      if (!mounted) {
-        dispose = [
-          (0, import_internal11.listen_dev)(
-            input,
-            "input",
-            /*input_input_handler*/
-            ctx[9]
-          ),
-          (0, import_internal11.listen_dev)(
-            input,
-            "keydown",
-            /*onkeydown*/
-            ctx[4],
+            ctx[12],
             false,
             false,
             false,
             false
           ),
-          (0, import_internal11.listen_dev)(
-            input,
-            "change",
-            /*onchange*/
-            ctx[5],
-            false,
-            false,
-            false,
-            false
-          ),
-          (0, import_internal11.listen_dev)(
-            input,
-            "focus",
-            /*focus_handler*/
-            ctx[6],
-            false,
-            false,
-            false,
-            false
-          ),
-          (0, import_internal11.listen_dev)(
-            input,
-            "blur",
-            /*blur_handler*/
-            ctx[7],
-            false,
-            false,
-            false,
-            false
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p: function update(ctx2, [dirty]) {
-      (0, import_internal11.set_attributes)(input, input_data = (0, import_internal11.get_spread_update)(input_levels, [
-        { type: "text" },
-        { autocomplete: "off" },
-        { class: "input-math" },
-        dirty & /*props*/
-        8 && /*props*/
-        ctx2[3]
-      ]));
-      if (dirty & /*value*/
-      2 && input.value !== /*value*/
-      ctx2[1]) {
-        (0, import_internal11.set_input_value)(
-          input,
-          /*value*/
-          ctx2[1]
-        );
-      }
-      if (!current || dirty & /*className*/
-      4 && div_class_value !== (div_class_value = "input-math-wrapper " + /*className*/
-      ctx2[2])) {
-        (0, import_internal11.attr_dev)(div, "class", div_class_value);
-      }
-    },
-    i: function intro(local) {
-      if (current)
-        return;
-      (0, import_internal11.transition_in)(icon.$$.fragment, local);
-      current = true;
-    },
-    o: function outro(local) {
-      (0, import_internal11.transition_out)(icon.$$.fragment, local);
-      current = false;
-    },
-    d: function destroy(detaching) {
-      if (detaching)
-        (0, import_internal11.detach_dev)(div);
-      (0, import_internal11.destroy_component)(icon);
-      ctx[8](null);
-      mounted = false;
-      (0, import_internal11.run_all)(dispose);
-    }
-  };
-  (0, import_internal11.dispatch_dev)("SvelteRegisterBlock", {
-    block,
-    id: create_fragment11.name,
-    type: "component",
-    source: "",
-    ctx
-  });
-  return block;
-}
-var DECIMAL_SEPARATOR2 = ".";
-function instance11($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal11.validate_slots)("InputMath", slots, []);
-  let { _this = void 0 } = $$props;
-  let { value = "" } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte6.createEventDispatcher)();
-  const allowedKeys = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "+",
-    "-",
-    "/",
-    "*",
-    "Meta",
-    "ArrowLeft",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowRight",
-    "Backspace",
-    "Delete",
-    "Tab",
-    "Enter",
-    "Ctrl"
-  ];
-  function onkeydown(e) {
-    dispatch("keydown", e);
-    if (e.key === "Enter") {
-      const num = parseAmount(value);
-      $$invalidate(1, value = isNaN(num) ? "" : num);
-      return;
-    }
-    if (allowedKeys.includes(e.key))
-      return;
-    if (e.metaKey || e.ctrlKey)
-      return;
-    if (e.key === DECIMAL_SEPARATOR2)
-      return;
-    e.preventDefault();
-  }
-  function onchange4(e) {
-    const num = parseAmount(value);
-    $$invalidate(1, value = isNaN(num) ? "" : num);
-    dispatch("change", e);
-  }
-  const save_eval = eval;
-  function parseAmount(amount) {
-    if (!amount)
-      return "";
-    amount = ("" + amount).replace(/[\s,]/g, "");
-    if (!/^[+\-\\*/()\d.]+$/i.test(amount))
-      return 0;
-    if (/[+\-\\*/.]+/i.test(amount)) {
-      try {
-        amount = save_eval(amount);
-      } catch (e) {
-        amount = 0;
-      }
-    }
-    const num = parseFloat(amount);
-    return num === Infinity || isNaN(num) ? 0 : roundAmount(num);
-  }
-  function focus_handler(event) {
-    import_internal11.bubble.call(this, $$self, event);
-  }
-  function blur_handler(event) {
-    import_internal11.bubble.call(this, $$self, event);
-  }
-  function input_binding($$value) {
-    import_internal11.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      _this = $$value;
-      $$invalidate(0, _this);
-    });
-  }
-  function input_input_handler() {
-    value = this.value;
-    $$invalidate(1, value);
-  }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(14, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), (0, import_internal11.exclude_internal_props)($$new_props)));
-    if ("_this" in $$new_props)
-      $$invalidate(0, _this = $$new_props._this);
-    if ("value" in $$new_props)
-      $$invalidate(1, value = $$new_props.value);
-    if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
-  };
-  $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte6.createEventDispatcher,
-    Icon: Icon_default,
-    pluck,
-    roundAmount,
-    _this,
-    value,
-    className,
-    dispatch,
-    DECIMAL_SEPARATOR: DECIMAL_SEPARATOR2,
-    allowedKeys,
-    onkeydown,
-    onchange: onchange4,
-    save_eval,
-    parseAmount,
-    props
-  });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(14, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), $$new_props));
-    if ("_this" in $$props)
-      $$invalidate(0, _this = $$new_props._this);
-    if ("value" in $$props)
-      $$invalidate(1, value = $$new_props.value);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("props" in $$props)
-      $$invalidate(3, props = $$new_props.props);
-  };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
-  }
-  $$self.$$.update = () => {
-    $:
-      $$invalidate(3, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
-  };
-  $$props = (0, import_internal11.exclude_internal_props)($$props);
-  return [
-    _this,
-    value,
-    className,
-    props,
-    onkeydown,
-    onchange4,
-    focus_handler,
-    blur_handler,
-    input_binding,
-    input_input_handler
-  ];
-}
-var InputMath = class extends import_internal11.SvelteComponentDev {
-  constructor(options) {
-    super(options);
-    (0, import_internal11.init)(this, options, instance11, create_fragment11, import_internal11.safe_not_equal, { _this: 0, value: 1, class: 2 });
-    (0, import_internal11.dispatch_dev)("SvelteRegisterComponent", {
-      component: this,
-      tagName: "InputMath",
-      options,
-      id: create_fragment11.name
-    });
-  }
-  get _this() {
-    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set _this(value) {
-    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get value() {
-    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set value(value) {
-    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get class() {
-    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set class(value) {
-    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-};
-var InputMath_default = InputMath;
-
-// src/input-password/InputPassword.svelte
-var import_internal12 = __toESM(require_internal());
-var import_svelte7 = __toESM(require_svelte());
-var file11 = "src/input-password/InputPassword.svelte";
-function create_if_block_12(ctx) {
-  let label_1;
-  let t;
-  const block = {
-    c: function create() {
-      label_1 = (0, import_internal12.element)("label");
-      t = (0, import_internal12.text)(
-        /*label*/
-        ctx[3]
-      );
-      (0, import_internal12.attr_dev)(label_1, "class", "label");
-      (0, import_internal12.attr_dev)(
-        label_1,
-        "for",
-        /*_id*/
-        ctx[12]
-      );
-      (0, import_internal12.add_location)(label_1, file11, 7, 2, 172);
-    },
-    m: function mount(target, anchor) {
-      (0, import_internal12.insert_dev)(target, label_1, anchor);
-      (0, import_internal12.append_dev)(label_1, t);
-    },
-    p: function update(ctx2, dirty) {
-      if (dirty & /*label*/
-      8)
-        (0, import_internal12.set_data_dev)(
-          t,
-          /*label*/
-          ctx2[3]
-        );
-      if (dirty & /*_id*/
-      4096) {
-        (0, import_internal12.attr_dev)(
-          label_1,
-          "for",
-          /*_id*/
-          ctx2[12]
-        );
-      }
-    },
-    d: function destroy(detaching) {
-      if (detaching)
-        (0, import_internal12.detach_dev)(label_1);
-    }
-  };
-  (0, import_internal12.dispatch_dev)("SvelteRegisterBlock", {
-    block,
-    id: create_if_block_12.name,
-    type: "if",
-    source: "(7:1) {#if label}",
-    ctx
-  });
-  return block;
-}
-function create_if_block5(ctx) {
-  let div2;
-  let div1;
-  let div0;
-  let div0_class_value;
-  let t0;
-  let div3;
-  let h2;
-  let t1;
-  let t2;
-  let small;
-  let div3_class_value;
-  const block = {
-    c: function create() {
-      div2 = (0, import_internal12.element)("div");
-      div1 = (0, import_internal12.element)("div");
-      div0 = (0, import_internal12.element)("div");
-      t0 = (0, import_internal12.space)();
-      div3 = (0, import_internal12.element)("div");
-      h2 = (0, import_internal12.element)("h2");
-      t1 = (0, import_internal12.text)(
-        /*quality*/
-        ctx[7]
-      );
-      t2 = (0, import_internal12.space)();
-      small = (0, import_internal12.element)("small");
-      (0, import_internal12.attr_dev)(div0, "class", div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx[10]);
-      (0, import_internal12.set_style)(
-        div0,
-        "width",
-        /*percent*/
-        ctx[8] + "%"
-      );
-      (0, import_internal12.add_location)(div0, file11, 26, 4, 696);
-      (0, import_internal12.attr_dev)(div1, "class", "password-strength");
-      (0, import_internal12.attr_dev)(
-        div1,
-        "title",
-        /*quality*/
-        ctx[7]
-      );
-      (0, import_internal12.add_location)(div1, file11, 25, 3, 642);
-      (0, import_internal12.attr_dev)(div2, "class", "input-password-row");
-      (0, import_internal12.add_location)(div2, file11, 24, 2, 606);
-      (0, import_internal12.add_location)(h2, file11, 30, 3, 875);
-      (0, import_internal12.add_location)(small, file11, 31, 3, 897);
-      (0, import_internal12.attr_dev)(div3, "class", div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
-      ctx[10]);
-      (0, import_internal12.add_location)(div3, file11, 29, 2, 803);
-    },
-    m: function mount(target, anchor) {
-      (0, import_internal12.insert_dev)(target, div2, anchor);
-      (0, import_internal12.append_dev)(div2, div1);
-      (0, import_internal12.append_dev)(div1, div0);
-      (0, import_internal12.insert_dev)(target, t0, anchor);
-      (0, import_internal12.insert_dev)(target, div3, anchor);
-      (0, import_internal12.append_dev)(div3, h2);
-      (0, import_internal12.append_dev)(h2, t1);
-      (0, import_internal12.append_dev)(div3, t2);
-      (0, import_internal12.append_dev)(div3, small);
-      small.innerHTML = /*strengthInfoText*/
-      ctx[9];
-    },
-    p: function update(ctx2, dirty) {
-      if (dirty & /*colorClass*/
-      1024 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx2[10])) {
-        (0, import_internal12.attr_dev)(div0, "class", div0_class_value);
-      }
-      if (dirty & /*percent*/
-      256) {
-        (0, import_internal12.set_style)(
-          div0,
-          "width",
-          /*percent*/
-          ctx2[8] + "%"
-        );
-      }
-      if (dirty & /*quality*/
-      128) {
-        (0, import_internal12.attr_dev)(
-          div1,
-          "title",
-          /*quality*/
-          ctx2[7]
-        );
-      }
-      if (dirty & /*quality*/
-      128)
-        (0, import_internal12.set_data_dev)(
-          t1,
-          /*quality*/
-          ctx2[7]
-        );
-      if (dirty & /*strengthInfoText*/
-      512)
-        small.innerHTML = /*strengthInfoText*/
-        ctx2[9];
-      ;
-      if (dirty & /*colorClass*/
-      1024 && div3_class_value !== (div3_class_value = "input-password-row password-strength-info " + /*colorClass*/
-      ctx2[10])) {
-        (0, import_internal12.attr_dev)(div3, "class", div3_class_value);
-      }
-    },
-    d: function destroy(detaching) {
-      if (detaching)
-        (0, import_internal12.detach_dev)(div2);
-      if (detaching)
-        (0, import_internal12.detach_dev)(t0);
-      if (detaching)
-        (0, import_internal12.detach_dev)(div3);
-    }
-  };
-  (0, import_internal12.dispatch_dev)("SvelteRegisterBlock", {
-    block,
-    id: create_if_block5.name,
-    type: "if",
-    source: "(24:1) {#if strength && lib && value}",
-    ctx
-  });
-  return block;
-}
-function create_fragment12(ctx) {
-  let div1;
-  let t0;
-  let div0;
-  let button;
-  let t1;
-  let input;
-  let t2;
-  let div1_class_value;
-  let current;
-  let mounted;
-  let dispose;
-  let if_block0 = (
-    /*label*/
-    ctx[3] && create_if_block_12(ctx)
-  );
-  button = new Button_default({
-    props: {
-      link: true,
-      icon: (
-        /*visible*/
-        ctx[4] ? "eyeOff" : "eye"
-      ),
-      class: "input-password-button"
-    },
-    $$inline: true
-  });
-  button.$on(
-    "click",
-    /*toggle*/
-    ctx[14]
-  );
-  let input_levels = [
-    { class: "input-password" },
-    { autocomplete: "off" },
-    /*props*/
-    ctx[5],
-    { type: (
-      /*type*/
-      ctx[13]
-    ) },
-    { value: (
-      /*value*/
-      ctx[0]
-    ) }
-  ];
-  let input_data = {};
-  for (let i = 0; i < input_levels.length; i += 1) {
-    input_data = (0, import_internal12.assign)(input_data, input_levels[i]);
-  }
-  let if_block1 = (
-    /*strength*/
-    ctx[1] && /*lib*/
-    ctx[6] && /*value*/
-    ctx[0] && create_if_block5(ctx)
-  );
-  const block = {
-    c: function create() {
-      div1 = (0, import_internal12.element)("div");
-      if (if_block0)
-        if_block0.c();
-      t0 = (0, import_internal12.space)();
-      div0 = (0, import_internal12.element)("div");
-      (0, import_internal12.create_component)(button.$$.fragment);
-      t1 = (0, import_internal12.space)();
-      input = (0, import_internal12.element)("input");
-      t2 = (0, import_internal12.space)();
-      if (if_block1)
-        if_block1.c();
-      (0, import_internal12.set_attributes)(input, input_data);
-      (0, import_internal12.add_location)(input, file11, 11, 2, 381);
-      (0, import_internal12.attr_dev)(div0, "class", "input-password-row");
-      (0, import_internal12.toggle_class)(
-        div0,
-        "visible",
-        /*visible*/
-        ctx[4]
-      );
-      (0, import_internal12.add_location)(div0, file11, 9, 1, 229);
-      (0, import_internal12.attr_dev)(div1, "class", div1_class_value = "input-password-wrapper " + /*className*/
-      ctx[2]);
-      (0, import_internal12.toggle_class)(
-        div1,
-        "has-label",
-        /*label*/
-        ctx[3]
-      );
-      (0, import_internal12.toggle_class)(
-        div1,
-        "visible",
-        /*visible*/
-        ctx[4]
-      );
-      (0, import_internal12.add_location)(div1, file11, 1, 0, 47);
-    },
-    l: function claim(nodes) {
-      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    },
-    m: function mount(target, anchor) {
-      (0, import_internal12.insert_dev)(target, div1, anchor);
-      if (if_block0)
-        if_block0.m(div1, null);
-      (0, import_internal12.append_dev)(div1, t0);
-      (0, import_internal12.append_dev)(div1, div0);
-      (0, import_internal12.mount_component)(button, div0, null);
-      (0, import_internal12.append_dev)(div0, t1);
-      (0, import_internal12.append_dev)(div0, input);
-      if ("value" in input_data) {
-        input.value = input_data.value;
-      }
-      if (input.autofocus)
-        input.focus();
-      (0, import_internal12.append_dev)(div1, t2);
-      if (if_block1)
-        if_block1.m(div1, null);
-      ctx[20](div1);
-      current = true;
-      if (!mounted) {
-        dispose = [
-          (0, import_internal12.listen_dev)(
+          (0, import_internal10.listen_dev)(
             input,
             "input",
             /*input_handler*/
-            ctx[19],
-            false,
-            false,
-            false,
-            false
-          ),
-          (0, import_internal12.listen_dev)(
-            input,
-            "keydown",
-            /*keydown_handler*/
-            ctx[15],
-            false,
-            false,
-            false,
-            false
-          ),
-          (0, import_internal12.listen_dev)(
-            input,
-            "change",
-            /*change_handler*/
             ctx[16],
             false,
             false,
             false,
             false
           ),
-          (0, import_internal12.listen_dev)(
+          (0, import_internal10.listen_dev)(
             input,
             "focus",
             /*focus_handler*/
@@ -13022,7 +12497,7 @@ function create_fragment12(ctx) {
             false,
             false
           ),
-          (0, import_internal12.listen_dev)(
+          (0, import_internal10.listen_dev)(
             input,
             "blur",
             /*blur_handler*/
@@ -13044,7 +12519,7 @@ function create_fragment12(ctx) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
         } else {
-          if_block0 = create_if_block_12(ctx2);
+          if_block0 = create_if_block_22(ctx2);
           if_block0.c();
           if_block0.m(div1, t0);
         }
@@ -13052,24 +12527,1957 @@ function create_fragment12(ctx) {
         if_block0.d(1);
         if_block0 = null;
       }
-      const button_changes = {};
-      if (dirty & /*visible*/
-      16)
-        button_changes.icon = /*visible*/
-        ctx2[4] ? "eyeOff" : "eye";
-      button.$set(button_changes);
-      (0, import_internal12.set_attributes)(input, input_data = (0, import_internal12.get_spread_update)(input_levels, [
-        { class: "input-password" },
+      if (
+        /*info*/
+        ctx2[5]
+      ) {
+        if (if_block1) {
+          if_block1.p(ctx2, dirty);
+          if (dirty & /*info*/
+          32) {
+            (0, import_internal10.transition_in)(if_block1, 1);
+          }
+        } else {
+          if_block1 = create_if_block_12(ctx2);
+          if_block1.c();
+          (0, import_internal10.transition_in)(if_block1, 1);
+          if_block1.m(div1, t1);
+        }
+      } else if (if_block1) {
+        (0, import_internal10.group_outros)();
+        (0, import_internal10.transition_out)(if_block1, 1, 1, () => {
+          if_block1 = null;
+        });
+        (0, import_internal10.check_outros)();
+      }
+      if (
+        /*error*/
+        ctx2[4]
+      ) {
+        if (if_block2) {
+          if_block2.p(ctx2, dirty);
+          if (dirty & /*error*/
+          16) {
+            (0, import_internal10.transition_in)(if_block2, 1);
+          }
+        } else {
+          if_block2 = create_if_block5(ctx2);
+          if_block2.c();
+          (0, import_internal10.transition_in)(if_block2, 1);
+          if_block2.m(div0, t2);
+        }
+      } else if (if_block2) {
+        (0, import_internal10.group_outros)();
+        (0, import_internal10.transition_out)(if_block2, 1, 1, () => {
+          if_block2 = null;
+        });
+        (0, import_internal10.check_outros)();
+      }
+      (0, import_internal10.set_attributes)(input, input_data = (0, import_internal10.get_spread_update)(input_levels, [
+        { type: "text" },
+        { inputmode: "numeric" },
+        { pattern: "-?\\d+(\\.\\d+)?" },
         { autocomplete: "off" },
         dirty & /*props*/
-        32 && /*props*/
-        ctx2[5],
-        (!current || dirty & /*type*/
-        8192) && { type: (
-          /*type*/
-          ctx2[13]
+        512 && /*props*/
+        ctx2[9],
+        (!current || dirty & /*_id*/
+        256) && { id: (
+          /*_id*/
+          ctx2[8]
         ) },
-        (!current || dirty & /*value*/
+        (!current || dirty & /*error*/
+        16) && { "aria-invalid": (
+          /*error*/
+          ctx2[4]
+        ) },
+        (!current || dirty & /*error*/
+        16 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
+        ctx2[4] ? (
+          /*errorMessageId*/
+          ctx2[10]
+        ) : void 0)) && {
+          "aria-errormessage": input_aria_errormessage_value
+        },
+        (!current || dirty & /*required*/
+        4) && { "aria-required": (
+          /*required*/
+          ctx2[2]
+        ) }
+      ]));
+      if (dirty & /*value*/
+      1 && input.value !== /*value*/
+      ctx2[0]) {
+        (0, import_internal10.set_input_value)(
+          input,
+          /*value*/
+          ctx2[0]
+        );
+      }
+      if (!current || dirty & /*initial*/
+      64) {
+        (0, import_internal10.toggle_class)(
+          div0,
+          "initial",
+          /*initial*/
+          ctx2[6]
+        );
+      }
+      if (!current || dirty & /*className*/
+      2 && div1_class_value !== (div1_class_value = "input-text input-number " + /*className*/
+      ctx2[1])) {
+        (0, import_internal10.attr_dev)(div1, "class", div1_class_value);
+      }
+      if (!current || dirty & /*className, error*/
+      18) {
+        (0, import_internal10.toggle_class)(
+          div1,
+          "has-error",
+          /*error*/
+          ctx2[4]
+        );
+      }
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal10.transition_in)(if_block1);
+      (0, import_internal10.transition_in)(if_block2);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal10.transition_out)(if_block1);
+      (0, import_internal10.transition_out)(if_block2);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal10.detach_dev)(div1);
+      if (if_block0)
+        if_block0.d();
+      if (if_block1)
+        if_block1.d();
+      if (if_block2)
+        if_block2.d();
+      mounted = false;
+      (0, import_internal10.run_all)(dispose);
+    }
+  };
+  (0, import_internal10.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_fragment10.name,
+    type: "component",
+    source: "",
+    ctx
+  });
+  return block;
+}
+function instance10($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let _id2;
+  let duration3;
+  let $ANIMATION_SPEED2;
+  (0, import_internal10.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
+  (0, import_internal10.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(15, $ANIMATION_SPEED2 = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal10.validate_slots)("InputNumber", slots2, []);
+  let { class: className2 = "" } = $$props2;
+  let { id: id2 = "" } = $$props2;
+  let { required: required2 = false } = $$props2;
+  let { value: value2 = "" } = $$props2;
+  let { label: label2 = "" } = $$props2;
+  let { error: error2 = "" } = $$props2;
+  let { info: info2 = "" } = $$props2;
+  let { separator = "." } = $$props2;
+  let initial2 = true;
+  const dispatch2 = (0, import_svelte6.createEventDispatcher)();
+  const errorMessageId2 = guid();
+  const allowedKeys2 = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "ArrowLeft",
+    "ArrowDown",
+    "ArrowUp",
+    "ArrowRight",
+    "Backspace",
+    "Delete",
+    "Tab",
+    "Meta"
+  ];
+  (0, import_svelte6.onMount)(() => {
+    $$invalidate2(6, initial2 = false);
+  });
+  function fireKeydown(event2) {
+    dispatch2("keydown", { event: event2, value: value2 });
+  }
+  function onkeydown2(e) {
+    const key = e.key;
+    const val = "" + value2;
+    if (allowedKeys2.includes(key))
+      return fireKeydown(e);
+    if (key === "-" && !val.includes("-"))
+      return fireKeydown(e);
+    if (key === separator && !val.includes(separator))
+      return fireKeydown(e);
+    e.preventDefault();
+  }
+  function onchange5() {
+    const v = ("" + value2).replace(separator, ".");
+    const num2 = parseFloat(v);
+    $$invalidate2(0, value2 = isNaN(num2) ? "" : ("" + num2).replace(".", separator));
+    dispatch2("change", { value: value2 });
+  }
+  function input_handler2(event2) {
+    import_internal10.bubble.call(this, $$self2, event2);
+  }
+  function focus_handler2(event2) {
+    import_internal10.bubble.call(this, $$self2, event2);
+  }
+  function blur_handler2(event2) {
+    import_internal10.bubble.call(this, $$self2, event2);
+  }
+  function input_input_handler2() {
+    value2 = this.value;
+    $$invalidate2(0, value2);
+  }
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(23, $$props2 = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props2), (0, import_internal10.exclude_internal_props)($$new_props)));
+    if ("class" in $$new_props)
+      $$invalidate2(1, className2 = $$new_props.class);
+    if ("id" in $$new_props)
+      $$invalidate2(13, id2 = $$new_props.id);
+    if ("required" in $$new_props)
+      $$invalidate2(2, required2 = $$new_props.required);
+    if ("value" in $$new_props)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("label" in $$new_props)
+      $$invalidate2(3, label2 = $$new_props.label);
+    if ("error" in $$new_props)
+      $$invalidate2(4, error2 = $$new_props.error);
+    if ("info" in $$new_props)
+      $$invalidate2(5, info2 = $$new_props.info);
+    if ("separator" in $$new_props)
+      $$invalidate2(14, separator = $$new_props.separator);
+  };
+  $$self2.$capture_state = () => ({
+    onMount: import_svelte6.onMount,
+    createEventDispatcher: import_svelte6.createEventDispatcher,
+    slide: import_transition2.slide,
+    Icon: Icon_default,
+    pluck,
+    guid,
+    ANIMATION_SPEED,
+    className: className2,
+    id: id2,
+    required: required2,
+    value: value2,
+    label: label2,
+    error: error2,
+    info: info2,
+    separator,
+    initial: initial2,
+    dispatch: dispatch2,
+    errorMessageId: errorMessageId2,
+    allowedKeys: allowedKeys2,
+    fireKeydown,
+    onkeydown: onkeydown2,
+    onchange: onchange5,
+    duration: duration3,
+    _id: _id2,
+    props: props2,
+    $ANIMATION_SPEED: $ANIMATION_SPEED2
+  });
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(23, $$props2 = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props2), $$new_props));
+    if ("className" in $$props2)
+      $$invalidate2(1, className2 = $$new_props.className);
+    if ("id" in $$props2)
+      $$invalidate2(13, id2 = $$new_props.id);
+    if ("required" in $$props2)
+      $$invalidate2(2, required2 = $$new_props.required);
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("label" in $$props2)
+      $$invalidate2(3, label2 = $$new_props.label);
+    if ("error" in $$props2)
+      $$invalidate2(4, error2 = $$new_props.error);
+    if ("info" in $$props2)
+      $$invalidate2(5, info2 = $$new_props.info);
+    if ("separator" in $$props2)
+      $$invalidate2(14, separator = $$new_props.separator);
+    if ("initial" in $$props2)
+      $$invalidate2(6, initial2 = $$new_props.initial);
+    if ("duration" in $$props2)
+      $$invalidate2(7, duration3 = $$new_props.duration);
+    if ("_id" in $$props2)
+      $$invalidate2(8, _id2 = $$new_props._id);
+    if ("props" in $$props2)
+      $$invalidate2(9, props2 = $$new_props.props);
+  };
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
+  }
+  $$self2.$$.update = () => {
+    $:
+      $$invalidate2(9, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
+    if ($$self2.$$.dirty & /*id*/
+    8192) {
+      $:
+        $$invalidate2(8, _id2 = id2 || name || guid());
+    }
+    if ($$self2.$$.dirty & /*initial, $ANIMATION_SPEED*/
+    32832) {
+      $:
+        $$invalidate2(7, duration3 = initial2 ? 0 : $ANIMATION_SPEED2);
+    }
+  };
+  $$props2 = (0, import_internal10.exclude_internal_props)($$props2);
+  return [
+    value2,
+    className2,
+    required2,
+    label2,
+    error2,
+    info2,
+    initial2,
+    duration3,
+    _id2,
+    props2,
+    errorMessageId2,
+    onkeydown2,
+    onchange5,
+    id2,
+    separator,
+    $ANIMATION_SPEED2,
+    input_handler2,
+    focus_handler2,
+    blur_handler2,
+    input_input_handler2
+  ];
+}
+var InputNumber = class extends import_internal10.SvelteComponentDev {
+  constructor(options) {
+    super(options);
+    (0, import_internal10.init)(this, options, instance10, create_fragment10, import_internal10.safe_not_equal, {
+      class: 1,
+      id: 13,
+      required: 2,
+      value: 0,
+      label: 3,
+      error: 4,
+      info: 5,
+      separator: 14
+    });
+    (0, import_internal10.dispatch_dev)("SvelteRegisterComponent", {
+      component: this,
+      tagName: "InputNumber",
+      options,
+      id: create_fragment10.name
+    });
+  }
+  get class() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set class(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get id() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set id(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get required() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set required(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get value() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set value(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get label() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set label(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get error() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set error(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get info() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set info(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get separator() {
+    throw new Error("<InputNumber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set separator(value2) {
+    throw new Error("<InputNumber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+};
+var InputNumber_default = InputNumber;
+
+// src/input-math/InputMath.svelte
+var import_internal11 = __toESM(require_internal());
+var import_svelte7 = __toESM(require_svelte());
+var import_transition3 = __toESM(require_transition());
+var file10 = "src/input-math/InputMath.svelte";
+function create_if_block_23(ctx) {
+  let label_1;
+  let t;
+  const block = {
+    c: function create() {
+      label_1 = (0, import_internal11.element)("label");
+      t = (0, import_internal11.text)(
+        /*label*/
+        ctx[4]
+      );
+      (0, import_internal11.attr_dev)(label_1, "class", "label");
+      (0, import_internal11.attr_dev)(
+        label_1,
+        "for",
+        /*_id*/
+        ctx[10]
+      );
+      (0, import_internal11.add_location)(label_1, file10, 5, 2, 92);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal11.insert_dev)(target, label_1, anchor);
+      (0, import_internal11.append_dev)(label_1, t);
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty & /*label*/
+      16)
+        (0, import_internal11.set_data_dev)(
+          t,
+          /*label*/
+          ctx2[4]
+        );
+      if (dirty & /*_id*/
+      1024) {
+        (0, import_internal11.attr_dev)(
+          label_1,
+          "for",
+          /*_id*/
+          ctx2[10]
+        );
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal11.detach_dev)(label_1);
+    }
+  };
+  (0, import_internal11.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_23.name,
+    type: "if",
+    source: "(5:1) {#if label}",
+    ctx
+  });
+  return block;
+}
+function create_if_block_13(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let current;
+  icon = new Icon_default({ props: { name: "info" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal11.element)("div");
+      (0, import_internal11.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal11.space)();
+      p = (0, import_internal11.element)("p");
+      t1 = (0, import_internal11.text)(
+        /*info*/
+        ctx[6]
+      );
+      (0, import_internal11.add_location)(p, file10, 10, 3, 213);
+      (0, import_internal11.attr_dev)(div, "class", "input-info");
+      (0, import_internal11.add_location)(div, file10, 8, 2, 162);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal11.insert_dev)(target, div, anchor);
+      (0, import_internal11.mount_component)(icon, div, null);
+      (0, import_internal11.append_dev)(div, t0);
+      (0, import_internal11.append_dev)(div, p);
+      (0, import_internal11.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(ctx2, dirty) {
+      if (!current || dirty & /*info*/
+      64)
+        (0, import_internal11.set_data_dev)(
+          t1,
+          /*info*/
+          ctx2[6]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal11.transition_in)(icon.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal11.transition_out)(icon.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal11.detach_dev)(div);
+      (0, import_internal11.destroy_component)(icon);
+    }
+  };
+  (0, import_internal11.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_13.name,
+    type: "if",
+    source: "(8:1) {#if info}",
+    ctx
+  });
+  return block;
+}
+function create_if_block6(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let div_transition;
+  let current;
+  icon = new Icon_default({ props: { name: "error" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal11.element)("div");
+      (0, import_internal11.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal11.space)();
+      p = (0, import_internal11.element)("p");
+      t1 = (0, import_internal11.text)(
+        /*error*/
+        ctx[5]
+      );
+      (0, import_internal11.attr_dev)(
+        p,
+        "id",
+        /*errorMessageId*/
+        ctx[11]
+      );
+      (0, import_internal11.add_location)(p, file10, 18, 4, 407);
+      (0, import_internal11.attr_dev)(div, "class", "input-error");
+      (0, import_internal11.add_location)(div, file10, 16, 3, 307);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal11.insert_dev)(target, div, anchor);
+      (0, import_internal11.mount_component)(icon, div, null);
+      (0, import_internal11.append_dev)(div, t0);
+      (0, import_internal11.append_dev)(div, p);
+      (0, import_internal11.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(new_ctx, dirty) {
+      ctx = new_ctx;
+      if (!current || dirty & /*error*/
+      32)
+        (0, import_internal11.set_data_dev)(
+          t1,
+          /*error*/
+          ctx[5]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal11.transition_in)(icon.$$.fragment, local);
+      (0, import_internal11.add_render_callback)(() => {
+        if (!current)
+          return;
+        if (!div_transition)
+          div_transition = (0, import_internal11.create_bidirectional_transition)(div, import_transition3.slide, { axis: "y", duration: (
+            /*duration*/
+            ctx[9]
+          ) }, true);
+        div_transition.run(1);
+      });
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal11.transition_out)(icon.$$.fragment, local);
+      if (!div_transition)
+        div_transition = (0, import_internal11.create_bidirectional_transition)(div, import_transition3.slide, { axis: "y", duration: (
+          /*duration*/
+          ctx[9]
+        ) }, false);
+      div_transition.run(0);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal11.detach_dev)(div);
+      (0, import_internal11.destroy_component)(icon);
+      if (detaching && div_transition)
+        div_transition.end();
+    }
+  };
+  (0, import_internal11.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block6.name,
+    type: "if",
+    source: "(16:2) {#if error}",
+    ctx
+  });
+  return block;
+}
+function create_fragment11(ctx) {
+  let div2;
+  let t0;
+  let t1;
+  let div1;
+  let t2;
+  let div0;
+  let icon;
+  let t3;
+  let input;
+  let input_aria_errormessage_value;
+  let div2_class_value;
+  let current;
+  let mounted;
+  let dispose;
+  let if_block0 = (
+    /*label*/
+    ctx[4] && create_if_block_23(ctx)
+  );
+  let if_block1 = (
+    /*info*/
+    ctx[6] && create_if_block_13(ctx)
+  );
+  let if_block2 = (
+    /*error*/
+    ctx[5] && create_if_block6(ctx)
+  );
+  icon = new Icon_default({
+    props: { name: "calculator" },
+    $$inline: true
+  });
+  let input_levels = [
+    { type: "text" },
+    { autocomplete: "off" },
+    /*props*/
+    ctx[8],
+    { id: (
+      /*_id*/
+      ctx[10]
+    ) },
+    { "aria-invalid": (
+      /*error*/
+      ctx[5]
+    ) },
+    {
+      "aria-errormessage": input_aria_errormessage_value = /*error*/
+      ctx[5] ? (
+        /*errorMessageId*/
+        ctx[11]
+      ) : void 0
+    },
+    { "aria-required": (
+      /*required*/
+      ctx[3]
+    ) }
+  ];
+  let input_data = {};
+  for (let i = 0; i < input_levels.length; i += 1) {
+    input_data = (0, import_internal11.assign)(input_data, input_levels[i]);
+  }
+  const block = {
+    c: function create() {
+      div2 = (0, import_internal11.element)("div");
+      if (if_block0)
+        if_block0.c();
+      t0 = (0, import_internal11.space)();
+      if (if_block1)
+        if_block1.c();
+      t1 = (0, import_internal11.space)();
+      div1 = (0, import_internal11.element)("div");
+      if (if_block2)
+        if_block2.c();
+      t2 = (0, import_internal11.space)();
+      div0 = (0, import_internal11.element)("div");
+      (0, import_internal11.create_component)(icon.$$.fragment);
+      t3 = (0, import_internal11.space)();
+      input = (0, import_internal11.element)("input");
+      (0, import_internal11.set_attributes)(input, input_data);
+      (0, import_internal11.add_location)(input, file10, 24, 3, 526);
+      (0, import_internal11.attr_dev)(div0, "class", "input-math-row");
+      (0, import_internal11.add_location)(div0, file10, 22, 2, 465);
+      (0, import_internal11.attr_dev)(div1, "class", "input-text-inner");
+      (0, import_internal11.toggle_class)(
+        div1,
+        "initial",
+        /*initial*/
+        ctx[7]
+      );
+      (0, import_internal11.add_location)(div1, file10, 14, 1, 245);
+      (0, import_internal11.attr_dev)(div2, "class", div2_class_value = "input-text input-math " + /*className*/
+      ctx[2]);
+      (0, import_internal11.toggle_class)(
+        div2,
+        "has-error",
+        /*error*/
+        ctx[5]
+      );
+      (0, import_internal11.add_location)(div2, file10, 0, 0, 0);
+    },
+    l: function claim(nodes) {
+      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal11.insert_dev)(target, div2, anchor);
+      if (if_block0)
+        if_block0.m(div2, null);
+      (0, import_internal11.append_dev)(div2, t0);
+      if (if_block1)
+        if_block1.m(div2, null);
+      (0, import_internal11.append_dev)(div2, t1);
+      (0, import_internal11.append_dev)(div2, div1);
+      if (if_block2)
+        if_block2.m(div1, null);
+      (0, import_internal11.append_dev)(div1, t2);
+      (0, import_internal11.append_dev)(div1, div0);
+      (0, import_internal11.mount_component)(icon, div0, null);
+      (0, import_internal11.append_dev)(div0, t3);
+      (0, import_internal11.append_dev)(div0, input);
+      if (input.autofocus)
+        input.focus();
+      ctx[19](input);
+      (0, import_internal11.set_input_value)(
+        input,
+        /*value*/
+        ctx[1]
+      );
+      current = true;
+      if (!mounted) {
+        dispose = [
+          (0, import_internal11.listen_dev)(
+            input,
+            "input",
+            /*input_input_handler*/
+            ctx[20]
+          ),
+          (0, import_internal11.listen_dev)(
+            input,
+            "input",
+            /*input_handler*/
+            ctx[16],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal11.listen_dev)(
+            input,
+            "keydown",
+            /*onkeydown*/
+            ctx[12],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal11.listen_dev)(
+            input,
+            "change",
+            /*onchange*/
+            ctx[13],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal11.listen_dev)(
+            input,
+            "focus",
+            /*focus_handler*/
+            ctx[17],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal11.listen_dev)(
+            input,
+            "blur",
+            /*blur_handler*/
+            ctx[18],
+            false,
+            false,
+            false,
+            false
+          )
+        ];
+        mounted = true;
+      }
+    },
+    p: function update(ctx2, [dirty]) {
+      if (
+        /*label*/
+        ctx2[4]
+      ) {
+        if (if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
+          if_block0 = create_if_block_23(ctx2);
+          if_block0.c();
+          if_block0.m(div2, t0);
+        }
+      } else if (if_block0) {
+        if_block0.d(1);
+        if_block0 = null;
+      }
+      if (
+        /*info*/
+        ctx2[6]
+      ) {
+        if (if_block1) {
+          if_block1.p(ctx2, dirty);
+          if (dirty & /*info*/
+          64) {
+            (0, import_internal11.transition_in)(if_block1, 1);
+          }
+        } else {
+          if_block1 = create_if_block_13(ctx2);
+          if_block1.c();
+          (0, import_internal11.transition_in)(if_block1, 1);
+          if_block1.m(div2, t1);
+        }
+      } else if (if_block1) {
+        (0, import_internal11.group_outros)();
+        (0, import_internal11.transition_out)(if_block1, 1, 1, () => {
+          if_block1 = null;
+        });
+        (0, import_internal11.check_outros)();
+      }
+      if (
+        /*error*/
+        ctx2[5]
+      ) {
+        if (if_block2) {
+          if_block2.p(ctx2, dirty);
+          if (dirty & /*error*/
+          32) {
+            (0, import_internal11.transition_in)(if_block2, 1);
+          }
+        } else {
+          if_block2 = create_if_block6(ctx2);
+          if_block2.c();
+          (0, import_internal11.transition_in)(if_block2, 1);
+          if_block2.m(div1, t2);
+        }
+      } else if (if_block2) {
+        (0, import_internal11.group_outros)();
+        (0, import_internal11.transition_out)(if_block2, 1, 1, () => {
+          if_block2 = null;
+        });
+        (0, import_internal11.check_outros)();
+      }
+      (0, import_internal11.set_attributes)(input, input_data = (0, import_internal11.get_spread_update)(input_levels, [
+        { type: "text" },
+        { autocomplete: "off" },
+        dirty & /*props*/
+        256 && /*props*/
+        ctx2[8],
+        (!current || dirty & /*_id*/
+        1024) && { id: (
+          /*_id*/
+          ctx2[10]
+        ) },
+        (!current || dirty & /*error*/
+        32) && { "aria-invalid": (
+          /*error*/
+          ctx2[5]
+        ) },
+        (!current || dirty & /*error*/
+        32 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
+        ctx2[5] ? (
+          /*errorMessageId*/
+          ctx2[11]
+        ) : void 0)) && {
+          "aria-errormessage": input_aria_errormessage_value
+        },
+        (!current || dirty & /*required*/
+        8) && { "aria-required": (
+          /*required*/
+          ctx2[3]
+        ) }
+      ]));
+      if (dirty & /*value*/
+      2 && input.value !== /*value*/
+      ctx2[1]) {
+        (0, import_internal11.set_input_value)(
+          input,
+          /*value*/
+          ctx2[1]
+        );
+      }
+      if (!current || dirty & /*initial*/
+      128) {
+        (0, import_internal11.toggle_class)(
+          div1,
+          "initial",
+          /*initial*/
+          ctx2[7]
+        );
+      }
+      if (!current || dirty & /*className*/
+      4 && div2_class_value !== (div2_class_value = "input-text input-math " + /*className*/
+      ctx2[2])) {
+        (0, import_internal11.attr_dev)(div2, "class", div2_class_value);
+      }
+      if (!current || dirty & /*className, error*/
+      36) {
+        (0, import_internal11.toggle_class)(
+          div2,
+          "has-error",
+          /*error*/
+          ctx2[5]
+        );
+      }
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal11.transition_in)(if_block1);
+      (0, import_internal11.transition_in)(if_block2);
+      (0, import_internal11.transition_in)(icon.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal11.transition_out)(if_block1);
+      (0, import_internal11.transition_out)(if_block2);
+      (0, import_internal11.transition_out)(icon.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal11.detach_dev)(div2);
+      if (if_block0)
+        if_block0.d();
+      if (if_block1)
+        if_block1.d();
+      if (if_block2)
+        if_block2.d();
+      (0, import_internal11.destroy_component)(icon);
+      ctx[19](null);
+      mounted = false;
+      (0, import_internal11.run_all)(dispose);
+    }
+  };
+  (0, import_internal11.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_fragment11.name,
+    type: "component",
+    source: "",
+    ctx
+  });
+  return block;
+}
+var DECIMAL_SEPARATOR = ".";
+function instance11($$self, $$props, $$invalidate) {
+  let props;
+  let _id;
+  let duration;
+  let $ANIMATION_SPEED;
+  (0, import_internal11.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
+  (0, import_internal11.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(15, $ANIMATION_SPEED = $$value));
+  let { $$slots: slots = {}, $$scope } = $$props;
+  (0, import_internal11.validate_slots)("InputMath", slots, []);
+  let { _this = void 0 } = $$props;
+  let { class: className = "" } = $$props;
+  let { id = "" } = $$props;
+  let { required = false } = $$props;
+  let { value = "" } = $$props;
+  let { label = "" } = $$props;
+  let { error = "" } = $$props;
+  let { info = "" } = $$props;
+  const errorMessageId = guid();
+  const dispatch = (0, import_svelte7.createEventDispatcher)();
+  const allowedKeys = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "+",
+    "-",
+    "/",
+    "*",
+    "(",
+    ")",
+    "Meta",
+    "ArrowLeft",
+    "ArrowDown",
+    "ArrowUp",
+    "ArrowRight",
+    "Backspace",
+    "Delete",
+    "Tab",
+    "Enter",
+    "Ctrl"
+  ];
+  let initial = true;
+  (0, import_svelte7.onMount)(() => {
+    $$invalidate(7, initial = false);
+  });
+  function onkeydown(e) {
+    dispatch("keydown", e);
+    if (e.key === "Enter") {
+      const num2 = parseAmount(value);
+      $$invalidate(1, value = isNaN(num2) ? "" : num2);
+      return;
+    }
+    if (allowedKeys.includes(e.key))
+      return;
+    if (e.metaKey || e.ctrlKey)
+      return;
+    if (e.key === DECIMAL_SEPARATOR)
+      return;
+    e.preventDefault();
+  }
+  function onchange(e) {
+    const num2 = parseAmount(value);
+    $$invalidate(1, value = isNaN(num2) ? "" : num2);
+    dispatch("change", e);
+  }
+  function parseAmount(amount) {
+    if (!amount)
+      return "";
+    amount = ("" + amount).replace(/[\s,]/g, "");
+    if (!/^[+\-\\*/()\d.]+$/i.test(amount))
+      return 0;
+    if (/[+\-\\*/.]+/i.test(amount)) {
+      try {
+        amount = eval(amount);
+      } catch (e) {
+        amount = 0;
+      }
+    }
+    const num = parseFloat(amount);
+    return num === Infinity || isNaN(num) ? 0 : roundAmount(num);
+  }
+  function input_handler(event2) {
+    import_internal11.bubble.call(this, $$self, event2);
+  }
+  function focus_handler(event2) {
+    import_internal11.bubble.call(this, $$self, event2);
+  }
+  function blur_handler(event2) {
+    import_internal11.bubble.call(this, $$self, event2);
+  }
+  function input_binding($$value) {
+    import_internal11.binding_callbacks[$$value ? "unshift" : "push"](() => {
+      _this = $$value;
+      $$invalidate(0, _this);
+    });
+  }
+  function input_input_handler() {
+    value = this.value;
+    $$invalidate(1, value);
+  }
+  $$self.$$set = ($$new_props) => {
+    $$invalidate(24, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), (0, import_internal11.exclude_internal_props)($$new_props)));
+    if ("_this" in $$new_props)
+      $$invalidate(0, _this = $$new_props._this);
+    if ("class" in $$new_props)
+      $$invalidate(2, className = $$new_props.class);
+    if ("id" in $$new_props)
+      $$invalidate(14, id = $$new_props.id);
+    if ("required" in $$new_props)
+      $$invalidate(3, required = $$new_props.required);
+    if ("value" in $$new_props)
+      $$invalidate(1, value = $$new_props.value);
+    if ("label" in $$new_props)
+      $$invalidate(4, label = $$new_props.label);
+    if ("error" in $$new_props)
+      $$invalidate(5, error = $$new_props.error);
+    if ("info" in $$new_props)
+      $$invalidate(6, info = $$new_props.info);
+  };
+  $$self.$capture_state = () => ({
+    onMount: import_svelte7.onMount,
+    createEventDispatcher: import_svelte7.createEventDispatcher,
+    slide: import_transition3.slide,
+    Icon: Icon_default,
+    pluck,
+    roundAmount,
+    guid,
+    ANIMATION_SPEED,
+    _this,
+    className,
+    id,
+    required,
+    value,
+    label,
+    error,
+    info,
+    errorMessageId,
+    dispatch,
+    DECIMAL_SEPARATOR,
+    allowedKeys,
+    initial,
+    onkeydown,
+    onchange,
+    parseAmount,
+    duration,
+    props,
+    _id,
+    $ANIMATION_SPEED
+  });
+  $$self.$inject_state = ($$new_props) => {
+    $$invalidate(24, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), $$new_props));
+    if ("_this" in $$props)
+      $$invalidate(0, _this = $$new_props._this);
+    if ("className" in $$props)
+      $$invalidate(2, className = $$new_props.className);
+    if ("id" in $$props)
+      $$invalidate(14, id = $$new_props.id);
+    if ("required" in $$props)
+      $$invalidate(3, required = $$new_props.required);
+    if ("value" in $$props)
+      $$invalidate(1, value = $$new_props.value);
+    if ("label" in $$props)
+      $$invalidate(4, label = $$new_props.label);
+    if ("error" in $$props)
+      $$invalidate(5, error = $$new_props.error);
+    if ("info" in $$props)
+      $$invalidate(6, info = $$new_props.info);
+    if ("initial" in $$props)
+      $$invalidate(7, initial = $$new_props.initial);
+    if ("duration" in $$props)
+      $$invalidate(9, duration = $$new_props.duration);
+    if ("props" in $$props)
+      $$invalidate(8, props = $$new_props.props);
+    if ("_id" in $$props)
+      $$invalidate(10, _id = $$new_props._id);
+  };
+  if ($$props && "$$inject" in $$props) {
+    $$self.$inject_state($$props.$$inject);
+  }
+  $$self.$$.update = () => {
+    $:
+      $$invalidate(8, props = pluck($$props, ["title", "name", "disabled", "placeholder"]));
+    if ($$self.$$.dirty & /*id, props*/
+    16640) {
+      $:
+        $$invalidate(10, _id = id || props.name || guid());
+    }
+    if ($$self.$$.dirty & /*initial, $ANIMATION_SPEED*/
+    32896) {
+      $:
+        $$invalidate(9, duration = initial ? 0 : $ANIMATION_SPEED);
+    }
+  };
+  $$props = (0, import_internal11.exclude_internal_props)($$props);
+  return [
+    _this,
+    value,
+    className,
+    required,
+    label,
+    error,
+    info,
+    initial,
+    props,
+    duration,
+    _id,
+    errorMessageId,
+    onkeydown,
+    onchange,
+    id,
+    $ANIMATION_SPEED,
+    input_handler,
+    focus_handler,
+    blur_handler,
+    input_binding,
+    input_input_handler
+  ];
+}
+var InputMath = class extends import_internal11.SvelteComponentDev {
+  constructor(options) {
+    super(options);
+    (0, import_internal11.init)(this, options, instance11, create_fragment11, import_internal11.safe_not_equal, {
+      _this: 0,
+      class: 2,
+      id: 14,
+      required: 3,
+      value: 1,
+      label: 4,
+      error: 5,
+      info: 6
+    });
+    (0, import_internal11.dispatch_dev)("SvelteRegisterComponent", {
+      component: this,
+      tagName: "InputMath",
+      options,
+      id: create_fragment11.name
+    });
+  }
+  get _this() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set _this(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get class() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set class(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get id() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set id(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get required() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set required(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get value() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set value(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get label() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set label(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get error() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set error(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get info() {
+    throw new Error("<InputMath>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set info(value2) {
+    throw new Error("<InputMath>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+};
+var InputMath_default = InputMath;
+
+// src/input-password/InputPassword.svelte
+var import_internal12 = __toESM(require_internal());
+var import_svelte8 = __toESM(require_svelte());
+var import_transition4 = __toESM(require_transition());
+var file11 = "src/input-password/InputPassword.svelte";
+function create_if_block_32(ctx) {
+  let label_1;
+  let t;
+  const block = {
+    c: function create() {
+      label_1 = (0, import_internal12.element)("label");
+      t = (0, import_internal12.text)(
+        /*label*/
+        ctx[4]
+      );
+      (0, import_internal12.attr_dev)(label_1, "class", "label");
+      (0, import_internal12.attr_dev)(
+        label_1,
+        "for",
+        /*_id*/
+        ctx[17]
+      );
+      (0, import_internal12.add_location)(label_1, file11, 8, 2, 176);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal12.insert_dev)(target, label_1, anchor);
+      (0, import_internal12.append_dev)(label_1, t);
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty[0] & /*label*/
+      16)
+        (0, import_internal12.set_data_dev)(
+          t,
+          /*label*/
+          ctx2[4]
+        );
+      if (dirty[0] & /*_id*/
+      131072) {
+        (0, import_internal12.attr_dev)(
+          label_1,
+          "for",
+          /*_id*/
+          ctx2[17]
+        );
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal12.detach_dev)(label_1);
+    }
+  };
+  (0, import_internal12.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_32.name,
+    type: "if",
+    source: "(8:1) {#if label}",
+    ctx
+  });
+  return block;
+}
+function create_if_block_24(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let current;
+  icon = new Icon_default({ props: { name: "info" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal12.element)("div");
+      (0, import_internal12.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal12.space)();
+      p = (0, import_internal12.element)("p");
+      t1 = (0, import_internal12.text)(
+        /*info*/
+        ctx[6]
+      );
+      (0, import_internal12.add_location)(p, file11, 13, 3, 297);
+      (0, import_internal12.attr_dev)(div, "class", "input-info");
+      (0, import_internal12.add_location)(div, file11, 11, 2, 246);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal12.insert_dev)(target, div, anchor);
+      (0, import_internal12.mount_component)(icon, div, null);
+      (0, import_internal12.append_dev)(div, t0);
+      (0, import_internal12.append_dev)(div, p);
+      (0, import_internal12.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(ctx2, dirty) {
+      if (!current || dirty[0] & /*info*/
+      64)
+        (0, import_internal12.set_data_dev)(
+          t1,
+          /*info*/
+          ctx2[6]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal12.transition_in)(icon.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal12.transition_out)(icon.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal12.detach_dev)(div);
+      (0, import_internal12.destroy_component)(icon);
+    }
+  };
+  (0, import_internal12.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_24.name,
+    type: "if",
+    source: "(11:1) {#if info}",
+    ctx
+  });
+  return block;
+}
+function create_if_block_14(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let div_transition;
+  let current;
+  icon = new Icon_default({ props: { name: "error" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal12.element)("div");
+      (0, import_internal12.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal12.space)();
+      p = (0, import_internal12.element)("p");
+      t1 = (0, import_internal12.text)(
+        /*error*/
+        ctx[5]
+      );
+      (0, import_internal12.attr_dev)(
+        p,
+        "id",
+        /*errorMessageId*/
+        ctx[19]
+      );
+      (0, import_internal12.add_location)(p, file11, 21, 4, 491);
+      (0, import_internal12.attr_dev)(div, "class", "input-error");
+      (0, import_internal12.add_location)(div, file11, 19, 3, 391);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal12.insert_dev)(target, div, anchor);
+      (0, import_internal12.mount_component)(icon, div, null);
+      (0, import_internal12.append_dev)(div, t0);
+      (0, import_internal12.append_dev)(div, p);
+      (0, import_internal12.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(new_ctx, dirty) {
+      ctx = new_ctx;
+      if (!current || dirty[0] & /*error*/
+      32)
+        (0, import_internal12.set_data_dev)(
+          t1,
+          /*error*/
+          ctx[5]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal12.transition_in)(icon.$$.fragment, local);
+      (0, import_internal12.add_render_callback)(() => {
+        if (!current)
+          return;
+        if (!div_transition)
+          div_transition = (0, import_internal12.create_bidirectional_transition)(
+            div,
+            import_transition4.slide,
+            {
+              axis: "y",
+              duration: (
+                /*duration*/
+                ctx[16]
+              )
+            },
+            true
+          );
+        div_transition.run(1);
+      });
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal12.transition_out)(icon.$$.fragment, local);
+      if (!div_transition)
+        div_transition = (0, import_internal12.create_bidirectional_transition)(
+          div,
+          import_transition4.slide,
+          {
+            axis: "y",
+            duration: (
+              /*duration*/
+              ctx[16]
+            )
+          },
+          false
+        );
+      div_transition.run(0);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal12.detach_dev)(div);
+      (0, import_internal12.destroy_component)(icon);
+      if (detaching && div_transition)
+        div_transition.end();
+    }
+  };
+  (0, import_internal12.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_14.name,
+    type: "if",
+    source: "(19:2) {#if error}",
+    ctx
+  });
+  return block;
+}
+function create_if_block7(ctx) {
+  let div2;
+  let div1;
+  let div0;
+  let div0_class_value;
+  let t0;
+  let div4;
+  let div3;
+  let h2;
+  let t1;
+  let t2;
+  let small;
+  let div3_class_value;
+  const block = {
+    c: function create() {
+      div2 = (0, import_internal12.element)("div");
+      div1 = (0, import_internal12.element)("div");
+      div0 = (0, import_internal12.element)("div");
+      t0 = (0, import_internal12.space)();
+      div4 = (0, import_internal12.element)("div");
+      div3 = (0, import_internal12.element)("div");
+      h2 = (0, import_internal12.element)("h2");
+      t1 = (0, import_internal12.text)(
+        /*quality*/
+        ctx[11]
+      );
+      t2 = (0, import_internal12.space)();
+      small = (0, import_internal12.element)("small");
+      (0, import_internal12.attr_dev)(div0, "class", div0_class_value = "password-strength-progress " + /*colorClass*/
+      ctx[14]);
+      (0, import_internal12.set_style)(
+        div0,
+        "width",
+        /*percent*/
+        ctx[12] + "%"
+      );
+      (0, import_internal12.add_location)(div0, file11, 47, 4, 1159);
+      (0, import_internal12.attr_dev)(div1, "class", "password-strength");
+      (0, import_internal12.attr_dev)(
+        div1,
+        "title",
+        /*quality*/
+        ctx[11]
+      );
+      (0, import_internal12.add_location)(div1, file11, 46, 3, 1105);
+      (0, import_internal12.attr_dev)(div2, "class", "input-password-row");
+      (0, import_internal12.add_location)(div2, file11, 45, 2, 1069);
+      (0, import_internal12.add_location)(h2, file11, 52, 4, 1356);
+      (0, import_internal12.add_location)(small, file11, 53, 4, 1379);
+      (0, import_internal12.attr_dev)(div3, "class", div3_class_value = "password-strength-info " + /*colorClass*/
+      ctx[14]);
+      (0, import_internal12.add_location)(div3, file11, 51, 3, 1302);
+      (0, import_internal12.attr_dev)(div4, "class", "input-password-row");
+      (0, import_internal12.add_location)(div4, file11, 50, 2, 1266);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal12.insert_dev)(target, div2, anchor);
+      (0, import_internal12.append_dev)(div2, div1);
+      (0, import_internal12.append_dev)(div1, div0);
+      (0, import_internal12.insert_dev)(target, t0, anchor);
+      (0, import_internal12.insert_dev)(target, div4, anchor);
+      (0, import_internal12.append_dev)(div4, div3);
+      (0, import_internal12.append_dev)(div3, h2);
+      (0, import_internal12.append_dev)(h2, t1);
+      (0, import_internal12.append_dev)(div3, t2);
+      (0, import_internal12.append_dev)(div3, small);
+      small.innerHTML = /*strengthInfoText*/
+      ctx[13];
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty[0] & /*colorClass*/
+      16384 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
+      ctx2[14])) {
+        (0, import_internal12.attr_dev)(div0, "class", div0_class_value);
+      }
+      if (dirty[0] & /*percent*/
+      4096) {
+        (0, import_internal12.set_style)(
+          div0,
+          "width",
+          /*percent*/
+          ctx2[12] + "%"
+        );
+      }
+      if (dirty[0] & /*quality*/
+      2048) {
+        (0, import_internal12.attr_dev)(
+          div1,
+          "title",
+          /*quality*/
+          ctx2[11]
+        );
+      }
+      if (dirty[0] & /*quality*/
+      2048)
+        (0, import_internal12.set_data_dev)(
+          t1,
+          /*quality*/
+          ctx2[11]
+        );
+      if (dirty[0] & /*strengthInfoText*/
+      8192)
+        small.innerHTML = /*strengthInfoText*/
+        ctx2[13];
+      ;
+      if (dirty[0] & /*colorClass*/
+      16384 && div3_class_value !== (div3_class_value = "password-strength-info " + /*colorClass*/
+      ctx2[14])) {
+        (0, import_internal12.attr_dev)(div3, "class", div3_class_value);
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal12.detach_dev)(div2);
+      if (detaching)
+        (0, import_internal12.detach_dev)(t0);
+      if (detaching)
+        (0, import_internal12.detach_dev)(div4);
+    }
+  };
+  (0, import_internal12.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block7.name,
+    type: "if",
+    source: "(45:1) {#if strength && lib && value}",
+    ctx
+  });
+  return block;
+}
+function create_fragment12(ctx) {
+  let div2;
+  let t0;
+  let t1;
+  let div1;
+  let t2;
+  let div0;
+  let input;
+  let input_aria_errormessage_value;
+  let t3;
+  let button;
+  let t4;
+  let div2_class_value;
+  let current;
+  let mounted;
+  let dispose;
+  let if_block0 = (
+    /*label*/
+    ctx[4] && create_if_block_32(ctx)
+  );
+  let if_block1 = (
+    /*info*/
+    ctx[6] && create_if_block_24(ctx)
+  );
+  let if_block2 = (
+    /*error*/
+    ctx[5] && create_if_block_14(ctx)
+  );
+  let input_levels = [
+    { class: "input-password-input" },
+    { autocomplete: "off" },
+    /*props*/
+    ctx[9],
+    { id: (
+      /*_id*/
+      ctx[17]
+    ) },
+    { "aria-invalid": (
+      /*error*/
+      ctx[5]
+    ) },
+    {
+      "aria-errormessage": input_aria_errormessage_value = /*error*/
+      ctx[5] ? (
+        /*errorMessageId*/
+        ctx[19]
+      ) : void 0
+    },
+    { "aria-required": (
+      /*required*/
+      ctx[2]
+    ) },
+    { type: (
+      /*type*/
+      ctx[18]
+    ) },
+    { value: (
+      /*value*/
+      ctx[0]
+    ) }
+  ];
+  let input_data = {};
+  for (let i = 0; i < input_levels.length; i += 1) {
+    input_data = (0, import_internal12.assign)(input_data, input_levels[i]);
+  }
+  button = new Button_default({
+    props: {
+      link: true,
+      icon: (
+        /*visible*/
+        ctx[8] ? "eyeOff" : "eye"
+      ),
+      class: "input-password-button"
+    },
+    $$inline: true
+  });
+  button.$on(
+    "click",
+    /*toggle*/
+    ctx[21]
+  );
+  let if_block3 = (
+    /*strength*/
+    ctx[3] && /*lib*/
+    ctx[10] && /*value*/
+    ctx[0] && create_if_block7(ctx)
+  );
+  const block = {
+    c: function create() {
+      div2 = (0, import_internal12.element)("div");
+      if (if_block0)
+        if_block0.c();
+      t0 = (0, import_internal12.space)();
+      if (if_block1)
+        if_block1.c();
+      t1 = (0, import_internal12.space)();
+      div1 = (0, import_internal12.element)("div");
+      if (if_block2)
+        if_block2.c();
+      t2 = (0, import_internal12.space)();
+      div0 = (0, import_internal12.element)("div");
+      input = (0, import_internal12.element)("input");
+      t3 = (0, import_internal12.space)();
+      (0, import_internal12.create_component)(button.$$.fragment);
+      t4 = (0, import_internal12.space)();
+      if (if_block3)
+        if_block3.c();
+      (0, import_internal12.set_attributes)(input, input_data);
+      (0, import_internal12.add_location)(input, file11, 26, 3, 599);
+      (0, import_internal12.attr_dev)(div0, "class", "input-password-row");
+      (0, import_internal12.toggle_class)(
+        div0,
+        "visible",
+        /*visible*/
+        ctx[8]
+      );
+      (0, import_internal12.add_location)(div0, file11, 25, 2, 549);
+      (0, import_internal12.attr_dev)(div1, "class", "input-text-inner");
+      (0, import_internal12.toggle_class)(
+        div1,
+        "initial",
+        /*initial*/
+        ctx[7]
+      );
+      (0, import_internal12.add_location)(div1, file11, 17, 1, 329);
+      (0, import_internal12.attr_dev)(div2, "class", div2_class_value = "input-text input-password " + /*className*/
+      ctx[1]);
+      (0, import_internal12.toggle_class)(
+        div2,
+        "has-error",
+        /*error*/
+        ctx[5]
+      );
+      (0, import_internal12.toggle_class)(
+        div2,
+        "visible",
+        /*visible*/
+        ctx[8]
+      );
+      (0, import_internal12.add_location)(div2, file11, 1, 0, 47);
+    },
+    l: function claim(nodes) {
+      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal12.insert_dev)(target, div2, anchor);
+      if (if_block0)
+        if_block0.m(div2, null);
+      (0, import_internal12.append_dev)(div2, t0);
+      if (if_block1)
+        if_block1.m(div2, null);
+      (0, import_internal12.append_dev)(div2, t1);
+      (0, import_internal12.append_dev)(div2, div1);
+      if (if_block2)
+        if_block2.m(div1, null);
+      (0, import_internal12.append_dev)(div1, t2);
+      (0, import_internal12.append_dev)(div1, div0);
+      (0, import_internal12.append_dev)(div0, input);
+      if ("value" in input_data) {
+        input.value = input_data.value;
+      }
+      if (input.autofocus)
+        input.focus();
+      (0, import_internal12.append_dev)(div0, t3);
+      (0, import_internal12.mount_component)(button, div0, null);
+      (0, import_internal12.append_dev)(div2, t4);
+      if (if_block3)
+        if_block3.m(div2, null);
+      ctx[28](div2);
+      current = true;
+      if (!mounted) {
+        dispose = [
+          (0, import_internal12.listen_dev)(
+            input,
+            "input",
+            /*oninput*/
+            ctx[20],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal12.listen_dev)(
+            input,
+            "keydown",
+            /*keydown_handler*/
+            ctx[24],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal12.listen_dev)(
+            input,
+            "change",
+            /*change_handler*/
+            ctx[25],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal12.listen_dev)(
+            input,
+            "focus",
+            /*focus_handler*/
+            ctx[26],
+            false,
+            false,
+            false,
+            false
+          ),
+          (0, import_internal12.listen_dev)(
+            input,
+            "blur",
+            /*blur_handler*/
+            ctx[27],
+            false,
+            false,
+            false,
+            false
+          )
+        ];
+        mounted = true;
+      }
+    },
+    p: function update(ctx2, dirty) {
+      if (
+        /*label*/
+        ctx2[4]
+      ) {
+        if (if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
+          if_block0 = create_if_block_32(ctx2);
+          if_block0.c();
+          if_block0.m(div2, t0);
+        }
+      } else if (if_block0) {
+        if_block0.d(1);
+        if_block0 = null;
+      }
+      if (
+        /*info*/
+        ctx2[6]
+      ) {
+        if (if_block1) {
+          if_block1.p(ctx2, dirty);
+          if (dirty[0] & /*info*/
+          64) {
+            (0, import_internal12.transition_in)(if_block1, 1);
+          }
+        } else {
+          if_block1 = create_if_block_24(ctx2);
+          if_block1.c();
+          (0, import_internal12.transition_in)(if_block1, 1);
+          if_block1.m(div2, t1);
+        }
+      } else if (if_block1) {
+        (0, import_internal12.group_outros)();
+        (0, import_internal12.transition_out)(if_block1, 1, 1, () => {
+          if_block1 = null;
+        });
+        (0, import_internal12.check_outros)();
+      }
+      if (
+        /*error*/
+        ctx2[5]
+      ) {
+        if (if_block2) {
+          if_block2.p(ctx2, dirty);
+          if (dirty[0] & /*error*/
+          32) {
+            (0, import_internal12.transition_in)(if_block2, 1);
+          }
+        } else {
+          if_block2 = create_if_block_14(ctx2);
+          if_block2.c();
+          (0, import_internal12.transition_in)(if_block2, 1);
+          if_block2.m(div1, t2);
+        }
+      } else if (if_block2) {
+        (0, import_internal12.group_outros)();
+        (0, import_internal12.transition_out)(if_block2, 1, 1, () => {
+          if_block2 = null;
+        });
+        (0, import_internal12.check_outros)();
+      }
+      (0, import_internal12.set_attributes)(input, input_data = (0, import_internal12.get_spread_update)(input_levels, [
+        { class: "input-password-input" },
+        { autocomplete: "off" },
+        dirty[0] & /*props*/
+        512 && /*props*/
+        ctx2[9],
+        (!current || dirty[0] & /*_id*/
+        131072) && { id: (
+          /*_id*/
+          ctx2[17]
+        ) },
+        (!current || dirty[0] & /*error*/
+        32) && { "aria-invalid": (
+          /*error*/
+          ctx2[5]
+        ) },
+        (!current || dirty[0] & /*error*/
+        32 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
+        ctx2[5] ? (
+          /*errorMessageId*/
+          ctx2[19]
+        ) : void 0)) && {
+          "aria-errormessage": input_aria_errormessage_value
+        },
+        (!current || dirty[0] & /*required*/
+        4) && { "aria-required": (
+          /*required*/
+          ctx2[2]
+        ) },
+        (!current || dirty[0] & /*type*/
+        262144) && { type: (
+          /*type*/
+          ctx2[18]
+        ) },
+        (!current || dirty[0] & /*value*/
         1 && input.value !== /*value*/
         ctx2[0]) && { value: (
           /*value*/
@@ -13079,75 +14487,98 @@ function create_fragment12(ctx) {
       if ("value" in input_data) {
         input.value = input_data.value;
       }
-      if (!current || dirty & /*visible*/
-      16) {
+      const button_changes = {};
+      if (dirty[0] & /*visible*/
+      256)
+        button_changes.icon = /*visible*/
+        ctx2[8] ? "eyeOff" : "eye";
+      button.$set(button_changes);
+      if (!current || dirty[0] & /*visible*/
+      256) {
         (0, import_internal12.toggle_class)(
           div0,
           "visible",
           /*visible*/
-          ctx2[4]
+          ctx2[8]
+        );
+      }
+      if (!current || dirty[0] & /*initial*/
+      128) {
+        (0, import_internal12.toggle_class)(
+          div1,
+          "initial",
+          /*initial*/
+          ctx2[7]
         );
       }
       if (
         /*strength*/
-        ctx2[1] && /*lib*/
-        ctx2[6] && /*value*/
+        ctx2[3] && /*lib*/
+        ctx2[10] && /*value*/
         ctx2[0]
       ) {
-        if (if_block1) {
-          if_block1.p(ctx2, dirty);
+        if (if_block3) {
+          if_block3.p(ctx2, dirty);
         } else {
-          if_block1 = create_if_block5(ctx2);
-          if_block1.c();
-          if_block1.m(div1, null);
+          if_block3 = create_if_block7(ctx2);
+          if_block3.c();
+          if_block3.m(div2, null);
         }
-      } else if (if_block1) {
-        if_block1.d(1);
-        if_block1 = null;
+      } else if (if_block3) {
+        if_block3.d(1);
+        if_block3 = null;
       }
-      if (!current || dirty & /*className*/
-      4 && div1_class_value !== (div1_class_value = "input-password-wrapper " + /*className*/
-      ctx2[2])) {
-        (0, import_internal12.attr_dev)(div1, "class", div1_class_value);
+      if (!current || dirty[0] & /*className*/
+      2 && div2_class_value !== (div2_class_value = "input-text input-password " + /*className*/
+      ctx2[1])) {
+        (0, import_internal12.attr_dev)(div2, "class", div2_class_value);
       }
-      if (!current || dirty & /*className, label*/
-      12) {
+      if (!current || dirty[0] & /*className, error*/
+      34) {
         (0, import_internal12.toggle_class)(
-          div1,
-          "has-label",
-          /*label*/
-          ctx2[3]
+          div2,
+          "has-error",
+          /*error*/
+          ctx2[5]
         );
       }
-      if (!current || dirty & /*className, visible*/
-      20) {
+      if (!current || dirty[0] & /*className, visible*/
+      258) {
         (0, import_internal12.toggle_class)(
-          div1,
+          div2,
           "visible",
           /*visible*/
-          ctx2[4]
+          ctx2[8]
         );
       }
     },
     i: function intro(local) {
       if (current)
         return;
+      (0, import_internal12.transition_in)(if_block1);
+      (0, import_internal12.transition_in)(if_block2);
       (0, import_internal12.transition_in)(button.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
+      (0, import_internal12.transition_out)(if_block1);
+      (0, import_internal12.transition_out)(if_block2);
       (0, import_internal12.transition_out)(button.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal12.detach_dev)(div1);
+        (0, import_internal12.detach_dev)(div2);
       if (if_block0)
         if_block0.d();
-      (0, import_internal12.destroy_component)(button);
       if (if_block1)
         if_block1.d();
-      ctx[20](null);
+      if (if_block2)
+        if_block2.d();
+      (0, import_internal12.destroy_component)(button);
+      if (if_block3)
+        if_block3.d();
+      ctx[28](null);
       mounted = false;
       (0, import_internal12.run_all)(dispose);
     }
@@ -13161,18 +14592,29 @@ function create_fragment12(ctx) {
   });
   return block;
 }
-function instance12($$self, $$props, $$invalidate) {
-  let props;
+function instance12($$self2, $$props2, $$invalidate2) {
+  let props2;
   let type;
-  let _id;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal12.validate_slots)("InputPassword", slots, []);
-  let { value = "" } = $$props;
-  let { strength = false } = $$props;
-  let { class: className = "" } = $$props;
-  let { label = "" } = $$props;
+  let _id2;
+  let duration3;
+  let $ANIMATION_SPEED2;
+  (0, import_internal12.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
+  (0, import_internal12.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(23, $ANIMATION_SPEED2 = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal12.validate_slots)("InputPassword", slots2, []);
+  let { class: className2 = "" } = $$props2;
+  let { id: id2 = "" } = $$props2;
+  let { required: required2 = false } = $$props2;
+  let { value: value2 = "" } = $$props2;
+  let { strength = false } = $$props2;
+  let { label: label2 = "" } = $$props2;
+  let { error: error2 = "" } = $$props2;
+  let { info: info2 = "" } = $$props2;
   const qualities = ["Very Poor", "Poor", "Average", "Safe", "Excellent"];
   const colorClassNames = ["danger", "danger", "warning", "info", "success"];
+  const dispatch2 = (0, import_svelte8.createEventDispatcher)();
+  const errorMessageId2 = guid();
+  let initial2 = true;
   let visible = false;
   let lib;
   let quality = "";
@@ -13180,68 +14622,93 @@ function instance12($$self, $$props, $$invalidate) {
   let strengthInfoText = "";
   let colorClass = "";
   let el;
-  (0, import_svelte7.onMount)(() => requestAnimationFrame(checkLib));
+  (0, import_svelte8.onMount)(() => {
+    requestAnimationFrame(checkLib);
+    $$invalidate2(7, initial2 = false);
+  });
+  function oninput(e) {
+    $$invalidate2(0, value2 = e.target.value);
+    dispatch2("input", { event, value: value2 });
+  }
   function checkLib() {
-    $$invalidate(6, lib = window.zxcvbn);
+    $$invalidate2(10, lib = window.zxcvbn);
     if (strength && !lib)
       console.error("zxcvbn library is missing.");
   }
   function measure(pass) {
     if (strength && !lib)
-      $$invalidate(6, lib = window.zxcvbn);
+      $$invalidate2(10, lib = window.zxcvbn);
     if (!lib || !pass || !strength)
       return { score: 0, info: "" };
     const res = lib(pass);
     const warning = res.feedback.warning;
     const suggestion = res.feedback.suggestions;
-    const info = [warning, ...suggestion].filter((i) => i.length).join(".<br>");
-    return { score: res.score, info };
+    const text45 = [warning, ...suggestion].filter((i) => i.length).join(".<br>");
+    return { score: res.score, text: text45 };
   }
   function toggle() {
-    $$invalidate(4, visible = !visible);
+    $$invalidate2(8, visible = !visible);
     requestAnimationFrame(() => el.querySelector("input").focus());
   }
-  function keydown_handler(event) {
-    import_internal12.bubble.call(this, $$self, event);
+  function keydown_handler(event2) {
+    import_internal12.bubble.call(this, $$self2, event2);
   }
-  function change_handler(event) {
-    import_internal12.bubble.call(this, $$self, event);
+  function change_handler(event2) {
+    import_internal12.bubble.call(this, $$self2, event2);
   }
-  function focus_handler(event) {
-    import_internal12.bubble.call(this, $$self, event);
+  function focus_handler2(event2) {
+    import_internal12.bubble.call(this, $$self2, event2);
   }
-  function blur_handler(event) {
-    import_internal12.bubble.call(this, $$self, event);
+  function blur_handler2(event2) {
+    import_internal12.bubble.call(this, $$self2, event2);
   }
-  const input_handler = (e) => $$invalidate(0, value = e.target.value);
-  function div1_binding($$value) {
+  function div2_binding($$value) {
     import_internal12.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(11, el);
+      $$invalidate2(15, el);
     });
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(25, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), (0, import_internal12.exclude_internal_props)($$new_props)));
-    if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("strength" in $$new_props)
-      $$invalidate(1, strength = $$new_props.strength);
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(34, $$props2 = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props2), (0, import_internal12.exclude_internal_props)($$new_props)));
     if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
+      $$invalidate2(1, className2 = $$new_props.class);
+    if ("id" in $$new_props)
+      $$invalidate2(22, id2 = $$new_props.id);
+    if ("required" in $$new_props)
+      $$invalidate2(2, required2 = $$new_props.required);
+    if ("value" in $$new_props)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("strength" in $$new_props)
+      $$invalidate2(3, strength = $$new_props.strength);
     if ("label" in $$new_props)
-      $$invalidate(3, label = $$new_props.label);
+      $$invalidate2(4, label2 = $$new_props.label);
+    if ("error" in $$new_props)
+      $$invalidate2(5, error2 = $$new_props.error);
+    if ("info" in $$new_props)
+      $$invalidate2(6, info2 = $$new_props.info);
   };
-  $$self.$capture_state = () => ({
-    onMount: import_svelte7.onMount,
+  $$self2.$capture_state = () => ({
+    onMount: import_svelte8.onMount,
+    createEventDispatcher: import_svelte8.createEventDispatcher,
+    slide: import_transition4.slide,
     Button: Button_default,
+    Icon: Icon_default,
     pluck,
     guid,
-    value,
+    ANIMATION_SPEED,
+    className: className2,
+    id: id2,
+    required: required2,
+    value: value2,
     strength,
-    className,
-    label,
+    label: label2,
+    error: error2,
+    info: info2,
     qualities,
     colorClassNames,
+    dispatch: dispatch2,
+    errorMessageId: errorMessageId2,
+    initial: initial2,
     visible,
     lib,
     quality,
@@ -13249,105 +14716,146 @@ function instance12($$self, $$props, $$invalidate) {
     strengthInfoText,
     colorClass,
     el,
+    oninput,
     checkLib,
     measure,
     toggle,
-    props,
-    _id,
-    type
+    duration: duration3,
+    props: props2,
+    _id: _id2,
+    type,
+    $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(25, $$props = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props), $$new_props));
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("strength" in $$props)
-      $$invalidate(1, strength = $$new_props.strength);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("label" in $$props)
-      $$invalidate(3, label = $$new_props.label);
-    if ("visible" in $$props)
-      $$invalidate(4, visible = $$new_props.visible);
-    if ("lib" in $$props)
-      $$invalidate(6, lib = $$new_props.lib);
-    if ("quality" in $$props)
-      $$invalidate(7, quality = $$new_props.quality);
-    if ("percent" in $$props)
-      $$invalidate(8, percent = $$new_props.percent);
-    if ("strengthInfoText" in $$props)
-      $$invalidate(9, strengthInfoText = $$new_props.strengthInfoText);
-    if ("colorClass" in $$props)
-      $$invalidate(10, colorClass = $$new_props.colorClass);
-    if ("el" in $$props)
-      $$invalidate(11, el = $$new_props.el);
-    if ("props" in $$props)
-      $$invalidate(5, props = $$new_props.props);
-    if ("_id" in $$props)
-      $$invalidate(12, _id = $$new_props._id);
-    if ("type" in $$props)
-      $$invalidate(13, type = $$new_props.type);
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(34, $$props2 = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props2), $$new_props));
+    if ("className" in $$props2)
+      $$invalidate2(1, className2 = $$new_props.className);
+    if ("id" in $$props2)
+      $$invalidate2(22, id2 = $$new_props.id);
+    if ("required" in $$props2)
+      $$invalidate2(2, required2 = $$new_props.required);
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("strength" in $$props2)
+      $$invalidate2(3, strength = $$new_props.strength);
+    if ("label" in $$props2)
+      $$invalidate2(4, label2 = $$new_props.label);
+    if ("error" in $$props2)
+      $$invalidate2(5, error2 = $$new_props.error);
+    if ("info" in $$props2)
+      $$invalidate2(6, info2 = $$new_props.info);
+    if ("initial" in $$props2)
+      $$invalidate2(7, initial2 = $$new_props.initial);
+    if ("visible" in $$props2)
+      $$invalidate2(8, visible = $$new_props.visible);
+    if ("lib" in $$props2)
+      $$invalidate2(10, lib = $$new_props.lib);
+    if ("quality" in $$props2)
+      $$invalidate2(11, quality = $$new_props.quality);
+    if ("percent" in $$props2)
+      $$invalidate2(12, percent = $$new_props.percent);
+    if ("strengthInfoText" in $$props2)
+      $$invalidate2(13, strengthInfoText = $$new_props.strengthInfoText);
+    if ("colorClass" in $$props2)
+      $$invalidate2(14, colorClass = $$new_props.colorClass);
+    if ("el" in $$props2)
+      $$invalidate2(15, el = $$new_props.el);
+    if ("duration" in $$props2)
+      $$invalidate2(16, duration3 = $$new_props.duration);
+    if ("props" in $$props2)
+      $$invalidate2(9, props2 = $$new_props.props);
+    if ("_id" in $$props2)
+      $$invalidate2(17, _id2 = $$new_props._id);
+    if ("type" in $$props2)
+      $$invalidate2(18, type = $$new_props.type);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(5, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
-    if ($$self.$$.dirty & /*visible*/
-    16) {
+      $$invalidate2(9, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
+    if ($$self2.$$.dirty[0] & /*visible*/
+    256) {
       $:
-        $$invalidate(13, type = visible ? "text" : "password");
+        $$invalidate2(18, type = visible ? "text" : "password");
     }
-    if ($$self.$$.dirty & /*props*/
-    32) {
+    if ($$self2.$$.dirty[0] & /*id, props*/
+    4194816) {
       $:
-        $$invalidate(12, _id = props.id || props.name || guid());
+        $$invalidate2(17, _id2 = id2 || props2.name || guid());
     }
-    if ($$self.$$.dirty & /*value*/
+    if ($$self2.$$.dirty[0] & /*initial, $ANIMATION_SPEED*/
+    8388736) {
+      $:
+        $$invalidate2(16, duration3 = initial2 ? 0 : $ANIMATION_SPEED2);
+    }
+    if ($$self2.$$.dirty[0] & /*value*/
     1) {
       $: {
-        const { score, info } = measure(value);
-        $$invalidate(7, quality = qualities[score]);
-        $$invalidate(8, percent = score ? score * 25 : 5);
-        $$invalidate(10, colorClass = colorClassNames[score]);
-        $$invalidate(9, strengthInfoText = info);
+        const { score, text: text45 } = measure(value2);
+        $$invalidate2(11, quality = qualities[score]);
+        $$invalidate2(12, percent = score ? score * 25 : 5);
+        $$invalidate2(14, colorClass = colorClassNames[score]);
+        $$invalidate2(13, strengthInfoText = text45);
       }
     }
   };
-  $$props = (0, import_internal12.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal12.exclude_internal_props)($$props2);
   return [
-    value,
+    value2,
+    className2,
+    required2,
     strength,
-    className,
-    label,
+    label2,
+    error2,
+    info2,
+    initial2,
     visible,
-    props,
+    props2,
     lib,
     quality,
     percent,
     strengthInfoText,
     colorClass,
     el,
-    _id,
+    duration3,
+    _id2,
     type,
+    errorMessageId2,
+    oninput,
     toggle,
+    id2,
+    $ANIMATION_SPEED2,
     keydown_handler,
     change_handler,
-    focus_handler,
-    blur_handler,
-    input_handler,
-    div1_binding
+    focus_handler2,
+    blur_handler2,
+    div2_binding
   ];
 }
 var InputPassword = class extends import_internal12.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal12.init)(this, options, instance12, create_fragment12, import_internal12.safe_not_equal, {
-      value: 0,
-      strength: 1,
-      class: 2,
-      label: 3
-    });
+    (0, import_internal12.init)(
+      this,
+      options,
+      instance12,
+      create_fragment12,
+      import_internal12.safe_not_equal,
+      {
+        class: 1,
+        id: 22,
+        required: 2,
+        value: 0,
+        strength: 3,
+        label: 4,
+        error: 5,
+        info: 6
+      },
+      null,
+      [-1, -1]
+    );
     (0, import_internal12.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputPassword",
@@ -13355,28 +14863,52 @@ var InputPassword = class extends import_internal12.SvelteComponentDev {
       id: create_fragment12.name
     });
   }
+  get class() {
+    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set class(value2) {
+    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get id() {
+    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set id(value2) {
+    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get required() {
+    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set required(value2) {
+    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
   get value() {
     throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get strength() {
     throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set strength(value) {
-    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  get class() {
-    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-  }
-  set class(value) {
+  set strength(value2) {
     throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get label() {
     throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set label(value) {
+  set label(value2) {
+    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get error() {
+    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set error(value2) {
+    throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get info() {
+    throw new Error("<InputPassword>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set info(value2) {
     throw new Error("<InputPassword>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -13384,10 +14916,10 @@ var InputPassword_default = InputPassword;
 
 // src/input-text/InputText.svelte
 var import_internal13 = __toESM(require_internal());
-var import_svelte8 = __toESM(require_svelte());
-var import_transition2 = __toESM(require_transition());
+var import_svelte9 = __toESM(require_svelte());
+var import_transition5 = __toESM(require_transition());
 var file12 = "src/input-text/InputText.svelte";
-function create_if_block_22(ctx) {
+function create_if_block_25(ctx) {
   let label_1;
   let t;
   const block = {
@@ -13435,14 +14967,14 @@ function create_if_block_22(ctx) {
   };
   (0, import_internal13.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_22.name,
+    id: create_if_block_25.name,
     type: "if",
     source: "(6:1) {#if label}",
     ctx
   });
   return block;
 }
-function create_if_block_13(ctx) {
+function create_if_block_15(ctx) {
   let div;
   let icon;
   let t0;
@@ -13499,14 +15031,14 @@ function create_if_block_13(ctx) {
   };
   (0, import_internal13.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_13.name,
+    id: create_if_block_15.name,
     type: "if",
     source: "(9:1) {#if info}",
     ctx
   });
   return block;
 }
-function create_if_block6(ctx) {
+function create_if_block8(ctx) {
   let div;
   let icon;
   let t0;
@@ -13561,7 +15093,7 @@ function create_if_block6(ctx) {
         if (!current)
           return;
         if (!div_transition)
-          div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition2.slide, { axis: "y", duration: (
+          div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition5.slide, { axis: "y", duration: (
             /*duration*/
             ctx[7]
           ) }, true);
@@ -13572,7 +15104,7 @@ function create_if_block6(ctx) {
     o: function outro(local) {
       (0, import_internal13.transition_out)(icon.$$.fragment, local);
       if (!div_transition)
-        div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition2.slide, { axis: "y", duration: (
+        div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition5.slide, { axis: "y", duration: (
           /*duration*/
           ctx[7]
         ) }, false);
@@ -13589,7 +15121,7 @@ function create_if_block6(ctx) {
   };
   (0, import_internal13.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block6.name,
+    id: create_if_block8.name,
     type: "if",
     source: "(17:2) {#if error}",
     ctx
@@ -13610,15 +15142,15 @@ function create_fragment13(ctx) {
   let dispose;
   let if_block0 = (
     /*label*/
-    ctx[3] && create_if_block_22(ctx)
+    ctx[3] && create_if_block_25(ctx)
   );
   let if_block1 = (
     /*info*/
-    ctx[5] && create_if_block_13(ctx)
+    ctx[5] && create_if_block_15(ctx)
   );
   let if_block2 = (
     /*error*/
-    ctx[4] && create_if_block6(ctx)
+    ctx[4] && create_if_block8(ctx)
   );
   let input_levels = [
     { autocomplete: "off" },
@@ -13777,7 +15309,7 @@ function create_fragment13(ctx) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
         } else {
-          if_block0 = create_if_block_22(ctx2);
+          if_block0 = create_if_block_25(ctx2);
           if_block0.c();
           if_block0.m(div1, t0);
         }
@@ -13796,7 +15328,7 @@ function create_fragment13(ctx) {
             (0, import_internal13.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block_13(ctx2);
+          if_block1 = create_if_block_15(ctx2);
           if_block1.c();
           (0, import_internal13.transition_in)(if_block1, 1);
           if_block1.m(div1, t1);
@@ -13819,7 +15351,7 @@ function create_fragment13(ctx) {
             (0, import_internal13.transition_in)(if_block2, 1);
           }
         } else {
-          if_block2 = create_if_block6(ctx2);
+          if_block2 = create_if_block8(ctx2);
           if_block2.c();
           (0, import_internal13.transition_in)(if_block2, 1);
           if_block2.m(div0, t2);
@@ -13928,147 +15460,147 @@ function create_fragment13(ctx) {
   });
   return block;
 }
-function instance13($$self, $$props, $$invalidate) {
-  let props;
-  let _id;
-  let duration2;
-  let $ANIMATION_SPEED;
+function instance13($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let _id2;
+  let duration3;
+  let $ANIMATION_SPEED2;
   (0, import_internal13.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal13.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(12, $ANIMATION_SPEED = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal13.validate_slots)("InputText", slots, []);
-  let initial = true;
-  let { class: className = "" } = $$props;
-  let { id = "" } = $$props;
-  let { required = false } = $$props;
-  let { value = "" } = $$props;
-  let { label = "" } = $$props;
-  let { error = "" } = $$props;
-  let { info = "" } = $$props;
-  const errorMessageId = guid();
-  (0, import_svelte8.onMount)(() => {
-    $$invalidate(6, initial = false);
+  (0, import_internal13.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(12, $ANIMATION_SPEED2 = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal13.validate_slots)("InputText", slots2, []);
+  let initial2 = true;
+  let { class: className2 = "" } = $$props2;
+  let { id: id2 = "" } = $$props2;
+  let { required: required2 = false } = $$props2;
+  let { value: value2 = "" } = $$props2;
+  let { label: label2 = "" } = $$props2;
+  let { error: error2 = "" } = $$props2;
+  let { info: info2 = "" } = $$props2;
+  const errorMessageId2 = guid();
+  (0, import_svelte9.onMount)(() => {
+    $$invalidate2(6, initial2 = false);
   });
-  function input_handler(event) {
-    import_internal13.bubble.call(this, $$self, event);
+  function input_handler2(event2) {
+    import_internal13.bubble.call(this, $$self2, event2);
   }
-  function keydown_handler(event) {
-    import_internal13.bubble.call(this, $$self, event);
+  function keydown_handler(event2) {
+    import_internal13.bubble.call(this, $$self2, event2);
   }
-  function change_handler(event) {
-    import_internal13.bubble.call(this, $$self, event);
+  function change_handler(event2) {
+    import_internal13.bubble.call(this, $$self2, event2);
   }
-  function focus_handler(event) {
-    import_internal13.bubble.call(this, $$self, event);
+  function focus_handler2(event2) {
+    import_internal13.bubble.call(this, $$self2, event2);
   }
-  function blur_handler(event) {
-    import_internal13.bubble.call(this, $$self, event);
+  function blur_handler2(event2) {
+    import_internal13.bubble.call(this, $$self2, event2);
   }
-  function input_input_handler() {
-    value = this.value;
-    $$invalidate(0, value);
+  function input_input_handler2() {
+    value2 = this.value;
+    $$invalidate2(0, value2);
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(19, $$props = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props), (0, import_internal13.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(19, $$props2 = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props2), (0, import_internal13.exclude_internal_props)($$new_props)));
     if ("class" in $$new_props)
-      $$invalidate(1, className = $$new_props.class);
+      $$invalidate2(1, className2 = $$new_props.class);
     if ("id" in $$new_props)
-      $$invalidate(11, id = $$new_props.id);
+      $$invalidate2(11, id2 = $$new_props.id);
     if ("required" in $$new_props)
-      $$invalidate(2, required = $$new_props.required);
+      $$invalidate2(2, required2 = $$new_props.required);
     if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
+      $$invalidate2(0, value2 = $$new_props.value);
     if ("label" in $$new_props)
-      $$invalidate(3, label = $$new_props.label);
+      $$invalidate2(3, label2 = $$new_props.label);
     if ("error" in $$new_props)
-      $$invalidate(4, error = $$new_props.error);
+      $$invalidate2(4, error2 = $$new_props.error);
     if ("info" in $$new_props)
-      $$invalidate(5, info = $$new_props.info);
+      $$invalidate2(5, info2 = $$new_props.info);
   };
-  $$self.$capture_state = () => ({
-    onMount: import_svelte8.onMount,
-    slide: import_transition2.slide,
+  $$self2.$capture_state = () => ({
+    onMount: import_svelte9.onMount,
+    slide: import_transition5.slide,
     Icon: Icon_default,
     pluck,
     guid,
     ANIMATION_SPEED,
-    initial,
-    className,
-    id,
-    required,
-    value,
-    label,
-    error,
-    info,
-    errorMessageId,
-    duration: duration2,
-    _id,
-    props,
-    $ANIMATION_SPEED
+    initial: initial2,
+    className: className2,
+    id: id2,
+    required: required2,
+    value: value2,
+    label: label2,
+    error: error2,
+    info: info2,
+    errorMessageId: errorMessageId2,
+    duration: duration3,
+    _id: _id2,
+    props: props2,
+    $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(19, $$props = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props), $$new_props));
-    if ("initial" in $$props)
-      $$invalidate(6, initial = $$new_props.initial);
-    if ("className" in $$props)
-      $$invalidate(1, className = $$new_props.className);
-    if ("id" in $$props)
-      $$invalidate(11, id = $$new_props.id);
-    if ("required" in $$props)
-      $$invalidate(2, required = $$new_props.required);
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("label" in $$props)
-      $$invalidate(3, label = $$new_props.label);
-    if ("error" in $$props)
-      $$invalidate(4, error = $$new_props.error);
-    if ("info" in $$props)
-      $$invalidate(5, info = $$new_props.info);
-    if ("duration" in $$props)
-      $$invalidate(7, duration2 = $$new_props.duration);
-    if ("_id" in $$props)
-      $$invalidate(8, _id = $$new_props._id);
-    if ("props" in $$props)
-      $$invalidate(9, props = $$new_props.props);
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(19, $$props2 = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props2), $$new_props));
+    if ("initial" in $$props2)
+      $$invalidate2(6, initial2 = $$new_props.initial);
+    if ("className" in $$props2)
+      $$invalidate2(1, className2 = $$new_props.className);
+    if ("id" in $$props2)
+      $$invalidate2(11, id2 = $$new_props.id);
+    if ("required" in $$props2)
+      $$invalidate2(2, required2 = $$new_props.required);
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("label" in $$props2)
+      $$invalidate2(3, label2 = $$new_props.label);
+    if ("error" in $$props2)
+      $$invalidate2(4, error2 = $$new_props.error);
+    if ("info" in $$props2)
+      $$invalidate2(5, info2 = $$new_props.info);
+    if ("duration" in $$props2)
+      $$invalidate2(7, duration3 = $$new_props.duration);
+    if ("_id" in $$props2)
+      $$invalidate2(8, _id2 = $$new_props._id);
+    if ("props" in $$props2)
+      $$invalidate2(9, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(9, props = pluck($$props, ["title", "name", "disabled", "placeholder"]));
-    if ($$self.$$.dirty & /*id*/
+      $$invalidate2(9, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
+    if ($$self2.$$.dirty & /*id*/
     2048) {
       $:
-        $$invalidate(8, _id = id || name || guid());
+        $$invalidate2(8, _id2 = id2 || name || guid());
     }
-    if ($$self.$$.dirty & /*initial, $ANIMATION_SPEED*/
+    if ($$self2.$$.dirty & /*initial, $ANIMATION_SPEED*/
     4160) {
       $:
-        $$invalidate(7, duration2 = initial ? 0 : $ANIMATION_SPEED);
+        $$invalidate2(7, duration3 = initial2 ? 0 : $ANIMATION_SPEED2);
     }
   };
-  $$props = (0, import_internal13.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal13.exclude_internal_props)($$props2);
   return [
-    value,
-    className,
-    required,
-    label,
-    error,
-    info,
-    initial,
-    duration2,
-    _id,
-    props,
-    errorMessageId,
-    id,
-    $ANIMATION_SPEED,
-    input_handler,
+    value2,
+    className2,
+    required2,
+    label2,
+    error2,
+    info2,
+    initial2,
+    duration3,
+    _id2,
+    props2,
+    errorMessageId2,
+    id2,
+    $ANIMATION_SPEED2,
+    input_handler2,
     keydown_handler,
     change_handler,
-    focus_handler,
-    blur_handler,
-    input_input_handler
+    focus_handler2,
+    blur_handler2,
+    input_input_handler2
   ];
 }
 var InputText = class extends import_internal13.SvelteComponentDev {
@@ -14093,43 +15625,43 @@ var InputText = class extends import_internal13.SvelteComponentDev {
   get class() {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get id() {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set id(value) {
+  set id(value2) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get required() {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set required(value) {
+  set required(value2) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get value() {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get label() {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set label(value) {
+  set label(value2) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get error() {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set error(value) {
+  set error(value2) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get info() {
     throw new Error("<InputText>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set info(value) {
+  set info(value2) {
     throw new Error("<InputText>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -14137,7 +15669,7 @@ var InputText_default = InputText;
 
 // src/menu/Menu.svelte
 var import_internal14 = __toESM(require_internal());
-var import_svelte9 = __toESM(require_svelte());
+var import_svelte10 = __toESM(require_svelte());
 
 // src/menu/utils.js
 var typeQuery = "";
@@ -14233,7 +15765,7 @@ var timer = null;
 function fireLongPressEvent(originalEvent) {
   clearTimer();
   originalEvent = unifyEvent(originalEvent);
-  const event = new CustomEvent(EVENT_NAME, {
+  const event2 = new CustomEvent(EVENT_NAME, {
     bubbles: true,
     cancelable: true,
     detail: {
@@ -14241,7 +15773,7 @@ function fireLongPressEvent(originalEvent) {
       y: originalEvent.clientY
     }
   });
-  originalEvent.target.dispatchEvent(event);
+  originalEvent.target.dispatchEvent(event2);
 }
 function unifyEvent(e) {
   if (e.changedTouches !== void 0)
@@ -14288,7 +15820,7 @@ function init14(delay = 500, eventName = "longpress") {
 
 // src/menu/Menu.svelte
 var file13 = "src/menu/Menu.svelte";
-function create_if_block7(ctx) {
+function create_if_block9(ctx) {
   let menu;
   let menu_class_value;
   let current;
@@ -14371,7 +15903,7 @@ function create_if_block7(ctx) {
   };
   (0, import_internal14.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block7.name,
+    id: create_if_block9.name,
     type: "if",
     source: "(2:0) {#if opened}",
     ctx
@@ -14383,7 +15915,7 @@ function create_fragment14(ctx) {
   let current;
   let if_block = (
     /*opened*/
-    ctx[2] && create_if_block7(ctx)
+    ctx[2] && create_if_block9(ctx)
   );
   const block = {
     c: function create() {
@@ -14412,7 +15944,7 @@ function create_fragment14(ctx) {
             (0, import_internal14.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block7(ctx2);
+          if_block = create_if_block9(ctx2);
           if_block.c();
           (0, import_internal14.transition_in)(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -14452,32 +15984,32 @@ function create_fragment14(ctx) {
   return block;
 }
 var buttonSelector = ".menu-item:not(.disabled,.menu-separator)";
-function instance14($$self, $$props, $$invalidate) {
+function instance14($$self2, $$props2, $$invalidate2) {
   let elevated;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal14.validate_slots)("Menu", slots, ["default"]);
-  const dispatch = (0, import_svelte9.createEventDispatcher)();
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal14.validate_slots)("Menu", slots2, ["default"]);
+  const dispatch2 = (0, import_svelte10.createEventDispatcher)();
   const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
   const contextmenu = isMobileSafari ? "longpress" : "contextmenu";
-  let { type = void 0 } = $$props;
-  let { targetSelector = "body" } = $$props;
-  let { closeOnClick = true } = $$props;
-  let { elevate = false } = $$props;
-  let { offset = 2 } = $$props;
-  let { align = "left" } = $$props;
-  let { class: className = "" } = $$props;
+  let { type = void 0 } = $$props2;
+  let { targetSelector = "body" } = $$props2;
+  let { closeOnClick = true } = $$props2;
+  let { elevate = false } = $$props2;
+  let { offset = 2 } = $$props2;
+  let { align = "left" } = $$props2;
+  let { class: className2 = "" } = $$props2;
   const menuButtons = [];
   let menuEl, targetEl, focusedEl, opened = false;
   let isBelowTarget = true;
   let hovering = false;
-  (0, import_svelte9.setContext)("MenuContext", { targetEl: () => targetEl });
-  (0, import_svelte9.onMount)(() => {
+  (0, import_svelte10.setContext)("MenuContext", { targetEl: () => targetEl });
+  (0, import_svelte10.onMount)(() => {
     if (type === "context") {
       init14();
       document.addEventListener(contextmenu, onContextMenu);
     }
   });
-  (0, import_svelte9.onDestroy)(() => {
+  (0, import_svelte10.onDestroy)(() => {
     if (type === "context")
       document.removeEventListener(contextmenu, onContextMenu);
     if (elevated && menuEl)
@@ -14601,7 +16133,7 @@ function instance14($$self, $$props, $$invalidate) {
         return close();
       return Promise.resolve();
     }
-    $$invalidate(2, opened = true);
+    $$invalidate2(2, opened = true);
     focusedEl = null;
     if (e && e.detail && e.detail instanceof Event)
       e = e.detail;
@@ -14616,7 +16148,7 @@ function instance14($$self, $$props, $$invalidate) {
         document.body.appendChild(menuEl);
       indexButtons();
       isBelowTarget = updatePosition(e, type, menuEl, offset, align, isBelowTarget);
-      dispatch("open", { event: e, target: targetEl });
+      dispatch2("open", { event: e, target: targetEl });
       addEventListeners();
       requestAnimationFrame(resolve);
       if (menuEl)
@@ -14645,11 +16177,11 @@ function instance14($$self, $$props, $$invalidate) {
   function _close() {
     if (!opened)
       return Promise.resolve();
-    $$invalidate(2, opened = false);
+    $$invalidate2(2, opened = false);
     removeArias(targetSelector);
     removeArias(targetEl);
     return new Promise((resolve) => requestAnimationFrame(() => {
-      dispatch("close", { target: targetEl });
+      dispatch2("close", { target: targetEl });
       removeEventListeners();
       focusTarget();
       requestAnimationFrame(resolve);
@@ -14676,45 +16208,45 @@ function instance14($$self, $$props, $$invalidate) {
     "align",
     "class"
   ];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Menu> was created with unknown prop '${key}'`);
   });
   function menu_binding($$value) {
     import_internal14.binding_callbacks[$$value ? "unshift" : "push"](() => {
       menuEl = $$value;
-      $$invalidate(1, menuEl);
+      $$invalidate2(1, menuEl);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("type" in $$props2)
-      $$invalidate(3, type = $$props2.type);
-    if ("targetSelector" in $$props2)
-      $$invalidate(4, targetSelector = $$props2.targetSelector);
-    if ("closeOnClick" in $$props2)
-      $$invalidate(5, closeOnClick = $$props2.closeOnClick);
-    if ("elevate" in $$props2)
-      $$invalidate(6, elevate = $$props2.elevate);
-    if ("offset" in $$props2)
-      $$invalidate(7, offset = $$props2.offset);
-    if ("align" in $$props2)
-      $$invalidate(8, align = $$props2.align);
-    if ("class" in $$props2)
-      $$invalidate(0, className = $$props2.class);
-    if ("$$scope" in $$props2)
-      $$invalidate(11, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("type" in $$props3)
+      $$invalidate2(3, type = $$props3.type);
+    if ("targetSelector" in $$props3)
+      $$invalidate2(4, targetSelector = $$props3.targetSelector);
+    if ("closeOnClick" in $$props3)
+      $$invalidate2(5, closeOnClick = $$props3.closeOnClick);
+    if ("elevate" in $$props3)
+      $$invalidate2(6, elevate = $$props3.elevate);
+    if ("offset" in $$props3)
+      $$invalidate2(7, offset = $$props3.offset);
+    if ("align" in $$props3)
+      $$invalidate2(8, align = $$props3.align);
+    if ("class" in $$props3)
+      $$invalidate2(0, className2 = $$props3.class);
+    if ("$$scope" in $$props3)
+      $$invalidate2(11, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte9.createEventDispatcher,
-    onDestroy: import_svelte9.onDestroy,
-    onMount: import_svelte9.onMount,
-    setContext: import_svelte9.setContext,
+  $$self2.$capture_state = () => ({
+    createEventDispatcher: import_svelte10.createEventDispatcher,
+    onDestroy: import_svelte10.onDestroy,
+    onMount: import_svelte10.onMount,
+    setContext: import_svelte10.setContext,
     addArias,
     removeArias,
     matchQuery,
     updatePosition,
     initLongPressEvent: init14,
-    dispatch,
+    dispatch: dispatch2,
     isMobileSafari,
     contextmenu,
     type,
@@ -14723,7 +16255,7 @@ function instance14($$self, $$props, $$invalidate) {
     elevate,
     offset,
     align,
-    className,
+    className: className2,
     menuButtons,
     buttonSelector,
     menuEl,
@@ -14752,48 +16284,48 @@ function instance14($$self, $$props, $$invalidate) {
     removeEventListeners,
     elevated
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("type" in $$props2)
-      $$invalidate(3, type = $$props2.type);
-    if ("targetSelector" in $$props2)
-      $$invalidate(4, targetSelector = $$props2.targetSelector);
-    if ("closeOnClick" in $$props2)
-      $$invalidate(5, closeOnClick = $$props2.closeOnClick);
-    if ("elevate" in $$props2)
-      $$invalidate(6, elevate = $$props2.elevate);
-    if ("offset" in $$props2)
-      $$invalidate(7, offset = $$props2.offset);
-    if ("align" in $$props2)
-      $$invalidate(8, align = $$props2.align);
-    if ("className" in $$props2)
-      $$invalidate(0, className = $$props2.className);
-    if ("menuEl" in $$props2)
-      $$invalidate(1, menuEl = $$props2.menuEl);
-    if ("targetEl" in $$props2)
-      targetEl = $$props2.targetEl;
-    if ("focusedEl" in $$props2)
-      focusedEl = $$props2.focusedEl;
-    if ("opened" in $$props2)
-      $$invalidate(2, opened = $$props2.opened);
-    if ("isBelowTarget" in $$props2)
-      isBelowTarget = $$props2.isBelowTarget;
-    if ("hovering" in $$props2)
-      hovering = $$props2.hovering;
-    if ("elevated" in $$props2)
-      elevated = $$props2.elevated;
+  $$self2.$inject_state = ($$props3) => {
+    if ("type" in $$props3)
+      $$invalidate2(3, type = $$props3.type);
+    if ("targetSelector" in $$props3)
+      $$invalidate2(4, targetSelector = $$props3.targetSelector);
+    if ("closeOnClick" in $$props3)
+      $$invalidate2(5, closeOnClick = $$props3.closeOnClick);
+    if ("elevate" in $$props3)
+      $$invalidate2(6, elevate = $$props3.elevate);
+    if ("offset" in $$props3)
+      $$invalidate2(7, offset = $$props3.offset);
+    if ("align" in $$props3)
+      $$invalidate2(8, align = $$props3.align);
+    if ("className" in $$props3)
+      $$invalidate2(0, className2 = $$props3.className);
+    if ("menuEl" in $$props3)
+      $$invalidate2(1, menuEl = $$props3.menuEl);
+    if ("targetEl" in $$props3)
+      targetEl = $$props3.targetEl;
+    if ("focusedEl" in $$props3)
+      focusedEl = $$props3.focusedEl;
+    if ("opened" in $$props3)
+      $$invalidate2(2, opened = $$props3.opened);
+    if ("isBelowTarget" in $$props3)
+      isBelowTarget = $$props3.isBelowTarget;
+    if ("hovering" in $$props3)
+      hovering = $$props3.hovering;
+    if ("elevated" in $$props3)
+      elevated = $$props3.elevated;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & /*elevate*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty[0] & /*elevate*/
     64) {
       $:
         elevated = elevate === "true" || elevate === true;
     }
   };
   return [
-    className,
+    className2,
     menuEl,
     opened,
     type,
@@ -14804,8 +16336,8 @@ function instance14($$self, $$props, $$invalidate) {
     align,
     open,
     close,
-    $$scope,
-    slots,
+    $$scope2,
+    slots2,
     menu_binding
   ];
 }
@@ -14884,20 +16416,20 @@ var Menu = class extends import_internal14.SvelteComponentDev {
   get class() {
     return this.$$.ctx[0];
   }
-  set class(className) {
-    this.$$set({ class: className });
+  set class(className2) {
+    this.$$set({ class: className2 });
     (0, import_internal14.flush)();
   }
   get open() {
     return this.$$.ctx[9];
   }
-  set open(value) {
+  set open(value2) {
     throw new Error("<Menu>: Cannot set read-only property 'open'");
   }
   get close() {
     return this.$$.ctx[10];
   }
-  set close(value) {
+  set close(value2) {
     throw new Error("<Menu>: Cannot set read-only property 'close'");
   }
 };
@@ -14905,9 +16437,9 @@ var Menu_default = Menu;
 
 // src/menu/MenuItem.svelte
 var import_internal15 = __toESM(require_internal());
-var import_svelte10 = __toESM(require_svelte());
+var import_svelte11 = __toESM(require_svelte());
 var file14 = "src/menu/MenuItem.svelte";
-function create_if_block8(ctx) {
+function create_if_block10(ctx) {
   let icon_1;
   let current;
   icon_1 = new Icon_default({
@@ -14949,7 +16481,7 @@ function create_if_block8(ctx) {
   };
   (0, import_internal15.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block8.name,
+    id: create_if_block10.name,
     type: "if",
     source: "(14:2) {#if icon}",
     ctx
@@ -14973,7 +16505,7 @@ function create_fragment15(ctx) {
   let dispose;
   let if_block = (
     /*icon*/
-    ctx[1] && create_if_block8(ctx)
+    ctx[1] && create_if_block10(ctx)
   );
   const default_slot_template = (
     /*#slots*/
@@ -15092,7 +16624,7 @@ function create_fragment15(ctx) {
             (0, import_internal15.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block8(ctx2);
+          if_block = create_if_block10(ctx2);
           if_block.c();
           (0, import_internal15.transition_in)(if_block, 1);
           if_block.m(span0, t0);
@@ -15202,105 +16734,105 @@ function create_fragment15(ctx) {
 function replaceKeySymbols(txt) {
   return ("" + txt).trim().toUpperCase().replace(/\+/g, "").replace(/CMD/g, "\u2318").replace(/ALT|OPTION/g, "\u2325").replace(/SHIFT/g, "\u21E7").replace(/CONTROL|CTRL/g, "\u2303").replace(/DELETE|DEL|BACKSPACE/g, "\u232B").replace(/ENTER|RETURN/g, "\u21A9").replace(/ESCAPE|ESC/g, "\u238B");
 }
-function instance15($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal15.validate_slots)("MenuItem", slots, ["default"]);
-  let { shortcut = "" } = $$props;
-  let { icon = void 0 } = $$props;
-  let { class: className = "" } = $$props;
-  let { success = false } = $$props;
-  let { warning = false } = $$props;
-  let { danger = false } = $$props;
-  const dispatch = (0, import_svelte10.createEventDispatcher)();
-  const { targetEl } = (0, import_svelte10.getContext)("MenuContext");
+function instance15($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal15.validate_slots)("MenuItem", slots2, ["default"]);
+  let { shortcut = "" } = $$props2;
+  let { icon = void 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  let { success = false } = $$props2;
+  let { warning = false } = $$props2;
+  let { danger = false } = $$props2;
+  const dispatch2 = (0, import_svelte11.createEventDispatcher)();
+  const { targetEl } = (0, import_svelte11.getContext)("MenuContext");
   function onclick(e) {
     const btn = e.target.closest(".menu-item");
     if (btn)
       btn.focus();
     blink(btn, 200).then(() => {
       const target = targetEl();
-      const res = dispatch("click", { event: e, target, button: btn }, { cancelable: true });
+      const res = dispatch2("click", { event: e, target, button: btn }, { cancelable: true });
       if (res === false) {
         e.stopPropagation();
         e.preventDefault();
       }
     });
   }
-  function mousedown_handler(event) {
-    import_internal15.bubble.call(this, $$self, event);
+  function mousedown_handler(event2) {
+    import_internal15.bubble.call(this, $$self2, event2);
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(13, $$props = (0, import_internal15.assign)((0, import_internal15.assign)({}, $$props), (0, import_internal15.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(13, $$props2 = (0, import_internal15.assign)((0, import_internal15.assign)({}, $$props2), (0, import_internal15.exclude_internal_props)($$new_props)));
     if ("shortcut" in $$new_props)
-      $$invalidate(0, shortcut = $$new_props.shortcut);
+      $$invalidate2(0, shortcut = $$new_props.shortcut);
     if ("icon" in $$new_props)
-      $$invalidate(1, icon = $$new_props.icon);
+      $$invalidate2(1, icon = $$new_props.icon);
     if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
+      $$invalidate2(2, className2 = $$new_props.class);
     if ("success" in $$new_props)
-      $$invalidate(3, success = $$new_props.success);
+      $$invalidate2(3, success = $$new_props.success);
     if ("warning" in $$new_props)
-      $$invalidate(4, warning = $$new_props.warning);
+      $$invalidate2(4, warning = $$new_props.warning);
     if ("danger" in $$new_props)
-      $$invalidate(5, danger = $$new_props.danger);
+      $$invalidate2(5, danger = $$new_props.danger);
     if ("$$scope" in $$new_props)
-      $$invalidate(8, $$scope = $$new_props.$$scope);
+      $$invalidate2(8, $$scope2 = $$new_props.$$scope);
   };
-  $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte10.createEventDispatcher,
-    getContext: import_svelte10.getContext,
+  $$self2.$capture_state = () => ({
+    createEventDispatcher: import_svelte11.createEventDispatcher,
+    getContext: import_svelte11.getContext,
     Icon: Icon_default,
     pluck,
     blink,
     shortcut,
     icon,
-    className,
+    className: className2,
     success,
     warning,
     danger,
-    dispatch,
+    dispatch: dispatch2,
     targetEl,
     replaceKeySymbols,
     onclick,
-    props
+    props: props2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(13, $$props = (0, import_internal15.assign)((0, import_internal15.assign)({}, $$props), $$new_props));
-    if ("shortcut" in $$props)
-      $$invalidate(0, shortcut = $$new_props.shortcut);
-    if ("icon" in $$props)
-      $$invalidate(1, icon = $$new_props.icon);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("success" in $$props)
-      $$invalidate(3, success = $$new_props.success);
-    if ("warning" in $$props)
-      $$invalidate(4, warning = $$new_props.warning);
-    if ("danger" in $$props)
-      $$invalidate(5, danger = $$new_props.danger);
-    if ("props" in $$props)
-      $$invalidate(6, props = $$new_props.props);
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(13, $$props2 = (0, import_internal15.assign)((0, import_internal15.assign)({}, $$props2), $$new_props));
+    if ("shortcut" in $$props2)
+      $$invalidate2(0, shortcut = $$new_props.shortcut);
+    if ("icon" in $$props2)
+      $$invalidate2(1, icon = $$new_props.icon);
+    if ("className" in $$props2)
+      $$invalidate2(2, className2 = $$new_props.className);
+    if ("success" in $$props2)
+      $$invalidate2(3, success = $$new_props.success);
+    if ("warning" in $$props2)
+      $$invalidate2(4, warning = $$new_props.warning);
+    if ("danger" in $$props2)
+      $$invalidate2(5, danger = $$new_props.danger);
+    if ("props" in $$props2)
+      $$invalidate2(6, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(6, props = pluck($$props, ["id", "title", "disabled", "data"]));
+      $$invalidate2(6, props2 = pluck($$props2, ["id", "title", "disabled", "data"]));
   };
-  $$props = (0, import_internal15.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal15.exclude_internal_props)($$props2);
   return [
     shortcut,
     icon,
-    className,
+    className2,
     success,
     warning,
     danger,
-    props,
+    props2,
     onclick,
-    $$scope,
-    slots,
+    $$scope2,
+    slots2,
     mousedown_handler
   ];
 }
@@ -15325,37 +16857,37 @@ var MenuItem = class extends import_internal15.SvelteComponentDev {
   get shortcut() {
     throw new Error("<MenuItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set shortcut(value) {
+  set shortcut(value2) {
     throw new Error("<MenuItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get icon() {
     throw new Error("<MenuItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set icon(value) {
+  set icon(value2) {
     throw new Error("<MenuItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<MenuItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<MenuItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get success() {
     throw new Error("<MenuItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set success(value) {
+  set success(value2) {
     throw new Error("<MenuItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get warning() {
     throw new Error("<MenuItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set warning(value) {
+  set warning(value2) {
     throw new Error("<MenuItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get danger() {
     throw new Error("<MenuItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set danger(value) {
+  set danger(value2) {
     throw new Error("<MenuItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -15396,11 +16928,11 @@ function create_fragment16(ctx) {
   });
   return block;
 }
-function instance16($$self, $$props) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal16.validate_slots)("MenuSeparator", slots, []);
+function instance16($$self2, $$props2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal16.validate_slots)("MenuSeparator", slots2, []);
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<MenuSeparator> was created with unknown prop '${key}'`);
   });
@@ -15422,7 +16954,7 @@ var MenuSeparator_default = MenuSeparator;
 
 // src/message-box/MessageBox.svelte
 var import_internal17 = __toESM(require_internal());
-var import_svelte11 = __toESM(require_svelte());
+var import_svelte12 = __toESM(require_svelte());
 
 // src/message-box/MessageBox.js
 var import_store2 = __toESM(require_store());
@@ -15527,7 +17059,7 @@ function create_default_slot(ctx) {
   });
   return block;
 }
-function create_if_block9(ctx) {
+function create_if_block11(ctx) {
   let each_1_anchor;
   let each_value = (
     /*$config*/
@@ -15584,7 +17116,7 @@ function create_if_block9(ctx) {
   };
   (0, import_internal17.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block9.name,
+    id: create_if_block11.name,
     type: "if",
     source: "(11:3) {#if $config.buttons}",
     ctx
@@ -15659,7 +17191,7 @@ function create_footer_slot(ctx) {
   let div;
   let if_block = (
     /*$config*/
-    ctx[1].buttons && create_if_block9(ctx)
+    ctx[1].buttons && create_if_block11(ctx)
   );
   const block = {
     c: function create() {
@@ -15682,7 +17214,7 @@ function create_footer_slot(ctx) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
-          if_block = create_if_block9(ctx2);
+          if_block = create_if_block11(ctx2);
           if_block.c();
           if_block.m(div, null);
         }
@@ -15781,14 +17313,14 @@ function create_fragment17(ctx) {
   });
   return block;
 }
-function instance17($$self, $$props, $$invalidate) {
+function instance17($$self2, $$props2, $$invalidate2) {
   let $config;
   (0, import_internal17.validate_store)(config, "config");
-  (0, import_internal17.component_subscribe)($$self, config, ($$value) => $$invalidate(1, $config = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal17.validate_slots)("MessageBox", slots, []);
+  (0, import_internal17.component_subscribe)($$self2, config, ($$value) => $$invalidate2(1, $config = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal17.validate_slots)("MessageBox", slots2, []);
   let dialog, sub;
-  (0, import_svelte11.onMount)(() => {
+  (0, import_svelte12.onMount)(() => {
     sub = config.subscribe((cfg) => {
       if (!dialog)
         return;
@@ -15798,7 +17330,7 @@ function instance17($$self, $$props, $$invalidate) {
         dialog.close();
     });
   });
-  (0, import_svelte11.onDestroy)(() => {
+  (0, import_svelte12.onDestroy)(() => {
     sub();
     config.set({});
   });
@@ -15814,7 +17346,7 @@ function instance17($$self, $$props, $$invalidate) {
     requestAnimationFrame(() => target.focus());
   }
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<MessageBox> was created with unknown prop '${key}'`);
   });
@@ -15822,12 +17354,12 @@ function instance17($$self, $$props, $$invalidate) {
   function dialog_1_binding($$value) {
     import_internal17.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialog = $$value;
-      $$invalidate(0, dialog);
+      $$invalidate2(0, dialog);
     });
   }
-  $$self.$capture_state = () => ({
-    onDestroy: import_svelte11.onDestroy,
-    onMount: import_svelte11.onMount,
+  $$self2.$capture_state = () => ({
+    onDestroy: import_svelte12.onDestroy,
+    onMount: import_svelte12.onMount,
     config,
     Dialog: Dialog_default,
     Icon: Icon_default,
@@ -15837,14 +17369,14 @@ function instance17($$self, $$props, $$invalidate) {
     onclose: onclose2,
     $config
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("dialog" in $$props2)
-      $$invalidate(0, dialog = $$props2.dialog);
-    if ("sub" in $$props2)
-      sub = $$props2.sub;
+  $$self2.$inject_state = ($$props3) => {
+    if ("dialog" in $$props3)
+      $$invalidate2(0, dialog = $$props3.dialog);
+    if ("sub" in $$props3)
+      sub = $$props3.sub;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [dialog, $config, onclick, onclose2, click_handler, dialog_1_binding];
 }
@@ -15864,7 +17396,7 @@ var MessageBox_default = MessageBox;
 
 // src/panel/Panel.svelte
 var import_internal18 = __toESM(require_internal());
-var import_svelte12 = __toESM(require_svelte());
+var import_svelte13 = __toESM(require_svelte());
 var file17 = "src/panel/Panel.svelte";
 function create_fragment18(ctx) {
   let div2;
@@ -16071,21 +17603,21 @@ function create_fragment18(ctx) {
   });
   return block;
 }
-function instance18($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal18.validate_slots)("Panel", slots, ["default"]);
-  const dispatch = (0, import_svelte12.createEventDispatcher)();
-  let { title = "" } = $$props;
-  let { open = false } = $$props;
-  let { round = false } = $$props;
-  let { class: className = "" } = $$props;
+function instance18($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal18.validate_slots)("Panel", slots2, ["default"]);
+  const dispatch2 = (0, import_svelte13.createEventDispatcher)();
+  let { title = "" } = $$props2;
+  let { open = false } = $$props2;
+  let { round = false } = $$props2;
+  let { class: className2 = "" } = $$props2;
   let wrapEl, headerEl, expanded = open;
   const expandedProps = { height: 0 };
   const collapsedProps = { height: 0 };
-  (0, import_svelte12.onMount)(calcHeights);
+  (0, import_svelte13.onMount)(calcHeights);
   function calcHeights() {
     const wasOpen = open;
-    $$invalidate(0, open = true);
+    $$invalidate2(0, open = true);
     requestAnimationFrame(() => {
       if (!wrapEl)
         return;
@@ -16094,7 +17626,7 @@ function instance18($$self, $$props, $$invalidate) {
       const borderBottom = parseInt(wrapCss.borderTopWidth || 0, 10);
       expandedProps.height = wrapEl.getBoundingClientRect().height + "px";
       collapsedProps.height = headerEl.offsetHeight + borderTop + borderBottom + "px";
-      $$invalidate(0, open = wasOpen);
+      $$invalidate2(0, open = wasOpen);
     });
   }
   function toggle(e) {
@@ -16113,58 +17645,58 @@ function instance18($$self, $$props, $$invalidate) {
       return;
     e.preventDefault();
     if (expanded) {
-      $$invalidate(7, expanded = false);
+      $$invalidate2(7, expanded = false);
       animate(wrapEl, expandedProps, collapsedProps).then(() => {
-        $$invalidate(0, open = expanded);
-        dispatch("close");
+        $$invalidate2(0, open = expanded);
+        dispatch2("close");
       });
     } else {
-      $$invalidate(7, expanded = true);
-      $$invalidate(0, open = true);
+      $$invalidate2(7, expanded = true);
+      $$invalidate2(0, open = true);
       animate(wrapEl, collapsedProps, expandedProps).then(() => {
-        dispatch("open");
+        dispatch2("open");
       });
     }
   }
   const writable_props = ["title", "open", "round", "class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Panel> was created with unknown prop '${key}'`);
   });
   function summary_binding($$value) {
     import_internal18.binding_callbacks[$$value ? "unshift" : "push"](() => {
       headerEl = $$value;
-      $$invalidate(6, headerEl);
+      $$invalidate2(6, headerEl);
     });
   }
   function div2_binding($$value) {
     import_internal18.binding_callbacks[$$value ? "unshift" : "push"](() => {
       wrapEl = $$value;
-      $$invalidate(5, wrapEl);
+      $$invalidate2(5, wrapEl);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(1, title = $$props2.title);
-    if ("open" in $$props2)
-      $$invalidate(0, open = $$props2.open);
-    if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
-    if ("class" in $$props2)
-      $$invalidate(3, className = $$props2.class);
-    if ("$$scope" in $$props2)
-      $$invalidate(8, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(1, title = $$props3.title);
+    if ("open" in $$props3)
+      $$invalidate2(0, open = $$props3.open);
+    if ("round" in $$props3)
+      $$invalidate2(2, round = $$props3.round);
+    if ("class" in $$props3)
+      $$invalidate2(3, className2 = $$props3.class);
+    if ("$$scope" in $$props3)
+      $$invalidate2(8, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte12.createEventDispatcher,
-    onMount: import_svelte12.onMount,
+  $$self2.$capture_state = () => ({
+    createEventDispatcher: import_svelte13.createEventDispatcher,
+    onMount: import_svelte13.onMount,
     icons,
     animate,
-    dispatch,
+    dispatch: dispatch2,
     title,
     open,
     round,
-    className,
+    className: className2,
     wrapEl,
     headerEl,
     expanded,
@@ -16173,36 +17705,36 @@ function instance18($$self, $$props, $$invalidate) {
     calcHeights,
     toggle
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(1, title = $$props2.title);
-    if ("open" in $$props2)
-      $$invalidate(0, open = $$props2.open);
-    if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
-    if ("className" in $$props2)
-      $$invalidate(3, className = $$props2.className);
-    if ("wrapEl" in $$props2)
-      $$invalidate(5, wrapEl = $$props2.wrapEl);
-    if ("headerEl" in $$props2)
-      $$invalidate(6, headerEl = $$props2.headerEl);
-    if ("expanded" in $$props2)
-      $$invalidate(7, expanded = $$props2.expanded);
+  $$self2.$inject_state = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(1, title = $$props3.title);
+    if ("open" in $$props3)
+      $$invalidate2(0, open = $$props3.open);
+    if ("round" in $$props3)
+      $$invalidate2(2, round = $$props3.round);
+    if ("className" in $$props3)
+      $$invalidate2(3, className2 = $$props3.className);
+    if ("wrapEl" in $$props3)
+      $$invalidate2(5, wrapEl = $$props3.wrapEl);
+    if ("headerEl" in $$props3)
+      $$invalidate2(6, headerEl = $$props3.headerEl);
+    if ("expanded" in $$props3)
+      $$invalidate2(7, expanded = $$props3.expanded);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     open,
     title,
     round,
-    className,
+    className2,
     toggle,
     wrapEl,
     headerEl,
     expanded,
-    $$scope,
-    slots,
+    $$scope2,
+    slots2,
     summary_binding,
     div2_binding
   ];
@@ -16227,31 +17759,31 @@ var Panel = class extends import_internal18.SvelteComponentDev {
   get title() {
     throw new Error("<Panel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set title(value) {
+  set title(value2) {
     throw new Error("<Panel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get open() {
     throw new Error("<Panel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set open(value) {
+  set open(value2) {
     throw new Error("<Panel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get round() {
     throw new Error("<Panel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set round(value) {
+  set round(value2) {
     throw new Error("<Panel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Panel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Panel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get toggle() {
     return this.$$.ctx[4];
   }
-  set toggle(value) {
+  set toggle(value2) {
     throw new Error("<Panel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -16259,7 +17791,7 @@ var Panel_default = Panel;
 
 // src/push-button/PushButton.svelte
 var import_internal19 = __toESM(require_internal());
-var import_svelte13 = __toESM(require_svelte());
+var import_svelte14 = __toESM(require_svelte());
 function create_else_block(ctx) {
   let button;
   let current;
@@ -16407,7 +17939,7 @@ function create_else_block(ctx) {
   });
   return block;
 }
-function create_if_block10(ctx) {
+function create_if_block12(ctx) {
   let button;
   let current;
   const button_spread_levels = [
@@ -16554,7 +18086,7 @@ function create_if_block10(ctx) {
   };
   (0, import_internal19.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block10.name,
+    id: create_if_block12.name,
     type: "if",
     source: "(1:0) {#if $$slots.default}",
     ctx
@@ -16639,7 +18171,7 @@ function create_fragment19(ctx) {
   let if_block;
   let if_block_anchor;
   let current;
-  const if_block_creators = [create_if_block10, create_else_block];
+  const if_block_creators = [create_if_block12, create_else_block];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -16711,141 +18243,141 @@ function create_fragment19(ctx) {
   });
   return block;
 }
-function instance19($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal19.validate_slots)("PushButton", slots, ["default"]);
-  const $$slots = (0, import_internal19.compute_slots)(slots);
-  let { _this = void 0 } = $$props;
-  let { pressed = false } = $$props;
-  let { info = false } = $$props;
-  let { success = false } = $$props;
-  let { warning = false } = $$props;
-  let { danger = false } = $$props;
-  let { outline = false } = $$props;
-  let { icon = void 0 } = $$props;
-  let { round = void 0 } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte13.createEventDispatcher)();
+function instance19($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal19.validate_slots)("PushButton", slots2, ["default"]);
+  const $$slots = (0, import_internal19.compute_slots)(slots2);
+  let { _this: _this2 = void 0 } = $$props2;
+  let { pressed = false } = $$props2;
+  let { info: info2 = false } = $$props2;
+  let { success = false } = $$props2;
+  let { warning = false } = $$props2;
+  let { danger = false } = $$props2;
+  let { outline = false } = $$props2;
+  let { icon = void 0 } = $$props2;
+  let { round = void 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte14.createEventDispatcher)();
   function onKeydown2(e) {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      $$invalidate(1, pressed = !pressed);
-      dispatch("change", { ...e, pressed });
+      $$invalidate2(1, pressed = !pressed);
+      dispatch2("change", { ...e, pressed });
     }
   }
   function onMouseDown(e) {
-    $$invalidate(1, pressed = !pressed);
-    dispatch("change", { ...e, pressed });
+    $$invalidate2(1, pressed = !pressed);
+    dispatch2("change", { ...e, pressed });
   }
   function button_binding($$value) {
     import_internal19.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      _this = $$value;
-      $$invalidate(0, _this);
+      _this2 = $$value;
+      $$invalidate2(0, _this2);
     });
   }
   function button_binding_1($$value) {
     import_internal19.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      _this = $$value;
-      $$invalidate(0, _this);
+      _this2 = $$value;
+      $$invalidate2(0, _this2);
     });
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(19, $$props = (0, import_internal19.assign)((0, import_internal19.assign)({}, $$props), (0, import_internal19.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(19, $$props2 = (0, import_internal19.assign)((0, import_internal19.assign)({}, $$props2), (0, import_internal19.exclude_internal_props)($$new_props)));
     if ("_this" in $$new_props)
-      $$invalidate(0, _this = $$new_props._this);
+      $$invalidate2(0, _this2 = $$new_props._this);
     if ("pressed" in $$new_props)
-      $$invalidate(1, pressed = $$new_props.pressed);
+      $$invalidate2(1, pressed = $$new_props.pressed);
     if ("info" in $$new_props)
-      $$invalidate(2, info = $$new_props.info);
+      $$invalidate2(2, info2 = $$new_props.info);
     if ("success" in $$new_props)
-      $$invalidate(3, success = $$new_props.success);
+      $$invalidate2(3, success = $$new_props.success);
     if ("warning" in $$new_props)
-      $$invalidate(4, warning = $$new_props.warning);
+      $$invalidate2(4, warning = $$new_props.warning);
     if ("danger" in $$new_props)
-      $$invalidate(5, danger = $$new_props.danger);
+      $$invalidate2(5, danger = $$new_props.danger);
     if ("outline" in $$new_props)
-      $$invalidate(6, outline = $$new_props.outline);
+      $$invalidate2(6, outline = $$new_props.outline);
     if ("icon" in $$new_props)
-      $$invalidate(7, icon = $$new_props.icon);
+      $$invalidate2(7, icon = $$new_props.icon);
     if ("round" in $$new_props)
-      $$invalidate(8, round = $$new_props.round);
+      $$invalidate2(8, round = $$new_props.round);
     if ("class" in $$new_props)
-      $$invalidate(9, className = $$new_props.class);
+      $$invalidate2(9, className2 = $$new_props.class);
     if ("$$scope" in $$new_props)
-      $$invalidate(17, $$scope = $$new_props.$$scope);
+      $$invalidate2(17, $$scope2 = $$new_props.$$scope);
   };
-  $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte13.createEventDispatcher,
+  $$self2.$capture_state = () => ({
+    createEventDispatcher: import_svelte14.createEventDispatcher,
     Button: Button_default,
     pluck,
-    _this,
+    _this: _this2,
     pressed,
-    info,
+    info: info2,
     success,
     warning,
     danger,
     outline,
     icon,
     round,
-    className,
-    dispatch,
+    className: className2,
+    dispatch: dispatch2,
     onKeydown: onKeydown2,
     onMouseDown,
-    props
+    props: props2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(19, $$props = (0, import_internal19.assign)((0, import_internal19.assign)({}, $$props), $$new_props));
-    if ("_this" in $$props)
-      $$invalidate(0, _this = $$new_props._this);
-    if ("pressed" in $$props)
-      $$invalidate(1, pressed = $$new_props.pressed);
-    if ("info" in $$props)
-      $$invalidate(2, info = $$new_props.info);
-    if ("success" in $$props)
-      $$invalidate(3, success = $$new_props.success);
-    if ("warning" in $$props)
-      $$invalidate(4, warning = $$new_props.warning);
-    if ("danger" in $$props)
-      $$invalidate(5, danger = $$new_props.danger);
-    if ("outline" in $$props)
-      $$invalidate(6, outline = $$new_props.outline);
-    if ("icon" in $$props)
-      $$invalidate(7, icon = $$new_props.icon);
-    if ("round" in $$props)
-      $$invalidate(8, round = $$new_props.round);
-    if ("className" in $$props)
-      $$invalidate(9, className = $$new_props.className);
-    if ("props" in $$props)
-      $$invalidate(10, props = $$new_props.props);
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(19, $$props2 = (0, import_internal19.assign)((0, import_internal19.assign)({}, $$props2), $$new_props));
+    if ("_this" in $$props2)
+      $$invalidate2(0, _this2 = $$new_props._this);
+    if ("pressed" in $$props2)
+      $$invalidate2(1, pressed = $$new_props.pressed);
+    if ("info" in $$props2)
+      $$invalidate2(2, info2 = $$new_props.info);
+    if ("success" in $$props2)
+      $$invalidate2(3, success = $$new_props.success);
+    if ("warning" in $$props2)
+      $$invalidate2(4, warning = $$new_props.warning);
+    if ("danger" in $$props2)
+      $$invalidate2(5, danger = $$new_props.danger);
+    if ("outline" in $$props2)
+      $$invalidate2(6, outline = $$new_props.outline);
+    if ("icon" in $$props2)
+      $$invalidate2(7, icon = $$new_props.icon);
+    if ("round" in $$props2)
+      $$invalidate2(8, round = $$new_props.round);
+    if ("className" in $$props2)
+      $$invalidate2(9, className2 = $$new_props.className);
+    if ("props" in $$props2)
+      $$invalidate2(10, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(10, props = pluck($$props, ["id", "title", "disabled"]));
+      $$invalidate2(10, props2 = pluck($$props2, ["id", "title", "disabled"]));
   };
-  $$props = (0, import_internal19.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal19.exclude_internal_props)($$props2);
   return [
-    _this,
+    _this2,
     pressed,
-    info,
+    info2,
     success,
     warning,
     danger,
     outline,
     icon,
     round,
-    className,
-    props,
+    className2,
+    props2,
     onKeydown2,
     onMouseDown,
     $$slots,
-    slots,
+    slots2,
     button_binding,
     button_binding_1,
-    $$scope
+    $$scope2
   ];
 }
 var PushButton = class extends import_internal19.SvelteComponentDev {
@@ -16873,61 +18405,61 @@ var PushButton = class extends import_internal19.SvelteComponentDev {
   get _this() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set _this(value) {
+  set _this(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get pressed() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set pressed(value) {
+  set pressed(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get info() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set info(value) {
+  set info(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get success() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set success(value) {
+  set success(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get warning() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set warning(value) {
+  set warning(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get danger() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set danger(value) {
+  set danger(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get outline() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set outline(value) {
+  set outline(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get icon() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set icon(value) {
+  set icon(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get round() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set round(value) {
+  set round(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<PushButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<PushButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -16949,7 +18481,7 @@ function get_each_context_12(ctx, list, i) {
   child_ctx[14] = list[i];
   return child_ctx;
 }
-function create_if_block_14(ctx) {
+function create_if_block_16(ctx) {
   let option;
   let t;
   const block = {
@@ -16983,7 +18515,7 @@ function create_if_block_14(ctx) {
   };
   (0, import_internal21.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_14.name,
+    id: create_if_block_16.name,
     type: "if",
     source: "(8:2) {#if placeholder}",
     ctx
@@ -17037,7 +18569,7 @@ function create_else_block2(ctx) {
   });
   return block;
 }
-function create_if_block11(ctx) {
+function create_if_block13(ctx) {
   let optgroup;
   let optgroup_label_value;
   let each_value_1 = (
@@ -17103,7 +18635,7 @@ function create_if_block11(ctx) {
   };
   (0, import_internal21.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block11.name,
+    id: create_if_block13.name,
     type: "if",
     source: "(12:3) {#if group.items}",
     ctx
@@ -17164,7 +18696,7 @@ function create_each_block4(ctx) {
       /*group*/
       ctx2[11].items
     )
-      return create_if_block11;
+      return create_if_block13;
     return create_else_block2;
   }
   let current_block_type = select_block_type(ctx, -1);
@@ -17214,7 +18746,7 @@ function create_fragment20(ctx) {
   let dispose;
   let if_block = (
     /*placeholder*/
-    ctx[1] && create_if_block_14(ctx)
+    ctx[1] && create_if_block_16(ctx)
   );
   let each_value = (
     /*groups*/
@@ -17311,7 +18843,7 @@ function create_fragment20(ctx) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
-          if_block = create_if_block_14(ctx2);
+          if_block = create_if_block_16(ctx2);
           if_block.c();
           if_block.m(select, if_block_anchor);
         }
@@ -17382,74 +18914,74 @@ function create_fragment20(ctx) {
   });
   return block;
 }
-function instance20($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal21.validate_slots)("Select", slots, []);
-  let { value = void 0 } = $$props;
-  let { placeholder = void 0 } = $$props;
-  let { items = [] } = $$props;
-  let { class: className = "" } = $$props;
+function instance20($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal21.validate_slots)("Select", slots2, []);
+  let { value: value2 = void 0 } = $$props2;
+  let { placeholder = void 0 } = $$props2;
+  let { items = [] } = $$props2;
+  let { class: className2 = "" } = $$props2;
   let el, groups = [];
-  function change_handler(event) {
-    import_internal21.bubble.call(this, $$self, event);
+  function change_handler(event2) {
+    import_internal21.bubble.call(this, $$self2, event2);
   }
   function select_change_handler() {
-    value = (0, import_internal21.select_value)(this);
-    $$invalidate(0, value);
+    value2 = (0, import_internal21.select_value)(this);
+    $$invalidate2(0, value2);
   }
   function select_binding($$value) {
     import_internal21.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(3, el);
-      $$invalidate(4, groups), $$invalidate(6, items);
+      $$invalidate2(3, el);
+      $$invalidate2(4, groups), $$invalidate2(6, items);
     });
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(10, $$props = (0, import_internal21.assign)((0, import_internal21.assign)({}, $$props), (0, import_internal21.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(10, $$props2 = (0, import_internal21.assign)((0, import_internal21.assign)({}, $$props2), (0, import_internal21.exclude_internal_props)($$new_props)));
     if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
+      $$invalidate2(0, value2 = $$new_props.value);
     if ("placeholder" in $$new_props)
-      $$invalidate(1, placeholder = $$new_props.placeholder);
+      $$invalidate2(1, placeholder = $$new_props.placeholder);
     if ("items" in $$new_props)
-      $$invalidate(6, items = $$new_props.items);
+      $$invalidate2(6, items = $$new_props.items);
     if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
+      $$invalidate2(2, className2 = $$new_props.class);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     pluck,
-    value,
+    value: value2,
     placeholder,
     items,
-    className,
+    className: className2,
     el,
     groups,
-    props
+    props: props2
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(10, $$props = (0, import_internal21.assign)((0, import_internal21.assign)({}, $$props), $$new_props));
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("placeholder" in $$props)
-      $$invalidate(1, placeholder = $$new_props.placeholder);
-    if ("items" in $$props)
-      $$invalidate(6, items = $$new_props.items);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("el" in $$props)
-      $$invalidate(3, el = $$new_props.el);
-    if ("groups" in $$props)
-      $$invalidate(4, groups = $$new_props.groups);
-    if ("props" in $$props)
-      $$invalidate(5, props = $$new_props.props);
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(10, $$props2 = (0, import_internal21.assign)((0, import_internal21.assign)({}, $$props2), $$new_props));
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("placeholder" in $$props2)
+      $$invalidate2(1, placeholder = $$new_props.placeholder);
+    if ("items" in $$props2)
+      $$invalidate2(6, items = $$new_props.items);
+    if ("className" in $$props2)
+      $$invalidate2(2, className2 = $$new_props.className);
+    if ("el" in $$props2)
+      $$invalidate2(3, el = $$new_props.el);
+    if ("groups" in $$props2)
+      $$invalidate2(4, groups = $$new_props.groups);
+    if ("props" in $$props2)
+      $$invalidate2(5, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(5, props = pluck($$props, ["id", "title", "name", "disabled", "required"]));
-    if ($$self.$$.dirty & /*items*/
+      $$invalidate2(5, props2 = pluck($$props2, ["id", "title", "name", "disabled", "required"]));
+    if ($$self2.$$.dirty & /*items*/
     64) {
       $: {
         const nogroup = [];
@@ -17464,18 +18996,18 @@ function instance20($$self, $$props, $$invalidate) {
         if (typeof all[0] === "string") {
           all = all.map((item) => ({ id: item, name: item }));
         }
-        $$invalidate(4, groups = all);
+        $$invalidate2(4, groups = all);
       }
     }
   };
-  $$props = (0, import_internal21.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal21.exclude_internal_props)($$props2);
   return [
-    value,
+    value2,
     placeholder,
-    className,
+    className2,
     el,
     groups,
-    props,
+    props2,
     items,
     change_handler,
     select_change_handler,
@@ -17501,25 +19033,25 @@ var Select = class extends import_internal21.SvelteComponentDev {
   get value() {
     throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get placeholder() {
     throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set placeholder(value) {
+  set placeholder(value2) {
     throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get items() {
     throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set items(value) {
+  set items(value2) {
     throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -17527,7 +19059,7 @@ var Select_default = Select;
 
 // src/splitter/Splitter.svelte
 var import_internal22 = __toESM(require_internal());
-var import_svelte14 = __toESM(require_svelte());
+var import_svelte15 = __toESM(require_svelte());
 var file19 = "src/splitter/Splitter.svelte";
 function create_fragment21(ctx) {
   let div;
@@ -17617,11 +19149,11 @@ function create_fragment21(ctx) {
   });
   return block;
 }
-function instance21($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal22.validate_slots)("Splitter", slots, []);
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte14.createEventDispatcher)();
+function instance21($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal22.validate_slots)("Splitter", slots2, []);
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte15.createEventDispatcher)();
   const size = 8, halfsize = size / 2;
   const Box = {};
   let isVertical = false;
@@ -17629,7 +19161,7 @@ function instance21($$self, $$props, $$invalidate) {
   let initialTargetBox, startX2, startY2;
   let mousedownTargetBox;
   let isDragging = false, bodyCursor;
-  (0, import_svelte14.onMount)(() => {
+  (0, import_svelte15.onMount)(() => {
     requestAnimationFrame(init71);
   });
   function toggle() {
@@ -17658,7 +19190,7 @@ function instance21($$self, $$props, $$invalidate) {
   function init71() {
     targetEl = el.previousElementSibling;
     parentEl = el.parentElement;
-    $$invalidate(1, isVertical = getFlexFlow(parentEl) === "column");
+    $$invalidate2(1, isVertical = getFlexFlow(parentEl) === "column");
     initialTargetBox = targetEl.getBoundingClientRect();
     if (isVertical) {
       initialTargetBox.minHeight = minHeight(targetEl);
@@ -17671,11 +19203,11 @@ function instance21($$self, $$props, $$invalidate) {
     targetEl.style.flex = "unset";
     targetEl.style.overflow = "auto";
     if (isVertical)
-      $$invalidate(2, el.style.height = size + "px", el);
+      $$invalidate2(2, el.style.height = size + "px", el);
     else
-      $$invalidate(2, el.style.width = size + "px", el);
+      $$invalidate2(2, el.style.width = size + "px", el);
     if (el && el.nextElementSibling)
-      $$invalidate(2, el.nextElementSibling.style.overflow = "auto", el);
+      $$invalidate2(2, el.nextElementSibling.style.overflow = "auto", el);
   }
   function updateSize(box, withAnimation = false) {
     let originalTargetTransition, originalElTransition;
@@ -17684,29 +19216,29 @@ function instance21($$self, $$props, $$invalidate) {
       originalElTransition = el.style.transition;
       const anim = ANIMATION_SPEED + "ms ease-out";
       targetEl.style.transition = `width ${anim}, height ${anim}`;
-      $$invalidate(2, el.style.transition = `left ${anim}, top ${anim}`, el);
+      $$invalidate2(2, el.style.transition = `left ${anim}, top ${anim}`, el);
     }
     if (isVertical) {
       targetEl.style.height = box.height + "px";
-      $$invalidate(2, el.style.top = box.height - halfsize + "px", el);
+      $$invalidate2(2, el.style.top = box.height - halfsize + "px", el);
       const collapsed = initialTargetBox.minHeight === box.height;
       Box.height = box.height;
       Box.collapsed = collapsed;
-      dispatch("change", Box);
+      dispatch2("change", Box);
     } else {
       targetEl.style.width = box.width + "px";
-      $$invalidate(2, el.style.left = box.width - halfsize + "px", el);
+      $$invalidate2(2, el.style.left = box.width - halfsize + "px", el);
       const collapsed = initialTargetBox.minWidth === box.width;
       Box.width = box.width;
       Box.collapsed = collapsed;
-      dispatch("change", Box);
+      dispatch2("change", Box);
     }
     if (withAnimation) {
       setTimeout(
         () => {
           targetEl.style.transition = originalTargetTransition;
-          $$invalidate(2, el.style.transition = originalElTransition, el);
-          dispatch("changed", Box);
+          $$invalidate2(2, el.style.transition = originalElTransition, el);
+          dispatch2("changed", Box);
         },
         ANIMATION_SPEED
       );
@@ -17715,7 +19247,7 @@ function instance21($$self, $$props, $$invalidate) {
   function mousedown(e) {
     if (isDragging)
       return;
-    $$invalidate(3, isDragging = true);
+    $$invalidate2(3, isDragging = true);
     e.preventDefault();
     document.addEventListener("mouseup", mouseup);
     document.addEventListener("mousemove", mousemove);
@@ -17750,30 +19282,30 @@ function instance21($$self, $$props, $$invalidate) {
   function mouseup() {
     if (!isDragging)
       return;
-    $$invalidate(3, isDragging = false);
+    $$invalidate2(3, isDragging = false);
     document.removeEventListener("mouseup", mouseup);
     document.removeEventListener("mousemove", mousemove);
     document.body.style.cursor = bodyCursor;
-    dispatch("changed", Box);
+    dispatch2("changed", Box);
   }
   const writable_props = ["class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function div_binding($$value) {
     import_internal22.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(2, el);
+      $$invalidate2(2, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("class" in $$props2)
-      $$invalidate(0, className = $$props2.class);
+  $$self2.$$set = ($$props3) => {
+    if ("class" in $$props3)
+      $$invalidate2(0, className2 = $$props3.class);
   };
-  $$self.$capture_state = () => ({
-    onMount: import_svelte14.onMount,
-    createEventDispatcher: import_svelte14.createEventDispatcher,
+  $$self2.$capture_state = () => ({
+    onMount: import_svelte15.onMount,
+    createEventDispatcher: import_svelte15.createEventDispatcher,
     getMouseX,
     getMouseY,
     innerWidth,
@@ -17784,8 +19316,8 @@ function instance21($$self, $$props, $$invalidate) {
     getFlexFlow,
     maxHeight,
     maxWidth,
-    className,
-    dispatch,
+    className: className2,
+    dispatch: dispatch2,
     size,
     halfsize,
     Box,
@@ -17809,35 +19341,35 @@ function instance21($$self, $$props, $$invalidate) {
     mousemove,
     mouseup
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("className" in $$props2)
-      $$invalidate(0, className = $$props2.className);
-    if ("isVertical" in $$props2)
-      $$invalidate(1, isVertical = $$props2.isVertical);
-    if ("el" in $$props2)
-      $$invalidate(2, el = $$props2.el);
-    if ("parentEl" in $$props2)
-      parentEl = $$props2.parentEl;
-    if ("targetEl" in $$props2)
-      targetEl = $$props2.targetEl;
-    if ("initialTargetBox" in $$props2)
-      initialTargetBox = $$props2.initialTargetBox;
-    if ("startX" in $$props2)
-      startX2 = $$props2.startX;
-    if ("startY" in $$props2)
-      startY2 = $$props2.startY;
-    if ("mousedownTargetBox" in $$props2)
-      mousedownTargetBox = $$props2.mousedownTargetBox;
-    if ("isDragging" in $$props2)
-      $$invalidate(3, isDragging = $$props2.isDragging);
-    if ("bodyCursor" in $$props2)
-      bodyCursor = $$props2.bodyCursor;
+  $$self2.$inject_state = ($$props3) => {
+    if ("className" in $$props3)
+      $$invalidate2(0, className2 = $$props3.className);
+    if ("isVertical" in $$props3)
+      $$invalidate2(1, isVertical = $$props3.isVertical);
+    if ("el" in $$props3)
+      $$invalidate2(2, el = $$props3.el);
+    if ("parentEl" in $$props3)
+      parentEl = $$props3.parentEl;
+    if ("targetEl" in $$props3)
+      targetEl = $$props3.targetEl;
+    if ("initialTargetBox" in $$props3)
+      initialTargetBox = $$props3.initialTargetBox;
+    if ("startX" in $$props3)
+      startX2 = $$props3.startX;
+    if ("startY" in $$props3)
+      startY2 = $$props3.startY;
+    if ("mousedownTargetBox" in $$props3)
+      mousedownTargetBox = $$props3.mousedownTargetBox;
+    if ("isDragging" in $$props3)
+      $$invalidate2(3, isDragging = $$props3.isDragging);
+    if ("bodyCursor" in $$props3)
+      bodyCursor = $$props3.bodyCursor;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
-    className,
+    className2,
     isVertical,
     el,
     isDragging,
@@ -17869,31 +19401,31 @@ var Splitter = class extends import_internal22.SvelteComponentDev {
   get class() {
     throw new Error("<Splitter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get toggle() {
     return this.$$.ctx[5];
   }
-  set toggle(value) {
+  set toggle(value2) {
     throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get collapse() {
     return this.$$.ctx[6];
   }
-  set collapse(value) {
+  set collapse(value2) {
     throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get expand() {
     return this.$$.ctx[7];
   }
-  set expand(value) {
+  set expand(value2) {
     throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get setSize() {
     return this.$$.ctx[8];
   }
-  set setSize(value) {
+  set setSize(value2) {
     throw new Error("<Splitter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -17901,7 +19433,7 @@ var Splitter_default = Splitter;
 
 // src/table/Table.svelte
 var import_internal23 = __toESM(require_internal());
-var import_svelte15 = __toESM(require_svelte());
+var import_svelte16 = __toESM(require_svelte());
 var { Object: Object_1 } = import_internal23.globals;
 var file20 = "src/table/Table.svelte";
 function create_fragment22(ctx) {
@@ -18090,39 +19622,39 @@ function shouldSkipNav(e) {
     return true;
   return false;
 }
-function instance22($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal23.validate_slots)("Table", slots, ["default"]);
-  const dispatch = (0, import_svelte15.createEventDispatcher)();
-  let { _this = void 0 } = $$props;
-  let { selectable = true } = $$props;
-  let { round = false } = $$props;
-  let { scrollContainer = void 0 } = $$props;
-  let { scrollCorrectionOffset = 0 } = $$props;
-  let { class: className = "" } = $$props;
-  let { rowSelector = "tbody tr" } = $$props;
-  let { data = {} } = $$props;
+function instance22($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal23.validate_slots)("Table", slots2, ["default"]);
+  const dispatch2 = (0, import_svelte16.createEventDispatcher)();
+  let { _this: _this2 = void 0 } = $$props2;
+  let { selectable = true } = $$props2;
+  let { round = false } = $$props2;
+  let { scrollContainer = void 0 } = $$props2;
+  let { scrollCorrectionOffset = 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  let { rowSelector = "tbody tr" } = $$props2;
+  let { data = {} } = $$props2;
   let selectedIdx = -1;
   let headerHeight = 0;
   let clickTimer;
   let previousKey;
-  (0, import_svelte15.onMount)(() => {
-    Object.assign(_this.dataset, data);
+  (0, import_svelte16.onMount)(() => {
+    Object.assign(_this2.dataset, data);
     if (selectable === true || selectable === "true") {
       makeRowsSelectable();
       requestAnimationFrame(() => {
-        const head = _this && _this.querySelector("thead");
+        const head = _this2 && _this2.querySelector("thead");
         if (head)
           headerHeight = head.offsetHeight;
       });
     }
   });
-  (0, import_svelte15.onDestroy)(() => {
+  (0, import_svelte16.onDestroy)(() => {
     if (selectable === true || selectable === "true")
       makeRowsNotSelectable();
   });
   function getSelectableItems(getFromAllTables = true) {
-    const rootEl = getFromAllTables ? _this.parentNode : _this;
+    const rootEl = getFromAllTables ? _this2.parentNode : _this2;
     const rows = rootEl.querySelectorAll(`.table ${rowSelector}`);
     if (rows && rows.length)
       return Array.from(rows);
@@ -18142,7 +19674,7 @@ function instance22($$self, $$props, $$invalidate) {
     const rowEl = rows[selectedIdx];
     rowEl.focus();
     if (!skipEvent)
-      dispatch("select", { selectedItem: rowEl });
+      dispatch2("select", { selectedItem: rowEl });
   }
   function selectNext(skipEvent = false) {
     const rows = getSelectableItems();
@@ -18152,17 +19684,17 @@ function instance22($$self, $$props, $$invalidate) {
     const rowEl = rows[selectedIdx];
     rowEl.focus();
     if (!skipEvent)
-      dispatch("select", { selectedItem: rowEl });
+      dispatch2("select", { selectedItem: rowEl });
   }
   function getScrollContainer() {
     let scrlCont;
     if (scrollContainer) {
       if (typeof scrollContainer === "string")
-        scrlCont = _this.closest(scrollContainer);
+        scrlCont = _this2.closest(scrollContainer);
       else
         scrlCont = scrollContainer;
     }
-    return scrlCont || _this;
+    return scrlCont || _this2;
   }
   function selectClicked(skipEvent = false) {
     const rows = getSelectableItems();
@@ -18174,7 +19706,7 @@ function instance22($$self, $$props, $$invalidate) {
     const scrlCont = getScrollContainer();
     if (!scrlCont || !scrlCont.scrollTo)
       return;
-    const topMargin = scrlCont === _this ? 0 : _this.offsetTop;
+    const topMargin = scrlCont === _this2 ? 0 : _this2.offsetTop;
     let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
     if (scrlCont.scrollTop > top)
       scrlCont.scrollTo({ top: Math.round(top) });
@@ -18185,7 +19717,7 @@ function instance22($$self, $$props, $$invalidate) {
         scrlCont.scrollTo({ top: Math.round(top) });
     }
     if (!skipEvent)
-      dispatch("select", { selectedItem: rowEl });
+      dispatch2("select", { selectedItem: rowEl });
   }
   function selectFocusedRow(rowEl) {
     if (!rowEl)
@@ -18197,7 +19729,7 @@ function instance22($$self, $$props, $$invalidate) {
   function onFocus2(e) {
     if (selectable !== true && selectable !== "true")
       return;
-    if (!_this.contains(e.target))
+    if (!_this2.contains(e.target))
       return;
     if (!e || !e.target || shouldSkipNav(e))
       return;
@@ -18208,27 +19740,27 @@ function instance22($$self, $$props, $$invalidate) {
     const rowEl = e.target.closest(rowSelector);
     if (rowEl) {
       selectFocusedRow(rowEl);
-      dispatch("click", { event: e, selectedItem: rowEl });
+      dispatch2("click", { event: e, selectedItem: rowEl });
     }
   }
   function onClick(e) {
-    if (!_this.contains(e.target))
+    if (!_this2.contains(e.target))
       return;
     if (shouldSkipNav(e))
       return;
     if (clickTimer)
       clearTimeout(clickTimer);
-    clickTimer = setTimeout(() => dispatch("select", { event: e, selectedItem: rowEl }), 300);
+    clickTimer = setTimeout(() => dispatch2("select", { event: e, selectedItem: rowEl }), 300);
     const rowEl = e.target.closest(rowSelector);
     if (rowEl) {
       selectFocusedRow(rowEl);
-      dispatch("click", { event: e, selectedItem: rowEl });
+      dispatch2("click", { event: e, selectedItem: rowEl });
     }
   }
   function onDblClick(e) {
     if (selectable !== true && selectable !== "true")
       return;
-    if (!_this.contains(e.target))
+    if (!_this2.contains(e.target))
       return;
     if (shouldSkipNav(e))
       return;
@@ -18237,13 +19769,13 @@ function instance22($$self, $$props, $$invalidate) {
     onClick(e);
     requestAnimationFrame(() => {
       const selectedItem = getSelectableItems()[selectedIdx];
-      dispatch("dblclick", { event: e, selectedItem });
+      dispatch2("dblclick", { event: e, selectedItem });
     });
   }
   function onKeyDown(e) {
     if (selectable !== true && selectable !== "true")
       return;
-    if (!_this.contains(e.target))
+    if (!_this2.contains(e.target))
       return;
     if (shouldSkipNav(e))
       return;
@@ -18268,7 +19800,7 @@ function instance22($$self, $$props, $$invalidate) {
     }
     previousKey = e.key;
     const selectedItem = getSelectableItems()[selectedIdx];
-    dispatch("keydown", { event: e, key: e.key, selectedItem });
+    dispatch2("keydown", { event: e, key: e.key, selectedItem });
   }
   const writable_props = [
     "_this",
@@ -18280,47 +19812,47 @@ function instance22($$self, $$props, $$invalidate) {
     "rowSelector",
     "data"
   ];
-  Object_1.keys($$props).forEach((key) => {
+  Object_1.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Table> was created with unknown prop '${key}'`);
   });
   function div_binding($$value) {
     import_internal23.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      _this = $$value;
-      $$invalidate(0, _this);
+      _this2 = $$value;
+      $$invalidate2(0, _this2);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("_this" in $$props2)
-      $$invalidate(0, _this = $$props2._this);
-    if ("selectable" in $$props2)
-      $$invalidate(1, selectable = $$props2.selectable);
-    if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
-    if ("scrollContainer" in $$props2)
-      $$invalidate(8, scrollContainer = $$props2.scrollContainer);
-    if ("scrollCorrectionOffset" in $$props2)
-      $$invalidate(9, scrollCorrectionOffset = $$props2.scrollCorrectionOffset);
-    if ("class" in $$props2)
-      $$invalidate(3, className = $$props2.class);
-    if ("rowSelector" in $$props2)
-      $$invalidate(10, rowSelector = $$props2.rowSelector);
-    if ("data" in $$props2)
-      $$invalidate(11, data = $$props2.data);
-    if ("$$scope" in $$props2)
-      $$invalidate(12, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("_this" in $$props3)
+      $$invalidate2(0, _this2 = $$props3._this);
+    if ("selectable" in $$props3)
+      $$invalidate2(1, selectable = $$props3.selectable);
+    if ("round" in $$props3)
+      $$invalidate2(2, round = $$props3.round);
+    if ("scrollContainer" in $$props3)
+      $$invalidate2(8, scrollContainer = $$props3.scrollContainer);
+    if ("scrollCorrectionOffset" in $$props3)
+      $$invalidate2(9, scrollCorrectionOffset = $$props3.scrollCorrectionOffset);
+    if ("class" in $$props3)
+      $$invalidate2(3, className2 = $$props3.class);
+    if ("rowSelector" in $$props3)
+      $$invalidate2(10, rowSelector = $$props3.rowSelector);
+    if ("data" in $$props3)
+      $$invalidate2(11, data = $$props3.data);
+    if ("$$scope" in $$props3)
+      $$invalidate2(12, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({
-    onDestroy: import_svelte15.onDestroy,
-    onMount: import_svelte15.onMount,
-    createEventDispatcher: import_svelte15.createEventDispatcher,
-    dispatch,
-    _this,
+  $$self2.$capture_state = () => ({
+    onDestroy: import_svelte16.onDestroy,
+    onMount: import_svelte16.onMount,
+    createEventDispatcher: import_svelte16.createEventDispatcher,
+    dispatch: dispatch2,
+    _this: _this2,
     selectable,
     round,
     scrollContainer,
     scrollCorrectionOffset,
-    className,
+    className: className2,
     rowSelector,
     data,
     selectedIdx,
@@ -18341,40 +19873,40 @@ function instance22($$self, $$props, $$invalidate) {
     onKeyDown,
     shouldSkipNav
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("_this" in $$props2)
-      $$invalidate(0, _this = $$props2._this);
-    if ("selectable" in $$props2)
-      $$invalidate(1, selectable = $$props2.selectable);
-    if ("round" in $$props2)
-      $$invalidate(2, round = $$props2.round);
-    if ("scrollContainer" in $$props2)
-      $$invalidate(8, scrollContainer = $$props2.scrollContainer);
-    if ("scrollCorrectionOffset" in $$props2)
-      $$invalidate(9, scrollCorrectionOffset = $$props2.scrollCorrectionOffset);
-    if ("className" in $$props2)
-      $$invalidate(3, className = $$props2.className);
-    if ("rowSelector" in $$props2)
-      $$invalidate(10, rowSelector = $$props2.rowSelector);
-    if ("data" in $$props2)
-      $$invalidate(11, data = $$props2.data);
-    if ("selectedIdx" in $$props2)
-      selectedIdx = $$props2.selectedIdx;
-    if ("headerHeight" in $$props2)
-      headerHeight = $$props2.headerHeight;
-    if ("clickTimer" in $$props2)
-      clickTimer = $$props2.clickTimer;
-    if ("previousKey" in $$props2)
-      previousKey = $$props2.previousKey;
+  $$self2.$inject_state = ($$props3) => {
+    if ("_this" in $$props3)
+      $$invalidate2(0, _this2 = $$props3._this);
+    if ("selectable" in $$props3)
+      $$invalidate2(1, selectable = $$props3.selectable);
+    if ("round" in $$props3)
+      $$invalidate2(2, round = $$props3.round);
+    if ("scrollContainer" in $$props3)
+      $$invalidate2(8, scrollContainer = $$props3.scrollContainer);
+    if ("scrollCorrectionOffset" in $$props3)
+      $$invalidate2(9, scrollCorrectionOffset = $$props3.scrollCorrectionOffset);
+    if ("className" in $$props3)
+      $$invalidate2(3, className2 = $$props3.className);
+    if ("rowSelector" in $$props3)
+      $$invalidate2(10, rowSelector = $$props3.rowSelector);
+    if ("data" in $$props3)
+      $$invalidate2(11, data = $$props3.data);
+    if ("selectedIdx" in $$props3)
+      selectedIdx = $$props3.selectedIdx;
+    if ("headerHeight" in $$props3)
+      headerHeight = $$props3.headerHeight;
+    if ("clickTimer" in $$props3)
+      clickTimer = $$props3.clickTimer;
+    if ("previousKey" in $$props3)
+      previousKey = $$props3.previousKey;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
-    _this,
+    _this2,
     selectable,
     round,
-    className,
+    className2,
     onFocus2,
     onClick,
     onDblClick,
@@ -18383,8 +19915,8 @@ function instance22($$self, $$props, $$invalidate) {
     scrollCorrectionOffset,
     rowSelector,
     data,
-    $$scope,
-    slots,
+    $$scope2,
+    slots2,
     div_binding
   ];
 }
@@ -18411,49 +19943,49 @@ var Table = class extends import_internal23.SvelteComponentDev {
   get _this() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set _this(value) {
+  set _this(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get selectable() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set selectable(value) {
+  set selectable(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get round() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set round(value) {
+  set round(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get scrollContainer() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set scrollContainer(value) {
+  set scrollContainer(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get scrollCorrectionOffset() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set scrollCorrectionOffset(value) {
+  set scrollCorrectionOffset(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get rowSelector() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set rowSelector(value) {
+  set rowSelector(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get data() {
     throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set data(value) {
+  set data(value2) {
     throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -18597,59 +20129,59 @@ function create_fragment23(ctx) {
   });
   return block;
 }
-function instance23($$self, $$props, $$invalidate) {
-  let props;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal24.validate_slots)("Textarea", slots, []);
-  let { value = "" } = $$props;
-  let { autogrow = false } = $$props;
-  let { class: className = "" } = $$props;
-  function change_handler(event) {
-    import_internal24.bubble.call(this, $$self, event);
+function instance23($$self2, $$props2, $$invalidate2) {
+  let props2;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal24.validate_slots)("Textarea", slots2, []);
+  let { value: value2 = "" } = $$props2;
+  let { autogrow = false } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  function change_handler(event2) {
+    import_internal24.bubble.call(this, $$self2, event2);
   }
-  function input_handler(event) {
-    import_internal24.bubble.call(this, $$self, event);
+  function input_handler2(event2) {
+    import_internal24.bubble.call(this, $$self2, event2);
   }
   function textarea_input_handler() {
-    value = this.value;
-    $$invalidate(0, value);
+    value2 = this.value;
+    $$invalidate2(0, value2);
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(7, $$props = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props), (0, import_internal24.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(7, $$props2 = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props2), (0, import_internal24.exclude_internal_props)($$new_props)));
     if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
+      $$invalidate2(0, value2 = $$new_props.value);
     if ("autogrow" in $$new_props)
-      $$invalidate(1, autogrow = $$new_props.autogrow);
+      $$invalidate2(1, autogrow = $$new_props.autogrow);
     if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
+      $$invalidate2(2, className2 = $$new_props.class);
   };
-  $$self.$capture_state = () => ({ pluck, value, autogrow, className, props });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(7, $$props = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props), $$new_props));
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("autogrow" in $$props)
-      $$invalidate(1, autogrow = $$new_props.autogrow);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("props" in $$props)
-      $$invalidate(3, props = $$new_props.props);
+  $$self2.$capture_state = () => ({ pluck, value: value2, autogrow, className: className2, props: props2 });
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(7, $$props2 = (0, import_internal24.assign)((0, import_internal24.assign)({}, $$props2), $$new_props));
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("autogrow" in $$props2)
+      $$invalidate2(1, autogrow = $$new_props.autogrow);
+    if ("className" in $$props2)
+      $$invalidate2(2, className2 = $$new_props.className);
+    if ("props" in $$props2)
+      $$invalidate2(3, props2 = $$new_props.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(3, props = pluck($$props, ["id", "title", "name", "disabled", "placeholder", "required"]));
+      $$invalidate2(3, props2 = pluck($$props2, ["id", "title", "name", "disabled", "placeholder", "required"]));
   };
-  $$props = (0, import_internal24.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal24.exclude_internal_props)($$props2);
   return [
-    value,
+    value2,
     autogrow,
-    className,
-    props,
+    className2,
+    props2,
     change_handler,
-    input_handler,
+    input_handler2,
     textarea_input_handler
   ];
 }
@@ -18667,19 +20199,19 @@ var Textarea = class extends import_internal24.SvelteComponentDev {
   get value() {
     throw new Error("<Textarea>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<Textarea>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get autogrow() {
     throw new Error("<Textarea>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set autogrow(value) {
+  set autogrow(value2) {
     throw new Error("<Textarea>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Textarea>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Textarea>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -18687,7 +20219,7 @@ var Textarea_default = Textarea;
 
 // src/text-fit/TextFit.svelte
 var import_internal25 = __toESM(require_internal());
-var import_svelte16 = __toESM(require_svelte());
+var import_svelte17 = __toESM(require_svelte());
 var file22 = "src/text-fit/TextFit.svelte";
 function create_fragment24(ctx) {
   let span;
@@ -18782,20 +20314,20 @@ function create_fragment24(ctx) {
   return block;
 }
 var DEBOUNCE_RESIZE = 10;
-function instance24($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal25.validate_slots)("TextFit", slots, ["default"]);
-  let { margin = 0 } = $$props;
-  let { class: className = "" } = $$props;
+function instance24($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal25.validate_slots)("TextFit", slots2, ["default"]);
+  let { margin = 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
   let el, parent, resizeObserver, timer2, mutationObserver;
   function resize() {
-    $$invalidate(1, el.style.transform = "", el);
+    $$invalidate2(1, el.style.transform = "", el);
     const textW = el.getBoundingClientRect().width;
     const parentW = parent.getBoundingClientRect().width;
     const val = (parentW - margin) / textW || 0;
-    $$invalidate(1, el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`, el);
+    $$invalidate2(1, el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`, el);
   }
-  (0, import_svelte16.onMount)(() => {
+  (0, import_svelte17.onMount)(() => {
     parent = el.parentNode;
     resizeObserver = new ResizeObserver(() => {
       if (timer2)
@@ -18807,34 +20339,34 @@ function instance24($$self, $$props, $$invalidate) {
     mutationObserver.observe(el.firstChild, { characterData: true });
     resize();
   });
-  (0, import_svelte16.onDestroy)(() => {
+  (0, import_svelte17.onDestroy)(() => {
     resizeObserver.unobserve(parent);
     mutationObserver.disconnect();
   });
   const writable_props = ["margin", "class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<TextFit> was created with unknown prop '${key}'`);
   });
   function span_binding($$value) {
     import_internal25.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(1, el);
+      $$invalidate2(1, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("margin" in $$props2)
-      $$invalidate(2, margin = $$props2.margin);
-    if ("class" in $$props2)
-      $$invalidate(0, className = $$props2.class);
-    if ("$$scope" in $$props2)
-      $$invalidate(3, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("margin" in $$props3)
+      $$invalidate2(2, margin = $$props3.margin);
+    if ("class" in $$props3)
+      $$invalidate2(0, className2 = $$props3.class);
+    if ("$$scope" in $$props3)
+      $$invalidate2(3, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({
-    onMount: import_svelte16.onMount,
-    onDestroy: import_svelte16.onDestroy,
+  $$self2.$capture_state = () => ({
+    onMount: import_svelte17.onMount,
+    onDestroy: import_svelte17.onDestroy,
     margin,
-    className,
+    className: className2,
     DEBOUNCE_RESIZE,
     el,
     parent,
@@ -18843,26 +20375,26 @@ function instance24($$self, $$props, $$invalidate) {
     mutationObserver,
     resize
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("margin" in $$props2)
-      $$invalidate(2, margin = $$props2.margin);
-    if ("className" in $$props2)
-      $$invalidate(0, className = $$props2.className);
-    if ("el" in $$props2)
-      $$invalidate(1, el = $$props2.el);
-    if ("parent" in $$props2)
-      parent = $$props2.parent;
-    if ("resizeObserver" in $$props2)
-      resizeObserver = $$props2.resizeObserver;
-    if ("timer" in $$props2)
-      timer2 = $$props2.timer;
-    if ("mutationObserver" in $$props2)
-      mutationObserver = $$props2.mutationObserver;
+  $$self2.$inject_state = ($$props3) => {
+    if ("margin" in $$props3)
+      $$invalidate2(2, margin = $$props3.margin);
+    if ("className" in $$props3)
+      $$invalidate2(0, className2 = $$props3.className);
+    if ("el" in $$props3)
+      $$invalidate2(1, el = $$props3.el);
+    if ("parent" in $$props3)
+      parent = $$props3.parent;
+    if ("resizeObserver" in $$props3)
+      resizeObserver = $$props3.resizeObserver;
+    if ("timer" in $$props3)
+      timer2 = $$props3.timer;
+    if ("mutationObserver" in $$props3)
+      mutationObserver = $$props3.mutationObserver;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  return [className, el, margin, $$scope, slots, span_binding];
+  return [className2, el, margin, $$scope2, slots2, span_binding];
 }
 var TextFit = class extends import_internal25.SvelteComponentDev {
   constructor(options) {
@@ -18878,13 +20410,13 @@ var TextFit = class extends import_internal25.SvelteComponentDev {
   get margin() {
     throw new Error("<TextFit>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set margin(value) {
+  set margin(value2) {
     throw new Error("<TextFit>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<TextFit>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<TextFit>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -18892,24 +20424,24 @@ var TextFit_default = TextFit;
 
 // src/toaster/Toaster.svelte
 var import_internal26 = __toESM(require_internal());
-var import_transition3 = __toESM(require_transition());
+var import_transition6 = __toESM(require_transition());
 
 // src/toaster/toaster.js
 var import_store3 = __toESM(require_store());
 var _toasts = (0, import_store3.writable)({});
 function showToast(msg, type = "info", timeout = 5e3, btn, cb = () => {
 }) {
-  const id = guid2();
+  const id2 = guid2();
   const showProgress = typeof timeout === "number";
   _toasts.update((list) => {
-    list[id] = { type, msg, id, timeout, cb, showProgress, btn };
+    list[id2] = { type, msg, id: id2, timeout, cb, showProgress, btn };
     return list;
   });
-  return id;
+  return id2;
 }
-function hideToast(id) {
+function hideToast(id2) {
   _toasts.update((list) => {
-    delete list[id];
+    delete list[id2];
     return list;
   });
 }
@@ -18929,7 +20461,7 @@ function get_each_context5(ctx, list, i) {
   child_ctx[16] = list[i];
   return child_ctx;
 }
-function create_if_block_15(ctx) {
+function create_if_block_17(ctx) {
   let button;
   let t_value = (
     /*toast*/
@@ -18977,14 +20509,14 @@ function create_if_block_15(ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_15.name,
+    id: create_if_block_17.name,
     type: "if",
     source: "(19:3) {#if toast.btn}",
     ctx
   });
   return block;
 }
-function create_if_block12(ctx) {
+function create_if_block14(ctx) {
   let div1;
   let div0;
   const block = {
@@ -19031,7 +20563,7 @@ function create_if_block12(ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block12.name,
+    id: create_if_block14.name,
     type: "if",
     source: "(23:3) {#if toast.showProgress}",
     ctx
@@ -19058,7 +20590,7 @@ function create_each_block5(key_1, ctx) {
   let dispose;
   let if_block0 = (
     /*toast*/
-    ctx[16].btn && create_if_block_15(ctx)
+    ctx[16].btn && create_if_block_17(ctx)
   );
   function click_handler_1() {
     return (
@@ -19071,7 +20603,7 @@ function create_each_block5(key_1, ctx) {
   }
   let if_block1 = (
     /*toast*/
-    ctx[16].showProgress && create_if_block12(ctx)
+    ctx[16].showProgress && create_if_block14(ctx)
   );
   function mouseover_handler() {
     return (
@@ -19082,7 +20614,7 @@ function create_each_block5(key_1, ctx) {
       )
     );
   }
-  function focus_handler() {
+  function focus_handler2() {
     return (
       /*focus_handler*/
       ctx[11](
@@ -19101,7 +20633,7 @@ function create_each_block5(key_1, ctx) {
       )
     );
   }
-  function blur_handler(...args) {
+  function blur_handler2(...args) {
     return (
       /*blur_handler*/
       ctx[13](
@@ -19167,9 +20699,9 @@ function create_each_block5(key_1, ctx) {
         dispose = [
           (0, import_internal26.listen_dev)(button, "click", (0, import_internal26.stop_propagation)(click_handler_1), false, false, true, false),
           (0, import_internal26.listen_dev)(div1, "mouseover", mouseover_handler, false, false, false, false),
-          (0, import_internal26.listen_dev)(div1, "focus", focus_handler, false, false, false, false),
+          (0, import_internal26.listen_dev)(div1, "focus", focus_handler2, false, false, false, false),
           (0, import_internal26.listen_dev)(div1, "mouseleave", mouseleave_handler, false, false, false, false),
-          (0, import_internal26.listen_dev)(div1, "blur", blur_handler, false, false, false, false),
+          (0, import_internal26.listen_dev)(div1, "blur", blur_handler2, false, false, false, false),
           (0, import_internal26.listen_dev)(div1, "keydown", keydown_handler, false, false, false, false)
         ];
         mounted = true;
@@ -19194,7 +20726,7 @@ function create_each_block5(key_1, ctx) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
         } else {
-          if_block0 = create_if_block_15(ctx);
+          if_block0 = create_if_block_17(ctx);
           if_block0.c();
           if_block0.m(div1, t1);
         }
@@ -19209,7 +20741,7 @@ function create_each_block5(key_1, ctx) {
         if (if_block1) {
           if_block1.p(ctx, dirty);
         } else {
-          if_block1 = create_if_block12(ctx);
+          if_block1 = create_if_block14(ctx);
           if_block1.c();
           if_block1.m(div1, t4);
         }
@@ -19232,7 +20764,7 @@ function create_each_block5(key_1, ctx) {
         if (!div1_transition)
           div1_transition = (0, import_internal26.create_bidirectional_transition)(
             div1,
-            import_transition3.scale,
+            import_transition6.scale,
             {
               start: 0.5,
               duration: (
@@ -19250,7 +20782,7 @@ function create_each_block5(key_1, ctx) {
       if (!div1_transition)
         div1_transition = (0, import_internal26.create_bidirectional_transition)(
           div1,
-          import_transition3.scale,
+          import_transition6.scale,
           {
             start: 0.5,
             duration: (
@@ -19378,19 +20910,19 @@ function create_fragment25(ctx) {
   });
   return block;
 }
-function instance25($$self, $$props, $$invalidate) {
-  let $ANIMATION_SPEED;
+function instance25($$self2, $$props2, $$invalidate2) {
+  let $ANIMATION_SPEED2;
   (0, import_internal26.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal26.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(4, $ANIMATION_SPEED = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal26.validate_slots)("Toaster", slots, []);
-  let { position = "top" } = $$props;
-  let { class: className = "" } = $$props;
+  (0, import_internal26.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(4, $ANIMATION_SPEED2 = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal26.validate_slots)("Toaster", slots2, []);
+  let { position = "top" } = $$props2;
+  let { class: className2 = "" } = $$props2;
   let toasts = [];
   const timers2 = {};
   const progress = {};
   _toasts.subscribe((val) => {
-    $$invalidate(2, toasts = Object.values(val));
+    $$invalidate2(2, toasts = Object.values(val));
     toasts.forEach((t) => {
       if (!timers2[t.id])
         createTimer2(t);
@@ -19401,14 +20933,14 @@ function instance25($$self, $$props, $$invalidate) {
       return;
     if (targetEl && targetEl === document.activeElement)
       return;
-    const id = toast.id;
-    $$invalidate(3, progress[id] = progress[id] || 0, progress);
-    timers2[id] = setInterval(
+    const id2 = toast.id;
+    $$invalidate2(3, progress[id2] = progress[id2] || 0, progress);
+    timers2[id2] = setInterval(
       () => {
-        $$invalidate(3, progress[id] += 1, progress);
-        if (progress[id] >= 110) {
-          clearInterval(timers2[id]);
-          hideToast(id);
+        $$invalidate2(3, progress[id2] += 1, progress);
+        if (progress[id2] >= 110) {
+          clearInterval(timers2[id2]);
+          hideToast(id2);
         }
       },
       toast.timeout / 100
@@ -19417,69 +20949,69 @@ function instance25($$self, $$props, $$invalidate) {
   function clearTimer3(toast) {
     clearInterval(timers2[toast.id]);
   }
-  function onkeydown(toast, e) {
+  function onkeydown2(toast, e) {
     if (e.key === "Escape")
       hideToast(toast.id);
   }
   const writable_props = ["position", "class"];
-  Object_12.keys($$props).forEach((key) => {
+  Object_12.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Toaster> was created with unknown prop '${key}'`);
   });
   const click_handler = (toast) => toast.cb(toast.id);
   const click_handler_1 = (toast) => hideToast(toast.id);
   const mouseover_handler = (toast) => clearTimer3(toast);
-  const focus_handler = (toast) => clearTimer3(toast);
+  const focus_handler2 = (toast) => clearTimer3(toast);
   const mouseleave_handler = (toast, e) => createTimer2(toast, e.target);
-  const blur_handler = (toast, e) => createTimer2(toast, e.target);
-  const keydown_handler = (toast, e) => onkeydown(toast, e);
-  $$self.$$set = ($$props2) => {
-    if ("position" in $$props2)
-      $$invalidate(0, position = $$props2.position);
-    if ("class" in $$props2)
-      $$invalidate(1, className = $$props2.class);
+  const blur_handler2 = (toast, e) => createTimer2(toast, e.target);
+  const keydown_handler = (toast, e) => onkeydown2(toast, e);
+  $$self2.$$set = ($$props3) => {
+    if ("position" in $$props3)
+      $$invalidate2(0, position = $$props3.position);
+    if ("class" in $$props3)
+      $$invalidate2(1, className2 = $$props3.class);
   };
-  $$self.$capture_state = () => ({
-    scale: import_transition3.scale,
+  $$self2.$capture_state = () => ({
+    scale: import_transition6.scale,
     _toasts,
     hideToast,
     ANIMATION_SPEED,
     position,
-    className,
+    className: className2,
     toasts,
     timers: timers2,
     progress,
     createTimer: createTimer2,
     clearTimer: clearTimer3,
-    onkeydown,
-    $ANIMATION_SPEED
+    onkeydown: onkeydown2,
+    $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("position" in $$props2)
-      $$invalidate(0, position = $$props2.position);
-    if ("className" in $$props2)
-      $$invalidate(1, className = $$props2.className);
-    if ("toasts" in $$props2)
-      $$invalidate(2, toasts = $$props2.toasts);
+  $$self2.$inject_state = ($$props3) => {
+    if ("position" in $$props3)
+      $$invalidate2(0, position = $$props3.position);
+    if ("className" in $$props3)
+      $$invalidate2(1, className2 = $$props3.className);
+    if ("toasts" in $$props3)
+      $$invalidate2(2, toasts = $$props3.toasts);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     position,
-    className,
+    className2,
     toasts,
     progress,
-    $ANIMATION_SPEED,
+    $ANIMATION_SPEED2,
     createTimer2,
     clearTimer3,
-    onkeydown,
+    onkeydown2,
     click_handler,
     click_handler_1,
     mouseover_handler,
-    focus_handler,
+    focus_handler2,
     mouseleave_handler,
-    blur_handler,
+    blur_handler2,
     keydown_handler
   ];
 }
@@ -19497,13 +21029,13 @@ var Toaster = class extends import_internal26.SvelteComponentDev {
   get position() {
     throw new Error("<Toaster>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set position(value) {
+  set position(value2) {
     throw new Error("<Toaster>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Toaster>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Toaster>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -19511,29 +21043,29 @@ var Toaster_default = Toaster;
 
 // src/notification-center/NotificationCenter/NotificationCenter.svelte
 var import_internal28 = __toESM(require_internal());
-var import_svelte18 = __toESM(require_svelte());
+var import_svelte19 = __toESM(require_svelte());
 var import_store6 = __toESM(require_store());
 
 // src/notification-center/store.js
 var import_store4 = __toESM(require_store());
-var import_transition4 = __toESM(require_transition());
+var import_transition7 = __toESM(require_transition());
 var import_animate = __toESM(require_animate());
 var Notifications = (0, import_store4.writable)({});
 var ArchivedNotifications = (0, import_store4.writable)({});
 var Progress = (0, import_store4.writable)({});
 var timers = {};
-var duration = (0, import_store4.get)(ANIMATION_SPEED);
-var fly2 = (node, params) => (0, import_transition4.fly)(node, { duration, x: 500, opacity: 1, ...params });
-var slideUp = (node, params) => (0, import_transition4.fly)(node, { duration, y: -50, ...params });
-var slideDown = (node, params) => (0, import_transition4.fly)(node, { duration, y: 50, ...params });
-var flip = (node, animations, params) => (0, import_animate.flip)(node, animations, { duration, ...params });
-var [send, receive] = (0, import_transition4.crossfade)({
+var duration2 = (0, import_store4.get)(ANIMATION_SPEED);
+var fly2 = (node, params) => (0, import_transition7.fly)(node, { duration: duration2, x: 500, opacity: 1, ...params });
+var slideUp = (node, params) => (0, import_transition7.fly)(node, { duration: duration2, y: -50, ...params });
+var slideDown = (node, params) => (0, import_transition7.fly)(node, { duration: duration2, y: 50, ...params });
+var flip = (node, animations, params) => (0, import_animate.flip)(node, animations, { duration: duration2, ...params });
+var [send, receive] = (0, import_transition7.crossfade)({
   duration: (d) => d,
   fallback(node, params) {
     const style = getComputedStyle(node);
     const transform = style.transform === "none" ? "" : style.transform;
     return {
-      duration: params.duration || duration,
+      duration: params.duration || duration2,
       css: (t) => `transform: ${transform} scale(${t}); opacity: ${t}`
     };
   }
@@ -19543,30 +21075,30 @@ function createTimer(notification, targetEl) {
     return;
   if (targetEl && targetEl === document.activeElement)
     return;
-  const id = notification.id;
-  let progress = getProgress(id);
-  timers[id] = setInterval(() => {
+  const id2 = notification.id;
+  let progress = getProgress(id2);
+  timers[id2] = setInterval(() => {
     progress += 1;
-    setProgress(id, progress);
-    applyProgress(id, progress);
+    setProgress(id2, progress);
+    applyProgress(id2, progress);
     if (progress >= 110) {
-      clearInterval(timers[id]);
-      hideNotification(id);
+      clearInterval(timers[id2]);
+      hideNotification(id2);
     }
   }, Math.round(notification.timeout / 100));
 }
-function setProgress(id, val) {
+function setProgress(id2, val) {
   Progress.update((list) => {
-    list[id] = val;
+    list[id2] = val;
     return list;
   });
 }
-function getProgress(id) {
+function getProgress(id2) {
   const progress = (0, import_store4.get)(Progress) || {};
-  return progress[id] || 0;
+  return progress[id2] || 0;
 }
-function applyProgress(id, progress) {
-  const el = document.querySelector(`[data-id="${id}"] .notification-progress`);
+function applyProgress(id2, progress) {
+  const el = document.querySelector(`[data-id="${id2}"] .notification-progress`);
   if (el)
     el.style.width = `${progress}%`;
 }
@@ -19575,19 +21107,19 @@ function clearTimer2(notification) {
 }
 function showNotification(msg, type = "info", timeout = 5e3, btn, cb = () => {
 }) {
-  const id = guid();
+  const id2 = guid();
   const showProgress = typeof timeout === "number";
   const timestamp = (/* @__PURE__ */ new Date()).getTime();
   Notifications.update((list) => {
-    list[id] = { type, msg, id, timeout, cb, showProgress, btn, timestamp };
+    list[id2] = { type, msg, id: id2, timeout, cb, showProgress, btn, timestamp };
     return list;
   });
-  return id;
+  return id2;
 }
-function hideNotification(id) {
+function hideNotification(id2) {
   Notifications.update((list) => {
-    addToArchive(list[id]);
-    delete list[id];
+    addToArchive(list[id2]);
+    delete list[id2];
     return list;
   });
 }
@@ -19600,16 +21132,16 @@ function addToArchive(notification) {
     return list;
   });
 }
-function removeFromArchive(id) {
+function removeFromArchive(id2) {
   ArchivedNotifications.update((list) => {
-    delete list[id];
+    delete list[id2];
     return list;
   });
 }
 
 // src/notification-center/NotificationArchive/NotificationArchive.svelte
 var import_internal27 = __toESM(require_internal());
-var import_svelte17 = __toESM(require_svelte());
+var import_svelte18 = __toESM(require_svelte());
 var { Object: Object_13 } = import_internal27.globals;
 var file24 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
 function get_each_context6(ctx, list, i) {
@@ -19692,7 +21224,7 @@ function create_else_block3(ctx) {
   });
   return block;
 }
-function create_if_block_16(ctx) {
+function create_if_block_18(ctx) {
   let h2;
   let button0;
   let t0;
@@ -19813,7 +21345,7 @@ function create_if_block_16(ctx) {
   };
   (0, import_internal27.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_16.name,
+    id: create_if_block_18.name,
     type: "if",
     source: "(3:2) {#if archived.length}",
     ctx
@@ -19932,7 +21464,7 @@ function create_default_slot3(ctx) {
   });
   return block;
 }
-function create_if_block13(ctx) {
+function create_if_block15(ctx) {
   let each_blocks = [];
   let each_1_lookup = /* @__PURE__ */ new Map();
   let each_1_anchor;
@@ -20008,7 +21540,7 @@ function create_if_block13(ctx) {
   };
   (0, import_internal27.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block13.name,
+    id: create_if_block15.name,
     type: "if",
     source: "(16:1) {#if archived.length && expanded}",
     ctx
@@ -20204,7 +21736,7 @@ function create_fragment26(ctx) {
   let t;
   let div_inert_value;
   let current;
-  const if_block_creators = [create_if_block_16, create_else_block3];
+  const if_block_creators = [create_if_block_18, create_else_block3];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -20219,7 +21751,7 @@ function create_fragment26(ctx) {
   let if_block1 = (
     /*archived*/
     ctx[3].length && /*expanded*/
-    ctx[1] && create_if_block13(ctx)
+    ctx[1] && create_if_block15(ctx)
   );
   const block = {
     c: function create() {
@@ -20289,7 +21821,7 @@ function create_fragment26(ctx) {
             (0, import_internal27.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block13(ctx2);
+          if_block1 = create_if_block15(ctx2);
           if_block1.c();
           (0, import_internal27.transition_in)(if_block1, 1);
           if_block1.m(div, null);
@@ -20351,30 +21883,30 @@ function create_fragment26(ctx) {
   });
   return block;
 }
-function instance26($$self, $$props, $$invalidate) {
-  let $ANIMATION_SPEED;
+function instance26($$self2, $$props2, $$invalidate2) {
+  let $ANIMATION_SPEED2;
   (0, import_internal27.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal27.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(16, $ANIMATION_SPEED = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal27.validate_slots)("NotificationArchive", slots, []);
-  let { show = false } = $$props;
-  let { expanded = false } = $$props;
-  const duration2 = 1e5;
+  (0, import_internal27.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(16, $ANIMATION_SPEED2 = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal27.validate_slots)("NotificationArchive", slots2, []);
+  let { show = false } = $$props2;
+  let { expanded = false } = $$props2;
+  const duration3 = 1e5;
   let el;
   let archived = [];
   let now = (/* @__PURE__ */ new Date()).getTime();
   let timer2;
-  (0, import_svelte17.onMount)(() => {
-    timer2 = setInterval(() => $$invalidate(4, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
+  (0, import_svelte18.onMount)(() => {
+    timer2 = setInterval(() => $$invalidate2(4, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
     ArchivedNotifications.subscribe((val) => {
-      $$invalidate(3, archived = Object.values(val).reverse());
+      $$invalidate2(3, archived = Object.values(val).reverse());
     });
   });
-  (0, import_svelte17.onDestroy)(() => {
+  (0, import_svelte18.onDestroy)(() => {
     clearInterval(timer2);
   });
   function toggle() {
-    $$invalidate(1, expanded = !expanded);
+    $$invalidate2(1, expanded = !expanded);
   }
   function clearAll(e) {
     e.stopPropagation();
@@ -20389,7 +21921,7 @@ function instance26($$self, $$props, $$invalidate) {
       return fly2(node, { duration: 0 });
     if (show && expanded)
       return slideUp(node, params);
-    return receive(node, { ...params, delay: 100, duration: duration2 });
+    return receive(node, { ...params, delay: 100, duration: duration3 });
   }
   function _out(node, params) {
     if (show && expanded)
@@ -20399,29 +21931,29 @@ function instance26($$self, $$props, $$invalidate) {
     return slideUp(node, { duration: 0 });
   }
   const writable_props = ["show", "expanded"];
-  Object_13.keys($$props).forEach((key) => {
+  Object_13.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<NotificationArchive> was created with unknown prop '${key}'`);
   });
-  const click_handler = () => $$invalidate(0, show = false);
-  const click_handler_1 = () => $$invalidate(0, show = false);
+  const click_handler = () => $$invalidate2(0, show = false);
+  const click_handler_1 = () => $$invalidate2(0, show = false);
   const click_handler_2 = (notification) => removeFromArchive(notification.id);
   const keydown_handler = (notification, e) => onKeydown2(e, notification);
   function div_binding($$value) {
     import_internal27.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(2, el);
+      $$invalidate2(2, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("show" in $$props2)
-      $$invalidate(0, show = $$props2.show);
-    if ("expanded" in $$props2)
-      $$invalidate(1, expanded = $$props2.expanded);
+  $$self2.$$set = ($$props3) => {
+    if ("show" in $$props3)
+      $$invalidate2(0, show = $$props3.show);
+    if ("expanded" in $$props3)
+      $$invalidate2(1, expanded = $$props3.expanded);
   };
-  $$self.$capture_state = () => ({
-    onDestroy: import_svelte17.onDestroy,
-    onMount: import_svelte17.onMount,
+  $$self2.$capture_state = () => ({
+    onDestroy: import_svelte18.onDestroy,
+    onMount: import_svelte18.onMount,
     Button: Button_default,
     ArchivedNotifications,
     removeFromArchive,
@@ -20433,7 +21965,7 @@ function instance26($$self, $$props, $$invalidate) {
     timeAgo,
     show,
     expanded,
-    duration: duration2,
+    duration: duration3,
     el,
     archived,
     now,
@@ -20443,31 +21975,31 @@ function instance26($$self, $$props, $$invalidate) {
     onKeydown: onKeydown2,
     _in,
     _out,
-    $ANIMATION_SPEED
+    $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("show" in $$props2)
-      $$invalidate(0, show = $$props2.show);
-    if ("expanded" in $$props2)
-      $$invalidate(1, expanded = $$props2.expanded);
-    if ("el" in $$props2)
-      $$invalidate(2, el = $$props2.el);
-    if ("archived" in $$props2)
-      $$invalidate(3, archived = $$props2.archived);
-    if ("now" in $$props2)
-      $$invalidate(4, now = $$props2.now);
-    if ("timer" in $$props2)
-      timer2 = $$props2.timer;
+  $$self2.$inject_state = ($$props3) => {
+    if ("show" in $$props3)
+      $$invalidate2(0, show = $$props3.show);
+    if ("expanded" in $$props3)
+      $$invalidate2(1, expanded = $$props3.expanded);
+    if ("el" in $$props3)
+      $$invalidate2(2, el = $$props3.el);
+    if ("archived" in $$props3)
+      $$invalidate2(3, archived = $$props3.archived);
+    if ("now" in $$props3)
+      $$invalidate2(4, now = $$props3.now);
+    if ("timer" in $$props3)
+      timer2 = $$props3.timer;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*show, el*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty & /*show, el*/
     5) {
       $: {
         if (!show && el)
-          el.addEventListener("transitionend", () => $$invalidate(1, expanded = false), { once: true });
+          el.addEventListener("transitionend", () => $$invalidate2(1, expanded = false), { once: true });
       }
     }
   };
@@ -20503,13 +22035,13 @@ var NotificationArchive = class extends import_internal27.SvelteComponentDev {
   get show() {
     throw new Error("<NotificationArchive>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set show(value) {
+  set show(value2) {
     throw new Error("<NotificationArchive>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get expanded() {
     throw new Error("<NotificationArchive>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set expanded(value) {
+  set expanded(value2) {
     throw new Error("<NotificationArchive>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -20523,12 +22055,12 @@ function get_each_context7(ctx, list, i) {
   child_ctx[33] = list[i];
   return child_ctx;
 }
-function create_if_block_32(ctx) {
+function create_if_block_33(ctx) {
   let pushbutton;
   let updating_pressed;
   let current;
-  function pushbutton_pressed_binding(value) {
-    ctx[16](value);
+  function pushbutton_pressed_binding(value2) {
+    ctx[16](value2);
   }
   let pushbutton_props = {
     icon: "bell",
@@ -20601,14 +22133,14 @@ function create_if_block_32(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_32.name,
+    id: create_if_block_33.name,
     type: "if",
     source: "(1:0) {#if !hideButton}",
     ctx
   });
   return block;
 }
-function create_if_block_23(ctx) {
+function create_if_block_26(ctx) {
   let button;
   let t_value = (
     /*notification*/
@@ -20656,14 +22188,14 @@ function create_if_block_23(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_23.name,
+    id: create_if_block_26.name,
     type: "if",
     source: "(35:4) {#if notification.btn}",
     ctx
   });
   return block;
 }
-function create_if_block_17(ctx) {
+function create_if_block_19(ctx) {
   let div1;
   let div0;
   const block = {
@@ -20687,7 +22219,7 @@ function create_if_block_17(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_17.name,
+    id: create_if_block_19.name,
     type: "if",
     source: "(42:3) {#if notification.showProgress}",
     ctx
@@ -20728,7 +22260,7 @@ function create_each_block7(key_1, ctx) {
   });
   let if_block0 = (
     /*notification*/
-    ctx[33].btn && create_if_block_23(ctx)
+    ctx[33].btn && create_if_block_26(ctx)
   );
   function click_handler_1() {
     return (
@@ -20741,7 +22273,7 @@ function create_each_block7(key_1, ctx) {
   }
   let if_block1 = (
     /*notification*/
-    ctx[33].showProgress && create_if_block_17(ctx)
+    ctx[33].showProgress && create_if_block_19(ctx)
   );
   function mouseover_handler() {
     return (
@@ -20752,7 +22284,7 @@ function create_each_block7(key_1, ctx) {
       )
     );
   }
-  function focus_handler() {
+  function focus_handler2() {
     return (
       /*focus_handler*/
       ctx[20](
@@ -20771,7 +22303,7 @@ function create_each_block7(key_1, ctx) {
       )
     );
   }
-  function blur_handler(...args) {
+  function blur_handler2(...args) {
     return (
       /*blur_handler*/
       ctx[22](
@@ -20849,9 +22381,9 @@ function create_each_block7(key_1, ctx) {
         dispose = [
           (0, import_internal28.listen_dev)(button, "click", (0, import_internal28.stop_propagation)(click_handler_1), false, false, true, false),
           (0, import_internal28.listen_dev)(div3, "mouseover", mouseover_handler, false, false, false, false),
-          (0, import_internal28.listen_dev)(div3, "focus", focus_handler, false, false, false, false),
+          (0, import_internal28.listen_dev)(div3, "focus", focus_handler2, false, false, false, false),
           (0, import_internal28.listen_dev)(div3, "mouseleave", mouseleave_handler, false, false, false, false),
-          (0, import_internal28.listen_dev)(div3, "blur", blur_handler, false, false, false, false),
+          (0, import_internal28.listen_dev)(div3, "blur", blur_handler2, false, false, false, false),
           (0, import_internal28.listen_dev)(div3, "keydown", keydown_handler, false, false, false, false)
         ];
         mounted = true;
@@ -20882,7 +22414,7 @@ function create_each_block7(key_1, ctx) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
         } else {
-          if_block0 = create_if_block_23(ctx);
+          if_block0 = create_if_block_26(ctx);
           if_block0.c();
           if_block0.m(div2, t2);
         }
@@ -20896,7 +22428,7 @@ function create_each_block7(key_1, ctx) {
       ) {
         if (if_block1) {
         } else {
-          if_block1 = create_if_block_17(ctx);
+          if_block1 = create_if_block_19(ctx);
           if_block1.c();
           if_block1.m(div3, null);
         }
@@ -20979,16 +22511,16 @@ function create_each_block7(key_1, ctx) {
   });
   return block;
 }
-function create_if_block14(ctx) {
+function create_if_block16(ctx) {
   let notificationarchive;
   let updating_show;
   let updating_expanded;
   let current;
-  function notificationarchive_show_binding(value) {
-    ctx[24](value);
+  function notificationarchive_show_binding(value2) {
+    ctx[24](value2);
   }
-  function notificationarchive_expanded_binding(value) {
-    ctx[25](value);
+  function notificationarchive_expanded_binding(value2) {
+    ctx[25](value2);
   }
   let notificationarchive_props = {};
   if (
@@ -21053,7 +22585,7 @@ function create_if_block14(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block14.name,
+    id: create_if_block16.name,
     type: "if",
     source: "(50:1) {#if !hideButton}",
     ctx
@@ -21069,7 +22601,7 @@ function create_fragment27(ctx) {
   let div_class_value;
   let current;
   let if_block0 = !/*hideButton*/
-  ctx[3] && create_if_block_32(ctx);
+  ctx[3] && create_if_block_33(ctx);
   let each_value = (
     /*notifications*/
     ctx[4]
@@ -21086,7 +22618,7 @@ function create_fragment27(ctx) {
     each_1_lookup.set(key, each_blocks[i] = create_each_block7(key, child_ctx));
   }
   let if_block1 = !/*hideButton*/
-  ctx[3] && create_if_block14(ctx);
+  ctx[3] && create_if_block16(ctx);
   const block = {
     c: function create() {
       if (if_block0)
@@ -21150,7 +22682,7 @@ function create_fragment27(ctx) {
             (0, import_internal28.transition_in)(if_block0, 1);
           }
         } else {
-          if_block0 = create_if_block_32(ctx2);
+          if_block0 = create_if_block_33(ctx2);
           if_block0.c();
           (0, import_internal28.transition_in)(if_block0, 1);
           if_block0.m(t0.parentNode, t0);
@@ -21185,7 +22717,7 @@ function create_fragment27(ctx) {
             (0, import_internal28.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block14(ctx2);
+          if_block1 = create_if_block16(ctx2);
           if_block1.c();
           (0, import_internal28.transition_in)(if_block1, 1);
           if_block1.m(div, null);
@@ -21272,65 +22804,65 @@ function create_fragment27(ctx) {
   });
   return block;
 }
-function instance27($$self, $$props, $$invalidate) {
+function instance27($$self2, $$props2, $$invalidate2) {
   let hasArchivedNotifications;
   let hasNotifications;
   let $showArchive;
-  let $ANIMATION_SPEED;
+  let $ANIMATION_SPEED2;
   let $ArchivedNotifications;
   (0, import_internal28.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal28.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(28, $ANIMATION_SPEED = $$value));
+  (0, import_internal28.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(28, $ANIMATION_SPEED2 = $$value));
   (0, import_internal28.validate_store)(ArchivedNotifications, "ArchivedNotifications");
-  (0, import_internal28.component_subscribe)($$self, ArchivedNotifications, ($$value) => $$invalidate(15, $ArchivedNotifications = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal28.validate_slots)("NotificationCenter", slots, []);
-  let { class: className = "" } = $$props;
-  let { round = false } = $$props;
-  let { outline = false } = $$props;
-  let { hideButton = false } = $$props;
+  (0, import_internal28.component_subscribe)($$self2, ArchivedNotifications, ($$value) => $$invalidate2(15, $ArchivedNotifications = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal28.validate_slots)("NotificationCenter", slots2, []);
+  let { class: className2 = "" } = $$props2;
+  let { round = false } = $$props2;
+  let { outline = false } = $$props2;
+  let { hideButton = false } = $$props2;
   const showArchive = (0, import_store6.writable)(false);
   (0, import_internal28.validate_store)(showArchive, "showArchive");
-  (0, import_internal28.component_subscribe)($$self, showArchive, (value) => $$invalidate(11, $showArchive = value));
-  const duration2 = $ANIMATION_SPEED;
+  (0, import_internal28.component_subscribe)($$self2, showArchive, (value2) => $$invalidate2(11, $showArchive = value2));
+  const duration3 = $ANIMATION_SPEED2;
   let archiveIsVisible = false;
   let archiveIsExpanded = false;
   let el;
   let notifications = [];
-  let initial = true;
+  let initial2 = true;
   let hasActiveNotifications = false;
-  (0, import_svelte18.onMount)(() => {
+  (0, import_svelte19.onMount)(() => {
     document.body.appendChild(el);
     Notifications.subscribe((val) => {
-      $$invalidate(4, notifications = Object.values(val).reverse());
+      $$invalidate2(4, notifications = Object.values(val).reverse());
       notifications.forEach((t) => {
         if (!timers[t.id])
           createTimer(t);
       });
       if (notifications.length > 0)
-        $$invalidate(9, hasActiveNotifications = true);
+        $$invalidate2(9, hasActiveNotifications = true);
       else
-        setTimeout(() => $$invalidate(9, hasActiveNotifications = false), $ANIMATION_SPEED);
+        setTimeout(() => $$invalidate2(9, hasActiveNotifications = false), $ANIMATION_SPEED2);
     });
     showArchive.subscribe((val) => {
-      if (initial)
+      if (initial2)
         return;
       if (val)
         addEvents();
       else
         removeEvents();
     });
-    if (initial)
-      requestAnimationFrame(() => initial = false);
+    if (initial2)
+      requestAnimationFrame(() => initial2 = false);
   });
   function addEvents() {
-    $$invalidate(6, archiveIsVisible = true);
+    $$invalidate2(6, archiveIsVisible = true);
     document.addEventListener("click", onDocClick);
     document.addEventListener("keydown", onDocClick);
   }
   function removeEvents() {
     document.removeEventListener("click", onDocClick);
     document.removeEventListener("keydown", onDocClick);
-    el.querySelector(".notification-archive").addEventListener("transitionend", () => $$invalidate(6, archiveIsVisible = false), { once: true });
+    el.querySelector(".notification-archive").addEventListener("transitionend", () => $$invalidate2(6, archiveIsVisible = false), { once: true });
   }
   function onDocClick(e) {
     if (e.target.closest(".notification-center-button,.notification-archive,.notification-center"))
@@ -21344,54 +22876,54 @@ function instance27($$self, $$props, $$invalidate) {
       return fly2(node);
     if (!archiveIsExpanded)
       return slideDown(node, params);
-    return send(node, { ...params, duration: duration2 });
+    return send(node, { ...params, duration: duration3 });
   }
   function onKeydown2(e, notification) {
     if (e.key === "Escape")
       hideNotification(notification.id);
   }
   const writable_props = ["class", "round", "outline", "hideButton"];
-  Object_14.keys($$props).forEach((key) => {
+  Object_14.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
   });
-  function pushbutton_pressed_binding(value) {
-    $showArchive = value;
+  function pushbutton_pressed_binding(value2) {
+    $showArchive = value2;
     showArchive.set($showArchive);
   }
   const click_handler = (notification) => notification.cb(notification.id);
   const click_handler_1 = (notification) => hideNotification(notification.id);
   const mouseover_handler = (notification) => clearTimer2(notification);
-  const focus_handler = (notification) => clearTimer2(notification);
+  const focus_handler2 = (notification) => clearTimer2(notification);
   const mouseleave_handler = (notification, e) => createTimer(notification, e.target);
-  const blur_handler = (notification, e) => createTimer(notification, e.target);
+  const blur_handler2 = (notification, e) => createTimer(notification, e.target);
   const keydown_handler = (notification, e) => onKeydown2(e, notification);
-  function notificationarchive_show_binding(value) {
-    $showArchive = value;
+  function notificationarchive_show_binding(value2) {
+    $showArchive = value2;
     showArchive.set($showArchive);
   }
-  function notificationarchive_expanded_binding(value) {
-    archiveIsExpanded = value;
-    $$invalidate(7, archiveIsExpanded);
+  function notificationarchive_expanded_binding(value2) {
+    archiveIsExpanded = value2;
+    $$invalidate2(7, archiveIsExpanded);
   }
   function div_binding($$value) {
     import_internal28.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(8, el);
+      $$invalidate2(8, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("class" in $$props2)
-      $$invalidate(0, className = $$props2.class);
-    if ("round" in $$props2)
-      $$invalidate(1, round = $$props2.round);
-    if ("outline" in $$props2)
-      $$invalidate(2, outline = $$props2.outline);
-    if ("hideButton" in $$props2)
-      $$invalidate(3, hideButton = $$props2.hideButton);
+  $$self2.$$set = ($$props3) => {
+    if ("class" in $$props3)
+      $$invalidate2(0, className2 = $$props3.class);
+    if ("round" in $$props3)
+      $$invalidate2(1, round = $$props3.round);
+    if ("outline" in $$props3)
+      $$invalidate2(2, outline = $$props3.outline);
+    if ("hideButton" in $$props3)
+      $$invalidate2(3, hideButton = $$props3.hideButton);
   };
-  $$self.$capture_state = () => ({
-    onMount: import_svelte18.onMount,
+  $$self2.$capture_state = () => ({
+    onMount: import_svelte19.onMount,
     writable: import_store6.writable,
     Icon: Icon_default,
     PushButton: PushButton_default,
@@ -21407,17 +22939,17 @@ function instance27($$self, $$props, $$invalidate) {
     slideDown,
     NotificationArchive: NotificationArchive_default,
     ANIMATION_SPEED,
-    className,
+    className: className2,
     round,
     outline,
     hideButton,
     showArchive,
-    duration: duration2,
+    duration: duration3,
     archiveIsVisible,
     archiveIsExpanded,
     el,
     notifications,
-    initial,
+    initial: initial2,
     hasActiveNotifications,
     addEvents,
     removeEvents,
@@ -21427,52 +22959,52 @@ function instance27($$self, $$props, $$invalidate) {
     hasArchivedNotifications,
     hasNotifications,
     $showArchive,
-    $ANIMATION_SPEED,
+    $ANIMATION_SPEED: $ANIMATION_SPEED2,
     $ArchivedNotifications
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("className" in $$props2)
-      $$invalidate(0, className = $$props2.className);
-    if ("round" in $$props2)
-      $$invalidate(1, round = $$props2.round);
-    if ("outline" in $$props2)
-      $$invalidate(2, outline = $$props2.outline);
-    if ("hideButton" in $$props2)
-      $$invalidate(3, hideButton = $$props2.hideButton);
-    if ("archiveIsVisible" in $$props2)
-      $$invalidate(6, archiveIsVisible = $$props2.archiveIsVisible);
-    if ("archiveIsExpanded" in $$props2)
-      $$invalidate(7, archiveIsExpanded = $$props2.archiveIsExpanded);
-    if ("el" in $$props2)
-      $$invalidate(8, el = $$props2.el);
-    if ("notifications" in $$props2)
-      $$invalidate(4, notifications = $$props2.notifications);
-    if ("initial" in $$props2)
-      initial = $$props2.initial;
-    if ("hasActiveNotifications" in $$props2)
-      $$invalidate(9, hasActiveNotifications = $$props2.hasActiveNotifications);
-    if ("hasArchivedNotifications" in $$props2)
-      $$invalidate(5, hasArchivedNotifications = $$props2.hasArchivedNotifications);
-    if ("hasNotifications" in $$props2)
-      $$invalidate(10, hasNotifications = $$props2.hasNotifications);
+  $$self2.$inject_state = ($$props3) => {
+    if ("className" in $$props3)
+      $$invalidate2(0, className2 = $$props3.className);
+    if ("round" in $$props3)
+      $$invalidate2(1, round = $$props3.round);
+    if ("outline" in $$props3)
+      $$invalidate2(2, outline = $$props3.outline);
+    if ("hideButton" in $$props3)
+      $$invalidate2(3, hideButton = $$props3.hideButton);
+    if ("archiveIsVisible" in $$props3)
+      $$invalidate2(6, archiveIsVisible = $$props3.archiveIsVisible);
+    if ("archiveIsExpanded" in $$props3)
+      $$invalidate2(7, archiveIsExpanded = $$props3.archiveIsExpanded);
+    if ("el" in $$props3)
+      $$invalidate2(8, el = $$props3.el);
+    if ("notifications" in $$props3)
+      $$invalidate2(4, notifications = $$props3.notifications);
+    if ("initial" in $$props3)
+      initial2 = $$props3.initial;
+    if ("hasActiveNotifications" in $$props3)
+      $$invalidate2(9, hasActiveNotifications = $$props3.hasActiveNotifications);
+    if ("hasArchivedNotifications" in $$props3)
+      $$invalidate2(5, hasArchivedNotifications = $$props3.hasArchivedNotifications);
+    if ("hasNotifications" in $$props3)
+      $$invalidate2(10, hasNotifications = $$props3.hasNotifications);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & /*$ArchivedNotifications*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty[0] & /*$ArchivedNotifications*/
     32768) {
       $:
-        $$invalidate(5, hasArchivedNotifications = Object.keys($ArchivedNotifications).length ? "has-archived-notifications" : "");
+        $$invalidate2(5, hasArchivedNotifications = Object.keys($ArchivedNotifications).length ? "has-archived-notifications" : "");
     }
-    if ($$self.$$.dirty[0] & /*notifications, hasArchivedNotifications*/
+    if ($$self2.$$.dirty[0] & /*notifications, hasArchivedNotifications*/
     48) {
       $:
-        $$invalidate(10, hasNotifications = notifications.length || hasArchivedNotifications ? "has-notifications" : "");
+        $$invalidate2(10, hasNotifications = notifications.length || hasArchivedNotifications ? "has-notifications" : "");
     }
   };
   return [
-    className,
+    className2,
     round,
     outline,
     hideButton,
@@ -21492,9 +23024,9 @@ function instance27($$self, $$props, $$invalidate) {
     click_handler,
     click_handler_1,
     mouseover_handler,
-    focus_handler,
+    focus_handler2,
     mouseleave_handler,
-    blur_handler,
+    blur_handler2,
     keydown_handler,
     notificationarchive_show_binding,
     notificationarchive_expanded_binding,
@@ -21529,25 +23061,25 @@ var NotificationCenter = class extends import_internal28.SvelteComponentDev {
   get class() {
     throw new Error("<NotificationCenter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<NotificationCenter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get round() {
     throw new Error("<NotificationCenter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set round(value) {
+  set round(value2) {
     throw new Error("<NotificationCenter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get outline() {
     throw new Error("<NotificationCenter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set outline(value) {
+  set outline(value2) {
     throw new Error("<NotificationCenter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get hideButton() {
     throw new Error("<NotificationCenter>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set hideButton(value) {
+  set hideButton(value2) {
     throw new Error("<NotificationCenter>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -21555,7 +23087,7 @@ var NotificationCenter_default = NotificationCenter;
 
 // src/toggle/Toggle.svelte
 var import_internal29 = __toESM(require_internal());
-var import_svelte19 = __toESM(require_svelte());
+var import_svelte20 = __toESM(require_svelte());
 
 // src/toggle/utils.js
 var isTouchDevice = "ontouchstart" in document.documentElement;
@@ -21808,45 +23340,45 @@ function create_fragment28(ctx) {
   });
   return block;
 }
-function instance28($$self, $$props, $$invalidate) {
+function instance28($$self2, $$props2, $$invalidate2) {
   let title;
   let inputProps;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal29.validate_slots)("Toggle", slots, []);
-  const dispatch = (0, import_svelte19.createEventDispatcher)();
-  let { value = false } = $$props;
-  let { disabled = void 0 } = $$props;
-  let { class: className = "" } = $$props;
-  let el, label, scroller, handle, startX2, currentX = 0;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal29.validate_slots)("Toggle", slots2, []);
+  const dispatch2 = (0, import_svelte20.createEventDispatcher)();
+  let { value: value2 = false } = $$props2;
+  let { disabled = void 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  let el, label2, scroller, handle, startX2, currentX = 0;
   let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
   let isClick = false, isDragging = false;
   let oldValue;
-  (0, import_svelte19.onMount)(() => {
+  (0, import_svelte20.onMount)(() => {
     toggleTransitions(false);
     ({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
   });
-  (0, import_svelte19.afterUpdate)(() => {
-    if (typeof value !== "boolean")
-      $$invalidate(0, value = !!value);
-    setValue(value);
+  (0, import_svelte20.afterUpdate)(() => {
+    if (typeof value2 !== "boolean")
+      $$invalidate2(0, value2 = !!value2);
+    setValue(value2);
   });
   function setValue(v = false, force = false) {
     if (typeof v !== "boolean")
       v = !!v;
-    if (v !== value)
-      return $$invalidate(0, value = v);
-    if (value === oldValue && !force)
+    if (v !== value2)
+      return $$invalidate2(0, value2 = v);
+    if (value2 === oldValue && !force)
       return;
-    startX2 = currentX = value ? scrollerEndX : scrollerStartX;
-    oldValue = value;
+    startX2 = currentX = value2 ? scrollerEndX : scrollerStartX;
+    oldValue = value2;
     setKnobPosition();
-    dispatch("change", value);
+    dispatch2("change", value2);
   }
   function onKey2(e) {
     toggleTransitions(true);
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setValue(!value);
+      setValue(!value2);
     }
   }
   function dragStart(e) {
@@ -21872,7 +23404,7 @@ function instance28($$self, $$props, $$invalidate) {
     toggleTransitions(true);
     isDragging = false;
     if (isClick)
-      setValue(!value);
+      setValue(!value2);
     else {
       setValue(currentX - scrollerStartX >= (scrollerEndX - scrollerStartX) / 2, true);
     }
@@ -21886,79 +23418,79 @@ function instance28($$self, $$props, $$invalidate) {
     setKnobPosition();
   }
   function toggleTransitions(enable) {
-    $$invalidate(6, handle.style.transition = enable ? "" : "none", handle);
-    $$invalidate(5, scroller.style.transition = enable ? "" : "none", scroller);
+    $$invalidate2(6, handle.style.transition = enable ? "" : "none", handle);
+    $$invalidate2(5, scroller.style.transition = enable ? "" : "none", scroller);
   }
   function setKnobPosition() {
     if (currentX < scrollerStartX)
       currentX = scrollerStartX;
     if (currentX > scrollerEndX)
       currentX = scrollerEndX;
-    $$invalidate(5, scroller.style.marginLeft = Math.round(currentX) + "px", scroller);
+    $$invalidate2(5, scroller.style.marginLeft = Math.round(currentX) + "px", scroller);
     let handleLeft = handleStartX;
-    if (isDragging || value)
+    if (isDragging || value2)
       handleLeft -= scrollerStartX;
     if (isDragging)
       handleLeft += currentX;
-    $$invalidate(6, handle.style.left = `${Math.round(handleLeft)}px`, handle);
+    $$invalidate2(6, handle.style.left = `${Math.round(handleLeft)}px`, handle);
   }
-  function contextmenu_handler(event) {
-    import_internal29.bubble.call(this, $$self, event);
+  function contextmenu_handler(event2) {
+    import_internal29.bubble.call(this, $$self2, event2);
   }
-  function click_handler(event) {
-    import_internal29.bubble.call(this, $$self, event);
+  function click_handler(event2) {
+    import_internal29.bubble.call(this, $$self2, event2);
   }
   function div2_binding($$value) {
     import_internal29.binding_callbacks[$$value ? "unshift" : "push"](() => {
       handle = $$value;
-      $$invalidate(6, handle);
+      $$invalidate2(6, handle);
     });
   }
   function input_change_handler() {
-    value = this.checked;
-    $$invalidate(0, value);
+    value2 = this.checked;
+    $$invalidate2(0, value2);
   }
   function div4_binding($$value) {
     import_internal29.binding_callbacks[$$value ? "unshift" : "push"](() => {
       scroller = $$value;
-      $$invalidate(5, scroller);
+      $$invalidate2(5, scroller);
     });
   }
   function label_1_binding($$value) {
     import_internal29.binding_callbacks[$$value ? "unshift" : "push"](() => {
-      label = $$value;
-      $$invalidate(4, label);
+      label2 = $$value;
+      $$invalidate2(4, label2);
     });
   }
   function div5_binding($$value) {
     import_internal29.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(3, el);
+      $$invalidate2(3, el);
     });
   }
-  $$self.$$set = ($$new_props) => {
-    $$invalidate(33, $$props = (0, import_internal29.assign)((0, import_internal29.assign)({}, $$props), (0, import_internal29.exclude_internal_props)($$new_props)));
+  $$self2.$$set = ($$new_props) => {
+    $$invalidate2(33, $$props2 = (0, import_internal29.assign)((0, import_internal29.assign)({}, $$props2), (0, import_internal29.exclude_internal_props)($$new_props)));
     if ("value" in $$new_props)
-      $$invalidate(0, value = $$new_props.value);
+      $$invalidate2(0, value2 = $$new_props.value);
     if ("disabled" in $$new_props)
-      $$invalidate(1, disabled = $$new_props.disabled);
+      $$invalidate2(1, disabled = $$new_props.disabled);
     if ("class" in $$new_props)
-      $$invalidate(2, className = $$new_props.class);
+      $$invalidate2(2, className2 = $$new_props.class);
   };
-  $$self.$capture_state = () => ({
-    onMount: import_svelte19.onMount,
-    afterUpdate: import_svelte19.afterUpdate,
-    createEventDispatcher: import_svelte19.createEventDispatcher,
+  $$self2.$capture_state = () => ({
+    onMount: import_svelte20.onMount,
+    afterUpdate: import_svelte20.afterUpdate,
+    createEventDispatcher: import_svelte20.createEventDispatcher,
     pluck,
     getMouseX: getMouseX2,
     isTouchDevice,
     initialMeasure,
-    dispatch,
-    value,
+    dispatch: dispatch2,
+    value: value2,
     disabled,
-    className,
+    className: className2,
     el,
-    label,
+    label: label2,
     scroller,
     handle,
     startX: startX2,
@@ -21980,61 +23512,61 @@ function instance28($$self, $$props, $$invalidate) {
     inputProps,
     title
   });
-  $$self.$inject_state = ($$new_props) => {
-    $$invalidate(33, $$props = (0, import_internal29.assign)((0, import_internal29.assign)({}, $$props), $$new_props));
-    if ("value" in $$props)
-      $$invalidate(0, value = $$new_props.value);
-    if ("disabled" in $$props)
-      $$invalidate(1, disabled = $$new_props.disabled);
-    if ("className" in $$props)
-      $$invalidate(2, className = $$new_props.className);
-    if ("el" in $$props)
-      $$invalidate(3, el = $$new_props.el);
-    if ("label" in $$props)
-      $$invalidate(4, label = $$new_props.label);
-    if ("scroller" in $$props)
-      $$invalidate(5, scroller = $$new_props.scroller);
-    if ("handle" in $$props)
-      $$invalidate(6, handle = $$new_props.handle);
-    if ("startX" in $$props)
+  $$self2.$inject_state = ($$new_props) => {
+    $$invalidate2(33, $$props2 = (0, import_internal29.assign)((0, import_internal29.assign)({}, $$props2), $$new_props));
+    if ("value" in $$props2)
+      $$invalidate2(0, value2 = $$new_props.value);
+    if ("disabled" in $$props2)
+      $$invalidate2(1, disabled = $$new_props.disabled);
+    if ("className" in $$props2)
+      $$invalidate2(2, className2 = $$new_props.className);
+    if ("el" in $$props2)
+      $$invalidate2(3, el = $$new_props.el);
+    if ("label" in $$props2)
+      $$invalidate2(4, label2 = $$new_props.label);
+    if ("scroller" in $$props2)
+      $$invalidate2(5, scroller = $$new_props.scroller);
+    if ("handle" in $$props2)
+      $$invalidate2(6, handle = $$new_props.handle);
+    if ("startX" in $$props2)
       startX2 = $$new_props.startX;
-    if ("currentX" in $$props)
+    if ("currentX" in $$props2)
       currentX = $$new_props.currentX;
-    if ("scrollerStartX" in $$props)
+    if ("scrollerStartX" in $$props2)
       scrollerStartX = $$new_props.scrollerStartX;
-    if ("scrollerEndX" in $$props)
+    if ("scrollerEndX" in $$props2)
       scrollerEndX = $$new_props.scrollerEndX;
-    if ("handleStartX" in $$props)
+    if ("handleStartX" in $$props2)
       handleStartX = $$new_props.handleStartX;
-    if ("handleEndX" in $$props)
+    if ("handleEndX" in $$props2)
       handleEndX = $$new_props.handleEndX;
-    if ("isClick" in $$props)
+    if ("isClick" in $$props2)
       isClick = $$new_props.isClick;
-    if ("isDragging" in $$props)
+    if ("isDragging" in $$props2)
       isDragging = $$new_props.isDragging;
-    if ("oldValue" in $$props)
+    if ("oldValue" in $$props2)
       oldValue = $$new_props.oldValue;
-    if ("inputProps" in $$props)
-      $$invalidate(7, inputProps = $$new_props.inputProps);
-    if ("title" in $$props)
-      $$invalidate(8, title = $$new_props.title);
+    if ("inputProps" in $$props2)
+      $$invalidate2(7, inputProps = $$new_props.inputProps);
+    if ("title" in $$props2)
+      $$invalidate2(8, title = $$new_props.title);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
+  $$self2.$$.update = () => {
     $:
-      $$invalidate(8, title = $$props.title);
+      $$invalidate2(8, title = $$props2.title);
     $:
-      $$invalidate(7, inputProps = pluck($$props, ["id", "name", "disabled", "required"]));
+      $$invalidate2(7, inputProps = pluck($$props2, ["id", "name", "disabled", "required"]));
   };
-  $$props = (0, import_internal29.exclude_internal_props)($$props);
+  $$props2 = (0, import_internal29.exclude_internal_props)($$props2);
   return [
-    value,
+    value2,
     disabled,
-    className,
+    className2,
     el,
-    label,
+    label2,
     scroller,
     handle,
     inputProps,
@@ -22064,19 +23596,19 @@ var Toggle = class extends import_internal29.SvelteComponentDev {
   get value() {
     throw new Error("<Toggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set value(value) {
+  set value(value2) {
     throw new Error("<Toggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get disabled() {
     throw new Error("<Toggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set disabled(value) {
+  set disabled(value2) {
     throw new Error("<Toggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Toggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Toggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -22084,9 +23616,9 @@ var Toggle_default = Toggle;
 
 // src/tooltip/Tooltip.svelte
 var import_internal30 = __toESM(require_internal());
-var import_svelte20 = __toESM(require_svelte());
+var import_svelte21 = __toESM(require_svelte());
 var file27 = "src/tooltip/Tooltip.svelte";
-function create_if_block15(ctx) {
+function create_if_block17(ctx) {
   let div2;
   let div1;
   let div0;
@@ -22261,7 +23793,7 @@ function create_if_block15(ctx) {
   };
   (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block15.name,
+    id: create_if_block17.name,
     type: "if",
     source: "(1:0) {#if visible}",
     ctx
@@ -22273,7 +23805,7 @@ function create_fragment29(ctx) {
   let current;
   let if_block = (
     /*visible*/
-    ctx[6] && create_if_block15(ctx)
+    ctx[6] && create_if_block17(ctx)
   );
   const block = {
     c: function create() {
@@ -22302,7 +23834,7 @@ function create_fragment29(ctx) {
             (0, import_internal30.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block15(ctx2);
+          if_block = create_if_block17(ctx2);
           if_block.c();
           (0, import_internal30.transition_in)(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -22341,31 +23873,31 @@ function create_fragment29(ctx) {
   });
   return block;
 }
-function instance29($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal30.validate_slots)("Tooltip", slots, ["default"]);
-  let { target = "" } = $$props;
-  let { delay = 0 } = $$props;
-  let { position = "auto" } = $$props;
-  let { offset = 2 } = $$props;
-  let { screenPadding = 5 } = $$props;
-  let { class: className = "" } = $$props;
-  let { events = "hover,focus" } = $$props;
-  let { info = false } = $$props;
-  let { success = false } = $$props;
-  let { warning = false } = $$props;
-  let { danger = false } = $$props;
+function instance29($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal30.validate_slots)("Tooltip", slots2, ["default"]);
+  let { target = "" } = $$props2;
+  let { delay = 0 } = $$props2;
+  let { position = "auto" } = $$props2;
+  let { offset = 2 } = $$props2;
+  let { screenPadding = 5 } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  let { events = "hover,focus" } = $$props2;
+  let { info: info2 = false } = $$props2;
+  let { success = false } = $$props2;
+  let { warning = false } = $$props2;
+  let { danger = false } = $$props2;
   let _position = "top";
   let visible = false;
   let showTimer, hideTimer, shownEvent, noHide = false;
   let el, targetEl, tooltipContainer;
-  (0, import_svelte20.onMount)(() => {
+  (0, import_svelte21.onMount)(() => {
     initContainer();
     targetEl = target ? document.querySelector("#" + target) : document.body;
     addTargetEvents();
   });
-  (0, import_svelte20.onDestroy)(removeTargetEvents);
-  (0, import_svelte20.afterUpdate)(align);
+  (0, import_svelte21.onDestroy)(removeTargetEvents);
+  (0, import_svelte21.afterUpdate)(align);
   function show(e) {
     if (hideTimer) {
       clearTimeout(hideTimer);
@@ -22376,7 +23908,7 @@ function instance29($$self, $$props, $$invalidate) {
     showTimer = setTimeout(() => _show(e), parseFloat(delay) || 0);
   }
   function _show(e) {
-    $$invalidate(6, visible = true);
+    $$invalidate2(6, visible = true);
     noHide = false;
     showTimer = null;
     shownEvent = e.type;
@@ -22390,7 +23922,7 @@ function instance29($$self, $$props, $$invalidate) {
     noHide = true;
   }
   function _hide() {
-    $$invalidate(6, visible = false);
+    $$invalidate2(6, visible = false);
     removeTooltipEvents();
   }
   function hide(e) {
@@ -22425,15 +23957,15 @@ function instance29($$self, $$props, $$invalidate) {
       return;
     const targetBox = targetEl.getBoundingClientRect();
     const tooltipBox = el.getBoundingClientRect();
-    $$invalidate(5, _position = "top");
+    $$invalidate2(5, _position = "top");
     let top = targetBox.top - tooltipBox.height - (parseFloat(offset) || 2);
     const left = targetBox.left + targetBox.width / 2 - tooltipBox.width / 2;
     if (top < screenPadding || position === "bottom") {
       top = targetBox.top + targetBox.height + (parseFloat(offset) || 2);
-      $$invalidate(5, _position = "bottom");
+      $$invalidate2(5, _position = "bottom");
     }
-    $$invalidate(7, el.style.top = top + "px", el);
-    $$invalidate(7, el.style.left = left + "px", el);
+    $$invalidate2(7, el.style.top = top + "px", el);
+    $$invalidate2(7, el.style.left = left + "px", el);
   }
   function initContainer() {
     tooltipContainer = document.querySelector(".tooltip-container");
@@ -22526,54 +24058,54 @@ function instance29($$self, $$props, $$invalidate) {
     "warning",
     "danger"
   ];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Tooltip> was created with unknown prop '${key}'`);
   });
   function div2_binding($$value) {
     import_internal30.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(7, el);
+      $$invalidate2(7, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("target" in $$props2)
-      $$invalidate(8, target = $$props2.target);
-    if ("delay" in $$props2)
-      $$invalidate(9, delay = $$props2.delay);
-    if ("position" in $$props2)
-      $$invalidate(10, position = $$props2.position);
-    if ("offset" in $$props2)
-      $$invalidate(11, offset = $$props2.offset);
-    if ("screenPadding" in $$props2)
-      $$invalidate(12, screenPadding = $$props2.screenPadding);
-    if ("class" in $$props2)
-      $$invalidate(0, className = $$props2.class);
-    if ("events" in $$props2)
-      $$invalidate(13, events = $$props2.events);
-    if ("info" in $$props2)
-      $$invalidate(1, info = $$props2.info);
-    if ("success" in $$props2)
-      $$invalidate(2, success = $$props2.success);
-    if ("warning" in $$props2)
-      $$invalidate(3, warning = $$props2.warning);
-    if ("danger" in $$props2)
-      $$invalidate(4, danger = $$props2.danger);
-    if ("$$scope" in $$props2)
-      $$invalidate(14, $$scope = $$props2.$$scope);
+  $$self2.$$set = ($$props3) => {
+    if ("target" in $$props3)
+      $$invalidate2(8, target = $$props3.target);
+    if ("delay" in $$props3)
+      $$invalidate2(9, delay = $$props3.delay);
+    if ("position" in $$props3)
+      $$invalidate2(10, position = $$props3.position);
+    if ("offset" in $$props3)
+      $$invalidate2(11, offset = $$props3.offset);
+    if ("screenPadding" in $$props3)
+      $$invalidate2(12, screenPadding = $$props3.screenPadding);
+    if ("class" in $$props3)
+      $$invalidate2(0, className2 = $$props3.class);
+    if ("events" in $$props3)
+      $$invalidate2(13, events = $$props3.events);
+    if ("info" in $$props3)
+      $$invalidate2(1, info2 = $$props3.info);
+    if ("success" in $$props3)
+      $$invalidate2(2, success = $$props3.success);
+    if ("warning" in $$props3)
+      $$invalidate2(3, warning = $$props3.warning);
+    if ("danger" in $$props3)
+      $$invalidate2(4, danger = $$props3.danger);
+    if ("$$scope" in $$props3)
+      $$invalidate2(14, $$scope2 = $$props3.$$scope);
   };
-  $$self.$capture_state = () => ({
-    afterUpdate: import_svelte20.afterUpdate,
-    onDestroy: import_svelte20.onDestroy,
-    onMount: import_svelte20.onMount,
+  $$self2.$capture_state = () => ({
+    afterUpdate: import_svelte21.afterUpdate,
+    onDestroy: import_svelte21.onDestroy,
+    onMount: import_svelte21.onMount,
     target,
     delay,
     position,
     offset,
     screenPadding,
-    className,
+    className: className2,
     events,
-    info,
+    info: info2,
     success,
     warning,
     danger,
@@ -22599,54 +24131,54 @@ function instance29($$self, $$props, $$invalidate) {
     addTargetEvents,
     removeTargetEvents
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("target" in $$props2)
-      $$invalidate(8, target = $$props2.target);
-    if ("delay" in $$props2)
-      $$invalidate(9, delay = $$props2.delay);
-    if ("position" in $$props2)
-      $$invalidate(10, position = $$props2.position);
-    if ("offset" in $$props2)
-      $$invalidate(11, offset = $$props2.offset);
-    if ("screenPadding" in $$props2)
-      $$invalidate(12, screenPadding = $$props2.screenPadding);
-    if ("className" in $$props2)
-      $$invalidate(0, className = $$props2.className);
-    if ("events" in $$props2)
-      $$invalidate(13, events = $$props2.events);
-    if ("info" in $$props2)
-      $$invalidate(1, info = $$props2.info);
-    if ("success" in $$props2)
-      $$invalidate(2, success = $$props2.success);
-    if ("warning" in $$props2)
-      $$invalidate(3, warning = $$props2.warning);
-    if ("danger" in $$props2)
-      $$invalidate(4, danger = $$props2.danger);
-    if ("_position" in $$props2)
-      $$invalidate(5, _position = $$props2._position);
-    if ("visible" in $$props2)
-      $$invalidate(6, visible = $$props2.visible);
-    if ("showTimer" in $$props2)
-      showTimer = $$props2.showTimer;
-    if ("hideTimer" in $$props2)
-      hideTimer = $$props2.hideTimer;
-    if ("shownEvent" in $$props2)
-      shownEvent = $$props2.shownEvent;
-    if ("noHide" in $$props2)
-      noHide = $$props2.noHide;
-    if ("el" in $$props2)
-      $$invalidate(7, el = $$props2.el);
-    if ("targetEl" in $$props2)
-      targetEl = $$props2.targetEl;
-    if ("tooltipContainer" in $$props2)
-      tooltipContainer = $$props2.tooltipContainer;
+  $$self2.$inject_state = ($$props3) => {
+    if ("target" in $$props3)
+      $$invalidate2(8, target = $$props3.target);
+    if ("delay" in $$props3)
+      $$invalidate2(9, delay = $$props3.delay);
+    if ("position" in $$props3)
+      $$invalidate2(10, position = $$props3.position);
+    if ("offset" in $$props3)
+      $$invalidate2(11, offset = $$props3.offset);
+    if ("screenPadding" in $$props3)
+      $$invalidate2(12, screenPadding = $$props3.screenPadding);
+    if ("className" in $$props3)
+      $$invalidate2(0, className2 = $$props3.className);
+    if ("events" in $$props3)
+      $$invalidate2(13, events = $$props3.events);
+    if ("info" in $$props3)
+      $$invalidate2(1, info2 = $$props3.info);
+    if ("success" in $$props3)
+      $$invalidate2(2, success = $$props3.success);
+    if ("warning" in $$props3)
+      $$invalidate2(3, warning = $$props3.warning);
+    if ("danger" in $$props3)
+      $$invalidate2(4, danger = $$props3.danger);
+    if ("_position" in $$props3)
+      $$invalidate2(5, _position = $$props3._position);
+    if ("visible" in $$props3)
+      $$invalidate2(6, visible = $$props3.visible);
+    if ("showTimer" in $$props3)
+      showTimer = $$props3.showTimer;
+    if ("hideTimer" in $$props3)
+      hideTimer = $$props3.hideTimer;
+    if ("shownEvent" in $$props3)
+      shownEvent = $$props3.shownEvent;
+    if ("noHide" in $$props3)
+      noHide = $$props3.noHide;
+    if ("el" in $$props3)
+      $$invalidate2(7, el = $$props3.el);
+    if ("targetEl" in $$props3)
+      targetEl = $$props3.targetEl;
+    if ("tooltipContainer" in $$props3)
+      tooltipContainer = $$props3.tooltipContainer;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
-    className,
-    info,
+    className2,
+    info2,
     success,
     warning,
     danger,
@@ -22659,8 +24191,8 @@ function instance29($$self, $$props, $$invalidate) {
     offset,
     screenPadding,
     events,
-    $$scope,
-    slots,
+    $$scope2,
+    slots2,
     div2_binding
   ];
 }
@@ -22699,67 +24231,67 @@ var Tooltip = class extends import_internal30.SvelteComponentDev {
   get target() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set target(value) {
+  set target(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get delay() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set delay(value) {
+  set delay(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get position() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set position(value) {
+  set position(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get offset() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set offset(value) {
+  set offset(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get screenPadding() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set screenPadding(value) {
+  set screenPadding(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get events() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set events(value) {
+  set events(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get info() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set info(value) {
+  set info(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get success() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set success(value) {
+  set success(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get warning() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set warning(value) {
+  set warning(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get danger() {
     throw new Error("<Tooltip>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set danger(value) {
+  set danger(value2) {
     throw new Error("<Tooltip>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -22767,7 +24299,7 @@ var Tooltip_default = Tooltip;
 
 // src/tree/Tree.svelte
 var import_internal32 = __toESM(require_internal());
-var import_svelte21 = __toESM(require_svelte());
+var import_svelte22 = __toESM(require_svelte());
 
 // src/tree/TreeNode.svelte
 var import_internal31 = __toESM(require_internal());
@@ -22816,7 +24348,7 @@ function create_each_block_13(ctx) {
   });
   return block;
 }
-function create_if_block16(ctx) {
+function create_if_block18(ctx) {
   let ul;
   let current;
   let each_value = (
@@ -22897,7 +24429,7 @@ function create_if_block16(ctx) {
   };
   (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block16.name,
+    id: create_if_block18.name,
     type: "if",
     source: "(24:1) {#if item.items && expanded}",
     ctx
@@ -22997,7 +24529,7 @@ function create_fragment30(ctx) {
   let if_block = (
     /*item*/
     ctx[1].items && /*expanded*/
-    ctx[0] && create_if_block16(ctx)
+    ctx[0] && create_if_block18(ctx)
   );
   const block = {
     c: function create() {
@@ -23218,7 +24750,7 @@ function create_fragment30(ctx) {
             (0, import_internal31.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block16(ctx);
+          if_block = create_if_block18(ctx);
           if_block.c();
           (0, import_internal31.transition_in)(if_block, 1);
           if_block.m(li, null);
@@ -23260,38 +24792,38 @@ function create_fragment30(ctx) {
   });
   return block;
 }
-function instance30($$self, $$props, $$invalidate) {
+function instance30($$self2, $$props2, $$invalidate2) {
   let nodeType;
   let indents;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal31.validate_slots)("TreeNode", slots, []);
-  let { item = {} } = $$props;
-  let { level = 0 } = $$props;
-  let { expanded = false } = $$props;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal31.validate_slots)("TreeNode", slots2, []);
+  let { item = {} } = $$props2;
+  let { level = 0 } = $$props2;
+  let { expanded = false } = $$props2;
   function toggle() {
-    $$invalidate(0, expanded = !expanded);
+    $$invalidate2(0, expanded = !expanded);
   }
   function onkey2(e) {
     const key = e && e.detail && e.detail.key;
     if (key === "right")
-      $$invalidate(0, expanded = true);
+      $$invalidate2(0, expanded = true);
     else if (key === "left")
-      $$invalidate(0, expanded = false);
+      $$invalidate2(0, expanded = false);
   }
   const writable_props = ["item", "level", "expanded"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<TreeNode> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("item" in $$props2)
-      $$invalidate(1, item = $$props2.item);
-    if ("level" in $$props2)
-      $$invalidate(2, level = $$props2.level);
-    if ("expanded" in $$props2)
-      $$invalidate(0, expanded = $$props2.expanded);
+  $$self2.$$set = ($$props3) => {
+    if ("item" in $$props3)
+      $$invalidate2(1, item = $$props3.item);
+    if ("level" in $$props3)
+      $$invalidate2(2, level = $$props3.level);
+    if ("expanded" in $$props3)
+      $$invalidate2(0, expanded = $$props3.expanded);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     item,
     level,
     expanded,
@@ -23300,31 +24832,31 @@ function instance30($$self, $$props, $$invalidate) {
     indents,
     nodeType
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("item" in $$props2)
-      $$invalidate(1, item = $$props2.item);
-    if ("level" in $$props2)
-      $$invalidate(2, level = $$props2.level);
-    if ("expanded" in $$props2)
-      $$invalidate(0, expanded = $$props2.expanded);
-    if ("indents" in $$props2)
-      $$invalidate(3, indents = $$props2.indents);
-    if ("nodeType" in $$props2)
-      $$invalidate(4, nodeType = $$props2.nodeType);
+  $$self2.$inject_state = ($$props3) => {
+    if ("item" in $$props3)
+      $$invalidate2(1, item = $$props3.item);
+    if ("level" in $$props3)
+      $$invalidate2(2, level = $$props3.level);
+    if ("expanded" in $$props3)
+      $$invalidate2(0, expanded = $$props3.expanded);
+    if ("indents" in $$props3)
+      $$invalidate2(3, indents = $$props3.indents);
+    if ("nodeType" in $$props3)
+      $$invalidate2(4, nodeType = $$props3.nodeType);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*item*/
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty & /*item*/
     2) {
       $:
-        $$invalidate(4, nodeType = item.items ? "folder" : "file");
+        $$invalidate2(4, nodeType = item.items ? "folder" : "file");
     }
-    if ($$self.$$.dirty & /*level*/
+    if ($$self2.$$.dirty & /*level*/
     4) {
       $:
-        $$invalidate(3, indents = new Array(level).fill(0));
+        $$invalidate2(3, indents = new Array(level).fill(0));
     }
   };
   return [expanded, item, level, indents, nodeType, toggle, onkey2];
@@ -23343,19 +24875,19 @@ var TreeNode = class extends import_internal31.SvelteComponentDev {
   get item() {
     throw new Error("<TreeNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set item(value) {
+  set item(value2) {
     throw new Error("<TreeNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get level() {
     throw new Error("<TreeNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set level(value) {
+  set level(value2) {
     throw new Error("<TreeNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get expanded() {
     throw new Error("<TreeNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set expanded(value) {
+  set expanded(value2) {
     throw new Error("<TreeNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -23589,13 +25121,13 @@ function create_fragment31(ctx) {
   });
   return block;
 }
-function instance31($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal32.validate_slots)("Tree", slots, []);
-  let { items = [] } = $$props;
-  let { title = void 0 } = $$props;
-  let { class: className = "" } = $$props;
-  const dispatch = (0, import_svelte21.createEventDispatcher)();
+function instance31($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal32.validate_slots)("Tree", slots2, []);
+  let { items = [] } = $$props2;
+  let { title = void 0 } = $$props2;
+  let { class: className2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte22.createEventDispatcher)();
   let el;
   let selectedItem;
   function getVisibleNodes() {
@@ -23614,7 +25146,7 @@ function instance31($$self, $$props, $$invalidate) {
       selectedItem.scrollIntoView({ block: "nearest", inline: "nearest" });
     }
     const item = tryToGetSelectedItem();
-    dispatch("select", { selectedItem, item });
+    dispatch2("select", { selectedItem, item });
   }
   function selectClicked(e) {
     select(e.target.closest(".tree-node"));
@@ -23649,8 +25181,8 @@ function instance31($$self, $$props, $$invalidate) {
     select(selectedItem.parentElement.parentElement.previousElementSibling);
   }
   function sendKeyToNode(key) {
-    const event = new CustomEvent("key", { detail: { key } });
-    selectedItem.dispatchEvent(event);
+    const event2 = new CustomEvent("key", { detail: { key } });
+    selectedItem.dispatchEvent(event2);
   }
   function goLeft() {
     const isFolder = selectedItem.dataset.type === "folder";
@@ -23678,7 +25210,7 @@ function instance31($$self, $$props, $$invalidate) {
     if (isFolder)
       selectedItem.click();
   }
-  function onkeydown(e) {
+  function onkeydown2(e) {
     const keyMap = {
       ArrowUp: selectPrev,
       ArrowDown: selectNext,
@@ -23691,51 +25223,51 @@ function instance31($$self, $$props, $$invalidate) {
       keyMap[e.key](e);
     }
     const item = tryToGetSelectedItem();
-    dispatch("keydown", { event: e, selectedItem, item });
+    dispatch2("keydown", { event: e, selectedItem, item });
   }
   function tryToGetSelectedItem() {
-    const id = selectedItem.dataset.id;
-    if (id)
-      return findItem(id);
+    const id2 = selectedItem.dataset.id;
+    if (id2)
+      return findItem(id2);
   }
-  function findItem(id, nodes) {
+  function findItem(id2, nodes) {
     if (!nodes)
       nodes = items;
     for (let found, node, i = 0; node = nodes[i]; i++) {
-      if (node.id == id)
+      if (node.id == id2)
         return node;
       if (node.items)
-        found = findItem(id, node.items);
+        found = findItem(id2, node.items);
       if (found)
         return found;
     }
   }
   const writable_props = ["items", "title", "class"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Tree> was created with unknown prop '${key}'`);
   });
   function ul_binding($$value) {
     import_internal32.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate(3, el);
+      $$invalidate2(3, el);
     });
   }
-  $$self.$$set = ($$props2) => {
-    if ("items" in $$props2)
-      $$invalidate(0, items = $$props2.items);
-    if ("title" in $$props2)
-      $$invalidate(1, title = $$props2.title);
-    if ("class" in $$props2)
-      $$invalidate(2, className = $$props2.class);
+  $$self2.$$set = ($$props3) => {
+    if ("items" in $$props3)
+      $$invalidate2(0, items = $$props3.items);
+    if ("title" in $$props3)
+      $$invalidate2(1, title = $$props3.title);
+    if ("class" in $$props3)
+      $$invalidate2(2, className2 = $$props3.class);
   };
-  $$self.$capture_state = () => ({
-    createEventDispatcher: import_svelte21.createEventDispatcher,
+  $$self2.$capture_state = () => ({
+    createEventDispatcher: import_svelte22.createEventDispatcher,
     TreeNode: TreeNode_default,
     items,
     title,
-    className,
-    dispatch,
+    className: className2,
+    dispatch: dispatch2,
     el,
     selectedItem,
     getVisibleNodes,
@@ -23751,26 +25283,26 @@ function instance31($$self, $$props, $$invalidate) {
     goLeft,
     goRight,
     toggle,
-    onkeydown,
+    onkeydown: onkeydown2,
     tryToGetSelectedItem,
     findItem
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("items" in $$props2)
-      $$invalidate(0, items = $$props2.items);
-    if ("title" in $$props2)
-      $$invalidate(1, title = $$props2.title);
-    if ("className" in $$props2)
-      $$invalidate(2, className = $$props2.className);
-    if ("el" in $$props2)
-      $$invalidate(3, el = $$props2.el);
-    if ("selectedItem" in $$props2)
-      selectedItem = $$props2.selectedItem;
+  $$self2.$inject_state = ($$props3) => {
+    if ("items" in $$props3)
+      $$invalidate2(0, items = $$props3.items);
+    if ("title" in $$props3)
+      $$invalidate2(1, title = $$props3.title);
+    if ("className" in $$props3)
+      $$invalidate2(2, className2 = $$props3.className);
+    if ("el" in $$props3)
+      $$invalidate2(3, el = $$props3.el);
+    if ("selectedItem" in $$props3)
+      selectedItem = $$props3.selectedItem;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  return [items, title, className, el, selectClicked, selectFirst, onkeydown, ul_binding];
+  return [items, title, className2, el, selectClicked, selectFirst, onkeydown2, ul_binding];
 }
 var Tree = class extends import_internal32.SvelteComponentDev {
   constructor(options) {
@@ -23786,19 +25318,19 @@ var Tree = class extends import_internal32.SvelteComponentDev {
   get items() {
     throw new Error("<Tree>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set items(value) {
+  set items(value2) {
     throw new Error("<Tree>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get title() {
     throw new Error("<Tree>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set title(value) {
+  set title(value2) {
     throw new Error("<Tree>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get class() {
     throw new Error("<Tree>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value) {
+  set class(value2) {
     throw new Error("<Tree>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -23876,36 +25408,36 @@ function create_fragment32(ctx) {
   });
   return block;
 }
-function instance32($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal33.validate_slots)("NavItem", slots, []);
-  let { active = location.hash.substr(1) } = $$props;
-  let { name: name2 = "" } = $$props;
-  let { hash = name2.replace(/\s/g, "") } = $$props;
+function instance32($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal33.validate_slots)("NavItem", slots2, []);
+  let { active = location.hash.substr(1) } = $$props2;
+  let { name: name2 = "" } = $$props2;
+  let { hash = name2.replace(/\s/g, "") } = $$props2;
   const writable_props = ["active", "name", "hash"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<NavItem> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("active" in $$props2)
-      $$invalidate(0, active = $$props2.active);
-    if ("name" in $$props2)
-      $$invalidate(1, name2 = $$props2.name);
-    if ("hash" in $$props2)
-      $$invalidate(2, hash = $$props2.hash);
+  $$self2.$$set = ($$props3) => {
+    if ("active" in $$props3)
+      $$invalidate2(0, active = $$props3.active);
+    if ("name" in $$props3)
+      $$invalidate2(1, name2 = $$props3.name);
+    if ("hash" in $$props3)
+      $$invalidate2(2, hash = $$props3.hash);
   };
-  $$self.$capture_state = () => ({ active, name: name2, hash });
-  $$self.$inject_state = ($$props2) => {
-    if ("active" in $$props2)
-      $$invalidate(0, active = $$props2.active);
-    if ("name" in $$props2)
-      $$invalidate(1, name2 = $$props2.name);
-    if ("hash" in $$props2)
-      $$invalidate(2, hash = $$props2.hash);
+  $$self2.$capture_state = () => ({ active, name: name2, hash });
+  $$self2.$inject_state = ($$props3) => {
+    if ("active" in $$props3)
+      $$invalidate2(0, active = $$props3.active);
+    if ("name" in $$props3)
+      $$invalidate2(1, name2 = $$props3.name);
+    if ("hash" in $$props3)
+      $$invalidate2(2, hash = $$props3.hash);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [active, name2, hash];
 }
@@ -23923,19 +25455,19 @@ var NavItem = class extends import_internal33.SvelteComponentDev {
   get active() {
     throw new Error("<NavItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set active(value) {
+  set active(value2) {
     throw new Error("<NavItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get name() {
     throw new Error("<NavItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set name(value) {
+  set name(value2) {
     throw new Error("<NavItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get hash() {
     throw new Error("<NavItem>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set hash(value) {
+  set hash(value2) {
     throw new Error("<NavItem>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -24170,7 +25702,7 @@ function create_fragment33(ctx) {
       code3.textContent = '\n	<script src="zxcvbn.js"><\/script>\n';
       t61 = (0, import_internal34.space)();
       p4 = (0, import_internal34.element)("p");
-      t62 = (0, import_internal34.text)("This script file is available in SUICIS npm package, and can be copied over to your ");
+      t62 = (0, import_internal34.text)("This script file is available in this npm package, and can be copied over to your ");
       i8 = (0, import_internal34.element)("i");
       i8.textContent = "dist";
       t64 = (0, import_internal34.text)(" folder, similarly to the css in the previous example, e.g.:");
@@ -24282,31 +25814,31 @@ function create_fragment33(ctx) {
       (0, import_internal34.attr_dev)(code3, "class", "language-html");
       (0, import_internal34.add_location)(code3, file31, 54, 5, 1949);
       (0, import_internal34.add_location)(pre3, file31, 54, 0, 1944);
-      (0, import_internal34.add_location)(i8, file31, 58, 87, 2127);
+      (0, import_internal34.add_location)(i8, file31, 58, 85, 2125);
       (0, import_internal34.add_location)(p4, file31, 58, 0, 2040);
       (0, import_internal34.attr_dev)(code4, "class", "language-json");
-      (0, import_internal34.add_location)(code4, file31, 59, 5, 2208);
-      (0, import_internal34.add_location)(pre4, file31, 59, 0, 2203);
-      (0, import_internal34.add_location)(h21, file31, 68, 0, 2430);
-      (0, import_internal34.add_location)(em3, file31, 69, 15, 2475);
-      (0, import_internal34.add_location)(h33, file31, 71, 0, 2493);
-      (0, import_internal34.add_location)(em4, file31, 73, 15, 2656);
+      (0, import_internal34.add_location)(code4, file31, 59, 5, 2206);
+      (0, import_internal34.add_location)(pre4, file31, 59, 0, 2201);
+      (0, import_internal34.add_location)(h21, file31, 68, 0, 2428);
+      (0, import_internal34.add_location)(em3, file31, 69, 15, 2473);
+      (0, import_internal34.add_location)(h33, file31, 71, 0, 2491);
+      (0, import_internal34.add_location)(em4, file31, 73, 15, 2654);
       (0, import_internal34.attr_dev)(code5, "class", "language-js");
-      (0, import_internal34.add_location)(code5, file31, 74, 5, 2706);
-      (0, import_internal34.add_location)(pre5, file31, 74, 0, 2701);
-      (0, import_internal34.add_location)(h34, file31, 79, 0, 2775);
-      (0, import_internal34.add_location)(em5, file31, 80, 47, 2838);
-      (0, import_internal34.add_location)(em6, file31, 80, 75, 2866);
-      (0, import_internal34.add_location)(em7, file31, 81, 36, 2926);
-      (0, import_internal34.add_location)(em8, file31, 81, 78, 2968);
-      (0, import_internal34.add_location)(em9, file31, 81, 108, 2998);
+      (0, import_internal34.add_location)(code5, file31, 74, 5, 2704);
+      (0, import_internal34.add_location)(pre5, file31, 74, 0, 2699);
+      (0, import_internal34.add_location)(h34, file31, 79, 0, 2773);
+      (0, import_internal34.add_location)(em5, file31, 80, 47, 2836);
+      (0, import_internal34.add_location)(em6, file31, 80, 75, 2864);
+      (0, import_internal34.add_location)(em7, file31, 81, 36, 2924);
+      (0, import_internal34.add_location)(em8, file31, 81, 78, 2966);
+      (0, import_internal34.add_location)(em9, file31, 81, 108, 2996);
       (0, import_internal34.attr_dev)(code6, "class", "language-html");
-      (0, import_internal34.add_location)(code6, file31, 82, 5, 3027);
-      (0, import_internal34.add_location)(pre6, file31, 82, 0, 3022);
-      (0, import_internal34.add_location)(h22, file31, 95, 0, 3235);
+      (0, import_internal34.add_location)(code6, file31, 82, 5, 3025);
+      (0, import_internal34.add_location)(pre6, file31, 82, 0, 3020);
+      (0, import_internal34.add_location)(h22, file31, 95, 0, 3233);
       (0, import_internal34.attr_dev)(code7, "class", "language-bash");
-      (0, import_internal34.add_location)(code7, file31, 99, 5, 3313);
-      (0, import_internal34.add_location)(pre7, file31, 99, 0, 3308);
+      (0, import_internal34.add_location)(code7, file31, 99, 5, 3311);
+      (0, import_internal34.add_location)(pre7, file31, 99, 0, 3306);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -24581,11 +26113,11 @@ function create_fragment33(ctx) {
   });
   return block;
 }
-function instance33($$self, $$props) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal34.validate_slots)("Start", slots, []);
+function instance33($$self2, $$props2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal34.validate_slots)("Start", slots2, []);
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Start> was created with unknown prop '${key}'`);
   });
@@ -27908,11 +29440,11 @@ function create_fragment34(ctx) {
   });
   return block;
 }
-function instance34($$self, $$props) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal35.validate_slots)("Changelog", slots, []);
+function instance34($$self2, $$props2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal35.validate_slots)("Changelog", slots2, []);
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Changelog> was created with unknown prop '${key}'`);
   });
@@ -27977,7 +29509,7 @@ function get_each_context10(ctx, list, i) {
   child_ctx[3] = list[i];
   return child_ctx;
 }
-function create_if_block17(ctx) {
+function create_if_block19(ctx) {
   let p;
   const block = {
     c: function create() {
@@ -28003,7 +29535,7 @@ function create_if_block17(ctx) {
   };
   (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block17.name,
+    id: create_if_block19.name,
     type: "if",
     source: "(2:0) {#if description}",
     ctx
@@ -28194,7 +29726,7 @@ function create_fragment35(ctx) {
   let current;
   let if_block = (
     /*description*/
-    ctx[1] && create_if_block17(ctx)
+    ctx[1] && create_if_block19(ctx)
   );
   table = new Table_default({
     props: {
@@ -28246,7 +29778,7 @@ function create_fragment35(ctx) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
-          if_block = create_if_block17(ctx2);
+          if_block = create_if_block19(ctx2);
           if_block.c();
           if_block.m(t2.parentNode, t2);
         }
@@ -28304,12 +29836,12 @@ function buildType(prop) {
     res.push(`<br>(defaults to ${prop.default})`);
   return res.join(" ");
 }
-function instance35($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal36.validate_slots)("ApiTable", slots, []);
-  let { title = "API" } = $$props;
-  let { description = "" } = $$props;
-  let { props = [
+function instance35($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal36.validate_slots)("ApiTable", slots2, []);
+  let { title = "API" } = $$props2;
+  let { description = "" } = $$props2;
+  let { props: props2 = [
     {
       name: "id",
       type: "string",
@@ -28317,39 +29849,39 @@ function instance35($$self, $$props, $$invalidate) {
       required: true,
       description: "assign ID to the underlying component"
     }
-  ] } = $$props;
+  ] } = $$props2;
   const writable_props = ["title", "description", "props"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ApiTable> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(0, title = $$props2.title);
-    if ("description" in $$props2)
-      $$invalidate(1, description = $$props2.description);
-    if ("props" in $$props2)
-      $$invalidate(2, props = $$props2.props);
+  $$self2.$$set = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(0, title = $$props3.title);
+    if ("description" in $$props3)
+      $$invalidate2(1, description = $$props3.description);
+    if ("props" in $$props3)
+      $$invalidate2(2, props2 = $$props3.props);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Table: Table_default,
     title,
     description,
-    props,
+    props: props2,
     buildType
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("title" in $$props2)
-      $$invalidate(0, title = $$props2.title);
-    if ("description" in $$props2)
-      $$invalidate(1, description = $$props2.description);
-    if ("props" in $$props2)
-      $$invalidate(2, props = $$props2.props);
+  $$self2.$inject_state = ($$props3) => {
+    if ("title" in $$props3)
+      $$invalidate2(0, title = $$props3.title);
+    if ("description" in $$props3)
+      $$invalidate2(1, description = $$props3.description);
+    if ("props" in $$props3)
+      $$invalidate2(2, props2 = $$props3.props);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  return [title, description, props];
+  return [title, description, props2];
 }
 var ApiTable = class extends import_internal36.SvelteComponentDev {
   constructor(options) {
@@ -28365,19 +29897,19 @@ var ApiTable = class extends import_internal36.SvelteComponentDev {
   get title() {
     throw new Error("<ApiTable>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set title(value) {
+  set title(value2) {
     throw new Error("<ApiTable>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get description() {
     throw new Error("<ApiTable>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set description(value) {
+  set description(value2) {
     throw new Error("<ApiTable>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get props() {
     throw new Error("<ApiTable>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set props(value) {
+  set props(value2) {
     throw new Error("<ApiTable>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -28386,7 +29918,7 @@ var ApiTable_default = ApiTable;
 // docs-src/code-example/CodeExample.svelte
 var import_internal37 = __toESM(require_internal());
 var file34 = "docs-src/code-example/CodeExample.svelte";
-function create_if_block18(ctx) {
+function create_if_block20(ctx) {
   let hr;
   let h3;
   const block = {
@@ -28410,7 +29942,7 @@ function create_if_block18(ctx) {
   };
   (0, import_internal37.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block18.name,
+    id: create_if_block20.name,
     type: "if",
     source: "(1:0) {#if !notitle}",
     ctx
@@ -28429,7 +29961,7 @@ function create_fragment36(ctx) {
   ) + "";
   let t2;
   let if_block = !/*notitle*/
-  ctx[1] && create_if_block18(ctx);
+  ctx[1] && create_if_block20(ctx);
   const block = {
     c: function create() {
       if (if_block)
@@ -28463,7 +29995,7 @@ function create_fragment36(ctx) {
       ctx2[1]) {
         if (if_block) {
         } else {
-          if_block = create_if_block18(ctx2);
+          if_block = create_if_block20(ctx2);
           if_block.c();
           if_block.m(t0.parentNode, t0);
         }
@@ -28501,31 +30033,31 @@ function create_fragment36(ctx) {
 function encode(s) {
   return s.replace(/{/gim, "&lbrace;").replace(/}/gim, "&rbrace;").replace(/</gim, "&lt;").replace(/>/gim, "&gt;").replace(/\t/gim, "    ").trim();
 }
-function instance36($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal37.validate_slots)("CodeExample", slots, []);
-  let { html = "" } = $$props;
-  let { notitle = false } = $$props;
+function instance36($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal37.validate_slots)("CodeExample", slots2, []);
+  let { html = "" } = $$props2;
+  let { notitle = false } = $$props2;
   const writable_props = ["html", "notitle"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<CodeExample> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("html" in $$props2)
-      $$invalidate(0, html = $$props2.html);
-    if ("notitle" in $$props2)
-      $$invalidate(1, notitle = $$props2.notitle);
+  $$self2.$$set = ($$props3) => {
+    if ("html" in $$props3)
+      $$invalidate2(0, html = $$props3.html);
+    if ("notitle" in $$props3)
+      $$invalidate2(1, notitle = $$props3.notitle);
   };
-  $$self.$capture_state = () => ({ html, notitle, encode });
-  $$self.$inject_state = ($$props2) => {
-    if ("html" in $$props2)
-      $$invalidate(0, html = $$props2.html);
-    if ("notitle" in $$props2)
-      $$invalidate(1, notitle = $$props2.notitle);
+  $$self2.$capture_state = () => ({ html, notitle, encode });
+  $$self2.$inject_state = ($$props3) => {
+    if ("html" in $$props3)
+      $$invalidate2(0, html = $$props3.html);
+    if ("notitle" in $$props3)
+      $$invalidate2(1, notitle = $$props3.notitle);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [html, notitle];
 }
@@ -28543,13 +30075,13 @@ var CodeExample = class extends import_internal37.SvelteComponentDev {
   get html() {
     throw new Error("<CodeExample>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set html(value) {
+  set html(value2) {
     throw new Error("<CodeExample>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get notitle() {
     throw new Error("<CodeExample>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set notitle(value) {
+  set notitle(value2) {
     throw new Error("<CodeExample>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -28557,7 +30089,7 @@ var CodeExample_default = CodeExample;
 
 // docs-src/code-example/CodeBox.svelte
 var import_internal38 = __toESM(require_internal());
-var import_svelte22 = __toESM(require_svelte());
+var import_svelte23 = __toESM(require_svelte());
 var file35 = "docs-src/code-example/CodeBox.svelte";
 function create_fragment37(ctx) {
   let pre;
@@ -28602,71 +30134,71 @@ function create_fragment37(ctx) {
   });
   return block;
 }
-function instance37($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal38.validate_slots)("CodeBox", slots, []);
-  let { tag = "div" } = $$props;
-  let { props = {} } = $$props;
-  let { text: text42 = "" } = $$props;
+function instance37($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal38.validate_slots)("CodeBox", slots2, []);
+  let { tag = "div" } = $$props2;
+  let { props: props2 = {} } = $$props2;
+  let { text: text45 = "" } = $$props2;
   let html = "";
-  (0, import_svelte22.afterUpdate)(() => {
+  (0, import_svelte23.afterUpdate)(() => {
     requestAnimationFrame(update);
   });
   function update() {
-    $$invalidate(0, html = window.Prism.highlight(buildHtml(), window.Prism.languages.svelte, "svelte"));
+    $$invalidate2(0, html = window.Prism.highlight(buildHtml(), window.Prism.languages.svelte, "svelte"));
   }
   function buildHtml() {
     const _props = {};
-    for (const prop in props) {
-      if (props[prop] === false)
+    for (const prop in props2) {
+      if (props2[prop] === false)
         continue;
-      if (props[prop] === "")
+      if (props2[prop] === "")
         continue;
-      _props[prop] = props[prop];
+      _props[prop] = props2[prop];
     }
     let propsStr = JSON.stringify(_props).replace(/"([^"]+)":/g, "$1:").replace(/(:)/g, "=").replace(/,/g, " ").replace(/({|}|=true|default)/g, "").trim();
     if (propsStr)
       propsStr = " " + propsStr;
-    if (!text42)
+    if (!text45)
       return `<${tag}${propsStr}/>`;
-    return `<${tag}${propsStr}>${text42}</${tag}>`;
+    return `<${tag}${propsStr}>${text45}</${tag}>`;
   }
   const writable_props = ["tag", "props", "text"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<CodeBox> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("tag" in $$props2)
-      $$invalidate(1, tag = $$props2.tag);
-    if ("props" in $$props2)
-      $$invalidate(2, props = $$props2.props);
-    if ("text" in $$props2)
-      $$invalidate(3, text42 = $$props2.text);
+  $$self2.$$set = ($$props3) => {
+    if ("tag" in $$props3)
+      $$invalidate2(1, tag = $$props3.tag);
+    if ("props" in $$props3)
+      $$invalidate2(2, props2 = $$props3.props);
+    if ("text" in $$props3)
+      $$invalidate2(3, text45 = $$props3.text);
   };
-  $$self.$capture_state = () => ({
-    afterUpdate: import_svelte22.afterUpdate,
+  $$self2.$capture_state = () => ({
+    afterUpdate: import_svelte23.afterUpdate,
     tag,
-    props,
-    text: text42,
+    props: props2,
+    text: text45,
     html,
     update,
     buildHtml
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("tag" in $$props2)
-      $$invalidate(1, tag = $$props2.tag);
-    if ("props" in $$props2)
-      $$invalidate(2, props = $$props2.props);
-    if ("text" in $$props2)
-      $$invalidate(3, text42 = $$props2.text);
-    if ("html" in $$props2)
-      $$invalidate(0, html = $$props2.html);
+  $$self2.$inject_state = ($$props3) => {
+    if ("tag" in $$props3)
+      $$invalidate2(1, tag = $$props3.tag);
+    if ("props" in $$props3)
+      $$invalidate2(2, props2 = $$props3.props);
+    if ("text" in $$props3)
+      $$invalidate2(3, text45 = $$props3.text);
+    if ("html" in $$props3)
+      $$invalidate2(0, html = $$props3.html);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  return [html, tag, props, text42];
+  return [html, tag, props2, text45];
 }
 var CodeBox = class extends import_internal38.SvelteComponentDev {
   constructor(options) {
@@ -28682,19 +30214,19 @@ var CodeBox = class extends import_internal38.SvelteComponentDev {
   get tag() {
     throw new Error("<CodeBox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set tag(value) {
+  set tag(value2) {
     throw new Error("<CodeBox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get props() {
     throw new Error("<CodeBox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set props(value) {
+  set props(value2) {
     throw new Error("<CodeBox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get text() {
     throw new Error("<CodeBox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set text(value) {
+  set text(value2) {
     throw new Error("<CodeBox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -28778,8 +30310,8 @@ function create_fragment38(ctx) {
   let t41;
   let api;
   let current;
-  function autocomplete0_value_binding(value) {
-    ctx[8](value);
+  function autocomplete0_value_binding(value2) {
+    ctx[8](value2);
   }
   let autocomplete0_props = { data: (
     /*autocompleteData*/
@@ -28798,8 +30330,8 @@ function create_fragment38(ctx) {
   });
   import_internal39.binding_callbacks.push(() => (0, import_internal39.bind)(autocomplete0, "value", autocomplete0_value_binding));
   autocomplete0.$on("change", onChange);
-  function autocomplete1_value_binding(value) {
-    ctx[9](value);
+  function autocomplete1_value_binding(value2) {
+    ctx[9](value2);
   }
   let autocomplete1_props = {
     disabled: true,
@@ -28820,8 +30352,8 @@ function create_fragment38(ctx) {
     $$inline: true
   });
   import_internal39.binding_callbacks.push(() => (0, import_internal39.bind)(autocomplete1, "value", autocomplete1_value_binding));
-  function autocomplete2_value_binding(value) {
-    ctx[10](value);
+  function autocomplete2_value_binding(value2) {
+    ctx[10](value2);
   }
   let autocomplete2_props = {
     data: (
@@ -28843,8 +30375,8 @@ function create_fragment38(ctx) {
     $$inline: true
   });
   import_internal39.binding_callbacks.push(() => (0, import_internal39.bind)(autocomplete2, "value", autocomplete2_value_binding));
-  function autocomplete3_value_binding(value) {
-    ctx[11](value);
+  function autocomplete3_value_binding(value2) {
+    ctx[11](value2);
   }
   let autocomplete3_props = {
     showOnFocus: "true",
@@ -28865,8 +30397,8 @@ function create_fragment38(ctx) {
     $$inline: true
   });
   import_internal39.binding_callbacks.push(() => (0, import_internal39.bind)(autocomplete3, "value", autocomplete3_value_binding));
-  function autocomplete4_value_binding(value) {
-    ctx[12](value);
+  function autocomplete4_value_binding(value2) {
+    ctx[12](value2);
   }
   let autocomplete4_props = {
     data: (
@@ -28887,8 +30419,8 @@ function create_fragment38(ctx) {
     $$inline: true
   });
   import_internal39.binding_callbacks.push(() => (0, import_internal39.bind)(autocomplete4, "value", autocomplete4_value_binding));
-  function autocomplete5_value_binding(value) {
-    ctx[13](value);
+  function autocomplete5_value_binding(value2) {
+    ctx[13](value2);
   }
   let autocomplete5_props = {
     data: (
@@ -28910,8 +30442,8 @@ function create_fragment38(ctx) {
     $$inline: true
   });
   import_internal39.binding_callbacks.push(() => (0, import_internal39.bind)(autocomplete5, "value", autocomplete5_value_binding));
-  function autocomplete6_value_binding(value) {
-    ctx[14](value);
+  function autocomplete6_value_binding(value2) {
+    ctx[14](value2);
   }
   let autocomplete6_props = {
     data: (
@@ -29249,12 +30781,12 @@ function create_fragment38(ctx) {
   return block;
 }
 function onChange(e) {
-  const { value, oldValue } = e.detail;
-  console.log({ value, oldValue });
+  const { value: value2, oldValue } = e.detail;
+  console.log({ value: value2, oldValue });
 }
-function instance38($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal39.validate_slots)("Autocomplete", slots, []);
+function instance38($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal39.validate_slots)("Autocomplete", slots2, []);
   const apiProps = [
     {
       name: "allowNew",
@@ -29471,39 +31003,39 @@ function onChange (e) {
   ];
   let autocompleteValueSimplest = "Gamma";
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_1.warn(`<Autocomplete> was created with unknown prop '${key}'`);
   });
-  function autocomplete0_value_binding(value) {
-    autocompleteValue = value;
-    $$invalidate(0, autocompleteValue);
+  function autocomplete0_value_binding(value2) {
+    autocompleteValue = value2;
+    $$invalidate2(0, autocompleteValue);
   }
-  function autocomplete1_value_binding(value) {
-    autocompleteValue = value;
-    $$invalidate(0, autocompleteValue);
+  function autocomplete1_value_binding(value2) {
+    autocompleteValue = value2;
+    $$invalidate2(0, autocompleteValue);
   }
-  function autocomplete2_value_binding(value) {
-    autocompleteValue = value;
-    $$invalidate(0, autocompleteValue);
+  function autocomplete2_value_binding(value2) {
+    autocompleteValue = value2;
+    $$invalidate2(0, autocompleteValue);
   }
-  function autocomplete3_value_binding(value) {
-    autocompleteValue = value;
-    $$invalidate(0, autocompleteValue);
+  function autocomplete3_value_binding(value2) {
+    autocompleteValue = value2;
+    $$invalidate2(0, autocompleteValue);
   }
-  function autocomplete4_value_binding(value) {
-    autocompleteValueSimple = value;
-    $$invalidate(1, autocompleteValueSimple);
+  function autocomplete4_value_binding(value2) {
+    autocompleteValueSimple = value2;
+    $$invalidate2(1, autocompleteValueSimple);
   }
-  function autocomplete5_value_binding(value) {
-    autocompleteValueSimplest = value;
-    $$invalidate(2, autocompleteValueSimplest);
+  function autocomplete5_value_binding(value2) {
+    autocompleteValueSimplest = value2;
+    $$invalidate2(2, autocompleteValueSimplest);
   }
-  function autocomplete6_value_binding(value) {
-    autocompleteValue = value;
-    $$invalidate(0, autocompleteValue);
+  function autocomplete6_value_binding(value2) {
+    autocompleteValue = value2;
+    $$invalidate2(0, autocompleteValue);
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Autocomplete: Autocomplete_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -29517,16 +31049,16 @@ function onChange (e) {
     autocompleteValueSimplest,
     onChange
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("autocompleteValue" in $$props2)
-      $$invalidate(0, autocompleteValue = $$props2.autocompleteValue);
-    if ("autocompleteValueSimple" in $$props2)
-      $$invalidate(1, autocompleteValueSimple = $$props2.autocompleteValueSimple);
-    if ("autocompleteValueSimplest" in $$props2)
-      $$invalidate(2, autocompleteValueSimplest = $$props2.autocompleteValueSimplest);
+  $$self2.$inject_state = ($$props3) => {
+    if ("autocompleteValue" in $$props3)
+      $$invalidate2(0, autocompleteValue = $$props3.autocompleteValue);
+    if ("autocompleteValueSimple" in $$props3)
+      $$invalidate2(1, autocompleteValueSimple = $$props3.autocompleteValueSimple);
+    if ("autocompleteValueSimplest" in $$props3)
+      $$invalidate2(2, autocompleteValueSimplest = $$props3.autocompleteValueSimplest);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     autocompleteValue,
@@ -29614,7 +31146,7 @@ function create_else_block4(ctx) {
   });
   return block;
 }
-function create_if_block19(ctx) {
+function create_if_block21(ctx) {
   let button;
   let current;
   const button_spread_levels = [
@@ -29665,7 +31197,7 @@ function create_if_block19(ctx) {
   };
   (0, import_internal40.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block19.name,
+    id: create_if_block21.name,
     type: "if",
     source: "(6:2) {#if buttonText}",
     ctx
@@ -29758,7 +31290,7 @@ function create_fragment39(ctx) {
   let current;
   let mounted;
   let dispose;
-  const if_block_creators = [create_if_block19, create_else_block4];
+  const if_block_creators = [create_if_block21, create_else_block4];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -29823,8 +31355,8 @@ function create_fragment39(ctx) {
     /*onIconChange*/
     ctx[8]
   );
-  function toggle0_value_binding(value) {
-    ctx[10](value);
+  function toggle0_value_binding(value2) {
+    ctx[10](value2);
   }
   let toggle0_props = {};
   if (
@@ -29836,8 +31368,8 @@ function create_fragment39(ctx) {
   }
   toggle0 = new Toggle_default({ props: toggle0_props, $$inline: true });
   import_internal40.binding_callbacks.push(() => (0, import_internal40.bind)(toggle0, "value", toggle0_value_binding));
-  function toggle1_value_binding(value) {
-    ctx[11](value);
+  function toggle1_value_binding(value2) {
+    ctx[11](value2);
   }
   let toggle1_props = {};
   if (
@@ -30113,9 +31645,9 @@ function create_fragment39(ctx) {
   });
   return block;
 }
-function instance39($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal40.validate_slots)("Button", slots, []);
+function instance39($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal40.validate_slots)("Button", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -30189,7 +31721,7 @@ function instance39($$self, $$props, $$invalidate) {
       description: "Triggered when the button is clicked."
     }
   ];
-  const props = {};
+  const props2 = {};
   let buttonText = "Demo button";
   const buttonStyles = [
     { name: "Normal", value: "" },
@@ -30212,16 +31744,16 @@ function instance39($$self, $$props, $$invalidate) {
     { name: "trash", value: "trash" }
   ];
   function onStyleChange(e) {
-    $$invalidate(0, props.outline = false, props);
-    $$invalidate(0, props.text = false, props);
-    $$invalidate(0, props.link = false, props);
+    $$invalidate2(0, props2.outline = false, props2);
+    $$invalidate2(0, props2.text = false, props2);
+    $$invalidate2(0, props2.link = false, props2);
     setProp(e.detail, true);
   }
   function onTypeChange(e) {
-    $$invalidate(0, props.info = false, props);
-    $$invalidate(0, props.success = false, props);
-    $$invalidate(0, props.warning = false, props);
-    $$invalidate(0, props.danger = false, props);
+    $$invalidate2(0, props2.info = false, props2);
+    $$invalidate2(0, props2.success = false, props2);
+    $$invalidate2(0, props2.warning = false, props2);
+    $$invalidate2(0, props2.danger = false, props2);
     setProp(e.detail, true);
   }
   function onIconChange(e) {
@@ -30230,37 +31762,37 @@ function instance39($$self, $$props, $$invalidate) {
   function setProp(name2, val) {
     if (!name2 || typeof val === "undefined")
       return;
-    $$invalidate(0, props[name2] = val, props);
+    $$invalidate2(0, props2[name2] = val, props2);
   }
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Button> was created with unknown prop '${key}'`);
   });
-  function input_input_handler() {
+  function input_input_handler2() {
     buttonText = this.value;
-    $$invalidate(1, buttonText);
+    $$invalidate2(1, buttonText);
   }
-  function toggle0_value_binding(value) {
-    if ($$self.$$.not_equal(props.round, value)) {
-      props.round = value;
-      $$invalidate(0, props);
+  function toggle0_value_binding(value2) {
+    if ($$self2.$$.not_equal(props2.round, value2)) {
+      props2.round = value2;
+      $$invalidate2(0, props2);
     }
   }
-  function toggle1_value_binding(value) {
-    if ($$self.$$.not_equal(props.disabled, value)) {
-      props.disabled = value;
-      $$invalidate(0, props);
+  function toggle1_value_binding(value2) {
+    if ($$self2.$$.not_equal(props2.disabled, value2)) {
+      props2.disabled = value2;
+      $$invalidate2(0, props2);
     }
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Button: Button_default,
     ButtonToggle: ButtonToggle_default,
     Toggle: Toggle_default,
     API: ApiTable_default,
     CodeBox: CodeBox_default,
     apiProps,
-    props,
+    props: props2,
     buttonText,
     buttonStyles,
     buttonTypes,
@@ -30270,15 +31802,15 @@ function instance39($$self, $$props, $$invalidate) {
     onIconChange,
     setProp
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("buttonText" in $$props2)
-      $$invalidate(1, buttonText = $$props2.buttonText);
+  $$self2.$inject_state = ($$props3) => {
+    if ("buttonText" in $$props3)
+      $$invalidate2(1, buttonText = $$props3.buttonText);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
-    props,
+    props2,
     buttonText,
     apiProps,
     buttonStyles,
@@ -30287,7 +31819,7 @@ function instance39($$self, $$props, $$invalidate) {
     onStyleChange,
     onTypeChange,
     onIconChange,
-    input_input_handler,
+    input_input_handler2,
     toggle0_value_binding,
     toggle1_value_binding
   ];
@@ -31890,9 +33422,9 @@ function create_fragment40(ctx) {
   });
   return block;
 }
-function instance40($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal41.validate_slots)("PushButton", slots, []);
+function instance40($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal41.validate_slots)("PushButton", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -31967,11 +33499,11 @@ function onChange (e) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<PushButton> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     PushButton: PushButton_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -33888,9 +35420,9 @@ function create_fragment41(ctx) {
   });
   return block;
 }
-function instance41($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal42.validate_slots)("ButtonGroup", slots, []);
+function instance41($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal42.validate_slots)("ButtonGroup", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -33917,11 +35449,11 @@ function onChange (e) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ButtonGroup> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     ButtonGroup: ButtonGroup_default,
     Button: Button_default,
     PushButton: PushButton_default,
@@ -33965,7 +35497,7 @@ function create_fragment42(ctx) {
   let t9;
   let h32;
   let t11;
-  let label;
+  let label2;
   let t13;
   let buttontoggle2;
   let t14;
@@ -34150,8 +35682,8 @@ function create_fragment42(ctx) {
       h32 = (0, import_internal43.element)("h3");
       h32.textContent = "With label";
       t11 = (0, import_internal43.space)();
-      label = (0, import_internal43.element)("label");
-      label.textContent = "Label for the button toggle";
+      label2 = (0, import_internal43.element)("label");
+      label2.textContent = "Label for the button toggle";
       t13 = (0, import_internal43.space)();
       (0, import_internal43.create_component)(buttontoggle2.$$.fragment);
       t14 = (0, import_internal43.space)();
@@ -34229,9 +35761,9 @@ function create_fragment42(ctx) {
       (0, import_internal43.attr_dev)(div, "class", "button-toggle-wrapper-wide");
       (0, import_internal43.add_location)(div, file40, 8, 0, 192);
       (0, import_internal43.add_location)(h32, file40, 12, 0, 287);
-      (0, import_internal43.attr_dev)(label, "class", "label");
-      (0, import_internal43.attr_dev)(label, "for", "bt1");
-      (0, import_internal43.add_location)(label, file40, 13, 0, 307);
+      (0, import_internal43.attr_dev)(label2, "class", "label");
+      (0, import_internal43.attr_dev)(label2, "for", "bt1");
+      (0, import_internal43.add_location)(label2, file40, 13, 0, 307);
       (0, import_internal43.add_location)(br0, file40, 16, 0, 429);
       (0, import_internal43.add_location)(br1, file40, 16, 4, 433);
       (0, import_internal43.add_location)(h40, file40, 18, 0, 439);
@@ -34278,7 +35810,7 @@ function create_fragment42(ctx) {
       (0, import_internal43.insert_dev)(target, t9, anchor);
       (0, import_internal43.insert_dev)(target, h32, anchor);
       (0, import_internal43.insert_dev)(target, t11, anchor);
-      (0, import_internal43.insert_dev)(target, label, anchor);
+      (0, import_internal43.insert_dev)(target, label2, anchor);
       (0, import_internal43.insert_dev)(target, t13, anchor);
       (0, import_internal43.mount_component)(buttontoggle2, target, anchor);
       (0, import_internal43.insert_dev)(target, t14, anchor);
@@ -34403,7 +35935,7 @@ function create_fragment42(ctx) {
       if (detaching)
         (0, import_internal43.detach_dev)(t11);
       if (detaching)
-        (0, import_internal43.detach_dev)(label);
+        (0, import_internal43.detach_dev)(label2);
       if (detaching)
         (0, import_internal43.detach_dev)(t13);
       (0, import_internal43.destroy_component)(buttontoggle2, detaching);
@@ -34519,9 +36051,9 @@ function create_fragment42(ctx) {
   });
   return block;
 }
-function instance42($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal43.validate_slots)("ButtonToggle", slots, []);
+function instance42($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal43.validate_slots)("ButtonToggle", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -34601,11 +36133,11 @@ const buttons = [
   ];
   const strings = ["One", "Two", "Three"];
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ButtonToggle> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     ButtonToggle: ButtonToggle_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -34932,9 +36464,9 @@ function create_fragment43(ctx) {
 function onkey(e) {
   console.log(1111, e.detail.event.key);
 }
-function instance43($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal44.validate_slots)("Datepicker", slots, []);
+function instance43($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal44.validate_slots)("Datepicker", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -35015,11 +36547,11 @@ function onChange (e) {
 
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_12.warn(`<Datepicker> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Datepicker: Datepicker_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -35079,7 +36611,7 @@ function create_fragment44(ctx) {
   let api;
   let current;
   checkbox0 = new Checkbox_default({ $$inline: true });
-  checkbox0.$on("change", onchange);
+  checkbox0.$on("change", onchange2);
   checkbox1 = new Checkbox_default({
     props: { disabled: true },
     $$inline: true
@@ -35282,12 +36814,12 @@ function create_fragment44(ctx) {
   });
   return block;
 }
-function onchange(e) {
+function onchange2(e) {
   console.log(e.target.checked);
 }
-function instance44($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal45.validate_slots)("Checkbox", slots, []);
+function instance44($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal45.validate_slots)("Checkbox", slots2, []);
   const apiProps = [
     {
       name: "checked",
@@ -35338,17 +36870,17 @@ function onChange (e) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_13.warn(`<Checkbox> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Checkbox: Checkbox_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
     apiProps,
     exampleHtml,
-    onchange
+    onchange: onchange2
   });
   return [apiProps, exampleHtml];
 }
@@ -35372,14 +36904,47 @@ var file43 = "docs-src/components/input-math/InputMath.svelte";
 function create_fragment45(ctx) {
   let h2;
   let t1;
-  let inputmath;
+  let p;
   let t2;
+  let em;
+  let br;
+  let t4;
+  let t5;
+  let hr;
+  let t6;
+  let h30;
+  let t8;
+  let inputmath0;
+  let t9;
+  let h31;
+  let t11;
+  let inputmath1;
+  let t12;
+  let h32;
+  let t14;
+  let inputmath2;
+  let t15;
   let codeexample;
-  let t3;
+  let t16;
   let api;
   let current;
-  inputmath = new InputMath_default({
+  inputmath0 = new InputMath_default({
     props: { label: "Enter amount" },
+    $$inline: true
+  });
+  inputmath1 = new InputMath_default({
+    props: {
+      label: "Enter amount",
+      info: "You can add 2 numbers here"
+    },
+    $$inline: true
+  });
+  inputmath2 = new InputMath_default({
+    props: {
+      label: "Enter amount",
+      info: "You can add 2 numbers here",
+      error: "Number must be big!"
+    },
     $$inline: true
   });
   codeexample = new CodeExample_default({
@@ -35399,14 +36964,43 @@ function create_fragment45(ctx) {
   const block = {
     c: function create() {
       h2 = (0, import_internal46.element)("h2");
-      h2.textContent = "InputMath (allow + - * /)";
+      h2.textContent = "Input Math";
       t1 = (0, import_internal46.space)();
-      (0, import_internal46.create_component)(inputmath.$$.fragment);
-      t2 = (0, import_internal46.space)();
+      p = (0, import_internal46.element)("p");
+      t2 = (0, import_internal46.text)("Enhanced input number field, which allows user to enter the basic math symbols: ");
+      em = (0, import_internal46.element)("em");
+      em.textContent = "+ - * / ( )";
+      br = (0, import_internal46.element)("br");
+      t4 = (0, import_internal46.text)("\n	and - on blur - replaces the equasion with the resolved number.");
+      t5 = (0, import_internal46.space)();
+      hr = (0, import_internal46.element)("hr");
+      t6 = (0, import_internal46.space)();
+      h30 = (0, import_internal46.element)("h3");
+      h30.textContent = "Normal";
+      t8 = (0, import_internal46.space)();
+      (0, import_internal46.create_component)(inputmath0.$$.fragment);
+      t9 = (0, import_internal46.space)();
+      h31 = (0, import_internal46.element)("h3");
+      h31.textContent = "With info box";
+      t11 = (0, import_internal46.space)();
+      (0, import_internal46.create_component)(inputmath1.$$.fragment);
+      t12 = (0, import_internal46.space)();
+      h32 = (0, import_internal46.element)("h3");
+      h32.textContent = "With info box and error.";
+      t14 = (0, import_internal46.space)();
+      (0, import_internal46.create_component)(inputmath2.$$.fragment);
+      t15 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(codeexample.$$.fragment);
-      t3 = (0, import_internal46.space)();
+      t16 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(api.$$.fragment);
       (0, import_internal46.add_location)(h2, file43, 0, 0, 0);
+      (0, import_internal46.add_location)(em, file43, 1, 83, 103);
+      (0, import_internal46.add_location)(br, file43, 1, 103, 123);
+      (0, import_internal46.add_location)(p, file43, 1, 0, 20);
+      (0, import_internal46.add_location)(hr, file43, 4, 0, 198);
+      (0, import_internal46.add_location)(h30, file43, 6, 0, 204);
+      (0, import_internal46.add_location)(h31, file43, 9, 0, 256);
+      (0, import_internal46.add_location)(h32, file43, 12, 0, 348);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35414,10 +37008,28 @@ function create_fragment45(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal46.insert_dev)(target, h2, anchor);
       (0, import_internal46.insert_dev)(target, t1, anchor);
-      (0, import_internal46.mount_component)(inputmath, target, anchor);
-      (0, import_internal46.insert_dev)(target, t2, anchor);
+      (0, import_internal46.insert_dev)(target, p, anchor);
+      (0, import_internal46.append_dev)(p, t2);
+      (0, import_internal46.append_dev)(p, em);
+      (0, import_internal46.append_dev)(p, br);
+      (0, import_internal46.append_dev)(p, t4);
+      (0, import_internal46.insert_dev)(target, t5, anchor);
+      (0, import_internal46.insert_dev)(target, hr, anchor);
+      (0, import_internal46.insert_dev)(target, t6, anchor);
+      (0, import_internal46.insert_dev)(target, h30, anchor);
+      (0, import_internal46.insert_dev)(target, t8, anchor);
+      (0, import_internal46.mount_component)(inputmath0, target, anchor);
+      (0, import_internal46.insert_dev)(target, t9, anchor);
+      (0, import_internal46.insert_dev)(target, h31, anchor);
+      (0, import_internal46.insert_dev)(target, t11, anchor);
+      (0, import_internal46.mount_component)(inputmath1, target, anchor);
+      (0, import_internal46.insert_dev)(target, t12, anchor);
+      (0, import_internal46.insert_dev)(target, h32, anchor);
+      (0, import_internal46.insert_dev)(target, t14, anchor);
+      (0, import_internal46.mount_component)(inputmath2, target, anchor);
+      (0, import_internal46.insert_dev)(target, t15, anchor);
       (0, import_internal46.mount_component)(codeexample, target, anchor);
-      (0, import_internal46.insert_dev)(target, t3, anchor);
+      (0, import_internal46.insert_dev)(target, t16, anchor);
       (0, import_internal46.mount_component)(api, target, anchor);
       current = true;
     },
@@ -35425,13 +37037,17 @@ function create_fragment45(ctx) {
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal46.transition_in)(inputmath.$$.fragment, local);
+      (0, import_internal46.transition_in)(inputmath0.$$.fragment, local);
+      (0, import_internal46.transition_in)(inputmath1.$$.fragment, local);
+      (0, import_internal46.transition_in)(inputmath2.$$.fragment, local);
       (0, import_internal46.transition_in)(codeexample.$$.fragment, local);
       (0, import_internal46.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal46.transition_out)(inputmath.$$.fragment, local);
+      (0, import_internal46.transition_out)(inputmath0.$$.fragment, local);
+      (0, import_internal46.transition_out)(inputmath1.$$.fragment, local);
+      (0, import_internal46.transition_out)(inputmath2.$$.fragment, local);
       (0, import_internal46.transition_out)(codeexample.$$.fragment, local);
       (0, import_internal46.transition_out)(api.$$.fragment, local);
       current = false;
@@ -35441,12 +37057,38 @@ function create_fragment45(ctx) {
         (0, import_internal46.detach_dev)(h2);
       if (detaching)
         (0, import_internal46.detach_dev)(t1);
-      (0, import_internal46.destroy_component)(inputmath, detaching);
       if (detaching)
-        (0, import_internal46.detach_dev)(t2);
+        (0, import_internal46.detach_dev)(p);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t5);
+      if (detaching)
+        (0, import_internal46.detach_dev)(hr);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t6);
+      if (detaching)
+        (0, import_internal46.detach_dev)(h30);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t8);
+      (0, import_internal46.destroy_component)(inputmath0, detaching);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t9);
+      if (detaching)
+        (0, import_internal46.detach_dev)(h31);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t11);
+      (0, import_internal46.destroy_component)(inputmath1, detaching);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t12);
+      if (detaching)
+        (0, import_internal46.detach_dev)(h32);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t14);
+      (0, import_internal46.destroy_component)(inputmath2, detaching);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t15);
       (0, import_internal46.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal46.detach_dev)(t3);
+        (0, import_internal46.detach_dev)(t16);
       (0, import_internal46.destroy_component)(api, detaching);
     }
   };
@@ -35459,19 +37101,38 @@ function create_fragment45(ctx) {
   });
   return block;
 }
-function instance45($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal46.validate_slots)("InputMath", slots, []);
+function instance45($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal46.validate_slots)("InputMath", slots2, []);
   const apiProps = [
+    {
+      name: "class",
+      type: "string",
+      description: "Additional css class name to be added to the component."
+    },
+    {
+      name: "disabled",
+      description: "Make the input disabled."
+    },
     {
       name: "id",
       type: "string",
       description: "Assign ID to the underlying input."
     },
     {
-      name: "title",
+      name: "info",
       type: "string",
-      description: "Assign title to the underlying input."
+      description: "Show info message above the input."
+    },
+    {
+      name: "error",
+      type: "string",
+      description: "Error message to show above the input."
+    },
+    {
+      name: "label",
+      type: "string",
+      description: "Label for the input."
     },
     {
       name: "name",
@@ -35488,13 +37149,9 @@ function instance45($$self, $$props, $$invalidate) {
       description: "Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled."
     },
     {
-      name: "disabled",
-      description: "Make the input disabled."
-    },
-    {
-      name: "class",
+      name: "title",
       type: "string",
-      description: "Additional css class name to be added to the component."
+      description: "Assign title to the underlying input."
     },
     {
       name: "value",
@@ -35523,11 +37180,11 @@ function onChange (e) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<InputMath> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     InputMath: InputMath_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -35556,26 +37213,82 @@ var file44 = "docs-src/components/input-number/InputNumber.svelte";
 function create_fragment46(ctx) {
   let h2;
   let t1;
-  let h30;
-  let t3;
-  let input;
-  let t4;
-  let h31;
-  let t6;
   let p;
+  let t3;
+  let h30;
+  let t5;
+  let inputnumber0;
+  let t6;
+  let h31;
   let t8;
-  let inputnumber;
+  let inputnumber1;
+  let updating_value;
   let t9;
+  let h32;
+  let t11;
+  let inputnumber2;
+  let t12;
+  let h33;
+  let t14;
+  let inputnumber3;
+  let t15;
   let codeexample;
+  let t16;
+  let api;
   let current;
-  inputnumber = new InputNumber_default({
+  inputnumber0 = new InputNumber_default({
     props: { label: "Enter amount" },
+    $$inline: true
+  });
+  function inputnumber1_value_binding(value2) {
+    ctx[5](value2);
+  }
+  let inputnumber1_props = {
+    label: "Enter amount",
+    error: (
+      /*error*/
+      ctx[0]
+    )
+  };
+  if (
+    /*value*/
+    ctx[1] !== void 0
+  ) {
+    inputnumber1_props.value = /*value*/
+    ctx[1];
+  }
+  inputnumber1 = new InputNumber_default({
+    props: inputnumber1_props,
+    $$inline: true
+  });
+  import_internal47.binding_callbacks.push(() => (0, import_internal47.bind)(inputnumber1, "value", inputnumber1_value_binding));
+  inputnumber1.$on(
+    "input",
+    /*validator*/
+    ctx[4]
+  );
+  inputnumber2 = new InputNumber_default({
+    props: {
+      label: "Enter amount",
+      info: "Additional information."
+    },
+    $$inline: true
+  });
+  inputnumber3 = new InputNumber_default({
+    props: { label: "Enter amount", separator: "," },
     $$inline: true
   });
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
-      ctx[0]
+      ctx[3]
+    ) },
+    $$inline: true
+  });
+  api = new ApiTable_default({
+    props: { props: (
+      /*apiProps*/
+      ctx[2]
     ) },
     $$inline: true
   });
@@ -35584,26 +37297,38 @@ function create_fragment46(ctx) {
       h2 = (0, import_internal47.element)("h2");
       h2.textContent = "Input Number";
       t1 = (0, import_internal47.space)();
-      h30 = (0, import_internal47.element)("h3");
-      h30.textContent = "Native input";
-      t3 = (0, import_internal47.space)();
-      input = (0, import_internal47.element)("input");
-      t4 = (0, import_internal47.space)();
-      h31 = (0, import_internal47.element)("h3");
-      h31.textContent = "Better InputNumber";
-      t6 = (0, import_internal47.space)();
       p = (0, import_internal47.element)("p");
-      p.textContent = "Only allows numbers, a single dot (for decimals) and the minus sign (which is only allowed as a first character)";
+      p.textContent = "Only allows numbers, a single dot (for decimals) and the minus sign at the beginning.";
+      t3 = (0, import_internal47.space)();
+      h30 = (0, import_internal47.element)("h3");
+      h30.textContent = "Normal";
+      t5 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(inputnumber0.$$.fragment);
+      t6 = (0, import_internal47.space)();
+      h31 = (0, import_internal47.element)("h3");
+      h31.textContent = "With validation error";
       t8 = (0, import_internal47.space)();
-      (0, import_internal47.create_component)(inputnumber.$$.fragment);
+      (0, import_internal47.create_component)(inputnumber1.$$.fragment);
       t9 = (0, import_internal47.space)();
+      h32 = (0, import_internal47.element)("h3");
+      h32.textContent = "With info box";
+      t11 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(inputnumber2.$$.fragment);
+      t12 = (0, import_internal47.space)();
+      h33 = (0, import_internal47.element)("h3");
+      h33.textContent = "With comma as the decimal separator";
+      t14 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(inputnumber3.$$.fragment);
+      t15 = (0, import_internal47.space)();
       (0, import_internal47.create_component)(codeexample.$$.fragment);
+      t16 = (0, import_internal47.space)();
+      (0, import_internal47.create_component)(api.$$.fragment);
       (0, import_internal47.add_location)(h2, file44, 0, 0, 0);
-      (0, import_internal47.add_location)(h30, file44, 3, 0, 24);
-      (0, import_internal47.attr_dev)(input, "type", "number");
-      (0, import_internal47.add_location)(input, file44, 4, 0, 46);
-      (0, import_internal47.add_location)(h31, file44, 6, 0, 71);
-      (0, import_internal47.add_location)(p, file44, 7, 0, 99);
+      (0, import_internal47.add_location)(p, file44, 1, 0, 22);
+      (0, import_internal47.add_location)(h30, file44, 4, 0, 117);
+      (0, import_internal47.add_location)(h31, file44, 7, 0, 171);
+      (0, import_internal47.add_location)(h32, file44, 10, 0, 292);
+      (0, import_internal47.add_location)(h33, file44, 13, 0, 384);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35611,30 +37336,62 @@ function create_fragment46(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal47.insert_dev)(target, h2, anchor);
       (0, import_internal47.insert_dev)(target, t1, anchor);
-      (0, import_internal47.insert_dev)(target, h30, anchor);
-      (0, import_internal47.insert_dev)(target, t3, anchor);
-      (0, import_internal47.insert_dev)(target, input, anchor);
-      (0, import_internal47.insert_dev)(target, t4, anchor);
-      (0, import_internal47.insert_dev)(target, h31, anchor);
-      (0, import_internal47.insert_dev)(target, t6, anchor);
       (0, import_internal47.insert_dev)(target, p, anchor);
+      (0, import_internal47.insert_dev)(target, t3, anchor);
+      (0, import_internal47.insert_dev)(target, h30, anchor);
+      (0, import_internal47.insert_dev)(target, t5, anchor);
+      (0, import_internal47.mount_component)(inputnumber0, target, anchor);
+      (0, import_internal47.insert_dev)(target, t6, anchor);
+      (0, import_internal47.insert_dev)(target, h31, anchor);
       (0, import_internal47.insert_dev)(target, t8, anchor);
-      (0, import_internal47.mount_component)(inputnumber, target, anchor);
+      (0, import_internal47.mount_component)(inputnumber1, target, anchor);
       (0, import_internal47.insert_dev)(target, t9, anchor);
+      (0, import_internal47.insert_dev)(target, h32, anchor);
+      (0, import_internal47.insert_dev)(target, t11, anchor);
+      (0, import_internal47.mount_component)(inputnumber2, target, anchor);
+      (0, import_internal47.insert_dev)(target, t12, anchor);
+      (0, import_internal47.insert_dev)(target, h33, anchor);
+      (0, import_internal47.insert_dev)(target, t14, anchor);
+      (0, import_internal47.mount_component)(inputnumber3, target, anchor);
+      (0, import_internal47.insert_dev)(target, t15, anchor);
       (0, import_internal47.mount_component)(codeexample, target, anchor);
+      (0, import_internal47.insert_dev)(target, t16, anchor);
+      (0, import_internal47.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal47.noop,
+    p: function update(ctx2, [dirty]) {
+      const inputnumber1_changes = {};
+      if (dirty & /*error*/
+      1)
+        inputnumber1_changes.error = /*error*/
+        ctx2[0];
+      if (!updating_value && dirty & /*value*/
+      2) {
+        updating_value = true;
+        inputnumber1_changes.value = /*value*/
+        ctx2[1];
+        (0, import_internal47.add_flush_callback)(() => updating_value = false);
+      }
+      inputnumber1.$set(inputnumber1_changes);
+    },
     i: function intro(local) {
       if (current)
         return;
-      (0, import_internal47.transition_in)(inputnumber.$$.fragment, local);
+      (0, import_internal47.transition_in)(inputnumber0.$$.fragment, local);
+      (0, import_internal47.transition_in)(inputnumber1.$$.fragment, local);
+      (0, import_internal47.transition_in)(inputnumber2.$$.fragment, local);
+      (0, import_internal47.transition_in)(inputnumber3.$$.fragment, local);
       (0, import_internal47.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal47.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
-      (0, import_internal47.transition_out)(inputnumber.$$.fragment, local);
+      (0, import_internal47.transition_out)(inputnumber0.$$.fragment, local);
+      (0, import_internal47.transition_out)(inputnumber1.$$.fragment, local);
+      (0, import_internal47.transition_out)(inputnumber2.$$.fragment, local);
+      (0, import_internal47.transition_out)(inputnumber3.$$.fragment, local);
       (0, import_internal47.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal47.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
@@ -35643,25 +37400,41 @@ function create_fragment46(ctx) {
       if (detaching)
         (0, import_internal47.detach_dev)(t1);
       if (detaching)
-        (0, import_internal47.detach_dev)(h30);
+        (0, import_internal47.detach_dev)(p);
       if (detaching)
         (0, import_internal47.detach_dev)(t3);
       if (detaching)
-        (0, import_internal47.detach_dev)(input);
+        (0, import_internal47.detach_dev)(h30);
       if (detaching)
-        (0, import_internal47.detach_dev)(t4);
-      if (detaching)
-        (0, import_internal47.detach_dev)(h31);
+        (0, import_internal47.detach_dev)(t5);
+      (0, import_internal47.destroy_component)(inputnumber0, detaching);
       if (detaching)
         (0, import_internal47.detach_dev)(t6);
       if (detaching)
-        (0, import_internal47.detach_dev)(p);
+        (0, import_internal47.detach_dev)(h31);
       if (detaching)
         (0, import_internal47.detach_dev)(t8);
-      (0, import_internal47.destroy_component)(inputnumber, detaching);
+      (0, import_internal47.destroy_component)(inputnumber1, detaching);
       if (detaching)
         (0, import_internal47.detach_dev)(t9);
+      if (detaching)
+        (0, import_internal47.detach_dev)(h32);
+      if (detaching)
+        (0, import_internal47.detach_dev)(t11);
+      (0, import_internal47.destroy_component)(inputnumber2, detaching);
+      if (detaching)
+        (0, import_internal47.detach_dev)(t12);
+      if (detaching)
+        (0, import_internal47.detach_dev)(h33);
+      if (detaching)
+        (0, import_internal47.detach_dev)(t14);
+      (0, import_internal47.destroy_component)(inputnumber3, detaching);
+      if (detaching)
+        (0, import_internal47.detach_dev)(t15);
       (0, import_internal47.destroy_component)(codeexample, detaching);
+      if (detaching)
+        (0, import_internal47.detach_dev)(t16);
+      (0, import_internal47.destroy_component)(api, detaching);
     }
   };
   (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
@@ -35673,19 +37446,118 @@ function create_fragment46(ctx) {
   });
   return block;
 }
-function instance46($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal47.validate_slots)("InputNumber", slots, []);
+function instance46($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal47.validate_slots)("InputNumber", slots2, []);
+  let error2 = "Number must be <100";
+  let value2 = 123;
+  const apiProps = [
+    {
+      name: "class",
+      type: "string",
+      description: "Additional css class name to be added to the component."
+    },
+    {
+      name: "disabled",
+      description: "Make the input disabled."
+    },
+    {
+      name: "id",
+      type: "string",
+      description: "Assign ID to the underlying input."
+    },
+    {
+      name: "info",
+      type: "string",
+      description: "Show info message above the input."
+    },
+    {
+      name: "error",
+      type: "string",
+      description: "Error message to show above the input."
+    },
+    {
+      name: "label",
+      type: "string",
+      description: "Label for the input."
+    },
+    {
+      name: "name",
+      type: "string",
+      description: "Assign title to the underlying input."
+    },
+    {
+      name: "placeholder",
+      type: "string",
+      description: "Assign placeholder to the underlying input."
+    },
+    {
+      name: "required",
+      description: "Mark the input as <i>aria-required</i>. The actual validation must be done in the consumer."
+    },
+    {
+      name: "separator",
+      type: "string",
+      default: ".",
+      description: "Custom decimal separator."
+    },
+    {
+      name: "title",
+      type: "string",
+      description: "Assign title to the underlying input."
+    },
+    {
+      name: "value",
+      type: ["string", "number"],
+      description: "Initial value of the input."
+    },
+    {
+      name: "on:change",
+      type: "function",
+      description: "Triggered after the value changes and the focus leaves the input."
+    },
+    {
+      name: "on:input",
+      type: "function",
+      description: "Triggered as soon as the input value changes."
+    }
+  ];
   const exampleHtml = `
 <InputNumber label="Enter amount"/>
 `;
+  function validator(e) {
+    const num2 = parseFloat("" + e.target.value) || 0;
+    $$invalidate2(0, error2 = num2 > 100 ? "Number must be <100" : "");
+  }
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<InputNumber> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({ InputNumber: InputNumber_default, CodeExample: CodeExample_default, exampleHtml });
-  return [exampleHtml];
+  function inputnumber1_value_binding(value$1) {
+    value2 = value$1;
+    $$invalidate2(1, value2);
+  }
+  $$self2.$capture_state = () => ({
+    InputNumber: InputNumber_default,
+    CodeExample: CodeExample_default,
+    API: ApiTable_default,
+    error: error2,
+    value: value2,
+    apiProps,
+    exampleHtml,
+    validator
+  });
+  $$self2.$inject_state = ($$props3) => {
+    if ("error" in $$props3)
+      $$invalidate2(0, error2 = $$props3.error);
+    if ("value" in $$props3)
+      $$invalidate2(1, value2 = $$props3.value);
+  };
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
+  }
+  return [error2, value2, apiProps, exampleHtml, validator, inputnumber1_value_binding];
 }
 var InputNumber_1 = class extends import_internal47.SvelteComponentDev {
   constructor(options) {
@@ -35707,31 +37579,55 @@ var file45 = "docs-src/components/input-password/InputPassword.svelte";
 function create_fragment47(ctx) {
   let h2;
   let t1;
-  let h30;
+  let p0;
   let t3;
-  let inputpassword0;
-  let updating_value;
-  let br;
+  let p1;
   let t4;
-  let t5;
-  let t6;
-  let h31;
-  let t8;
-  let p;
-  let t9;
   let a;
+  let t6;
+  let em0;
+  let t8;
+  let br0;
+  let t9;
+  let em1;
   let t11;
-  let em;
+  let em2;
   let t13;
   let t14;
-  let inputpassword1;
+  let hr;
   let t15;
+  let h30;
+  let t17;
+  let inputpassword0;
+  let updating_value;
+  let br1;
+  let t18;
+  let p2;
+  let t19;
+  let t20;
+  let t21;
+  let h31;
+  let t23;
+  let inputpassword1;
+  let t24;
+  let h32;
+  let t26;
+  let inputpassword2;
+  let t27;
+  let h33;
+  let t29;
+  let inputpassword3;
+  let t30;
+  let h34;
+  let t32;
+  let inputpassword4;
+  let t33;
   let codeexample;
-  let t16;
+  let t34;
   let api;
   let current;
-  function inputpassword0_value_binding(value) {
-    ctx[3](value);
+  function inputpassword0_value_binding(value2) {
+    ctx[3](value2);
   }
   let inputpassword0_props = {
     label: "Current password",
@@ -35751,7 +37647,28 @@ function create_fragment47(ctx) {
   });
   import_internal48.binding_callbacks.push(() => (0, import_internal48.bind)(inputpassword0, "value", inputpassword0_value_binding));
   inputpassword1 = new InputPassword_default({
+    props: { strength: true },
+    $$inline: true
+  });
+  inputpassword2 = new InputPassword_default({
     props: { strength: true, label: "New password" },
+    $$inline: true
+  });
+  inputpassword3 = new InputPassword_default({
+    props: {
+      strength: true,
+      label: "New password",
+      info: "Password rules"
+    },
+    $$inline: true
+  });
+  inputpassword4 = new InputPassword_default({
+    props: {
+      strength: true,
+      label: "New password",
+      info: "Password rules",
+      error: "Your password is weak!"
+    },
     $$inline: true
   });
   codeexample = new CodeExample_default({
@@ -35773,42 +37690,81 @@ function create_fragment47(ctx) {
       h2 = (0, import_internal48.element)("h2");
       h2.textContent = "Input Password";
       t1 = (0, import_internal48.space)();
+      p0 = (0, import_internal48.element)("p");
+      p0.textContent = "Enhanced input password field with password strength indicator.";
+      t3 = (0, import_internal48.space)();
+      p1 = (0, import_internal48.element)("p");
+      t4 = (0, import_internal48.text)("To be able to use the password strength indicator, ");
+      a = (0, import_internal48.element)("a");
+      a.textContent = "zxcvbn";
+      t6 = (0, import_internal48.text)(" lib must be available on the global scope (");
+      em0 = (0, import_internal48.element)("em");
+      em0.textContent = "window.zxcvbn";
+      t8 = (0, import_internal48.text)(").");
+      br0 = (0, import_internal48.element)("br");
+      t9 = (0, import_internal48.text)("\n	This script file is available in this npm package ");
+      em1 = (0, import_internal48.element)("em");
+      em1.textContent = "node_modules/@perfectthings/ui/docs/zxcvbn.js";
+      t11 = (0, import_internal48.text)(", from where it can be copied and loaded e.g. in a ");
+      em2 = (0, import_internal48.element)("em");
+      em2.textContent = "<script>";
+      t13 = (0, import_internal48.text)(" tag.");
+      t14 = (0, import_internal48.space)();
+      hr = (0, import_internal48.element)("hr");
+      t15 = (0, import_internal48.space)();
       h30 = (0, import_internal48.element)("h3");
       h30.textContent = "Default";
-      t3 = (0, import_internal48.space)();
+      t17 = (0, import_internal48.space)();
       (0, import_internal48.create_component)(inputpassword0.$$.fragment);
-      br = (0, import_internal48.element)("br");
-      t4 = (0, import_internal48.text)("\nYour secret password is: ");
-      t5 = (0, import_internal48.text)(
+      br1 = (0, import_internal48.element)("br");
+      t18 = (0, import_internal48.space)();
+      p2 = (0, import_internal48.element)("p");
+      t19 = (0, import_internal48.text)("Your secret password is: ");
+      t20 = (0, import_internal48.text)(
         /*val*/
         ctx[0]
       );
-      t6 = (0, import_internal48.space)();
+      t21 = (0, import_internal48.space)();
       h31 = (0, import_internal48.element)("h3");
       h31.textContent = "With password strength indicator";
-      t8 = (0, import_internal48.space)();
-      p = (0, import_internal48.element)("p");
-      t9 = (0, import_internal48.text)("* ");
-      a = (0, import_internal48.element)("a");
-      a.textContent = "zxcvbn";
-      t11 = (0, import_internal48.text)(" lib must be available and loaded via a ");
-      em = (0, import_internal48.element)("em");
-      em.textContent = "<script>";
-      t13 = (0, import_internal48.text)(" tag.");
-      t14 = (0, import_internal48.space)();
+      t23 = (0, import_internal48.space)();
       (0, import_internal48.create_component)(inputpassword1.$$.fragment);
-      t15 = (0, import_internal48.space)();
+      t24 = (0, import_internal48.space)();
+      h32 = (0, import_internal48.element)("h3");
+      h32.textContent = "With password strength indicator and label";
+      t26 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(inputpassword2.$$.fragment);
+      t27 = (0, import_internal48.space)();
+      h33 = (0, import_internal48.element)("h3");
+      h33.textContent = "With password strength indicator, label, and info box";
+      t29 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(inputpassword3.$$.fragment);
+      t30 = (0, import_internal48.space)();
+      h34 = (0, import_internal48.element)("h3");
+      h34.textContent = "With password strength indicator, label, info box, and error";
+      t32 = (0, import_internal48.space)();
+      (0, import_internal48.create_component)(inputpassword4.$$.fragment);
+      t33 = (0, import_internal48.space)();
       (0, import_internal48.create_component)(codeexample.$$.fragment);
-      t16 = (0, import_internal48.space)();
+      t34 = (0, import_internal48.space)();
       (0, import_internal48.create_component)(api.$$.fragment);
       (0, import_internal48.add_location)(h2, file45, 0, 0, 0);
-      (0, import_internal48.add_location)(h30, file45, 2, 0, 25);
-      (0, import_internal48.add_location)(br, file45, 3, 101, 143);
-      (0, import_internal48.add_location)(h31, file45, 6, 0, 180);
+      (0, import_internal48.add_location)(p0, file45, 1, 0, 24);
       (0, import_internal48.attr_dev)(a, "href", "https://github.com/dropbox/zxcvbn");
-      (0, import_internal48.add_location)(a, file45, 7, 5, 227);
-      (0, import_internal48.add_location)(em, file45, 7, 99, 321);
-      (0, import_internal48.add_location)(p, file45, 7, 0, 222);
+      (0, import_internal48.add_location)(a, file45, 2, 54, 149);
+      (0, import_internal48.add_location)(em0, file45, 2, 152, 247);
+      (0, import_internal48.add_location)(br0, file45, 2, 176, 271);
+      (0, import_internal48.add_location)(em1, file45, 3, 51, 327);
+      (0, import_internal48.add_location)(em2, file45, 3, 156, 432);
+      (0, import_internal48.add_location)(p1, file45, 2, 0, 95);
+      (0, import_internal48.add_location)(hr, file45, 6, 0, 467);
+      (0, import_internal48.add_location)(h30, file45, 8, 0, 473);
+      (0, import_internal48.add_location)(br1, file45, 9, 101, 591);
+      (0, import_internal48.add_location)(p2, file45, 10, 0, 596);
+      (0, import_internal48.add_location)(h31, file45, 12, 0, 635);
+      (0, import_internal48.add_location)(h32, file45, 17, 0, 707);
+      (0, import_internal48.add_location)(h33, file45, 20, 0, 807);
+      (0, import_internal48.add_location)(h34, file45, 23, 0, 940);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35816,26 +37772,50 @@ function create_fragment47(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal48.insert_dev)(target, h2, anchor);
       (0, import_internal48.insert_dev)(target, t1, anchor);
-      (0, import_internal48.insert_dev)(target, h30, anchor);
+      (0, import_internal48.insert_dev)(target, p0, anchor);
       (0, import_internal48.insert_dev)(target, t3, anchor);
-      (0, import_internal48.mount_component)(inputpassword0, target, anchor);
-      (0, import_internal48.insert_dev)(target, br, anchor);
-      (0, import_internal48.insert_dev)(target, t4, anchor);
-      (0, import_internal48.insert_dev)(target, t5, anchor);
-      (0, import_internal48.insert_dev)(target, t6, anchor);
-      (0, import_internal48.insert_dev)(target, h31, anchor);
-      (0, import_internal48.insert_dev)(target, t8, anchor);
-      (0, import_internal48.insert_dev)(target, p, anchor);
-      (0, import_internal48.append_dev)(p, t9);
-      (0, import_internal48.append_dev)(p, a);
-      (0, import_internal48.append_dev)(p, t11);
-      (0, import_internal48.append_dev)(p, em);
-      (0, import_internal48.append_dev)(p, t13);
+      (0, import_internal48.insert_dev)(target, p1, anchor);
+      (0, import_internal48.append_dev)(p1, t4);
+      (0, import_internal48.append_dev)(p1, a);
+      (0, import_internal48.append_dev)(p1, t6);
+      (0, import_internal48.append_dev)(p1, em0);
+      (0, import_internal48.append_dev)(p1, t8);
+      (0, import_internal48.append_dev)(p1, br0);
+      (0, import_internal48.append_dev)(p1, t9);
+      (0, import_internal48.append_dev)(p1, em1);
+      (0, import_internal48.append_dev)(p1, t11);
+      (0, import_internal48.append_dev)(p1, em2);
+      (0, import_internal48.append_dev)(p1, t13);
       (0, import_internal48.insert_dev)(target, t14, anchor);
-      (0, import_internal48.mount_component)(inputpassword1, target, anchor);
+      (0, import_internal48.insert_dev)(target, hr, anchor);
       (0, import_internal48.insert_dev)(target, t15, anchor);
+      (0, import_internal48.insert_dev)(target, h30, anchor);
+      (0, import_internal48.insert_dev)(target, t17, anchor);
+      (0, import_internal48.mount_component)(inputpassword0, target, anchor);
+      (0, import_internal48.insert_dev)(target, br1, anchor);
+      (0, import_internal48.insert_dev)(target, t18, anchor);
+      (0, import_internal48.insert_dev)(target, p2, anchor);
+      (0, import_internal48.append_dev)(p2, t19);
+      (0, import_internal48.append_dev)(p2, t20);
+      (0, import_internal48.insert_dev)(target, t21, anchor);
+      (0, import_internal48.insert_dev)(target, h31, anchor);
+      (0, import_internal48.insert_dev)(target, t23, anchor);
+      (0, import_internal48.mount_component)(inputpassword1, target, anchor);
+      (0, import_internal48.insert_dev)(target, t24, anchor);
+      (0, import_internal48.insert_dev)(target, h32, anchor);
+      (0, import_internal48.insert_dev)(target, t26, anchor);
+      (0, import_internal48.mount_component)(inputpassword2, target, anchor);
+      (0, import_internal48.insert_dev)(target, t27, anchor);
+      (0, import_internal48.insert_dev)(target, h33, anchor);
+      (0, import_internal48.insert_dev)(target, t29, anchor);
+      (0, import_internal48.mount_component)(inputpassword3, target, anchor);
+      (0, import_internal48.insert_dev)(target, t30, anchor);
+      (0, import_internal48.insert_dev)(target, h34, anchor);
+      (0, import_internal48.insert_dev)(target, t32, anchor);
+      (0, import_internal48.mount_component)(inputpassword4, target, anchor);
+      (0, import_internal48.insert_dev)(target, t33, anchor);
       (0, import_internal48.mount_component)(codeexample, target, anchor);
-      (0, import_internal48.insert_dev)(target, t16, anchor);
+      (0, import_internal48.insert_dev)(target, t34, anchor);
       (0, import_internal48.mount_component)(api, target, anchor);
       current = true;
     },
@@ -35852,7 +37832,7 @@ function create_fragment47(ctx) {
       if (!current || dirty & /*val*/
       1)
         (0, import_internal48.set_data_dev)(
-          t5,
+          t20,
           /*val*/
           ctx2[0]
         );
@@ -35862,6 +37842,9 @@ function create_fragment47(ctx) {
         return;
       (0, import_internal48.transition_in)(inputpassword0.$$.fragment, local);
       (0, import_internal48.transition_in)(inputpassword1.$$.fragment, local);
+      (0, import_internal48.transition_in)(inputpassword2.$$.fragment, local);
+      (0, import_internal48.transition_in)(inputpassword3.$$.fragment, local);
+      (0, import_internal48.transition_in)(inputpassword4.$$.fragment, local);
       (0, import_internal48.transition_in)(codeexample.$$.fragment, local);
       (0, import_internal48.transition_in)(api.$$.fragment, local);
       current = true;
@@ -35869,6 +37852,9 @@ function create_fragment47(ctx) {
     o: function outro(local) {
       (0, import_internal48.transition_out)(inputpassword0.$$.fragment, local);
       (0, import_internal48.transition_out)(inputpassword1.$$.fragment, local);
+      (0, import_internal48.transition_out)(inputpassword2.$$.fragment, local);
+      (0, import_internal48.transition_out)(inputpassword3.$$.fragment, local);
+      (0, import_internal48.transition_out)(inputpassword4.$$.fragment, local);
       (0, import_internal48.transition_out)(codeexample.$$.fragment, local);
       (0, import_internal48.transition_out)(api.$$.fragment, local);
       current = false;
@@ -35879,32 +37865,61 @@ function create_fragment47(ctx) {
       if (detaching)
         (0, import_internal48.detach_dev)(t1);
       if (detaching)
-        (0, import_internal48.detach_dev)(h30);
+        (0, import_internal48.detach_dev)(p0);
       if (detaching)
         (0, import_internal48.detach_dev)(t3);
+      if (detaching)
+        (0, import_internal48.detach_dev)(p1);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t14);
+      if (detaching)
+        (0, import_internal48.detach_dev)(hr);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t15);
+      if (detaching)
+        (0, import_internal48.detach_dev)(h30);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t17);
       (0, import_internal48.destroy_component)(inputpassword0, detaching);
       if (detaching)
-        (0, import_internal48.detach_dev)(br);
+        (0, import_internal48.detach_dev)(br1);
       if (detaching)
-        (0, import_internal48.detach_dev)(t4);
+        (0, import_internal48.detach_dev)(t18);
       if (detaching)
-        (0, import_internal48.detach_dev)(t5);
+        (0, import_internal48.detach_dev)(p2);
       if (detaching)
-        (0, import_internal48.detach_dev)(t6);
+        (0, import_internal48.detach_dev)(t21);
       if (detaching)
         (0, import_internal48.detach_dev)(h31);
       if (detaching)
-        (0, import_internal48.detach_dev)(t8);
-      if (detaching)
-        (0, import_internal48.detach_dev)(p);
-      if (detaching)
-        (0, import_internal48.detach_dev)(t14);
+        (0, import_internal48.detach_dev)(t23);
       (0, import_internal48.destroy_component)(inputpassword1, detaching);
       if (detaching)
-        (0, import_internal48.detach_dev)(t15);
+        (0, import_internal48.detach_dev)(t24);
+      if (detaching)
+        (0, import_internal48.detach_dev)(h32);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t26);
+      (0, import_internal48.destroy_component)(inputpassword2, detaching);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t27);
+      if (detaching)
+        (0, import_internal48.detach_dev)(h33);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t29);
+      (0, import_internal48.destroy_component)(inputpassword3, detaching);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t30);
+      if (detaching)
+        (0, import_internal48.detach_dev)(h34);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t32);
+      (0, import_internal48.destroy_component)(inputpassword4, detaching);
+      if (detaching)
+        (0, import_internal48.detach_dev)(t33);
       (0, import_internal48.destroy_component)(codeexample, detaching);
       if (detaching)
-        (0, import_internal48.detach_dev)(t16);
+        (0, import_internal48.detach_dev)(t34);
       (0, import_internal48.destroy_component)(api, detaching);
     }
   };
@@ -35917,9 +37932,9 @@ function create_fragment47(ctx) {
   });
   return block;
 }
-function instance47($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal48.validate_slots)("InputPassword", slots, []);
+function instance47($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal48.validate_slots)("InputPassword", slots2, []);
   let val;
   const apiProps = [
     {
@@ -35935,6 +37950,16 @@ function instance47($$self, $$props, $$invalidate) {
       name: "id",
       type: "string",
       description: "Assign ID to the underlying input."
+    },
+    {
+      name: "info",
+      type: "string",
+      description: "Show info message above the input."
+    },
+    {
+      name: "error",
+      type: "string",
+      description: "Error message to show above the input."
     },
     {
       name: "label",
@@ -35990,15 +38015,15 @@ function onChange (e) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<InputPassword> was created with unknown prop '${key}'`);
   });
-  function inputpassword0_value_binding(value) {
-    val = value;
-    $$invalidate(0, val);
+  function inputpassword0_value_binding(value2) {
+    val = value2;
+    $$invalidate2(0, val);
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     InputPassword: InputPassword_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -36006,12 +38031,12 @@ function onChange (e) {
     apiProps,
     exampleHtml
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("val" in $$props2)
-      $$invalidate(0, val = $$props2.val);
+  $$self2.$inject_state = ($$props3) => {
+    if ("val" in $$props3)
+      $$invalidate2(0, val = $$props3.val);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [val, apiProps, exampleHtml, inputpassword0_value_binding];
 }
@@ -36068,8 +38093,8 @@ function create_fragment48(ctx) {
   let t20;
   let api;
   let current;
-  function inputtext0_value_binding(value) {
-    ctx[7](value);
+  function inputtext0_value_binding(value2) {
+    ctx[7](value2);
   }
   let inputtext0_props = {};
   if (
@@ -36364,9 +38389,9 @@ function validate(v) {
     return "Invalid email";
   return;
 }
-function instance48($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal49.validate_slots)("InputText", slots, []);
+function instance48($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal49.validate_slots)("InputText", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -36443,25 +38468,25 @@ function onChange (e) {
 `;
   let val = "Hi!";
   let error1 = "", error2 = "";
-  function onchange4(e) {
-    $$invalidate(1, error1 = validate(e.target.value));
+  function onchange5(e) {
+    $$invalidate2(1, error1 = validate(e.target.value));
     console.log(e.target.value);
   }
   function oninput(e) {
-    $$invalidate(2, error2 = validate(e.target.value));
+    $$invalidate2(2, error2 = validate(e.target.value));
     console.log(e.target.value);
   }
   oninput({ target: { value: "-" } });
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_14.warn(`<InputText> was created with unknown prop '${key}'`);
   });
-  function inputtext0_value_binding(value) {
-    val = value;
-    $$invalidate(0, val);
+  function inputtext0_value_binding(value2) {
+    val = value2;
+    $$invalidate2(0, val);
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     InputText: InputText_default,
     CodeExample: CodeExample_default,
     API: ApiTable_default,
@@ -36472,19 +38497,19 @@ function onChange (e) {
     error2,
     email,
     validate,
-    onchange: onchange4,
+    onchange: onchange5,
     oninput
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("val" in $$props2)
-      $$invalidate(0, val = $$props2.val);
-    if ("error1" in $$props2)
-      $$invalidate(1, error1 = $$props2.error1);
-    if ("error2" in $$props2)
-      $$invalidate(2, error2 = $$props2.error2);
+  $$self2.$inject_state = ($$props3) => {
+    if ("val" in $$props3)
+      $$invalidate2(0, val = $$props3.val);
+    if ("error1" in $$props3)
+      $$invalidate2(1, error1 = $$props3.error1);
+    if ("error2" in $$props3)
+      $$invalidate2(2, error2 = $$props3.error2);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     val,
@@ -36492,7 +38517,7 @@ function onChange (e) {
     error2,
     apiProps,
     exampleHtml,
-    onchange4,
+    onchange5,
     oninput,
     inputtext0_value_binding
   ];
@@ -36668,9 +38693,9 @@ function create_fragment49(ctx) {
   });
   return block;
 }
-function instance49($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal50.validate_slots)("Radio", slots, []);
+function instance49($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal50.validate_slots)("Radio", slots2, []);
   const exampleHtml = `
 <input type="radio" name="hello" value="1" on:change="{onChange}" />
 <input type="radio" name="hello" value="2" on:change="{onChange}" />
@@ -36682,11 +38707,11 @@ function onChange (e) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Radio> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({ CodeExample: CodeExample_default, exampleHtml });
+  $$self2.$capture_state = () => ({ CodeExample: CodeExample_default, exampleHtml });
   return [exampleHtml];
 }
 var Radio = class extends import_internal50.SvelteComponentDev {
@@ -36767,8 +38792,8 @@ function create_fragment50(ctx) {
     },
     $$inline: true
   });
-  function select3_value_binding(value) {
-    ctx[5](value);
+  function select3_value_binding(value2) {
+    ctx[5](value2);
   }
   let select3_props = {
     placeholder: "Empty",
@@ -36786,8 +38811,8 @@ function create_fragment50(ctx) {
   }
   select3 = new Select_default({ props: select3_props, $$inline: true });
   import_internal51.binding_callbacks.push(() => (0, import_internal51.bind)(select3, "value", select3_value_binding));
-  function select4_value_binding(value) {
-    ctx[6](value);
+  function select4_value_binding(value2) {
+    ctx[6](value2);
   }
   let select4_props = {
     placeholder: "Please select...",
@@ -37038,9 +39063,9 @@ function create_fragment50(ctx) {
   });
   return block;
 }
-function instance50($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal51.validate_slots)("Select", slots, []);
+function instance50($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal51.validate_slots)("Select", slots2, []);
   let val = "Beta";
   const apiProps = [
     {
@@ -37212,19 +39237,19 @@ function onChange (e) {
   ];
   const stringItems = ["Alpha", "Beta", "Gamma", "Delta"];
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Select> was created with unknown prop '${key}'`);
   });
-  function select3_value_binding(value) {
-    val = value;
-    $$invalidate(0, val);
+  function select3_value_binding(value2) {
+    val = value2;
+    $$invalidate2(0, val);
   }
-  function select4_value_binding(value) {
-    val = value;
-    $$invalidate(0, val);
+  function select4_value_binding(value2) {
+    val = value2;
+    $$invalidate2(0, val);
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Select: Select_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -37234,12 +39259,12 @@ function onChange (e) {
     selectItems,
     stringItems
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("val" in $$props2)
-      $$invalidate(0, val = $$props2.val);
+  $$self2.$inject_state = ($$props3) => {
+    if ("val" in $$props3)
+      $$invalidate2(0, val = $$props3.val);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     val,
@@ -37448,9 +39473,9 @@ function create_fragment51(ctx) {
   });
   return block;
 }
-function instance51($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal52.validate_slots)("Textarea", slots, []);
+function instance51($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal52.validate_slots)("Textarea", slots2, []);
   const apiProps = [
     {
       name: "autogrow",
@@ -37515,11 +39540,11 @@ function onChange (e) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Textarea> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Textarea: Textarea_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -37590,8 +39615,8 @@ function create_fragment52(ctx) {
   let t25;
   let api;
   let current;
-  function toggle0_value_binding(value) {
-    ctx[3](value);
+  function toggle0_value_binding(value2) {
+    ctx[3](value2);
   }
   let toggle0_props = {};
   if (
@@ -37603,7 +39628,7 @@ function create_fragment52(ctx) {
   }
   toggle0 = new Toggle_default({ props: toggle0_props, $$inline: true });
   import_internal53.binding_callbacks.push(() => (0, import_internal53.bind)(toggle0, "value", toggle0_value_binding));
-  toggle0.$on("change", onchange2);
+  toggle0.$on("change", onchange3);
   toggle1 = new Toggle_default({ $$inline: true });
   toggle2 = new Toggle_default({ props: { value: "true" }, $$inline: true });
   toggle3 = new Toggle_default({
@@ -37847,12 +39872,12 @@ function create_fragment52(ctx) {
   });
   return block;
 }
-function onchange2(e) {
+function onchange3(e) {
   console.log("onchange", e.detail);
 }
-function instance52($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal53.validate_slots)("Toggle", slots, []);
+function instance52($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal53.validate_slots)("Toggle", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -37904,29 +39929,29 @@ function onChange (e) {
 `;
   let toggleValue = false;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_15.warn(`<Toggle> was created with unknown prop '${key}'`);
   });
-  function toggle0_value_binding(value) {
-    toggleValue = value;
-    $$invalidate(0, toggleValue);
+  function toggle0_value_binding(value2) {
+    toggleValue = value2;
+    $$invalidate2(0, toggleValue);
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Toggle: Toggle_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
     apiProps,
     exampleHtml,
     toggleValue,
-    onchange: onchange2
+    onchange: onchange3
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("toggleValue" in $$props2)
-      $$invalidate(0, toggleValue = $$props2.toggleValue);
+  $$self2.$inject_state = ($$props3) => {
+    if ("toggleValue" in $$props3)
+      $$invalidate2(0, toggleValue = $$props3.toggleValue);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [toggleValue, apiProps, exampleHtml, toggle0_value_binding];
 }
@@ -38671,9 +40696,9 @@ function create_fragment53(ctx) {
   });
   return block;
 }
-function instance53($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal54.validate_slots)("Dialog", slots, []);
+function instance53($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal54.validate_slots)("Dialog", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -38742,7 +40767,7 @@ function instance53($$self, $$props, $$invalidate) {
 `;
   let dialog1, dialog2, dialog3;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Dialog> was created with unknown prop '${key}'`);
   });
@@ -38753,13 +40778,13 @@ function instance53($$self, $$props, $$invalidate) {
   function dialog0_binding($$value) {
     import_internal54.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialog1 = $$value;
-      $$invalidate(0, dialog1);
+      $$invalidate2(0, dialog1);
     });
   }
   function dialog1_1_binding($$value) {
     import_internal54.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialog2 = $$value;
-      $$invalidate(1, dialog2);
+      $$invalidate2(1, dialog2);
     });
   }
   const click_handler_4 = () => dialog3.close();
@@ -38767,10 +40792,10 @@ function instance53($$self, $$props, $$invalidate) {
   function dialog2_1_binding($$value) {
     import_internal54.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialog3 = $$value;
-      $$invalidate(2, dialog3);
+      $$invalidate2(2, dialog3);
     });
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Button: Button_default,
     Dialog: Dialog_default,
     API: ApiTable_default,
@@ -38782,16 +40807,16 @@ function instance53($$self, $$props, $$invalidate) {
     dialog2,
     dialog3
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("dialog1" in $$props2)
-      $$invalidate(0, dialog1 = $$props2.dialog1);
-    if ("dialog2" in $$props2)
-      $$invalidate(1, dialog2 = $$props2.dialog2);
-    if ("dialog3" in $$props2)
-      $$invalidate(2, dialog3 = $$props2.dialog3);
+  $$self2.$inject_state = ($$props3) => {
+    if ("dialog1" in $$props3)
+      $$invalidate2(0, dialog1 = $$props3.dialog1);
+    if ("dialog2" in $$props3)
+      $$invalidate2(1, dialog2 = $$props3.dialog2);
+    if ("dialog3" in $$props3)
+      $$invalidate2(2, dialog3 = $$props3.dialog3);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     dialog1,
@@ -39178,9 +41203,9 @@ function create_fragment54(ctx) {
   });
   return block;
 }
-function instance54($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal55.validate_slots)("Drawer", slots, []);
+function instance54($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal55.validate_slots)("Drawer", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -39234,7 +41259,7 @@ function instance54($$self, $$props, $$invalidate) {
 `;
   let drawer;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Drawer> was created with unknown prop '${key}'`);
   });
@@ -39243,10 +41268,10 @@ function instance54($$self, $$props, $$invalidate) {
   function drawer_1_binding($$value) {
     import_internal55.binding_callbacks[$$value ? "unshift" : "push"](() => {
       drawer = $$value;
-      $$invalidate(0, drawer);
+      $$invalidate2(0, drawer);
     });
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Button: Button_default,
     Drawer: Drawer_default,
     API: ApiTable_default,
@@ -39256,12 +41281,12 @@ function instance54($$self, $$props, $$invalidate) {
     exampleHtml,
     drawer
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("drawer" in $$props2)
-      $$invalidate(0, drawer = $$props2.drawer);
+  $$self2.$inject_state = ($$props3) => {
+    if ("drawer" in $$props3)
+      $$invalidate2(0, drawer = $$props3.drawer);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     drawer,
@@ -41981,9 +44006,9 @@ function onMenuClick(e) {
   const { target, button } = e.detail;
   console.log(target.dataset, button.dataset);
 }
-function instance55($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal56.validate_slots)("Menu", slots, []);
+function instance55($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal56.validate_slots)("Menu", slots2, []);
   const apiProps = [
     {
       name: "align",
@@ -42133,14 +44158,14 @@ function instance55($$self, $$props, $$invalidate) {
   function menuCloseThings(e) {
     if (e)
       e.preventDefault();
-    const initial = "Close all things";
+    const initial2 = "Close all things";
     const confrm = "Confirm Closing";
-    if (closeThingsText === initial) {
-      $$invalidate(7, closeThingsText = confrm);
-      thingsMenuTimer = setTimeout(() => $$invalidate(7, closeThingsText = initial), 2e3);
+    if (closeThingsText === initial2) {
+      $$invalidate2(7, closeThingsText = confrm);
+      thingsMenuTimer = setTimeout(() => $$invalidate2(7, closeThingsText = initial2), 2e3);
     } else {
       Promise.all([thingsMenu.close(), thingsMenu2.close()]).then(() => {
-        $$invalidate(7, closeThingsText = initial);
+        $$invalidate2(7, closeThingsText = initial2);
         if (thingsMenuTimer)
           clearTimeout(thingsMenuTimer);
         alert("Closed all things!");
@@ -42156,16 +44181,16 @@ function instance55($$self, $$props, $$invalidate) {
   function closeTabs(e) {
     if (e)
       e.preventDefault();
-    const initial = "Close all tabs";
+    const initial2 = "Close all tabs";
     const confrm = "Confirm Closing";
-    if (closeTabsText === initial) {
-      $$invalidate(8, closeTabsText = confrm);
-      tabsMenutimer = setTimeout(() => $$invalidate(8, closeTabsText = initial), 2e3);
+    if (closeTabsText === initial2) {
+      $$invalidate2(8, closeTabsText = confrm);
+      tabsMenutimer = setTimeout(() => $$invalidate2(8, closeTabsText = initial2), 2e3);
     } else
       tabsMenu.close().then(() => alert("Closed all tabs!"));
   }
   function onTabsMenuClose() {
-    $$invalidate(8, closeTabsText = "Close all tabs");
+    $$invalidate2(8, closeTabsText = "Close all tabs");
     if (tabsMenutimer)
       clearTimeout(tabsMenutimer);
   }
@@ -42179,53 +44204,53 @@ function instance55($$self, $$props, $$invalidate) {
     windowsMenu.close().then(() => alert("Windows closed!"));
   }
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_16.warn(`<Menu> was created with unknown prop '${key}'`);
   });
   function menu0_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
       thingsMenu = $$value;
-      $$invalidate(3, thingsMenu);
+      $$invalidate2(3, thingsMenu);
     });
   }
   function menu1_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
       thingsMenu2 = $$value;
-      $$invalidate(4, thingsMenu2);
+      $$invalidate2(4, thingsMenu2);
     });
   }
   function menu2_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
       someMenu1 = $$value;
-      $$invalidate(0, someMenu1);
+      $$invalidate2(0, someMenu1);
     });
   }
   function menu3_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
       someMenu2 = $$value;
-      $$invalidate(1, someMenu2);
+      $$invalidate2(1, someMenu2);
     });
   }
   function menu4_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
       someMenu3 = $$value;
-      $$invalidate(2, someMenu3);
+      $$invalidate2(2, someMenu3);
     });
   }
   function menu5_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
       tabsMenu = $$value;
-      $$invalidate(5, tabsMenu);
+      $$invalidate2(5, tabsMenu);
     });
   }
   function menu6_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
       windowsMenu = $$value;
-      $$invalidate(6, windowsMenu);
+      $$invalidate2(6, windowsMenu);
     });
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Button: Button_default,
     Menu: Menu_default,
     MenuItem: MenuItem_default,
@@ -42258,32 +44283,32 @@ function instance55($$self, $$props, $$invalidate) {
     newPrivateWindow,
     closeWindows
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("someMenu1" in $$props2)
-      $$invalidate(0, someMenu1 = $$props2.someMenu1);
-    if ("someMenu2" in $$props2)
-      $$invalidate(1, someMenu2 = $$props2.someMenu2);
-    if ("someMenu3" in $$props2)
-      $$invalidate(2, someMenu3 = $$props2.someMenu3);
-    if ("thingsMenu" in $$props2)
-      $$invalidate(3, thingsMenu = $$props2.thingsMenu);
-    if ("thingsMenu2" in $$props2)
-      $$invalidate(4, thingsMenu2 = $$props2.thingsMenu2);
-    if ("tabsMenu" in $$props2)
-      $$invalidate(5, tabsMenu = $$props2.tabsMenu);
-    if ("windowsMenu" in $$props2)
-      $$invalidate(6, windowsMenu = $$props2.windowsMenu);
-    if ("closeThingsText" in $$props2)
-      $$invalidate(7, closeThingsText = $$props2.closeThingsText);
-    if ("closeTabsText" in $$props2)
-      $$invalidate(8, closeTabsText = $$props2.closeTabsText);
-    if ("thingsMenuTimer" in $$props2)
-      thingsMenuTimer = $$props2.thingsMenuTimer;
-    if ("tabsMenutimer" in $$props2)
-      tabsMenutimer = $$props2.tabsMenutimer;
+  $$self2.$inject_state = ($$props3) => {
+    if ("someMenu1" in $$props3)
+      $$invalidate2(0, someMenu1 = $$props3.someMenu1);
+    if ("someMenu2" in $$props3)
+      $$invalidate2(1, someMenu2 = $$props3.someMenu2);
+    if ("someMenu3" in $$props3)
+      $$invalidate2(2, someMenu3 = $$props3.someMenu3);
+    if ("thingsMenu" in $$props3)
+      $$invalidate2(3, thingsMenu = $$props3.thingsMenu);
+    if ("thingsMenu2" in $$props3)
+      $$invalidate2(4, thingsMenu2 = $$props3.thingsMenu2);
+    if ("tabsMenu" in $$props3)
+      $$invalidate2(5, tabsMenu = $$props3.tabsMenu);
+    if ("windowsMenu" in $$props3)
+      $$invalidate2(6, windowsMenu = $$props3.windowsMenu);
+    if ("closeThingsText" in $$props3)
+      $$invalidate2(7, closeThingsText = $$props3.closeThingsText);
+    if ("closeTabsText" in $$props3)
+      $$invalidate2(8, closeTabsText = $$props3.closeTabsText);
+    if ("thingsMenuTimer" in $$props3)
+      thingsMenuTimer = $$props3.thingsMenuTimer;
+    if ("tabsMenutimer" in $$props3)
+      tabsMenutimer = $$props3.tabsMenutimer;
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     someMenu1,
@@ -42966,9 +44991,9 @@ var longMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusc
 function onclose(res) {
   alert(`You clicked ${res}`);
 }
-function instance56($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal57.validate_slots)("MessageBox", slots, []);
+function instance56($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal57.validate_slots)("MessageBox", slots2, []);
   function showComplex(e) {
     showMessage({
       message: "Are you sure you want to delete this thing?",
@@ -43046,7 +45071,7 @@ function instance56($$self, $$props, $$invalidate) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_17.warn(`<MessageBox> was created with unknown prop '${key}'`);
   });
@@ -43057,7 +45082,7 @@ function instance56($$self, $$props, $$invalidate) {
   const click_handler_4 = () => showMessage("Info messagebox", MessageType.INFO, "Info title", "Close", onclose);
   const click_handler_5 = () => showMessage("Warning messagebox", MessageType.WARNING);
   const click_handler_6 = () => showMessage("Error messagebox", MessageType.ERROR);
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Button: Button_default,
     MessageBox: MessageBox_default,
     MessageType,
@@ -43423,9 +45448,9 @@ function create_fragment57(ctx) {
   });
   return block;
 }
-function instance57($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal58.validate_slots)("Panel", slots, []);
+function instance57($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal58.validate_slots)("Panel", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -43465,11 +45490,11 @@ function instance57($$self, $$props, $$invalidate) {
 </Panel>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Panel> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Panel: Panel_default,
     Button: Button_default,
     API: ApiTable_default,
@@ -43578,11 +45603,11 @@ function create_fragment58(ctx) {
   let splitter0_props = {};
   splitter0 = new Splitter_default({ props: splitter0_props, $$inline: true });
   ctx[6](splitter0);
-  splitter0.$on("changed", onchange3);
+  splitter0.$on("changed", onchange4);
   let splitter1_1_props = {};
   splitter1_1 = new Splitter_default({ props: splitter1_1_props, $$inline: true });
   ctx[7](splitter1_1);
-  splitter1_1.$on("changed", onchange3);
+  splitter1_1.$on("changed", onchange4);
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -43816,12 +45841,12 @@ function create_fragment58(ctx) {
   });
   return block;
 }
-function onchange3(e) {
+function onchange4(e) {
   console.log(e.detail);
 }
-function instance58($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal59.validate_slots)("Splitter", slots, []);
+function instance58($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal59.validate_slots)("Splitter", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -43888,23 +45913,23 @@ function onchanged (e) {
     splitter2.toggle();
   }
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_18.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function splitter0_binding($$value) {
     import_internal59.binding_callbacks[$$value ? "unshift" : "push"](() => {
       splitter1 = $$value;
-      $$invalidate(0, splitter1);
+      $$invalidate2(0, splitter1);
     });
   }
   function splitter1_1_binding($$value) {
     import_internal59.binding_callbacks[$$value ? "unshift" : "push"](() => {
       splitter2 = $$value;
-      $$invalidate(1, splitter2);
+      $$invalidate2(1, splitter2);
     });
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Splitter: Splitter_default,
     Button: Button_default,
     API: ApiTable_default,
@@ -43914,17 +45939,17 @@ function onchanged (e) {
     exampleHtml,
     splitter1,
     splitter2,
-    onchange: onchange3,
+    onchange: onchange4,
     toggle
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("splitter1" in $$props2)
-      $$invalidate(0, splitter1 = $$props2.splitter1);
-    if ("splitter2" in $$props2)
-      $$invalidate(1, splitter2 = $$props2.splitter2);
+  $$self2.$inject_state = ($$props3) => {
+    if ("splitter1" in $$props3)
+      $$invalidate2(0, splitter1 = $$props3.splitter1);
+    if ("splitter2" in $$props3)
+      $$invalidate2(1, splitter2 = $$props3.splitter2);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     splitter1,
@@ -45747,17 +47772,17 @@ function create_fragment59(ctx) {
   return block;
 }
 function onKey(e) {
-  const { event, selectedItem } = e.detail;
-  if (event.key === "Enter")
+  const { event: event2, selectedItem } = e.detail;
+  if (event2.key === "Enter")
     console.log(selectedItem);
 }
 function onSelect(e) {
   const { selectedItem } = e.detail;
   console.log(e.type, selectedItem);
 }
-function instance59($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal60.validate_slots)("Table", slots, []);
+function instance59($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal60.validate_slots)("Table", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -45858,11 +47883,11 @@ function instance59($$self, $$props, $$invalidate) {
 	</Table>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_19.warn(`<Table> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Table: Table_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -45996,9 +48021,9 @@ function create_fragment60(ctx) {
 function onSelect2(e) {
   console.log(e.detail);
 }
-function instance60($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal61.validate_slots)("Tree", slots, []);
+function instance60($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal61.validate_slots)("Tree", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -46112,11 +48137,11 @@ function onSelect (e) {
     { id: 10, name: "Ten" }
   ];
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_110.warn(`<Tree> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Tree: Tree_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -46443,9 +48468,9 @@ function create_fragment61(ctx) {
   });
   return block;
 }
-function instance61($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal62.validate_slots)("Icon", slots, []);
+function instance61($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal62.validate_slots)("Icon", slots2, []);
   addIcon("customIcon", "<[CUSTOM ICON]>");
   const apiProps = [
     {
@@ -46477,11 +48502,11 @@ function instance61($$self, $$props, $$invalidate) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object_15.keys($$props).forEach((key) => {
+  Object_15.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Icon> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Icon: Icon_default,
     icons,
     addIcon,
@@ -46785,8 +48810,8 @@ function create_fragment62(ctx) {
     },
     $$inline: true
   });
-  function toggle_value_binding(value) {
-    ctx[6](value);
+  function toggle_value_binding(value2) {
+    ctx[6](value2);
   }
   let toggle_props = { id: "button-toggle" };
   if (
@@ -47324,9 +49349,9 @@ function create_fragment62(ctx) {
   });
   return block;
 }
-function instance62($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal63.validate_slots)("NotificationCenter", slots, []);
+function instance62($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal63.validate_slots)("NotificationCenter", slots2, []);
   let hideButton = false;
   const apiProps = [
     {
@@ -47404,18 +49429,18 @@ function cb (id) {
 }
 &lt;/script>
 `;
-  function cb(id) {
-    console.log(id);
-    hideNotification(id);
+  function cb(id2) {
+    console.log(id2);
+    hideNotification(id2);
   }
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_111.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
   });
-  function toggle_value_binding(value) {
-    hideButton = value;
-    $$invalidate(0, hideButton);
+  function toggle_value_binding(value2) {
+    hideButton = value2;
+    $$invalidate2(0, hideButton);
   }
   const click_handler = () => showNotification("Hello");
   const click_handler_1 = () => showNotification("Hello", "success");
@@ -47425,7 +49450,7 @@ function cb (id) {
   const click_handler_5 = () => showNotification("Hello", "success", false);
   const click_handler_6 = () => showNotification("Hello", "warning", false);
   const click_handler_7 = () => showNotification("Hello", "error", false);
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Button: Button_default,
     NotificationCenter: NotificationCenter_default,
     showNotification,
@@ -47440,12 +49465,12 @@ function cb (id) {
     exampleHtml,
     cb
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("hideButton" in $$props2)
-      $$invalidate(0, hideButton = $$props2.hideButton);
+  $$self2.$inject_state = ($$props3) => {
+    if ("hideButton" in $$props3)
+      $$invalidate2(0, hideButton = $$props3.hideButton);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [
     hideButton,
@@ -47851,9 +49876,9 @@ function create_fragment63(ctx) {
   });
   return block;
 }
-function instance63($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal64.validate_slots)("TextFit", slots, []);
+function instance63($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal64.validate_slots)("TextFit", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -47872,15 +49897,15 @@ function instance63($$self, $$props, $$invalidate) {
 `;
   let textFitText = "My Lovely Text";
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<TextFit> was created with unknown prop '${key}'`);
   });
-  function input_input_handler() {
+  function input_input_handler2() {
     textFitText = this.value;
-    $$invalidate(0, textFitText);
+    $$invalidate2(0, textFitText);
   }
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     TextFit: TextFit_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
@@ -47888,14 +49913,14 @@ function instance63($$self, $$props, $$invalidate) {
     exampleHtml,
     textFitText
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("textFitText" in $$props2)
-      $$invalidate(0, textFitText = $$props2.textFitText);
+  $$self2.$inject_state = ($$props3) => {
+    if ("textFitText" in $$props3)
+      $$invalidate2(0, textFitText = $$props3.textFitText);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  return [textFitText, apiProps, exampleHtml, input_input_handler];
+  return [textFitText, apiProps, exampleHtml, input_input_handler2];
 }
 var TextFit_1 = class extends import_internal64.SvelteComponentDev {
   constructor(options) {
@@ -48536,9 +50561,9 @@ function create_fragment64(ctx) {
   });
   return block;
 }
-function instance64($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal65.validate_slots)("Toaster", slots, []);
+function instance64($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal65.validate_slots)("Toaster", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -48607,12 +50632,12 @@ function cb (id) {
 }
 &lt;/script>
 `;
-  function cb(id) {
-    console.log(id);
-    hideToast(id);
+  function cb(id2) {
+    console.log(id2);
+    hideToast(id2);
   }
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_112.warn(`<Toaster> was created with unknown prop '${key}'`);
   });
@@ -48624,7 +50649,7 @@ function cb (id) {
   const click_handler_5 = () => showToast("Hello", "success", false);
   const click_handler_6 = () => showToast("Hello", "warning", false);
   const click_handler_7 = () => showToast("Hello", "error", false);
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Button: Button_default,
     Toaster: Toaster_default,
     showToast,
@@ -49661,9 +51686,9 @@ function create_fragment65(ctx) {
   });
   return block;
 }
-function instance65($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal66.validate_slots)("Tooltip", slots, []);
+function instance65($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal66.validate_slots)("Tooltip", slots2, []);
   const apiProps = [
     {
       name: "class",
@@ -49729,11 +51754,11 @@ function instance65($$self, $$props, $$invalidate) {
  <Tooltip target="box4" events="click,focus">Showing on click</Tooltip>
 `;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Tooltip> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     Tooltip: Tooltip_default,
     Button: Button_default,
     API: ApiTable_default,
@@ -49845,33 +51870,33 @@ function create_fragment66(ctx) {
   });
   return block;
 }
-function instance66($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal67.validate_slots)("ColorPaletteBox", slots, []);
-  let { bg = "color-background" } = $$props;
-  let { text: text42 = "color-text" } = $$props;
+function instance66($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal67.validate_slots)("ColorPaletteBox", slots2, []);
+  let { bg = "color-background" } = $$props2;
+  let { text: text45 = "color-text" } = $$props2;
   const writable_props = ["bg", "text"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ColorPaletteBox> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("bg" in $$props2)
-      $$invalidate(0, bg = $$props2.bg);
-    if ("text" in $$props2)
-      $$invalidate(1, text42 = $$props2.text);
+  $$self2.$$set = ($$props3) => {
+    if ("bg" in $$props3)
+      $$invalidate2(0, bg = $$props3.bg);
+    if ("text" in $$props3)
+      $$invalidate2(1, text45 = $$props3.text);
   };
-  $$self.$capture_state = () => ({ bg, text: text42 });
-  $$self.$inject_state = ($$props2) => {
-    if ("bg" in $$props2)
-      $$invalidate(0, bg = $$props2.bg);
-    if ("text" in $$props2)
-      $$invalidate(1, text42 = $$props2.text);
+  $$self2.$capture_state = () => ({ bg, text: text45 });
+  $$self2.$inject_state = ($$props3) => {
+    if ("bg" in $$props3)
+      $$invalidate2(0, bg = $$props3.bg);
+    if ("text" in $$props3)
+      $$invalidate2(1, text45 = $$props3.text);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
-  return [bg, text42];
+  return [bg, text45];
 }
 var ColorPaletteBox = class extends import_internal67.SvelteComponentDev {
   constructor(options) {
@@ -49887,13 +51912,13 @@ var ColorPaletteBox = class extends import_internal67.SvelteComponentDev {
   get bg() {
     throw new Error("<ColorPaletteBox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set bg(value) {
+  set bg(value2) {
     throw new Error("<ColorPaletteBox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get text() {
     throw new Error("<ColorPaletteBox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set text(value) {
+  set text(value2) {
     throw new Error("<ColorPaletteBox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -50693,15 +52718,15 @@ function create_fragment67(ctx) {
   });
   return block;
 }
-function instance67($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal68.validate_slots)("ColorPalette", slots, []);
+function instance67($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal68.validate_slots)("ColorPalette", slots2, []);
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ColorPalette> was created with unknown prop '${key}'`);
   });
-  $$self.$capture_state = () => ({ PaletteBox: ColorPaletteBox_default });
+  $$self2.$capture_state = () => ({ PaletteBox: ColorPaletteBox_default });
   return [];
 }
 var ColorPalette = class extends import_internal68.SvelteComponentDev {
@@ -50727,7 +52752,7 @@ function create_fragment68(ctx) {
   let aside;
   let div1;
   let div0;
-  let label;
+  let label2;
   let t2;
   let actualtoggle;
   let t3;
@@ -51128,8 +53153,8 @@ function create_fragment68(ctx) {
       aside = (0, import_internal69.element)("aside");
       div1 = (0, import_internal69.element)("div");
       div0 = (0, import_internal69.element)("div");
-      label = (0, import_internal69.element)("label");
-      label.textContent = "Dark mode:";
+      label2 = (0, import_internal69.element)("label");
+      label2.textContent = "Dark mode:";
       t2 = (0, import_internal69.space)();
       (0, import_internal69.create_component)(actualtoggle.$$.fragment);
       t3 = (0, import_internal69.space)();
@@ -51207,8 +53232,8 @@ function create_fragment68(ctx) {
       (0, import_internal69.create_component)(navitem29.$$.fragment);
       t41 = (0, import_internal69.space)();
       (0, import_internal69.create_component)(navitem30.$$.fragment);
-      (0, import_internal69.attr_dev)(label, "for", "dark-mode-switch");
-      (0, import_internal69.add_location)(label, file66, 8, 3, 220);
+      (0, import_internal69.attr_dev)(label2, "for", "dark-mode-switch");
+      (0, import_internal69.add_location)(label2, file66, 8, 3, 220);
       (0, import_internal69.attr_dev)(div0, "class", "nav-toolbar-row");
       (0, import_internal69.add_location)(div0, file66, 7, 2, 187);
       (0, import_internal69.attr_dev)(div1, "class", "nav-toolbar");
@@ -51235,7 +53260,7 @@ function create_fragment68(ctx) {
       (0, import_internal69.insert_dev)(target, aside, anchor);
       (0, import_internal69.append_dev)(aside, div1);
       (0, import_internal69.append_dev)(div1, div0);
-      (0, import_internal69.append_dev)(div0, label);
+      (0, import_internal69.append_dev)(div0, label2);
       (0, import_internal69.append_dev)(div0, t2);
       (0, import_internal69.mount_component)(actualtoggle, div0, null);
       (0, import_internal69.append_dev)(aside, t3);
@@ -51661,37 +53686,37 @@ function create_fragment68(ctx) {
 function switchColorMode(e) {
   document.documentElement.className = e.detail ? "theme-dark" : "theme-light";
 }
-function instance68($$self, $$props, $$invalidate) {
+function instance68($$self2, $$props2, $$invalidate2) {
   let $PREFERS_DARK;
   (0, import_internal69.validate_store)(PREFERS_DARK, "PREFERS_DARK");
-  (0, import_internal69.component_subscribe)($$self, PREFERS_DARK, ($$value) => $$invalidate(2, $PREFERS_DARK = $$value));
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal69.validate_slots)("Nav", slots, []);
+  (0, import_internal69.component_subscribe)($$self2, PREFERS_DARK, ($$value) => $$invalidate2(2, $PREFERS_DARK = $$value));
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal69.validate_slots)("Nav", slots2, []);
   const components = { GetStarted: start_default, Changelog: changelog_default, ...components_exports };
   let active = location.hash.substr(1) || "GetStarted";
-  let { component = components[active] } = $$props;
+  let { component = components[active] } = $$props2;
   let navMobileShow = false;
   function onhashchange() {
-    $$invalidate(0, active = location.hash.substr(1));
-    $$invalidate(5, component = components[active]);
+    $$invalidate2(0, active = location.hash.substr(1));
+    $$invalidate2(5, component = components[active]);
     if (window.Prism)
       requestAnimationFrame(() => window.Prism.highlightAll());
     document.querySelector("main").scrollTop = 0;
   }
   function toggleNav() {
-    $$invalidate(1, navMobileShow = !navMobileShow);
+    $$invalidate2(1, navMobileShow = !navMobileShow);
   }
-  window.addEventListener("popstate", () => $$invalidate(1, navMobileShow = false));
+  window.addEventListener("popstate", () => $$invalidate2(1, navMobileShow = false));
   const writable_props = ["component"];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Nav> was created with unknown prop '${key}'`);
   });
-  $$self.$$set = ($$props2) => {
-    if ("component" in $$props2)
-      $$invalidate(5, component = $$props2.component);
+  $$self2.$$set = ($$props3) => {
+    if ("component" in $$props3)
+      $$invalidate2(5, component = $$props3.component);
   };
-  $$self.$capture_state = () => ({
+  $$self2.$capture_state = () => ({
     UIButton: Button_default,
     ActualToggle: Toggle_default,
     NavItem: NavItem_default,
@@ -51708,16 +53733,16 @@ function instance68($$self, $$props, $$invalidate) {
     toggleNav,
     $PREFERS_DARK
   });
-  $$self.$inject_state = ($$props2) => {
-    if ("active" in $$props2)
-      $$invalidate(0, active = $$props2.active);
-    if ("component" in $$props2)
-      $$invalidate(5, component = $$props2.component);
-    if ("navMobileShow" in $$props2)
-      $$invalidate(1, navMobileShow = $$props2.navMobileShow);
+  $$self2.$inject_state = ($$props3) => {
+    if ("active" in $$props3)
+      $$invalidate2(0, active = $$props3.active);
+    if ("component" in $$props3)
+      $$invalidate2(5, component = $$props3.component);
+    if ("navMobileShow" in $$props3)
+      $$invalidate2(1, navMobileShow = $$props3.navMobileShow);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [active, navMobileShow, $PREFERS_DARK, onhashchange, toggleNav, component];
 }
@@ -51735,7 +53760,7 @@ var Nav = class extends import_internal69.SvelteComponentDev {
   get component() {
     throw new Error("<Nav>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set component(value) {
+  set component(value2) {
     throw new Error("<Nav>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -51750,8 +53775,8 @@ function create_fragment69(ctx) {
   let main;
   let switch_instance;
   let current;
-  function nav_component_binding(value) {
-    ctx[1](value);
+  function nav_component_binding(value2) {
+    ctx[1](value2);
   }
   let nav_props = {};
   if (
@@ -51858,26 +53883,26 @@ function create_fragment69(ctx) {
   });
   return block;
 }
-function instance69($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  (0, import_internal70.validate_slots)("App", slots, []);
+function instance69($$self2, $$props2, $$invalidate2) {
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal70.validate_slots)("App", slots2, []);
   let component = void 0;
   const writable_props = [];
-  Object.keys($$props).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<App> was created with unknown prop '${key}'`);
   });
-  function nav_component_binding(value) {
-    component = value;
-    $$invalidate(0, component);
+  function nav_component_binding(value2) {
+    component = value2;
+    $$invalidate2(0, component);
   }
-  $$self.$capture_state = () => ({ Nav: Nav_default, component });
-  $$self.$inject_state = ($$props2) => {
-    if ("component" in $$props2)
-      $$invalidate(0, component = $$props2.component);
+  $$self2.$capture_state = () => ({ Nav: Nav_default, component });
+  $$self2.$inject_state = ($$props3) => {
+    if ("component" in $$props3)
+      $$invalidate2(0, component = $$props3.component);
   };
-  if ($$props && "$$inject" in $$props) {
-    $$self.$inject_state($$props.$$inject);
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
   }
   return [component, nav_component_binding];
 }

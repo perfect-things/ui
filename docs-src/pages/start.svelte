@@ -56,7 +56,7 @@ Just <i>import</i> them from the module, as normal:
 	&lt;script src="zxcvbn.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<p>This script file is available in SUICIS npm package, and can be copied over to your <i>dist</i> folder, similarly to the css in the previous example, e.g.:</p>
+<p>This script file is available in this npm package, and can be copied over to your <i>dist</i> folder, similarly to the css in the previous example, e.g.:</p>
 <pre><code class="language-json">
 "scripts": &lbrace;
     "postinstall": "cp node_modules/@perfectthings/ui/docs/ui.css dist/ui.css && cp node_modules/@perfectthings/ui/docs/zxcvbn.js dist/zxcvbn.js"

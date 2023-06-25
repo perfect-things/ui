@@ -1,26 +1,46 @@
 <!-- svelte-ignore a11y-autocomplete-valid -->
 <div
-	class="input-password-wrapper {className}"
-	class:has-label="{label}"
+	class="input-text input-password {className}"
+	class:has-error="{error}"
 	class:visible
 	bind:this="{el}">
+
 	{#if label}
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
-	<div class="input-password-row" class:visible>
-		<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
-		<input
-			class="input-password"
-			autocomplete="off"
-			{...props}
-			id="{_id}"
-			{type}
-			{value}
-			on:input={e => value = e.target.value}
-			on:keydown
-			on:change
-			on:focus
-			on:blur>
+	{#if info}
+		<div class="input-info">
+			<Icon name="info"/>
+			<p>{info}</p>
+		</div>
+	{/if}
+
+	<div class="input-text-inner" class:initial>
+		{#if error}
+			<div class="input-error" transition:slide="{{ axis: 'y', duration }}">
+				<Icon name="error"/>
+				<p id="{errorMessageId}">{error}</p>
+			</div>
+		{/if}
+
+		<div class="input-password-row" class:visible>
+			<input
+				class="input-password-input"
+				autocomplete="off"
+				{...props}
+				id="{_id}"
+				aria-invalid="{error}"
+				aria-errormessage="{error ? errorMessageId : undefined}"
+				aria-required="{required}"
+				{type}
+				{value}
+				on:input="{oninput}"
+				on:keydown
+				on:change
+				on:focus
+				on:blur>
+			<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
+		</div>
 	</div>
 	{#if strength && lib && value}
 		<div class="input-password-row">
@@ -28,26 +48,34 @@
 				<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
 			</div>
 		</div>
-		<div class="input-password-row password-strength-info {colorClass}">
-			<h2>{quality}</h2>
-			<small>{@html strengthInfoText}</small>
+		<div class="input-password-row">
+			<div class="password-strength-info {colorClass}">
+				<h2>{quality}</h2>
+				<small>{@html strengthInfoText}</small>
+			</div>
 		</div>
 	{/if}
 </div>
+
 <script>
-import { onMount } from 'svelte';
+import { onMount, createEventDispatcher } from 'svelte';
+import { slide } from 'svelte/transition';
 import { Button } from '../button';
-import { pluck, guid } from '../utils';
-
-export let value = '';
-$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
-$:type = visible ? 'text' : 'password';
+import { Icon } from '../icon';
+import { pluck, guid, ANIMATION_SPEED } from '../utils';
 
 
-export let strength = false;
 let className = '';
 export { className as class };
+export let id = '';
+export let required = false;
+export let value = '';
+export let strength = false;
 export let label = '';
+export let error = '';
+export let info = '';
+
+
 
 // score:
 // 0 - too guessable: risky password. (guesses < 10^3)
@@ -57,8 +85,11 @@ export let label = '';
 // 4 - very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10^10)
 const qualities = ['Very Poor', 'Poor', 'Average', 'Safe', 'Excellent'];
 const colorClassNames = ['danger', 'danger', 'warning', 'info', 'success'];
+const dispatch = createEventDispatcher();
+const errorMessageId = guid();
 
 
+let initial = true;
 let visible = false;	// show pass as text
 let lib;
 let quality = '';
@@ -67,19 +98,31 @@ let strengthInfoText = '';
 let colorClass = '';
 let el;
 
-$:_id = props.id || props.name || guid();
+
+$:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
+$:type = visible ? 'text' : 'password';
+$:_id = id || props.name || guid();
+$:duration = initial ? 0 : $ANIMATION_SPEED;
 
 $: {
-	const { score, info } = measure(value);
+	const { score, text } = measure(value);
 	quality = qualities[score];
 	percent = score ? score * 25 : 5;
 	colorClass = colorClassNames[score];
-	strengthInfoText = info;
+	strengthInfoText = text;
 }
 
 
-onMount(() => requestAnimationFrame(checkLib));
+onMount(() => {
+	requestAnimationFrame(checkLib);
+	initial = false;
+});
 
+
+function oninput (e) {
+	value = e.target.value;
+	dispatch('input', { event, value });
+}
 
 function checkLib () {
 	lib = window.zxcvbn;
@@ -94,8 +137,8 @@ function measure (pass) {
 	const res = lib(pass);
 	const warning = res.feedback.warning;
 	const suggestion = res.feedback.suggestions;
-	const info = [warning, ...suggestion].filter(i => i.length).join('.<br>');
-	return { score: res.score, info };
+	const text = [warning, ...suggestion].filter(i => i.length).join('.<br>');
+	return { score: res.score, text };
 }
 
 

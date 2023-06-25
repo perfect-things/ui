@@ -46,7 +46,7 @@ input[type=color] {
 .label {
 	height: 2.2rem;
 	line-height: 1.6;
-	padding: 0 var(--ui-margin-s);
+	padding: 0;
 	display: inline-flex;
 	align-items: center;
 }
