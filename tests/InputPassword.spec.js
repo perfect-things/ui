@@ -31,7 +31,7 @@ test('InputMath', async () => {
 	expect(input).toHaveAttribute('title', 'Component1');
 	expect(input).toHaveAttribute('name', 'Component1');
 	expect(input).toHaveAttribute('placeholder', 'Component1');
-	expect(input).toHaveAttribute('required');
+	expect(input).toHaveAttribute('aria-required');
 
 
 	// test poor password
