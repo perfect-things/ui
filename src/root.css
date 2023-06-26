@@ -19,7 +19,7 @@
 	/* shadows */
 	--ui-shadow-button: 0 1px 0 #000c;
 	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);
-	--ui-shadow-invalid: 0 0 2px 1px var(--ui-color-danger);
+	--ui-shadow-danger: 0 0 2px 1px var(--ui-color-danger);
 	--ui-shadow-small: 0 0 0 0.5px #ffffff44, 0 3px 10px #00000066;
 	--ui-shadow-large: 0 5px 20px #000a;
 	--ui-shadow-fancy:

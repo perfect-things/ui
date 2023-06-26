@@ -28,7 +28,7 @@ input::placeholder { color: var(--ui-color-text-dark-2); }
 
 :where(input:not([type=radio]):invalid) {
 	border-color: var(--ui-color-danger);
-	box-shadow: var(--ui-shadow-invalid);
+	box-shadow: var(--ui-shadow-danger);
 }
 
 

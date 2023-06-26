@@ -33,10 +33,10 @@ var require_internal = __commonJS({
   "node_modules/svelte/internal/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function noop33() {
+    function noop31() {
     }
     var identity = (x) => x;
-    function assign16(tar, src) {
+    function assign15(tar, src) {
       for (const k in src)
         tar[k] = src[k];
       return tar;
@@ -44,9 +44,9 @@ var require_internal = __commonJS({
     function is_promise(value2) {
       return !!value2 && (typeof value2 === "object" || typeof value2 === "function") && typeof value2.then === "function";
     }
-    function add_location69(element70, file68, line, column, char) {
+    function add_location69(element70, file69, line, column, char) {
       element70.__svelte_meta = {
-        loc: { file: file68, line, column, char }
+        loc: { file: file69, line, column, char }
       };
     }
     function run(fn) {
@@ -85,7 +85,7 @@ var require_internal = __commonJS({
     }
     function subscribe(store, ...callbacks) {
       if (store == null) {
-        return noop33;
+        return noop31;
       }
       const unsub = store.subscribe(...callbacks);
       return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
@@ -105,7 +105,7 @@ var require_internal = __commonJS({
       }
     }
     function get_slot_context(definition, ctx, $$scope2, fn) {
-      return definition[1] && fn ? assign16($$scope2.ctx.slice(), definition[1](fn(ctx))) : $$scope2.ctx;
+      return definition[1] && fn ? assign15($$scope2.ctx.slice(), definition[1](fn(ctx))) : $$scope2.ctx;
     }
     function get_slot_changes12(definition, $$scope2, dirty, fn) {
       if (definition[2] && fn) {
@@ -146,7 +146,7 @@ var require_internal = __commonJS({
       }
       return -1;
     }
-    function exclude_internal_props15(props2) {
+    function exclude_internal_props14(props2) {
       const result = {};
       for (const k in props2)
         if (k[0] !== "$")
@@ -186,7 +186,7 @@ var require_internal = __commonJS({
     }
     var has_prop = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
     function action_destroyer2(action_result) {
-      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop33;
+      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop31;
     }
     function split_css_unit(value2) {
       const split = typeof value2 === "string" && value2.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
@@ -195,7 +195,7 @@ var require_internal = __commonJS({
     var contenteditable_truthy_values = ["", true, 1, "true", "contenteditable"];
     var is_client = typeof window !== "undefined";
     exports.now = is_client ? () => window.performance.now() : () => Date.now();
-    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop33;
+    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop31;
     function set_now(fn) {
       exports.now = fn;
     }
@@ -229,11 +229,11 @@ var require_internal = __commonJS({
         }
       };
     }
-    var globals19 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
+    var globals20 = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
     var ResizeObserverSingleton = class {
       constructor(options) {
         this.options = options;
-        this._listeners = "WeakMap" in globals19 ? /* @__PURE__ */ new WeakMap() : void 0;
+        this._listeners = "WeakMap" in globals20 ? /* @__PURE__ */ new WeakMap() : void 0;
       }
       observe(element70, listener) {
         this._listeners.set(element70, listener);
@@ -254,7 +254,7 @@ var require_internal = __commonJS({
         });
       }
     };
-    ResizeObserverSingleton.entries = "WeakMap" in globals19 ? /* @__PURE__ */ new WeakMap() : void 0;
+    ResizeObserverSingleton.entries = "WeakMap" in globals20 ? /* @__PURE__ */ new WeakMap() : void 0;
     var is_hydrating = false;
     function start_hydrating() {
       is_hydrating = true;
@@ -415,7 +415,7 @@ var require_internal = __commonJS({
     function text45(data) {
       return document.createTextNode(data);
     }
-    function space54() {
+    function space55() {
       return text45(" ");
     }
     function empty10() {
@@ -465,7 +465,7 @@ var require_internal = __commonJS({
         node.setAttribute(attribute, value2);
     }
     var always_set_through_set_attribute = ["width", "height"];
-    function set_attributes14(node, attributes) {
+    function set_attributes13(node, attributes) {
       const descriptors = Object.getOwnPropertyDescriptors(node.__proto__);
       for (const key in attributes) {
         if (attributes[key] == null) {
@@ -499,7 +499,7 @@ var require_internal = __commonJS({
       }
     }
     function set_dynamic_element_data(tag) {
-      return /-/.test(tag) ? set_custom_element_data_map : set_attributes14;
+      return /-/.test(tag) ? set_custom_element_data_map : set_attributes13;
     }
     function xlink_attr(node, attribute, value2) {
       node.setAttributeNS("http://www.w3.org/1999/xlink", attribute, value2);
@@ -807,7 +807,7 @@ var require_internal = __commonJS({
     var resize_observer_content_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "content-box" });
     var resize_observer_border_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "border-box" });
     var resize_observer_device_pixel_content_box = /* @__PURE__ */ new ResizeObserverSingleton({ box: "device-pixel-content-box" });
-    function toggle_class25(element70, name2, toggle) {
+    function toggle_class26(element70, name2, toggle) {
       element70.classList[toggle ? "add" : "remove"](name2);
     }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
@@ -975,10 +975,10 @@ var require_internal = __commonJS({
     }
     function create_animation3(node, from, fn, params) {
       if (!from)
-        return noop33;
+        return noop31;
       const to = node.getBoundingClientRect();
       if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom)
-        return noop33;
+        return noop31;
       const {
         delay = 0,
         duration: duration3 = 300,
@@ -987,7 +987,7 @@ var require_internal = __commonJS({
         start: start_time = exports.now() + delay,
         // @ts-ignore todo:
         end = start_time + duration3,
-        tick: tick2 = noop33,
+        tick: tick2 = noop31,
         css
       } = fn(node, { from, to }, params);
       let running = true;
@@ -1067,7 +1067,7 @@ var require_internal = __commonJS({
     function onDestroy8(fn) {
       get_current_component().$$.on_destroy.push(fn);
     }
-    function createEventDispatcher17() {
+    function createEventDispatcher18() {
       const component = get_current_component();
       return (type, detail, { cancelable = false } = {}) => {
         const callbacks = component.$$.callbacks[type];
@@ -1094,7 +1094,7 @@ var require_internal = __commonJS({
     function hasContext(key) {
       return get_current_component().$$.context.has(key);
     }
-    function bubble12(component, event2) {
+    function bubble11(component, event2) {
       const callbacks = component.$$.callbacks[event2.type];
       if (callbacks) {
         callbacks.slice().forEach((fn) => fn.call(this, event2));
@@ -1102,7 +1102,7 @@ var require_internal = __commonJS({
     }
     var dirty_components = [];
     var intros = { enabled: false };
-    var binding_callbacks36 = [];
+    var binding_callbacks37 = [];
     var render_callbacks = [];
     var flush_callbacks = [];
     var resolved_promise = /* @__PURE__ */ Promise.resolve();
@@ -1120,7 +1120,7 @@ var require_internal = __commonJS({
     function add_render_callback11(fn) {
       render_callbacks.push(fn);
     }
-    function add_flush_callback11(fn) {
+    function add_flush_callback12(fn) {
       flush_callbacks.push(fn);
     }
     var seen_callbacks = /* @__PURE__ */ new Set();
@@ -1146,8 +1146,8 @@ var require_internal = __commonJS({
         set_current_component(null);
         dirty_components.length = 0;
         flushidx = 0;
-        while (binding_callbacks36.length)
-          binding_callbacks36.pop()();
+        while (binding_callbacks37.length)
+          binding_callbacks37.pop()();
         for (let i = 0; i < render_callbacks.length; i += 1) {
           const callback = render_callbacks[i];
           if (!seen_callbacks.has(callback)) {
@@ -1196,7 +1196,7 @@ var require_internal = __commonJS({
     }
     var outroing = /* @__PURE__ */ new Set();
     var outros;
-    function group_outros20() {
+    function group_outros21() {
       outros = {
         r: 0,
         c: [],
@@ -1204,19 +1204,19 @@ var require_internal = __commonJS({
         // parent group
       };
     }
-    function check_outros20() {
+    function check_outros21() {
       if (!outros.r) {
         run_all24(outros.c);
       }
       outros = outros.p;
     }
-    function transition_in57(block, local) {
+    function transition_in58(block, local) {
       if (block && block.i) {
         outroing.delete(block);
         block.i(local);
       }
     }
-    function transition_out57(block, local, detach2, callback) {
+    function transition_out58(block, local, detach2, callback) {
       if (block && block.o) {
         if (outroing.has(block))
           return;
@@ -1247,7 +1247,7 @@ var require_internal = __commonJS({
           delete_rule(node, animation_name);
       }
       function go() {
-        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
+        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop31, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 0, 1, duration3, delay, easing, css, uid++);
         tick2(0, 1);
@@ -1306,7 +1306,7 @@ var require_internal = __commonJS({
       const group = outros;
       group.r += 1;
       function go() {
-        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
+        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop31, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 1, 0, duration3, delay, easing, css);
         const start_time = exports.now() + delay;
@@ -1376,7 +1376,7 @@ var require_internal = __commonJS({
         };
       }
       function go(b) {
-        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop33, css } = config2 || null_transition;
+        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop31, css } = config2 || null_transition;
         const program = {
           start: exports.now() + delay,
           b
@@ -1463,20 +1463,20 @@ var require_internal = __commonJS({
           if (info2.blocks) {
             info2.blocks.forEach((block2, i) => {
               if (i !== index && block2) {
-                group_outros20();
-                transition_out57(block2, 1, 1, () => {
+                group_outros21();
+                transition_out58(block2, 1, 1, () => {
                   if (info2.blocks[i] === block2) {
                     info2.blocks[i] = null;
                   }
                 });
-                check_outros20();
+                check_outros21();
               }
             });
           } else {
             info2.block.d(1);
           }
           block.c();
-          transition_in57(block, 1);
+          transition_in58(block, 1);
           block.m(info2.mount(), info2.anchor);
           needs_flush = true;
         }
@@ -1524,24 +1524,24 @@ var require_internal = __commonJS({
       }
       info2.block.p(child_ctx, dirty);
     }
-    function destroy_block(block, lookup) {
+    function destroy_block2(block, lookup) {
       block.d(1);
       lookup.delete(block.key);
     }
     function outro_and_destroy_block2(block, lookup) {
-      transition_out57(block, 1, 1, () => {
+      transition_out58(block, 1, 1, () => {
         lookup.delete(block.key);
       });
     }
     function fix_and_destroy_block(block, lookup) {
       block.f();
-      destroy_block(block, lookup);
+      destroy_block2(block, lookup);
     }
     function fix_and_outro_and_destroy_block3(block, lookup) {
       block.f();
       outro_and_destroy_block2(block, lookup);
     }
-    function update_keyed_each4(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block12, next, get_context) {
+    function update_keyed_each5(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block13, next, get_context) {
       let o = old_blocks.length;
       let n = list.length;
       let i = o;
@@ -1558,7 +1558,7 @@ var require_internal = __commonJS({
         const key = get_key(child_ctx);
         let block = lookup.get(key);
         if (!block) {
-          block = create_each_block12(key, child_ctx);
+          block = create_each_block13(key, child_ctx);
           block.c();
         } else if (dynamic) {
           updates.push(() => block.p(child_ctx, dirty));
@@ -1570,7 +1570,7 @@ var require_internal = __commonJS({
       const will_move = /* @__PURE__ */ new Set();
       const did_move = /* @__PURE__ */ new Set();
       function insert2(block) {
-        transition_in57(block, 1);
+        transition_in58(block, 1);
         block.m(node, next);
         lookup.set(block.key, block);
         next = block.first;
@@ -1610,7 +1610,7 @@ var require_internal = __commonJS({
       run_all24(updates);
       return new_blocks;
     }
-    function validate_each_keys4(ctx, list, get_context, get_key) {
+    function validate_each_keys5(ctx, list, get_context, get_key) {
       const keys = /* @__PURE__ */ new Set();
       for (let i = 0; i < list.length; i++) {
         const key = get_key(get_context(ctx, list, i));
@@ -1620,7 +1620,7 @@ var require_internal = __commonJS({
         keys.add(key);
       }
     }
-    function get_spread_update16(levels, updates) {
+    function get_spread_update15(levels, updates) {
       const update2 = {};
       const to_null_out = {};
       const accounted_for = { $$scope: 1 };
@@ -1789,8 +1789,8 @@ var require_internal = __commonJS({
       }
       return component;
     }
-    function debug(file68, line, column, values) {
-      console.log(`{@debug} ${file68 ? file68 + " " : ""}(${line}:${column})`);
+    function debug(file69, line, column, values) {
+      console.log(`{@debug} ${file69 ? file69 + " " : ""}(${line}:${column})`);
       console.log(values);
       return "";
     }
@@ -1847,20 +1847,20 @@ var require_internal = __commonJS({
       const styles = style_object_to_string(style_object);
       return styles ? ` style="${styles}"` : "";
     }
-    function bind11(component, name2, callback) {
+    function bind12(component, name2, callback) {
       const index = component.$$.props[name2];
       if (index !== void 0) {
         component.$$.bound[index] = callback;
         callback(component.$$.ctx[index]);
       }
     }
-    function create_component49(block) {
+    function create_component50(block) {
       block && block.c();
     }
     function claim_component(block, parent_nodes) {
       block && block.l(parent_nodes);
     }
-    function mount_component49(component, target, anchor, customElement) {
+    function mount_component50(component, target, anchor, customElement) {
       const { fragment, after_update } = component.$$;
       fragment && fragment.m(target, anchor);
       if (!customElement) {
@@ -1876,7 +1876,7 @@ var require_internal = __commonJS({
       }
       after_update.forEach(add_render_callback11);
     }
-    function destroy_component49(component, detaching) {
+    function destroy_component50(component, detaching) {
       const $$ = component.$$;
       if ($$.fragment !== null) {
         flush_render_callbacks($$.after_update);
@@ -1894,7 +1894,7 @@ var require_internal = __commonJS({
       }
       component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
     }
-    function init71(component, options, instance70, create_fragment70, not_equal2, props2, append_styles2, dirty = [-1]) {
+    function init71(component, options, instance71, create_fragment71, not_equal2, props2, append_styles2, dirty = [-1]) {
       const parent_component = exports.current_component;
       set_current_component(component);
       const $$ = component.$$ = {
@@ -1902,7 +1902,7 @@ var require_internal = __commonJS({
         ctx: [],
         // state
         props: props2,
-        update: noop33,
+        update: noop31,
         not_equal: not_equal2,
         bound: blank_object(),
         // lifecycle
@@ -1920,7 +1920,7 @@ var require_internal = __commonJS({
       };
       append_styles2 && append_styles2($$.root);
       let ready = false;
-      $$.ctx = instance70 ? instance70(component, options.props || {}, (i, ret, ...rest) => {
+      $$.ctx = instance71 ? instance71(component, options.props || {}, (i, ret, ...rest) => {
         const value2 = rest.length ? rest[0] : ret;
         if ($$.ctx && not_equal2($$.ctx[i], $$.ctx[i] = value2)) {
           if (!$$.skip_bound && $$.bound[i])
@@ -1933,7 +1933,7 @@ var require_internal = __commonJS({
       $$.update();
       ready = true;
       run_all24($$.before_update);
-      $$.fragment = create_fragment70 ? create_fragment70($$.ctx) : false;
+      $$.fragment = create_fragment71 ? create_fragment71($$.ctx) : false;
       if (options.target) {
         if (options.hydrate) {
           start_hydrating();
@@ -1944,8 +1944,8 @@ var require_internal = __commonJS({
           $$.fragment && $$.fragment.c();
         }
         if (options.intro)
-          transition_in57(component.$$.fragment);
-        mount_component49(component, options.target, options.anchor, options.customElement);
+          transition_in58(component.$$.fragment);
+        mount_component50(component, options.target, options.anchor, options.customElement);
         end_hydrating();
         flush4();
       }
@@ -1971,12 +1971,12 @@ var require_internal = __commonJS({
           run_all24(this.$$.on_disconnect);
         }
         $destroy() {
-          destroy_component49(this, 1);
-          this.$destroy = noop33;
+          destroy_component50(this, 1);
+          this.$destroy = noop31;
         }
         $on(type, callback) {
           if (!is_function3(callback)) {
-            return noop33;
+            return noop31;
           }
           const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
           callbacks.push(callback);
@@ -1997,12 +1997,12 @@ var require_internal = __commonJS({
     }
     var SvelteComponent = class {
       $destroy() {
-        destroy_component49(this, 1);
-        this.$destroy = noop33;
+        destroy_component50(this, 1);
+        this.$destroy = noop31;
       }
       $on(type, callback) {
         if (!is_function3(callback)) {
-          return noop33;
+          return noop31;
         }
         const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
         callbacks.push(callback);
@@ -2023,7 +2023,7 @@ var require_internal = __commonJS({
     function dispatch_dev71(type, detail) {
       document.dispatchEvent(custom_event(type, Object.assign({ version: "3.59.2" }, detail), { bubbles: true }));
     }
-    function append_dev54(target, node) {
+    function append_dev53(target, node) {
       dispatch_dev71("SvelteDOMInsert", { target, node });
       append(target, node);
     }
@@ -2073,14 +2073,14 @@ var require_internal = __commonJS({
         dispose();
       };
     }
-    function attr_dev56(node, attribute, value2) {
+    function attr_dev55(node, attribute, value2) {
       attr(node, attribute, value2);
       if (value2 == null)
         dispatch_dev71("SvelteDOMRemoveAttribute", { node, attribute });
       else
         dispatch_dev71("SvelteDOMSetAttribute", { node, attribute, value: value2 });
     }
-    function prop_dev5(node, property, value2) {
+    function prop_dev6(node, property, value2) {
       node[property] = value2;
       dispatch_dev71("SvelteDOMSetProperty", { node, property, value: value2 });
     }
@@ -2088,7 +2088,7 @@ var require_internal = __commonJS({
       node.dataset[property] = value2;
       dispatch_dev71("SvelteDOMSetDataset", { node, property, value: value2 });
     }
-    function set_data_dev28(text46, data) {
+    function set_data_dev29(text46, data) {
       data = "" + data;
       if (text46.data === data)
         return;
@@ -2106,10 +2106,10 @@ var require_internal = __commonJS({
       if (~contenteditable_truthy_values.indexOf(attr_value)) {
         set_data_contenteditable_dev(text46, data);
       } else {
-        set_data_dev28(text46, data);
+        set_data_dev29(text46, data);
       }
     }
-    function validate_each_argument12(arg) {
+    function validate_each_argument13(arg) {
       if (typeof arg !== "string" && !(arg && typeof arg === "object" && "length" in arg)) {
         let msg = "{#each} only iterates over array-like objects.";
         if (typeof Symbol === "function" && arg && Symbol.iterator in arg) {
@@ -2139,11 +2139,11 @@ var require_internal = __commonJS({
     function construct_svelte_component_dev2(component, props2) {
       const error_message = "this={...} of <svelte:component> should specify a Svelte component.";
       try {
-        const instance70 = new component(props2);
-        if (!instance70.$$ || !instance70.$set || !instance70.$on || !instance70.$destroy) {
+        const instance71 = new component(props2);
+        if (!instance71.$$ || !instance71.$set || !instance71.$on || !instance71.$destroy) {
           throw new Error(error_message);
         }
-        return instance70;
+        return instance71;
       } catch (err) {
         const { message } = err;
         if (typeof message === "string" && message.indexOf("is not a constructor") !== -1) {
@@ -2193,7 +2193,7 @@ var require_internal = __commonJS({
     exports.action_destroyer = action_destroyer2;
     exports.add_attribute = add_attribute;
     exports.add_classes = add_classes;
-    exports.add_flush_callback = add_flush_callback11;
+    exports.add_flush_callback = add_flush_callback12;
     exports.add_iframe_resize_listener = add_iframe_resize_listener;
     exports.add_location = add_location69;
     exports.add_render_callback = add_render_callback11;
@@ -2201,21 +2201,21 @@ var require_internal = __commonJS({
     exports.add_transform = add_transform3;
     exports.afterUpdate = afterUpdate5;
     exports.append = append;
-    exports.append_dev = append_dev54;
+    exports.append_dev = append_dev53;
     exports.append_empty_stylesheet = append_empty_stylesheet;
     exports.append_hydration = append_hydration;
     exports.append_hydration_dev = append_hydration_dev;
     exports.append_styles = append_styles;
-    exports.assign = assign16;
+    exports.assign = assign15;
     exports.attr = attr;
-    exports.attr_dev = attr_dev56;
+    exports.attr_dev = attr_dev55;
     exports.attribute_to_object = attribute_to_object;
     exports.beforeUpdate = beforeUpdate;
-    exports.bind = bind11;
-    exports.binding_callbacks = binding_callbacks36;
+    exports.bind = bind12;
+    exports.binding_callbacks = binding_callbacks37;
     exports.blank_object = blank_object;
-    exports.bubble = bubble12;
-    exports.check_outros = check_outros20;
+    exports.bubble = bubble11;
+    exports.check_outros = check_outros21;
     exports.children = children;
     exports.claim_comment = claim_comment;
     exports.claim_component = claim_component;
@@ -2232,10 +2232,10 @@ var require_internal = __commonJS({
     exports.construct_svelte_component = construct_svelte_component;
     exports.construct_svelte_component_dev = construct_svelte_component_dev2;
     exports.contenteditable_truthy_values = contenteditable_truthy_values;
-    exports.createEventDispatcher = createEventDispatcher17;
+    exports.createEventDispatcher = createEventDispatcher18;
     exports.create_animation = create_animation3;
     exports.create_bidirectional_transition = create_bidirectional_transition6;
-    exports.create_component = create_component49;
+    exports.create_component = create_component50;
     exports.create_in_transition = create_in_transition4;
     exports.create_out_transition = create_out_transition4;
     exports.create_slot = create_slot12;
@@ -2243,8 +2243,8 @@ var require_internal = __commonJS({
     exports.custom_event = custom_event;
     exports.dataset_dev = dataset_dev;
     exports.debug = debug;
-    exports.destroy_block = destroy_block;
-    exports.destroy_component = destroy_component49;
+    exports.destroy_block = destroy_block2;
+    exports.destroy_component = destroy_component50;
     exports.destroy_each = destroy_each9;
     exports.detach = detach;
     exports.detach_after_dev = detach_after_dev;
@@ -2261,7 +2261,7 @@ var require_internal = __commonJS({
     exports.escape = escape;
     exports.escape_attribute_value = escape_attribute_value;
     exports.escape_object = escape_object;
-    exports.exclude_internal_props = exclude_internal_props15;
+    exports.exclude_internal_props = exclude_internal_props14;
     exports.fix_and_destroy_block = fix_and_destroy_block;
     exports.fix_and_outro_and_destroy_block = fix_and_outro_and_destroy_block3;
     exports.fix_position = fix_position3;
@@ -2276,10 +2276,10 @@ var require_internal = __commonJS({
     exports.get_root_for_style = get_root_for_style;
     exports.get_slot_changes = get_slot_changes12;
     exports.get_spread_object = get_spread_object3;
-    exports.get_spread_update = get_spread_update16;
+    exports.get_spread_update = get_spread_update15;
     exports.get_store_value = get_store_value;
-    exports.globals = globals19;
-    exports.group_outros = group_outros20;
+    exports.globals = globals20;
+    exports.group_outros = group_outros21;
     exports.handle_promise = handle_promise;
     exports.hasContext = hasContext;
     exports.has_prop = has_prop;
@@ -2306,8 +2306,8 @@ var require_internal = __commonJS({
     exports.loop_guard = loop_guard;
     exports.merge_ssr_styles = merge_ssr_styles;
     exports.missing_component = missing_component;
-    exports.mount_component = mount_component49;
-    exports.noop = noop33;
+    exports.mount_component = mount_component50;
+    exports.noop = noop31;
     exports.not_equal = not_equal;
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
@@ -2316,7 +2316,7 @@ var require_internal = __commonJS({
     exports.once = once;
     exports.outro_and_destroy_block = outro_and_destroy_block2;
     exports.prevent_default = prevent_default5;
-    exports.prop_dev = prop_dev5;
+    exports.prop_dev = prop_dev6;
     exports.query_selector_all = query_selector_all;
     exports.resize_observer_border_box = resize_observer_border_box;
     exports.resize_observer_content_box = resize_observer_content_box;
@@ -2331,14 +2331,14 @@ var require_internal = __commonJS({
     exports.select_value = select_value2;
     exports.self = self2;
     exports.setContext = setContext2;
-    exports.set_attributes = set_attributes14;
+    exports.set_attributes = set_attributes13;
     exports.set_current_component = set_current_component;
     exports.set_custom_element_data = set_custom_element_data;
     exports.set_custom_element_data_map = set_custom_element_data_map;
     exports.set_data = set_data;
     exports.set_data_contenteditable = set_data_contenteditable;
     exports.set_data_contenteditable_dev = set_data_contenteditable_dev;
-    exports.set_data_dev = set_data_dev28;
+    exports.set_data_dev = set_data_dev29;
     exports.set_data_maybe_contenteditable = set_data_maybe_contenteditable;
     exports.set_data_maybe_contenteditable_dev = set_data_maybe_contenteditable_dev;
     exports.set_dynamic_element_data = set_dynamic_element_data;
@@ -2349,7 +2349,7 @@ var require_internal = __commonJS({
     exports.set_store_value = set_store_value2;
     exports.set_style = set_style6;
     exports.set_svg_attributes = set_svg_attributes;
-    exports.space = space54;
+    exports.space = space55;
     exports.split_css_unit = split_css_unit;
     exports.spread = spread;
     exports.src_url_equal = src_url_equal2;
@@ -2362,18 +2362,18 @@ var require_internal = __commonJS({
     exports.tick = tick;
     exports.time_ranges_to_array = time_ranges_to_array;
     exports.to_number = to_number;
-    exports.toggle_class = toggle_class25;
-    exports.transition_in = transition_in57;
-    exports.transition_out = transition_out57;
+    exports.toggle_class = toggle_class26;
+    exports.transition_in = transition_in58;
+    exports.transition_out = transition_out58;
     exports.trusted = trusted;
     exports.update_await_block_branch = update_await_block_branch;
-    exports.update_keyed_each = update_keyed_each4;
+    exports.update_keyed_each = update_keyed_each5;
     exports.update_slot = update_slot;
     exports.update_slot_base = update_slot_base12;
     exports.validate_component = validate_component;
     exports.validate_dynamic_element = validate_dynamic_element;
-    exports.validate_each_argument = validate_each_argument12;
-    exports.validate_each_keys = validate_each_keys4;
+    exports.validate_each_argument = validate_each_argument13;
+    exports.validate_each_keys = validate_each_keys5;
     exports.validate_slots = validate_slots71;
     exports.validate_store = validate_store12;
     exports.validate_void_dynamic_element = validate_void_dynamic_element;
@@ -4393,7 +4393,7 @@ var require_prism_normalize_whitespace = __commonJS({
       if (typeof Prism === "undefined") {
         return;
       }
-      var assign16 = Object.assign || function(obj1, obj2) {
+      var assign15 = Object.assign || function(obj1, obj2) {
         for (var name2 in obj2) {
           if (obj2.hasOwnProperty(name2)) {
             obj1[name2] = obj2[name2];
@@ -4402,7 +4402,7 @@ var require_prism_normalize_whitespace = __commonJS({
         return obj1;
       };
       function NormalizeWhitespace(defaults) {
-        this.defaults = assign16({}, defaults);
+        this.defaults = assign15({}, defaults);
       }
       function toCamelCase(value2) {
         return value2.replace(/-(\w)/g, function(match, firstChar) {
@@ -4431,10 +4431,10 @@ var require_prism_normalize_whitespace = __commonJS({
       };
       NormalizeWhitespace.prototype = {
         setDefaults: function(defaults) {
-          this.defaults = assign16(this.defaults, defaults);
+          this.defaults = assign15(this.defaults, defaults);
         },
         normalize: function(input, settings) {
-          settings = assign16(this.defaults, settings);
+          settings = assign15(this.defaults, settings);
           for (var name2 in settings) {
             var methodName = toCamelCase(name2);
             if (name2 !== "normalize" && methodName !== "setDefaults" && settings[name2] && this[methodName]) {
@@ -7730,7 +7730,7 @@ function instance5($$self2, $$props2, $$invalidate2) {
   let { class: className2 = "" } = $$props2;
   const dispatch2 = (0, import_svelte2.createEventDispatcher)();
   let el;
-  function onmousedown(e) {
+  function onmousedown2(e) {
     const btn = e.target.querySelector("input");
     if (!btn)
       return;
@@ -7738,9 +7738,9 @@ function instance5($$self2, $$props2, $$invalidate2) {
     btn.focus();
     if (btn.value === value2)
       return;
-    onchange5(e, btn);
+    onchange6(e, btn);
   }
-  function onchange5(e, button) {
+  function onchange6(e, button) {
     $$invalidate2(0, value2 = button.value);
     dispatch2("change", value2);
   }
@@ -7749,7 +7749,7 @@ function instance5($$self2, $$props2, $$invalidate2) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ButtonToggle> was created with unknown prop '${key}'`);
   });
-  const change_handler = (item, e) => onchange5(e, item);
+  const change_handler = (item, e) => onchange6(e, item);
   function div_binding($$value) {
     import_internal5.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
@@ -7785,8 +7785,8 @@ function instance5($$self2, $$props2, $$invalidate2) {
     className: className2,
     dispatch: dispatch2,
     el,
-    onmousedown,
-    onchange: onchange5,
+    onmousedown: onmousedown2,
+    onchange: onchange6,
     _items
   });
   $$self2.$inject_state = ($$props3) => {
@@ -7833,8 +7833,8 @@ function instance5($$self2, $$props2, $$invalidate2) {
     className2,
     el,
     _items,
-    onmousedown,
-    onchange5,
+    onmousedown2,
+    onchange6,
     items,
     change_handler,
     div_binding
@@ -11426,7 +11426,7 @@ function instance8($$self2, $$props2, $$invalidate2) {
       }
     });
   }
-  function onchange5() {
+  function onchange6() {
     $$invalidate2(0, value2 = picker.getDate(format));
     dispatch2("change", value2);
   }
@@ -11487,7 +11487,7 @@ function instance8($$self2, $$props2, $$invalidate2) {
     open,
     onkeydown: onkeydown2,
     oninput,
-    onchange: onchange5,
+    onchange: onchange6,
     onshow,
     onhide,
     onIconClick,
@@ -11543,7 +11543,7 @@ function instance8($$self2, $$props2, $$invalidate2) {
     props2,
     onkeydown2,
     oninput,
-    onchange5,
+    onchange6,
     onshow,
     onhide,
     onIconClick,
@@ -12729,7 +12729,7 @@ function instance10($$self2, $$props2, $$invalidate2) {
       return fireKeydown(e);
     e.preventDefault();
   }
-  function onchange5() {
+  function onchange6() {
     const v = ("" + value2).replace(separator, ".");
     const num2 = parseFloat(v);
     $$invalidate2(0, value2 = isNaN(num2) ? "" : ("" + num2).replace(".", separator));
@@ -12789,7 +12789,7 @@ function instance10($$self2, $$props2, $$invalidate2) {
     allowedKeys: allowedKeys2,
     fireKeydown,
     onkeydown: onkeydown2,
-    onchange: onchange5,
+    onchange: onchange6,
     duration: duration3,
     _id: _id2,
     props: props2,
@@ -12853,7 +12853,7 @@ function instance10($$self2, $$props2, $$invalidate2) {
     props2,
     errorMessageId2,
     onkeydown2,
-    onchange5,
+    onchange6,
     id2,
     separator,
     $ANIMATION_SPEED2,
@@ -18467,11 +18467,842 @@ var PushButton_default = PushButton;
 
 // src/radio/Radio.svelte
 var import_internal20 = __toESM(require_internal());
+var import_svelte15 = __toESM(require_svelte());
+var file18 = "src/radio/Radio.svelte";
+function get_each_context4(ctx, list, i) {
+  const child_ctx = ctx.slice();
+  child_ctx[15] = list[i];
+  return child_ctx;
+}
+function create_if_block_26(ctx) {
+  let label_1;
+  let t;
+  const block = {
+    c: function create() {
+      label_1 = (0, import_internal20.element)("label");
+      t = (0, import_internal20.text)(
+        /*label*/
+        ctx[5]
+      );
+      (0, import_internal20.attr_dev)(label_1, "class", "label");
+      (0, import_internal20.attr_dev)(
+        label_1,
+        "for",
+        /*id*/
+        ctx[2]
+      );
+      (0, import_internal20.add_location)(label_1, file18, 8, 2, 165);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal20.insert_dev)(target, label_1, anchor);
+      (0, import_internal20.append_dev)(label_1, t);
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty & /*label*/
+      32)
+        (0, import_internal20.set_data_dev)(
+          t,
+          /*label*/
+          ctx2[5]
+        );
+      if (dirty & /*id*/
+      4) {
+        (0, import_internal20.attr_dev)(
+          label_1,
+          "for",
+          /*id*/
+          ctx2[2]
+        );
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal20.detach_dev)(label_1);
+    }
+  };
+  (0, import_internal20.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_26.name,
+    type: "if",
+    source: "(8:1) {#if label}",
+    ctx
+  });
+  return block;
+}
+function create_if_block_16(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let current;
+  icon = new Icon_default({ props: { name: "info" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal20.element)("div");
+      (0, import_internal20.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal20.space)();
+      p = (0, import_internal20.element)("p");
+      t1 = (0, import_internal20.text)(
+        /*info*/
+        ctx[8]
+      );
+      (0, import_internal20.add_location)(p, file18, 13, 3, 285);
+      (0, import_internal20.attr_dev)(div, "class", "input-info");
+      (0, import_internal20.add_location)(div, file18, 11, 2, 234);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal20.insert_dev)(target, div, anchor);
+      (0, import_internal20.mount_component)(icon, div, null);
+      (0, import_internal20.append_dev)(div, t0);
+      (0, import_internal20.append_dev)(div, p);
+      (0, import_internal20.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(ctx2, dirty) {
+      if (!current || dirty & /*info*/
+      256)
+        (0, import_internal20.set_data_dev)(
+          t1,
+          /*info*/
+          ctx2[8]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal20.transition_in)(icon.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal20.transition_out)(icon.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal20.detach_dev)(div);
+      (0, import_internal20.destroy_component)(icon);
+    }
+  };
+  (0, import_internal20.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_16.name,
+    type: "if",
+    source: "(11:1) {#if info}",
+    ctx
+  });
+  return block;
+}
+function create_if_block13(ctx) {
+  let div;
+  let icon;
+  let t0;
+  let p;
+  let t1;
+  let current;
+  icon = new Icon_default({ props: { name: "error" }, $$inline: true });
+  const block = {
+    c: function create() {
+      div = (0, import_internal20.element)("div");
+      (0, import_internal20.create_component)(icon.$$.fragment);
+      t0 = (0, import_internal20.space)();
+      p = (0, import_internal20.element)("p");
+      t1 = (0, import_internal20.text)(
+        /*error*/
+        ctx[7]
+      );
+      (0, import_internal20.attr_dev)(
+        p,
+        "id",
+        /*errorMessageId*/
+        ctx[10]
+      );
+      (0, import_internal20.add_location)(p, file18, 20, 4, 465);
+      (0, import_internal20.attr_dev)(div, "class", "input-error");
+      (0, import_internal20.add_location)(div, file18, 18, 3, 410);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal20.insert_dev)(target, div, anchor);
+      (0, import_internal20.mount_component)(icon, div, null);
+      (0, import_internal20.append_dev)(div, t0);
+      (0, import_internal20.append_dev)(div, p);
+      (0, import_internal20.append_dev)(p, t1);
+      current = true;
+    },
+    p: function update(ctx2, dirty) {
+      if (!current || dirty & /*error*/
+      128)
+        (0, import_internal20.set_data_dev)(
+          t1,
+          /*error*/
+          ctx2[7]
+        );
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal20.transition_in)(icon.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal20.transition_out)(icon.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal20.detach_dev)(div);
+      (0, import_internal20.destroy_component)(icon);
+    }
+  };
+  (0, import_internal20.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block13.name,
+    type: "if",
+    source: "(18:2) {#if error}",
+    ctx
+  });
+  return block;
+}
+function create_each_block4(key_1, ctx) {
+  let div;
+  let input;
+  let input_id_value;
+  let input_value_value;
+  let input_checked_value;
+  let input_disabled_value;
+  let t0;
+  let label_1;
+  let t1_value = (
+    /*item*/
+    ctx[15].name + ""
+  );
+  let t1;
+  let label_1_for_value;
+  let t2;
+  let mounted;
+  let dispose;
+  function change_handler(...args) {
+    return (
+      /*change_handler*/
+      ctx[13](
+        /*item*/
+        ctx[15],
+        ...args
+      )
+    );
+  }
+  const block = {
+    key: key_1,
+    first: null,
+    c: function create() {
+      div = (0, import_internal20.element)("div");
+      input = (0, import_internal20.element)("input");
+      t0 = (0, import_internal20.space)();
+      label_1 = (0, import_internal20.element)("label");
+      t1 = (0, import_internal20.text)(t1_value);
+      t2 = (0, import_internal20.space)();
+      (0, import_internal20.attr_dev)(input, "type", "radio");
+      (0, import_internal20.attr_dev)(input, "id", input_id_value = /*item*/
+      ctx[15].id);
+      (0, import_internal20.attr_dev)(
+        input,
+        "name",
+        /*name*/
+        ctx[3]
+      );
+      input.value = input_value_value = /*item*/
+      ctx[15].value;
+      input.checked = input_checked_value = /*item*/
+      ctx[15].value === /*value*/
+      ctx[0];
+      input.disabled = input_disabled_value = /*disabled*/
+      ctx[6] || /*item*/
+      ctx[15].disabled;
+      (0, import_internal20.add_location)(input, file18, 29, 4, 729);
+      (0, import_internal20.attr_dev)(label_1, "class", "label");
+      (0, import_internal20.attr_dev)(label_1, "for", label_1_for_value = /*item*/
+      ctx[15].id);
+      (0, import_internal20.add_location)(label_1, file18, 37, 4, 948);
+      (0, import_internal20.attr_dev)(div, "class", "input-radio-item");
+      (0, import_internal20.toggle_class)(
+        div,
+        "disabled",
+        /*disabled*/
+        ctx[6] || /*item*/
+        ctx[15].disabled
+      );
+      (0, import_internal20.add_location)(div, file18, 24, 3, 558);
+      this.first = div;
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal20.insert_dev)(target, div, anchor);
+      (0, import_internal20.append_dev)(div, input);
+      (0, import_internal20.append_dev)(div, t0);
+      (0, import_internal20.append_dev)(div, label_1);
+      (0, import_internal20.append_dev)(label_1, t1);
+      (0, import_internal20.append_dev)(div, t2);
+      if (!mounted) {
+        dispose = [
+          (0, import_internal20.listen_dev)(input, "change", change_handler, false, false, false, false),
+          (0, import_internal20.listen_dev)(div, "touchstart", onmousedown, true, false, false, false),
+          (0, import_internal20.listen_dev)(div, "mousedown", onmousedown, true, false, false, false)
+        ];
+        mounted = true;
+      }
+    },
+    p: function update(new_ctx, dirty) {
+      ctx = new_ctx;
+      if (dirty & /*_items*/
+      512 && input_id_value !== (input_id_value = /*item*/
+      ctx[15].id)) {
+        (0, import_internal20.attr_dev)(input, "id", input_id_value);
+      }
+      if (dirty & /*name*/
+      8) {
+        (0, import_internal20.attr_dev)(
+          input,
+          "name",
+          /*name*/
+          ctx[3]
+        );
+      }
+      if (dirty & /*_items*/
+      512 && input_value_value !== (input_value_value = /*item*/
+      ctx[15].value)) {
+        (0, import_internal20.prop_dev)(input, "value", input_value_value);
+      }
+      if (dirty & /*_items, value*/
+      513 && input_checked_value !== (input_checked_value = /*item*/
+      ctx[15].value === /*value*/
+      ctx[0])) {
+        (0, import_internal20.prop_dev)(input, "checked", input_checked_value);
+      }
+      if (dirty & /*disabled, _items*/
+      576 && input_disabled_value !== (input_disabled_value = /*disabled*/
+      ctx[6] || /*item*/
+      ctx[15].disabled)) {
+        (0, import_internal20.prop_dev)(input, "disabled", input_disabled_value);
+      }
+      if (dirty & /*_items*/
+      512 && t1_value !== (t1_value = /*item*/
+      ctx[15].name + ""))
+        (0, import_internal20.set_data_dev)(t1, t1_value);
+      if (dirty & /*_items*/
+      512 && label_1_for_value !== (label_1_for_value = /*item*/
+      ctx[15].id)) {
+        (0, import_internal20.attr_dev)(label_1, "for", label_1_for_value);
+      }
+      if (dirty & /*disabled, _items*/
+      576) {
+        (0, import_internal20.toggle_class)(
+          div,
+          "disabled",
+          /*disabled*/
+          ctx[6] || /*item*/
+          ctx[15].disabled
+        );
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal20.detach_dev)(div);
+      mounted = false;
+      (0, import_internal20.run_all)(dispose);
+    }
+  };
+  (0, import_internal20.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_each_block4.name,
+    type: "each",
+    source: "(24:2) {#each _items as item (item.id)}",
+    ctx
+  });
+  return block;
+}
+function create_fragment20(ctx) {
+  let div1;
+  let t0;
+  let t1;
+  let div0;
+  let t2;
+  let each_blocks = [];
+  let each_1_lookup = /* @__PURE__ */ new Map();
+  let div1_class_value;
+  let current;
+  let if_block0 = (
+    /*label*/
+    ctx[5] && create_if_block_26(ctx)
+  );
+  let if_block1 = (
+    /*info*/
+    ctx[8] && create_if_block_16(ctx)
+  );
+  let if_block2 = (
+    /*error*/
+    ctx[7] && create_if_block13(ctx)
+  );
+  let each_value = (
+    /*_items*/
+    ctx[9]
+  );
+  (0, import_internal20.validate_each_argument)(each_value);
+  const get_key = (ctx2) => (
+    /*item*/
+    ctx2[15].id
+  );
+  (0, import_internal20.validate_each_keys)(ctx, each_value, get_each_context4, get_key);
+  for (let i = 0; i < each_value.length; i += 1) {
+    let child_ctx = get_each_context4(ctx, each_value, i);
+    let key = get_key(child_ctx);
+    each_1_lookup.set(key, each_blocks[i] = create_each_block4(key, child_ctx));
+  }
+  const block = {
+    c: function create() {
+      div1 = (0, import_internal20.element)("div");
+      if (if_block0)
+        if_block0.c();
+      t0 = (0, import_internal20.space)();
+      if (if_block1)
+        if_block1.c();
+      t1 = (0, import_internal20.space)();
+      div0 = (0, import_internal20.element)("div");
+      if (if_block2)
+        if_block2.c();
+      t2 = (0, import_internal20.space)();
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        each_blocks[i].c();
+      }
+      (0, import_internal20.attr_dev)(div0, "class", "input-text-inner input-radio-inner");
+      (0, import_internal20.toggle_class)(
+        div0,
+        "disabled",
+        /*disabled*/
+        ctx[6]
+      );
+      (0, import_internal20.add_location)(div0, file18, 16, 1, 316);
+      (0, import_internal20.attr_dev)(
+        div1,
+        "id",
+        /*id*/
+        ctx[2]
+      );
+      (0, import_internal20.attr_dev)(
+        div1,
+        "title",
+        /*title*/
+        ctx[4]
+      );
+      (0, import_internal20.attr_dev)(div1, "class", div1_class_value = "input-text input-radio " + /*className*/
+      ctx[1]);
+      (0, import_internal20.toggle_class)(
+        div1,
+        "has-error",
+        /*error*/
+        ctx[7]
+      );
+      (0, import_internal20.add_location)(div1, file18, 1, 0, 57);
+    },
+    l: function claim(nodes) {
+      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal20.insert_dev)(target, div1, anchor);
+      if (if_block0)
+        if_block0.m(div1, null);
+      (0, import_internal20.append_dev)(div1, t0);
+      if (if_block1)
+        if_block1.m(div1, null);
+      (0, import_internal20.append_dev)(div1, t1);
+      (0, import_internal20.append_dev)(div1, div0);
+      if (if_block2)
+        if_block2.m(div0, null);
+      (0, import_internal20.append_dev)(div0, t2);
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        if (each_blocks[i]) {
+          each_blocks[i].m(div0, null);
+        }
+      }
+      current = true;
+    },
+    p: function update(ctx2, [dirty]) {
+      if (
+        /*label*/
+        ctx2[5]
+      ) {
+        if (if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
+          if_block0 = create_if_block_26(ctx2);
+          if_block0.c();
+          if_block0.m(div1, t0);
+        }
+      } else if (if_block0) {
+        if_block0.d(1);
+        if_block0 = null;
+      }
+      if (
+        /*info*/
+        ctx2[8]
+      ) {
+        if (if_block1) {
+          if_block1.p(ctx2, dirty);
+          if (dirty & /*info*/
+          256) {
+            (0, import_internal20.transition_in)(if_block1, 1);
+          }
+        } else {
+          if_block1 = create_if_block_16(ctx2);
+          if_block1.c();
+          (0, import_internal20.transition_in)(if_block1, 1);
+          if_block1.m(div1, t1);
+        }
+      } else if (if_block1) {
+        (0, import_internal20.group_outros)();
+        (0, import_internal20.transition_out)(if_block1, 1, 1, () => {
+          if_block1 = null;
+        });
+        (0, import_internal20.check_outros)();
+      }
+      if (
+        /*error*/
+        ctx2[7]
+      ) {
+        if (if_block2) {
+          if_block2.p(ctx2, dirty);
+          if (dirty & /*error*/
+          128) {
+            (0, import_internal20.transition_in)(if_block2, 1);
+          }
+        } else {
+          if_block2 = create_if_block13(ctx2);
+          if_block2.c();
+          (0, import_internal20.transition_in)(if_block2, 1);
+          if_block2.m(div0, t2);
+        }
+      } else if (if_block2) {
+        (0, import_internal20.group_outros)();
+        (0, import_internal20.transition_out)(if_block2, 1, 1, () => {
+          if_block2 = null;
+        });
+        (0, import_internal20.check_outros)();
+      }
+      if (dirty & /*disabled, _items, onmousedown, name, value, onchange*/
+      2633) {
+        each_value = /*_items*/
+        ctx2[9];
+        (0, import_internal20.validate_each_argument)(each_value);
+        (0, import_internal20.validate_each_keys)(ctx2, each_value, get_each_context4, get_key);
+        each_blocks = (0, import_internal20.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div0, import_internal20.destroy_block, create_each_block4, null, get_each_context4);
+      }
+      if (!current || dirty & /*disabled*/
+      64) {
+        (0, import_internal20.toggle_class)(
+          div0,
+          "disabled",
+          /*disabled*/
+          ctx2[6]
+        );
+      }
+      if (!current || dirty & /*id*/
+      4) {
+        (0, import_internal20.attr_dev)(
+          div1,
+          "id",
+          /*id*/
+          ctx2[2]
+        );
+      }
+      if (!current || dirty & /*title*/
+      16) {
+        (0, import_internal20.attr_dev)(
+          div1,
+          "title",
+          /*title*/
+          ctx2[4]
+        );
+      }
+      if (!current || dirty & /*className*/
+      2 && div1_class_value !== (div1_class_value = "input-text input-radio " + /*className*/
+      ctx2[1])) {
+        (0, import_internal20.attr_dev)(div1, "class", div1_class_value);
+      }
+      if (!current || dirty & /*className, error*/
+      130) {
+        (0, import_internal20.toggle_class)(
+          div1,
+          "has-error",
+          /*error*/
+          ctx2[7]
+        );
+      }
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      (0, import_internal20.transition_in)(if_block1);
+      (0, import_internal20.transition_in)(if_block2);
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal20.transition_out)(if_block1);
+      (0, import_internal20.transition_out)(if_block2);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal20.detach_dev)(div1);
+      if (if_block0)
+        if_block0.d();
+      if (if_block1)
+        if_block1.d();
+      if (if_block2)
+        if_block2.d();
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        each_blocks[i].d();
+      }
+    }
+  };
+  (0, import_internal20.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_fragment20.name,
+    type: "component",
+    source: "",
+    ctx
+  });
+  return block;
+}
+function onmousedown(e) {
+  const inp = e.target.closest(".input-radio-item").querySelector("input");
+  if (inp && !inp.disabled) {
+    e.preventDefault();
+    inp.click();
+    inp.focus();
+  }
+}
+function instance20($$self2, $$props2, $$invalidate2) {
+  let _items;
+  let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
+  (0, import_internal20.validate_slots)("Radio", slots2, []);
+  let { class: className2 = "" } = $$props2;
+  let { id: id2 = guid() } = $$props2;
+  let { name: name2 = id2 || guid() } = $$props2;
+  let { title = "" } = $$props2;
+  let { label: label2 = "" } = $$props2;
+  let { disabled = false } = $$props2;
+  let { items = [] } = $$props2;
+  let { value: value2 = "" } = $$props2;
+  let { error: error2 = "" } = $$props2;
+  let { info: info2 = "" } = $$props2;
+  const dispatch2 = (0, import_svelte15.createEventDispatcher)();
+  const errorMessageId2 = guid();
+  function onchange6(event2, item) {
+    $$invalidate2(0, value2 = item.value);
+    dispatch2("change", { event: event2, value: value2, item });
+  }
+  const writable_props = [
+    "class",
+    "id",
+    "name",
+    "title",
+    "label",
+    "disabled",
+    "items",
+    "value",
+    "error",
+    "info"
+  ];
+  Object.keys($$props2).forEach((key) => {
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
+      console.warn(`<Radio> was created with unknown prop '${key}'`);
+  });
+  const change_handler = (item, e) => onchange6(e, item);
+  $$self2.$$set = ($$props3) => {
+    if ("class" in $$props3)
+      $$invalidate2(1, className2 = $$props3.class);
+    if ("id" in $$props3)
+      $$invalidate2(2, id2 = $$props3.id);
+    if ("name" in $$props3)
+      $$invalidate2(3, name2 = $$props3.name);
+    if ("title" in $$props3)
+      $$invalidate2(4, title = $$props3.title);
+    if ("label" in $$props3)
+      $$invalidate2(5, label2 = $$props3.label);
+    if ("disabled" in $$props3)
+      $$invalidate2(6, disabled = $$props3.disabled);
+    if ("items" in $$props3)
+      $$invalidate2(12, items = $$props3.items);
+    if ("value" in $$props3)
+      $$invalidate2(0, value2 = $$props3.value);
+    if ("error" in $$props3)
+      $$invalidate2(7, error2 = $$props3.error);
+    if ("info" in $$props3)
+      $$invalidate2(8, info2 = $$props3.info);
+  };
+  $$self2.$capture_state = () => ({
+    createEventDispatcher: import_svelte15.createEventDispatcher,
+    Icon: Icon_default,
+    guid,
+    className: className2,
+    id: id2,
+    name: name2,
+    title,
+    label: label2,
+    disabled,
+    items,
+    value: value2,
+    error: error2,
+    info: info2,
+    dispatch: dispatch2,
+    errorMessageId: errorMessageId2,
+    onmousedown,
+    onchange: onchange6,
+    _items
+  });
+  $$self2.$inject_state = ($$props3) => {
+    if ("className" in $$props3)
+      $$invalidate2(1, className2 = $$props3.className);
+    if ("id" in $$props3)
+      $$invalidate2(2, id2 = $$props3.id);
+    if ("name" in $$props3)
+      $$invalidate2(3, name2 = $$props3.name);
+    if ("title" in $$props3)
+      $$invalidate2(4, title = $$props3.title);
+    if ("label" in $$props3)
+      $$invalidate2(5, label2 = $$props3.label);
+    if ("disabled" in $$props3)
+      $$invalidate2(6, disabled = $$props3.disabled);
+    if ("items" in $$props3)
+      $$invalidate2(12, items = $$props3.items);
+    if ("value" in $$props3)
+      $$invalidate2(0, value2 = $$props3.value);
+    if ("error" in $$props3)
+      $$invalidate2(7, error2 = $$props3.error);
+    if ("info" in $$props3)
+      $$invalidate2(8, info2 = $$props3.info);
+    if ("_items" in $$props3)
+      $$invalidate2(9, _items = $$props3._items);
+  };
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
+  }
+  $$self2.$$.update = () => {
+    if ($$self2.$$.dirty & /*items*/
+    4096) {
+      $:
+        $$invalidate2(9, _items = items.map((item) => {
+          if (typeof item === "string")
+            item = { name: item, value: item };
+          item.id = item.id || guid();
+          return item;
+        }));
+    }
+  };
+  return [
+    value2,
+    className2,
+    id2,
+    name2,
+    title,
+    label2,
+    disabled,
+    error2,
+    info2,
+    _items,
+    errorMessageId2,
+    onchange6,
+    items,
+    change_handler
+  ];
+}
+var Radio = class extends import_internal20.SvelteComponentDev {
+  constructor(options) {
+    super(options);
+    (0, import_internal20.init)(this, options, instance20, create_fragment20, import_internal20.safe_not_equal, {
+      class: 1,
+      id: 2,
+      name: 3,
+      title: 4,
+      label: 5,
+      disabled: 6,
+      items: 12,
+      value: 0,
+      error: 7,
+      info: 8
+    });
+    (0, import_internal20.dispatch_dev)("SvelteRegisterComponent", {
+      component: this,
+      tagName: "Radio",
+      options,
+      id: create_fragment20.name
+    });
+  }
+  get class() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set class(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get id() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set id(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get name() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set name(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get title() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set title(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get label() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set label(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get disabled() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set disabled(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get items() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set items(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get value() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set value(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get error() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set error(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get info() {
+    throw new Error("<Radio>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set info(value2) {
+    throw new Error("<Radio>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+};
+var Radio_default = Radio;
 
 // src/select/Select.svelte
 var import_internal21 = __toESM(require_internal());
-var file18 = "src/select/Select.svelte";
-function get_each_context4(ctx, list, i) {
+var file19 = "src/select/Select.svelte";
+function get_each_context5(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[11] = list[i];
   return child_ctx;
@@ -18481,7 +19312,7 @@ function get_each_context_12(ctx, list, i) {
   child_ctx[14] = list[i];
   return child_ctx;
 }
-function create_if_block_16(ctx) {
+function create_if_block_17(ctx) {
   let option;
   let t;
   const block = {
@@ -18493,7 +19324,7 @@ function create_if_block_16(ctx) {
       );
       option.__value = "";
       option.value = option.__value;
-      (0, import_internal21.add_location)(option, file18, 8, 3, 142);
+      (0, import_internal21.add_location)(option, file19, 8, 3, 142);
     },
     m: function mount(target, anchor) {
       (0, import_internal21.insert_dev)(target, option, anchor);
@@ -18515,7 +19346,7 @@ function create_if_block_16(ctx) {
   };
   (0, import_internal21.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_16.name,
+    id: create_if_block_17.name,
     type: "if",
     source: "(8:2) {#if placeholder}",
     ctx
@@ -18537,7 +19368,7 @@ function create_else_block2(ctx) {
       option.__value = option_value_value = /*group*/
       ctx[11].id;
       option.value = option.__value;
-      (0, import_internal21.add_location)(option, file18, 18, 4, 403);
+      (0, import_internal21.add_location)(option, file19, 18, 4, 403);
     },
     m: function mount(target, anchor) {
       (0, import_internal21.insert_dev)(target, option, anchor);
@@ -18569,7 +19400,7 @@ function create_else_block2(ctx) {
   });
   return block;
 }
-function create_if_block13(ctx) {
+function create_if_block14(ctx) {
   let optgroup;
   let optgroup_label_value;
   let each_value_1 = (
@@ -18589,7 +19420,7 @@ function create_if_block13(ctx) {
       }
       (0, import_internal21.attr_dev)(optgroup, "label", optgroup_label_value = /*group*/
       ctx[11].name);
-      (0, import_internal21.add_location)(optgroup, file18, 12, 4, 241);
+      (0, import_internal21.add_location)(optgroup, file19, 12, 4, 241);
     },
     m: function mount(target, anchor) {
       (0, import_internal21.insert_dev)(target, optgroup, anchor);
@@ -18635,7 +19466,7 @@ function create_if_block13(ctx) {
   };
   (0, import_internal21.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block13.name,
+    id: create_if_block14.name,
     type: "if",
     source: "(12:3) {#if group.items}",
     ctx
@@ -18657,7 +19488,7 @@ function create_each_block_12(ctx) {
       option.__value = option_value_value = /*item*/
       ctx[14].id;
       option.value = option.__value;
-      (0, import_internal21.add_location)(option, file18, 14, 6, 312);
+      (0, import_internal21.add_location)(option, file19, 14, 6, 312);
     },
     m: function mount(target, anchor) {
       (0, import_internal21.insert_dev)(target, option, anchor);
@@ -18689,14 +19520,14 @@ function create_each_block_12(ctx) {
   });
   return block;
 }
-function create_each_block4(ctx) {
+function create_each_block5(ctx) {
   let if_block_anchor;
   function select_block_type(ctx2, dirty) {
     if (
       /*group*/
       ctx2[11].items
     )
-      return create_if_block13;
+      return create_if_block14;
     return create_else_block2;
   }
   let current_block_type = select_block_type(ctx, -1);
@@ -18730,14 +19561,14 @@ function create_each_block4(ctx) {
   };
   (0, import_internal21.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block4.name,
+    id: create_each_block5.name,
     type: "each",
     source: "(11:2) {#each groups as group}",
     ctx
   });
   return block;
 }
-function create_fragment20(ctx) {
+function create_fragment21(ctx) {
   let div;
   let select;
   let if_block_anchor;
@@ -18746,7 +19577,7 @@ function create_fragment20(ctx) {
   let dispose;
   let if_block = (
     /*placeholder*/
-    ctx[1] && create_if_block_16(ctx)
+    ctx[1] && create_if_block_17(ctx)
   );
   let each_value = (
     /*groups*/
@@ -18755,7 +19586,7 @@ function create_fragment20(ctx) {
   (0, import_internal21.validate_each_argument)(each_value);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block4(get_each_context4(ctx, each_value, i));
+    each_blocks[i] = create_each_block5(get_each_context5(ctx, each_value, i));
   }
   let select_levels = [
     /*props*/
@@ -18784,10 +19615,10 @@ function create_fragment20(ctx) {
           /*select_change_handler*/
           ctx[8].call(select)
         ));
-      (0, import_internal21.add_location)(select, file18, 1, 1, 42);
+      (0, import_internal21.add_location)(select, file19, 1, 1, 42);
       (0, import_internal21.attr_dev)(div, "class", div_class_value = "select-wrapper " + /*className*/
       ctx[2]);
-      (0, import_internal21.add_location)(div, file18, 0, 0, 0);
+      (0, import_internal21.add_location)(div, file19, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -18843,7 +19674,7 @@ function create_fragment20(ctx) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
-          if_block = create_if_block_16(ctx2);
+          if_block = create_if_block_17(ctx2);
           if_block.c();
           if_block.m(select, if_block_anchor);
         }
@@ -18858,11 +19689,11 @@ function create_fragment20(ctx) {
         (0, import_internal21.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context4(ctx2, each_value, i);
+          const child_ctx = get_each_context5(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
           } else {
-            each_blocks[i] = create_each_block4(child_ctx);
+            each_blocks[i] = create_each_block5(child_ctx);
             each_blocks[i].c();
             each_blocks[i].m(select, null);
           }
@@ -18907,14 +19738,14 @@ function create_fragment20(ctx) {
   };
   (0, import_internal21.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment20.name,
+    id: create_fragment21.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance20($$self2, $$props2, $$invalidate2) {
+function instance21($$self2, $$props2, $$invalidate2) {
   let props2;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal21.validate_slots)("Select", slots2, []);
@@ -19017,7 +19848,7 @@ function instance20($$self2, $$props2, $$invalidate2) {
 var Select = class extends import_internal21.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal21.init)(this, options, instance20, create_fragment20, import_internal21.safe_not_equal, {
+    (0, import_internal21.init)(this, options, instance21, create_fragment21, import_internal21.safe_not_equal, {
       value: 0,
       placeholder: 1,
       items: 6,
@@ -19027,7 +19858,7 @@ var Select = class extends import_internal21.SvelteComponentDev {
       component: this,
       tagName: "Select",
       options,
-      id: create_fragment20.name
+      id: create_fragment21.name
     });
   }
   get value() {
@@ -19059,9 +19890,9 @@ var Select_default = Select;
 
 // src/splitter/Splitter.svelte
 var import_internal22 = __toESM(require_internal());
-var import_svelte15 = __toESM(require_svelte());
-var file19 = "src/splitter/Splitter.svelte";
-function create_fragment21(ctx) {
+var import_svelte16 = __toESM(require_svelte());
+var file20 = "src/splitter/Splitter.svelte";
+function create_fragment22(ctx) {
   let div;
   let div_class_value;
   let mounted;
@@ -19083,7 +19914,7 @@ function create_fragment21(ctx) {
         /*isDragging*/
         ctx[3]
       );
-      (0, import_internal22.add_location)(div, file19, 0, 0, 0);
+      (0, import_internal22.add_location)(div, file20, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -19142,18 +19973,18 @@ function create_fragment21(ctx) {
   };
   (0, import_internal22.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment21.name,
+    id: create_fragment22.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance21($$self2, $$props2, $$invalidate2) {
+function instance22($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal22.validate_slots)("Splitter", slots2, []);
   let { class: className2 = "" } = $$props2;
-  const dispatch2 = (0, import_svelte15.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte16.createEventDispatcher)();
   const size = 8, halfsize = size / 2;
   const Box = {};
   let isVertical = false;
@@ -19161,7 +19992,7 @@ function instance21($$self2, $$props2, $$invalidate2) {
   let initialTargetBox, startX2, startY2;
   let mousedownTargetBox;
   let isDragging = false, bodyCursor;
-  (0, import_svelte15.onMount)(() => {
+  (0, import_svelte16.onMount)(() => {
     requestAnimationFrame(init71);
   });
   function toggle() {
@@ -19304,8 +20135,8 @@ function instance21($$self2, $$props2, $$invalidate2) {
       $$invalidate2(0, className2 = $$props3.class);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte15.onMount,
-    createEventDispatcher: import_svelte15.createEventDispatcher,
+    onMount: import_svelte16.onMount,
+    createEventDispatcher: import_svelte16.createEventDispatcher,
     getMouseX,
     getMouseY,
     innerWidth,
@@ -19384,7 +20215,7 @@ function instance21($$self2, $$props2, $$invalidate2) {
 var Splitter = class extends import_internal22.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal22.init)(this, options, instance21, create_fragment21, import_internal22.safe_not_equal, {
+    (0, import_internal22.init)(this, options, instance22, create_fragment22, import_internal22.safe_not_equal, {
       class: 0,
       toggle: 5,
       collapse: 6,
@@ -19395,7 +20226,7 @@ var Splitter = class extends import_internal22.SvelteComponentDev {
       component: this,
       tagName: "Splitter",
       options,
-      id: create_fragment21.name
+      id: create_fragment22.name
     });
   }
   get class() {
@@ -19433,10 +20264,10 @@ var Splitter_default = Splitter;
 
 // src/table/Table.svelte
 var import_internal23 = __toESM(require_internal());
-var import_svelte16 = __toESM(require_svelte());
+var import_svelte17 = __toESM(require_svelte());
 var { Object: Object_1 } = import_internal23.globals;
-var file20 = "src/table/Table.svelte";
-function create_fragment22(ctx) {
+var file21 = "src/table/Table.svelte";
+function create_fragment23(ctx) {
   let div;
   let table;
   let div_class_value;
@@ -19461,7 +20292,7 @@ function create_fragment22(ctx) {
       if (default_slot)
         default_slot.c();
       (0, import_internal23.attr_dev)(table, "class", "table");
-      (0, import_internal23.add_location)(table, file20, 11, 1, 258);
+      (0, import_internal23.add_location)(table, file21, 11, 1, 258);
       (0, import_internal23.attr_dev)(div, "class", div_class_value = "table-wrapper " + /*className*/
       ctx[3]);
       (0, import_internal23.toggle_class)(
@@ -19476,7 +20307,7 @@ function create_fragment22(ctx) {
         /*selectable*/
         ctx[1]
       );
-      (0, import_internal23.add_location)(div, file20, 1, 0, 57);
+      (0, import_internal23.add_location)(div, file21, 1, 0, 57);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -19605,7 +20436,7 @@ function create_fragment22(ctx) {
   };
   (0, import_internal23.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment22.name,
+    id: create_fragment23.name,
     type: "component",
     source: "",
     ctx
@@ -19622,10 +20453,10 @@ function shouldSkipNav(e) {
     return true;
   return false;
 }
-function instance22($$self2, $$props2, $$invalidate2) {
+function instance23($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal23.validate_slots)("Table", slots2, ["default"]);
-  const dispatch2 = (0, import_svelte16.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte17.createEventDispatcher)();
   let { _this: _this2 = void 0 } = $$props2;
   let { selectable = true } = $$props2;
   let { round = false } = $$props2;
@@ -19638,7 +20469,7 @@ function instance22($$self2, $$props2, $$invalidate2) {
   let headerHeight = 0;
   let clickTimer;
   let previousKey;
-  (0, import_svelte16.onMount)(() => {
+  (0, import_svelte17.onMount)(() => {
     Object.assign(_this2.dataset, data);
     if (selectable === true || selectable === "true") {
       makeRowsSelectable();
@@ -19649,7 +20480,7 @@ function instance22($$self2, $$props2, $$invalidate2) {
       });
     }
   });
-  (0, import_svelte16.onDestroy)(() => {
+  (0, import_svelte17.onDestroy)(() => {
     if (selectable === true || selectable === "true")
       makeRowsNotSelectable();
   });
@@ -19843,9 +20674,9 @@ function instance22($$self2, $$props2, $$invalidate2) {
       $$invalidate2(12, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    onDestroy: import_svelte16.onDestroy,
-    onMount: import_svelte16.onMount,
-    createEventDispatcher: import_svelte16.createEventDispatcher,
+    onDestroy: import_svelte17.onDestroy,
+    onMount: import_svelte17.onMount,
+    createEventDispatcher: import_svelte17.createEventDispatcher,
     dispatch: dispatch2,
     _this: _this2,
     selectable,
@@ -19923,7 +20754,7 @@ function instance22($$self2, $$props2, $$invalidate2) {
 var Table = class extends import_internal23.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal23.init)(this, options, instance22, create_fragment22, import_internal23.safe_not_equal, {
+    (0, import_internal23.init)(this, options, instance23, create_fragment23, import_internal23.safe_not_equal, {
       _this: 0,
       selectable: 1,
       round: 2,
@@ -19937,7 +20768,7 @@ var Table = class extends import_internal23.SvelteComponentDev {
       component: this,
       tagName: "Table",
       options,
-      id: create_fragment22.name
+      id: create_fragment23.name
     });
   }
   get _this() {
@@ -19993,8 +20824,8 @@ var Table_default = Table;
 
 // src/textarea/Textarea.svelte
 var import_internal24 = __toESM(require_internal());
-var file21 = "src/textarea/Textarea.svelte";
-function create_fragment23(ctx) {
+var file22 = "src/textarea/Textarea.svelte";
+function create_fragment24(ctx) {
   let div;
   let textarea;
   let div_class_value;
@@ -20015,7 +20846,7 @@ function create_fragment23(ctx) {
       div = (0, import_internal24.element)("div");
       textarea = (0, import_internal24.element)("textarea");
       (0, import_internal24.set_attributes)(textarea, textarea_data);
-      (0, import_internal24.add_location)(textarea, file21, 1, 1, 95);
+      (0, import_internal24.add_location)(textarea, file22, 1, 1, 95);
       (0, import_internal24.attr_dev)(div, "class", div_class_value = "textarea " + /*className*/
       ctx[2]);
       (0, import_internal24.attr_dev)(div, "data-value", div_data_value_value = /*autogrow*/
@@ -20029,7 +20860,7 @@ function create_fragment23(ctx) {
         /*autogrow*/
         ctx[1]
       );
-      (0, import_internal24.add_location)(div, file21, 0, 0, 0);
+      (0, import_internal24.add_location)(div, file22, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -20122,14 +20953,14 @@ function create_fragment23(ctx) {
   };
   (0, import_internal24.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment23.name,
+    id: create_fragment24.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance23($$self2, $$props2, $$invalidate2) {
+function instance24($$self2, $$props2, $$invalidate2) {
   let props2;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal24.validate_slots)("Textarea", slots2, []);
@@ -20188,12 +21019,12 @@ function instance23($$self2, $$props2, $$invalidate2) {
 var Textarea = class extends import_internal24.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal24.init)(this, options, instance23, create_fragment23, import_internal24.safe_not_equal, { value: 0, autogrow: 1, class: 2 });
+    (0, import_internal24.init)(this, options, instance24, create_fragment24, import_internal24.safe_not_equal, { value: 0, autogrow: 1, class: 2 });
     (0, import_internal24.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Textarea",
       options,
-      id: create_fragment23.name
+      id: create_fragment24.name
     });
   }
   get value() {
@@ -20219,9 +21050,9 @@ var Textarea_default = Textarea;
 
 // src/text-fit/TextFit.svelte
 var import_internal25 = __toESM(require_internal());
-var import_svelte17 = __toESM(require_svelte());
-var file22 = "src/text-fit/TextFit.svelte";
-function create_fragment24(ctx) {
+var import_svelte18 = __toESM(require_svelte());
+var file23 = "src/text-fit/TextFit.svelte";
+function create_fragment25(ctx) {
   let span;
   let span_class_value;
   let current;
@@ -20243,7 +21074,7 @@ function create_fragment24(ctx) {
         default_slot.c();
       (0, import_internal25.attr_dev)(span, "class", span_class_value = "text-fit " + /*className*/
       ctx[0]);
-      (0, import_internal25.add_location)(span, file22, 0, 0, 0);
+      (0, import_internal25.add_location)(span, file23, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -20306,7 +21137,7 @@ function create_fragment24(ctx) {
   };
   (0, import_internal25.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment24.name,
+    id: create_fragment25.name,
     type: "component",
     source: "",
     ctx
@@ -20314,7 +21145,7 @@ function create_fragment24(ctx) {
   return block;
 }
 var DEBOUNCE_RESIZE = 10;
-function instance24($$self2, $$props2, $$invalidate2) {
+function instance25($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal25.validate_slots)("TextFit", slots2, ["default"]);
   let { margin = 0 } = $$props2;
@@ -20327,7 +21158,7 @@ function instance24($$self2, $$props2, $$invalidate2) {
     const val = (parentW - margin) / textW || 0;
     $$invalidate2(1, el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`, el);
   }
-  (0, import_svelte17.onMount)(() => {
+  (0, import_svelte18.onMount)(() => {
     parent = el.parentNode;
     resizeObserver = new ResizeObserver(() => {
       if (timer2)
@@ -20339,7 +21170,7 @@ function instance24($$self2, $$props2, $$invalidate2) {
     mutationObserver.observe(el.firstChild, { characterData: true });
     resize();
   });
-  (0, import_svelte17.onDestroy)(() => {
+  (0, import_svelte18.onDestroy)(() => {
     resizeObserver.unobserve(parent);
     mutationObserver.disconnect();
   });
@@ -20363,8 +21194,8 @@ function instance24($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte17.onMount,
-    onDestroy: import_svelte17.onDestroy,
+    onMount: import_svelte18.onMount,
+    onDestroy: import_svelte18.onDestroy,
     margin,
     className: className2,
     DEBOUNCE_RESIZE,
@@ -20399,12 +21230,12 @@ function instance24($$self2, $$props2, $$invalidate2) {
 var TextFit = class extends import_internal25.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal25.init)(this, options, instance24, create_fragment24, import_internal25.safe_not_equal, { margin: 2, class: 0 });
+    (0, import_internal25.init)(this, options, instance25, create_fragment25, import_internal25.safe_not_equal, { margin: 2, class: 0 });
     (0, import_internal25.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "TextFit",
       options,
-      id: create_fragment24.name
+      id: create_fragment25.name
     });
   }
   get margin() {
@@ -20455,13 +21286,13 @@ function guid2() {
 
 // src/toaster/Toaster.svelte
 var { Object: Object_12 } = import_internal26.globals;
-var file23 = "src/toaster/Toaster.svelte";
-function get_each_context5(ctx, list, i) {
+var file24 = "src/toaster/Toaster.svelte";
+function get_each_context6(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[16] = list[i];
   return child_ctx;
 }
-function create_if_block_17(ctx) {
+function create_if_block_18(ctx) {
   let button;
   let t_value = (
     /*toast*/
@@ -20483,7 +21314,7 @@ function create_if_block_17(ctx) {
     c: function create() {
       button = (0, import_internal26.element)("button");
       t = (0, import_internal26.text)(t_value);
-      (0, import_internal26.add_location)(button, file23, 19, 4, 649);
+      (0, import_internal26.add_location)(button, file24, 19, 4, 649);
     },
     m: function mount(target, anchor) {
       (0, import_internal26.insert_dev)(target, button, anchor);
@@ -20509,14 +21340,14 @@ function create_if_block_17(ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_17.name,
+    id: create_if_block_18.name,
     type: "if",
     source: "(19:3) {#if toast.btn}",
     ctx
   });
   return block;
 }
-function create_if_block14(ctx) {
+function create_if_block15(ctx) {
   let div1;
   let div0;
   const block = {
@@ -20534,9 +21365,9 @@ function create_if_block14(ctx) {
           ctx[16].id
         ] + "%"
       );
-      (0, import_internal26.add_location)(div0, file23, 24, 5, 912);
+      (0, import_internal26.add_location)(div0, file24, 24, 5, 912);
       (0, import_internal26.attr_dev)(div1, "class", "toast-progressbar");
-      (0, import_internal26.add_location)(div1, file23, 23, 4, 875);
+      (0, import_internal26.add_location)(div1, file24, 23, 4, 875);
     },
     m: function mount(target, anchor) {
       (0, import_internal26.insert_dev)(target, div1, anchor);
@@ -20563,14 +21394,14 @@ function create_if_block14(ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block14.name,
+    id: create_if_block15.name,
     type: "if",
     source: "(23:3) {#if toast.showProgress}",
     ctx
   });
   return block;
 }
-function create_each_block5(key_1, ctx) {
+function create_each_block6(key_1, ctx) {
   let div1;
   let div0;
   let raw_value = (
@@ -20590,7 +21421,7 @@ function create_each_block5(key_1, ctx) {
   let dispose;
   let if_block0 = (
     /*toast*/
-    ctx[16].btn && create_if_block_17(ctx)
+    ctx[16].btn && create_if_block_18(ctx)
   );
   function click_handler_1() {
     return (
@@ -20603,7 +21434,7 @@ function create_each_block5(key_1, ctx) {
   }
   let if_block1 = (
     /*toast*/
-    ctx[16].showProgress && create_if_block14(ctx)
+    ctx[16].showProgress && create_if_block15(ctx)
   );
   function mouseover_handler() {
     return (
@@ -20672,13 +21503,13 @@ function create_each_block5(key_1, ctx) {
       (0, import_internal26.attr_dev)(div0, "class", "toast-msg");
       (0, import_internal26.attr_dev)(div0, "role", div0_role_value = /*toast*/
       ctx[16].type === "info" ? "status" : "alert");
-      (0, import_internal26.add_location)(div0, file23, 13, 3, 509);
+      (0, import_internal26.add_location)(div0, file24, 13, 3, 509);
       (0, import_internal26.attr_dev)(button, "class", "toast-close");
-      (0, import_internal26.add_location)(button, file23, 21, 3, 743);
+      (0, import_internal26.add_location)(button, file24, 21, 3, 743);
       (0, import_internal26.attr_dev)(div1, "class", div1_class_value = "toast toast-" + /*toast*/
       ctx[16].type);
       (0, import_internal26.attr_dev)(div1, "tabindex", "0");
-      (0, import_internal26.add_location)(div1, file23, 3, 2, 149);
+      (0, import_internal26.add_location)(div1, file24, 3, 2, 149);
       this.first = div1;
     },
     m: function mount(target, anchor) {
@@ -20726,7 +21557,7 @@ function create_each_block5(key_1, ctx) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
         } else {
-          if_block0 = create_if_block_17(ctx);
+          if_block0 = create_if_block_18(ctx);
           if_block0.c();
           if_block0.m(div1, t1);
         }
@@ -20741,7 +21572,7 @@ function create_each_block5(key_1, ctx) {
         if (if_block1) {
           if_block1.p(ctx, dirty);
         } else {
-          if_block1 = create_if_block14(ctx);
+          if_block1 = create_if_block15(ctx);
           if_block1.c();
           if_block1.m(div1, t4);
         }
@@ -20810,14 +21641,14 @@ function create_each_block5(key_1, ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block5.name,
+    id: create_each_block6.name,
     type: "each",
     source: "(2:1) {#each toasts as toast (toast.id)}",
     ctx
   });
   return block;
 }
-function create_fragment25(ctx) {
+function create_fragment26(ctx) {
   let div;
   let each_blocks = [];
   let each_1_lookup = /* @__PURE__ */ new Map();
@@ -20832,11 +21663,11 @@ function create_fragment25(ctx) {
     /*toast*/
     ctx2[16].id
   );
-  (0, import_internal26.validate_each_keys)(ctx, each_value, get_each_context5, get_key);
+  (0, import_internal26.validate_each_keys)(ctx, each_value, get_each_context6, get_key);
   for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context5(ctx, each_value, i);
+    let child_ctx = get_each_context6(ctx, each_value, i);
     let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block5(key, child_ctx));
+    each_1_lookup.set(key, each_blocks[i] = create_each_block6(key, child_ctx));
   }
   const block = {
     c: function create() {
@@ -20847,7 +21678,7 @@ function create_fragment25(ctx) {
       (0, import_internal26.attr_dev)(div, "class", div_class_value = "toaster toaster-" + /*position*/
       ctx[0] + " " + /*className*/
       ctx[1]);
-      (0, import_internal26.add_location)(div, file23, 0, 0, 0);
+      (0, import_internal26.add_location)(div, file24, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -20868,8 +21699,8 @@ function create_fragment25(ctx) {
         ctx2[2];
         (0, import_internal26.validate_each_argument)(each_value);
         (0, import_internal26.group_outros)();
-        (0, import_internal26.validate_each_keys)(ctx2, each_value, get_each_context5, get_key);
-        each_blocks = (0, import_internal26.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, import_internal26.outro_and_destroy_block, create_each_block5, null, get_each_context5);
+        (0, import_internal26.validate_each_keys)(ctx2, each_value, get_each_context6, get_key);
+        each_blocks = (0, import_internal26.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, import_internal26.outro_and_destroy_block, create_each_block6, null, get_each_context6);
         (0, import_internal26.check_outros)();
       }
       if (!current || dirty & /*position, className*/
@@ -20903,14 +21734,14 @@ function create_fragment25(ctx) {
   };
   (0, import_internal26.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment25.name,
+    id: create_fragment26.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance25($$self2, $$props2, $$invalidate2) {
+function instance26($$self2, $$props2, $$invalidate2) {
   let $ANIMATION_SPEED2;
   (0, import_internal26.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
   (0, import_internal26.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(4, $ANIMATION_SPEED2 = $$value));
@@ -21018,12 +21849,12 @@ function instance25($$self2, $$props2, $$invalidate2) {
 var Toaster = class extends import_internal26.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal26.init)(this, options, instance25, create_fragment25, import_internal26.safe_not_equal, { position: 0, class: 1 });
+    (0, import_internal26.init)(this, options, instance26, create_fragment26, import_internal26.safe_not_equal, { position: 0, class: 1 });
     (0, import_internal26.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Toaster",
       options,
-      id: create_fragment25.name
+      id: create_fragment26.name
     });
   }
   get position() {
@@ -21043,7 +21874,7 @@ var Toaster_default = Toaster;
 
 // src/notification-center/NotificationCenter/NotificationCenter.svelte
 var import_internal28 = __toESM(require_internal());
-var import_svelte19 = __toESM(require_svelte());
+var import_svelte20 = __toESM(require_svelte());
 var import_store6 = __toESM(require_store());
 
 // src/notification-center/store.js
@@ -21141,10 +21972,10 @@ function removeFromArchive(id2) {
 
 // src/notification-center/NotificationArchive/NotificationArchive.svelte
 var import_internal27 = __toESM(require_internal());
-var import_svelte18 = __toESM(require_svelte());
+var import_svelte19 = __toESM(require_svelte());
 var { Object: Object_13 } = import_internal27.globals;
-var file24 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
-function get_each_context6(ctx, list, i) {
+var file25 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
+function get_each_context7(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[18] = list[i];
   return child_ctx;
@@ -21176,9 +22007,9 @@ function create_else_block3(ctx) {
       t1 = (0, import_internal27.space)();
       div = (0, import_internal27.element)("div");
       (0, import_internal27.create_component)(button.$$.fragment);
-      (0, import_internal27.add_location)(h2, file24, 9, 3, 468);
+      (0, import_internal27.add_location)(h2, file25, 9, 3, 468);
       (0, import_internal27.attr_dev)(div, "class", "notification-archive-buttons");
-      (0, import_internal27.add_location)(div, file24, 10, 3, 504);
+      (0, import_internal27.add_location)(div, file25, 10, 3, 504);
     },
     m: function mount(target, anchor) {
       (0, import_internal27.insert_dev)(target, h2, anchor);
@@ -21224,7 +22055,7 @@ function create_else_block3(ctx) {
   });
   return block;
 }
-function create_if_block_18(ctx) {
+function create_if_block_19(ctx) {
   let h2;
   let button0;
   let t0;
@@ -21283,9 +22114,9 @@ function create_if_block_18(ctx) {
       (0, import_internal27.create_component)(button1.$$.fragment);
       t1 = (0, import_internal27.space)();
       (0, import_internal27.create_component)(button2.$$.fragment);
-      (0, import_internal27.add_location)(h2, file24, 3, 3, 142);
+      (0, import_internal27.add_location)(h2, file25, 3, 3, 142);
       (0, import_internal27.attr_dev)(div, "class", "notification-archive-buttons");
-      (0, import_internal27.add_location)(div, file24, 4, 3, 258);
+      (0, import_internal27.add_location)(div, file25, 4, 3, 258);
     },
     m: function mount(target, anchor) {
       (0, import_internal27.insert_dev)(target, h2, anchor);
@@ -21345,7 +22176,7 @@ function create_if_block_18(ctx) {
   };
   (0, import_internal27.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_18.name,
+    id: create_if_block_19.name,
     type: "if",
     source: "(3:2) {#if archived.length}",
     ctx
@@ -21464,7 +22295,7 @@ function create_default_slot3(ctx) {
   });
   return block;
 }
-function create_if_block15(ctx) {
+function create_if_block16(ctx) {
   let each_blocks = [];
   let each_1_lookup = /* @__PURE__ */ new Map();
   let each_1_anchor;
@@ -21478,11 +22309,11 @@ function create_if_block15(ctx) {
     /*notification*/
     ctx2[18].id
   );
-  (0, import_internal27.validate_each_keys)(ctx, each_value, get_each_context6, get_key);
+  (0, import_internal27.validate_each_keys)(ctx, each_value, get_each_context7, get_key);
   for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context6(ctx, each_value, i);
+    let child_ctx = get_each_context7(ctx, each_value, i);
     let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block6(key, child_ctx));
+    each_1_lookup.set(key, each_blocks[i] = create_each_block7(key, child_ctx));
   }
   const block = {
     c: function create() {
@@ -21509,8 +22340,8 @@ function create_if_block15(ctx) {
         (0, import_internal27.group_outros)();
         for (let i = 0; i < each_blocks.length; i += 1)
           each_blocks[i].r();
-        (0, import_internal27.validate_each_keys)(ctx2, each_value, get_each_context6, get_key);
-        each_blocks = (0, import_internal27.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, import_internal27.fix_and_outro_and_destroy_block, create_each_block6, each_1_anchor, get_each_context6);
+        (0, import_internal27.validate_each_keys)(ctx2, each_value, get_each_context7, get_key);
+        each_blocks = (0, import_internal27.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, import_internal27.fix_and_outro_and_destroy_block, create_each_block7, each_1_anchor, get_each_context7);
         for (let i = 0; i < each_blocks.length; i += 1)
           each_blocks[i].a();
         (0, import_internal27.check_outros)();
@@ -21540,14 +22371,14 @@ function create_if_block15(ctx) {
   };
   (0, import_internal27.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block15.name,
+    id: create_if_block16.name,
     type: "if",
     source: "(16:1) {#if archived.length && expanded}",
     ctx
   });
   return block;
 }
-function create_each_block6(key_1, ctx) {
+function create_each_block7(key_1, ctx) {
   let div2;
   let div0;
   let raw_value = (
@@ -21610,15 +22441,15 @@ function create_each_block6(key_1, ctx) {
       (0, import_internal27.attr_dev)(div0, "class", "notification-msg");
       (0, import_internal27.attr_dev)(div0, "role", div0_role_value = /*notification*/
       ctx[18].type === "info" ? "status" : "alert");
-      (0, import_internal27.add_location)(div0, file24, 26, 4, 1028);
+      (0, import_internal27.add_location)(div0, file25, 26, 4, 1028);
       (0, import_internal27.attr_dev)(div1, "class", "notification-timestamp");
-      (0, import_internal27.add_location)(div1, file24, 27, 4, 1152);
+      (0, import_internal27.add_location)(div1, file25, 27, 4, 1152);
       (0, import_internal27.attr_dev)(button, "class", "notification-close");
-      (0, import_internal27.add_location)(button, file24, 28, 4, 1237);
+      (0, import_internal27.add_location)(button, file25, 28, 4, 1237);
       (0, import_internal27.attr_dev)(div2, "tabindex", "0");
       (0, import_internal27.attr_dev)(div2, "class", div2_class_value = "notification notification-" + /*notification*/
       ctx[18].type + " archived");
-      (0, import_internal27.add_location)(div2, file24, 18, 3, 812);
+      (0, import_internal27.add_location)(div2, file25, 18, 3, 812);
       this.first = div2;
     },
     m: function mount(target, anchor) {
@@ -21721,14 +22552,14 @@ function create_each_block6(key_1, ctx) {
   };
   (0, import_internal27.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block6.name,
+    id: create_each_block7.name,
     type: "each",
     source: "(17:2) {#each archived as notification (notification.id)}",
     ctx
   });
   return block;
 }
-function create_fragment26(ctx) {
+function create_fragment27(ctx) {
   let div;
   let header;
   let current_block_type_index;
@@ -21736,7 +22567,7 @@ function create_fragment26(ctx) {
   let t;
   let div_inert_value;
   let current;
-  const if_block_creators = [create_if_block_18, create_else_block3];
+  const if_block_creators = [create_if_block_19, create_else_block3];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -21751,7 +22582,7 @@ function create_fragment26(ctx) {
   let if_block1 = (
     /*archived*/
     ctx[3].length && /*expanded*/
-    ctx[1] && create_if_block15(ctx)
+    ctx[1] && create_if_block16(ctx)
   );
   const block = {
     c: function create() {
@@ -21761,7 +22592,7 @@ function create_fragment26(ctx) {
       t = (0, import_internal27.space)();
       if (if_block1)
         if_block1.c();
-      (0, import_internal27.add_location)(header, file24, 1, 1, 106);
+      (0, import_internal27.add_location)(header, file25, 1, 1, 106);
       (0, import_internal27.attr_dev)(div, "class", "notification-archive");
       div.inert = div_inert_value = !/*show*/
       ctx[0];
@@ -21773,7 +22604,7 @@ function create_fragment26(ctx) {
       );
       (0, import_internal27.toggle_class)(div, "inert", !/*show*/
       ctx[0]);
-      (0, import_internal27.add_location)(div, file24, 0, 0, 0);
+      (0, import_internal27.add_location)(div, file25, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21821,7 +22652,7 @@ function create_fragment26(ctx) {
             (0, import_internal27.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block15(ctx2);
+          if_block1 = create_if_block16(ctx2);
           if_block1.c();
           (0, import_internal27.transition_in)(if_block1, 1);
           if_block1.m(div, null);
@@ -21876,14 +22707,14 @@ function create_fragment26(ctx) {
   };
   (0, import_internal27.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment26.name,
+    id: create_fragment27.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance26($$self2, $$props2, $$invalidate2) {
+function instance27($$self2, $$props2, $$invalidate2) {
   let $ANIMATION_SPEED2;
   (0, import_internal27.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
   (0, import_internal27.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(16, $ANIMATION_SPEED2 = $$value));
@@ -21896,13 +22727,13 @@ function instance26($$self2, $$props2, $$invalidate2) {
   let archived = [];
   let now = (/* @__PURE__ */ new Date()).getTime();
   let timer2;
-  (0, import_svelte18.onMount)(() => {
+  (0, import_svelte19.onMount)(() => {
     timer2 = setInterval(() => $$invalidate2(4, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
     ArchivedNotifications.subscribe((val) => {
       $$invalidate2(3, archived = Object.values(val).reverse());
     });
   });
-  (0, import_svelte18.onDestroy)(() => {
+  (0, import_svelte19.onDestroy)(() => {
     clearInterval(timer2);
   });
   function toggle() {
@@ -21952,8 +22783,8 @@ function instance26($$self2, $$props2, $$invalidate2) {
       $$invalidate2(1, expanded = $$props3.expanded);
   };
   $$self2.$capture_state = () => ({
-    onDestroy: import_svelte18.onDestroy,
-    onMount: import_svelte18.onMount,
+    onDestroy: import_svelte19.onDestroy,
+    onMount: import_svelte19.onMount,
     Button: Button_default,
     ArchivedNotifications,
     removeFromArchive,
@@ -22024,12 +22855,12 @@ function instance26($$self2, $$props2, $$invalidate2) {
 var NotificationArchive = class extends import_internal27.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal27.init)(this, options, instance26, create_fragment26, import_internal27.safe_not_equal, { show: 0, expanded: 1 });
+    (0, import_internal27.init)(this, options, instance27, create_fragment27, import_internal27.safe_not_equal, { show: 0, expanded: 1 });
     (0, import_internal27.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "NotificationArchive",
       options,
-      id: create_fragment26.name
+      id: create_fragment27.name
     });
   }
   get show() {
@@ -22049,8 +22880,8 @@ var NotificationArchive_default = NotificationArchive;
 
 // src/notification-center/NotificationCenter/NotificationCenter.svelte
 var { Object: Object_14 } = import_internal28.globals;
-var file25 = "src/notification-center/NotificationCenter/NotificationCenter.svelte";
-function get_each_context7(ctx, list, i) {
+var file26 = "src/notification-center/NotificationCenter/NotificationCenter.svelte";
+function get_each_context8(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[33] = list[i];
   return child_ctx;
@@ -22140,7 +22971,7 @@ function create_if_block_33(ctx) {
   });
   return block;
 }
-function create_if_block_26(ctx) {
+function create_if_block_27(ctx) {
   let button;
   let t_value = (
     /*notification*/
@@ -22162,7 +22993,7 @@ function create_if_block_26(ctx) {
     c: function create() {
       button = (0, import_internal28.element)("button");
       t = (0, import_internal28.text)(t_value);
-      (0, import_internal28.add_location)(button, file25, 35, 5, 1227);
+      (0, import_internal28.add_location)(button, file26, 35, 5, 1227);
     },
     m: function mount(target, anchor) {
       (0, import_internal28.insert_dev)(target, button, anchor);
@@ -22188,14 +23019,14 @@ function create_if_block_26(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_26.name,
+    id: create_if_block_27.name,
     type: "if",
     source: "(35:4) {#if notification.btn}",
     ctx
   });
   return block;
 }
-function create_if_block_19(ctx) {
+function create_if_block_110(ctx) {
   let div1;
   let div0;
   const block = {
@@ -22204,9 +23035,9 @@ function create_if_block_19(ctx) {
       div0 = (0, import_internal28.element)("div");
       (0, import_internal28.attr_dev)(div0, "role", "progressbar");
       (0, import_internal28.attr_dev)(div0, "class", "notification-progress");
-      (0, import_internal28.add_location)(div0, file25, 43, 5, 1560);
+      (0, import_internal28.add_location)(div0, file26, 43, 5, 1560);
       (0, import_internal28.attr_dev)(div1, "class", "notification-progressbar");
-      (0, import_internal28.add_location)(div1, file25, 42, 4, 1516);
+      (0, import_internal28.add_location)(div1, file26, 42, 4, 1516);
     },
     m: function mount(target, anchor) {
       (0, import_internal28.insert_dev)(target, div1, anchor);
@@ -22219,14 +23050,14 @@ function create_if_block_19(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_19.name,
+    id: create_if_block_110.name,
     type: "if",
     source: "(42:3) {#if notification.showProgress}",
     ctx
   });
   return block;
 }
-function create_each_block7(key_1, ctx) {
+function create_each_block8(key_1, ctx) {
   let div3;
   let div0;
   let icon;
@@ -22260,7 +23091,7 @@ function create_each_block7(key_1, ctx) {
   });
   let if_block0 = (
     /*notification*/
-    ctx[33].btn && create_if_block_26(ctx)
+    ctx[33].btn && create_if_block_27(ctx)
   );
   function click_handler_1() {
     return (
@@ -22273,7 +23104,7 @@ function create_each_block7(key_1, ctx) {
   }
   let if_block1 = (
     /*notification*/
-    ctx[33].showProgress && create_if_block_19(ctx)
+    ctx[33].showProgress && create_if_block_110(ctx)
   );
   function mouseover_handler() {
     return (
@@ -22343,21 +23174,21 @@ function create_each_block7(key_1, ctx) {
       if (if_block1)
         if_block1.c();
       (0, import_internal28.attr_dev)(div0, "class", "notification-icon");
-      (0, import_internal28.add_location)(div0, file25, 30, 3, 961);
+      (0, import_internal28.add_location)(div0, file26, 30, 3, 961);
       (0, import_internal28.attr_dev)(div1, "class", "notification-msg");
       (0, import_internal28.attr_dev)(div1, "role", div1_role_value = /*notification*/
       ctx[33].type === "info" ? "status" : "alert");
-      (0, import_internal28.add_location)(div1, file25, 31, 3, 1036);
+      (0, import_internal28.add_location)(div1, file26, 31, 3, 1036);
       (0, import_internal28.attr_dev)(button, "class", "notification-close");
-      (0, import_internal28.add_location)(button, file25, 38, 4, 1345);
+      (0, import_internal28.add_location)(button, file26, 38, 4, 1345);
       (0, import_internal28.attr_dev)(div2, "class", "notification-buttons");
-      (0, import_internal28.add_location)(div2, file25, 33, 3, 1160);
+      (0, import_internal28.add_location)(div2, file26, 33, 3, 1160);
       (0, import_internal28.attr_dev)(div3, "class", div3_class_value = "notification notification-" + /*notification*/
       ctx[33].type);
       (0, import_internal28.attr_dev)(div3, "data-id", div3_data_id_value = /*notification*/
       ctx[33].id);
       (0, import_internal28.attr_dev)(div3, "tabindex", "0");
-      (0, import_internal28.add_location)(div3, file25, 17, 2, 513);
+      (0, import_internal28.add_location)(div3, file26, 17, 2, 513);
       this.first = div3;
     },
     m: function mount(target, anchor) {
@@ -22414,7 +23245,7 @@ function create_each_block7(key_1, ctx) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
         } else {
-          if_block0 = create_if_block_26(ctx);
+          if_block0 = create_if_block_27(ctx);
           if_block0.c();
           if_block0.m(div2, t2);
         }
@@ -22428,7 +23259,7 @@ function create_each_block7(key_1, ctx) {
       ) {
         if (if_block1) {
         } else {
-          if_block1 = create_if_block_19(ctx);
+          if_block1 = create_if_block_110(ctx);
           if_block1.c();
           if_block1.m(div3, null);
         }
@@ -22504,14 +23335,14 @@ function create_each_block7(key_1, ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block7.name,
+    id: create_each_block8.name,
     type: "each",
     source: "(16:1) {#each notifications as notification (notification.id)}",
     ctx
   });
   return block;
 }
-function create_if_block16(ctx) {
+function create_if_block17(ctx) {
   let notificationarchive;
   let updating_show;
   let updating_expanded;
@@ -22585,14 +23416,14 @@ function create_if_block16(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block16.name,
+    id: create_if_block17.name,
     type: "if",
     source: "(50:1) {#if !hideButton}",
     ctx
   });
   return block;
 }
-function create_fragment27(ctx) {
+function create_fragment28(ctx) {
   let t0;
   let div;
   let each_blocks = [];
@@ -22611,14 +23442,14 @@ function create_fragment27(ctx) {
     /*notification*/
     ctx2[33].id
   );
-  (0, import_internal28.validate_each_keys)(ctx, each_value, get_each_context7, get_key);
+  (0, import_internal28.validate_each_keys)(ctx, each_value, get_each_context8, get_key);
   for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context7(ctx, each_value, i);
+    let child_ctx = get_each_context8(ctx, each_value, i);
     let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block7(key, child_ctx));
+    each_1_lookup.set(key, each_blocks[i] = create_each_block8(key, child_ctx));
   }
   let if_block1 = !/*hideButton*/
-  ctx[3] && create_if_block16(ctx);
+  ctx[3] && create_if_block17(ctx);
   const block = {
     c: function create() {
       if (if_block0)
@@ -22651,7 +23482,7 @@ function create_fragment27(ctx) {
         /*hasActiveNotifications*/
         ctx[9]
       );
-      (0, import_internal28.add_location)(div, file25, 8, 0, 187);
+      (0, import_internal28.add_location)(div, file26, 8, 0, 187);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -22702,8 +23533,8 @@ function create_fragment27(ctx) {
         (0, import_internal28.group_outros)();
         for (let i = 0; i < each_blocks.length; i += 1)
           each_blocks[i].r();
-        (0, import_internal28.validate_each_keys)(ctx2, each_value, get_each_context7, get_key);
-        each_blocks = (0, import_internal28.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, import_internal28.fix_and_outro_and_destroy_block, create_each_block7, t1, get_each_context7);
+        (0, import_internal28.validate_each_keys)(ctx2, each_value, get_each_context8, get_key);
+        each_blocks = (0, import_internal28.update_keyed_each)(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, import_internal28.fix_and_outro_and_destroy_block, create_each_block8, t1, get_each_context8);
         for (let i = 0; i < each_blocks.length; i += 1)
           each_blocks[i].a();
         (0, import_internal28.check_outros)();
@@ -22717,7 +23548,7 @@ function create_fragment27(ctx) {
             (0, import_internal28.transition_in)(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block16(ctx2);
+          if_block1 = create_if_block17(ctx2);
           if_block1.c();
           (0, import_internal28.transition_in)(if_block1, 1);
           if_block1.m(div, null);
@@ -22797,14 +23628,14 @@ function create_fragment27(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment27.name,
+    id: create_fragment28.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance27($$self2, $$props2, $$invalidate2) {
+function instance28($$self2, $$props2, $$invalidate2) {
   let hasArchivedNotifications;
   let hasNotifications;
   let $showArchive;
@@ -22830,7 +23661,7 @@ function instance27($$self2, $$props2, $$invalidate2) {
   let notifications = [];
   let initial2 = true;
   let hasActiveNotifications = false;
-  (0, import_svelte19.onMount)(() => {
+  (0, import_svelte20.onMount)(() => {
     document.body.appendChild(el);
     Notifications.subscribe((val) => {
       $$invalidate2(4, notifications = Object.values(val).reverse());
@@ -22923,7 +23754,7 @@ function instance27($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, hideButton = $$props3.hideButton);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte19.onMount,
+    onMount: import_svelte20.onMount,
     writable: import_store6.writable,
     Icon: Icon_default,
     PushButton: PushButton_default,
@@ -23039,8 +23870,8 @@ var NotificationCenter = class extends import_internal28.SvelteComponentDev {
     (0, import_internal28.init)(
       this,
       options,
-      instance27,
-      create_fragment27,
+      instance28,
+      create_fragment28,
       import_internal28.safe_not_equal,
       {
         class: 0,
@@ -23055,7 +23886,7 @@ var NotificationCenter = class extends import_internal28.SvelteComponentDev {
       component: this,
       tagName: "NotificationCenter",
       options,
-      id: create_fragment27.name
+      id: create_fragment28.name
     });
   }
   get class() {
@@ -23087,7 +23918,7 @@ var NotificationCenter_default = NotificationCenter;
 
 // src/toggle/Toggle.svelte
 var import_internal29 = __toESM(require_internal());
-var import_svelte20 = __toESM(require_svelte());
+var import_svelte21 = __toESM(require_svelte());
 
 // src/toggle/utils.js
 var isTouchDevice = "ontouchstart" in document.documentElement;
@@ -23115,8 +23946,8 @@ function initialMeasure(toggleEl) {
 }
 
 // src/toggle/Toggle.svelte
-var file26 = "src/toggle/Toggle.svelte";
-function create_fragment28(ctx) {
+var file27 = "src/toggle/Toggle.svelte";
+function create_fragment29(ctx) {
   let div5;
   let label_1;
   let div4;
@@ -23156,17 +23987,17 @@ function create_fragment28(ctx) {
       t2 = (0, import_internal29.space)();
       input = (0, import_internal29.element)("input");
       (0, import_internal29.attr_dev)(div0, "class", "toggle-option");
-      (0, import_internal29.add_location)(div0, file26, 14, 3, 402);
+      (0, import_internal29.add_location)(div0, file27, 14, 3, 402);
       (0, import_internal29.attr_dev)(div1, "class", "toggle-knob");
-      (0, import_internal29.add_location)(div1, file26, 15, 51, 487);
+      (0, import_internal29.add_location)(div1, file27, 15, 51, 487);
       (0, import_internal29.attr_dev)(div2, "class", "toggle-handle");
-      (0, import_internal29.add_location)(div2, file26, 15, 3, 439);
+      (0, import_internal29.add_location)(div2, file27, 15, 3, 439);
       (0, import_internal29.attr_dev)(div3, "class", "toggle-option");
-      (0, import_internal29.add_location)(div3, file26, 16, 3, 528);
+      (0, import_internal29.add_location)(div3, file27, 16, 3, 528);
       (0, import_internal29.set_attributes)(input, input_data);
-      (0, import_internal29.add_location)(input, file26, 17, 3, 565);
+      (0, import_internal29.add_location)(input, file27, 17, 3, 565);
       (0, import_internal29.attr_dev)(div4, "class", "toggle-scroller");
-      (0, import_internal29.add_location)(div4, file26, 13, 2, 346);
+      (0, import_internal29.add_location)(div4, file27, 13, 2, 346);
       (0, import_internal29.attr_dev)(label_1, "class", "toggle-inner");
       (0, import_internal29.attr_dev)(
         label_1,
@@ -23174,7 +24005,7 @@ function create_fragment28(ctx) {
         /*title*/
         ctx[8]
       );
-      (0, import_internal29.add_location)(label_1, file26, 12, 1, 287);
+      (0, import_internal29.add_location)(label_1, file27, 12, 1, 287);
       (0, import_internal29.attr_dev)(div5, "class", div5_class_value = "toggle " + /*className*/
       ctx[2]);
       (0, import_internal29.attr_dev)(div5, "role", "switch");
@@ -23192,7 +24023,7 @@ function create_fragment28(ctx) {
         /*value*/
         ctx[0]
       );
-      (0, import_internal29.add_location)(div5, file26, 0, 0, 0);
+      (0, import_internal29.add_location)(div5, file27, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23333,19 +24164,19 @@ function create_fragment28(ctx) {
   };
   (0, import_internal29.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment28.name,
+    id: create_fragment29.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance28($$self2, $$props2, $$invalidate2) {
+function instance29($$self2, $$props2, $$invalidate2) {
   let title;
   let inputProps;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal29.validate_slots)("Toggle", slots2, []);
-  const dispatch2 = (0, import_svelte20.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte21.createEventDispatcher)();
   let { value: value2 = false } = $$props2;
   let { disabled = void 0 } = $$props2;
   let { class: className2 = "" } = $$props2;
@@ -23353,11 +24184,11 @@ function instance28($$self2, $$props2, $$invalidate2) {
   let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
   let isClick = false, isDragging = false;
   let oldValue;
-  (0, import_svelte20.onMount)(() => {
+  (0, import_svelte21.onMount)(() => {
     toggleTransitions(false);
     ({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
   });
-  (0, import_svelte20.afterUpdate)(() => {
+  (0, import_svelte21.afterUpdate)(() => {
     if (typeof value2 !== "boolean")
       $$invalidate2(0, value2 = !!value2);
     setValue(value2);
@@ -23478,9 +24309,9 @@ function instance28($$self2, $$props2, $$invalidate2) {
       $$invalidate2(2, className2 = $$new_props.class);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte20.onMount,
-    afterUpdate: import_svelte20.afterUpdate,
-    createEventDispatcher: import_svelte20.createEventDispatcher,
+    onMount: import_svelte21.onMount,
+    afterUpdate: import_svelte21.afterUpdate,
+    createEventDispatcher: import_svelte21.createEventDispatcher,
     pluck,
     getMouseX: getMouseX2,
     isTouchDevice,
@@ -23585,12 +24416,12 @@ function instance28($$self2, $$props2, $$invalidate2) {
 var Toggle = class extends import_internal29.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal29.init)(this, options, instance28, create_fragment28, import_internal29.safe_not_equal, { value: 0, disabled: 1, class: 2 }, null, [-1, -1]);
+    (0, import_internal29.init)(this, options, instance29, create_fragment29, import_internal29.safe_not_equal, { value: 0, disabled: 1, class: 2 }, null, [-1, -1]);
     (0, import_internal29.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Toggle",
       options,
-      id: create_fragment28.name
+      id: create_fragment29.name
     });
   }
   get value() {
@@ -23616,9 +24447,9 @@ var Toggle_default = Toggle;
 
 // src/tooltip/Tooltip.svelte
 var import_internal30 = __toESM(require_internal());
-var import_svelte21 = __toESM(require_svelte());
-var file27 = "src/tooltip/Tooltip.svelte";
-function create_if_block17(ctx) {
+var import_svelte22 = __toESM(require_svelte());
+var file28 = "src/tooltip/Tooltip.svelte";
+function create_if_block18(ctx) {
   let div2;
   let div1;
   let div0;
@@ -23644,11 +24475,11 @@ function create_if_block17(ctx) {
       if (default_slot)
         default_slot.c();
       (0, import_internal30.attr_dev)(div0, "class", "tooltip-content");
-      (0, import_internal30.add_location)(div0, file27, 11, 3, 215);
+      (0, import_internal30.add_location)(div0, file28, 11, 3, 215);
       (0, import_internal30.attr_dev)(div1, "class", div1_class_value = "tooltip " + /*className*/
       ctx[0]);
       (0, import_internal30.attr_dev)(div1, "role", "tooltip");
-      (0, import_internal30.add_location)(div1, file27, 10, 2, 163);
+      (0, import_internal30.add_location)(div1, file28, 10, 2, 163);
       (0, import_internal30.attr_dev)(div2, "class", div2_class_value = "tooltip-plate tooltip-" + /*_position*/
       ctx[5]);
       (0, import_internal30.toggle_class)(
@@ -23681,7 +24512,7 @@ function create_if_block17(ctx) {
         /*danger*/
         ctx[4]
       );
-      (0, import_internal30.add_location)(div2, file27, 1, 1, 15);
+      (0, import_internal30.add_location)(div2, file28, 1, 1, 15);
     },
     m: function mount(target, anchor) {
       (0, import_internal30.insert_dev)(target, div2, anchor);
@@ -23793,19 +24624,19 @@ function create_if_block17(ctx) {
   };
   (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block17.name,
+    id: create_if_block18.name,
     type: "if",
     source: "(1:0) {#if visible}",
     ctx
   });
   return block;
 }
-function create_fragment29(ctx) {
+function create_fragment30(ctx) {
   let if_block_anchor;
   let current;
   let if_block = (
     /*visible*/
-    ctx[6] && create_if_block17(ctx)
+    ctx[6] && create_if_block18(ctx)
   );
   const block = {
     c: function create() {
@@ -23834,7 +24665,7 @@ function create_fragment29(ctx) {
             (0, import_internal30.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block17(ctx2);
+          if_block = create_if_block18(ctx2);
           if_block.c();
           (0, import_internal30.transition_in)(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -23866,14 +24697,14 @@ function create_fragment29(ctx) {
   };
   (0, import_internal30.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment29.name,
+    id: create_fragment30.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance29($$self2, $$props2, $$invalidate2) {
+function instance30($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal30.validate_slots)("Tooltip", slots2, ["default"]);
   let { target = "" } = $$props2;
@@ -23891,13 +24722,13 @@ function instance29($$self2, $$props2, $$invalidate2) {
   let visible = false;
   let showTimer, hideTimer, shownEvent, noHide = false;
   let el, targetEl, tooltipContainer;
-  (0, import_svelte21.onMount)(() => {
+  (0, import_svelte22.onMount)(() => {
     initContainer();
     targetEl = target ? document.querySelector("#" + target) : document.body;
     addTargetEvents();
   });
-  (0, import_svelte21.onDestroy)(removeTargetEvents);
-  (0, import_svelte21.afterUpdate)(align);
+  (0, import_svelte22.onDestroy)(removeTargetEvents);
+  (0, import_svelte22.afterUpdate)(align);
   function show(e) {
     if (hideTimer) {
       clearTimeout(hideTimer);
@@ -24095,9 +24926,9 @@ function instance29($$self2, $$props2, $$invalidate2) {
       $$invalidate2(14, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    afterUpdate: import_svelte21.afterUpdate,
-    onDestroy: import_svelte21.onDestroy,
-    onMount: import_svelte21.onMount,
+    afterUpdate: import_svelte22.afterUpdate,
+    onDestroy: import_svelte22.onDestroy,
+    onMount: import_svelte22.onMount,
     target,
     delay,
     position,
@@ -24202,8 +25033,8 @@ var Tooltip = class extends import_internal30.SvelteComponentDev {
     (0, import_internal30.init)(
       this,
       options,
-      instance29,
-      create_fragment29,
+      instance30,
+      create_fragment30,
       import_internal30.safe_not_equal,
       {
         target: 8,
@@ -24225,7 +25056,7 @@ var Tooltip = class extends import_internal30.SvelteComponentDev {
       component: this,
       tagName: "Tooltip",
       options,
-      id: create_fragment29.name
+      id: create_fragment30.name
     });
   }
   get target() {
@@ -24299,12 +25130,12 @@ var Tooltip_default = Tooltip;
 
 // src/tree/Tree.svelte
 var import_internal32 = __toESM(require_internal());
-var import_svelte22 = __toESM(require_svelte());
+var import_svelte23 = __toESM(require_svelte());
 
 // src/tree/TreeNode.svelte
 var import_internal31 = __toESM(require_internal());
-var file28 = "src/tree/TreeNode.svelte";
-function get_each_context8(ctx, list, i) {
+var file29 = "src/tree/TreeNode.svelte";
+function get_each_context9(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[7] = list[i];
   return child_ctx;
@@ -24322,7 +25153,7 @@ function create_each_block_13(ctx) {
       div = (0, import_internal31.element)("div");
       (0, import_internal31.attr_dev)(div, "class", div_class_value = "tree-indent indent-" + /*indent*/
       ctx[10]);
-      (0, import_internal31.add_location)(div, file28, 17, 3, 490);
+      (0, import_internal31.add_location)(div, file29, 17, 3, 490);
     },
     m: function mount(target, anchor) {
       (0, import_internal31.insert_dev)(target, div, anchor);
@@ -24348,7 +25179,7 @@ function create_each_block_13(ctx) {
   });
   return block;
 }
-function create_if_block18(ctx) {
+function create_if_block19(ctx) {
   let ul;
   let current;
   let each_value = (
@@ -24358,7 +25189,7 @@ function create_if_block18(ctx) {
   (0, import_internal31.validate_each_argument)(each_value);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block8(get_each_context8(ctx, each_value, i));
+    each_blocks[i] = create_each_block9(get_each_context9(ctx, each_value, i));
   }
   const out = (i) => (0, import_internal31.transition_out)(each_blocks[i], 1, 1, () => {
     each_blocks[i] = null;
@@ -24369,7 +25200,7 @@ function create_if_block18(ctx) {
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      (0, import_internal31.add_location)(ul, file28, 24, 2, 686);
+      (0, import_internal31.add_location)(ul, file29, 24, 2, 686);
     },
     m: function mount(target, anchor) {
       (0, import_internal31.insert_dev)(target, ul, anchor);
@@ -24388,12 +25219,12 @@ function create_if_block18(ctx) {
         (0, import_internal31.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context8(ctx2, each_value, i);
+          const child_ctx = get_each_context9(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
             (0, import_internal31.transition_in)(each_blocks[i], 1);
           } else {
-            each_blocks[i] = create_each_block8(child_ctx);
+            each_blocks[i] = create_each_block9(child_ctx);
             each_blocks[i].c();
             (0, import_internal31.transition_in)(each_blocks[i], 1);
             each_blocks[i].m(ul, null);
@@ -24429,14 +25260,14 @@ function create_if_block18(ctx) {
   };
   (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block18.name,
+    id: create_if_block19.name,
     type: "if",
     source: "(24:1) {#if item.items && expanded}",
     ctx
   });
   return block;
 }
-function create_each_block8(ctx) {
+function create_each_block9(ctx) {
   let treenode;
   let current;
   treenode = new TreeNode({
@@ -24488,14 +25319,14 @@ function create_each_block8(ctx) {
   };
   (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block8.name,
+    id: create_each_block9.name,
     type: "each",
     source: "(26:3) {#each item.items as subitem}",
     ctx
   });
   return block;
 }
-function create_fragment30(ctx) {
+function create_fragment31(ctx) {
   let li;
   let div2;
   let t0;
@@ -24529,7 +25360,7 @@ function create_fragment30(ctx) {
   let if_block = (
     /*item*/
     ctx[1].items && /*expanded*/
-    ctx[0] && create_if_block18(ctx)
+    ctx[0] && create_if_block19(ctx)
   );
   const block = {
     c: function create() {
@@ -24548,9 +25379,9 @@ function create_fragment30(ctx) {
         if_block.c();
       (0, import_internal31.attr_dev)(div0, "class", div0_class_value = "tree-icon tree-" + /*nodeType*/
       ctx[4] + "-icon");
-      (0, import_internal31.add_location)(div0, file28, 19, 2, 550);
+      (0, import_internal31.add_location)(div0, file29, 19, 2, 550);
       (0, import_internal31.attr_dev)(div1, "class", "tree-label");
-      (0, import_internal31.add_location)(div1, file28, 20, 2, 603);
+      (0, import_internal31.add_location)(div1, file29, 20, 2, 603);
       (0, import_internal31.attr_dev)(div2, "class", "tree-node");
       (0, import_internal31.attr_dev)(div2, "role", div2_role_value = /*item*/
       ctx[1].items ? "group" : "treeitem");
@@ -24587,8 +25418,8 @@ function create_fragment30(ctx) {
         /*expanded*/
         ctx[0]
       );
-      (0, import_internal31.add_location)(div2, file28, 2, 1, 64);
-      (0, import_internal31.add_location)(li, file28, 0, 0, 0);
+      (0, import_internal31.add_location)(div2, file29, 2, 1, 64);
+      (0, import_internal31.add_location)(li, file29, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -24750,7 +25581,7 @@ function create_fragment30(ctx) {
             (0, import_internal31.transition_in)(if_block, 1);
           }
         } else {
-          if_block = create_if_block18(ctx);
+          if_block = create_if_block19(ctx);
           if_block.c();
           (0, import_internal31.transition_in)(if_block, 1);
           if_block.m(li, null);
@@ -24785,14 +25616,14 @@ function create_fragment30(ctx) {
   };
   (0, import_internal31.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment30.name,
+    id: create_fragment31.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance30($$self2, $$props2, $$invalidate2) {
+function instance31($$self2, $$props2, $$invalidate2) {
   let nodeType;
   let indents;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
@@ -24864,12 +25695,12 @@ function instance30($$self2, $$props2, $$invalidate2) {
 var TreeNode = class extends import_internal31.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal31.init)(this, options, instance30, create_fragment30, import_internal31.safe_not_equal, { item: 1, level: 2, expanded: 0 });
+    (0, import_internal31.init)(this, options, instance31, create_fragment31, import_internal31.safe_not_equal, { item: 1, level: 2, expanded: 0 });
     (0, import_internal31.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "TreeNode",
       options,
-      id: create_fragment30.name
+      id: create_fragment31.name
     });
   }
   get item() {
@@ -24894,13 +25725,13 @@ var TreeNode = class extends import_internal31.SvelteComponentDev {
 var TreeNode_default = TreeNode;
 
 // src/tree/Tree.svelte
-var file29 = "src/tree/Tree.svelte";
-function get_each_context9(ctx, list, i) {
+var file30 = "src/tree/Tree.svelte";
+function get_each_context10(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[23] = list[i];
   return child_ctx;
 }
-function create_each_block9(ctx) {
+function create_each_block10(ctx) {
   let treenode;
   let current;
   treenode = new TreeNode_default({
@@ -24942,14 +25773,14 @@ function create_each_block9(ctx) {
   };
   (0, import_internal32.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block9.name,
+    id: create_each_block10.name,
     type: "each",
     source: "(13:1) {#each items as item}",
     ctx
   });
   return block;
 }
-function create_fragment31(ctx) {
+function create_fragment32(ctx) {
   let ul;
   let ul_class_value;
   let current;
@@ -24962,7 +25793,7 @@ function create_fragment31(ctx) {
   (0, import_internal32.validate_each_argument)(each_value);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block9(get_each_context9(ctx, each_value, i));
+    each_blocks[i] = create_each_block10(get_each_context10(ctx, each_value, i));
   }
   const out = (i) => (0, import_internal32.transition_out)(each_blocks[i], 1, 1, () => {
     each_blocks[i] = null;
@@ -24989,7 +25820,7 @@ function create_fragment31(ctx) {
         ctx[1]
       );
       (0, import_internal32.attr_dev)(ul, "tabindex", "0");
-      (0, import_internal32.add_location)(ul, file29, 1, 0, 106);
+      (0, import_internal32.add_location)(ul, file30, 1, 0, 106);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -25047,12 +25878,12 @@ function create_fragment31(ctx) {
         (0, import_internal32.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context9(ctx2, each_value, i);
+          const child_ctx = get_each_context10(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
             (0, import_internal32.transition_in)(each_blocks[i], 1);
           } else {
-            each_blocks[i] = create_each_block9(child_ctx);
+            each_blocks[i] = create_each_block10(child_ctx);
             each_blocks[i].c();
             (0, import_internal32.transition_in)(each_blocks[i], 1);
             each_blocks[i].m(ul, null);
@@ -25114,20 +25945,20 @@ function create_fragment31(ctx) {
   };
   (0, import_internal32.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment31.name,
+    id: create_fragment32.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance31($$self2, $$props2, $$invalidate2) {
+function instance32($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal32.validate_slots)("Tree", slots2, []);
   let { items = [] } = $$props2;
   let { title = void 0 } = $$props2;
   let { class: className2 = "" } = $$props2;
-  const dispatch2 = (0, import_svelte22.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte23.createEventDispatcher)();
   let el;
   let selectedItem;
   function getVisibleNodes() {
@@ -25262,7 +26093,7 @@ function instance31($$self2, $$props2, $$invalidate2) {
       $$invalidate2(2, className2 = $$props3.class);
   };
   $$self2.$capture_state = () => ({
-    createEventDispatcher: import_svelte22.createEventDispatcher,
+    createEventDispatcher: import_svelte23.createEventDispatcher,
     TreeNode: TreeNode_default,
     items,
     title,
@@ -25307,12 +26138,12 @@ function instance31($$self2, $$props2, $$invalidate2) {
 var Tree = class extends import_internal32.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal32.init)(this, options, instance31, create_fragment31, import_internal32.safe_not_equal, { items: 0, title: 1, class: 2 });
+    (0, import_internal32.init)(this, options, instance32, create_fragment32, import_internal32.safe_not_equal, { items: 0, title: 1, class: 2 });
     (0, import_internal32.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Tree",
       options,
-      id: create_fragment31.name
+      id: create_fragment32.name
     });
   }
   get items() {
@@ -25338,8 +26169,8 @@ var Tree_default = Tree;
 
 // docs-src/nav/NavItem.svelte
 var import_internal33 = __toESM(require_internal());
-var file30 = "docs-src/nav/NavItem.svelte";
-function create_fragment32(ctx) {
+var file31 = "docs-src/nav/NavItem.svelte";
+function create_fragment33(ctx) {
   let a;
   let t;
   let a_href_value;
@@ -25359,7 +26190,7 @@ function create_fragment32(ctx) {
         ctx[0] === /*hash*/
         ctx[2]
       );
-      (0, import_internal33.add_location)(a, file30, 0, 0, 0);
+      (0, import_internal33.add_location)(a, file31, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -25401,14 +26232,14 @@ function create_fragment32(ctx) {
   };
   (0, import_internal33.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment32.name,
+    id: create_fragment33.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance32($$self2, $$props2, $$invalidate2) {
+function instance33($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal33.validate_slots)("NavItem", slots2, []);
   let { active = location.hash.substr(1) } = $$props2;
@@ -25444,12 +26275,12 @@ function instance32($$self2, $$props2, $$invalidate2) {
 var NavItem = class extends import_internal33.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal33.init)(this, options, instance32, create_fragment32, import_internal33.safe_not_equal, { active: 0, name: 1, hash: 2 });
+    (0, import_internal33.init)(this, options, instance33, create_fragment33, import_internal33.safe_not_equal, { active: 0, name: 1, hash: 2 });
     (0, import_internal33.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "NavItem",
       options,
-      id: create_fragment32.name
+      id: create_fragment33.name
     });
   }
   get active() {
@@ -25475,8 +26306,8 @@ var NavItem_default = NavItem;
 
 // docs-src/pages/start.svelte
 var import_internal34 = __toESM(require_internal());
-var file31 = "docs-src/pages/start.svelte";
-function create_fragment33(ctx) {
+var file32 = "docs-src/pages/start.svelte";
+function create_fragment34(ctx) {
   let header;
   let img;
   let img_src_value;
@@ -25760,85 +26591,85 @@ function create_fragment33(ctx) {
       if (!(0, import_internal34.src_url_equal)(img.src, img_src_value = "logo2.png"))
         (0, import_internal34.attr_dev)(img, "src", img_src_value);
       (0, import_internal34.attr_dev)(img, "alt", "Logo");
-      (0, import_internal34.add_location)(img, file31, 1, 1, 30);
-      (0, import_internal34.add_location)(em0, file31, 2, 36, 113);
-      (0, import_internal34.add_location)(sub, file31, 2, 47, 124);
+      (0, import_internal34.add_location)(img, file32, 1, 1, 30);
+      (0, import_internal34.add_location)(em0, file32, 2, 36, 113);
+      (0, import_internal34.add_location)(sub, file32, 2, 47, 124);
       (0, import_internal34.attr_dev)(h1, "class", "logotype");
-      (0, import_internal34.add_location)(h1, file31, 2, 1, 78);
+      (0, import_internal34.add_location)(h1, file32, 2, 1, 78);
       (0, import_internal34.attr_dev)(header, "class", "main-header");
-      (0, import_internal34.add_location)(header, file31, 0, 0, 0);
-      (0, import_internal34.add_location)(p0, file31, 6, 0, 179);
+      (0, import_internal34.add_location)(header, file32, 0, 0, 0);
+      (0, import_internal34.add_location)(p0, file32, 6, 0, 179);
       (0, import_internal34.attr_dev)(a0, "href", "https://perfect-things.github.io/ui/");
-      (0, import_internal34.add_location)(a0, file31, 8, 5, 306);
-      (0, import_internal34.add_location)(li0, file31, 8, 1, 302);
+      (0, import_internal34.add_location)(a0, file32, 8, 5, 306);
+      (0, import_internal34.add_location)(li0, file32, 8, 1, 302);
       (0, import_internal34.attr_dev)(a1, "href", "https://github.com/perfect-things/ui/");
-      (0, import_internal34.add_location)(a1, file31, 9, 5, 380);
-      (0, import_internal34.add_location)(li1, file31, 9, 1, 376);
+      (0, import_internal34.add_location)(a1, file32, 9, 5, 380);
+      (0, import_internal34.add_location)(li1, file32, 9, 1, 376);
       (0, import_internal34.attr_dev)(a2, "href", "https://www.npmjs.com/package/@perfectthings/ui");
-      (0, import_internal34.add_location)(a2, file31, 10, 5, 449);
-      (0, import_internal34.add_location)(li2, file31, 10, 1, 445);
-      (0, import_internal34.add_location)(ul, file31, 7, 0, 296);
-      (0, import_internal34.add_location)(h20, file31, 14, 0, 528);
-      (0, import_internal34.add_location)(h30, file31, 16, 0, 550);
+      (0, import_internal34.add_location)(a2, file32, 10, 5, 449);
+      (0, import_internal34.add_location)(li2, file32, 10, 1, 445);
+      (0, import_internal34.add_location)(ul, file32, 7, 0, 296);
+      (0, import_internal34.add_location)(h20, file32, 14, 0, 528);
+      (0, import_internal34.add_location)(h30, file32, 16, 0, 550);
       (0, import_internal34.attr_dev)(code0, "class", "language-bash");
-      (0, import_internal34.add_location)(code0, file31, 18, 5, 617);
-      (0, import_internal34.add_location)(pre0, file31, 18, 0, 612);
-      (0, import_internal34.add_location)(h31, file31, 23, 0, 690);
-      (0, import_internal34.add_location)(i0, file31, 24, 26, 743);
-      (0, import_internal34.add_location)(br0, file31, 24, 62, 779);
-      (0, import_internal34.add_location)(br1, file31, 25, 141, 925);
-      (0, import_internal34.add_location)(i1, file31, 26, 37, 967);
-      (0, import_internal34.add_location)(i2, file31, 26, 73, 1003);
-      (0, import_internal34.add_location)(i3, file31, 26, 132, 1062);
-      (0, import_internal34.add_location)(p1, file31, 24, 0, 717);
+      (0, import_internal34.add_location)(code0, file32, 18, 5, 617);
+      (0, import_internal34.add_location)(pre0, file32, 18, 0, 612);
+      (0, import_internal34.add_location)(h31, file32, 23, 0, 690);
+      (0, import_internal34.add_location)(i0, file32, 24, 26, 743);
+      (0, import_internal34.add_location)(br0, file32, 24, 62, 779);
+      (0, import_internal34.add_location)(br1, file32, 25, 141, 925);
+      (0, import_internal34.add_location)(i1, file32, 26, 37, 967);
+      (0, import_internal34.add_location)(i2, file32, 26, 73, 1003);
+      (0, import_internal34.add_location)(i3, file32, 26, 132, 1062);
+      (0, import_internal34.add_location)(p1, file32, 24, 0, 717);
       (0, import_internal34.attr_dev)(code1, "class", "language-json");
-      (0, import_internal34.add_location)(code1, file31, 29, 5, 1093);
-      (0, import_internal34.add_location)(pre1, file31, 29, 0, 1088);
-      (0, import_internal34.add_location)(i4, file31, 35, 52, 1299);
-      (0, import_internal34.add_location)(p2, file31, 35, 0, 1247);
-      (0, import_internal34.add_location)(i5, file31, 37, 0, 1323);
-      (0, import_internal34.add_location)(em1, file31, 37, 29, 1352);
-      (0, import_internal34.add_location)(i6, file31, 37, 81, 1404);
-      (0, import_internal34.add_location)(h32, file31, 40, 0, 1426);
-      (0, import_internal34.add_location)(i7, file31, 41, 5, 1461);
+      (0, import_internal34.add_location)(code1, file32, 29, 5, 1093);
+      (0, import_internal34.add_location)(pre1, file32, 29, 0, 1088);
+      (0, import_internal34.add_location)(i4, file32, 35, 52, 1299);
+      (0, import_internal34.add_location)(p2, file32, 35, 0, 1247);
+      (0, import_internal34.add_location)(i5, file32, 37, 0, 1323);
+      (0, import_internal34.add_location)(em1, file32, 37, 29, 1352);
+      (0, import_internal34.add_location)(i6, file32, 37, 81, 1404);
+      (0, import_internal34.add_location)(h32, file32, 40, 0, 1426);
+      (0, import_internal34.add_location)(i7, file32, 41, 5, 1461);
       (0, import_internal34.attr_dev)(code2, "class", "language-js");
-      (0, import_internal34.add_location)(code2, file31, 43, 5, 1514);
-      (0, import_internal34.add_location)(pre2, file31, 43, 0, 1509);
-      (0, import_internal34.add_location)(em2, file31, 48, 1, 1620);
+      (0, import_internal34.add_location)(code2, file32, 43, 5, 1514);
+      (0, import_internal34.add_location)(pre2, file32, 43, 0, 1509);
+      (0, import_internal34.add_location)(em2, file32, 48, 1, 1620);
       (0, import_internal34.attr_dev)(a3, "href", "#InputPassword");
-      (0, import_internal34.add_location)(a3, file31, 48, 12, 1631);
+      (0, import_internal34.add_location)(a3, file32, 48, 12, 1631);
       (0, import_internal34.attr_dev)(a4, "href", "https://github.com/dropbox/zxcvbn");
-      (0, import_internal34.add_location)(a4, file31, 50, 1, 1832);
-      (0, import_internal34.add_location)(br2, file31, 50, 56, 1887);
-      (0, import_internal34.add_location)(p3, file31, 47, 0, 1615);
+      (0, import_internal34.add_location)(a4, file32, 50, 1, 1832);
+      (0, import_internal34.add_location)(br2, file32, 50, 56, 1887);
+      (0, import_internal34.add_location)(p3, file32, 47, 0, 1615);
       (0, import_internal34.attr_dev)(code3, "class", "language-html");
-      (0, import_internal34.add_location)(code3, file31, 54, 5, 1949);
-      (0, import_internal34.add_location)(pre3, file31, 54, 0, 1944);
-      (0, import_internal34.add_location)(i8, file31, 58, 85, 2125);
-      (0, import_internal34.add_location)(p4, file31, 58, 0, 2040);
+      (0, import_internal34.add_location)(code3, file32, 54, 5, 1949);
+      (0, import_internal34.add_location)(pre3, file32, 54, 0, 1944);
+      (0, import_internal34.add_location)(i8, file32, 58, 85, 2125);
+      (0, import_internal34.add_location)(p4, file32, 58, 0, 2040);
       (0, import_internal34.attr_dev)(code4, "class", "language-json");
-      (0, import_internal34.add_location)(code4, file31, 59, 5, 2206);
-      (0, import_internal34.add_location)(pre4, file31, 59, 0, 2201);
-      (0, import_internal34.add_location)(h21, file31, 68, 0, 2428);
-      (0, import_internal34.add_location)(em3, file31, 69, 15, 2473);
-      (0, import_internal34.add_location)(h33, file31, 71, 0, 2491);
-      (0, import_internal34.add_location)(em4, file31, 73, 15, 2654);
+      (0, import_internal34.add_location)(code4, file32, 59, 5, 2206);
+      (0, import_internal34.add_location)(pre4, file32, 59, 0, 2201);
+      (0, import_internal34.add_location)(h21, file32, 68, 0, 2428);
+      (0, import_internal34.add_location)(em3, file32, 69, 15, 2473);
+      (0, import_internal34.add_location)(h33, file32, 71, 0, 2491);
+      (0, import_internal34.add_location)(em4, file32, 73, 15, 2654);
       (0, import_internal34.attr_dev)(code5, "class", "language-js");
-      (0, import_internal34.add_location)(code5, file31, 74, 5, 2704);
-      (0, import_internal34.add_location)(pre5, file31, 74, 0, 2699);
-      (0, import_internal34.add_location)(h34, file31, 79, 0, 2773);
-      (0, import_internal34.add_location)(em5, file31, 80, 47, 2836);
-      (0, import_internal34.add_location)(em6, file31, 80, 75, 2864);
-      (0, import_internal34.add_location)(em7, file31, 81, 36, 2924);
-      (0, import_internal34.add_location)(em8, file31, 81, 78, 2966);
-      (0, import_internal34.add_location)(em9, file31, 81, 108, 2996);
+      (0, import_internal34.add_location)(code5, file32, 74, 5, 2704);
+      (0, import_internal34.add_location)(pre5, file32, 74, 0, 2699);
+      (0, import_internal34.add_location)(h34, file32, 79, 0, 2773);
+      (0, import_internal34.add_location)(em5, file32, 80, 47, 2836);
+      (0, import_internal34.add_location)(em6, file32, 80, 75, 2864);
+      (0, import_internal34.add_location)(em7, file32, 81, 36, 2924);
+      (0, import_internal34.add_location)(em8, file32, 81, 78, 2966);
+      (0, import_internal34.add_location)(em9, file32, 81, 108, 2996);
       (0, import_internal34.attr_dev)(code6, "class", "language-html");
-      (0, import_internal34.add_location)(code6, file31, 82, 5, 3025);
-      (0, import_internal34.add_location)(pre6, file31, 82, 0, 3020);
-      (0, import_internal34.add_location)(h22, file31, 95, 0, 3233);
+      (0, import_internal34.add_location)(code6, file32, 82, 5, 3025);
+      (0, import_internal34.add_location)(pre6, file32, 82, 0, 3020);
+      (0, import_internal34.add_location)(h22, file32, 95, 0, 3233);
       (0, import_internal34.attr_dev)(code7, "class", "language-bash");
-      (0, import_internal34.add_location)(code7, file31, 99, 5, 3311);
-      (0, import_internal34.add_location)(pre7, file31, 99, 0, 3306);
+      (0, import_internal34.add_location)(code7, file32, 99, 5, 3311);
+      (0, import_internal34.add_location)(pre7, file32, 99, 0, 3306);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -26106,14 +26937,14 @@ function create_fragment33(ctx) {
   };
   (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment33.name,
+    id: create_fragment34.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance33($$self2, $$props2) {
+function instance34($$self2, $$props2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal34.validate_slots)("Start", slots2, []);
   const writable_props = [];
@@ -26126,12 +26957,12 @@ function instance33($$self2, $$props2) {
 var Start = class extends import_internal34.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal34.init)(this, options, instance33, create_fragment33, import_internal34.safe_not_equal, {});
+    (0, import_internal34.init)(this, options, instance34, create_fragment34, import_internal34.safe_not_equal, {});
     (0, import_internal34.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Start",
       options,
-      id: create_fragment33.name
+      id: create_fragment34.name
     });
   }
 };
@@ -26139,8 +26970,8 @@ var start_default = Start;
 
 // docs-src/pages/changelog.svelte
 var import_internal35 = __toESM(require_internal());
-var file32 = "docs-src/pages/changelog.svelte";
-function create_fragment34(ctx) {
+var file33 = "docs-src/pages/changelog.svelte";
+function create_fragment35(ctx) {
   let h1;
   let t1;
   let h20;
@@ -27842,390 +28673,390 @@ function create_fragment34(ctx) {
       t567 = (0, import_internal35.space)();
       h255 = (0, import_internal35.element)("h2");
       h255.textContent = "v1.7.12";
-      (0, import_internal35.add_location)(h1, file32, 0, 0, 0);
-      (0, import_internal35.add_location)(em0, file32, 1, 19, 38);
-      (0, import_internal35.add_location)(h20, file32, 1, 0, 19);
-      (0, import_internal35.add_location)(code0, file32, 3, 18, 88);
-      (0, import_internal35.add_location)(li0, file32, 3, 0, 70);
-      (0, import_internal35.add_location)(code1, file32, 4, 47, 165);
-      (0, import_internal35.add_location)(li1, file32, 4, 0, 118);
-      (0, import_internal35.add_location)(ul0, file32, 2, 0, 65);
-      (0, import_internal35.add_location)(em1, file32, 6, 11, 212);
-      (0, import_internal35.add_location)(h21, file32, 6, 0, 201);
-      (0, import_internal35.add_location)(strong0, file32, 8, 4, 248);
-      (0, import_internal35.add_location)(code2, file32, 8, 26, 270);
-      (0, import_internal35.add_location)(code3, file32, 8, 171, 415);
-      (0, import_internal35.add_location)(code4, file32, 8, 194, 438);
-      (0, import_internal35.add_location)(li2, file32, 8, 0, 244);
-      (0, import_internal35.add_location)(ul1, file32, 7, 0, 239);
-      (0, import_internal35.add_location)(em2, file32, 10, 11, 483);
-      (0, import_internal35.add_location)(h22, file32, 10, 0, 472);
-      (0, import_internal35.add_location)(code5, file32, 12, 8, 523);
-      (0, import_internal35.add_location)(li3, file32, 12, 0, 515);
-      (0, import_internal35.add_location)(ul2, file32, 11, 0, 510);
-      (0, import_internal35.add_location)(em3, file32, 14, 11, 625);
-      (0, import_internal35.add_location)(h23, file32, 14, 0, 614);
-      (0, import_internal35.add_location)(strong1, file32, 16, 4, 661);
-      (0, import_internal35.add_location)(code6, file32, 16, 26, 683);
-      (0, import_internal35.add_location)(code7, file32, 16, 98, 755);
-      (0, import_internal35.add_location)(li4, file32, 16, 0, 657);
-      (0, import_internal35.add_location)(code8, file32, 17, 4, 828);
-      (0, import_internal35.add_location)(strong2, file32, 17, 42, 866);
-      (0, import_internal35.add_location)(li5, file32, 17, 0, 824);
-      (0, import_internal35.add_location)(code9, file32, 18, 4, 950);
-      (0, import_internal35.add_location)(code10, file32, 19, 11, 998);
-      (0, import_internal35.add_location)(code11, file32, 19, 33, 1020);
-      (0, import_internal35.add_location)(li6, file32, 19, 0, 987);
-      (0, import_internal35.add_location)(code12, file32, 20, 8, 1124);
-      (0, import_internal35.add_location)(li7, file32, 20, 0, 1116);
-      (0, import_internal35.add_location)(code13, file32, 21, 35, 1199);
-      (0, import_internal35.add_location)(code14, file32, 21, 89, 1253);
-      (0, import_internal35.add_location)(code15, file32, 21, 124, 1288);
-      (0, import_internal35.add_location)(li8, file32, 21, 0, 1164);
-      (0, import_internal35.add_location)(code16, file32, 22, 8, 1337);
-      (0, import_internal35.add_location)(code17, file32, 22, 95, 1424);
-      (0, import_internal35.add_location)(li9, file32, 22, 0, 1329);
-      (0, import_internal35.add_location)(ul3, file32, 18, 36, 982);
-      (0, import_internal35.add_location)(li10, file32, 18, 0, 946);
-      (0, import_internal35.add_location)(ul4, file32, 15, 0, 652);
-      (0, import_internal35.add_location)(em4, file32, 26, 11, 1489);
-      (0, import_internal35.add_location)(h24, file32, 26, 0, 1478);
-      (0, import_internal35.add_location)(code18, file32, 28, 4, 1525);
-      (0, import_internal35.add_location)(code19, file32, 29, 4, 1565);
-      (0, import_internal35.add_location)(code20, file32, 29, 76, 1637);
-      (0, import_internal35.add_location)(li11, file32, 29, 0, 1561);
-      (0, import_internal35.add_location)(li12, file32, 30, 0, 1705);
-      (0, import_internal35.add_location)(code21, file32, 31, 29, 1835);
-      (0, import_internal35.add_location)(code22, file32, 31, 51, 1857);
-      (0, import_internal35.add_location)(code23, file32, 31, 70, 1876);
-      (0, import_internal35.add_location)(code24, file32, 31, 99, 1905);
-      (0, import_internal35.add_location)(li13, file32, 31, 0, 1806);
-      (0, import_internal35.add_location)(ul5, file32, 28, 35, 1556);
-      (0, import_internal35.add_location)(li14, file32, 28, 0, 1521);
-      (0, import_internal35.add_location)(ul6, file32, 27, 0, 1516);
-      (0, import_internal35.add_location)(em5, file32, 35, 11, 1960);
-      (0, import_internal35.add_location)(h25, file32, 35, 0, 1949);
-      (0, import_internal35.add_location)(code25, file32, 37, 4, 1996);
-      (0, import_internal35.add_location)(li15, file32, 38, 0, 2035);
-      (0, import_internal35.add_location)(code26, file32, 39, 59, 2147);
-      (0, import_internal35.add_location)(li16, file32, 39, 0, 2088);
-      (0, import_internal35.add_location)(li17, file32, 40, 0, 2174);
-      (0, import_internal35.add_location)(ul7, file32, 37, 38, 2030);
-      (0, import_internal35.add_location)(li18, file32, 37, 0, 1992);
-      (0, import_internal35.add_location)(ul8, file32, 36, 0, 1987);
-      (0, import_internal35.add_location)(em6, file32, 44, 11, 2295);
-      (0, import_internal35.add_location)(h26, file32, 44, 0, 2284);
-      (0, import_internal35.add_location)(code27, file32, 46, 8, 2335);
-      (0, import_internal35.add_location)(li19, file32, 46, 0, 2327);
-      (0, import_internal35.add_location)(ul9, file32, 45, 0, 2322);
-      (0, import_internal35.add_location)(em7, file32, 48, 19, 2415);
-      (0, import_internal35.add_location)(h27, file32, 48, 0, 2396);
-      (0, import_internal35.add_location)(code28, file32, 50, 15, 2462);
-      (0, import_internal35.add_location)(li20, file32, 50, 0, 2447);
-      (0, import_internal35.add_location)(code29, file32, 51, 4, 2512);
-      (0, import_internal35.add_location)(li21, file32, 51, 0, 2508);
-      (0, import_internal35.add_location)(ul10, file32, 49, 0, 2442);
-      (0, import_internal35.add_location)(em8, file32, 53, 35, 2651);
-      (0, import_internal35.add_location)(h28, file32, 53, 0, 2616);
-      (0, import_internal35.add_location)(code30, file32, 55, 4, 2687);
-      (0, import_internal35.add_location)(li22, file32, 55, 0, 2683);
-      (0, import_internal35.add_location)(code31, file32, 56, 4, 2764);
-      (0, import_internal35.add_location)(li23, file32, 56, 0, 2760);
-      (0, import_internal35.add_location)(code32, file32, 57, 4, 2847);
-      (0, import_internal35.add_location)(code33, file32, 57, 23, 2866);
-      (0, import_internal35.add_location)(li24, file32, 57, 0, 2843);
-      (0, import_internal35.add_location)(ul11, file32, 54, 0, 2678);
-      (0, import_internal35.add_location)(em9, file32, 59, 27, 2967);
-      (0, import_internal35.add_location)(h29, file32, 59, 0, 2940);
-      (0, import_internal35.add_location)(li25, file32, 61, 0, 2999);
-      (0, import_internal35.add_location)(li26, file32, 62, 0, 3067);
-      (0, import_internal35.add_location)(li27, file32, 63, 0, 3124);
-      (0, import_internal35.add_location)(code34, file32, 64, 22, 3232);
-      (0, import_internal35.add_location)(code35, file32, 64, 42, 3252);
-      (0, import_internal35.add_location)(li28, file32, 64, 0, 3210);
-      (0, import_internal35.add_location)(ul12, file32, 60, 0, 2994);
-      (0, import_internal35.add_location)(em10, file32, 66, 11, 3291);
-      (0, import_internal35.add_location)(h210, file32, 66, 0, 3280);
-      (0, import_internal35.add_location)(li29, file32, 68, 0, 3323);
-      (0, import_internal35.add_location)(ul13, file32, 67, 0, 3318);
-      (0, import_internal35.add_location)(em11, file32, 70, 11, 3452);
-      (0, import_internal35.add_location)(h211, file32, 70, 0, 3441);
-      (0, import_internal35.add_location)(code36, file32, 72, 4, 3488);
-      (0, import_internal35.add_location)(code37, file32, 72, 44, 3528);
-      (0, import_internal35.add_location)(code38, file32, 72, 115, 3599);
-      (0, import_internal35.add_location)(li30, file32, 72, 0, 3484);
-      (0, import_internal35.add_location)(ul14, file32, 71, 0, 3479);
-      (0, import_internal35.add_location)(em12, file32, 74, 11, 3690);
-      (0, import_internal35.add_location)(h212, file32, 74, 0, 3679);
-      (0, import_internal35.add_location)(li31, file32, 76, 0, 3722);
-      (0, import_internal35.add_location)(code39, file32, 77, 8, 3788);
-      (0, import_internal35.add_location)(code40, file32, 77, 34, 3814);
-      (0, import_internal35.add_location)(code41, file32, 77, 103, 3883);
-      (0, import_internal35.add_location)(li32, file32, 77, 0, 3780);
-      (0, import_internal35.add_location)(li33, file32, 78, 0, 3911);
-      (0, import_internal35.add_location)(ul15, file32, 75, 0, 3717);
-      (0, import_internal35.add_location)(em13, file32, 80, 11, 3985);
-      (0, import_internal35.add_location)(h213, file32, 80, 0, 3974);
-      (0, import_internal35.add_location)(code42, file32, 82, 12, 4029);
-      (0, import_internal35.add_location)(li34, file32, 82, 0, 4017);
-      (0, import_internal35.add_location)(code43, file32, 83, 4, 4161);
-      (0, import_internal35.add_location)(li35, file32, 83, 0, 4157);
-      (0, import_internal35.add_location)(ul16, file32, 81, 0, 4012);
-      (0, import_internal35.add_location)(em14, file32, 85, 19, 4292);
-      (0, import_internal35.add_location)(h214, file32, 85, 0, 4273);
-      (0, import_internal35.add_location)(li36, file32, 87, 0, 4324);
-      (0, import_internal35.add_location)(code44, file32, 88, 8, 4406);
-      (0, import_internal35.add_location)(li37, file32, 88, 0, 4398);
-      (0, import_internal35.add_location)(code45, file32, 89, 8, 4479);
-      (0, import_internal35.add_location)(li38, file32, 89, 0, 4471);
-      (0, import_internal35.add_location)(ul17, file32, 86, 0, 4319);
-      (0, import_internal35.add_location)(em15, file32, 91, 11, 4557);
-      (0, import_internal35.add_location)(h215, file32, 91, 0, 4546);
-      (0, import_internal35.add_location)(li39, file32, 93, 0, 4589);
-      (0, import_internal35.add_location)(ul18, file32, 92, 0, 4584);
-      (0, import_internal35.add_location)(em16, file32, 95, 21, 4671);
-      (0, import_internal35.add_location)(h216, file32, 95, 0, 4650);
-      (0, import_internal35.add_location)(code46, file32, 97, 15, 4718);
-      (0, import_internal35.add_location)(code47, file32, 97, 37, 4740);
-      (0, import_internal35.add_location)(li40, file32, 97, 0, 4703);
-      (0, import_internal35.add_location)(code48, file32, 98, 8, 4772);
-      (0, import_internal35.add_location)(li41, file32, 98, 0, 4764);
-      (0, import_internal35.add_location)(ul19, file32, 96, 0, 4698);
-      (0, import_internal35.add_location)(em17, file32, 100, 21, 4861);
-      (0, import_internal35.add_location)(h217, file32, 100, 0, 4840);
-      (0, import_internal35.add_location)(code49, file32, 102, 4, 4897);
-      (0, import_internal35.add_location)(li42, file32, 102, 0, 4893);
-      (0, import_internal35.add_location)(code50, file32, 103, 17, 4983);
-      (0, import_internal35.add_location)(li43, file32, 103, 0, 4966);
-      (0, import_internal35.add_location)(ul20, file32, 101, 0, 4888);
-      (0, import_internal35.add_location)(em18, file32, 105, 12, 5028);
-      (0, import_internal35.add_location)(h218, file32, 105, 0, 5016);
-      (0, import_internal35.add_location)(li44, file32, 107, 0, 5060);
-      (0, import_internal35.add_location)(ul21, file32, 106, 0, 5055);
-      (0, import_internal35.add_location)(em19, file32, 109, 38, 5122);
-      (0, import_internal35.add_location)(h219, file32, 109, 0, 5084);
-      (0, import_internal35.add_location)(code51, file32, 111, 4, 5158);
-      (0, import_internal35.add_location)(li45, file32, 111, 0, 5154);
-      (0, import_internal35.add_location)(code52, file32, 112, 4, 5253);
-      (0, import_internal35.add_location)(code53, file32, 112, 36, 5285);
-      (0, import_internal35.add_location)(li46, file32, 112, 0, 5249);
-      (0, import_internal35.add_location)(ul22, file32, 110, 0, 5149);
-      (0, import_internal35.add_location)(em20, file32, 114, 43, 5413);
-      (0, import_internal35.add_location)(h220, file32, 114, 0, 5370);
-      (0, import_internal35.add_location)(li47, file32, 116, 0, 5445);
-      (0, import_internal35.add_location)(li48, file32, 117, 0, 5496);
-      (0, import_internal35.add_location)(li49, file32, 118, 0, 5533);
-      (0, import_internal35.add_location)(code54, file32, 119, 10, 5589);
-      (0, import_internal35.add_location)(code55, file32, 119, 43, 5622);
-      (0, import_internal35.add_location)(code56, file32, 119, 67, 5646);
-      (0, import_internal35.add_location)(li50, file32, 119, 0, 5579);
-      (0, import_internal35.add_location)(code57, file32, 120, 33, 5707);
-      (0, import_internal35.add_location)(code58, file32, 120, 89, 5763);
-      (0, import_internal35.add_location)(li51, file32, 120, 0, 5674);
-      (0, import_internal35.add_location)(ul23, file32, 115, 0, 5440);
-      (0, import_internal35.add_location)(em21, file32, 122, 11, 5820);
-      (0, import_internal35.add_location)(h221, file32, 122, 0, 5809);
-      (0, import_internal35.add_location)(code59, file32, 124, 4, 5856);
-      (0, import_internal35.add_location)(code60, file32, 124, 71, 5923);
-      (0, import_internal35.add_location)(li52, file32, 124, 0, 5852);
-      (0, import_internal35.add_location)(code61, file32, 125, 4, 5965);
-      (0, import_internal35.add_location)(code62, file32, 125, 65, 6026);
-      (0, import_internal35.add_location)(code63, file32, 125, 87, 6048);
-      (0, import_internal35.add_location)(code64, file32, 125, 112, 6073);
-      (0, import_internal35.add_location)(li53, file32, 125, 0, 5961);
-      (0, import_internal35.add_location)(ul24, file32, 123, 0, 5847);
-      (0, import_internal35.add_location)(em22, file32, 127, 11, 6116);
-      (0, import_internal35.add_location)(h222, file32, 127, 0, 6105);
-      (0, import_internal35.add_location)(code65, file32, 129, 4, 6152);
-      (0, import_internal35.add_location)(li54, file32, 129, 0, 6148);
-      (0, import_internal35.add_location)(code66, file32, 130, 4, 6236);
-      (0, import_internal35.add_location)(li55, file32, 130, 0, 6232);
-      (0, import_internal35.add_location)(ul25, file32, 128, 0, 6143);
-      (0, import_internal35.add_location)(em23, file32, 132, 11, 6357);
-      (0, import_internal35.add_location)(h223, file32, 132, 0, 6346);
-      (0, import_internal35.add_location)(code67, file32, 134, 4, 6393);
-      (0, import_internal35.add_location)(li56, file32, 134, 0, 6389);
-      (0, import_internal35.add_location)(ul26, file32, 133, 0, 6384);
-      (0, import_internal35.add_location)(em24, file32, 136, 11, 6488);
-      (0, import_internal35.add_location)(h224, file32, 136, 0, 6477);
-      (0, import_internal35.add_location)(code68, file32, 138, 12, 6532);
-      (0, import_internal35.add_location)(li57, file32, 138, 0, 6520);
-      (0, import_internal35.add_location)(ul27, file32, 137, 0, 6515);
-      (0, import_internal35.add_location)(em25, file32, 140, 12, 6648);
-      (0, import_internal35.add_location)(h225, file32, 140, 0, 6636);
-      (0, import_internal35.add_location)(code69, file32, 142, 35, 6715);
-      (0, import_internal35.add_location)(li58, file32, 142, 0, 6680);
-      (0, import_internal35.add_location)(ul28, file32, 141, 0, 6675);
-      (0, import_internal35.add_location)(em26, file32, 144, 11, 6766);
-      (0, import_internal35.add_location)(h226, file32, 144, 0, 6755);
-      (0, import_internal35.add_location)(code70, file32, 146, 14, 6812);
-      (0, import_internal35.add_location)(li59, file32, 146, 0, 6798);
-      (0, import_internal35.add_location)(ul29, file32, 145, 0, 6793);
-      (0, import_internal35.add_location)(em27, file32, 148, 11, 6874);
-      (0, import_internal35.add_location)(h227, file32, 148, 0, 6863);
-      (0, import_internal35.add_location)(li60, file32, 150, 0, 6906);
-      (0, import_internal35.add_location)(ul30, file32, 149, 0, 6901);
-      (0, import_internal35.add_location)(em28, file32, 152, 11, 7063);
-      (0, import_internal35.add_location)(h228, file32, 152, 0, 7052);
-      (0, import_internal35.add_location)(code71, file32, 154, 33, 7128);
-      (0, import_internal35.add_location)(li61, file32, 154, 0, 7095);
-      (0, import_internal35.add_location)(ul31, file32, 153, 0, 7090);
-      (0, import_internal35.add_location)(em29, file32, 156, 11, 7195);
-      (0, import_internal35.add_location)(h229, file32, 156, 0, 7184);
-      (0, import_internal35.add_location)(code72, file32, 158, 41, 7268);
-      (0, import_internal35.add_location)(code73, file32, 158, 67, 7294);
-      (0, import_internal35.add_location)(li62, file32, 158, 0, 7227);
-      (0, import_internal35.add_location)(ul32, file32, 157, 0, 7222);
-      (0, import_internal35.add_location)(em30, file32, 160, 11, 7371);
-      (0, import_internal35.add_location)(h230, file32, 160, 0, 7360);
+      (0, import_internal35.add_location)(h1, file33, 0, 0, 0);
+      (0, import_internal35.add_location)(em0, file33, 1, 19, 38);
+      (0, import_internal35.add_location)(h20, file33, 1, 0, 19);
+      (0, import_internal35.add_location)(code0, file33, 3, 18, 88);
+      (0, import_internal35.add_location)(li0, file33, 3, 0, 70);
+      (0, import_internal35.add_location)(code1, file33, 4, 47, 165);
+      (0, import_internal35.add_location)(li1, file33, 4, 0, 118);
+      (0, import_internal35.add_location)(ul0, file33, 2, 0, 65);
+      (0, import_internal35.add_location)(em1, file33, 6, 11, 212);
+      (0, import_internal35.add_location)(h21, file33, 6, 0, 201);
+      (0, import_internal35.add_location)(strong0, file33, 8, 4, 248);
+      (0, import_internal35.add_location)(code2, file33, 8, 26, 270);
+      (0, import_internal35.add_location)(code3, file33, 8, 171, 415);
+      (0, import_internal35.add_location)(code4, file33, 8, 194, 438);
+      (0, import_internal35.add_location)(li2, file33, 8, 0, 244);
+      (0, import_internal35.add_location)(ul1, file33, 7, 0, 239);
+      (0, import_internal35.add_location)(em2, file33, 10, 11, 483);
+      (0, import_internal35.add_location)(h22, file33, 10, 0, 472);
+      (0, import_internal35.add_location)(code5, file33, 12, 8, 523);
+      (0, import_internal35.add_location)(li3, file33, 12, 0, 515);
+      (0, import_internal35.add_location)(ul2, file33, 11, 0, 510);
+      (0, import_internal35.add_location)(em3, file33, 14, 11, 625);
+      (0, import_internal35.add_location)(h23, file33, 14, 0, 614);
+      (0, import_internal35.add_location)(strong1, file33, 16, 4, 661);
+      (0, import_internal35.add_location)(code6, file33, 16, 26, 683);
+      (0, import_internal35.add_location)(code7, file33, 16, 98, 755);
+      (0, import_internal35.add_location)(li4, file33, 16, 0, 657);
+      (0, import_internal35.add_location)(code8, file33, 17, 4, 828);
+      (0, import_internal35.add_location)(strong2, file33, 17, 42, 866);
+      (0, import_internal35.add_location)(li5, file33, 17, 0, 824);
+      (0, import_internal35.add_location)(code9, file33, 18, 4, 950);
+      (0, import_internal35.add_location)(code10, file33, 19, 11, 998);
+      (0, import_internal35.add_location)(code11, file33, 19, 33, 1020);
+      (0, import_internal35.add_location)(li6, file33, 19, 0, 987);
+      (0, import_internal35.add_location)(code12, file33, 20, 8, 1124);
+      (0, import_internal35.add_location)(li7, file33, 20, 0, 1116);
+      (0, import_internal35.add_location)(code13, file33, 21, 35, 1199);
+      (0, import_internal35.add_location)(code14, file33, 21, 89, 1253);
+      (0, import_internal35.add_location)(code15, file33, 21, 124, 1288);
+      (0, import_internal35.add_location)(li8, file33, 21, 0, 1164);
+      (0, import_internal35.add_location)(code16, file33, 22, 8, 1337);
+      (0, import_internal35.add_location)(code17, file33, 22, 95, 1424);
+      (0, import_internal35.add_location)(li9, file33, 22, 0, 1329);
+      (0, import_internal35.add_location)(ul3, file33, 18, 36, 982);
+      (0, import_internal35.add_location)(li10, file33, 18, 0, 946);
+      (0, import_internal35.add_location)(ul4, file33, 15, 0, 652);
+      (0, import_internal35.add_location)(em4, file33, 26, 11, 1489);
+      (0, import_internal35.add_location)(h24, file33, 26, 0, 1478);
+      (0, import_internal35.add_location)(code18, file33, 28, 4, 1525);
+      (0, import_internal35.add_location)(code19, file33, 29, 4, 1565);
+      (0, import_internal35.add_location)(code20, file33, 29, 76, 1637);
+      (0, import_internal35.add_location)(li11, file33, 29, 0, 1561);
+      (0, import_internal35.add_location)(li12, file33, 30, 0, 1705);
+      (0, import_internal35.add_location)(code21, file33, 31, 29, 1835);
+      (0, import_internal35.add_location)(code22, file33, 31, 51, 1857);
+      (0, import_internal35.add_location)(code23, file33, 31, 70, 1876);
+      (0, import_internal35.add_location)(code24, file33, 31, 99, 1905);
+      (0, import_internal35.add_location)(li13, file33, 31, 0, 1806);
+      (0, import_internal35.add_location)(ul5, file33, 28, 35, 1556);
+      (0, import_internal35.add_location)(li14, file33, 28, 0, 1521);
+      (0, import_internal35.add_location)(ul6, file33, 27, 0, 1516);
+      (0, import_internal35.add_location)(em5, file33, 35, 11, 1960);
+      (0, import_internal35.add_location)(h25, file33, 35, 0, 1949);
+      (0, import_internal35.add_location)(code25, file33, 37, 4, 1996);
+      (0, import_internal35.add_location)(li15, file33, 38, 0, 2035);
+      (0, import_internal35.add_location)(code26, file33, 39, 59, 2147);
+      (0, import_internal35.add_location)(li16, file33, 39, 0, 2088);
+      (0, import_internal35.add_location)(li17, file33, 40, 0, 2174);
+      (0, import_internal35.add_location)(ul7, file33, 37, 38, 2030);
+      (0, import_internal35.add_location)(li18, file33, 37, 0, 1992);
+      (0, import_internal35.add_location)(ul8, file33, 36, 0, 1987);
+      (0, import_internal35.add_location)(em6, file33, 44, 11, 2295);
+      (0, import_internal35.add_location)(h26, file33, 44, 0, 2284);
+      (0, import_internal35.add_location)(code27, file33, 46, 8, 2335);
+      (0, import_internal35.add_location)(li19, file33, 46, 0, 2327);
+      (0, import_internal35.add_location)(ul9, file33, 45, 0, 2322);
+      (0, import_internal35.add_location)(em7, file33, 48, 19, 2415);
+      (0, import_internal35.add_location)(h27, file33, 48, 0, 2396);
+      (0, import_internal35.add_location)(code28, file33, 50, 15, 2462);
+      (0, import_internal35.add_location)(li20, file33, 50, 0, 2447);
+      (0, import_internal35.add_location)(code29, file33, 51, 4, 2512);
+      (0, import_internal35.add_location)(li21, file33, 51, 0, 2508);
+      (0, import_internal35.add_location)(ul10, file33, 49, 0, 2442);
+      (0, import_internal35.add_location)(em8, file33, 53, 35, 2651);
+      (0, import_internal35.add_location)(h28, file33, 53, 0, 2616);
+      (0, import_internal35.add_location)(code30, file33, 55, 4, 2687);
+      (0, import_internal35.add_location)(li22, file33, 55, 0, 2683);
+      (0, import_internal35.add_location)(code31, file33, 56, 4, 2764);
+      (0, import_internal35.add_location)(li23, file33, 56, 0, 2760);
+      (0, import_internal35.add_location)(code32, file33, 57, 4, 2847);
+      (0, import_internal35.add_location)(code33, file33, 57, 23, 2866);
+      (0, import_internal35.add_location)(li24, file33, 57, 0, 2843);
+      (0, import_internal35.add_location)(ul11, file33, 54, 0, 2678);
+      (0, import_internal35.add_location)(em9, file33, 59, 27, 2967);
+      (0, import_internal35.add_location)(h29, file33, 59, 0, 2940);
+      (0, import_internal35.add_location)(li25, file33, 61, 0, 2999);
+      (0, import_internal35.add_location)(li26, file33, 62, 0, 3067);
+      (0, import_internal35.add_location)(li27, file33, 63, 0, 3124);
+      (0, import_internal35.add_location)(code34, file33, 64, 22, 3232);
+      (0, import_internal35.add_location)(code35, file33, 64, 42, 3252);
+      (0, import_internal35.add_location)(li28, file33, 64, 0, 3210);
+      (0, import_internal35.add_location)(ul12, file33, 60, 0, 2994);
+      (0, import_internal35.add_location)(em10, file33, 66, 11, 3291);
+      (0, import_internal35.add_location)(h210, file33, 66, 0, 3280);
+      (0, import_internal35.add_location)(li29, file33, 68, 0, 3323);
+      (0, import_internal35.add_location)(ul13, file33, 67, 0, 3318);
+      (0, import_internal35.add_location)(em11, file33, 70, 11, 3452);
+      (0, import_internal35.add_location)(h211, file33, 70, 0, 3441);
+      (0, import_internal35.add_location)(code36, file33, 72, 4, 3488);
+      (0, import_internal35.add_location)(code37, file33, 72, 44, 3528);
+      (0, import_internal35.add_location)(code38, file33, 72, 115, 3599);
+      (0, import_internal35.add_location)(li30, file33, 72, 0, 3484);
+      (0, import_internal35.add_location)(ul14, file33, 71, 0, 3479);
+      (0, import_internal35.add_location)(em12, file33, 74, 11, 3690);
+      (0, import_internal35.add_location)(h212, file33, 74, 0, 3679);
+      (0, import_internal35.add_location)(li31, file33, 76, 0, 3722);
+      (0, import_internal35.add_location)(code39, file33, 77, 8, 3788);
+      (0, import_internal35.add_location)(code40, file33, 77, 34, 3814);
+      (0, import_internal35.add_location)(code41, file33, 77, 103, 3883);
+      (0, import_internal35.add_location)(li32, file33, 77, 0, 3780);
+      (0, import_internal35.add_location)(li33, file33, 78, 0, 3911);
+      (0, import_internal35.add_location)(ul15, file33, 75, 0, 3717);
+      (0, import_internal35.add_location)(em13, file33, 80, 11, 3985);
+      (0, import_internal35.add_location)(h213, file33, 80, 0, 3974);
+      (0, import_internal35.add_location)(code42, file33, 82, 12, 4029);
+      (0, import_internal35.add_location)(li34, file33, 82, 0, 4017);
+      (0, import_internal35.add_location)(code43, file33, 83, 4, 4161);
+      (0, import_internal35.add_location)(li35, file33, 83, 0, 4157);
+      (0, import_internal35.add_location)(ul16, file33, 81, 0, 4012);
+      (0, import_internal35.add_location)(em14, file33, 85, 19, 4292);
+      (0, import_internal35.add_location)(h214, file33, 85, 0, 4273);
+      (0, import_internal35.add_location)(li36, file33, 87, 0, 4324);
+      (0, import_internal35.add_location)(code44, file33, 88, 8, 4406);
+      (0, import_internal35.add_location)(li37, file33, 88, 0, 4398);
+      (0, import_internal35.add_location)(code45, file33, 89, 8, 4479);
+      (0, import_internal35.add_location)(li38, file33, 89, 0, 4471);
+      (0, import_internal35.add_location)(ul17, file33, 86, 0, 4319);
+      (0, import_internal35.add_location)(em15, file33, 91, 11, 4557);
+      (0, import_internal35.add_location)(h215, file33, 91, 0, 4546);
+      (0, import_internal35.add_location)(li39, file33, 93, 0, 4589);
+      (0, import_internal35.add_location)(ul18, file33, 92, 0, 4584);
+      (0, import_internal35.add_location)(em16, file33, 95, 21, 4671);
+      (0, import_internal35.add_location)(h216, file33, 95, 0, 4650);
+      (0, import_internal35.add_location)(code46, file33, 97, 15, 4718);
+      (0, import_internal35.add_location)(code47, file33, 97, 37, 4740);
+      (0, import_internal35.add_location)(li40, file33, 97, 0, 4703);
+      (0, import_internal35.add_location)(code48, file33, 98, 8, 4772);
+      (0, import_internal35.add_location)(li41, file33, 98, 0, 4764);
+      (0, import_internal35.add_location)(ul19, file33, 96, 0, 4698);
+      (0, import_internal35.add_location)(em17, file33, 100, 21, 4861);
+      (0, import_internal35.add_location)(h217, file33, 100, 0, 4840);
+      (0, import_internal35.add_location)(code49, file33, 102, 4, 4897);
+      (0, import_internal35.add_location)(li42, file33, 102, 0, 4893);
+      (0, import_internal35.add_location)(code50, file33, 103, 17, 4983);
+      (0, import_internal35.add_location)(li43, file33, 103, 0, 4966);
+      (0, import_internal35.add_location)(ul20, file33, 101, 0, 4888);
+      (0, import_internal35.add_location)(em18, file33, 105, 12, 5028);
+      (0, import_internal35.add_location)(h218, file33, 105, 0, 5016);
+      (0, import_internal35.add_location)(li44, file33, 107, 0, 5060);
+      (0, import_internal35.add_location)(ul21, file33, 106, 0, 5055);
+      (0, import_internal35.add_location)(em19, file33, 109, 38, 5122);
+      (0, import_internal35.add_location)(h219, file33, 109, 0, 5084);
+      (0, import_internal35.add_location)(code51, file33, 111, 4, 5158);
+      (0, import_internal35.add_location)(li45, file33, 111, 0, 5154);
+      (0, import_internal35.add_location)(code52, file33, 112, 4, 5253);
+      (0, import_internal35.add_location)(code53, file33, 112, 36, 5285);
+      (0, import_internal35.add_location)(li46, file33, 112, 0, 5249);
+      (0, import_internal35.add_location)(ul22, file33, 110, 0, 5149);
+      (0, import_internal35.add_location)(em20, file33, 114, 43, 5413);
+      (0, import_internal35.add_location)(h220, file33, 114, 0, 5370);
+      (0, import_internal35.add_location)(li47, file33, 116, 0, 5445);
+      (0, import_internal35.add_location)(li48, file33, 117, 0, 5496);
+      (0, import_internal35.add_location)(li49, file33, 118, 0, 5533);
+      (0, import_internal35.add_location)(code54, file33, 119, 10, 5589);
+      (0, import_internal35.add_location)(code55, file33, 119, 43, 5622);
+      (0, import_internal35.add_location)(code56, file33, 119, 67, 5646);
+      (0, import_internal35.add_location)(li50, file33, 119, 0, 5579);
+      (0, import_internal35.add_location)(code57, file33, 120, 33, 5707);
+      (0, import_internal35.add_location)(code58, file33, 120, 89, 5763);
+      (0, import_internal35.add_location)(li51, file33, 120, 0, 5674);
+      (0, import_internal35.add_location)(ul23, file33, 115, 0, 5440);
+      (0, import_internal35.add_location)(em21, file33, 122, 11, 5820);
+      (0, import_internal35.add_location)(h221, file33, 122, 0, 5809);
+      (0, import_internal35.add_location)(code59, file33, 124, 4, 5856);
+      (0, import_internal35.add_location)(code60, file33, 124, 71, 5923);
+      (0, import_internal35.add_location)(li52, file33, 124, 0, 5852);
+      (0, import_internal35.add_location)(code61, file33, 125, 4, 5965);
+      (0, import_internal35.add_location)(code62, file33, 125, 65, 6026);
+      (0, import_internal35.add_location)(code63, file33, 125, 87, 6048);
+      (0, import_internal35.add_location)(code64, file33, 125, 112, 6073);
+      (0, import_internal35.add_location)(li53, file33, 125, 0, 5961);
+      (0, import_internal35.add_location)(ul24, file33, 123, 0, 5847);
+      (0, import_internal35.add_location)(em22, file33, 127, 11, 6116);
+      (0, import_internal35.add_location)(h222, file33, 127, 0, 6105);
+      (0, import_internal35.add_location)(code65, file33, 129, 4, 6152);
+      (0, import_internal35.add_location)(li54, file33, 129, 0, 6148);
+      (0, import_internal35.add_location)(code66, file33, 130, 4, 6236);
+      (0, import_internal35.add_location)(li55, file33, 130, 0, 6232);
+      (0, import_internal35.add_location)(ul25, file33, 128, 0, 6143);
+      (0, import_internal35.add_location)(em23, file33, 132, 11, 6357);
+      (0, import_internal35.add_location)(h223, file33, 132, 0, 6346);
+      (0, import_internal35.add_location)(code67, file33, 134, 4, 6393);
+      (0, import_internal35.add_location)(li56, file33, 134, 0, 6389);
+      (0, import_internal35.add_location)(ul26, file33, 133, 0, 6384);
+      (0, import_internal35.add_location)(em24, file33, 136, 11, 6488);
+      (0, import_internal35.add_location)(h224, file33, 136, 0, 6477);
+      (0, import_internal35.add_location)(code68, file33, 138, 12, 6532);
+      (0, import_internal35.add_location)(li57, file33, 138, 0, 6520);
+      (0, import_internal35.add_location)(ul27, file33, 137, 0, 6515);
+      (0, import_internal35.add_location)(em25, file33, 140, 12, 6648);
+      (0, import_internal35.add_location)(h225, file33, 140, 0, 6636);
+      (0, import_internal35.add_location)(code69, file33, 142, 35, 6715);
+      (0, import_internal35.add_location)(li58, file33, 142, 0, 6680);
+      (0, import_internal35.add_location)(ul28, file33, 141, 0, 6675);
+      (0, import_internal35.add_location)(em26, file33, 144, 11, 6766);
+      (0, import_internal35.add_location)(h226, file33, 144, 0, 6755);
+      (0, import_internal35.add_location)(code70, file33, 146, 14, 6812);
+      (0, import_internal35.add_location)(li59, file33, 146, 0, 6798);
+      (0, import_internal35.add_location)(ul29, file33, 145, 0, 6793);
+      (0, import_internal35.add_location)(em27, file33, 148, 11, 6874);
+      (0, import_internal35.add_location)(h227, file33, 148, 0, 6863);
+      (0, import_internal35.add_location)(li60, file33, 150, 0, 6906);
+      (0, import_internal35.add_location)(ul30, file33, 149, 0, 6901);
+      (0, import_internal35.add_location)(em28, file33, 152, 11, 7063);
+      (0, import_internal35.add_location)(h228, file33, 152, 0, 7052);
+      (0, import_internal35.add_location)(code71, file33, 154, 33, 7128);
+      (0, import_internal35.add_location)(li61, file33, 154, 0, 7095);
+      (0, import_internal35.add_location)(ul31, file33, 153, 0, 7090);
+      (0, import_internal35.add_location)(em29, file33, 156, 11, 7195);
+      (0, import_internal35.add_location)(h229, file33, 156, 0, 7184);
+      (0, import_internal35.add_location)(code72, file33, 158, 41, 7268);
+      (0, import_internal35.add_location)(code73, file33, 158, 67, 7294);
+      (0, import_internal35.add_location)(li62, file33, 158, 0, 7227);
+      (0, import_internal35.add_location)(ul32, file33, 157, 0, 7222);
+      (0, import_internal35.add_location)(em30, file33, 160, 11, 7371);
+      (0, import_internal35.add_location)(h230, file33, 160, 0, 7360);
       (0, import_internal35.attr_dev)(a, "href", "https://github.com/sveltejs/svelte/pull/8402");
-      (0, import_internal35.add_location)(a, file32, 162, 53, 7456);
-      (0, import_internal35.add_location)(li63, file32, 162, 0, 7403);
-      (0, import_internal35.add_location)(ul33, file32, 161, 0, 7398);
-      (0, import_internal35.add_location)(em31, file32, 164, 11, 7549);
-      (0, import_internal35.add_location)(h231, file32, 164, 0, 7538);
-      (0, import_internal35.add_location)(code74, file32, 166, 31, 7612);
-      (0, import_internal35.add_location)(li64, file32, 166, 0, 7581);
-      (0, import_internal35.add_location)(code75, file32, 167, 24, 7665);
-      (0, import_internal35.add_location)(code76, file32, 167, 53, 7694);
-      (0, import_internal35.add_location)(code77, file32, 167, 122, 7763);
-      (0, import_internal35.add_location)(li65, file32, 167, 0, 7641);
-      (0, import_internal35.add_location)(ul34, file32, 165, 0, 7576);
-      (0, import_internal35.add_location)(em32, file32, 169, 19, 7855);
-      (0, import_internal35.add_location)(h232, file32, 169, 0, 7836);
-      (0, import_internal35.add_location)(li66, file32, 171, 0, 7887);
-      (0, import_internal35.add_location)(ul35, file32, 170, 0, 7882);
-      (0, import_internal35.add_location)(em33, file32, 173, 11, 8025);
-      (0, import_internal35.add_location)(h233, file32, 173, 0, 8014);
-      (0, import_internal35.add_location)(li67, file32, 175, 0, 8057);
-      (0, import_internal35.add_location)(ul36, file32, 174, 0, 8052);
-      (0, import_internal35.add_location)(em34, file32, 177, 11, 8155);
-      (0, import_internal35.add_location)(h234, file32, 177, 0, 8144);
-      (0, import_internal35.add_location)(code78, file32, 179, 50, 8237);
-      (0, import_internal35.add_location)(li68, file32, 179, 0, 8187);
-      (0, import_internal35.add_location)(li69, file32, 180, 0, 8300);
-      (0, import_internal35.add_location)(li70, file32, 181, 0, 8364);
-      (0, import_internal35.add_location)(li71, file32, 182, 0, 8410);
-      (0, import_internal35.add_location)(ul37, file32, 178, 0, 8182);
-      (0, import_internal35.add_location)(em35, file32, 184, 11, 8481);
-      (0, import_internal35.add_location)(h235, file32, 184, 0, 8470);
-      (0, import_internal35.add_location)(code79, file32, 186, 11, 8524);
-      (0, import_internal35.add_location)(li72, file32, 186, 0, 8513);
-      (0, import_internal35.add_location)(ul38, file32, 185, 0, 8508);
-      (0, import_internal35.add_location)(em36, file32, 188, 11, 8597);
-      (0, import_internal35.add_location)(h236, file32, 188, 0, 8586);
-      (0, import_internal35.add_location)(code80, file32, 190, 4, 8633);
-      (0, import_internal35.add_location)(li73, file32, 190, 0, 8629);
-      (0, import_internal35.add_location)(ul39, file32, 189, 0, 8624);
-      (0, import_internal35.add_location)(em37, file32, 192, 27, 8769);
-      (0, import_internal35.add_location)(h237, file32, 192, 0, 8742);
-      (0, import_internal35.add_location)(code81, file32, 194, 12, 8813);
-      (0, import_internal35.add_location)(code82, file32, 194, 59, 8860);
-      (0, import_internal35.add_location)(li74, file32, 194, 0, 8801);
-      (0, import_internal35.add_location)(ul40, file32, 193, 0, 8796);
-      (0, import_internal35.add_location)(em38, file32, 196, 11, 8913);
-      (0, import_internal35.add_location)(h238, file32, 196, 0, 8902);
-      (0, import_internal35.add_location)(li75, file32, 198, 0, 8945);
-      (0, import_internal35.add_location)(li76, file32, 199, 0, 9094);
-      (0, import_internal35.add_location)(li77, file32, 200, 0, 9166);
-      (0, import_internal35.add_location)(ul41, file32, 197, 0, 8940);
-      (0, import_internal35.add_location)(em39, file32, 202, 11, 9223);
-      (0, import_internal35.add_location)(h239, file32, 202, 0, 9212);
-      (0, import_internal35.add_location)(li78, file32, 204, 0, 9255);
-      (0, import_internal35.add_location)(ul42, file32, 203, 0, 9250);
-      (0, import_internal35.add_location)(em40, file32, 206, 11, 9306);
-      (0, import_internal35.add_location)(h240, file32, 206, 0, 9295);
-      (0, import_internal35.add_location)(li79, file32, 208, 0, 9338);
-      (0, import_internal35.add_location)(ul43, file32, 207, 0, 9333);
-      (0, import_internal35.add_location)(em41, file32, 210, 11, 9410);
-      (0, import_internal35.add_location)(h241, file32, 210, 0, 9399);
-      (0, import_internal35.add_location)(code83, file32, 212, 13, 9455);
-      (0, import_internal35.add_location)(li80, file32, 212, 0, 9442);
-      (0, import_internal35.add_location)(ul44, file32, 211, 0, 9437);
-      (0, import_internal35.add_location)(em42, file32, 214, 11, 9516);
-      (0, import_internal35.add_location)(h242, file32, 214, 0, 9505);
-      (0, import_internal35.add_location)(code84, file32, 216, 49, 9597);
-      (0, import_internal35.add_location)(li81, file32, 216, 0, 9548);
-      (0, import_internal35.add_location)(ul45, file32, 215, 0, 9543);
-      (0, import_internal35.add_location)(em43, file32, 218, 11, 9679);
-      (0, import_internal35.add_location)(h243, file32, 218, 0, 9668);
-      (0, import_internal35.add_location)(li82, file32, 220, 0, 9711);
-      (0, import_internal35.add_location)(li83, file32, 221, 0, 9769);
-      (0, import_internal35.add_location)(ul46, file32, 219, 0, 9706);
-      (0, import_internal35.add_location)(em44, file32, 223, 11, 9821);
-      (0, import_internal35.add_location)(h244, file32, 223, 0, 9810);
-      (0, import_internal35.add_location)(li84, file32, 225, 0, 9853);
-      (0, import_internal35.add_location)(ul47, file32, 224, 0, 9848);
-      (0, import_internal35.add_location)(em45, file32, 227, 11, 9939);
-      (0, import_internal35.add_location)(h245, file32, 227, 0, 9928);
-      (0, import_internal35.add_location)(li85, file32, 229, 0, 9971);
-      (0, import_internal35.add_location)(li86, file32, 230, 0, 9999);
-      (0, import_internal35.add_location)(ul48, file32, 228, 0, 9966);
-      (0, import_internal35.add_location)(em46, file32, 232, 11, 10075);
-      (0, import_internal35.add_location)(h246, file32, 232, 0, 10064);
-      (0, import_internal35.add_location)(code85, file32, 234, 15, 10122);
-      (0, import_internal35.add_location)(li87, file32, 234, 0, 10107);
-      (0, import_internal35.add_location)(ul49, file32, 233, 0, 10102);
-      (0, import_internal35.add_location)(em47, file32, 236, 11, 10216);
-      (0, import_internal35.add_location)(h247, file32, 236, 0, 10205);
-      (0, import_internal35.add_location)(code86, file32, 238, 55, 10303);
-      (0, import_internal35.add_location)(code87, file32, 238, 84, 10332);
-      (0, import_internal35.add_location)(code88, file32, 238, 142, 10390);
-      (0, import_internal35.add_location)(li88, file32, 238, 0, 10248);
-      (0, import_internal35.add_location)(code89, file32, 239, 37, 10477);
-      (0, import_internal35.add_location)(li89, file32, 239, 0, 10440);
-      (0, import_internal35.add_location)(li90, file32, 240, 0, 10564);
-      (0, import_internal35.add_location)(li91, file32, 241, 0, 10615);
-      (0, import_internal35.add_location)(code90, file32, 242, 29, 10697);
-      (0, import_internal35.add_location)(code91, file32, 242, 93, 10761);
-      (0, import_internal35.add_location)(li92, file32, 242, 0, 10668);
-      (0, import_internal35.add_location)(ul50, file32, 237, 0, 10243);
-      (0, import_internal35.add_location)(em48, file32, 244, 11, 10971);
-      (0, import_internal35.add_location)(h248, file32, 244, 0, 10960);
-      (0, import_internal35.add_location)(code92, file32, 246, 41, 11044);
-      (0, import_internal35.add_location)(code93, file32, 246, 65, 11068);
-      (0, import_internal35.add_location)(code94, file32, 246, 88, 11091);
-      (0, import_internal35.add_location)(code95, file32, 246, 117, 11120);
-      (0, import_internal35.add_location)(li93, file32, 246, 0, 11003);
-      (0, import_internal35.add_location)(li94, file32, 247, 0, 11152);
-      (0, import_internal35.add_location)(ul51, file32, 245, 0, 10998);
-      (0, import_internal35.add_location)(em49, file32, 249, 11, 11210);
-      (0, import_internal35.add_location)(h249, file32, 249, 0, 11199);
-      (0, import_internal35.add_location)(code96, file32, 251, 17, 11259);
-      (0, import_internal35.add_location)(code97, file32, 251, 74, 11316);
-      (0, import_internal35.add_location)(li95, file32, 251, 0, 11242);
-      (0, import_internal35.add_location)(ul52, file32, 250, 0, 11237);
-      (0, import_internal35.add_location)(em50, file32, 253, 11, 11404);
-      (0, import_internal35.add_location)(h250, file32, 253, 0, 11393);
-      (0, import_internal35.add_location)(code98, file32, 255, 8, 11444);
-      (0, import_internal35.add_location)(li96, file32, 255, 0, 11436);
-      (0, import_internal35.add_location)(code99, file32, 256, 8, 11510);
-      (0, import_internal35.add_location)(li97, file32, 256, 0, 11502);
-      (0, import_internal35.add_location)(ul53, file32, 254, 0, 11431);
-      (0, import_internal35.add_location)(em51, file32, 258, 11, 11579);
-      (0, import_internal35.add_location)(h251, file32, 258, 0, 11568);
-      (0, import_internal35.add_location)(code100, file32, 260, 122, 11733);
-      (0, import_internal35.add_location)(code101, file32, 260, 152, 11763);
-      (0, import_internal35.add_location)(li98, file32, 260, 0, 11611);
-      (0, import_internal35.add_location)(li99, file32, 261, 0, 11796);
-      (0, import_internal35.add_location)(li100, file32, 262, 0, 11884);
-      (0, import_internal35.add_location)(ul54, file32, 259, 0, 11606);
-      (0, import_internal35.add_location)(h252, file32, 264, 0, 12079);
-      (0, import_internal35.add_location)(li101, file32, 266, 0, 12113);
-      (0, import_internal35.add_location)(ul55, file32, 265, 0, 12108);
-      (0, import_internal35.add_location)(h253, file32, 268, 0, 12193);
-      (0, import_internal35.add_location)(code102, file32, 270, 21, 12248);
-      (0, import_internal35.add_location)(code103, file32, 270, 101, 12328);
-      (0, import_internal35.add_location)(li102, file32, 270, 0, 12227);
-      (0, import_internal35.add_location)(code104, file32, 271, 51, 12483);
-      (0, import_internal35.add_location)(li103, file32, 271, 0, 12432);
-      (0, import_internal35.add_location)(ul56, file32, 269, 0, 12222);
-      (0, import_internal35.add_location)(h254, file32, 273, 0, 12585);
-      (0, import_internal35.add_location)(code105, file32, 275, 21, 12640);
-      (0, import_internal35.add_location)(code106, file32, 275, 66, 12685);
-      (0, import_internal35.add_location)(li104, file32, 275, 0, 12619);
-      (0, import_internal35.add_location)(ul57, file32, 274, 0, 12614);
-      (0, import_internal35.add_location)(h255, file32, 277, 0, 12871);
+      (0, import_internal35.add_location)(a, file33, 162, 53, 7456);
+      (0, import_internal35.add_location)(li63, file33, 162, 0, 7403);
+      (0, import_internal35.add_location)(ul33, file33, 161, 0, 7398);
+      (0, import_internal35.add_location)(em31, file33, 164, 11, 7549);
+      (0, import_internal35.add_location)(h231, file33, 164, 0, 7538);
+      (0, import_internal35.add_location)(code74, file33, 166, 31, 7612);
+      (0, import_internal35.add_location)(li64, file33, 166, 0, 7581);
+      (0, import_internal35.add_location)(code75, file33, 167, 24, 7665);
+      (0, import_internal35.add_location)(code76, file33, 167, 53, 7694);
+      (0, import_internal35.add_location)(code77, file33, 167, 122, 7763);
+      (0, import_internal35.add_location)(li65, file33, 167, 0, 7641);
+      (0, import_internal35.add_location)(ul34, file33, 165, 0, 7576);
+      (0, import_internal35.add_location)(em32, file33, 169, 19, 7855);
+      (0, import_internal35.add_location)(h232, file33, 169, 0, 7836);
+      (0, import_internal35.add_location)(li66, file33, 171, 0, 7887);
+      (0, import_internal35.add_location)(ul35, file33, 170, 0, 7882);
+      (0, import_internal35.add_location)(em33, file33, 173, 11, 8025);
+      (0, import_internal35.add_location)(h233, file33, 173, 0, 8014);
+      (0, import_internal35.add_location)(li67, file33, 175, 0, 8057);
+      (0, import_internal35.add_location)(ul36, file33, 174, 0, 8052);
+      (0, import_internal35.add_location)(em34, file33, 177, 11, 8155);
+      (0, import_internal35.add_location)(h234, file33, 177, 0, 8144);
+      (0, import_internal35.add_location)(code78, file33, 179, 50, 8237);
+      (0, import_internal35.add_location)(li68, file33, 179, 0, 8187);
+      (0, import_internal35.add_location)(li69, file33, 180, 0, 8300);
+      (0, import_internal35.add_location)(li70, file33, 181, 0, 8364);
+      (0, import_internal35.add_location)(li71, file33, 182, 0, 8410);
+      (0, import_internal35.add_location)(ul37, file33, 178, 0, 8182);
+      (0, import_internal35.add_location)(em35, file33, 184, 11, 8481);
+      (0, import_internal35.add_location)(h235, file33, 184, 0, 8470);
+      (0, import_internal35.add_location)(code79, file33, 186, 11, 8524);
+      (0, import_internal35.add_location)(li72, file33, 186, 0, 8513);
+      (0, import_internal35.add_location)(ul38, file33, 185, 0, 8508);
+      (0, import_internal35.add_location)(em36, file33, 188, 11, 8597);
+      (0, import_internal35.add_location)(h236, file33, 188, 0, 8586);
+      (0, import_internal35.add_location)(code80, file33, 190, 4, 8633);
+      (0, import_internal35.add_location)(li73, file33, 190, 0, 8629);
+      (0, import_internal35.add_location)(ul39, file33, 189, 0, 8624);
+      (0, import_internal35.add_location)(em37, file33, 192, 27, 8769);
+      (0, import_internal35.add_location)(h237, file33, 192, 0, 8742);
+      (0, import_internal35.add_location)(code81, file33, 194, 12, 8813);
+      (0, import_internal35.add_location)(code82, file33, 194, 59, 8860);
+      (0, import_internal35.add_location)(li74, file33, 194, 0, 8801);
+      (0, import_internal35.add_location)(ul40, file33, 193, 0, 8796);
+      (0, import_internal35.add_location)(em38, file33, 196, 11, 8913);
+      (0, import_internal35.add_location)(h238, file33, 196, 0, 8902);
+      (0, import_internal35.add_location)(li75, file33, 198, 0, 8945);
+      (0, import_internal35.add_location)(li76, file33, 199, 0, 9094);
+      (0, import_internal35.add_location)(li77, file33, 200, 0, 9166);
+      (0, import_internal35.add_location)(ul41, file33, 197, 0, 8940);
+      (0, import_internal35.add_location)(em39, file33, 202, 11, 9223);
+      (0, import_internal35.add_location)(h239, file33, 202, 0, 9212);
+      (0, import_internal35.add_location)(li78, file33, 204, 0, 9255);
+      (0, import_internal35.add_location)(ul42, file33, 203, 0, 9250);
+      (0, import_internal35.add_location)(em40, file33, 206, 11, 9306);
+      (0, import_internal35.add_location)(h240, file33, 206, 0, 9295);
+      (0, import_internal35.add_location)(li79, file33, 208, 0, 9338);
+      (0, import_internal35.add_location)(ul43, file33, 207, 0, 9333);
+      (0, import_internal35.add_location)(em41, file33, 210, 11, 9410);
+      (0, import_internal35.add_location)(h241, file33, 210, 0, 9399);
+      (0, import_internal35.add_location)(code83, file33, 212, 13, 9455);
+      (0, import_internal35.add_location)(li80, file33, 212, 0, 9442);
+      (0, import_internal35.add_location)(ul44, file33, 211, 0, 9437);
+      (0, import_internal35.add_location)(em42, file33, 214, 11, 9516);
+      (0, import_internal35.add_location)(h242, file33, 214, 0, 9505);
+      (0, import_internal35.add_location)(code84, file33, 216, 49, 9597);
+      (0, import_internal35.add_location)(li81, file33, 216, 0, 9548);
+      (0, import_internal35.add_location)(ul45, file33, 215, 0, 9543);
+      (0, import_internal35.add_location)(em43, file33, 218, 11, 9679);
+      (0, import_internal35.add_location)(h243, file33, 218, 0, 9668);
+      (0, import_internal35.add_location)(li82, file33, 220, 0, 9711);
+      (0, import_internal35.add_location)(li83, file33, 221, 0, 9769);
+      (0, import_internal35.add_location)(ul46, file33, 219, 0, 9706);
+      (0, import_internal35.add_location)(em44, file33, 223, 11, 9821);
+      (0, import_internal35.add_location)(h244, file33, 223, 0, 9810);
+      (0, import_internal35.add_location)(li84, file33, 225, 0, 9853);
+      (0, import_internal35.add_location)(ul47, file33, 224, 0, 9848);
+      (0, import_internal35.add_location)(em45, file33, 227, 11, 9939);
+      (0, import_internal35.add_location)(h245, file33, 227, 0, 9928);
+      (0, import_internal35.add_location)(li85, file33, 229, 0, 9971);
+      (0, import_internal35.add_location)(li86, file33, 230, 0, 9999);
+      (0, import_internal35.add_location)(ul48, file33, 228, 0, 9966);
+      (0, import_internal35.add_location)(em46, file33, 232, 11, 10075);
+      (0, import_internal35.add_location)(h246, file33, 232, 0, 10064);
+      (0, import_internal35.add_location)(code85, file33, 234, 15, 10122);
+      (0, import_internal35.add_location)(li87, file33, 234, 0, 10107);
+      (0, import_internal35.add_location)(ul49, file33, 233, 0, 10102);
+      (0, import_internal35.add_location)(em47, file33, 236, 11, 10216);
+      (0, import_internal35.add_location)(h247, file33, 236, 0, 10205);
+      (0, import_internal35.add_location)(code86, file33, 238, 55, 10303);
+      (0, import_internal35.add_location)(code87, file33, 238, 84, 10332);
+      (0, import_internal35.add_location)(code88, file33, 238, 142, 10390);
+      (0, import_internal35.add_location)(li88, file33, 238, 0, 10248);
+      (0, import_internal35.add_location)(code89, file33, 239, 37, 10477);
+      (0, import_internal35.add_location)(li89, file33, 239, 0, 10440);
+      (0, import_internal35.add_location)(li90, file33, 240, 0, 10564);
+      (0, import_internal35.add_location)(li91, file33, 241, 0, 10615);
+      (0, import_internal35.add_location)(code90, file33, 242, 29, 10697);
+      (0, import_internal35.add_location)(code91, file33, 242, 93, 10761);
+      (0, import_internal35.add_location)(li92, file33, 242, 0, 10668);
+      (0, import_internal35.add_location)(ul50, file33, 237, 0, 10243);
+      (0, import_internal35.add_location)(em48, file33, 244, 11, 10971);
+      (0, import_internal35.add_location)(h248, file33, 244, 0, 10960);
+      (0, import_internal35.add_location)(code92, file33, 246, 41, 11044);
+      (0, import_internal35.add_location)(code93, file33, 246, 65, 11068);
+      (0, import_internal35.add_location)(code94, file33, 246, 88, 11091);
+      (0, import_internal35.add_location)(code95, file33, 246, 117, 11120);
+      (0, import_internal35.add_location)(li93, file33, 246, 0, 11003);
+      (0, import_internal35.add_location)(li94, file33, 247, 0, 11152);
+      (0, import_internal35.add_location)(ul51, file33, 245, 0, 10998);
+      (0, import_internal35.add_location)(em49, file33, 249, 11, 11210);
+      (0, import_internal35.add_location)(h249, file33, 249, 0, 11199);
+      (0, import_internal35.add_location)(code96, file33, 251, 17, 11259);
+      (0, import_internal35.add_location)(code97, file33, 251, 74, 11316);
+      (0, import_internal35.add_location)(li95, file33, 251, 0, 11242);
+      (0, import_internal35.add_location)(ul52, file33, 250, 0, 11237);
+      (0, import_internal35.add_location)(em50, file33, 253, 11, 11404);
+      (0, import_internal35.add_location)(h250, file33, 253, 0, 11393);
+      (0, import_internal35.add_location)(code98, file33, 255, 8, 11444);
+      (0, import_internal35.add_location)(li96, file33, 255, 0, 11436);
+      (0, import_internal35.add_location)(code99, file33, 256, 8, 11510);
+      (0, import_internal35.add_location)(li97, file33, 256, 0, 11502);
+      (0, import_internal35.add_location)(ul53, file33, 254, 0, 11431);
+      (0, import_internal35.add_location)(em51, file33, 258, 11, 11579);
+      (0, import_internal35.add_location)(h251, file33, 258, 0, 11568);
+      (0, import_internal35.add_location)(code100, file33, 260, 122, 11733);
+      (0, import_internal35.add_location)(code101, file33, 260, 152, 11763);
+      (0, import_internal35.add_location)(li98, file33, 260, 0, 11611);
+      (0, import_internal35.add_location)(li99, file33, 261, 0, 11796);
+      (0, import_internal35.add_location)(li100, file33, 262, 0, 11884);
+      (0, import_internal35.add_location)(ul54, file33, 259, 0, 11606);
+      (0, import_internal35.add_location)(h252, file33, 264, 0, 12079);
+      (0, import_internal35.add_location)(li101, file33, 266, 0, 12113);
+      (0, import_internal35.add_location)(ul55, file33, 265, 0, 12108);
+      (0, import_internal35.add_location)(h253, file33, 268, 0, 12193);
+      (0, import_internal35.add_location)(code102, file33, 270, 21, 12248);
+      (0, import_internal35.add_location)(code103, file33, 270, 101, 12328);
+      (0, import_internal35.add_location)(li102, file33, 270, 0, 12227);
+      (0, import_internal35.add_location)(code104, file33, 271, 51, 12483);
+      (0, import_internal35.add_location)(li103, file33, 271, 0, 12432);
+      (0, import_internal35.add_location)(ul56, file33, 269, 0, 12222);
+      (0, import_internal35.add_location)(h254, file33, 273, 0, 12585);
+      (0, import_internal35.add_location)(code105, file33, 275, 21, 12640);
+      (0, import_internal35.add_location)(code106, file33, 275, 66, 12685);
+      (0, import_internal35.add_location)(li104, file33, 275, 0, 12619);
+      (0, import_internal35.add_location)(ul57, file33, 274, 0, 12614);
+      (0, import_internal35.add_location)(h255, file33, 277, 0, 12871);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -29433,14 +30264,14 @@ function create_fragment34(ctx) {
   };
   (0, import_internal35.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment34.name,
+    id: create_fragment35.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance34($$self2, $$props2) {
+function instance35($$self2, $$props2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal35.validate_slots)("Changelog", slots2, []);
   const writable_props = [];
@@ -29453,12 +30284,12 @@ function instance34($$self2, $$props2) {
 var Changelog = class extends import_internal35.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal35.init)(this, options, instance34, create_fragment34, import_internal35.safe_not_equal, {});
+    (0, import_internal35.init)(this, options, instance35, create_fragment35, import_internal35.safe_not_equal, {});
     (0, import_internal35.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Changelog",
       options,
-      id: create_fragment34.name
+      id: create_fragment35.name
     });
   }
 };
@@ -29503,18 +30334,18 @@ var import_internal39 = __toESM(require_internal());
 
 // docs-src/api-table/ApiTable.svelte
 var import_internal36 = __toESM(require_internal());
-var file33 = "docs-src/api-table/ApiTable.svelte";
-function get_each_context10(ctx, list, i) {
+var file34 = "docs-src/api-table/ApiTable.svelte";
+function get_each_context11(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[3] = list[i];
   return child_ctx;
 }
-function create_if_block19(ctx) {
+function create_if_block20(ctx) {
   let p;
   const block = {
     c: function create() {
       p = (0, import_internal36.element)("p");
-      (0, import_internal36.add_location)(p, file33, 2, 1, 36);
+      (0, import_internal36.add_location)(p, file34, 2, 1, 36);
     },
     m: function mount(target, anchor) {
       (0, import_internal36.insert_dev)(target, p, anchor);
@@ -29535,14 +30366,14 @@ function create_if_block19(ctx) {
   };
   (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block19.name,
+    id: create_if_block20.name,
     type: "if",
     source: "(2:0) {#if description}",
     ctx
   });
   return block;
 }
-function create_each_block10(ctx) {
+function create_each_block11(ctx) {
   let tr;
   let td0;
   let t0_value = (
@@ -29573,10 +30404,10 @@ function create_each_block10(ctx) {
       t2 = (0, import_internal36.space)();
       td2 = (0, import_internal36.element)("td");
       t3 = (0, import_internal36.space)();
-      (0, import_internal36.add_location)(td0, file33, 11, 4, 228);
-      (0, import_internal36.add_location)(td1, file33, 12, 4, 253);
-      (0, import_internal36.add_location)(td2, file33, 13, 4, 290);
-      (0, import_internal36.add_location)(tr, file33, 10, 3, 219);
+      (0, import_internal36.add_location)(td0, file34, 11, 4, 228);
+      (0, import_internal36.add_location)(td1, file34, 12, 4, 253);
+      (0, import_internal36.add_location)(td2, file34, 13, 4, 290);
+      (0, import_internal36.add_location)(tr, file34, 10, 3, 219);
     },
     m: function mount(target, anchor) {
       (0, import_internal36.insert_dev)(target, tr, anchor);
@@ -29615,7 +30446,7 @@ function create_each_block10(ctx) {
   };
   (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block10.name,
+    id: create_each_block11.name,
     type: "each",
     source: "(10:2) {#each props as prop}",
     ctx
@@ -29637,7 +30468,7 @@ function create_default_slot4(ctx) {
   (0, import_internal36.validate_each_argument)(each_value);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block10(get_each_context10(ctx, each_value, i));
+    each_blocks[i] = create_each_block11(get_each_context11(ctx, each_value, i));
   }
   const block = {
     c: function create() {
@@ -29654,12 +30485,12 @@ function create_default_slot4(ctx) {
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      (0, import_internal36.add_location)(th0, file33, 6, 6, 110);
-      (0, import_internal36.add_location)(th1, file33, 6, 24, 128);
-      (0, import_internal36.add_location)(th2, file33, 6, 43, 147);
-      (0, import_internal36.add_location)(tr, file33, 6, 2, 106);
-      (0, import_internal36.add_location)(thead, file33, 5, 1, 96);
-      (0, import_internal36.add_location)(tbody, file33, 8, 1, 184);
+      (0, import_internal36.add_location)(th0, file34, 6, 6, 110);
+      (0, import_internal36.add_location)(th1, file34, 6, 24, 128);
+      (0, import_internal36.add_location)(th2, file34, 6, 43, 147);
+      (0, import_internal36.add_location)(tr, file34, 6, 2, 106);
+      (0, import_internal36.add_location)(thead, file34, 5, 1, 96);
+      (0, import_internal36.add_location)(tbody, file34, 8, 1, 184);
     },
     m: function mount(target, anchor) {
       (0, import_internal36.insert_dev)(target, thead, anchor);
@@ -29683,11 +30514,11 @@ function create_default_slot4(ctx) {
         (0, import_internal36.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context10(ctx2, each_value, i);
+          const child_ctx = get_each_context11(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
           } else {
-            each_blocks[i] = create_each_block10(child_ctx);
+            each_blocks[i] = create_each_block11(child_ctx);
             each_blocks[i].c();
             each_blocks[i].m(tbody, null);
           }
@@ -29717,7 +30548,7 @@ function create_default_slot4(ctx) {
   });
   return block;
 }
-function create_fragment35(ctx) {
+function create_fragment36(ctx) {
   let h3;
   let t0;
   let t1;
@@ -29726,7 +30557,7 @@ function create_fragment35(ctx) {
   let current;
   let if_block = (
     /*description*/
-    ctx[1] && create_if_block19(ctx)
+    ctx[1] && create_if_block20(ctx)
   );
   table = new Table_default({
     props: {
@@ -29748,7 +30579,7 @@ function create_fragment35(ctx) {
         if_block.c();
       t2 = (0, import_internal36.space)();
       (0, import_internal36.create_component)(table.$$.fragment);
-      (0, import_internal36.add_location)(h3, file33, 0, 0, 0);
+      (0, import_internal36.add_location)(h3, file34, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -29778,7 +30609,7 @@ function create_fragment35(ctx) {
         if (if_block) {
           if_block.p(ctx2, dirty);
         } else {
-          if_block = create_if_block19(ctx2);
+          if_block = create_if_block20(ctx2);
           if_block.c();
           if_block.m(t2.parentNode, t2);
         }
@@ -29817,7 +30648,7 @@ function create_fragment35(ctx) {
   };
   (0, import_internal36.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment35.name,
+    id: create_fragment36.name,
     type: "component",
     source: "",
     ctx
@@ -29836,7 +30667,7 @@ function buildType(prop) {
     res.push(`<br>(defaults to ${prop.default})`);
   return res.join(" ");
 }
-function instance35($$self2, $$props2, $$invalidate2) {
+function instance36($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal36.validate_slots)("ApiTable", slots2, []);
   let { title = "API" } = $$props2;
@@ -29886,12 +30717,12 @@ function instance35($$self2, $$props2, $$invalidate2) {
 var ApiTable = class extends import_internal36.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal36.init)(this, options, instance35, create_fragment35, import_internal36.safe_not_equal, { title: 0, description: 1, props: 2 });
+    (0, import_internal36.init)(this, options, instance36, create_fragment36, import_internal36.safe_not_equal, { title: 0, description: 1, props: 2 });
     (0, import_internal36.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ApiTable",
       options,
-      id: create_fragment35.name
+      id: create_fragment36.name
     });
   }
   get title() {
@@ -29917,8 +30748,8 @@ var ApiTable_default = ApiTable;
 
 // docs-src/code-example/CodeExample.svelte
 var import_internal37 = __toESM(require_internal());
-var file34 = "docs-src/code-example/CodeExample.svelte";
-function create_if_block20(ctx) {
+var file35 = "docs-src/code-example/CodeExample.svelte";
+function create_if_block21(ctx) {
   let hr;
   let h3;
   const block = {
@@ -29926,8 +30757,8 @@ function create_if_block20(ctx) {
       hr = (0, import_internal37.element)("hr");
       h3 = (0, import_internal37.element)("h3");
       h3.textContent = "Example";
-      (0, import_internal37.add_location)(hr, file34, 1, 1, 16);
-      (0, import_internal37.add_location)(h3, file34, 1, 5, 20);
+      (0, import_internal37.add_location)(hr, file35, 1, 1, 16);
+      (0, import_internal37.add_location)(h3, file35, 1, 5, 20);
     },
     m: function mount(target, anchor) {
       (0, import_internal37.insert_dev)(target, hr, anchor);
@@ -29942,14 +30773,14 @@ function create_if_block20(ctx) {
   };
   (0, import_internal37.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block20.name,
+    id: create_if_block21.name,
     type: "if",
     source: "(1:0) {#if !notitle}",
     ctx
   });
   return block;
 }
-function create_fragment36(ctx) {
+function create_fragment37(ctx) {
   let t0;
   let pre;
   let code;
@@ -29961,7 +30792,7 @@ function create_fragment36(ctx) {
   ) + "";
   let t2;
   let if_block = !/*notitle*/
-  ctx[1] && create_if_block20(ctx);
+  ctx[1] && create_if_block21(ctx);
   const block = {
     c: function create() {
       if (if_block)
@@ -29974,8 +30805,8 @@ function create_fragment36(ctx) {
       t2 = (0, import_internal37.text)("\n");
       html_tag.a = t2;
       (0, import_internal37.attr_dev)(code, "class", "language-svelte");
-      (0, import_internal37.add_location)(code, file34, 3, 5, 48);
-      (0, import_internal37.add_location)(pre, file34, 3, 0, 43);
+      (0, import_internal37.add_location)(code, file35, 3, 5, 48);
+      (0, import_internal37.add_location)(pre, file35, 3, 0, 43);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -29995,7 +30826,7 @@ function create_fragment36(ctx) {
       ctx2[1]) {
         if (if_block) {
         } else {
-          if_block = create_if_block20(ctx2);
+          if_block = create_if_block21(ctx2);
           if_block.c();
           if_block.m(t0.parentNode, t0);
         }
@@ -30023,7 +30854,7 @@ function create_fragment36(ctx) {
   };
   (0, import_internal37.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment36.name,
+    id: create_fragment37.name,
     type: "component",
     source: "",
     ctx
@@ -30033,7 +30864,7 @@ function create_fragment36(ctx) {
 function encode(s) {
   return s.replace(/{/gim, "&lbrace;").replace(/}/gim, "&rbrace;").replace(/</gim, "&lt;").replace(/>/gim, "&gt;").replace(/\t/gim, "    ").trim();
 }
-function instance36($$self2, $$props2, $$invalidate2) {
+function instance37($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal37.validate_slots)("CodeExample", slots2, []);
   let { html = "" } = $$props2;
@@ -30064,12 +30895,12 @@ function instance36($$self2, $$props2, $$invalidate2) {
 var CodeExample = class extends import_internal37.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal37.init)(this, options, instance36, create_fragment36, import_internal37.safe_not_equal, { html: 0, notitle: 1 });
+    (0, import_internal37.init)(this, options, instance37, create_fragment37, import_internal37.safe_not_equal, { html: 0, notitle: 1 });
     (0, import_internal37.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "CodeExample",
       options,
-      id: create_fragment36.name
+      id: create_fragment37.name
     });
   }
   get html() {
@@ -30089,9 +30920,9 @@ var CodeExample_default = CodeExample;
 
 // docs-src/code-example/CodeBox.svelte
 var import_internal38 = __toESM(require_internal());
-var import_svelte23 = __toESM(require_svelte());
-var file35 = "docs-src/code-example/CodeBox.svelte";
-function create_fragment37(ctx) {
+var import_svelte24 = __toESM(require_svelte());
+var file36 = "docs-src/code-example/CodeBox.svelte";
+function create_fragment38(ctx) {
   let pre;
   let code;
   const block = {
@@ -30099,8 +30930,8 @@ function create_fragment37(ctx) {
       pre = (0, import_internal38.element)("pre");
       code = (0, import_internal38.element)("code");
       (0, import_internal38.attr_dev)(code, "class", "language-");
-      (0, import_internal38.add_location)(code, file35, 0, 5, 5);
-      (0, import_internal38.add_location)(pre, file35, 0, 0, 0);
+      (0, import_internal38.add_location)(code, file36, 0, 5, 5);
+      (0, import_internal38.add_location)(pre, file36, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -30127,21 +30958,21 @@ function create_fragment37(ctx) {
   };
   (0, import_internal38.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment37.name,
+    id: create_fragment38.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance37($$self2, $$props2, $$invalidate2) {
+function instance38($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal38.validate_slots)("CodeBox", slots2, []);
   let { tag = "div" } = $$props2;
   let { props: props2 = {} } = $$props2;
   let { text: text45 = "" } = $$props2;
   let html = "";
-  (0, import_svelte23.afterUpdate)(() => {
+  (0, import_svelte24.afterUpdate)(() => {
     requestAnimationFrame(update);
   });
   function update() {
@@ -30177,7 +31008,7 @@ function instance37($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, text45 = $$props3.text);
   };
   $$self2.$capture_state = () => ({
-    afterUpdate: import_svelte23.afterUpdate,
+    afterUpdate: import_svelte24.afterUpdate,
     tag,
     props: props2,
     text: text45,
@@ -30203,12 +31034,12 @@ function instance37($$self2, $$props2, $$invalidate2) {
 var CodeBox = class extends import_internal38.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal38.init)(this, options, instance37, create_fragment37, import_internal38.safe_not_equal, { tag: 1, props: 2, text: 3 });
+    (0, import_internal38.init)(this, options, instance38, create_fragment38, import_internal38.safe_not_equal, { tag: 1, props: 2, text: 3 });
     (0, import_internal38.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "CodeBox",
       options,
-      id: create_fragment37.name
+      id: create_fragment38.name
     });
   }
   get tag() {
@@ -30234,8 +31065,8 @@ var CodeBox_default = CodeBox;
 
 // docs-src/components/autocomplete/Autocomplete.svelte
 var { console: console_1 } = import_internal39.globals;
-var file36 = "docs-src/components/autocomplete/Autocomplete.svelte";
-function create_fragment38(ctx) {
+var file37 = "docs-src/components/autocomplete/Autocomplete.svelte";
+function create_fragment39(ctx) {
   let h20;
   let t1;
   let div3;
@@ -30553,32 +31384,32 @@ function create_fragment38(ctx) {
       hr = (0, import_internal39.element)("hr");
       t41 = (0, import_internal39.space)();
       (0, import_internal39.create_component)(api.$$.fragment);
-      (0, import_internal39.add_location)(h20, file36, 0, 0, 0);
-      (0, import_internal39.add_location)(h30, file36, 3, 2, 77);
-      (0, import_internal39.add_location)(h31, file36, 9, 2, 206);
-      (0, import_internal39.add_location)(h32, file36, 12, 2, 314);
-      (0, import_internal39.add_location)(h33, file36, 19, 2, 484);
-      (0, import_internal39.add_location)(h34, file36, 22, 2, 607);
-      (0, import_internal39.add_location)(h35, file36, 26, 2, 775);
-      (0, import_internal39.add_location)(em0, file36, 30, 26, 994);
-      (0, import_internal39.add_location)(h36, file36, 30, 2, 970);
-      (0, import_internal39.add_location)(em1, file36, 31, 32, 1057);
-      (0, import_internal39.add_location)(em2, file36, 31, 59, 1084);
-      (0, import_internal39.add_location)(p0, file36, 31, 2, 1027);
-      (0, import_internal39.add_location)(small, file36, 34, 3, 1191);
+      (0, import_internal39.add_location)(h20, file37, 0, 0, 0);
+      (0, import_internal39.add_location)(h30, file37, 3, 2, 77);
+      (0, import_internal39.add_location)(h31, file37, 9, 2, 206);
+      (0, import_internal39.add_location)(h32, file37, 12, 2, 314);
+      (0, import_internal39.add_location)(h33, file37, 19, 2, 484);
+      (0, import_internal39.add_location)(h34, file37, 22, 2, 607);
+      (0, import_internal39.add_location)(h35, file37, 26, 2, 775);
+      (0, import_internal39.add_location)(em0, file37, 30, 26, 994);
+      (0, import_internal39.add_location)(h36, file37, 30, 2, 970);
+      (0, import_internal39.add_location)(em1, file37, 31, 32, 1057);
+      (0, import_internal39.add_location)(em2, file37, 31, 59, 1084);
+      (0, import_internal39.add_location)(p0, file37, 31, 2, 1027);
+      (0, import_internal39.add_location)(small, file37, 34, 3, 1191);
       (0, import_internal39.attr_dev)(div0, "class", "docs-overflow-box");
-      (0, import_internal39.add_location)(div0, file36, 33, 2, 1156);
-      (0, import_internal39.add_location)(em3, file36, 39, 51, 1546);
-      (0, import_internal39.add_location)(p1, file36, 37, 2, 1328);
+      (0, import_internal39.add_location)(div0, file37, 33, 2, 1156);
+      (0, import_internal39.add_location)(em3, file37, 39, 51, 1546);
+      (0, import_internal39.add_location)(p1, file37, 37, 2, 1328);
       (0, import_internal39.attr_dev)(div1, "class", "docs-column");
-      (0, import_internal39.add_location)(div1, file36, 2, 1, 49);
-      (0, import_internal39.add_location)(h21, file36, 43, 2, 1639);
-      (0, import_internal39.add_location)(code, file36, 44, 2, 1667);
+      (0, import_internal39.add_location)(div1, file37, 2, 1, 49);
+      (0, import_internal39.add_location)(h21, file37, 43, 2, 1639);
+      (0, import_internal39.add_location)(code, file37, 44, 2, 1667);
       (0, import_internal39.attr_dev)(div2, "class", "docs-column");
-      (0, import_internal39.add_location)(div2, file36, 42, 1, 1611);
+      (0, import_internal39.add_location)(div2, file37, 42, 1, 1611);
       (0, import_internal39.attr_dev)(div3, "class", "docs-layout");
-      (0, import_internal39.add_location)(div3, file36, 1, 0, 22);
-      (0, import_internal39.add_location)(hr, file36, 51, 0, 1786);
+      (0, import_internal39.add_location)(div3, file37, 1, 0, 22);
+      (0, import_internal39.add_location)(hr, file37, 51, 0, 1786);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -30773,7 +31604,7 @@ function create_fragment38(ctx) {
   };
   (0, import_internal39.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment38.name,
+    id: create_fragment39.name,
     type: "component",
     source: "",
     ctx
@@ -30784,7 +31615,7 @@ function onChange(e) {
   const { value: value2, oldValue } = e.detail;
   console.log({ value: value2, oldValue });
 }
-function instance38($$self2, $$props2, $$invalidate2) {
+function instance39($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal39.validate_slots)("Autocomplete", slots2, []);
   const apiProps = [
@@ -31081,12 +31912,12 @@ function onChange (e) {
 var Autocomplete_1 = class extends import_internal39.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal39.init)(this, options, instance38, create_fragment38, import_internal39.safe_not_equal, {});
+    (0, import_internal39.init)(this, options, instance39, create_fragment39, import_internal39.safe_not_equal, {});
     (0, import_internal39.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Autocomplete_1",
       options,
-      id: create_fragment38.name
+      id: create_fragment39.name
     });
   }
 };
@@ -31094,7 +31925,7 @@ var Autocomplete_default2 = Autocomplete_1;
 
 // docs-src/components/button/Button.svelte
 var import_internal40 = __toESM(require_internal());
-var file37 = "docs-src/components/button/Button.svelte";
+var file38 = "docs-src/components/button/Button.svelte";
 function create_else_block4(ctx) {
   let button;
   let current;
@@ -31146,7 +31977,7 @@ function create_else_block4(ctx) {
   });
   return block;
 }
-function create_if_block21(ctx) {
+function create_if_block22(ctx) {
   let button;
   let current;
   const button_spread_levels = [
@@ -31197,7 +32028,7 @@ function create_if_block21(ctx) {
   };
   (0, import_internal40.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block21.name,
+    id: create_if_block22.name,
     type: "if",
     source: "(6:2) {#if buttonText}",
     ctx
@@ -31239,7 +32070,7 @@ function create_default_slot5(ctx) {
   });
   return block;
 }
-function create_fragment39(ctx) {
+function create_fragment40(ctx) {
   let h2;
   let t1;
   let div2;
@@ -31290,7 +32121,7 @@ function create_fragment39(ctx) {
   let current;
   let mounted;
   let dispose;
-  const if_block_creators = [create_if_block21, create_else_block4];
+  const if_block_creators = [create_if_block22, create_else_block4];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -31444,25 +32275,25 @@ function create_fragment39(ctx) {
       hr1 = (0, import_internal40.element)("hr");
       t29 = (0, import_internal40.space)();
       (0, import_internal40.create_component)(api.$$.fragment);
-      (0, import_internal40.add_location)(h2, file37, 0, 0, 0);
-      (0, import_internal40.add_location)(h30, file37, 4, 2, 72);
-      (0, import_internal40.add_location)(hr0, file37, 11, 2, 194);
-      (0, import_internal40.add_location)(h31, file37, 12, 2, 201);
+      (0, import_internal40.add_location)(h2, file38, 0, 0, 0);
+      (0, import_internal40.add_location)(h30, file38, 4, 2, 72);
+      (0, import_internal40.add_location)(hr0, file38, 11, 2, 194);
+      (0, import_internal40.add_location)(h31, file38, 12, 2, 201);
       (0, import_internal40.attr_dev)(div0, "class", "docs-column");
-      (0, import_internal40.add_location)(div0, file37, 3, 1, 44);
-      (0, import_internal40.add_location)(h32, file37, 16, 2, 324);
-      (0, import_internal40.add_location)(h40, file37, 17, 2, 346);
-      (0, import_internal40.add_location)(input, file37, 18, 2, 362);
-      (0, import_internal40.add_location)(h41, file37, 19, 2, 399);
-      (0, import_internal40.add_location)(h42, file37, 21, 2, 495);
-      (0, import_internal40.add_location)(h43, file37, 23, 2, 588);
-      (0, import_internal40.add_location)(h44, file37, 25, 2, 681);
-      (0, import_internal40.add_location)(h45, file37, 27, 2, 737);
+      (0, import_internal40.add_location)(div0, file38, 3, 1, 44);
+      (0, import_internal40.add_location)(h32, file38, 16, 2, 324);
+      (0, import_internal40.add_location)(h40, file38, 17, 2, 346);
+      (0, import_internal40.add_location)(input, file38, 18, 2, 362);
+      (0, import_internal40.add_location)(h41, file38, 19, 2, 399);
+      (0, import_internal40.add_location)(h42, file38, 21, 2, 495);
+      (0, import_internal40.add_location)(h43, file38, 23, 2, 588);
+      (0, import_internal40.add_location)(h44, file38, 25, 2, 681);
+      (0, import_internal40.add_location)(h45, file38, 27, 2, 737);
       (0, import_internal40.attr_dev)(div1, "class", "docs-column");
-      (0, import_internal40.add_location)(div1, file37, 15, 1, 296);
+      (0, import_internal40.add_location)(div1, file38, 15, 1, 296);
       (0, import_internal40.attr_dev)(div2, "class", "docs-layout");
-      (0, import_internal40.add_location)(div2, file37, 2, 0, 17);
-      (0, import_internal40.add_location)(hr1, file37, 34, 0, 815);
+      (0, import_internal40.add_location)(div2, file38, 2, 0, 17);
+      (0, import_internal40.add_location)(hr1, file38, 34, 0, 815);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -31638,14 +32469,14 @@ function create_fragment39(ctx) {
   };
   (0, import_internal40.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment39.name,
+    id: create_fragment40.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance39($$self2, $$props2, $$invalidate2) {
+function instance40($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal40.validate_slots)("Button", slots2, []);
   const apiProps = [
@@ -31827,12 +32658,12 @@ function instance39($$self2, $$props2, $$invalidate2) {
 var Button_1 = class extends import_internal40.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal40.init)(this, options, instance39, create_fragment39, import_internal40.safe_not_equal, {});
+    (0, import_internal40.init)(this, options, instance40, create_fragment40, import_internal40.safe_not_equal, {});
     (0, import_internal40.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Button_1",
       options,
-      id: create_fragment39.name
+      id: create_fragment40.name
     });
   }
 };
@@ -31840,7 +32671,7 @@ var Button_default2 = Button_1;
 
 // docs-src/components/push-button/PushButton.svelte
 var import_internal41 = __toESM(require_internal());
-var file38 = "docs-src/components/push-button/PushButton.svelte";
+var file39 = "docs-src/components/push-button/PushButton.svelte";
 function create_default_slot_24(ctx) {
   let t;
   const block = {
@@ -32416,7 +33247,7 @@ function create_default_slot6(ctx) {
   });
   return block;
 }
-function create_fragment40(ctx) {
+function create_fragment41(ctx) {
   let h2;
   let t1;
   let h30;
@@ -32917,33 +33748,33 @@ function create_fragment40(ctx) {
       (0, import_internal41.create_component)(codeexample.$$.fragment);
       t59 = (0, import_internal41.space)();
       (0, import_internal41.create_component)(api.$$.fragment);
-      (0, import_internal41.add_location)(h2, file38, 0, 0, 0);
-      (0, import_internal41.add_location)(h30, file38, 2, 0, 22);
-      (0, import_internal41.add_location)(h40, file38, 4, 0, 39);
+      (0, import_internal41.add_location)(h2, file39, 0, 0, 0);
+      (0, import_internal41.add_location)(h30, file39, 2, 0, 22);
+      (0, import_internal41.add_location)(h40, file39, 4, 0, 39);
       (0, import_internal41.attr_dev)(div0, "class", "docs-buttons-row");
-      (0, import_internal41.add_location)(div0, file38, 5, 0, 56);
-      (0, import_internal41.add_location)(h41, file38, 14, 0, 288);
+      (0, import_internal41.add_location)(div0, file39, 5, 0, 56);
+      (0, import_internal41.add_location)(h41, file39, 14, 0, 288);
       (0, import_internal41.attr_dev)(div1, "class", "docs-buttons-row");
-      (0, import_internal41.add_location)(div1, file38, 15, 0, 305);
-      (0, import_internal41.add_location)(h42, file38, 24, 0, 577);
+      (0, import_internal41.add_location)(div1, file39, 15, 0, 305);
+      (0, import_internal41.add_location)(h42, file39, 24, 0, 577);
       (0, import_internal41.attr_dev)(div2, "class", "docs-buttons-row");
-      (0, import_internal41.add_location)(div2, file38, 25, 0, 595);
-      (0, import_internal41.add_location)(h43, file38, 34, 0, 872);
+      (0, import_internal41.add_location)(div2, file39, 25, 0, 595);
+      (0, import_internal41.add_location)(h43, file39, 34, 0, 872);
       (0, import_internal41.attr_dev)(div3, "class", "docs-buttons-row");
-      (0, import_internal41.add_location)(div3, file38, 35, 0, 891);
-      (0, import_internal41.add_location)(h44, file38, 44, 0, 1185);
+      (0, import_internal41.add_location)(div3, file39, 35, 0, 891);
+      (0, import_internal41.add_location)(h44, file39, 44, 0, 1185);
       (0, import_internal41.attr_dev)(div4, "class", "docs-buttons-row");
-      (0, import_internal41.add_location)(div4, file38, 45, 0, 1202);
-      (0, import_internal41.add_location)(hr0, file38, 54, 0, 1474);
-      (0, import_internal41.add_location)(h31, file38, 55, 0, 1479);
-      (0, import_internal41.add_location)(h45, file38, 57, 0, 1507);
+      (0, import_internal41.add_location)(div4, file39, 45, 0, 1202);
+      (0, import_internal41.add_location)(hr0, file39, 54, 0, 1474);
+      (0, import_internal41.add_location)(h31, file39, 55, 0, 1479);
+      (0, import_internal41.add_location)(h45, file39, 57, 0, 1507);
       (0, import_internal41.attr_dev)(div5, "class", "docs-buttons-row");
-      (0, import_internal41.add_location)(div5, file38, 58, 0, 1524);
-      (0, import_internal41.add_location)(hr1, file38, 67, 0, 1790);
-      (0, import_internal41.add_location)(h32, file38, 68, 0, 1795);
-      (0, import_internal41.add_location)(h46, file38, 70, 0, 1826);
+      (0, import_internal41.add_location)(div5, file39, 58, 0, 1524);
+      (0, import_internal41.add_location)(hr1, file39, 67, 0, 1790);
+      (0, import_internal41.add_location)(h32, file39, 68, 0, 1795);
+      (0, import_internal41.add_location)(h46, file39, 70, 0, 1826);
       (0, import_internal41.attr_dev)(div6, "class", "docs-buttons-row");
-      (0, import_internal41.add_location)(div6, file38, 71, 0, 1843);
+      (0, import_internal41.add_location)(div6, file39, 71, 0, 1843);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -33415,14 +34246,14 @@ function create_fragment40(ctx) {
   };
   (0, import_internal41.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment40.name,
+    id: create_fragment41.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance40($$self2, $$props2, $$invalidate2) {
+function instance41($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal41.validate_slots)("PushButton", slots2, []);
   const apiProps = [
@@ -33515,12 +34346,12 @@ function onChange (e) {
 var PushButton_1 = class extends import_internal41.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal41.init)(this, options, instance40, create_fragment40, import_internal41.safe_not_equal, {});
+    (0, import_internal41.init)(this, options, instance41, create_fragment41, import_internal41.safe_not_equal, {});
     (0, import_internal41.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "PushButton_1",
       options,
-      id: create_fragment40.name
+      id: create_fragment41.name
     });
   }
 };
@@ -33528,7 +34359,7 @@ var PushButton_default2 = PushButton_1;
 
 // docs-src/components/button-group/ButtonGroup.svelte
 var import_internal42 = __toESM(require_internal());
-var file39 = "docs-src/components/button-group/ButtonGroup.svelte";
+var file40 = "docs-src/components/button-group/ButtonGroup.svelte";
 function create_default_slot_33(ctx) {
   let t;
   const block = {
@@ -35018,7 +35849,7 @@ function create_default_slot7(ctx) {
   });
   return block;
 }
-function create_fragment41(ctx) {
+function create_fragment42(ctx) {
   let h2;
   let t1;
   let h30;
@@ -35193,16 +36024,16 @@ function create_fragment41(ctx) {
       (0, import_internal42.create_component)(codeexample.$$.fragment);
       t29 = (0, import_internal42.space)();
       (0, import_internal42.create_component)(api.$$.fragment);
-      (0, import_internal42.add_location)(h2, file39, 0, 0, 0);
-      (0, import_internal42.add_location)(h30, file39, 3, 0, 24);
-      (0, import_internal42.add_location)(h31, file39, 11, 0, 175);
-      (0, import_internal42.add_location)(h32, file39, 20, 0, 361);
-      (0, import_internal42.add_location)(h33, file39, 29, 0, 552);
-      (0, import_internal42.add_location)(h34, file39, 38, 0, 730);
-      (0, import_internal42.add_location)(h35, file39, 46, 0, 875);
-      (0, import_internal42.add_location)(h36, file39, 54, 0, 995);
-      (0, import_internal42.add_location)(h37, file39, 62, 0, 1152);
-      (0, import_internal42.add_location)(h38, file39, 70, 0, 1298);
+      (0, import_internal42.add_location)(h2, file40, 0, 0, 0);
+      (0, import_internal42.add_location)(h30, file40, 3, 0, 24);
+      (0, import_internal42.add_location)(h31, file40, 11, 0, 175);
+      (0, import_internal42.add_location)(h32, file40, 20, 0, 361);
+      (0, import_internal42.add_location)(h33, file40, 29, 0, 552);
+      (0, import_internal42.add_location)(h34, file40, 38, 0, 730);
+      (0, import_internal42.add_location)(h35, file40, 46, 0, 875);
+      (0, import_internal42.add_location)(h36, file40, 54, 0, 995);
+      (0, import_internal42.add_location)(h37, file40, 62, 0, 1152);
+      (0, import_internal42.add_location)(h38, file40, 70, 0, 1298);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35413,14 +36244,14 @@ function create_fragment41(ctx) {
   };
   (0, import_internal42.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment41.name,
+    id: create_fragment42.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance41($$self2, $$props2, $$invalidate2) {
+function instance42($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal42.validate_slots)("ButtonGroup", slots2, []);
   const apiProps = [
@@ -35467,12 +36298,12 @@ function onChange (e) {
 var ButtonGroup_1 = class extends import_internal42.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal42.init)(this, options, instance41, create_fragment41, import_internal42.safe_not_equal, {});
+    (0, import_internal42.init)(this, options, instance42, create_fragment42, import_internal42.safe_not_equal, {});
     (0, import_internal42.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ButtonGroup_1",
       options,
-      id: create_fragment41.name
+      id: create_fragment42.name
     });
   }
 };
@@ -35480,8 +36311,8 @@ var ButtonGroup_default2 = ButtonGroup_1;
 
 // docs-src/components/button-toggle/ButtonToggle.svelte
 var import_internal43 = __toESM(require_internal());
-var file40 = "docs-src/components/button-toggle/ButtonToggle.svelte";
-function create_fragment42(ctx) {
+var file41 = "docs-src/components/button-toggle/ButtonToggle.svelte";
+function create_fragment43(ctx) {
   let h2;
   let t1;
   let p;
@@ -35754,42 +36585,42 @@ function create_fragment42(ctx) {
       (0, import_internal43.create_component)(codeexample1.$$.fragment);
       t46 = (0, import_internal43.space)();
       (0, import_internal43.create_component)(api.$$.fragment);
-      (0, import_internal43.add_location)(h2, file40, 0, 0, 0);
-      (0, import_internal43.add_location)(p, file40, 2, 0, 24);
-      (0, import_internal43.add_location)(h30, file40, 4, 0, 111);
-      (0, import_internal43.add_location)(h31, file40, 7, 0, 173);
+      (0, import_internal43.add_location)(h2, file41, 0, 0, 0);
+      (0, import_internal43.add_location)(p, file41, 2, 0, 24);
+      (0, import_internal43.add_location)(h30, file41, 4, 0, 111);
+      (0, import_internal43.add_location)(h31, file41, 7, 0, 173);
       (0, import_internal43.attr_dev)(div, "class", "button-toggle-wrapper-wide");
-      (0, import_internal43.add_location)(div, file40, 8, 0, 192);
-      (0, import_internal43.add_location)(h32, file40, 12, 0, 287);
+      (0, import_internal43.add_location)(div, file41, 8, 0, 192);
+      (0, import_internal43.add_location)(h32, file41, 12, 0, 287);
       (0, import_internal43.attr_dev)(label2, "class", "label");
       (0, import_internal43.attr_dev)(label2, "for", "bt1");
-      (0, import_internal43.add_location)(label2, file40, 13, 0, 307);
-      (0, import_internal43.add_location)(br0, file40, 16, 0, 429);
-      (0, import_internal43.add_location)(br1, file40, 16, 4, 433);
-      (0, import_internal43.add_location)(h40, file40, 18, 0, 439);
-      (0, import_internal43.add_location)(br2, file40, 19, 42, 499);
-      (0, import_internal43.add_location)(br3, file40, 19, 46, 503);
-      (0, import_internal43.add_location)(h41, file40, 21, 0, 509);
-      (0, import_internal43.add_location)(br4, file40, 22, 50, 574);
-      (0, import_internal43.add_location)(br5, file40, 22, 54, 578);
-      (0, import_internal43.add_location)(h42, file40, 24, 0, 584);
-      (0, import_internal43.add_location)(br6, file40, 25, 42, 645);
-      (0, import_internal43.add_location)(br7, file40, 25, 46, 649);
-      (0, import_internal43.add_location)(h33, file40, 27, 0, 655);
-      (0, import_internal43.add_location)(br8, file40, 28, 42, 724);
-      (0, import_internal43.add_location)(br9, file40, 28, 46, 728);
-      (0, import_internal43.add_location)(h34, file40, 31, 0, 735);
-      (0, import_internal43.add_location)(br10, file40, 32, 48, 813);
-      (0, import_internal43.add_location)(br11, file40, 32, 52, 817);
-      (0, import_internal43.add_location)(em0, file40, 34, 25, 848);
-      (0, import_internal43.add_location)(h35, file40, 34, 0, 823);
-      (0, import_internal43.add_location)(br12, file40, 35, 46, 914);
-      (0, import_internal43.add_location)(br13, file40, 35, 50, 918);
-      (0, import_internal43.add_location)(em1, file40, 41, 0, 964);
-      (0, import_internal43.add_location)(i0, file40, 41, 29, 993);
-      (0, import_internal43.add_location)(i1, file40, 41, 62, 1026);
-      (0, import_internal43.add_location)(i2, file40, 42, 22, 1078);
-      (0, import_internal43.add_location)(i3, file40, 42, 71, 1127);
+      (0, import_internal43.add_location)(label2, file41, 13, 0, 307);
+      (0, import_internal43.add_location)(br0, file41, 16, 0, 429);
+      (0, import_internal43.add_location)(br1, file41, 16, 4, 433);
+      (0, import_internal43.add_location)(h40, file41, 18, 0, 439);
+      (0, import_internal43.add_location)(br2, file41, 19, 42, 499);
+      (0, import_internal43.add_location)(br3, file41, 19, 46, 503);
+      (0, import_internal43.add_location)(h41, file41, 21, 0, 509);
+      (0, import_internal43.add_location)(br4, file41, 22, 50, 574);
+      (0, import_internal43.add_location)(br5, file41, 22, 54, 578);
+      (0, import_internal43.add_location)(h42, file41, 24, 0, 584);
+      (0, import_internal43.add_location)(br6, file41, 25, 42, 645);
+      (0, import_internal43.add_location)(br7, file41, 25, 46, 649);
+      (0, import_internal43.add_location)(h33, file41, 27, 0, 655);
+      (0, import_internal43.add_location)(br8, file41, 28, 42, 724);
+      (0, import_internal43.add_location)(br9, file41, 28, 46, 728);
+      (0, import_internal43.add_location)(h34, file41, 31, 0, 735);
+      (0, import_internal43.add_location)(br10, file41, 32, 48, 813);
+      (0, import_internal43.add_location)(br11, file41, 32, 52, 817);
+      (0, import_internal43.add_location)(em0, file41, 34, 25, 848);
+      (0, import_internal43.add_location)(h35, file41, 34, 0, 823);
+      (0, import_internal43.add_location)(br12, file41, 35, 46, 914);
+      (0, import_internal43.add_location)(br13, file41, 35, 50, 918);
+      (0, import_internal43.add_location)(em1, file41, 41, 0, 964);
+      (0, import_internal43.add_location)(i0, file41, 41, 29, 993);
+      (0, import_internal43.add_location)(i1, file41, 41, 62, 1026);
+      (0, import_internal43.add_location)(i2, file41, 42, 22, 1078);
+      (0, import_internal43.add_location)(i3, file41, 42, 71, 1127);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -36044,14 +36875,14 @@ function create_fragment42(ctx) {
   };
   (0, import_internal43.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment42.name,
+    id: create_fragment43.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance42($$self2, $$props2, $$invalidate2) {
+function instance43($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal43.validate_slots)("ButtonToggle", slots2, []);
   const apiProps = [
@@ -36154,12 +36985,12 @@ const buttons = [
 var ButtonToggle_1 = class extends import_internal43.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal43.init)(this, options, instance42, create_fragment42, import_internal43.safe_not_equal, {});
+    (0, import_internal43.init)(this, options, instance43, create_fragment43, import_internal43.safe_not_equal, {});
     (0, import_internal43.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ButtonToggle_1",
       options,
-      id: create_fragment42.name
+      id: create_fragment43.name
     });
   }
 };
@@ -36168,8 +36999,8 @@ var ButtonToggle_default2 = ButtonToggle_1;
 // docs-src/components/datepicker/Datepicker.svelte
 var import_internal44 = __toESM(require_internal());
 var { console: console_12 } = import_internal44.globals;
-var file41 = "docs-src/components/datepicker/Datepicker.svelte";
-function create_fragment43(ctx) {
+var file42 = "docs-src/components/datepicker/Datepicker.svelte";
+function create_fragment44(ctx) {
   let h2;
   let t1;
   let p0;
@@ -36304,24 +37135,24 @@ function create_fragment43(ctx) {
       (0, import_internal44.create_component)(codeexample.$$.fragment);
       t32 = (0, import_internal44.space)();
       (0, import_internal44.create_component)(api.$$.fragment);
-      (0, import_internal44.add_location)(h2, file41, 0, 0, 0);
+      (0, import_internal44.add_location)(h2, file42, 0, 0, 0);
       (0, import_internal44.attr_dev)(a, "href", "https://mymth.github.io/vanillajs-datepicker/#/");
-      (0, import_internal44.add_location)(a, file41, 1, 58, 78);
-      (0, import_internal44.add_location)(p0, file41, 1, 0, 20);
-      (0, import_internal44.add_location)(br, file41, 2, 0, 166);
-      (0, import_internal44.add_location)(h30, file41, 4, 0, 172);
-      (0, import_internal44.add_location)(h31, file41, 7, 0, 224);
-      (0, import_internal44.add_location)(h32, file41, 10, 0, 315);
-      (0, import_internal44.add_location)(em0, file41, 14, 24, 402);
-      (0, import_internal44.add_location)(h33, file41, 14, 0, 378);
-      (0, import_internal44.add_location)(em1, file41, 15, 30, 463);
-      (0, import_internal44.add_location)(em2, file41, 15, 57, 490);
-      (0, import_internal44.add_location)(p1, file41, 15, 0, 433);
-      (0, import_internal44.add_location)(small, file41, 18, 1, 591);
+      (0, import_internal44.add_location)(a, file42, 1, 58, 78);
+      (0, import_internal44.add_location)(p0, file42, 1, 0, 20);
+      (0, import_internal44.add_location)(br, file42, 2, 0, 166);
+      (0, import_internal44.add_location)(h30, file42, 4, 0, 172);
+      (0, import_internal44.add_location)(h31, file42, 7, 0, 224);
+      (0, import_internal44.add_location)(h32, file42, 10, 0, 315);
+      (0, import_internal44.add_location)(em0, file42, 14, 24, 402);
+      (0, import_internal44.add_location)(h33, file42, 14, 0, 378);
+      (0, import_internal44.add_location)(em1, file42, 15, 30, 463);
+      (0, import_internal44.add_location)(em2, file42, 15, 57, 490);
+      (0, import_internal44.add_location)(p1, file42, 15, 0, 433);
+      (0, import_internal44.add_location)(small, file42, 18, 1, 591);
       (0, import_internal44.attr_dev)(div, "class", "docs-overflow-box");
-      (0, import_internal44.add_location)(div, file41, 17, 0, 558);
-      (0, import_internal44.add_location)(em3, file41, 23, 49, 873);
-      (0, import_internal44.add_location)(p2, file41, 21, 0, 661);
+      (0, import_internal44.add_location)(div, file42, 17, 0, 558);
+      (0, import_internal44.add_location)(em3, file42, 23, 49, 873);
+      (0, import_internal44.add_location)(p2, file42, 21, 0, 661);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -36454,7 +37285,7 @@ function create_fragment43(ctx) {
   };
   (0, import_internal44.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment43.name,
+    id: create_fragment44.name,
     type: "component",
     source: "",
     ctx
@@ -36464,7 +37295,7 @@ function create_fragment43(ctx) {
 function onkey(e) {
   console.log(1111, e.detail.event.key);
 }
-function instance43($$self2, $$props2, $$invalidate2) {
+function instance44($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal44.validate_slots)("Datepicker", slots2, []);
   const apiProps = [
@@ -36564,12 +37395,12 @@ function onChange (e) {
 var Datepicker_12 = class extends import_internal44.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal44.init)(this, options, instance43, create_fragment43, import_internal44.safe_not_equal, {});
+    (0, import_internal44.init)(this, options, instance44, create_fragment44, import_internal44.safe_not_equal, {});
     (0, import_internal44.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Datepicker_1",
       options,
-      id: create_fragment43.name
+      id: create_fragment44.name
     });
   }
 };
@@ -36578,8 +37409,8 @@ var Datepicker_default2 = Datepicker_12;
 // docs-src/components/checkbox/Checkbox.svelte
 var import_internal45 = __toESM(require_internal());
 var { console: console_13 } = import_internal45.globals;
-var file42 = "docs-src/components/checkbox/Checkbox.svelte";
-function create_fragment44(ctx) {
+var file43 = "docs-src/components/checkbox/Checkbox.svelte";
+function create_fragment45(ctx) {
   let h2;
   let t1;
   let h30;
@@ -36684,13 +37515,13 @@ function create_fragment44(ctx) {
       (0, import_internal45.create_component)(codeexample.$$.fragment);
       t20 = (0, import_internal45.space)();
       (0, import_internal45.create_component)(api.$$.fragment);
-      (0, import_internal45.add_location)(h2, file42, 0, 0, 0);
-      (0, import_internal45.add_location)(h30, file42, 2, 0, 19);
-      (0, import_internal45.add_location)(h31, file42, 5, 0, 72);
-      (0, import_internal45.add_location)(h32, file42, 8, 0, 113);
-      (0, import_internal45.add_location)(h33, file42, 11, 0, 159);
-      (0, import_internal45.add_location)(h34, file42, 14, 0, 223);
-      (0, import_internal45.add_location)(h35, file42, 18, 0, 282);
+      (0, import_internal45.add_location)(h2, file43, 0, 0, 0);
+      (0, import_internal45.add_location)(h30, file43, 2, 0, 19);
+      (0, import_internal45.add_location)(h31, file43, 5, 0, 72);
+      (0, import_internal45.add_location)(h32, file43, 8, 0, 113);
+      (0, import_internal45.add_location)(h33, file43, 11, 0, 159);
+      (0, import_internal45.add_location)(h34, file43, 14, 0, 223);
+      (0, import_internal45.add_location)(h35, file43, 18, 0, 282);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -36807,7 +37638,7 @@ function create_fragment44(ctx) {
   };
   (0, import_internal45.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment44.name,
+    id: create_fragment45.name,
     type: "component",
     source: "",
     ctx
@@ -36817,7 +37648,7 @@ function create_fragment44(ctx) {
 function onchange2(e) {
   console.log(e.target.checked);
 }
-function instance44($$self2, $$props2, $$invalidate2) {
+function instance45($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal45.validate_slots)("Checkbox", slots2, []);
   const apiProps = [
@@ -36887,12 +37718,12 @@ function onChange (e) {
 var Checkbox_1 = class extends import_internal45.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal45.init)(this, options, instance44, create_fragment44, import_internal45.safe_not_equal, {});
+    (0, import_internal45.init)(this, options, instance45, create_fragment45, import_internal45.safe_not_equal, {});
     (0, import_internal45.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Checkbox_1",
       options,
-      id: create_fragment44.name
+      id: create_fragment45.name
     });
   }
 };
@@ -36900,8 +37731,8 @@ var Checkbox_default2 = Checkbox_1;
 
 // docs-src/components/input-math/InputMath.svelte
 var import_internal46 = __toESM(require_internal());
-var file43 = "docs-src/components/input-math/InputMath.svelte";
-function create_fragment45(ctx) {
+var file44 = "docs-src/components/input-math/InputMath.svelte";
+function create_fragment46(ctx) {
   let h2;
   let t1;
   let p;
@@ -36993,14 +37824,14 @@ function create_fragment45(ctx) {
       (0, import_internal46.create_component)(codeexample.$$.fragment);
       t16 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(api.$$.fragment);
-      (0, import_internal46.add_location)(h2, file43, 0, 0, 0);
-      (0, import_internal46.add_location)(em, file43, 1, 83, 103);
-      (0, import_internal46.add_location)(br, file43, 1, 103, 123);
-      (0, import_internal46.add_location)(p, file43, 1, 0, 20);
-      (0, import_internal46.add_location)(hr, file43, 4, 0, 198);
-      (0, import_internal46.add_location)(h30, file43, 6, 0, 204);
-      (0, import_internal46.add_location)(h31, file43, 9, 0, 256);
-      (0, import_internal46.add_location)(h32, file43, 12, 0, 348);
+      (0, import_internal46.add_location)(h2, file44, 0, 0, 0);
+      (0, import_internal46.add_location)(em, file44, 1, 83, 103);
+      (0, import_internal46.add_location)(br, file44, 1, 103, 123);
+      (0, import_internal46.add_location)(p, file44, 1, 0, 20);
+      (0, import_internal46.add_location)(hr, file44, 4, 0, 198);
+      (0, import_internal46.add_location)(h30, file44, 6, 0, 204);
+      (0, import_internal46.add_location)(h31, file44, 9, 0, 256);
+      (0, import_internal46.add_location)(h32, file44, 12, 0, 348);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -37094,14 +37925,14 @@ function create_fragment45(ctx) {
   };
   (0, import_internal46.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment45.name,
+    id: create_fragment46.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance45($$self2, $$props2, $$invalidate2) {
+function instance46($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal46.validate_slots)("InputMath", slots2, []);
   const apiProps = [
@@ -37196,12 +38027,12 @@ function onChange (e) {
 var InputMath_1 = class extends import_internal46.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal46.init)(this, options, instance45, create_fragment45, import_internal46.safe_not_equal, {});
+    (0, import_internal46.init)(this, options, instance46, create_fragment46, import_internal46.safe_not_equal, {});
     (0, import_internal46.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputMath_1",
       options,
-      id: create_fragment45.name
+      id: create_fragment46.name
     });
   }
 };
@@ -37209,8 +38040,8 @@ var InputMath_default2 = InputMath_1;
 
 // docs-src/components/input-number/InputNumber.svelte
 var import_internal47 = __toESM(require_internal());
-var file44 = "docs-src/components/input-number/InputNumber.svelte";
-function create_fragment46(ctx) {
+var file45 = "docs-src/components/input-number/InputNumber.svelte";
+function create_fragment47(ctx) {
   let h2;
   let t1;
   let p;
@@ -37323,12 +38154,12 @@ function create_fragment46(ctx) {
       (0, import_internal47.create_component)(codeexample.$$.fragment);
       t16 = (0, import_internal47.space)();
       (0, import_internal47.create_component)(api.$$.fragment);
-      (0, import_internal47.add_location)(h2, file44, 0, 0, 0);
-      (0, import_internal47.add_location)(p, file44, 1, 0, 22);
-      (0, import_internal47.add_location)(h30, file44, 4, 0, 117);
-      (0, import_internal47.add_location)(h31, file44, 7, 0, 171);
-      (0, import_internal47.add_location)(h32, file44, 10, 0, 292);
-      (0, import_internal47.add_location)(h33, file44, 13, 0, 384);
+      (0, import_internal47.add_location)(h2, file45, 0, 0, 0);
+      (0, import_internal47.add_location)(p, file45, 1, 0, 22);
+      (0, import_internal47.add_location)(h30, file45, 4, 0, 117);
+      (0, import_internal47.add_location)(h31, file45, 7, 0, 171);
+      (0, import_internal47.add_location)(h32, file45, 10, 0, 292);
+      (0, import_internal47.add_location)(h33, file45, 13, 0, 384);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -37439,14 +38270,14 @@ function create_fragment46(ctx) {
   };
   (0, import_internal47.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment46.name,
+    id: create_fragment47.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance46($$self2, $$props2, $$invalidate2) {
+function instance47($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal47.validate_slots)("InputNumber", slots2, []);
   let error2 = "Number must be <100";
@@ -37562,12 +38393,12 @@ function instance46($$self2, $$props2, $$invalidate2) {
 var InputNumber_1 = class extends import_internal47.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal47.init)(this, options, instance46, create_fragment46, import_internal47.safe_not_equal, {});
+    (0, import_internal47.init)(this, options, instance47, create_fragment47, import_internal47.safe_not_equal, {});
     (0, import_internal47.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputNumber_1",
       options,
-      id: create_fragment46.name
+      id: create_fragment47.name
     });
   }
 };
@@ -37575,8 +38406,8 @@ var InputNumber_default2 = InputNumber_1;
 
 // docs-src/components/input-password/InputPassword.svelte
 var import_internal48 = __toESM(require_internal());
-var file45 = "docs-src/components/input-password/InputPassword.svelte";
-function create_fragment47(ctx) {
+var file46 = "docs-src/components/input-password/InputPassword.svelte";
+function create_fragment48(ctx) {
   let h2;
   let t1;
   let p0;
@@ -37748,23 +38579,23 @@ function create_fragment47(ctx) {
       (0, import_internal48.create_component)(codeexample.$$.fragment);
       t34 = (0, import_internal48.space)();
       (0, import_internal48.create_component)(api.$$.fragment);
-      (0, import_internal48.add_location)(h2, file45, 0, 0, 0);
-      (0, import_internal48.add_location)(p0, file45, 1, 0, 24);
+      (0, import_internal48.add_location)(h2, file46, 0, 0, 0);
+      (0, import_internal48.add_location)(p0, file46, 1, 0, 24);
       (0, import_internal48.attr_dev)(a, "href", "https://github.com/dropbox/zxcvbn");
-      (0, import_internal48.add_location)(a, file45, 2, 54, 149);
-      (0, import_internal48.add_location)(em0, file45, 2, 152, 247);
-      (0, import_internal48.add_location)(br0, file45, 2, 176, 271);
-      (0, import_internal48.add_location)(em1, file45, 3, 51, 327);
-      (0, import_internal48.add_location)(em2, file45, 3, 156, 432);
-      (0, import_internal48.add_location)(p1, file45, 2, 0, 95);
-      (0, import_internal48.add_location)(hr, file45, 6, 0, 467);
-      (0, import_internal48.add_location)(h30, file45, 8, 0, 473);
-      (0, import_internal48.add_location)(br1, file45, 9, 101, 591);
-      (0, import_internal48.add_location)(p2, file45, 10, 0, 596);
-      (0, import_internal48.add_location)(h31, file45, 12, 0, 635);
-      (0, import_internal48.add_location)(h32, file45, 17, 0, 707);
-      (0, import_internal48.add_location)(h33, file45, 20, 0, 807);
-      (0, import_internal48.add_location)(h34, file45, 23, 0, 940);
+      (0, import_internal48.add_location)(a, file46, 2, 54, 149);
+      (0, import_internal48.add_location)(em0, file46, 2, 152, 247);
+      (0, import_internal48.add_location)(br0, file46, 2, 176, 271);
+      (0, import_internal48.add_location)(em1, file46, 3, 51, 327);
+      (0, import_internal48.add_location)(em2, file46, 3, 156, 432);
+      (0, import_internal48.add_location)(p1, file46, 2, 0, 95);
+      (0, import_internal48.add_location)(hr, file46, 6, 0, 467);
+      (0, import_internal48.add_location)(h30, file46, 8, 0, 473);
+      (0, import_internal48.add_location)(br1, file46, 9, 101, 591);
+      (0, import_internal48.add_location)(p2, file46, 10, 0, 596);
+      (0, import_internal48.add_location)(h31, file46, 12, 0, 635);
+      (0, import_internal48.add_location)(h32, file46, 17, 0, 707);
+      (0, import_internal48.add_location)(h33, file46, 20, 0, 807);
+      (0, import_internal48.add_location)(h34, file46, 23, 0, 940);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -37925,14 +38756,14 @@ function create_fragment47(ctx) {
   };
   (0, import_internal48.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment47.name,
+    id: create_fragment48.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance47($$self2, $$props2, $$invalidate2) {
+function instance48($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal48.validate_slots)("InputPassword", slots2, []);
   let val;
@@ -38043,12 +38874,12 @@ function onChange (e) {
 var InputPassword_1 = class extends import_internal48.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal48.init)(this, options, instance47, create_fragment47, import_internal48.safe_not_equal, {});
+    (0, import_internal48.init)(this, options, instance48, create_fragment48, import_internal48.safe_not_equal, {});
     (0, import_internal48.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputPassword_1",
       options,
-      id: create_fragment47.name
+      id: create_fragment48.name
     });
   }
 };
@@ -38057,8 +38888,8 @@ var InputPassword_default2 = InputPassword_1;
 // docs-src/components/input-text/InputText.svelte
 var import_internal49 = __toESM(require_internal());
 var { console: console_14 } = import_internal49.globals;
-var file46 = "docs-src/components/input-text/InputText.svelte";
-function create_fragment48(ctx) {
+var file47 = "docs-src/components/input-text/InputText.svelte";
+function create_fragment49(ctx) {
   let h2;
   let t1;
   let p0;
@@ -38215,15 +39046,15 @@ function create_fragment48(ctx) {
       (0, import_internal49.create_component)(codeexample.$$.fragment);
       t20 = (0, import_internal49.space)();
       (0, import_internal49.create_component)(api.$$.fragment);
-      (0, import_internal49.add_location)(h2, file46, 0, 0, 0);
-      (0, import_internal49.add_location)(br0, file46, 3, 38, 58);
-      (0, import_internal49.add_location)(p0, file46, 2, 0, 16);
-      (0, import_internal49.add_location)(br1, file46, 7, 0, 138);
-      (0, import_internal49.add_location)(h30, file46, 9, 0, 144);
-      (0, import_internal49.add_location)(p1, file46, 11, 0, 214);
-      (0, import_internal49.add_location)(h31, file46, 13, 0, 241);
-      (0, import_internal49.add_location)(h32, file46, 17, 0, 328);
-      (0, import_internal49.add_location)(br2, file46, 24, 0, 453);
+      (0, import_internal49.add_location)(h2, file47, 0, 0, 0);
+      (0, import_internal49.add_location)(br0, file47, 3, 38, 58);
+      (0, import_internal49.add_location)(p0, file47, 2, 0, 16);
+      (0, import_internal49.add_location)(br1, file47, 7, 0, 138);
+      (0, import_internal49.add_location)(h30, file47, 9, 0, 144);
+      (0, import_internal49.add_location)(p1, file47, 11, 0, 214);
+      (0, import_internal49.add_location)(h31, file47, 13, 0, 241);
+      (0, import_internal49.add_location)(h32, file47, 17, 0, 328);
+      (0, import_internal49.add_location)(br2, file47, 24, 0, 453);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -38374,7 +39205,7 @@ function create_fragment48(ctx) {
   };
   (0, import_internal49.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment48.name,
+    id: create_fragment49.name,
     type: "component",
     source: "",
     ctx
@@ -38389,7 +39220,7 @@ function validate(v) {
     return "Invalid email";
   return;
 }
-function instance48($$self2, $$props2, $$invalidate2) {
+function instance49($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal49.validate_slots)("InputText", slots2, []);
   const apiProps = [
@@ -38468,7 +39299,7 @@ function onChange (e) {
 `;
   let val = "Hi!";
   let error1 = "", error2 = "";
-  function onchange5(e) {
+  function onchange6(e) {
     $$invalidate2(1, error1 = validate(e.target.value));
     console.log(e.target.value);
   }
@@ -38497,7 +39328,7 @@ function onChange (e) {
     error2,
     email,
     validate,
-    onchange: onchange5,
+    onchange: onchange6,
     oninput
   });
   $$self2.$inject_state = ($$props3) => {
@@ -38517,7 +39348,7 @@ function onChange (e) {
     error2,
     apiProps,
     exampleHtml,
-    onchange5,
+    onchange6,
     oninput,
     inputtext0_value_binding
   ];
@@ -38525,12 +39356,12 @@ function onChange (e) {
 var InputText_1 = class extends import_internal49.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal49.init)(this, options, instance48, create_fragment48, import_internal49.safe_not_equal, {});
+    (0, import_internal49.init)(this, options, instance49, create_fragment49, import_internal49.safe_not_equal, {});
     (0, import_internal49.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "InputText_1",
       options,
-      id: create_fragment48.name
+      id: create_fragment49.name
     });
   }
 };
@@ -38538,33 +39369,133 @@ var InputText_default2 = InputText_1;
 
 // docs-src/components/radio/Radio.svelte
 var import_internal50 = __toESM(require_internal());
-var file47 = "docs-src/components/radio/Radio.svelte";
-function create_fragment49(ctx) {
+var { console: console_15 } = import_internal50.globals;
+var file48 = "docs-src/components/radio/Radio.svelte";
+function create_fragment50(ctx) {
   let h2;
   let t1;
-  let h3;
+  let h30;
   let t3;
-  let label0;
-  let input0;
+  let radio0;
+  let updating_value;
   let t4;
-  let br0;
-  let t5;
-  let label1;
-  let input1;
+  let h31;
   let t6;
-  let br1;
+  let radio1;
   let t7;
-  let label2;
-  let input2;
-  let t8;
-  let br2;
+  let h32;
   let t9;
+  let radio2;
+  let t10;
+  let h33;
+  let t12;
+  let radio3;
+  let t13;
+  let h34;
+  let t15;
+  let radio4;
+  let t16;
+  let h35;
+  let t18;
+  let radio5;
+  let t19;
   let codeexample;
+  let t20;
+  let api;
   let current;
+  function radio0_value_binding(value2) {
+    ctx[6](value2);
+  }
+  let radio0_props = {
+    items: (
+      /*items1*/
+      ctx[3]
+    ),
+    name: "my-radio1",
+    label: "Select option 1"
+  };
+  if (
+    /*val*/
+    ctx[0] !== void 0
+  ) {
+    radio0_props.value = /*val*/
+    ctx[0];
+  }
+  radio0 = new Radio_default({ props: radio0_props, $$inline: true });
+  import_internal50.binding_callbacks.push(() => (0, import_internal50.bind)(radio0, "value", radio0_value_binding));
+  radio0.$on("change", onchange3);
+  radio1 = new Radio_default({
+    props: {
+      items: (
+        /*items2*/
+        ctx[4]
+      ),
+      name: "my-radio2",
+      label: "Select option 2",
+      disabled: true
+    },
+    $$inline: true
+  });
+  radio2 = new Radio_default({
+    props: {
+      items: (
+        /*strings*/
+        ctx[5]
+      ),
+      name: "my-radio3",
+      label: "Select option 3"
+    },
+    $$inline: true
+  });
+  radio2.$on("change", onchange3);
+  radio3 = new Radio_default({
+    props: {
+      items: (
+        /*strings*/
+        ctx[5]
+      ),
+      name: "my-radio4",
+      label: "Select option 4",
+      error: "Here be error message."
+    },
+    $$inline: true
+  });
+  radio4 = new Radio_default({
+    props: {
+      items: (
+        /*strings*/
+        ctx[5]
+      ),
+      name: "my-radio5",
+      label: "Select option 5",
+      info: "Here be info message."
+    },
+    $$inline: true
+  });
+  radio5 = new Radio_default({
+    props: {
+      items: (
+        /*strings*/
+        ctx[5]
+      ),
+      name: "my-radio5",
+      label: "Select option 5",
+      error: "Here be error message.",
+      info: "Here be info message."
+    },
+    $$inline: true
+  });
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
-      ctx[0]
+      ctx[2]
+    ) },
+    $$inline: true
+  });
+  api = new ApiTable_default({
+    props: { props: (
+      /*apiProps*/
+      ctx[1]
     ) },
     $$inline: true
   });
@@ -38573,49 +39504,46 @@ function create_fragment49(ctx) {
       h2 = (0, import_internal50.element)("h2");
       h2.textContent = "Radio";
       t1 = (0, import_internal50.space)();
-      h3 = (0, import_internal50.element)("h3");
-      h3.textContent = "Normal";
+      h30 = (0, import_internal50.element)("h3");
+      h30.textContent = "Normal";
       t3 = (0, import_internal50.space)();
-      label0 = (0, import_internal50.element)("label");
-      input0 = (0, import_internal50.element)("input");
-      t4 = (0, import_internal50.text)(" option 1 (disabled)");
-      br0 = (0, import_internal50.element)("br");
-      t5 = (0, import_internal50.space)();
-      label1 = (0, import_internal50.element)("label");
-      input1 = (0, import_internal50.element)("input");
-      t6 = (0, import_internal50.text)(" option 2");
-      br1 = (0, import_internal50.element)("br");
+      (0, import_internal50.create_component)(radio0.$$.fragment);
+      t4 = (0, import_internal50.space)();
+      h31 = (0, import_internal50.element)("h3");
+      h31.textContent = "Disabled";
+      t6 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(radio1.$$.fragment);
       t7 = (0, import_internal50.space)();
-      label2 = (0, import_internal50.element)("label");
-      input2 = (0, import_internal50.element)("input");
-      t8 = (0, import_internal50.text)(" option 3");
-      br2 = (0, import_internal50.element)("br");
+      h32 = (0, import_internal50.element)("h3");
+      h32.textContent = "List of strings as values";
       t9 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(radio2.$$.fragment);
+      t10 = (0, import_internal50.space)();
+      h33 = (0, import_internal50.element)("h3");
+      h33.textContent = "With error";
+      t12 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(radio3.$$.fragment);
+      t13 = (0, import_internal50.space)();
+      h34 = (0, import_internal50.element)("h3");
+      h34.textContent = "With info";
+      t15 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(radio4.$$.fragment);
+      t16 = (0, import_internal50.space)();
+      h35 = (0, import_internal50.element)("h3");
+      h35.textContent = "With info and error";
+      t18 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(radio5.$$.fragment);
+      t19 = (0, import_internal50.space)();
       (0, import_internal50.create_component)(codeexample.$$.fragment);
-      (0, import_internal50.add_location)(h2, file47, 0, 0, 0);
-      (0, import_internal50.add_location)(h3, file47, 2, 0, 16);
-      (0, import_internal50.attr_dev)(input0, "name", "radio-group");
-      (0, import_internal50.attr_dev)(input0, "type", "radio");
-      input0.value = "option1";
-      input0.disabled = true;
-      (0, import_internal50.add_location)(input0, file47, 4, 21, 54);
-      (0, import_internal50.attr_dev)(label0, "class", "label");
-      (0, import_internal50.add_location)(label0, file47, 4, 0, 33);
-      (0, import_internal50.add_location)(br0, file47, 4, 115, 148);
-      (0, import_internal50.attr_dev)(input1, "name", "radio-group");
-      (0, import_internal50.attr_dev)(input1, "type", "radio");
-      input1.value = "option2";
-      (0, import_internal50.add_location)(input1, file47, 5, 21, 174);
-      (0, import_internal50.attr_dev)(label1, "class", "label");
-      (0, import_internal50.add_location)(label1, file47, 5, 0, 153);
-      (0, import_internal50.add_location)(br1, file47, 5, 95, 248);
-      (0, import_internal50.attr_dev)(input2, "name", "radio-group");
-      (0, import_internal50.attr_dev)(input2, "type", "radio");
-      input2.value = "option3";
-      (0, import_internal50.add_location)(input2, file47, 6, 21, 274);
-      (0, import_internal50.attr_dev)(label2, "class", "label");
-      (0, import_internal50.add_location)(label2, file47, 6, 0, 253);
-      (0, import_internal50.add_location)(br2, file47, 6, 95, 348);
+      t20 = (0, import_internal50.space)();
+      (0, import_internal50.create_component)(api.$$.fragment);
+      (0, import_internal50.add_location)(h2, file48, 0, 0, 0);
+      (0, import_internal50.add_location)(h30, file48, 2, 0, 16);
+      (0, import_internal50.add_location)(h31, file48, 5, 0, 143);
+      (0, import_internal50.add_location)(h32, file48, 8, 0, 239);
+      (0, import_internal50.add_location)(h33, file48, 11, 0, 367);
+      (0, import_internal50.add_location)(h34, file48, 14, 0, 488);
+      (0, import_internal50.add_location)(h35, file48, 17, 0, 606);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -38623,35 +39551,68 @@ function create_fragment49(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal50.insert_dev)(target, h2, anchor);
       (0, import_internal50.insert_dev)(target, t1, anchor);
-      (0, import_internal50.insert_dev)(target, h3, anchor);
+      (0, import_internal50.insert_dev)(target, h30, anchor);
       (0, import_internal50.insert_dev)(target, t3, anchor);
-      (0, import_internal50.insert_dev)(target, label0, anchor);
-      (0, import_internal50.append_dev)(label0, input0);
-      (0, import_internal50.append_dev)(label0, t4);
-      (0, import_internal50.insert_dev)(target, br0, anchor);
-      (0, import_internal50.insert_dev)(target, t5, anchor);
-      (0, import_internal50.insert_dev)(target, label1, anchor);
-      (0, import_internal50.append_dev)(label1, input1);
-      (0, import_internal50.append_dev)(label1, t6);
-      (0, import_internal50.insert_dev)(target, br1, anchor);
+      (0, import_internal50.mount_component)(radio0, target, anchor);
+      (0, import_internal50.insert_dev)(target, t4, anchor);
+      (0, import_internal50.insert_dev)(target, h31, anchor);
+      (0, import_internal50.insert_dev)(target, t6, anchor);
+      (0, import_internal50.mount_component)(radio1, target, anchor);
       (0, import_internal50.insert_dev)(target, t7, anchor);
-      (0, import_internal50.insert_dev)(target, label2, anchor);
-      (0, import_internal50.append_dev)(label2, input2);
-      (0, import_internal50.append_dev)(label2, t8);
-      (0, import_internal50.insert_dev)(target, br2, anchor);
+      (0, import_internal50.insert_dev)(target, h32, anchor);
       (0, import_internal50.insert_dev)(target, t9, anchor);
+      (0, import_internal50.mount_component)(radio2, target, anchor);
+      (0, import_internal50.insert_dev)(target, t10, anchor);
+      (0, import_internal50.insert_dev)(target, h33, anchor);
+      (0, import_internal50.insert_dev)(target, t12, anchor);
+      (0, import_internal50.mount_component)(radio3, target, anchor);
+      (0, import_internal50.insert_dev)(target, t13, anchor);
+      (0, import_internal50.insert_dev)(target, h34, anchor);
+      (0, import_internal50.insert_dev)(target, t15, anchor);
+      (0, import_internal50.mount_component)(radio4, target, anchor);
+      (0, import_internal50.insert_dev)(target, t16, anchor);
+      (0, import_internal50.insert_dev)(target, h35, anchor);
+      (0, import_internal50.insert_dev)(target, t18, anchor);
+      (0, import_internal50.mount_component)(radio5, target, anchor);
+      (0, import_internal50.insert_dev)(target, t19, anchor);
       (0, import_internal50.mount_component)(codeexample, target, anchor);
+      (0, import_internal50.insert_dev)(target, t20, anchor);
+      (0, import_internal50.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal50.noop,
+    p: function update(ctx2, [dirty]) {
+      const radio0_changes = {};
+      if (!updating_value && dirty & /*val*/
+      1) {
+        updating_value = true;
+        radio0_changes.value = /*val*/
+        ctx2[0];
+        (0, import_internal50.add_flush_callback)(() => updating_value = false);
+      }
+      radio0.$set(radio0_changes);
+    },
     i: function intro(local) {
       if (current)
         return;
+      (0, import_internal50.transition_in)(radio0.$$.fragment, local);
+      (0, import_internal50.transition_in)(radio1.$$.fragment, local);
+      (0, import_internal50.transition_in)(radio2.$$.fragment, local);
+      (0, import_internal50.transition_in)(radio3.$$.fragment, local);
+      (0, import_internal50.transition_in)(radio4.$$.fragment, local);
+      (0, import_internal50.transition_in)(radio5.$$.fragment, local);
       (0, import_internal50.transition_in)(codeexample.$$.fragment, local);
+      (0, import_internal50.transition_in)(api.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
+      (0, import_internal50.transition_out)(radio0.$$.fragment, local);
+      (0, import_internal50.transition_out)(radio1.$$.fragment, local);
+      (0, import_internal50.transition_out)(radio2.$$.fragment, local);
+      (0, import_internal50.transition_out)(radio3.$$.fragment, local);
+      (0, import_internal50.transition_out)(radio4.$$.fragment, local);
+      (0, import_internal50.transition_out)(radio5.$$.fragment, local);
       (0, import_internal50.transition_out)(codeexample.$$.fragment, local);
+      (0, import_internal50.transition_out)(api.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
@@ -38660,78 +39621,200 @@ function create_fragment49(ctx) {
       if (detaching)
         (0, import_internal50.detach_dev)(t1);
       if (detaching)
-        (0, import_internal50.detach_dev)(h3);
+        (0, import_internal50.detach_dev)(h30);
       if (detaching)
         (0, import_internal50.detach_dev)(t3);
+      (0, import_internal50.destroy_component)(radio0, detaching);
       if (detaching)
-        (0, import_internal50.detach_dev)(label0);
+        (0, import_internal50.detach_dev)(t4);
       if (detaching)
-        (0, import_internal50.detach_dev)(br0);
+        (0, import_internal50.detach_dev)(h31);
       if (detaching)
-        (0, import_internal50.detach_dev)(t5);
-      if (detaching)
-        (0, import_internal50.detach_dev)(label1);
-      if (detaching)
-        (0, import_internal50.detach_dev)(br1);
+        (0, import_internal50.detach_dev)(t6);
+      (0, import_internal50.destroy_component)(radio1, detaching);
       if (detaching)
         (0, import_internal50.detach_dev)(t7);
       if (detaching)
-        (0, import_internal50.detach_dev)(label2);
-      if (detaching)
-        (0, import_internal50.detach_dev)(br2);
+        (0, import_internal50.detach_dev)(h32);
       if (detaching)
         (0, import_internal50.detach_dev)(t9);
+      (0, import_internal50.destroy_component)(radio2, detaching);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t10);
+      if (detaching)
+        (0, import_internal50.detach_dev)(h33);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t12);
+      (0, import_internal50.destroy_component)(radio3, detaching);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t13);
+      if (detaching)
+        (0, import_internal50.detach_dev)(h34);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t15);
+      (0, import_internal50.destroy_component)(radio4, detaching);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t16);
+      if (detaching)
+        (0, import_internal50.detach_dev)(h35);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t18);
+      (0, import_internal50.destroy_component)(radio5, detaching);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t19);
       (0, import_internal50.destroy_component)(codeexample, detaching);
+      if (detaching)
+        (0, import_internal50.detach_dev)(t20);
+      (0, import_internal50.destroy_component)(api, detaching);
     }
   };
   (0, import_internal50.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment49.name,
+    id: create_fragment50.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance49($$self2, $$props2, $$invalidate2) {
+function onchange3(e) {
+  const { item, value: value2 } = e.detail;
+  console.log(item, value2);
+}
+function instance50($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal50.validate_slots)("Radio", slots2, []);
+  const apiProps = [
+    {
+      name: "class",
+      type: "string",
+      description: "Additional css class name to be added to the component."
+    },
+    {
+      name: "disabled",
+      description: "Make all radio buttons disabled."
+    },
+    {
+      name: "id",
+      type: "string",
+      description: "Assign ID to the whole component."
+    },
+    {
+      name: "info",
+      type: "string",
+      description: "Show info message above the inputs."
+    },
+    {
+      name: "error",
+      type: "string",
+      description: "Error message to show above the inputs."
+    },
+    {
+      name: "items",
+      type: "array",
+      required: true,
+      description: "An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, id?: string | number, disabled?: boolean &rbrace;</code>(if <i>id</i> is present - it should be unique)."
+    },
+    {
+      name: "name",
+      type: "string",
+      description: "Assign title to the underlying input."
+    },
+    {
+      name: "label",
+      type: "string",
+      description: "Label for the whole component."
+    },
+    {
+      name: "title",
+      type: "string",
+      description: "Assign title to whole component."
+    },
+    {
+      name: "value",
+      type: ["string", "number"],
+      description: "Value of the component (=value of the checked item)."
+    },
+    {
+      name: "on:change",
+      type: "function",
+      description: "Triggered when the value changes."
+    }
+  ];
   const exampleHtml = `
-<input type="radio" name="hello" value="1" on:change="{onChange}" />
-<input type="radio" name="hello" value="2" on:change="{onChange}" />
+<Radio {items} name="my-radio" bind:value="{value}" label="Select option" />
+
 
 <script>
+const items = [
+	{ name: 'One', value: 1, disabled: true },
+	{ name: 'Two', value: 2 },
+	{ name: 'Three', value: 3 },
+	{ name: 'Four', value: 4 },
+];
+
 function onChange (e) {
     console.log('value', e.target.value);
 }
 &lt;/script>
 `;
+  const items1 = [
+    { name: "One", value: 1, disabled: true },
+    { name: "Two", value: 2 },
+    { name: "Three", value: 3 },
+    { name: "Four", value: 4 }
+  ];
+  let val = items1[1].value;
+  const items2 = ["One", "Two", "Three", "Four"];
+  const strings = ["One", "Two", "Three", "Four"];
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console.warn(`<Radio> was created with unknown prop '${key}'`);
+      console_15.warn(`<Radio> was created with unknown prop '${key}'`);
   });
-  $$self2.$capture_state = () => ({ CodeExample: CodeExample_default, exampleHtml });
-  return [exampleHtml];
+  function radio0_value_binding(value2) {
+    val = value2;
+    $$invalidate2(0, val);
+  }
+  $$self2.$capture_state = () => ({
+    Radio: Radio_default,
+    API: ApiTable_default,
+    CodeExample: CodeExample_default,
+    apiProps,
+    exampleHtml,
+    items1,
+    val,
+    items2,
+    strings,
+    onchange: onchange3
+  });
+  $$self2.$inject_state = ($$props3) => {
+    if ("val" in $$props3)
+      $$invalidate2(0, val = $$props3.val);
+  };
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
+  }
+  return [val, apiProps, exampleHtml, items1, items2, strings, radio0_value_binding];
 }
-var Radio = class extends import_internal50.SvelteComponentDev {
+var Radio_1 = class extends import_internal50.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal50.init)(this, options, instance49, create_fragment49, import_internal50.safe_not_equal, {});
+    (0, import_internal50.init)(this, options, instance50, create_fragment50, import_internal50.safe_not_equal, {});
     (0, import_internal50.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
-      tagName: "Radio",
+      tagName: "Radio_1",
       options,
-      id: create_fragment49.name
+      id: create_fragment50.name
     });
   }
 };
-var Radio_default2 = Radio;
+var Radio_default2 = Radio_1;
 
 // docs-src/components/select/Select.svelte
 var import_internal51 = __toESM(require_internal());
-var file48 = "docs-src/components/select/Select.svelte";
-function create_fragment50(ctx) {
+var file49 = "docs-src/components/select/Select.svelte";
+function create_fragment51(ctx) {
   let h2;
   let t1;
   let p;
@@ -38892,14 +39975,14 @@ function create_fragment50(ctx) {
       (0, import_internal51.create_component)(codeexample.$$.fragment);
       t24 = (0, import_internal51.space)();
       (0, import_internal51.create_component)(api.$$.fragment);
-      (0, import_internal51.add_location)(h2, file48, 0, 0, 0);
-      (0, import_internal51.add_location)(p, file48, 1, 0, 16);
-      (0, import_internal51.add_location)(h30, file48, 6, 0, 201);
-      (0, import_internal51.add_location)(h31, file48, 9, 0, 269);
-      (0, import_internal51.add_location)(h32, file48, 12, 0, 340);
-      (0, import_internal51.add_location)(h33, file48, 15, 0, 422);
-      (0, import_internal51.add_location)(em, file48, 18, 30, 574);
-      (0, import_internal51.add_location)(h34, file48, 18, 0, 544);
+      (0, import_internal51.add_location)(h2, file49, 0, 0, 0);
+      (0, import_internal51.add_location)(p, file49, 1, 0, 16);
+      (0, import_internal51.add_location)(h30, file49, 6, 0, 201);
+      (0, import_internal51.add_location)(h31, file49, 9, 0, 269);
+      (0, import_internal51.add_location)(h32, file49, 12, 0, 340);
+      (0, import_internal51.add_location)(h33, file49, 15, 0, 422);
+      (0, import_internal51.add_location)(em, file49, 18, 30, 574);
+      (0, import_internal51.add_location)(h34, file49, 18, 0, 544);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -39056,14 +40139,14 @@ function create_fragment50(ctx) {
   };
   (0, import_internal51.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment50.name,
+    id: create_fragment51.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance50($$self2, $$props2, $$invalidate2) {
+function instance51($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal51.validate_slots)("Select", slots2, []);
   let val = "Beta";
@@ -39279,12 +40362,12 @@ function onChange (e) {
 var Select_1 = class extends import_internal51.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal51.init)(this, options, instance50, create_fragment50, import_internal51.safe_not_equal, {});
+    (0, import_internal51.init)(this, options, instance51, create_fragment51, import_internal51.safe_not_equal, {});
     (0, import_internal51.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Select_1",
       options,
-      id: create_fragment50.name
+      id: create_fragment51.name
     });
   }
 };
@@ -39292,8 +40375,8 @@ var Select_default2 = Select_1;
 
 // docs-src/components/textarea/Textarea.svelte
 var import_internal52 = __toESM(require_internal());
-var file49 = "docs-src/components/textarea/Textarea.svelte";
-function create_fragment51(ctx) {
+var file50 = "docs-src/components/textarea/Textarea.svelte";
+function create_fragment52(ctx) {
   let h2;
   let t1;
   let h30;
@@ -39371,11 +40454,11 @@ function create_fragment51(ctx) {
       (0, import_internal52.create_component)(codeexample.$$.fragment);
       t14 = (0, import_internal52.space)();
       (0, import_internal52.create_component)(api.$$.fragment);
-      (0, import_internal52.add_location)(h2, file49, 0, 0, 0);
-      (0, import_internal52.add_location)(h30, file49, 2, 0, 19);
-      (0, import_internal52.add_location)(h31, file49, 5, 0, 59);
-      (0, import_internal52.add_location)(h32, file49, 8, 0, 109);
-      (0, import_internal52.add_location)(h33, file49, 12, 0, 182);
+      (0, import_internal52.add_location)(h2, file50, 0, 0, 0);
+      (0, import_internal52.add_location)(h30, file50, 2, 0, 19);
+      (0, import_internal52.add_location)(h31, file50, 5, 0, 59);
+      (0, import_internal52.add_location)(h32, file50, 8, 0, 109);
+      (0, import_internal52.add_location)(h33, file50, 12, 0, 182);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -39466,14 +40549,14 @@ function create_fragment51(ctx) {
   };
   (0, import_internal52.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment51.name,
+    id: create_fragment52.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance51($$self2, $$props2, $$invalidate2) {
+function instance52($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal52.validate_slots)("Textarea", slots2, []);
   const apiProps = [
@@ -39556,12 +40639,12 @@ function onChange (e) {
 var Textarea_1 = class extends import_internal52.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal52.init)(this, options, instance51, create_fragment51, import_internal52.safe_not_equal, {});
+    (0, import_internal52.init)(this, options, instance52, create_fragment52, import_internal52.safe_not_equal, {});
     (0, import_internal52.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Textarea_1",
       options,
-      id: create_fragment51.name
+      id: create_fragment52.name
     });
   }
 };
@@ -39569,9 +40652,9 @@ var Textarea_default2 = Textarea_1;
 
 // docs-src/components/toggle/Toggle.svelte
 var import_internal53 = __toESM(require_internal());
-var { console: console_15 } = import_internal53.globals;
-var file50 = "docs-src/components/toggle/Toggle.svelte";
-function create_fragment52(ctx) {
+var { console: console_16 } = import_internal53.globals;
+var file51 = "docs-src/components/toggle/Toggle.svelte";
+function create_fragment53(ctx) {
   let h2;
   let t1;
   let ul;
@@ -39628,7 +40711,7 @@ function create_fragment52(ctx) {
   }
   toggle0 = new Toggle_default({ props: toggle0_props, $$inline: true });
   import_internal53.binding_callbacks.push(() => (0, import_internal53.bind)(toggle0, "value", toggle0_value_binding));
-  toggle0.$on("change", onchange3);
+  toggle0.$on("change", onchange4);
   toggle1 = new Toggle_default({ $$inline: true });
   toggle2 = new Toggle_default({ props: { value: "true" }, $$inline: true });
   toggle3 = new Toggle_default({
@@ -39702,18 +40785,18 @@ function create_fragment52(ctx) {
       (0, import_internal53.create_component)(codeexample.$$.fragment);
       t25 = (0, import_internal53.space)();
       (0, import_internal53.create_component)(api.$$.fragment);
-      (0, import_internal53.add_location)(h2, file50, 0, 0, 0);
-      (0, import_internal53.add_location)(em0, file50, 4, 12, 74);
-      (0, import_internal53.add_location)(em1, file50, 4, 38, 100);
-      (0, import_internal53.add_location)(li0, file50, 4, 1, 63);
-      (0, import_internal53.add_location)(em2, file50, 5, 29, 153);
-      (0, import_internal53.add_location)(em3, file50, 5, 47, 171);
-      (0, import_internal53.add_location)(li1, file50, 5, 1, 125);
-      (0, import_internal53.add_location)(li2, file50, 6, 1, 197);
-      (0, import_internal53.add_location)(li3, file50, 7, 1, 241);
-      (0, import_internal53.add_location)(ul, file50, 3, 0, 57);
-      (0, import_internal53.add_location)(br0, file50, 9, 0, 277);
-      (0, import_internal53.add_location)(br1, file50, 13, 28, 441);
+      (0, import_internal53.add_location)(h2, file51, 0, 0, 0);
+      (0, import_internal53.add_location)(em0, file51, 4, 12, 74);
+      (0, import_internal53.add_location)(em1, file51, 4, 38, 100);
+      (0, import_internal53.add_location)(li0, file51, 4, 1, 63);
+      (0, import_internal53.add_location)(em2, file51, 5, 29, 153);
+      (0, import_internal53.add_location)(em3, file51, 5, 47, 171);
+      (0, import_internal53.add_location)(li1, file51, 5, 1, 125);
+      (0, import_internal53.add_location)(li2, file51, 6, 1, 197);
+      (0, import_internal53.add_location)(li3, file51, 7, 1, 241);
+      (0, import_internal53.add_location)(ul, file51, 3, 0, 57);
+      (0, import_internal53.add_location)(br0, file51, 9, 0, 277);
+      (0, import_internal53.add_location)(br1, file51, 13, 28, 441);
       (0, import_internal53.attr_dev)(div, "class", "toggle-box");
       (0, import_internal53.toggle_class)(
         div,
@@ -39721,10 +40804,10 @@ function create_fragment52(ctx) {
         /*toggleValue*/
         ctx[0]
       );
-      (0, import_internal53.add_location)(div, file50, 12, 0, 358);
-      (0, import_internal53.add_location)(br2, file50, 16, 0, 494);
-      (0, import_internal53.add_location)(br3, file50, 16, 4, 498);
-      (0, import_internal53.add_location)(br4, file50, 16, 8, 502);
+      (0, import_internal53.add_location)(div, file51, 12, 0, 358);
+      (0, import_internal53.add_location)(br2, file51, 16, 0, 494);
+      (0, import_internal53.add_location)(br3, file51, 16, 4, 498);
+      (0, import_internal53.add_location)(br4, file51, 16, 8, 502);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -39865,17 +40948,17 @@ function create_fragment52(ctx) {
   };
   (0, import_internal53.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment52.name,
+    id: create_fragment53.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function onchange3(e) {
+function onchange4(e) {
   console.log("onchange", e.detail);
 }
-function instance52($$self2, $$props2, $$invalidate2) {
+function instance53($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal53.validate_slots)("Toggle", slots2, []);
   const apiProps = [
@@ -39931,7 +41014,7 @@ function onChange (e) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_15.warn(`<Toggle> was created with unknown prop '${key}'`);
+      console_16.warn(`<Toggle> was created with unknown prop '${key}'`);
   });
   function toggle0_value_binding(value2) {
     toggleValue = value2;
@@ -39944,7 +41027,7 @@ function onChange (e) {
     apiProps,
     exampleHtml,
     toggleValue,
-    onchange: onchange3
+    onchange: onchange4
   });
   $$self2.$inject_state = ($$props3) => {
     if ("toggleValue" in $$props3)
@@ -39958,12 +41041,12 @@ function onChange (e) {
 var Toggle_1 = class extends import_internal53.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal53.init)(this, options, instance52, create_fragment52, import_internal53.safe_not_equal, {});
+    (0, import_internal53.init)(this, options, instance53, create_fragment53, import_internal53.safe_not_equal, {});
     (0, import_internal53.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Toggle_1",
       options,
-      id: create_fragment52.name
+      id: create_fragment53.name
     });
   }
 };
@@ -39971,7 +41054,7 @@ var Toggle_default2 = Toggle_1;
 
 // docs-src/components/dialog/Dialog.svelte
 var import_internal54 = __toESM(require_internal());
-var file51 = "docs-src/components/dialog/Dialog.svelte";
+var file52 = "docs-src/components/dialog/Dialog.svelte";
 function create_default_slot_83(ctx) {
   let t;
   const block = {
@@ -40073,12 +41156,12 @@ function create_default_slot_53(ctx) {
       t9 = (0, import_internal54.space)();
       p4 = (0, import_internal54.element)("p");
       p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-      (0, import_internal54.add_location)(br, file51, 17, 16, 441);
-      (0, import_internal54.add_location)(p0, file51, 20, 1, 462);
-      (0, import_internal54.add_location)(p1, file51, 21, 1, 1090);
-      (0, import_internal54.add_location)(p2, file51, 22, 1, 1658);
-      (0, import_internal54.add_location)(p3, file51, 23, 1, 2275);
-      (0, import_internal54.add_location)(p4, file51, 24, 1, 3145);
+      (0, import_internal54.add_location)(br, file52, 17, 16, 441);
+      (0, import_internal54.add_location)(p0, file52, 20, 1, 462);
+      (0, import_internal54.add_location)(p1, file52, 21, 1, 1090);
+      (0, import_internal54.add_location)(p2, file52, 22, 1, 1658);
+      (0, import_internal54.add_location)(p3, file52, 23, 1, 2275);
+      (0, import_internal54.add_location)(p4, file52, 24, 1, 3145);
     },
     m: function mount(target, anchor) {
       (0, import_internal54.insert_dev)(target, t0, anchor);
@@ -40175,7 +41258,7 @@ function create_footer_slot_1(ctx) {
       div = (0, import_internal54.element)("div");
       (0, import_internal54.create_component)(button.$$.fragment);
       (0, import_internal54.attr_dev)(div, "slot", "footer");
-      (0, import_internal54.add_location)(div, file51, 26, 1, 3465);
+      (0, import_internal54.add_location)(div, file52, 26, 1, 3465);
     },
     m: function mount(target, anchor) {
       (0, import_internal54.insert_dev)(target, div, anchor);
@@ -40344,7 +41427,7 @@ function create_footer_slot2(ctx) {
       t = (0, import_internal54.space)();
       (0, import_internal54.create_component)(button1.$$.fragment);
       (0, import_internal54.attr_dev)(div, "slot", "footer");
-      (0, import_internal54.add_location)(div, file51, 38, 1, 3676);
+      (0, import_internal54.add_location)(div, file52, 38, 1, 3676);
     },
     m: function mount(target, anchor) {
       (0, import_internal54.insert_dev)(target, div, anchor);
@@ -40395,7 +41478,7 @@ function create_footer_slot2(ctx) {
   });
   return block;
 }
-function create_fragment53(ctx) {
+function create_fragment54(ctx) {
   let h2;
   let t1;
   let ul;
@@ -40542,13 +41625,13 @@ function create_fragment53(ctx) {
       (0, import_internal54.create_component)(api0.$$.fragment);
       t13 = (0, import_internal54.space)();
       (0, import_internal54.create_component)(api1.$$.fragment);
-      (0, import_internal54.add_location)(h2, file51, 0, 0, 0);
-      (0, import_internal54.add_location)(li0, file51, 3, 1, 23);
-      (0, import_internal54.add_location)(li1, file51, 4, 1, 59);
-      (0, import_internal54.add_location)(ul, file51, 2, 0, 17);
-      (0, import_internal54.add_location)(br, file51, 7, 0, 117);
+      (0, import_internal54.add_location)(h2, file52, 0, 0, 0);
+      (0, import_internal54.add_location)(li0, file52, 3, 1, 23);
+      (0, import_internal54.add_location)(li1, file52, 4, 1, 59);
+      (0, import_internal54.add_location)(ul, file52, 2, 0, 17);
+      (0, import_internal54.add_location)(br, file52, 7, 0, 117);
       (0, import_internal54.attr_dev)(div, "class", "docs-buttons-row");
-      (0, import_internal54.add_location)(div, file51, 9, 0, 123);
+      (0, import_internal54.add_location)(div, file52, 9, 0, 123);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -40689,14 +41772,14 @@ function create_fragment53(ctx) {
   };
   (0, import_internal54.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment53.name,
+    id: create_fragment54.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance53($$self2, $$props2, $$invalidate2) {
+function instance54($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal54.validate_slots)("Dialog", slots2, []);
   const apiProps = [
@@ -40839,12 +41922,12 @@ function instance53($$self2, $$props2, $$invalidate2) {
 var Dialog_1 = class extends import_internal54.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal54.init)(this, options, instance53, create_fragment53, import_internal54.safe_not_equal, {});
+    (0, import_internal54.init)(this, options, instance54, create_fragment54, import_internal54.safe_not_equal, {});
     (0, import_internal54.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Dialog_1",
       options,
-      id: create_fragment53.name
+      id: create_fragment54.name
     });
   }
 };
@@ -40852,7 +41935,7 @@ var Dialog_default2 = Dialog_1;
 
 // docs-src/components/drawer/Drawer.svelte
 var import_internal55 = __toESM(require_internal());
-var file52 = "docs-src/components/drawer/Drawer.svelte";
+var file53 = "docs-src/components/drawer/Drawer.svelte";
 function create_default_slot_213(ctx) {
   let t;
   const block = {
@@ -40956,14 +42039,14 @@ function create_default_slot9(ctx) {
       t12 = (0, import_internal55.space)();
       p4 = (0, import_internal55.element)("p");
       p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-      (0, import_internal55.add_location)(br0, file52, 5, 16, 145);
-      (0, import_internal55.add_location)(br1, file52, 6, 13, 163);
-      (0, import_internal55.add_location)(br2, file52, 7, 1, 169);
-      (0, import_internal55.add_location)(p0, file52, 9, 1, 240);
-      (0, import_internal55.add_location)(p1, file52, 10, 1, 868);
-      (0, import_internal55.add_location)(p2, file52, 11, 1, 1436);
-      (0, import_internal55.add_location)(p3, file52, 12, 1, 2053);
-      (0, import_internal55.add_location)(p4, file52, 13, 1, 2923);
+      (0, import_internal55.add_location)(br0, file53, 5, 16, 145);
+      (0, import_internal55.add_location)(br1, file53, 6, 13, 163);
+      (0, import_internal55.add_location)(br2, file53, 7, 1, 169);
+      (0, import_internal55.add_location)(p0, file53, 9, 1, 240);
+      (0, import_internal55.add_location)(p1, file53, 10, 1, 868);
+      (0, import_internal55.add_location)(p2, file53, 11, 1, 1436);
+      (0, import_internal55.add_location)(p3, file53, 12, 1, 2053);
+      (0, import_internal55.add_location)(p4, file53, 13, 1, 2923);
     },
     m: function mount(target, anchor) {
       (0, import_internal55.insert_dev)(target, t0, anchor);
@@ -41051,7 +42134,7 @@ function create_default_slot9(ctx) {
   });
   return block;
 }
-function create_fragment54(ctx) {
+function create_fragment55(ctx) {
   let h2;
   let t1;
   let button;
@@ -41122,7 +42205,7 @@ function create_fragment54(ctx) {
       (0, import_internal55.create_component)(api0.$$.fragment);
       t5 = (0, import_internal55.space)();
       (0, import_internal55.create_component)(api1.$$.fragment);
-      (0, import_internal55.add_location)(h2, file52, 0, 0, 0);
+      (0, import_internal55.add_location)(h2, file53, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -41196,14 +42279,14 @@ function create_fragment54(ctx) {
   };
   (0, import_internal55.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment54.name,
+    id: create_fragment55.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance54($$self2, $$props2, $$invalidate2) {
+function instance55($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal55.validate_slots)("Drawer", slots2, []);
   const apiProps = [
@@ -41301,12 +42384,12 @@ function instance54($$self2, $$props2, $$invalidate2) {
 var Drawer_1 = class extends import_internal55.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal55.init)(this, options, instance54, create_fragment54, import_internal55.safe_not_equal, {});
+    (0, import_internal55.init)(this, options, instance55, create_fragment55, import_internal55.safe_not_equal, {});
     (0, import_internal55.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Drawer_1",
       options,
-      id: create_fragment54.name
+      id: create_fragment55.name
     });
   }
 };
@@ -41314,8 +42397,8 @@ var Drawer_default2 = Drawer_1;
 
 // docs-src/components/menu/Menu.svelte
 var import_internal56 = __toESM(require_internal());
-var { console: console_16 } = import_internal56.globals;
-var file53 = "docs-src/components/menu/Menu.svelte";
+var { console: console_17 } = import_internal56.globals;
+var file54 = "docs-src/components/menu/Menu.svelte";
 function create_default_slot_41(ctx) {
   let t;
   const block = {
@@ -43372,7 +44455,7 @@ function create_default_slot10(ctx) {
   });
   return block;
 }
-function create_fragment55(ctx) {
+function create_fragment56(ctx) {
   let h2;
   let t1;
   let h30;
@@ -43690,29 +44773,29 @@ function create_fragment55(ctx) {
       (0, import_internal56.create_component)(api1.$$.fragment);
       t46 = (0, import_internal56.space)();
       (0, import_internal56.create_component)(api2.$$.fragment);
-      (0, import_internal56.add_location)(h2, file53, 0, 0, 0);
-      (0, import_internal56.add_location)(h30, file53, 2, 0, 15);
-      (0, import_internal56.add_location)(em0, file53, 34, 24, 1501);
-      (0, import_internal56.add_location)(h31, file53, 34, 0, 1477);
-      (0, import_internal56.add_location)(em1, file53, 35, 30, 1562);
-      (0, import_internal56.add_location)(em2, file53, 36, 1, 1637);
-      (0, import_internal56.add_location)(p0, file53, 35, 0, 1532);
-      (0, import_internal56.add_location)(em3, file53, 38, 16, 1752);
-      (0, import_internal56.add_location)(small0, file53, 38, 1, 1737);
+      (0, import_internal56.add_location)(h2, file54, 0, 0, 0);
+      (0, import_internal56.add_location)(h30, file54, 2, 0, 15);
+      (0, import_internal56.add_location)(em0, file54, 34, 24, 1501);
+      (0, import_internal56.add_location)(h31, file54, 34, 0, 1477);
+      (0, import_internal56.add_location)(em1, file54, 35, 30, 1562);
+      (0, import_internal56.add_location)(em2, file54, 36, 1, 1637);
+      (0, import_internal56.add_location)(p0, file54, 35, 0, 1532);
+      (0, import_internal56.add_location)(em3, file54, 38, 16, 1752);
+      (0, import_internal56.add_location)(small0, file54, 38, 1, 1737);
       (0, import_internal56.attr_dev)(div0, "class", "docs-overflow-box");
-      (0, import_internal56.add_location)(div0, file53, 37, 0, 1704);
-      (0, import_internal56.add_location)(em4, file53, 65, 30, 2776);
-      (0, import_internal56.add_location)(small1, file53, 65, 1, 2747);
+      (0, import_internal56.add_location)(div0, file54, 37, 0, 1704);
+      (0, import_internal56.add_location)(em4, file54, 65, 30, 2776);
+      (0, import_internal56.add_location)(small1, file54, 65, 1, 2747);
       (0, import_internal56.attr_dev)(div1, "class", "another-element-with-z-index");
-      (0, import_internal56.add_location)(div1, file53, 64, 0, 2703);
-      (0, import_internal56.add_location)(em5, file53, 68, 49, 2985);
-      (0, import_internal56.add_location)(p1, file53, 67, 0, 2827);
-      (0, import_internal56.add_location)(h32, file53, 74, 0, 3045);
-      (0, import_internal56.add_location)(small2, file53, 75, 0, 3067);
+      (0, import_internal56.add_location)(div1, file54, 64, 0, 2703);
+      (0, import_internal56.add_location)(em5, file54, 68, 49, 2985);
+      (0, import_internal56.add_location)(p1, file54, 67, 0, 2827);
+      (0, import_internal56.add_location)(h32, file54, 74, 0, 3045);
+      (0, import_internal56.add_location)(small2, file54, 75, 0, 3067);
       (0, import_internal56.attr_dev)(div2, "class", "div div1");
-      (0, import_internal56.add_location)(div2, file53, 77, 0, 3116);
+      (0, import_internal56.add_location)(div2, file54, 77, 0, 3116);
       (0, import_internal56.attr_dev)(div3, "class", "div div2");
-      (0, import_internal56.add_location)(div3, file53, 78, 0, 3148);
+      (0, import_internal56.add_location)(div3, file54, 78, 0, 3148);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -43995,7 +45078,7 @@ function create_fragment55(ctx) {
   };
   (0, import_internal56.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment55.name,
+    id: create_fragment56.name,
     type: "component",
     source: "",
     ctx
@@ -44006,7 +45089,7 @@ function onMenuClick(e) {
   const { target, button } = e.detail;
   console.log(target.dataset, button.dataset);
 }
-function instance55($$self2, $$props2, $$invalidate2) {
+function instance56($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal56.validate_slots)("Menu", slots2, []);
   const apiProps = [
@@ -44206,7 +45289,7 @@ function instance55($$self2, $$props2, $$invalidate2) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_16.warn(`<Menu> was created with unknown prop '${key}'`);
+      console_17.warn(`<Menu> was created with unknown prop '${key}'`);
   });
   function menu0_binding($$value) {
     import_internal56.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -44344,12 +45427,12 @@ function instance55($$self2, $$props2, $$invalidate2) {
 var Menu_1 = class extends import_internal56.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal56.init)(this, options, instance55, create_fragment55, import_internal56.safe_not_equal, {});
+    (0, import_internal56.init)(this, options, instance56, create_fragment56, import_internal56.safe_not_equal, {});
     (0, import_internal56.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Menu_1",
       options,
-      id: create_fragment55.name
+      id: create_fragment56.name
     });
   }
 };
@@ -44357,8 +45440,8 @@ var Menu_default2 = Menu_1;
 
 // docs-src/components/message-box/MessageBox.svelte
 var import_internal57 = __toESM(require_internal());
-var { console: console_17 } = import_internal57.globals;
-var file54 = "docs-src/components/message-box/MessageBox.svelte";
+var { console: console_18 } = import_internal57.globals;
+var file55 = "docs-src/components/message-box/MessageBox.svelte";
 function create_default_slot_75(ctx) {
   let t;
   const block = {
@@ -44543,7 +45626,7 @@ function create_default_slot11(ctx) {
   });
   return block;
 }
-function create_fragment56(ctx) {
+function create_fragment57(ctx) {
   let h2;
   let t1;
   let p;
@@ -44762,21 +45845,21 @@ function create_fragment56(ctx) {
       (0, import_internal57.create_component)(codeexample.$$.fragment);
       t26 = (0, import_internal57.space)();
       (0, import_internal57.create_component)(api.$$.fragment);
-      (0, import_internal57.add_location)(h2, file54, 0, 0, 0);
-      (0, import_internal57.add_location)(p, file54, 2, 0, 21);
-      (0, import_internal57.add_location)(br, file54, 5, 0, 142);
-      (0, import_internal57.add_location)(h30, file54, 7, 0, 148);
+      (0, import_internal57.add_location)(h2, file55, 0, 0, 0);
+      (0, import_internal57.add_location)(p, file55, 2, 0, 21);
+      (0, import_internal57.add_location)(br, file55, 5, 0, 142);
+      (0, import_internal57.add_location)(h30, file55, 7, 0, 148);
       (0, import_internal57.attr_dev)(div0, "class", "docs-buttons-row");
-      (0, import_internal57.add_location)(div0, file54, 8, 0, 162);
-      (0, import_internal57.add_location)(h31, file54, 15, 0, 544);
+      (0, import_internal57.add_location)(div0, file55, 8, 0, 162);
+      (0, import_internal57.add_location)(h31, file55, 15, 0, 544);
       (0, import_internal57.attr_dev)(div1, "class", "docs-buttons-row");
-      (0, import_internal57.add_location)(div1, file54, 16, 0, 571);
-      (0, import_internal57.add_location)(h32, file54, 21, 0, 805);
+      (0, import_internal57.add_location)(div1, file55, 16, 0, 571);
+      (0, import_internal57.add_location)(h32, file55, 21, 0, 805);
       (0, import_internal57.attr_dev)(div2, "class", "docs-buttons-row");
-      (0, import_internal57.add_location)(div2, file54, 22, 0, 846);
-      (0, import_internal57.add_location)(h33, file54, 27, 0, 1060);
-      (0, import_internal57.add_location)(h34, file54, 31, 0, 1199);
-      (0, import_internal57.add_location)(h35, file54, 35, 0, 1329);
+      (0, import_internal57.add_location)(div2, file55, 22, 0, 846);
+      (0, import_internal57.add_location)(h33, file55, 27, 0, 1060);
+      (0, import_internal57.add_location)(h34, file55, 31, 0, 1199);
+      (0, import_internal57.add_location)(h35, file55, 35, 0, 1329);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -44980,7 +46063,7 @@ function create_fragment56(ctx) {
   };
   (0, import_internal57.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment56.name,
+    id: create_fragment57.name,
     type: "component",
     source: "",
     ctx
@@ -44991,7 +46074,7 @@ var longMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusc
 function onclose(res) {
   alert(`You clicked ${res}`);
 }
-function instance56($$self2, $$props2, $$invalidate2) {
+function instance57($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal57.validate_slots)("MessageBox", slots2, []);
   function showComplex(e) {
@@ -45073,7 +46156,7 @@ function instance56($$self2, $$props2, $$invalidate2) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_17.warn(`<MessageBox> was created with unknown prop '${key}'`);
+      console_18.warn(`<MessageBox> was created with unknown prop '${key}'`);
   });
   const click_handler = () => showMessage("Info messagebox");
   const click_handler_1 = () => showMessage("Info messagebox", MessageType.INFO, "Info title");
@@ -45111,12 +46194,12 @@ function instance56($$self2, $$props2, $$invalidate2) {
 var MessageBox_1 = class extends import_internal57.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal57.init)(this, options, instance56, create_fragment56, import_internal57.safe_not_equal, {});
+    (0, import_internal57.init)(this, options, instance57, create_fragment57, import_internal57.safe_not_equal, {});
     (0, import_internal57.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "MessageBox_1",
       options,
-      id: create_fragment56.name
+      id: create_fragment57.name
     });
   }
 };
@@ -45124,7 +46207,7 @@ var MessageBox_default2 = MessageBox_1;
 
 // docs-src/components/panel/Panel.svelte
 var import_internal58 = __toESM(require_internal());
-var file55 = "docs-src/components/panel/Panel.svelte";
+var file56 = "docs-src/components/panel/Panel.svelte";
 function create_default_slot_217(ctx) {
   let p0;
   let t1;
@@ -45146,11 +46229,11 @@ function create_default_slot_217(ctx) {
       t5 = (0, import_internal58.space)();
       a = (0, import_internal58.element)("a");
       a.textContent = "a link";
-      (0, import_internal58.add_location)(p0, file55, 5, 1, 56);
-      (0, import_internal58.add_location)(p1, file55, 6, 1, 87);
-      (0, import_internal58.add_location)(p2, file55, 7, 1, 108);
+      (0, import_internal58.add_location)(p0, file56, 5, 1, 56);
+      (0, import_internal58.add_location)(p1, file56, 6, 1, 87);
+      (0, import_internal58.add_location)(p2, file56, 7, 1, 108);
       (0, import_internal58.attr_dev)(a, "href", "#Panel");
-      (0, import_internal58.add_location)(a, file55, 8, 1, 139);
+      (0, import_internal58.add_location)(a, file56, 8, 1, 139);
     },
     m: function mount(target, anchor) {
       (0, import_internal58.insert_dev)(target, p0, anchor);
@@ -45239,9 +46322,9 @@ function create_default_slot12(ctx) {
       p2.textContent = "This is panel contents";
       t5 = (0, import_internal58.space)();
       (0, import_internal58.create_component)(button.$$.fragment);
-      (0, import_internal58.add_location)(p0, file55, 15, 1, 238);
-      (0, import_internal58.add_location)(p1, file55, 16, 1, 269);
-      (0, import_internal58.add_location)(p2, file55, 17, 1, 290);
+      (0, import_internal58.add_location)(p0, file56, 15, 1, 238);
+      (0, import_internal58.add_location)(p1, file56, 16, 1, 269);
+      (0, import_internal58.add_location)(p2, file56, 17, 1, 290);
     },
     m: function mount(target, anchor) {
       (0, import_internal58.insert_dev)(target, p0, anchor);
@@ -45296,7 +46379,7 @@ function create_default_slot12(ctx) {
   });
   return block;
 }
-function create_fragment57(ctx) {
+function create_fragment58(ctx) {
   let h2;
   let t1;
   let h30;
@@ -45361,9 +46444,9 @@ function create_fragment57(ctx) {
       (0, import_internal58.create_component)(codeexample.$$.fragment);
       t8 = (0, import_internal58.space)();
       (0, import_internal58.create_component)(api.$$.fragment);
-      (0, import_internal58.add_location)(h2, file55, 0, 0, 0);
-      (0, import_internal58.add_location)(h30, file55, 2, 0, 16);
-      (0, import_internal58.add_location)(h31, file55, 12, 0, 178);
+      (0, import_internal58.add_location)(h2, file56, 0, 0, 0);
+      (0, import_internal58.add_location)(h30, file56, 2, 0, 16);
+      (0, import_internal58.add_location)(h31, file56, 12, 0, 178);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -45441,14 +46524,14 @@ function create_fragment57(ctx) {
   };
   (0, import_internal58.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment57.name,
+    id: create_fragment58.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance57($$self2, $$props2, $$invalidate2) {
+function instance58($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal58.validate_slots)("Panel", slots2, []);
   const apiProps = [
@@ -45507,12 +46590,12 @@ function instance57($$self2, $$props2, $$invalidate2) {
 var Panel_1 = class extends import_internal58.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal58.init)(this, options, instance57, create_fragment57, import_internal58.safe_not_equal, {});
+    (0, import_internal58.init)(this, options, instance58, create_fragment58, import_internal58.safe_not_equal, {});
     (0, import_internal58.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Panel_1",
       options,
-      id: create_fragment57.name
+      id: create_fragment58.name
     });
   }
 };
@@ -45520,8 +46603,8 @@ var Panel_default2 = Panel_1;
 
 // docs-src/components/splitter/Splitter.svelte
 var import_internal59 = __toESM(require_internal());
-var { console: console_18 } = import_internal59.globals;
-var file56 = "docs-src/components/splitter/Splitter.svelte";
+var { console: console_19 } = import_internal59.globals;
+var file57 = "docs-src/components/splitter/Splitter.svelte";
 function create_default_slot13(ctx) {
   let t;
   const block = {
@@ -45545,7 +46628,7 @@ function create_default_slot13(ctx) {
   });
   return block;
 }
-function create_fragment58(ctx) {
+function create_fragment59(ctx) {
   let h2;
   let t1;
   let p;
@@ -45603,11 +46686,11 @@ function create_fragment58(ctx) {
   let splitter0_props = {};
   splitter0 = new Splitter_default({ props: splitter0_props, $$inline: true });
   ctx[6](splitter0);
-  splitter0.$on("changed", onchange4);
+  splitter0.$on("changed", onchange5);
   let splitter1_1_props = {};
   splitter1_1 = new Splitter_default({ props: splitter1_1_props, $$inline: true });
   ctx[7](splitter1_1);
-  splitter1_1.$on("changed", onchange4);
+  splitter1_1.$on("changed", onchange5);
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -45685,28 +46768,28 @@ function create_fragment58(ctx) {
       (0, import_internal59.create_component)(api0.$$.fragment);
       t27 = (0, import_internal59.space)();
       (0, import_internal59.create_component)(api1.$$.fragment);
-      (0, import_internal59.add_location)(h2, file56, 0, 0, 0);
-      (0, import_internal59.add_location)(p, file56, 1, 0, 18);
-      (0, import_internal59.add_location)(em0, file56, 3, 13, 73);
-      (0, import_internal59.add_location)(li0, file56, 3, 1, 61);
-      (0, import_internal59.add_location)(em1, file56, 4, 13, 188);
-      (0, import_internal59.add_location)(em2, file56, 4, 36, 211);
-      (0, import_internal59.add_location)(li1, file56, 4, 1, 176);
-      (0, import_internal59.add_location)(ul, file56, 2, 0, 55);
-      (0, import_internal59.add_location)(hr, file56, 7, 0, 276);
+      (0, import_internal59.add_location)(h2, file57, 0, 0, 0);
+      (0, import_internal59.add_location)(p, file57, 1, 0, 18);
+      (0, import_internal59.add_location)(em0, file57, 3, 13, 73);
+      (0, import_internal59.add_location)(li0, file57, 3, 1, 61);
+      (0, import_internal59.add_location)(em1, file57, 4, 13, 188);
+      (0, import_internal59.add_location)(em2, file57, 4, 36, 211);
+      (0, import_internal59.add_location)(li1, file57, 4, 1, 176);
+      (0, import_internal59.add_location)(ul, file57, 2, 0, 55);
+      (0, import_internal59.add_location)(hr, file57, 7, 0, 276);
       (0, import_internal59.attr_dev)(div0, "class", "split-box min-w");
-      (0, import_internal59.add_location)(div0, file56, 11, 1, 352);
+      (0, import_internal59.add_location)(div0, file57, 11, 1, 352);
       (0, import_internal59.attr_dev)(div1, "class", "split-box");
-      (0, import_internal59.add_location)(div1, file56, 13, 1, 452);
+      (0, import_internal59.add_location)(div1, file57, 13, 1, 452);
       (0, import_internal59.attr_dev)(div2, "class", "split-wrap");
-      (0, import_internal59.add_location)(div2, file56, 10, 0, 326);
-      (0, import_internal59.add_location)(br, file56, 15, 0, 494);
+      (0, import_internal59.add_location)(div2, file57, 10, 0, 326);
+      (0, import_internal59.add_location)(br, file57, 15, 0, 494);
       (0, import_internal59.attr_dev)(div3, "class", "split-box min-h");
-      (0, import_internal59.add_location)(div3, file56, 17, 1, 538);
+      (0, import_internal59.add_location)(div3, file57, 17, 1, 538);
       (0, import_internal59.attr_dev)(div4, "class", "split-box");
-      (0, import_internal59.add_location)(div4, file56, 19, 1, 637);
+      (0, import_internal59.add_location)(div4, file57, 19, 1, 637);
       (0, import_internal59.attr_dev)(div5, "class", "split-wrap split-wrap-v");
-      (0, import_internal59.add_location)(div5, file56, 16, 0, 499);
+      (0, import_internal59.add_location)(div5, file57, 16, 0, 499);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -45834,17 +46917,17 @@ function create_fragment58(ctx) {
   };
   (0, import_internal59.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment58.name,
+    id: create_fragment59.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function onchange4(e) {
+function onchange5(e) {
   console.log(e.detail);
 }
-function instance58($$self2, $$props2, $$invalidate2) {
+function instance59($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal59.validate_slots)("Splitter", slots2, []);
   const apiProps = [
@@ -45915,7 +46998,7 @@ function onchanged (e) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_18.warn(`<Splitter> was created with unknown prop '${key}'`);
+      console_19.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function splitter0_binding($$value) {
     import_internal59.binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -45939,7 +47022,7 @@ function onchanged (e) {
     exampleHtml,
     splitter1,
     splitter2,
-    onchange: onchange4,
+    onchange: onchange5,
     toggle
   });
   $$self2.$inject_state = ($$props3) => {
@@ -45965,12 +47048,12 @@ function onchanged (e) {
 var Splitter_1 = class extends import_internal59.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal59.init)(this, options, instance58, create_fragment58, import_internal59.safe_not_equal, {});
+    (0, import_internal59.init)(this, options, instance59, create_fragment59, import_internal59.safe_not_equal, {});
     (0, import_internal59.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Splitter_1",
       options,
-      id: create_fragment58.name
+      id: create_fragment59.name
     });
   }
 };
@@ -45978,8 +47061,8 @@ var Splitter_default2 = Splitter_1;
 
 // docs-src/components/table/Table.svelte
 var import_internal60 = __toESM(require_internal());
-var { console: console_19 } = import_internal60.globals;
-var file57 = "docs-src/components/table/Table.svelte";
+var { console: console_110 } = import_internal60.globals;
+var file58 = "docs-src/components/table/Table.svelte";
 function create_default_slot14(ctx) {
   let thead0;
   let tr0;
@@ -46886,357 +47969,357 @@ function create_default_slot14(ctx) {
       td189.textContent = "Sum";
       td190 = (0, import_internal60.element)("td");
       td190.textContent = "$180";
-      (0, import_internal60.add_location)(th0, file57, 9, 7, 177);
-      (0, import_internal60.add_location)(th1, file57, 9, 20, 190);
-      (0, import_internal60.add_location)(th2, file57, 9, 34, 204);
-      (0, import_internal60.add_location)(tr0, file57, 9, 3, 173);
-      (0, import_internal60.add_location)(thead0, file57, 8, 2, 162);
+      (0, import_internal60.add_location)(th0, file58, 9, 7, 177);
+      (0, import_internal60.add_location)(th1, file58, 9, 20, 190);
+      (0, import_internal60.add_location)(th2, file58, 9, 34, 204);
+      (0, import_internal60.add_location)(tr0, file58, 9, 3, 173);
+      (0, import_internal60.add_location)(thead0, file58, 8, 2, 162);
       (0, import_internal60.attr_dev)(th3, "colspan", "3");
-      (0, import_internal60.add_location)(th3, file57, 12, 7, 252);
-      (0, import_internal60.add_location)(tr1, file57, 12, 3, 248);
-      (0, import_internal60.add_location)(thead1, file57, 11, 2, 237);
-      (0, import_internal60.add_location)(td0, file57, 15, 23, 333);
-      (0, import_internal60.add_location)(td1, file57, 15, 36, 346);
-      (0, import_internal60.add_location)(td2, file57, 15, 52, 362);
+      (0, import_internal60.add_location)(th3, file58, 12, 7, 252);
+      (0, import_internal60.add_location)(tr1, file58, 12, 3, 248);
+      (0, import_internal60.add_location)(thead1, file58, 11, 2, 237);
+      (0, import_internal60.add_location)(td0, file58, 15, 23, 333);
+      (0, import_internal60.add_location)(td1, file58, 15, 36, 346);
+      (0, import_internal60.add_location)(td2, file58, 15, 52, 362);
       (0, import_internal60.attr_dev)(tr2, "class", "row-sel");
-      (0, import_internal60.add_location)(tr2, file57, 15, 3, 313);
-      (0, import_internal60.add_location)(td3, file57, 16, 23, 404);
-      (0, import_internal60.add_location)(td4, file57, 16, 36, 417);
-      (0, import_internal60.add_location)(td5, file57, 16, 53, 434);
+      (0, import_internal60.add_location)(tr2, file58, 15, 3, 313);
+      (0, import_internal60.add_location)(td3, file58, 16, 23, 404);
+      (0, import_internal60.add_location)(td4, file58, 16, 36, 417);
+      (0, import_internal60.add_location)(td5, file58, 16, 53, 434);
       (0, import_internal60.attr_dev)(tr3, "class", "row-sel");
-      (0, import_internal60.add_location)(tr3, file57, 16, 3, 384);
-      (0, import_internal60.add_location)(td6, file57, 17, 23, 475);
-      (0, import_internal60.add_location)(td7, file57, 17, 36, 488);
-      (0, import_internal60.add_location)(td8, file57, 17, 50, 502);
+      (0, import_internal60.add_location)(tr3, file58, 16, 3, 384);
+      (0, import_internal60.add_location)(td6, file58, 17, 23, 475);
+      (0, import_internal60.add_location)(td7, file58, 17, 36, 488);
+      (0, import_internal60.add_location)(td8, file58, 17, 50, 502);
       (0, import_internal60.attr_dev)(tr4, "class", "row-sel");
-      (0, import_internal60.add_location)(tr4, file57, 17, 3, 455);
-      (0, import_internal60.add_location)(td9, file57, 18, 23, 543);
-      (0, import_internal60.add_location)(td10, file57, 18, 36, 556);
-      (0, import_internal60.add_location)(td11, file57, 18, 50, 570);
+      (0, import_internal60.add_location)(tr4, file58, 17, 3, 455);
+      (0, import_internal60.add_location)(td9, file58, 18, 23, 543);
+      (0, import_internal60.add_location)(td10, file58, 18, 36, 556);
+      (0, import_internal60.add_location)(td11, file58, 18, 50, 570);
       (0, import_internal60.attr_dev)(tr5, "class", "row-sel");
-      (0, import_internal60.add_location)(tr5, file57, 18, 3, 523);
-      (0, import_internal60.add_location)(td12, file57, 19, 23, 611);
-      (0, import_internal60.add_location)(td13, file57, 19, 36, 624);
-      (0, import_internal60.add_location)(td14, file57, 19, 48, 636);
+      (0, import_internal60.add_location)(tr5, file58, 18, 3, 523);
+      (0, import_internal60.add_location)(td12, file58, 19, 23, 611);
+      (0, import_internal60.add_location)(td13, file58, 19, 36, 624);
+      (0, import_internal60.add_location)(td14, file58, 19, 48, 636);
       (0, import_internal60.attr_dev)(tr6, "class", "row-sel");
-      (0, import_internal60.add_location)(tr6, file57, 19, 3, 591);
-      (0, import_internal60.add_location)(td15, file57, 20, 23, 677);
-      (0, import_internal60.add_location)(td16, file57, 20, 36, 690);
-      (0, import_internal60.add_location)(td17, file57, 20, 49, 703);
+      (0, import_internal60.add_location)(tr6, file58, 19, 3, 591);
+      (0, import_internal60.add_location)(td15, file58, 20, 23, 677);
+      (0, import_internal60.add_location)(td16, file58, 20, 36, 690);
+      (0, import_internal60.add_location)(td17, file58, 20, 49, 703);
       (0, import_internal60.attr_dev)(tr7, "class", "row-sel");
-      (0, import_internal60.add_location)(tr7, file57, 20, 3, 657);
-      (0, import_internal60.add_location)(tbody0, file57, 14, 2, 302);
-      (0, import_internal60.add_location)(td18, file57, 23, 7, 775);
-      (0, import_internal60.add_location)(td19, file57, 23, 20, 788);
-      (0, import_internal60.add_location)(td20, file57, 23, 36, 804);
-      (0, import_internal60.add_location)(tr8, file57, 23, 3, 771);
-      (0, import_internal60.add_location)(td21, file57, 24, 7, 829);
-      (0, import_internal60.add_location)(td22, file57, 24, 20, 842);
-      (0, import_internal60.add_location)(td23, file57, 24, 36, 858);
-      (0, import_internal60.add_location)(tr9, file57, 24, 3, 825);
+      (0, import_internal60.add_location)(tr7, file58, 20, 3, 657);
+      (0, import_internal60.add_location)(tbody0, file58, 14, 2, 302);
+      (0, import_internal60.add_location)(td18, file58, 23, 7, 775);
+      (0, import_internal60.add_location)(td19, file58, 23, 20, 788);
+      (0, import_internal60.add_location)(td20, file58, 23, 36, 804);
+      (0, import_internal60.add_location)(tr8, file58, 23, 3, 771);
+      (0, import_internal60.add_location)(td21, file58, 24, 7, 829);
+      (0, import_internal60.add_location)(td22, file58, 24, 20, 842);
+      (0, import_internal60.add_location)(td23, file58, 24, 36, 858);
+      (0, import_internal60.add_location)(tr9, file58, 24, 3, 825);
       (0, import_internal60.attr_dev)(tbody1, "class", "row-sel row-group");
-      (0, import_internal60.add_location)(tbody1, file57, 22, 2, 734);
-      (0, import_internal60.add_location)(td24, file57, 27, 23, 920);
-      (0, import_internal60.add_location)(td25, file57, 27, 36, 933);
-      (0, import_internal60.add_location)(td26, file57, 27, 48, 945);
+      (0, import_internal60.add_location)(tbody1, file58, 22, 2, 734);
+      (0, import_internal60.add_location)(td24, file58, 27, 23, 920);
+      (0, import_internal60.add_location)(td25, file58, 27, 36, 933);
+      (0, import_internal60.add_location)(td26, file58, 27, 48, 945);
       (0, import_internal60.attr_dev)(tr10, "class", "row-sel");
-      (0, import_internal60.add_location)(tr10, file57, 27, 3, 900);
-      (0, import_internal60.add_location)(td27, file57, 28, 23, 986);
-      (0, import_internal60.add_location)(td28, file57, 28, 36, 999);
-      (0, import_internal60.add_location)(td29, file57, 28, 49, 1012);
+      (0, import_internal60.add_location)(tr10, file58, 27, 3, 900);
+      (0, import_internal60.add_location)(td27, file58, 28, 23, 986);
+      (0, import_internal60.add_location)(td28, file58, 28, 36, 999);
+      (0, import_internal60.add_location)(td29, file58, 28, 49, 1012);
       (0, import_internal60.attr_dev)(tr11, "class", "row-sel");
-      (0, import_internal60.add_location)(tr11, file57, 28, 3, 966);
-      (0, import_internal60.add_location)(td30, file57, 29, 23, 1053);
-      (0, import_internal60.add_location)(td31, file57, 29, 36, 1066);
-      (0, import_internal60.add_location)(td32, file57, 29, 51, 1081);
+      (0, import_internal60.add_location)(tr11, file58, 28, 3, 966);
+      (0, import_internal60.add_location)(td30, file58, 29, 23, 1053);
+      (0, import_internal60.add_location)(td31, file58, 29, 36, 1066);
+      (0, import_internal60.add_location)(td32, file58, 29, 51, 1081);
       (0, import_internal60.attr_dev)(tr12, "class", "row-sel");
-      (0, import_internal60.add_location)(tr12, file57, 29, 3, 1033);
-      (0, import_internal60.add_location)(td33, file57, 30, 23, 1122);
-      (0, import_internal60.add_location)(td34, file57, 30, 36, 1135);
-      (0, import_internal60.add_location)(td35, file57, 30, 54, 1153);
+      (0, import_internal60.add_location)(tr12, file58, 29, 3, 1033);
+      (0, import_internal60.add_location)(td33, file58, 30, 23, 1122);
+      (0, import_internal60.add_location)(td34, file58, 30, 36, 1135);
+      (0, import_internal60.add_location)(td35, file58, 30, 54, 1153);
       (0, import_internal60.attr_dev)(tr13, "class", "row-sel");
-      (0, import_internal60.add_location)(tr13, file57, 30, 3, 1102);
-      (0, import_internal60.add_location)(td36, file57, 31, 23, 1194);
-      (0, import_internal60.add_location)(td37, file57, 31, 36, 1207);
-      (0, import_internal60.add_location)(td38, file57, 31, 52, 1223);
+      (0, import_internal60.add_location)(tr13, file58, 30, 3, 1102);
+      (0, import_internal60.add_location)(td36, file58, 31, 23, 1194);
+      (0, import_internal60.add_location)(td37, file58, 31, 36, 1207);
+      (0, import_internal60.add_location)(td38, file58, 31, 52, 1223);
       (0, import_internal60.attr_dev)(tr14, "class", "row-sel");
-      (0, import_internal60.add_location)(tr14, file57, 31, 3, 1174);
-      (0, import_internal60.add_location)(td39, file57, 32, 23, 1264);
-      (0, import_internal60.add_location)(td40, file57, 32, 36, 1277);
-      (0, import_internal60.add_location)(td41, file57, 32, 53, 1294);
+      (0, import_internal60.add_location)(tr14, file58, 31, 3, 1174);
+      (0, import_internal60.add_location)(td39, file58, 32, 23, 1264);
+      (0, import_internal60.add_location)(td40, file58, 32, 36, 1277);
+      (0, import_internal60.add_location)(td41, file58, 32, 53, 1294);
       (0, import_internal60.attr_dev)(tr15, "class", "row-sel");
-      (0, import_internal60.add_location)(tr15, file57, 32, 3, 1244);
-      (0, import_internal60.add_location)(td42, file57, 33, 23, 1335);
-      (0, import_internal60.add_location)(td43, file57, 33, 36, 1348);
-      (0, import_internal60.add_location)(td44, file57, 33, 53, 1365);
+      (0, import_internal60.add_location)(tr15, file58, 32, 3, 1244);
+      (0, import_internal60.add_location)(td42, file58, 33, 23, 1335);
+      (0, import_internal60.add_location)(td43, file58, 33, 36, 1348);
+      (0, import_internal60.add_location)(td44, file58, 33, 53, 1365);
       (0, import_internal60.attr_dev)(tr16, "class", "row-sel");
-      (0, import_internal60.add_location)(tr16, file57, 33, 3, 1315);
-      (0, import_internal60.add_location)(tbody2, file57, 26, 2, 889);
+      (0, import_internal60.add_location)(tr16, file58, 33, 3, 1315);
+      (0, import_internal60.add_location)(tbody2, file58, 26, 2, 889);
       (0, import_internal60.attr_dev)(th4, "colspan", "3");
-      (0, import_internal60.add_location)(th4, file57, 36, 7, 1411);
-      (0, import_internal60.add_location)(tr17, file57, 36, 3, 1407);
-      (0, import_internal60.add_location)(thead2, file57, 35, 2, 1396);
-      (0, import_internal60.add_location)(td45, file57, 39, 23, 1492);
-      (0, import_internal60.add_location)(td46, file57, 39, 36, 1505);
-      (0, import_internal60.add_location)(td47, file57, 39, 52, 1521);
+      (0, import_internal60.add_location)(th4, file58, 36, 7, 1411);
+      (0, import_internal60.add_location)(tr17, file58, 36, 3, 1407);
+      (0, import_internal60.add_location)(thead2, file58, 35, 2, 1396);
+      (0, import_internal60.add_location)(td45, file58, 39, 23, 1492);
+      (0, import_internal60.add_location)(td46, file58, 39, 36, 1505);
+      (0, import_internal60.add_location)(td47, file58, 39, 52, 1521);
       (0, import_internal60.attr_dev)(tr18, "class", "row-sel");
-      (0, import_internal60.add_location)(tr18, file57, 39, 3, 1472);
-      (0, import_internal60.add_location)(td48, file57, 40, 23, 1563);
-      (0, import_internal60.add_location)(td49, file57, 40, 36, 1576);
-      (0, import_internal60.add_location)(td50, file57, 40, 53, 1593);
+      (0, import_internal60.add_location)(tr18, file58, 39, 3, 1472);
+      (0, import_internal60.add_location)(td48, file58, 40, 23, 1563);
+      (0, import_internal60.add_location)(td49, file58, 40, 36, 1576);
+      (0, import_internal60.add_location)(td50, file58, 40, 53, 1593);
       (0, import_internal60.attr_dev)(tr19, "class", "row-sel");
-      (0, import_internal60.add_location)(tr19, file57, 40, 3, 1543);
-      (0, import_internal60.add_location)(td51, file57, 41, 23, 1634);
-      (0, import_internal60.add_location)(td52, file57, 41, 36, 1647);
-      (0, import_internal60.add_location)(td53, file57, 41, 50, 1661);
+      (0, import_internal60.add_location)(tr19, file58, 40, 3, 1543);
+      (0, import_internal60.add_location)(td51, file58, 41, 23, 1634);
+      (0, import_internal60.add_location)(td52, file58, 41, 36, 1647);
+      (0, import_internal60.add_location)(td53, file58, 41, 50, 1661);
       (0, import_internal60.attr_dev)(tr20, "class", "row-sel");
-      (0, import_internal60.add_location)(tr20, file57, 41, 3, 1614);
-      (0, import_internal60.add_location)(td54, file57, 42, 23, 1702);
-      (0, import_internal60.add_location)(td55, file57, 42, 36, 1715);
-      (0, import_internal60.add_location)(td56, file57, 42, 50, 1729);
+      (0, import_internal60.add_location)(tr20, file58, 41, 3, 1614);
+      (0, import_internal60.add_location)(td54, file58, 42, 23, 1702);
+      (0, import_internal60.add_location)(td55, file58, 42, 36, 1715);
+      (0, import_internal60.add_location)(td56, file58, 42, 50, 1729);
       (0, import_internal60.attr_dev)(tr21, "class", "row-sel");
-      (0, import_internal60.add_location)(tr21, file57, 42, 3, 1682);
-      (0, import_internal60.add_location)(td57, file57, 43, 23, 1770);
-      (0, import_internal60.add_location)(td58, file57, 43, 36, 1783);
-      (0, import_internal60.add_location)(td59, file57, 43, 48, 1795);
+      (0, import_internal60.add_location)(tr21, file58, 42, 3, 1682);
+      (0, import_internal60.add_location)(td57, file58, 43, 23, 1770);
+      (0, import_internal60.add_location)(td58, file58, 43, 36, 1783);
+      (0, import_internal60.add_location)(td59, file58, 43, 48, 1795);
       (0, import_internal60.attr_dev)(tr22, "class", "row-sel");
-      (0, import_internal60.add_location)(tr22, file57, 43, 3, 1750);
-      (0, import_internal60.add_location)(td60, file57, 44, 23, 1836);
-      (0, import_internal60.add_location)(td61, file57, 44, 36, 1849);
-      (0, import_internal60.add_location)(td62, file57, 44, 49, 1862);
+      (0, import_internal60.add_location)(tr22, file58, 43, 3, 1750);
+      (0, import_internal60.add_location)(td60, file58, 44, 23, 1836);
+      (0, import_internal60.add_location)(td61, file58, 44, 36, 1849);
+      (0, import_internal60.add_location)(td62, file58, 44, 49, 1862);
       (0, import_internal60.attr_dev)(tr23, "class", "row-sel");
-      (0, import_internal60.add_location)(tr23, file57, 44, 3, 1816);
-      (0, import_internal60.add_location)(td63, file57, 45, 23, 1903);
-      (0, import_internal60.add_location)(td64, file57, 45, 36, 1916);
-      (0, import_internal60.add_location)(td65, file57, 45, 49, 1929);
+      (0, import_internal60.add_location)(tr23, file58, 44, 3, 1816);
+      (0, import_internal60.add_location)(td63, file58, 45, 23, 1903);
+      (0, import_internal60.add_location)(td64, file58, 45, 36, 1916);
+      (0, import_internal60.add_location)(td65, file58, 45, 49, 1929);
       (0, import_internal60.attr_dev)(tr24, "class", "row-sel");
-      (0, import_internal60.add_location)(tr24, file57, 45, 3, 1883);
-      (0, import_internal60.add_location)(td66, file57, 46, 23, 1970);
-      (0, import_internal60.add_location)(td67, file57, 46, 36, 1983);
-      (0, import_internal60.add_location)(td68, file57, 46, 51, 1998);
+      (0, import_internal60.add_location)(tr24, file58, 45, 3, 1883);
+      (0, import_internal60.add_location)(td66, file58, 46, 23, 1970);
+      (0, import_internal60.add_location)(td67, file58, 46, 36, 1983);
+      (0, import_internal60.add_location)(td68, file58, 46, 51, 1998);
       (0, import_internal60.attr_dev)(tr25, "class", "row-sel");
-      (0, import_internal60.add_location)(tr25, file57, 46, 3, 1950);
-      (0, import_internal60.add_location)(td69, file57, 47, 23, 2039);
-      (0, import_internal60.add_location)(td70, file57, 47, 36, 2052);
-      (0, import_internal60.add_location)(td71, file57, 47, 54, 2070);
+      (0, import_internal60.add_location)(tr25, file58, 46, 3, 1950);
+      (0, import_internal60.add_location)(td69, file58, 47, 23, 2039);
+      (0, import_internal60.add_location)(td70, file58, 47, 36, 2052);
+      (0, import_internal60.add_location)(td71, file58, 47, 54, 2070);
       (0, import_internal60.attr_dev)(tr26, "class", "row-sel");
-      (0, import_internal60.add_location)(tr26, file57, 47, 3, 2019);
-      (0, import_internal60.add_location)(td72, file57, 48, 23, 2111);
-      (0, import_internal60.add_location)(td73, file57, 48, 36, 2124);
-      (0, import_internal60.add_location)(td74, file57, 48, 52, 2140);
+      (0, import_internal60.add_location)(tr26, file58, 47, 3, 2019);
+      (0, import_internal60.add_location)(td72, file58, 48, 23, 2111);
+      (0, import_internal60.add_location)(td73, file58, 48, 36, 2124);
+      (0, import_internal60.add_location)(td74, file58, 48, 52, 2140);
       (0, import_internal60.attr_dev)(tr27, "class", "row-sel");
-      (0, import_internal60.add_location)(tr27, file57, 48, 3, 2091);
-      (0, import_internal60.add_location)(td75, file57, 49, 23, 2181);
-      (0, import_internal60.add_location)(td76, file57, 49, 36, 2194);
-      (0, import_internal60.add_location)(td77, file57, 49, 53, 2211);
+      (0, import_internal60.add_location)(tr27, file58, 48, 3, 2091);
+      (0, import_internal60.add_location)(td75, file58, 49, 23, 2181);
+      (0, import_internal60.add_location)(td76, file58, 49, 36, 2194);
+      (0, import_internal60.add_location)(td77, file58, 49, 53, 2211);
       (0, import_internal60.attr_dev)(tr28, "class", "row-sel");
-      (0, import_internal60.add_location)(tr28, file57, 49, 3, 2161);
-      (0, import_internal60.add_location)(td78, file57, 50, 23, 2252);
-      (0, import_internal60.add_location)(td79, file57, 50, 36, 2265);
-      (0, import_internal60.add_location)(td80, file57, 50, 53, 2282);
+      (0, import_internal60.add_location)(tr28, file58, 49, 3, 2161);
+      (0, import_internal60.add_location)(td78, file58, 50, 23, 2252);
+      (0, import_internal60.add_location)(td79, file58, 50, 36, 2265);
+      (0, import_internal60.add_location)(td80, file58, 50, 53, 2282);
       (0, import_internal60.attr_dev)(tr29, "class", "row-sel");
-      (0, import_internal60.add_location)(tr29, file57, 50, 3, 2232);
-      (0, import_internal60.add_location)(tbody3, file57, 38, 2, 1461);
+      (0, import_internal60.add_location)(tr29, file58, 50, 3, 2232);
+      (0, import_internal60.add_location)(tbody3, file58, 38, 2, 1461);
       (0, import_internal60.attr_dev)(th5, "colspan", "3");
-      (0, import_internal60.add_location)(th5, file57, 53, 7, 2328);
-      (0, import_internal60.add_location)(tr30, file57, 53, 3, 2324);
-      (0, import_internal60.add_location)(thead3, file57, 52, 2, 2313);
-      (0, import_internal60.add_location)(td81, file57, 56, 23, 2409);
-      (0, import_internal60.add_location)(td82, file57, 56, 36, 2422);
-      (0, import_internal60.add_location)(td83, file57, 56, 52, 2438);
+      (0, import_internal60.add_location)(th5, file58, 53, 7, 2328);
+      (0, import_internal60.add_location)(tr30, file58, 53, 3, 2324);
+      (0, import_internal60.add_location)(thead3, file58, 52, 2, 2313);
+      (0, import_internal60.add_location)(td81, file58, 56, 23, 2409);
+      (0, import_internal60.add_location)(td82, file58, 56, 36, 2422);
+      (0, import_internal60.add_location)(td83, file58, 56, 52, 2438);
       (0, import_internal60.attr_dev)(tr31, "class", "row-sel");
-      (0, import_internal60.add_location)(tr31, file57, 56, 3, 2389);
-      (0, import_internal60.add_location)(td84, file57, 57, 23, 2480);
-      (0, import_internal60.add_location)(td85, file57, 57, 36, 2493);
-      (0, import_internal60.add_location)(td86, file57, 57, 53, 2510);
+      (0, import_internal60.add_location)(tr31, file58, 56, 3, 2389);
+      (0, import_internal60.add_location)(td84, file58, 57, 23, 2480);
+      (0, import_internal60.add_location)(td85, file58, 57, 36, 2493);
+      (0, import_internal60.add_location)(td86, file58, 57, 53, 2510);
       (0, import_internal60.attr_dev)(tr32, "class", "row-sel");
-      (0, import_internal60.add_location)(tr32, file57, 57, 3, 2460);
-      (0, import_internal60.add_location)(td87, file57, 58, 23, 2551);
-      (0, import_internal60.add_location)(td88, file57, 58, 36, 2564);
-      (0, import_internal60.add_location)(td89, file57, 58, 50, 2578);
+      (0, import_internal60.add_location)(tr32, file58, 57, 3, 2460);
+      (0, import_internal60.add_location)(td87, file58, 58, 23, 2551);
+      (0, import_internal60.add_location)(td88, file58, 58, 36, 2564);
+      (0, import_internal60.add_location)(td89, file58, 58, 50, 2578);
       (0, import_internal60.attr_dev)(tr33, "class", "row-sel");
-      (0, import_internal60.add_location)(tr33, file57, 58, 3, 2531);
-      (0, import_internal60.add_location)(td90, file57, 59, 23, 2619);
-      (0, import_internal60.add_location)(td91, file57, 59, 36, 2632);
-      (0, import_internal60.add_location)(td92, file57, 59, 50, 2646);
+      (0, import_internal60.add_location)(tr33, file58, 58, 3, 2531);
+      (0, import_internal60.add_location)(td90, file58, 59, 23, 2619);
+      (0, import_internal60.add_location)(td91, file58, 59, 36, 2632);
+      (0, import_internal60.add_location)(td92, file58, 59, 50, 2646);
       (0, import_internal60.attr_dev)(tr34, "class", "row-sel");
-      (0, import_internal60.add_location)(tr34, file57, 59, 3, 2599);
-      (0, import_internal60.add_location)(td93, file57, 60, 23, 2687);
-      (0, import_internal60.add_location)(td94, file57, 60, 36, 2700);
-      (0, import_internal60.add_location)(td95, file57, 60, 48, 2712);
+      (0, import_internal60.add_location)(tr34, file58, 59, 3, 2599);
+      (0, import_internal60.add_location)(td93, file58, 60, 23, 2687);
+      (0, import_internal60.add_location)(td94, file58, 60, 36, 2700);
+      (0, import_internal60.add_location)(td95, file58, 60, 48, 2712);
       (0, import_internal60.attr_dev)(tr35, "class", "row-sel");
-      (0, import_internal60.add_location)(tr35, file57, 60, 3, 2667);
-      (0, import_internal60.add_location)(td96, file57, 61, 23, 2753);
-      (0, import_internal60.add_location)(td97, file57, 61, 36, 2766);
-      (0, import_internal60.add_location)(td98, file57, 61, 49, 2779);
+      (0, import_internal60.add_location)(tr35, file58, 60, 3, 2667);
+      (0, import_internal60.add_location)(td96, file58, 61, 23, 2753);
+      (0, import_internal60.add_location)(td97, file58, 61, 36, 2766);
+      (0, import_internal60.add_location)(td98, file58, 61, 49, 2779);
       (0, import_internal60.attr_dev)(tr36, "class", "row-sel");
-      (0, import_internal60.add_location)(tr36, file57, 61, 3, 2733);
-      (0, import_internal60.add_location)(td99, file57, 62, 23, 2820);
-      (0, import_internal60.add_location)(td100, file57, 62, 36, 2833);
-      (0, import_internal60.add_location)(td101, file57, 62, 49, 2846);
+      (0, import_internal60.add_location)(tr36, file58, 61, 3, 2733);
+      (0, import_internal60.add_location)(td99, file58, 62, 23, 2820);
+      (0, import_internal60.add_location)(td100, file58, 62, 36, 2833);
+      (0, import_internal60.add_location)(td101, file58, 62, 49, 2846);
       (0, import_internal60.attr_dev)(tr37, "class", "row-sel");
-      (0, import_internal60.add_location)(tr37, file57, 62, 3, 2800);
-      (0, import_internal60.add_location)(td102, file57, 63, 23, 2887);
-      (0, import_internal60.add_location)(td103, file57, 63, 36, 2900);
-      (0, import_internal60.add_location)(td104, file57, 63, 51, 2915);
+      (0, import_internal60.add_location)(tr37, file58, 62, 3, 2800);
+      (0, import_internal60.add_location)(td102, file58, 63, 23, 2887);
+      (0, import_internal60.add_location)(td103, file58, 63, 36, 2900);
+      (0, import_internal60.add_location)(td104, file58, 63, 51, 2915);
       (0, import_internal60.attr_dev)(tr38, "class", "row-sel");
-      (0, import_internal60.add_location)(tr38, file57, 63, 3, 2867);
-      (0, import_internal60.add_location)(td105, file57, 64, 23, 2956);
-      (0, import_internal60.add_location)(td106, file57, 64, 36, 2969);
-      (0, import_internal60.add_location)(td107, file57, 64, 54, 2987);
+      (0, import_internal60.add_location)(tr38, file58, 63, 3, 2867);
+      (0, import_internal60.add_location)(td105, file58, 64, 23, 2956);
+      (0, import_internal60.add_location)(td106, file58, 64, 36, 2969);
+      (0, import_internal60.add_location)(td107, file58, 64, 54, 2987);
       (0, import_internal60.attr_dev)(tr39, "class", "row-sel");
-      (0, import_internal60.add_location)(tr39, file57, 64, 3, 2936);
-      (0, import_internal60.add_location)(td108, file57, 65, 23, 3028);
-      (0, import_internal60.add_location)(td109, file57, 65, 36, 3041);
-      (0, import_internal60.add_location)(td110, file57, 65, 52, 3057);
+      (0, import_internal60.add_location)(tr39, file58, 64, 3, 2936);
+      (0, import_internal60.add_location)(td108, file58, 65, 23, 3028);
+      (0, import_internal60.add_location)(td109, file58, 65, 36, 3041);
+      (0, import_internal60.add_location)(td110, file58, 65, 52, 3057);
       (0, import_internal60.attr_dev)(tr40, "class", "row-sel");
-      (0, import_internal60.add_location)(tr40, file57, 65, 3, 3008);
-      (0, import_internal60.add_location)(td111, file57, 66, 23, 3098);
-      (0, import_internal60.add_location)(td112, file57, 66, 36, 3111);
-      (0, import_internal60.add_location)(td113, file57, 66, 53, 3128);
+      (0, import_internal60.add_location)(tr40, file58, 65, 3, 3008);
+      (0, import_internal60.add_location)(td111, file58, 66, 23, 3098);
+      (0, import_internal60.add_location)(td112, file58, 66, 36, 3111);
+      (0, import_internal60.add_location)(td113, file58, 66, 53, 3128);
       (0, import_internal60.attr_dev)(tr41, "class", "row-sel");
-      (0, import_internal60.add_location)(tr41, file57, 66, 3, 3078);
-      (0, import_internal60.add_location)(td114, file57, 67, 23, 3169);
-      (0, import_internal60.add_location)(td115, file57, 67, 36, 3182);
-      (0, import_internal60.add_location)(td116, file57, 67, 53, 3199);
+      (0, import_internal60.add_location)(tr41, file58, 66, 3, 3078);
+      (0, import_internal60.add_location)(td114, file58, 67, 23, 3169);
+      (0, import_internal60.add_location)(td115, file58, 67, 36, 3182);
+      (0, import_internal60.add_location)(td116, file58, 67, 53, 3199);
       (0, import_internal60.attr_dev)(tr42, "class", "row-sel");
-      (0, import_internal60.add_location)(tr42, file57, 67, 3, 3149);
-      (0, import_internal60.add_location)(tbody4, file57, 55, 2, 2378);
+      (0, import_internal60.add_location)(tr42, file58, 67, 3, 3149);
+      (0, import_internal60.add_location)(tbody4, file58, 55, 2, 2378);
       (0, import_internal60.attr_dev)(th6, "colspan", "3");
-      (0, import_internal60.add_location)(th6, file57, 70, 7, 3245);
-      (0, import_internal60.add_location)(tr43, file57, 70, 3, 3241);
-      (0, import_internal60.add_location)(thead4, file57, 69, 2, 3230);
-      (0, import_internal60.add_location)(td117, file57, 73, 23, 3326);
-      (0, import_internal60.add_location)(td118, file57, 73, 36, 3339);
-      (0, import_internal60.add_location)(td119, file57, 73, 52, 3355);
+      (0, import_internal60.add_location)(th6, file58, 70, 7, 3245);
+      (0, import_internal60.add_location)(tr43, file58, 70, 3, 3241);
+      (0, import_internal60.add_location)(thead4, file58, 69, 2, 3230);
+      (0, import_internal60.add_location)(td117, file58, 73, 23, 3326);
+      (0, import_internal60.add_location)(td118, file58, 73, 36, 3339);
+      (0, import_internal60.add_location)(td119, file58, 73, 52, 3355);
       (0, import_internal60.attr_dev)(tr44, "class", "row-sel");
-      (0, import_internal60.add_location)(tr44, file57, 73, 3, 3306);
-      (0, import_internal60.add_location)(td120, file57, 74, 23, 3397);
-      (0, import_internal60.add_location)(td121, file57, 74, 36, 3410);
-      (0, import_internal60.add_location)(td122, file57, 74, 53, 3427);
+      (0, import_internal60.add_location)(tr44, file58, 73, 3, 3306);
+      (0, import_internal60.add_location)(td120, file58, 74, 23, 3397);
+      (0, import_internal60.add_location)(td121, file58, 74, 36, 3410);
+      (0, import_internal60.add_location)(td122, file58, 74, 53, 3427);
       (0, import_internal60.attr_dev)(tr45, "class", "row-sel");
-      (0, import_internal60.add_location)(tr45, file57, 74, 3, 3377);
-      (0, import_internal60.add_location)(td123, file57, 75, 23, 3468);
-      (0, import_internal60.add_location)(td124, file57, 75, 36, 3481);
-      (0, import_internal60.add_location)(td125, file57, 75, 50, 3495);
+      (0, import_internal60.add_location)(tr45, file58, 74, 3, 3377);
+      (0, import_internal60.add_location)(td123, file58, 75, 23, 3468);
+      (0, import_internal60.add_location)(td124, file58, 75, 36, 3481);
+      (0, import_internal60.add_location)(td125, file58, 75, 50, 3495);
       (0, import_internal60.attr_dev)(tr46, "class", "row-sel");
-      (0, import_internal60.add_location)(tr46, file57, 75, 3, 3448);
-      (0, import_internal60.add_location)(td126, file57, 76, 23, 3536);
-      (0, import_internal60.add_location)(td127, file57, 76, 36, 3549);
-      (0, import_internal60.add_location)(td128, file57, 76, 50, 3563);
+      (0, import_internal60.add_location)(tr46, file58, 75, 3, 3448);
+      (0, import_internal60.add_location)(td126, file58, 76, 23, 3536);
+      (0, import_internal60.add_location)(td127, file58, 76, 36, 3549);
+      (0, import_internal60.add_location)(td128, file58, 76, 50, 3563);
       (0, import_internal60.attr_dev)(tr47, "class", "row-sel");
-      (0, import_internal60.add_location)(tr47, file57, 76, 3, 3516);
-      (0, import_internal60.add_location)(td129, file57, 77, 23, 3604);
-      (0, import_internal60.add_location)(td130, file57, 77, 36, 3617);
-      (0, import_internal60.add_location)(td131, file57, 77, 48, 3629);
+      (0, import_internal60.add_location)(tr47, file58, 76, 3, 3516);
+      (0, import_internal60.add_location)(td129, file58, 77, 23, 3604);
+      (0, import_internal60.add_location)(td130, file58, 77, 36, 3617);
+      (0, import_internal60.add_location)(td131, file58, 77, 48, 3629);
       (0, import_internal60.attr_dev)(tr48, "class", "row-sel");
-      (0, import_internal60.add_location)(tr48, file57, 77, 3, 3584);
-      (0, import_internal60.add_location)(td132, file57, 78, 23, 3670);
-      (0, import_internal60.add_location)(td133, file57, 78, 36, 3683);
-      (0, import_internal60.add_location)(td134, file57, 78, 49, 3696);
+      (0, import_internal60.add_location)(tr48, file58, 77, 3, 3584);
+      (0, import_internal60.add_location)(td132, file58, 78, 23, 3670);
+      (0, import_internal60.add_location)(td133, file58, 78, 36, 3683);
+      (0, import_internal60.add_location)(td134, file58, 78, 49, 3696);
       (0, import_internal60.attr_dev)(tr49, "class", "row-sel");
-      (0, import_internal60.add_location)(tr49, file57, 78, 3, 3650);
-      (0, import_internal60.add_location)(td135, file57, 79, 23, 3737);
-      (0, import_internal60.add_location)(td136, file57, 79, 36, 3750);
-      (0, import_internal60.add_location)(td137, file57, 79, 49, 3763);
+      (0, import_internal60.add_location)(tr49, file58, 78, 3, 3650);
+      (0, import_internal60.add_location)(td135, file58, 79, 23, 3737);
+      (0, import_internal60.add_location)(td136, file58, 79, 36, 3750);
+      (0, import_internal60.add_location)(td137, file58, 79, 49, 3763);
       (0, import_internal60.attr_dev)(tr50, "class", "row-sel");
-      (0, import_internal60.add_location)(tr50, file57, 79, 3, 3717);
-      (0, import_internal60.add_location)(td138, file57, 80, 23, 3804);
-      (0, import_internal60.add_location)(td139, file57, 80, 36, 3817);
-      (0, import_internal60.add_location)(td140, file57, 80, 51, 3832);
+      (0, import_internal60.add_location)(tr50, file58, 79, 3, 3717);
+      (0, import_internal60.add_location)(td138, file58, 80, 23, 3804);
+      (0, import_internal60.add_location)(td139, file58, 80, 36, 3817);
+      (0, import_internal60.add_location)(td140, file58, 80, 51, 3832);
       (0, import_internal60.attr_dev)(tr51, "class", "row-sel");
-      (0, import_internal60.add_location)(tr51, file57, 80, 3, 3784);
-      (0, import_internal60.add_location)(td141, file57, 81, 23, 3873);
-      (0, import_internal60.add_location)(td142, file57, 81, 36, 3886);
-      (0, import_internal60.add_location)(td143, file57, 81, 54, 3904);
+      (0, import_internal60.add_location)(tr51, file58, 80, 3, 3784);
+      (0, import_internal60.add_location)(td141, file58, 81, 23, 3873);
+      (0, import_internal60.add_location)(td142, file58, 81, 36, 3886);
+      (0, import_internal60.add_location)(td143, file58, 81, 54, 3904);
       (0, import_internal60.attr_dev)(tr52, "class", "row-sel");
-      (0, import_internal60.add_location)(tr52, file57, 81, 3, 3853);
-      (0, import_internal60.add_location)(td144, file57, 82, 23, 3945);
-      (0, import_internal60.add_location)(td145, file57, 82, 36, 3958);
-      (0, import_internal60.add_location)(td146, file57, 82, 52, 3974);
+      (0, import_internal60.add_location)(tr52, file58, 81, 3, 3853);
+      (0, import_internal60.add_location)(td144, file58, 82, 23, 3945);
+      (0, import_internal60.add_location)(td145, file58, 82, 36, 3958);
+      (0, import_internal60.add_location)(td146, file58, 82, 52, 3974);
       (0, import_internal60.attr_dev)(tr53, "class", "row-sel");
-      (0, import_internal60.add_location)(tr53, file57, 82, 3, 3925);
-      (0, import_internal60.add_location)(td147, file57, 83, 23, 4015);
-      (0, import_internal60.add_location)(td148, file57, 83, 36, 4028);
-      (0, import_internal60.add_location)(td149, file57, 83, 53, 4045);
+      (0, import_internal60.add_location)(tr53, file58, 82, 3, 3925);
+      (0, import_internal60.add_location)(td147, file58, 83, 23, 4015);
+      (0, import_internal60.add_location)(td148, file58, 83, 36, 4028);
+      (0, import_internal60.add_location)(td149, file58, 83, 53, 4045);
       (0, import_internal60.attr_dev)(tr54, "class", "row-sel");
-      (0, import_internal60.add_location)(tr54, file57, 83, 3, 3995);
-      (0, import_internal60.add_location)(td150, file57, 84, 23, 4086);
-      (0, import_internal60.add_location)(td151, file57, 84, 36, 4099);
-      (0, import_internal60.add_location)(td152, file57, 84, 53, 4116);
+      (0, import_internal60.add_location)(tr54, file58, 83, 3, 3995);
+      (0, import_internal60.add_location)(td150, file58, 84, 23, 4086);
+      (0, import_internal60.add_location)(td151, file58, 84, 36, 4099);
+      (0, import_internal60.add_location)(td152, file58, 84, 53, 4116);
       (0, import_internal60.attr_dev)(tr55, "class", "row-sel");
-      (0, import_internal60.add_location)(tr55, file57, 84, 3, 4066);
-      (0, import_internal60.add_location)(tbody5, file57, 72, 2, 3295);
+      (0, import_internal60.add_location)(tr55, file58, 84, 3, 4066);
+      (0, import_internal60.add_location)(tbody5, file58, 72, 2, 3295);
       (0, import_internal60.attr_dev)(th7, "colspan", "3");
-      (0, import_internal60.add_location)(th7, file57, 87, 7, 4162);
-      (0, import_internal60.add_location)(tr56, file57, 87, 3, 4158);
-      (0, import_internal60.add_location)(thead5, file57, 86, 2, 4147);
-      (0, import_internal60.add_location)(td153, file57, 90, 23, 4243);
-      (0, import_internal60.add_location)(td154, file57, 90, 36, 4256);
-      (0, import_internal60.add_location)(td155, file57, 90, 52, 4272);
+      (0, import_internal60.add_location)(th7, file58, 87, 7, 4162);
+      (0, import_internal60.add_location)(tr56, file58, 87, 3, 4158);
+      (0, import_internal60.add_location)(thead5, file58, 86, 2, 4147);
+      (0, import_internal60.add_location)(td153, file58, 90, 23, 4243);
+      (0, import_internal60.add_location)(td154, file58, 90, 36, 4256);
+      (0, import_internal60.add_location)(td155, file58, 90, 52, 4272);
       (0, import_internal60.attr_dev)(tr57, "class", "row-sel");
-      (0, import_internal60.add_location)(tr57, file57, 90, 3, 4223);
-      (0, import_internal60.add_location)(td156, file57, 91, 23, 4314);
-      (0, import_internal60.add_location)(td157, file57, 91, 36, 4327);
-      (0, import_internal60.add_location)(td158, file57, 91, 53, 4344);
+      (0, import_internal60.add_location)(tr57, file58, 90, 3, 4223);
+      (0, import_internal60.add_location)(td156, file58, 91, 23, 4314);
+      (0, import_internal60.add_location)(td157, file58, 91, 36, 4327);
+      (0, import_internal60.add_location)(td158, file58, 91, 53, 4344);
       (0, import_internal60.attr_dev)(tr58, "class", "row-sel");
-      (0, import_internal60.add_location)(tr58, file57, 91, 3, 4294);
-      (0, import_internal60.add_location)(td159, file57, 92, 23, 4385);
-      (0, import_internal60.add_location)(td160, file57, 92, 36, 4398);
-      (0, import_internal60.add_location)(td161, file57, 92, 50, 4412);
+      (0, import_internal60.add_location)(tr58, file58, 91, 3, 4294);
+      (0, import_internal60.add_location)(td159, file58, 92, 23, 4385);
+      (0, import_internal60.add_location)(td160, file58, 92, 36, 4398);
+      (0, import_internal60.add_location)(td161, file58, 92, 50, 4412);
       (0, import_internal60.attr_dev)(tr59, "class", "row-sel");
-      (0, import_internal60.add_location)(tr59, file57, 92, 3, 4365);
-      (0, import_internal60.add_location)(td162, file57, 93, 23, 4453);
-      (0, import_internal60.add_location)(td163, file57, 93, 36, 4466);
-      (0, import_internal60.add_location)(td164, file57, 93, 50, 4480);
+      (0, import_internal60.add_location)(tr59, file58, 92, 3, 4365);
+      (0, import_internal60.add_location)(td162, file58, 93, 23, 4453);
+      (0, import_internal60.add_location)(td163, file58, 93, 36, 4466);
+      (0, import_internal60.add_location)(td164, file58, 93, 50, 4480);
       (0, import_internal60.attr_dev)(tr60, "class", "row-sel");
-      (0, import_internal60.add_location)(tr60, file57, 93, 3, 4433);
-      (0, import_internal60.add_location)(td165, file57, 94, 23, 4521);
-      (0, import_internal60.add_location)(td166, file57, 94, 36, 4534);
-      (0, import_internal60.add_location)(td167, file57, 94, 48, 4546);
+      (0, import_internal60.add_location)(tr60, file58, 93, 3, 4433);
+      (0, import_internal60.add_location)(td165, file58, 94, 23, 4521);
+      (0, import_internal60.add_location)(td166, file58, 94, 36, 4534);
+      (0, import_internal60.add_location)(td167, file58, 94, 48, 4546);
       (0, import_internal60.attr_dev)(tr61, "class", "row-sel");
-      (0, import_internal60.add_location)(tr61, file57, 94, 3, 4501);
-      (0, import_internal60.add_location)(td168, file57, 95, 23, 4587);
-      (0, import_internal60.add_location)(td169, file57, 95, 36, 4600);
-      (0, import_internal60.add_location)(td170, file57, 95, 49, 4613);
+      (0, import_internal60.add_location)(tr61, file58, 94, 3, 4501);
+      (0, import_internal60.add_location)(td168, file58, 95, 23, 4587);
+      (0, import_internal60.add_location)(td169, file58, 95, 36, 4600);
+      (0, import_internal60.add_location)(td170, file58, 95, 49, 4613);
       (0, import_internal60.attr_dev)(tr62, "class", "row-sel");
-      (0, import_internal60.add_location)(tr62, file57, 95, 3, 4567);
-      (0, import_internal60.add_location)(td171, file57, 96, 23, 4654);
-      (0, import_internal60.add_location)(td172, file57, 96, 36, 4667);
-      (0, import_internal60.add_location)(td173, file57, 96, 49, 4680);
+      (0, import_internal60.add_location)(tr62, file58, 95, 3, 4567);
+      (0, import_internal60.add_location)(td171, file58, 96, 23, 4654);
+      (0, import_internal60.add_location)(td172, file58, 96, 36, 4667);
+      (0, import_internal60.add_location)(td173, file58, 96, 49, 4680);
       (0, import_internal60.attr_dev)(tr63, "class", "row-sel");
-      (0, import_internal60.add_location)(tr63, file57, 96, 3, 4634);
-      (0, import_internal60.add_location)(td174, file57, 97, 23, 4721);
-      (0, import_internal60.add_location)(td175, file57, 97, 36, 4734);
-      (0, import_internal60.add_location)(td176, file57, 97, 51, 4749);
+      (0, import_internal60.add_location)(tr63, file58, 96, 3, 4634);
+      (0, import_internal60.add_location)(td174, file58, 97, 23, 4721);
+      (0, import_internal60.add_location)(td175, file58, 97, 36, 4734);
+      (0, import_internal60.add_location)(td176, file58, 97, 51, 4749);
       (0, import_internal60.attr_dev)(tr64, "class", "row-sel");
-      (0, import_internal60.add_location)(tr64, file57, 97, 3, 4701);
-      (0, import_internal60.add_location)(td177, file57, 98, 23, 4790);
-      (0, import_internal60.add_location)(td178, file57, 98, 36, 4803);
-      (0, import_internal60.add_location)(td179, file57, 98, 54, 4821);
+      (0, import_internal60.add_location)(tr64, file58, 97, 3, 4701);
+      (0, import_internal60.add_location)(td177, file58, 98, 23, 4790);
+      (0, import_internal60.add_location)(td178, file58, 98, 36, 4803);
+      (0, import_internal60.add_location)(td179, file58, 98, 54, 4821);
       (0, import_internal60.attr_dev)(tr65, "class", "row-sel");
-      (0, import_internal60.add_location)(tr65, file57, 98, 3, 4770);
-      (0, import_internal60.add_location)(td180, file57, 99, 23, 4862);
-      (0, import_internal60.add_location)(td181, file57, 99, 36, 4875);
-      (0, import_internal60.add_location)(td182, file57, 99, 52, 4891);
+      (0, import_internal60.add_location)(tr65, file58, 98, 3, 4770);
+      (0, import_internal60.add_location)(td180, file58, 99, 23, 4862);
+      (0, import_internal60.add_location)(td181, file58, 99, 36, 4875);
+      (0, import_internal60.add_location)(td182, file58, 99, 52, 4891);
       (0, import_internal60.attr_dev)(tr66, "class", "row-sel");
-      (0, import_internal60.add_location)(tr66, file57, 99, 3, 4842);
-      (0, import_internal60.add_location)(td183, file57, 100, 23, 4932);
-      (0, import_internal60.add_location)(td184, file57, 100, 36, 4945);
-      (0, import_internal60.add_location)(td185, file57, 100, 53, 4962);
+      (0, import_internal60.add_location)(tr66, file58, 99, 3, 4842);
+      (0, import_internal60.add_location)(td183, file58, 100, 23, 4932);
+      (0, import_internal60.add_location)(td184, file58, 100, 36, 4945);
+      (0, import_internal60.add_location)(td185, file58, 100, 53, 4962);
       (0, import_internal60.attr_dev)(tr67, "class", "row-sel");
-      (0, import_internal60.add_location)(tr67, file57, 100, 3, 4912);
-      (0, import_internal60.add_location)(td186, file57, 101, 23, 5003);
-      (0, import_internal60.add_location)(td187, file57, 101, 36, 5016);
-      (0, import_internal60.add_location)(td188, file57, 101, 53, 5033);
+      (0, import_internal60.add_location)(tr67, file58, 100, 3, 4912);
+      (0, import_internal60.add_location)(td186, file58, 101, 23, 5003);
+      (0, import_internal60.add_location)(td187, file58, 101, 36, 5016);
+      (0, import_internal60.add_location)(td188, file58, 101, 53, 5033);
       (0, import_internal60.attr_dev)(tr68, "class", "row-sel");
-      (0, import_internal60.add_location)(tr68, file57, 101, 3, 4983);
-      (0, import_internal60.add_location)(tbody6, file57, 89, 2, 4212);
+      (0, import_internal60.add_location)(tr68, file58, 101, 3, 4983);
+      (0, import_internal60.add_location)(tbody6, file58, 89, 2, 4212);
       (0, import_internal60.attr_dev)(td189, "colspan", "2");
-      (0, import_internal60.add_location)(td189, file57, 104, 7, 5079);
-      (0, import_internal60.add_location)(td190, file57, 104, 31, 5103);
-      (0, import_internal60.add_location)(tr69, file57, 104, 3, 5075);
-      (0, import_internal60.add_location)(tfoot, file57, 103, 2, 5064);
+      (0, import_internal60.add_location)(td189, file58, 104, 7, 5079);
+      (0, import_internal60.add_location)(td190, file58, 104, 31, 5103);
+      (0, import_internal60.add_location)(tr69, file58, 104, 3, 5075);
+      (0, import_internal60.add_location)(tfoot, file58, 103, 2, 5064);
     },
     m: function mount(target, anchor) {
       (0, import_internal60.insert_dev)(target, thead0, anchor);
@@ -47659,7 +48742,7 @@ function create_default_slot14(ctx) {
   });
   return block;
 }
-function create_fragment59(ctx) {
+function create_fragment60(ctx) {
   let h2;
   let t1;
   let div;
@@ -47706,9 +48789,9 @@ function create_fragment59(ctx) {
       (0, import_internal60.create_component)(codeexample.$$.fragment);
       t3 = (0, import_internal60.space)();
       (0, import_internal60.create_component)(api.$$.fragment);
-      (0, import_internal60.add_location)(h2, file57, 0, 0, 0);
+      (0, import_internal60.add_location)(h2, file58, 0, 0, 0);
       (0, import_internal60.attr_dev)(div, "class", "table-viewport");
-      (0, import_internal60.add_location)(div, file57, 2, 0, 16);
+      (0, import_internal60.add_location)(div, file58, 2, 0, 16);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -47764,7 +48847,7 @@ function create_fragment59(ctx) {
   };
   (0, import_internal60.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment59.name,
+    id: create_fragment60.name,
     type: "component",
     source: "",
     ctx
@@ -47780,7 +48863,7 @@ function onSelect(e) {
   const { selectedItem } = e.detail;
   console.log(e.type, selectedItem);
 }
-function instance59($$self2, $$props2, $$invalidate2) {
+function instance60($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal60.validate_slots)("Table", slots2, []);
   const apiProps = [
@@ -47885,7 +48968,7 @@ function instance59($$self2, $$props2, $$invalidate2) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_19.warn(`<Table> was created with unknown prop '${key}'`);
+      console_110.warn(`<Table> was created with unknown prop '${key}'`);
   });
   $$self2.$capture_state = () => ({
     Table: Table_default,
@@ -47901,12 +48984,12 @@ function instance59($$self2, $$props2, $$invalidate2) {
 var Table_1 = class extends import_internal60.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal60.init)(this, options, instance59, create_fragment59, import_internal60.safe_not_equal, {});
+    (0, import_internal60.init)(this, options, instance60, create_fragment60, import_internal60.safe_not_equal, {});
     (0, import_internal60.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Table_1",
       options,
-      id: create_fragment59.name
+      id: create_fragment60.name
     });
   }
 };
@@ -47914,9 +48997,9 @@ var Table_default2 = Table_1;
 
 // docs-src/components/tree/Tree.svelte
 var import_internal61 = __toESM(require_internal());
-var { console: console_110 } = import_internal61.globals;
-var file58 = "docs-src/components/tree/Tree.svelte";
-function create_fragment60(ctx) {
+var { console: console_111 } = import_internal61.globals;
+var file59 = "docs-src/components/tree/Tree.svelte";
+function create_fragment61(ctx) {
   let h2;
   let t1;
   let div;
@@ -47959,10 +49042,10 @@ function create_fragment60(ctx) {
       (0, import_internal61.create_component)(codeexample.$$.fragment);
       t3 = (0, import_internal61.space)();
       (0, import_internal61.create_component)(api.$$.fragment);
-      (0, import_internal61.add_location)(h2, file58, 0, 0, 0);
+      (0, import_internal61.add_location)(h2, file59, 0, 0, 0);
       (0, import_internal61.set_style)(div, "display", "inline-block");
       (0, import_internal61.set_style)(div, "width", "200px");
-      (0, import_internal61.add_location)(div, file58, 2, 0, 15);
+      (0, import_internal61.add_location)(div, file59, 2, 0, 15);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -48011,7 +49094,7 @@ function create_fragment60(ctx) {
   };
   (0, import_internal61.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment60.name,
+    id: create_fragment61.name,
     type: "component",
     source: "",
     ctx
@@ -48021,7 +49104,7 @@ function create_fragment60(ctx) {
 function onSelect2(e) {
   console.log(e.detail);
 }
-function instance60($$self2, $$props2, $$invalidate2) {
+function instance61($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal61.validate_slots)("Tree", slots2, []);
   const apiProps = [
@@ -48139,7 +49222,7 @@ function onSelect (e) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_110.warn(`<Tree> was created with unknown prop '${key}'`);
+      console_111.warn(`<Tree> was created with unknown prop '${key}'`);
   });
   $$self2.$capture_state = () => ({
     Tree: Tree_default,
@@ -48155,12 +49238,12 @@ function onSelect (e) {
 var Tree_1 = class extends import_internal61.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal61.init)(this, options, instance60, create_fragment60, import_internal61.safe_not_equal, {});
+    (0, import_internal61.init)(this, options, instance61, create_fragment61, import_internal61.safe_not_equal, {});
     (0, import_internal61.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Tree_1",
       options,
-      id: create_fragment60.name
+      id: create_fragment61.name
     });
   }
 };
@@ -48169,13 +49252,13 @@ var Tree_default2 = Tree_1;
 // docs-src/components/icon/Icon.svelte
 var import_internal62 = __toESM(require_internal());
 var { Object: Object_15 } = import_internal62.globals;
-var file59 = "docs-src/components/icon/Icon.svelte";
-function get_each_context11(ctx, list, i) {
+var file60 = "docs-src/components/icon/Icon.svelte";
+function get_each_context12(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[3] = list[i];
   return child_ctx;
 }
-function create_each_block11(ctx) {
+function create_each_block12(ctx) {
   let div2;
   let div0;
   let icon;
@@ -48206,13 +49289,13 @@ function create_each_block11(ctx) {
       t1 = (0, import_internal62.text)(t1_value);
       t2 = (0, import_internal62.space)();
       (0, import_internal62.attr_dev)(div0, "class", "icon-block-icon");
-      (0, import_internal62.add_location)(div0, file59, 4, 3, 116);
+      (0, import_internal62.add_location)(div0, file60, 4, 3, 116);
       (0, import_internal62.attr_dev)(div1, "class", "icon-block-name");
-      (0, import_internal62.add_location)(div1, file59, 5, 3, 176);
+      (0, import_internal62.add_location)(div1, file60, 5, 3, 176);
       (0, import_internal62.attr_dev)(div2, "class", "icon-block");
       (0, import_internal62.attr_dev)(div2, "title", div2_title_value = /*icon*/
       ctx[3]);
-      (0, import_internal62.add_location)(div2, file59, 3, 2, 73);
+      (0, import_internal62.add_location)(div2, file60, 3, 2, 73);
     },
     m: function mount(target, anchor) {
       (0, import_internal62.insert_dev)(target, div2, anchor);
@@ -48243,7 +49326,7 @@ function create_each_block11(ctx) {
   };
   (0, import_internal62.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_each_block11.name,
+    id: create_each_block12.name,
     type: "each",
     source: "(3:1) {#each Object.keys(icons) as icon}",
     ctx
@@ -48273,7 +49356,7 @@ function create_default_slot15(ctx) {
   });
   return block;
 }
-function create_fragment61(ctx) {
+function create_fragment62(ctx) {
   let h20;
   let t1;
   let div;
@@ -48292,7 +49375,7 @@ function create_fragment61(ctx) {
   (0, import_internal62.validate_each_argument)(each_value);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block11(get_each_context11(ctx, each_value, i));
+    each_blocks[i] = create_each_block12(get_each_context12(ctx, each_value, i));
   }
   const out = (i) => (0, import_internal62.transition_out)(each_blocks[i], 1, 1, () => {
     each_blocks[i] = null;
@@ -48350,10 +49433,10 @@ function create_fragment61(ctx) {
       (0, import_internal62.create_component)(api0.$$.fragment);
       t7 = (0, import_internal62.space)();
       (0, import_internal62.create_component)(api1.$$.fragment);
-      (0, import_internal62.add_location)(h20, file59, 0, 0, 0);
+      (0, import_internal62.add_location)(h20, file60, 0, 0, 0);
       (0, import_internal62.attr_dev)(div, "class", "icons");
-      (0, import_internal62.add_location)(div, file59, 1, 0, 15);
-      (0, import_internal62.add_location)(h21, file59, 10, 0, 244);
+      (0, import_internal62.add_location)(div, file60, 1, 0, 15);
+      (0, import_internal62.add_location)(h21, file60, 10, 0, 244);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -48386,12 +49469,12 @@ function create_fragment61(ctx) {
         (0, import_internal62.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context11(ctx2, each_value, i);
+          const child_ctx = get_each_context12(ctx2, each_value, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
             (0, import_internal62.transition_in)(each_blocks[i], 1);
           } else {
-            each_blocks[i] = create_each_block11(child_ctx);
+            each_blocks[i] = create_each_block12(child_ctx);
             each_blocks[i].c();
             (0, import_internal62.transition_in)(each_blocks[i], 1);
             each_blocks[i].m(div, null);
@@ -48461,14 +49544,14 @@ function create_fragment61(ctx) {
   };
   (0, import_internal62.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment61.name,
+    id: create_fragment62.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance61($$self2, $$props2, $$invalidate2) {
+function instance62($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal62.validate_slots)("Icon", slots2, []);
   addIcon("customIcon", "<[CUSTOM ICON]>");
@@ -48522,12 +49605,12 @@ function instance61($$self2, $$props2, $$invalidate2) {
 var Icon_1 = class extends import_internal62.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal62.init)(this, options, instance61, create_fragment61, import_internal62.safe_not_equal, {});
+    (0, import_internal62.init)(this, options, instance62, create_fragment62, import_internal62.safe_not_equal, {});
     (0, import_internal62.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Icon_1",
       options,
-      id: create_fragment61.name
+      id: create_fragment62.name
     });
   }
 };
@@ -48535,8 +49618,8 @@ var Icon_default2 = Icon_1;
 
 // docs-src/components/notification-center/NotificationCenter.svelte
 var import_internal63 = __toESM(require_internal());
-var { console: console_111 } = import_internal63.globals;
-var file60 = "docs-src/components/notification-center/NotificationCenter.svelte";
+var { console: console_112 } = import_internal63.globals;
+var file61 = "docs-src/components/notification-center/NotificationCenter.svelte";
 function create_default_slot_76(ctx) {
   let t;
   const block = {
@@ -48721,7 +49804,7 @@ function create_default_slot16(ctx) {
   });
   return block;
 }
-function create_fragment62(ctx) {
+function create_fragment63(ctx) {
   let h2;
   let t1;
   let p0;
@@ -49053,35 +50136,35 @@ function create_fragment62(ctx) {
       (0, import_internal63.create_component)(api1.$$.fragment);
       t49 = (0, import_internal63.space)();
       (0, import_internal63.create_component)(api2.$$.fragment);
-      (0, import_internal63.add_location)(h2, file60, 0, 0, 0);
-      (0, import_internal63.add_location)(b0, file60, 2, 62, 92);
-      (0, import_internal63.add_location)(b1, file60, 2, 114, 144);
-      (0, import_internal63.add_location)(p0, file60, 2, 0, 30);
-      (0, import_internal63.add_location)(br0, file60, 4, 99, 275);
-      (0, import_internal63.add_location)(em, file60, 5, 31, 311);
-      (0, import_internal63.add_location)(b2, file60, 5, 86, 366);
-      (0, import_internal63.add_location)(b3, file60, 5, 135, 415);
-      (0, import_internal63.add_location)(p1, file60, 4, 0, 176);
-      (0, import_internal63.add_location)(b4, file60, 7, 141, 587);
-      (0, import_internal63.add_location)(br1, file60, 7, 167, 613);
-      (0, import_internal63.add_location)(p2, file60, 7, 0, 446);
-      (0, import_internal63.add_location)(b5, file60, 10, 19, 802);
-      (0, import_internal63.add_location)(p3, file60, 10, 0, 783);
-      (0, import_internal63.add_location)(hr, file60, 12, 0, 907);
-      (0, import_internal63.add_location)(h30, file60, 14, 0, 913);
-      (0, import_internal63.add_location)(label0, file60, 18, 1, 1025);
+      (0, import_internal63.add_location)(h2, file61, 0, 0, 0);
+      (0, import_internal63.add_location)(b0, file61, 2, 62, 92);
+      (0, import_internal63.add_location)(b1, file61, 2, 114, 144);
+      (0, import_internal63.add_location)(p0, file61, 2, 0, 30);
+      (0, import_internal63.add_location)(br0, file61, 4, 99, 275);
+      (0, import_internal63.add_location)(em, file61, 5, 31, 311);
+      (0, import_internal63.add_location)(b2, file61, 5, 86, 366);
+      (0, import_internal63.add_location)(b3, file61, 5, 135, 415);
+      (0, import_internal63.add_location)(p1, file61, 4, 0, 176);
+      (0, import_internal63.add_location)(b4, file61, 7, 141, 587);
+      (0, import_internal63.add_location)(br1, file61, 7, 167, 613);
+      (0, import_internal63.add_location)(p2, file61, 7, 0, 446);
+      (0, import_internal63.add_location)(b5, file61, 10, 19, 802);
+      (0, import_internal63.add_location)(p3, file61, 10, 0, 783);
+      (0, import_internal63.add_location)(hr, file61, 12, 0, 907);
+      (0, import_internal63.add_location)(h30, file61, 14, 0, 913);
+      (0, import_internal63.add_location)(label0, file61, 18, 1, 1025);
       (0, import_internal63.attr_dev)(div0, "class", "prop-row");
-      (0, import_internal63.add_location)(div0, file60, 16, 0, 943);
+      (0, import_internal63.add_location)(div0, file61, 16, 0, 943);
       (0, import_internal63.attr_dev)(label1, "for", "button-toggle");
-      (0, import_internal63.add_location)(label1, file60, 22, 1, 1151);
+      (0, import_internal63.add_location)(label1, file61, 22, 1, 1151);
       (0, import_internal63.attr_dev)(div1, "class", "prop-row");
-      (0, import_internal63.add_location)(div1, file60, 21, 0, 1127);
-      (0, import_internal63.add_location)(h31, file60, 28, 0, 1267);
+      (0, import_internal63.add_location)(div1, file61, 21, 0, 1127);
+      (0, import_internal63.add_location)(h31, file61, 28, 0, 1267);
       (0, import_internal63.attr_dev)(div2, "class", "docs-buttons-row");
-      (0, import_internal63.add_location)(div2, file60, 29, 0, 1290);
-      (0, import_internal63.add_location)(h32, file60, 36, 0, 1714);
+      (0, import_internal63.add_location)(div2, file61, 29, 0, 1290);
+      (0, import_internal63.add_location)(h32, file61, 36, 0, 1714);
       (0, import_internal63.attr_dev)(div3, "class", "docs-buttons-row");
-      (0, import_internal63.add_location)(div3, file60, 37, 0, 1737);
+      (0, import_internal63.add_location)(div3, file61, 37, 0, 1737);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -49342,14 +50425,14 @@ function create_fragment62(ctx) {
   };
   (0, import_internal63.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment62.name,
+    id: create_fragment63.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance62($$self2, $$props2, $$invalidate2) {
+function instance63($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal63.validate_slots)("NotificationCenter", slots2, []);
   let hideButton = false;
@@ -49436,7 +50519,7 @@ function cb (id) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_111.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
+      console_112.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
   });
   function toggle_value_binding(value2) {
     hideButton = value2;
@@ -49493,12 +50576,12 @@ function cb (id) {
 var NotificationCenter_1 = class extends import_internal63.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal63.init)(this, options, instance62, create_fragment62, import_internal63.safe_not_equal, {});
+    (0, import_internal63.init)(this, options, instance63, create_fragment63, import_internal63.safe_not_equal, {});
     (0, import_internal63.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "NotificationCenter_1",
       options,
-      id: create_fragment62.name
+      id: create_fragment63.name
     });
   }
 };
@@ -49506,7 +50589,7 @@ var NotificationCenter_default2 = NotificationCenter_1;
 
 // docs-src/components/text-fit/TextFit.svelte
 var import_internal64 = __toESM(require_internal());
-var file61 = "docs-src/components/text-fit/TextFit.svelte";
+var file62 = "docs-src/components/text-fit/TextFit.svelte";
 function create_default_slot_219(ctx) {
   let t;
   const block = {
@@ -49612,7 +50695,7 @@ function create_default_slot17(ctx) {
   });
   return block;
 }
-function create_fragment63(ctx) {
+function create_fragment64(ctx) {
   let h20;
   let t1;
   let p0;
@@ -49711,23 +50794,23 @@ function create_fragment63(ctx) {
       (0, import_internal64.create_component)(codeexample.$$.fragment);
       t15 = (0, import_internal64.space)();
       (0, import_internal64.create_component)(api.$$.fragment);
-      (0, import_internal64.add_location)(h20, file61, 0, 0, 0);
-      (0, import_internal64.add_location)(p0, file61, 1, 0, 18);
-      (0, import_internal64.add_location)(br, file61, 2, 76, 194);
-      (0, import_internal64.add_location)(em, file61, 3, 26, 225);
-      (0, import_internal64.add_location)(p1, file61, 2, 0, 118);
+      (0, import_internal64.add_location)(h20, file62, 0, 0, 0);
+      (0, import_internal64.add_location)(p0, file62, 1, 0, 18);
+      (0, import_internal64.add_location)(br, file62, 2, 76, 194);
+      (0, import_internal64.add_location)(em, file62, 3, 26, 225);
+      (0, import_internal64.add_location)(p1, file62, 2, 0, 118);
       (0, import_internal64.attr_dev)(div0, "class", "text-fit-div");
       (0, import_internal64.set_style)(div0, "width", "100px");
-      (0, import_internal64.add_location)(div0, file61, 6, 0, 339);
+      (0, import_internal64.add_location)(div0, file62, 6, 0, 339);
       (0, import_internal64.attr_dev)(div1, "class", "text-fit-div");
       (0, import_internal64.set_style)(div1, "width", "200px");
-      (0, import_internal64.add_location)(div1, file61, 7, 0, 425);
+      (0, import_internal64.add_location)(div1, file62, 7, 0, 425);
       (0, import_internal64.attr_dev)(div2, "class", "text-fit-div");
       (0, import_internal64.set_style)(div2, "width", "300px");
-      (0, import_internal64.add_location)(div2, file61, 8, 0, 511);
-      (0, import_internal64.add_location)(h21, file61, 10, 0, 598);
+      (0, import_internal64.add_location)(div2, file62, 8, 0, 511);
+      (0, import_internal64.add_location)(h21, file62, 10, 0, 598);
       (0, import_internal64.attr_dev)(input, "type", "text");
-      (0, import_internal64.add_location)(input, file61, 11, 0, 619);
+      (0, import_internal64.add_location)(input, file62, 11, 0, 619);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -49869,14 +50952,14 @@ function create_fragment63(ctx) {
   };
   (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment63.name,
+    id: create_fragment64.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance63($$self2, $$props2, $$invalidate2) {
+function instance64($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal64.validate_slots)("TextFit", slots2, []);
   const apiProps = [
@@ -49925,12 +51008,12 @@ function instance63($$self2, $$props2, $$invalidate2) {
 var TextFit_1 = class extends import_internal64.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal64.init)(this, options, instance63, create_fragment63, import_internal64.safe_not_equal, {});
+    (0, import_internal64.init)(this, options, instance64, create_fragment64, import_internal64.safe_not_equal, {});
     (0, import_internal64.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "TextFit_1",
       options,
-      id: create_fragment63.name
+      id: create_fragment64.name
     });
   }
 };
@@ -49938,8 +51021,8 @@ var TextFit_default2 = TextFit_1;
 
 // docs-src/components/toaster/Toaster.svelte
 var import_internal65 = __toESM(require_internal());
-var { console: console_112 } = import_internal65.globals;
-var file62 = "docs-src/components/toaster/Toaster.svelte";
+var { console: console_113 } = import_internal65.globals;
+var file63 = "docs-src/components/toaster/Toaster.svelte";
 function create_default_slot_77(ctx) {
   let t;
   const block = {
@@ -50124,7 +51207,7 @@ function create_default_slot18(ctx) {
   });
   return block;
 }
-function create_fragment64(ctx) {
+function create_fragment65(ctx) {
   let h2;
   let t0;
   let a;
@@ -50358,20 +51441,20 @@ function create_fragment64(ctx) {
       t21 = (0, import_internal65.space)();
       div3 = (0, import_internal65.element)("div");
       (0, import_internal65.attr_dev)(a, "href", "#NotificationCenter");
-      (0, import_internal65.add_location)(a, file62, 0, 36, 36);
-      (0, import_internal65.add_location)(h2, file62, 0, 0, 0);
-      (0, import_internal65.add_location)(h30, file62, 4, 0, 135);
+      (0, import_internal65.add_location)(a, file63, 0, 36, 36);
+      (0, import_internal65.add_location)(h2, file63, 0, 0, 0);
+      (0, import_internal65.add_location)(h30, file63, 4, 0, 135);
       (0, import_internal65.attr_dev)(div0, "class", "docs-buttons-row");
-      (0, import_internal65.add_location)(div0, file62, 5, 0, 151);
-      (0, import_internal65.add_location)(h31, file62, 13, 0, 548);
+      (0, import_internal65.add_location)(div0, file63, 5, 0, 151);
+      (0, import_internal65.add_location)(h31, file63, 13, 0, 548);
       (0, import_internal65.attr_dev)(div1, "class", "docs-buttons-row");
-      (0, import_internal65.add_location)(div1, file62, 14, 0, 571);
+      (0, import_internal65.add_location)(div1, file63, 14, 0, 571);
       (0, import_internal65.attr_dev)(div2, "class", "toaster-testing-background-light");
-      (0, import_internal65.add_location)(div2, file62, 30, 1, 1507);
+      (0, import_internal65.add_location)(div2, file63, 30, 1, 1507);
       (0, import_internal65.attr_dev)(div3, "class", "toaster-testing-background-dark");
-      (0, import_internal65.add_location)(div3, file62, 31, 1, 1561);
+      (0, import_internal65.add_location)(div3, file63, 31, 1, 1561);
       (0, import_internal65.attr_dev)(div4, "class", "toaster-testing-background");
-      (0, import_internal65.add_location)(div4, file62, 29, 0, 1465);
+      (0, import_internal65.add_location)(div4, file63, 29, 0, 1465);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -50554,14 +51637,14 @@ function create_fragment64(ctx) {
   };
   (0, import_internal65.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment64.name,
+    id: create_fragment65.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance64($$self2, $$props2, $$invalidate2) {
+function instance65($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal65.validate_slots)("Toaster", slots2, []);
   const apiProps = [
@@ -50639,7 +51722,7 @@ function cb (id) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_112.warn(`<Toaster> was created with unknown prop '${key}'`);
+      console_113.warn(`<Toaster> was created with unknown prop '${key}'`);
   });
   const click_handler = () => showToast("Hello");
   const click_handler_1 = () => showToast("Hello", "success");
@@ -50681,12 +51764,12 @@ function cb (id) {
 var Toaster_1 = class extends import_internal65.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal65.init)(this, options, instance64, create_fragment64, import_internal65.safe_not_equal, {});
+    (0, import_internal65.init)(this, options, instance65, create_fragment65, import_internal65.safe_not_equal, {});
     (0, import_internal65.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Toaster_1",
       options,
-      id: create_fragment64.name
+      id: create_fragment65.name
     });
   }
 };
@@ -50694,7 +51777,7 @@ var Toaster_default2 = Toaster_1;
 
 // docs-src/components/tooltip/Tooltip.svelte
 var import_internal66 = __toESM(require_internal());
-var file63 = "docs-src/components/tooltip/Tooltip.svelte";
+var file64 = "docs-src/components/tooltip/Tooltip.svelte";
 function create_default_slot_124(ctx) {
   let t;
   const block = {
@@ -50738,11 +51821,11 @@ function create_default_slot_1110(ctx) {
       t4 = (0, import_internal66.text)(" tooltip content with a ");
       a = (0, import_internal66.element)("a");
       a.textContent = "link";
-      (0, import_internal66.add_location)(h1, file63, 10, 1, 390);
-      (0, import_internal66.add_location)(b, file63, 11, 9, 419);
+      (0, import_internal66.add_location)(h1, file64, 10, 1, 390);
+      (0, import_internal66.add_location)(b, file64, 11, 9, 419);
       (0, import_internal66.attr_dev)(a, "href", "#Tooltip");
-      (0, import_internal66.add_location)(a, file63, 11, 44, 454);
-      (0, import_internal66.add_location)(p, file63, 11, 1, 411);
+      (0, import_internal66.add_location)(a, file64, 11, 44, 454);
+      (0, import_internal66.add_location)(p, file64, 11, 1, 411);
     },
     m: function mount(target, anchor) {
       (0, import_internal66.insert_dev)(target, h1, anchor);
@@ -51025,7 +52108,7 @@ function create_default_slot19(ctx) {
   });
   return block;
 }
-function create_fragment65(ctx) {
+function create_fragment66(ctx) {
   let h2;
   let t1;
   let h30;
@@ -51311,58 +52394,58 @@ function create_fragment65(ctx) {
       (0, import_internal66.create_component)(codeexample.$$.fragment);
       t51 = (0, import_internal66.space)();
       (0, import_internal66.create_component)(api.$$.fragment);
-      (0, import_internal66.add_location)(h2, file63, 0, 0, 0);
-      (0, import_internal66.add_location)(h30, file63, 2, 0, 18);
+      (0, import_internal66.add_location)(h2, file64, 0, 0, 0);
+      (0, import_internal66.add_location)(h30, file64, 2, 0, 18);
       (0, import_internal66.attr_dev)(div0, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div0, "tabindex", "0");
       (0, import_internal66.attr_dev)(div0, "id", "box1");
-      (0, import_internal66.add_location)(div0, file63, 4, 0, 90);
+      (0, import_internal66.add_location)(div0, file64, 4, 0, 90);
       (0, import_internal66.attr_dev)(div1, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div1, "tabindex", "0");
       (0, import_internal66.attr_dev)(div1, "id", "box2");
-      (0, import_internal66.add_location)(div1, file63, 8, 0, 271);
-      (0, import_internal66.add_location)(h31, file63, 15, 0, 499);
+      (0, import_internal66.add_location)(div1, file64, 8, 0, 271);
+      (0, import_internal66.add_location)(h31, file64, 15, 0, 499);
       (0, import_internal66.attr_dev)(div2, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div2, "tabindex", "0");
       (0, import_internal66.attr_dev)(div2, "id", "box-info");
-      (0, import_internal66.add_location)(div2, file63, 17, 0, 595);
+      (0, import_internal66.add_location)(div2, file64, 17, 0, 595);
       (0, import_internal66.attr_dev)(div3, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div3, "tabindex", "0");
       (0, import_internal66.attr_dev)(div3, "id", "box-success");
-      (0, import_internal66.add_location)(div3, file63, 21, 0, 775);
+      (0, import_internal66.add_location)(div3, file64, 21, 0, 775);
       (0, import_internal66.attr_dev)(div4, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div4, "tabindex", "0");
       (0, import_internal66.attr_dev)(div4, "id", "box-warning");
-      (0, import_internal66.add_location)(div4, file63, 25, 0, 967);
+      (0, import_internal66.add_location)(div4, file64, 25, 0, 967);
       (0, import_internal66.attr_dev)(div5, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div5, "tabindex", "0");
       (0, import_internal66.attr_dev)(div5, "id", "box-error");
-      (0, import_internal66.add_location)(div5, file63, 29, 0, 1159);
-      (0, import_internal66.add_location)(h32, file63, 34, 0, 1291);
+      (0, import_internal66.add_location)(div5, file64, 29, 0, 1159);
+      (0, import_internal66.add_location)(h32, file64, 34, 0, 1291);
       (0, import_internal66.attr_dev)(div6, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div6, "tabindex", "0");
       (0, import_internal66.attr_dev)(div6, "id", "box-below");
-      (0, import_internal66.add_location)(div6, file63, 36, 0, 1374);
-      (0, import_internal66.add_location)(h33, file63, 39, 0, 1527);
+      (0, import_internal66.add_location)(div6, file64, 36, 0, 1374);
+      (0, import_internal66.add_location)(h33, file64, 39, 0, 1527);
       (0, import_internal66.attr_dev)(div7, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div7, "tabindex", "0");
       (0, import_internal66.attr_dev)(div7, "id", "box-offset");
-      (0, import_internal66.add_location)(div7, file63, 41, 0, 1606);
+      (0, import_internal66.add_location)(div7, file64, 41, 0, 1606);
       (0, import_internal66.attr_dev)(div8, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div8, "tabindex", "0");
       (0, import_internal66.attr_dev)(div8, "id", "box-offset2");
-      (0, import_internal66.add_location)(div8, file63, 45, 0, 1809);
-      (0, import_internal66.add_location)(h34, file63, 49, 0, 1957);
+      (0, import_internal66.add_location)(div8, file64, 45, 0, 1809);
+      (0, import_internal66.add_location)(h34, file64, 49, 0, 1957);
       (0, import_internal66.attr_dev)(div9, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div9, "tabindex", "0");
       (0, import_internal66.attr_dev)(div9, "id", "box5");
-      (0, import_internal66.add_location)(div9, file63, 51, 0, 2033);
-      (0, import_internal66.add_location)(h35, file63, 55, 0, 2174);
+      (0, import_internal66.add_location)(div9, file64, 51, 0, 2033);
+      (0, import_internal66.add_location)(h35, file64, 55, 0, 2174);
       (0, import_internal66.attr_dev)(div10, "class", "tooltip-box");
       (0, import_internal66.attr_dev)(div10, "tabindex", "0");
       (0, import_internal66.attr_dev)(div10, "id", "box3");
-      (0, import_internal66.add_location)(div10, file63, 57, 0, 2248);
-      (0, import_internal66.add_location)(h36, file63, 61, 0, 2388);
+      (0, import_internal66.add_location)(div10, file64, 57, 0, 2248);
+      (0, import_internal66.add_location)(h36, file64, 61, 0, 2388);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -51679,14 +52762,14 @@ function create_fragment65(ctx) {
   };
   (0, import_internal66.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment65.name,
+    id: create_fragment66.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance65($$self2, $$props2, $$invalidate2) {
+function instance66($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal66.validate_slots)("Tooltip", slots2, []);
   const apiProps = [
@@ -51771,12 +52854,12 @@ function instance65($$self2, $$props2, $$invalidate2) {
 var Tooltip_1 = class extends import_internal66.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal66.init)(this, options, instance65, create_fragment65, import_internal66.safe_not_equal, {});
+    (0, import_internal66.init)(this, options, instance66, create_fragment66, import_internal66.safe_not_equal, {});
     (0, import_internal66.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Tooltip_1",
       options,
-      id: create_fragment65.name
+      id: create_fragment66.name
     });
   }
 };
@@ -51787,8 +52870,8 @@ var import_internal68 = __toESM(require_internal());
 
 // docs-src/components/color-palette/ColorPaletteBox.svelte
 var import_internal67 = __toESM(require_internal());
-var file64 = "docs-src/components/color-palette/ColorPaletteBox.svelte";
-function create_fragment66(ctx) {
+var file65 = "docs-src/components/color-palette/ColorPaletteBox.svelte";
+function create_fragment67(ctx) {
   let div;
   let t0;
   let t1;
@@ -51809,13 +52892,13 @@ function create_fragment66(ctx) {
         /*text*/
         ctx[1]
       );
-      (0, import_internal67.add_location)(br, file64, 1, 22, 114);
+      (0, import_internal67.add_location)(br, file65, 1, 22, 114);
       (0, import_internal67.attr_dev)(div, "class", "palette-box");
       (0, import_internal67.set_style)(div, "background-color", "var(--ui-" + /*bg*/
       ctx[0] + ")");
       (0, import_internal67.set_style)(div, "color", "var(--ui-" + /*text*/
       ctx[1] + ")");
-      (0, import_internal67.add_location)(div, file64, 0, 0, 0);
+      (0, import_internal67.add_location)(div, file65, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -51863,14 +52946,14 @@ function create_fragment66(ctx) {
   };
   (0, import_internal67.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment66.name,
+    id: create_fragment67.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance66($$self2, $$props2, $$invalidate2) {
+function instance67($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal67.validate_slots)("ColorPaletteBox", slots2, []);
   let { bg = "color-background" } = $$props2;
@@ -51901,12 +52984,12 @@ function instance66($$self2, $$props2, $$invalidate2) {
 var ColorPaletteBox = class extends import_internal67.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal67.init)(this, options, instance66, create_fragment66, import_internal67.safe_not_equal, { bg: 0, text: 1 });
+    (0, import_internal67.init)(this, options, instance67, create_fragment67, import_internal67.safe_not_equal, { bg: 0, text: 1 });
     (0, import_internal67.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ColorPaletteBox",
       options,
-      id: create_fragment66.name
+      id: create_fragment67.name
     });
   }
   get bg() {
@@ -51925,8 +53008,8 @@ var ColorPaletteBox = class extends import_internal67.SvelteComponentDev {
 var ColorPaletteBox_default = ColorPaletteBox;
 
 // docs-src/components/color-palette/ColorPalette.svelte
-var file65 = "docs-src/components/color-palette/ColorPalette.svelte";
-function create_fragment67(ctx) {
+var file66 = "docs-src/components/color-palette/ColorPalette.svelte";
+function create_fragment68(ctx) {
   let h2;
   let t1;
   let h30;
@@ -52343,35 +53426,35 @@ function create_fragment67(ctx) {
       (0, import_internal68.create_component)(palettebox40.$$.fragment);
       t62 = (0, import_internal68.space)();
       (0, import_internal68.create_component)(palettebox41.$$.fragment);
-      (0, import_internal68.add_location)(h2, file65, 0, 0, 0);
-      (0, import_internal68.add_location)(h30, file65, 2, 0, 24);
-      (0, import_internal68.add_location)(h40, file65, 4, 0, 49);
+      (0, import_internal68.add_location)(h2, file66, 0, 0, 0);
+      (0, import_internal68.add_location)(h30, file66, 2, 0, 24);
+      (0, import_internal68.add_location)(h40, file66, 4, 0, 49);
       (0, import_internal68.attr_dev)(div0, "class", "group");
-      (0, import_internal68.add_location)(div0, file65, 5, 0, 65);
-      (0, import_internal68.add_location)(h41, file65, 14, 0, 372);
+      (0, import_internal68.add_location)(div0, file66, 5, 0, 65);
+      (0, import_internal68.add_location)(h41, file66, 14, 0, 372);
       (0, import_internal68.attr_dev)(div1, "class", "group");
-      (0, import_internal68.add_location)(div1, file65, 15, 0, 391);
-      (0, import_internal68.add_location)(h42, file65, 20, 0, 498);
+      (0, import_internal68.add_location)(div1, file66, 15, 0, 391);
+      (0, import_internal68.add_location)(h42, file66, 20, 0, 498);
       (0, import_internal68.attr_dev)(div2, "class", "group");
-      (0, import_internal68.add_location)(div2, file65, 21, 0, 512);
-      (0, import_internal68.add_location)(h43, file65, 28, 0, 687);
+      (0, import_internal68.add_location)(div2, file66, 21, 0, 512);
+      (0, import_internal68.add_location)(h43, file66, 28, 0, 687);
       (0, import_internal68.attr_dev)(div3, "class", "group");
-      (0, import_internal68.add_location)(div3, file65, 29, 0, 704);
-      (0, import_internal68.add_location)(h44, file65, 36, 0, 891);
+      (0, import_internal68.add_location)(div3, file66, 29, 0, 704);
+      (0, import_internal68.add_location)(h44, file66, 36, 0, 891);
       (0, import_internal68.attr_dev)(div4, "class", "group");
-      (0, import_internal68.add_location)(div4, file65, 37, 0, 908);
-      (0, import_internal68.add_location)(h45, file65, 44, 0, 1095);
+      (0, import_internal68.add_location)(div4, file66, 37, 0, 908);
+      (0, import_internal68.add_location)(h45, file66, 44, 0, 1095);
       (0, import_internal68.attr_dev)(div5, "class", "group");
-      (0, import_internal68.add_location)(div5, file65, 45, 0, 1111);
-      (0, import_internal68.add_location)(h31, file65, 52, 0, 1294);
+      (0, import_internal68.add_location)(div5, file66, 45, 0, 1111);
+      (0, import_internal68.add_location)(h31, file66, 52, 0, 1294);
       (0, import_internal68.attr_dev)(div6, "class", "group");
-      (0, import_internal68.add_location)(div6, file65, 53, 0, 1320);
-      (0, import_internal68.add_location)(h32, file65, 62, 0, 1605);
+      (0, import_internal68.add_location)(div6, file66, 53, 0, 1320);
+      (0, import_internal68.add_location)(h32, file66, 62, 0, 1605);
       (0, import_internal68.attr_dev)(div7, "class", "group");
-      (0, import_internal68.add_location)(div7, file65, 63, 0, 1632);
-      (0, import_internal68.add_location)(h33, file65, 72, 0, 1923);
+      (0, import_internal68.add_location)(div7, file66, 63, 0, 1632);
+      (0, import_internal68.add_location)(h33, file66, 72, 0, 1923);
       (0, import_internal68.attr_dev)(div8, "class", "group");
-      (0, import_internal68.add_location)(div8, file65, 73, 0, 1944);
+      (0, import_internal68.add_location)(div8, file66, 73, 0, 1944);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -52711,14 +53794,14 @@ function create_fragment67(ctx) {
   };
   (0, import_internal68.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment67.name,
+    id: create_fragment68.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance67($$self2, $$props2, $$invalidate2) {
+function instance68($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal68.validate_slots)("ColorPalette", slots2, []);
   const writable_props = [];
@@ -52732,12 +53815,12 @@ function instance67($$self2, $$props2, $$invalidate2) {
 var ColorPalette = class extends import_internal68.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal68.init)(this, options, instance67, create_fragment67, import_internal68.safe_not_equal, {});
+    (0, import_internal68.init)(this, options, instance68, create_fragment68, import_internal68.safe_not_equal, {});
     (0, import_internal68.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "ColorPalette",
       options,
-      id: create_fragment67.name
+      id: create_fragment68.name
     });
   }
 };
@@ -52745,8 +53828,8 @@ var ColorPalette_default = ColorPalette;
 
 // docs-src/nav/Nav.svelte
 var { window: window_1 } = import_internal69.globals;
-var file66 = "docs-src/nav/Nav.svelte";
-function create_fragment68(ctx) {
+var file67 = "docs-src/nav/Nav.svelte";
+function create_fragment69(ctx) {
   let uibutton;
   let t0;
   let aside;
@@ -53233,23 +54316,23 @@ function create_fragment68(ctx) {
       t41 = (0, import_internal69.space)();
       (0, import_internal69.create_component)(navitem30.$$.fragment);
       (0, import_internal69.attr_dev)(label2, "for", "dark-mode-switch");
-      (0, import_internal69.add_location)(label2, file66, 8, 3, 220);
+      (0, import_internal69.add_location)(label2, file67, 8, 3, 220);
       (0, import_internal69.attr_dev)(div0, "class", "nav-toolbar-row");
-      (0, import_internal69.add_location)(div0, file66, 7, 2, 187);
+      (0, import_internal69.add_location)(div0, file67, 7, 2, 187);
       (0, import_internal69.attr_dev)(div1, "class", "nav-toolbar");
-      (0, import_internal69.add_location)(div1, file66, 6, 1, 159);
-      (0, import_internal69.add_location)(h30, file66, 16, 2, 400);
-      (0, import_internal69.add_location)(h31, file66, 20, 2, 500);
-      (0, import_internal69.add_location)(h32, file66, 38, 2, 1135);
-      (0, import_internal69.add_location)(h33, file66, 48, 2, 1454);
-      (0, import_internal69.add_location)(menu, file66, 15, 1, 391);
+      (0, import_internal69.add_location)(div1, file67, 6, 1, 159);
+      (0, import_internal69.add_location)(h30, file67, 16, 2, 400);
+      (0, import_internal69.add_location)(h31, file67, 20, 2, 500);
+      (0, import_internal69.add_location)(h32, file67, 38, 2, 1135);
+      (0, import_internal69.add_location)(h33, file67, 48, 2, 1454);
+      (0, import_internal69.add_location)(menu, file67, 15, 1, 391);
       (0, import_internal69.toggle_class)(
         aside,
         "mobile-show",
         /*navMobileShow*/
         ctx[1]
       );
-      (0, import_internal69.add_location)(aside, file66, 5, 0, 114);
+      (0, import_internal69.add_location)(aside, file67, 5, 0, 114);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -53676,7 +54759,7 @@ function create_fragment68(ctx) {
   };
   (0, import_internal69.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment68.name,
+    id: create_fragment69.name,
     type: "component",
     source: "",
     ctx
@@ -53686,7 +54769,7 @@ function create_fragment68(ctx) {
 function switchColorMode(e) {
   document.documentElement.className = e.detail ? "theme-dark" : "theme-light";
 }
-function instance68($$self2, $$props2, $$invalidate2) {
+function instance69($$self2, $$props2, $$invalidate2) {
   let $PREFERS_DARK;
   (0, import_internal69.validate_store)(PREFERS_DARK, "PREFERS_DARK");
   (0, import_internal69.component_subscribe)($$self2, PREFERS_DARK, ($$value) => $$invalidate2(2, $PREFERS_DARK = $$value));
@@ -53749,12 +54832,12 @@ function instance68($$self2, $$props2, $$invalidate2) {
 var Nav = class extends import_internal69.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal69.init)(this, options, instance68, create_fragment68, import_internal69.safe_not_equal, { component: 5 });
+    (0, import_internal69.init)(this, options, instance69, create_fragment69, import_internal69.safe_not_equal, { component: 5 });
     (0, import_internal69.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "Nav",
       options,
-      id: create_fragment68.name
+      id: create_fragment69.name
     });
   }
   get component() {
@@ -53767,8 +54850,8 @@ var Nav = class extends import_internal69.SvelteComponentDev {
 var Nav_default = Nav;
 
 // docs-src/app/App.svelte
-var file67 = "docs-src/app/App.svelte";
-function create_fragment69(ctx) {
+var file68 = "docs-src/app/App.svelte";
+function create_fragment70(ctx) {
   let nav;
   let updating_component;
   let t;
@@ -53805,7 +54888,7 @@ function create_fragment69(ctx) {
       main = (0, import_internal70.element)("main");
       if (switch_instance)
         (0, import_internal70.create_component)(switch_instance.$$.fragment);
-      (0, import_internal70.add_location)(main, file67, 1, 0, 37);
+      (0, import_internal70.add_location)(main, file68, 1, 0, 37);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -53876,14 +54959,14 @@ function create_fragment69(ctx) {
   };
   (0, import_internal70.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_fragment69.name,
+    id: create_fragment70.name,
     type: "component",
     source: "",
     ctx
   });
   return block;
 }
-function instance69($$self2, $$props2, $$invalidate2) {
+function instance70($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal70.validate_slots)("App", slots2, []);
   let component = void 0;
@@ -53909,12 +54992,12 @@ function instance69($$self2, $$props2, $$invalidate2) {
 var App = class extends import_internal70.SvelteComponentDev {
   constructor(options) {
     super(options);
-    (0, import_internal70.init)(this, options, instance69, create_fragment69, import_internal70.safe_not_equal, {});
+    (0, import_internal70.init)(this, options, instance70, create_fragment70, import_internal70.safe_not_equal, {});
     (0, import_internal70.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
       tagName: "App",
       options,
-      id: create_fragment69.name
+      id: create_fragment70.name
     });
   }
 };

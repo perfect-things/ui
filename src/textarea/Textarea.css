@@ -46,7 +46,7 @@
 
 .textarea-input:invalid {
 	border-color: var(--ui-color-danger);
-	box-shadow: var(--ui-shadow-invalid);
+	box-shadow: var(--ui-shadow-danger);
 	outline: 0;
 }
 
