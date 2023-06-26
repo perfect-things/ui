@@ -15,9 +15,9 @@
 		</div>
 	{/if}
 
-	<div class="input-text-inner" class:initial>
+	<div class="input-text-inner">
 		{#if error}
-			<div class="input-error" transition:slide="{{ axis: 'y', duration }}">
+			<div class="input-error" transition:slide|local="{{ axis: 'y', duration: $ANIMATION_SPEED }}">
 				<Icon name="error"/>
 				<p id="{errorMessageId}">{error}</p>
 			</div>
@@ -89,7 +89,6 @@ const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 
 
-let initial = true;
 let visible = false;	// show pass as text
 let lib;
 let quality = '';
@@ -102,7 +101,6 @@ let el;
 $:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
 $:type = visible ? 'text' : 'password';
 $:_id = id || props.name || guid();
-$:duration = initial ? 0 : $ANIMATION_SPEED;
 
 $: {
 	const { score, text } = measure(value);
@@ -115,7 +113,6 @@ $: {
 
 onMount(() => {
 	requestAnimationFrame(checkLib);
-	initial = false;
 });
 
 

@@ -13,9 +13,9 @@
 		</div>
 	{/if}
 
-	<div class="input-text-inner" class:initial>
+	<div class="input-text-inner">
 		{#if error}
-			<div class="input-error" transition:slide="{{ axis: 'y', duration }}">
+			<div class="input-error" transition:slide|local="{{ axis: 'y', duration: $ANIMATION_SPEED }}">
 				<Icon name="error"/>
 				<p id="{errorMessageId}">{error}</p>
 			</div>
@@ -39,14 +39,12 @@
 </div>
 
 <script>
-import { onMount } from 'svelte';
 import { slide } from 'svelte/transition';
 import { Icon } from '../icon';
 import { pluck, guid, ANIMATION_SPEED } from '../utils';
 
 $:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
 
-let initial = true;
 let className = '';
 export { className as class };
 export let id = '';
@@ -57,14 +55,7 @@ export let error = '';
 export let info = '';
 
 $:_id = id || name || guid();
-$:duration = initial ? 0 : $ANIMATION_SPEED;
 
 const errorMessageId = guid();
-
-
-onMount(() => {
-	initial = false;
-});
-
 
 </script>

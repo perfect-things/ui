@@ -1,5 +1,5 @@
 import { render } from '@testing-library/svelte';
-import { InputMath } from '../src/input-math';
+import { InputNumber } from '../src/input-number';
 import userEvent from '@testing-library/user-event';
 import { waitForTimeout } from './helpers/utils';
 
@@ -16,8 +16,8 @@ const props = {
 };
 
 
-test('InputMath', async () => {
-	const { container, component, getByTitle } = render(InputMath, props);
+test('InputNumber', async () => {
+	const { container, component, getByTitle } = render(InputNumber, props);
 	const mock = jest.fn();
 	component.$on('change', mock);
 
@@ -63,40 +63,21 @@ test('InputMath', async () => {
 	// test just digits
 	await userEvent.clear(input);
 	await userEvent.type(input, '123456');
-	await userEvent.keyboard('[Enter]');
+	await userEvent.keyboard('[Tab]');
 	expect(input).toHaveValue('123456');
 
 	// test fractions
 	await userEvent.clear(input);
 	await userEvent.type(input, '12.3456');
 	await userEvent.keyboard('[Tab]');
-	expect(input).toHaveValue('12.35');
+	expect(input).toHaveValue('12.3456');
 	expect(mock).toHaveBeenCalled();
-
-
-	// test addition
-	await userEvent.clear(input);
-	await userEvent.type(input, '12+13');
-	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('25');
-
-	// test fractions addition (inc. js bug when adding 0.1 and 0.2)
-	await userEvent.clear(input);
-	await userEvent.type(input, '0.01+0.02');
-	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('0.03');
-
-	// test longer expression
-	await userEvent.clear(input);
-	await userEvent.type(input, '10 * 2 - 10 / 2 + 1');
-	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('16');
 
 
 	// test incorrect input
 	await userEvent.clear(input);
 	await userEvent.type(input, '.0.0');
-	await userEvent.keyboard('[Enter]');
+	await userEvent.keyboard('[Tab]');
 	expect(input).toHaveValue('0');
 
 	await userEvent.clear(input);
@@ -106,11 +87,11 @@ test('InputMath', async () => {
 
 	await userEvent.clear(input);
 	await userEvent.type(input, '1.0000a');
-	await userEvent.keyboard('[Enter]');
+	await userEvent.keyboard('[Tab]');
 	expect(input).toHaveValue('1');
 
 	await userEvent.clear(input);
 	await userEvent.type(input, '1e');
-	await userEvent.keyboard('[Enter]');
+	await userEvent.keyboard('[Tab]');
 	expect(input).toHaveValue('1');
 });

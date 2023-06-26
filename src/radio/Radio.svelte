@@ -49,7 +49,7 @@ let className = '';
 export { className as class };
 export let id = guid();
 export let name = id || guid();
-export let title = '';
+export let title = undefined;
 export let label = '';
 export let disabled = false;
 export let items = [];

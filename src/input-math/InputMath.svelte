@@ -12,9 +12,9 @@
 		</div>
 	{/if}
 
-	<div class="input-text-inner" class:initial>
+	<div class="input-text-inner">
 		{#if error}
-			<div class="input-error" transition:slide="{{ axis: 'y', duration }}">
+			<div class="input-error" transition:slide|local="{{ axis: 'y', duration: $ANIMATION_SPEED }}">
 				<Icon name="error"/>
 				<p id="{errorMessageId}">{error}</p>
 			</div>
@@ -41,7 +41,7 @@
 	</div>
 </div>
 <script>
-import { onMount, createEventDispatcher } from 'svelte';
+import { createEventDispatcher } from 'svelte';
 import { slide } from 'svelte/transition';
 import { Icon } from '../icon';
 import { pluck, roundAmount, guid, ANIMATION_SPEED } from '../utils';
@@ -65,18 +65,11 @@ const allowedKeys = [
 	'+', '-', '/', '*', '(', ')', 'Meta',
 	'ArrowLeft', 'ArrowDown', 'ArrowUp', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Ctrl'
 ];
-let initial = true;
 
 
 $:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
 $:_id = id || props.name || guid();
-$:duration = initial ? 0 : $ANIMATION_SPEED;
 
-
-
-onMount(() => {
-	initial = false;
-});
 
 
 function onkeydown (e) {

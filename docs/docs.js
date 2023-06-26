@@ -925,8 +925,8 @@ var require_internal = __commonJS({
       managed_styles.set(doc, info2);
       return info2;
     }
-    function create_rule(node, a, b, duration3, delay, ease, fn, uid = 0) {
-      const step = 16.666 / duration3;
+    function create_rule(node, a, b, duration2, delay, ease, fn, uid = 0) {
+      const step = 16.666 / duration2;
       let keyframes = "{\n";
       for (let p = 0; p <= 1; p += step) {
         const t = a + (b - a) * ease(p);
@@ -943,7 +943,7 @@ var require_internal = __commonJS({
         stylesheet.insertRule(`@keyframes ${name2} ${rule}`, stylesheet.cssRules.length);
       }
       const animation = node.style.animation || "";
-      node.style.animation = `${animation ? `${animation}, ` : ""}${name2} ${duration3}ms linear ${delay}ms 1 both`;
+      node.style.animation = `${animation ? `${animation}, ` : ""}${name2} ${duration2}ms linear ${delay}ms 1 both`;
       active += 1;
       return name2;
     }
@@ -981,12 +981,12 @@ var require_internal = __commonJS({
         return noop29;
       const {
         delay = 0,
-        duration: duration3 = 300,
+        duration: duration2 = 300,
         easing = identity,
         // @ts-ignore todo: should this be separated from destructuring? Or start/end added to public api and documentation?
         start: start_time = exports.now() + delay,
         // @ts-ignore todo:
-        end = start_time + duration3,
+        end = start_time + duration2,
         tick: tick2 = noop29,
         css
       } = fn(node, { from, to }, params);
@@ -995,7 +995,7 @@ var require_internal = __commonJS({
       let name2;
       function start() {
         if (css) {
-          name2 = create_rule(node, 0, 1, duration3, delay, easing, css);
+          name2 = create_rule(node, 0, 1, duration2, delay, easing, css);
         }
         if (!delay) {
           started = true;
@@ -1019,7 +1019,7 @@ var require_internal = __commonJS({
         }
         if (started) {
           const p = now - start_time;
-          const t = 0 + 1 * easing(p / duration3);
+          const t = 0 + 1 * easing(p / duration2);
           tick2(t, 1 - t);
         }
         return true;
@@ -1058,7 +1058,7 @@ var require_internal = __commonJS({
     function beforeUpdate(fn) {
       get_current_component().$$.before_update.push(fn);
     }
-    function onMount18(fn) {
+    function onMount15(fn) {
       get_current_component().$$.on_mount.push(fn);
     }
     function afterUpdate5(fn) {
@@ -1247,12 +1247,12 @@ var require_internal = __commonJS({
           delete_rule(node, animation_name);
       }
       function go() {
-        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop29, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop29, css } = config2 || null_transition;
         if (css)
-          animation_name = create_rule(node, 0, 1, duration3, delay, easing, css, uid++);
+          animation_name = create_rule(node, 0, 1, duration2, delay, easing, css, uid++);
         tick2(0, 1);
         const start_time = exports.now() + delay;
-        const end_time = start_time + duration3;
+        const end_time = start_time + duration2;
         if (task)
           task.abort();
         running = true;
@@ -1266,7 +1266,7 @@ var require_internal = __commonJS({
               return running = false;
             }
             if (now >= start_time) {
-              const t = easing((now - start_time) / duration3);
+              const t = easing((now - start_time) / duration2);
               tick2(t, 1 - t);
             }
           }
@@ -1306,11 +1306,11 @@ var require_internal = __commonJS({
       const group = outros;
       group.r += 1;
       function go() {
-        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop29, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop29, css } = config2 || null_transition;
         if (css)
-          animation_name = create_rule(node, 1, 0, duration3, delay, easing, css);
+          animation_name = create_rule(node, 1, 0, duration2, delay, easing, css);
         const start_time = exports.now() + delay;
-        const end_time = start_time + duration3;
+        const end_time = start_time + duration2;
         add_render_callback11(() => dispatch2(node, false, "start"));
         loop((now) => {
           if (running) {
@@ -1323,7 +1323,7 @@ var require_internal = __commonJS({
               return false;
             }
             if (now >= start_time) {
-              const t = easing((now - start_time) / duration3);
+              const t = easing((now - start_time) / duration2);
               tick2(1 - t, t);
             }
           }
@@ -1362,21 +1362,21 @@ var require_internal = __commonJS({
         if (animation_name)
           delete_rule(node, animation_name);
       }
-      function init72(program, duration3) {
+      function init72(program, duration2) {
         const d = program.b - t;
-        duration3 *= Math.abs(d);
+        duration2 *= Math.abs(d);
         return {
           a: t,
           b: program.b,
           d,
-          duration: duration3,
+          duration: duration2,
           start: program.start,
-          end: program.start + duration3,
+          end: program.start + duration2,
           group: program.group
         };
       }
       function go(b) {
-        const { delay = 0, duration: duration3 = 300, easing = identity, tick: tick2 = noop29, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop29, css } = config2 || null_transition;
         const program = {
           start: exports.now() + delay,
           b
@@ -1390,15 +1390,15 @@ var require_internal = __commonJS({
         } else {
           if (css) {
             clear_animation();
-            animation_name = create_rule(node, t, b, duration3, delay, easing, css);
+            animation_name = create_rule(node, t, b, duration2, delay, easing, css);
           }
           if (b)
             tick2(0, 1);
-          running_program = init72(program, duration3);
+          running_program = init72(program, duration2);
           add_render_callback11(() => dispatch2(node, b, "start"));
           loop((now) => {
             if (pending_program && now > pending_program.start) {
-              running_program = init72(pending_program, duration3);
+              running_program = init72(pending_program, duration2);
               pending_program = null;
               dispatch2(node, running_program.b, "start");
               if (css) {
@@ -2312,7 +2312,7 @@ var require_internal = __commonJS({
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
     exports.onDestroy = onDestroy8;
-    exports.onMount = onMount18;
+    exports.onMount = onMount15;
     exports.once = once;
     exports.outro_and_destroy_block = outro_and_destroy_block2;
     exports.prevent_default = prevent_default5;
@@ -2751,7 +2751,7 @@ var require_transition = __commonJS({
         }
       return t;
     }
-    function blur(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicInOut, amount: amount2 = 5, opacity = 0 } = {}) {
+    function blur(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicInOut, amount: amount2 = 5, opacity = 0 } = {}) {
       const style = getComputedStyle(node);
       const target_opacity = +style.opacity;
       const f = style.filter === "none" ? "" : style.filter;
@@ -2759,21 +2759,21 @@ var require_transition = __commonJS({
       const [value2, unit] = internal.split_css_unit(amount2);
       return {
         delay,
-        duration: duration3,
+        duration: duration2,
         easing: easing$1,
         css: (_t, u) => `opacity: ${target_opacity - od * u}; filter: ${f} blur(${u * value2}${unit});`
       };
     }
-    function fade(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.linear } = {}) {
+    function fade(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.linear } = {}) {
       const o = +getComputedStyle(node).opacity;
       return {
         delay,
-        duration: duration3,
+        duration: duration2,
         easing: easing$1,
         css: (t) => `opacity: ${t * o}`
       };
     }
-    function fly3(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicOut, x = 0, y = 0, opacity = 0 } = {}) {
+    function fly3(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicOut, x = 0, y = 0, opacity = 0 } = {}) {
       const style = getComputedStyle(node);
       const target_opacity = +style.opacity;
       const transform = style.transform === "none" ? "" : style.transform;
@@ -2782,14 +2782,14 @@ var require_transition = __commonJS({
       const [yValue, yUnit] = internal.split_css_unit(y);
       return {
         delay,
-        duration: duration3,
+        duration: duration2,
         easing: easing$1,
         css: (t, u) => `
 			transform: ${transform} translate(${(1 - t) * xValue}${xUnit}, ${(1 - t) * yValue}${yUnit});
 			opacity: ${target_opacity - od * u}`
       };
     }
-    function slide6(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicOut, axis = "y" } = {}) {
+    function slide6(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicOut, axis = "y" } = {}) {
       const style = getComputedStyle(node);
       const opacity = +style.opacity;
       const primary_property = axis === "y" ? "height" : "width";
@@ -2804,12 +2804,12 @@ var require_transition = __commonJS({
       const border_width_end_value = parseFloat(style[`border${capitalized_secondary_properties[1]}Width`]);
       return {
         delay,
-        duration: duration3,
+        duration: duration2,
         easing: easing$1,
         css: (t) => `overflow: hidden;opacity: ${Math.min(t * 20, 1) * opacity};${primary_property}: ${t * primary_property_value}px;padding-${secondary_properties[0]}: ${t * padding_start_value}px;padding-${secondary_properties[1]}: ${t * padding_end_value}px;margin-${secondary_properties[0]}: ${t * margin_start_value}px;margin-${secondary_properties[1]}: ${t * margin_end_value}px;border-${secondary_properties[0]}-width: ${t * border_width_start_value}px;border-${secondary_properties[1]}-width: ${t * border_width_end_value}px;`
       };
     }
-    function scale2(node, { delay = 0, duration: duration3 = 400, easing: easing$1 = easing.cubicOut, start = 0, opacity = 0 } = {}) {
+    function scale2(node, { delay = 0, duration: duration2 = 400, easing: easing$1 = easing.cubicOut, start = 0, opacity = 0 } = {}) {
       const style = getComputedStyle(node);
       const target_opacity = +style.opacity;
       const transform = style.transform === "none" ? "" : style.transform;
@@ -2817,7 +2817,7 @@ var require_transition = __commonJS({
       const od = target_opacity * (1 - opacity);
       return {
         delay,
-        duration: duration3,
+        duration: duration2,
         easing: easing$1,
         css: (_t, u) => `
 			transform: ${transform} scale(${1 - sd * u});
@@ -2825,24 +2825,24 @@ var require_transition = __commonJS({
 		`
       };
     }
-    function draw(node, { delay = 0, speed, duration: duration3, easing: easing$1 = easing.cubicInOut } = {}) {
+    function draw(node, { delay = 0, speed, duration: duration2, easing: easing$1 = easing.cubicInOut } = {}) {
       let len = node.getTotalLength();
       const style = getComputedStyle(node);
       if (style.strokeLinecap !== "butt") {
         len += parseInt(style.strokeWidth);
       }
-      if (duration3 === void 0) {
+      if (duration2 === void 0) {
         if (speed === void 0) {
-          duration3 = 800;
+          duration2 = 800;
         } else {
-          duration3 = len / speed;
+          duration2 = len / speed;
         }
-      } else if (typeof duration3 === "function") {
-        duration3 = duration3(len);
+      } else if (typeof duration2 === "function") {
+        duration2 = duration2(len);
       }
       return {
         delay,
-        duration: duration3,
+        duration: duration2,
         easing: easing$1,
         css: (_, u) => `
 			stroke-dasharray: ${len};
@@ -2855,7 +2855,7 @@ var require_transition = __commonJS({
       const to_receive = /* @__PURE__ */ new Map();
       const to_send = /* @__PURE__ */ new Map();
       function crossfade3(from_node, node, params) {
-        const { delay = 0, duration: duration3 = (d2) => Math.sqrt(d2) * 30, easing: easing$1 = easing.cubicOut } = internal.assign(internal.assign({}, defaults), params);
+        const { delay = 0, duration: duration2 = (d2) => Math.sqrt(d2) * 30, easing: easing$1 = easing.cubicOut } = internal.assign(internal.assign({}, defaults), params);
         const from = from_node.getBoundingClientRect();
         const to = node.getBoundingClientRect();
         const dx = from.left - to.left;
@@ -2868,7 +2868,7 @@ var require_transition = __commonJS({
         const opacity = +style.opacity;
         return {
           delay,
-          duration: internal.is_function(duration3) ? duration3(d) : duration3,
+          duration: internal.is_function(duration2) ? duration2(d) : duration2,
           easing: easing$1,
           css: (t, u) => `
 				opacity: ${t * opacity};
@@ -2919,10 +2919,10 @@ var require_animate = __commonJS({
       const [ox, oy] = style.transformOrigin.split(" ").map(parseFloat);
       const dx = from.left + from.width * ox / to.width - (to.left + ox);
       const dy = from.top + from.height * oy / to.height - (to.top + oy);
-      const { delay = 0, duration: duration3 = (d) => Math.sqrt(d) * 120, easing: easing$1 = easing.cubicOut } = params;
+      const { delay = 0, duration: duration2 = (d) => Math.sqrt(d) * 120, easing: easing$1 = easing.cubicOut } = params;
       return {
         delay,
-        duration: internal.is_function(duration3) ? duration3(Math.sqrt(dx * dx + dy * dy)) : duration3,
+        duration: internal.is_function(duration2) ? duration2(Math.sqrt(dx * dx + dy * dy)) : duration2,
         easing: easing$1,
         css: (t, u) => {
           const x = u * dx;
@@ -4799,12 +4799,12 @@ function roundAmount(val, precision = 2) {
   const multiplier = Math.pow(10, precision);
   return Math.round(val * multiplier) / multiplier;
 }
-function blink(el, duration3 = 160) {
+function blink(el, duration2 = 160) {
   return animate(
     el,
     { opacity: 1 },
     { opacity: 0.5 },
-    { duration: duration3 / 2, fill: "backwards" }
+    { duration: duration2 / 2, fill: "backwards" }
   );
 }
 function timeAgo(date, now) {
@@ -7998,7 +7998,7 @@ function create_if_block4(ctx) {
         /*errorMessageId*/
         ctx[13]
       );
-      (0, import_internal6.add_location)(p, file5, 17, 3, 319);
+      (0, import_internal6.add_location)(p, file5, 17, 3, 343);
       (0, import_internal6.attr_dev)(div, "class", "input-error");
       (0, import_internal6.add_location)(div, file5, 15, 2, 221);
     },
@@ -8024,9 +8024,31 @@ function create_if_block4(ctx) {
       if (current)
         return;
       (0, import_internal6.transition_in)(icon.$$.fragment, local);
-      (0, import_internal6.add_render_callback)(() => {
-        if (!current)
-          return;
+      if (local) {
+        (0, import_internal6.add_render_callback)(() => {
+          if (!current)
+            return;
+          if (!div_transition)
+            div_transition = (0, import_internal6.create_bidirectional_transition)(
+              div,
+              import_transition.slide,
+              {
+                axis: "y",
+                duration: (
+                  /*$ANIMATION_SPEED*/
+                  ctx[12]
+                )
+              },
+              true
+            );
+          div_transition.run(1);
+        });
+      }
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal6.transition_out)(icon.$$.fragment, local);
+      if (local) {
         if (!div_transition)
           div_transition = (0, import_internal6.create_bidirectional_transition)(
             div,
@@ -8034,32 +8056,14 @@ function create_if_block4(ctx) {
             {
               axis: "y",
               duration: (
-                /*duration*/
-                ctx[11]
+                /*$ANIMATION_SPEED*/
+                ctx[12]
               )
             },
-            true
+            false
           );
-        div_transition.run(1);
-      });
-      current = true;
-    },
-    o: function outro(local) {
-      (0, import_internal6.transition_out)(icon.$$.fragment, local);
-      if (!div_transition)
-        div_transition = (0, import_internal6.create_bidirectional_transition)(
-          div,
-          import_transition.slide,
-          {
-            axis: "y",
-            duration: (
-              /*duration*/
-              ctx[11]
-            )
-          },
-          false
-        );
-      div_transition.run(0);
+        div_transition.run(0);
+      }
       current = false;
     },
     d: function destroy(detaching) {
@@ -8129,7 +8133,7 @@ function create_fragment6(ctx) {
         input,
         "id",
         /*_id*/
-        ctx[12]
+        ctx[11]
       );
       input.disabled = /*disabled*/
       ctx[4];
@@ -8157,19 +8161,19 @@ function create_fragment6(ctx) {
       )
         (0, import_internal6.add_render_callback)(() => (
           /*input_change_handler*/
-          ctx[18].call(input)
+          ctx[17].call(input)
         ));
-      (0, import_internal6.add_location)(input, file5, 21, 2, 402);
+      (0, import_internal6.add_location)(input, file5, 21, 2, 426);
       (0, import_internal6.attr_dev)(label_1, "class", "label");
       (0, import_internal6.attr_dev)(
         label_1,
         "for",
         /*_id*/
-        ctx[12]
+        ctx[11]
       );
-      (0, import_internal6.add_location)(label_1, file5, 33, 2, 702);
+      (0, import_internal6.add_location)(label_1, file5, 33, 2, 726);
       (0, import_internal6.attr_dev)(div0, "class", "checkbox-row");
-      (0, import_internal6.add_location)(div0, file5, 20, 1, 373);
+      (0, import_internal6.add_location)(div0, file5, 20, 1, 397);
       (0, import_internal6.attr_dev)(
         div1,
         "title",
@@ -8211,7 +8215,7 @@ function create_fragment6(ctx) {
       (0, import_internal6.append_dev)(div1, t1);
       (0, import_internal6.append_dev)(div1, div0);
       (0, import_internal6.append_dev)(div0, input);
-      ctx[17](input);
+      ctx[16](input);
       input.checked = /*checked*/
       ctx[2];
       input.indeterminate = /*indeterminate*/
@@ -8226,7 +8230,7 @@ function create_fragment6(ctx) {
             input,
             "change",
             /*input_change_handler*/
-            ctx[18]
+            ctx[17]
           ),
           (0, import_internal6.listen_dev)(
             input,
@@ -8299,12 +8303,12 @@ function create_fragment6(ctx) {
         );
       }
       if (!current || dirty & /*_id*/
-      4096) {
+      2048) {
         (0, import_internal6.attr_dev)(
           input,
           "id",
           /*_id*/
-          ctx2[12]
+          ctx2[11]
         );
       }
       if (!current || dirty & /*disabled*/
@@ -8360,12 +8364,12 @@ function create_fragment6(ctx) {
           ctx2[5]
         );
       if (!current || dirty & /*_id*/
-      4096) {
+      2048) {
         (0, import_internal6.attr_dev)(
           label_1,
           "for",
           /*_id*/
-          ctx2[12]
+          ctx2[11]
         );
       }
       if (!current || dirty & /*title*/
@@ -8429,7 +8433,7 @@ function create_fragment6(ctx) {
         if_block0.d();
       if (if_block1)
         if_block1.d();
-      ctx[17](null);
+      ctx[16](null);
       mounted = false;
       (0, import_internal6.run_all)(dispose);
     }
@@ -8445,10 +8449,9 @@ function create_fragment6(ctx) {
 }
 function instance6($$self2, $$props2, $$invalidate2) {
   let _id2;
-  let duration3;
   let $ANIMATION_SPEED2;
   (0, import_internal6.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal6.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(16, $ANIMATION_SPEED2 = $$value));
+  (0, import_internal6.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(12, $ANIMATION_SPEED2 = $$value));
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal6.validate_slots)("Checkbox", slots2, []);
   let { class: className2 = "" } = $$props2;
@@ -8460,7 +8463,7 @@ function instance6($$self2, $$props2, $$invalidate2) {
   let { label: label2 = "" } = $$props2;
   let { error: error2 = "" } = $$props2;
   let { info: info2 = "" } = $$props2;
-  let { title = "" } = $$props2;
+  let { title = void 0 } = $$props2;
   let { name: name2 = "" } = $$props2;
   let { required: required2 = false } = $$props2;
   const errorMessageId2 = guid();
@@ -8547,7 +8550,6 @@ function instance6($$self2, $$props2, $$invalidate2) {
     errorMessageId: errorMessageId2,
     dispatch: dispatch2,
     onchange: onchange5,
-    duration: duration3,
     _id: _id2,
     $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
@@ -8576,10 +8578,8 @@ function instance6($$self2, $$props2, $$invalidate2) {
       $$invalidate2(9, name2 = $$props3.name);
     if ("required" in $$props3)
       $$invalidate2(10, required2 = $$props3.required);
-    if ("duration" in $$props3)
-      $$invalidate2(11, duration3 = $$props3.duration);
     if ("_id" in $$props3)
-      $$invalidate2(12, _id2 = $$props3._id);
+      $$invalidate2(11, _id2 = $$props3._id);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
@@ -8588,12 +8588,7 @@ function instance6($$self2, $$props2, $$invalidate2) {
     if ($$self2.$$.dirty & /*id, name*/
     33280) {
       $:
-        $$invalidate2(12, _id2 = id2 || name2 || guid());
-    }
-    if ($$self2.$$.dirty & /*$ANIMATION_SPEED*/
-    65536) {
-      $:
-        $$invalidate2(11, duration3 = $ANIMATION_SPEED2);
+        $$invalidate2(11, _id2 = id2 || name2 || guid());
     }
   };
   return [
@@ -8608,12 +8603,11 @@ function instance6($$self2, $$props2, $$invalidate2) {
     title,
     name2,
     required2,
-    duration3,
     _id2,
+    $ANIMATION_SPEED2,
     errorMessageId2,
     onchange5,
     id2,
-    $ANIMATION_SPEED2,
     input_binding2,
     input_change_handler
   ];
@@ -12702,7 +12696,7 @@ function create_if_block_22(ctx) {
         label_1,
         "for",
         /*_id*/
-        ctx[8]
+        ctx[6]
       );
       (0, import_internal10.add_location)(label_1, file9, 2, 2, 91);
     },
@@ -12719,12 +12713,12 @@ function create_if_block_22(ctx) {
           ctx2[3]
         );
       if (dirty & /*_id*/
-      256) {
+      64) {
         (0, import_internal10.attr_dev)(
           label_1,
           "for",
           /*_id*/
-          ctx2[8]
+          ctx2[6]
         );
       }
     },
@@ -12829,11 +12823,11 @@ function create_if_block6(ctx) {
         p,
         "id",
         /*errorMessageId*/
-        ctx[10]
+        ctx[9]
       );
-      (0, import_internal10.add_location)(p, file9, 15, 4, 406);
+      (0, import_internal10.add_location)(p, file9, 15, 4, 416);
       (0, import_internal10.attr_dev)(div, "class", "input-error");
-      (0, import_internal10.add_location)(div, file9, 13, 3, 306);
+      (0, import_internal10.add_location)(div, file9, 13, 3, 292);
     },
     m: function mount(target, anchor) {
       (0, import_internal10.insert_dev)(target, div, anchor);
@@ -12857,26 +12851,46 @@ function create_if_block6(ctx) {
       if (current)
         return;
       (0, import_internal10.transition_in)(icon.$$.fragment, local);
-      (0, import_internal10.add_render_callback)(() => {
-        if (!current)
-          return;
-        if (!div_transition)
-          div_transition = (0, import_internal10.create_bidirectional_transition)(div, import_transition3.slide, { axis: "y", duration: (
-            /*duration*/
-            ctx[7]
-          ) }, true);
-        div_transition.run(1);
-      });
+      if (local) {
+        (0, import_internal10.add_render_callback)(() => {
+          if (!current)
+            return;
+          if (!div_transition)
+            div_transition = (0, import_internal10.create_bidirectional_transition)(
+              div,
+              import_transition3.slide,
+              {
+                axis: "y",
+                duration: (
+                  /*$ANIMATION_SPEED*/
+                  ctx[8]
+                )
+              },
+              true
+            );
+          div_transition.run(1);
+        });
+      }
       current = true;
     },
     o: function outro(local) {
       (0, import_internal10.transition_out)(icon.$$.fragment, local);
-      if (!div_transition)
-        div_transition = (0, import_internal10.create_bidirectional_transition)(div, import_transition3.slide, { axis: "y", duration: (
-          /*duration*/
-          ctx[7]
-        ) }, false);
-      div_transition.run(0);
+      if (local) {
+        if (!div_transition)
+          div_transition = (0, import_internal10.create_bidirectional_transition)(
+            div,
+            import_transition3.slide,
+            {
+              axis: "y",
+              duration: (
+                /*$ANIMATION_SPEED*/
+                ctx[8]
+              )
+            },
+            false
+          );
+        div_transition.run(0);
+      }
       current = false;
     },
     d: function destroy(detaching) {
@@ -12926,10 +12940,10 @@ function create_fragment10(ctx) {
     { pattern: "-?\\d+(\\.\\d+)?" },
     { autocomplete: "off" },
     /*props*/
-    ctx[9],
+    ctx[7],
     { id: (
       /*_id*/
-      ctx[8]
+      ctx[6]
     ) },
     { "aria-invalid": (
       /*error*/
@@ -12939,7 +12953,7 @@ function create_fragment10(ctx) {
       "aria-errormessage": input_aria_errormessage_value = /*error*/
       ctx[4] ? (
         /*errorMessageId*/
-        ctx[10]
+        ctx[9]
       ) : void 0
     },
     { "aria-required": (
@@ -12966,14 +12980,8 @@ function create_fragment10(ctx) {
       t2 = (0, import_internal10.space)();
       input = (0, import_internal10.element)("input");
       (0, import_internal10.set_attributes)(input, input_data);
-      (0, import_internal10.add_location)(input, file9, 18, 2, 463);
+      (0, import_internal10.add_location)(input, file9, 18, 2, 473);
       (0, import_internal10.attr_dev)(div0, "class", "input-text-inner");
-      (0, import_internal10.toggle_class)(
-        div0,
-        "initial",
-        /*initial*/
-        ctx[6]
-      );
       (0, import_internal10.add_location)(div0, file9, 11, 1, 244);
       (0, import_internal10.attr_dev)(div1, "class", div1_class_value = "input-text input-number " + /*className*/
       ctx[1]);
@@ -13015,13 +13023,13 @@ function create_fragment10(ctx) {
             input,
             "input",
             /*input_input_handler*/
-            ctx[19]
+            ctx[17]
           ),
           (0, import_internal10.listen_dev)(
             input,
             "keydown",
             /*onkeydown*/
-            ctx[11],
+            ctx[10],
             false,
             false,
             false,
@@ -13031,7 +13039,7 @@ function create_fragment10(ctx) {
             input,
             "change",
             /*onchange*/
-            ctx[12],
+            ctx[11],
             false,
             false,
             false,
@@ -13041,7 +13049,7 @@ function create_fragment10(ctx) {
             input,
             "input",
             /*input_handler*/
-            ctx[16],
+            ctx[14],
             false,
             false,
             false,
@@ -13051,7 +13059,7 @@ function create_fragment10(ctx) {
             input,
             "focus",
             /*focus_handler*/
-            ctx[17],
+            ctx[15],
             false,
             false,
             false,
@@ -13061,7 +13069,7 @@ function create_fragment10(ctx) {
             input,
             "blur",
             /*blur_handler*/
-            ctx[18],
+            ctx[16],
             false,
             false,
             false,
@@ -13139,12 +13147,12 @@ function create_fragment10(ctx) {
         { pattern: "-?\\d+(\\.\\d+)?" },
         { autocomplete: "off" },
         dirty & /*props*/
-        512 && /*props*/
-        ctx2[9],
+        128 && /*props*/
+        ctx2[7],
         (!current || dirty & /*_id*/
-        256) && { id: (
+        64) && { id: (
           /*_id*/
-          ctx2[8]
+          ctx2[6]
         ) },
         (!current || dirty & /*error*/
         16) && { "aria-invalid": (
@@ -13155,7 +13163,7 @@ function create_fragment10(ctx) {
         16 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
         ctx2[4] ? (
           /*errorMessageId*/
-          ctx2[10]
+          ctx2[9]
         ) : void 0)) && {
           "aria-errormessage": input_aria_errormessage_value
         },
@@ -13172,15 +13180,6 @@ function create_fragment10(ctx) {
           input,
           /*value*/
           ctx2[0]
-        );
-      }
-      if (!current || dirty & /*initial*/
-      64) {
-        (0, import_internal10.toggle_class)(
-          div0,
-          "initial",
-          /*initial*/
-          ctx2[6]
         );
       }
       if (!current || dirty & /*className*/
@@ -13235,10 +13234,9 @@ function create_fragment10(ctx) {
 function instance10($$self2, $$props2, $$invalidate2) {
   let props2;
   let _id2;
-  let duration3;
   let $ANIMATION_SPEED2;
   (0, import_internal10.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal10.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(15, $ANIMATION_SPEED2 = $$value));
+  (0, import_internal10.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(8, $ANIMATION_SPEED2 = $$value));
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal10.validate_slots)("InputNumber", slots2, []);
   let { class: className2 = "" } = $$props2;
@@ -13249,7 +13247,6 @@ function instance10($$self2, $$props2, $$invalidate2) {
   let { error: error2 = "" } = $$props2;
   let { info: info2 = "" } = $$props2;
   let { separator = "." } = $$props2;
-  let initial2 = true;
   const dispatch2 = (0, import_svelte7.createEventDispatcher)();
   const errorMessageId2 = guid();
   const allowedKeys2 = [
@@ -13272,9 +13269,6 @@ function instance10($$self2, $$props2, $$invalidate2) {
     "Tab",
     "Meta"
   ];
-  (0, import_svelte7.onMount)(() => {
-    $$invalidate2(6, initial2 = false);
-  });
   function fireKeydown(event2) {
     dispatch2("keydown", { event: event2, value: value2 });
   }
@@ -13309,11 +13303,11 @@ function instance10($$self2, $$props2, $$invalidate2) {
     $$invalidate2(0, value2);
   }
   $$self2.$$set = ($$new_props) => {
-    $$invalidate2(23, $$props2 = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props2), (0, import_internal10.exclude_internal_props)($$new_props)));
+    $$invalidate2(21, $$props2 = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props2), (0, import_internal10.exclude_internal_props)($$new_props)));
     if ("class" in $$new_props)
       $$invalidate2(1, className2 = $$new_props.class);
     if ("id" in $$new_props)
-      $$invalidate2(13, id2 = $$new_props.id);
+      $$invalidate2(12, id2 = $$new_props.id);
     if ("required" in $$new_props)
       $$invalidate2(2, required2 = $$new_props.required);
     if ("value" in $$new_props)
@@ -13325,10 +13319,9 @@ function instance10($$self2, $$props2, $$invalidate2) {
     if ("info" in $$new_props)
       $$invalidate2(5, info2 = $$new_props.info);
     if ("separator" in $$new_props)
-      $$invalidate2(14, separator = $$new_props.separator);
+      $$invalidate2(13, separator = $$new_props.separator);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte7.onMount,
     createEventDispatcher: import_svelte7.createEventDispatcher,
     slide: import_transition3.slide,
     Icon: Icon_default,
@@ -13343,24 +13336,22 @@ function instance10($$self2, $$props2, $$invalidate2) {
     error: error2,
     info: info2,
     separator,
-    initial: initial2,
     dispatch: dispatch2,
     errorMessageId: errorMessageId2,
     allowedKeys: allowedKeys2,
     fireKeydown,
     onkeydown: onkeydown2,
     onchange: onchange5,
-    duration: duration3,
     _id: _id2,
     props: props2,
     $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
   $$self2.$inject_state = ($$new_props) => {
-    $$invalidate2(23, $$props2 = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props2), $$new_props));
+    $$invalidate2(21, $$props2 = (0, import_internal10.assign)((0, import_internal10.assign)({}, $$props2), $$new_props));
     if ("className" in $$props2)
       $$invalidate2(1, className2 = $$new_props.className);
     if ("id" in $$props2)
-      $$invalidate2(13, id2 = $$new_props.id);
+      $$invalidate2(12, id2 = $$new_props.id);
     if ("required" in $$props2)
       $$invalidate2(2, required2 = $$new_props.required);
     if ("value" in $$props2)
@@ -13372,31 +13363,22 @@ function instance10($$self2, $$props2, $$invalidate2) {
     if ("info" in $$props2)
       $$invalidate2(5, info2 = $$new_props.info);
     if ("separator" in $$props2)
-      $$invalidate2(14, separator = $$new_props.separator);
-    if ("initial" in $$props2)
-      $$invalidate2(6, initial2 = $$new_props.initial);
-    if ("duration" in $$props2)
-      $$invalidate2(7, duration3 = $$new_props.duration);
+      $$invalidate2(13, separator = $$new_props.separator);
     if ("_id" in $$props2)
-      $$invalidate2(8, _id2 = $$new_props._id);
+      $$invalidate2(6, _id2 = $$new_props._id);
     if ("props" in $$props2)
-      $$invalidate2(9, props2 = $$new_props.props);
+      $$invalidate2(7, props2 = $$new_props.props);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
   $$self2.$$.update = () => {
     $:
-      $$invalidate2(9, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
+      $$invalidate2(7, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
     if ($$self2.$$.dirty & /*id*/
-    8192) {
+    4096) {
       $:
-        $$invalidate2(8, _id2 = id2 || name || guid());
-    }
-    if ($$self2.$$.dirty & /*initial, $ANIMATION_SPEED*/
-    32832) {
-      $:
-        $$invalidate2(7, duration3 = initial2 ? 0 : $ANIMATION_SPEED2);
+        $$invalidate2(6, _id2 = id2 || name || guid());
     }
   };
   $$props2 = (0, import_internal10.exclude_internal_props)($$props2);
@@ -13407,16 +13389,14 @@ function instance10($$self2, $$props2, $$invalidate2) {
     label2,
     error2,
     info2,
-    initial2,
-    duration3,
     _id2,
     props2,
+    $ANIMATION_SPEED2,
     errorMessageId2,
     onkeydown2,
     onchange5,
     id2,
     separator,
-    $ANIMATION_SPEED2,
     input_handler2,
     focus_handler2,
     blur_handler2,
@@ -13428,13 +13408,13 @@ var InputNumber = class extends import_internal10.SvelteComponentDev {
     super(options);
     (0, import_internal10.init)(this, options, instance10, create_fragment10, import_internal10.safe_not_equal, {
       class: 1,
-      id: 13,
+      id: 12,
       required: 2,
       value: 0,
       label: 3,
       error: 4,
       info: 5,
-      separator: 14
+      separator: 13
     });
     (0, import_internal10.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
@@ -13514,7 +13494,7 @@ function create_if_block_23(ctx) {
         label_1,
         "for",
         /*_id*/
-        ctx[10]
+        ctx[8]
       );
       (0, import_internal11.add_location)(label_1, file10, 5, 2, 92);
     },
@@ -13531,12 +13511,12 @@ function create_if_block_23(ctx) {
           ctx2[4]
         );
       if (dirty & /*_id*/
-      1024) {
+      256) {
         (0, import_internal11.attr_dev)(
           label_1,
           "for",
           /*_id*/
-          ctx2[10]
+          ctx2[8]
         );
       }
     },
@@ -13641,11 +13621,11 @@ function create_if_block7(ctx) {
         p,
         "id",
         /*errorMessageId*/
-        ctx[11]
+        ctx[10]
       );
-      (0, import_internal11.add_location)(p, file10, 18, 4, 407);
+      (0, import_internal11.add_location)(p, file10, 18, 4, 417);
       (0, import_internal11.attr_dev)(div, "class", "input-error");
-      (0, import_internal11.add_location)(div, file10, 16, 3, 307);
+      (0, import_internal11.add_location)(div, file10, 16, 3, 293);
     },
     m: function mount(target, anchor) {
       (0, import_internal11.insert_dev)(target, div, anchor);
@@ -13669,26 +13649,46 @@ function create_if_block7(ctx) {
       if (current)
         return;
       (0, import_internal11.transition_in)(icon.$$.fragment, local);
-      (0, import_internal11.add_render_callback)(() => {
-        if (!current)
-          return;
-        if (!div_transition)
-          div_transition = (0, import_internal11.create_bidirectional_transition)(div, import_transition4.slide, { axis: "y", duration: (
-            /*duration*/
-            ctx[9]
-          ) }, true);
-        div_transition.run(1);
-      });
+      if (local) {
+        (0, import_internal11.add_render_callback)(() => {
+          if (!current)
+            return;
+          if (!div_transition)
+            div_transition = (0, import_internal11.create_bidirectional_transition)(
+              div,
+              import_transition4.slide,
+              {
+                axis: "y",
+                duration: (
+                  /*$ANIMATION_SPEED*/
+                  ctx[9]
+                )
+              },
+              true
+            );
+          div_transition.run(1);
+        });
+      }
       current = true;
     },
     o: function outro(local) {
       (0, import_internal11.transition_out)(icon.$$.fragment, local);
-      if (!div_transition)
-        div_transition = (0, import_internal11.create_bidirectional_transition)(div, import_transition4.slide, { axis: "y", duration: (
-          /*duration*/
-          ctx[9]
-        ) }, false);
-      div_transition.run(0);
+      if (local) {
+        if (!div_transition)
+          div_transition = (0, import_internal11.create_bidirectional_transition)(
+            div,
+            import_transition4.slide,
+            {
+              axis: "y",
+              duration: (
+                /*$ANIMATION_SPEED*/
+                ctx[9]
+              )
+            },
+            false
+          );
+        div_transition.run(0);
+      }
       current = false;
     },
     d: function destroy(detaching) {
@@ -13743,10 +13743,10 @@ function create_fragment11(ctx) {
     { type: "text" },
     { autocomplete: "off" },
     /*props*/
-    ctx[8],
+    ctx[7],
     { id: (
       /*_id*/
-      ctx[10]
+      ctx[8]
     ) },
     { "aria-invalid": (
       /*error*/
@@ -13756,7 +13756,7 @@ function create_fragment11(ctx) {
       "aria-errormessage": input_aria_errormessage_value = /*error*/
       ctx[5] ? (
         /*errorMessageId*/
-        ctx[11]
+        ctx[10]
       ) : void 0
     },
     { "aria-required": (
@@ -13786,16 +13786,10 @@ function create_fragment11(ctx) {
       t3 = (0, import_internal11.space)();
       input = (0, import_internal11.element)("input");
       (0, import_internal11.set_attributes)(input, input_data);
-      (0, import_internal11.add_location)(input, file10, 24, 3, 526);
+      (0, import_internal11.add_location)(input, file10, 24, 3, 536);
       (0, import_internal11.attr_dev)(div0, "class", "input-math-row");
-      (0, import_internal11.add_location)(div0, file10, 22, 2, 465);
+      (0, import_internal11.add_location)(div0, file10, 22, 2, 475);
       (0, import_internal11.attr_dev)(div1, "class", "input-text-inner");
-      (0, import_internal11.toggle_class)(
-        div1,
-        "initial",
-        /*initial*/
-        ctx[7]
-      );
       (0, import_internal11.add_location)(div1, file10, 14, 1, 245);
       (0, import_internal11.attr_dev)(div2, "class", div2_class_value = "input-text input-math " + /*className*/
       ctx[2]);
@@ -13828,7 +13822,7 @@ function create_fragment11(ctx) {
       (0, import_internal11.append_dev)(div0, input);
       if (input.autofocus)
         input.focus();
-      ctx[19](input);
+      ctx[17](input);
       (0, import_internal11.set_input_value)(
         input,
         /*value*/
@@ -13841,13 +13835,13 @@ function create_fragment11(ctx) {
             input,
             "input",
             /*input_input_handler*/
-            ctx[20]
+            ctx[18]
           ),
           (0, import_internal11.listen_dev)(
             input,
             "input",
             /*input_handler*/
-            ctx[16],
+            ctx[14],
             false,
             false,
             false,
@@ -13857,7 +13851,7 @@ function create_fragment11(ctx) {
             input,
             "keydown",
             /*onkeydown*/
-            ctx[12],
+            ctx[11],
             false,
             false,
             false,
@@ -13867,7 +13861,7 @@ function create_fragment11(ctx) {
             input,
             "change",
             /*onchange*/
-            ctx[13],
+            ctx[12],
             false,
             false,
             false,
@@ -13877,7 +13871,7 @@ function create_fragment11(ctx) {
             input,
             "focus",
             /*focus_handler*/
-            ctx[17],
+            ctx[15],
             false,
             false,
             false,
@@ -13887,7 +13881,7 @@ function create_fragment11(ctx) {
             input,
             "blur",
             /*blur_handler*/
-            ctx[18],
+            ctx[16],
             false,
             false,
             false,
@@ -13963,12 +13957,12 @@ function create_fragment11(ctx) {
         { type: "text" },
         { autocomplete: "off" },
         dirty & /*props*/
-        256 && /*props*/
-        ctx2[8],
+        128 && /*props*/
+        ctx2[7],
         (!current || dirty & /*_id*/
-        1024) && { id: (
+        256) && { id: (
           /*_id*/
-          ctx2[10]
+          ctx2[8]
         ) },
         (!current || dirty & /*error*/
         32) && { "aria-invalid": (
@@ -13979,7 +13973,7 @@ function create_fragment11(ctx) {
         32 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
         ctx2[5] ? (
           /*errorMessageId*/
-          ctx2[11]
+          ctx2[10]
         ) : void 0)) && {
           "aria-errormessage": input_aria_errormessage_value
         },
@@ -13996,15 +13990,6 @@ function create_fragment11(ctx) {
           input,
           /*value*/
           ctx2[1]
-        );
-      }
-      if (!current || dirty & /*initial*/
-      128) {
-        (0, import_internal11.toggle_class)(
-          div1,
-          "initial",
-          /*initial*/
-          ctx2[7]
         );
       }
       if (!current || dirty & /*className*/
@@ -14046,7 +14031,7 @@ function create_fragment11(ctx) {
       if (if_block2)
         if_block2.d();
       (0, import_internal11.destroy_component)(icon);
-      ctx[19](null);
+      ctx[17](null);
       mounted = false;
       (0, import_internal11.run_all)(dispose);
     }
@@ -14064,10 +14049,9 @@ var DECIMAL_SEPARATOR = ".";
 function instance11($$self, $$props, $$invalidate) {
   let props;
   let _id;
-  let duration;
   let $ANIMATION_SPEED;
   (0, import_internal11.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal11.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(15, $ANIMATION_SPEED = $$value));
+  (0, import_internal11.component_subscribe)($$self, ANIMATION_SPEED, ($$value) => $$invalidate(9, $ANIMATION_SPEED = $$value));
   let { $$slots: slots = {}, $$scope } = $$props;
   (0, import_internal11.validate_slots)("InputMath", slots, []);
   let { _this = void 0 } = $$props;
@@ -14108,10 +14092,6 @@ function instance11($$self, $$props, $$invalidate) {
     "Enter",
     "Ctrl"
   ];
-  let initial = true;
-  (0, import_svelte8.onMount)(() => {
-    $$invalidate(7, initial = false);
-  });
   function onkeydown(e) {
     dispatch("keydown", e);
     if (e.key === "Enter") {
@@ -14168,13 +14148,13 @@ function instance11($$self, $$props, $$invalidate) {
     $$invalidate(1, value);
   }
   $$self.$$set = ($$new_props) => {
-    $$invalidate(24, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), (0, import_internal11.exclude_internal_props)($$new_props)));
+    $$invalidate(22, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), (0, import_internal11.exclude_internal_props)($$new_props)));
     if ("_this" in $$new_props)
       $$invalidate(0, _this = $$new_props._this);
     if ("class" in $$new_props)
       $$invalidate(2, className = $$new_props.class);
     if ("id" in $$new_props)
-      $$invalidate(14, id = $$new_props.id);
+      $$invalidate(13, id = $$new_props.id);
     if ("required" in $$new_props)
       $$invalidate(3, required = $$new_props.required);
     if ("value" in $$new_props)
@@ -14187,7 +14167,6 @@ function instance11($$self, $$props, $$invalidate) {
       $$invalidate(6, info = $$new_props.info);
   };
   $$self.$capture_state = () => ({
-    onMount: import_svelte8.onMount,
     createEventDispatcher: import_svelte8.createEventDispatcher,
     slide: import_transition4.slide,
     Icon: Icon_default,
@@ -14207,23 +14186,21 @@ function instance11($$self, $$props, $$invalidate) {
     dispatch,
     DECIMAL_SEPARATOR,
     allowedKeys,
-    initial,
     onkeydown,
     onchange,
     parseAmount,
-    duration,
     props,
     _id,
     $ANIMATION_SPEED
   });
   $$self.$inject_state = ($$new_props) => {
-    $$invalidate(24, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), $$new_props));
+    $$invalidate(22, $$props = (0, import_internal11.assign)((0, import_internal11.assign)({}, $$props), $$new_props));
     if ("_this" in $$props)
       $$invalidate(0, _this = $$new_props._this);
     if ("className" in $$props)
       $$invalidate(2, className = $$new_props.className);
     if ("id" in $$props)
-      $$invalidate(14, id = $$new_props.id);
+      $$invalidate(13, id = $$new_props.id);
     if ("required" in $$props)
       $$invalidate(3, required = $$new_props.required);
     if ("value" in $$props)
@@ -14234,30 +14211,21 @@ function instance11($$self, $$props, $$invalidate) {
       $$invalidate(5, error = $$new_props.error);
     if ("info" in $$props)
       $$invalidate(6, info = $$new_props.info);
-    if ("initial" in $$props)
-      $$invalidate(7, initial = $$new_props.initial);
-    if ("duration" in $$props)
-      $$invalidate(9, duration = $$new_props.duration);
     if ("props" in $$props)
-      $$invalidate(8, props = $$new_props.props);
+      $$invalidate(7, props = $$new_props.props);
     if ("_id" in $$props)
-      $$invalidate(10, _id = $$new_props._id);
+      $$invalidate(8, _id = $$new_props._id);
   };
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
   $$self.$$.update = () => {
     $:
-      $$invalidate(8, props = pluck($$props, ["title", "name", "disabled", "placeholder"]));
+      $$invalidate(7, props = pluck($$props, ["title", "name", "disabled", "placeholder"]));
     if ($$self.$$.dirty & /*id, props*/
-    16640) {
+    8320) {
       $:
-        $$invalidate(10, _id = id || props.name || guid());
-    }
-    if ($$self.$$.dirty & /*initial, $ANIMATION_SPEED*/
-    32896) {
-      $:
-        $$invalidate(9, duration = initial ? 0 : $ANIMATION_SPEED);
+        $$invalidate(8, _id = id || props.name || guid());
     }
   };
   $$props = (0, import_internal11.exclude_internal_props)($$props);
@@ -14269,15 +14237,13 @@ function instance11($$self, $$props, $$invalidate) {
     label,
     error,
     info,
-    initial,
     props,
-    duration,
     _id,
+    $ANIMATION_SPEED,
     errorMessageId,
     onkeydown,
     onchange,
     id,
-    $ANIMATION_SPEED,
     input_handler,
     focus_handler,
     blur_handler,
@@ -14291,7 +14257,7 @@ var InputMath = class extends import_internal11.SvelteComponentDev {
     (0, import_internal11.init)(this, options, instance11, create_fragment11, import_internal11.safe_not_equal, {
       _this: 0,
       class: 2,
-      id: 14,
+      id: 13,
       required: 3,
       value: 1,
       label: 4,
@@ -14376,7 +14342,7 @@ function create_if_block_32(ctx) {
         label_1,
         "for",
         /*_id*/
-        ctx[17]
+        ctx[15]
       );
       (0, import_internal12.add_location)(label_1, file11, 8, 2, 176);
     },
@@ -14393,12 +14359,12 @@ function create_if_block_32(ctx) {
           ctx2[4]
         );
       if (dirty[0] & /*_id*/
-      131072) {
+      32768) {
         (0, import_internal12.attr_dev)(
           label_1,
           "for",
           /*_id*/
-          ctx2[17]
+          ctx2[15]
         );
       }
     },
@@ -14503,11 +14469,11 @@ function create_if_block_15(ctx) {
         p,
         "id",
         /*errorMessageId*/
-        ctx[19]
+        ctx[18]
       );
-      (0, import_internal12.add_location)(p, file11, 21, 4, 491);
+      (0, import_internal12.add_location)(p, file11, 21, 4, 501);
       (0, import_internal12.attr_dev)(div, "class", "input-error");
-      (0, import_internal12.add_location)(div, file11, 19, 3, 391);
+      (0, import_internal12.add_location)(div, file11, 19, 3, 377);
     },
     m: function mount(target, anchor) {
       (0, import_internal12.insert_dev)(target, div, anchor);
@@ -14531,9 +14497,31 @@ function create_if_block_15(ctx) {
       if (current)
         return;
       (0, import_internal12.transition_in)(icon.$$.fragment, local);
-      (0, import_internal12.add_render_callback)(() => {
-        if (!current)
-          return;
+      if (local) {
+        (0, import_internal12.add_render_callback)(() => {
+          if (!current)
+            return;
+          if (!div_transition)
+            div_transition = (0, import_internal12.create_bidirectional_transition)(
+              div,
+              import_transition5.slide,
+              {
+                axis: "y",
+                duration: (
+                  /*$ANIMATION_SPEED*/
+                  ctx[17]
+                )
+              },
+              true
+            );
+          div_transition.run(1);
+        });
+      }
+      current = true;
+    },
+    o: function outro(local) {
+      (0, import_internal12.transition_out)(icon.$$.fragment, local);
+      if (local) {
         if (!div_transition)
           div_transition = (0, import_internal12.create_bidirectional_transition)(
             div,
@@ -14541,32 +14529,14 @@ function create_if_block_15(ctx) {
             {
               axis: "y",
               duration: (
-                /*duration*/
-                ctx[16]
+                /*$ANIMATION_SPEED*/
+                ctx[17]
               )
             },
-            true
+            false
           );
-        div_transition.run(1);
-      });
-      current = true;
-    },
-    o: function outro(local) {
-      (0, import_internal12.transition_out)(icon.$$.fragment, local);
-      if (!div_transition)
-        div_transition = (0, import_internal12.create_bidirectional_transition)(
-          div,
-          import_transition5.slide,
-          {
-            axis: "y",
-            duration: (
-              /*duration*/
-              ctx[16]
-            )
-          },
-          false
-        );
-      div_transition.run(0);
+        div_transition.run(0);
+      }
       current = false;
     },
     d: function destroy(detaching) {
@@ -14610,36 +14580,36 @@ function create_if_block8(ctx) {
       h2 = (0, import_internal12.element)("h2");
       t1 = (0, import_internal12.text)(
         /*quality*/
-        ctx[11]
+        ctx[10]
       );
       t2 = (0, import_internal12.space)();
       small = (0, import_internal12.element)("small");
       (0, import_internal12.attr_dev)(div0, "class", div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx[14]);
+      ctx[13]);
       (0, import_internal12.set_style)(
         div0,
         "width",
         /*percent*/
-        ctx[12] + "%"
+        ctx[11] + "%"
       );
-      (0, import_internal12.add_location)(div0, file11, 47, 4, 1159);
+      (0, import_internal12.add_location)(div0, file11, 47, 4, 1169);
       (0, import_internal12.attr_dev)(div1, "class", "password-strength");
       (0, import_internal12.attr_dev)(
         div1,
         "title",
         /*quality*/
-        ctx[11]
+        ctx[10]
       );
-      (0, import_internal12.add_location)(div1, file11, 46, 3, 1105);
+      (0, import_internal12.add_location)(div1, file11, 46, 3, 1115);
       (0, import_internal12.attr_dev)(div2, "class", "input-password-row");
-      (0, import_internal12.add_location)(div2, file11, 45, 2, 1069);
-      (0, import_internal12.add_location)(h2, file11, 52, 4, 1356);
-      (0, import_internal12.add_location)(small, file11, 53, 4, 1379);
+      (0, import_internal12.add_location)(div2, file11, 45, 2, 1079);
+      (0, import_internal12.add_location)(h2, file11, 52, 4, 1366);
+      (0, import_internal12.add_location)(small, file11, 53, 4, 1389);
       (0, import_internal12.attr_dev)(div3, "class", div3_class_value = "password-strength-info " + /*colorClass*/
-      ctx[14]);
-      (0, import_internal12.add_location)(div3, file11, 51, 3, 1302);
+      ctx[13]);
+      (0, import_internal12.add_location)(div3, file11, 51, 3, 1312);
       (0, import_internal12.attr_dev)(div4, "class", "input-password-row");
-      (0, import_internal12.add_location)(div4, file11, 50, 2, 1266);
+      (0, import_internal12.add_location)(div4, file11, 50, 2, 1276);
     },
     m: function mount(target, anchor) {
       (0, import_internal12.insert_dev)(target, div2, anchor);
@@ -14653,47 +14623,47 @@ function create_if_block8(ctx) {
       (0, import_internal12.append_dev)(div3, t2);
       (0, import_internal12.append_dev)(div3, small);
       small.innerHTML = /*strengthInfoText*/
-      ctx[13];
+      ctx[12];
     },
     p: function update(ctx2, dirty) {
       if (dirty[0] & /*colorClass*/
-      16384 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
-      ctx2[14])) {
+      8192 && div0_class_value !== (div0_class_value = "password-strength-progress " + /*colorClass*/
+      ctx2[13])) {
         (0, import_internal12.attr_dev)(div0, "class", div0_class_value);
       }
       if (dirty[0] & /*percent*/
-      4096) {
+      2048) {
         (0, import_internal12.set_style)(
           div0,
           "width",
           /*percent*/
-          ctx2[12] + "%"
+          ctx2[11] + "%"
         );
       }
       if (dirty[0] & /*quality*/
-      2048) {
+      1024) {
         (0, import_internal12.attr_dev)(
           div1,
           "title",
           /*quality*/
-          ctx2[11]
+          ctx2[10]
         );
       }
       if (dirty[0] & /*quality*/
-      2048)
+      1024)
         (0, import_internal12.set_data_dev)(
           t1,
           /*quality*/
-          ctx2[11]
+          ctx2[10]
         );
       if (dirty[0] & /*strengthInfoText*/
-      8192)
+      4096)
         small.innerHTML = /*strengthInfoText*/
-        ctx2[13];
+        ctx2[12];
       ;
       if (dirty[0] & /*colorClass*/
-      16384 && div3_class_value !== (div3_class_value = "password-strength-info " + /*colorClass*/
-      ctx2[14])) {
+      8192 && div3_class_value !== (div3_class_value = "password-strength-info " + /*colorClass*/
+      ctx2[13])) {
         (0, import_internal12.attr_dev)(div3, "class", div3_class_value);
       }
     },
@@ -14747,10 +14717,10 @@ function create_fragment12(ctx) {
     { class: "input-password-input" },
     { autocomplete: "off" },
     /*props*/
-    ctx[9],
+    ctx[8],
     { id: (
       /*_id*/
-      ctx[17]
+      ctx[15]
     ) },
     { "aria-invalid": (
       /*error*/
@@ -14760,7 +14730,7 @@ function create_fragment12(ctx) {
       "aria-errormessage": input_aria_errormessage_value = /*error*/
       ctx[5] ? (
         /*errorMessageId*/
-        ctx[19]
+        ctx[18]
       ) : void 0
     },
     { "aria-required": (
@@ -14769,7 +14739,7 @@ function create_fragment12(ctx) {
     ) },
     { type: (
       /*type*/
-      ctx[18]
+      ctx[16]
     ) },
     { value: (
       /*value*/
@@ -14785,7 +14755,7 @@ function create_fragment12(ctx) {
       link: true,
       icon: (
         /*visible*/
-        ctx[8] ? "eyeOff" : "eye"
+        ctx[7] ? "eyeOff" : "eye"
       ),
       class: "input-password-button"
     },
@@ -14794,12 +14764,12 @@ function create_fragment12(ctx) {
   button.$on(
     "click",
     /*toggle*/
-    ctx[21]
+    ctx[20]
   );
   let if_block3 = (
     /*strength*/
     ctx[3] && /*lib*/
-    ctx[10] && /*value*/
+    ctx[9] && /*value*/
     ctx[0] && create_if_block8(ctx)
   );
   const block = {
@@ -14823,22 +14793,16 @@ function create_fragment12(ctx) {
       if (if_block3)
         if_block3.c();
       (0, import_internal12.set_attributes)(input, input_data);
-      (0, import_internal12.add_location)(input, file11, 26, 3, 599);
+      (0, import_internal12.add_location)(input, file11, 26, 3, 609);
       (0, import_internal12.attr_dev)(div0, "class", "input-password-row");
       (0, import_internal12.toggle_class)(
         div0,
         "visible",
         /*visible*/
-        ctx[8]
-      );
-      (0, import_internal12.add_location)(div0, file11, 25, 2, 549);
-      (0, import_internal12.attr_dev)(div1, "class", "input-text-inner");
-      (0, import_internal12.toggle_class)(
-        div1,
-        "initial",
-        /*initial*/
         ctx[7]
       );
+      (0, import_internal12.add_location)(div0, file11, 25, 2, 559);
+      (0, import_internal12.attr_dev)(div1, "class", "input-text-inner");
       (0, import_internal12.add_location)(div1, file11, 17, 1, 329);
       (0, import_internal12.attr_dev)(div2, "class", div2_class_value = "input-text input-password " + /*className*/
       ctx[1]);
@@ -14852,7 +14816,7 @@ function create_fragment12(ctx) {
         div2,
         "visible",
         /*visible*/
-        ctx[8]
+        ctx[7]
       );
       (0, import_internal12.add_location)(div2, file11, 1, 0, 47);
     },
@@ -14883,7 +14847,7 @@ function create_fragment12(ctx) {
       (0, import_internal12.append_dev)(div2, t4);
       if (if_block3)
         if_block3.m(div2, null);
-      ctx[28](div2);
+      ctx[26](div2);
       current = true;
       if (!mounted) {
         dispose = [
@@ -14891,7 +14855,7 @@ function create_fragment12(ctx) {
             input,
             "input",
             /*oninput*/
-            ctx[20],
+            ctx[19],
             false,
             false,
             false,
@@ -14901,7 +14865,7 @@ function create_fragment12(ctx) {
             input,
             "keydown",
             /*keydown_handler*/
-            ctx[24],
+            ctx[22],
             false,
             false,
             false,
@@ -14911,7 +14875,7 @@ function create_fragment12(ctx) {
             input,
             "change",
             /*change_handler*/
-            ctx[25],
+            ctx[23],
             false,
             false,
             false,
@@ -14921,7 +14885,7 @@ function create_fragment12(ctx) {
             input,
             "focus",
             /*focus_handler*/
-            ctx[26],
+            ctx[24],
             false,
             false,
             false,
@@ -14931,7 +14895,7 @@ function create_fragment12(ctx) {
             input,
             "blur",
             /*blur_handler*/
-            ctx[27],
+            ctx[25],
             false,
             false,
             false,
@@ -15007,12 +14971,12 @@ function create_fragment12(ctx) {
         { class: "input-password-input" },
         { autocomplete: "off" },
         dirty[0] & /*props*/
-        512 && /*props*/
-        ctx2[9],
+        256 && /*props*/
+        ctx2[8],
         (!current || dirty[0] & /*_id*/
-        131072) && { id: (
+        32768) && { id: (
           /*_id*/
-          ctx2[17]
+          ctx2[15]
         ) },
         (!current || dirty[0] & /*error*/
         32) && { "aria-invalid": (
@@ -15023,7 +14987,7 @@ function create_fragment12(ctx) {
         32 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
         ctx2[5] ? (
           /*errorMessageId*/
-          ctx2[19]
+          ctx2[18]
         ) : void 0)) && {
           "aria-errormessage": input_aria_errormessage_value
         },
@@ -15033,9 +14997,9 @@ function create_fragment12(ctx) {
           ctx2[2]
         ) },
         (!current || dirty[0] & /*type*/
-        262144) && { type: (
+        65536) && { type: (
           /*type*/
-          ctx2[18]
+          ctx2[16]
         ) },
         (!current || dirty[0] & /*value*/
         1 && input.value !== /*value*/
@@ -15049,32 +15013,23 @@ function create_fragment12(ctx) {
       }
       const button_changes = {};
       if (dirty[0] & /*visible*/
-      256)
+      128)
         button_changes.icon = /*visible*/
-        ctx2[8] ? "eyeOff" : "eye";
+        ctx2[7] ? "eyeOff" : "eye";
       button.$set(button_changes);
       if (!current || dirty[0] & /*visible*/
-      256) {
+      128) {
         (0, import_internal12.toggle_class)(
           div0,
           "visible",
           /*visible*/
-          ctx2[8]
-        );
-      }
-      if (!current || dirty[0] & /*initial*/
-      128) {
-        (0, import_internal12.toggle_class)(
-          div1,
-          "initial",
-          /*initial*/
           ctx2[7]
         );
       }
       if (
         /*strength*/
         ctx2[3] && /*lib*/
-        ctx2[10] && /*value*/
+        ctx2[9] && /*value*/
         ctx2[0]
       ) {
         if (if_block3) {
@@ -15103,12 +15058,12 @@ function create_fragment12(ctx) {
         );
       }
       if (!current || dirty[0] & /*className, visible*/
-      258) {
+      130) {
         (0, import_internal12.toggle_class)(
           div2,
           "visible",
           /*visible*/
-          ctx2[8]
+          ctx2[7]
         );
       }
     },
@@ -15138,7 +15093,7 @@ function create_fragment12(ctx) {
       (0, import_internal12.destroy_component)(button);
       if (if_block3)
         if_block3.d();
-      ctx[28](null);
+      ctx[26](null);
       mounted = false;
       (0, import_internal12.run_all)(dispose);
     }
@@ -15156,10 +15111,9 @@ function instance12($$self2, $$props2, $$invalidate2) {
   let props2;
   let type;
   let _id2;
-  let duration3;
   let $ANIMATION_SPEED2;
   (0, import_internal12.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal12.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(23, $ANIMATION_SPEED2 = $$value));
+  (0, import_internal12.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(17, $ANIMATION_SPEED2 = $$value));
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal12.validate_slots)("InputPassword", slots2, []);
   let { class: className2 = "" } = $$props2;
@@ -15174,7 +15128,6 @@ function instance12($$self2, $$props2, $$invalidate2) {
   const colorClassNames = ["danger", "danger", "warning", "info", "success"];
   const dispatch2 = (0, import_svelte9.createEventDispatcher)();
   const errorMessageId2 = guid();
-  let initial2 = true;
   let visible = false;
   let lib;
   let quality = "";
@@ -15184,20 +15137,19 @@ function instance12($$self2, $$props2, $$invalidate2) {
   let el;
   (0, import_svelte9.onMount)(() => {
     requestAnimationFrame(checkLib);
-    $$invalidate2(7, initial2 = false);
   });
   function oninput(e) {
     $$invalidate2(0, value2 = e.target.value);
     dispatch2("input", { event, value: value2 });
   }
   function checkLib() {
-    $$invalidate2(10, lib = window.zxcvbn);
+    $$invalidate2(9, lib = window.zxcvbn);
     if (strength && !lib)
       console.error("zxcvbn library is missing.");
   }
   function measure(pass) {
     if (strength && !lib)
-      $$invalidate2(10, lib = window.zxcvbn);
+      $$invalidate2(9, lib = window.zxcvbn);
     if (!lib || !pass || !strength)
       return { score: 0, info: "" };
     const res = lib(pass);
@@ -15207,7 +15159,7 @@ function instance12($$self2, $$props2, $$invalidate2) {
     return { score: res.score, text: text46 };
   }
   function toggle() {
-    $$invalidate2(8, visible = !visible);
+    $$invalidate2(7, visible = !visible);
     requestAnimationFrame(() => el.querySelector("input").focus());
   }
   function keydown_handler(event2) {
@@ -15225,15 +15177,15 @@ function instance12($$self2, $$props2, $$invalidate2) {
   function div2_binding($$value) {
     import_internal12.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate2(15, el);
+      $$invalidate2(14, el);
     });
   }
   $$self2.$$set = ($$new_props) => {
-    $$invalidate2(34, $$props2 = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props2), (0, import_internal12.exclude_internal_props)($$new_props)));
+    $$invalidate2(32, $$props2 = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props2), (0, import_internal12.exclude_internal_props)($$new_props)));
     if ("class" in $$new_props)
       $$invalidate2(1, className2 = $$new_props.class);
     if ("id" in $$new_props)
-      $$invalidate2(22, id2 = $$new_props.id);
+      $$invalidate2(21, id2 = $$new_props.id);
     if ("required" in $$new_props)
       $$invalidate2(2, required2 = $$new_props.required);
     if ("value" in $$new_props)
@@ -15268,7 +15220,6 @@ function instance12($$self2, $$props2, $$invalidate2) {
     colorClassNames,
     dispatch: dispatch2,
     errorMessageId: errorMessageId2,
-    initial: initial2,
     visible,
     lib,
     quality,
@@ -15280,18 +15231,17 @@ function instance12($$self2, $$props2, $$invalidate2) {
     checkLib,
     measure,
     toggle,
-    duration: duration3,
     props: props2,
     _id: _id2,
     type,
     $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
   $$self2.$inject_state = ($$new_props) => {
-    $$invalidate2(34, $$props2 = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props2), $$new_props));
+    $$invalidate2(32, $$props2 = (0, import_internal12.assign)((0, import_internal12.assign)({}, $$props2), $$new_props));
     if ("className" in $$props2)
       $$invalidate2(1, className2 = $$new_props.className);
     if ("id" in $$props2)
-      $$invalidate2(22, id2 = $$new_props.id);
+      $$invalidate2(21, id2 = $$new_props.id);
     if ("required" in $$props2)
       $$invalidate2(2, required2 = $$new_props.required);
     if ("value" in $$props2)
@@ -15304,60 +15254,51 @@ function instance12($$self2, $$props2, $$invalidate2) {
       $$invalidate2(5, error2 = $$new_props.error);
     if ("info" in $$props2)
       $$invalidate2(6, info2 = $$new_props.info);
-    if ("initial" in $$props2)
-      $$invalidate2(7, initial2 = $$new_props.initial);
     if ("visible" in $$props2)
-      $$invalidate2(8, visible = $$new_props.visible);
+      $$invalidate2(7, visible = $$new_props.visible);
     if ("lib" in $$props2)
-      $$invalidate2(10, lib = $$new_props.lib);
+      $$invalidate2(9, lib = $$new_props.lib);
     if ("quality" in $$props2)
-      $$invalidate2(11, quality = $$new_props.quality);
+      $$invalidate2(10, quality = $$new_props.quality);
     if ("percent" in $$props2)
-      $$invalidate2(12, percent = $$new_props.percent);
+      $$invalidate2(11, percent = $$new_props.percent);
     if ("strengthInfoText" in $$props2)
-      $$invalidate2(13, strengthInfoText = $$new_props.strengthInfoText);
+      $$invalidate2(12, strengthInfoText = $$new_props.strengthInfoText);
     if ("colorClass" in $$props2)
-      $$invalidate2(14, colorClass = $$new_props.colorClass);
+      $$invalidate2(13, colorClass = $$new_props.colorClass);
     if ("el" in $$props2)
-      $$invalidate2(15, el = $$new_props.el);
-    if ("duration" in $$props2)
-      $$invalidate2(16, duration3 = $$new_props.duration);
+      $$invalidate2(14, el = $$new_props.el);
     if ("props" in $$props2)
-      $$invalidate2(9, props2 = $$new_props.props);
+      $$invalidate2(8, props2 = $$new_props.props);
     if ("_id" in $$props2)
-      $$invalidate2(17, _id2 = $$new_props._id);
+      $$invalidate2(15, _id2 = $$new_props._id);
     if ("type" in $$props2)
-      $$invalidate2(18, type = $$new_props.type);
+      $$invalidate2(16, type = $$new_props.type);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
   $$self2.$$.update = () => {
     $:
-      $$invalidate2(9, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
+      $$invalidate2(8, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
     if ($$self2.$$.dirty[0] & /*visible*/
-    256) {
+    128) {
       $:
-        $$invalidate2(18, type = visible ? "text" : "password");
+        $$invalidate2(16, type = visible ? "text" : "password");
     }
     if ($$self2.$$.dirty[0] & /*id, props*/
-    4194816) {
+    2097408) {
       $:
-        $$invalidate2(17, _id2 = id2 || props2.name || guid());
-    }
-    if ($$self2.$$.dirty[0] & /*initial, $ANIMATION_SPEED*/
-    8388736) {
-      $:
-        $$invalidate2(16, duration3 = initial2 ? 0 : $ANIMATION_SPEED2);
+        $$invalidate2(15, _id2 = id2 || props2.name || guid());
     }
     if ($$self2.$$.dirty[0] & /*value*/
     1) {
       $: {
         const { score, text: text46 } = measure(value2);
-        $$invalidate2(11, quality = qualities[score]);
-        $$invalidate2(12, percent = score ? score * 25 : 5);
-        $$invalidate2(14, colorClass = colorClassNames[score]);
-        $$invalidate2(13, strengthInfoText = text46);
+        $$invalidate2(10, quality = qualities[score]);
+        $$invalidate2(11, percent = score ? score * 25 : 5);
+        $$invalidate2(13, colorClass = colorClassNames[score]);
+        $$invalidate2(12, strengthInfoText = text46);
       }
     }
   };
@@ -15370,7 +15311,6 @@ function instance12($$self2, $$props2, $$invalidate2) {
     label2,
     error2,
     info2,
-    initial2,
     visible,
     props2,
     lib,
@@ -15379,14 +15319,13 @@ function instance12($$self2, $$props2, $$invalidate2) {
     strengthInfoText,
     colorClass,
     el,
-    duration3,
     _id2,
     type,
+    $ANIMATION_SPEED2,
     errorMessageId2,
     oninput,
     toggle,
     id2,
-    $ANIMATION_SPEED2,
     keydown_handler,
     change_handler,
     focus_handler2,
@@ -15405,7 +15344,7 @@ var InputPassword = class extends import_internal12.SvelteComponentDev {
       import_internal12.safe_not_equal,
       {
         class: 1,
-        id: 22,
+        id: 21,
         required: 2,
         value: 0,
         strength: 3,
@@ -15476,7 +15415,6 @@ var InputPassword_default = InputPassword;
 
 // src/input-text/InputText.svelte
 var import_internal13 = __toESM(require_internal());
-var import_svelte10 = __toESM(require_svelte());
 var import_transition6 = __toESM(require_transition());
 var file12 = "src/input-text/InputText.svelte";
 function create_if_block_25(ctx) {
@@ -15494,7 +15432,7 @@ function create_if_block_25(ctx) {
         label_1,
         "for",
         /*_id*/
-        ctx[8]
+        ctx[6]
       );
       (0, import_internal13.add_location)(label_1, file12, 6, 2, 128);
     },
@@ -15511,12 +15449,12 @@ function create_if_block_25(ctx) {
           ctx2[3]
         );
       if (dirty & /*_id*/
-      256) {
+      64) {
         (0, import_internal13.attr_dev)(
           label_1,
           "for",
           /*_id*/
-          ctx2[8]
+          ctx2[6]
         );
       }
     },
@@ -15621,11 +15559,11 @@ function create_if_block9(ctx) {
         p,
         "id",
         /*errorMessageId*/
-        ctx[10]
+        ctx[9]
       );
-      (0, import_internal13.add_location)(p, file12, 19, 4, 443);
+      (0, import_internal13.add_location)(p, file12, 19, 4, 453);
       (0, import_internal13.attr_dev)(div, "class", "input-error");
-      (0, import_internal13.add_location)(div, file12, 17, 3, 343);
+      (0, import_internal13.add_location)(div, file12, 17, 3, 329);
     },
     m: function mount(target, anchor) {
       (0, import_internal13.insert_dev)(target, div, anchor);
@@ -15649,26 +15587,46 @@ function create_if_block9(ctx) {
       if (current)
         return;
       (0, import_internal13.transition_in)(icon.$$.fragment, local);
-      (0, import_internal13.add_render_callback)(() => {
-        if (!current)
-          return;
-        if (!div_transition)
-          div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition6.slide, { axis: "y", duration: (
-            /*duration*/
-            ctx[7]
-          ) }, true);
-        div_transition.run(1);
-      });
+      if (local) {
+        (0, import_internal13.add_render_callback)(() => {
+          if (!current)
+            return;
+          if (!div_transition)
+            div_transition = (0, import_internal13.create_bidirectional_transition)(
+              div,
+              import_transition6.slide,
+              {
+                axis: "y",
+                duration: (
+                  /*$ANIMATION_SPEED*/
+                  ctx[8]
+                )
+              },
+              true
+            );
+          div_transition.run(1);
+        });
+      }
       current = true;
     },
     o: function outro(local) {
       (0, import_internal13.transition_out)(icon.$$.fragment, local);
-      if (!div_transition)
-        div_transition = (0, import_internal13.create_bidirectional_transition)(div, import_transition6.slide, { axis: "y", duration: (
-          /*duration*/
-          ctx[7]
-        ) }, false);
-      div_transition.run(0);
+      if (local) {
+        if (!div_transition)
+          div_transition = (0, import_internal13.create_bidirectional_transition)(
+            div,
+            import_transition6.slide,
+            {
+              axis: "y",
+              duration: (
+                /*$ANIMATION_SPEED*/
+                ctx[8]
+              )
+            },
+            false
+          );
+        div_transition.run(0);
+      }
       current = false;
     },
     d: function destroy(detaching) {
@@ -15716,10 +15674,10 @@ function create_fragment13(ctx) {
     { autocomplete: "off" },
     { type: "text" },
     /*props*/
-    ctx[9],
+    ctx[7],
     { id: (
       /*_id*/
-      ctx[8]
+      ctx[6]
     ) },
     { "aria-invalid": (
       /*error*/
@@ -15729,7 +15687,7 @@ function create_fragment13(ctx) {
       "aria-errormessage": input_aria_errormessage_value = /*error*/
       ctx[4] ? (
         /*errorMessageId*/
-        ctx[10]
+        ctx[9]
       ) : void 0
     },
     { "aria-required": (
@@ -15756,14 +15714,8 @@ function create_fragment13(ctx) {
       t2 = (0, import_internal13.space)();
       input = (0, import_internal13.element)("input");
       (0, import_internal13.set_attributes)(input, input_data);
-      (0, import_internal13.add_location)(input, file12, 23, 2, 501);
+      (0, import_internal13.add_location)(input, file12, 23, 2, 511);
       (0, import_internal13.attr_dev)(div0, "class", "input-text-inner");
-      (0, import_internal13.toggle_class)(
-        div0,
-        "initial",
-        /*initial*/
-        ctx[6]
-      );
       (0, import_internal13.add_location)(div0, file12, 15, 1, 281);
       (0, import_internal13.attr_dev)(div1, "class", div1_class_value = "input-text " + /*className*/
       ctx[1]);
@@ -15805,13 +15757,13 @@ function create_fragment13(ctx) {
             input,
             "input",
             /*input_input_handler*/
-            ctx[18]
+            ctx[16]
           ),
           (0, import_internal13.listen_dev)(
             input,
             "input",
             /*input_handler*/
-            ctx[13],
+            ctx[11],
             false,
             false,
             false,
@@ -15821,7 +15773,7 @@ function create_fragment13(ctx) {
             input,
             "keydown",
             /*keydown_handler*/
-            ctx[14],
+            ctx[12],
             false,
             false,
             false,
@@ -15831,7 +15783,7 @@ function create_fragment13(ctx) {
             input,
             "change",
             /*change_handler*/
-            ctx[15],
+            ctx[13],
             false,
             false,
             false,
@@ -15841,7 +15793,7 @@ function create_fragment13(ctx) {
             input,
             "focus",
             /*focus_handler*/
-            ctx[16],
+            ctx[14],
             false,
             false,
             false,
@@ -15851,7 +15803,7 @@ function create_fragment13(ctx) {
             input,
             "blur",
             /*blur_handler*/
-            ctx[17],
+            ctx[15],
             false,
             false,
             false,
@@ -15927,12 +15879,12 @@ function create_fragment13(ctx) {
         { autocomplete: "off" },
         { type: "text" },
         dirty & /*props*/
-        512 && /*props*/
-        ctx2[9],
+        128 && /*props*/
+        ctx2[7],
         (!current || dirty & /*_id*/
-        256) && { id: (
+        64) && { id: (
           /*_id*/
-          ctx2[8]
+          ctx2[6]
         ) },
         (!current || dirty & /*error*/
         16) && { "aria-invalid": (
@@ -15943,7 +15895,7 @@ function create_fragment13(ctx) {
         16 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
         ctx2[4] ? (
           /*errorMessageId*/
-          ctx2[10]
+          ctx2[9]
         ) : void 0)) && {
           "aria-errormessage": input_aria_errormessage_value
         },
@@ -15960,15 +15912,6 @@ function create_fragment13(ctx) {
           input,
           /*value*/
           ctx2[0]
-        );
-      }
-      if (!current || dirty & /*initial*/
-      64) {
-        (0, import_internal13.toggle_class)(
-          div0,
-          "initial",
-          /*initial*/
-          ctx2[6]
         );
       }
       if (!current || dirty & /*className*/
@@ -16023,13 +15966,11 @@ function create_fragment13(ctx) {
 function instance13($$self2, $$props2, $$invalidate2) {
   let props2;
   let _id2;
-  let duration3;
   let $ANIMATION_SPEED2;
   (0, import_internal13.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal13.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(12, $ANIMATION_SPEED2 = $$value));
+  (0, import_internal13.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(8, $ANIMATION_SPEED2 = $$value));
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal13.validate_slots)("InputText", slots2, []);
-  let initial2 = true;
   let { class: className2 = "" } = $$props2;
   let { id: id2 = "" } = $$props2;
   let { required: required2 = false } = $$props2;
@@ -16038,9 +15979,6 @@ function instance13($$self2, $$props2, $$invalidate2) {
   let { error: error2 = "" } = $$props2;
   let { info: info2 = "" } = $$props2;
   const errorMessageId2 = guid();
-  (0, import_svelte10.onMount)(() => {
-    $$invalidate2(6, initial2 = false);
-  });
   function input_handler2(event2) {
     import_internal13.bubble.call(this, $$self2, event2);
   }
@@ -16061,11 +15999,11 @@ function instance13($$self2, $$props2, $$invalidate2) {
     $$invalidate2(0, value2);
   }
   $$self2.$$set = ($$new_props) => {
-    $$invalidate2(19, $$props2 = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props2), (0, import_internal13.exclude_internal_props)($$new_props)));
+    $$invalidate2(17, $$props2 = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props2), (0, import_internal13.exclude_internal_props)($$new_props)));
     if ("class" in $$new_props)
       $$invalidate2(1, className2 = $$new_props.class);
     if ("id" in $$new_props)
-      $$invalidate2(11, id2 = $$new_props.id);
+      $$invalidate2(10, id2 = $$new_props.id);
     if ("required" in $$new_props)
       $$invalidate2(2, required2 = $$new_props.required);
     if ("value" in $$new_props)
@@ -16078,13 +16016,11 @@ function instance13($$self2, $$props2, $$invalidate2) {
       $$invalidate2(5, info2 = $$new_props.info);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte10.onMount,
     slide: import_transition6.slide,
     Icon: Icon_default,
     pluck,
     guid,
     ANIMATION_SPEED,
-    initial: initial2,
     className: className2,
     id: id2,
     required: required2,
@@ -16093,19 +16029,16 @@ function instance13($$self2, $$props2, $$invalidate2) {
     error: error2,
     info: info2,
     errorMessageId: errorMessageId2,
-    duration: duration3,
     _id: _id2,
     props: props2,
     $ANIMATION_SPEED: $ANIMATION_SPEED2
   });
   $$self2.$inject_state = ($$new_props) => {
-    $$invalidate2(19, $$props2 = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props2), $$new_props));
-    if ("initial" in $$props2)
-      $$invalidate2(6, initial2 = $$new_props.initial);
+    $$invalidate2(17, $$props2 = (0, import_internal13.assign)((0, import_internal13.assign)({}, $$props2), $$new_props));
     if ("className" in $$props2)
       $$invalidate2(1, className2 = $$new_props.className);
     if ("id" in $$props2)
-      $$invalidate2(11, id2 = $$new_props.id);
+      $$invalidate2(10, id2 = $$new_props.id);
     if ("required" in $$props2)
       $$invalidate2(2, required2 = $$new_props.required);
     if ("value" in $$props2)
@@ -16116,28 +16049,21 @@ function instance13($$self2, $$props2, $$invalidate2) {
       $$invalidate2(4, error2 = $$new_props.error);
     if ("info" in $$props2)
       $$invalidate2(5, info2 = $$new_props.info);
-    if ("duration" in $$props2)
-      $$invalidate2(7, duration3 = $$new_props.duration);
     if ("_id" in $$props2)
-      $$invalidate2(8, _id2 = $$new_props._id);
+      $$invalidate2(6, _id2 = $$new_props._id);
     if ("props" in $$props2)
-      $$invalidate2(9, props2 = $$new_props.props);
+      $$invalidate2(7, props2 = $$new_props.props);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
   $$self2.$$.update = () => {
     $:
-      $$invalidate2(9, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
+      $$invalidate2(7, props2 = pluck($$props2, ["title", "name", "disabled", "placeholder"]));
     if ($$self2.$$.dirty & /*id*/
-    2048) {
+    1024) {
       $:
-        $$invalidate2(8, _id2 = id2 || name || guid());
-    }
-    if ($$self2.$$.dirty & /*initial, $ANIMATION_SPEED*/
-    4160) {
-      $:
-        $$invalidate2(7, duration3 = initial2 ? 0 : $ANIMATION_SPEED2);
+        $$invalidate2(6, _id2 = id2 || name || guid());
     }
   };
   $$props2 = (0, import_internal13.exclude_internal_props)($$props2);
@@ -16148,13 +16074,11 @@ function instance13($$self2, $$props2, $$invalidate2) {
     label2,
     error2,
     info2,
-    initial2,
-    duration3,
     _id2,
     props2,
+    $ANIMATION_SPEED2,
     errorMessageId2,
     id2,
-    $ANIMATION_SPEED2,
     input_handler2,
     keydown_handler,
     change_handler,
@@ -16168,7 +16092,7 @@ var InputText = class extends import_internal13.SvelteComponentDev {
     super(options);
     (0, import_internal13.init)(this, options, instance13, create_fragment13, import_internal13.safe_not_equal, {
       class: 1,
-      id: 11,
+      id: 10,
       required: 2,
       value: 0,
       label: 3,
@@ -16229,7 +16153,7 @@ var InputText_default = InputText;
 
 // src/menu/Menu.svelte
 var import_internal14 = __toESM(require_internal());
-var import_svelte11 = __toESM(require_svelte());
+var import_svelte10 = __toESM(require_svelte());
 
 // src/menu/utils.js
 var typeQuery = "";
@@ -16548,7 +16472,7 @@ function instance14($$self2, $$props2, $$invalidate2) {
   let elevated;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal14.validate_slots)("Menu", slots2, ["default"]);
-  const dispatch2 = (0, import_svelte11.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte10.createEventDispatcher)();
   const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
   const contextmenu = isMobileSafari ? "longpress" : "contextmenu";
   let { type = void 0 } = $$props2;
@@ -16562,14 +16486,14 @@ function instance14($$self2, $$props2, $$invalidate2) {
   let menuEl, targetEl, focusedEl, opened = false;
   let isBelowTarget = true;
   let hovering = false;
-  (0, import_svelte11.setContext)("MenuContext", { targetEl: () => targetEl });
-  (0, import_svelte11.onMount)(() => {
+  (0, import_svelte10.setContext)("MenuContext", { targetEl: () => targetEl });
+  (0, import_svelte10.onMount)(() => {
     if (type === "context") {
       init14();
       document.addEventListener(contextmenu, onContextMenu);
     }
   });
-  (0, import_svelte11.onDestroy)(() => {
+  (0, import_svelte10.onDestroy)(() => {
     if (type === "context")
       document.removeEventListener(contextmenu, onContextMenu);
     if (elevated && menuEl)
@@ -16797,10 +16721,10 @@ function instance14($$self2, $$props2, $$invalidate2) {
       $$invalidate2(11, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    createEventDispatcher: import_svelte11.createEventDispatcher,
-    onDestroy: import_svelte11.onDestroy,
-    onMount: import_svelte11.onMount,
-    setContext: import_svelte11.setContext,
+    createEventDispatcher: import_svelte10.createEventDispatcher,
+    onDestroy: import_svelte10.onDestroy,
+    onMount: import_svelte10.onMount,
+    setContext: import_svelte10.setContext,
     addArias,
     removeArias,
     matchQuery,
@@ -16997,7 +16921,7 @@ var Menu_default = Menu;
 
 // src/menu/MenuItem.svelte
 var import_internal15 = __toESM(require_internal());
-var import_svelte12 = __toESM(require_svelte());
+var import_svelte11 = __toESM(require_svelte());
 var file14 = "src/menu/MenuItem.svelte";
 function create_if_block11(ctx) {
   let icon_1;
@@ -17304,8 +17228,8 @@ function instance15($$self2, $$props2, $$invalidate2) {
   let { success = false } = $$props2;
   let { warning = false } = $$props2;
   let { danger = false } = $$props2;
-  const dispatch2 = (0, import_svelte12.createEventDispatcher)();
-  const { targetEl } = (0, import_svelte12.getContext)("MenuContext");
+  const dispatch2 = (0, import_svelte11.createEventDispatcher)();
+  const { targetEl } = (0, import_svelte11.getContext)("MenuContext");
   function onclick(e) {
     const btn = e.target.closest(".menu-item");
     if (btn)
@@ -17340,8 +17264,8 @@ function instance15($$self2, $$props2, $$invalidate2) {
       $$invalidate2(8, $$scope2 = $$new_props.$$scope);
   };
   $$self2.$capture_state = () => ({
-    createEventDispatcher: import_svelte12.createEventDispatcher,
-    getContext: import_svelte12.getContext,
+    createEventDispatcher: import_svelte11.createEventDispatcher,
+    getContext: import_svelte11.getContext,
     Icon: Icon_default,
     pluck,
     blink,
@@ -17514,7 +17438,7 @@ var MenuSeparator_default = MenuSeparator;
 
 // src/message-box/MessageBox.svelte
 var import_internal17 = __toESM(require_internal());
-var import_svelte13 = __toESM(require_svelte());
+var import_svelte12 = __toESM(require_svelte());
 
 // src/message-box/MessageBox.js
 var import_store2 = __toESM(require_store());
@@ -17880,7 +17804,7 @@ function instance17($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal17.validate_slots)("MessageBox", slots2, []);
   let dialog, sub;
-  (0, import_svelte13.onMount)(() => {
+  (0, import_svelte12.onMount)(() => {
     sub = config.subscribe((cfg) => {
       if (!dialog)
         return;
@@ -17890,7 +17814,7 @@ function instance17($$self2, $$props2, $$invalidate2) {
         dialog.close();
     });
   });
-  (0, import_svelte13.onDestroy)(() => {
+  (0, import_svelte12.onDestroy)(() => {
     sub();
     config.set({});
   });
@@ -17918,8 +17842,8 @@ function instance17($$self2, $$props2, $$invalidate2) {
     });
   }
   $$self2.$capture_state = () => ({
-    onDestroy: import_svelte13.onDestroy,
-    onMount: import_svelte13.onMount,
+    onDestroy: import_svelte12.onDestroy,
+    onMount: import_svelte12.onMount,
     config,
     Dialog: Dialog_default,
     Icon: Icon_default,
@@ -17956,7 +17880,7 @@ var MessageBox_default = MessageBox;
 
 // src/panel/Panel.svelte
 var import_internal18 = __toESM(require_internal());
-var import_svelte14 = __toESM(require_svelte());
+var import_svelte13 = __toESM(require_svelte());
 var file17 = "src/panel/Panel.svelte";
 function create_fragment18(ctx) {
   let div2;
@@ -18166,7 +18090,7 @@ function create_fragment18(ctx) {
 function instance18($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal18.validate_slots)("Panel", slots2, ["default"]);
-  const dispatch2 = (0, import_svelte14.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte13.createEventDispatcher)();
   let { title = "" } = $$props2;
   let { open = false } = $$props2;
   let { round = false } = $$props2;
@@ -18174,7 +18098,7 @@ function instance18($$self2, $$props2, $$invalidate2) {
   let wrapEl, headerEl, expanded = open;
   const expandedProps = { height: 0 };
   const collapsedProps = { height: 0 };
-  (0, import_svelte14.onMount)(calcHeights);
+  (0, import_svelte13.onMount)(calcHeights);
   function calcHeights() {
     const wasOpen = open;
     $$invalidate2(0, open = true);
@@ -18248,8 +18172,8 @@ function instance18($$self2, $$props2, $$invalidate2) {
       $$invalidate2(8, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    createEventDispatcher: import_svelte14.createEventDispatcher,
-    onMount: import_svelte14.onMount,
+    createEventDispatcher: import_svelte13.createEventDispatcher,
+    onMount: import_svelte13.onMount,
     icons,
     animate,
     dispatch: dispatch2,
@@ -18351,7 +18275,7 @@ var Panel_default = Panel;
 
 // src/push-button/PushButton.svelte
 var import_internal19 = __toESM(require_internal());
-var import_svelte15 = __toESM(require_svelte());
+var import_svelte14 = __toESM(require_svelte());
 function create_else_block(ctx) {
   let button;
   let current;
@@ -18818,7 +18742,7 @@ function instance19($$self2, $$props2, $$invalidate2) {
   let { icon = void 0 } = $$props2;
   let { round = void 0 } = $$props2;
   let { class: className2 = "" } = $$props2;
-  const dispatch2 = (0, import_svelte15.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte14.createEventDispatcher)();
   function onKeydown2(e) {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -18868,7 +18792,7 @@ function instance19($$self2, $$props2, $$invalidate2) {
       $$invalidate2(17, $$scope2 = $$new_props.$$scope);
   };
   $$self2.$capture_state = () => ({
-    createEventDispatcher: import_svelte15.createEventDispatcher,
+    createEventDispatcher: import_svelte14.createEventDispatcher,
     Button: Button_default,
     pluck,
     _this: _this2,
@@ -19027,7 +18951,7 @@ var PushButton_default = PushButton;
 
 // src/radio/Radio.svelte
 var import_internal20 = __toESM(require_internal());
-var import_svelte16 = __toESM(require_svelte());
+var import_svelte15 = __toESM(require_svelte());
 var file18 = "src/radio/Radio.svelte";
 function get_each_context4(ctx, list, i) {
   const child_ctx = ctx.slice();
@@ -19646,14 +19570,14 @@ function instance20($$self2, $$props2, $$invalidate2) {
   let { class: className2 = "" } = $$props2;
   let { id: id2 = guid() } = $$props2;
   let { name: name2 = id2 || guid() } = $$props2;
-  let { title = "" } = $$props2;
+  let { title = void 0 } = $$props2;
   let { label: label2 = "" } = $$props2;
   let { disabled = false } = $$props2;
   let { items = [] } = $$props2;
   let { value: value2 = "" } = $$props2;
   let { error: error2 = "" } = $$props2;
   let { info: info2 = "" } = $$props2;
-  const dispatch2 = (0, import_svelte16.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte15.createEventDispatcher)();
   const errorMessageId2 = guid();
   function onchange5(event2, item) {
     $$invalidate2(0, value2 = item.value);
@@ -19699,7 +19623,7 @@ function instance20($$self2, $$props2, $$invalidate2) {
       $$invalidate2(8, info2 = $$props3.info);
   };
   $$self2.$capture_state = () => ({
-    createEventDispatcher: import_svelte16.createEventDispatcher,
+    createEventDispatcher: import_svelte15.createEventDispatcher,
     Icon: Icon_default,
     guid,
     className: className2,
@@ -20450,7 +20374,7 @@ var Select_default = Select;
 
 // src/splitter/Splitter.svelte
 var import_internal22 = __toESM(require_internal());
-var import_svelte17 = __toESM(require_svelte());
+var import_svelte16 = __toESM(require_svelte());
 var file20 = "src/splitter/Splitter.svelte";
 function create_fragment22(ctx) {
   let div;
@@ -20544,7 +20468,7 @@ function instance22($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal22.validate_slots)("Splitter", slots2, []);
   let { class: className2 = "" } = $$props2;
-  const dispatch2 = (0, import_svelte17.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte16.createEventDispatcher)();
   const size = 8, halfsize = size / 2;
   const Box = {};
   let isVertical = false;
@@ -20552,7 +20476,7 @@ function instance22($$self2, $$props2, $$invalidate2) {
   let initialTargetBox, startX2, startY2;
   let mousedownTargetBox;
   let isDragging = false, bodyCursor;
-  (0, import_svelte17.onMount)(() => {
+  (0, import_svelte16.onMount)(() => {
     requestAnimationFrame(init71);
   });
   function toggle() {
@@ -20695,8 +20619,8 @@ function instance22($$self2, $$props2, $$invalidate2) {
       $$invalidate2(0, className2 = $$props3.class);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte17.onMount,
-    createEventDispatcher: import_svelte17.createEventDispatcher,
+    onMount: import_svelte16.onMount,
+    createEventDispatcher: import_svelte16.createEventDispatcher,
     getMouseX,
     getMouseY,
     innerWidth,
@@ -20824,7 +20748,7 @@ var Splitter_default = Splitter;
 
 // src/table/Table.svelte
 var import_internal23 = __toESM(require_internal());
-var import_svelte18 = __toESM(require_svelte());
+var import_svelte17 = __toESM(require_svelte());
 var { Object: Object_1 } = import_internal23.globals;
 var file21 = "src/table/Table.svelte";
 function create_fragment23(ctx) {
@@ -21016,7 +20940,7 @@ function shouldSkipNav(e) {
 function instance23($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal23.validate_slots)("Table", slots2, ["default"]);
-  const dispatch2 = (0, import_svelte18.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte17.createEventDispatcher)();
   let { _this: _this2 = void 0 } = $$props2;
   let { selectable = true } = $$props2;
   let { round = false } = $$props2;
@@ -21029,7 +20953,7 @@ function instance23($$self2, $$props2, $$invalidate2) {
   let headerHeight = 0;
   let clickTimer;
   let previousKey;
-  (0, import_svelte18.onMount)(() => {
+  (0, import_svelte17.onMount)(() => {
     Object.assign(_this2.dataset, data);
     if (selectable === true || selectable === "true") {
       makeRowsSelectable();
@@ -21040,7 +20964,7 @@ function instance23($$self2, $$props2, $$invalidate2) {
       });
     }
   });
-  (0, import_svelte18.onDestroy)(() => {
+  (0, import_svelte17.onDestroy)(() => {
     if (selectable === true || selectable === "true")
       makeRowsNotSelectable();
   });
@@ -21234,9 +21158,9 @@ function instance23($$self2, $$props2, $$invalidate2) {
       $$invalidate2(12, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    onDestroy: import_svelte18.onDestroy,
-    onMount: import_svelte18.onMount,
-    createEventDispatcher: import_svelte18.createEventDispatcher,
+    onDestroy: import_svelte17.onDestroy,
+    onMount: import_svelte17.onMount,
+    createEventDispatcher: import_svelte17.createEventDispatcher,
     dispatch: dispatch2,
     _this: _this2,
     selectable,
@@ -21610,7 +21534,7 @@ var Textarea_default = Textarea;
 
 // src/text-fit/TextFit.svelte
 var import_internal25 = __toESM(require_internal());
-var import_svelte19 = __toESM(require_svelte());
+var import_svelte18 = __toESM(require_svelte());
 var file23 = "src/text-fit/TextFit.svelte";
 function create_fragment25(ctx) {
   let span;
@@ -21718,7 +21642,7 @@ function instance25($$self2, $$props2, $$invalidate2) {
     const val = (parentW - margin) / textW || 0;
     $$invalidate2(1, el.style.transform = `matrix(${val}, 0, 0, ${val}, 0, 0)`, el);
   }
-  (0, import_svelte19.onMount)(() => {
+  (0, import_svelte18.onMount)(() => {
     parent = el.parentNode;
     resizeObserver = new ResizeObserver(() => {
       if (timer2)
@@ -21730,7 +21654,7 @@ function instance25($$self2, $$props2, $$invalidate2) {
     mutationObserver.observe(el.firstChild, { characterData: true });
     resize();
   });
-  (0, import_svelte19.onDestroy)(() => {
+  (0, import_svelte18.onDestroy)(() => {
     resizeObserver.unobserve(parent);
     mutationObserver.disconnect();
   });
@@ -21754,8 +21678,8 @@ function instance25($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte19.onMount,
-    onDestroy: import_svelte19.onDestroy,
+    onMount: import_svelte18.onMount,
+    onDestroy: import_svelte18.onDestroy,
     margin,
     className: className2,
     DEBOUNCE_RESIZE,
@@ -22434,7 +22358,7 @@ var Toaster_default = Toaster;
 
 // src/notification-center/NotificationCenter/NotificationCenter.svelte
 var import_internal28 = __toESM(require_internal());
-var import_svelte21 = __toESM(require_svelte());
+var import_svelte20 = __toESM(require_svelte());
 var import_store6 = __toESM(require_store());
 
 // src/notification-center/store.js
@@ -22445,18 +22369,18 @@ var Notifications = (0, import_store4.writable)({});
 var ArchivedNotifications = (0, import_store4.writable)({});
 var Progress = (0, import_store4.writable)({});
 var timers = {};
-var duration2 = (0, import_store4.get)(ANIMATION_SPEED);
-var fly2 = (node, params) => (0, import_transition8.fly)(node, { duration: duration2, x: 500, opacity: 1, ...params });
-var slideUp = (node, params) => (0, import_transition8.fly)(node, { duration: duration2, y: -50, ...params });
-var slideDown = (node, params) => (0, import_transition8.fly)(node, { duration: duration2, y: 50, ...params });
-var flip = (node, animations, params) => (0, import_animate.flip)(node, animations, { duration: duration2, ...params });
+var duration = (0, import_store4.get)(ANIMATION_SPEED);
+var fly2 = (node, params) => (0, import_transition8.fly)(node, { duration, x: 500, opacity: 1, ...params });
+var slideUp = (node, params) => (0, import_transition8.fly)(node, { duration, y: -50, ...params });
+var slideDown = (node, params) => (0, import_transition8.fly)(node, { duration, y: 50, ...params });
+var flip = (node, animations, params) => (0, import_animate.flip)(node, animations, { duration, ...params });
 var [send, receive] = (0, import_transition8.crossfade)({
   duration: (d) => d,
   fallback(node, params) {
     const style = getComputedStyle(node);
     const transform = style.transform === "none" ? "" : style.transform;
     return {
-      duration: params.duration || duration2,
+      duration: params.duration || duration,
       css: (t) => `transform: ${transform} scale(${t}); opacity: ${t}`
     };
   }
@@ -22532,7 +22456,7 @@ function removeFromArchive(id2) {
 
 // src/notification-center/NotificationArchive/NotificationArchive.svelte
 var import_internal27 = __toESM(require_internal());
-var import_svelte20 = __toESM(require_svelte());
+var import_svelte19 = __toESM(require_svelte());
 var { Object: Object_13 } = import_internal27.globals;
 var file25 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
 function get_each_context7(ctx, list, i) {
@@ -23282,18 +23206,18 @@ function instance27($$self2, $$props2, $$invalidate2) {
   (0, import_internal27.validate_slots)("NotificationArchive", slots2, []);
   let { show = false } = $$props2;
   let { expanded = false } = $$props2;
-  const duration3 = 1e5;
+  const duration2 = 1e5;
   let el;
   let archived = [];
   let now = (/* @__PURE__ */ new Date()).getTime();
   let timer2;
-  (0, import_svelte20.onMount)(() => {
+  (0, import_svelte19.onMount)(() => {
     timer2 = setInterval(() => $$invalidate2(4, now = (/* @__PURE__ */ new Date()).getTime()), 1e4);
     ArchivedNotifications.subscribe((val) => {
       $$invalidate2(3, archived = Object.values(val).reverse());
     });
   });
-  (0, import_svelte20.onDestroy)(() => {
+  (0, import_svelte19.onDestroy)(() => {
     clearInterval(timer2);
   });
   function toggle() {
@@ -23312,7 +23236,7 @@ function instance27($$self2, $$props2, $$invalidate2) {
       return fly2(node, { duration: 0 });
     if (show && expanded)
       return slideUp(node, params);
-    return receive(node, { ...params, delay: 100, duration: duration3 });
+    return receive(node, { ...params, delay: 100, duration: duration2 });
   }
   function _out(node, params) {
     if (show && expanded)
@@ -23343,8 +23267,8 @@ function instance27($$self2, $$props2, $$invalidate2) {
       $$invalidate2(1, expanded = $$props3.expanded);
   };
   $$self2.$capture_state = () => ({
-    onDestroy: import_svelte20.onDestroy,
-    onMount: import_svelte20.onMount,
+    onDestroy: import_svelte19.onDestroy,
+    onMount: import_svelte19.onMount,
     Button: Button_default,
     ArchivedNotifications,
     removeFromArchive,
@@ -23356,7 +23280,7 @@ function instance27($$self2, $$props2, $$invalidate2) {
     timeAgo,
     show,
     expanded,
-    duration: duration3,
+    duration: duration2,
     el,
     archived,
     now,
@@ -24214,14 +24138,14 @@ function instance28($$self2, $$props2, $$invalidate2) {
   const showArchive = (0, import_store6.writable)(false);
   (0, import_internal28.validate_store)(showArchive, "showArchive");
   (0, import_internal28.component_subscribe)($$self2, showArchive, (value2) => $$invalidate2(11, $showArchive = value2));
-  const duration3 = $ANIMATION_SPEED2;
+  const duration2 = $ANIMATION_SPEED2;
   let archiveIsVisible = false;
   let archiveIsExpanded = false;
   let el;
   let notifications = [];
-  let initial2 = true;
+  let initial = true;
   let hasActiveNotifications = false;
-  (0, import_svelte21.onMount)(() => {
+  (0, import_svelte20.onMount)(() => {
     document.body.appendChild(el);
     Notifications.subscribe((val) => {
       $$invalidate2(4, notifications = Object.values(val).reverse());
@@ -24235,15 +24159,15 @@ function instance28($$self2, $$props2, $$invalidate2) {
         setTimeout(() => $$invalidate2(9, hasActiveNotifications = false), $ANIMATION_SPEED2);
     });
     showArchive.subscribe((val) => {
-      if (initial2)
+      if (initial)
         return;
       if (val)
         addEvents();
       else
         removeEvents();
     });
-    if (initial2)
-      requestAnimationFrame(() => initial2 = false);
+    if (initial)
+      requestAnimationFrame(() => initial = false);
   });
   function addEvents() {
     $$invalidate2(6, archiveIsVisible = true);
@@ -24267,7 +24191,7 @@ function instance28($$self2, $$props2, $$invalidate2) {
       return fly2(node);
     if (!archiveIsExpanded)
       return slideDown(node, params);
-    return send(node, { ...params, duration: duration3 });
+    return send(node, { ...params, duration: duration2 });
   }
   function onKeydown2(e, notification) {
     if (e.key === "Escape")
@@ -24314,7 +24238,7 @@ function instance28($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, hideButton = $$props3.hideButton);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte21.onMount,
+    onMount: import_svelte20.onMount,
     writable: import_store6.writable,
     Icon: Icon_default,
     PushButton: PushButton_default,
@@ -24335,12 +24259,12 @@ function instance28($$self2, $$props2, $$invalidate2) {
     outline,
     hideButton,
     showArchive,
-    duration: duration3,
+    duration: duration2,
     archiveIsVisible,
     archiveIsExpanded,
     el,
     notifications,
-    initial: initial2,
+    initial,
     hasActiveNotifications,
     addEvents,
     removeEvents,
@@ -24371,7 +24295,7 @@ function instance28($$self2, $$props2, $$invalidate2) {
     if ("notifications" in $$props3)
       $$invalidate2(4, notifications = $$props3.notifications);
     if ("initial" in $$props3)
-      initial2 = $$props3.initial;
+      initial = $$props3.initial;
     if ("hasActiveNotifications" in $$props3)
       $$invalidate2(9, hasActiveNotifications = $$props3.hasActiveNotifications);
     if ("hasArchivedNotifications" in $$props3)
@@ -24478,7 +24402,7 @@ var NotificationCenter_default = NotificationCenter;
 
 // src/toggle/Toggle.svelte
 var import_internal29 = __toESM(require_internal());
-var import_svelte22 = __toESM(require_svelte());
+var import_svelte21 = __toESM(require_svelte());
 
 // src/toggle/utils.js
 var isTouchDevice = "ontouchstart" in document.documentElement;
@@ -24736,7 +24660,7 @@ function instance29($$self2, $$props2, $$invalidate2) {
   let inputProps;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal29.validate_slots)("Toggle", slots2, []);
-  const dispatch2 = (0, import_svelte22.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte21.createEventDispatcher)();
   let { value: value2 = false } = $$props2;
   let { disabled = void 0 } = $$props2;
   let { class: className2 = "" } = $$props2;
@@ -24744,11 +24668,11 @@ function instance29($$self2, $$props2, $$invalidate2) {
   let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
   let isClick = false, isDragging = false;
   let oldValue;
-  (0, import_svelte22.onMount)(() => {
+  (0, import_svelte21.onMount)(() => {
     toggleTransitions(false);
     ({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
   });
-  (0, import_svelte22.afterUpdate)(() => {
+  (0, import_svelte21.afterUpdate)(() => {
     if (typeof value2 !== "boolean")
       $$invalidate2(0, value2 = !!value2);
     setValue(value2);
@@ -24869,9 +24793,9 @@ function instance29($$self2, $$props2, $$invalidate2) {
       $$invalidate2(2, className2 = $$new_props.class);
   };
   $$self2.$capture_state = () => ({
-    onMount: import_svelte22.onMount,
-    afterUpdate: import_svelte22.afterUpdate,
-    createEventDispatcher: import_svelte22.createEventDispatcher,
+    onMount: import_svelte21.onMount,
+    afterUpdate: import_svelte21.afterUpdate,
+    createEventDispatcher: import_svelte21.createEventDispatcher,
     pluck,
     getMouseX: getMouseX2,
     isTouchDevice,
@@ -25007,7 +24931,7 @@ var Toggle_default = Toggle;
 
 // src/tooltip/Tooltip.svelte
 var import_internal30 = __toESM(require_internal());
-var import_svelte23 = __toESM(require_svelte());
+var import_svelte22 = __toESM(require_svelte());
 var file28 = "src/tooltip/Tooltip.svelte";
 function create_if_block19(ctx) {
   let div2;
@@ -25282,13 +25206,13 @@ function instance30($$self2, $$props2, $$invalidate2) {
   let visible = false;
   let showTimer, hideTimer, shownEvent, noHide = false;
   let el, targetEl, tooltipContainer;
-  (0, import_svelte23.onMount)(() => {
+  (0, import_svelte22.onMount)(() => {
     initContainer();
     targetEl = target ? document.querySelector("#" + target) : document.body;
     addTargetEvents();
   });
-  (0, import_svelte23.onDestroy)(removeTargetEvents);
-  (0, import_svelte23.afterUpdate)(align);
+  (0, import_svelte22.onDestroy)(removeTargetEvents);
+  (0, import_svelte22.afterUpdate)(align);
   function show(e) {
     if (hideTimer) {
       clearTimeout(hideTimer);
@@ -25486,9 +25410,9 @@ function instance30($$self2, $$props2, $$invalidate2) {
       $$invalidate2(14, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
-    afterUpdate: import_svelte23.afterUpdate,
-    onDestroy: import_svelte23.onDestroy,
-    onMount: import_svelte23.onMount,
+    afterUpdate: import_svelte22.afterUpdate,
+    onDestroy: import_svelte22.onDestroy,
+    onMount: import_svelte22.onMount,
     target,
     delay,
     position,
@@ -25690,7 +25614,7 @@ var Tooltip_default = Tooltip;
 
 // src/tree/Tree.svelte
 var import_internal32 = __toESM(require_internal());
-var import_svelte24 = __toESM(require_svelte());
+var import_svelte23 = __toESM(require_svelte());
 
 // src/tree/TreeNode.svelte
 var import_internal31 = __toESM(require_internal());
@@ -26518,7 +26442,7 @@ function instance32($$self2, $$props2, $$invalidate2) {
   let { items = [] } = $$props2;
   let { title = void 0 } = $$props2;
   let { class: className2 = "" } = $$props2;
-  const dispatch2 = (0, import_svelte24.createEventDispatcher)();
+  const dispatch2 = (0, import_svelte23.createEventDispatcher)();
   let el;
   let selectedItem;
   function getVisibleNodes() {
@@ -26653,7 +26577,7 @@ function instance32($$self2, $$props2, $$invalidate2) {
       $$invalidate2(2, className2 = $$props3.class);
   };
   $$self2.$capture_state = () => ({
-    createEventDispatcher: import_svelte24.createEventDispatcher,
+    createEventDispatcher: import_svelte23.createEventDispatcher,
     TreeNode: TreeNode_default,
     items,
     title,
@@ -31480,7 +31404,7 @@ var CodeExample_default = CodeExample;
 
 // docs-src/code-example/CodeBox.svelte
 var import_internal38 = __toESM(require_internal());
-var import_svelte25 = __toESM(require_svelte());
+var import_svelte24 = __toESM(require_svelte());
 var file36 = "docs-src/code-example/CodeBox.svelte";
 function create_fragment38(ctx) {
   let pre;
@@ -31532,7 +31456,7 @@ function instance38($$self2, $$props2, $$invalidate2) {
   let { props: props2 = {} } = $$props2;
   let { text: text46 = "" } = $$props2;
   let html = "";
-  (0, import_svelte25.afterUpdate)(() => {
+  (0, import_svelte24.afterUpdate)(() => {
     requestAnimationFrame(update);
   });
   function update() {
@@ -31568,7 +31492,7 @@ function instance38($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, text46 = $$props3.text);
   };
   $$self2.$capture_state = () => ({
-    afterUpdate: import_svelte25.afterUpdate,
+    afterUpdate: import_svelte24.afterUpdate,
     tag,
     props: props2,
     text: text46,
@@ -45922,14 +45846,14 @@ function instance56($$self2, $$props2, $$invalidate2) {
   function menuCloseThings(e) {
     if (e)
       e.preventDefault();
-    const initial2 = "Close all things";
+    const initial = "Close all things";
     const confrm = "Confirm Closing";
-    if (closeThingsText === initial2) {
+    if (closeThingsText === initial) {
       $$invalidate2(7, closeThingsText = confrm);
-      thingsMenuTimer = setTimeout(() => $$invalidate2(7, closeThingsText = initial2), 2e3);
+      thingsMenuTimer = setTimeout(() => $$invalidate2(7, closeThingsText = initial), 2e3);
     } else {
       Promise.all([thingsMenu.close(), thingsMenu2.close()]).then(() => {
-        $$invalidate2(7, closeThingsText = initial2);
+        $$invalidate2(7, closeThingsText = initial);
         if (thingsMenuTimer)
           clearTimeout(thingsMenuTimer);
         alert("Closed all things!");
@@ -45945,11 +45869,11 @@ function instance56($$self2, $$props2, $$invalidate2) {
   function closeTabs(e) {
     if (e)
       e.preventDefault();
-    const initial2 = "Close all tabs";
+    const initial = "Close all tabs";
     const confrm = "Confirm Closing";
-    if (closeTabsText === initial2) {
+    if (closeTabsText === initial) {
       $$invalidate2(8, closeTabsText = confrm);
-      tabsMenutimer = setTimeout(() => $$invalidate2(8, closeTabsText = initial2), 2e3);
+      tabsMenutimer = setTimeout(() => $$invalidate2(8, closeTabsText = initial), 2e3);
     } else
       tabsMenu.close().then(() => alert("Closed all tabs!"));
   }

@@ -1,3 +1,6 @@
+import { get } from 'svelte/store';
+import { ANIMATION_SPEED } from '../../src';
+
 // workaround for structuredClone not being available in JSDOM
 window.structuredClone = (val) => JSON.parse(JSON.stringify(val));
 
@@ -43,6 +46,7 @@ export function offsetLeft (el, value = 50) {
 	Object.defineProperty(el, 'offsetLeft', { configurable: true, value });
 }
 
-export function waitForTimeout (timeout = 300) {
+export function waitForTimeout (timeout) {
+	timeout = timeout || get(ANIMATION_SPEED) + 100;
 	return new Promise((resolve) => setTimeout(resolve, timeout));
 }

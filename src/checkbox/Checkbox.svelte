@@ -13,7 +13,7 @@
 	{/if}
 
 	{#if error}
-		<div class="input-error" transition:slide="{{ axis: 'y', duration }}">
+		<div class="input-error" transition:slide|local="{{ axis: 'y', duration: $ANIMATION_SPEED }}">
 			<Icon name="error"/>
 			<p id="{errorMessageId}">{error}</p>
 		</div>
@@ -52,7 +52,7 @@ export let id = '';
 export let label = '';
 export let error = '';
 export let info = '';
-export let title = '';
+export let title = undefined;
 export let name = '';
 export let required = false;
 
@@ -60,7 +60,6 @@ const errorMessageId = guid();
 const dispatch = createEventDispatcher();
 
 $:_id = id || name || guid();
-$:duration = $ANIMATION_SPEED;
 
 
 function onchange (event) {
