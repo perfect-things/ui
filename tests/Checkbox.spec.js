@@ -17,14 +17,17 @@ test('Checkbox', async () => {
 
 	const chbox = getByTitle('Checkbox1');
 	expect(chbox).toBeInTheDocument();
-	expect(chbox).toBeChecked();
-	expect(chbox).toHaveAttribute('id', 'Checkbox1');
-	expect(chbox).toHaveAttribute('name', 'Checkbox1');
-	expect(chbox).toHaveAttribute('required');
 	expect(chbox).toHaveClass('test-class');
 
-	await fireEvent.click(chbox);
-	expect(chbox).not.toBeChecked();
+	const inp = chbox.querySelector('input');
+	expect(inp).toBeChecked();
+	expect(inp).toHaveAttribute('id', 'Checkbox1');
+	expect(inp).toHaveAttribute('name', 'Checkbox1');
+	expect(inp).toHaveAttribute('aria-required');
+
+	const lbl = chbox.querySelector('label');
+	await fireEvent.click(lbl);
+	expect(inp).not.toBeChecked();
 
 	expect(mock).toHaveBeenCalled();
 });

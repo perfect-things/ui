@@ -525,6 +525,21 @@ svg { width: 1.5rem; height: 1.5rem; }
 .button-toggle .selected { background-color: var(--ui-color-highlight); }
 
 .checkbox {
+	display: inline-flex;
+	flex-flow: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	gap: 0.5rem;
+}
+
+.checkbox-row {
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.5rem;
+}
+
+.checkbox input {
 	appearance: none;
 	width: 1.4rem;
 	height: 1.4rem;
@@ -536,10 +551,12 @@ svg { width: 1.5rem; height: 1.5rem; }
 	background: var(--ui-color-background-input);
 	border: 1px solid var(--ui-color-text-dark-1);
 	color: var(--ui-color-text-dark-1);
-	font: inherit;   /* required for em-sizing */
+	font: inherit;   /* required for proper sizing */
 }
 
-.checkbox::after {
+.checkbox input:focus { border-color: var(--ui-color-accent); }
+
+.checkbox input::after {
 	content: "✕";
 	display: block;
 	opacity: 0;
@@ -550,7 +567,7 @@ svg { width: 1.5rem; height: 1.5rem; }
 }
 
 
-.checkbox.indeterminate::after {
+.checkbox.indeterminate input::after {
 	content: " ";
 	opacity: 1;
 	background: var(--ui-color-text-dark-1);
@@ -561,13 +578,28 @@ svg { width: 1.5rem; height: 1.5rem; }
 	align-self: center;
 }
 
-.checkbox:checked::after { opacity: 1; }
+.checkbox input:checked::after { opacity: 1; }
 
-.checkbox:disabled {
+
+.checkbox.disabled .label { color: var(--ui-color-text-semi); }
+.checkbox input:disabled {
 	opacity: 0.75;
 	cursor: default;
 	color: var(--ui-color-text-dark-2);
+	border-color: var(--ui-color-text-semi);
 }
+
+
+.checkbox .input-info { margin: 0; }
+
+.checkbox.has-error .input-error {
+	background-color: var(--ui-color-danger-semi);
+	border-radius: var(--ui-border-radius);
+	border: 1px solid var(--ui-color-danger);
+}
+
+.checkbox.has-error input { border-color: var(--ui-color-danger); }
+.checkbox.has-error input:focus { box-shadow: var(--ui-shadow-danger); }
 
 .datepicker-wrapper {
 	width: 25ch;
@@ -1066,15 +1098,14 @@ input::placeholder { color: var(--ui-color-text-dark-2); }
 	width: 25ch;
 }
 
-:where(input:focus) { outline: 0; }
-:where(input:disabled) { opacity: 0.75; }
-
-:where(input:not([type=radio]):focus) {
+:where(input:focus) {
+	outline: 0;
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
+:where(input:disabled) { opacity: 0.75; }
 
-:where(input:not([type=radio]):invalid) {
+:where(input:invalid) {
 	border-color: var(--ui-color-danger);
 	box-shadow: var(--ui-shadow-danger);
 }
