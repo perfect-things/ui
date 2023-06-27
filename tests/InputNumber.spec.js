@@ -1,5 +1,5 @@
 import { render } from '@testing-library/svelte';
-import { InputNumber } from '../src/input-number';
+import { InputNumber } from '../src/input';
 import userEvent from '@testing-library/user-event';
 import { waitForTimeout } from './helpers/utils';
 

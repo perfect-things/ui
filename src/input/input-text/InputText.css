@@ -23,36 +23,12 @@
 	border-color: var(--ui-color-danger);
 	background-color: var(--ui-color-danger-semi);
 }
+.has-error .input-text-inner .input-error {
+	background-color: transparent;
+	border: none;
+	margin: 0;
+}
 
 .has-error .input-text-inner:focus-within {
 	box-shadow: var(--ui-shadow-danger);
 }
-
-
-.input-error,
-.input-info {
-	width: 100%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	gap: 0.5rem;
-	padding: 0.4rem;
-}
-
-.input-error p,
-.input-info p { margin: 0; font-size: 0.9rem; line-height: 1.4rem; }
-
-.input-error {
-	margin: 0;
-	border-top-left-radius: var(--ui-border-radius);
-	border-top-right-radius: var(--ui-border-radius);
-}
-
-.input-info {
-	margin: 0 0 0.75rem;
-	background-color: var(--ui-color-info-semi);
-	border-radius: var(--ui-border-radius);
-	border: 1px solid var(--ui-color-info);
-}
-.input-error .icon,
-.input-info .icon { flex-shrink: 0; margin-top: -1px; }

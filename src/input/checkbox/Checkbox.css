@@ -64,13 +64,9 @@
 }
 
 
-.checkbox .input-info { margin: 0; }
+.checkbox .input-info,
+.checkbox .input-error { margin: 0; }
 
-.checkbox.has-error .input-error {
-	background-color: var(--ui-color-danger-semi);
-	border-radius: var(--ui-border-radius);
-	border: 1px solid var(--ui-color-danger);
-}
 
 .checkbox.has-error input { border-color: var(--ui-color-danger); }
 .checkbox.has-error input:focus { box-shadow: var(--ui-shadow-danger); }

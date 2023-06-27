@@ -1,5 +1,5 @@
 import { render } from '@testing-library/svelte';
-import { InputText } from '../src/input-text';
+import { InputText } from '../src/input';
 import { waitForTimeout } from './helpers/utils';
 
 

@@ -2,20 +2,12 @@
 	{#if label}
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
-	{#if info}
-		<div class="input-info">
-			<Icon name="info"/>
-			<p>{info}</p>
-		</div>
-	{/if}
+
+	<InputInfo>{info || ''}</InputInfo>
 
 	<div class="input-text-inner">
-		{#if error}
-			<div class="input-error" transition:slide|local="{{ axis: 'y', duration: $ANIMATION_SPEED }}">
-				<Icon name="error"/>
-				<p id="{errorMessageId}">{error}</p>
-			</div>
-		{/if}
+		<InputError id="{errorMessageId}">{error || ''}</InputError>
+
 		<input
 			type="text"
 			inputmode="numeric"
@@ -37,9 +29,10 @@
 
 <script>
 import { createEventDispatcher } from 'svelte';
-import { slide } from 'svelte/transition';
-import { Icon } from '../icon';
-import { pluck, guid, ANIMATION_SPEED } from '../utils';
+import { pluck, guid } from '../../utils';
+import { InputInfo } from '../input-info';
+import { InputError } from '../input-error';
+
 
 
 let className = '';

@@ -8,19 +8,13 @@
 	{#if label}
 		<label class="label" for="{id}">{label}</label>
 	{/if}
-	{#if info}
-		<div class="input-info">
-			<Icon name="info"/>
-			<p>{info}</p>
-		</div>
-	{/if}
+
+	<InputInfo>{info || ''}</InputInfo>
+
 	<div class="input-text-inner input-radio-inner" class:disabled="{disabled}">
-		{#if error}
-			<div class="input-error">
-				<Icon name="error"/>
-				<p id="{errorMessageId}">{error}</p>
-			</div>
-		{/if}
+
+		<InputError id="{errorMessageId}">{error || ''}</InputError>
+
 		{#each _items as item (item.id)}
 			<div
 				class="input-radio-item"
@@ -42,8 +36,10 @@
 </div>
 <script>
 import { createEventDispatcher } from 'svelte';
-import { Icon } from '../icon';
-import { guid } from '../utils';
+import { guid } from '../../utils';
+import { InputInfo } from '../input-info';
+import { InputError } from '../input-error';
+
 
 let className = '';
 export { className as class };

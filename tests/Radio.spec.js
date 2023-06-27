@@ -1,4 +1,4 @@
-import { Radio } from '../src/radio';
+import { Radio } from '../src/input';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
 

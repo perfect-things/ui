@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/svelte';
-import { InputPassword } from '../src/input-password';
+import { InputPassword } from '../src/input';
 import userEvent from '@testing-library/user-event';
 import { waitForTimeout } from './helpers/utils';
 import zxcvbn from 'zxcvbn';

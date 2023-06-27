@@ -1,4 +1,4 @@
-import { Checkbox } from '../src/checkbox';
+import { Checkbox } from '../src/input';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
 

@@ -1,4 +1,3 @@
-<!-- svelte-ignore a11y-autocomplete-valid -->
 <div
 	class="input-text {className}"
 	class:has-error="{error}">
@@ -6,20 +5,12 @@
 	{#if label}
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
-	{#if info}
-		<div class="input-info">
-			<Icon name="info"/>
-			<p>{info}</p>
-		</div>
-	{/if}
+
+	<InputInfo>{info || ''}</InputInfo>
 
 	<div class="input-text-inner">
-		{#if error}
-			<div class="input-error" transition:slide|local="{{ axis: 'y', duration: $ANIMATION_SPEED }}">
-				<Icon name="error"/>
-				<p id="{errorMessageId}">{error}</p>
-			</div>
-		{/if}
+
+		<InputError id="{errorMessageId}">{error || ''}</InputError>
 
 		<input
 			autocomplete="off"
@@ -39,9 +30,9 @@
 </div>
 
 <script>
-import { slide } from 'svelte/transition';
-import { Icon } from '../icon';
-import { pluck, guid, ANIMATION_SPEED } from '../utils';
+import { pluck, guid } from '../../utils';
+import { InputInfo } from '../input-info';
+import { InputError } from '../input-error';
 
 $:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
 
