@@ -1,12 +1,12 @@
 <h1>Changelog</h1>
-<h2>v7.0.0 <em>(2023-?)</em></h2>
+<h2>v7.0.0 <em>(2023-06-28)</em></h2>
 <ul>
 <li><strong>New:</strong> <a href="#InfoBar">InfoBar</a> component.</li>
 <li><strong>New:</strong> <a href="#InputText">InputText</a>, <a href="#InputNumber">InputNumber</a>, and <a href="#Radio">Radio</a> components.</li>
 <li><strong>New:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported in all basic inputs (<code>InputText</code>, <code>InputNumber</code>, <code>InputMath</code>, <code>InputPassword</code>, <code>Radio</code>, and <code>Checkbox</code>).</li>
 <li><strong>Improved:</strong> <code>InputMath</code> component: support for <code>()</code> characters, to allow for more complex expressions.</li>
 </ul>
-<h3>Breaking changes</h3>
+<h3>Breaking changes!</h3>
 <h5>Checkbox</h5>
 <ul>
 <li>HTML structure changed <code>input</code> --&gt; <code>.checkbox .checkbox-row input</code></li>
