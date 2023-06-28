@@ -29,7 +29,7 @@
 		<NavItem name="Radio" {active} />
 		<NavItem name="Textarea" {active} />
 
-		<h4>Complex controls</h4>
+		<h4>Other controls</h4>
 		<NavItem name="Autocomplete" {active} />
 		<NavItem name="Button" {active} />
 		<NavItem name="Push Button" {active} />
