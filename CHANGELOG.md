@@ -10,20 +10,20 @@ Changelog
 
 ### Breaking changes!
 
-##### Checkbox
+#### Checkbox
 - HTML structure changed `input` --> `.checkbox .checkbox-row input`
 - `on:change` is called with a svelte event instead of the native one, so: `e.target.checked` is now `e.detail.checked`
 
-##### InputMath
+#### InputMath
 - HTML structure changed `.input-math-wrapper input` --> `.input-math .input-text-inner .input-math-row input`
 
-##### InputNumber:
+#### InputNumber:
 - HTML structure changed: `input` --> `.input-number .input-text-inner input`
 
-##### InputPassword
+#### InputPassword
 - HTML structure changed: `.input-password-wrapper .input-password-row input` --> `.input-password .input-text-inner .input-password-row input`
 
-##### CSS variables changed:
+#### CSS variables changed:
 - `--ui-shadow-invalid` --> `--ui-shadow-danger`
 
 ----

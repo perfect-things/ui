@@ -7,24 +7,24 @@
 <li><strong>Improved:</strong> <code>InputMath</code> component: support for <code>()</code> characters, to allow for more complex expressions.</li>
 </ul>
 <h3>Breaking changes!</h3>
-<h5>Checkbox</h5>
+<h4>Checkbox</h4>
 <ul>
 <li>HTML structure changed <code>input</code> --&gt; <code>.checkbox .checkbox-row input</code></li>
 <li><code>on:change</code> is called with a svelte event instead of the native one, so: <code>e.target.checked</code> is now <code>e.detail.checked</code></li>
 </ul>
-<h5>InputMath</h5>
+<h4>InputMath</h4>
 <ul>
 <li>HTML structure changed <code>.input-math-wrapper input</code> --&gt; <code>.input-math .input-text-inner .input-math-row input</code></li>
 </ul>
-<h5>InputNumber:</h5>
+<h4>InputNumber:</h4>
 <ul>
 <li>HTML structure changed: <code>input</code> --&gt; <code>.input-number .input-text-inner input</code></li>
 </ul>
-<h5>InputPassword</h5>
+<h4>InputPassword</h4>
 <ul>
 <li>HTML structure changed: <code>.input-password-wrapper .input-password-row input</code> --&gt; <code>.input-password .input-text-inner .input-password-row input</code></li>
 </ul>
-<h5>CSS variables changed:</h5>
+<h4>CSS variables changed:</h4>
 <ul>
 <li><code>--ui-shadow-invalid</code> --&gt; <code>--ui-shadow-danger</code></li>
 </ul>
