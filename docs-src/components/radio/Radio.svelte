@@ -9,8 +9,8 @@
 <h3>List of strings as values</h3>
 <Radio items="{strings}" name="my-radio3" label="Select option 3" on:change="{onchange}" />
 
-<h3>With error</h3>
-<Radio items="{strings}" name="my-radio4" label="Select option 4" error="Here be error message." />
+<h3>With error and live validation</h3>
+<Radio items="{strings}" name="my-radio4" label="Select option 4" error="{error4}" on:change="{validate4}" />
 
 <h3>With info</h3>
 <Radio items="{strings}" name="my-radio5" label="Select option 5" info="Here be info message." />
@@ -84,4 +84,9 @@ function onchange (e) {
 	console.log(item, value);
 }
 
+let error4 = 'You must select "Four"!';
+function validate4 (e) {
+	const { value } = e.detail;
+	error4 = value === strings[3] ? '' : 'You must select "Four"!';
+}
 </script>

@@ -13,7 +13,11 @@
 
 	<div class="input-text-inner input-radio-inner" class:disabled="{disabled}">
 
-		<Error id="{errorMessageId}" msg="{error}" />
+		{#if error}
+			<div class="error-wrap" transition:slideError|local>
+				<Error id="{errorMessageId}" msg="{error}" />
+			</div>
+		{/if}
 
 		{#each _items as item (item.id)}
 			<div
@@ -36,7 +40,7 @@
 </div>
 <script>
 import { createEventDispatcher } from 'svelte';
-import { guid } from '../../utils';
+import { guid, slideError } from '../../utils';
 import { Info, Error } from '../../info-bar';
 
 

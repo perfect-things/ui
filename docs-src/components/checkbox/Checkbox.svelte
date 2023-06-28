@@ -15,7 +15,7 @@
 <Checkbox indeterminate="true" label="Check, mate!"/>
 
 
-<h3>With error</h3>
+<h3>With error and live validation</h3>
 <Checkbox {error} label="Please, check this by mistake." on:change="{onchange}"/>
 
 <h3>With info</h3>

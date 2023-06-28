@@ -7,11 +7,12 @@
 .input-text-inner {
 	display: flex;
 	flex-flow: column;
-	align-items: center;
+	align-items: stretch;
 	justify-content: stretch;
 	border-radius: var(--ui-border-radius);
 	background: var(--ui-color-background-input);
 	border: 1px solid  var(--ui-color-background-dark-2);
+	overflow: hidden;
 }
 
 .input-text-inner:focus-within {
@@ -19,17 +20,23 @@
 	box-shadow: var(--ui-shadow-focus);
 }
 
-.has-error .input-text-inner  {
-	border-color: var(--ui-color-danger);
-	background-color: var(--ui-color-danger-semi);
+.input-text .error-wrap {
+	display: flex;
+	flex-flow: row;
+	align-items: stretch;
+	justify-content: flex-start;
+	overflow: hidden;
 }
 
-.has-error .input-text-inner .info-bar-error {
-	background-color: transparent;
+.input-text-inner .info-bar-error {
 	border: none;
 	margin: 0;
+	border-radius: 0;
+	padding-bottom: calc(0.4rem + 10px);
+	margin-bottom: -10px;
 }
 
-.has-error .input-text-inner:focus-within {
-	box-shadow: var(--ui-shadow-danger);
-}
+
+.has-error .input-text-inner  { border-color: var(--ui-color-danger); }
+
+.has-error .input-text-inner:focus-within { box-shadow: var(--ui-shadow-danger); }

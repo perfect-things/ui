@@ -66,6 +66,14 @@
 
 .checkbox .info-bar { margin: 0; }
 
+.checkbox .error-wrap {
+	display: flex;
+	flex-flow: row;
+	align-items: stretch;
+	justify-content: flex-start;
+	overflow: hidden;
+}
+
 
 .checkbox.has-error input { border-color: var(--ui-color-danger); }
 .checkbox.has-error input:focus { box-shadow: var(--ui-shadow-danger); }

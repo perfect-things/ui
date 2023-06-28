@@ -10,7 +10,11 @@
 
 
 	<div class="input-text-inner">
-		<Error id="{errorMessageId}" msg="{error}" />
+		{#if error}
+			<div class="error-wrap" transition:slideError|local>
+				<Error id="{errorMessageId}" msg="{error}" />
+			</div>
+		{/if}
 
 		<div class="input-math-row">
 			<Icon name="calculator"/>
@@ -35,7 +39,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
-import { pluck, roundAmount, guid } from '../../utils';
+import { pluck, roundAmount, guid, slideError } from '../../utils';
 import { Info, Error } from '../../info-bar';
 
 

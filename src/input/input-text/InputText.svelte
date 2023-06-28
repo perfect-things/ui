@@ -9,9 +9,11 @@
 	<Info msg="{info}" />
 
 	<div class="input-text-inner">
-
-		<Error id="{errorMessageId}" msg="{error}" />
-
+		{#if error}
+			<div class="error-wrap" transition:slideError|local>
+				<Error id="{errorMessageId}" msg="{error}" />
+			</div>
+		{/if}
 		<input
 			autocomplete="off"
 			type="text"
@@ -30,7 +32,7 @@
 </div>
 
 <script>
-import { pluck, guid } from '../../utils';
+import { pluck, guid, slideError } from '../../utils';
 import { Info, Error } from '../../info-bar';
 
 $:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);

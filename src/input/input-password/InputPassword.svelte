@@ -12,7 +12,11 @@
 	<Info msg="{info}" />
 
 	<div class="input-text-inner">
-		<Error id="{errorMessageId}" msg="{error}" />
+		{#if error}
+			<div class="error-wrap" transition:slideError|local>
+				<Error id="{errorMessageId}" msg="{error}" />
+			</div>
+		{/if}
 
 		<div class="input-password-row" class:visible>
 			<input
@@ -51,7 +55,7 @@
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { Button } from '../../button';
-import { pluck, guid } from '../../utils';
+import { pluck, guid, slideError } from '../../utils';
 import { Info, Error } from '../../info-bar';
 
 

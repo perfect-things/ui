@@ -20,7 +20,7 @@
 .has-error .input-radio-inner {
 	display: flex;
 	flex-flow: column;
-	align-items: flex-start;
+	align-items: stretch;
 	justify-content: flex-start;
 	width: 100%;
 	border: 1px solid transparent;

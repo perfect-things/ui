@@ -158,3 +158,12 @@ export function timeAgo (date, now) {
 	if (chunks.length === 1) return chunks[0] + ' ago';
 	return;
 }
+
+
+export function slideError (node) {
+	const o = node.getBoundingClientRect().height;
+	return {
+		duration: get(ANIMATION_SPEED),
+		css: (t) => `height: ${t * o}px`
+	};
+}
