@@ -30,14 +30,14 @@
 
 <script>
 import { createEventDispatcher } from 'svelte';
-import { uuid } from '../utils';
+import { guid } from '../utils';
 import { Icon } from '../icon';
 
 export let disabled = undefined;
 export let round = undefined;	// round button
 export let items = '';
 export let id = '';
-export let name = uuid();
+export let name = guid();
 export let value = '';
 let className = '';
 export { className as class };
@@ -62,6 +62,7 @@ function onmousedown (e) {
 	if (btn.value === value) return;
 	onchange(e, btn);
 }
+
 
 function onchange (e, button) {
 	value = button.value;

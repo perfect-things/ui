@@ -1,0 +1,35 @@
+.info-bar {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.5rem;
+	padding: 0.4rem;
+	margin: 0 0 0.75rem;
+	border-radius: var(--ui-border-radius);
+	border-width: 1px;
+	border-style: solid;
+}
+
+.info-bar p { margin: 0; font-size: 0.9rem; line-height: 1.4rem; }
+.info-bar .icon { flex-shrink: 0; }
+
+
+
+.info-bar-error {
+	background-color: var(--ui-color-danger-semi);
+	border-color: var(--ui-color-danger);
+}
+
+.info-bar-info {
+	background-color: var(--ui-color-info-semi);
+	border-color: var(--ui-color-info);
+}
+
+.info-bar-warning {
+	background-color: var(--ui-color-warning-semi);
+	border-color: var(--ui-color-warning);
+}
+
+.info-bar-error .icon,
+.info-bar-info .icon { margin-top: -1px; }

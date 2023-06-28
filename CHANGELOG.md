@@ -2,6 +2,33 @@ Changelog
 =========
 
 
+## v7.0.0 *(2023-06-28)*
+- **New:** [InfoBar](#InfoBar) component.
+- **New:** [InputText](#InputText), [InputNumber](#InputNumber), and [Radio](#Radio) components.
+- **New:** `info`, `error` and `label` attributes are now supported in all basic inputs (`InputText`, `InputNumber`, `InputMath`, `InputPassword`, `Radio`, and `Checkbox`).
+- **Improved:** `InputMath` component: support for `()` characters, to allow for more complex expressions.
+
+### Breaking changes!
+
+##### Checkbox
+- HTML structure changed `input` --> `.checkbox .checkbox-row input`
+- `on:change` is called with a svelte event instead of the native one, so: `e.target.checked` is now `e.detail.checked`
+
+##### InputMath
+- HTML structure changed `.input-math-wrapper input` --> `.input-math .input-text-inner .input-math-row input`
+
+##### InputNumber:
+- HTML structure changed: `input` --> `.input-number .input-text-inner input`
+
+##### InputPassword
+- HTML structure changed: `.input-password-wrapper .input-password-row input` --> `.input-password .input-text-inner .input-password-row input`
+
+##### CSS variables changed:
+- `--ui-shadow-invalid` --> `--ui-shadow-danger`
+
+----
+
+
 ## v6.8.1, v6.8.2 *(2023-06-21)*
 - Allow HTML in `MessageBox`.
 - Improve styling for multi-line messages in `MessageBox`.

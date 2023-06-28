@@ -6,7 +6,7 @@ input::placeholder { color: var(--ui-color-text-dark-2); }
 .theme-light input::placeholder { color: var(--ui-color-text-light-2); }
 
 
-input:not([type=radio],[type=checkbox]) {
+:where(input:not([type=radio],[type=checkbox])) {
 	font: inherit;
 	height: 2.2rem;
 	border: 1px solid transparent;
@@ -18,32 +18,18 @@ input:not([type=radio],[type=checkbox]) {
 	width: 25ch;
 }
 
-input:focus { outline: 0; }
-
-.label.disabled,
-input:disabled { opacity: 0.75; }
-
-
-input:not([type=radio]):focus {
+:where(input:focus) {
+	outline: 0;
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
+:where(input:disabled) { opacity: 0.75; }
 
-
-input:not([type=radio]).error,
-input:not([type=radio]).error:focus,
-input:not([type=radio]).invalid,
-input:not([type=radio]).invalid:focus,
-input:not([type=radio]):invalid {
+:where(input:invalid) {
 	border-color: var(--ui-color-danger);
-	box-shadow: var(--ui-shadow-invalid);
+	box-shadow: var(--ui-shadow-danger);
 }
 
-input.has-error-message {
-	border-top: none;
-	border-top-left-radius: 1px;
-	border-top-right-radius: 1px;
-}
 
 input[type=color] {
 	-moz-appearance: none;
@@ -55,28 +41,40 @@ input[type=color] {
 	cursor: pointer;
 }
 
+
 .label {
 	height: 2.2rem;
 	line-height: 1.6;
-	padding: 0 var(--ui-margin-s);
+	padding: 0;
 	display: inline-flex;
 	align-items: center;
 }
 
 
-.input-error {
-	margin: 0.5rem 0 -1px;
-	padding-block: 0.3rem;
-	padding-inline: 0.4rem 0.8rem;
+.input-error,
+.input-info {
+	width: 100%;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
 	gap: 0.5rem;
-	width: 25ch;
-	color: var(--ui-color-text);
-	border: 1px solid var(--ui-color-danger);
-	border-radius: var(--ui-border-radius) var(--ui-border-radius) 1px 1px;
-	background-color: var(--ui-color-danger-dark-1);
-	box-shadow: var(--ui-shadow-invalid);
-	border-bottom: none;
+	padding: 0.4rem;
+	margin: 0 0 0.75rem;
+	border-radius: var(--ui-border-radius);
 }
+
+.input-error {
+	background-color: var(--ui-color-danger-semi);
+	border: 1px solid var(--ui-color-danger);
+}
+
+.input-info {
+	background-color: var(--ui-color-info-semi);
+	border: 1px solid var(--ui-color-info);
+}
+
+.input-error p,
+.input-info p { margin: 0; font-size: 0.9rem; line-height: 1.4rem; }
+
+.input-error .icon,
+.input-info .icon { flex-shrink: 0; margin-top: -1px; }
