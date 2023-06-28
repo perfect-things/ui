@@ -15,7 +15,6 @@ export * from './push-button/index.js';
 export * from './select/index.js';
 export * from './splitter/index.js';
 export * from './table/index.js';
-export * from './textarea/index.js';
 export * from './text-fit/index.js';
 export * from './toaster/index.js';
 export * from './notification-center/index.js';

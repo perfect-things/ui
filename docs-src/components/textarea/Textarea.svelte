@@ -1,17 +1,27 @@
 <h2>Textarea</h2>
 
 <h3>Default</h3>
-<Textarea></Textarea>
+<Textarea label="Write some text"></Textarea>
 
 <h3>Disabled</h3>
-<Textarea disabled></Textarea>
+<Textarea label="Write some text" disabled></Textarea>
 
 <h3>Placeholder</h3>
-<Textarea placeholder="Add some text"></Textarea>
+<Textarea label="Write some text" placeholder="Add some text"></Textarea>
 
 
 <h3>Autogrow</h3>
-<Textarea autogrow></Textarea>
+<Textarea label="Write some text" autogrow></Textarea>
+
+
+<h3>With info text</h3>
+<Textarea label="Write some text" info="This is some extra info for you"></Textarea>
+
+<h3>With error</h3>
+<Textarea label="Write some text" error="You have a typo somewhere in here"></Textarea>
+
+<h3>With info, error and autogrow</h3>
+<Textarea label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>
 
 
 
@@ -28,19 +38,22 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'autogrow', description: 'If present - the textarea will grow in height to match the text and avoid scrollbar.' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
+	{ name: 'disabled', description: 'Make the textarea disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying textarea.' },
+	{ name: 'info', type: 'string', description: 'Show info message above the textarea.' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the textarea.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying textarea.' },
+	{ name: 'label', type: 'string', description: 'Label for the textarea.' },
 	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying textarea.' },
-	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.' },
+	{ name: 'required', description: 'Mark the textarea as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying textarea.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the textarea.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered when input value is edited.' },
+	{ name: 'on:input', type: 'function', description: 'Triggered when textarea value is edited.' },
 ];
 
 const exampleHtml = `
-<Textarea autogrow on:change="{onChange}" />
+<Textarea autogrow on:change="{onChange}" error="Invalid text" />
 
 <script>
 function onChange (e) {

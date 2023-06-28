@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v7.0.1 *(2023-06-28)*
+- `Textarea` component now follows all basic inputs and support `error`, `info`, and `label` properties.
+- Notifications are now centered on mobile screen sizes.
+
+
 ## v7.0.0 *(2023-06-28)*
 - **New:** [InfoBar](#InfoBar) component.
 - **New:** [InputText](#InputText), [InputNumber](#InputNumber), and [Radio](#Radio) components.

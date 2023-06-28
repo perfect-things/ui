@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v7.0.1 <em>(2023-06-28)</em></h2>
+<ul>
+<li><code>Textarea</code> component now follows all basic inputs and support <code>error</code>, <code>info</code>, and <code>label</code> properties.</li>
+<li>Notifications are now centered on mobile screen sizes.</li>
+</ul>
 <h2>v7.0.0 <em>(2023-06-28)</em></h2>
 <ul>
 <li><strong>New:</strong> <a href="#InfoBar">InfoBar</a> component.</li>

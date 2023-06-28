@@ -4,3 +4,4 @@ export * from './input-number';
 export * from './input-password';
 export * from './input-text';
 export * from './radio';
+export * from './textarea';

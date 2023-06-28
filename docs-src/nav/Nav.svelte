@@ -19,22 +19,28 @@
 		<NavItem name="Changelog" {active} />
 
 		<h3>Form Controls</h3>
+
+		<h4>Basic inputs</h4>
+		<NavItem name="Checkbox" {active} />
+		<NavItem name="Input Text" {active} />
+		<NavItem name="Input Number" {active} />
+		<NavItem name="Input Math" {active} />
+		<NavItem name="Input Password" {active} />
+		<NavItem name="Radio" {active} />
+		<NavItem name="Textarea" {active} />
+
+		<h4>Complex controls</h4>
 		<NavItem name="Autocomplete" {active} />
 		<NavItem name="Button" {active} />
 		<NavItem name="Push Button" {active} />
 		<NavItem name="Button Group" {active} />
 		<NavItem name="Button Toggle" {active} />
 
-		<NavItem name="Checkbox" {active} />
 		<NavItem name="Datepicker" {active} />
-		<NavItem name="Input Text" {active} />
-		<NavItem name="Input Number" {active} />
-		<NavItem name="Input Math" {active} />
-		<NavItem name="Input Password" {active} />
-		<NavItem name="Radio" {active} />
 		<NavItem name="Select" {active} />
-		<NavItem name="Textarea" {active} />
 		<NavItem name="Toggle" {active} />
+
+
 
 		<h3>Containers</h3>
 		<NavItem name="Dialog" {active} />
