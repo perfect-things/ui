@@ -9,10 +9,10 @@
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
 
-	<InputInfo>{info || ''}</InputInfo>
+	<Info msg="{info}" />
 
 	<div class="input-text-inner">
-		<InputError id="{errorMessageId}">{error || ''}</InputError>
+		<Error id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-password-row" class:visible>
 			<input
@@ -52,8 +52,7 @@
 import { onMount, createEventDispatcher } from 'svelte';
 import { Button } from '../../button';
 import { pluck, guid } from '../../utils';
-import { InputInfo } from '../input-info';
-import { InputError } from '../input-error';
+import { Info, Error } from '../../info-bar';
 
 
 let className = '';

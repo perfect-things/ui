@@ -9,11 +9,11 @@
 		<label class="label" for="{id}">{label}</label>
 	{/if}
 
-	<InputInfo>{info || ''}</InputInfo>
+	<Info msg="{info}" />
 
 	<div class="input-text-inner input-radio-inner" class:disabled="{disabled}">
 
-		<InputError id="{errorMessageId}">{error || ''}</InputError>
+		<Error id="{errorMessageId}" msg="{error}" />
 
 		{#each _items as item (item.id)}
 			<div
@@ -37,8 +37,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
-import { InputInfo } from '../input-info';
-import { InputError } from '../input-error';
+import { Info, Error } from '../../info-bar';
 
 
 let className = '';

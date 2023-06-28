@@ -23,7 +23,8 @@
 	border-color: var(--ui-color-danger);
 	background-color: var(--ui-color-danger-semi);
 }
-.has-error .input-text-inner .input-error {
+
+.has-error .input-text-inner .info-bar-error {
 	background-color: transparent;
 	border: none;
 	margin: 0;

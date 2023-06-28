@@ -820,6 +820,42 @@ svg { width: 1.5rem; height: 1.5rem; }
 
 .drawer-content { padding: 0 1.4rem; }
 
+.info-bar {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.5rem;
+	padding: 0.4rem;
+	margin: 0 0 0.75rem;
+	border-radius: var(--ui-border-radius);
+	border-width: 1px;
+	border-style: solid;
+}
+
+.info-bar p { margin: 0; font-size: 0.9rem; line-height: 1.4rem; }
+.info-bar .icon { flex-shrink: 0; }
+
+
+
+.info-bar-error {
+	background-color: var(--ui-color-danger-semi);
+	border-color: var(--ui-color-danger);
+}
+
+.info-bar-info {
+	background-color: var(--ui-color-info-semi);
+	border-color: var(--ui-color-info);
+}
+
+.info-bar-warning {
+	background-color: var(--ui-color-warning-semi);
+	border-color: var(--ui-color-warning);
+}
+
+.info-bar-error .icon,
+.info-bar-info .icon { margin-top: -1px; }
+
 .theme-dark input { color-scheme: dark; }
 .theme-light input { color-scheme: light; }
 
@@ -1732,8 +1768,7 @@ input[type=color] {
 }
 
 
-.checkbox .input-info,
-.checkbox .input-error { margin: 0; }
+.checkbox .info-bar { margin: 0; }
 
 
 .checkbox.has-error input { border-color: var(--ui-color-danger); }
@@ -1759,7 +1794,6 @@ input[type=color] {
 	z-index: 1;
 }
 .theme-light .input-math-row > .icon { color: var(--ui-color-text-light-2); }
-
 
 
 .input-math-row {
@@ -1809,6 +1843,8 @@ input[type=color] {
 }
 
 .input-password.visible .input-password { font-family: inherit; }
+
+
 
 
 /* PASSWORD STRENGTH */
@@ -1886,7 +1922,8 @@ input[type=color] {
 	border-color: var(--ui-color-danger);
 	background-color: var(--ui-color-danger-semi);
 }
-.has-error .input-text-inner .input-error {
+
+.has-error .input-text-inner .info-bar-error {
 	background-color: transparent;
 	border: none;
 	margin: 0;
@@ -1923,8 +1960,9 @@ input[type=color] {
 	width: 100%;
 	border: 1px solid transparent;
 	padding: 0 0 0.3rem;
-	border-radius: calc(var(--ui-border-radius) + 0.3rem);
+	border-radius: calc(var(--ui-border-radius) + 0.26rem);
 	background-color: var(--ui-color-background-input);
+	overflow: hidden;
 }
 
 .input-radio-inner:has(:active),
@@ -1942,8 +1980,11 @@ input[type=color] {
 	box-shadow: var(--ui-shadow-danger);
 }
 
-.has-error .input-radio-inner .input-error {
+.has-error .input-radio-inner .info-bar-error {
+	width: 100%;
 	background-color: var(--ui-color-danger-semi);
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 

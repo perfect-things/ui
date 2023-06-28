@@ -3,10 +3,10 @@
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
 
-	<InputInfo>{info || ''}</InputInfo>
+	<Info msg="{info}" />
 
 	<div class="input-text-inner">
-		<InputError id="{errorMessageId}">{error || ''}</InputError>
+		<Error id="{errorMessageId}" msg="{error}" />
 
 		<input
 			type="text"
@@ -30,9 +30,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { pluck, guid } from '../../utils';
-import { InputInfo } from '../input-info';
-import { InputError } from '../input-error';
-
+import { Info, Error } from '../../info-bar';
 
 
 let className = '';

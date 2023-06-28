@@ -7,6 +7,7 @@ export * from './datepicker/index.js';
 export * from './drawer/index.js';
 export * from './icon/index.js';
 export * from './input/index.js';
+export * from './info-bar/index.js';
 export * from './menu/index.js';
 export * from './message-box/index.js';
 export * from './panel/index.js';

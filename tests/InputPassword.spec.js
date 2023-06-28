@@ -36,23 +36,23 @@ test('InputPassword', async () => {
 	expect(input).toHaveAttribute('placeholder', props.placeholder);
 	expect(input).toHaveAttribute('aria-required');
 
-	let err = cmp.querySelector('.input-error');
+	let err = cmp.querySelector('.info-bar-error');
 	expect(err).toBeInTheDocument();
 	expect(err).toHaveTextContent(props.error);
 
 	await component.$set({ error: '' });
 	await waitForTimeout();
-	err = cmp.querySelector('.input-error');
+	err = cmp.querySelector('.info-bar-error');
 	expect(err).not.toBeInTheDocument();
 
 	await component.$set({ info: 'info' });
-	let info = cmp.querySelector('.input-info');
+	let info = cmp.querySelector('.info-bar-info');
 	expect(info).toBeInTheDocument();
 	expect(info).toHaveTextContent('info');
 
 	await component.$set({ info: '' });
 	await waitForTimeout();
-	info = cmp.querySelector('.input-info');
+	info = cmp.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
 
 	const lbl = cmp.querySelector('label');

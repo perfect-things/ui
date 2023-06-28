@@ -39,6 +39,7 @@
 		<h3>Containers</h3>
 		<NavItem name="Dialog" {active} />
 		<NavItem name="Drawer" {active} />
+		<NavItem name="InfoBar" {active} />
 		<NavItem name="Menu" {active} />
 		<NavItem name="MessageBox" {active} />
 		<NavItem name="Panel" {active} />

@@ -17,6 +17,7 @@ export { Toggle } from './toggle';
 
 export { Dialog } from './dialog';
 export { Drawer } from './drawer';
+export { InfoBar } from './info-bar';
 export { Menu } from './menu';
 export { MessageBox } from './message-box';
 export { Panel } from './panel';

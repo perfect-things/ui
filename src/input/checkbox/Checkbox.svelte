@@ -5,9 +5,8 @@
 	class:disabled
 	class:has-error="{error}">
 
-	<InputInfo>{info || ''}</InputInfo>
-
-	<InputError id="{errorMessageId}">{error || ''}</InputError>
+	<Info msg="{info}" />
+	<Error id="{errorMessageId}" msg="{error}" />
 
 	<div class="checkbox-row">
 		<input
@@ -29,9 +28,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
-import { InputInfo } from '../input-info';
-import { InputError } from '../input-error';
-
+import { Info, Error } from '../../info-bar';
 
 
 let className = '';

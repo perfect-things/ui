@@ -64,8 +64,7 @@
 }
 
 
-.checkbox .input-info,
-.checkbox .input-error { margin: 0; }
+.checkbox .info-bar { margin: 0; }
 
 
 .checkbox.has-error input { border-color: var(--ui-color-danger); }

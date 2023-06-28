@@ -22,24 +22,24 @@ test('Checkbox', async () => {
 	expect(chbox).toBeInTheDocument();
 	expect(chbox).toHaveClass('test-class');
 
-	let err = chbox.querySelector('.input-error');
+	let err = chbox.querySelector('.info-bar-error');
 	expect(err).toBeInTheDocument();
 	expect(err).toHaveTextContent(props.error);
 
 
 	await component.$set({ error: '' });
 	await waitForTimeout();
-	err = chbox.querySelector('.input-error');
+	err = chbox.querySelector('.info-bar-error');
 	expect(err).not.toBeInTheDocument();
 
 	await component.$set({ info: 'info' });
-	let info = chbox.querySelector('.input-info');
+	let info = chbox.querySelector('.info-bar-info');
 	expect(info).toBeInTheDocument();
 	expect(info).toHaveTextContent('info');
 
 	await component.$set({ info: '' });
 	await waitForTimeout();
-	info = chbox.querySelector('.input-info');
+	info = chbox.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
 
 
