@@ -30,7 +30,7 @@
 				on:change
 				on:focus
 				on:blur>
-			<Button link icon="{visible ? 'eyeOff' : 'eye'}" class="input-password-button" on:click="{toggle}"/>
+			<Button link icon="{visible ? 'eye' : 'eyeOff'}" class="input-password-button" on:click="{toggle}"/>
 		</div>
 	</div>
 	{#if strength && lib && value}

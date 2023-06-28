@@ -126,7 +126,9 @@
 
 
 @media (1px <= width <= 700px) {
-	.notification-center { width: calc(100vw - 1rem); }
+	.notification-center {
+		--ui-notification-width: calc(100vw - var(--ui-notification-gap) * 2);
+	}
 }
 
 
