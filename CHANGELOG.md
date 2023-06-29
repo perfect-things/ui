@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+
+## v7.0.2 *(2023-06-?)*
+- Add `success` to the `InfoBar` component.
+- Behind the scenes refactoring and improvements.
+
+
 ## v7.0.1 *(2023-06-28)*
 - `Textarea` component now follows all basic inputs and support `error`, `info`, and `label` properties.
 - Notifications are now centered on mobile screen sizes.
