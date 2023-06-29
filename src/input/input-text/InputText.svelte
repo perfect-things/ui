@@ -8,16 +8,14 @@
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner">
-		{#if error}
-			<div class="error-wrap" transition:slideError|local>
-				<Error id="{errorMessageId}" msg="{error}" />
-			</div>
-		{/if}
+	<div class="input-text-inner" class:disabled>
+		<InputError id="{errorMessageId}" msg="{error}" />
+
 		<input
 			autocomplete="off"
 			type="text"
 			{...props}
+			{disabled}
 			id="{_id}"
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
@@ -32,19 +30,20 @@
 </div>
 
 <script>
-import { pluck, guid, slideError } from '../../utils';
-import { Info, Error } from '../../info-bar';
+import { pluck, guid } from '../../utils';
+import { Info, InputError } from '../../info-bar';
 
-$:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
+$:props = pluck($$props, ['title', 'name', 'placeholder']);
 
 let className = '';
 export { className as class };
 export let id = '';
-export let required = false;
+export let required = undefined;
+export let disabled = false;
 export let value = '';
 export let label = '';
-export let error = '';
-export let info = '';
+export let error = undefined;
+export let info = undefined;
 
 $:_id = id || name || guid();
 

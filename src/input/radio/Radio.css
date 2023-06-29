@@ -16,40 +16,35 @@
 	max-width: 100%;
 }
 
-.input-radio-inner,
-.has-error .input-radio-inner {
+.input-radio-inner {
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: flex-start;
 	width: 100%;
-	border: 1px solid transparent;
+	border: 1px solid  var(--ui-color-background-dark-2);
 	padding: 0 0 0.3rem;
 	border-radius: calc(var(--ui-border-radius) + 0.26rem);
 	background-color: var(--ui-color-background-input);
 	overflow: hidden;
 }
 
-.input-radio-inner:has(:active),
-.input-radio-inner:focus-within {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
 .has-error .input-radio-inner {
 	border-color: var(--ui-color-danger);
 }
 
-.has-error .input-radio-inner:has(:active),
-.has-error .input-radio-inner:focus-within {
-	box-shadow: var(--ui-shadow-danger);
+
+.input-radio-inner:focus-within,
+.input-radio-inner:has(:active):not(.disabled) {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
 }
 
-.has-error .input-radio-inner .info-bar-error {
-	width: 100%;
-	background-color: var(--ui-color-danger-semi);
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+
+.has-error .input-radio-inner:focus-within,
+.has-error .input-radio-inner:has(:active):not(.disabled) {
+	box-shadow: var(--ui-shadow-danger);
+	border-color: var(--ui-color-danger);
 }
 
 

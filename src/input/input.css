@@ -2,7 +2,10 @@
 .theme-light input { color-scheme: light; }
 
 
+textarea::placeholder,
 input::placeholder { color: var(--ui-color-text-dark-2); }
+
+.theme-light textarea::placeholder,
 .theme-light input::placeholder { color: var(--ui-color-text-light-2); }
 
 
@@ -23,7 +26,7 @@ input::placeholder { color: var(--ui-color-text-dark-2); }
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
-:where(input:disabled) { opacity: 0.75; }
+:where(input:disabled) { opacity: 0.75; cursor: default; }
 
 :where(input:invalid) {
 	border-color: var(--ui-color-danger);
@@ -49,32 +52,3 @@ input[type=color] {
 	display: inline-flex;
 	align-items: center;
 }
-
-
-.input-error,
-.input-info {
-	width: 100%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	gap: 0.5rem;
-	padding: 0.4rem;
-	margin: 0 0 0.75rem;
-	border-radius: var(--ui-border-radius);
-}
-
-.input-error {
-	background-color: var(--ui-color-danger-semi);
-	border: 1px solid var(--ui-color-danger);
-}
-
-.input-info {
-	background-color: var(--ui-color-info-semi);
-	border: 1px solid var(--ui-color-info);
-}
-
-.input-error p,
-.input-info p { margin: 0; font-size: 0.9rem; line-height: 1.4rem; }
-
-.input-error .icon,
-.input-info .icon { flex-shrink: 0; margin-top: -1px; }

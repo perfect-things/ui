@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v7.0.2 <em>(2023-06-?)</em></h2>
+<ul>
+<li>Add <code>success</code> to the <code>InfoBar</code> component.</li>
+<li>Behind the scenes refactoring and improvements.</li>
+</ul>
 <h2>v7.0.1 <em>(2023-06-28)</em></h2>
 <ul>
 <li><code>Textarea</code> component now follows all basic inputs and support <code>error</code>, <code>info</code>, and <code>label</code> properties.</li>

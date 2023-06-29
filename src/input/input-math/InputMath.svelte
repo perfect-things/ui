@@ -9,12 +9,8 @@
 	<Info msg="{info}" />
 
 
-	<div class="input-text-inner">
-		{#if error}
-			<div class="error-wrap" transition:slideError|local>
-				<Error id="{errorMessageId}" msg="{error}" />
-			</div>
-		{/if}
+	<div class="input-text-inner" class:disabled>
+		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-math-row">
 			<Icon name="calculator"/>
@@ -22,6 +18,7 @@
 				type="text"
 				autocomplete="off"
 				{...props}
+				{disabled}
 				id="{_id}"
 				aria-invalid="{error}"
 				aria-errormessage="{error ? errorMessageId : undefined}"
@@ -39,8 +36,8 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
-import { pluck, roundAmount, guid, slideError } from '../../utils';
-import { Info, Error } from '../../info-bar';
+import { pluck, roundAmount, guid } from '../../utils';
+import { Info, InputError } from '../../info-bar';
 
 
 export let _this = undefined;
@@ -48,11 +45,12 @@ let className = '';
 export { className as class };
 
 export let id = '';
-export let required = false;
+export let required = undefined;
+export let disabled = false;
 export let value = '';
 export let label = '';
-export let error = '';
-export let info = '';
+export let error = undefined;
+export let info = undefined;
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
@@ -64,7 +62,7 @@ const allowedKeys = [
 ];
 
 
-$:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
+$:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:_id = id || props.name || guid();
 
 

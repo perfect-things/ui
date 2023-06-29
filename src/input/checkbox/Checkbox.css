@@ -17,7 +17,6 @@
 	appearance: none;
 	width: 1.4rem;
 	height: 1.4rem;
-	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -54,25 +53,8 @@
 
 .checkbox input:checked::after { opacity: 1; }
 
-
-.checkbox.disabled .label { color: var(--ui-color-text-semi); }
-.checkbox input:disabled {
-	opacity: 0.75;
-	cursor: default;
-	color: var(--ui-color-text-dark-2);
-	border-color: var(--ui-color-text-semi);
-}
-
-
-.checkbox .info-bar { margin: 0; }
-
-.checkbox .error-wrap {
-	display: flex;
-	flex-flow: row;
-	align-items: stretch;
-	justify-content: flex-start;
-	overflow: hidden;
-}
+.checkbox.disabled { opacity: 0.5; }
+.checkbox.disabled input { opacity: 1; }
 
 
 .checkbox.has-error input { border-color: var(--ui-color-danger); }

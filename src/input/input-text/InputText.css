@@ -20,22 +20,6 @@
 	box-shadow: var(--ui-shadow-focus);
 }
 
-.input-text .error-wrap {
-	display: flex;
-	flex-flow: row;
-	align-items: stretch;
-	justify-content: flex-start;
-	overflow: hidden;
-}
-
-.input-text-inner .info-bar-error {
-	border: none;
-	margin: 0;
-	border-radius: 0;
-	padding-bottom: calc(0.4rem + 10px);
-	margin-bottom: -10px;
-}
-
 
 .has-error .input-text-inner  { border-color: var(--ui-color-danger); }
 

@@ -2,7 +2,7 @@
 <div
 	{id}
 	{title}
-	class="input-text input-radio {className}"
+	class="input-radio {className}"
 	class:has-error="{error}">
 
 	{#if label}
@@ -11,13 +11,8 @@
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner input-radio-inner" class:disabled="{disabled}">
-
-		{#if error}
-			<div class="error-wrap" transition:slideError|local>
-				<Error id="{errorMessageId}" msg="{error}" />
-			</div>
-		{/if}
+	<div class="input-radio-inner" class:disabled>
+		<InputError id="{errorMessageId}" msg="{error}" />
 
 		{#each _items as item (item.id)}
 			<div
@@ -40,8 +35,8 @@
 </div>
 <script>
 import { createEventDispatcher } from 'svelte';
-import { guid, slideError } from '../../utils';
-import { Info, Error } from '../../info-bar';
+import { guid } from '../../utils';
+import { Info, InputError } from '../../info-bar';
 
 
 let className = '';

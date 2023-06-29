@@ -1,13 +1,9 @@
-.textarea {
-	position: relative;
-	width: 25ch;
-	vertical-align: top;
-}
+.textarea { position: relative; width: 25ch; vertical-align: top; }
 
 .textarea.autogrow .textarea-inner::after,
 .textarea textarea {
 	font: inherit;
-	line-height: 1.6;
+	line-height: 1.3;
 	border: 1px solid transparent;
 	margin: 0;
 	width: 100%;
@@ -15,8 +11,6 @@
 	grid-area: 2 / 1 / 2 / 2;
 }
 
-.textarea textarea::placeholder { color: var(--ui-color-text-dark-2); }
-.theme-light .textarea textarea::placeholder { color: var(--ui-color-text-light-2); }
 
 .textarea .textarea-inner {
 	width: 100%;
@@ -33,7 +27,9 @@
 	border-radius: var(--ui-border-radius);
 	border: none;
 	min-height: 2.6rem;
+	background-color: var(--ui-color-background-input);
 }
+
 
 .textarea .textarea-inner:focus-within {
 	border-color: var(--ui-color-accent);
@@ -58,13 +54,6 @@
 
 .textarea.autogrow textarea { resize: none; }
 
-
-.textarea.has-error .textarea-inner .info-bar-error {
-	grid-area: 1 / 1 / 2 / 2;
-	border: none;
-	padding-bottom: calc(0.4rem + 10px);
-	margin-bottom: -10px;
-}
 
 .textarea.has-error .textarea-inner  { border-color: var(--ui-color-danger); }
 .textarea.has-error .textarea-inner:focus-within { box-shadow: var(--ui-shadow-danger); }

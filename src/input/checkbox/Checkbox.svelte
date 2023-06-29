@@ -6,11 +6,7 @@
 	class:has-error="{error}">
 
 	<Info msg="{info}" />
-	{#if error}
-		<div class="error-wrap" transition:slideError|local>
-			<Error id="{errorMessageId}" msg="{error}" />
-		</div>
-	{/if}
+	<InputError id="{errorMessageId}" msg="{error}" />
 
 	<div class="checkbox-row">
 		<input
@@ -31,8 +27,8 @@
 
 <script>
 import { createEventDispatcher } from 'svelte';
-import { guid, slideError } from '../../utils';
-import { Info, Error } from '../../info-bar';
+import { guid } from '../../utils';
+import { Info, InputError } from '../../info-bar';
 
 
 let className = '';
@@ -43,11 +39,11 @@ export let checked = false;
 export let disabled = false;
 export let id = '';
 export let label = '';
-export let error = '';
-export let info = '';
+export let error = undefined;
+export let info = undefined;
 export let title = undefined;
 export let name = '';
-export let required = false;
+export let required = undefined;
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
