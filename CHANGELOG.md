@@ -3,7 +3,7 @@ Changelog
 
 
 
-## v7.0.2 *(2023-06-?)*
+## v7.0.2 *(2023-06-29)*
 - Add `success` to the `InfoBar` component.
 - Behind the scenes refactoring and improvements.
 
