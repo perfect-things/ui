@@ -1,7 +1,8 @@
 <h2>InfoBar</h2>
 
 <p>A simple information box with type-styling.</p>
-<p>There are also shortcut-components available, for more semantic HTML: <em>Info</em>, <em>Warning</em> and <em>Error</em>.</p>
+<p>There are also shortcut-components available, for more semantic HTML:
+	<em>Info</em>, <em>Warning</em>, <em>Error</em>, and <em>Success</em>.</p>
 
 <br>
 
@@ -13,6 +14,7 @@
 <Info msg="Some info text" />
 <Warning msg="Some warning text" />
 <Error msg="Some error text" />
+<Success msg="Some success text" />
 
 
 <CodeExample html="{exampleHtml}" />
@@ -21,7 +23,7 @@
 
 
 <script>
-import { InfoBar, Info, Error, Warning } from '../../../src';
+import { InfoBar, Info, Error, Success, Warning } from '../../../src';
 import { CodeExample } from '../../code-example';
 import { API } from '../../api-table';
 
@@ -29,7 +31,7 @@ const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the message paragraph.' },
 	{ name: 'msg', type: 'string', description: 'Message to display. It can use simple html for formatting (message is wrapped in <em>&lt;p&gt;</em> tag).' },
-	{ name: 'type', type: ['info', 'warning', 'error'], default: 'info', description: 'Type of the info-bar.' },
+	{ name: 'type', type: ['info', 'warning', 'error', 'success'], default: 'info', description: 'Type of the info-bar. This property only exists on the <em>&lt;InfoBar&gt;</em> component, not on the shortcut-components.' },
 ];
 
 
@@ -40,6 +42,7 @@ const exampleHtml = `
 <Info msg="Some info text" />
 <Warning msg="Some warning text" />
 <Error msg="Some error text" />
+<Success msg="Some success text" />
 `;
 
 

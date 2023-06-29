@@ -26,6 +26,11 @@
 	border-color: var(--ui-color-info);
 }
 
+.info-bar-success {
+	background-color: var(--ui-color-success-semi);
+	border-color: var(--ui-color-success);
+}
+
 .info-bar-warning {
 	background-color: var(--ui-color-warning-semi);
 	border-color: var(--ui-color-warning);

@@ -1,4 +1,4 @@
-import { InfoBar, Info, Warning, Error } from '../src/info-bar';
+import { InfoBar, Info, Warning, Error, Success } from '../src/info-bar';
 import { render } from '@testing-library/svelte';
 
 
@@ -6,6 +6,7 @@ const tablerIcon = {
 	info: 'icon-tabler-info-circle',
 	warning: 'icon-tabler-alert-triangle',
 	error: 'icon-tabler-alert-circle',
+	success: 'icon-tabler-circle-check',
 };
 
 test('InfoBar', async () => {
@@ -90,4 +91,23 @@ test('InfoBar - Error', async () => {
 
 	const icon = cmp.querySelector('svg');
 	expect(icon).toHaveClass(tablerIcon.error);
+});
+
+
+test('InfoBar - Success', async () => {
+	const props = {
+		id: 'test',
+		msg: 'test',
+		class: 'test',
+	};
+	const { container } = render(Success, props);
+	const cmp = container.querySelector('.info-bar');
+
+	expect(cmp).toBeInTheDocument();
+	expect(cmp).toHaveClass('info-bar-success');
+	expect(cmp).toHaveClass('test');
+	expect(cmp).toHaveTextContent('test');
+
+	const icon = cmp.querySelector('svg');
+	expect(icon).toHaveClass(tablerIcon.success);
 });
