@@ -1,5 +1,5 @@
 <h1>Changelog</h1>
-<h2>v7.0.2 <em>(2023-06-?)</em></h2>
+<h2>v7.0.2 <em>(2023-06-29)</em></h2>
 <ul>
 <li>Add <code>success</code> to the <code>InfoBar</code> component.</li>
 <li>Behind the scenes refactoring and improvements.</li>
