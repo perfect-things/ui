@@ -2,6 +2,9 @@ Changelog
 =========
 
 
+## v7.1.0 *(2023-06-30)*
+- Improve `Panel` component with new properties: `collapsible` (it's not collapsible by default), and `disabled`.
+
 
 ## v7.0.2 *(2023-06-29)*
 - Add `success` to the `InfoBar` component.

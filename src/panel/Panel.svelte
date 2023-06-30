@@ -1,8 +1,18 @@
-<div class="panel-wrap {className}" class:expanded class:round bind:this="{wrapEl}">
-	<details class="panel" {open} on:keydown={toggle} on:click={toggle}>
-		<summary class="panel-header" bind:this="{headerEl}">
+<div
+	class="panel {className}"
+	class:collapsible
+	class:expanded
+	class:round
+	class:disabled
+	inert="{disabled}"
+	bind:this="{wrapEl}">
+
+	<details open="{open}" on:keydown={toggle} on:click={toggle}>
+		<summary class="panel-header" bind:this="{headerEl}" inert="{!collapsible}">
 			{title}
-			<div class="chevron">{@html icons.chevronRight}</div>
+			{#if collapsible}
+				<div class="chevron">{@html icons.chevronRight}</div>
+			{/if}
 		</summary>
 		<div class="panel-content"><slot></slot></div>
 	</details>
@@ -14,11 +24,13 @@ import { icons } from '../icon';
 import { animate } from '../utils';
 const dispatch = createEventDispatcher();
 
+let className = '';
+export { className as class };
 export let title = '';
 export let open = false;
 export let round = false;
-let className = '';
-export { className as class };
+export let collapsible = false;
+export let disabled = false;
 
 let wrapEl, headerEl, expanded = open;
 const expandedProps = { height: 0 };
@@ -43,6 +55,11 @@ function calcHeights () {
 }
 
 export function toggle (e) {
+	if (!collapsible) {
+		if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') e.preventDefault();
+		return;
+	}
+
 	e ||= { target: null, type: 'click', preventDefault: () => {} };
 	const skipToggleOn = ['BUTTON', 'INPUT', 'A', 'SELECT', 'TEXTAREA'];
 	if (e.target && skipToggleOn.includes(e.target.tagName)) return;

@@ -2,17 +2,32 @@
 
 <h3>Normal</h3>
 
-<Panel title="Hello">
+<Panel title="Collapsed">
 	<p>This is panel contents</p>
-	<p>Hello world!</p>
+</Panel>
+
+<Panel title="Expanded" open>
 	<p>This is panel contents</p>
-	<a href="#Panel">a link</a>
 </Panel>
 
 
-<h3>Round, opened</h3>
+<h3>Round & disabled</h3>
 
-<Panel title="Panel 2" open round>
+<Panel title="Collapsed" round disabled>
+	<p>This is panel contents</p>
+</Panel>
+
+<Panel title="Expanded" open round disabled>
+	<p>This is panel contents</p>
+</Panel>
+
+<h3>Collapsible</h3>
+
+<Panel title="Collapsed" round collapsible>
+	<p>This is panel contents</p>
+</Panel>
+
+<Panel title="Panel 2" open round collapsible>
 	<p>This is panel contents</p>
 	<p>Hello world!</p>
 	<p>This is panel contents</p>
@@ -31,6 +46,8 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'disabled', description: 'Make the panel disabled.' },
+	{ name: 'collapsible', description: 'If present, the panel will expand/collapse on title click or Enter key or Space.' },
 	{ name: 'open', description: 'Panel initial open state.' },
 	{ name: 'round', description: 'Adds rounded corners to the panel.' },
 	{ name: 'title', type: 'string', description: 'Panel title.' },
@@ -39,7 +56,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Panel title="Hello" round>
+<Panel title="Hello" round collapsible>
 	<p>This is panel contents</p>
 	<p>Hello world!</p>
 	<p>This is panel contents</p>

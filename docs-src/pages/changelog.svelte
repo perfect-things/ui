@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v7.1.0 <em>(2023-06-30)</em></h2>
+<ul>
+<li>Improve <code>Panel</code> component with new properties: <code>collapsible</code> (it&#39;s not collapsible by default), and <code>disabled</code>.</li>
+</ul>
 <h2>v7.0.2 <em>(2023-06-29)</em></h2>
 <ul>
 <li>Add <code>success</code> to the <code>InfoBar</code> component.</li>

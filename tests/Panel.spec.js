@@ -7,6 +7,7 @@ test('Panel', async () => {
 	const props = {
 		title: 'Panel1',
 		class: 'test-class',
+		collapsible: 'true'
 	};
 	const { container, component } = render(Panel, props);
 
@@ -28,7 +29,7 @@ test('Panel', async () => {
 	const PanelTitle = container.querySelector('.test-class .panel-header');
 	expect(PanelTitle).toHaveTextContent(props.title);
 
-	const panel = container.querySelector('.test-class .panel');
+	const panel = container.querySelector('.test-class details');
 	await fireEvent.click(panel);
 	await waitForTimeout();
 
