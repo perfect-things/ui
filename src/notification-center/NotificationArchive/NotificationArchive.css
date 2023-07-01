@@ -58,4 +58,9 @@
 .notification.archived { filter: saturate(0.3); }
 .notification-timestamp { color: var(--ui-color-text-semi); font-size: 0.85rem; margin-inline: 0.5rem; }
 
-.show-archive .notification-archive { margin-left: 0; height: auto; overflow: visible; }
+.show-archive .notification-archive {
+	margin-left: 0;
+	margin-bottom: 10rem;
+	height: auto;
+	overflow: visible;
+}

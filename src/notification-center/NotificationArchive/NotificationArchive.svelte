@@ -46,8 +46,9 @@ const duration = 100000 || $ANIMATION_SPEED;
 
 let el;
 let archived = [];
-let now = new Date().getTime();
 let timer;
+let now = new Date().getTime();
+
 
 
 $: {

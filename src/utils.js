@@ -138,6 +138,8 @@ export function blink (el, duration = 160) {
 
 
 export function timeAgo (date, now) {
+	console.log(now);
+	if (!date || !now) return '';
 	now = now || new Date().getTime();
 	let seconds = (now - +date) / 1000;
 	const intervals = [
@@ -156,5 +158,8 @@ export function timeAgo (date, now) {
 	}
 	if (!chunks.length) return 'just now';
 	if (chunks.length === 1) return chunks[0] + ' ago';
-	return;
+	// return chunks.join(', ') + ' ago';
+
+	const [d, t] = new Date(date).toISOString().split('T');
+	return `${d} ${t.slice(0, 5)}`;		// 2020-01-01 12:34
 }
