@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v7.1.1 <em>(2023-07-01)</em></h2>
+<ul>
+<li>Fixed some <code>NotificationCenter</code> bugs.</li>
+</ul>
 <h2>v7.1.0 <em>(2023-06-30)</em></h2>
 <ul>
 <li>Improve <code>Panel</code> component with new properties: <code>collapsible</code> (it&#39;s not collapsible by default), and <code>disabled</code>.</li>
