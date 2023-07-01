@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v7.1.1 *(2023-07-01)*
+- Fixed some `NotificationCenter` bugs.
+
+
 ## v7.1.0 *(2023-06-30)*
 - Improve `Panel` component with new properties: `collapsible` (it's not collapsible by default), and `disabled`.
 
