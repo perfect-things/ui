@@ -1,4 +1,4 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
 <div class="datepicker-wrapper {className}" class:open >
 	<div class="icon-wrap" on:click="{onIconClick}">
 		<Icon name="calendar"/>

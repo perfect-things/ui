@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <div {disabled}
 	class="button-group button-toggle {className}"
 	class:round

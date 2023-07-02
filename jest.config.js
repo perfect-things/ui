@@ -1,13 +1,13 @@
 export default {
 	rootDir: './',
 	transform: {
-		'^.+\\.svelte$': 'svelte-jester',
 		'^.+\\.js$': 'babel-jest',
-		'^.+\\.svg$': '<rootDir>/tests/helpers/svgTransform.js',
+		'^.+\\.svelte$': 'svelte-jester',
 	},
 	transformIgnorePatterns: [
 		'node_modules/(?!(vanillajs-datepicker)/)',
 	],
+
 	moduleFileExtensions: ['js', 'svelte'],
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [
@@ -16,7 +16,6 @@ export default {
 	coveragePathIgnorePatterns: [
 		'coverage',
 		'tests/helpers',
-		'src/icon/svg',
 		'index.js',
 		'icons.js',
 	]

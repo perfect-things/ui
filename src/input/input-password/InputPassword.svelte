@@ -1,4 +1,3 @@
-<!-- svelte-ignore a11y-autocomplete-valid -->
 <div
 	class="input-text input-password {className}"
 	class:has-error="{error}"

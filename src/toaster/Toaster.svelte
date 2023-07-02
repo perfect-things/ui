@@ -1,6 +1,7 @@
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="toaster toaster-{position} {className}">
 	{#each toasts as toast (toast.id)}
-		<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
 		<div
 			class="toast toast-{toast.type}"
 			tabindex="0"

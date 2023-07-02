@@ -1,4 +1,4 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
 <div class="autocomplete {className}" class:open="{opened}" bind:this="{el}">
 	<div class="icon-wrap" on:click="{onIconClick}">
 		<Icon name="dots"/>

@@ -13,9 +13,10 @@
 			</div>
 		{/if}
 	</header>
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	{#if archived.length && expanded}
 		{#each archived as notification (notification.id)}
-			<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
 			<div
 				tabindex="0"
 				class="notification notification-{notification.type} archived"

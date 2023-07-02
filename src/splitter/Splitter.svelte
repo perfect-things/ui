@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="splitter {className}"
 	class:vertical="{isVertical}"
 	class:is-dragging="{isDragging}"

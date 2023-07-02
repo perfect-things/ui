@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <div
 	class="panel {className}"
 	class:collapsible
