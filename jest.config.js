@@ -1,13 +1,14 @@
 export default {
 	rootDir: './',
 	transform: {
-		'^.+\\.svelte$': 'svelte-jester',
 		'^.+\\.js$': 'babel-jest',
+		'^.+\\.svelte$': 'svelte-jester',
 	},
 	transformIgnorePatterns: [
 		'node_modules/(?!(vanillajs-datepicker)/)',
 	],
-
+	roots: ['src', 'tests'],
+	moduleDirectories: ['node_modules', 'src'],
 	moduleFileExtensions: ['js', 'svelte'],
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [
