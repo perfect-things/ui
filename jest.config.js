@@ -7,8 +7,6 @@ export default {
 	transformIgnorePatterns: [
 		'node_modules/(?!(vanillajs-datepicker)/)',
 	],
-	roots: ['src', 'tests'],
-	moduleDirectories: ['node_modules', 'src'],
 	moduleFileExtensions: ['js', 'svelte'],
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [

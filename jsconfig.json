@@ -3,8 +3,7 @@
 		"target": "esnext",
 		"module": "esnext",
 		"lib": [ "esnext", "DOM", "DOM.Iterable" ],
-		"moduleResolution": "nodenext",
-		"esModuleInterop": true
+		"moduleResolution": "node",
 	},
 	"include": [ "src", "docs-src", "tests" ],
 	"exclude": [ "docs", "node_modules" ]
