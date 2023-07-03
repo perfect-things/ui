@@ -1,8 +1,8 @@
 export default {
 	rootDir: './',
 	transform: {
-		'^.+\\.js$': 'babel-jest',
 		'^.+\\.svelte$': 'svelte-jester',
+		'^.+\\.js$': 'babel-jest',
 	},
 	transformIgnorePatterns: [
 		'node_modules/(?!(vanillajs-datepicker)/)',

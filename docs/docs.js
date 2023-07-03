@@ -1708,6 +1708,8 @@ function safe_not_equal(a, b) {
 }
 var src_url_equal_anchor;
 function src_url_equal(element_src, url) {
+  if (element_src === url)
+    return true;
   if (!src_url_equal_anchor) {
     src_url_equal_anchor = document.createElement("a");
   }
@@ -3009,56 +3011,62 @@ function init(component, options, instance78, create_fragment78, not_equal, prop
 var SvelteElement;
 if (typeof HTMLElement === "function") {
   SvelteElement = class extends HTMLElement {
-    $$componentCtor;
-    $$slots;
-    $$component;
-    $$connected = false;
-    $$data = {};
-    $$reflecting = false;
-    /** @type {Record<string, CustomElementPropDefinition>} */
-    $$props_definition = {};
-    /** @type {Record<string, Function[]>} */
-    $$listeners = {};
-    /** @type {Map<Function, Function>} */
-    $$listener_unsubscribe_fns = /* @__PURE__ */ new Map();
+    /** The Svelte component constructor */
+    $$ctor;
+    /** Slots */
+    $$s;
+    /** The Svelte component instance */
+    $$c;
+    /** Whether or not the custom element is connected */
+    $$cn = false;
+    /** Component props data */
+    $$d = {};
+    /** `true` if currently in the process of reflecting component props back to attributes */
+    $$r = false;
+    /** @type {Record<string, CustomElementPropDefinition>} Props definition (name, reflected, type etc) */
+    $$p_d = {};
+    /** @type {Record<string, Function[]>} Event listeners */
+    $$l = {};
+    /** @type {Map<Function, Function>} Event listener unsubscribe functions */
+    $$l_u = /* @__PURE__ */ new Map();
     constructor($$componentCtor, $$slots, use_shadow_dom) {
       super();
-      this.$$componentCtor = $$componentCtor;
-      this.$$slots = $$slots;
+      this.$$ctor = $$componentCtor;
+      this.$$s = $$slots;
       if (use_shadow_dom) {
         this.attachShadow({ mode: "open" });
       }
     }
     addEventListener(type, listener, options) {
-      this.$$listeners[type] = this.$$listeners[type] || [];
-      this.$$listeners[type].push(listener);
-      if (this.$$component) {
-        const unsub = this.$$component.$on(type, listener);
-        this.$$listener_unsubscribe_fns.set(listener, unsub);
+      this.$$l[type] = this.$$l[type] || [];
+      this.$$l[type].push(listener);
+      if (this.$$c) {
+        const unsub = this.$$c.$on(type, listener);
+        this.$$l_u.set(listener, unsub);
       }
       super.addEventListener(type, listener, options);
     }
     removeEventListener(type, listener, options) {
       super.removeEventListener(type, listener, options);
-      if (this.$$component) {
-        const unsub = this.$$listener_unsubscribe_fns.get(listener);
+      if (this.$$c) {
+        const unsub = this.$$l_u.get(listener);
         if (unsub) {
           unsub();
-          this.$$listener_unsubscribe_fns.delete(listener);
+          this.$$l_u.delete(listener);
         }
       }
     }
     async connectedCallback() {
-      this.$$connected = true;
-      if (!this.$$component) {
+      this.$$cn = true;
+      if (!this.$$c) {
         let create_slot2 = function(name2) {
           return () => {
             let node;
             const obj = {
               c: function create() {
-                node = document.createElement("slot");
+                node = element("slot");
                 if (name2 !== "default") {
-                  node.setAttribute("name", name2);
+                  attr(node, "name", name2);
                 }
               },
               /**
@@ -3078,72 +3086,84 @@ if (typeof HTMLElement === "function") {
           };
         };
         await Promise.resolve();
-        if (!this.$$connected) {
+        if (!this.$$cn) {
           return;
         }
         const $$slots = {};
         const existing_slots = get_custom_elements_slots(this);
-        for (const name2 of this.$$slots) {
+        for (const name2 of this.$$s) {
           if (name2 in existing_slots) {
             $$slots[name2] = [create_slot2(name2)];
           }
         }
         for (const attribute of this.attributes) {
-          const name2 = this.$$get_prop_name(attribute.name);
-          if (!(name2 in this.$$data)) {
-            this.$$data[name2] = get_custom_element_value(
-              name2,
-              attribute.value,
-              this.$$props_definition,
-              "toProp"
-            );
+          const name2 = this.$$g_p(attribute.name);
+          if (!(name2 in this.$$d)) {
+            this.$$d[name2] = get_custom_element_value(name2, attribute.value, this.$$p_d, "toProp");
           }
         }
-        this.$$component = new this.$$componentCtor({
+        this.$$c = new this.$$ctor({
           target: this.shadowRoot || this,
           props: {
-            ...this.$$data,
+            ...this.$$d,
             $$slots,
             $$scope: {
               ctx: []
             }
           }
         });
-        for (const type in this.$$listeners) {
-          for (const listener of this.$$listeners[type]) {
-            const unsub = this.$$component.$on(type, listener);
-            this.$$listener_unsubscribe_fns.set(listener, unsub);
+        const reflect_attributes = () => {
+          this.$$r = true;
+          for (const key in this.$$p_d) {
+            this.$$d[key] = this.$$c.$$.ctx[this.$$c.$$.props[key]];
+            if (this.$$p_d[key].reflect) {
+              const attribute_value = get_custom_element_value(
+                key,
+                this.$$d[key],
+                this.$$p_d,
+                "toAttribute"
+              );
+              if (attribute_value == null) {
+                this.removeAttribute(key);
+              } else {
+                this.setAttribute(this.$$p_d[key].attribute || key, attribute_value);
+              }
+            }
+          }
+          this.$$r = false;
+        };
+        this.$$c.$$.after_update.push(reflect_attributes);
+        reflect_attributes();
+        for (const type in this.$$l) {
+          for (const listener of this.$$l[type]) {
+            const unsub = this.$$c.$on(type, listener);
+            this.$$l_u.set(listener, unsub);
           }
         }
-        this.$$listeners = {};
+        this.$$l = {};
       }
     }
     // We don't need this when working within Svelte code, but for compatibility of people using this outside of Svelte
     // and setting attributes through setAttribute etc, this is helpful
     attributeChangedCallback(attr2, _oldValue, newValue) {
-      if (this.$$reflecting)
+      if (this.$$r)
         return;
-      attr2 = this.$$get_prop_name(attr2);
-      this.$$data[attr2] = get_custom_element_value(
-        attr2,
-        newValue,
-        this.$$props_definition,
-        "toProp"
-      );
-      this.$$component?.$set({ [attr2]: this.$$data[attr2] });
+      attr2 = this.$$g_p(attr2);
+      this.$$d[attr2] = get_custom_element_value(attr2, newValue, this.$$p_d, "toProp");
+      this.$$c?.$set({ [attr2]: this.$$d[attr2] });
     }
     disconnectedCallback() {
-      this.$$connected = false;
+      this.$$cn = false;
       Promise.resolve().then(() => {
-        if (!this.$$connected) {
-          this.$$component.$destroy();
-          this.$$component = void 0;
+        if (!this.$$cn) {
+          this.$$c.$destroy();
+          this.$$c = void 0;
         }
       });
     }
-    $$get_prop_name(attribute_name) {
-      return Object.keys(this.$$props_definition).find(
-        (key) => this.$$props_definition[key].attribute === attribute_name || !this.$$props_definition[key].attribute && key.toLowerCase() === attribute_name
+    $$g_p(attribute_name) {
+      return Object.keys(this.$$p_d).find(
+        (key) => this.$$p_d[key].attribute === attribute_name || !this.$$p_d[key].attribute && key.toLowerCase() === attribute_name
       ) || attribute_name;
     }
   };
@@ -3233,7 +3253,7 @@ var SvelteComponent = class {
 };
 
 // node_modules/svelte/src/shared/version.js
-var VERSION = "4.0.1";
+var VERSION = "4.0.2";
 var PUBLIC_VERSION = "4";
 
 // node_modules/svelte/src/runtime/internal/dev.js
