@@ -1,4 +1,4 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-mouse-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#if opened}
 	<menu tabindex="0" class="menu {className}" bind:this="{menuEl}">
 		<slot></slot>

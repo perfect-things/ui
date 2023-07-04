@@ -32,7 +32,7 @@ let className = '';
 export { className as class };
 
 let el, label, scroller, handle, startX, currentX = 0;
-let scrollerStartX, scrollerEndX, handleStartX, handleEndX;
+let scrollerStartX, scrollerEndX, handleStartX;
 let isClick = false, isDragging = false;
 let oldValue;
 
@@ -42,7 +42,7 @@ $:inputProps = pluck($$props, ['id', 'name', 'disabled', 'required']);
 
 onMount(() => {
 	toggleTransitions(false);
-	({ scrollerStartX, scrollerEndX, handleStartX, handleEndX } = initialMeasure(el));
+	({ scrollerStartX, scrollerEndX, handleStartX } = initialMeasure(el));
 });
 
 

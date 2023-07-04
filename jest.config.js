@@ -3,7 +3,6 @@ export default {
 	transform: {
 		'^.+\\.svelte$': 'svelte-jester',
 		'^.+\\.js$': 'babel-jest',
-		'^.+\\.svg$': '<rootDir>/tests/helpers/svgTransform.js',
 	},
 	transformIgnorePatterns: [
 		'node_modules/(?!(vanillajs-datepicker)/)',
@@ -16,7 +15,6 @@ export default {
 	coveragePathIgnorePatterns: [
 		'coverage',
 		'tests/helpers',
-		'src/icon/svg',
 		'index.js',
 		'icons.js',
 	]
