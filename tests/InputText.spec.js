@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render } from '@testing-library/svelte';
 import { InputText } from '../src/input';
 import { waitForTimeout } from './helpers/utils';
@@ -17,7 +18,7 @@ const props = {
 
 test('InputText', async () => {
 	const { container, component, getByTitle } = render(InputText, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const cmp = container.querySelector('.test-class');

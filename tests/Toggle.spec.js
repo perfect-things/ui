@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Toggle } from '../src/toggle';
 import { render, fireEvent } from '@testing-library/svelte';
 
@@ -11,7 +12,7 @@ test('Toggle', async () => {
 	};
 	const { container, getByTitle, component } = render(Toggle, props);
 
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const cmp = container.querySelector('.test-class');

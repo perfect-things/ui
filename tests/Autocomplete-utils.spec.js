@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 import * as utils from '../src/autocomplete/utils';
 import { offsetHeight, offsetTop } from './helpers/utils';
 
@@ -18,11 +20,11 @@ const groupedData = [
 
 
 beforeEach(() => {
-	jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+	vi.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
 });
 
 afterEach(() => {
-	window.requestAnimationFrame.mockRestore();
+	vi.restoreAllMocks();
 });
 
 

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { fireEvent, render } from '@testing-library/svelte';
 import { InputPassword } from '../src/input';
 import userEvent from '@testing-library/user-event';
@@ -21,7 +22,7 @@ test('InputPassword', async () => {
 	window.zxcvbn = zxcvbn;
 
 	const { container, component, getByTitle } = render(InputPassword, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const cmp = container.querySelector('.test-class');

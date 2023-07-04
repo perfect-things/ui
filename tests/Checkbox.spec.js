@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Checkbox } from '../src/input';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
@@ -15,7 +16,7 @@ test('Checkbox', async () => {
 		error: 'error',
 	};
 	const { getByTitle, component } = render(Checkbox, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const chbox = getByTitle('Checkbox1');

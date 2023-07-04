@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Radio } from '../src/input';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
@@ -20,7 +21,7 @@ test('Radio', async () => {
 		items
 	};
 	const { getByTitle, component } = render(Radio, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const cmp = getByTitle(props.title);

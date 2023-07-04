@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import Table from './helpers/Table.svelte';
 import { render, fireEvent } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
@@ -6,8 +7,8 @@ import userEvent from '@testing-library/user-event';
 test('Table', async () => {
 	const { container, component } = render(Table);
 
-	const clickMock = jest.fn();
-	const selectMock = jest.fn();
+	const clickMock = vi.fn();
+	const selectMock = vi.fn();
 	component.$on('click', clickMock);
 
 	const cmp = container.querySelector('.test-class');

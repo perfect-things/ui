@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { NotificationCenter, showNotification, hideNotification } from '../src/notification-center';
 import { fireEvent, render } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
@@ -5,7 +6,7 @@ import { waitForTimeout } from './helpers/utils';
 
 test('NotificationCenter', async () => {
 	const { container } = render(NotificationCenter);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	const toastSelector = '.notification-center .notification';
 
 	const cmp = container.querySelector('.notification-center');

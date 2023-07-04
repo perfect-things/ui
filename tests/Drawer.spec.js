@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Drawer } from '../src/drawer';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
@@ -11,8 +12,8 @@ test('Drawer', async () => {
 	};
 	const { container, component } = render(Drawer, props);
 
-	const openMock = jest.fn();
-	const closeMock = jest.fn();
+	const openMock = vi.fn();
+	const closeMock = vi.fn();
 	component.$on('open', openMock);
 	component.$on('close', closeMock);
 

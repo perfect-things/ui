@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { PushButton } from '../src/push-button';
 import { render, fireEvent } from '@testing-library/svelte';
 
@@ -9,7 +10,7 @@ test('PushButton', async () => {
 		class: 'test-class',
 	};
 	const { getByTitle, component } = render(PushButton, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const btn = getByTitle('Button1');

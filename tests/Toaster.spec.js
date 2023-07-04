@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Toaster, showToast, hideToast } from '../src/toaster';
 import { fireEvent, render } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
@@ -8,7 +9,7 @@ test('Toaster', async () => {
 		position: 'bottom'
 	};
 	const { container } = render(Toaster, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 
 	const cmp = container.querySelector('.toaster');
 	expect(cmp).toBeInTheDocument();

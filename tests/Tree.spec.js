@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Tree } from '../src/tree';
 import { render, fireEvent } from '@testing-library/svelte';
 
@@ -17,7 +18,7 @@ test('Tree', async () => {
 	const props = { items, class: 'test-class' };
 	const { container, component } = render(Tree, props);
 
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('select', mock);
 
 	const cmp = container.querySelector('.test-class');

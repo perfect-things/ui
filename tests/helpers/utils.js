@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { get } from 'svelte/store';
 import { ANIMATION_SPEED } from '../../src';
 
@@ -5,29 +6,29 @@ import { ANIMATION_SPEED } from '../../src';
 window.structuredClone = (val) => JSON.parse(JSON.stringify(val));
 
 // workaround for ResizeObserver not being available in JSDOM
-window.ResizeObserver = jest.fn().mockImplementation(() => ({
-	disconnect: jest.fn(),
-	observe: jest.fn(),
-	unobserve: jest.fn(),
+window.ResizeObserver = vi.fn().mockImplementation(() => ({
+	disconnect: vi.fn(),
+	observe: vi.fn(),
+	unobserve: vi.fn(),
 }));
 
 // workaround for window.matchMedia not being available in JSDOM
-window.matchMedia = jest.fn().mockImplementation(() => ({
+window.matchMedia = vi.fn().mockImplementation(() => ({
 	matches: false,
-	addEventListener: jest.fn(),
+	addEventListener: vi.fn(),
 }));
 
 // workaround for element.animate not being available in JSDOM
-window.Element.prototype.animate = jest.fn().mockImplementation(() => {
+window.Element.prototype.animate = vi.fn().mockImplementation(() => {
 	const obj = {
-		onfinish: jest.fn(),
-		oncancel: jest.fn(),
+		onfinish: vi.fn(),
+		oncancel: vi.fn(),
 	};
 	requestAnimationFrame(() => obj.onfinish());
 	return obj;
 });
 
-window.Element.prototype.scrollIntoView = jest.fn().mockImplementation(() => {});
+window.Element.prototype.scrollIntoView = vi.fn().mockImplementation(() => {});
 
 
 export function offsetHeight (el, value = 50) {

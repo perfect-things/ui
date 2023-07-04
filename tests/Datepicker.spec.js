@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Datepicker } from '../src/datepicker';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
@@ -16,7 +17,7 @@ test('Datepicker', async () => {
 		showOnFocus: true
 	};
 	const { container, component } = render(Datepicker, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const cmp = container.querySelector('.test-class');
