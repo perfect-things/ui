@@ -56,4 +56,5 @@ li code {
 	background: none;
 	color: var(--ui-color-accent);
 	font: inherit;
+	white-space: break-spaces;
 }
