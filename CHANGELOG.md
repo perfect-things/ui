@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v7.1.2 *(2023-07-05)*
+- Fix `Checkbox` label (don't render empty label if no label attribute was passed).
+
+
 ## v7.1.1 *(2023-07-01)*
 - Fixed some `NotificationCenter` bugs.
 

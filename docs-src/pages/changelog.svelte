@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v7.1.2 <em>(2023-07-05)</em></h2>
+<ul>
+<li>Fix <code>Checkbox</code> label (don&#39;t render empty label if no label attribute was passed).</li>
+</ul>
 <h2>v7.1.1 <em>(2023-07-01)</em></h2>
 <ul>
 <li>Fixed some <code>NotificationCenter</code> bugs.</li>

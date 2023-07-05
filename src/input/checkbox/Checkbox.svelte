@@ -14,6 +14,7 @@
 			{name}
 			id="{_id}"
 			{disabled}
+			{tabindex}
 			bind:this="{_this}"
 			bind:checked="{checked}"
 			bind:indeterminate="{indeterminate}"
@@ -21,7 +22,10 @@
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
 			on:change="{onchange}">
-		<label class="label" for="{_id}">{label}</label>
+
+		{#if label}
+			<label class="label" for="{_id}">{label}</label>
+		{/if}
 	</div>
 </div>
 
@@ -42,6 +46,7 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 export let title = undefined;
+export let tabindex = undefined;
 export let name = '';
 export let required = undefined;
 
