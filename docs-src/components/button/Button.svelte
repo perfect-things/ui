@@ -1,42 +1,33 @@
 <h2>Button</h2>
 
-<div class="docs-layout">
-	<div class="docs-column">
-		<h3>Demo</h3>
-		{#if buttonText}
-			<Button {...props}>{buttonText}</Button>
-		{:else}
-			<Button {...props}/>
-		{/if}
-
-		<hr>
-		<h3>Example instantiation</h3>
-		<CodeBox tag="Button" text="{buttonText}" {props} />
-	</div>
-	<div class="docs-column">
-		<h3>Properties</h3>
-		<h4>Text</h4>
-		<input bind:value="{buttonText}"/>
-		<h4>Style</h4>
-		<ButtonToggle items="{buttonStyles}" value="" on:change="{onStyleChange}" />
-		<h4>Type</h4>
-		<ButtonToggle items="{buttonTypes}" value="" on:change="{onTypeChange}" />
-		<h4>Icon</h4>
-		<ButtonToggle items="{buttonIcons}" value="" on:change="{onIconChange}" />
-		<h4>Round</h4>
-		<Toggle bind:value="{props.round}"/>
-		<h4>Disabled</h4>
-		<Toggle bind:value="{props.disabled}"/>
-	</div>
+<h3>Live demo</h3>
+<div class="docs-buttons-row" style="margin-bottom: 2rem;">
+	{#if buttonText}
+		<Button {...props}>{buttonText}</Button>
+	{:else}
+		<Button {...props}/>
+	{/if}
 </div>
 
+<CodeBox tag="Button" text="{buttonText}" {props} />
+
+<hr>
+
+<div class="button-demo-props">
+	<InputText label="Text" bind:value="{buttonText}"/>
+	<ButtonToggle label="Style" items="{buttonStyles}" value="" on:change="{onStyleChange}" />
+	<ButtonToggle label="Type" items="{buttonTypes}" value="" on:change="{onTypeChange}" />
+	<ButtonToggle label="Icon" items="{buttonIcons}" value="" on:change="{onIconChange}" />
+	<Toggle label="Round" bind:value="{props.round}"/>
+	<Toggle label="Disabled" bind:value="{props.disabled}"/>
+</div>
 
 
 <hr>
 <API props="{apiProps}"/>
 
 <script>
-import { Button, ButtonToggle, Toggle } from '../../../src';
+import { Button, ButtonToggle, Toggle, InputText } from '../../../src';
 import { API } from '../../api-table';
 import { CodeBox } from '../../code-example';
 

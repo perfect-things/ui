@@ -36,6 +36,17 @@
 <ButtonToggle items="{strings}" value="One" /><br><br>
 
 
+<h3>Label</h3>
+<ButtonToggle items="{items}" label="Pick one" />
+
+<h3>Info</h3>
+<ButtonToggle items="{items}" label="Pick one" info="Pick your pick" />
+
+<h3>Error</h3>
+<ButtonToggle items="{items}"
+	label="Pick one"
+	error="{error}"
+	on:change="{onchange}"/>
 
 
 <CodeExample html="{exampleHtml}" />
@@ -56,6 +67,9 @@ const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'disabled', description: 'Makes the component disabled.' },
 	{ name: 'id', type: 'string', description: 'Assign id to the first radio button in the group (useful for the associate label\'s <i>for</i> attribute)' },
+	{ name: 'info', type: 'string', description: 'Show info message above the toggle.' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the toggle.' },
+	{ name: 'label', type: 'string', description: 'Label for the toggle.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>' },
 	{ name: 'name', type: 'string', description: 'Assign name to the underlying radio group' },
 	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
@@ -107,5 +121,13 @@ const icons = [
 ];
 
 const strings = ['One', 'Two', 'Three'];
+
+let error = 'You picked wrong!';
+
+function onchange (e) {
+	const val = e.detail;
+	error = val === '1' ? '' : 'You picked wrong!';
+
+}
 
 </script>

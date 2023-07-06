@@ -33,7 +33,7 @@ var require_internal = __commonJS({
   "node_modules/svelte/internal/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function noop28() {
+    function noop27() {
     }
     var identity = (x) => x;
     function assign13(tar, src) {
@@ -85,7 +85,7 @@ var require_internal = __commonJS({
     }
     function subscribe(store, ...callbacks) {
       if (store == null) {
-        return noop28;
+        return noop27;
       }
       const unsub = store.subscribe(...callbacks);
       return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
@@ -186,7 +186,7 @@ var require_internal = __commonJS({
     }
     var has_prop = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
     function action_destroyer2(action_result) {
-      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop28;
+      return action_result && is_function3(action_result.destroy) ? action_result.destroy : noop27;
     }
     function split_css_unit(value2) {
       const split = typeof value2 === "string" && value2.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
@@ -195,7 +195,7 @@ var require_internal = __commonJS({
     var contenteditable_truthy_values = ["", true, 1, "true", "contenteditable"];
     var is_client = typeof window !== "undefined";
     exports.now = is_client ? () => window.performance.now() : () => Date.now();
-    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop28;
+    exports.raf = is_client ? (cb) => requestAnimationFrame(cb) : noop27;
     function set_now(fn) {
       exports.now = fn;
     }
@@ -715,7 +715,7 @@ var require_internal = __commonJS({
         set_data(text49, data);
       }
     }
-    function set_input_value8(input, value2) {
+    function set_input_value7(input, value2) {
       input.value = value2 == null ? "" : value2;
     }
     function set_input_type(input, type) {
@@ -724,7 +724,7 @@ var require_internal = __commonJS({
       } catch (e) {
       }
     }
-    function set_style6(node, key, value2, important) {
+    function set_style7(node, key, value2, important) {
       if (value2 == null) {
         node.style.removeProperty(key);
       } else {
@@ -975,10 +975,10 @@ var require_internal = __commonJS({
     }
     function create_animation3(node, from, fn, params) {
       if (!from)
-        return noop28;
+        return noop27;
       const to = node.getBoundingClientRect();
       if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom)
-        return noop28;
+        return noop27;
       const {
         delay = 0,
         duration: duration2 = 300,
@@ -987,7 +987,7 @@ var require_internal = __commonJS({
         start: start_time = exports.now() + delay,
         // @ts-ignore todo:
         end = start_time + duration2,
-        tick: tick2 = noop28,
+        tick: tick2 = noop27,
         css
       } = fn(node, { from, to }, params);
       let running = true;
@@ -1247,7 +1247,7 @@ var require_internal = __commonJS({
           delete_rule(node, animation_name);
       }
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop28, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop27, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 0, 1, duration2, delay, easing, css, uid++);
         tick2(0, 1);
@@ -1306,7 +1306,7 @@ var require_internal = __commonJS({
       const group = outros;
       group.r += 1;
       function go() {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop28, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop27, css } = config2 || null_transition;
         if (css)
           animation_name = create_rule(node, 1, 0, duration2, delay, easing, css);
         const start_time = exports.now() + delay;
@@ -1376,7 +1376,7 @@ var require_internal = __commonJS({
         };
       }
       function go(b) {
-        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop28, css } = config2 || null_transition;
+        const { delay = 0, duration: duration2 = 300, easing = identity, tick: tick2 = noop27, css } = config2 || null_transition;
         const program = {
           start: exports.now() + delay,
           b
@@ -1902,7 +1902,7 @@ var require_internal = __commonJS({
         ctx: [],
         // state
         props: props2,
-        update: noop28,
+        update: noop27,
         not_equal: not_equal2,
         bound: blank_object(),
         // lifecycle
@@ -1972,11 +1972,11 @@ var require_internal = __commonJS({
         }
         $destroy() {
           destroy_component60(this, 1);
-          this.$destroy = noop28;
+          this.$destroy = noop27;
         }
         $on(type, callback) {
           if (!is_function3(callback)) {
-            return noop28;
+            return noop27;
           }
           const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
           callbacks.push(callback);
@@ -1998,11 +1998,11 @@ var require_internal = __commonJS({
     var SvelteComponent = class {
       $destroy() {
         destroy_component60(this, 1);
-        this.$destroy = noop28;
+        this.$destroy = noop27;
       }
       $on(type, callback) {
         if (!is_function3(callback)) {
-          return noop28;
+          return noop27;
         }
         const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
         callbacks.push(callback);
@@ -2058,7 +2058,7 @@ var require_internal = __commonJS({
         detach_dev74(before.nextSibling);
       }
     }
-    function listen_dev29(node, event2, handler, options, has_prevent_default, has_stop_propagation, has_stop_immediate_propagation) {
+    function listen_dev28(node, event2, handler, options, has_prevent_default, has_stop_propagation, has_stop_immediate_propagation) {
       const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
       if (has_prevent_default)
         modifiers.push("preventDefault");
@@ -2301,13 +2301,13 @@ var require_internal = __commonJS({
     exports.is_promise = is_promise;
     exports.is_void = is_void;
     exports.listen = listen;
-    exports.listen_dev = listen_dev29;
+    exports.listen_dev = listen_dev28;
     exports.loop = loop;
     exports.loop_guard = loop_guard;
     exports.merge_ssr_styles = merge_ssr_styles;
     exports.missing_component = missing_component;
     exports.mount_component = mount_component60;
-    exports.noop = noop28;
+    exports.noop = noop27;
     exports.not_equal = not_equal;
     exports.null_to_empty = null_to_empty;
     exports.object_without_properties = object_without_properties;
@@ -2343,11 +2343,11 @@ var require_internal = __commonJS({
     exports.set_data_maybe_contenteditable_dev = set_data_maybe_contenteditable_dev;
     exports.set_dynamic_element_data = set_dynamic_element_data;
     exports.set_input_type = set_input_type;
-    exports.set_input_value = set_input_value8;
+    exports.set_input_value = set_input_value7;
     exports.set_now = set_now;
     exports.set_raf = set_raf;
     exports.set_store_value = set_store_value2;
-    exports.set_style = set_style6;
+    exports.set_style = set_style7;
     exports.set_svg_attributes = set_svg_attributes;
     exports.space = space60;
     exports.split_css_unit = split_css_unit;
@@ -8659,9 +8659,64 @@ var import_svelte2 = __toESM(require_svelte());
 var file6 = "src/button-toggle/ButtonToggle.svelte";
 function get_each_context2(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[14] = list[i];
-  child_ctx[16] = i;
+  child_ctx[19] = list[i];
+  child_ctx[21] = i;
   return child_ctx;
+}
+function create_if_block_12(ctx) {
+  let label_1;
+  let t;
+  const block = {
+    c: function create() {
+      label_1 = (0, import_internal11.element)("label");
+      t = (0, import_internal11.text)(
+        /*label*/
+        ctx[6]
+      );
+      (0, import_internal11.attr_dev)(label_1, "class", "label");
+      (0, import_internal11.attr_dev)(
+        label_1,
+        "for",
+        /*_id*/
+        ctx[11]
+      );
+      (0, import_internal11.add_location)(label_1, file6, 10, 2, 251);
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal11.insert_dev)(target, label_1, anchor);
+      (0, import_internal11.append_dev)(label_1, t);
+    },
+    p: function update(ctx2, dirty) {
+      if (dirty & /*label*/
+      64)
+        (0, import_internal11.set_data_dev)(
+          t,
+          /*label*/
+          ctx2[6]
+        );
+      if (dirty & /*_id*/
+      2048) {
+        (0, import_internal11.attr_dev)(
+          label_1,
+          "for",
+          /*_id*/
+          ctx2[11]
+        );
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal11.detach_dev)(label_1);
+    }
+  };
+  (0, import_internal11.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_if_block_12.name,
+    type: "if",
+    source: "(10:1) {#if label}",
+    ctx
+  });
+  return block;
 }
 function create_if_block5(ctx) {
   let icon;
@@ -8669,7 +8724,7 @@ function create_if_block5(ctx) {
   icon = new Icon_default({
     props: { name: (
       /*item*/
-      ctx[14].icon
+      ctx[19].icon
     ) },
     $$inline: true
   });
@@ -8684,9 +8739,9 @@ function create_if_block5(ctx) {
     p: function update(ctx2, dirty) {
       const icon_changes = {};
       if (dirty & /*_items*/
-      128)
+      1024)
         icon_changes.name = /*item*/
-        ctx2[14].icon;
+        ctx2[19].icon;
       icon.$set(icon_changes);
     },
     i: function intro(local) {
@@ -8707,17 +8762,17 @@ function create_if_block5(ctx) {
     block,
     id: create_if_block5.name,
     type: "if",
-    source: "(14:4) {#if item.icon}",
+    source: "(27:6) {#if item.icon}",
     ctx
   });
   return block;
 }
 function create_each_block2(ctx) {
-  let label2;
+  let label_1;
   let t0;
   let t1_value = (
     /*item*/
-    (ctx[14].name || "") + ""
+    (ctx[19].name || "") + ""
   );
   let t1;
   let t2;
@@ -8731,21 +8786,21 @@ function create_each_block2(ctx) {
   let dispose;
   let if_block = (
     /*item*/
-    ctx[14].icon && create_if_block5(ctx)
+    ctx[19].icon && create_if_block5(ctx)
   );
   function change_handler(...args) {
     return (
       /*change_handler*/
-      ctx[11](
+      ctx[16](
         /*item*/
-        ctx[14],
+        ctx[19],
         ...args
       )
     );
   }
   const block = {
     c: function create() {
-      label2 = (0, import_internal11.element)("label");
+      label_1 = (0, import_internal11.element)("label");
       if (if_block)
         if_block.c();
       t0 = (0, import_internal11.space)();
@@ -8754,69 +8809,69 @@ function create_each_block2(ctx) {
       input = (0, import_internal11.element)("input");
       t3 = (0, import_internal11.space)();
       input.disabled = /*disabled*/
-      ctx[1];
+      ctx[2];
       (0, import_internal11.attr_dev)(input, "id", input_id_value = /*idx*/
-      ctx[16] === 0 && /*id*/
-      ctx[3] ? (
+      ctx[21] === 0 && /*id*/
+      ctx[4] ? (
         /*id*/
-        ctx[3]
+        ctx[4]
       ) : void 0);
       (0, import_internal11.attr_dev)(input, "type", "radio");
       (0, import_internal11.attr_dev)(
         input,
         "name",
         /*name*/
-        ctx[4]
+        ctx[5]
       );
       input.checked = input_checked_value = /*item*/
-      ctx[14].value === /*value*/
+      ctx[19].value === /*value*/
       ctx[0];
       input.value = input_value_value = /*item*/
-      ctx[14].value;
-      (0, import_internal11.add_location)(input, file6, 17, 4, 393);
+      ctx[19].value;
+      (0, import_internal11.add_location)(input, file6, 30, 6, 765);
       (0, import_internal11.attr_dev)(
-        label2,
+        label_1,
         "disabled",
         /*disabled*/
-        ctx[1]
+        ctx[2]
       );
-      (0, import_internal11.attr_dev)(label2, "class", "button button-normal");
+      (0, import_internal11.attr_dev)(label_1, "class", "button button-normal");
       (0, import_internal11.toggle_class)(
-        label2,
+        label_1,
         "button-has-text",
         /*item*/
-        ctx[14].name
+        ctx[19].name
       );
-      (0, import_internal11.add_location)(label2, file6, 7, 2, 147);
+      (0, import_internal11.add_location)(label_1, file6, 20, 4, 499);
     },
     m: function mount(target, anchor) {
-      (0, import_internal11.insert_dev)(target, label2, anchor);
+      (0, import_internal11.insert_dev)(target, label_1, anchor);
       if (if_block)
-        if_block.m(label2, null);
-      (0, import_internal11.append_dev)(label2, t0);
-      (0, import_internal11.append_dev)(label2, t1);
-      (0, import_internal11.append_dev)(label2, t2);
-      (0, import_internal11.append_dev)(label2, input);
-      (0, import_internal11.append_dev)(label2, t3);
+        if_block.m(label_1, null);
+      (0, import_internal11.append_dev)(label_1, t0);
+      (0, import_internal11.append_dev)(label_1, t1);
+      (0, import_internal11.append_dev)(label_1, t2);
+      (0, import_internal11.append_dev)(label_1, input);
+      (0, import_internal11.append_dev)(label_1, t3);
       current = true;
       if (!mounted) {
         dispose = [
           (0, import_internal11.listen_dev)(input, "change", change_handler, false, false, false, false),
           (0, import_internal11.listen_dev)(
-            label2,
+            label_1,
             "touchstart",
             /*onmousedown*/
-            ctx[8],
+            ctx[13],
             false,
             false,
             false,
             false
           ),
           (0, import_internal11.listen_dev)(
-            label2,
+            label_1,
             "mousedown",
             /*onmousedown*/
-            ctx[8],
+            ctx[13],
             false,
             false,
             false,
@@ -8830,19 +8885,19 @@ function create_each_block2(ctx) {
       ctx = new_ctx;
       if (
         /*item*/
-        ctx[14].icon
+        ctx[19].icon
       ) {
         if (if_block) {
           if_block.p(ctx, dirty);
           if (dirty & /*_items*/
-          128) {
+          1024) {
             (0, import_internal11.transition_in)(if_block, 1);
           }
         } else {
           if_block = create_if_block5(ctx);
           if_block.c();
           (0, import_internal11.transition_in)(if_block, 1);
-          if_block.m(label2, t0);
+          if_block.m(label_1, t0);
         }
       } else if (if_block) {
         (0, import_internal11.group_outros)();
@@ -8852,63 +8907,63 @@ function create_each_block2(ctx) {
         (0, import_internal11.check_outros)();
       }
       if ((!current || dirty & /*_items*/
-      128) && t1_value !== (t1_value = /*item*/
-      (ctx[14].name || "") + ""))
+      1024) && t1_value !== (t1_value = /*item*/
+      (ctx[19].name || "") + ""))
         (0, import_internal11.set_data_dev)(t1, t1_value);
       if (!current || dirty & /*disabled*/
-      2) {
+      4) {
         (0, import_internal11.prop_dev)(
           input,
           "disabled",
           /*disabled*/
-          ctx[1]
+          ctx[2]
         );
       }
       if (!current || dirty & /*id*/
-      8 && input_id_value !== (input_id_value = /*idx*/
-      ctx[16] === 0 && /*id*/
-      ctx[3] ? (
+      16 && input_id_value !== (input_id_value = /*idx*/
+      ctx[21] === 0 && /*id*/
+      ctx[4] ? (
         /*id*/
-        ctx[3]
+        ctx[4]
       ) : void 0)) {
         (0, import_internal11.attr_dev)(input, "id", input_id_value);
       }
       if (!current || dirty & /*name*/
-      16) {
+      32) {
         (0, import_internal11.attr_dev)(
           input,
           "name",
           /*name*/
-          ctx[4]
+          ctx[5]
         );
       }
       if (!current || dirty & /*_items, value*/
-      129 && input_checked_value !== (input_checked_value = /*item*/
-      ctx[14].value === /*value*/
+      1025 && input_checked_value !== (input_checked_value = /*item*/
+      ctx[19].value === /*value*/
       ctx[0])) {
         (0, import_internal11.prop_dev)(input, "checked", input_checked_value);
       }
       if (!current || dirty & /*_items*/
-      128 && input_value_value !== (input_value_value = /*item*/
-      ctx[14].value)) {
+      1024 && input_value_value !== (input_value_value = /*item*/
+      ctx[19].value)) {
         (0, import_internal11.prop_dev)(input, "value", input_value_value);
       }
       if (!current || dirty & /*disabled*/
-      2) {
+      4) {
         (0, import_internal11.attr_dev)(
-          label2,
+          label_1,
           "disabled",
           /*disabled*/
-          ctx[1]
+          ctx[2]
         );
       }
       if (!current || dirty & /*_items*/
-      128) {
+      1024) {
         (0, import_internal11.toggle_class)(
-          label2,
+          label_1,
           "button-has-text",
           /*item*/
-          ctx[14].name
+          ctx[19].name
         );
       }
     },
@@ -8924,7 +8979,7 @@ function create_each_block2(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal11.detach_dev)(label2);
+        (0, import_internal11.detach_dev)(label_1);
       if (if_block)
         if_block.d();
       mounted = false;
@@ -8935,18 +8990,50 @@ function create_each_block2(ctx) {
     block,
     id: create_each_block2.name,
     type: "each",
-    source: "(7:1) {#each _items as item, idx}",
+    source: "(20:3) {#each _items as item, idx}",
     ctx
   });
   return block;
 }
 function create_fragment11(ctx) {
-  let div;
-  let div_class_value;
+  let div2;
+  let t0;
+  let info_1;
+  let t1;
+  let div1;
+  let inputerror;
+  let t2;
+  let div0;
+  let div2_class_value;
+  let div2_aria_errormessage_value;
   let current;
+  let if_block = (
+    /*label*/
+    ctx[6] && create_if_block_12(ctx)
+  );
+  info_1 = new Info_default({
+    props: { msg: (
+      /*info*/
+      ctx[8]
+    ) },
+    $$inline: true
+  });
+  inputerror = new InputError_default({
+    props: {
+      id: (
+        /*errorMessageId*/
+        ctx[12]
+      ),
+      msg: (
+        /*error*/
+        ctx[7]
+      )
+    },
+    $$inline: true
+  });
   let each_value = (
     /*_items*/
-    ctx[7]
+    ctx[10]
   );
   (0, import_internal11.validate_each_argument)(each_value);
   let each_blocks = [];
@@ -8958,45 +9045,117 @@ function create_fragment11(ctx) {
   });
   const block = {
     c: function create() {
-      div = (0, import_internal11.element)("div");
+      div2 = (0, import_internal11.element)("div");
+      if (if_block)
+        if_block.c();
+      t0 = (0, import_internal11.space)();
+      (0, import_internal11.create_component)(info_1.$$.fragment);
+      t1 = (0, import_internal11.space)();
+      div1 = (0, import_internal11.element)("div");
+      (0, import_internal11.create_component)(inputerror.$$.fragment);
+      t2 = (0, import_internal11.space)();
+      div0 = (0, import_internal11.element)("div");
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      (0, import_internal11.attr_dev)(
-        div,
+      (0, import_internal11.attr_dev)(div0, "class", "input-text-row");
+      (0, import_internal11.add_location)(div0, file6, 18, 2, 435);
+      (0, import_internal11.attr_dev)(div1, "class", "input-text-inner");
+      (0, import_internal11.toggle_class)(
+        div1,
         "disabled",
         /*disabled*/
-        ctx[1]
-      );
-      (0, import_internal11.attr_dev)(div, "class", div_class_value = "button-group button-toggle " + /*className*/
-      ctx[5]);
-      (0, import_internal11.attr_dev)(div, "role", "radiogroup");
-      (0, import_internal11.toggle_class)(
-        div,
-        "round",
-        /*round*/
         ctx[2]
       );
-      (0, import_internal11.add_location)(div, file6, 0, 0, 0);
+      (0, import_internal11.add_location)(div1, file6, 15, 1, 333);
+      (0, import_internal11.attr_dev)(
+        div2,
+        "disabled",
+        /*disabled*/
+        ctx[2]
+      );
+      (0, import_internal11.attr_dev)(div2, "class", div2_class_value = "input-text button-group button-toggle " + /*className*/
+      ctx[1]);
+      (0, import_internal11.attr_dev)(div2, "role", "radiogroup");
+      (0, import_internal11.attr_dev)(
+        div2,
+        "aria-invalid",
+        /*error*/
+        ctx[7]
+      );
+      (0, import_internal11.attr_dev)(div2, "aria-errormessage", div2_aria_errormessage_value = /*error*/
+      ctx[7] ? (
+        /*errorMessageId*/
+        ctx[12]
+      ) : void 0);
+      (0, import_internal11.toggle_class)(
+        div2,
+        "round",
+        /*round*/
+        ctx[3]
+      );
+      (0, import_internal11.toggle_class)(
+        div2,
+        "has-error",
+        /*error*/
+        ctx[7]
+      );
+      (0, import_internal11.add_location)(div2, file6, 0, 0, 0);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      (0, import_internal11.insert_dev)(target, div, anchor);
+      (0, import_internal11.insert_dev)(target, div2, anchor);
+      if (if_block)
+        if_block.m(div2, null);
+      (0, import_internal11.append_dev)(div2, t0);
+      (0, import_internal11.mount_component)(info_1, div2, null);
+      (0, import_internal11.append_dev)(div2, t1);
+      (0, import_internal11.append_dev)(div2, div1);
+      (0, import_internal11.mount_component)(inputerror, div1, null);
+      (0, import_internal11.append_dev)(div1, t2);
+      (0, import_internal11.append_dev)(div1, div0);
       for (let i = 0; i < each_blocks.length; i += 1) {
         if (each_blocks[i]) {
-          each_blocks[i].m(div, null);
+          each_blocks[i].m(div0, null);
         }
       }
-      ctx[12](div);
+      ctx[17](div2);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
-      if (dirty & /*disabled, _items, onmousedown, id, undefined, name, value, onchange*/
-      923) {
-        each_value = /*_items*/
+      if (
+        /*label*/
+        ctx2[6]
+      ) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block = create_if_block_12(ctx2);
+          if_block.c();
+          if_block.m(div2, t0);
+        }
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
+      }
+      const info_1_changes = {};
+      if (dirty & /*info*/
+      256)
+        info_1_changes.msg = /*info*/
+        ctx2[8];
+      info_1.$set(info_1_changes);
+      const inputerror_changes = {};
+      if (dirty & /*error*/
+      128)
+        inputerror_changes.msg = /*error*/
         ctx2[7];
+      inputerror.$set(inputerror_changes);
+      if (dirty & /*disabled, _items, onmousedown, id, undefined, name, value, onchange*/
+      25653) {
+        each_value = /*_items*/
+        ctx2[10];
         (0, import_internal11.validate_each_argument)(each_value);
         let i;
         for (i = 0; i < each_value.length; i += 1) {
@@ -9008,7 +9167,7 @@ function create_fragment11(ctx) {
             each_blocks[i] = create_each_block2(child_ctx);
             each_blocks[i].c();
             (0, import_internal11.transition_in)(each_blocks[i], 1);
-            each_blocks[i].m(div, null);
+            each_blocks[i].m(div0, null);
           }
         }
         (0, import_internal11.group_outros)();
@@ -9018,38 +9177,77 @@ function create_fragment11(ctx) {
         (0, import_internal11.check_outros)();
       }
       if (!current || dirty & /*disabled*/
-      2) {
-        (0, import_internal11.attr_dev)(
-          div,
+      4) {
+        (0, import_internal11.toggle_class)(
+          div1,
           "disabled",
           /*disabled*/
-          ctx2[1]
+          ctx2[2]
+        );
+      }
+      if (!current || dirty & /*disabled*/
+      4) {
+        (0, import_internal11.attr_dev)(
+          div2,
+          "disabled",
+          /*disabled*/
+          ctx2[2]
         );
       }
       if (!current || dirty & /*className*/
-      32 && div_class_value !== (div_class_value = "button-group button-toggle " + /*className*/
-      ctx2[5])) {
-        (0, import_internal11.attr_dev)(div, "class", div_class_value);
+      2 && div2_class_value !== (div2_class_value = "input-text button-group button-toggle " + /*className*/
+      ctx2[1])) {
+        (0, import_internal11.attr_dev)(div2, "class", div2_class_value);
+      }
+      if (!current || dirty & /*error*/
+      128) {
+        (0, import_internal11.attr_dev)(
+          div2,
+          "aria-invalid",
+          /*error*/
+          ctx2[7]
+        );
+      }
+      if (!current || dirty & /*error*/
+      128 && div2_aria_errormessage_value !== (div2_aria_errormessage_value = /*error*/
+      ctx2[7] ? (
+        /*errorMessageId*/
+        ctx2[12]
+      ) : void 0)) {
+        (0, import_internal11.attr_dev)(div2, "aria-errormessage", div2_aria_errormessage_value);
       }
       if (!current || dirty & /*className, round*/
-      36) {
+      10) {
         (0, import_internal11.toggle_class)(
-          div,
+          div2,
           "round",
           /*round*/
-          ctx2[2]
+          ctx2[3]
+        );
+      }
+      if (!current || dirty & /*className, error*/
+      130) {
+        (0, import_internal11.toggle_class)(
+          div2,
+          "has-error",
+          /*error*/
+          ctx2[7]
         );
       }
     },
     i: function intro(local) {
       if (current)
         return;
+      (0, import_internal11.transition_in)(info_1.$$.fragment, local);
+      (0, import_internal11.transition_in)(inputerror.$$.fragment, local);
       for (let i = 0; i < each_value.length; i += 1) {
         (0, import_internal11.transition_in)(each_blocks[i]);
       }
       current = true;
     },
     o: function outro(local) {
+      (0, import_internal11.transition_out)(info_1.$$.fragment, local);
+      (0, import_internal11.transition_out)(inputerror.$$.fragment, local);
       each_blocks = each_blocks.filter(Boolean);
       for (let i = 0; i < each_blocks.length; i += 1) {
         (0, import_internal11.transition_out)(each_blocks[i]);
@@ -9058,9 +9256,13 @@ function create_fragment11(ctx) {
     },
     d: function destroy(detaching) {
       if (detaching)
-        (0, import_internal11.detach_dev)(div);
+        (0, import_internal11.detach_dev)(div2);
+      if (if_block)
+        if_block.d();
+      (0, import_internal11.destroy_component)(info_1);
+      (0, import_internal11.destroy_component)(inputerror);
       (0, import_internal11.destroy_each)(each_blocks, detaching);
-      ctx[12](null);
+      ctx[17](null);
     }
   };
   (0, import_internal11.dispatch_dev)("SvelteRegisterBlock", {
@@ -9073,16 +9275,21 @@ function create_fragment11(ctx) {
   return block;
 }
 function instance11($$self2, $$props2, $$invalidate2) {
+  let _id2;
   let _items;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal11.validate_slots)("ButtonToggle", slots2, []);
+  let { class: className2 = "" } = $$props2;
   let { disabled: disabled2 = void 0 } = $$props2;
   let { round = void 0 } = $$props2;
   let { items = "" } = $$props2;
   let { id: id2 = "" } = $$props2;
   let { name: name2 = guid() } = $$props2;
   let { value: value2 = "" } = $$props2;
-  let { class: className2 = "" } = $$props2;
+  let { label: label2 = "" } = $$props2;
+  let { error: error2 = void 0 } = $$props2;
+  let { info: info2 = void 0 } = $$props2;
+  const errorMessageId2 = guid();
   const dispatch2 = (0, import_svelte2.createEventDispatcher)();
   let el;
   function onmousedown2(e) {
@@ -9090,6 +9297,7 @@ function instance11($$self2, $$props2, $$invalidate2) {
     if (!btn)
       return;
     e.preventDefault();
+    btn.click();
     btn.focus();
     if (btn.value === value2)
       return;
@@ -9099,79 +9307,116 @@ function instance11($$self2, $$props2, $$invalidate2) {
     $$invalidate2(0, value2 = button.value);
     dispatch2("change", value2);
   }
-  const writable_props = ["disabled", "round", "items", "id", "name", "value", "class"];
+  const writable_props = [
+    "class",
+    "disabled",
+    "round",
+    "items",
+    "id",
+    "name",
+    "value",
+    "label",
+    "error",
+    "info"
+  ];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<ButtonToggle> was created with unknown prop '${key}'`);
   });
   const change_handler = (item, e) => onchange5(e, item);
-  function div_binding($$value) {
+  function div2_binding($$value) {
     import_internal11.binding_callbacks[$$value ? "unshift" : "push"](() => {
       el = $$value;
-      $$invalidate2(6, el);
+      $$invalidate2(9, el);
     });
   }
   $$self2.$$set = ($$props3) => {
+    if ("class" in $$props3)
+      $$invalidate2(1, className2 = $$props3.class);
     if ("disabled" in $$props3)
-      $$invalidate2(1, disabled2 = $$props3.disabled);
+      $$invalidate2(2, disabled2 = $$props3.disabled);
     if ("round" in $$props3)
-      $$invalidate2(2, round = $$props3.round);
+      $$invalidate2(3, round = $$props3.round);
     if ("items" in $$props3)
-      $$invalidate2(10, items = $$props3.items);
+      $$invalidate2(15, items = $$props3.items);
     if ("id" in $$props3)
-      $$invalidate2(3, id2 = $$props3.id);
+      $$invalidate2(4, id2 = $$props3.id);
     if ("name" in $$props3)
-      $$invalidate2(4, name2 = $$props3.name);
+      $$invalidate2(5, name2 = $$props3.name);
     if ("value" in $$props3)
       $$invalidate2(0, value2 = $$props3.value);
-    if ("class" in $$props3)
-      $$invalidate2(5, className2 = $$props3.class);
+    if ("label" in $$props3)
+      $$invalidate2(6, label2 = $$props3.label);
+    if ("error" in $$props3)
+      $$invalidate2(7, error2 = $$props3.error);
+    if ("info" in $$props3)
+      $$invalidate2(8, info2 = $$props3.info);
   };
   $$self2.$capture_state = () => ({
     createEventDispatcher: import_svelte2.createEventDispatcher,
+    Info: Info_default,
+    InputError: InputError_default,
     guid,
     Icon: Icon_default,
+    className: className2,
     disabled: disabled2,
     round,
     items,
     id: id2,
     name: name2,
     value: value2,
-    className: className2,
+    label: label2,
+    error: error2,
+    info: info2,
+    errorMessageId: errorMessageId2,
     dispatch: dispatch2,
     el,
     onmousedown: onmousedown2,
     onchange: onchange5,
-    _items
+    _items,
+    _id: _id2
   });
   $$self2.$inject_state = ($$props3) => {
+    if ("className" in $$props3)
+      $$invalidate2(1, className2 = $$props3.className);
     if ("disabled" in $$props3)
-      $$invalidate2(1, disabled2 = $$props3.disabled);
+      $$invalidate2(2, disabled2 = $$props3.disabled);
     if ("round" in $$props3)
-      $$invalidate2(2, round = $$props3.round);
+      $$invalidate2(3, round = $$props3.round);
     if ("items" in $$props3)
-      $$invalidate2(10, items = $$props3.items);
+      $$invalidate2(15, items = $$props3.items);
     if ("id" in $$props3)
-      $$invalidate2(3, id2 = $$props3.id);
+      $$invalidate2(4, id2 = $$props3.id);
     if ("name" in $$props3)
-      $$invalidate2(4, name2 = $$props3.name);
+      $$invalidate2(5, name2 = $$props3.name);
     if ("value" in $$props3)
       $$invalidate2(0, value2 = $$props3.value);
-    if ("className" in $$props3)
-      $$invalidate2(5, className2 = $$props3.className);
+    if ("label" in $$props3)
+      $$invalidate2(6, label2 = $$props3.label);
+    if ("error" in $$props3)
+      $$invalidate2(7, error2 = $$props3.error);
+    if ("info" in $$props3)
+      $$invalidate2(8, info2 = $$props3.info);
     if ("el" in $$props3)
-      $$invalidate2(6, el = $$props3.el);
+      $$invalidate2(9, el = $$props3.el);
     if ("_items" in $$props3)
-      $$invalidate2(7, _items = $$props3._items);
+      $$invalidate2(10, _items = $$props3._items);
+    if ("_id" in $$props3)
+      $$invalidate2(11, _id2 = $$props3._id);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
   $$self2.$$.update = () => {
-    if ($$self2.$$.dirty & /*items*/
-    1024) {
+    if ($$self2.$$.dirty & /*id, name*/
+    48) {
       $:
-        $$invalidate2(7, _items = items.map((item) => {
+        $$invalidate2(11, _id2 = id2 || name2 || guid());
+    }
+    if ($$self2.$$.dirty & /*items*/
+    32768) {
+      $:
+        $$invalidate2(10, _items = items.map((item) => {
           if (typeof item === "string") {
             return { name: item, value: item };
           }
@@ -9181,31 +9426,39 @@ function instance11($$self2, $$props2, $$invalidate2) {
   };
   return [
     value2,
+    className2,
     disabled2,
     round,
     id2,
     name2,
-    className2,
+    label2,
+    error2,
+    info2,
     el,
     _items,
+    _id2,
+    errorMessageId2,
     onmousedown2,
     onchange5,
     items,
     change_handler,
-    div_binding
+    div2_binding
   ];
 }
 var ButtonToggle = class extends import_internal11.SvelteComponentDev {
   constructor(options) {
     super(options);
     (0, import_internal11.init)(this, options, instance11, create_fragment11, import_internal11.safe_not_equal, {
-      disabled: 1,
-      round: 2,
-      items: 10,
-      id: 3,
-      name: 4,
+      class: 1,
+      disabled: 2,
+      round: 3,
+      items: 15,
+      id: 4,
+      name: 5,
       value: 0,
-      class: 5
+      label: 6,
+      error: 7,
+      info: 8
     });
     (0, import_internal11.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
@@ -9213,6 +9466,12 @@ var ButtonToggle = class extends import_internal11.SvelteComponentDev {
       options,
       id: create_fragment11.name
     });
+  }
+  get class() {
+    throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set class(value2) {
+    throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get disabled() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
@@ -9250,10 +9509,22 @@ var ButtonToggle = class extends import_internal11.SvelteComponentDev {
   set value(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  get class() {
+  get label() {
     throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
-  set class(value2) {
+  set label(value2) {
+    throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get error() {
+    throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set error(value2) {
+    throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get info() {
+    throw new Error("<ButtonToggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set info(value2) {
     throw new Error("<ButtonToggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -15176,7 +15447,7 @@ var InputNumber_default = InputNumber;
 var import_internal18 = __toESM(require_internal());
 var import_svelte9 = __toESM(require_svelte());
 var file13 = "src/input/input-password/InputPassword.svelte";
-function create_if_block_12(ctx) {
+function create_if_block_13(ctx) {
   let label_1;
   let t;
   const block = {
@@ -15224,7 +15495,7 @@ function create_if_block_12(ctx) {
   };
   (0, import_internal18.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_12.name,
+    id: create_if_block_13.name,
     type: "if",
     source: "(7:1) {#if label}",
     ctx
@@ -15380,7 +15651,7 @@ function create_fragment18(ctx) {
   let dispose;
   let if_block0 = (
     /*label*/
-    ctx[4] && create_if_block_12(ctx)
+    ctx[4] && create_if_block_13(ctx)
   );
   info_1 = new Info_default({
     props: { msg: (
@@ -15597,7 +15868,7 @@ function create_fragment18(ctx) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
         } else {
-          if_block0 = create_if_block_12(ctx2);
+          if_block0 = create_if_block_13(ctx2);
           if_block0.c();
           if_block0.m(div2, t0);
         }
@@ -20857,7 +21128,7 @@ function create_if_block_22(ctx) {
   });
   return block;
 }
-function create_if_block_13(ctx) {
+function create_if_block_14(ctx) {
   let option;
   let t;
   const block = {
@@ -20891,7 +21162,7 @@ function create_if_block_13(ctx) {
   };
   (0, import_internal28.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_13.name,
+    id: create_if_block_14.name,
     type: "if",
     source: "(26:4) {#if placeholder}",
     ctx
@@ -21155,7 +21426,7 @@ function create_fragment28(ctx) {
   });
   let if_block1 = (
     /*placeholder*/
-    ctx[4] && create_if_block_13(ctx)
+    ctx[4] && create_if_block_14(ctx)
   );
   let each_value = (
     /*groups*/
@@ -21339,7 +21610,7 @@ function create_fragment28(ctx) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
         } else {
-          if_block1 = create_if_block_13(ctx2);
+          if_block1 = create_if_block_14(ctx2);
           if_block1.c();
           if_block1.m(select, if_block1_anchor);
         }
@@ -22954,7 +23225,7 @@ function get_each_context6(ctx, list, i) {
   child_ctx[16] = list[i];
   return child_ctx;
 }
-function create_if_block_14(ctx) {
+function create_if_block_15(ctx) {
   let button;
   let t_value = (
     /*toast*/
@@ -23002,7 +23273,7 @@ function create_if_block_14(ctx) {
   };
   (0, import_internal32.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_14.name,
+    id: create_if_block_15.name,
     type: "if",
     source: "(19:3) {#if toast.btn}",
     ctx
@@ -23083,7 +23354,7 @@ function create_each_block6(key_1, ctx) {
   let dispose;
   let if_block0 = (
     /*toast*/
-    ctx[16].btn && create_if_block_14(ctx)
+    ctx[16].btn && create_if_block_15(ctx)
   );
   function click_handler_1() {
     return (
@@ -23219,7 +23490,7 @@ function create_each_block6(key_1, ctx) {
         if (if_block0) {
           if_block0.p(ctx, dirty);
         } else {
-          if_block0 = create_if_block_14(ctx);
+          if_block0 = create_if_block_15(ctx);
           if_block0.c();
           if_block0.m(div1, t1);
         }
@@ -23717,7 +23988,7 @@ function create_else_block3(ctx) {
   });
   return block;
 }
-function create_if_block_15(ctx) {
+function create_if_block_16(ctx) {
   let h2;
   let button0;
   let t0;
@@ -23838,7 +24109,7 @@ function create_if_block_15(ctx) {
   };
   (0, import_internal33.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_15.name,
+    id: create_if_block_16.name,
     type: "if",
     source: "(3:2) {#if archived.length}",
     ctx
@@ -24229,7 +24500,7 @@ function create_fragment33(ctx) {
   let t;
   let div_inert_value;
   let current;
-  const if_block_creators = [create_if_block_15, create_else_block3];
+  const if_block_creators = [create_if_block_16, create_else_block3];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (
@@ -24688,7 +24959,7 @@ function create_if_block_23(ctx) {
   });
   return block;
 }
-function create_if_block_16(ctx) {
+function create_if_block_17(ctx) {
   let div1;
   let div0;
   const block = {
@@ -24712,7 +24983,7 @@ function create_if_block_16(ctx) {
   };
   (0, import_internal34.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_if_block_16.name,
+    id: create_if_block_17.name,
     type: "if",
     source: "(42:3) {#if notification.showProgress}",
     ctx
@@ -24766,7 +25037,7 @@ function create_each_block8(key_1, ctx) {
   }
   let if_block1 = (
     /*notification*/
-    ctx[33].showProgress && create_if_block_16(ctx)
+    ctx[33].showProgress && create_if_block_17(ctx)
   );
   function mouseover_handler() {
     return (
@@ -24921,7 +25192,7 @@ function create_each_block8(key_1, ctx) {
       ) {
         if (if_block1) {
         } else {
-          if_block1 = create_if_block_16(ctx);
+          if_block1 = create_if_block_17(ctx);
           if_block1.c();
           if_block1.m(div3, null);
         }
@@ -34490,7 +34761,7 @@ function create_else_block4(ctx) {
     block,
     id: create_else_block4.name,
     type: "else",
-    source: "(8:2) {:else}",
+    source: "(7:1) {:else}",
     ctx
   });
   return block;
@@ -34548,7 +34819,7 @@ function create_if_block27(ctx) {
     block,
     id: create_if_block27.name,
     type: "if",
-    source: "(6:2) {#if buttonText}",
+    source: "(5:1) {#if buttonText}",
     ctx
   });
   return block;
@@ -34583,7 +34854,7 @@ function create_default_slot5(ctx) {
     block,
     id: create_default_slot5.name,
     type: "slot",
-    source: "(7:3) <Button {...props}>",
+    source: "(6:2) <Button {...props}>",
     ctx
   });
   return block;
@@ -34591,54 +34862,36 @@ function create_default_slot5(ctx) {
 function create_fragment46(ctx) {
   let h2;
   let t1;
-  let div2;
-  let div0;
-  let h30;
+  let h3;
   let t3;
+  let div0;
   let current_block_type_index;
   let if_block;
   let t4;
-  let hr0;
-  let t5;
-  let h31;
-  let t7;
   let codebox;
-  let t8;
+  let t5;
+  let hr0;
+  let t6;
   let div1;
-  let h32;
-  let t10;
-  let h40;
-  let t12;
-  let input;
-  let t13;
-  let h41;
-  let t15;
-  let buttontoggle0;
-  let t16;
-  let h42;
-  let t18;
-  let buttontoggle1;
-  let t19;
-  let h43;
-  let t21;
-  let buttontoggle2;
-  let t22;
-  let h44;
-  let t24;
-  let toggle0;
+  let inputtext;
   let updating_value;
-  let t25;
-  let h45;
-  let t27;
-  let toggle1;
+  let t7;
+  let buttontoggle0;
+  let t8;
+  let buttontoggle1;
+  let t9;
+  let buttontoggle2;
+  let t10;
+  let toggle0;
   let updating_value_1;
-  let t28;
+  let t11;
+  let toggle1;
+  let updating_value_2;
+  let t12;
   let hr1;
-  let t29;
+  let t13;
   let api;
   let current;
-  let mounted;
-  let dispose;
   const if_block_creators = [create_if_block27, create_else_block4];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
@@ -34665,8 +34918,22 @@ function create_fragment46(ctx) {
     },
     $$inline: true
   });
+  function inputtext_value_binding(value2) {
+    ctx[9](value2);
+  }
+  let inputtext_props = { label: "Text" };
+  if (
+    /*buttonText*/
+    ctx[1] !== void 0
+  ) {
+    inputtext_props.value = /*buttonText*/
+    ctx[1];
+  }
+  inputtext = new InputText_default({ props: inputtext_props, $$inline: true });
+  import_internal46.binding_callbacks.push(() => (0, import_internal46.bind)(inputtext, "value", inputtext_value_binding));
   buttontoggle0 = new ButtonToggle_default({
     props: {
+      label: "Style",
       items: (
         /*buttonStyles*/
         ctx[3]
@@ -34681,10 +34948,14 @@ function create_fragment46(ctx) {
     ctx[6]
   );
   buttontoggle1 = new ButtonToggle_default({
-    props: { items: (
-      /*buttonTypes*/
-      ctx[4]
-    ), value: "" },
+    props: {
+      label: "Type",
+      items: (
+        /*buttonTypes*/
+        ctx[4]
+      ),
+      value: ""
+    },
     $$inline: true
   });
   buttontoggle1.$on(
@@ -34693,10 +34964,14 @@ function create_fragment46(ctx) {
     ctx[7]
   );
   buttontoggle2 = new ButtonToggle_default({
-    props: { items: (
-      /*buttonIcons*/
-      ctx[5]
-    ), value: "" },
+    props: {
+      label: "Icon",
+      items: (
+        /*buttonIcons*/
+        ctx[5]
+      ),
+      value: ""
+    },
     $$inline: true
   });
   buttontoggle2.$on(
@@ -34707,7 +34982,7 @@ function create_fragment46(ctx) {
   function toggle0_value_binding(value2) {
     ctx[10](value2);
   }
-  let toggle0_props = {};
+  let toggle0_props = { label: "Round" };
   if (
     /*props*/
     ctx[0].round !== void 0
@@ -34720,7 +34995,7 @@ function create_fragment46(ctx) {
   function toggle1_value_binding(value2) {
     ctx[11](value2);
   }
-  let toggle1_props = {};
+  let toggle1_props = { label: "Disabled" };
   if (
     /*props*/
     ctx[0].disabled !== void 0
@@ -34742,76 +35017,41 @@ function create_fragment46(ctx) {
       h2 = (0, import_internal46.element)("h2");
       h2.textContent = "Button";
       t1 = (0, import_internal46.space)();
-      div2 = (0, import_internal46.element)("div");
-      div0 = (0, import_internal46.element)("div");
-      h30 = (0, import_internal46.element)("h3");
-      h30.textContent = "Demo";
+      h3 = (0, import_internal46.element)("h3");
+      h3.textContent = "Live demo";
       t3 = (0, import_internal46.space)();
+      div0 = (0, import_internal46.element)("div");
       if_block.c();
       t4 = (0, import_internal46.space)();
-      hr0 = (0, import_internal46.element)("hr");
-      t5 = (0, import_internal46.space)();
-      h31 = (0, import_internal46.element)("h3");
-      h31.textContent = "Example instantiation";
-      t7 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(codebox.$$.fragment);
-      t8 = (0, import_internal46.space)();
+      t5 = (0, import_internal46.space)();
+      hr0 = (0, import_internal46.element)("hr");
+      t6 = (0, import_internal46.space)();
       div1 = (0, import_internal46.element)("div");
-      h32 = (0, import_internal46.element)("h3");
-      h32.textContent = "Properties";
-      t10 = (0, import_internal46.space)();
-      h40 = (0, import_internal46.element)("h4");
-      h40.textContent = "Text";
-      t12 = (0, import_internal46.space)();
-      input = (0, import_internal46.element)("input");
-      t13 = (0, import_internal46.space)();
-      h41 = (0, import_internal46.element)("h4");
-      h41.textContent = "Style";
-      t15 = (0, import_internal46.space)();
+      (0, import_internal46.create_component)(inputtext.$$.fragment);
+      t7 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(buttontoggle0.$$.fragment);
-      t16 = (0, import_internal46.space)();
-      h42 = (0, import_internal46.element)("h4");
-      h42.textContent = "Type";
-      t18 = (0, import_internal46.space)();
+      t8 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(buttontoggle1.$$.fragment);
-      t19 = (0, import_internal46.space)();
-      h43 = (0, import_internal46.element)("h4");
-      h43.textContent = "Icon";
-      t21 = (0, import_internal46.space)();
+      t9 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(buttontoggle2.$$.fragment);
-      t22 = (0, import_internal46.space)();
-      h44 = (0, import_internal46.element)("h4");
-      h44.textContent = "Round";
-      t24 = (0, import_internal46.space)();
+      t10 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(toggle0.$$.fragment);
-      t25 = (0, import_internal46.space)();
-      h45 = (0, import_internal46.element)("h4");
-      h45.textContent = "Disabled";
-      t27 = (0, import_internal46.space)();
+      t11 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(toggle1.$$.fragment);
-      t28 = (0, import_internal46.space)();
+      t12 = (0, import_internal46.space)();
       hr1 = (0, import_internal46.element)("hr");
-      t29 = (0, import_internal46.space)();
+      t13 = (0, import_internal46.space)();
       (0, import_internal46.create_component)(api.$$.fragment);
       (0, import_internal46.add_location)(h2, file40, 0, 0, 0);
-      (0, import_internal46.add_location)(h30, file40, 4, 2, 72);
-      (0, import_internal46.add_location)(hr0, file40, 11, 2, 194);
-      (0, import_internal46.add_location)(h31, file40, 12, 2, 201);
-      (0, import_internal46.attr_dev)(div0, "class", "docs-column");
-      (0, import_internal46.add_location)(div0, file40, 3, 1, 44);
-      (0, import_internal46.add_location)(h32, file40, 16, 2, 324);
-      (0, import_internal46.add_location)(h40, file40, 17, 2, 346);
-      (0, import_internal46.add_location)(input, file40, 18, 2, 362);
-      (0, import_internal46.add_location)(h41, file40, 19, 2, 399);
-      (0, import_internal46.add_location)(h42, file40, 21, 2, 495);
-      (0, import_internal46.add_location)(h43, file40, 23, 2, 588);
-      (0, import_internal46.add_location)(h44, file40, 25, 2, 681);
-      (0, import_internal46.add_location)(h45, file40, 27, 2, 737);
-      (0, import_internal46.attr_dev)(div1, "class", "docs-column");
-      (0, import_internal46.add_location)(div1, file40, 15, 1, 296);
-      (0, import_internal46.attr_dev)(div2, "class", "docs-layout");
-      (0, import_internal46.add_location)(div2, file40, 2, 0, 17);
-      (0, import_internal46.add_location)(hr1, file40, 34, 0, 815);
+      (0, import_internal46.add_location)(h3, file40, 2, 0, 17);
+      (0, import_internal46.attr_dev)(div0, "class", "docs-buttons-row");
+      (0, import_internal46.set_style)(div0, "margin-bottom", "2rem");
+      (0, import_internal46.add_location)(div0, file40, 3, 0, 36);
+      (0, import_internal46.add_location)(hr0, file40, 13, 0, 258);
+      (0, import_internal46.attr_dev)(div1, "class", "button-demo-props");
+      (0, import_internal46.add_location)(div1, file40, 15, 0, 264);
+      (0, import_internal46.add_location)(hr1, file40, 25, 0, 738);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -34819,63 +35059,32 @@ function create_fragment46(ctx) {
     m: function mount(target, anchor) {
       (0, import_internal46.insert_dev)(target, h2, anchor);
       (0, import_internal46.insert_dev)(target, t1, anchor);
-      (0, import_internal46.insert_dev)(target, div2, anchor);
-      (0, import_internal46.append_dev)(div2, div0);
-      (0, import_internal46.append_dev)(div0, h30);
-      (0, import_internal46.append_dev)(div0, t3);
+      (0, import_internal46.insert_dev)(target, h3, anchor);
+      (0, import_internal46.insert_dev)(target, t3, anchor);
+      (0, import_internal46.insert_dev)(target, div0, anchor);
       if_blocks[current_block_type_index].m(div0, null);
-      (0, import_internal46.append_dev)(div0, t4);
-      (0, import_internal46.append_dev)(div0, hr0);
-      (0, import_internal46.append_dev)(div0, t5);
-      (0, import_internal46.append_dev)(div0, h31);
-      (0, import_internal46.append_dev)(div0, t7);
-      (0, import_internal46.mount_component)(codebox, div0, null);
-      (0, import_internal46.append_dev)(div2, t8);
-      (0, import_internal46.append_dev)(div2, div1);
-      (0, import_internal46.append_dev)(div1, h32);
-      (0, import_internal46.append_dev)(div1, t10);
-      (0, import_internal46.append_dev)(div1, h40);
-      (0, import_internal46.append_dev)(div1, t12);
-      (0, import_internal46.append_dev)(div1, input);
-      (0, import_internal46.set_input_value)(
-        input,
-        /*buttonText*/
-        ctx[1]
-      );
-      (0, import_internal46.append_dev)(div1, t13);
-      (0, import_internal46.append_dev)(div1, h41);
-      (0, import_internal46.append_dev)(div1, t15);
+      (0, import_internal46.insert_dev)(target, t4, anchor);
+      (0, import_internal46.mount_component)(codebox, target, anchor);
+      (0, import_internal46.insert_dev)(target, t5, anchor);
+      (0, import_internal46.insert_dev)(target, hr0, anchor);
+      (0, import_internal46.insert_dev)(target, t6, anchor);
+      (0, import_internal46.insert_dev)(target, div1, anchor);
+      (0, import_internal46.mount_component)(inputtext, div1, null);
+      (0, import_internal46.append_dev)(div1, t7);
       (0, import_internal46.mount_component)(buttontoggle0, div1, null);
-      (0, import_internal46.append_dev)(div1, t16);
-      (0, import_internal46.append_dev)(div1, h42);
-      (0, import_internal46.append_dev)(div1, t18);
+      (0, import_internal46.append_dev)(div1, t8);
       (0, import_internal46.mount_component)(buttontoggle1, div1, null);
-      (0, import_internal46.append_dev)(div1, t19);
-      (0, import_internal46.append_dev)(div1, h43);
-      (0, import_internal46.append_dev)(div1, t21);
+      (0, import_internal46.append_dev)(div1, t9);
       (0, import_internal46.mount_component)(buttontoggle2, div1, null);
-      (0, import_internal46.append_dev)(div1, t22);
-      (0, import_internal46.append_dev)(div1, h44);
-      (0, import_internal46.append_dev)(div1, t24);
+      (0, import_internal46.append_dev)(div1, t10);
       (0, import_internal46.mount_component)(toggle0, div1, null);
-      (0, import_internal46.append_dev)(div1, t25);
-      (0, import_internal46.append_dev)(div1, h45);
-      (0, import_internal46.append_dev)(div1, t27);
+      (0, import_internal46.append_dev)(div1, t11);
       (0, import_internal46.mount_component)(toggle1, div1, null);
-      (0, import_internal46.insert_dev)(target, t28, anchor);
+      (0, import_internal46.insert_dev)(target, t12, anchor);
       (0, import_internal46.insert_dev)(target, hr1, anchor);
-      (0, import_internal46.insert_dev)(target, t29, anchor);
+      (0, import_internal46.insert_dev)(target, t13, anchor);
       (0, import_internal46.mount_component)(api, target, anchor);
       current = true;
-      if (!mounted) {
-        dispose = (0, import_internal46.listen_dev)(
-          input,
-          "input",
-          /*input_input_handler*/
-          ctx[9]
-        );
-        mounted = true;
-      }
     },
     p: function update(ctx2, [dirty]) {
       let previous_block_index = current_block_type_index;
@@ -34896,7 +35105,7 @@ function create_fragment46(ctx) {
           if_block.p(ctx2, dirty);
         }
         (0, import_internal46.transition_in)(if_block, 1);
-        if_block.m(div0, t4);
+        if_block.m(div0, null);
       }
       const codebox_changes = {};
       if (dirty & /*buttonText*/
@@ -34908,31 +35117,31 @@ function create_fragment46(ctx) {
         codebox_changes.props = /*props*/
         ctx2[0];
       codebox.$set(codebox_changes);
-      if (dirty & /*buttonText*/
-      2 && input.value !== /*buttonText*/
-      ctx2[1]) {
-        (0, import_internal46.set_input_value)(
-          input,
-          /*buttonText*/
-          ctx2[1]
-        );
-      }
-      const toggle0_changes = {};
-      if (!updating_value && dirty & /*props*/
-      1) {
+      const inputtext_changes = {};
+      if (!updating_value && dirty & /*buttonText*/
+      2) {
         updating_value = true;
-        toggle0_changes.value = /*props*/
-        ctx2[0].round;
+        inputtext_changes.value = /*buttonText*/
+        ctx2[1];
         (0, import_internal46.add_flush_callback)(() => updating_value = false);
       }
-      toggle0.$set(toggle0_changes);
-      const toggle1_changes = {};
+      inputtext.$set(inputtext_changes);
+      const toggle0_changes = {};
       if (!updating_value_1 && dirty & /*props*/
       1) {
         updating_value_1 = true;
+        toggle0_changes.value = /*props*/
+        ctx2[0].round;
+        (0, import_internal46.add_flush_callback)(() => updating_value_1 = false);
+      }
+      toggle0.$set(toggle0_changes);
+      const toggle1_changes = {};
+      if (!updating_value_2 && dirty & /*props*/
+      1) {
+        updating_value_2 = true;
         toggle1_changes.value = /*props*/
         ctx2[0].disabled;
-        (0, import_internal46.add_flush_callback)(() => updating_value_1 = false);
+        (0, import_internal46.add_flush_callback)(() => updating_value_2 = false);
       }
       toggle1.$set(toggle1_changes);
     },
@@ -34941,6 +35150,7 @@ function create_fragment46(ctx) {
         return;
       (0, import_internal46.transition_in)(if_block);
       (0, import_internal46.transition_in)(codebox.$$.fragment, local);
+      (0, import_internal46.transition_in)(inputtext.$$.fragment, local);
       (0, import_internal46.transition_in)(buttontoggle0.$$.fragment, local);
       (0, import_internal46.transition_in)(buttontoggle1.$$.fragment, local);
       (0, import_internal46.transition_in)(buttontoggle2.$$.fragment, local);
@@ -34952,6 +35162,7 @@ function create_fragment46(ctx) {
     o: function outro(local) {
       (0, import_internal46.transition_out)(if_block);
       (0, import_internal46.transition_out)(codebox.$$.fragment, local);
+      (0, import_internal46.transition_out)(inputtext.$$.fragment, local);
       (0, import_internal46.transition_out)(buttontoggle0.$$.fragment, local);
       (0, import_internal46.transition_out)(buttontoggle1.$$.fragment, local);
       (0, import_internal46.transition_out)(buttontoggle2.$$.fragment, local);
@@ -34966,23 +35177,36 @@ function create_fragment46(ctx) {
       if (detaching)
         (0, import_internal46.detach_dev)(t1);
       if (detaching)
-        (0, import_internal46.detach_dev)(div2);
+        (0, import_internal46.detach_dev)(h3);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t3);
+      if (detaching)
+        (0, import_internal46.detach_dev)(div0);
       if_blocks[current_block_type_index].d();
-      (0, import_internal46.destroy_component)(codebox);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t4);
+      (0, import_internal46.destroy_component)(codebox, detaching);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t5);
+      if (detaching)
+        (0, import_internal46.detach_dev)(hr0);
+      if (detaching)
+        (0, import_internal46.detach_dev)(t6);
+      if (detaching)
+        (0, import_internal46.detach_dev)(div1);
+      (0, import_internal46.destroy_component)(inputtext);
       (0, import_internal46.destroy_component)(buttontoggle0);
       (0, import_internal46.destroy_component)(buttontoggle1);
       (0, import_internal46.destroy_component)(buttontoggle2);
       (0, import_internal46.destroy_component)(toggle0);
       (0, import_internal46.destroy_component)(toggle1);
       if (detaching)
-        (0, import_internal46.detach_dev)(t28);
+        (0, import_internal46.detach_dev)(t12);
       if (detaching)
         (0, import_internal46.detach_dev)(hr1);
       if (detaching)
-        (0, import_internal46.detach_dev)(t29);
+        (0, import_internal46.detach_dev)(t13);
       (0, import_internal46.destroy_component)(api, detaching);
-      mounted = false;
-      dispose();
     }
   };
   (0, import_internal46.dispatch_dev)("SvelteRegisterBlock", {
@@ -35118,8 +35342,8 @@ function instance46($$self2, $$props2, $$invalidate2) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Button> was created with unknown prop '${key}'`);
   });
-  function input_input_handler2() {
-    buttonText = this.value;
+  function inputtext_value_binding(value2) {
+    buttonText = value2;
     $$invalidate2(1, buttonText);
   }
   function toggle0_value_binding(value2) {
@@ -35138,6 +35362,7 @@ function instance46($$self2, $$props2, $$invalidate2) {
     Button: Button_default,
     ButtonToggle: ButtonToggle_default,
     Toggle: Toggle_default,
+    InputText: InputText_default,
     API: ApiTable_default,
     CodeBox: CodeBox_default,
     apiProps,
@@ -35168,7 +35393,7 @@ function instance46($$self2, $$props2, $$invalidate2) {
     onStyleChange,
     onTypeChange,
     onIconChange,
-    input_input_handler2,
+    inputtext_value_binding,
     toggle0_value_binding,
     toggle1_value_binding
   ];
@@ -38891,33 +39116,45 @@ function create_fragment49(ctx) {
   let br12;
   let br13;
   let t34;
-  let codeexample0;
-  let t35;
-  let em1;
+  let h36;
+  let t36;
+  let buttontoggle9;
   let t37;
-  let i0;
+  let h37;
   let t39;
-  let i1;
-  let t41;
-  let i2;
+  let buttontoggle10;
+  let t40;
+  let h38;
+  let t42;
+  let buttontoggle11;
   let t43;
-  let i3;
-  let t45;
-  let codeexample1;
+  let codeexample0;
+  let t44;
+  let em1;
   let t46;
+  let i0;
+  let t48;
+  let i1;
+  let t50;
+  let i2;
+  let t52;
+  let i3;
+  let t54;
+  let codeexample1;
+  let t55;
   let api;
   let current;
   buttontoggle0 = new ButtonToggle_default({
     props: { items: (
       /*buttons*/
-      ctx[3]
+      ctx[4]
     ), value: "1" },
     $$inline: true
   });
   buttontoggle1 = new ButtonToggle_default({
     props: { items: (
       /*buttons*/
-      ctx[3]
+      ctx[4]
     ), value: "1" },
     $$inline: true
   });
@@ -38926,7 +39163,7 @@ function create_fragment49(ctx) {
       id: "bt1",
       items: (
         /*buttons*/
-        ctx[3]
+        ctx[4]
       ),
       value: "1"
     },
@@ -38937,7 +39174,7 @@ function create_fragment49(ctx) {
       disabled: true,
       items: (
         /*buttons*/
-        ctx[3]
+        ctx[4]
       )
     },
     $$inline: true
@@ -38947,7 +39184,7 @@ function create_fragment49(ctx) {
       round: true,
       items: (
         /*buttons*/
-        ctx[3]
+        ctx[4]
       ),
       value: "2"
     },
@@ -38956,14 +39193,14 @@ function create_fragment49(ctx) {
   buttontoggle5 = new ButtonToggle_default({
     props: { items: (
       /*items*/
-      ctx[4]
+      ctx[5]
     ), value: "3" },
     $$inline: true
   });
   buttontoggle6 = new ButtonToggle_default({
     props: { items: (
       /*icons*/
-      ctx[5]
+      ctx[6]
     ), value: "1" },
     $$inline: true
   });
@@ -38972,7 +39209,7 @@ function create_fragment49(ctx) {
       round: true,
       items: (
         /*icons*/
-        ctx[5]
+        ctx[6]
       ),
       value: "2"
     },
@@ -38981,14 +39218,54 @@ function create_fragment49(ctx) {
   buttontoggle8 = new ButtonToggle_default({
     props: { items: (
       /*strings*/
-      ctx[6]
+      ctx[7]
     ), value: "One" },
     $$inline: true
   });
+  buttontoggle9 = new ButtonToggle_default({
+    props: {
+      items: (
+        /*items*/
+        ctx[5]
+      ),
+      label: "Pick one"
+    },
+    $$inline: true
+  });
+  buttontoggle10 = new ButtonToggle_default({
+    props: {
+      items: (
+        /*items*/
+        ctx[5]
+      ),
+      label: "Pick one",
+      info: "Pick your pick"
+    },
+    $$inline: true
+  });
+  buttontoggle11 = new ButtonToggle_default({
+    props: {
+      items: (
+        /*items*/
+        ctx[5]
+      ),
+      label: "Pick one",
+      error: (
+        /*error*/
+        ctx[0]
+      )
+    },
+    $$inline: true
+  });
+  buttontoggle11.$on(
+    "change",
+    /*onchange*/
+    ctx[8]
+  );
   codeexample0 = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
-      ctx[1]
+      ctx[2]
     ) },
     $$inline: true
   });
@@ -38997,7 +39274,7 @@ function create_fragment49(ctx) {
       notitle: true,
       html: (
         /*exampleHtml2*/
-        ctx[2]
+        ctx[3]
       )
     },
     $$inline: true
@@ -39005,7 +39282,7 @@ function create_fragment49(ctx) {
   api = new ApiTable_default({
     props: { props: (
       /*apiProps*/
-      ctx[0]
+      ctx[1]
     ) },
     $$inline: true
   });
@@ -39083,25 +39360,40 @@ function create_fragment49(ctx) {
       br12 = (0, import_internal49.element)("br");
       br13 = (0, import_internal49.element)("br");
       t34 = (0, import_internal49.space)();
+      h36 = (0, import_internal49.element)("h3");
+      h36.textContent = "Label";
+      t36 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(buttontoggle9.$$.fragment);
+      t37 = (0, import_internal49.space)();
+      h37 = (0, import_internal49.element)("h3");
+      h37.textContent = "Info";
+      t39 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(buttontoggle10.$$.fragment);
+      t40 = (0, import_internal49.space)();
+      h38 = (0, import_internal49.element)("h3");
+      h38.textContent = "Error";
+      t42 = (0, import_internal49.space)();
+      (0, import_internal49.create_component)(buttontoggle11.$$.fragment);
+      t43 = (0, import_internal49.space)();
       (0, import_internal49.create_component)(codeexample0.$$.fragment);
-      t35 = (0, import_internal49.space)();
+      t44 = (0, import_internal49.space)();
       em1 = (0, import_internal49.element)("em");
       em1.textContent = "Note:";
-      t37 = (0, import_internal49.text)(" the component ");
+      t46 = (0, import_internal49.text)(" the component ");
       i0 = (0, import_internal49.element)("i");
       i0.textContent = "value";
-      t39 = (0, import_internal49.text)(" type and the item's ");
+      t48 = (0, import_internal49.text)(" type and the item's ");
       i1 = (0, import_internal49.element)("i");
       i1.textContent = "value";
-      t41 = (0, import_internal49.text)(" type must match,\nso you can either use ");
+      t50 = (0, import_internal49.text)(" type must match,\nso you can either use ");
       i2 = (0, import_internal49.element)("i");
       i2.textContent = "string";
-      t43 = (0, import_internal49.text)(" for both - like in the example, or ");
+      t52 = (0, import_internal49.text)(" for both - like in the example, or ");
       i3 = (0, import_internal49.element)("i");
       i3.textContent = "number";
-      t45 = (0, import_internal49.text)(", like so:\n");
+      t54 = (0, import_internal49.text)(", like so:\n");
       (0, import_internal49.create_component)(codeexample1.$$.fragment);
-      t46 = (0, import_internal49.space)();
+      t55 = (0, import_internal49.space)();
       (0, import_internal49.create_component)(api.$$.fragment);
       (0, import_internal49.add_location)(h2, file43, 0, 0, 0);
       (0, import_internal49.add_location)(p, file43, 2, 0, 24);
@@ -39134,11 +39426,14 @@ function create_fragment49(ctx) {
       (0, import_internal49.add_location)(h35, file43, 34, 0, 823);
       (0, import_internal49.add_location)(br12, file43, 35, 46, 914);
       (0, import_internal49.add_location)(br13, file43, 35, 50, 918);
-      (0, import_internal49.add_location)(em1, file43, 41, 0, 964);
-      (0, import_internal49.add_location)(i0, file43, 41, 29, 993);
-      (0, import_internal49.add_location)(i1, file43, 41, 62, 1026);
-      (0, import_internal49.add_location)(i2, file43, 42, 22, 1078);
-      (0, import_internal49.add_location)(i3, file43, 42, 71, 1127);
+      (0, import_internal49.add_location)(h36, file43, 38, 0, 925);
+      (0, import_internal49.add_location)(h37, file43, 41, 0, 991);
+      (0, import_internal49.add_location)(h38, file43, 44, 0, 1078);
+      (0, import_internal49.add_location)(em1, file43, 52, 0, 1223);
+      (0, import_internal49.add_location)(i0, file43, 52, 29, 1252);
+      (0, import_internal49.add_location)(i1, file43, 52, 62, 1285);
+      (0, import_internal49.add_location)(i2, file43, 53, 22, 1337);
+      (0, import_internal49.add_location)(i3, file43, 53, 71, 1386);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -39204,24 +39499,43 @@ function create_fragment49(ctx) {
       (0, import_internal49.insert_dev)(target, br12, anchor);
       (0, import_internal49.insert_dev)(target, br13, anchor);
       (0, import_internal49.insert_dev)(target, t34, anchor);
-      (0, import_internal49.mount_component)(codeexample0, target, anchor);
-      (0, import_internal49.insert_dev)(target, t35, anchor);
-      (0, import_internal49.insert_dev)(target, em1, anchor);
+      (0, import_internal49.insert_dev)(target, h36, anchor);
+      (0, import_internal49.insert_dev)(target, t36, anchor);
+      (0, import_internal49.mount_component)(buttontoggle9, target, anchor);
       (0, import_internal49.insert_dev)(target, t37, anchor);
-      (0, import_internal49.insert_dev)(target, i0, anchor);
+      (0, import_internal49.insert_dev)(target, h37, anchor);
       (0, import_internal49.insert_dev)(target, t39, anchor);
-      (0, import_internal49.insert_dev)(target, i1, anchor);
-      (0, import_internal49.insert_dev)(target, t41, anchor);
-      (0, import_internal49.insert_dev)(target, i2, anchor);
+      (0, import_internal49.mount_component)(buttontoggle10, target, anchor);
+      (0, import_internal49.insert_dev)(target, t40, anchor);
+      (0, import_internal49.insert_dev)(target, h38, anchor);
+      (0, import_internal49.insert_dev)(target, t42, anchor);
+      (0, import_internal49.mount_component)(buttontoggle11, target, anchor);
       (0, import_internal49.insert_dev)(target, t43, anchor);
-      (0, import_internal49.insert_dev)(target, i3, anchor);
-      (0, import_internal49.insert_dev)(target, t45, anchor);
-      (0, import_internal49.mount_component)(codeexample1, target, anchor);
+      (0, import_internal49.mount_component)(codeexample0, target, anchor);
+      (0, import_internal49.insert_dev)(target, t44, anchor);
+      (0, import_internal49.insert_dev)(target, em1, anchor);
       (0, import_internal49.insert_dev)(target, t46, anchor);
+      (0, import_internal49.insert_dev)(target, i0, anchor);
+      (0, import_internal49.insert_dev)(target, t48, anchor);
+      (0, import_internal49.insert_dev)(target, i1, anchor);
+      (0, import_internal49.insert_dev)(target, t50, anchor);
+      (0, import_internal49.insert_dev)(target, i2, anchor);
+      (0, import_internal49.insert_dev)(target, t52, anchor);
+      (0, import_internal49.insert_dev)(target, i3, anchor);
+      (0, import_internal49.insert_dev)(target, t54, anchor);
+      (0, import_internal49.mount_component)(codeexample1, target, anchor);
+      (0, import_internal49.insert_dev)(target, t55, anchor);
       (0, import_internal49.mount_component)(api, target, anchor);
       current = true;
     },
-    p: import_internal49.noop,
+    p: function update(ctx2, [dirty]) {
+      const buttontoggle11_changes = {};
+      if (dirty & /*error*/
+      1)
+        buttontoggle11_changes.error = /*error*/
+        ctx2[0];
+      buttontoggle11.$set(buttontoggle11_changes);
+    },
     i: function intro(local) {
       if (current)
         return;
@@ -39234,6 +39548,9 @@ function create_fragment49(ctx) {
       (0, import_internal49.transition_in)(buttontoggle6.$$.fragment, local);
       (0, import_internal49.transition_in)(buttontoggle7.$$.fragment, local);
       (0, import_internal49.transition_in)(buttontoggle8.$$.fragment, local);
+      (0, import_internal49.transition_in)(buttontoggle9.$$.fragment, local);
+      (0, import_internal49.transition_in)(buttontoggle10.$$.fragment, local);
+      (0, import_internal49.transition_in)(buttontoggle11.$$.fragment, local);
       (0, import_internal49.transition_in)(codeexample0.$$.fragment, local);
       (0, import_internal49.transition_in)(codeexample1.$$.fragment, local);
       (0, import_internal49.transition_in)(api.$$.fragment, local);
@@ -39249,6 +39566,9 @@ function create_fragment49(ctx) {
       (0, import_internal49.transition_out)(buttontoggle6.$$.fragment, local);
       (0, import_internal49.transition_out)(buttontoggle7.$$.fragment, local);
       (0, import_internal49.transition_out)(buttontoggle8.$$.fragment, local);
+      (0, import_internal49.transition_out)(buttontoggle9.$$.fragment, local);
+      (0, import_internal49.transition_out)(buttontoggle10.$$.fragment, local);
+      (0, import_internal49.transition_out)(buttontoggle11.$$.fragment, local);
       (0, import_internal49.transition_out)(codeexample0.$$.fragment, local);
       (0, import_internal49.transition_out)(codeexample1.$$.fragment, local);
       (0, import_internal49.transition_out)(api.$$.fragment, local);
@@ -39362,32 +39682,53 @@ function create_fragment49(ctx) {
         (0, import_internal49.detach_dev)(br13);
       if (detaching)
         (0, import_internal49.detach_dev)(t34);
-      (0, import_internal49.destroy_component)(codeexample0, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t35);
+        (0, import_internal49.detach_dev)(h36);
       if (detaching)
-        (0, import_internal49.detach_dev)(em1);
+        (0, import_internal49.detach_dev)(t36);
+      (0, import_internal49.destroy_component)(buttontoggle9, detaching);
       if (detaching)
         (0, import_internal49.detach_dev)(t37);
       if (detaching)
-        (0, import_internal49.detach_dev)(i0);
+        (0, import_internal49.detach_dev)(h37);
       if (detaching)
         (0, import_internal49.detach_dev)(t39);
+      (0, import_internal49.destroy_component)(buttontoggle10, detaching);
+      if (detaching)
+        (0, import_internal49.detach_dev)(t40);
+      if (detaching)
+        (0, import_internal49.detach_dev)(h38);
+      if (detaching)
+        (0, import_internal49.detach_dev)(t42);
+      (0, import_internal49.destroy_component)(buttontoggle11, detaching);
+      if (detaching)
+        (0, import_internal49.detach_dev)(t43);
+      (0, import_internal49.destroy_component)(codeexample0, detaching);
+      if (detaching)
+        (0, import_internal49.detach_dev)(t44);
+      if (detaching)
+        (0, import_internal49.detach_dev)(em1);
+      if (detaching)
+        (0, import_internal49.detach_dev)(t46);
+      if (detaching)
+        (0, import_internal49.detach_dev)(i0);
+      if (detaching)
+        (0, import_internal49.detach_dev)(t48);
       if (detaching)
         (0, import_internal49.detach_dev)(i1);
       if (detaching)
-        (0, import_internal49.detach_dev)(t41);
+        (0, import_internal49.detach_dev)(t50);
       if (detaching)
         (0, import_internal49.detach_dev)(i2);
       if (detaching)
-        (0, import_internal49.detach_dev)(t43);
+        (0, import_internal49.detach_dev)(t52);
       if (detaching)
         (0, import_internal49.detach_dev)(i3);
       if (detaching)
-        (0, import_internal49.detach_dev)(t45);
+        (0, import_internal49.detach_dev)(t54);
       (0, import_internal49.destroy_component)(codeexample1, detaching);
       if (detaching)
-        (0, import_internal49.detach_dev)(t46);
+        (0, import_internal49.detach_dev)(t55);
       (0, import_internal49.destroy_component)(api, detaching);
     }
   };
@@ -39417,6 +39758,21 @@ function instance49($$self2, $$props2, $$invalidate2) {
       name: "id",
       type: "string",
       description: "Assign id to the first radio button in the group (useful for the associate label's <i>for</i> attribute)"
+    },
+    {
+      name: "info",
+      type: "string",
+      description: "Show info message above the toggle."
+    },
+    {
+      name: "error",
+      type: "string",
+      description: "Error message to show above the toggle."
+    },
+    {
+      name: "label",
+      type: "string",
+      description: "Label for the toggle."
     },
     {
       name: "items",
@@ -39481,6 +39837,11 @@ const buttons = [
     { icon: "alert", value: "3" }
   ];
   const strings = ["One", "Two", "Three"];
+  let error2 = "You picked wrong!";
+  function onchange5(e) {
+    const val = e.detail;
+    $$invalidate2(0, error2 = val === "1" ? "" : "You picked wrong!");
+  }
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
@@ -39496,9 +39857,28 @@ const buttons = [
     buttons,
     items,
     icons: icons2,
-    strings
+    strings,
+    error: error2,
+    onchange: onchange5
   });
-  return [apiProps, exampleHtml, exampleHtml2, buttons, items, icons2, strings];
+  $$self2.$inject_state = ($$props3) => {
+    if ("error" in $$props3)
+      $$invalidate2(0, error2 = $$props3.error);
+  };
+  if ($$props2 && "$$inject" in $$props2) {
+    $$self2.$inject_state($$props2.$$inject);
+  }
+  return [
+    error2,
+    apiProps,
+    exampleHtml,
+    exampleHtml2,
+    buttons,
+    items,
+    icons2,
+    strings,
+    onchange5
+  ];
 }
 var ButtonToggle_1 = class extends import_internal49.SvelteComponentDev {
   constructor(options) {

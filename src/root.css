@@ -15,6 +15,9 @@
 
 	--ui-animation-speed: .3s;
 
+	/* 2.0834rem; = 34px */
+	/* 2.206rem; = 36px */
+	--ui-button-height: 2.206rem;
 
 	/* shadows */
 	--ui-shadow-button: 0 1px 0 #000c;

@@ -5,6 +5,7 @@
 	align-items: center;
 	justify-content: stretch;
 	border-radius: var(--ui-border-radius);
+	--button-border-radius: calc(var(--ui-border-radius) - 1px)
 }
 
 .button-group .button {
@@ -18,13 +19,13 @@
 .button-group .button-normal[disabled] { box-shadow: var(--ui-shadow-button); }
 
 .button-group .button:first-of-type {
-	border-top-left-radius: var(--ui-border-radius);
-	border-bottom-left-radius: var(--ui-border-radius);
+	border-top-left-radius: var(--button-border-radius);
+	border-bottom-left-radius: var(--button-border-radius);
 }
 
 .button-group .button:last-of-type {
-	border-top-right-radius: var(--ui-border-radius);
-	border-bottom-right-radius: var(--ui-border-radius);
+	border-top-right-radius: var(--button-border-radius);
+	border-bottom-right-radius: var(--button-border-radius);
 }
 
 .button-group .button-outline:not(:first-of-type) { margin-left: -2px; }

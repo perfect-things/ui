@@ -1,0 +1,12 @@
+.button-demo-props {
+	display: flex;
+	flex-flow: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.5rem;
+	width: clamp(300px, 50vw, 600px);
+}
+
+.button-demo-props .input-text { display: flex; flex-flow: row; width: 100%; }
+.button-demo-props .input-text .label { width: 8rem; }
+.button-demo-props .input-text .input-text-inner { flex: 1; }
