@@ -13,9 +13,8 @@
 	<div class="input-text-inner">
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-password-row" class:visible>
+		<div class="input-text-row" class:visible>
 			<input
-				class="input-password-input"
 				autocomplete="off"
 				{...props}
 				id="{_id}"
@@ -33,12 +32,12 @@
 		</div>
 	</div>
 	{#if strength && lib && value}
-		<div class="input-password-row">
+		<div class="input-text-row">
 			<div class="password-strength" title="{quality}">
 				<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
 			</div>
 		</div>
-		<div class="input-password-row">
+		<div class="input-text-row">
 			<div class="password-strength-info {colorClass}">
 				<h2>{quality}</h2>
 				<small>{@html strengthInfoText}</small>

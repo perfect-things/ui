@@ -7,25 +7,3 @@
 }
 
 .input-math input { padding-left: 30px; text-align: right; }
-
-.input-math-row .icon {
-	position: absolute;
-	left: 7px;
-	width: 1.5rem;
-	height: 1.5rem;
-	pointer-events: none;
-	color: var(--ui-color-text-dark-2);
-	z-index: 1;
-}
-.theme-light .input-math-row > .icon { color: var(--ui-color-text-light-2); }
-
-
-.input-math-row {
-	width: 100%;
-	display: flex;
-	flex-flow: row;
-	align-items: center;
-	justify-content: space-between;
-	position: relative;
-
-}

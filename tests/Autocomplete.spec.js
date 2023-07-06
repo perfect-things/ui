@@ -17,6 +17,8 @@ const props = {
 	placeholder: 'Component1',
 	class: 'test-class',
 	required: true,
+	label: 'Component1',
+	error: 'error',
 	data,
 	value
 };
@@ -24,11 +26,14 @@ const props = {
 
 
 test('Autocomplete', async () => {
-	const { container, getByTitle, getByText } = render(Autocomplete, props);
+	const { container, component, getByTitle, getByText } = render(Autocomplete, props);
 
 	const autocomplete = container.querySelector('.autocomplete');
 	expect(autocomplete).toBeInTheDocument();
 	expect(autocomplete).toHaveClass('test-class');
+
+	const cmp = container.querySelector('.test-class');
+	expect(cmp).toBeInTheDocument();
 
 	// verify props
 	const input = getByTitle('Component1');
@@ -36,7 +41,7 @@ test('Autocomplete', async () => {
 	expect(input).toHaveAttribute('title', 'Component1');
 	expect(input).toHaveAttribute('name', 'Component1');
 	expect(input).toHaveAttribute('placeholder', 'Component1');
-	expect(input).toHaveAttribute('required');
+	expect(input).toHaveAttribute('aria-required');
 
 	// open list
 	await fireEvent.click(input);
@@ -59,4 +64,29 @@ test('Autocomplete', async () => {
 	expect(autocompleteList).toHaveClass('hidden');
 	expect(autocomplete).not.toHaveClass('open');
 	expect(input.value).toBe(value.name);
+
+	const lbl = cmp.querySelector('label');
+	expect(lbl).toBeInTheDocument();
+	expect(lbl).toHaveAttribute('for', props.id);
+	expect(lbl).toHaveTextContent(props.label);
+
+	let err = cmp.querySelector('.info-bar-error');
+	expect(err).toBeInTheDocument();
+	expect(err).toHaveTextContent(props.error);
+
+	await component.$set({ error: '' });
+	await waitForTimeout();
+	err = cmp.querySelector('.info-bar-error');
+	expect(err).not.toBeInTheDocument();
+
+	await component.$set({ info: 'info' });
+	let info = cmp.querySelector('.info-bar-info');
+	expect(info).toBeInTheDocument();
+	expect(info).toHaveTextContent('info');
+
+	await component.$set({ info: '' });
+	await waitForTimeout();
+	info = cmp.querySelector('.info-bar-info');
+	expect(info).not.toBeInTheDocument();
+
 });

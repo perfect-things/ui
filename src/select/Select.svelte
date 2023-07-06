@@ -1,39 +1,71 @@
-<div class="select-wrapper {className}">
-	<select
-		{...props}
-		bind:value="{value}"
-		bind:this="{el}"
-		on:change>
+<div class="input-text select {className}" class:has-error="{error}">
+	{#if label}
+		<label class="label" for="{_id}">{label}</label>
+	{/if}
 
-		{#if placeholder}
-			<option value="">{placeholder}</option>
-		{/if}
-		{#each groups as group}
-			{#if group.items}
-				<optgroup label="{group.name}">
-					{#each group.items as item}
-						<option value="{item.id}">{item.name}</option>
-					{/each}
-				</optgroup>
-			{:else}
-				<option value="{group.id}">{group.name}</option>
-			{/if}
-		{/each}
-	</select>
+	<Info msg="{info}" />
+
+	<div class="input-text-inner" class:disabled>
+		<InputError id="{errorMessageId}" msg="{error}" />
+
+		<div class="input-text-row">
+			<select
+				aria-invalid="{error}"
+				aria-errormessage="{error ? errorMessageId : undefined}"
+				aria-required="{required}"
+
+				{title}
+				{name}
+				{disabled}
+				id="{_id}"
+
+				bind:value="{value}"
+				bind:this="{el}"
+				on:change>
+
+				{#if placeholder}
+					<option value="">{placeholder}</option>
+				{/if}
+				{#each groups as group}
+					{#if group.items}
+						<optgroup label="{group.name}">
+							{#each group.items as item}
+								<option value="{item.id}">{item.name}</option>
+							{/each}
+						</optgroup>
+					{:else}
+						<option value="{group.id}">{group.name}</option>
+					{/if}
+				{/each}
+			</select>
+		</div>
+	</div>
 </div>
 
 <script>
-import { pluck } from '../utils';
+import { guid } from '../utils';
+import { Info, InputError } from '../info-bar';
+
+
+let className = '';
+export { className as class };
+export let id = '';
+export let disabled = false;
+export let required = undefined;
 export let value = undefined;
 export let placeholder = undefined;
 export let items = [];
-let className = '';
-export { className as class };
+export let title = undefined;
+export let name = undefined;
+export let label = '';
+export let error = undefined;
+export let info = undefined;
 
 
 let el, groups = [];
+const errorMessageId = guid();
 
-$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'required']);
+$:_id = id || name || guid();
 
 $: {
 	const nogroup = [];

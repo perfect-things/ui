@@ -5,5 +5,6 @@
 
 .button-toggle .button { background: var(--ui-color-background-input); }
 .button-toggle .button:not(:first-child) { border-left-color: var(--ui-color-background-light-2); }
+
 .button-toggle .button input { position: absolute; top: -100%; opacity: 0; }
-.button-toggle .selected { background-color: var(--ui-color-highlight); }
+.button-toggle .button:has(:checked) { background-color: var(--ui-color-highlight); }

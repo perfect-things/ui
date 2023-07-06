@@ -8,7 +8,6 @@
 		<label
 			{disabled}
 			class="button button-normal"
-			class:selected="{value === item.value}"
 			class:button-has-text="{item.name}"
 			on:touchstart="{onmousedown}"
 			on:mousedown="{onmousedown}">

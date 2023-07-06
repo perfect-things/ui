@@ -36,6 +36,11 @@ test('InputPassword', async () => {
 	expect(input).toHaveAttribute('placeholder', props.placeholder);
 	expect(input).toHaveAttribute('aria-required');
 
+	const lbl = cmp.querySelector('label');
+	expect(lbl).toBeInTheDocument();
+	expect(lbl).toHaveAttribute('for', props.id);
+	expect(lbl).toHaveTextContent(props.label);
+
 	let err = cmp.querySelector('.info-bar-error');
 	expect(err).toBeInTheDocument();
 	expect(err).toHaveTextContent(props.error);
@@ -55,10 +60,6 @@ test('InputPassword', async () => {
 	info = cmp.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
 
-	const lbl = cmp.querySelector('label');
-	expect(lbl).toBeInTheDocument();
-	expect(lbl).toHaveAttribute('for', props.id);
-	expect(lbl).toHaveTextContent(props.label);
 
 
 

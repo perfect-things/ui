@@ -1,78 +1,107 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="autocomplete {className}" class:open="{opened}" bind:this="{el}">
-	<div class="icon-wrap" on:click="{onIconClick}">
-		<Icon name="dots"/>
-	</div>
-	<input
-		type="text"
-		role="combobox"
-		aria-autocomplete="list"
-		aria-controls="autocomplete-list-{gui}"
-		aria-expanded="{opened}"
-		autocomplete="off"
-		class="autocomplete-input"
-		value="{value && value.name || ''}"
+<div
+	class="input-text autocomplete {className}"
+	class:open="{opened}"
+	class:has-error="{error}"
+	bind:this="{el}">
 
-		{...props}
+	{#if label}
+		<label class="label" for="{_id}">{label}</label>
+	{/if}
 
-		bind:this="{inputEl}"
-		on:input="{oninput}"
-		on:focus="{onfocus}"
-		on:click="{open}"
-		on:blur="{onblur}"
-		on:keydown|capture="{onkeydown}"
-		on:keypress="{onkeypress}">
+	<Info msg="{info}" />
 
-	<!-- svelte-ignore a11y-interactive-supports-focus -->
-	<div
-		id="autocomplete-list-{gui}"
-		class="autocomplete-list {opened ? '' : 'hidden'}"
-		role="listbox"
-		on:mouseenter|capture="{() => mouseOverList = true}"
-		on:mouseleave|capture="{() => mouseOverList = false}"
-		on:mousedown={onListMouseDown}
-		bind:this="{listEl}">
-		{#if filteredData.length}
-			{#each groupedData as group}
-				{#if group.name}
-					<div class="autocomplete-list-header">{group.name}</div>
-				{/if}
-				{#if group.items}
-					{#each group.items as item}
-						<!-- svelte-ignore a11y-interactive-supports-focus -->
-						<div
-							role="option"
-							aria-selected="{item.idx === highlightIndex}"
-							class="autocomplete-list-item"
-							class:in-group="{!!item.group}"
-							class:selected="{item.idx === highlightIndex}"
-							on:click="{() => onclick(item)}">
-							{@html item.highlightedName || item.name}
-						</div>
-					{/each}
-				{/if}
-			{/each}
-		{:else if allowNew !== true && allowNew !== 'true'}
-			<div class="autocomplete-list-empty">No items found</div>
-		{/if}
+	<div class="input-text-inner" class:disabled>
+		<InputError id="{errorMessageId}" msg="{error}" />
 
-		{#if shouldShowNewItem}
-			<div class="autocomplete-list-header">Create new item</div>
+		<div class="input-text-row">
+			<Button link icon="dots" class="autocomplete-button" on:click="{onIconClick}"/>
+			<input
+				type="text"
+				role="combobox"
+				aria-autocomplete="list"
+				aria-controls="autocomplete-list-{gui}"
+				aria-expanded="{opened}"
+				aria-invalid="{error}"
+				aria-errormessage="{error ? errorMessageId : undefined}"
+				aria-required="{required}"
+				autocomplete="off"
+				value="{value && value.name || ''}"
+
+				{...props}
+				{disabled}
+				id="{_id}"
+
+				bind:this="{inputEl}"
+				on:input="{oninput}"
+				on:focus="{onfocus}"
+				on:click="{open}"
+				on:blur="{onblur}"
+				on:keydown|capture="{onkeydown}"
+				on:keypress="{onkeypress}">
+		</div>
+		<!-- svelte-ignore a11y-interactive-supports-focus -->
+		<div class="input-text-row">
 			<div
-				class="autocomplete-list-item"
-				class:selected="{highlightIndex === filteredData.length}"
-				on:click="{() => onclick({ name: inputEl.value, idx: filteredData.length })}">
-					{inputEl.value}
+				id="autocomplete-list-{gui}"
+				class="autocomplete-list {opened ? '' : 'hidden'}"
+				role="listbox"
+				on:mouseenter|capture="{() => mouseOverList = true}"
+				on:mouseleave|capture="{() => mouseOverList = false}"
+				on:mousedown={onListMouseDown}
+				bind:this="{listEl}">
+				{#if filteredData.length}
+					{#each groupedData as group}
+						{#if group.name}
+							<div class="autocomplete-list-header">{group.name}</div>
+						{/if}
+						{#if group.items}
+							{#each group.items as item}
+								<!-- svelte-ignore a11y-interactive-supports-focus -->
+								<div
+									role="option"
+									aria-selected="{item.idx === highlightIndex}"
+									class="autocomplete-list-item"
+									class:in-group="{!!item.group}"
+									class:selected="{item.idx === highlightIndex}"
+									on:click="{() => onclick(item)}">
+									{@html item.highlightedName || item.name}
+								</div>
+							{/each}
+						{/if}
+					{/each}
+				{:else if allowNew !== true && allowNew !== 'true'}
+					<div class="autocomplete-list-empty">No items found</div>
+				{/if}
+
+				{#if shouldShowNewItem}
+					<div class="autocomplete-list-header">Create new item</div>
+					<div
+						class="autocomplete-list-item"
+						class:selected="{highlightIndex === filteredData.length}"
+						on:click="{() => onclick({ name: inputEl.value, idx: filteredData.length })}">
+							{inputEl.value}
+					</div>
+				{/if}
 			</div>
-		{/if}
+		</div>
 	</div>
+
 </div>
 
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './utils';
 import { pluck, guid } from '../utils';
-import { Icon } from '../icon';
+import { Button } from '../button';
+import { Info, InputError } from '../info-bar';
+
+
+let className = '';
+export { className as class };
+export let disabled = false;
+export let required = undefined;
+export let id = '';
 export let data = [];
 export let value = null;
 export let allowNew = false;
@@ -82,19 +111,24 @@ export let elevate = false;
 export let showOnFocus = false;
 export let hideOnScroll = false;
 export let hideOnResize = false;
+export let label = '';
+export let error = undefined;
+export let info = undefined;
 
-let className = '';
-export { className as class };
 
+$:_id = id || name || guid();
 $:elevated = elevate === 'true' || elevate === true;
-$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'placeholder', 'required']);
+$:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputEl.value));
 $:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputEl && inputEl.value && !valueMatchesItem;
 
 const dispatch = createEventDispatcher();
 const gui = guid();
+const errorMessageId = guid();
+
 let el, inputEl, listEl;
 let opened = false;
+
 let hasEdited = false;
 let mouseOverList = false;
 let highlightIndex = 0;

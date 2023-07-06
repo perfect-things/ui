@@ -12,7 +12,7 @@
 	<div class="input-text-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-math-row">
+		<div class="input-text-row">
 			<Icon name="calculator"/>
 			<input
 				type="text"

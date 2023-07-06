@@ -22,10 +22,10 @@
 		<NavItem name="Button" {active} />
 		<NavItem name="Push Button" {active} />
 		<NavItem name="Button Group" {active} />
-		<NavItem name="Button Toggle" {active} />
 
 		<h3>Inputs</h3>
 		<NavItem name="Autocomplete" {active} />
+		<NavItem name="Button Toggle" {active} />
 		<NavItem name="Checkbox" {active} />
 		<NavItem name="Datepicker" {active} />
 		<NavItem name="Input Text" {active} />

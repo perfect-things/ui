@@ -17,6 +17,8 @@ const props = {
 	placeholder: 'Component1',
 	class: 'test-class',
 	required: true,
+	label: 'Component1',
+	error: 'error',
 	items: data,
 	value
 };
@@ -24,17 +26,19 @@ const props = {
 
 
 test('Select', async () => {
-	const { getByTitle } = render(Select, props);
+	const { container, component, getByTitle } = render(Select, props);
+
+	const cmp = container.querySelector('.test-class');
+	expect(cmp).toBeInTheDocument();
 
 	const select = getByTitle('Component1');
 	expect(select).toBeInTheDocument();
-	expect(select.parentNode).toHaveClass('test-class');
 
 	// verify props
 	expect(select).toHaveAttribute('id', 'Component1');
 	expect(select).toHaveAttribute('title', 'Component1');
 	expect(select).toHaveAttribute('name', 'Component1');
-	expect(select).toHaveAttribute('required');
+	expect(select).toHaveAttribute('aria-required');
 
 	await fireEvent.click(select);
 	await fireEvent.focus(select);
@@ -45,5 +49,30 @@ test('Select', async () => {
 	expect(opts.length).toBe(data.length + 1);
 	expect(opts[1]).toBeInTheDocument();
 	expect(opts[1]).toHaveAttribute('value', '1');
+
+
+	const lbl = cmp.querySelector('label');
+	expect(lbl).toBeInTheDocument();
+	expect(lbl).toHaveAttribute('for', props.id);
+	expect(lbl).toHaveTextContent(props.label);
+
+	let err = cmp.querySelector('.info-bar-error');
+	expect(err).toBeInTheDocument();
+	expect(err).toHaveTextContent(props.error);
+
+	await component.$set({ error: '' });
+	await waitForTimeout();
+	err = cmp.querySelector('.info-bar-error');
+	expect(err).not.toBeInTheDocument();
+
+	await component.$set({ info: 'info' });
+	let info = cmp.querySelector('.info-bar-info');
+	expect(info).toBeInTheDocument();
+	expect(info).toHaveTextContent('info');
+
+	await component.$set({ info: '' });
+	await waitForTimeout();
+	info = cmp.querySelector('.info-bar-info');
+	expect(info).not.toBeInTheDocument();
 
 });
