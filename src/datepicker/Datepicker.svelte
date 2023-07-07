@@ -1,43 +1,78 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="datepicker-wrapper {className}" class:open >
-	<div class="icon-wrap" on:click="{onIconClick}">
-		<Icon name="calendar"/>
+<div
+	class="input-text input-date {className}"
+	class:open
+	aria-expanded="{open}"
+	class:has-error="{error}">
+
+	{#if label}
+		<label class="label" for="{_id}">{label}</label>
+	{/if}
+
+	<Info msg="{info}" />
+
+	<div class="input-text-inner" class:disabled>
+		<InputError id="{errorMessageId}" msg="{error}" />
+
+		<div class="input-text-row">
+			<Button link icon="calendar" class="input-date-button" on:click="{onIconClick}"/>
+			<input
+				type="text"
+				autocomplete="off"
+
+				aria-invalid="{error}"
+				aria-errormessage="{error ? errorMessageId : undefined}"
+				aria-required="{required}"
+
+				{...props}
+				{placeholder}
+				{disabled}
+				id="{_id}"
+
+				on:changeDate="{onchange}"
+				on:input="{oninput}"
+				on:keydown|capture="{onkeydown}"
+				on:show="{onshow}"
+				on:hide="{onhide}"
+				bind:this="{inputEl}"
+				bind:value="{value}">
+		</div>
 	</div>
-	<input
-		type="text"
-		autocomplete="off"
-		{...props}
-		{placeholder}
-		on:changeDate="{onchange}"
-		on:input="{oninput}"
-		on:keydown|capture="{onkeydown}"
-		on:show="{onshow}"
-		on:hide="{onhide}"
-		bind:this="{inputEl}"
-		bind:value="{value}">
 </div>
 
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
-import { Icon, icons } from '../icon';
-import { pluck } from '../utils';
+import { icons } from '../icon';
+import { Button } from '../button';
+import { pluck, guid } from '../utils';
+import { Info, InputError } from '../info-bar';
 
+
+let className = '';
+export { className as class };
 export let format = 'yyyy-mm-dd';
 export let value = '';
 export let placeholder = format;
 export let elevate = false;
 export let showOnFocus = false;
 export let orientation = 'auto';	// '[left|right|auto] [top|bottom|auto]'
-let className = '';
-export { className as class };
+export let disabled = false;
+export let required = undefined;
+export let id = '';
+export let label = '';
+export let error = undefined;
+export let info = undefined;
 
+
+$:_id = id || name || guid();
 $:elevated = elevate === true || elevate === 'true';
 $:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'required']);
 
+const errorMessageId = guid();
 const dispatch = createEventDispatcher();
 let picker, inputEl;
 let open = false;
+
 
 onMount(() => {
 	picker = new Datepicker(inputEl, {

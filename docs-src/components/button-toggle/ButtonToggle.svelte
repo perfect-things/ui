@@ -127,7 +127,6 @@ let error = 'You picked wrong!';
 function onchange (e) {
 	const val = e.detail;
 	error = val === '1' ? '' : 'You picked wrong!';
-
 }
 
 </script>

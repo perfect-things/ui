@@ -24,6 +24,20 @@
 	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
 
 
+<h3>Label</h3>
+<Datepicker label="Pick one" />
+
+<h3>Info</h3>
+<Datepicker label="Pick one" info="Pick your pick" />
+
+<h3>Error</h3>
+<Datepicker
+	label="Pick one"
+	error="{error}"
+	on:change="{onchange}"/>
+
+
+
 
 <CodeExample html="{exampleHtml}" />
 
@@ -41,6 +55,9 @@ const apiProps = [
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
 	{ name: 'format', type: 'string', default: 'yyyy-mm-dd', description: 'Date format (<a href="https://mymth.github.io/vanillajs-datepicker/#/date-string+format" target="_blank">docs</a>).' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
+	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
+	{ name: 'label', type: 'string', description: 'Label for the input.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', default: 'yyyy-mm-dd', description: 'Add a custom placeholder for the input.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.' },
@@ -62,6 +79,14 @@ function onChange (e) {
 
 `;
 
+
+
+let error = 'You picked wrong!';
+
+function onchange (e) {
+	const val = e.detail;
+	error = val === '1' ? '' : 'You picked wrong!';
+}
 
 
 function onkey (e) {

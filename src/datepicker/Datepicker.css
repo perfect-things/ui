@@ -1,27 +1,8 @@
-.datepicker-wrapper {
-	width: 25ch;
-	position: relative;
-	display: inline-flex;
-	flex-flow: row;
-	align-items: center;
-	justify-content: space-between;
-	vertical-align: middle;
-}
+.input-date .input-text-inner { position: relative; overflow: unset; }
 
-.datepicker-wrapper .icon-wrap {
-	position: absolute;
-	cursor: pointer;
-	margin-top: -1px; /* calendar icon visually appears a bit lower, so moving it up */
-	right: 5px;
-	width: 1.5rem;
-	height: 1.5rem;
-	color: var(--ui-color-text-dark-2);
-	z-index: 1;
-}
-.theme-light .datepicker-wrapper .icon-wrap { color: var(--ui-color-text-light-2); }
-.datepicker-wrapper .icon-wrap svg { width: 100%; height: 100%; }
+.input-date input { width: 100%; padding-right: 36px; }
 
-.datepicker-wrapper .datepicker-input { width: 100%; padding-right: 28px; }
+
 .datepicker { display: none; transform: translateZ(1px); }
 .datepicker.active { display: block; }
 

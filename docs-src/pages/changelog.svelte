@@ -1,4 +1,18 @@
 <h1>Changelog</h1>
+<h2>v8.0.0 <em>(2023-07-?)</em></h2>
+<ul>
+<li><strong>Improved:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>Datepicker</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
+</ul>
+<h3>Breaking changes!</h3>
+<h4>Autocomplete</h4>
+<ul>
+<li>HTML structure changed <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-text-inner .input-text-row input</code></li>
+</ul>
+<h4>Select</h4>
+<ul>
+<li>HTML structure changed <code>.select-wrap select</code> --&gt; <code>.select .input-text-inner .input-text-row select</code></li>
+</ul>
+<hr>
 <h2>v7.1.2 <em>(2023-07-05)</em></h2>
 <ul>
 <li>Fix <code>Checkbox</code> label (don&#39;t render empty label if no label attribute was passed).</li>
@@ -25,7 +39,7 @@
 <ul>
 <li><strong>New:</strong> <a href="#InfoBar">InfoBar</a> component.</li>
 <li><strong>New:</strong> <a href="#InputText">InputText</a>, <a href="#InputNumber">InputNumber</a>, and <a href="#Radio">Radio</a> components.</li>
-<li><strong>New:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported in all basic inputs (<code>InputText</code>, <code>InputNumber</code>, <code>InputMath</code>, <code>InputPassword</code>, <code>Radio</code>, and <code>Checkbox</code>).</li>
+<li><strong>New:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on all basic inputs (<code>InputText</code>, <code>InputNumber</code>, <code>InputMath</code>, <code>InputPassword</code>, <code>Radio</code>, and <code>Checkbox</code>).</li>
 <li><strong>Improved:</strong> <code>InputMath</code> component: support for <code>()</code> characters, to allow for more complex expressions.</li>
 </ul>
 <h3>Breaking changes!</h3>
@@ -246,6 +260,7 @@
 <ul>
 <li>rebrand <code>simple-ui-components-in-svelte</code> to <code>@perfectthings/ui</code></li>
 </ul>
+<hr>
 <h2>v5.1.0 <em>(2023-03-12)</em></h2>
 <ul>
 <li>Better Menu highlighting (doesn&#39;t hl first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS</li>
@@ -294,11 +309,13 @@
 <li>Docs API table is now alphabetically sorted</li>
 <li>Components don&#39;t use <code>$$props</code> anymore, as it was causing issues with the <code>class</code> prop. Instead, the props are now explicitly passed down to the component. This is a good thing to do, as it makes the components more explicit and easier to understand.</li>
 </ul>
+<hr>
 <h2>v4.0.0 <em>(2023-02-28)</em></h2>
 <ul>
 <li>Breaking change: renamed components: <code>Item</code> -&gt; <code>MenuItem</code>, <code>Separator</code> -&gt; <code>MenuSeparator</code></li>
 <li>Refactored the folder structure</li>
 </ul>
+<hr>
 <h2>v3.1.2 <em>(2023-01-04)</em></h2>
 <ul>
 <li>Toggle&#39;s <code>innerWidth</code> function was somehow overwriting <code>window.innerWidth</code> property (maybe a compiler issue?)</li>
@@ -323,8 +340,10 @@
 <li>breaking change: <code>cssClass</code> property available on some components has been renamed to <code>className</code> (to be more aligned with the standard workaround in other libs/frameworks).</li>
 <li>some components (where possible) are now using <code>$$props</code> to pass-through the properties of the instance down to the component.</li>
 </ul>
+<hr>
 <h2>v2.1.1 (2022-12-24)</h2>
 <ul>
 <li>breaking change: <code>dist</code> folder has been renamed to <code>docs</code>, as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).</li>
 </ul>
+<hr>
 <h2>v1.7.12</h2>
