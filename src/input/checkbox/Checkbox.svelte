@@ -23,16 +23,16 @@
 			aria-required="{required}"
 			on:change="{onchange}">
 
-		{#if label}
-			<label class="label" for="{_id}">{label}</label>
-		{/if}
+		<Label {label} for="{_id}"/>
 	</div>
 </div>
 
 <script>
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';

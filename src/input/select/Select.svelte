@@ -1,8 +1,6 @@
 <div class="input select {className}" class:has-error="{error}">
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
 
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
 	<div class="input-inner" class:disabled>
@@ -43,8 +41,10 @@
 </div>
 
 <script>
-import { guid } from '../utils';
-import { Info, InputError } from '../info-bar';
+import { guid } from '../../utils';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';

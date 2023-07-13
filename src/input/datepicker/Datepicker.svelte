@@ -4,10 +4,7 @@
 	aria-expanded="{open}"
 	class:has-error="{error}">
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
 	<div class="input-inner" class:disabled>
@@ -43,10 +40,12 @@
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
-import { icons } from '../icon';
-import { Button } from '../button';
-import { guid } from '../utils';
-import { Info, InputError } from '../info-bar';
+import { icons } from '../../icon';
+import { Button } from '../../button';
+import { guid } from '../../utils';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';

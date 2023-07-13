@@ -28,6 +28,5 @@ export { Tree } from './tree';
 export { Icon } from './icon';
 export { NotificationCenter } from './notification-center';
 export { TextFit } from './text-fit';
-export { Toaster } from './toaster';
 export { Tooltip } from './tooltip';
 export { ColorPalette } from './color-palette';

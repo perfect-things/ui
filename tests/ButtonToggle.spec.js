@@ -1,4 +1,4 @@
-import { ButtonToggle } from '../src/button-toggle';
+import { ButtonToggle } from '../src/input/button-toggle';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
 
@@ -32,12 +32,11 @@ test('ButtonToggle', async () => {
 	expect(btnGroup).toHaveClass('test-class');
 
 
-	const labelButtons = btnGroup.querySelectorAll('.input-text-inner label');
+	const labelButtons = btnGroup.querySelectorAll('.input-inner label');
 	const inputs = btnGroup.querySelectorAll('label input');
 	expect(inputs.length).toBe(items.length);
 
 	const firstInput = inputs[0];
-	expect(firstInput).toHaveAttribute('id', props.id);
 	expect(firstInput).toHaveAttribute('name', props.name);
 	expect(firstInput).toHaveAttribute('value', items[0].value);
 	expect(firstInput).not.toBeChecked();

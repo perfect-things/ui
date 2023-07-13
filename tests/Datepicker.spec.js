@@ -1,4 +1,4 @@
-import { Datepicker } from '../src/datepicker';
+import { Datepicker } from '../src/input/datepicker';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
 import userEvent from '@testing-library/user-event';
@@ -30,7 +30,7 @@ test('Datepicker', async () => {
 	expect(input).toHaveAttribute('id', 'Component1');
 	expect(input).toHaveAttribute('name', 'Component1');
 	expect(input).toHaveAttribute('placeholder', 'Component1');
-	expect(input).toHaveAttribute('required');
+	expect(input).toHaveAttribute('aria-required');
 
 	expect(dropdown).toBeInTheDocument();
 	expect(dropdown).not.toHaveClass('active');

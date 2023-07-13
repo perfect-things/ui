@@ -11,9 +11,7 @@
 	on:contextmenu|preventDefault
 	on:click|preventDefault>
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
+	<Label {label} {disabled} for="{_id}"/>
 
 	<Info msg="{info}" />
 	<InputError id="{errorMessageId}" msg="{error}" />
@@ -41,9 +39,12 @@
 
 <script>
 import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
-import { Info, InputError } from '../info-bar';
-import { guid } from '../utils';
+import { guid } from '../../utils';
 import { getMouseX, isTouchDevice, initialMeasure } from './utils';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
+
 
 const dispatch = createEventDispatcher();
 

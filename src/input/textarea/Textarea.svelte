@@ -1,8 +1,6 @@
 <div class="textarea {className}" class:autogrow class:has-error="{error}">
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
 
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
 	<div class="textarea-inner" class:disabled data-value="{autogrow ? value : undefined}">
@@ -22,7 +20,9 @@
 </div>
 <script>
 import { pluck, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';

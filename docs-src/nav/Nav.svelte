@@ -42,7 +42,6 @@
 		<NavItem name="InfoBar" {active} />
 		<NavItem name="Notification Center" {active} />
 		<NavItem name="MessageBox" {active} />
-		<NavItem name="Toaster (deprecated)" {active} />
 		<NavItem name="Tooltip" {active} />
 
 

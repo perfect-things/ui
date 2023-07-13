@@ -5,10 +5,7 @@
 	class:has-error="{error}"
 	bind:this="{el}">
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
 	<div class="input-inner" class:disabled>
@@ -92,9 +89,11 @@
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './utils';
-import { pluck, guid } from '../utils';
-import { Button } from '../button';
-import { Info, InputError } from '../info-bar';
+import { pluck, guid } from '../../utils';
+import { Button } from '../../button';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';

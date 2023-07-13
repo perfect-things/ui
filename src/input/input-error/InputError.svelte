@@ -7,8 +7,8 @@
 
 <script>
 import { get } from 'svelte/store';
-import { ANIMATION_SPEED } from '../utils';
-import Error from './Error.svelte';
+import { ANIMATION_SPEED } from '../../utils';
+import Error from '../../info-bar/Error.svelte';
 
 export let id = undefined;
 export let msg = '';

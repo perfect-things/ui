@@ -1,8 +1,6 @@
 <div class="input input-number {className}" class:has-error="{error}">
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
 
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
 	<div class="input-inner">
@@ -14,6 +12,8 @@
 			pattern="-?\d+(\.\d+)?"
 			autocomplete="off"
 			{...props}
+			{name}
+			{disabled}
 			id="{_id}"
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
@@ -30,12 +30,16 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { pluck, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';
 export { className as class };
 export let id = '';
+export let name = guid();
+export let disabled = undefined;
 export let required = undefined;
 export let value = '';
 export let label = '';
@@ -53,7 +57,7 @@ const allowedKeys = [
 ];
 
 
-$:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
+$:props = pluck($$props, ['title', 'placeholder']);
 $:_id = id || name || guid();
 
 

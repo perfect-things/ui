@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import { Select } from '../src/select';
+import { Select } from '../src/input/select';
 import { waitForTimeout } from './helpers/utils';
 
 

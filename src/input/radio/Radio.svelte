@@ -4,9 +4,7 @@
 	class="input-radio {className}"
 	class:has-error="{error}">
 
-	{#if label}
-		<label class="label" for="{id}">{label}</label>
-	{/if}
+	<Label {label} {disabled} for="{_id}"/>
 
 	<Info msg="{info}" />
 
@@ -37,13 +35,15 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';
 export { className as class };
-export let id = guid();
-export let name = id || guid();
+export let id = '';
+export let name = guid();
 export let title = undefined;
 export let label = '';
 export let disabled = false;
@@ -55,6 +55,7 @@ export let info = '';
 const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 
+$:_id = id || name || guid();
 
 $: _items = items.map(item => {
 	if (typeof item === 'string') item = { name: item, value: item };

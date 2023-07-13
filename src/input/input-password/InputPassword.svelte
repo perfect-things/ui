@@ -4,10 +4,7 @@
 	class:visible
 	bind:this="{el}">
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
 	<div class="input-inner">
@@ -23,6 +20,7 @@
 				aria-required="{required}"
 				{type}
 				{value}
+				{disabled}
 				on:input="{oninput}"
 				on:keydown
 				on:change
@@ -50,13 +48,16 @@
 import { onMount, createEventDispatcher } from 'svelte';
 import { Button } from '../../button';
 import { pluck, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';
 export { className as class };
 export let id = '';
 export let required = undefined;
+export let disabled = undefined;
 export let value = '';
 export let strength = false;
 export let label = '';
@@ -86,7 +87,7 @@ let colorClass = '';
 let el;
 
 
-$:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
+$:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:type = visible ? 'text' : 'password';
 $:_id = id || props.name || guid();
 

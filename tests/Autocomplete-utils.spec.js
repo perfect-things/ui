@@ -1,4 +1,4 @@
-import * as utils from '../src/autocomplete/utils';
+import * as utils from '../src/input/autocomplete/utils';
 import { offsetHeight, offsetTop } from './helpers/utils';
 
 const arr = [

@@ -2,12 +2,8 @@
 	class="input input-math {className}"
 	class:has-error="{error}">
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} for="{_id}"/>
 	<Info msg="{info}" />
-
 
 	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
@@ -37,7 +33,9 @@
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
 import { pluck, roundAmount, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 export let _this = undefined;

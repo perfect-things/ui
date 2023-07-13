@@ -1,4 +1,4 @@
-import { Toggle } from '../src/toggle';
+import { Toggle } from '../src/input/toggle';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
 

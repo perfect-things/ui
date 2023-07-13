@@ -7,10 +7,7 @@
 	aria-errormessage="{error ? errorMessageId : undefined}"
 	bind:this="{el}">
 
-	{#if label}
-		<label {disabled} class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
 	<div class="input-inner">
@@ -30,8 +27,8 @@
 						{item.name || ''}
 						<input
 							{disabled}
+							{name}
 							type="radio"
-							name="{name}"
 							checked="{item.value === value}"
 							value="{item.value}"
 							on:change="{e => onchange(e, item)}">
@@ -43,9 +40,11 @@
 
 <script>
 import { createEventDispatcher } from 'svelte';
-import { Info, InputError } from '../info-bar';
-import { guid } from '../utils';
-import { Icon } from '../icon';
+import { guid } from '../../utils';
+import { Icon } from '../../icon';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';

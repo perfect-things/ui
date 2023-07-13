@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import { Autocomplete } from '../src/autocomplete';
+import { Autocomplete } from '../src/input/autocomplete';
 import { waitForTimeout } from './helpers/utils';
 
 
