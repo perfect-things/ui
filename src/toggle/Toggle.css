@@ -5,27 +5,35 @@
 	--toggle-height: calc(var(--toggle-width) / 2.5);
 	--knob-size: var(--toggle-height);
 
-	border-radius: var(--border-radius);
-	border: 1px solid var(--ui-color-text-dark-2);
-	background-color: var(--ui-color-background-dark-2);
-	padding: var(--toggle-padding);
-	display: inline-block;
+	display: inline-flex;
+	flex-flow: column;
+	align-items: flex-start;
 	position: relative;
 	vertical-align: middle;
 	-webkit-user-select: none;
 	user-select: none;
+
+	border-radius: var(--border-radius);
+}
+
+.toggle-inner {
+	border: 1px solid var(--ui-color-text-dark-2);
+	padding: var(--toggle-padding);
+	border-radius: inherit;
+	background-color: var(--ui-color-background-dark-2);
 }
 
 .toggle:has(:disabled) { pointer-events: none; opacity: 0.6; }
-.toggle:focus {
-	outline: 1px solid transparent;
+
+.toggle:focus { outline: 1px solid transparent; }
+.toggle:focus .toggle-inner {
 	box-shadow: var(--ui-shadow-focus);
 	border-color: var(--ui-color-accent);
 }
 
 .toggle-input { display: none; }
 
-.toggle-inner {
+.toggle-label {
 	width: var(--toggle-width);
 	height: var(--toggle-height);
 	border-radius: calc(var(--border-radius) - var(--toggle-padding));

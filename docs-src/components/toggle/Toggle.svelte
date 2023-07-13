@@ -9,13 +9,25 @@ The perfect toggle component in Svelte:
 </ul>
 <br>
 
-<Toggle on:change="{onchange}" bind:value="{toggleValue}" /> {toggleValue}
+<Toggle bind:value="{toggleValue}" /> {toggleValue}
 <div class="toggle-box" class:visible="{toggleValue}">
 	<Toggle /> hidden initially<br>
 	<Toggle value="true"/> hidden initially
 </div>
 <br><br><br>
+
+<h3>Disabled</h3>
 <Toggle value="{true}" disabled /> (disabled)
+
+
+<h3>Label</h3>
+<Toggle label="Toggle the lights" />
+
+<h3>Info</h3>
+<Toggle label="Toggle the lights" info="This toggle switches the bathroom lights on/off" />
+
+<h3>Error</h3>
+<Toggle label="Toggle the lights" error="{error}" on:change="{onchange}"/>
 
 
 
@@ -32,16 +44,19 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.' },
+	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input (if not set, a random string will be assigned).' },
+	{ name: 'info', type: 'string', description: 'Show info message above the toggle.' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the toggle.' },
+	{ name: 'name', type: 'string', description: 'Assign name to the underlying input.' },
+	{ name: 'label', type: 'string', description: 'Label for the input.' },
+	{ name: 'required', description: 'Mark the input as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
+	{ name: 'value', type: ['true', 'false'], description: 'Initial value of the toggle.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `
-<Toggle value="true" on:change="{onChange}" />
+<Toggle value="true" label="Field label" on:change="{onChange}" />
 
 <script>
 function onChange (e) {
@@ -51,9 +66,12 @@ function onChange (e) {
 `;
 
 
+let error = 'I can\'t see anything now!';
 let toggleValue = false;
 
 function onchange (e) {
+	const val = e.detail;
+	error = val ? '' : 'I can\'t see anything now!';
 	console.log('onchange', e.detail);
 }
 </script>

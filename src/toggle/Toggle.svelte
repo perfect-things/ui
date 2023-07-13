@@ -1,6 +1,6 @@
 <div
 	class="toggle {className}"
-	class:checked="{value}"
+	class:has-error="{error}"
 	role="switch"
 	aria-checked="{value}"
 	tabindex="{disabled ? undefined : 0}"
@@ -10,34 +10,64 @@
 	on:mousedown={dragStart}
 	on:contextmenu|preventDefault
 	on:click|preventDefault>
-	<label class="toggle-inner" {title} bind:this="{label}">
-		<div class="toggle-scroller" bind:this="{scroller}">
-			<div class="toggle-option"></div>
-			<div class="toggle-handle" bind:this="{handle}"><div class="toggle-knob"></div></div>
-			<div class="toggle-option"></div>
-			<input {...inputProps} type="checkbox" class="toggle-input" bind:checked="{value}">
-		</div>
-	</label>
+
+	{#if label}
+		<label class="label" for="{_id}">{label}</label>
+	{/if}
+
+	<Info msg="{info}" />
+	<InputError id="{errorMessageId}" msg="{error}" />
+
+	<div class="toggle-inner">
+		<label class="toggle-label" {title}>
+			<div class="toggle-scroller" bind:this="{scroller}">
+				<div class="toggle-option"></div>
+				<div class="toggle-handle" bind:this="{handle}"><div class="toggle-knob"></div></div>
+				<div class="toggle-option"></div>
+				<input
+					class="toggle-input"
+					type="checkbox"
+					{disabled}
+					id="{_id}"
+					{name}
+					aria-invalid="{error}"
+					aria-errormessage="{error ? errorMessageId : undefined}"
+					aria-required="{required}"
+					bind:checked="{value}">
+			</div>
+		</label>
+	</div>
 </div>
+
 <script>
 import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
-import { pluck } from '../utils';
+import { Info, InputError } from '../info-bar';
+import { guid } from '../utils';
 import { getMouseX, isTouchDevice, initialMeasure } from './utils';
 
 const dispatch = createEventDispatcher();
 
-export let value = false;
-export let disabled = undefined;
 let className = '';
 export { className as class };
+export let id = '';
+export let name = guid();
+export let title = '';
+export let required = undefined;
+export let disabled = false;
+export let label = '';
+export let error = undefined;
+export let info = undefined;
+export let value = false;
 
-let el, label, scroller, handle, startX, currentX = 0;
+
+$:_id = id || name || guid();
+
+const errorMessageId = guid();
+
+let el, scroller, handle, startX, currentX = 0;
 let scrollerStartX, scrollerEndX, handleStartX;
 let isClick = false, isDragging = false;
 let oldValue;
-
-$:title = $$props.title;
-$:inputProps = pluck($$props, ['id', 'name', 'disabled', 'required']);
 
 
 onMount(() => {
@@ -74,6 +104,9 @@ function onKey (e) {
 
 
 function dragStart (e) {
+	const target = e.target;
+	if (!target.closest('.toggle-inner, .toggle>label')) return;
+
 	// prevent double call
 	if (isTouchDevice && e.type !== 'touchstart') return;
 

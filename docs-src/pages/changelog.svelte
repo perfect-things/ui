@@ -3,7 +3,7 @@
 <ul>
 <li><strong>Improved:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>Datepicker</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
 </ul>
-<h3>Breaking changes!</h3>
+<h3>Breaking changes</h3>
 <h4>Autocomplete</h4>
 <ul>
 <li>HTML structure changed <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-text-inner .input-text-row input</code></li>
@@ -11,6 +11,10 @@
 <h4>Select</h4>
 <ul>
 <li>HTML structure changed <code>.select-wrap select</code> --&gt; <code>.select .input-text-inner .input-text-row select</code></li>
+</ul>
+<h4>Toggle</h4>
+<ul>
+<li>HTML structure changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
 </ul>
 <hr>
 <h2>v7.1.2 <em>(2023-07-05)</em></h2>
@@ -42,7 +46,7 @@
 <li><strong>New:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on all basic inputs (<code>InputText</code>, <code>InputNumber</code>, <code>InputMath</code>, <code>InputPassword</code>, <code>Radio</code>, and <code>Checkbox</code>).</li>
 <li><strong>Improved:</strong> <code>InputMath</code> component: support for <code>()</code> characters, to allow for more complex expressions.</li>
 </ul>
-<h3>Breaking changes!</h3>
+<h3>Breaking changes</h3>
 <h4>Checkbox</h4>
 <ul>
 <li>HTML structure changed <code>input</code> --&gt; <code>.checkbox .checkbox-row input</code></li>
