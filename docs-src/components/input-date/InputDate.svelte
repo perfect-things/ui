@@ -1,15 +1,15 @@
-<h2>Datepicker</h2>
+<h2>Input Date</h2>
 <p>This is a wrapper for the vanilla javascript component <a href="https://mymth.github.io/vanillajs-datepicker/#/">vanillajs-datepicker</a>.</p>
 <br>
 
 <h3>Normal</h3>
-<Datepicker on:keydown="{onkey}"/>
+<InputDate on:keydown="{onkey}"/>
 
 <h3>Show on focus</h3>
-<Datepicker showOnFocus="true" placeholder="Custom placeholder" />
+<InputDate showOnFocus="true" placeholder="Custom placeholder" />
 
 <h3>Change date format</h3>
-<Datepicker format="dd-mm-yy" />
+<InputDate format="dd-mm-yy" />
 
 
 <h3>In a container with <em>overflow: hidden</em></h3>
@@ -17,21 +17,21 @@
 	property must be set on the component.</p>
 <div class="docs-overflow-box">
 	<small>overflow: hidden</small>
-	<Datepicker elevate="true" />
+	<InputDate elevate="true" />
 </div>
-<p>This option should only be used when absolutely necessary (e.g. when Datepicker
+<p>This option should only be used when absolutely necessary (e.g. when InputDate
 	is used inside dialogs/popups), because it makes the component less accessible
 	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
 
 
 <h3>Label</h3>
-<Datepicker label="Pick one" />
+<InputDate label="Pick one" />
 
 <h3>Info</h3>
-<Datepicker label="Pick one" info="Pick your pick" />
+<InputDate label="Pick one" info="Pick your pick" />
 
 <h3>Error</h3>
-<Datepicker
+<InputDate
 	label="Pick one"
 	error="{error}"
 	on:change="{onchange}"/>
@@ -45,7 +45,7 @@
 
 
 <script>
-import { Datepicker } from '../../../src';
+import { InputDate } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
@@ -69,7 +69,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Datepicker on:change="{ onChange }" />
+<InputDate on:change="{ onChange }" />
 
 <script>
 function onChange (e) {

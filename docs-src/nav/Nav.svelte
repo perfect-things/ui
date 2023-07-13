@@ -27,7 +27,7 @@
 		<NavItem name="Autocomplete" {active} />
 		<NavItem name="Button Toggle" {active} />
 		<NavItem name="Checkbox" {active} />
-		<NavItem name="Datepicker" {active} />
+		<NavItem name="Input Date" {active} />
 		<NavItem name="Input Text" {active} />
 		<NavItem name="Input Number" {active} />
 		<NavItem name="Input Math" {active} />

@@ -1,4 +1,4 @@
-import { Datepicker } from '../src/input/datepicker';
+import { InputDate } from '../src/input/input-date';
 import { render, fireEvent } from '@testing-library/svelte';
 import { waitForTimeout } from './helpers/utils';
 import userEvent from '@testing-library/user-event';
@@ -15,7 +15,7 @@ test('Datepicker', async () => {
 		class: 'test-class',
 		showOnFocus: true
 	};
-	const { container, component } = render(Datepicker, props);
+	const { container, component } = render(InputDate, props);
 	const mock = jest.fn();
 	component.$on('change', mock);
 
