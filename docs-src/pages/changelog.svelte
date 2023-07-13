@@ -1,20 +1,15 @@
 <h1>Changelog</h1>
 <h2>v8.0.0 <em>(2023-07-?)</em></h2>
 <ul>
-<li><strong>Improved:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>Datepicker</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
+<li><strong>New:</strong> <code>Label</code> component.</li>
+<li><strong>Improved:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>InputDate</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
 </ul>
 <h3>Breaking changes</h3>
-<h4>Autocomplete</h4>
 <ul>
-<li>HTML structure changed <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-inner .input-row input</code></li>
-</ul>
-<h4>Select</h4>
-<ul>
-<li>HTML structure changed <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
-</ul>
-<h4>Toggle</h4>
-<ul>
-<li>HTML structure changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
+<li><code>Datepicker</code> was renamed to <code>InputDate</code>.</li>
+<li><code>Autocomplete</code> - HTML structure changed: <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-inner .input-row input</code></li>
+<li><code>Select</code> - HTML structure changed: <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
+<li><code>Toggle</code> - HTML structure changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
 </ul>
 <hr>
 <h2>v7.1.2 <em>(2023-07-05)</em></h2>

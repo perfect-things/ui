@@ -1,7 +1,7 @@
 {#if label}
 	<label
 		class="label {className}"
-		{disabled}
+		class:disabled
 		for="{_for}">{label}</label>
 {/if}
 

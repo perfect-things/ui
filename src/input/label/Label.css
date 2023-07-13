@@ -5,3 +5,9 @@
 	display: inline-flex;
 	align-items: center;
 }
+
+.label.disabled {
+	pointer-events: none;
+	-webkit-user-select: none;
+	user-select: none;
+}

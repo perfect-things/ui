@@ -26,7 +26,7 @@
 						checked="{item.value === value}"
 						disabled="{disabled || item.disabled}"
 						on:change="{e => onchange(e, item)}">
-					<label class="label" for="{item.id}">{item.name}</label>
+					<Label disabled="{disabled || item.disabled}" for="{item.id}" label="{item.name}"/>
 				</div>
 			{/each}
 		</div>

@@ -3,20 +3,16 @@ Changelog
 
 
 ## v8.0.0 *(2023-07-?)*
-- **Improved:** `info`, `error` and `label` attributes are now supported on other inputs (`Autocomplete`, `Datepicker`, `Select`, `ButtonToggle`, and `Toggle`).
+- **New:** `Label` component.
+- **Improved:** `info`, `error` and `label` attributes are now supported on other inputs (`Autocomplete`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).
+
 
 ### Breaking changes
 
-#### Autocomplete
-- HTML structure changed `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
-
-
-#### Select
-- HTML structure changed `.select-wrap select` --> `.select .input-inner .input-row select`
-
-
-#### Toggle
-- HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
+- `Datepicker` was renamed to `InputDate`.
+- `Autocomplete` - HTML structure changed: `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
+- `Select` - HTML structure changed: `.select-wrap select` --> `.select .input-inner .input-row select`
+- `Toggle` - HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
 
 
 ----
