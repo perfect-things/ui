@@ -8,11 +8,11 @@ Changelog
 ### Breaking changes
 
 #### Autocomplete
-- HTML structure changed `.autocomplete input` --> `.autocomplete .input-text-inner .input-text-row input`
+- HTML structure changed `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
 
 
 #### Select
-- HTML structure changed `.select-wrap select` --> `.select .input-text-inner .input-text-row select`
+- HTML structure changed `.select-wrap select` --> `.select .input-inner .input-row select`
 
 
 #### Toggle
@@ -57,13 +57,13 @@ Changelog
 - `on:change` is called with a svelte event instead of the native one, so: `e.target.checked` is now `e.detail.checked`
 
 #### InputMath
-- HTML structure changed `.input-math-wrapper input` --> `.input-math .input-text-inner .input-math-row input`
+- HTML structure changed `.input-math-wrapper input` --> `.input-math .input-inner .input-math-row input`
 
 #### InputNumber:
-- HTML structure changed: `input` --> `.input-number .input-text-inner input`
+- HTML structure changed: `input` --> `.input-number .input-inner input`
 
 #### InputPassword
-- HTML structure changed: `.input-password-wrapper .input-password-row input` --> `.input-password .input-text-inner .input-password-row input`
+- HTML structure changed: `.input-password-wrapper .input-password-row input` --> `.input-password .input-inner .input-password-row input`
 
 #### CSS variables changed:
 - `--ui-shadow-invalid` --> `--ui-shadow-danger`

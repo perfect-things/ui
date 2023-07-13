@@ -22,7 +22,7 @@
 
 
 
-.select .input-text-row::after {
+.select .input-row::after {
 	content: "";
 	position: absolute;
 	width: 2rem;
@@ -37,6 +37,6 @@
 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23888' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
 }
 
-.theme-light .select .input-text-row::after {
+.theme-light .select .input-row::after {
 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23111' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
 }

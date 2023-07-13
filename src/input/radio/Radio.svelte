@@ -13,23 +13,25 @@
 	<div class="input-radio-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		{#each _items as item (item.id)}
-			<div
-				class="input-radio-item"
-				class:disabled="{disabled || item.disabled}"
-				on:touchstart|capture="{onmousedown}"
-				on:mousedown|capture="{onmousedown}">
-				<input
-					type="radio"
-					id="{item.id}"
-					name="{name}"
-					value="{item.value}"
-					checked="{item.value === value}"
-					disabled="{disabled || item.disabled}"
-					on:change="{e => onchange(e, item)}">
-				<label class="label" for="{item.id}">{item.name}</label>
-			</div>
-		{/each}
+		<div class="input-radio-items">
+			{#each _items as item (item.id)}
+				<div
+					class="input-radio-item"
+					class:disabled="{disabled || item.disabled}"
+					on:touchstart|capture="{onmousedown}"
+					on:mousedown|capture="{onmousedown}">
+					<input
+						type="radio"
+						id="{item.id}"
+						name="{name}"
+						value="{item.value}"
+						checked="{item.value === value}"
+						disabled="{disabled || item.disabled}"
+						on:change="{e => onchange(e, item)}">
+					<label class="label" for="{item.id}">{item.name}</label>
+				</div>
+			{/each}
+		</div>
 	</div>
 </div>
 <script>

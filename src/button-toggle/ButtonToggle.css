@@ -1,4 +1,4 @@
-.button-toggle.input-text {
+.button-toggle.input {
 	width: min-content;
 	min-width: 25ch;
 	padding: 0;
@@ -7,16 +7,11 @@
 	justify-content: flex-start;
 }
 
-.button-toggle .input-text-inner {
-	width: 100%;
-	background-color: var(--ui-color-background-dark-2);
-}
+.button-toggle .input-inner { width: 100%; background-color: var(--ui-color-background-dark-2); }
 
-.button-toggle .input-text-row {
-	gap: 1px;
-}
+.button-toggle .input-row { gap: 1px; }
 
-.button-toggle .input-text-row .button {
+.button-toggle .input-row .button {
 	position: static;
 	color: var(--ui-color-text);
 	box-shadow: none;
@@ -27,12 +22,11 @@
 
 .button-toggle .button input {
 	position: absolute;
-	top: -100%;
+	top: -100px;
 	opacity: 0;
+	pointer-events: none;
 }
 
-.button-toggle .button:has(:checked) {
-	background-color: var(--ui-color-highlight);
-}
+.button-toggle .button:has(:checked) { background-color: var(--ui-color-highlight); }
 
-.button-toggle.round:not(.has-error) .input-text-inner { border-radius: var(--ui-border-radius-xl); }
+.button-toggle.round:not(.has-error) .input-inner { border-radius: var(--ui-border-radius-xl); }

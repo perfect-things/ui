@@ -1,5 +1,5 @@
 <div
-	class="input-text input-math {className}"
+	class="input input-math {className}"
 	class:has-error="{error}">
 
 	{#if label}
@@ -9,10 +9,10 @@
 	<Info msg="{info}" />
 
 
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-text-row">
+		<div class="input-row">
 			<Icon name="calculator"/>
 			<input
 				type="text"

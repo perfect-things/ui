@@ -1,6 +1,6 @@
-.autocomplete .input-text-inner { position: relative; overflow: unset; }
+.autocomplete .input-inner { position: relative; }
 
-.autocomplete input { width: 100%; padding-right: 36px; }
+.autocomplete input { padding-right: 36px; }
 
 .autocomplete-list {
 	position: absolute;

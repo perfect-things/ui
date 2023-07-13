@@ -1,4 +1,4 @@
-.input-text .error-wrap,
+.input .error-wrap,
 .input-radio .error-wrap,
 .checkbox .error-wrap {
 	display: flex;
@@ -11,7 +11,7 @@
 .input-radio .error-wrap { overflow: hidden; }
 
 
-.input-text .info-bar-error,
+.input .info-bar-error,
 .input-radio .info-bar-error,
 .textarea .info-bar-error {
 	padding-bottom: calc(0.4rem + 10px);
@@ -28,8 +28,11 @@
 
 
 /* Highlight whole inner div in red, to avoid rendering leaks in corners (safari) */
-.has-error.input-text .input-text-inner,
+.has-error.input .input-inner,
 .has-error.textarea .textarea-inner { background-color: var(--ui-color-danger-semi); }
 
-.has-error.input-text .info-bar-error,
+.has-error.input .input-inner  { border-color: var(--ui-color-danger); }
+.has-error.input .input-inner:focus-within { box-shadow: var(--ui-shadow-danger); }
+
+.has-error.input .info-bar-error,
 .has-error.textarea .info-bar-error { background-color: transparent; }

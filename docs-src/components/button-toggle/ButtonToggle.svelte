@@ -10,10 +10,6 @@
 	<ButtonToggle items="{buttons}" value="1" />
 </div>
 
-<h3>With label</h3>
-<label class="label" for="bt1">Label for the button toggle</label>
-<ButtonToggle id="bt1" items="{buttons}" value="1" />
-
 <br><br>
 
 <h4>Disabled</h4>

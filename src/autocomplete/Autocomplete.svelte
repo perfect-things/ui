@@ -1,6 +1,6 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="input-text autocomplete {className}"
+	class="input autocomplete {className}"
 	class:open="{opened}"
 	class:has-error="{error}"
 	bind:this="{el}">
@@ -11,10 +11,10 @@
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-text-row">
+		<div class="input-row">
 			<Button link icon="dots" class="autocomplete-button" on:click="{onIconClick}"/>
 			<input
 				type="text"
@@ -41,7 +41,7 @@
 				on:keypress="{onkeypress}">
 		</div>
 		<!-- svelte-ignore a11y-interactive-supports-focus -->
-		<div class="input-text-row">
+		<div class="input-row">
 			<div
 				id="autocomplete-list-{gui}"
 				class="autocomplete-list {opened ? '' : 'hidden'}"

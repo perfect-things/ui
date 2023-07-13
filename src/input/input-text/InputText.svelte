@@ -1,5 +1,5 @@
 <div
-	class="input-text {className}"
+	class="input input-text {className}"
 	class:has-error="{error}">
 
 	{#if label}
@@ -8,7 +8,7 @@
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<input

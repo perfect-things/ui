@@ -46,13 +46,32 @@ input[type=color] {
 
 :where(input:disabled) { opacity: 0.75; cursor: default; }
 
-.textarea textarea:disabled,
-.input-text select:disabled,
-.input-text input:disabled { opacity: 1; }
+.input { width: 25ch; vertical-align: middle; }
+.input .input-inner {
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+	justify-content: stretch;
+	border-radius: var(--ui-border-radius);
+	background: var(--ui-color-background-input);
+	border: 1px solid  var(--ui-color-background-dark-2);
+}
 
-.input-text .input-text-inner:has(:disabled),
-.input-radio .input-radio-inner:has(:disabled),
+.input-inner:focus-within { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
+
+
+.input,
+.textarea textarea:disabled,
+.input select:disabled,
+.input input:disabled { opacity: 1; }
+
+.input .input-inner:has(:disabled),
 .textarea .textarea-inner:has(:disabled) { opacity: 0.75; color: var(--ui-color-text-semi); }
+
+.input input:not([type=radio]) { width: 100%; border: none; }
+.input input:not([type=radio]):focus { box-shadow: none; border: none; }
+.input input:not([type=radio]):invalid { border: none; box-shadow: none; }
+
 
 
 
@@ -65,8 +84,7 @@ input[type=color] {
 }
 
 
-
-.input-text-row {
+.input-row {
 	width: 100%;
 	display: flex;
 	flex-flow: row;
@@ -75,15 +93,15 @@ input[type=color] {
 	position: relative;
 }
 
-.input-text-row > .button,
-.input-text-row > .icon {
+.input-row > .button,
+.input-row > .icon {
 	position: absolute;
 	height: 100%;
 	color: var(--ui-color-text-dark-2);
 	z-index: 1;
 }
 
-.input-text-row > .icon { left: 7px; width: 1.5rem; pointer-events: none; }
-.input-text-row > .button { right: 2px; }
+.input-row > .icon { left: 7px; width: 1.5rem; pointer-events: none; }
+.input-row > .button { right: 2px; }
 
-.theme-light .input-text-row .icon { color: var(--ui-color-text-light-2); }
+.theme-light .input-row .icon { color: var(--ui-color-text-light-2); }

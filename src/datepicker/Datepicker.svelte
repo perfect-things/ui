@@ -1,5 +1,5 @@
 <div
-	class="input-text input-date {className}"
+	class="input input-date {className}"
 	class:open
 	aria-expanded="{open}"
 	class:has-error="{error}">
@@ -10,10 +10,10 @@
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-text-row">
+		<div class="input-row">
 			<Button link icon="calendar" class="input-date-button" on:click="{onIconClick}"/>
 			<input
 				type="text"
@@ -23,8 +23,9 @@
 				aria-errormessage="{error ? errorMessageId : undefined}"
 				aria-required="{required}"
 
-				{...props}
 				{placeholder}
+				{title}
+				{name}
 				{disabled}
 				id="{_id}"
 
@@ -44,7 +45,7 @@ import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { icons } from '../icon';
 import { Button } from '../button';
-import { pluck, guid } from '../utils';
+import { guid } from '../utils';
 import { Info, InputError } from '../info-bar';
 
 
@@ -60,13 +61,14 @@ export let disabled = false;
 export let required = undefined;
 export let id = '';
 export let label = '';
+export let title = undefined;
+export let name = undefined;
 export let error = undefined;
 export let info = undefined;
 
 
 $:_id = id || name || guid();
 $:elevated = elevate === true || elevate === 'true';
-$:props = pluck($$props, ['id', 'title', 'name', 'disabled', 'required']);
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();

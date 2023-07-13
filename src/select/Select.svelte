@@ -1,14 +1,14 @@
-<div class="input-text select {className}" class:has-error="{error}">
+<div class="input select {className}" class:has-error="{error}">
 	{#if label}
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-text-row">
+		<div class="input-row">
 			<select
 				aria-invalid="{error}"
 				aria-errormessage="{error ? errorMessageId : undefined}"

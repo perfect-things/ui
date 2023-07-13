@@ -1,5 +1,5 @@
-<div {disabled}
-	class="input-text button-group button-toggle {className}"
+<div
+	class="input button-group button-toggle {className}"
 	class:round
 	class:has-error="{error}"
 	role="radiogroup"
@@ -8,16 +8,16 @@
 	bind:this="{el}">
 
 	{#if label}
-		<label class="label" for="{_id}">{label}</label>
+		<label {disabled} class="label" for="{_id}">{label}</label>
 	{/if}
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner">
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-text-row">
-			{#each _items as item, idx}
+		<div class="input-row" id="{_id}">
+			{#each _items as item}
 				<label
 					{disabled}
 					class="button button-normal"
@@ -30,7 +30,6 @@
 						{item.name || ''}
 						<input
 							{disabled}
-							id="{idx === 0 && id ? id : undefined}"
 							type="radio"
 							name="{name}"
 							checked="{item.value === value}"

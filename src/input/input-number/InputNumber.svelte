@@ -1,11 +1,11 @@
-<div class="input-text input-number {className}" class:has-error="{error}">
+<div class="input input-number {className}" class:has-error="{error}">
 	{#if label}
 		<label class="label" for="{_id}">{label}</label>
 	{/if}
 
 	<Info msg="{info}" />
 
-	<div class="input-text-inner">
+	<div class="input-inner">
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<input

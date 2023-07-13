@@ -6,11 +6,11 @@
 <h3>Breaking changes</h3>
 <h4>Autocomplete</h4>
 <ul>
-<li>HTML structure changed <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-text-inner .input-text-row input</code></li>
+<li>HTML structure changed <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-inner .input-row input</code></li>
 </ul>
 <h4>Select</h4>
 <ul>
-<li>HTML structure changed <code>.select-wrap select</code> --&gt; <code>.select .input-text-inner .input-text-row select</code></li>
+<li>HTML structure changed <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
 </ul>
 <h4>Toggle</h4>
 <ul>
@@ -54,15 +54,15 @@
 </ul>
 <h4>InputMath</h4>
 <ul>
-<li>HTML structure changed <code>.input-math-wrapper input</code> --&gt; <code>.input-math .input-text-inner .input-math-row input</code></li>
+<li>HTML structure changed <code>.input-math-wrapper input</code> --&gt; <code>.input-math .input-inner .input-math-row input</code></li>
 </ul>
 <h4>InputNumber:</h4>
 <ul>
-<li>HTML structure changed: <code>input</code> --&gt; <code>.input-number .input-text-inner input</code></li>
+<li>HTML structure changed: <code>input</code> --&gt; <code>.input-number .input-inner input</code></li>
 </ul>
 <h4>InputPassword</h4>
 <ul>
-<li>HTML structure changed: <code>.input-password-wrapper .input-password-row input</code> --&gt; <code>.input-password .input-text-inner .input-password-row input</code></li>
+<li>HTML structure changed: <code>.input-password-wrapper .input-password-row input</code> --&gt; <code>.input-password .input-inner .input-password-row input</code></li>
 </ul>
 <h4>CSS variables changed:</h4>
 <ul>
