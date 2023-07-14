@@ -1,4 +1,4 @@
-.table-wrapper {
+.table {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
@@ -7,10 +7,11 @@
 	border: 2px solid var(--ui-color-border);
 }
 
-.table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
-.table-wrapper.round { border-radius: var(--ui-border-radius-s); }
 
-.table { border-spacing: 0; cursor: default; width: 100%; }
+.table table { border-spacing: 0; width: 100%; }
+
+.table.round { border-radius: var(--ui-border-radius-s); }
+.table.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
 
 .table thead,
 .table tfoot { position: sticky; z-index: 2; }

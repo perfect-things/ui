@@ -1,6 +1,7 @@
 main pre[class],
 code {
 	background-color: #1a1a1a;
+	color: #ccc;
 	border-radius: var(--ui-border-radius-s);
 	font-size: 0.9rem;
 }

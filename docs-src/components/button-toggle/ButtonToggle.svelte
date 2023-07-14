@@ -69,6 +69,7 @@ const apiProps = [
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>' },
 	{ name: 'name', type: 'string', description: 'Assign name to the underlying radio group' },
 	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the component' },
 	{ name: 'value', type: ['string', 'number'], description: 'Assign initial value to the underlying radio group' },
 ];
 
@@ -122,6 +123,7 @@ let error = 'You picked wrong!';
 
 function onchange (e) {
 	const val = e.detail;
+	console.log(val);
 	error = val === '1' ? '' : 'You picked wrong!';
 }
 

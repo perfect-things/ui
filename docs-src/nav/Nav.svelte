@@ -6,8 +6,10 @@
 <aside class:mobile-show="{navMobileShow}">
 	<div class="nav-toolbar">
 		<div class="nav-toolbar-row">
-			<label for="dark-mode-switch">Dark mode:</label>
-			<ActualToggle id="dark-mode-switch"
+			<ThemeToggle round
+				class="dark-mode-switch"
+				title="Dark mode toggle"
+				items="{themes}"
 				value="{$PREFERS_DARK}"
 				on:change="{switchColorMode}"/>
 		</div>
@@ -65,7 +67,7 @@
 
 <svelte:window on:hashchange="{onhashchange}" />
 <script>
-import { Button as UIButton, Toggle as ActualToggle } from '../../src';
+import { Button as UIButton, ButtonToggle as ThemeToggle } from '../../src';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
@@ -74,6 +76,10 @@ import * as TestComponents from '../components';
 
 
 const components = { GetStarted, Changelog, ...TestComponents, };
+const themes = [
+	{ value: false, icon: 'sun' },
+	{ value: true, icon: 'moon' },
+];
 
 let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
@@ -88,6 +94,7 @@ function onhashchange () {
 }
 
 function switchColorMode (e) {
+	console.log(111, e.detail, typeof e.detail);
 	document.documentElement.className = e.detail ? 'theme-dark' : 'theme-light';
 }
 

@@ -5,6 +5,7 @@
 	role="radiogroup"
 	aria-invalid="{error}"
 	aria-errormessage="{error ? errorMessageId : undefined}"
+	{title}
 	bind:this="{el}">
 
 	<Label {label} {disabled} for="{_id}"/>
@@ -19,8 +20,8 @@
 					{disabled}
 					class="button button-normal"
 					class:button-has-text="{item.name}"
-					on:touchstart="{onmousedown}"
-					on:mousedown="{onmousedown}">
+					on:touchstart="{e => onmousedown(e, item)}"
+					on:mousedown="{e => onmousedown(e, item)}">
 						{#if item.icon}
 							<Icon name="{item.icon}"/>
 						{/if}
@@ -55,6 +56,7 @@ export let items = '';
 export let id = '';
 export let name = guid();
 export let value = '';
+export let title = undefined;
 export let label = '';
 export let error = undefined;
 export let info = undefined;
@@ -73,19 +75,19 @@ $:_items = items.map(item => {
 });
 
 
-function onmousedown (e) {
-	const btn = e.target.querySelector('input');
-	if (!btn) return;
+function onmousedown (e, button) {
+	const btnEl = e.target.querySelector('input');
+	if (!btnEl) return;
 
 	e.preventDefault();
-	btn.click();
-	btn.focus();
-	if (btn.value === value) return;
-	onchange(e, btn);
+	btnEl.click();
+	btnEl.focus();
+	onchange(e, button);
 }
 
 
 function onchange (e, button) {
+	if (button.value === value) return;
 	value = button.value;
 	dispatch('change', value);
 }

@@ -45,25 +45,17 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	align-items: stretch;
 	flex-wrap: wrap;
 }
+
 .nav-toolbar-row {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
 	padding-block: 0.3rem;
+	gap: 0.5rem;
 }
 
-
-.nav-toolbar-row input[type="number"] {
-	height: 1.5rem;
-	width: 51px;
-	text-align: center;
-	padding: 0 0.1rem 0 0.3rem;
-	border-radius: 20px;
-	border: 1px solid var(--ui-color-text-dark-2);
-}
-
-.nav-toolbar .toggle { --toggle-width: 45px; }
+.nav-toolbar-row .dark-mode-switch { min-width: 100%; }
 
 .nav-toggler {
 	--ui-button-size: 1.1em;

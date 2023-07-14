@@ -4,14 +4,17 @@ Changelog
 
 ## v8.0.0 *(2023-07-?)*
 - **New:** `Label` component.
+- **New icons:** `sun` and `moon` for the dark-theme switchers.
 - **Improved:** `info`, `error` and `label` attributes are now supported on other inputs (`Autocomplete`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).
-
+- Added `title` attribute to `ButtonToggle`.
+- Fixed `selectable=false` not working on `Table`.
 
 ### Breaking changes
 
 - `Datepicker` was renamed to `InputDate`.
 - `Autocomplete` - HTML structure changed: `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
 - `Select` - HTML structure changed: `.select-wrap select` --> `.select .input-inner .input-row select`
+- `Table` - CSS classes changed from `.table-wrapper table.table` --> `.table table`
 - `Toggle` - HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
 
 
