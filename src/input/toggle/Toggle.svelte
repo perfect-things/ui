@@ -167,7 +167,7 @@ function setKnobPosition () {
 	let handleLeft = handleStartX;
 	if (isDragging || value) handleLeft -= scrollerStartX;
 	if (isDragging) handleLeft += currentX;
-	handle.style.left = `${Math.round(handleLeft)}px`;
+	handle.style.left = `${Math.round(handleLeft - 1)}px`;
 }
 
 </script>
