@@ -11,7 +11,7 @@
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="input-inner">
+	<div class="input-inner" bind:this="{scrollerElement}">
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-row" id="{_id}">
@@ -20,8 +20,8 @@
 					{disabled}
 					class="button button-normal"
 					class:button-has-text="{item.name}"
-					on:touchstart="{e => onmousedown(e, item)}"
-					on:mousedown="{e => onmousedown(e, item)}">
+					on:touchstart="{onmousedown}"
+					on:mousedown="{onmousedown}">
 						{#if item.icon}
 							<Icon name="{item.icon}"/>
 						{/if}
@@ -66,6 +66,8 @@ export let element = undefined;
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
+let scrollerElement;
+
 
 $:_id = id || name || guid();
 
@@ -77,19 +79,21 @@ $:_items = items.map(item => {
 });
 
 
-function onmousedown (e, button) {
+function onmousedown (e) {
 	const btnEl = e.target.querySelector('input');
 	if (!btnEl) return;
 
 	e.preventDefault();
-	btnEl.click();
 	btnEl.focus();
-	onchange(e, button);
 }
 
 
 function onchange (e, button) {
 	if (button.value === value) return;
+
+	const btnEl = e.target && e.target.closest('label');
+	if (btnEl) btnEl.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+
 	value = button.value;
 	dispatch('change', value);
 }

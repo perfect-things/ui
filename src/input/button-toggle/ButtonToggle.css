@@ -7,7 +7,12 @@
 	justify-content: flex-start;
 }
 
-.button-toggle .input-inner { width: 100%; background-color: var(--ui-color-background-dark-2); }
+.button-toggle .input-inner {
+	width: 100%;
+	background-color: var(--ui-color-background-dark-2);
+	overflow-y: auto;
+	position: relative;
+}
 
 .button-toggle .input-row { gap: 1px; }
 

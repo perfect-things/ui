@@ -10,6 +10,11 @@
 	<ButtonToggle items="{buttons}" value="1" />
 </div>
 
+<h3>With scroller</h3>
+<div class="button-toggle-wrapper-wide">
+	<ButtonToggle items="{buttonsGalore}" value="1" />
+</div>
+
 <br><br>
 
 <h4>Disabled</h4>
@@ -105,6 +110,11 @@ const buttons = [
 	{ name: 'One', value: '1' },
 	{ name: 'Two', value: '2' },
 	{ name: 'Three', value: '3' },
+];
+
+const buttonsGalore = [
+	'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+	'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen',
 ];
 
 const items = [
