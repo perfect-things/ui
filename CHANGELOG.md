@@ -11,7 +11,7 @@ Changelog
 - Fixed `selectable=false` not working on `Table`.
 
 ### Breaking changes
-
+- `Toaster`  component was removed. Use `NotificationCenter` instead.
 - `Datepicker` was renamed to `InputDate`.
 - `Autocomplete` - HTML structure changed: `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
 - `Select` - HTML structure changed: `.select-wrap select` --> `.select .input-inner .input-row select`

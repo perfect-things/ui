@@ -10,6 +10,7 @@
 </ul>
 <h3>Breaking changes</h3>
 <ul>
+<li><code>Toaster</code>  component was removed. Use <code>NotificationCenter</code> instead.</li>
 <li><code>Datepicker</code> was renamed to <code>InputDate</code>.</li>
 <li><code>Autocomplete</code> - HTML structure changed: <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-inner .input-row input</code></li>
 <li><code>Select</code> - HTML structure changed: <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
