@@ -11,8 +11,10 @@
 	justify-content: center;
 	gap: var(--ui-margin-m);
 
+	min-width: var(--ui-button-height);
+	min-height: var(--ui-button-height);
 	height: auto;
-	min-height: 2.2rem;
+
 	margin: 0;
 	padding: 0 var(--ui-margin-l);
 	color: var(--ui-color-text);
@@ -64,8 +66,6 @@
 
 
 .button.round {
-	min-width: 28px;
-	min-height: 28px;
 	padding: var(--ui-margin);
 	border-radius: var(--ui-border-radius-xl);
 }

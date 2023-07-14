@@ -1,7 +1,7 @@
 <h2>Button</h2>
 
 <h3>Live demo</h3>
-<div class="docs-buttons-row" style="margin-bottom: 2rem;">
+<div class="docs-buttons-row" style="height: 3rem;">
 	{#if buttonText}
 		<Button {...props}>{buttonText}</Button>
 	{:else}

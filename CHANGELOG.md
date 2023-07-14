@@ -6,7 +6,7 @@ Changelog
 - **New:** `Label` component.
 - **New icons:** `sun` and `moon` for the dark-theme switchers.
 - **Improvement:** `info`, `error` and `label` attributes are now supported on other inputs (`Autocomplete`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).
-- **Improvement:** all components now expose `element` on the main html element, and `inputElement` on the input, if there is one (and only one). The exception is `NotificationCenter` and `MessageBox`, due to it's implementation.
+- **Improvement:** all components now expose `element` and `inputElement` (if there is one (and only one)). The exceptions are `NotificationCenter` and `MessageBox`, due to their implementation.
 - Added `title` attribute to `ButtonToggle`.
 - Fixed `selectable=false` not working on `Table`.
 
@@ -17,7 +17,7 @@ Changelog
 - `Select` - HTML structure changed: `.select-wrap select` --> `.select .input-inner .input-row select`
 - `Table` - CSS classes changed from `.table-wrapper table.table` --> `.table table`
 - `Toggle` - HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
-- These components previously exposed `_this` on the main html element, which is now renamed to `element`: `Button`, `Checkbox`, `InputMath`, `PushButton`, `Table`
+- These components previously exposed `_this`, which is now renamed to `element`: `Button`, `Checkbox`, `InputMath`, `PushButton`, `Table`
 
 ----
 

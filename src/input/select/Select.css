@@ -11,7 +11,7 @@
 	width: 100%;
 
 	border: 1px solid transparent;
-	height: calc(2.2rem - 2px);
+	height: calc(var(--ui-button-height) - 2px);
 	line-height: 1;
 	color: var(--ui-color-text);
 	background-color: var(--ui-color-background-input);

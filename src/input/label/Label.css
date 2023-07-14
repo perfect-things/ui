@@ -1,5 +1,5 @@
 .label {
-	height: 2.2rem;
+	height: var(--ui-button-height);
 	line-height: 1.6;
 	padding: 0;
 	display: inline-flex;

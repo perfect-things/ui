@@ -21,6 +21,7 @@
 	padding: var(--toggle-padding);
 	border-radius: inherit;
 	background-color: var(--ui-color-background-dark-2);
+	position: relative;
 }
 
 .toggle:has(:disabled) { pointer-events: none; opacity: 0.6; }

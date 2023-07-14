@@ -11,7 +11,7 @@ input::placeholder { color: var(--ui-color-text-dark-2); }
 
 :where(input:not([type=radio],[type=checkbox])) {
 	font: inherit;
-	height: calc(2.2rem - 2px);
+	height: calc(var(--ui-button-height) - 2px);
 	border: 1px solid transparent;
 	line-height: 1;
 	color: var(--ui-color-text);

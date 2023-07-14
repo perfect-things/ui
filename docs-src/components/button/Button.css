@@ -7,6 +7,10 @@
 	width: clamp(300px, 50vw, 600px);
 }
 
-.button-demo-props .input-text { display: flex; flex-flow: row; width: 100%; }
-.button-demo-props .input-text .label { width: 8rem; }
-.button-demo-props .input-text .input-text-inner { flex: 1; }
+.button-demo-props .input { display: flex; flex-flow: row; width: 100%; }
+.button-demo-props .input .label { width: 5rem; flex-shrink: 0; }
+.button-demo-props .input .input-text-inner { flex: 1; }
+
+
+.button-demo-props .toggle { display: flex; flex-flow: row; width: 100%; }
+.button-demo-props .toggle .label { width: 5rem; flex-shrink: 0; }
