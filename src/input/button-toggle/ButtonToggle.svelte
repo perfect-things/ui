@@ -6,7 +6,7 @@
 	aria-invalid="{error}"
 	aria-errormessage="{error ? errorMessageId : undefined}"
 	{title}
-	bind:this="{el}">
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -61,9 +61,11 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 
+export let element = undefined;
+
+
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
-let el;
 
 $:_id = id || name || guid();
 

@@ -3,7 +3,8 @@
 <ul>
 <li><strong>New:</strong> <code>Label</code> component.</li>
 <li><strong>New icons:</strong> <code>sun</code> and <code>moon</code> for the dark-theme switchers.</li>
-<li><strong>Improved:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>InputDate</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
+<li><strong>Improvement:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>InputDate</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
+<li><strong>Improvement:</strong> all components now expose <code>element</code> on the main html element, and <code>inputElement</code> on the input, if there is one (and only one). The exception is <code>NotificationCenter</code> and <code>MessageBox</code>, due to it&#39;s implementation.</li>
 <li>Added <code>title</code> attribute to <code>ButtonToggle</code>.</li>
 <li>Fixed <code>selectable=false</code> not working on <code>Table</code>.</li>
 </ul>
@@ -14,6 +15,7 @@
 <li><code>Select</code> - HTML structure changed: <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
 <li><code>Table</code> - CSS classes changed from <code>.table-wrapper table.table</code> --&gt; <code>.table table</code></li>
 <li><code>Toggle</code> - HTML structure changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
+<li>These components previously exposed <code>_this</code> on the main html element, which is now renamed to <code>element</code>: <code>Button</code>, <code>Checkbox</code>, <code>InputMath</code>, <code>PushButton</code>, <code>Table</code></li>
 </ul>
 <hr>
 <h2>v7.1.2 <em>(2023-07-05)</em></h2>

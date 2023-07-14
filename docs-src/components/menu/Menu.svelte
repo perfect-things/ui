@@ -112,6 +112,7 @@ const apiProps = [
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the menu will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
 	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
 	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the menu is closed.' },
 	{ name: 'on:open', type: 'function', description: 'Triggered after the menu is opened.' },
 ];
@@ -132,6 +133,7 @@ const itemApiProps = [
 	{ name: 'success', description: 'Button type: success' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
 	{ name: 'warning', description: 'Button type: warning' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.<br><em>event.detail</em> will contain a <em>button</em> and <em>target</em> properties, that are references to the corresponding html elements.<br>It is possible to pass the data using <em>data-</em> attributes on the <em>target</em> element and on the <em>MenuItem</em>.' },
 ];
 

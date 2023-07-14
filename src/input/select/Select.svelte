@@ -1,4 +1,7 @@
-<div class="input select {className}" class:has-error="{error}">
+<div
+	class="input select {className}"
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -18,7 +21,7 @@
 				id="{_id}"
 
 				bind:value="{value}"
-				bind:this="{el}"
+				bind:this="{inputElement}"
 				on:change>
 
 				{#if placeholder}
@@ -61,8 +64,11 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 
+export let element = undefined;
+export let inputElement = undefined;
 
-let el, groups = [];
+
+let groups = [];
 const errorMessageId = guid();
 
 $:_id = id || name || guid();

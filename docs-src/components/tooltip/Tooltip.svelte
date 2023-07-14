@@ -86,6 +86,7 @@ const apiProps = [
 	{ name: 'success', description: 'Tooltip type: success' },
 	{ name: 'target', required: true, type: 'string', description: 'ID of the target element.' },
 	{ name: 'warning', description: 'Tooltip type: warning' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 ];
 
 

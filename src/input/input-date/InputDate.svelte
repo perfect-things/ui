@@ -2,7 +2,8 @@
 	class="input input-date {className}"
 	class:open
 	aria-expanded="{open}"
-	class:has-error="{error}">
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -31,7 +32,7 @@
 				on:keydown|capture="{onkeydown}"
 				on:show="{onshow}"
 				on:hide="{onhide}"
-				bind:this="{inputEl}"
+				bind:this="{inputElement}"
 				bind:value="{value}">
 		</div>
 	</div>
@@ -65,18 +66,20 @@ export let name = undefined;
 export let error = undefined;
 export let info = undefined;
 
+export let element = undefined;
+export let inputElement = undefined;
 
 $:_id = id || name || guid();
 $:elevated = elevate === true || elevate === 'true';
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
-let picker, inputEl;
+let picker;
 let open = false;
 
 
 onMount(() => {
-	picker = new Datepicker(inputEl, {
+	picker = new Datepicker(inputElement, {
 		autohide: true,
 		buttonClass: 'button button-text info',
 		container: elevated ? document.body : undefined,
@@ -144,7 +147,7 @@ function onhide () {
 
 
 function onIconClick () {
-	inputEl.focus();
+	inputElement.focus();
 	picker.show();
 }
 

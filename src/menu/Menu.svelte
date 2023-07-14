@@ -1,6 +1,6 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#if opened}
-	<menu tabindex="0" class="menu {className}" bind:this="{menuEl}">
+	<menu tabindex="0" class="menu {className}" bind:this="{element}">
 		<slot></slot>
 	</menu>
 {/if}
@@ -16,6 +16,8 @@ const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
 const contextmenu = isMobileSafari ? 'longpress' : 'contextmenu';
 
+let className = '';
+export { className as class };
 export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
@@ -23,15 +25,14 @@ export let elevate = false;
 export let offset = 2;
 export let align = 'left';			// can be 'left' or 'right'
 
-let className = '';
-export { className as class };
+export let element = undefined;
 
 
 $:elevated = elevate === 'true' || elevate === true;
 const menuButtons = [];
 const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
-let menuEl, targetEl, focusedEl, opened = false;
+let targetEl, focusedEl, opened = false;
 let isBelowTarget = true;	// default - screen size may change that
 let hovering = false;
 
@@ -49,15 +50,15 @@ onMount(() => {
 
 onDestroy(() => {
 	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
-	if (elevated && menuEl) menuEl.remove();
+	if (elevated && element) element.remove();
 });
 
 
 
 function indexButtons () {
-	if (!menuEl) return;
+	if (!element) return;
 	const addBtn = el => menuButtons.push({ el, text: el.textContent.trim().toLowerCase() });
-	menuEl.querySelectorAll(buttonSelector).forEach(addBtn);
+	element.querySelectorAll(buttonSelector).forEach(addBtn);
 }
 
 
@@ -79,7 +80,7 @@ function onContextMenu (e) {
 
 
 function onDocumentClick (e) {
-	if (!menuEl.contains(e.target)) _close();
+	if (!element.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
 		const clickedOnItem = !!e.target.closest(buttonSelector);
@@ -114,12 +115,12 @@ function highlightElement (el) {
 		focusedEl.scrollIntoView({ block: 'nearest' });
 		focusedEl.focus();
 	}
-	else menuEl && menuEl.focus();
+	else element && element.focus();
 }
 
 
 function onKeydown (e) {
-	if (e.key === 'Escape' || !menuEl.contains(e.target)) return _close();
+	if (e.key === 'Escape' || !element.contains(e.target)) return _close();
 	if (e.key === 'Enter' || e.key === ' ') return;
 	if (e.key === 'Tab') {
 		e.preventDefault();
@@ -144,19 +145,19 @@ function focusTarget () {
 
 
 function focusFirst () {
-	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
 	highlightElement(buttons[0]);
 }
 
 
 function focusLast () {
-	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
 	highlightElement(buttons[buttons.length - 1]);
 }
 
 
 function focusNext () {
-	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
 	let idx = -1;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx >= buttons.length - 1) idx = -1;
@@ -165,7 +166,7 @@ function focusNext () {
 
 
 function focusPrev () {
-	const buttons = Array.from(menuEl.querySelectorAll(buttonSelector));
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
 	let idx = buttons.length;
 	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
 	if (idx <= 0) idx = buttons.length;
@@ -189,15 +190,15 @@ export function open (e) {
 	}
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		if (elevated) document.body.appendChild(menuEl);
+		if (elevated) document.body.appendChild(element);
 		indexButtons();
 
 		// needs to finish rendering first
-		isBelowTarget = updatePosition(e, type, menuEl, offset, align, isBelowTarget);
+		isBelowTarget = updatePosition(e, type, element, offset, align, isBelowTarget);
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
-		if (menuEl) menuEl.focus();
+		if (element) element.focus();
 	}));
 }
 

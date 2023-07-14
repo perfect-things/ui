@@ -1,4 +1,8 @@
-<div class="textarea {className}" class:autogrow class:has-error="{error}">
+<div
+	class="textarea {className}"
+	class:autogrow
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -13,6 +17,7 @@
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
 			id="{_id}"
+			bind:this="{inputElement}"
 			bind:value="{value}"
 			on:change
 			on:input></textarea>
@@ -36,6 +41,9 @@ export let disabled = false;
 export let label = '';
 export let error = undefined;
 export let info = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
 
 
 $:props = pluck($$props, ['title', 'name', 'placeholder']);

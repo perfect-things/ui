@@ -30,6 +30,8 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
 	{ name: 'title', type: 'string', description: 'Set title for the drawer.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:this', type: 'object', description: 'Exposes the component instance.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the drawer is closed.' },
 	{ name: 'on:open', type: 'function', description: 'Triggered after the drawer is opened.' },
 ];

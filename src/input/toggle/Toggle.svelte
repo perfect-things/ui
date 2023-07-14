@@ -4,7 +4,7 @@
 	role="switch"
 	aria-checked="{value}"
 	tabindex="{disabled ? undefined : 0}"
-	bind:this="{el}"
+	bind:this="{element}"
 	on:keydown="{onKey}"
 	on:touchstart={dragStart}
 	on:mousedown={dragStart}
@@ -31,6 +31,7 @@
 					aria-invalid="{error}"
 					aria-errormessage="{error ? errorMessageId : undefined}"
 					aria-required="{required}"
+					bind:this="{inputElement}"
 					bind:checked="{value}">
 			</div>
 		</label>
@@ -60,12 +61,15 @@ export let error = undefined;
 export let info = undefined;
 export let value = false;
 
+export let element = undefined;
+export let inputElement = undefined;
+
 
 $:_id = id || name || guid();
 
 const errorMessageId = guid();
 
-let el, scroller, handle, startX, currentX = 0;
+let scroller, handle, startX, currentX = 0;
 let scrollerStartX, scrollerEndX, handleStartX;
 let isClick = false, isDragging = false;
 let oldValue;
@@ -73,7 +77,7 @@ let oldValue;
 
 onMount(() => {
 	toggleTransitions(false);
-	({ scrollerStartX, scrollerEndX, handleStartX } = initialMeasure(el));
+	({ scrollerStartX, scrollerEndX, handleStartX } = initialMeasure(element));
 });
 
 

@@ -1,6 +1,7 @@
 <Dialog
 	title="{$config.title}"
 	class="message-box message-{$config.type}"
+	bind:element="{element}"
 	bind:this="{dialog}"
 	on:close="{onclose}">
 		<Icon name="{$config.icon || $config.type}"/>
@@ -22,6 +23,8 @@ import { onDestroy, onMount } from 'svelte';
 import { config } from './MessageBox.js';
 import { Dialog } from '../dialog';
 import { Icon } from '../icon';
+
+export let element = undefined;
 
 let dialog, sub;
 

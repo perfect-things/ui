@@ -90,6 +90,7 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 ];
 
 

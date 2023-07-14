@@ -52,6 +52,8 @@ const apiProps = [
 	{ name: 'required', description: 'Mark the input as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['true', 'false'], description: 'Initial value of the toggle.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
 

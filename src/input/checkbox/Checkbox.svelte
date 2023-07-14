@@ -3,7 +3,8 @@
 	class="checkbox {className}"
 	class:indeterminate
 	class:disabled
-	class:has-error="{error}">
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Info msg="{info}" />
 	<InputError id="{errorMessageId}" msg="{error}" />
@@ -15,7 +16,7 @@
 			id="{_id}"
 			{disabled}
 			{tabindex}
-			bind:this="{_this}"
+			bind:this="{inputElement}"
 			bind:checked="{checked}"
 			bind:indeterminate="{indeterminate}"
 			aria-invalid="{error}"
@@ -37,7 +38,6 @@ import { Label } from '../label';
 
 let className = '';
 export { className as class };
-export let _this = undefined;
 export let indeterminate = false;
 export let checked = false;
 export let disabled = false;
@@ -49,6 +49,10 @@ export let title = undefined;
 export let tabindex = undefined;
 export let name = '';
 export let required = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
+
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();

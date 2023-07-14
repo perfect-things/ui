@@ -2,7 +2,7 @@
 	class="input input-password {className}"
 	class:has-error="{error}"
 	class:visible
-	bind:this="{el}">
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -21,6 +21,7 @@
 				{type}
 				{value}
 				{disabled}
+				bind:this="{inputElement}"
 				on:input="{oninput}"
 				on:keydown
 				on:change
@@ -64,6 +65,9 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 
+export let element = undefined;
+export let inputElement = undefined;
+
 
 
 // score:
@@ -84,7 +88,6 @@ let quality = '';
 let percent = 0;
 let strengthInfoText = '';
 let colorClass = '';
-let el;
 
 
 $:props = pluck($$props, ['title', 'name', 'placeholder']);
@@ -130,7 +133,7 @@ function measure (pass) {
 
 function toggle () {
 	visible = !visible;
-	requestAnimationFrame(() => el.querySelector('input').focus());
+	requestAnimationFrame(() => element.querySelector('input').focus());
 }
 
 </script>

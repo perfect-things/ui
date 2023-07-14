@@ -1,4 +1,7 @@
-<div class="input input-number {className}" class:has-error="{error}">
+<div
+	class="input input-number {className}"
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -18,6 +21,7 @@
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
+			bind:this="{inputElement}"
 			bind:value="{value}"
 			on:keydown="{onkeydown}"
 			on:change="{onchange}"
@@ -46,6 +50,9 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 export let separator = '.';		// decimal separator
+
+export let element = undefined;
+export let inputElement = undefined;
 
 
 const dispatch = createEventDispatcher();

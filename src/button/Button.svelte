@@ -1,6 +1,6 @@
 <button
 	type="{submit ? 'submit' : 'button'}"
-	bind:this="{_this}"
+	bind:this="{element}"
 
 	class="button {className}"
 	class:button-normal="{!link && !text && !outline}"
@@ -31,7 +31,7 @@
 import { Icon } from '../icon';
 import { pluck } from '../utils';
 
-export let _this = undefined;
+export let element = undefined;
 
 export let info = false;
 export let success = false;

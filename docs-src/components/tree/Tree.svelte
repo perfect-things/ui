@@ -16,6 +16,7 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'title', type: 'string', description: 'Title of the component.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:select', type: 'function', description: 'Triggered after an item was selected.' },
 ];
 

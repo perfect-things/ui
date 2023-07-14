@@ -3,7 +3,7 @@
 	class="input autocomplete {className}"
 	class:open="{opened}"
 	class:has-error="{error}"
-	bind:this="{el}">
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -29,7 +29,7 @@
 				{disabled}
 				id="{_id}"
 
-				bind:this="{inputEl}"
+				bind:this="{inputElement}"
 				on:input="{oninput}"
 				on:focus="{onfocus}"
 				on:click="{open}"
@@ -46,7 +46,7 @@
 				on:mouseenter|capture="{() => mouseOverList = true}"
 				on:mouseleave|capture="{() => mouseOverList = false}"
 				on:mousedown={onListMouseDown}
-				bind:this="{listEl}">
+				bind:this="{listElement}">
 				{#if filteredData.length}
 					{#each groupedData as group}
 						{#if group.name}
@@ -76,8 +76,8 @@
 					<div
 						class="autocomplete-list-item"
 						class:selected="{highlightIndex === filteredData.length}"
-						on:click="{() => onclick({ name: inputEl.value, idx: filteredData.length })}">
-							{inputEl.value}
+						on:click="{() => onclick({ name: inputElement.value, idx: filteredData.length })}">
+							{inputElement.value}
 					</div>
 				{/if}
 			</div>
@@ -114,20 +114,23 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 
+export let element = undefined;
+export let inputElement = undefined;
+export let listElement = undefined;
+
 
 $:_id = id || name || guid();
 $:elevated = elevate === 'true' || elevate === true;
 $:props = pluck($$props, ['title', 'name', 'placeholder']);
-$:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputEl.value));
-$:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputEl && inputEl.value && !valueMatchesItem;
+$:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputElement.value));
+$:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputElement && inputElement.value && !valueMatchesItem;
 
 const dispatch = createEventDispatcher();
 const gui = guid();
 const errorMessageId = guid();
 
-let el, inputEl, listEl;
-let opened = false;
 
+let opened = false;
 let hasEdited = false;
 let mouseOverList = false;
 let highlightIndex = 0;
@@ -138,12 +141,12 @@ let isSelecting = false;
 
 
 onMount(() => {
-	if (elevated) document.body.appendChild(listEl);
+	if (elevated) document.body.appendChild(listElement);
 });
 
 
 onDestroy(() => {
-	if (elevated) listEl.remove();
+	if (elevated) listElement.remove();
 });
 
 
@@ -161,8 +164,8 @@ afterUpdate(() => {
 function filter () {
 	let filtered = deepCopy(data);
 	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
-	if (!showAll && inputEl.value) {
-		const q = inputEl.value.toLowerCase().trim();
+	if (!showAll && inputElement.value) {
+		const q = inputElement.value.toLowerCase().trim();
 		filtered = filtered
 			.filter(item => fuzzy(item.name, q))
 			.map(item => {
@@ -189,7 +192,7 @@ function filter () {
 	filteredData = filteredAndSorted;
 
 	highlightIndex = 0;
-	if (listEl) highlight(listEl);
+	if (listElement) highlight(listElement);
 }
 
 
@@ -198,11 +201,11 @@ function open (e) {
 	opened = true;
 	hasEdited = false;
 	addEventListeners();
-	recalculateListPosition(listEl, inputEl, elevated);
+	recalculateListPosition(listElement, inputElement, elevated);
 
-	highlight(listEl);
+	highlight(listElement);
 	requestAnimationFrame(() => {
-		if (e && e.type === 'focus') inputEl.select();
+		if (e && e.type === 'focus') inputElement.select();
 	});
 }
 
@@ -223,15 +226,15 @@ function selectItem () {
 	const oldValue = value;
 	if (filteredData[highlightIndex]) {
 		value = filteredData[highlightIndex];
-		if (value && value.name && inputEl.value !== value.name) inputEl.value = value.name;
+		if (value && value.name && inputElement.value !== value.name) inputElement.value = value.name;
 	}
 	// should create a new item
 	else if (allowNew) {
-		value = { name: inputEl.value };
+		value = { name: inputElement.value };
 	}
 	// entered value does not match any record - revert
 	else {
-		if (value && value.name && inputEl.value !== value.name) inputEl.value = value.name;
+		if (value && value.name && inputElement.value !== value.name) inputElement.value = value.name;
 	}
 
 	hasSetValue = true;
@@ -250,11 +253,11 @@ function setInitialValue () {
 			const idx = filteredData.findIndex(i => i.id === itemId || i.name === itemId);
 			if (idx > -1) {
 				highlightIndex = idx;
-				inputEl.value = filteredData[highlightIndex].name;
+				inputElement.value = filteredData[highlightIndex].name;
 			}
-			highlight(listEl);
+			highlight(listElement);
 		}
-		else inputEl.value = '';
+		else inputElement.value = '';
 	}
 }
 
@@ -265,7 +268,7 @@ function up () {
 	while (idx > 0 && !filteredData[idx]) idx -= 1;
 	if (idx !== highlightIndex && filteredData[idx]) {
 		highlightIndex = filteredData[idx].idx;
-		highlight(listEl);
+		highlight(listElement);
 	}
 }
 
@@ -283,38 +286,38 @@ function down () {
 
 	if (idx !== highlightIndex && item) {
 		highlightIndex = item.idx;
-		highlight(listEl);
+		highlight(listElement);
 	}
 }
 
 
 function revert () {
-	if (originalText && originalText !== inputEl.value) inputEl.value = originalText;
-	else if (value && value.name) inputEl.value = value.name;
-	else inputEl.value = '';
+	if (originalText && originalText !== inputElement.value) inputElement.value = originalText;
+	else if (value && value.name) inputElement.value = value.name;
+	else inputElement.value = '';
 }
 
 
 function clear () {
-	inputEl.value = '';
+	inputElement.value = '';
 	filter();
-	requestAnimationFrame(() => inputEl.focus());
+	requestAnimationFrame(() => inputElement.focus());
 }
 
 
 
 /*** EVENT LISTENERS ******************************************************************************/
 function onfocus () {
-	originalText = inputEl.value;
+	originalText = inputElement.value;
 	if (showOnFocus === true || showOnFocus === 'true') open();
 }
 
 
 function oninput () {
-	inputEl.value = inputEl.value;	// svelte needs this to rerender some stuff
+	inputElement.value = inputElement.value;	// svelte needs this to rerender some stuff
 	open();
 	requestAnimationFrame(filter);
-	recalculateListPosition(listEl, inputEl, elevated);
+	recalculateListPosition(listElement, inputElement, elevated);
 	hasEdited = true;
 	hasSetValue = false;
 }
@@ -322,10 +325,10 @@ function oninput () {
 
 function onblur () {
 	if (isSelecting) return;
-	if (opened && !inputEl.value) return revert();
+	if (opened && !inputElement.value) return revert();
 	selectItem();
 	setTimeout(() => {
-		if (document.activeElement != inputEl) close();
+		if (document.activeElement != inputElement) close();
 	}, 200);
 }
 
@@ -338,11 +341,11 @@ function onListMouseDown () {
 function onclick (item) {
 	const oldValue = value;
 	value = item;
-	inputEl.value = item.name;
+	inputElement.value = item.name;
 	highlightIndex = item.idx;
 	dispatch('change', { value, oldValue });
 	requestAnimationFrame(() => {
-		inputEl.focus();
+		inputElement.focus();
 		close();
 	});
 }
@@ -376,14 +379,14 @@ function onkeypress (e) {
 
 
 function onEsc (e) {
-	if (clearOnEsc && inputEl.value) {
+	if (clearOnEsc && inputElement.value) {
 		e.stopPropagation();
 		return clear();
 	}
 	if (opened) {
 		e.stopPropagation();
 		revert();
-		inputEl.focus();
+		inputElement.focus();
 		return close();
 	}
 	dispatch('keydown', e);
@@ -391,26 +394,26 @@ function onEsc (e) {
 
 
 function onIconClick () {
-	inputEl.focus();
-	inputEl.click();
+	inputElement.focus();
+	inputElement.click();
 }
 
 
 function onScrollOrResize (e) {
 	if (!opened) return;
-	if (e.target === listEl || e.target === inputEl || mouseOverList) return;
+	if (e.target === listElement || e.target === inputElement || mouseOverList) return;
 
 	if (e.type === 'resize' && hideOnResize !== true && hideOnResize !== 'true') return;
 	if (e.type === 'scroll' && hideOnScroll !== true && hideOnScroll !== 'true') return;
 
-	inputEl.blur();
+	inputElement.blur();
 	return close();
 }
 
 
 function onDocumentClick (e) {
-	const notEl = el && !el.contains(e.target);
-	const notList = listEl && !listEl.contains(e.target);
+	const notEl = element && !element.contains(e.target);
+	const notList = listElement && !listElement.contains(e.target);
 	if (open && notEl && notList) {
 		e.stopPropagation();
 		close();

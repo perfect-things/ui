@@ -1,5 +1,5 @@
 {#if msg}
-	<div class="error-wrap" transition:slideError|local>
+	<div class="error-wrap" bind:this="{element}" transition:slideError|local>
 		<Error {id} {msg} />
 	</div>
 {/if}
@@ -12,6 +12,7 @@ import Error from '../../info-bar/Error.svelte';
 
 export let id = undefined;
 export let msg = '';
+export let element = undefined;
 
 
 function slideError (node) {

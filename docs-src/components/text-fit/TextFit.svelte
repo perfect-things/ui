@@ -22,6 +22,7 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'margin', type: 'number', default: '0', description: 'Margin around the text (in px).' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 ];
 
 const exampleHtml = `

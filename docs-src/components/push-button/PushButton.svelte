@@ -100,6 +100,7 @@ const apiProps = [
 	{ name: 'success', description: 'Button type: success' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
 	{ name: 'warning', description: 'Button type: warning' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 

@@ -1,6 +1,7 @@
 <div
 	class="input input-math {className}"
-	class:has-error="{error}">
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Label {label} for="{_id}"/>
 	<Info msg="{info}" />
@@ -19,7 +20,7 @@
 				aria-invalid="{error}"
 				aria-errormessage="{error ? errorMessageId : undefined}"
 				aria-required="{required}"
-				bind:this="{_this}"
+				bind:this="{inputElement}"
 				bind:value="{value}"
 				on:input
 				on:keydown="{onkeydown}"
@@ -38,10 +39,8 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-export let _this = undefined;
 let className = '';
 export { className as class };
-
 export let id = '';
 export let required = undefined;
 export let disabled = false;
@@ -49,6 +48,10 @@ export let value = '';
 export let label = '';
 export let error = undefined;
 export let info = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
+
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();

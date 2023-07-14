@@ -54,6 +54,8 @@ const apiProps = [
 	{ name: 'required', description: 'Mark the select as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying select.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the select.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. ' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying select.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
 

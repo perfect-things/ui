@@ -1,6 +1,7 @@
 <div
 	class="input input-text {className}"
-	class:has-error="{error}">
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
@@ -17,6 +18,7 @@
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
+			bind:this="{inputElement}"
 			bind:value="{value}"
 			on:input
 			on:keydown
@@ -43,6 +45,10 @@ export let value = '';
 export let label = '';
 export let error = undefined;
 export let info = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
+
 
 $:_id = id || name || guid();
 

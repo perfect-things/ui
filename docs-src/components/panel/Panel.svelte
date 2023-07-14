@@ -51,6 +51,7 @@ const apiProps = [
 	{ name: 'open', description: 'Panel initial open state.' },
 	{ name: 'round', description: 'Adds rounded corners to the panel.' },
 	{ name: 'title', type: 'string', description: 'Panel title.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the panel is closed.' },
 	{ name: 'on:open', type: 'function', description: 'Triggered after the panel is opened.' },
 ];

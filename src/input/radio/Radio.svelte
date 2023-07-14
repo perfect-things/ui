@@ -2,7 +2,8 @@
 	{id}
 	{title}
 	class="input-radio {className}"
-	class:has-error="{error}">
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 
@@ -51,6 +52,8 @@ export let items = [];
 export let value = '';
 export let error = '';
 export let info = '';
+
+export let element = undefined;
 
 const dispatch = createEventDispatcher();
 const errorMessageId = guid();
