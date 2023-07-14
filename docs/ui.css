@@ -1606,7 +1606,7 @@ input[type=color] {
 .has-error .input-radio-inner:has(:active):not(.disabled) { box-shadow: var(--ui-shadow-danger); border-color: var(--ui-color-danger); }
 
 
-.has-error .info-bar-error { background-color: transparent; }
+.has-error.input-radio .info-bar-error { background-color: transparent; }
 
 
 .input-radio-items {
