@@ -1,59 +1,56 @@
 <h2>Autocomplete</h2>
-<div class="docs-layout">
-	<div class="docs-column">
-		<h3>Normal</h3>
-		<Autocomplete
-			data="{autocompleteData}"
-			on:change="{onChange}"
-			bind:value="{autocompleteValue}" />
 
-		<h3>Disabled</h3>
-		<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
+<h3>Normal</h3>
+<Autocomplete
+	data="{autocompleteData}"
+	on:change="{onChange}"
+	bind:value="{autocompleteValue}" />
 
-		<h3>Allow arbitrary values</h3>
-		<Autocomplete
-			data="{autocompleteData}"
-			placeholder="Type to filter"
-			allowNew="true"
-			bind:value="{autocompleteValue}" />
+<h4>Selected value: </h4>
+<code>{JSON.stringify(autocompleteValue || {})}</code>
 
-		<h3>Show on focus</h3>
-		<Autocomplete showOnFocus="true" data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-		<h3>Simpler data (no ID, just 'name')</h3>
-		<Autocomplete data="{autocompleteDataSimple}" placeholder="Type to filter"
-			bind:value="{autocompleteValueSimple}" />
+<h3>Disabled</h3>
+<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-		<h3>Simplest data (just an array of strings)</h3>
-		<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter" allowNew="true"
-			bind:value="{autocompleteValueSimplest}" />
+<h3>Allow arbitrary values</h3>
+<Autocomplete
+	data="{autocompleteData}"
+	placeholder="Type to filter"
+	allowNew="true"
+	bind:value="{autocompleteValue}" />
 
-		<h3>In a container with <em>overflow: hidden</em></h3>
-		<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
-			property must be set on the component.</p>
-		<div class="docs-overflow-box">
-			<small>overflow: hidden</small>
-			<Autocomplete data="{autocompleteData}" elevate="true" bind:value="{autocompleteValue}" />
-		</div>
-		<p>This option should only be used when absolutely necessary (e.g. when Autocomplete
-			is used inside dialogs/popups), because it makes the component less accessible
-			(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
+<h3>Show on focus</h3>
+<Autocomplete showOnFocus="true" data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-		<h3>Label</h3>
-		<Autocomplete data="{autocompleteData}" label="Autocomplete label" />
+<h3>Simpler data (no ID, just 'name')</h3>
+<Autocomplete data="{autocompleteDataSimple}" placeholder="Type to filter"
+	bind:value="{autocompleteValueSimple}" />
 
-		<h3>Info</h3>
-		<Autocomplete data="{autocompleteData}" label="Autocomplete label" info="Select something here" />
+<h3>Simplest data (just an array of strings)</h3>
+<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter" allowNew="true"
+	bind:value="{autocompleteValueSimplest}" />
 
-		<h3>Error</h3>
-		<Autocomplete data="{autocompleteData}" label="Autocomplete label" error="You picked the wrong side!" />
-
-	</div>
-	<div class="docs-column">
-		<h2>Selected value: </h2>
-		<code>{JSON.stringify(autocompleteValue || {}, null, 2)}</code>
-	</div>
+<h3>In a container with <em>overflow: hidden</em></h3>
+<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
+	property must be set on the component.</p>
+<div class="docs-overflow-box">
+	<small>overflow: hidden</small>
+	<Autocomplete data="{autocompleteData}" elevate="true" bind:value="{autocompleteValue}" />
 </div>
+<p>This option should only be used when absolutely necessary (e.g. when Autocomplete
+	is used inside dialogs/popups), because it makes the component less accessible
+	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
+
+<h3>Label</h3>
+<Autocomplete data="{autocompleteData}" label="Autocomplete label" />
+
+<h3>Info</h3>
+<Autocomplete data="{autocompleteData}" label="Autocomplete label" info="Select something here" />
+
+<h3>Error</h3>
+<Autocomplete data="{autocompleteData}" label="Autocomplete label" error="You picked the wrong side!" />
+
 
 
 <CodeExample html="{exampleHtml}" />

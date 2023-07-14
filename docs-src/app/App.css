@@ -61,27 +61,6 @@ hr {
 }
 
 
-
-.docs-layout {
-	display: flex;
-	flex-flow: row;
-	align-items: stretch;
-	justify-content: space-between;
-	gap: 20px;
-}
-
-.docs-column {
-	padding-block: 1em;
-	width: 50%;
-	flex-shrink: 0;
-	flex-grow: 0;
-}
-.docs-column:last-of-type {
-	padding-left: 1em;
-	border-left: 1px solid var(--ui-color-border-dark-2);
-}
-.docs-column pre { line-height: 1.6; }
-
 .docs-overflow-box {
 	background-color: var(--ui-color-background-light-1);
 	padding: 1em;
