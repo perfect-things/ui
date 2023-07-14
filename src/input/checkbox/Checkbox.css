@@ -25,6 +25,7 @@
 	border: 1px solid var(--ui-color-text-dark-1);
 	color: var(--ui-color-text-dark-1);
 	font: inherit;   /* required for proper sizing */
+	flex-shrink: 0;
 }
 
 .checkbox input:focus { border-color: var(--ui-color-accent); }
