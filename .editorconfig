@@ -17,12 +17,13 @@ spaces_around_operators = true
 
 [*.md]
 trim_trailing_whitespace = false
+indent_style = space
 
 [*.yml]
 trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
-[package.json]
+[*.json]
 indent_style = space
 indent_size = 2
