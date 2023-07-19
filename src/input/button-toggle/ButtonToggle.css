@@ -10,8 +10,10 @@
 .button-toggle .input-inner {
 	width: 100%;
 	background-color: var(--ui-color-background-dark-2);
-	overflow-y: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
 	position: relative;
+	z-index: 3;
 }
 
 .button-toggle .input-row { gap: 1px; }

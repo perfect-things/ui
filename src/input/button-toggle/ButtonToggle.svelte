@@ -83,8 +83,7 @@ function onmousedown (e) {
 	const btnEl = e.target.querySelector('input');
 	if (!btnEl) return;
 
-	e.preventDefault();
-	btnEl.focus();
+	requestAnimationFrame(() => btnEl.focus());
 }
 
 
