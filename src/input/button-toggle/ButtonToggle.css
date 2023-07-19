@@ -9,7 +9,7 @@
 
 .button-toggle .input-inner {
 	width: 100%;
-	background-color: var(--ui-color-background-dark-2);
+	background-color: var(--ui-color-background-input);
 	overflow-y: hidden;
 	overflow-x: auto;
 	position: relative;

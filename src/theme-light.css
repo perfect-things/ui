@@ -2,19 +2,8 @@
 	color-scheme: light;
 
 	--ui-color-accent: #b37400;
-	--ui-color-accent-semi: #b3740066;
-	--ui-color-accent-light-1: #c37f00;
-	--ui-color-accent-light-2: #cf8803;
-	--ui-color-accent-dark-1: #79520b;
-	--ui-color-accent-dark-2: #694d13;
-
-
-	--ui-color-highlight: #86beff;
-	--ui-color-highlight-semi: #86beff66;
-	--ui-color-highlight-light-1: #9cc8fa;
-	--ui-color-highlight-light-2: #bddcff;
-	--ui-color-highlight-dark-1: #7aafec;
-	--ui-color-highlight-dark-2: #6ba0de;
+	--ui-color-highlight: #8ec6ff;
+	--ui-color-highlight-1: #6ba0de;
 
 	--ui-color-secondary: #bbb;
 	--ui-color-secondary-semi: #bbb6;
@@ -22,46 +11,34 @@
 
 	--ui-color-info: #bbd3f0;
 	--ui-color-info-semi: #bbd3f099;
-	--ui-color-info-dark-1: #acc4e1;
-	--ui-color-info-dark-2: #99b4d4;
 
 	--ui-color-success: #7bd7ae;
 	--ui-color-success-semi: #7bd7ae99;
-	--ui-color-success-dark-1: #6acda0;
-	--ui-color-success-dark-2: #5bc495;
 
 	--ui-color-warning: #eec64e;
 	--ui-color-warning-semi: #eec64e99;
-	--ui-color-warning-dark-1: #d6b141;
-	--ui-color-warning-dark-2: #b89221;
 
-	--ui-color-danger: #e86c6c;
-	--ui-color-danger-semi: #e86c6c99;
-	--ui-color-danger-dark-1: #d75e5e;
-	--ui-color-danger-dark-2: #da4242;
+	--ui-color-danger: #eb6e6f;
+	--ui-color-danger-semi: #eb6e6f99;
 
 	--ui-color-border: #bbb;
-	--ui-color-border-semi: #bbb6;
-	--ui-color-border-light-1: #ccc;
-	--ui-color-border-light-2: #ddd;
 	--ui-color-border-dark-1: #aaa;
 	--ui-color-border-dark-2: #999;
 
 	--ui-color-background: #eee;
 	--ui-color-background-semi: #eee6;
-	--ui-color-background-light-1: #f0f0f0;
-	--ui-color-background-light-2: #fff;
-	--ui-color-background-dark-1: #ddd;
-	--ui-color-background-dark-2: #ccc;
-
 	--ui-color-background-input: #c2c2c2;
 
-	--ui-color-text: #333;
-	--ui-color-text-semi: #3336;
-	--ui-color-text-light-1: #444;
-	--ui-color-text-light-2: #666;
-	--ui-color-text-dark-1: #222;
-	--ui-color-text-dark-2: #111;
+	--ui-color-background-1: #f0f0f0;
+	--ui-color-background-2: #ccc;
+
+
+
+	--ui-color-text: #000;
+	--ui-color-text-semi: #0006;
+	--ui-color-text-1: #333;
+	--ui-color-text-2: #666;
+
 
 	--ui-popup-border: 1px solid var(--ui-color-background-dark-2);
 	--ui-popup-background: var(--ui-color-background);

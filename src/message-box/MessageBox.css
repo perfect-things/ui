@@ -1,5 +1,5 @@
 .message-box .dialog-header,
-.message-box .dialog-footer { background: var(--ui-color-background-dark-1); }
+.message-box .dialog-footer { background: var(--ui-color-background-input); }
 
 .message-box .dialog-header { border-bottom: 1px solid var(--ui-color-border); }
 .message-box .dialog-footer { border-top: 1px solid var(--ui-color-border); }

@@ -22,8 +22,8 @@
 	justify-content: center;
 	border-radius: 0.2em;
 	background: var(--ui-color-background-input);
-	border: 1px solid var(--ui-color-text-dark-1);
-	color: var(--ui-color-text-dark-1);
+	border: 1px solid var(--ui-color-text-2);
+	color: var(--ui-color-text-1);
 	font: inherit;   /* required for proper sizing */
 	flex-shrink: 0;
 }
@@ -44,7 +44,7 @@
 .checkbox.indeterminate input::after {
 	content: " ";
 	opacity: 1;
-	background: var(--ui-color-text-dark-1);
+	background: var(--ui-color-text-1);
 	width: 70%;
 	height: 70%;
 	margin: 0;

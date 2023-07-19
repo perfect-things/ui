@@ -11,7 +11,7 @@
 small { display: block; margin: 5px 0 15px; }
 
 .another-element-with-z-index {
-	background-color: var(--ui-color-background-light-1);
+	background-color: var(--ui-color-background-1);
 	padding: 20px;
 	position: relative;
 	z-index: 5;

@@ -1,5 +1,9 @@
 .select { font: inherit; position: relative; }
 
+.select optgroup {
+	font-weight: 500;
+}
+
 .select select {
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -19,7 +23,6 @@
 }
 
 .select select:focus { outline: 0; }
-
 
 
 .select .input-row::after {
