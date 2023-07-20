@@ -8,6 +8,7 @@ Changelog
 - **Improvement:** `info`, `error` and `label` attributes are now supported on other inputs (`Autocomplete`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).
 - **Improvement:** all components now expose `element` and `inputElement` (if there is one (and only one)). The exceptions are `NotificationCenter` and `MessageBox`, due to their implementation.
 - Added `title` attribute to `ButtonToggle`.
+- Added `success` type for `MessageBox`.
 - Fixed `selectable=false` not working on `Table`.
 - Improved styling for `Dialog` and `MessageBox`.
 
@@ -22,8 +23,16 @@ Changelog
 - `Toggle` - HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
 - These components previously exposed `_this`, which is now renamed to `element`: `Button`, `Checkbox`, `InputMath`, `PushButton`, `Table`
 
-### Color palette - mapping from v7 to v8 colors
-- `--ui-accent` --> `--ui-primary`
+### Color palette - mapping from v7 to v8 colors:
+- `--ui-color-text-dark-1` --> `--ui-color-text-1`
+- `--ui-color-text-dark-2` --> `--ui-color-text-2`
+- `--ui-color-border-dark-1` --> `--ui-color-border-1`
+- `--ui-color-border-dark-2` --> `--ui-color-border-2`
+- `--ui-color-background-light-2` --> `--ui-color-background-1`
+- `--ui-color-background-dark-2` --> `--ui-color-background-2`
+- `--ui-color-highlight-dark-2` --> `--ui-color-highlight-1`
+
+Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have been removed.
 
 ----
 

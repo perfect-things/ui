@@ -51,7 +51,7 @@
 	height: 2.1rem;
 	border-right: 1px solid transparent;
 }
-.tree .tree-indent { border-right-color: var(--ui-color-border-dark-1); }
+.tree .tree-indent { border-right-color: var(--ui-color-border-1); }
 
 
 

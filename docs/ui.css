@@ -68,8 +68,8 @@ body * { box-sizing: inherit; }
 	--ui-color-danger-semi: #94373799;
 
 	--ui-color-border: #1b1b1b;
-	--ui-color-border-dark-1: #131313;
-	--ui-color-border-dark-2: #0c0c0c;
+	--ui-color-border-1: #131313;
+	--ui-color-border-2: #0c0c0c;
 
 	--ui-color-background: #2f2f2f;
 	--ui-color-background-semi: #22222266;
@@ -117,8 +117,8 @@ body * { box-sizing: inherit; }
 	--ui-color-danger-semi: #eb6e6f99;
 
 	--ui-color-border: #bbb;
-	--ui-color-border-dark-1: #aaa;
-	--ui-color-border-dark-2: #999;
+	--ui-color-border-1: #aaa;
+	--ui-color-border-2: #999;
 
 	--ui-color-background: #eee;
 	--ui-color-background-semi: #eee6;
@@ -633,6 +633,7 @@ input[type=color] {
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
+	border-radius: inherit;
 }
 
 .input-row > .button,
@@ -1048,7 +1049,7 @@ input[type=color] {
 	height: 2.1rem;
 	border-right: 1px solid transparent;
 }
-.tree .tree-indent { border-right-color: var(--ui-color-border-dark-1); }
+.tree .tree-indent { border-right-color: var(--ui-color-border-1); }
 
 
 
@@ -1158,6 +1159,8 @@ input[type=color] {
 	overflow-y: hidden;
 	overflow-x: auto;
 	overscroll-behavior-x: none;
+	scrollbar-width: none;
+	scrollbar-gutter: none;
 }
 
 
@@ -1168,7 +1171,7 @@ input[type=color] {
 	min-height: calc(var(--ui-button-height) - 2px);
 	background: var(--ui-color-background-input);
 	border: none;
-	border-left: 1px solid var(--ui-color-text-2);
+	border-left: 1px solid var(--ui-color-border);
 }
 
 .button-toggle .button input {
