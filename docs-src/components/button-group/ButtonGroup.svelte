@@ -10,18 +10,20 @@
 </ButtonGroup>
 
 <h3>Long</h3>
-<ButtonGroup>
-	<Button>One</Button>
-	<Button disabled>Disabled</Button>
-	<Button>Three</Button>
-	<Button>Four</Button>
-	<Button>Five</Button>
-	<Button>Six</Button>
-	<Button>Seven</Button>
-	<Button>Eight</Button>
-	<Button>Nine</Button>
-	<Button>Ten</Button>
-</ButtonGroup>
+<div style="width: 400px; max-width: 100%">
+	<ButtonGroup>
+		<Button>One</Button>
+		<Button disabled>Disabled</Button>
+		<Button>Three</Button>
+		<Button>Four</Button>
+		<Button>Five</Button>
+		<Button>Six</Button>
+		<Button>Seven</Button>
+		<Button>Eight</Button>
+		<Button>Nine</Button>
+		<Button>Ten</Button>
+	</ButtonGroup>
+</div>
 
 <h3>Normal, info, success, warning, danger</h3>
 <ButtonGroup>
