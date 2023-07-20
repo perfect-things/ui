@@ -6,7 +6,7 @@ import { get } from 'svelte/store';
 
 
 test('util - matchMedia', () => {
-	expect(get(util.ANIMATION_SPEED)).toStrictEqual(200);
+	expect(get(util.ANIMATION_SPEED)).toStrictEqual(300);
 });
 
 
