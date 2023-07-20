@@ -14,7 +14,7 @@
 	<Label {label} {disabled} for="{_id}"/>
 
 	<Info msg="{info}" />
-	<InputError id="{errorMessageId}" msg="{error}" />
+	<InputError id="{errorMessageId}" msg="{error}" animOpacity="true"/>
 
 	<div class="toggle-inner">
 		<label class="toggle-label" {title}>
