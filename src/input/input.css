@@ -66,8 +66,8 @@ input[type=color] {
 .textarea .textarea-inner:has(:disabled) { opacity: 0.7; }
 
 .input input:not([type=radio]) { width: 100%; border: none; }
-.input input:not([type=radio]):focus { box-shadow: none; border: none; }
-.input input:not([type=radio]):invalid { border: none; box-shadow: none; }
+.input input:not([type=radio]):focus,
+.input input:not([type=radio]):invalid { box-shadow: none; border: none; }
 
 
 .input-row {
@@ -80,15 +80,13 @@ input[type=color] {
 }
 
 .input-row > .button,
-.input-row > .icon {
-	position: absolute;
-	height: 100%;
+.input-row > .icon { position: absolute; height: 100%; z-index: 1; }
+
+.input-row > .button { color: var(--ui-color-text-1); right: 2px; }
+
+.input-row>.icon {
 	color: var(--ui-color-text-2);
-	z-index: 1;
+	left: 7px;
+	width: 1.5rem;
+	pointer-events: none;
 }
-
-.input-row > .icon { left: 7px; width: 1.5rem; pointer-events: none; }
-.input-row > .button { right: 2px; }
-
-
-.theme-light .input-row .icon { color: inherit; }

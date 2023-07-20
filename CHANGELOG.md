@@ -14,13 +14,16 @@ Changelog
 ### Breaking changes
 - Color palette has been completely revamped for better accessibility (more contrast), consistency and simplicity (fewer colors and css variables).
 - Removed `drawBorders` attribute from `Dialog`, while improving the header and footer styling for all dialogs.
-- `Toaster`  component was removed. Use `NotificationCenter` instead.
+- `Toaster` component was removed. Use `NotificationCenter` instead.
 - `Datepicker` was renamed to `InputDate`.
 - `Autocomplete` - HTML structure changed: `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
 - `Select` - HTML structure changed: `.select-wrap select` --> `.select .input-inner .input-row select`
 - `Table` - CSS classes changed from `.table-wrapper table.table` --> `.table table`
 - `Toggle` - HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
 - These components previously exposed `_this`, which is now renamed to `element`: `Button`, `Checkbox`, `InputMath`, `PushButton`, `Table`
+
+### Color palette - mapping from v7 to v8 colors
+- `--ui-accent` --> `--ui-primary`
 
 ----
 

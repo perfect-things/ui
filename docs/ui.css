@@ -131,7 +131,7 @@ body * { box-sizing: inherit; }
 
 	--ui-color-text: #000;
 	--ui-color-text-semi: #0006;
-	--ui-color-text-1: #333;
+	--ui-color-text-1: #222;
 	--ui-color-text-2: #666;
 
 
@@ -350,9 +350,6 @@ body * { box-sizing: inherit; }
 }
 
 .button-group .button-outline:not(:first-of-type) { margin-left: -2px; }
-.button-group .button-normal:not(:first-of-type) {
-	border-left: 1px solid var(--ui-color-background-semi);
-}
 
 
 .button-group.round { border-radius: var(--ui-border-radius-xl); }
@@ -625,8 +622,8 @@ input[type=color] {
 .textarea .textarea-inner:has(:disabled) { opacity: 0.7; }
 
 .input input:not([type=radio]) { width: 100%; border: none; }
-.input input:not([type=radio]):focus { box-shadow: none; border: none; }
-.input input:not([type=radio]):invalid { border: none; box-shadow: none; }
+.input input:not([type=radio]):focus,
+.input input:not([type=radio]):invalid { box-shadow: none; border: none; }
 
 
 .input-row {
@@ -639,18 +636,16 @@ input[type=color] {
 }
 
 .input-row > .button,
-.input-row > .icon {
-	position: absolute;
-	height: 100%;
+.input-row > .icon { position: absolute; height: 100%; z-index: 1; }
+
+.input-row > .button { color: var(--ui-color-text-1); right: 2px; }
+
+.input-row>.icon {
 	color: var(--ui-color-text-2);
-	z-index: 1;
+	left: 7px;
+	width: 1.5rem;
+	pointer-events: none;
 }
-
-.input-row > .icon { left: 7px; width: 1.5rem; pointer-events: none; }
-.input-row > .button { right: 2px; }
-
-
-.theme-light .input-row .icon { color: inherit; }
 
 .menu {
 	position: fixed;
@@ -1162,11 +1157,9 @@ input[type=color] {
 	background-color: var(--ui-color-background-input);
 	overflow-y: hidden;
 	overflow-x: auto;
-	position: relative;
-	z-index: 3;
+	overscroll-behavior-x: none;
 }
 
-.button-toggle .input-row { gap: 1px; }
 
 .button-toggle .input-row .button {
 	position: static;
@@ -1175,6 +1168,7 @@ input[type=color] {
 	min-height: calc(var(--ui-button-height) - 2px);
 	background: var(--ui-color-background-input);
 	border: none;
+	border-left: 1px solid var(--ui-color-text-2);
 }
 
 .button-toggle .button input {
@@ -1187,6 +1181,9 @@ input[type=color] {
 .button-toggle .button:has(:checked) { background-color: var(--ui-color-highlight); }
 
 .button-toggle.round:not(.has-error) .input-inner { border-radius: var(--ui-border-radius-xl); }
+
+.button-toggle .input-row .button:first-child { border-left: none; }
+.button-toggle .input-row .button:last-child { border-right: none; }
 
 .checkbox {
 	display: inline-flex;
@@ -1340,6 +1337,7 @@ input[type=color] {
 .datepicker-cell.prev:not(.disabled),
 .datepicker-cell.next:not(.disabled) { color: var(--ui-color-text-2); }
 
+
 .datepicker-cell.selected.prev:not(.disabled),
 .datepicker-cell.selected.next:not(.disabled) { color: var(--ui-color-text-1); }
 
@@ -1382,11 +1380,6 @@ input[type=color] {
 .datepicker-cell.range:not(.disabled,.focused,.today):hover { background-color: #d5d5d5; }
 .datepicker-cell.range.disabled { color: #c2c2c2; }
 .datepicker-cell.range.focused { background-color: #cfcfcf; }
-
-
-
-.theme-light .datepicker-cell.next:not(.disabled),
-.theme-light .datepicker-cell.prev:not(.disabled) { color: var(--ui-color-text-2); }
 
 
 
@@ -1464,6 +1457,7 @@ input[type=color] {
 
 .input-password.visible input { font-family: inherit; }
 .input-password.visible .input-password-button { color: var(--ui-color-danger); }
+.input-password.visible .input-password-button svg { stroke-width: 2; }
 
 
 
@@ -1640,11 +1634,11 @@ input[type=color] {
 	background-repeat: no-repeat;
 	background-position: right 0.7rem center;
 	background-size: 0.6rem 0.8rem;
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23888' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23bbb' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
 }
 
 .theme-light .select .input-row::after {
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23111' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23222' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
 }
 
 .textarea { position: relative; width: 25ch; vertical-align: top; }

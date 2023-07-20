@@ -12,11 +12,9 @@
 	background-color: var(--ui-color-background-input);
 	overflow-y: hidden;
 	overflow-x: auto;
-	position: relative;
-	z-index: 3;
+	overscroll-behavior-x: none;
 }
 
-.button-toggle .input-row { gap: 1px; }
 
 .button-toggle .input-row .button {
 	position: static;
@@ -25,6 +23,7 @@
 	min-height: calc(var(--ui-button-height) - 2px);
 	background: var(--ui-color-background-input);
 	border: none;
+	border-left: 1px solid var(--ui-color-text-2);
 }
 
 .button-toggle .button input {
@@ -37,3 +36,6 @@
 .button-toggle .button:has(:checked) { background-color: var(--ui-color-highlight); }
 
 .button-toggle.round:not(.has-error) .input-inner { border-radius: var(--ui-border-radius-xl); }
+
+.button-toggle .input-row .button:first-child { border-left: none; }
+.button-toggle .input-row .button:last-child { border-right: none; }
