@@ -48,11 +48,7 @@
 }
 
 .dialog-content {
-	display: flex;
-	flex-flow: row;
 	margin: 0;
-	gap: 1rem;
-
 	padding: 1rem;
 	min-width: 200px;
 	flex: 1;
