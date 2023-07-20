@@ -6,11 +6,15 @@
 <li><strong>Improvement:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>InputDate</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
 <li><strong>Improvement:</strong> all components now expose <code>element</code> and <code>inputElement</code> (if there is one (and only one)). The exceptions are <code>NotificationCenter</code> and <code>MessageBox</code>, due to their implementation.</li>
 <li>Added <code>title</code> attribute to <code>ButtonToggle</code>.</li>
+<li>Added <code>success</code> type for <code>MessageBox</code>.</li>
 <li>Fixed <code>selectable=false</code> not working on <code>Table</code>.</li>
+<li>Improved styling for <code>Dialog</code> and <code>MessageBox</code>.</li>
 </ul>
 <h3>Breaking changes</h3>
 <ul>
-<li><code>Toaster</code>  component was removed. Use <code>NotificationCenter</code> instead.</li>
+<li>Color palette has been completely revamped for better accessibility (more contrast), consistency and simplicity (fewer colors and css variables).</li>
+<li>Removed <code>drawBorders</code> attribute from <code>Dialog</code>, while improving the header and footer styling for all dialogs.</li>
+<li><code>Toaster</code> component was removed. Use <code>NotificationCenter</code> instead.</li>
 <li><code>Datepicker</code> was renamed to <code>InputDate</code>.</li>
 <li><code>Autocomplete</code> - HTML structure changed: <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-inner .input-row input</code></li>
 <li><code>Select</code> - HTML structure changed: <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
@@ -18,6 +22,17 @@
 <li><code>Toggle</code> - HTML structure changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
 <li>These components previously exposed <code>_this</code>, which is now renamed to <code>element</code>: <code>Button</code>, <code>Checkbox</code>, <code>InputMath</code>, <code>PushButton</code>, <code>Table</code></li>
 </ul>
+<h3>Color palette - mapping from v7 to v8 colors:</h3>
+<ul>
+<li><code>--ui-color-text-dark-1</code> --&gt; <code>--ui-color-text-1</code></li>
+<li><code>--ui-color-text-dark-2</code> --&gt; <code>--ui-color-text-2</code></li>
+<li><code>--ui-color-border-dark-1</code> --&gt; <code>--ui-color-border-1</code></li>
+<li><code>--ui-color-border-dark-2</code> --&gt; <code>--ui-color-border-2</code></li>
+<li><code>--ui-color-background-light-2</code> --&gt; <code>--ui-color-background-1</code></li>
+<li><code>--ui-color-background-dark-2</code> --&gt; <code>--ui-color-background-2</code></li>
+<li><code>--ui-color-highlight-dark-2</code> --&gt; <code>--ui-color-highlight-1</code></li>
+</ul>
+<p>Other (not mentioned above) color variations, (i.e. <code>-light-</code> and <code>-dark-</code>) have been removed.</p>
 <hr>
 <h2>v7.1.2 <em>(2023-07-05)</em></h2>
 <ul>

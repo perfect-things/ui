@@ -1,5 +1,5 @@
 <div
-	class="input button-group button-toggle {className}"
+	class="input button-toggle {className}"
 	class:round
 	class:has-error="{error}"
 	role="radiogroup"
@@ -11,30 +11,32 @@
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="input-inner" bind:this="{scrollerElement}">
+	<div class="input-inner">
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-row" id="{_id}">
-			{#each _items as item}
-				<label
-					{disabled}
-					class="button button-normal"
-					class:button-has-text="{item.name}"
-					on:touchstart="{onmousedown}"
-					on:mousedown="{onmousedown}">
-						{#if item.icon}
-							<Icon name="{item.icon}"/>
-						{/if}
-						{item.name || ''}
-						<input
-							{disabled}
-							{name}
-							type="radio"
-							checked="{item.value === value}"
-							value="{item.value}"
-							on:change="{e => onchange(e, item)}">
-				</label>
-			{/each}
+		<div class="input-scroller">
+			<div class="input-row" id="{_id}">
+				{#each _items as item}
+					<label
+						{disabled}
+						class="button button-normal"
+						class:button-has-text="{item.name}"
+						on:touchstart="{onmousedown}"
+						on:mousedown="{onmousedown}">
+							{#if item.icon}
+								<Icon name="{item.icon}"/>
+							{/if}
+							{item.name || ''}
+							<input
+								{disabled}
+								{name}
+								type="radio"
+								checked="{item.value === value}"
+								value="{item.value}"
+								on:change="{e => onchange(e, item)}">
+					</label>
+				{/each}
+			</div>
 		</div>
 	</div>
 </div>
@@ -66,7 +68,6 @@ export let element = undefined;
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
-let scrollerElement;
 
 
 $:_id = id || name || guid();

@@ -1,14 +1,36 @@
 .button-group {
-	padding: 0 0 1px;
+	border-radius: var(--ui-border-radius);
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.button-group-scroller {
+	width: 100%;
+	overflow-y: hidden;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scrollbar-width: none;
+	scrollbar-gutter: none;
+	z-index: 0;
+	border-radius: var(--ui-border-radius);
+}
+
+.button-group-scroller::-webkit-scrollbar { width: 0; height: 0; }
+
+
+.button-group-inner {
+	padding: 0 0 2px;
 	display: inline-flex;
 	flex-flow: row;
 	align-items: center;
 	justify-content: stretch;
+	position: relative;
+	z-index: 1;
 	border-radius: var(--ui-border-radius);
-	--button-border-radius: calc(var(--ui-border-radius) - 1px)
+	background-color: var(--ui-color-background);
 }
 
-.button-group .button {
+.button-group-inner .button {
 	flex-shrink: 0;
 	flex-grow: 10;
 	border-radius: 0;
@@ -19,13 +41,13 @@
 .button-group .button-normal[disabled] { box-shadow: var(--ui-shadow-button); }
 
 .button-group .button:first-of-type {
-	border-top-left-radius: var(--button-border-radius);
-	border-bottom-left-radius: var(--button-border-radius);
+	border-top-left-radius: var(--ui-border-radius);
+	border-bottom-left-radius: var(--ui-border-radius);
 }
 
 .button-group .button:last-of-type {
-	border-top-right-radius: var(--button-border-radius);
-	border-bottom-right-radius: var(--button-border-radius);
+	border-top-right-radius: var(--ui-border-radius);
+	border-bottom-right-radius: var(--ui-border-radius);
 }
 
 .button-group .button-outline:not(:first-of-type) { margin-left: -2px; }
