@@ -49,6 +49,7 @@ h2 {
 /* stylelint-disable-next-line no-descending-specificity */
 h2 em { color: var(--ui-color-text-semi); font-size: 0.8em; }
 
+p code,
 li code {
 	display: inline;
 	padding: 0;
