@@ -19,4 +19,4 @@
 .splitter.vertical::after { width: 100%; height: 6px; margin: auto 0; }
 
 .splitter.is-dragging::after,
-.splitter:hover::after { background-color: var(--ui-color-background-light-2); }
+.splitter:hover::after { background-color: var(--ui-color-background-1); }

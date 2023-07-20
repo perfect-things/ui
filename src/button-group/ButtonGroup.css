@@ -29,9 +29,6 @@
 }
 
 .button-group .button-outline:not(:first-of-type) { margin-left: -2px; }
-.button-group .button-normal:not(:first-of-type) {
-	border-left: 1px solid var(--ui-color-background-semi);
-}
 
 
 .button-group.round { border-radius: var(--ui-border-radius-xl); }

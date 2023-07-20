@@ -3,7 +3,7 @@
 	will-change: height;
 	position: relative;
 	border: 2px solid var(--ui-color-border);
-	background: var(--ui-color-background-dark-2);
+	background: var(--ui-color-background-2);
 	margin-bottom: 1rem;
 }
 

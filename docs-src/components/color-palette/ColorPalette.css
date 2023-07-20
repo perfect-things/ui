@@ -1,13 +1,11 @@
 .group {
-	background: #333;
+	background: var(--ui-color-background-2);
 	padding: 6px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 	grid-gap: 6px;
 	border-radius: var(--ui-border-radius-m);
 }
-
-.theme-dark .group { background: #ccc; }
 
 .palette-box {
 	padding: 10px 0;
@@ -16,5 +14,5 @@
 	justify-content: center;
 	overflow: hidden;
 	border-radius: calc(var(--ui-border-radius-m) - 3px);
-	background-color: var(--ui-color-background-dark-2);
+	background-color: var(--ui-color-background-2);
 }

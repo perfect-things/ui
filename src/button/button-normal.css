@@ -1,6 +1,7 @@
 .button-normal {
 	background: var(--ui-color-secondary);
-	border: 1px solid transparent;
+	border: 0.5px solid #0006;
+	border-bottom-color: #000c;
 	box-shadow: var(--ui-shadow-button);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);

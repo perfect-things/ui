@@ -17,7 +17,7 @@
 	justify-content: flex-start;
 	width: 100%;
 	padding: 0;
-	border: 1px solid  var(--ui-color-background-dark-2);
+	border: 1px solid  var(--ui-color-border);
 	border-radius: calc(var(--ui-border-radius) + 0.26rem);
 	background-color: var(--ui-color-background-input);
 	overflow: hidden;
@@ -62,4 +62,4 @@
 .input-radio-item .label { padding: 0.5rem 1rem; }
 
 .input-radio-item:not(.disabled):focus-within,
-.input-radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-dark-2); }
+.input-radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); }

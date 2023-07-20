@@ -3,10 +3,7 @@
 
 
 textarea::placeholder,
-input::placeholder { color: var(--ui-color-text-dark-2); }
-
-.theme-light textarea::placeholder,
-.theme-light input::placeholder { color: var(--ui-color-text-light-2); }
+input::placeholder { color: var(--ui-color-text-1); }
 
 
 :where(input:not([type=radio],[type=checkbox])) {
@@ -54,7 +51,7 @@ input[type=color] {
 	justify-content: stretch;
 	border-radius: var(--ui-border-radius);
 	background: var(--ui-color-background-input);
-	border: 1px solid  var(--ui-color-background-dark-2);
+	border: 1px solid  var(--ui-color-border);
 }
 
 .input-inner:focus-within { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
@@ -63,14 +60,14 @@ input[type=color] {
 .input,
 .textarea textarea:disabled,
 .input select:disabled,
-.input input:disabled { opacity: 1; }
+.input input:disabled { opacity: 1; color: var(--ui-color-text); }
 
 .input .input-inner:has(:disabled),
-.textarea .textarea-inner:has(:disabled) { opacity: 0.75; color: var(--ui-color-text-semi); }
+.textarea .textarea-inner:has(:disabled) { opacity: 0.7; }
 
 .input input:not([type=radio]) { width: 100%; border: none; }
-.input input:not([type=radio]):focus { box-shadow: none; border: none; }
-.input input:not([type=radio]):invalid { border: none; box-shadow: none; }
+.input input:not([type=radio]):focus,
+.input input:not([type=radio]):invalid { box-shadow: none; border: none; }
 
 
 .input-row {
@@ -80,17 +77,17 @@ input[type=color] {
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
+	border-radius: inherit;
 }
 
 .input-row > .button,
-.input-row > .icon {
-	position: absolute;
-	height: 100%;
-	color: var(--ui-color-text-dark-2);
-	z-index: 1;
+.input-row > .icon { position: absolute; height: 100%; z-index: 1; }
+
+.input-row > .button { color: var(--ui-color-text-1); right: 2px; }
+
+.input-row>.icon {
+	color: var(--ui-color-text-2);
+	left: 7px;
+	width: 1.5rem;
+	pointer-events: none;
 }
-
-.input-row > .icon { left: 7px; width: 1.5rem; pointer-events: none; }
-.input-row > .button { right: 2px; }
-
-.theme-light .input-row .icon { color: var(--ui-color-text-light-2); }

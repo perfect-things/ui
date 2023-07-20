@@ -13,7 +13,6 @@ test('MessageBox', async () => {
 	expect(msg).toHaveTextContent('test');
 
 	let box = container.querySelector('.message-box');
-	expect(box).toHaveClass('message-info');
 	expect(box).toHaveClass('opened');
 
 

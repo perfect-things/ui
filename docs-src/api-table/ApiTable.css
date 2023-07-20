@@ -13,3 +13,6 @@
 
 .api-table tr th:nth-child(2),
 .api-table tr td:nth-child(2) { width: 200px; }
+
+.api-table tr th:last-child,
+.api-table tr td:last-child { min-width: 400px; }

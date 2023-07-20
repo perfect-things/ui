@@ -17,10 +17,10 @@
 }
 
 .toggle-inner {
-	border: 1px solid var(--ui-color-text-dark-2);
+	border: 1px solid var(--ui-color-text-2);
 	padding: var(--toggle-padding);
 	border-radius: inherit;
-	background-color: var(--ui-color-background-dark-2);
+	background-color: var(--ui-color-background-2);
 	position: relative;
 }
 
@@ -106,8 +106,8 @@
 .toggle-knob {
 	width: var(--knob-size);
 	height: var(--knob-size);
-	background: var(--ui-color-text-light-1);
-	border: 1px solid var(--ui-color-text-light-2);
+	background: var(--ui-color-text-1);
+	border: 1px solid var(--ui-color-text-2);
 	transform: translate(-50%, -50%);
 	border-radius: inherit;
 }

@@ -63,8 +63,8 @@
 	outline: none;
 }
 
-.notification button:hover { color: var(--ui-color-text-light-2); background: #2228; }
-.notification button:active { color: var(--ui-color-text-dark-2); background: #0008; }
+.notification button:hover { color: var(--ui-color-text-2); background: #2228; }
+.notification button:active { color: var(--ui-color-text-1); background: #0008; }
 
 .notification .notification-close {
 	font-size: 1.4rem;
