@@ -7,7 +7,7 @@
 	bind:this="{element}">
 
 	<Info msg="{info}" />
-	<InputError id="{errorMessageId}" msg="{error}" />
+	<InputError id="{errorMessageId}" msg="{error}" animOffset="8" />
 
 	<div class="checkbox-row">
 		<input

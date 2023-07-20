@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 
-export const ANIMATION_SPEED = writable(200);
+export const ANIMATION_SPEED = writable(300);
 export const PREFERS_DARK = writable(false);
 
 const setReducedMotion = query => ANIMATION_SPEED.set((!query || query.matches) ? 0 : 200);
