@@ -11,8 +11,6 @@
 
 		<input
 			type="text"
-			inputmode="decimal"
-			pattern="-?\d+(\.\d+)?"
 			autocomplete="off"
 			{...props}
 			{name}
