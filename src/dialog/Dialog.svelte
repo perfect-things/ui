@@ -6,7 +6,6 @@
 	aria-label="{title}"
 	class="dialog-backdrop {className}"
 	class:opened
-	class:draw-borders="{drawborders === 'true' || drawborders === true}"
 	bind:this="{element}"
 	on:click="{onBackdropClick}">
 	<div class="dialog" bind:this="{dialogEl}">
@@ -28,7 +27,6 @@ let className = '';
 export { className as class };
 export let title = '';
 export let opened = false;
-export let drawborders = false;
 export let skipFirstFocus = false;
 
 export let element;

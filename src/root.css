@@ -20,23 +20,25 @@
 	--ui-button-height: 2.206rem;
 
 	/* shadows */
-	--ui-shadow-button: 0 1px 0 #000c;
 	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);
 	--ui-shadow-danger: 0 0 2px 1px var(--ui-color-danger);
-	--ui-shadow-small: 0 0 0 0.5px #ffffff44, 0 3px 10px #00000066;
-	--ui-shadow-large: 0 5px 20px #000a;
+	--ui-shadow-small: 0 0 0 0.5px #fff4, 0 3px 10px #0006;
+	--ui-shadow-large: 0 0 0 1px #000, 0 5px 20px #000a;
 	--ui-shadow-fancy:
-		0 0 0 0.5px #111111,
+		0 0 0 0.5px #111,
 		0 1px 5px rgb(0 0 0 / 30%),
 		0 4px 10px rgb(0 0 0 / 10%),
 		0 10px 25px rgb(0 0 0 / 8%);
 }
 
 
-body { box-sizing: border-box; }
+body {
+	font: 400 102% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	box-sizing: border-box;
+}
 body * { box-sizing: inherit; }
 
-svg { width: 1.5rem; height: 1.5rem; }
+.icon-tabler { width: 1.5rem; height: 1.5rem; }
 
 /* meatballs icon is misaligned */
 .icon-tabler-dots-vertical { margin-left: -1px; }

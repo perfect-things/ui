@@ -9,8 +9,11 @@ Changelog
 - **Improvement:** all components now expose `element` and `inputElement` (if there is one (and only one)). The exceptions are `NotificationCenter` and `MessageBox`, due to their implementation.
 - Added `title` attribute to `ButtonToggle`.
 - Fixed `selectable=false` not working on `Table`.
+- Improved styling for `Dialog` and `MessageBox`.
 
 ### Breaking changes
+- Color palette has been completely revamped for better accessibility (more contrast), consistency and simplicity (fewer colors and css variables).
+- Removed `drawBorders` attribute from `Dialog`, while improving the header and footer styling for all dialogs.
 - `Toaster`  component was removed. Use `NotificationCenter` instead.
 - `Datepicker` was renamed to `InputDate`.
 - `Autocomplete` - HTML structure changed: `.autocomplete input` --> `.autocomplete .input-inner .input-row input`

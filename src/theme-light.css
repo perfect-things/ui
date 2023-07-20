@@ -5,8 +5,8 @@
 	--ui-color-highlight: #8ec6ff;
 	--ui-color-highlight-1: #6ba0de;
 
-	--ui-color-secondary: #bbb;
-	--ui-color-secondary-semi: #bbb6;
+	--ui-color-secondary: #c0beb4;
+	--ui-color-secondary-semi: #c0beb466;
 
 
 	--ui-color-info: #bbd3f0;
@@ -40,6 +40,9 @@
 	--ui-color-text-2: #666;
 
 
-	--ui-popup-border: 1px solid var(--ui-color-background-dark-2);
+	--ui-popup-border: 1px solid #fff;
 	--ui-popup-background: var(--ui-color-background);
+
+	--ui-shadow-button: 0 1px 0 #000c;
+	--ui-shadow-tooltip: 0 0 1px #0002, 0 0 5px #0006;
 }

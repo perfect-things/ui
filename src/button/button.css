@@ -61,7 +61,7 @@
 }
 
 
-.button:not(.button-has-text) { min-width: 28px; padding: 0 var(--ui-margin-m); }
+.button:not(.button-has-text) { padding: 0 var(--ui-margin-m); }
 .button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
 
 

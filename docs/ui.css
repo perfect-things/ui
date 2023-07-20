@@ -20,23 +20,25 @@
 	--ui-button-height: 2.206rem;
 
 	/* shadows */
-	--ui-shadow-button: 0 1px 0 #000c;
 	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);
 	--ui-shadow-danger: 0 0 2px 1px var(--ui-color-danger);
-	--ui-shadow-small: 0 0 0 0.5px #ffffff44, 0 3px 10px #00000066;
-	--ui-shadow-large: 0 5px 20px #000a;
+	--ui-shadow-small: 0 0 0 0.5px #fff4, 0 3px 10px #0006;
+	--ui-shadow-large: 0 0 0 1px #000, 0 5px 20px #000a;
 	--ui-shadow-fancy:
-		0 0 0 0.5px #111111,
+		0 0 0 0.5px #111,
 		0 1px 5px rgb(0 0 0 / 30%),
 		0 4px 10px rgb(0 0 0 / 10%),
 		0 10px 25px rgb(0 0 0 / 8%);
 }
 
 
-body { box-sizing: border-box; }
+body {
+	font: 400 102% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	box-sizing: border-box;
+}
 body * { box-sizing: inherit; }
 
-svg { width: 1.5rem; height: 1.5rem; }
+.icon-tabler { width: 1.5rem; height: 1.5rem; }
 
 /* meatballs icon is misaligned */
 .icon-tabler-dots-vertical { margin-left: -1px; }
@@ -49,8 +51,8 @@ svg { width: 1.5rem; height: 1.5rem; }
 	--ui-color-highlight: #1859a3;
 	--ui-color-highlight-1: #1e4572;
 
-	--ui-color-secondary: #595959;
-	--ui-color-secondary-semi: #59595966;
+	--ui-color-secondary: #5a5956;
+	--ui-color-secondary-semi: #5a595666;
 
 
 	--ui-color-info: #30506a;
@@ -59,8 +61,8 @@ svg { width: 1.5rem; height: 1.5rem; }
 	--ui-color-success: #33624d;
 	--ui-color-success-semi: #33624d99;
 
-	--ui-color-warning: #6f560b;
-	--ui-color-warning-semi: #6f560b99;
+	--ui-color-warning: #795001;
+	--ui-color-warning-semi: #79500199;
 
 	--ui-color-danger: #943737;
 	--ui-color-danger-semi: #94373799;
@@ -84,8 +86,11 @@ svg { width: 1.5rem; height: 1.5rem; }
 	--ui-color-text-2: #888;
 
 
-	--ui-popup-border: 1px solid var(--ui-color-background-light-2);
+	--ui-popup-border: 1px solid #fff3;
 	--ui-popup-background: var(--ui-color-background);
+
+	--ui-shadow-button: 0 1px 0 #000c;
+	--ui-shadow-tooltip: 0 0 0 1px #000, 0 0 5px #0006;
 }
 
 .theme-light {
@@ -95,8 +100,8 @@ svg { width: 1.5rem; height: 1.5rem; }
 	--ui-color-highlight: #8ec6ff;
 	--ui-color-highlight-1: #6ba0de;
 
-	--ui-color-secondary: #bbb;
-	--ui-color-secondary-semi: #bbb6;
+	--ui-color-secondary: #c0beb4;
+	--ui-color-secondary-semi: #c0beb466;
 
 
 	--ui-color-info: #bbd3f0;
@@ -130,8 +135,11 @@ svg { width: 1.5rem; height: 1.5rem; }
 	--ui-color-text-2: #666;
 
 
-	--ui-popup-border: 1px solid var(--ui-color-background-dark-2);
+	--ui-popup-border: 1px solid #fff;
 	--ui-popup-background: var(--ui-color-background);
+
+	--ui-shadow-button: 0 1px 0 #000c;
+	--ui-shadow-tooltip: 0 0 1px #0002, 0 0 5px #0006;
 }
 
 .button-outline {
@@ -198,7 +206,8 @@ svg { width: 1.5rem; height: 1.5rem; }
 
 .button-normal {
 	background: var(--ui-color-secondary);
-	border: 1px solid transparent;
+	border: 0.5px solid #0006;
+	border-bottom-color: #000c;
 	box-shadow: var(--ui-shadow-button);
 	min-width: calc(var(--ui-button-size) * 4);
 	min-height: calc(var(--ui-button-size) * 2);
@@ -298,7 +307,7 @@ svg { width: 1.5rem; height: 1.5rem; }
 }
 
 
-.button:not(.button-has-text) { min-width: 28px; padding: 0 var(--ui-margin-m); }
+.button:not(.button-has-text) { padding: 0 var(--ui-margin-m); }
 .button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
 
 
@@ -388,9 +397,9 @@ svg { width: 1.5rem; height: 1.5rem; }
 	min-width: 15rem;
 	max-width: 95vw;
 	color: var(--ui-color-text);
-	border-radius: var(--ui-border-radius);
-	border: var(--ui-popup-border);
+	border-radius: var(--ui-border-radius-m);
 	background: var(--ui-popup-background);
+	border: var(--ui-popup-border);
 	box-shadow: var(--ui-shadow-large);
 	display: flex;
 	flex-flow: column;
@@ -401,23 +410,31 @@ svg { width: 1.5rem; height: 1.5rem; }
 
 .opened .dialog { opacity: 1; transform: scale(1); }
 
+.dialog-header,
+.dialog-footer { background: var(--ui-color-background-input); }
+
 .dialog-header {
 	text-align: center;
 	font-size: 1.4rem;
 	font-weight: 400;
 	margin: 0;
-	padding: 0.5rem 1rem;
-	border-top-left-radius: var(--ui-border-radius);
-	border-top-right-radius: var(--ui-border-radius);
+	padding: 0.4rem 1rem;
+	border-bottom: 1px solid var(--ui-color-border);
 }
 
 .dialog-content {
+	display: flex;
+	flex-flow: row;
+	margin: 0;
+	gap: 1rem;
+
 	padding: 1rem;
 	min-width: 200px;
 	flex: 1;
 	overflow-y: auto;
 	overscroll-behavior-y: contain;
 	outline: 1px solid transparent;
+	min-height: 3rem;
 }
 
 .dialog-content:focus {
@@ -426,9 +443,12 @@ svg { width: 1.5rem; height: 1.5rem; }
 	outline: 1px solid transparent;
 }
 
+
 .dialog-footer {
-	border-bottom-left-radius: var(--ui-border-radius);
-	border-bottom-right-radius: var(--ui-border-radius);
+	border-top: 1px solid var(--ui-color-border);
+	padding: 0.7rem 1rem;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
 }
 
 .dialog-footer [slot="footer"] {
@@ -437,15 +457,14 @@ svg { width: 1.5rem; height: 1.5rem; }
 	align-items: center;
 	justify-content: center;
 	flex-flow: row-reverse;
-	padding: 0.7rem 1rem;
-	gap: 0.3rem;
+	gap: 0.5rem;
 }
 
-.draw-borders .dialog-header { border-bottom: var(--ui-popup-border); padding: 0.4rem 0.5rem; }
-.draw-borders .dialog-footer { border-top: var(--ui-popup-border); }
 
-.dialog-header:empty,
-.dialog-footer:empty { display: none; }
+
+.dialog-footer .button { min-width: 9ch; }
+
+.dialog-header:empty { display: none; }
 
 
 .mobile .dialog-backdrop .dialog {
@@ -721,40 +740,27 @@ input[type=color] {
 	}
 }
 
-.message-box .dialog-header,
-.message-box .dialog-footer { background: var(--ui-color-background-input); }
-
-.message-box .dialog-header { border-bottom: 1px solid var(--ui-color-border); }
-.message-box .dialog-footer { border-top: 1px solid var(--ui-color-border); }
-
-
-.message-box .dialog-content {
-	display: flex;
-	flex-flow: row;
-	margin: 0 auto;
-	padding: 1rem;
-	gap: 1rem;
-}
+.message-box .dialog-content { font-size: 1.1rem; padding: 1rem; }
 
 .message-box .dialog-content .message { max-width: 50vw; display: flex; align-items: center; }
 .message-box .dialog-content .message-content { margin: 0; line-height: 1.5; }
 
+.message-box .dialog-content svg,
+.message-box .dialog-content .icon { height: 3rem; }
 
 .message-box .dialog-content .icon {
 	width: 3rem;
-	height: 3rem;
 	flex-shrink: 0;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--primary-color);
-	color: var(--primary-text-color);
 }
 
-.message-info .dialog-content .icon { color: var(--ui-color-info); }
-.message-warning .dialog-content .icon { color: var(--ui-color-warning); }
-.message-error .dialog-content .icon { color: var(--ui-color-danger); }
+.message-info    .dialog-content { background-color: var(--ui-color-info-semi); }
+.message-warning .dialog-content { background-color: var(--ui-color-warning-semi); }
+.message-error   .dialog-content { background-color: var(--ui-color-danger-semi); }
+.message-success .dialog-content { background-color: var(--ui-color-success-semi); }
 
 .panel {
 	overflow: hidden;
@@ -921,8 +927,7 @@ input[type=color] {
 	transform: translateZ(1px);
 	--tooltip-tip-size: 10px;
 	--tooltip-color: #292929;
-	--tooltip-border: 1px solid #ffffff28;
-	--tooltip-shadow: 0 0 0 1px #000, 0 0 5px #0006;
+	--tooltip-border: var(--ui-popup-border);
 	--tooltip-border-radius: 5px;
 }
 
@@ -931,7 +936,7 @@ input[type=color] {
 .tooltip {
 	position: relative;
 	border-radius: var(--tooltip-border-radius);
-	box-shadow: var(--tooltip-shadow);
+	box-shadow: var(--ui-shadow-tooltip);
 }
 
 .tooltip::before,
@@ -948,7 +953,7 @@ input[type=color] {
 }
 
 .tooltip::before {
-	box-shadow: var(--tooltip-shadow);
+	box-shadow: var(--ui-shadow-tooltip);
 	background-color: var(--tooltip-color);
 	border: var(--tooltip-border);
 	border-width: 1.5px;
@@ -986,18 +991,13 @@ input[type=color] {
 
 
 /* THEME LIGHT  */
-.theme-light .tooltip {
-	--tooltip-color: #fff;
-	--tooltip-border: 1px solid #fff;
-	--tooltip-shadow: 0 0 1px #0002, 0 0 5px #0006;
-}
-
+.theme-light .tooltip { --tooltip-color: #fff; }
 
 
 /* COLOR VARIATIONS */
-.info .tooltip { --tooltip-color: var(--ui-color-info); }
+.info    .tooltip { --tooltip-color: var(--ui-color-info); }
 .success .tooltip { --tooltip-color: var(--ui-color-success); }
-.danger .tooltip { --tooltip-color: var(--ui-color-danger); }
+.danger  .tooltip { --tooltip-color: var(--ui-color-danger); }
 .warning .tooltip { --tooltip-color: var(--ui-color-warning); }
 
 .tree,

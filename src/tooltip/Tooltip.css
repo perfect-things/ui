@@ -7,8 +7,7 @@
 	transform: translateZ(1px);
 	--tooltip-tip-size: 10px;
 	--tooltip-color: #292929;
-	--tooltip-border: 1px solid #ffffff28;
-	--tooltip-shadow: 0 0 0 1px #000, 0 0 5px #0006;
+	--tooltip-border: var(--ui-popup-border);
 	--tooltip-border-radius: 5px;
 }
 
@@ -17,7 +16,7 @@
 .tooltip {
 	position: relative;
 	border-radius: var(--tooltip-border-radius);
-	box-shadow: var(--tooltip-shadow);
+	box-shadow: var(--ui-shadow-tooltip);
 }
 
 .tooltip::before,
@@ -34,7 +33,7 @@
 }
 
 .tooltip::before {
-	box-shadow: var(--tooltip-shadow);
+	box-shadow: var(--ui-shadow-tooltip);
 	background-color: var(--tooltip-color);
 	border: var(--tooltip-border);
 	border-width: 1.5px;
@@ -72,16 +71,11 @@
 
 
 /* THEME LIGHT  */
-.theme-light .tooltip {
-	--tooltip-color: #fff;
-	--tooltip-border: 1px solid #fff;
-	--tooltip-shadow: 0 0 1px #0002, 0 0 5px #0006;
-}
-
+.theme-light .tooltip { --tooltip-color: #fff; }
 
 
 /* COLOR VARIATIONS */
-.info .tooltip { --tooltip-color: var(--ui-color-info); }
+.info    .tooltip { --tooltip-color: var(--ui-color-info); }
 .success .tooltip { --tooltip-color: var(--ui-color-success); }
-.danger .tooltip { --tooltip-color: var(--ui-color-danger); }
+.danger  .tooltip { --tooltip-color: var(--ui-color-danger); }
 .warning .tooltip { --tooltip-color: var(--ui-color-warning); }

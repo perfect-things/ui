@@ -5805,24 +5805,24 @@ function create_fragment4(ctx) {
   let dispose;
   const default_slot_template = (
     /*#slots*/
-    ctx[15].default
+    ctx[14].default
   );
   const default_slot = (0, import_internal4.create_slot)(
     default_slot_template,
     ctx,
     /*$$scope*/
-    ctx[14],
+    ctx[13],
     null
   );
   const footer_slot_template = (
     /*#slots*/
-    ctx[15].footer
+    ctx[14].footer
   );
   const footer_slot = (0, import_internal4.create_slot)(
     footer_slot_template,
     ctx,
     /*$$scope*/
-    ctx[14],
+    ctx[13],
     get_footer_slot_context
   );
   const block = {
@@ -5848,18 +5848,18 @@ function create_fragment4(ctx) {
       div3 = (0, import_internal4.element)("div");
       (0, import_internal4.attr_dev)(div0, "tabindex", "0");
       (0, import_internal4.attr_dev)(div0, "class", "focus-trap focus-trap-top");
-      (0, import_internal4.add_location)(div0, file3, 12, 2, 396);
+      (0, import_internal4.add_location)(div0, file3, 11, 2, 325);
       (0, import_internal4.attr_dev)(h1, "class", "dialog-header");
-      (0, import_internal4.add_location)(h1, file3, 13, 2, 480);
+      (0, import_internal4.add_location)(h1, file3, 12, 2, 409);
       (0, import_internal4.attr_dev)(div1, "class", "dialog-content");
-      (0, import_internal4.add_location)(div1, file3, 14, 2, 521);
+      (0, import_internal4.add_location)(div1, file3, 13, 2, 450);
       (0, import_internal4.attr_dev)(div2, "class", "dialog-footer");
-      (0, import_internal4.add_location)(div2, file3, 15, 2, 589);
+      (0, import_internal4.add_location)(div2, file3, 14, 2, 518);
       (0, import_internal4.attr_dev)(div3, "tabindex", "0");
       (0, import_internal4.attr_dev)(div3, "class", "focus-trap focus-trap-bottom");
-      (0, import_internal4.add_location)(div3, file3, 16, 2, 669);
+      (0, import_internal4.add_location)(div3, file3, 15, 2, 598);
       (0, import_internal4.attr_dev)(div4, "class", "dialog");
-      (0, import_internal4.add_location)(div4, file3, 11, 1, 350);
+      (0, import_internal4.add_location)(div4, file3, 10, 1, 279);
       (0, import_internal4.attr_dev)(div5, "role", "dialog");
       (0, import_internal4.attr_dev)(div5, "aria-modal", "true");
       (0, import_internal4.attr_dev)(
@@ -5875,13 +5875,6 @@ function create_fragment4(ctx) {
         "opened",
         /*opened*/
         ctx[0]
-      );
-      (0, import_internal4.toggle_class)(
-        div5,
-        "draw-borders",
-        /*drawborders*/
-        ctx[4] === "true" || /*drawborders*/
-        ctx[4] === true
       );
       (0, import_internal4.add_location)(div5, file3, 2, 0, 112);
     },
@@ -5900,17 +5893,17 @@ function create_fragment4(ctx) {
       if (default_slot) {
         default_slot.m(div1, null);
       }
-      ctx[16](div1);
+      ctx[15](div1);
       (0, import_internal4.append_dev)(div4, t3);
       (0, import_internal4.append_dev)(div4, div2);
       if (footer_slot) {
         footer_slot.m(div2, null);
       }
-      ctx[17](div2);
+      ctx[16](div2);
       (0, import_internal4.append_dev)(div4, t4);
       (0, import_internal4.append_dev)(div4, div3);
-      ctx[18](div4);
-      ctx[19](div5);
+      ctx[17](div4);
+      ctx[18](div5);
       current = true;
       if (!mounted) {
         dispose = [
@@ -5918,7 +5911,7 @@ function create_fragment4(ctx) {
             div0,
             "focus",
             /*focusLast*/
-            ctx[9],
+            ctx[8],
             false,
             false,
             false,
@@ -5928,7 +5921,7 @@ function create_fragment4(ctx) {
             div3,
             "focus",
             /*focusFirst*/
-            ctx[8],
+            ctx[7],
             false,
             false,
             false,
@@ -5938,7 +5931,7 @@ function create_fragment4(ctx) {
             div5,
             "click",
             /*onBackdropClick*/
-            ctx[10],
+            ctx[9],
             false,
             false,
             false,
@@ -5958,20 +5951,20 @@ function create_fragment4(ctx) {
         );
       if (default_slot) {
         if (default_slot.p && (!current || dirty & /*$$scope*/
-        16384)) {
+        8192)) {
           (0, import_internal4.update_slot_base)(
             default_slot,
             default_slot_template,
             ctx2,
             /*$$scope*/
-            ctx2[14],
+            ctx2[13],
             !current ? (0, import_internal4.get_all_dirty_from_scope)(
               /*$$scope*/
-              ctx2[14]
+              ctx2[13]
             ) : (0, import_internal4.get_slot_changes)(
               default_slot_template,
               /*$$scope*/
-              ctx2[14],
+              ctx2[13],
               dirty,
               null
             ),
@@ -5981,20 +5974,20 @@ function create_fragment4(ctx) {
       }
       if (footer_slot) {
         if (footer_slot.p && (!current || dirty & /*$$scope*/
-        16384)) {
+        8192)) {
           (0, import_internal4.update_slot_base)(
             footer_slot,
             footer_slot_template,
             ctx2,
             /*$$scope*/
-            ctx2[14],
+            ctx2[13],
             !current ? (0, import_internal4.get_all_dirty_from_scope)(
               /*$$scope*/
-              ctx2[14]
+              ctx2[13]
             ) : (0, import_internal4.get_slot_changes)(
               footer_slot_template,
               /*$$scope*/
-              ctx2[14],
+              ctx2[13],
               dirty,
               get_footer_slot_changes
             ),
@@ -6025,16 +6018,6 @@ function create_fragment4(ctx) {
           ctx2[0]
         );
       }
-      if (!current || dirty & /*className, drawborders*/
-      20) {
-        (0, import_internal4.toggle_class)(
-          div5,
-          "draw-borders",
-          /*drawborders*/
-          ctx2[4] === "true" || /*drawborders*/
-          ctx2[4] === true
-        );
-      }
     },
     i: function intro(local) {
       if (current)
@@ -6053,12 +6036,12 @@ function create_fragment4(ctx) {
         (0, import_internal4.detach_dev)(div5);
       if (default_slot)
         default_slot.d(detaching);
-      ctx[16](null);
+      ctx[15](null);
       if (footer_slot)
         footer_slot.d(detaching);
+      ctx[16](null);
       ctx[17](null);
       ctx[18](null);
-      ctx[19](null);
       mounted = false;
       (0, import_internal4.run_all)(dispose);
     }
@@ -6084,13 +6067,12 @@ function focusOtherButton(target, key) {
 function instance4($$self2, $$props2, $$invalidate2) {
   let $ANIMATION_SPEED;
   (0, import_internal4.validate_store)(ANIMATION_SPEED, "ANIMATION_SPEED");
-  (0, import_internal4.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(23, $ANIMATION_SPEED = $$value));
+  (0, import_internal4.component_subscribe)($$self2, ANIMATION_SPEED, ($$value) => $$invalidate2(22, $ANIMATION_SPEED = $$value));
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   (0, import_internal4.validate_slots)("Dialog", slots2, ["default", "footer"]);
   let { class: className2 = "" } = $$props2;
   let { title = "" } = $$props2;
   let { opened = false } = $$props2;
-  let { drawborders = false } = $$props2;
   let { skipFirstFocus = false } = $$props2;
   let { element: element42 } = $$props2;
   const dispatch2 = (0, import_svelte.createEventDispatcher)();
@@ -6191,7 +6173,7 @@ function instance4($$self2, $$props2, $$invalidate2) {
       console.warn("<Dialog> was created without expected prop 'element'");
     }
   });
-  const writable_props = ["class", "title", "opened", "drawborders", "skipFirstFocus", "element"];
+  const writable_props = ["class", "title", "opened", "skipFirstFocus", "element"];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Dialog> was created with unknown prop '${key}'`);
@@ -6199,19 +6181,19 @@ function instance4($$self2, $$props2, $$invalidate2) {
   function div1_binding($$value) {
     import_internal4.binding_callbacks[$$value ? "unshift" : "push"](() => {
       contentEl = $$value;
-      $$invalidate2(6, contentEl);
+      $$invalidate2(5, contentEl);
     });
   }
   function div2_binding2($$value) {
     import_internal4.binding_callbacks[$$value ? "unshift" : "push"](() => {
       footerEl = $$value;
-      $$invalidate2(7, footerEl);
+      $$invalidate2(6, footerEl);
     });
   }
   function div4_binding($$value) {
     import_internal4.binding_callbacks[$$value ? "unshift" : "push"](() => {
       dialogEl = $$value;
-      $$invalidate2(5, dialogEl);
+      $$invalidate2(4, dialogEl);
     });
   }
   function div5_binding($$value) {
@@ -6227,14 +6209,12 @@ function instance4($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, title = $$props3.title);
     if ("opened" in $$props3)
       $$invalidate2(0, opened = $$props3.opened);
-    if ("drawborders" in $$props3)
-      $$invalidate2(4, drawborders = $$props3.drawborders);
     if ("skipFirstFocus" in $$props3)
-      $$invalidate2(11, skipFirstFocus = $$props3.skipFirstFocus);
+      $$invalidate2(10, skipFirstFocus = $$props3.skipFirstFocus);
     if ("element" in $$props3)
       $$invalidate2(1, element42 = $$props3.element);
     if ("$$scope" in $$props3)
-      $$invalidate2(14, $$scope2 = $$props3.$$scope);
+      $$invalidate2(13, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
     createEventDispatcher: import_svelte.createEventDispatcher,
@@ -6244,7 +6224,6 @@ function instance4($$self2, $$props2, $$invalidate2) {
     className: className2,
     title,
     opened,
-    drawborders,
     skipFirstFocus,
     element: element42,
     dispatch: dispatch2,
@@ -6271,18 +6250,16 @@ function instance4($$self2, $$props2, $$invalidate2) {
       $$invalidate2(3, title = $$props3.title);
     if ("opened" in $$props3)
       $$invalidate2(0, opened = $$props3.opened);
-    if ("drawborders" in $$props3)
-      $$invalidate2(4, drawborders = $$props3.drawborders);
     if ("skipFirstFocus" in $$props3)
-      $$invalidate2(11, skipFirstFocus = $$props3.skipFirstFocus);
+      $$invalidate2(10, skipFirstFocus = $$props3.skipFirstFocus);
     if ("element" in $$props3)
       $$invalidate2(1, element42 = $$props3.element);
     if ("dialogEl" in $$props3)
-      $$invalidate2(5, dialogEl = $$props3.dialogEl);
+      $$invalidate2(4, dialogEl = $$props3.dialogEl);
     if ("contentEl" in $$props3)
-      $$invalidate2(6, contentEl = $$props3.contentEl);
+      $$invalidate2(5, contentEl = $$props3.contentEl);
     if ("footerEl" in $$props3)
-      $$invalidate2(7, footerEl = $$props3.footerEl);
+      $$invalidate2(6, footerEl = $$props3.footerEl);
     if ("triggerEl" in $$props3)
       triggerEl = $$props3.triggerEl;
     if ("openTimer" in $$props3)
@@ -6298,7 +6275,6 @@ function instance4($$self2, $$props2, $$invalidate2) {
     element42,
     className2,
     title,
-    drawborders,
     dialogEl,
     contentEl,
     footerEl,
@@ -6323,11 +6299,10 @@ var Dialog = class extends import_internal4.SvelteComponentDev {
       class: 2,
       title: 3,
       opened: 0,
-      drawborders: 4,
-      skipFirstFocus: 11,
+      skipFirstFocus: 10,
       element: 1,
-      open: 12,
-      close: 13
+      open: 11,
+      close: 12
     });
     (0, import_internal4.dispatch_dev)("SvelteRegisterComponent", {
       component: this,
@@ -6357,15 +6332,8 @@ var Dialog = class extends import_internal4.SvelteComponentDev {
     this.$$set({ opened });
     (0, import_internal4.flush)();
   }
-  get drawborders() {
-    return this.$$.ctx[4];
-  }
-  set drawborders(drawborders) {
-    this.$$set({ drawborders });
-    (0, import_internal4.flush)();
-  }
   get skipFirstFocus() {
-    return this.$$.ctx[11];
+    return this.$$.ctx[10];
   }
   set skipFirstFocus(skipFirstFocus) {
     this.$$set({ skipFirstFocus });
@@ -6379,13 +6347,13 @@ var Dialog = class extends import_internal4.SvelteComponentDev {
     (0, import_internal4.flush)();
   }
   get open() {
-    return this.$$.ctx[12];
+    return this.$$.ctx[11];
   }
   set open(value2) {
     throw new Error("<Dialog>: Cannot set read-only property 'open'");
   }
   get close() {
-    return this.$$.ctx[13];
+    return this.$$.ctx[12];
   }
   set close(value2) {
     throw new Error("<Dialog>: Cannot set read-only property 'close'");
@@ -22189,9 +22157,10 @@ var MessageType = {
   INFO: "info",
   WARNING: "warning",
   ERROR: "error",
-  DANGER: "error"
+  DANGER: "error",
+  SUCCESS: "success"
 };
-function showMessage(message, type = MessageType.INFO, title = "", btnLabel = "OK", cb) {
+function showMessage(message, type = "", title = "", btnLabel = "OK", cb) {
   if (typeof message === "object")
     return config.set(message);
   const buttons = [{ label: btnLabel, value: btnLabel, type }];
@@ -46305,12 +46274,12 @@ function create_default_slot_53(ctx) {
       t9 = (0, import_internal60.space)();
       p4 = (0, import_internal60.element)("p");
       p4.textContent = "Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut.";
-      (0, import_internal60.add_location)(br, file54, 17, 16, 441);
-      (0, import_internal60.add_location)(p0, file54, 20, 1, 462);
-      (0, import_internal60.add_location)(p1, file54, 21, 1, 1090);
-      (0, import_internal60.add_location)(p2, file54, 22, 1, 1658);
-      (0, import_internal60.add_location)(p3, file54, 23, 1, 2275);
-      (0, import_internal60.add_location)(p4, file54, 24, 1, 3145);
+      (0, import_internal60.add_location)(br, file54, 17, 16, 422);
+      (0, import_internal60.add_location)(p0, file54, 20, 1, 443);
+      (0, import_internal60.add_location)(p1, file54, 21, 1, 1071);
+      (0, import_internal60.add_location)(p2, file54, 22, 1, 1639);
+      (0, import_internal60.add_location)(p3, file54, 23, 1, 2256);
+      (0, import_internal60.add_location)(p4, file54, 24, 1, 3126);
     },
     m: function mount(target, anchor) {
       (0, import_internal60.insert_dev)(target, t0, anchor);
@@ -46358,7 +46327,7 @@ function create_default_slot_53(ctx) {
     block,
     id: create_default_slot_53.name,
     type: "slot",
-    source: '(17:0) <Dialog bind:this=\\"{dialog1}\\" title=\\"Hello\\" drawborders=\\"true\\">',
+    source: '(17:0) <Dialog bind:this=\\"{dialog1}\\" title=\\"Hello\\">',
     ctx
   });
   return block;
@@ -46407,7 +46376,7 @@ function create_footer_slot_1(ctx) {
       div = (0, import_internal60.element)("div");
       (0, import_internal60.create_component)(button.$$.fragment);
       (0, import_internal60.attr_dev)(div, "slot", "footer");
-      (0, import_internal60.add_location)(div, file54, 26, 1, 3465);
+      (0, import_internal60.add_location)(div, file54, 26, 1, 3446);
     },
     m: function mount(target, anchor) {
       (0, import_internal60.insert_dev)(target, div, anchor);
@@ -46576,7 +46545,7 @@ function create_footer_slot2(ctx) {
       t = (0, import_internal60.space)();
       (0, import_internal60.create_component)(button1.$$.fragment);
       (0, import_internal60.attr_dev)(div, "slot", "footer");
-      (0, import_internal60.add_location)(div, file54, 38, 1, 3676);
+      (0, import_internal60.add_location)(div, file54, 38, 1, 3657);
     },
     m: function mount(target, anchor) {
       (0, import_internal60.insert_dev)(target, div, anchor);
@@ -46693,7 +46662,6 @@ function create_fragment60(ctx) {
   );
   let dialog0_props = {
     title: "Hello",
-    drawborders: "true",
     $$slots: {
       footer: [create_footer_slot_1],
       default: [create_default_slot_53]
@@ -46936,12 +46904,6 @@ function instance60($$self2, $$props2, $$invalidate2) {
       name: "class",
       type: "string",
       description: "Additional css class name to be added to the component container."
-    },
-    {
-      name: "drawBorders",
-      type: ["true", "false"],
-      default: "false",
-      description: "If <i>true</i> - the dialog will have borders between title and content"
     },
     {
       name: "opened",
@@ -50944,11 +50906,80 @@ var Menu_default2 = Menu_1;
 var import_internal64 = __toESM(require_internal());
 var { console: console_19 } = import_internal64.globals;
 var file58 = "docs-src/components/message-box/MessageBox.svelte";
+function create_default_slot_104(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = (0, import_internal64.text)("Default message");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal64.insert_dev)(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal64.detach_dev)(t);
+    }
+  };
+  (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_104.name,
+    type: "slot",
+    source: `(10:1) <Button on:click=\\"{() => showMessage('This is the message')}\\">`,
+    ctx
+  });
+  return block;
+}
+function create_default_slot_94(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = (0, import_internal64.text)("Show info");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal64.insert_dev)(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal64.detach_dev)(t);
+    }
+  };
+  (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_94.name,
+    type: "slot",
+    source: `(11:1) <Button info on:click=\\"{() => showMessage('This is the message', MessageType.INFO)}\\">`,
+    ctx
+  });
+  return block;
+}
+function create_default_slot_85(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = (0, import_internal64.text)("Show warning");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal64.insert_dev)(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal64.detach_dev)(t);
+    }
+  };
+  (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_85.name,
+    type: "slot",
+    source: `(12:1) <Button warning on:click=\\"{() => showMessage('This is the message', MessageType.WARNING)}\\">`,
+    ctx
+  });
+  return block;
+}
 function create_default_slot_75(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal64.text)("Show info message");
+      t = (0, import_internal64.text)("Show error");
     },
     m: function mount(target, anchor) {
       (0, import_internal64.insert_dev)(target, t, anchor);
@@ -50962,7 +50993,7 @@ function create_default_slot_75(ctx) {
     block,
     id: create_default_slot_75.name,
     type: "slot",
-    source: `(10:1) <Button info on:click=\\"{() => showMessage('Info messagebox')}\\">`,
+    source: `(13:1) <Button danger on:click=\\"{() => showMessage('This is the message', MessageType.DANGER)}\\">`,
     ctx
   });
   return block;
@@ -50971,7 +51002,7 @@ function create_default_slot_65(ctx) {
   let t;
   const block = {
     c: function create() {
-      t = (0, import_internal64.text)("Show info message with title");
+      t = (0, import_internal64.text)("Show success");
     },
     m: function mount(target, anchor) {
       (0, import_internal64.insert_dev)(target, t, anchor);
@@ -50985,12 +51016,58 @@ function create_default_slot_65(ctx) {
     block,
     id: create_default_slot_65.name,
     type: "slot",
-    source: `(11:1) <Button info on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}\\">`,
+    source: `(14:1) <Button success on:click=\\"{() => showMessage('This is the message', MessageType.SUCCESS)}\\">`,
     ctx
   });
   return block;
 }
 function create_default_slot_55(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = (0, import_internal64.text)("Show message with title");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal64.insert_dev)(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal64.detach_dev)(t);
+    }
+  };
+  (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_55.name,
+    type: "slot",
+    source: `(20:1) <Button on:click=\\"{() => showMessage('Default message', null, 'Default title')}\\">`,
+    ctx
+  });
+  return block;
+}
+function create_default_slot_45(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = (0, import_internal64.text)("Show message with title");
+    },
+    m: function mount(target, anchor) {
+      (0, import_internal64.insert_dev)(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching)
+        (0, import_internal64.detach_dev)(t);
+    }
+  };
+  (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_45.name,
+    type: "slot",
+    source: `(21:1) <Button info on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}\\">`,
+    ctx
+  });
+  return block;
+}
+function create_default_slot_311(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -51006,14 +51083,14 @@ function create_default_slot_55(ctx) {
   };
   (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_55.name,
+    id: create_default_slot_311.name,
     type: "slot",
-    source: `(12:1) <Button info on:click=\\"{() => showMessage(longMessage, MessageType.INFO, 'Info title')}\\">`,
+    source: `(22:1) <Button on:click=\\"{() => showMessage(longMessage, null, 'Info title')}\\">`,
     ctx
   });
   return block;
 }
-function create_default_slot_45(ctx) {
+function create_default_slot_216(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -51029,14 +51106,14 @@ function create_default_slot_45(ctx) {
   };
   (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_45.name,
+    id: create_default_slot_216.name,
     type: "slot",
-    source: `(18:1) <Button info on:click=\\"{() => showMessage('Info messagebox with <i>html</i><br><a href=\\"#MessageBox\\" target=\\"_blank\\">Link</a>', MessageType.INFO, 'Info title', 'Close')}\\">`,
+    source: `(28:1) <Button on:click=\\"{() => showMessage('Message with <i>html</i><br><a href=\\"#MessageBox\\" target=\\"_blank\\">Link</a>', null, 'Info title', 'Close')}\\">`,
     ctx
   });
   return block;
 }
-function create_default_slot_311(ctx) {
+function create_default_slot_117(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -51052,55 +51129,9 @@ function create_default_slot_311(ctx) {
   };
   (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_311.name,
-    type: "slot",
-    source: `(24:1) <Button info on:click=\\"{() => showMessage('Info messagebox', MessageType.INFO, 'Info title', 'Close', onclose)}\\">`,
-    ctx
-  });
-  return block;
-}
-function create_default_slot_216(ctx) {
-  let t;
-  const block = {
-    c: function create() {
-      t = (0, import_internal64.text)("Show warning message");
-    },
-    m: function mount(target, anchor) {
-      (0, import_internal64.insert_dev)(target, t, anchor);
-    },
-    d: function destroy(detaching) {
-      if (detaching)
-        (0, import_internal64.detach_dev)(t);
-    }
-  };
-  (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
-    block,
-    id: create_default_slot_216.name,
-    type: "slot",
-    source: `(29:0) <Button warning on:click=\\"{() => showMessage('Warning messagebox', MessageType.WARNING)}\\">`,
-    ctx
-  });
-  return block;
-}
-function create_default_slot_117(ctx) {
-  let t;
-  const block = {
-    c: function create() {
-      t = (0, import_internal64.text)("Show error message");
-    },
-    m: function mount(target, anchor) {
-      (0, import_internal64.insert_dev)(target, t, anchor);
-    },
-    d: function destroy(detaching) {
-      if (detaching)
-        (0, import_internal64.detach_dev)(t);
-    }
-  };
-  (0, import_internal64.dispatch_dev)("SvelteRegisterBlock", {
-    block,
     id: create_default_slot_117.name,
     type: "slot",
-    source: `(33:0) <Button danger on:click=\\"{() => showMessage('Error messagebox', MessageType.ERROR)}\\">`,
+    source: `(34:1) <Button on:click=\\"{() => showMessage('Info messagebox', null, 'Info title', 'Close', onclose)}\\">`,
     ctx
   });
   return block;
@@ -51123,7 +51154,7 @@ function create_default_slot11(ctx) {
     block,
     id: create_default_slot11.name,
     type: "slot",
-    source: '(37:0) <Button info on:click=\\"{showComplex}\\">',
+    source: '(39:0) <Button info on:click=\\"{showComplex}\\">',
     ctx
   });
   return block;
@@ -51144,38 +51175,42 @@ function create_fragment64(ctx) {
   let t8;
   let button2;
   let t9;
-  let h31;
-  let t11;
-  let div1;
   let button3;
-  let t12;
-  let h32;
-  let t14;
-  let div2;
+  let t10;
   let button4;
-  let t15;
-  let h33;
-  let t17;
+  let t11;
+  let h31;
+  let t13;
+  let div1;
   let button5;
-  let t18;
-  let h34;
-  let t20;
+  let t14;
   let button6;
-  let t21;
-  let h35;
-  let t23;
+  let t15;
   let button7;
+  let t16;
+  let h32;
+  let t18;
+  let div2;
+  let button8;
+  let t19;
+  let h33;
+  let t21;
+  let div3;
+  let button9;
+  let t22;
+  let h34;
   let t24;
-  let messagebox;
+  let button10;
   let t25;
-  let codeexample;
+  let messagebox;
   let t26;
+  let codeexample;
+  let t27;
   let api;
   let current;
   button0 = new Button_default({
     props: {
-      info: true,
-      $$slots: { default: [create_default_slot_75] },
+      $$slots: { default: [create_default_slot_104] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -51188,7 +51223,7 @@ function create_fragment64(ctx) {
   button1 = new Button_default({
     props: {
       info: true,
-      $$slots: { default: [create_default_slot_65] },
+      $$slots: { default: [create_default_slot_94] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -51200,8 +51235,8 @@ function create_fragment64(ctx) {
   );
   button2 = new Button_default({
     props: {
-      info: true,
-      $$slots: { default: [create_default_slot_55] },
+      warning: true,
+      $$slots: { default: [create_default_slot_85] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -51213,8 +51248,8 @@ function create_fragment64(ctx) {
   );
   button3 = new Button_default({
     props: {
-      info: true,
-      $$slots: { default: [create_default_slot_45] },
+      danger: true,
+      $$slots: { default: [create_default_slot_75] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -51226,8 +51261,8 @@ function create_fragment64(ctx) {
   );
   button4 = new Button_default({
     props: {
-      info: true,
-      $$slots: { default: [create_default_slot_311] },
+      success: true,
+      $$slots: { default: [create_default_slot_65] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -51239,8 +51274,7 @@ function create_fragment64(ctx) {
   );
   button5 = new Button_default({
     props: {
-      warning: true,
-      $$slots: { default: [create_default_slot_216] },
+      $$slots: { default: [create_default_slot_55] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -51252,8 +51286,8 @@ function create_fragment64(ctx) {
   );
   button6 = new Button_default({
     props: {
-      danger: true,
-      $$slots: { default: [create_default_slot_117] },
+      info: true,
+      $$slots: { default: [create_default_slot_45] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -51265,13 +51299,49 @@ function create_fragment64(ctx) {
   );
   button7 = new Button_default({
     props: {
+      $$slots: { default: [create_default_slot_311] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button7.$on(
+    "click",
+    /*click_handler_7*/
+    ctx[10]
+  );
+  button8 = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot_216] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button8.$on(
+    "click",
+    /*click_handler_8*/
+    ctx[11]
+  );
+  button9 = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot_117] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button9.$on(
+    "click",
+    /*click_handler_9*/
+    ctx[12]
+  );
+  button10 = new Button_default({
+    props: {
       info: true,
       $$slots: { default: [create_default_slot11] },
       $$scope: { ctx }
     },
     $$inline: true
   });
-  button7.$on(
+  button10.$on(
     "click",
     /*showComplex*/
     ctx[0]
@@ -51306,7 +51376,7 @@ function create_fragment64(ctx) {
       br = (0, import_internal64.element)("br");
       t4 = (0, import_internal64.space)();
       h30 = (0, import_internal64.element)("h3");
-      h30.textContent = "Info";
+      h30.textContent = "Types";
       t6 = (0, import_internal64.space)();
       div0 = (0, import_internal64.element)("div");
       (0, import_internal64.create_component)(button0.$$.fragment);
@@ -51315,53 +51385,58 @@ function create_fragment64(ctx) {
       t8 = (0, import_internal64.space)();
       (0, import_internal64.create_component)(button2.$$.fragment);
       t9 = (0, import_internal64.space)();
-      h31 = (0, import_internal64.element)("h3");
-      h31.textContent = "Message with HTML";
-      t11 = (0, import_internal64.space)();
-      div1 = (0, import_internal64.element)("div");
       (0, import_internal64.create_component)(button3.$$.fragment);
-      t12 = (0, import_internal64.space)();
-      h32 = (0, import_internal64.element)("h3");
-      h32.textContent = "MessageBox with callback action";
-      t14 = (0, import_internal64.space)();
-      div2 = (0, import_internal64.element)("div");
+      t10 = (0, import_internal64.space)();
       (0, import_internal64.create_component)(button4.$$.fragment);
-      t15 = (0, import_internal64.space)();
-      h33 = (0, import_internal64.element)("h3");
-      h33.textContent = "Warning";
-      t17 = (0, import_internal64.space)();
+      t11 = (0, import_internal64.space)();
+      h31 = (0, import_internal64.element)("h3");
+      h31.textContent = "Title";
+      t13 = (0, import_internal64.space)();
+      div1 = (0, import_internal64.element)("div");
       (0, import_internal64.create_component)(button5.$$.fragment);
-      t18 = (0, import_internal64.space)();
-      h34 = (0, import_internal64.element)("h3");
-      h34.textContent = "Error";
-      t20 = (0, import_internal64.space)();
+      t14 = (0, import_internal64.space)();
       (0, import_internal64.create_component)(button6.$$.fragment);
-      t21 = (0, import_internal64.space)();
-      h35 = (0, import_internal64.element)("h3");
-      h35.textContent = "Complex Message";
-      t23 = (0, import_internal64.space)();
+      t15 = (0, import_internal64.space)();
       (0, import_internal64.create_component)(button7.$$.fragment);
+      t16 = (0, import_internal64.space)();
+      h32 = (0, import_internal64.element)("h3");
+      h32.textContent = "Message with HTML";
+      t18 = (0, import_internal64.space)();
+      div2 = (0, import_internal64.element)("div");
+      (0, import_internal64.create_component)(button8.$$.fragment);
+      t19 = (0, import_internal64.space)();
+      h33 = (0, import_internal64.element)("h3");
+      h33.textContent = "MessageBox with callback action";
+      t21 = (0, import_internal64.space)();
+      div3 = (0, import_internal64.element)("div");
+      (0, import_internal64.create_component)(button9.$$.fragment);
+      t22 = (0, import_internal64.space)();
+      h34 = (0, import_internal64.element)("h3");
+      h34.textContent = "Complex Message";
       t24 = (0, import_internal64.space)();
-      (0, import_internal64.create_component)(messagebox.$$.fragment);
+      (0, import_internal64.create_component)(button10.$$.fragment);
       t25 = (0, import_internal64.space)();
-      (0, import_internal64.create_component)(codeexample.$$.fragment);
+      (0, import_internal64.create_component)(messagebox.$$.fragment);
       t26 = (0, import_internal64.space)();
+      (0, import_internal64.create_component)(codeexample.$$.fragment);
+      t27 = (0, import_internal64.space)();
       (0, import_internal64.create_component)(api.$$.fragment);
       (0, import_internal64.add_location)(h2, file58, 0, 0, 0);
       (0, import_internal64.add_location)(p, file58, 2, 0, 21);
       (0, import_internal64.add_location)(br, file58, 5, 0, 142);
       (0, import_internal64.add_location)(h30, file58, 7, 0, 148);
       (0, import_internal64.attr_dev)(div0, "class", "docs-buttons-row");
-      (0, import_internal64.add_location)(div0, file58, 8, 0, 162);
-      (0, import_internal64.add_location)(h31, file58, 15, 0, 544);
+      (0, import_internal64.add_location)(div0, file58, 8, 0, 163);
+      (0, import_internal64.add_location)(h31, file58, 17, 0, 734);
       (0, import_internal64.attr_dev)(div1, "class", "docs-buttons-row");
-      (0, import_internal64.add_location)(div1, file58, 16, 0, 571);
-      (0, import_internal64.add_location)(h32, file58, 21, 0, 805);
+      (0, import_internal64.add_location)(div1, file58, 18, 0, 749);
+      (0, import_internal64.add_location)(h32, file58, 25, 0, 1133);
       (0, import_internal64.attr_dev)(div2, "class", "docs-buttons-row");
-      (0, import_internal64.add_location)(div2, file58, 22, 0, 846);
-      (0, import_internal64.add_location)(h33, file58, 27, 0, 1060);
-      (0, import_internal64.add_location)(h34, file58, 31, 0, 1199);
-      (0, import_internal64.add_location)(h35, file58, 35, 0, 1329);
+      (0, import_internal64.add_location)(div2, file58, 26, 0, 1160);
+      (0, import_internal64.add_location)(h33, file58, 31, 0, 1369);
+      (0, import_internal64.attr_dev)(div3, "class", "docs-buttons-row");
+      (0, import_internal64.add_location)(div3, file58, 32, 0, 1410);
+      (0, import_internal64.add_location)(h34, file58, 37, 0, 1607);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -51381,85 +51456,108 @@ function create_fragment64(ctx) {
       (0, import_internal64.mount_component)(button1, div0, null);
       (0, import_internal64.append_dev)(div0, t8);
       (0, import_internal64.mount_component)(button2, div0, null);
-      (0, import_internal64.insert_dev)(target, t9, anchor);
-      (0, import_internal64.insert_dev)(target, h31, anchor);
+      (0, import_internal64.append_dev)(div0, t9);
+      (0, import_internal64.mount_component)(button3, div0, null);
+      (0, import_internal64.append_dev)(div0, t10);
+      (0, import_internal64.mount_component)(button4, div0, null);
       (0, import_internal64.insert_dev)(target, t11, anchor);
+      (0, import_internal64.insert_dev)(target, h31, anchor);
+      (0, import_internal64.insert_dev)(target, t13, anchor);
       (0, import_internal64.insert_dev)(target, div1, anchor);
-      (0, import_internal64.mount_component)(button3, div1, null);
-      (0, import_internal64.insert_dev)(target, t12, anchor);
+      (0, import_internal64.mount_component)(button5, div1, null);
+      (0, import_internal64.append_dev)(div1, t14);
+      (0, import_internal64.mount_component)(button6, div1, null);
+      (0, import_internal64.append_dev)(div1, t15);
+      (0, import_internal64.mount_component)(button7, div1, null);
+      (0, import_internal64.insert_dev)(target, t16, anchor);
       (0, import_internal64.insert_dev)(target, h32, anchor);
-      (0, import_internal64.insert_dev)(target, t14, anchor);
-      (0, import_internal64.insert_dev)(target, div2, anchor);
-      (0, import_internal64.mount_component)(button4, div2, null);
-      (0, import_internal64.insert_dev)(target, t15, anchor);
-      (0, import_internal64.insert_dev)(target, h33, anchor);
-      (0, import_internal64.insert_dev)(target, t17, anchor);
-      (0, import_internal64.mount_component)(button5, target, anchor);
       (0, import_internal64.insert_dev)(target, t18, anchor);
-      (0, import_internal64.insert_dev)(target, h34, anchor);
-      (0, import_internal64.insert_dev)(target, t20, anchor);
-      (0, import_internal64.mount_component)(button6, target, anchor);
+      (0, import_internal64.insert_dev)(target, div2, anchor);
+      (0, import_internal64.mount_component)(button8, div2, null);
+      (0, import_internal64.insert_dev)(target, t19, anchor);
+      (0, import_internal64.insert_dev)(target, h33, anchor);
       (0, import_internal64.insert_dev)(target, t21, anchor);
-      (0, import_internal64.insert_dev)(target, h35, anchor);
-      (0, import_internal64.insert_dev)(target, t23, anchor);
-      (0, import_internal64.mount_component)(button7, target, anchor);
+      (0, import_internal64.insert_dev)(target, div3, anchor);
+      (0, import_internal64.mount_component)(button9, div3, null);
+      (0, import_internal64.insert_dev)(target, t22, anchor);
+      (0, import_internal64.insert_dev)(target, h34, anchor);
       (0, import_internal64.insert_dev)(target, t24, anchor);
-      (0, import_internal64.mount_component)(messagebox, target, anchor);
+      (0, import_internal64.mount_component)(button10, target, anchor);
       (0, import_internal64.insert_dev)(target, t25, anchor);
-      (0, import_internal64.mount_component)(codeexample, target, anchor);
+      (0, import_internal64.mount_component)(messagebox, target, anchor);
       (0, import_internal64.insert_dev)(target, t26, anchor);
+      (0, import_internal64.mount_component)(codeexample, target, anchor);
+      (0, import_internal64.insert_dev)(target, t27, anchor);
       (0, import_internal64.mount_component)(api, target, anchor);
       current = true;
     },
     p: function update(ctx2, [dirty]) {
       const button0_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button0_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button0.$set(button0_changes);
       const button1_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button1.$set(button1_changes);
       const button2_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button2_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button2.$set(button2_changes);
       const button3_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button3_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button3.$set(button3_changes);
       const button4_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button4_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button4.$set(button4_changes);
       const button5_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button5_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button5.$set(button5_changes);
       const button6_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button6_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button6.$set(button6_changes);
       const button7_changes = {};
       if (dirty & /*$$scope*/
-      1024) {
+      8192) {
         button7_changes.$$scope = { dirty, ctx: ctx2 };
       }
       button7.$set(button7_changes);
+      const button8_changes = {};
+      if (dirty & /*$$scope*/
+      8192) {
+        button8_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      button8.$set(button8_changes);
+      const button9_changes = {};
+      if (dirty & /*$$scope*/
+      8192) {
+        button9_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      button9.$set(button9_changes);
+      const button10_changes = {};
+      if (dirty & /*$$scope*/
+      8192) {
+        button10_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      button10.$set(button10_changes);
     },
     i: function intro(local) {
       if (current)
@@ -51472,6 +51570,9 @@ function create_fragment64(ctx) {
       (0, import_internal64.transition_in)(button5.$$.fragment, local);
       (0, import_internal64.transition_in)(button6.$$.fragment, local);
       (0, import_internal64.transition_in)(button7.$$.fragment, local);
+      (0, import_internal64.transition_in)(button8.$$.fragment, local);
+      (0, import_internal64.transition_in)(button9.$$.fragment, local);
+      (0, import_internal64.transition_in)(button10.$$.fragment, local);
       (0, import_internal64.transition_in)(messagebox.$$.fragment, local);
       (0, import_internal64.transition_in)(codeexample.$$.fragment, local);
       (0, import_internal64.transition_in)(api.$$.fragment, local);
@@ -51486,6 +51587,9 @@ function create_fragment64(ctx) {
       (0, import_internal64.transition_out)(button5.$$.fragment, local);
       (0, import_internal64.transition_out)(button6.$$.fragment, local);
       (0, import_internal64.transition_out)(button7.$$.fragment, local);
+      (0, import_internal64.transition_out)(button8.$$.fragment, local);
+      (0, import_internal64.transition_out)(button9.$$.fragment, local);
+      (0, import_internal64.transition_out)(button10.$$.fragment, local);
       (0, import_internal64.transition_out)(messagebox.$$.fragment, local);
       (0, import_internal64.transition_out)(codeexample.$$.fragment, local);
       (0, import_internal64.transition_out)(api.$$.fragment, local);
@@ -51513,53 +51617,52 @@ function create_fragment64(ctx) {
       (0, import_internal64.destroy_component)(button0);
       (0, import_internal64.destroy_component)(button1);
       (0, import_internal64.destroy_component)(button2);
-      if (detaching)
-        (0, import_internal64.detach_dev)(t9);
-      if (detaching)
-        (0, import_internal64.detach_dev)(h31);
+      (0, import_internal64.destroy_component)(button3);
+      (0, import_internal64.destroy_component)(button4);
       if (detaching)
         (0, import_internal64.detach_dev)(t11);
       if (detaching)
-        (0, import_internal64.detach_dev)(div1);
-      (0, import_internal64.destroy_component)(button3);
+        (0, import_internal64.detach_dev)(h31);
       if (detaching)
-        (0, import_internal64.detach_dev)(t12);
+        (0, import_internal64.detach_dev)(t13);
+      if (detaching)
+        (0, import_internal64.detach_dev)(div1);
+      (0, import_internal64.destroy_component)(button5);
+      (0, import_internal64.destroy_component)(button6);
+      (0, import_internal64.destroy_component)(button7);
+      if (detaching)
+        (0, import_internal64.detach_dev)(t16);
       if (detaching)
         (0, import_internal64.detach_dev)(h32);
       if (detaching)
-        (0, import_internal64.detach_dev)(t14);
+        (0, import_internal64.detach_dev)(t18);
       if (detaching)
         (0, import_internal64.detach_dev)(div2);
-      (0, import_internal64.destroy_component)(button4);
+      (0, import_internal64.destroy_component)(button8);
       if (detaching)
-        (0, import_internal64.detach_dev)(t15);
+        (0, import_internal64.detach_dev)(t19);
       if (detaching)
         (0, import_internal64.detach_dev)(h33);
       if (detaching)
-        (0, import_internal64.detach_dev)(t17);
-      (0, import_internal64.destroy_component)(button5, detaching);
+        (0, import_internal64.detach_dev)(t21);
       if (detaching)
-        (0, import_internal64.detach_dev)(t18);
+        (0, import_internal64.detach_dev)(div3);
+      (0, import_internal64.destroy_component)(button9);
+      if (detaching)
+        (0, import_internal64.detach_dev)(t22);
       if (detaching)
         (0, import_internal64.detach_dev)(h34);
       if (detaching)
-        (0, import_internal64.detach_dev)(t20);
-      (0, import_internal64.destroy_component)(button6, detaching);
-      if (detaching)
-        (0, import_internal64.detach_dev)(t21);
-      if (detaching)
-        (0, import_internal64.detach_dev)(h35);
-      if (detaching)
-        (0, import_internal64.detach_dev)(t23);
-      (0, import_internal64.destroy_component)(button7, detaching);
-      if (detaching)
         (0, import_internal64.detach_dev)(t24);
-      (0, import_internal64.destroy_component)(messagebox, detaching);
+      (0, import_internal64.destroy_component)(button10, detaching);
       if (detaching)
         (0, import_internal64.detach_dev)(t25);
-      (0, import_internal64.destroy_component)(codeexample, detaching);
+      (0, import_internal64.destroy_component)(messagebox, detaching);
       if (detaching)
         (0, import_internal64.detach_dev)(t26);
+      (0, import_internal64.destroy_component)(codeexample, detaching);
+      if (detaching)
+        (0, import_internal64.detach_dev)(t27);
       (0, import_internal64.destroy_component)(api, detaching);
     }
   };
@@ -51660,13 +51763,16 @@ function instance64($$self2, $$props2, $$invalidate2) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console_19.warn(`<MessageBox> was created with unknown prop '${key}'`);
   });
-  const click_handler = () => showMessage("Info messagebox");
-  const click_handler_1 = () => showMessage("Info messagebox", MessageType.INFO, "Info title");
-  const click_handler_2 = () => showMessage(longMessage, MessageType.INFO, "Info title");
-  const click_handler_3 = () => showMessage('Info messagebox with <i>html</i><br><a href="#MessageBox" target="_blank">Link</a>', MessageType.INFO, "Info title", "Close");
-  const click_handler_4 = () => showMessage("Info messagebox", MessageType.INFO, "Info title", "Close", onclose);
-  const click_handler_5 = () => showMessage("Warning messagebox", MessageType.WARNING);
-  const click_handler_6 = () => showMessage("Error messagebox", MessageType.ERROR);
+  const click_handler = () => showMessage("This is the message");
+  const click_handler_1 = () => showMessage("This is the message", MessageType.INFO);
+  const click_handler_2 = () => showMessage("This is the message", MessageType.WARNING);
+  const click_handler_3 = () => showMessage("This is the message", MessageType.DANGER);
+  const click_handler_4 = () => showMessage("This is the message", MessageType.SUCCESS);
+  const click_handler_5 = () => showMessage("Default message", null, "Default title");
+  const click_handler_6 = () => showMessage("Info messagebox", MessageType.INFO, "Info title");
+  const click_handler_7 = () => showMessage(longMessage, null, "Info title");
+  const click_handler_8 = () => showMessage('Message with <i>html</i><br><a href="#MessageBox" target="_blank">Link</a>', null, "Info title", "Close");
+  const click_handler_9 = () => showMessage("Info messagebox", null, "Info title", "Close", onclose);
   $$self2.$capture_state = () => ({
     Button: Button_default,
     MessageBox: MessageBox_default,
@@ -51690,7 +51796,10 @@ function instance64($$self2, $$props2, $$invalidate2) {
     click_handler_3,
     click_handler_4,
     click_handler_5,
-    click_handler_6
+    click_handler_6,
+    click_handler_7,
+    click_handler_8,
+    click_handler_9
   ];
 }
 var MessageBox_1 = class extends import_internal64.SvelteComponentDev {
@@ -56822,7 +56931,7 @@ function create_default_slot_1110(ctx) {
   });
   return block;
 }
-function create_default_slot_104(ctx) {
+function create_default_slot_105(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -56838,14 +56947,14 @@ function create_default_slot_104(ctx) {
   };
   (0, import_internal72.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_104.name,
+    id: create_default_slot_105.name,
     type: "slot",
     source: '(19:0) <Tooltip info target=\\"box-info\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_94(ctx) {
+function create_default_slot_95(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -56861,14 +56970,14 @@ function create_default_slot_94(ctx) {
   };
   (0, import_internal72.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_94.name,
+    id: create_default_slot_95.name,
     type: "slot",
     source: '(23:0) <Tooltip success target=\\"box-success\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_85(ctx) {
+function create_default_slot_86(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -56884,7 +56993,7 @@ function create_default_slot_85(ctx) {
   };
   (0, import_internal72.dispatch_dev)("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_85.name,
+    id: create_default_slot_86.name,
     type: "slot",
     source: '(27:0) <Tooltip warning target=\\"box-warning\\">',
     ctx
@@ -57165,7 +57274,7 @@ function create_fragment72(ctx) {
     props: {
       info: true,
       target: "box-info",
-      $$slots: { default: [create_default_slot_104] },
+      $$slots: { default: [create_default_slot_105] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -57174,7 +57283,7 @@ function create_fragment72(ctx) {
     props: {
       success: true,
       target: "box-success",
-      $$slots: { default: [create_default_slot_94] },
+      $$slots: { default: [create_default_slot_95] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -57183,7 +57292,7 @@ function create_fragment72(ctx) {
     props: {
       warning: true,
       target: "box-warning",
-      $$slots: { default: [create_default_slot_85] },
+      $$slots: { default: [create_default_slot_86] },
       $$scope: { ctx }
     },
     $$inline: true

@@ -9,7 +9,7 @@ body {
 	   chromium-clones get more than 300, safari gets 300,
 	   but it looks the same as 350 in chromium-clones
 	*/
-	font: 350 102% "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 	background-color: var(--ui-color-background);
 	color: var(--ui-color-text);
 }
