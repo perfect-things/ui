@@ -6,7 +6,7 @@
 
 <p>A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).</p>
 <ul>
-	<li><a href="https://perfect-things.github.io/ui/">Homepage and docs</a>
+	<li><a href="https://ui.perfectthings.dev">Homepage and docs</a>
 	<li><a href="https://github.com/perfect-things/ui/">Github Repo</a>
 	<li><a href="https://www.npmjs.com/package/@perfectthings/ui">NPM Page</a>
 </ul>
