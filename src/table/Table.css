@@ -47,3 +47,5 @@
 
 .table th:last-child,
 .table td:last-child { padding-right: var(--ui-margin-l); }
+
+.table tbody tr:last-child td { border-bottom: none; }

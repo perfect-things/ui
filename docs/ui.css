@@ -929,12 +929,7 @@ input[type=color] {
 .table th:last-child,
 .table td:last-child { padding-right: var(--ui-margin-l); }
 
-.text-fit {
-	display: inline-block;
-	transform-origin: center;
-	white-space: nowrap;
-	-webkit-font-smoothing: subpixel-antialiased;
-}
+.table tbody tr:last-child td { border-bottom: none; }
 
 .tooltip-container {
 	z-index: 9999;

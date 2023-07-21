@@ -34563,10 +34563,10 @@ function create_each_block10(ctx) {
       t2 = (0, import_internal41.space)();
       td2 = (0, import_internal41.element)("td");
       t3 = (0, import_internal41.space)();
-      (0, import_internal41.add_location)(td0, file35, 11, 4, 247);
-      (0, import_internal41.add_location)(td1, file35, 12, 4, 272);
-      (0, import_internal41.add_location)(td2, file35, 13, 4, 309);
-      (0, import_internal41.add_location)(tr, file35, 10, 3, 238);
+      (0, import_internal41.add_location)(td0, file35, 11, 4, 253);
+      (0, import_internal41.add_location)(td1, file35, 12, 4, 278);
+      (0, import_internal41.add_location)(td2, file35, 13, 4, 315);
+      (0, import_internal41.add_location)(tr, file35, 10, 3, 244);
     },
     m: function mount(target, anchor) {
       (0, import_internal41.insert_dev)(target, tr, anchor);
@@ -34644,12 +34644,12 @@ function create_default_slot4(ctx) {
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
-      (0, import_internal41.add_location)(th0, file35, 6, 6, 129);
-      (0, import_internal41.add_location)(th1, file35, 6, 24, 147);
-      (0, import_internal41.add_location)(th2, file35, 6, 43, 166);
-      (0, import_internal41.add_location)(tr, file35, 6, 2, 125);
-      (0, import_internal41.add_location)(thead, file35, 5, 1, 115);
-      (0, import_internal41.add_location)(tbody, file35, 8, 1, 203);
+      (0, import_internal41.add_location)(th0, file35, 6, 6, 135);
+      (0, import_internal41.add_location)(th1, file35, 6, 24, 153);
+      (0, import_internal41.add_location)(th2, file35, 6, 43, 172);
+      (0, import_internal41.add_location)(tr, file35, 6, 2, 131);
+      (0, import_internal41.add_location)(thead, file35, 5, 1, 121);
+      (0, import_internal41.add_location)(tbody, file35, 8, 1, 209);
     },
     m: function mount(target, anchor) {
       (0, import_internal41.insert_dev)(target, thead, anchor);
@@ -34702,7 +34702,7 @@ function create_default_slot4(ctx) {
     block,
     id: create_default_slot4.name,
     type: "slot",
-    source: '(5:0) <Table class=\\"api-table\\" selectable=\\"false\\">',
+    source: '(5:0) <Table class=\\"api-table\\" selectable=\\"false\\" round>',
     ctx
   });
   return block;
@@ -34722,6 +34722,7 @@ function create_fragment41(ctx) {
     props: {
       class: "api-table",
       selectable: "false",
+      round: true,
       $$slots: { default: [create_default_slot4] },
       $$scope: { ctx }
     },

@@ -6,7 +6,7 @@
 }
 .api-table .table { table-layout: fixed; min-width: 900px; }
 
-.api-table tr td { vertical-align: top; }
+.api-table tr td { vertical-align: top; padding-block: 0.5rem;}
 
 .api-table tr th:first-child,
 .api-table tr td:first-child { width: 200px; }
@@ -228,8 +228,9 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	max-width: 180px;
 	max-height: 180px;
 	opacity: 0.9;
-	filter: drop-shadow(0 1px 2px #0009);
+	filter: drop-shadow(0 1px 1px #000);
 }
+
 
 .logotype {
 	font-size: clamp(32px, 5vw, 72px);
@@ -420,22 +421,11 @@ small { display: block; margin: 5px 0 15px; }
 .min-h { min-height: 50px; max-height: 150px; }
 
 .table-viewport {
-	width: 50%;
+	width: 500px;
+	max-width: 100%;
 	height: 500px;
-	border: 1px dashed red;
-	padding: 4px;
-}
-
-.text-fit-div {
-	border: 1px dotted red;
-	margin: 1em 0;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	resize: horizontal;
-	font-size: 32px;
+	border: 2px dashed red;
+	padding: 5px;
 }
 
 .toggle-box {
