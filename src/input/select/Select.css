@@ -16,7 +16,7 @@
 
 	border: 1px solid transparent;
 	height: calc(var(--ui-button-height) - 2px);
-	line-height: 1;
+	line-height: 1.2;
 	color: var(--ui-color-text);
 	background-color: var(--ui-color-background-input);
 	border-radius: var(--ui-border-radius);
