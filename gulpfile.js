@@ -55,7 +55,7 @@ function getVersion () {
 export function html () {
 	const comment = '<!-- scripts-go-here -->';
 	const reloadScript = '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
-	const analyticsScript = '<script defer data-domain="perfect-things.github.io" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
+	const analyticsScript = '<script defer data-domain="ui.perfectthings.dev" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
 
 	let script = isProd ? analyticsScript : reloadScript;
 	const version = getVersion();
