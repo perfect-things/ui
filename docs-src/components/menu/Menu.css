@@ -11,10 +11,12 @@
 small { display: block; margin: 5px 0 15px; }
 
 .another-element-with-z-index {
-	background-color: var(--ui-color-background-1);
+	border: 2px dotted var(--ui-color-accent);
+	background-color: var(--ui-color-background);
 	padding: 20px;
 	position: relative;
 	z-index: 5;
+	margin-top: 1rem;
 }
 
 .docs-menu-align-right { float: right; }

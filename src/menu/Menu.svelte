@@ -57,6 +57,7 @@ onDestroy(() => {
 
 function indexButtons () {
 	if (!element) return;
+	menuButtons.length = 0;
 	const addBtn = el => menuButtons.push({ el, text: el.textContent.trim().toLowerCase() });
 	element.querySelectorAll(buttonSelector).forEach(addBtn);
 }

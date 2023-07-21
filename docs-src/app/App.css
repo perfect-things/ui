@@ -62,7 +62,8 @@ hr {
 
 
 .docs-overflow-box {
-	background-color: var(--ui-color-background-1);
+	border: 2px dotted var(--ui-color-accent);
+	background-color: var(--ui-color-background);
 	padding: 1em;
 	overflow: hidden;
 	z-index: 1;
