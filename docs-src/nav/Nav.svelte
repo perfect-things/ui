@@ -58,8 +58,7 @@
 		<h3>Generic</h3>
 		<NavItem name="Menu" {active} />
 		<NavItem name="Icon" {active} />
-		<NavItem name="Splitter" {active} />
-		<NavItem name="TextFit" {active} />
+		<!-- <NavItem name="Splitter" {active} /> -->
 		<NavItem name="Color Palette" {active} />
 	</menu>
 
