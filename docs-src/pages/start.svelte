@@ -1,20 +1,24 @@
-<header class="main-header">
-	<img class="logo" src="logo2.png" alt="Logo"/>
-	<h1 class="logotype">PerfectThings <em>UI</em><sub>v{window.UI_VERSION || ''}</sub></h1>
+<ul class="social-buttons">
+	<li class="social-button"><a href="https://github.com/perfect-things/ui/">Github Repo</a>
+	<li class="social-button"><a href="https://www.npmjs.com/package/@perfectthings/ui">NPM Page</a>
+</ul>
 
+<header class="main-header">
+	<a href="https://ui.perfectthings.dev">
+		<img class="logo" src="logo.png" alt="Logo"/>
+		<h1 class="logotype">PerfectThings <em>UI</em><sub>v{window.UI_VERSION || ''}</sub></h1>
+	</a>
 </header>
 
-<p>A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).</p>
-<ul>
-	<li><a href="https://ui.perfectthings.dev">Homepage and docs</a>
-	<li><a href="https://github.com/perfect-things/ui/">Github Repo</a>
-	<li><a href="https://www.npmjs.com/package/@perfectthings/ui">NPM Page</a>
-</ul>
+<p>PerfectThings UI (or <em>@perfectthings/ui</em>) is a beautiful UI framework and a simple design system
+	available as an npm module, that strives to provide the best possible UX when building web applications in
+	<a href="http://svelte.dev">svelte</a>.
+</p>
 
 
 <h2>Get started</h2>
 
-<h3>1. Firstly, install the module as a dev dependency:</h3>
+<h3>1. First, install the module as a dev dependency:</h3>
 
 <pre><code class="language-bash">
 	npm i -D @perfectthings/ui

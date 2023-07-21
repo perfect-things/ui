@@ -1,13 +1,13 @@
-.main-header {
-	height: 30vw;
-	max-height: 300px;
+.main-header { height: 32vw; max-height: 300px; }
+
+.main-header a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 2.4vw;
-	margin: -2rem -0 2rem;
-	padding: 2rem 0;
+	padding: 5rem 0 0;
 	overflow: hidden;
+	text-decoration: none;
 }
 
 .logo {
@@ -31,6 +31,7 @@
 	line-height: 1;
 	width: auto;
 }
+
 .logotype em { font-weight: 500; }
 .logotype sub {
 	font-size: 1rem;
@@ -61,3 +62,18 @@ li code {
 	font: inherit;
 	white-space: break-spaces;
 }
+
+
+.social-buttons {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 1rem;
+	right: 2rem;
+	gap: 1.4rem;
+	margin: 0;
+	list-style: none;
+}
+
+.social-button a { opacity: 0.5; text-decoration: none; }
+.social-button a:hover { opacity: 1; text-decoration: underline; }
