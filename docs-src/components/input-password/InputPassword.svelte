@@ -1,8 +1,10 @@
 <h2>Input Password</h2>
 <p>Enhanced input password field with password strength indicator.</p>
 <p>To be able to use the password strength indicator, <a href="https://github.com/dropbox/zxcvbn">zxcvbn</a> lib must be available on the global scope (<em>window.zxcvbn</em>).<br>
-	This script file is available in this npm package <em>node_modules/@perfectthings/ui/docs/zxcvbn.js</em>, from where it can be copied and loaded e.g. in a <em>&lt;script&gt;</em> tag.
+	This script file is available in this npm package <em>node_modules/@perfectthings/ui/docs/zxcvbn.js</em>, from where it can be copied and loaded,<br>
+	e.g. in a <em>&lt;script&gt;</em> tag.
 </p>
+
 
 <hr>
 

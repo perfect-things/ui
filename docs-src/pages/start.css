@@ -47,7 +47,13 @@ h2 {
 	display: flex;
 	align-items: center;
 	gap: 0.5em;
-	font-weight: 400;
+	font-weight: 350;
+	font-size: 1.8rem;
+
+	padding-bottom: 1rem;
+	border-bottom: 1px solid var(--ui-color-border-2);
+	margin-top: 4rem;
+	margin-bottom: 2rem;
 }
 /* stylelint-disable-next-line no-descending-specificity */
 h2 em { color: var(--ui-color-text-semi); font-size: 0.8em; }
