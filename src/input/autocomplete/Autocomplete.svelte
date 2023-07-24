@@ -74,6 +74,8 @@
 				{#if shouldShowNewItem}
 					<div class="autocomplete-list-header">Create new item</div>
 					<div
+						role="option"
+						aria-selected="{highlightIndex === filteredData.length}"
 						class="autocomplete-list-item"
 						class:selected="{highlightIndex === filteredData.length}"
 						on:click="{() => onclick({ name: inputElement.value, idx: filteredData.length })}">

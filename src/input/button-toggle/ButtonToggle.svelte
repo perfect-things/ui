@@ -17,6 +17,7 @@
 		<div class="input-scroller">
 			<div class="input-row" id="{_id}">
 				{#each _items as item}
+					<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 					<label
 						{disabled}
 						class="button button-normal"

@@ -1,5 +1,5 @@
-import { ButtonToggle } from '../src/input/button-toggle';
 import { render, fireEvent } from '@testing-library/svelte';
+import { ButtonToggle } from '../src/input/button-toggle';
 import { waitForTimeout } from './helpers/utils';
 
 

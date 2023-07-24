@@ -1,5 +1,5 @@
-import { Icon } from '../src/icon';
 import { render } from '@testing-library/svelte';
+import { Icon } from '../src/icon';
 
 
 

@@ -1,5 +1,6 @@
-import Table from './helpers/Table.svelte';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import Table from './helpers/Table.svelte';
 import userEvent from '@testing-library/user-event';
 
 

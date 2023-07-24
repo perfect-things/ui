@@ -1,8 +1,10 @@
 import { fireEvent, render } from '@testing-library/svelte';
-import { InputPassword } from '../src/input';
 import userEvent from '@testing-library/user-event';
-import { waitForTimeout } from './helpers/utils';
+import jest from 'jest-mock';
 import zxcvbn from 'zxcvbn';
+
+import { InputPassword } from '../src/input';
+import { waitForTimeout } from './helpers/utils';
 
 
 const props = {

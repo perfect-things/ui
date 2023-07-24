@@ -1,3 +1,5 @@
+import jest from 'jest-mock';
+
 import * as utils from '../src/input/autocomplete/utils';
 import { offsetHeight, offsetTop } from './helpers/utils';
 

@@ -1,5 +1,6 @@
-import { Radio } from '../src/input';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import { Radio } from '../src/input';
 import { waitForTimeout } from './helpers/utils';
 
 

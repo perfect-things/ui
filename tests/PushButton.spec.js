@@ -1,5 +1,6 @@
-import { PushButton } from '../src/push-button';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import { PushButton } from '../src/push-button';
 
 
 test('PushButton', async () => {

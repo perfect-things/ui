@@ -1,5 +1,6 @@
-import { NotificationCenter, showNotification, hideNotification } from '../src/notification-center';
 import { fireEvent, render } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import { NotificationCenter, showNotification, hideNotification } from '../src/notification-center';
 import { waitForTimeout } from './helpers/utils';
 
 

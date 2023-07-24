@@ -1,4 +1,6 @@
 import { render } from '@testing-library/svelte';
+import jest from 'jest-mock';
+
 import { InputText } from '../src/input';
 import { waitForTimeout } from './helpers/utils';
 

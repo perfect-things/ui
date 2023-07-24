@@ -1,5 +1,5 @@
-import Splitter from './helpers/Splitter.svelte';
 import { render } from '@testing-library/svelte';
+import Splitter from './helpers/Splitter.svelte';
 
 
 test('Splitter', async () => {
