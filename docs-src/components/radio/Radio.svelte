@@ -45,6 +45,7 @@ const apiProps = [
 	{ name: 'label', type: 'string', description: 'Label for the whole component.' },
 	{ name: 'title', type: 'string', description: 'Assign title to whole component.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Value of the component (=value of the checked item).' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
 

@@ -3,9 +3,9 @@ export { Button } from './button';
 export { PushButton } from './push-button';
 export { ButtonGroup } from './button-group';
 export { ButtonToggle } from './button-toggle';
-export { Datepicker } from './datepicker';
 
 export { Checkbox } from './checkbox';
+export { InputDate } from './input-date';
 export { InputMath } from './input-math';
 export { InputNumber } from './input-number';
 export { InputPassword } from './input-password';
@@ -27,7 +27,5 @@ export { Tree } from './tree';
 
 export { Icon } from './icon';
 export { NotificationCenter } from './notification-center';
-export { TextFit } from './text-fit';
-export { Toaster } from './toaster';
 export { Tooltip } from './tooltip';
 export { ColorPalette } from './color-palette';

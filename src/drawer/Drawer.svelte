@@ -4,7 +4,7 @@
 		class="drawer {className}"
 		tabindex="-1"
 		use:docclick
-		bind:this="{el}"
+		bind:this="{element}"
 		in:fly="{{ x: 300, duration: $ANIMATION_SPEED }}"
 		out:fly="{{ x: 300, duration: $ANIMATION_SPEED ? $ANIMATION_SPEED + 100 : 0 }}"
 	>
@@ -25,13 +25,15 @@ import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 import { Button } from '../button';
 
-export let title = 'Drawer';
 let className = '';
 export { className as class };
+export let title = 'Drawer';
+export let element = undefined;
+
 
 const dispatch = createEventDispatcher();
 let isVisible = false;
-let el, headerEl, targetBtn;
+let headerEl, targetBtn;
 
 
 function docclick () {
@@ -43,7 +45,7 @@ function docclick () {
 
 
 function onDocClick (e) {
-	if (el.contains(e.target)) return;
+	if (element.contains(e.target)) return;
 	if (!isVisible) return;
 	e.preventDefault();
 	e.stopPropagation();
@@ -89,7 +91,7 @@ function focusLast () {
 
 
 function getFocusableElements () {
-	return Array.from(el.querySelectorAll(FOCUSABLE_SELECTOR));
+	return Array.from(element.querySelectorAll(FOCUSABLE_SELECTOR));
 }
 
 </script>

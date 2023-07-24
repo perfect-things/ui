@@ -3,10 +3,11 @@
 	class="checkbox {className}"
 	class:indeterminate
 	class:disabled
-	class:has-error="{error}">
+	class:has-error="{error}"
+	bind:this="{element}">
 
 	<Info msg="{info}" />
-	<InputError id="{errorMessageId}" msg="{error}" />
+	<InputError id="{errorMessageId}" msg="{error}" animOffset="8" />
 
 	<div class="checkbox-row">
 		<input
@@ -14,26 +15,29 @@
 			{name}
 			id="{_id}"
 			{disabled}
-			bind:this="{_this}"
+			{tabindex}
+			bind:this="{inputElement}"
 			bind:checked="{checked}"
 			bind:indeterminate="{indeterminate}"
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
 			on:change="{onchange}">
-		<label class="label" for="{_id}">{label}</label>
+
+		<Label {label} for="{_id}"/>
 	</div>
 </div>
 
 <script>
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';
 export { className as class };
-export let _this = undefined;
 export let indeterminate = false;
 export let checked = false;
 export let disabled = false;
@@ -42,8 +46,13 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 export let title = undefined;
+export let tabindex = undefined;
 export let name = '';
 export let required = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
+
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();

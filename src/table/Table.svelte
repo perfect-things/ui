@@ -1,29 +1,30 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-	class="table-wrapper {className}"
+	class="table {className}"
 	class:round
-	class:selectable
-	bind:this="{_this}"
+	class:selectable="{_selectable}"
+	bind:this="{element}"
 	on:click="{onClick}"
 	on:focus|capture="{onFocus}"
 	on:keydown="{onKeyDown}"
 	on:dblclick="{onDblClick}">
 
-	<table class="table"><slot /></table>
+	<table><slot /></table>
 </div>
 
 <script>
 import { onDestroy, onMount, createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
-export let _this = undefined;
+let className = '';
+export { className as class };
 export let selectable = true;
 export let round = false;
 export let scrollContainer = undefined;
 export let scrollCorrectionOffset = 0;
 
-let className = '';
-export { className as class };
+export let element = undefined;
+
 
 // useful for when row-groups are needed.
 // then tbody.row-selector can be set to allow highlighting whole groups
@@ -35,13 +36,15 @@ let headerHeight = 0;
 let clickTimer;
 let previousKey;
 
+$:_selectable = (selectable === true || selectable === 'true');
+
 
 onMount(() => {
-	Object.assign(_this.dataset, data);
-	if (selectable === true || selectable === 'true') {
+	Object.assign(element.dataset, data);
+	if (_selectable) {
 		makeRowsSelectable();
 		requestAnimationFrame(() => {
-			const head = _this && _this.querySelector('thead');
+			const head = element && element.querySelector('thead');
 			if (head) headerHeight = head.offsetHeight;
 		});
 	}
@@ -49,7 +52,7 @@ onMount(() => {
 
 
 onDestroy(() => {
-	if (selectable === true || selectable === 'true') makeRowsNotSelectable();
+	if (_selectable) makeRowsNotSelectable();
 });
 
 
@@ -60,7 +63,7 @@ onDestroy(() => {
  * @param getFromAllTables
  */
 function getSelectableItems (getFromAllTables = true) {
-	const rootEl = getFromAllTables ? _this.parentNode : _this;
+	const rootEl = getFromAllTables ? element.parentNode : element;
 	const rows = rootEl.querySelectorAll(`.table ${rowSelector}`);
 	if (rows && rows.length) return Array.from(rows);
 	return [];
@@ -100,10 +103,10 @@ function selectNext (skipEvent = false) {
 function getScrollContainer () {
 	let scrlCont;
 	if (scrollContainer) {
-		if (typeof scrollContainer === 'string') scrlCont = _this.closest(scrollContainer);
+		if (typeof scrollContainer === 'string') scrlCont = element.closest(scrollContainer);
 		else scrlCont = scrollContainer;
 	}
-	return scrlCont || _this;
+	return scrlCont || element;
 }
 
 
@@ -116,7 +119,7 @@ function selectClicked (skipEvent = false) {
 	const scrlCont = getScrollContainer();
 	if (!scrlCont || !scrlCont.scrollTo) return;
 
-	const topMargin = (scrlCont === _this ? 0 : _this.offsetTop);
+	const topMargin = (scrlCont === element ? 0 : element.offsetTop);
 
 	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
 	if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top: Math.round(top) });
@@ -141,8 +144,8 @@ function selectFocusedRow (rowEl) {
 
 
 function onFocus (e) {
-	if (selectable !== true && selectable !== 'true') return;
-	if (!_this.contains(e.target)) return;
+	if (!_selectable) return;
+	if (!element.contains(e.target)) return;
 	if (!e || !e.target || shouldSkipNav(e)) return;
 	if (e.target === document) return;
 	if (!e.target.matches(rowSelector)) return;
@@ -156,7 +159,7 @@ function onFocus (e) {
 
 
 function onClick (e) {
-	if (!_this.contains(e.target)) return;
+	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	// debounce, so to not duplicate events when dblclicking
@@ -172,8 +175,8 @@ function onClick (e) {
 
 
 function onDblClick (e) {
-	if (selectable !== true && selectable !== 'true') return;
-	if (!_this.contains(e.target)) return;
+	if (!_selectable) return;
+	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
@@ -186,8 +189,8 @@ function onDblClick (e) {
 
 
 function onKeyDown (e) {
-	if (selectable !== true && selectable !== 'true') return;
-	if (!_this.contains(e.target)) return;
+	if (!_selectable) return;
+	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	if (e.key === 'ArrowUp' || e.key === 'k') {

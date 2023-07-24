@@ -18,7 +18,7 @@
 	align-items: stretch;
 	background-color: var(--ui-color-background-input);
 	border-radius: var(--ui-border-radius);
-	border: 1px solid  var(--ui-color-background-dark-2);
+	border: 1px solid  var(--ui-color-border);
 }
 
 .textarea textarea {

@@ -6,7 +6,7 @@
 		class:success
 		class:warning
 		class:danger
-		bind:this="{el}">
+		bind:this="{element}">
 
 		<div class="tooltip {className}" role="tooltip">
 			<div class="tooltip-content"><slot/> </div>
@@ -28,11 +28,13 @@ export let info = false;
 export let success = false;
 export let warning = false;
 export let danger = false;
+export let element = undefined;
+
 
 let _position = 'top';
 let visible = false;
 let showTimer, hideTimer, shownEvent, noHide = false;
-let el, targetEl, tooltipContainer;
+let targetEl, tooltipContainer;
 
 
 onMount(() => {
@@ -61,7 +63,7 @@ function _show (e) {
 	showTimer = null;
 	shownEvent = e.type;
 	requestAnimationFrame(() => {
-		tooltipContainer.appendChild(el);
+		tooltipContainer.appendChild(element);
 		align();
 	});
 	requestAnimationFrame(addTooltipEvents);
@@ -88,7 +90,7 @@ function _hide () {
  */
 function hide (e) {
 	const targetIsSelf = (targetEl instanceof Node) && (e.target instanceof Node) && targetEl.contains(e.target);
-	const targetIsTooltip = el && (targetEl instanceof Node) && el.contains(e.target);
+	const targetIsTooltip = element && (targetEl instanceof Node) && element.contains(e.target);
 
 	if ((e.type === 'mousedown' || e.type === 'click') && targetIsSelf) return;
 	if (showTimer && shownEvent !== 'click') {
@@ -111,7 +113,7 @@ function hide (e) {
 function align () {
 	if (!visible) return;
 	const targetBox = targetEl.getBoundingClientRect();
-	const tooltipBox = el.getBoundingClientRect();
+	const tooltipBox = element.getBoundingClientRect();
 
 	_position = 'top';
 	let top = targetBox.top - tooltipBox.height - (parseFloat(offset) || 2);
@@ -121,8 +123,8 @@ function align () {
 		top = targetBox.top + targetBox.height + (parseFloat(offset) || 2);
 		_position = 'bottom';
 	}
-	el.style.top = top + 'px';
-	el.style.left = left + 'px';
+	element.style.top = top + 'px';
+	element.style.left = left + 'px';
 }
 
 
@@ -142,15 +144,15 @@ function onKey (e) {
 
 
 function addTooltipEvents () {
-	if (!el) return;
-	el.addEventListener('mousedown', preventHiding);
+	if (!element) return;
+	element.addEventListener('mousedown', preventHiding);
 	if (events.includes('focus')) {
-		el.addEventListener('focus', show);
-		el.addEventListener('blur', hide);
+		element.addEventListener('focus', show);
+		element.addEventListener('blur', hide);
 	}
 	if (events.includes('hover')) {
-		el.addEventListener('mouseover', show);
-		el.addEventListener('mouseout', hide);
+		element.addEventListener('mouseover', show);
+		element.addEventListener('mouseout', hide);
 	}
 	window.addEventListener('resize', hide);
 	document.addEventListener('scroll', hide, true);
@@ -159,15 +161,15 @@ function addTooltipEvents () {
 
 
 function removeTooltipEvents () {
-	if (!el) return;
-	el.removeEventListener('mousedown', preventHiding);
+	if (!element) return;
+	element.removeEventListener('mousedown', preventHiding);
 	if (events.includes('focus')) {
-		el.removeEventListener('focus', show);
-		el.removeEventListener('blur', hide);
+		element.removeEventListener('focus', show);
+		element.removeEventListener('blur', hide);
 	}
 	if (events.includes('hover')) {
-		el.removeEventListener('mouseover', show);
-		el.removeEventListener('mouseout', hide);
+		element.removeEventListener('mouseover', show);
+		element.removeEventListener('mouseout', hide);
 	}
 	window.removeEventListener('resize', hide);
 	document.removeEventListener('scroll', hide, true);

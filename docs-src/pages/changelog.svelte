@@ -1,4 +1,43 @@
 <h1>Changelog</h1>
+<h2>v8.0.0 <em>(2023-07-?)</em></h2>
+<ul>
+<li><strong>New:</strong> <code>Label</code> component.</li>
+<li><strong>New icons:</strong> <code>sun</code> and <code>moon</code> for the dark-theme switchers.</li>
+<li><strong>Improvement:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>InputDate</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
+<li><strong>Improvement:</strong> all components now expose <code>element</code> and <code>inputElement</code> (if there is one (and only one)). The exceptions are <code>NotificationCenter</code> and <code>MessageBox</code>, due to their implementation.</li>
+<li>Added <code>title</code> attribute to <code>ButtonToggle</code>.</li>
+<li>Added <code>success</code> type for <code>MessageBox</code>.</li>
+<li>Fixed <code>selectable=false</code> not working on <code>Table</code>.</li>
+<li>Improved styling for <code>Dialog</code> and <code>MessageBox</code>.</li>
+</ul>
+<h3>Breaking changes</h3>
+<ul>
+<li>Color palette has been completely revamped for better accessibility (more contrast), consistency and simplicity (fewer colors and css variables).</li>
+<li>Removed <code>drawBorders</code> attribute from <code>Dialog</code>, while improving the header and footer styling for all dialogs.</li>
+<li><code>Toaster</code> component was removed. Use <code>NotificationCenter</code> instead.</li>
+<li><code>Datepicker</code> was renamed to <code>InputDate</code>.</li>
+<li><code>Autocomplete</code> - HTML structure changed: <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-inner .input-row input</code></li>
+<li><code>Select</code> - HTML structure changed: <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
+<li><code>Table</code> - CSS classes changed from <code>.table-wrapper table.table</code> --&gt; <code>.table table</code></li>
+<li><code>Toggle</code> - HTML structure changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
+<li>These components previously exposed <code>_this</code>, which is now renamed to <code>element</code>: <code>Button</code>, <code>Checkbox</code>, <code>InputMath</code>, <code>PushButton</code>, <code>Table</code></li>
+</ul>
+<h3>Color palette - mapping from v7 to v8 colors:</h3>
+<ul>
+<li><code>--ui-color-text-dark-1</code> --&gt; <code>--ui-color-text-1</code></li>
+<li><code>--ui-color-text-dark-2</code> --&gt; <code>--ui-color-text-2</code></li>
+<li><code>--ui-color-border-dark-1</code> --&gt; <code>--ui-color-border-1</code></li>
+<li><code>--ui-color-border-dark-2</code> --&gt; <code>--ui-color-border-2</code></li>
+<li><code>--ui-color-background-light-2</code> --&gt; <code>--ui-color-background-1</code></li>
+<li><code>--ui-color-background-dark-2</code> --&gt; <code>--ui-color-background-2</code></li>
+<li><code>--ui-color-highlight-dark-2</code> --&gt; <code>--ui-color-highlight-1</code></li>
+</ul>
+<p>Other (not mentioned above) color variations, (i.e. <code>-light-</code> and <code>-dark-</code>) have been removed.</p>
+<hr>
+<h2>v7.1.2 <em>(2023-07-05)</em></h2>
+<ul>
+<li>Fix <code>Checkbox</code> label (don&#39;t render empty label if no label attribute was passed).</li>
+</ul>
 <h2>v7.1.1 <em>(2023-07-01)</em></h2>
 <ul>
 <li>Fixed some <code>NotificationCenter</code> bugs.</li>
@@ -21,10 +60,10 @@
 <ul>
 <li><strong>New:</strong> <a href="#InfoBar">InfoBar</a> component.</li>
 <li><strong>New:</strong> <a href="#InputText">InputText</a>, <a href="#InputNumber">InputNumber</a>, and <a href="#Radio">Radio</a> components.</li>
-<li><strong>New:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported in all basic inputs (<code>InputText</code>, <code>InputNumber</code>, <code>InputMath</code>, <code>InputPassword</code>, <code>Radio</code>, and <code>Checkbox</code>).</li>
+<li><strong>New:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on all basic inputs (<code>InputText</code>, <code>InputNumber</code>, <code>InputMath</code>, <code>InputPassword</code>, <code>Radio</code>, and <code>Checkbox</code>).</li>
 <li><strong>Improved:</strong> <code>InputMath</code> component: support for <code>()</code> characters, to allow for more complex expressions.</li>
 </ul>
-<h3>Breaking changes!</h3>
+<h3>Breaking changes</h3>
 <h4>Checkbox</h4>
 <ul>
 <li>HTML structure changed <code>input</code> --&gt; <code>.checkbox .checkbox-row input</code></li>
@@ -32,15 +71,15 @@
 </ul>
 <h4>InputMath</h4>
 <ul>
-<li>HTML structure changed <code>.input-math-wrapper input</code> --&gt; <code>.input-math .input-text-inner .input-math-row input</code></li>
+<li>HTML structure changed <code>.input-math-wrapper input</code> --&gt; <code>.input-math .input-inner .input-math-row input</code></li>
 </ul>
 <h4>InputNumber:</h4>
 <ul>
-<li>HTML structure changed: <code>input</code> --&gt; <code>.input-number .input-text-inner input</code></li>
+<li>HTML structure changed: <code>input</code> --&gt; <code>.input-number .input-inner input</code></li>
 </ul>
 <h4>InputPassword</h4>
 <ul>
-<li>HTML structure changed: <code>.input-password-wrapper .input-password-row input</code> --&gt; <code>.input-password .input-text-inner .input-password-row input</code></li>
+<li>HTML structure changed: <code>.input-password-wrapper .input-password-row input</code> --&gt; <code>.input-password .input-inner .input-password-row input</code></li>
 </ul>
 <h4>CSS variables changed:</h4>
 <ul>
@@ -242,6 +281,7 @@
 <ul>
 <li>rebrand <code>simple-ui-components-in-svelte</code> to <code>@perfectthings/ui</code></li>
 </ul>
+<hr>
 <h2>v5.1.0 <em>(2023-03-12)</em></h2>
 <ul>
 <li>Better Menu highlighting (doesn&#39;t hl first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS</li>
@@ -290,11 +330,13 @@
 <li>Docs API table is now alphabetically sorted</li>
 <li>Components don&#39;t use <code>$$props</code> anymore, as it was causing issues with the <code>class</code> prop. Instead, the props are now explicitly passed down to the component. This is a good thing to do, as it makes the components more explicit and easier to understand.</li>
 </ul>
+<hr>
 <h2>v4.0.0 <em>(2023-02-28)</em></h2>
 <ul>
 <li>Breaking change: renamed components: <code>Item</code> -&gt; <code>MenuItem</code>, <code>Separator</code> -&gt; <code>MenuSeparator</code></li>
 <li>Refactored the folder structure</li>
 </ul>
+<hr>
 <h2>v3.1.2 <em>(2023-01-04)</em></h2>
 <ul>
 <li>Toggle&#39;s <code>innerWidth</code> function was somehow overwriting <code>window.innerWidth</code> property (maybe a compiler issue?)</li>
@@ -319,8 +361,10 @@
 <li>breaking change: <code>cssClass</code> property available on some components has been renamed to <code>className</code> (to be more aligned with the standard workaround in other libs/frameworks).</li>
 <li>some components (where possible) are now using <code>$$props</code> to pass-through the properties of the instance down to the component.</li>
 </ul>
+<hr>
 <h2>v2.1.1 (2022-12-24)</h2>
 <ul>
 <li>breaking change: <code>dist</code> folder has been renamed to <code>docs</code>, as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).</li>
 </ul>
+<hr>
 <h2>v1.7.12</h2>

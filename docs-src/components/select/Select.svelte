@@ -20,6 +20,16 @@
 <Select placeholder="Please select..." items="{stringItems}" bind:value="{val}"/> Selected value: {val}
 
 
+<h3>Label</h3>
+<Select items="{selectItems}" label="Select label" />
+
+<h3>Info</h3>
+<Select items="{selectItems}" label="Select label" info="Select something here" />
+
+<h3>Error</h3>
+<Select items="{selectItems}" label="Select label" error="You picked the wrong side!" />
+
+
 <CodeExample html="{exampleHtml}" />
 
 <API props="{apiProps}"/>
@@ -33,14 +43,19 @@ let val = 'Beta';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
+	{ name: 'disabled', description: 'Make the select disabled.' },
+	{ name: 'id', type: 'string', description: 'Assign ID to the underlying select.' },
+	{ name: 'info', type: 'string', description: 'Show info message above the select.' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the select.' },
+	{ name: 'label', type: 'string', description: 'Label for the select.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'name', type: 'string', description: 'Assign title to the underlying select.' },
 	{ name: 'placeholder', type: 'string', description: 'Adds an item to the beginning of the options list.' },
-	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until an option is selected.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. ' },
+	{ name: 'required', description: 'Mark the select as <i>aria-required</i>.' },
+	{ name: 'title', type: 'string', description: 'Assign title to the underlying select.' },
+	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the select.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. ' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying select.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
 

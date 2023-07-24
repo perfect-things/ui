@@ -1,26 +1,3 @@
-.input-text { width: 25ch; vertical-align: middle; }
-
-.input-text input:not([type=radio]) { width: 100%; border: none; }
-.input-text input:not([type=radio]):focus { box-shadow: none; border: none; }
-.input-text input:not([type=radio]):invalid { border: none; box-shadow: none; }
-
-.input-text-inner {
-	display: flex;
-	flex-flow: column;
-	align-items: stretch;
-	justify-content: stretch;
-	border-radius: var(--ui-border-radius);
-	background: var(--ui-color-background-input);
-	border: 1px solid  var(--ui-color-background-dark-2);
+.input-text .input-inner {
 	overflow: hidden;
 }
-
-.input-text-inner:focus-within {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
-
-.has-error .input-text-inner  { border-color: var(--ui-color-danger); }
-
-.has-error .input-text-inner:focus-within { box-shadow: var(--ui-shadow-danger); }

@@ -10,7 +10,7 @@
 		{danger}
 		{round}
 		{icon}
-		bind:this="{_this}"
+		bind:element="{element}"
 		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}">
 			<slot></slot>
@@ -27,7 +27,7 @@
 		{danger}
 		{round}
 		{icon}
-		bind:this="{_this}"
+		bind:element="{element}"
 		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}"/>
 {/if}
@@ -36,7 +36,9 @@ import { createEventDispatcher } from 'svelte';
 import { Button } from '../button';
 import { pluck } from '../utils';
 
-export let _this = undefined;
+let className = '';
+export { className as class };
+
 export let pressed = false;
 
 export let info = false;
@@ -48,8 +50,8 @@ export let outline = false;		// button without background, but with border
 export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button
 
-let className = '';
-export { className as class };
+export let element = undefined;
+
 
 $:props = pluck($$props, ['id', 'title', 'disabled']);
 

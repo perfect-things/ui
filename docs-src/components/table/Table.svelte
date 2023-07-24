@@ -125,6 +125,7 @@ const apiProps = [
 	{ name: 'scrollContainer', type: ['string','Element'], default: 'table wrapper', description: 'Selector or HTML Element to the scroll container. If table wrapper\'s height is not set to 100% of the container, and is taller than the container - the container will have to be scrollable, and in this case it must be provided here.' },
 	{ name: 'scrollCorrectionOffset', type: 'number', default: '0', description: 'If an external <em>scrollContainer</em> is used - it is possible that it will have non-zero padding set, thus the table wrapper will be offset from the beginning of the container. This offset should be set here, so that the sticky headers work correctly.' },
 	{ name: 'selectable', type: ['true', 'false'], description: 'Makes table rows selectable with mouse and adds keyboard navigation.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:click', type: 'function', description: 'Triggered after a row has been clicked.' },
 	{ name: 'on:dblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered after key has been pressed.' },

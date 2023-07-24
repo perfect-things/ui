@@ -2,6 +2,45 @@ Changelog
 =========
 
 
+## v8.0.0 *(2023-07-?)*
+- **New:** `Label` component.
+- **New icons:** `sun` and `moon` for the dark-theme switchers.
+- **Improvement:** `info`, `error` and `label` attributes are now supported on other inputs (`Autocomplete`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).
+- **Improvement:** all components now expose `element` and `inputElement` (if there is one (and only one)). The exceptions are `NotificationCenter` and `MessageBox`, due to their implementation.
+- Added `title` attribute to `ButtonToggle`.
+- Added `success` type for `MessageBox`.
+- Fixed `selectable=false` not working on `Table`.
+- Improved styling for `Dialog` and `MessageBox`.
+
+### Breaking changes
+- Color palette has been completely revamped for better accessibility (more contrast), consistency and simplicity (fewer colors and css variables).
+- Removed `drawBorders` attribute from `Dialog`, while improving the header and footer styling for all dialogs.
+- `Toaster` component was removed. Use `NotificationCenter` instead.
+- `Datepicker` was renamed to `InputDate`.
+- `Autocomplete` - HTML structure changed: `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
+- `Select` - HTML structure changed: `.select-wrap select` --> `.select .input-inner .input-row select`
+- `Table` - CSS classes changed from `.table-wrapper table.table` --> `.table table`
+- `Toggle` - HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
+- These components previously exposed `_this`, which is now renamed to `element`: `Button`, `Checkbox`, `InputMath`, `PushButton`, `Table`
+
+### Color palette - mapping from v7 to v8 colors:
+- `--ui-color-text-dark-1` --> `--ui-color-text-1`
+- `--ui-color-text-dark-2` --> `--ui-color-text-2`
+- `--ui-color-border-dark-1` --> `--ui-color-border-1`
+- `--ui-color-border-dark-2` --> `--ui-color-border-2`
+- `--ui-color-background-light-2` --> `--ui-color-background-1`
+- `--ui-color-background-dark-2` --> `--ui-color-background-2`
+- `--ui-color-highlight-dark-2` --> `--ui-color-highlight-1`
+
+Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have been removed.
+
+----
+
+
+## v7.1.2 *(2023-07-05)*
+- Fix `Checkbox` label (don't render empty label if no label attribute was passed).
+
+
 ## v7.1.1 *(2023-07-01)*
 - Fixed some `NotificationCenter` bugs.
 
@@ -23,23 +62,23 @@ Changelog
 ## v7.0.0 *(2023-06-28)*
 - **New:** [InfoBar](#InfoBar) component.
 - **New:** [InputText](#InputText), [InputNumber](#InputNumber), and [Radio](#Radio) components.
-- **New:** `info`, `error` and `label` attributes are now supported in all basic inputs (`InputText`, `InputNumber`, `InputMath`, `InputPassword`, `Radio`, and `Checkbox`).
+- **New:** `info`, `error` and `label` attributes are now supported on all basic inputs (`InputText`, `InputNumber`, `InputMath`, `InputPassword`, `Radio`, and `Checkbox`).
 - **Improved:** `InputMath` component: support for `()` characters, to allow for more complex expressions.
 
-### Breaking changes!
+### Breaking changes
 
 #### Checkbox
 - HTML structure changed `input` --> `.checkbox .checkbox-row input`
 - `on:change` is called with a svelte event instead of the native one, so: `e.target.checked` is now `e.detail.checked`
 
 #### InputMath
-- HTML structure changed `.input-math-wrapper input` --> `.input-math .input-text-inner .input-math-row input`
+- HTML structure changed `.input-math-wrapper input` --> `.input-math .input-inner .input-math-row input`
 
 #### InputNumber:
-- HTML structure changed: `input` --> `.input-number .input-text-inner input`
+- HTML structure changed: `input` --> `.input-number .input-inner input`
 
 #### InputPassword
-- HTML structure changed: `.input-password-wrapper .input-password-row input` --> `.input-password .input-text-inner .input-password-row input`
+- HTML structure changed: `.input-password-wrapper .input-password-row input` --> `.input-password .input-inner .input-password-row input`
 
 #### CSS variables changed:
 - `--ui-shadow-invalid` --> `--ui-shadow-danger`
@@ -236,6 +275,9 @@ Changelog
 - rebrand `simple-ui-components-in-svelte` to `@perfectthings/ui`
 
 
+----
+
+
 ## v5.1.0 *(2023-03-12)*
 - Better Menu highlighting (doesn't hl first item on open, mouseout removes the highlighting), inline with how native menus work on MacOS
 - Mobile friendlier buttons (touchstart invokes :active styling)
@@ -277,9 +319,15 @@ Changelog
 - Components don't use `$$props` anymore, as it was causing issues with the `class` prop. Instead, the props are now explicitly passed down to the component. This is a good thing to do, as it makes the components more explicit and easier to understand.
 
 
+----
+
+
 ## v4.0.0 *(2023-02-28)*
 - Breaking change: renamed components: `Item` -> `MenuItem`, `Separator` -> `MenuSeparator`
 - Refactored the folder structure
+
+
+----
 
 
 ## v3.1.2 *(2023-01-04)*
@@ -306,8 +354,14 @@ Changelog
 - some components (where possible) are now using `$$props` to pass-through the properties of the instance down to the component.
 
 
+----
+
+
 ## v2.1.1 (2022-12-24)
 - breaking change: `dist` folder has been renamed to `docs`, as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).
+
+
+----
 
 
 ## v1.7.12

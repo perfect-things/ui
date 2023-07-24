@@ -1,23 +1,25 @@
-<div class="input-text input-number {className}" class:has-error="{error}">
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
+<div
+	class="input input-number {className}"
+	class:has-error="{error}"
+	bind:this="{element}">
 
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="input-text-inner">
+	<div class="input-inner">
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<input
 			type="text"
-			inputmode="decimal"
-			pattern="-?\d+(\.\d+)?"
 			autocomplete="off"
 			{...props}
+			{name}
+			{disabled}
 			id="{_id}"
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
+			bind:this="{inputElement}"
 			bind:value="{value}"
 			on:keydown="{onkeydown}"
 			on:change="{onchange}"
@@ -30,18 +32,25 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { pluck, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';
 export { className as class };
 export let id = '';
+export let name = guid();
+export let disabled = undefined;
 export let required = undefined;
 export let value = '';
 export let label = '';
 export let error = undefined;
 export let info = undefined;
 export let separator = '.';		// decimal separator
+
+export let element = undefined;
+export let inputElement = undefined;
 
 
 const dispatch = createEventDispatcher();
@@ -53,7 +62,7 @@ const allowedKeys = [
 ];
 
 
-$:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
+$:props = pluck($$props, ['title', 'placeholder']);
 $:_id = id || name || guid();
 
 

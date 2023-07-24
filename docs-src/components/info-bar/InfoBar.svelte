@@ -32,6 +32,7 @@ const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the message paragraph.' },
 	{ name: 'msg', type: 'string', description: 'Message to display. It can use simple html for formatting (message is wrapped in <em>&lt;p&gt;</em> tag).' },
 	{ name: 'type', type: ['info', 'warning', 'error', 'success'], default: 'info', description: 'Type of the info-bar. This property only exists on the <em>&lt;InfoBar&gt;</em> component, not on the shortcut-components.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 ];
 
 

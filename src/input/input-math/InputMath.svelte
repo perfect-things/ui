@@ -1,18 +1,15 @@
 <div
-	class="input-text input-math {className}"
-	class:has-error="{error}">
+	class="input input-math {className}"
+	class:has-error="{error}"
+	bind:this="{element}">
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} for="{_id}"/>
 	<Info msg="{info}" />
 
-
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-math-row">
+		<div class="input-row">
 			<Icon name="calculator"/>
 			<input
 				type="text"
@@ -23,7 +20,7 @@
 				aria-invalid="{error}"
 				aria-errormessage="{error ? errorMessageId : undefined}"
 				aria-required="{required}"
-				bind:this="{_this}"
+				bind:this="{inputElement}"
 				bind:value="{value}"
 				on:input
 				on:keydown="{onkeydown}"
@@ -37,13 +34,13 @@
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
 import { pluck, roundAmount, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
-export let _this = undefined;
 let className = '';
 export { className as class };
-
 export let id = '';
 export let required = undefined;
 export let disabled = false;
@@ -51,6 +48,10 @@ export let value = '';
 export let label = '';
 export let error = undefined;
 export let info = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
+
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();

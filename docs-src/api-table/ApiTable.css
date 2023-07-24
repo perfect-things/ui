@@ -6,10 +6,13 @@
 }
 .api-table .table { table-layout: fixed; min-width: 900px; }
 
-.api-table tr td { vertical-align: top; }
+.api-table tr td { vertical-align: top; padding-block: 0.5rem;}
 
 .api-table tr th:first-child,
 .api-table tr td:first-child { width: 200px; }
 
 .api-table tr th:nth-child(2),
 .api-table tr td:nth-child(2) { width: 200px; }
+
+.api-table tr th:last-child,
+.api-table tr td:last-child { min-width: 400px; }

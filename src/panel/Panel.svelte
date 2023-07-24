@@ -6,7 +6,7 @@
 	class:round
 	class:disabled
 	inert="{disabled}"
-	bind:this="{wrapEl}">
+	bind:this="{element}">
 
 	<details open="{open}" on:keydown={toggle} on:click={toggle}>
 		<summary class="panel-header" bind:this="{headerEl}" inert="{!collapsible}">
@@ -33,7 +33,10 @@ export let round = false;
 export let collapsible = false;
 export let disabled = false;
 
-let wrapEl, headerEl, expanded = open;
+export let element = undefined;
+
+
+let headerEl, expanded = open;
 const expandedProps = { height: 0 };
 const collapsedProps = { height: 0 };
 
@@ -45,11 +48,11 @@ function calcHeights () {
 	const wasOpen = open;
 	open = true;
 	requestAnimationFrame(() => {
-		if (!wrapEl) return;
-		const wrapCss = getComputedStyle(wrapEl);
+		if (!element) return;
+		const wrapCss = getComputedStyle(element);
 		const borderTop = parseInt(wrapCss.borderTopWidth || 0, 10);
 		const borderBottom = parseInt(wrapCss.borderTopWidth || 0, 10);
-		expandedProps.height = wrapEl.getBoundingClientRect().height + 'px';
+		expandedProps.height = element.getBoundingClientRect().height + 'px';
 		collapsedProps.height = (headerEl.offsetHeight + borderTop + borderBottom) + 'px';
 		open = wasOpen;
 	});
@@ -72,7 +75,7 @@ export function toggle (e) {
 	e.preventDefault();
 	if (expanded) {
 		expanded = false;
-		animate(wrapEl, expandedProps, collapsedProps)
+		animate(element, expandedProps, collapsedProps)
 			.then(() => {
 				open = expanded;
 				dispatch('close');
@@ -81,7 +84,7 @@ export function toggle (e) {
 	else {
 		expanded = true;
 		open = true;
-		animate(wrapEl, collapsedProps, expandedProps)
+		animate(element, collapsedProps, expandedProps)
 			.then(() => {
 				dispatch('open');
 			});

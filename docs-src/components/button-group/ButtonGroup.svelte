@@ -9,14 +9,29 @@
 	<Button>Four</Button>
 </ButtonGroup>
 
-<h3>Normal, info</h3>
+<h3>Long</h3>
+<div style="width: 400px; max-width: 100%">
+	<ButtonGroup>
+		<Button>One</Button>
+		<Button disabled>Disabled</Button>
+		<Button>Three</Button>
+		<Button>Four</Button>
+		<Button>Five</Button>
+		<Button>Six</Button>
+		<Button>Seven</Button>
+		<Button>Eight</Button>
+		<Button>Nine</Button>
+		<Button>Ten</Button>
+	</ButtonGroup>
+</div>
+
+<h3>Normal, info, success, warning, danger</h3>
 <ButtonGroup>
 	<Button info>One</Button>
 	<Button success disabled>Disabled</Button>
 	<Button warning>Three</Button>
 	<Button danger>Four</Button>
 </ButtonGroup>
-
 
 <h3>Outline Buttons</h3>
 <ButtonGroup>
@@ -90,6 +105,7 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 ];
 
 

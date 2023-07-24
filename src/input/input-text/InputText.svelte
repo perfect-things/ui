@@ -1,14 +1,12 @@
 <div
-	class="input-text {className}"
-	class:has-error="{error}">
+	class="input input-text {className}"
+	class:has-error="{error}"
+	bind:this="{element}">
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="input-text-inner" class:disabled>
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<input
@@ -20,6 +18,7 @@
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
+			bind:this="{inputElement}"
 			bind:value="{value}"
 			on:input
 			on:keydown
@@ -31,7 +30,9 @@
 
 <script>
 import { pluck, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 $:props = pluck($$props, ['title', 'name', 'placeholder']);
 
@@ -44,6 +45,10 @@ export let value = '';
 export let label = '';
 export let error = undefined;
 export let info = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
+
 
 $:_id = id || name || guid();
 

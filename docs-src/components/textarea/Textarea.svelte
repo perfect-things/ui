@@ -48,6 +48,8 @@ const apiProps = [
 	{ name: 'required', description: 'Mark the textarea as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying textarea.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the textarea.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:input', type: 'function', description: 'Triggered when textarea value is edited.' },
 ];

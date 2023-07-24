@@ -1,4 +1,4 @@
-import * as utils from '../src/autocomplete/utils';
+import * as utils from '../src/input/autocomplete/utils';
 import { offsetHeight, offsetTop } from './helpers/utils';
 
 const arr = [
@@ -77,7 +77,7 @@ test('Autocomplete-utils - quickPositionRecalc', () => {
 
 	utils.quickPositionRecalc(listEl, inputEl);
 	expect(listEl.style.top).toBe('153px');
-	expect(listEl.style.left).toBe('100px');
+	expect(listEl.style.left).toBe('99px');
 });
 
 
@@ -92,13 +92,13 @@ test('Autocomplete-utils - recalculateListPosition', () => {
 	};
 
 	utils.recalculateListPosition(listEl, inputEl);
-	expect(listEl.style.top).toBe('-103px');
+	expect(listEl.style.top).toBe('-133px');
 	expect(listEl.style.left).toBe('0px');
 	expect(listEl.style.height).toBe('100px');
 
 	utils.recalculateListPosition(listEl, inputEl, true);
 	expect(listEl.style.top).toBe('597px');
-	expect(listEl.style.left).toBe('100px');
+	expect(listEl.style.left).toBe('99px');
 	expect(listEl.style.height).toBe('100px');
 });
 

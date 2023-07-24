@@ -8,6 +8,7 @@
 	{...props}
 	on:mousedown|preventDefault
 	on:click|capture="{onclick}"
+	bind:this="{element}"
 	>
 
 	<span class="menu-item-content">
@@ -29,6 +30,9 @@ export { className as class };
 export let success = false;
 export let warning = false;
 export let danger = false;
+
+export let element = undefined;
+
 
 $:props = pluck($$props, ['id', 'title', 'disabled', 'data']);
 

@@ -1,0 +1,22 @@
+.button-demo-props {
+	display: flex;
+	flex-flow: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.5rem;
+	width: clamp(300px, 600px, 100%);
+}
+
+.button-demo-props .input { display: flex; flex-flow: row; width: 100%; }
+.button-demo-props .input .label { width: 5rem; flex-shrink: 0; }
+.button-demo-props .input .input-text-inner { flex: 1; }
+
+
+.button-demo-props .toggle { display: flex; flex-flow: row; width: 100%; }
+.button-demo-props .toggle .label { width: 5rem; flex-shrink: 0; }
+
+@media (1px <= width <= 700px) {
+	.button-demo-props {
+		width: 100%;
+	}
+}

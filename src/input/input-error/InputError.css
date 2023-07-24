@@ -1,0 +1,38 @@
+.input .error-wrap,
+.input-radio .error-wrap,
+.checkbox .error-wrap {
+	display: flex;
+	flex-flow: row;
+	align-items: stretch;
+	justify-content: flex-start;
+}
+
+.checkbox .error-wrap,
+.input-radio .error-wrap { overflow: hidden; }
+
+
+.input .info-bar-error,
+.input-radio .info-bar-error,
+.textarea .info-bar-error {
+	padding-bottom: calc(0.4rem + 10px);
+	margin-bottom: -10px;
+	border: none;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.checkbox .info-bar { margin: 0; }
+
+.textarea .info-bar-error { grid-area: 1 / 1 / 2 / 2; }
+
+
+
+/* Highlight whole inner div in red, to avoid rendering leaks in corners (safari) */
+.has-error.input .input-inner,
+.has-error.textarea .textarea-inner { background-color: var(--ui-color-danger-semi); }
+
+.has-error.input .input-inner  { border-color: var(--ui-color-danger); }
+.has-error.input .input-inner:focus-within { box-shadow: var(--ui-shadow-danger); }
+
+.has-error.input .info-bar-error,
+.has-error.textarea .info-bar-error { background-color: transparent; }

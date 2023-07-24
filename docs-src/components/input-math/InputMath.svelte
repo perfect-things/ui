@@ -34,9 +34,11 @@ const apiProps = [
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
-	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until filled.' },
+	{ name: 'required', description: 'Mark the input as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];

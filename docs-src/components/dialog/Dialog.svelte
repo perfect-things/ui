@@ -14,7 +14,7 @@
 </div>
 
 
-<Dialog bind:this="{dialog1}" title="Hello" drawborders="true">
+<Dialog bind:this="{dialog1}" title="Hello">
 	dialog contents<br>
 	Hello world!
 
@@ -60,10 +60,11 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
-	{ name: 'drawBorders', type: ['true' , 'false'], default: 'false', description: 'If <i>true</i> - the dialog will have borders between title and content' },
 	{ name: 'opened', type: ['true' , 'false'], default: 'false', description: 'Set dialog\'s open state.' },
 	{ name: 'skipFirstFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
 	{ name: 'title', type: 'string', description: 'Set title for the dialog.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:this', type: 'object', description: 'Exposes the component instance.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the dialog is closed.' },
 	{ name: 'on:open', type: 'function', description: 'Triggered after the dialog is opened.' },
 ];

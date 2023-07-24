@@ -1,0 +1,81 @@
+.button-toggle.input {
+	width: min-content;
+	max-width: 100%;
+	padding: 0;
+	flex-flow: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	border-radius: var(--ui-border-radius);
+}
+
+.button-toggle .input-inner {
+	width: 100%;
+	overflow: hidden;
+	border-radius: var(--ui-border-radius);
+}
+
+.button-toggle .input-scroller {
+	width: 100%;
+	border-radius: var(--ui-border-radius);
+	background-color: var(--ui-color-background-input);
+	overflow-y: hidden;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scrollbar-width: none;
+	scrollbar-gutter: none;
+}
+
+.button-toggle .input-scroller::-webkit-scrollbar { width: 0; height: 0; }
+
+.button-toggle .input-row  { min-width: 100%; width: min-content; }
+
+.button-toggle .input-row .button {
+	position: static;
+	color: var(--ui-color-text);
+	box-shadow: none;
+	min-height: calc(var(--ui-button-height) - 2px);
+	background: var(--ui-color-background-input);
+	border: none;
+	border-radius: 0;
+	flex: 1;
+	border-left: 1px solid var(--ui-color-border);
+	min-width: min-content;
+}
+
+.button-toggle .button:has(:checked) { background-color: var(--ui-color-highlight); }
+
+.button-toggle .input-row .button:first-child {
+	border-left: none;
+	border-top-left-radius: var(--ui-border-radius);
+	border-bottom-left-radius: var(--ui-border-radius);
+}
+
+.button-toggle .input-row .button:last-child {
+	border-top-right-radius: var(--ui-border-radius);
+	border-bottom-right-radius: var(--ui-border-radius);
+}
+
+
+.button-toggle .button input {
+	position: absolute;
+	top: -100px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+
+.button-toggle.round:not(.has-error) .input-inner { border-radius: var(--ui-border-radius-xl); }
+
+.button-toggle.round .input-row .button:first-child {
+	border-top-left-radius: var(--ui-border-radius-xl);
+	border-bottom-left-radius: var(--ui-border-radius-xl);
+}
+
+.button-toggle.round .input-row .button:last-child {
+	border-top-right-radius: var(--ui-border-radius-xl);
+	border-bottom-right-radius: var(--ui-border-radius-xl);
+}
+
+
+/* .button-toggle .input-row .button:first-child { border-left: none; }
+.button-toggle .input-row .button:last-child { border-right: none; } */

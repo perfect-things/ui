@@ -49,6 +49,9 @@ const apiProps = [
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the component.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
+	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `

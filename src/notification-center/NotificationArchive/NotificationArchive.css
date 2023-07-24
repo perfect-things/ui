@@ -17,7 +17,7 @@
 	margin: var(--ui-notification-gap) var(--ui-notification-gap) 0;
 	color: var(--ui-color-text);
 	z-index: 1;
-	background-color: var(--ui-color-background-dark-1);
+	background-color: var(--ui-color-background-input);
 	padding: 0.75rem 0.5rem 0.75rem 1rem;
 	border-radius: var(--ui-border-radius-s);
 }

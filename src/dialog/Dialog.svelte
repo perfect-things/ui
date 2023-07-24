@@ -8,8 +8,7 @@
 	aria-label="{title}"
 	class="dialog-backdrop {className}"
 	class:opened
-	class:draw-borders="{drawborders === 'true' || drawborders === true}"
-	bind:this="{backdropEl}"
+	bind:this="{element}"
 	on:click="{onBackdropClick}">
 	<div class="dialog" bind:this="{dialogEl}">
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
@@ -24,20 +23,23 @@
 <script>
 import { createEventDispatcher, onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
-export let title = '';
-export let opened = false;
-export let drawborders = false;
-export let skipFirstFocus = false;
+
+
 let className = '';
 export { className as class };
+export let title = '';
+export let opened = false;
+export let skipFirstFocus = false;
+
+export let element;
 
 const dispatch = createEventDispatcher();
-let backdropEl, dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
+let dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
 
 
 
 onMount(() => {
-	document.body.appendChild(backdropEl);
+	document.body.appendChild(element);
 });
 
 
@@ -93,7 +95,7 @@ function focusOtherButton (target, key) {
 
 function onDocKeydown (e) {
 	if (!opened) return;
-	const hasFocus = backdropEl.contains(document.activeElement);
+	const hasFocus = element.contains(document.activeElement);
 	if (e.key === 'Tab' && !hasFocus) return focusFirst();
 	if (e.key === 'Escape') {
 		e.stopPropagation();
@@ -110,11 +112,11 @@ function onDocKeydown (e) {
 export function open (openedBy) {
 	if (opened) return;
 	triggerEl = openedBy || document.activeElement;
-	backdropEl.style.display = 'flex';
+	element.style.display = 'flex';
 	if (openTimer) clearTimeout(openTimer);
 	openTimer = setTimeout(() => {
 		opened = true;
-		backdropEl.style.display = 'flex';
+		element.style.display = 'flex';
 		if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
 		document.addEventListener('keydown', onDocKeydown);
 		dispatch('open');
@@ -129,7 +131,7 @@ export function close () {
 	if (closeTimer) clearTimeout(closeTimer);
 	closeTimer = setTimeout(() => {
 		opened = false;
-		backdropEl.style.display = 'none';
+		element.style.display = 'none';
 		document.removeEventListener('keydown', onDocKeydown);
 		dispatch('close');
 	}, $ANIMATION_SPEED);

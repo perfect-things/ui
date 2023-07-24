@@ -4,7 +4,7 @@
 	aria-label="{title}"
 	{title}
 	tabindex="0"
-	bind:this="{el}"
+	bind:this="{element}"
 	on:focus="{selectFirst}"
 	on:click="{selectClicked}"
 	on:keydown="{onkeydown}">
@@ -18,24 +18,25 @@
 import { createEventDispatcher } from 'svelte';
 import TreeNode from './TreeNode.svelte';
 
-export let items = [];
-export let title = undefined;
+
 let className = '';
 export { className as class };
+export let items = [];
+export let title = undefined;
+export let element;
 
 
 const dispatch = createEventDispatcher();
-let el;
 let selectedItem;
 
 
 function getVisibleNodes () {
-	return Array.from(el.querySelectorAll('.tree .tree-node'));
+	return Array.from(element.querySelectorAll('.tree .tree-node'));
 }
 
 
 function unselectAll () {
-	el.querySelectorAll('.tree .selected').forEach(_el => _el.classList.remove('selected'));
+	element.querySelectorAll('.tree .selected').forEach(_el => _el.classList.remove('selected'));
 }
 
 

@@ -6,11 +6,12 @@ export const MessageType = {
 	INFO: 'info',
 	WARNING: 'warning',
 	ERROR: 'error',
-	DANGER: 'error'
+	DANGER: 'error',
+	SUCCESS: 'success',
 };
 
 
-export function showMessage (message, type = MessageType.INFO, title = '', btnLabel = 'OK', cb) {
+export function showMessage (message, type = '', title = '', btnLabel = 'OK', cb) {
 	if (typeof message === 'object') return config.set(message);
 
 	const buttons = [{ label: btnLabel, value: btnLabel, type }];

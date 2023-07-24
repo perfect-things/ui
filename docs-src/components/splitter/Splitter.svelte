@@ -33,6 +33,7 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered during the resizing (mousemove).' },
 	{ name: 'on:changed', type: 'function', description: 'Triggered when resizing finished (mouseup).' },
 ];

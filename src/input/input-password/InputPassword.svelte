@@ -1,21 +1,17 @@
 <div
-	class="input-text input-password {className}"
+	class="input input-password {className}"
 	class:has-error="{error}"
 	class:visible
-	bind:this="{el}">
+	bind:this="{element}">
 
-	{#if label}
-		<label class="label" for="{_id}">{label}</label>
-	{/if}
-
+	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="input-text-inner">
+	<div class="input-inner">
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-password-row" class:visible>
+		<div class="input-row" class:visible>
 			<input
-				class="input-password-input"
 				autocomplete="off"
 				{...props}
 				id="{_id}"
@@ -24,6 +20,8 @@
 				aria-required="{required}"
 				{type}
 				{value}
+				{disabled}
+				bind:this="{inputElement}"
 				on:input="{oninput}"
 				on:keydown
 				on:change
@@ -33,12 +31,12 @@
 		</div>
 	</div>
 	{#if strength && lib && value}
-		<div class="input-password-row">
+		<div class="input-row">
 			<div class="password-strength" title="{quality}">
 				<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
 			</div>
 		</div>
-		<div class="input-password-row">
+		<div class="input-row">
 			<div class="password-strength-info {colorClass}">
 				<h2>{quality}</h2>
 				<small>{@html strengthInfoText}</small>
@@ -51,18 +49,24 @@
 import { onMount, createEventDispatcher } from 'svelte';
 import { Button } from '../../button';
 import { pluck, guid } from '../../utils';
-import { Info, InputError } from '../../info-bar';
+import { Info } from '../../info-bar';
+import { InputError } from '../input-error';
+import { Label } from '../label';
 
 
 let className = '';
 export { className as class };
 export let id = '';
 export let required = undefined;
+export let disabled = undefined;
 export let value = '';
 export let strength = false;
 export let label = '';
 export let error = undefined;
 export let info = undefined;
+
+export let element = undefined;
+export let inputElement = undefined;
 
 
 
@@ -84,10 +88,9 @@ let quality = '';
 let percent = 0;
 let strengthInfoText = '';
 let colorClass = '';
-let el;
 
 
-$:props = pluck($$props, ['title', 'name', 'disabled', 'placeholder']);
+$:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:type = visible ? 'text' : 'password';
 $:_id = id || props.name || guid();
 
@@ -130,7 +133,7 @@ function measure (pass) {
 
 function toggle () {
 	visible = !visible;
-	requestAnimationFrame(() => el.querySelector('input').focus());
+	requestAnimationFrame(() => element.querySelector('input').focus());
 }
 
 </script>

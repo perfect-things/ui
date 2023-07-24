@@ -1,50 +1,56 @@
 <h2>Autocomplete</h2>
-<div class="docs-layout">
-	<div class="docs-column">
-		<h3>Normal</h3>
-		<Autocomplete
-			data="{autocompleteData}"
-			on:change="{onChange}"
-			bind:value="{autocompleteValue}" />
 
-		<h3>Disabled</h3>
-		<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
+<h3>Normal</h3>
+<Autocomplete
+	data="{autocompleteData}"
+	on:change="{onChange}"
+	bind:value="{autocompleteValue}" />
 
-		<h3>Allow arbitrary values</h3>
-		<Autocomplete
-			data="{autocompleteData}"
-			placeholder="Type to filter"
-			allowNew="true"
-			bind:value="{autocompleteValue}" />
+<h4>Selected value: </h4>
+<code>{JSON.stringify(autocompleteValue || {})}</code>
 
-		<h3>Show on focus</h3>
-		<Autocomplete showOnFocus="true" data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-		<h3>Simpler data (no ID, just 'name')</h3>
-		<Autocomplete data="{autocompleteDataSimple}" placeholder="Type to filter"
-			bind:value="{autocompleteValueSimple}" />
+<h3>Disabled</h3>
+<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-		<h3>Simplest data (just an array of strings)</h3>
-		<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter" allowNew="true"
-			bind:value="{autocompleteValueSimplest}" />
+<h3>Allow arbitrary values</h3>
+<Autocomplete
+	data="{autocompleteData}"
+	placeholder="Type to filter"
+	allowNew="true"
+	bind:value="{autocompleteValue}" />
 
-		<h3>In a container with <em>overflow: hidden</em></h3>
-		<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
-			property must be set on the component.</p>
-		<div class="docs-overflow-box">
-			<small>overflow: hidden</small>
-			<Autocomplete data="{autocompleteData}" elevate="true" bind:value="{autocompleteValue}" />
-		</div>
-		<p>This option should only be used when absolutely necessary (e.g. when Autocomplete
-			is used inside dialogs/popups), because it makes the component less accessible
-			(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
+<h3>Show on focus</h3>
+<Autocomplete showOnFocus="true" data="{autocompleteData}" bind:value="{autocompleteValue}" />
 
-	</div>
-	<div class="docs-column">
-		<h2>Selected value: </h2>
-		<code>{JSON.stringify(autocompleteValue || {}, null, 2)}</code>
-	</div>
+<h3>Simpler data (no ID, just 'name')</h3>
+<Autocomplete data="{autocompleteDataSimple}" placeholder="Type to filter"
+	bind:value="{autocompleteValueSimple}" />
+
+<h3>Simplest data (just an array of strings)</h3>
+<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter" allowNew="true"
+	bind:value="{autocompleteValueSimplest}" />
+
+<h3>In a container with <em>overflow: hidden</em></h3>
+<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
+	property must be set on the component.</p>
+<div class="docs-overflow-box">
+	<small>overflow: hidden</small>
+	<Autocomplete data="{autocompleteData}" elevate="true" bind:value="{autocompleteValue}" />
 </div>
+<p>This option should only be used when absolutely necessary (e.g. when Autocomplete
+	is used inside dialogs/popups), because it makes the component less accessible
+	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
+
+<h3>Label</h3>
+<Autocomplete data="{autocompleteData}" label="Autocomplete label" />
+
+<h3>Info</h3>
+<Autocomplete data="{autocompleteData}" label="Autocomplete label" info="Select something here" />
+
+<h3>Error</h3>
+<Autocomplete data="{autocompleteData}" label="Autocomplete label" error="You picked the wrong side!" />
+
 
 
 <CodeExample html="{exampleHtml}" />
@@ -62,20 +68,25 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the input will be cleared when Escape is pressed.' },
+	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the autocomplete will be cleared when Escape is pressed.' },
 	{ name: 'data', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
+	{ name: 'disabled', description: 'Make the autocomplete disabled.' },
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
 	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
 	{ name: 'hideOnScroll', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - scrolling the window will close the popup.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
+	{ name: 'info', type: 'string', description: 'Show info message above the autocomplete.' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the autocomplete.' },
+	{ name: 'label', type: 'string', description: 'Label for the autocomplete.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
-	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission.' },
-	{ name: 'showAllInitially', type: ['true', 'false'], default: 'true', description: 'When the input has a value - the list in the poput is filtered by the input value.<br>If this option is set to true (default) - when user navigates to the input (with a value)<br> or clicks such an input - the poput initially will show all items unfiltered, and only once<br> user starts typing - the list will be filtered again.<br> If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. ' },
-	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be automatically open when the input gets focus (as opposed to, when the user starts typing).' },
+	{ name: 'required', description: 'Mark the autocomplete as <i>aria-required</i>.' },
+	{ name: 'showAllInitially', type: ['true', 'false'], default: 'true', description: 'When the autocomplete has a value - the list in the poput is filtered by the autocomplete value.<br>If this option is set to true (default) - when user navigates to the autocomplete (with a value)<br> or clicks such an autocomplete - the poput initially will show all items unfiltered, and only once<br> user starts typing - the list will be filtered again.<br> If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. ' },
+	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be automatically open when the autocomplete gets focus (as opposed to, when the user starts typing).' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
+	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the autocomplete.' },
+	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];

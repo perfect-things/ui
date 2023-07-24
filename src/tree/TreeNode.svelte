@@ -1,4 +1,4 @@
-<li>
+<li bind:this="{element}">
 	<div
 		class="tree-node"
 		role="{item.items ? 'group' : 'treeitem'}"
@@ -35,12 +35,16 @@
 export let item = {};
 export let level = 0;
 export let expanded = false;
+export let element = undefined;
+
 $:nodeType = item.items ? 'folder' : 'file';
 $:indents = new Array(level).fill(0);
+
 
 function toggle () {
 	expanded = !expanded;
 }
+
 
 function onkey (e) {
 	const key = e && e.detail && e.detail.key;

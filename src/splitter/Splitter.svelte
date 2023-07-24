@@ -3,7 +3,7 @@
 	class:vertical="{isVertical}"
 	class:is-dragging="{isDragging}"
 	on:mousedown="{mousedown}"
-	bind:this="{el}"></div>
+	bind:this="{element}"></div>
 
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
@@ -13,16 +13,20 @@ import { getMouseX, getMouseY, innerWidth, innerHeight, ANIMATION_SPEED,
 
 let className = '';
 export { className as class };
+export let element = undefined;
+
 
 const dispatch = createEventDispatcher();
 const size = 8, halfsize = size / 2;
 const Box = {};
 
+
 let isVertical = false;
-let el, parentEl, targetEl;
+let parentEl, targetEl;
 let initialTargetBox, startX, startY;
 let mousedownTargetBox;
 let isDragging = false, bodyCursor;
+
 
 onMount(() => {
 	requestAnimationFrame(init);
@@ -55,25 +59,25 @@ export function setSize (to, withAnimation = false) {
 
 
 function init () {
-	targetEl = el.previousElementSibling;
-	parentEl = el.parentElement;
+	targetEl = element.previousElementSibling;
+	parentEl = element.parentElement;
 	isVertical = getFlexFlow(parentEl) === 'column';
 	initialTargetBox = targetEl.getBoundingClientRect();
 	if (isVertical) {
 		initialTargetBox.minHeight = minHeight(targetEl);
-		initialTargetBox.maxHeight = Math.min(innerHeight(el.parentElement), maxHeight(targetEl));
+		initialTargetBox.maxHeight = Math.min(innerHeight(element.parentElement), maxHeight(targetEl));
 	}
 	else {
 		initialTargetBox.minWidth = minWidth(targetEl);
-		initialTargetBox.maxWidth = Math.min(innerWidth(el.parentElement), maxWidth(targetEl));
+		initialTargetBox.maxWidth = Math.min(innerWidth(element.parentElement), maxWidth(targetEl));
 	}
 	updateSize(initialTargetBox);
 
 	targetEl.style.flex = 'unset';
 	targetEl.style.overflow = 'auto';
-	if (isVertical) el.style.height = size + 'px';
-	else el.style.width = size + 'px';
-	if (el && el.nextElementSibling) el.nextElementSibling.style.overflow = 'auto';
+	if (isVertical) element.style.height = size + 'px';
+	else element.style.width = size + 'px';
+	if (element && element.nextElementSibling) element.nextElementSibling.style.overflow = 'auto';
 }
 
 
@@ -81,14 +85,14 @@ function updateSize (box, withAnimation = false) {
 	let originalTargetTransition, originalElTransition;
 	if (withAnimation) {
 		originalTargetTransition = targetEl.style.transition;
-		originalElTransition = el.style.transition;
+		originalElTransition = element.style.transition;
 		const anim = ANIMATION_SPEED + 'ms ease-out';
 		targetEl.style.transition = `width ${anim}, height ${anim}`;
-		el.style.transition = `left ${anim}, top ${anim}`;
+		element.style.transition = `left ${anim}, top ${anim}`;
 	}
 	if (isVertical) {
 		targetEl.style.height = box.height + 'px';
-		el.style.top = (box.height - halfsize) + 'px';
+		element.style.top = (box.height - halfsize) + 'px';
 		const collapsed = initialTargetBox.minHeight === box.height;
 		Box.height = box.height;
 		Box.collapsed = collapsed;
@@ -96,7 +100,7 @@ function updateSize (box, withAnimation = false) {
 	}
 	else {
 		targetEl.style.width = box.width + 'px';
-		el.style.left = (box.width - halfsize) + 'px';
+		element.style.left = (box.width - halfsize) + 'px';
 		const collapsed = initialTargetBox.minWidth === box.width;
 		Box.width = box.width;
 		Box.collapsed = collapsed;
@@ -106,7 +110,7 @@ function updateSize (box, withAnimation = false) {
 	if (withAnimation) {
 		setTimeout(() => {
 			targetEl.style.transition = originalTargetTransition;
-			el.style.transition = originalElTransition;
+			element.style.transition = originalElTransition;
 			dispatch('changed', Box);
 		}, ANIMATION_SPEED);
 	}

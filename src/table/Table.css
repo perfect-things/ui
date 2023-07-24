@@ -1,4 +1,4 @@
-.table-wrapper {
+.table {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
@@ -7,10 +7,11 @@
 	border: 2px solid var(--ui-color-border);
 }
 
-.table-wrapper.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
-.table-wrapper.round { border-radius: var(--ui-border-radius-s); }
 
-.table { border-spacing: 0; cursor: default; width: 100%; }
+.table table { border-spacing: 0; width: 100%; }
+
+.table.round { border-radius: var(--ui-border-radius-s); }
+.table.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
 
 .table thead,
 .table tfoot { position: sticky; z-index: 2; }
@@ -23,7 +24,7 @@
 	font-weight: 400;
 	text-align: left;
 	vertical-align: middle;
-	background: var(--ui-color-background-dark-1);
+	background: var(--ui-color-background-2);
 }
 
 .table tr:focus-within,
@@ -31,7 +32,7 @@
 .table tbody:focus,
 .table tbody:focus tr {
 	outline: 1px solid transparent;
-	background-color: var(--ui-color-highlight-dark-2);
+	background-color: var(--ui-color-highlight-1);
 }
 
 .table tbody td {
@@ -46,3 +47,5 @@
 
 .table th:last-child,
 .table td:last-child { padding-right: var(--ui-margin-l); }
+
+.table tbody tr:last-child td { border-bottom: none; }
