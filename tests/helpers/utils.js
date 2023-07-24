@@ -1,5 +1,6 @@
 import { get } from 'svelte/store';
 import { ANIMATION_SPEED } from '../../src';
+import jest from 'jest-mock';
 
 // workaround for structuredClone not being available in JSDOM
 window.structuredClone = (val) => JSON.parse(JSON.stringify(val));

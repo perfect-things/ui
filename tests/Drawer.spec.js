@@ -1,7 +1,9 @@
-import { Drawer } from '../src/drawer';
 import { render, fireEvent } from '@testing-library/svelte';
-import { waitForTimeout } from './helpers/utils';
 import userEvent from '@testing-library/user-event';
+import jest from 'jest-mock';
+
+import { Drawer } from '../src/drawer';
+import { waitForTimeout } from './helpers/utils';
 
 
 test('Drawer', async () => {

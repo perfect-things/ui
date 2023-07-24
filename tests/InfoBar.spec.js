@@ -1,5 +1,5 @@
-import { InfoBar, Info, Warning, Error, Success } from '../src/info-bar';
 import { render } from '@testing-library/svelte';
+import { InfoBar, Info, Warning, Error, Success } from '../src/info-bar';
 
 
 const tablerIcon = {

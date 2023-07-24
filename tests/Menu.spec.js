@@ -1,5 +1,5 @@
-import Menu from './helpers/Menu.svelte';
 import { render, fireEvent } from '@testing-library/svelte';
+import Menu from './helpers/Menu.svelte';
 import { waitForTimeout } from './helpers/utils';
 
 

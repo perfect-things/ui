@@ -6,6 +6,8 @@
 		bind:pressed={$showArchive}/>
 {/if}
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class="notification-center {className}"
 	class:show-archive="{$showArchive}"
@@ -14,7 +16,6 @@
 	bind:this="{el}">
 
 	{#each notifications as notification (notification.id)}
-		<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
 		<div
 			class="notification notification-{notification.type}"
 			data-id="{notification.id}"

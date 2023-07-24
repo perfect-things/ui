@@ -1,5 +1,7 @@
-import { Tree } from '../src/tree';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import { Tree } from '../src/tree';
+
 
 const items = [
 	{ id: 1, name: 'One' },

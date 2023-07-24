@@ -1,6 +1,8 @@
-import { Toggle } from '../src/input/toggle';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import { Toggle } from '../src/input/toggle';
 import { waitForTimeout } from './helpers/utils';
+
 
 test('Toggle', async () => {
 	const props = {

@@ -8,6 +8,7 @@ export default {
 		'node_modules/(?!(vanillajs-datepicker)/)',
 	],
 	moduleFileExtensions: ['js', 'svelte'],
+	extensionsToTreatAsEsm: ['.svelte', '.ts'],
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [
 		'@testing-library/jest-dom/extend-expect'

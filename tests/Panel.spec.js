@@ -1,5 +1,6 @@
-import { Panel } from '../src/panel';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import { Panel } from '../src/panel';
 import { waitForTimeout } from './helpers/utils';
 
 

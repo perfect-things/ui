@@ -113,7 +113,7 @@ export function js () {
 		treeShaking: true,
 		color: true,
 		plugins: [
-			sveltePlugin({ compilerOptions: { dev: !isProd, css: false } }),
+			sveltePlugin({ compilerOptions: { dev: !isProd, css: 'external' } }),
 			// @ts-ignore
 			NodeResolve.default({ extensions: ['.js', '.svelte'] }),
 		],

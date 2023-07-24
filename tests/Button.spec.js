@@ -1,5 +1,7 @@
-import { Button } from '../src/button';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+
+import { Button } from '../src/button';
 import SlotTest from './helpers/Button.svelte';
 
 

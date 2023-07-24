@@ -1,5 +1,7 @@
-import { MessageBox, MessageType, showMessage } from '../src/message-box';
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+
+import { MessageBox, MessageType, showMessage } from '../src/message-box';
 import { waitForTimeout } from './helpers/utils';
 
 
