@@ -1,6 +1,6 @@
 import jest from 'jest-mock';
 
-import * as utils from '../src/input/autocomplete/utils';
+import * as utils from '../src/input/combobox/utils';
 import { offsetHeight, offsetTop } from './helpers/utils';
 
 const arr = [
@@ -28,13 +28,13 @@ afterEach(() => {
 });
 
 
-test('Autocomplete-utils - groupData', () => {
+test('Combobox-utils - groupData', () => {
 	const arr2 = utils.groupData(arr);
 	expect(arr2).toEqual(groupedData);
 });
 
 
-test('Autocomplete-utils - highlight', () => {
+test('Combobox-utils - highlight', () => {
 	// make a list wrapper
 	const listEl = document.createElement('div');
 	offsetHeight(listEl, 100);
@@ -71,7 +71,7 @@ test('Autocomplete-utils - highlight', () => {
 });
 
 
-test('Autocomplete-utils - quickPositionRecalc', () => {
+test('Combobox-utils - quickPositionRecalc', () => {
 	const listEl = { style: { top: '0px', left: '0px' } };
 	const inputEl = {
 		getBoundingClientRect: () => ({ top: 100, left: 100, height: 50, width: 50 })
@@ -83,7 +83,7 @@ test('Autocomplete-utils - quickPositionRecalc', () => {
 });
 
 
-test('Autocomplete-utils - recalculateListPosition', () => {
+test('Combobox-utils - recalculateListPosition', () => {
 	const inputEl = {
 		getBoundingClientRect: () => ({ top: 700, left: 100, height: 30, width: 50 })
 	};
@@ -105,7 +105,7 @@ test('Autocomplete-utils - recalculateListPosition', () => {
 });
 
 
-test('Autocomplete-utils - deepCopy', () => {
+test('Combobox-utils - deepCopy', () => {
 	const obj = { a: 1, b: { c: 2 } };
 	const obj2 = utils.deepCopy(obj);
 	expect(obj2).toEqual(obj);
@@ -114,7 +114,7 @@ test('Autocomplete-utils - deepCopy', () => {
 });
 
 
-test('Autocomplete-utils - fuzzy', () => {
+test('Combobox-utils - fuzzy', () => {
 	expect(utils.fuzzy()).toBe(true);
 	expect(utils.fuzzy('')).toBe(true);
 	expect(utils.fuzzy('', '')).toBe(true);
@@ -131,7 +131,7 @@ test('Autocomplete-utils - fuzzy', () => {
 });
 
 
-test('Autocomplete-utils - emphasize', () => {
+test('Combobox-utils - emphasize', () => {
 	expect(utils.emphasize('abc')).toBe('abc');
 	expect(utils.emphasize('abc', 'ab')).toBe('<b>ab</b>c');
 	expect(utils.emphasize('abc', 'bc')).toBe('a<b>bc</b>');

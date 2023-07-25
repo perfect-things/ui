@@ -26,9 +26,9 @@
 		<NavItem name="Button Group" {active} />
 
 		<h3>Inputs</h3>
-		<NavItem name="Autocomplete" {active} />
 		<NavItem name="Button Toggle" {active} />
 		<NavItem name="Checkbox" {active} />
+		<NavItem name="Combobox" {active} />
 		<NavItem name="Input Date" {active} />
 		<NavItem name="Input Text" {active} />
 		<NavItem name="Input Number" {active} />

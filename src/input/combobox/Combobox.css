@@ -1,8 +1,8 @@
-.autocomplete .input-inner { position: relative; }
+.combobox .input-inner { position: relative; }
 
-.autocomplete input { padding-right: 36px; }
+.combobox input { padding-right: 36px; }
 
-.autocomplete-list {
+.combobox-list {
 	position: absolute;
 	z-index: 100;
 	overflow-y: auto;
@@ -21,11 +21,11 @@
 	box-shadow: var(--ui-shadow-fancy);
 }
 
-.autocomplete-list:empty { padding: 0; box-shadow: none; border: none; }
-.autocomplete-list:not(:empty) { min-height: 2rem; }
-.autocomplete-list.hidden { display: none; }
+.combobox-list:empty { padding: 0; box-shadow: none; border: none; }
+.combobox-list:not(:empty) { min-height: 2rem; }
+.combobox-list.hidden { display: none; }
 
-.autocomplete-list-header {
+.combobox-list-header {
 	padding: 1rem 1rem 0.5rem;
 	margin: 0;
 	color: var(--ui-color-text-2);
@@ -38,16 +38,16 @@
 }
 
 
-.autocomplete-list-header:last-child { display: none; }
+.combobox-list-header:last-child { display: none; }
 
-.autocomplete-list-empty {
+.combobox-list-empty {
 	padding: 0.6rem 1.2rem;
 	color: var(--ui-color-text-semi);
 	cursor: default;
 	white-space: nowrap;
 }
 
-.autocomplete-list-item {
+.combobox-list-item {
 	padding: 0.5rem 1rem;
 	color: var(--ui-color-text);
 	cursor: pointer;
@@ -58,27 +58,27 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.autocomplete-list-item.in-group {
+.combobox-list-item.in-group {
 	padding-left: 2rem;
 }
 
-.autocomplete-list-item.selected {
+.combobox-list-item.selected {
 	background-color: var(--ui-color-highlight-1);
 	outline: 1px solid transparent;
 }
-.autocomplete-list-item:hover {
+.combobox-list-item:hover {
 	background-color: var(--ui-color-highlight);
 	outline: 1px solid transparent;
 }
 
-.autocomplete-list-item b {
+.combobox-list-item b {
 	color: var(--ui-color-accent);
 }
 
 
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	.autocomplete-list {
+	.combobox-list {
 		background-color: var(--ui-color-background-semi);
 		-webkit-backdrop-filter: blur(30px);
 		backdrop-filter: blur(30px);

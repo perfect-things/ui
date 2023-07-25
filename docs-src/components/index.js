@@ -1,10 +1,10 @@
-export { Autocomplete } from './autocomplete';
 export { Button } from './button';
 export { PushButton } from './push-button';
 export { ButtonGroup } from './button-group';
-export { ButtonToggle } from './button-toggle';
 
+export { ButtonToggle } from './button-toggle';
 export { Checkbox } from './checkbox';
+export { Combobox } from './combobox';
 export { InputDate } from './input-date';
 export { InputMath } from './input-math';
 export { InputNumber } from './input-number';

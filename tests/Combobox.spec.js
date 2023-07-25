@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import { Autocomplete } from '../src/input/autocomplete';
+import { Combobox } from '../src/input/combobox';
 import { waitForTimeout } from './helpers/utils';
 
 
@@ -25,12 +25,12 @@ const props = {
 
 
 
-test('Autocomplete', async () => {
-	const { container, component, getByTitle, getByText } = render(Autocomplete, props);
+test('Combobox', async () => {
+	const { container, component, getByTitle, getByText } = render(Combobox, props);
 
-	const autocomplete = container.querySelector('.autocomplete');
-	expect(autocomplete).toBeInTheDocument();
-	expect(autocomplete).toHaveClass('test-class');
+	const combobox = container.querySelector('.combobox');
+	expect(combobox).toBeInTheDocument();
+	expect(combobox).toHaveClass('test-class');
 
 	const cmp = container.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
@@ -48,10 +48,10 @@ test('Autocomplete', async () => {
 	await waitForTimeout();
 
 	// verify list
-	const autocompleteList = container.querySelector('.autocomplete-list');
-	expect(autocompleteList).toBeInTheDocument();
-	expect(autocompleteList).not.toHaveClass('hidden');
-	expect(autocomplete).toHaveClass('open');
+	const comboboxList = container.querySelector('.combobox-list');
+	expect(comboboxList).toBeInTheDocument();
+	expect(comboboxList).not.toHaveClass('hidden');
+	expect(combobox).toHaveClass('open');
 
 	const item = getByText(value.name);
 	expect(item).toBeInTheDocument();
@@ -61,8 +61,8 @@ test('Autocomplete', async () => {
 	await waitForTimeout();
 
 	// verify that the item was selected
-	expect(autocompleteList).toHaveClass('hidden');
-	expect(autocomplete).not.toHaveClass('open');
+	expect(comboboxList).toHaveClass('hidden');
+	expect(combobox).not.toHaveClass('open');
 	expect(input.value).toBe(value.name);
 
 	const lbl = cmp.querySelector('label');

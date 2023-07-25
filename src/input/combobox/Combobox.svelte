@@ -1,6 +1,6 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="input autocomplete {className}"
+	class="input combobox {className}"
 	class:open="{opened}"
 	class:has-error="{error}"
 	bind:this="{element}">
@@ -12,12 +12,12 @@
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-row">
-			<Button link icon="dots" class="autocomplete-button" on:click="{onIconClick}"/>
+			<Button link icon="dots" class="combobox-button" on:click="{onIconClick}"/>
 			<input
 				type="text"
 				role="combobox"
 				aria-autocomplete="list"
-				aria-controls="autocomplete-list-{gui}"
+				aria-controls="combobox-list-{gui}"
 				aria-expanded="{opened}"
 				aria-invalid="{error}"
 				aria-errormessage="{error ? errorMessageId : undefined}"
@@ -40,8 +40,8 @@
 		<!-- svelte-ignore a11y-interactive-supports-focus -->
 		<div class="input-row">
 			<div
-				id="autocomplete-list-{gui}"
-				class="autocomplete-list {opened ? '' : 'hidden'}"
+				id="combobox-list-{gui}"
+				class="combobox-list {opened ? '' : 'hidden'}"
 				role="listbox"
 				on:mouseenter|capture="{() => mouseOverList = true}"
 				on:mouseleave|capture="{() => mouseOverList = false}"
@@ -50,7 +50,7 @@
 				{#if filteredData.length}
 					{#each groupedData as group}
 						{#if group.name}
-							<div class="autocomplete-list-header">{group.name}</div>
+							<div class="combobox-list-header">{group.name}</div>
 						{/if}
 						{#if group.items}
 							{#each group.items as item}
@@ -58,7 +58,7 @@
 								<div
 									role="option"
 									aria-selected="{item.idx === highlightIndex}"
-									class="autocomplete-list-item"
+									class="combobox-list-item"
 									class:in-group="{!!item.group}"
 									class:selected="{item.idx === highlightIndex}"
 									on:click="{() => onclick(item)}">
@@ -68,15 +68,15 @@
 						{/if}
 					{/each}
 				{:else if allowNew !== true && allowNew !== 'true'}
-					<div class="autocomplete-list-empty">No items found</div>
+					<div class="combobox-list-empty">No items found</div>
 				{/if}
 
 				{#if shouldShowNewItem}
-					<div class="autocomplete-list-header">Create new item</div>
+					<div class="combobox-list-header">Create new item</div>
 					<div
 						role="option"
 						aria-selected="{highlightIndex === filteredData.length}"
-						class="autocomplete-list-item"
+						class="combobox-list-item"
 						class:selected="{highlightIndex === filteredData.length}"
 						on:click="{() => onclick({ name: inputElement.value, idx: filteredData.length })}">
 							{inputElement.value}

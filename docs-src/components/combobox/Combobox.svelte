@@ -1,55 +1,55 @@
-<h2>Autocomplete</h2>
+<h2>Combobox</h2>
 
 <h3>Normal</h3>
-<Autocomplete
-	data="{autocompleteData}"
+<Combobox
+	data="{data}"
 	on:change="{onChange}"
-	bind:value="{autocompleteValue}" />
+	bind:value="{itemValue}" />
 
 <h4>Selected value: </h4>
-<code>{JSON.stringify(autocompleteValue || {})}</code>
+<code>{JSON.stringify(itemValue || {})}</code>
 
 
 <h3>Disabled</h3>
-<Autocomplete disabled data="{autocompleteData}" bind:value="{autocompleteValue}" />
+<Combobox disabled data="{data}" bind:value="{itemValue}" />
 
 <h3>Allow arbitrary values</h3>
-<Autocomplete
-	data="{autocompleteData}"
+<Combobox
+	data="{data}"
 	placeholder="Type to filter"
 	allowNew="true"
-	bind:value="{autocompleteValue}" />
+	bind:value="{itemValue}" />
 
 <h3>Show on focus</h3>
-<Autocomplete showOnFocus="true" data="{autocompleteData}" bind:value="{autocompleteValue}" />
+<Combobox showOnFocus="true" data="{data}" bind:value="{itemValue}" />
 
 <h3>Simpler data (no ID, just 'name')</h3>
-<Autocomplete data="{autocompleteDataSimple}" placeholder="Type to filter"
-	bind:value="{autocompleteValueSimple}" />
+<Combobox data="{dataSimple}" placeholder="Type to filter"
+	bind:value="{valueSimple}" />
 
 <h3>Simplest data (just an array of strings)</h3>
-<Autocomplete data="{autocompleteDataSimplest}" placeholder="Type to filter" allowNew="true"
-	bind:value="{autocompleteValueSimplest}" />
+<Combobox data="{dataSimplest}" placeholder="Type to filter" allowNew="true"
+	bind:value="{valueSimplest}" />
 
 <h3>In a container with <em>overflow: hidden</em></h3>
 <p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
 	property must be set on the component.</p>
 <div class="docs-overflow-box">
 	<small>overflow: hidden</small>
-	<Autocomplete data="{autocompleteData}" elevate="true" bind:value="{autocompleteValue}" />
+	<Combobox data="{data}" elevate="true" bind:value="{itemValue}" />
 </div>
-<p>This option should only be used when absolutely necessary (e.g. when Autocomplete
+<p>This option should only be used when absolutely necessary (e.g. when Combobox
 	is used inside dialogs/popups), because it makes the component less accessible
 	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
 
 <h3>Label</h3>
-<Autocomplete data="{autocompleteData}" label="Autocomplete label" />
+<Combobox data="{data}" label="Combobox label" />
 
 <h3>Info</h3>
-<Autocomplete data="{autocompleteData}" label="Autocomplete label" info="Select something here" />
+<Combobox data="{data}" label="Combobox label" info="Select something here" />
 
 <h3>Error</h3>
-<Autocomplete data="{autocompleteData}" label="Autocomplete label" error="You picked the wrong side!" />
+<Combobox data="{data}" label="Combobox label" error="You picked the wrong side!" />
 
 
 
@@ -60,7 +60,7 @@
 
 
 <script>
-import { Autocomplete } from '../../../src';
+import { Combobox } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
@@ -68,23 +68,23 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the autocomplete will be cleared when Escape is pressed.' },
+	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the combobox will be cleared when Escape is pressed.' },
 	{ name: 'data', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'disabled', description: 'Make the autocomplete disabled.' },
+	{ name: 'disabled', description: 'Make the combobox disabled.' },
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
 	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
 	{ name: 'hideOnScroll', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - scrolling the window will close the popup.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the autocomplete.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the autocomplete.' },
-	{ name: 'label', type: 'string', description: 'Label for the autocomplete.' },
+	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
+	{ name: 'label', type: 'string', description: 'Label for the combobox.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
-	{ name: 'required', description: 'Mark the autocomplete as <i>aria-required</i>.' },
-	{ name: 'showAllInitially', type: ['true', 'false'], default: 'true', description: 'When the autocomplete has a value - the list in the poput is filtered by the autocomplete value.<br>If this option is set to true (default) - when user navigates to the autocomplete (with a value)<br> or clicks such an autocomplete - the poput initially will show all items unfiltered, and only once<br> user starts typing - the list will be filtered again.<br> If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. ' },
-	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be automatically open when the autocomplete gets focus (as opposed to, when the user starts typing).' },
+	{ name: 'required', description: 'Mark the combobox as <i>aria-required</i>.' },
+	{ name: 'showAllInitially', type: ['true', 'false'], default: 'true', description: 'When the combobox has a value - the list in the poput is filtered by the combobox value.<br>If this option is set to true (default) - when user navigates to the combobox (with a value)<br> or clicks such an combobox - the poput initially will show all items unfiltered, and only once<br> user starts typing - the list will be filtered again.<br> If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. ' },
+	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the autocomplete.' },
+	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the combobox.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
@@ -92,19 +92,19 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Autocomplete
-    data="{ autocompleteData }"
+<Combobox
+    data="{ data }"
     on:change="{ onChange }"
-    bind:value="{ autocompleteValue }" />
+    bind:value="{ value }" />
 
 <script>
-const autocompleteData = [
+const data = [
     { id: 1, name: 'Alpha', group: 'Group 1' },
     { id: 2, name: 'Beta', group: 'Group 1' },
     { id: 3, name: 'Gamma', group: 'Group 2' },
     { id: 4, name: 'Delta', group: 'Group 2' },
 ];
-let autocompleteValue = autocompleteData[1];
+let value = data[1];
 
 function onChange (e) {
     const { value, oldValue } = e.detail;
@@ -115,7 +115,7 @@ function onChange (e) {
 
 
 
-const autocompleteData = [
+const data = [
 	{ id: 1, name: 'Alpha', group: 'Group 1' },
 	{ id: 2, name: 'Beta', group: 'Group 1' },
 	{ id: 3, name: 'Gamma', group: 'Group 1' },
@@ -136,10 +136,10 @@ const autocompleteData = [
 	{ id: 16, name: 'Kappa', group: 'Group 3' },
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
-let autocompleteValue = autocompleteData[1];
+let itemValue = data[1];
 
 
-const autocompleteDataSimple = [
+const dataSimple = [
 	{ name: 'Alpha', group: 'Group 1' },
 	{ name: 'Beta', group: 'Group 1' },
 	{ name: 'Gamma', group: 'Group 1' },
@@ -159,9 +159,9 @@ const autocompleteDataSimple = [
 	{ name: 'Delta' },
 	{ name: 'Epsilon' },
 ];
-let autocompleteValueSimple = autocompleteDataSimple[3];
+let valueSimple = dataSimple[3];
 
-const autocompleteDataSimplest = [
+const dataSimplest = [
 	'Alpha',
 	'Beta',
 	'Gamma',
@@ -175,7 +175,7 @@ const autocompleteDataSimplest = [
 	'Kappa',
 	'Lambda is the last item in this list',
 ];
-let autocompleteValueSimplest = 'Gamma';
+let valueSimplest = 'Gamma';
 
 
 function onChange (e) {

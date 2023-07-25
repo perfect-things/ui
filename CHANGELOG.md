@@ -5,7 +5,7 @@ Changelog
 ## v8.0.0 *(2023-07-?)*
 - **New:** `Label` component.
 - **New icons:** `sun` and `moon` for the dark-theme switchers.
-- **Improvement:** `info`, `error` and `label` attributes are now supported on other inputs (`Autocomplete`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).
+- **Improvement:** `info`, `error` and `label` attributes are now supported on other inputs (`Combobox`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).
 - **Improvement:** all components now expose `element` and `inputElement` (if there is one (and only one)). The exceptions are `NotificationCenter` and `MessageBox`, due to their implementation.
 - Added `title` attribute to `ButtonToggle`.
 - Added `success` type for `MessageBox`.
@@ -14,14 +14,14 @@ Changelog
 
 ### Breaking changes
 - Color palette has been completely revamped for better accessibility (more contrast), consistency and simplicity (fewer colors and css variables).
-- Removed `drawBorders` attribute from `Dialog`, while improving the header and footer styling for all dialogs.
-- `Toaster` component was removed. Use `NotificationCenter` instead.
-- `Datepicker` was renamed to `InputDate`.
-- `Autocomplete` - HTML structure changed: `.autocomplete input` --> `.autocomplete .input-inner .input-row input`
-- `Select` - HTML structure changed: `.select-wrap select` --> `.select .input-inner .input-row select`
-- `Table` - CSS classes changed from `.table-wrapper table.table` --> `.table table`
-- `Toggle` - HTML structure changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
-- These components previously exposed `_this`, which is now renamed to `element`: `Button`, `Checkbox`, `InputMath`, `PushButton`, `Table`
+- `Autocomplete` has been renamed to `Combobox` as this is what it really is.
+- `Datepicker` has been renamed to `InputDate`.
+- `Toaster` component has been removed. Use `NotificationCenter` instead.
+- `Select` - HTML structure has changed: `.select-wrap select` --> `.select .input-inner .input-row select`
+- `Table` - CSS classes have changed from `.table-wrapper table.table` --> `.table table`
+- `Toggle` - HTML structure has changed from `.toggle .toggle-inner .toggle-scroller input` --> `.toggle .toggle-inner .toggle-label .toggle-scroller input`
+- `drawBorders` attribute has been removed from `Dialog`, while header and footer styling has been improved for all dialogs.
+- These components previously exposed `_this`, which is now called `element`: `Button`, `Checkbox`, `InputMath`, `PushButton`, `Table`
 
 ### Color palette - mapping from v7 to v8 colors:
 - `--ui-color-text-dark-1` --> `--ui-color-text-1`

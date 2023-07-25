@@ -1,4 +1,4 @@
-export * from './autocomplete';
+export * from './combobox';
 export * from './button-toggle';
 export * from './checkbox';
 export * from './input-date';

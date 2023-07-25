@@ -22,12 +22,14 @@
 	"settings": {
 		"import/parsers": {
 		  "svelte-eslint-parser": [".svelte"],
+		  "@typescript-eslint/parser": [ ".ts", ".tsx" ],
 		  "espree": [".js"]
 		},
 		"import/resolver": {
-		  "node": {
-			"extensions": [".js", ".svelte", ".ts", ".d.ts"]
-		  }
+			"node": { "extensions": [ ".js", ".svelte", ".ts" ] },
+			"eslint-import-resolver-custom-alias": {
+				"alias": { "@testing-library/svelte": "./node_modules/@testing-library/svelte/src" }
+			}
 		}
 	},
     "plugins": [ "import" ],

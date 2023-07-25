@@ -3,7 +3,7 @@
 <ul>
 <li><strong>New:</strong> <code>Label</code> component.</li>
 <li><strong>New icons:</strong> <code>sun</code> and <code>moon</code> for the dark-theme switchers.</li>
-<li><strong>Improvement:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Autocomplete</code>, <code>InputDate</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
+<li><strong>Improvement:</strong> <code>info</code>, <code>error</code> and <code>label</code> attributes are now supported on other inputs (<code>Combobox</code>, <code>InputDate</code>, <code>Select</code>, <code>ButtonToggle</code>, and <code>Toggle</code>).</li>
 <li><strong>Improvement:</strong> all components now expose <code>element</code> and <code>inputElement</code> (if there is one (and only one)). The exceptions are <code>NotificationCenter</code> and <code>MessageBox</code>, due to their implementation.</li>
 <li>Added <code>title</code> attribute to <code>ButtonToggle</code>.</li>
 <li>Added <code>success</code> type for <code>MessageBox</code>.</li>
@@ -13,14 +13,14 @@
 <h3>Breaking changes</h3>
 <ul>
 <li>Color palette has been completely revamped for better accessibility (more contrast), consistency and simplicity (fewer colors and css variables).</li>
-<li>Removed <code>drawBorders</code> attribute from <code>Dialog</code>, while improving the header and footer styling for all dialogs.</li>
-<li><code>Toaster</code> component was removed. Use <code>NotificationCenter</code> instead.</li>
-<li><code>Datepicker</code> was renamed to <code>InputDate</code>.</li>
-<li><code>Autocomplete</code> - HTML structure changed: <code>.autocomplete input</code> --&gt; <code>.autocomplete .input-inner .input-row input</code></li>
-<li><code>Select</code> - HTML structure changed: <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
-<li><code>Table</code> - CSS classes changed from <code>.table-wrapper table.table</code> --&gt; <code>.table table</code></li>
-<li><code>Toggle</code> - HTML structure changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
-<li>These components previously exposed <code>_this</code>, which is now renamed to <code>element</code>: <code>Button</code>, <code>Checkbox</code>, <code>InputMath</code>, <code>PushButton</code>, <code>Table</code></li>
+<li><code>Autocomplete</code> has been renamed to <code>Combobox</code> as this is what it really is.</li>
+<li><code>Datepicker</code> has been renamed to <code>InputDate</code>.</li>
+<li><code>Toaster</code> component has been removed. Use <code>NotificationCenter</code> instead.</li>
+<li><code>Select</code> - HTML structure has changed: <code>.select-wrap select</code> --&gt; <code>.select .input-inner .input-row select</code></li>
+<li><code>Table</code> - CSS classes have changed from <code>.table-wrapper table.table</code> --&gt; <code>.table table</code></li>
+<li><code>Toggle</code> - HTML structure has changed from <code>.toggle .toggle-inner .toggle-scroller input</code> --&gt; <code>.toggle .toggle-inner .toggle-label .toggle-scroller input</code></li>
+<li><code>drawBorders</code> attribute has been removed from <code>Dialog</code>, while header and footer styling has been improved for all dialogs.</li>
+<li>These components previously exposed <code>_this</code>, which is now called <code>element</code>: <code>Button</code>, <code>Checkbox</code>, <code>InputMath</code>, <code>PushButton</code>, <code>Table</code></li>
 </ul>
 <h3>Color palette - mapping from v7 to v8 colors:</h3>
 <ul>
