@@ -5,7 +5,7 @@ PerfectThings/UI
 A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).
 
 ### Github pages site with docs
-https://perfect-things.github.io/ui/
+https://ui.perfectthings.dev
 
 
 ![Screenshot](screen.png)
