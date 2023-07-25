@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## v8.0.0 *(2023-07-?)*
+## v8.0.0 *(2023-07-25)*
 - **New:** `Label` component.
 - **New icons:** `sun` and `moon` for the dark-theme switchers.
 - **Improvement:** `info`, `error` and `label` attributes are now supported on other inputs (`Combobox`, `InputDate`, `Select`, `ButtonToggle`, and `Toggle`).

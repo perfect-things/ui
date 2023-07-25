@@ -1,5 +1,5 @@
 <h1>Changelog</h1>
-<h2>v8.0.0 <em>(2023-07-?)</em></h2>
+<h2>v8.0.0 <em>(2023-07-25)</em></h2>
 <ul>
 <li><strong>New:</strong> <code>Label</code> component.</li>
 <li><strong>New icons:</strong> <code>sun</code> and <code>moon</code> for the dark-theme switchers.</li>
