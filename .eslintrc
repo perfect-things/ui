@@ -28,7 +28,10 @@
 		"import/resolver": {
 			"node": { "extensions": [ ".js", ".svelte", ".ts" ] },
 			"eslint-import-resolver-custom-alias": {
-				"alias": { "@testing-library/svelte": "./node_modules/@testing-library/svelte/src" }
+				"alias": {
+					"@testing-library/svelte": "./node_modules/@testing-library/svelte/src",
+					"svelte": "./node_modules/svelte/src/runtime"
+				}
 			}
 		}
 	},
