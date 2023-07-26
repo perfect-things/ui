@@ -31,6 +31,7 @@
 	font-size: clamp(32px, 5vw, 72px);
 	font-weight: 100;
 	margin: 0;
+	padding: 0 4px 0 0;
 	display: flex;
 	flex-flow: row;
 	white-space: nowrap;
@@ -43,8 +44,8 @@
 	font-size: 1rem;
 	font-weight: 300;
 	color: var(--ui-color-text-semi);
-	margin: -1rem 0 0 -4.4rem;
-	width: 4rem;
+	margin: -1rem 0 0 -63px;
+	width: 60px;
 	text-align: right;
 }
 

@@ -6,7 +6,7 @@
 		value="{$PREFERS_DARK}"
 		on:change="{switchColorMode}"/>
 
-	<div class="social-buttons">
+	<div class="header-links">
 		<a href="https://www.npmjs.com/package/@perfectthings/ui" title="NPM page" class="npm">
 			<svg xmlns="http://www.w3.org/2000/svg" width="365" height="162" viewBox="0 0 365 162"><g fill="none" fill-rule="nonzero"><path class="npm-outline" fill="currentColor" d="M0 20h365v121.714H182.5V162h-81.111v-20.286H0V20Zm20.278 101.429h40.555V60.57h20.278v60.858h20.278V40.286H20.278v81.143Zm101.389-81.143v101.428h40.555V121.43h40.556V40.286h-81.111Zm40.555 20.285H182.5v40.572h-20.278V60.57Zm60.834-20.285v81.143h40.555V60.57h20.278v60.858h20.278V60.57h20.277v60.858h20.278V40.286H223.056Z"/><path class="npm-fill" fill="currentColor" d="M23 124h40.5V63.25h20.25V124H104V43H23zM118 40v104h40.5v-20.8H199V40h-81Zm60.75 62.4H158.5V60.8h20.25v41.6ZM223 43v81h39.333V63.25H282V124h19.667V63.25h19.666V124H341V43z"/></g></svg>
 		</a>
