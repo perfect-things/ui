@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v8.0.1 *(2023-07-26)*
+- **New:** Check the platform on load and add a `mobile` or `desktop` class to the `html` element.
+- Fixed: Menu separator is now aligned with menu items.
+- Fixed: Notifications Archive "Clear all" button is now back to normal.
+
 
 ## v8.0.0 *(2023-07-25)*
 - **New:** `Label` component.

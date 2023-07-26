@@ -1,4 +1,10 @@
 <h1>Changelog</h1>
+<h2>v8.0.1 <em>(2023-07-26)</em></h2>
+<ul>
+<li><strong>New:</strong> Check the platform on load and add a <code>mobile</code> or <code>desktop</code> class to the <code>html</code> element.</li>
+<li>Fixed: Menu separator is now aligned with menu items.</li>
+<li>Fixed: Notifications Archive &quot;Clear all&quot; button is now back to normal.</li>
+</ul>
 <h2>v8.0.0 <em>(2023-07-25)</em></h2>
 <ul>
 <li><strong>New:</strong> <code>Label</code> component.</li>

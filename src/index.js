@@ -15,3 +15,6 @@ export * from './notification-center/index.js';
 export * from './tooltip/index.js';
 export * from './tree/index.js';
 export * from './utils.js';
+import { isMobile } from './utils.js';
+
+document.documentElement.classList.add(isMobile() ? 'mobile' : 'desktop');

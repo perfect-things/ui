@@ -1,14 +1,9 @@
-<ul class="social-buttons">
-	<li class="social-button"><a href="https://github.com/perfect-things/ui/">Github Repo</a>
-	<li class="social-button"><a href="https://www.npmjs.com/package/@perfectthings/ui">NPM Page</a>
-</ul>
-
-<header class="main-header">
+<div class="banner">
 	<a href="https://ui.perfectthings.dev">
 		<img class="logo" src="logo.png" alt="Logo"/>
-		<h1 class="logotype">PerfectThings <em>UI</em><sub>v{window.UI_VERSION || ''}</sub></h1>
+		<h1 class="logotype"><span>PerfectThings</span><em>UI</em><sub>v{window.UI_VERSION || ''}</sub></h1>
 	</a>
-</header>
+</div>
 
 <p>PerfectThings UI (or <em>@perfectthings/ui</em>) is a beautiful UI framework and a simple design system
 	available as an npm module, that strives to provide the best possible UX when building web applications in

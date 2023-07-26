@@ -31,49 +31,17 @@ menu a:hover { background-color: var(--ui-color-highlight-1); }
 menu a.active { background-color: var(--ui-color-highlight); }
 
 
-.nav-toolbar {
-	position: sticky;
-	top: 0;
-	margin: 0 -1rem;
-	padding: 0.5rem 1rem;
-	border-bottom: 1px solid var(--ui-color-border);
-	background: var(--ui-color-background-semi);
-	-webkit-backdrop-filter: blur(15px);
-	backdrop-filter: blur(15px);
-	display: flex;
-	flex-flow: column;
-	align-items: stretch;
-	flex-wrap: wrap;
-}
-
-.nav-toolbar-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	padding-block: 0.3rem;
-	gap: 0.5rem;
-}
-
-.nav-toolbar-row .dark-mode-switch { min-width: 100%; }
-
 .nav-toggler {
 	--ui-button-size: 1.1em;
 	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 99;
+	left: 0.6rem;
+	top: 0.4rem;
+	z-index: 10;
 	transition: left .2s ease-out;
 	display: none;
-	background-color: var(--ui-color-background-input);
-	border-radius: 0 15px 15px 0;
-	height: 48px;
-	padding-right: 0 !important;
-	padding-left: 0 !important;
-	box-shadow: 2px 1px 5px #0009;
 }
 
-.nav-toggler.visible { left: 230px; }
+.nav-toggler.visible { left: 240px; }
 
 @media (1px <= width <= 700px) {
 	.mobile-show { margin-left: 0; }
@@ -86,6 +54,4 @@ menu a.active { background-color: var(--ui-color-highlight); }
 		z-index: 9;
 		box-shadow: 2px 1px 10px #0006;
 	}
-	main { padding-top: 5em; }
-	.main-header { margin-top: -5em; }
 }
