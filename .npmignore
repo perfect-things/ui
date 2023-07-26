@@ -8,9 +8,7 @@ docs/github-dark.min.css
 docs/highlight-svelte.min.js
 docs/highlight.min.js
 docs/index.html
-docs/logo-white.png
-docs/logo.png
-docs/logo2.png
+docs/logo*
 docs/prism-tomorrow.min.css
 docs/zxcvbn.js.map
 docs-src/
