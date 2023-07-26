@@ -72,8 +72,9 @@
 
 .menu-separator {
 	height: 0;
+	width: auto;
 	padding: 0;
-	margin: var(--ui-margin) 0.6rem;
+	margin: var(--ui-margin) 0.8rem;
 	border-bottom: var(--ui-popup-border);
 }
 
