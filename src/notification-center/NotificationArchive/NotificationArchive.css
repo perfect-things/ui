@@ -31,7 +31,13 @@
 }
 
 
-.notification-archive h2 { color: inherit; font-size: 1.1rem; margin: 0; }
+.notification-archive h2 {
+	color: inherit;
+	font-size: 1.1rem;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
 .notification-archive h2 .button { padding-inline: var(--ui-margin-m); margin-left: -0.5rem; }
 .notification-archive h2 .button svg { transform: rotate(0deg); transition: transform var(--ui-animation-speed) ease-out; }
 
