@@ -92,5 +92,5 @@ npm i && npm start
 <ul>
 	<li><a href="https://developer.apple.com/design/human-interface-guidelines/components/">Human Interface Guidelines</a> from Apple
 	<li>Icons from <a href="https://tablericons.com">Tabler Icons</a>
-	<li><i>Prime Light</i> font from <a href="www.fontfabric.com">Fontfabric</a>
+	<li><i>Prime Light</i> font from <a href="https://www.fontfabric.com">Fontfabric</a>
 </ul>
