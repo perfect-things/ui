@@ -38,10 +38,12 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	top: 0.4rem;
 	z-index: 10;
 	transition: left .2s ease-out;
+	color: var(--ui-color-text-1);
 	display: none;
 }
+.nav-toggler:hover { background: none; color: var(--ui-color-text); }
 
-.nav-toggler.visible { left: 240px; }
+.nav-toggler.visible { left: 182px; }
 
 @media (1px <= width <= 700px) {
 	.mobile-show { margin-left: 0; }

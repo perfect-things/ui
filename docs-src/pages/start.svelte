@@ -1,6 +1,6 @@
 <div class="banner">
 	<a href="https://ui.perfectthings.dev">
-		<img class="logo" src="logo.png" alt="Logo"/>
+		<img class="logo" src="logo-white.svg" alt="Logo"/>
 		<h1 class="logotype"><span>PerfectThings</span><em>UI</em><sub>v{window.UI_VERSION || ''}</sub></h1>
 	</a>
 </div>

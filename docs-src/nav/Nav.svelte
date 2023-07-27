@@ -54,6 +54,8 @@
 </aside>
 
 <svelte:window on:hashchange="{onhashchange}" />
+<svelte:document on:click="{onDocClick}" />
+
 <script>
 import { Button as UIButton } from '../../src';
 import NavItem from './NavItem.svelte';
@@ -66,6 +68,7 @@ const components = { GetStarted, Changelog, ...TestComponents, };
 let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
 let navMobileShow = false;
+
 
 
 function onhashchange () {
@@ -81,6 +84,11 @@ function toggleNav () {
 }
 
 
-window.addEventListener('popstate', () => navMobileShow = false);
+function onDocClick (e) {
+	if (navMobileShow && !e.target.closest('aside,.nav-toggler')) {
+		navMobileShow = false;
+	}
+}
+
 
 </script>
