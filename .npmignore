@@ -1,4 +1,5 @@
 assets/
+
 docs/CNAME
 docs/bg.png
 docs/docs.css
@@ -8,10 +9,13 @@ docs/github-dark.min.css
 docs/highlight-svelte.min.js
 docs/highlight.min.js
 docs/index.html
-docs/logo*
+docs/*logo*
 docs/prism-tomorrow.min.css
 docs/zxcvbn.js.map
+docs/*.woff*
+
 docs-src/
+
 coverage/
 tests/
 .*

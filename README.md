@@ -77,9 +77,10 @@ A browser window should open with the demo of the components.
 
 
 ## Resources
-- icons: https://tablericons.com
-- https://developer.apple.com/design/human-interface-guidelines/components/
 
+- [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/components/) from Apple
+- Icons from [Tabler Icons](https://tablericons.com)
+- *Prime Light* font from [Fontfabric](www.fontfabric.com)
 
 
 ## Support

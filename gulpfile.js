@@ -35,7 +35,7 @@ const PATHS = {
 		DOCS: { INPUT: 'docs-src/**/*.css', OUT: 'docs.css' },
 		LINT: ['{src,docs-src}/**/*.css']
 	},
-	ASSETS: ['assets/*.png', 'assets/*.svg', 'assets/CNAME'],
+	ASSETS: ['assets/*.png', 'assets/*.svg', 'assets/CNAME', 'assets/*.woff*'],
 	EXTERNAL: [
 		'node_modules/zxcvbn/dist/zxcvbn.js*',
 		'node_modules/prismjs/themes/prism-tomorrow.min.css',
