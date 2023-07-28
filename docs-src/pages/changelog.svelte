@@ -2,6 +2,8 @@
 <h2>v8.1.1 <em>(2023-07-28)</em></h2>
 <ul>
 <li>Bring back <code>--ui-color-accent-semi</code> and <code>--ui-color-highlight-semi</code> colors.</li>
+<li><code>Combobox</code> and <code>InputDate</code> buttons should not be tabbable.</li>
+<li><code>Combobox</code> and <code>InputDate</code> buttons should toggle the dropdown on click.</li>
 </ul>
 <h2>v8.1.0 <em>(2023-07-28)</em></h2>
 <ul>
