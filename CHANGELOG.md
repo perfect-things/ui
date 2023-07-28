@@ -3,6 +3,8 @@ Changelog
 
 ## v8.1.1 *(2023-07-28)*
 - Bring back `--ui-color-accent-semi` and `--ui-color-highlight-semi` colors.
+- `Combobox` and `InputDate` buttons should not be tabbable.
+- `Combobox` and `InputDate` buttons should toggle the dropdown on click.
 
 
 ## v8.1.0 *(2023-07-28)*

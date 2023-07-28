@@ -32,7 +32,9 @@
 .has-error.textarea .textarea-inner { background-color: var(--ui-color-danger-semi); }
 
 .has-error.input .input-inner  { border-color: var(--ui-color-danger); }
-.has-error.input .input-inner:focus-within { box-shadow: var(--ui-shadow-danger); }
+
+.has-error.input .input-inner:focus-within,
+.has-error.input .input-inner:has(:active):not(.disabled) { box-shadow: var(--ui-shadow-danger); }
 
 .has-error.input .info-bar-error,
 .has-error.textarea .info-bar-error { background-color: transparent; }

@@ -54,9 +54,6 @@ input[type=color] {
 	border: 1px solid  var(--ui-color-border);
 }
 
-.input-inner:has(:active),
-.input-inner:focus-within { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
-
 
  /* label on the left */
   .radio.label-on-the-left,
@@ -72,6 +69,13 @@ input[type=color] {
 }
 .label-on-the-left .label { padding-inline: 0; width: max-content; white-space: nowrap; }
 .label-on-the-left .input-inner { flex: 1; }
+
+
+.input-inner:focus-within,
+.input-inner:has(:active):not(.disabled) {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
 
 
 .input,
