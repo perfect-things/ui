@@ -1,6 +1,7 @@
 <div
 	class="input select {className}"
 	class:has-error="{error}"
+	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
 	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
@@ -63,6 +64,7 @@ export let name = undefined;
 export let label = '';
 export let error = undefined;
 export let info = undefined;
+export let labelOnTheLeft = false;
 
 export let element = undefined;
 export let inputElement = undefined;

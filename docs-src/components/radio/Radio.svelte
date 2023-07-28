@@ -24,6 +24,11 @@
 	info="Here be info message." />
 
 
+<h3>Label on the left</h3>
+<Radio items="{strings}" label="Label is on the left" labelOnTheLeft="true"/>
+
+
+
 <CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>
 
@@ -43,6 +48,7 @@ const apiProps = [
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, id?: string | number, disabled?: boolean &rbrace;</code>(if <i>id</i> is present - it should be unique).' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'label', type: 'string', description: 'Label for the whole component.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'title', type: 'string', description: 'Assign title to whole component.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Value of the component (=value of the checked item).' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },

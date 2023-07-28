@@ -22,6 +22,7 @@
 	border-radius: inherit;
 	background-color: var(--ui-color-background-2);
 	position: relative;
+	margin-block: 3px;
 }
 
 .toggle:has(:disabled) { pointer-events: none; opacity: 0.6; }

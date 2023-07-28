@@ -14,7 +14,14 @@ menu {
 	margin: 0 0 2rem;
 }
 
-menu h3 { margin: 0 -1rem; padding: 0.5rem 1rem; white-space: nowrap; }
+menu h3 {
+	margin: 0 -1rem;
+	padding: 0.5rem 1rem;
+	white-space: nowrap;
+	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 1.4rem;
+}
+
 menu h3:not(:first-child) { margin-top: 1rem; }
 
 menu a {
@@ -36,14 +43,14 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	position: absolute;
 	left: 0.6rem;
 	top: 0.4rem;
-	z-index: 10;
+	z-index: 11;
 	transition: left .2s ease-out;
 	color: var(--ui-color-text-1);
 	display: none;
 }
-.nav-toggler:hover { background: none; color: var(--ui-color-text); }
+.nav-toggler:hover { color: var(--ui-color-text); background: none; }
 
-.nav-toggler.visible { left: 182px; }
+.nav-toggler.visible { left: 182px; box-shadow: none; }
 
 @media (1px <= width <= 700px) {
 	.mobile-show { margin-left: 0; }
@@ -53,7 +60,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 		margin-left: -230px;
 		transition: margin .2s ease-out;
 		position: absolute;
-		z-index: 9;
+		z-index: 10;
 		box-shadow: 2px 1px 10px #0006;
 	}
 }

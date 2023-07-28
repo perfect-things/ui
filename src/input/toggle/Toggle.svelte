@@ -1,6 +1,7 @@
 <div
 	class="toggle {className}"
 	class:has-error="{error}"
+	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
 	role="switch"
 	aria-checked="{value}"
 	tabindex="{disabled ? undefined : 0}"
@@ -60,6 +61,7 @@ export let label = '';
 export let error = undefined;
 export let info = undefined;
 export let value = false;
+export let labelOnTheLeft = false;
 
 export let element = undefined;
 export let inputElement = undefined;

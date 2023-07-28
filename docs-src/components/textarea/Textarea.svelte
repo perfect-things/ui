@@ -23,6 +23,9 @@
 <h3>With info, error and autogrow</h3>
 <Textarea label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>
 
+<h3>Label on the left</h3>
+<Textarea label="Label is on the left" labelOnTheLeft="true"/>
+
 
 
 <CodeExample html="{exampleHtml}" />
@@ -44,6 +47,7 @@ const apiProps = [
 	{ name: 'error', type: 'string', description: 'Error message to show above the textarea.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying textarea.' },
 	{ name: 'label', type: 'string', description: 'Label for the textarea.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying textarea.' },
 	{ name: 'required', description: 'Mark the textarea as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying textarea.' },

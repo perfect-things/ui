@@ -60,3 +60,5 @@
 
 .checkbox.has-error input { border-color: var(--ui-color-danger); }
 .checkbox.has-error input:focus { box-shadow: var(--ui-shadow-danger); }
+
+.checkbox.label-on-the-left .checkbox-row { flex-flow: row-reverse; }

@@ -13,6 +13,8 @@
 <h3>With info box and error.</h3>
 <InputMath label="Enter amount" info="You can add 2 numbers here" error="Number must be big!"/>
 
+<h3>Label on the left</h3>
+<InputMath label="Label is on the left" labelOnTheLeft="true"/>
 
 
 <CodeExample html="{exampleHtml}" />
@@ -32,6 +34,7 @@ const apiProps = [
 	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
 	{ name: 'required', description: 'Mark the input as <i>aria-required</i>.' },

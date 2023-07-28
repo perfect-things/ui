@@ -2,21 +2,22 @@
 <div
 	{id}
 	{title}
-	class="input-radio {className}"
+	class="radio {className}"
 	class:has-error="{error}"
+	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
 	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 
 	<Info msg="{info}" />
 
-	<div class="input-radio-inner" class:disabled>
+	<div class="radio-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-radio-items">
+		<div class="radio-items">
 			{#each _items as item (item.id)}
 				<div
-					class="input-radio-item"
+					class="radio-item"
 					class:disabled="{disabled || item.disabled}"
 					on:touchstart|capture="{onmousedown}"
 					on:mousedown|capture="{onmousedown}">
@@ -53,6 +54,7 @@ export let items = [];
 export let value = '';
 export let error = '';
 export let info = '';
+export let labelOnTheLeft = false;
 
 export let element = undefined;
 
@@ -69,7 +71,7 @@ $: _items = items.map(item => {
 
 
 function onmousedown (e) {
-	const inp = e.target.closest('.input-radio-item').querySelector('input');
+	const inp = e.target.closest('.radio-item').querySelector('input');
 	if (inp && !inp.disabled) {
 		e.preventDefault();
 		inp.click();

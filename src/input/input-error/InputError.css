@@ -1,5 +1,5 @@
 .input .error-wrap,
-.input-radio .error-wrap,
+.radio .error-wrap,
 .checkbox .error-wrap {
 	display: flex;
 	flex-flow: row;
@@ -8,11 +8,11 @@
 }
 
 .checkbox .error-wrap,
-.input-radio .error-wrap { overflow: hidden; }
+.radio .error-wrap { overflow: hidden; }
 
 
 .input .info-bar-error,
-.input-radio .info-bar-error,
+.radio .info-bar-error,
 .textarea .info-bar-error {
 	padding-bottom: calc(0.4rem + 10px);
 	margin-bottom: -10px;

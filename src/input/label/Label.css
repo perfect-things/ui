@@ -11,3 +11,6 @@
 	-webkit-user-select: none;
 	user-select: none;
 }
+
+/* to offset input's border (visually) */
+.input .label { padding-inline: 1px; }

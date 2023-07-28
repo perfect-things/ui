@@ -3,6 +3,7 @@
 	class:open
 	aria-expanded="{open}"
 	class:has-error="{error}"
+	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
 	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
@@ -65,6 +66,7 @@ export let title = undefined;
 export let name = undefined;
 export let error = undefined;
 export let info = undefined;
+export let labelOnTheLeft = false;
 
 export let element = undefined;
 export let inputElement = undefined;

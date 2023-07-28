@@ -64,6 +64,8 @@
 }
 
 
+.button-toggle.round { border-radius: var(--ui-border-radius-xl); }
+
 .button-toggle.round:not(.has-error) .input-inner { border-radius: var(--ui-border-radius-xl); }
 
 .button-toggle.round .input-row .button:first-child {

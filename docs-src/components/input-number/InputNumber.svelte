@@ -14,6 +14,9 @@
 <h3>With comma as the decimal separator</h3>
 <InputNumber label="Enter amount" separator="," />
 
+<h3>Label on the left</h3>
+<InputNumber label="Label is on the left" labelOnTheLeft="true"/>
+
 
 
 <CodeExample html="{exampleHtml}" />
@@ -35,6 +38,7 @@ const apiProps = [
 	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
 	{ name: 'required', description: 'Mark the input as <i>aria-required</i>. The actual validation must be done in the consumer.' },

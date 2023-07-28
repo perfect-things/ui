@@ -57,6 +57,22 @@ input[type=color] {
 .input-inner:focus-within { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
 
 
+ /* label on the left */
+  .radio.label-on-the-left,
+  .button-toggle.input.label-on-the-left,
+ .textarea.label-on-the-left,
+ .toggle.label-on-the-left,
+ .input.label-on-the-left {
+	display: inline-flex;
+	flex-flow: row;
+	align-items: flex-start;
+	width: 100%;
+	gap: 1rem;
+}
+.label-on-the-left .label { padding-inline: 0; width: max-content; white-space: nowrap; }
+.label-on-the-left .input-inner { flex: 1; }
+
+
 .input,
 .textarea textarea:disabled,
 .input select:disabled,
@@ -68,6 +84,9 @@ input[type=color] {
 .input input:not([type=radio]) { width: 100%; border: none; }
 .input input:not([type=radio]):focus,
 .input input:not([type=radio]):invalid { box-shadow: none; border: none; }
+
+
+
 
 
 .input-row {

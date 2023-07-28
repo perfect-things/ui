@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v8.2.0 *(2023-07-28)*
+- **New:** All inputs have a new attribute `labelOnTheLeft` which allows to move the label to the left of the input.
+
+
 ## v8.0.1 *(2023-07-26)*
 - **New:** Check the platform on load and add a `mobile` or `desktop` class to the `html` element.
 - Fixed: Menu separator is now aligned with menu items.

@@ -55,7 +55,7 @@ test('Radio', async () => {
 	expect(lbl).toHaveTextContent(props.label);
 
 
-	const inputs = cmp.querySelectorAll('.input-radio-item input');
+	const inputs = cmp.querySelectorAll('.radio-item input');
 	const inp0 = inputs[0];
 	const inp1 = inputs[1];
 
@@ -68,7 +68,7 @@ test('Radio', async () => {
 	expect(inp0).toBeDisabled();
 	expect(inp1).not.toBeDisabled();
 
-	const labels = cmp.querySelectorAll('.input-radio-item .label');
+	const labels = cmp.querySelectorAll('.radio-item .label');
 	const lbl0 = labels[0];
 	const lbl1 = labels[1];
 	expect(lbl0).toHaveTextContent(items[0].name);

@@ -28,6 +28,11 @@
 	label="Please, check this by mistake."/>
 
 
+<h3>Label on the left</h3>
+<Checkbox label="Label is on the left" labelOnTheLeft="true"/>
+
+
+
 <CodeExample html="{exampleHtml}" />
 
 <API props="{apiProps}"/>
@@ -47,6 +52,7 @@ const apiProps = [
 	{ name: 'indeterminate', type: ['true', 'false'], description: 'If set to <i>true</i> it makes the checkbox show its 3rd state - indeterminate.' },
 	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the component.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },

@@ -37,6 +37,9 @@
 	on:change="{onchange}"/>
 
 
+<h3>Label on the left</h3>
+<InputDate label="Label is on the left" labelOnTheLeft="true"/>
+
 
 
 <CodeExample html="{exampleHtml}" />
@@ -58,6 +61,7 @@ const apiProps = [
 	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'placeholder', type: 'string', default: 'yyyy-mm-dd', description: 'Add a custom placeholder for the input.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.' },

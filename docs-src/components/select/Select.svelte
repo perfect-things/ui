@@ -29,6 +29,10 @@
 <h3>Error</h3>
 <Select items="{selectItems}" label="Select label" error="You picked the wrong side!" />
 
+<h3>Label on the left</h3>
+<Select items="{selectItems}" label="Label is on the left" labelOnTheLeft="true"/>
+
+
 
 <CodeExample html="{exampleHtml}" />
 
@@ -48,6 +52,7 @@ const apiProps = [
 	{ name: 'info', type: 'string', description: 'Show info message above the select.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the select.' },
 	{ name: 'label', type: 'string', description: 'Label for the select.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying select.' },
 	{ name: 'placeholder', type: 'string', description: 'Adds an item to the beginning of the options list.' },

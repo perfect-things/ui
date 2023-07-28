@@ -8,9 +8,9 @@
 
 .theme-light :where(input:is([type=radio])) { filter: brightness(0.9); }
 
-.input-radio { min-width: 26ch; width: min-content; max-width: 100%; }
+.radio { min-width: 26ch; width: min-content; max-width: 100%; }
 
-.input-radio-inner {
+.radio-inner {
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
@@ -23,19 +23,19 @@
 	overflow: hidden;
 }
 
-.has-error .input-radio-inner { border-color: var(--ui-color-danger); background-color: var(--ui-color-danger-semi); }
+.has-error .radio-inner { border-color: var(--ui-color-danger); background-color: var(--ui-color-danger-semi); }
 
-.input-radio-inner:focus-within,
-.input-radio-inner:has(:active):not(.disabled) { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
+.radio-inner:focus-within,
+.radio-inner:has(:active):not(.disabled) { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
 
-.has-error .input-radio-inner:focus-within,
-.has-error .input-radio-inner:has(:active):not(.disabled) { box-shadow: var(--ui-shadow-danger); border-color: var(--ui-color-danger); }
-
-
-.has-error.input-radio .info-bar-error { background-color: transparent; }
+.has-error .radio-inner:focus-within,
+.has-error .radio-inner:has(:active):not(.disabled) { box-shadow: var(--ui-shadow-danger); border-color: var(--ui-color-danger); }
 
 
-.input-radio-items {
+.has-error.radio .info-bar-error { background-color: transparent; }
+
+
+.radio-items {
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
@@ -46,7 +46,7 @@
 	border-radius: inherit;
 }
 
-.input-radio-item {
+.radio-item {
 	display: flex;
 	flex-flow: row;
 	align-items: center;
@@ -57,9 +57,9 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.input-radio-item:has(:disabled) { opacity: 0.75; color: var(--ui-color-text-semi); }
+.radio-item:has(:disabled) { opacity: 0.75; color: var(--ui-color-text-semi); }
 
-.input-radio-item .label { padding: 0.5rem 1rem; }
+.radio-item .label { padding: 0.5rem 1rem; }
 
-.input-radio-item:not(.disabled):focus-within,
-.input-radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); }
+.radio-item:not(.disabled):focus-within,
+.radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); }

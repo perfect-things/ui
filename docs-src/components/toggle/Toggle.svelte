@@ -29,6 +29,8 @@ The perfect toggle component in Svelte:
 <h3>Error</h3>
 <Toggle label="Toggle the lights" error="{error}" on:change="{onchange}"/>
 
+<h3>Label on the left</h3>
+<Toggle label="Label is on the left" labelOnTheLeft="true"/>
 
 
 <CodeExample html="{exampleHtml}" />
@@ -49,6 +51,7 @@ const apiProps = [
 	{ name: 'error', type: 'string', description: 'Error message to show above the toggle.' },
 	{ name: 'name', type: 'string', description: 'Assign name to the underlying input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'required', description: 'Mark the input as <i>aria-required</i>.' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['true', 'false'], description: 'Initial value of the toggle.' },

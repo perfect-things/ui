@@ -4,6 +4,8 @@
 	class:indeterminate
 	class:disabled
 	class:has-error="{error}"
+	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+
 	bind:this="{element}">
 
 	<Info msg="{info}" />
@@ -49,6 +51,7 @@ export let title = undefined;
 export let tabindex = undefined;
 export let name = '';
 export let required = undefined;
+export let labelOnTheLeft = false;
 
 export let element = undefined;
 export let inputElement = undefined;

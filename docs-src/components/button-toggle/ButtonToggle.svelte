@@ -50,6 +50,11 @@
 	on:change="{onchange}"/>
 
 
+<h3>Label on the left</h3>
+<ButtonToggle items="{items}" label="Label is on the left" labelOnTheLeft="true"/>
+
+
+
 <CodeExample html="{exampleHtml}" />
 <em>Note:</em> the component <i>value</i> type and the item's <i>value</i> type must match,
 so you can either use <i>string</i> for both - like in the example, or <i>number</i>, like so:
@@ -71,6 +76,7 @@ const apiProps = [
 	{ name: 'info', type: 'string', description: 'Show info message above the toggle.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the toggle.' },
 	{ name: 'label', type: 'string', description: 'Label for the toggle.' },
+	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>' },
 	{ name: 'name', type: 'string', description: 'Assign name to the underlying radio group' },
 	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
