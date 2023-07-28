@@ -8,9 +8,9 @@
 <br>
 
 <div class="docs-buttons-row">
-	<Button on:click="{() => dialog1.open()}">Show dialog 1</Button>
-	<Button on:click="{() => dialog2.open()}">Show dialog 2</Button>
-	<Button on:click="{() => dialog3.open()}">Show dialog 3</Button>
+	<Button on:click="{dialog1.open}">Show dialog 1</Button>
+	<Button on:click="{dialog2.open}">Show dialog 2</Button>
+	<Button on:click="{dialog3.open}">Show dialog 3</Button>
 </div>
 
 

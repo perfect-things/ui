@@ -111,7 +111,15 @@ function onDocKeydown (e) {
 
 export function open (openedBy) {
 	if (opened) return;
+
+	if (openedBy instanceof Event) openedBy = openedBy.target;
+
 	triggerEl = openedBy || document.activeElement;
+	if (triggerEl && triggerEl !== document.body) {
+		triggerEl.setAttribute('aria-haspopup', 'true');
+		triggerEl.setAttribute('aria-expanded', 'true');
+	}
+
 	element.style.display = 'flex';
 	if (openTimer) clearTimeout(openTimer);
 	openTimer = setTimeout(() => {
@@ -133,6 +141,9 @@ export function close () {
 		opened = false;
 		element.style.display = 'none';
 		document.removeEventListener('keydown', onDocKeydown);
+		if (triggerEl && triggerEl !== document.body) {
+			triggerEl.removeAttribute('aria-expanded');
+		}
 		dispatch('close');
 	}, $ANIMATION_SPEED);
 }
