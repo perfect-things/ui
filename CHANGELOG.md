@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## v8.2.0 *(2023-07-28)*
+## v8.1.0 *(2023-07-28)*
 - **New:** All inputs have a new attribute `labelOnTheLeft` which allows to move the label to the left of the input.
 
 
