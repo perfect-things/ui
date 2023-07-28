@@ -2,7 +2,10 @@
 	color-scheme: light;
 
 	--ui-color-accent: #b37400;
+	--ui-color-accent-semi: #b3740066;
+
 	--ui-color-highlight: #8ec6ff;
+	--ui-color-highlight-semi: #8ec6ff66;
 	--ui-color-highlight-1: #6ba0de;
 
 	--ui-color-secondary: #c0beb4;

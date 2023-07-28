@@ -54,6 +54,7 @@ input[type=color] {
 	border: 1px solid  var(--ui-color-border);
 }
 
+.input-inner:has(:active),
 .input-inner:focus-within { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
 
 

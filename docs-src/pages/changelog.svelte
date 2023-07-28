@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v8.1.1 <em>(2023-07-28)</em></h2>
+<ul>
+<li>Bring back <code>--ui-color-accent-semi</code> and <code>--ui-color-highlight-semi</code> colors.</li>
+</ul>
 <h2>v8.1.0 <em>(2023-07-28)</em></h2>
 <ul>
 <li><strong>New:</strong> All inputs have a new attribute <code>labelOnTheLeft</code> which allows to move the label to the left of the input.</li>

@@ -3,7 +3,10 @@
 	color-scheme: dark;
 
 	--ui-color-accent: #bb7a00;
+	--ui-color-accent-semi: #bb7a0066;
+
 	--ui-color-highlight: #1859a3;
+	--ui-color-highlight-semi: #1859a366;
 	--ui-color-highlight-1: #1e4572;
 
 	--ui-color-secondary: #5a5956;

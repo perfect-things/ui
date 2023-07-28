@@ -13,7 +13,14 @@
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-row">
-			<Button link icon="calendar" class="input-date-button" on:click="{onIconClick}"/>
+			<Button
+				link
+				icon="calendar"
+				class="input-date-button"
+				tabindex="-1"
+				on:mousedown="{onIconMouseDown}"
+				on:click="{onIconClick}"/>
+
 			<input
 				type="text"
 				autocomplete="off"
@@ -78,12 +85,12 @@ const errorMessageId = guid();
 const dispatch = createEventDispatcher();
 let picker;
 let open = false;
-
+let isHiding = false;
 
 onMount(() => {
 	picker = new Datepicker(inputElement, {
 		autohide: true,
-		buttonClass: 'button button-text info',
+		buttonClass: 'button button-text',
 		container: elevated ? document.body : undefined,
 		format,
 		todayBtn: true,
@@ -148,9 +155,16 @@ function onhide () {
 }
 
 
+function onIconMouseDown () {
+	isHiding = open;
+}
+
 function onIconClick () {
-	inputElement.focus();
-	picker.show();
+	if (isHiding) picker.hide();
+	else picker.show();
+
+	isHiding = false;
+	if (inputElement) inputElement.focus();
 }
 
 </script>

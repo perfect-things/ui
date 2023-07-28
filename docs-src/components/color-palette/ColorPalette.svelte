@@ -5,6 +5,7 @@
 <h4>Accent</h4>
 <div class="group">
 	<PaletteBox bg="color-accent" />
+	<PaletteBox bg="color-accent-semi" />
 </div>
 
 <h4>Secondary</h4>
@@ -40,6 +41,7 @@
 <h3>Highlight colors</h3>
 <div class="group">
 	<PaletteBox bg="color-highlight" />
+	<PaletteBox bg="color-highlight-semi" />
 	<PaletteBox bg="color-highlight-1" />
 </div>
 

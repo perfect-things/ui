@@ -13,7 +13,14 @@
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-row">
-			<Button link icon="dots" class="combobox-button" on:click="{onIconClick}"/>
+			<Button
+				link
+				icon="dots"
+				class="combobox-button"
+				tabindex="-1"
+				on:mousedown="{onIconMouseDown}"
+				on:click="{onIconClick}"/>
+
 			<input
 				type="text"
 				role="combobox"
@@ -142,7 +149,7 @@ let filteredData = [], groupedData = [];
 let originalText = '';
 let hasSetValue = true;
 let isSelecting = false;
-
+let isHiding = false;
 
 onMount(() => {
 	if (elevated) document.body.appendChild(listElement);
@@ -397,9 +404,16 @@ function onEsc (e) {
 }
 
 
+function onIconMouseDown () {
+	isHiding = opened;
+}
+
 function onIconClick () {
-	inputElement.focus();
-	inputElement.click();
+	if (isHiding) close();
+	else open();
+
+	isHiding = false;
+	if (inputElement) inputElement.focus();
 }
 
 

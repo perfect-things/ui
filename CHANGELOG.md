@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v8.1.1 *(2023-07-28)*
+- Bring back `--ui-color-accent-semi` and `--ui-color-highlight-semi` colors.
+
+
 ## v8.1.0 *(2023-07-28)*
 - **New:** All inputs have a new attribute `labelOnTheLeft` which allows to move the label to the left of the input.
 

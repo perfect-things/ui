@@ -103,7 +103,7 @@
 
 /* today */
 .datepicker-cell.today:not(.selected) {
-	background-color: var(--ui-color-success);
+	background-color: var(--ui-color-secondary-semi);
 	color: var(--ui-color-text);
 }
 
@@ -114,7 +114,7 @@
 .datepicker-cell.highlighted:not(.range,.disabled):hover,
 .datepicker-cell.highlighted:not(.range).focused,
 .datepicker-cell:not(.disabled):hover {
-	background-color: var(--ui-color-info);
+	background-color: var(--ui-color-highlight);
 	color: var(--ui-color-text);
 	cursor: pointer;
 }

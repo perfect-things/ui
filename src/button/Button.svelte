@@ -20,6 +20,7 @@
 	on:focus
 	on:keydown
 	on:mousedown
+	on:mouseup
 	on:touchstart="{() => touching = true}"
 	on:touchend="{() => touching = false}"
 	on:click>
@@ -51,7 +52,7 @@ export { className as class };
 
 let touching = false;
 
-$:props = pluck($$props, ['id', 'title', 'disabled', 'form', 'aria-pressed', 'data-']);
+$:props = pluck($$props, ['id', 'title', 'disabled', 'form', 'aria-pressed', 'data-', 'tabindex']);
 
 
 </script>
