@@ -42,3 +42,5 @@ body * { box-sizing: inherit; }
 
 /* meatballs icon is misaligned */
 .icon-tabler-dots-vertical { margin-left: -1px; }
+
+.flex-spacer { flex: 1; }

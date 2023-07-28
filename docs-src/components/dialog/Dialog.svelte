@@ -11,6 +11,7 @@
 	<Button on:click="{dialog1.open}">Show dialog 1</Button>
 	<Button on:click="{dialog2.open}">Show dialog 2</Button>
 	<Button on:click="{dialog3.open}">Show dialog 3</Button>
+	<Button on:click="{dialog4.open}">Show dialog 4</Button>
 </div>
 
 
@@ -39,6 +40,17 @@
 	<div slot="footer">
 		<Button on:click="{() => dialog3.close()}">Yes</Button>
 		<Button on:click="{() => dialog3.close()}">No</Button>
+	</div>
+</Dialog>
+
+
+<Dialog bind:this="{dialog4}" title="Edit something">
+	Form goes here...
+	<div slot="footer">
+		<Button success on:click="{() => dialog4.close()}">Yes</Button>
+		<Button on:click="{() => dialog4.close()}">No</Button>
+		<div class="flex-spacer"></div>
+		<Button danger icon="trash" on:click="{() => dialog4.close()}"></Button>
 	</div>
 </Dialog>
 
@@ -89,6 +101,6 @@ const exampleHtml = `
 &lt;/script>
 `;
 
-let dialog1, dialog2, dialog3;
+let dialog1, dialog2, dialog3, dialog4;
 
 </script>

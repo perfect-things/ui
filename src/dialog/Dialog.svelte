@@ -83,13 +83,20 @@ function onBackdropClick (e) {
 
 
 function focusOtherButton (target, key) {
-	// footer has `flex-flow: row-reverse;` so left is right
+	// footer has `flex-flow: row-reverse;` so that the most important button
+	// (which is on the right) will be the first one to be focused on Tab key press
+	// so here left is next, right is previous:
 	const btnMap = {
 		ArrowLeft: 'nextElementSibling',
 		ArrowRight: 'previousElementSibling',
 	};
-	const otherBtn = btnMap[key] && target[btnMap[key]];
-	if (otherBtn && otherBtn.tagName === 'BUTTON') otherBtn.focus();
+	let otherBtn;
+	while (otherBtn = btnMap[key] && target[btnMap[key]]) {
+		if (!otherBtn || otherBtn.tagName === 'BUTTON') break;
+		target = otherBtn;
+	}
+
+	if (otherBtn) otherBtn.focus();
 }
 
 

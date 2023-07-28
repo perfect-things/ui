@@ -83,7 +83,7 @@
 
 
 
-.dialog-footer .button { min-width: 9ch; }
+.dialog-footer .button-has-text { min-width: 9ch; }
 
 .dialog-header:empty { display: none; }
 
