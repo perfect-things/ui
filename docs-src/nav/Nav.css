@@ -4,6 +4,15 @@ aside {
 	height: 100%;
 	overflow-y: auto;
 	background: var(--ui-color-background);
+	position: fixed;
+	width: var(--sidebar-width);
+
+	left: 0;
+	top: 0;
+	bottom: 0;
+
+	overscroll-behavior: contain;
+	z-index: 10;
 }
 
 menu {
@@ -32,6 +41,7 @@ menu a {
 	padding: 0.5rem 1.4rem;
 	border-radius: var(--ui-border-radius-s);
 	white-space: nowrap;
+	touch-action: manipulation;
 }
 
 menu a:hover { background-color: var(--ui-color-highlight-1); }
@@ -40,7 +50,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 
 .nav-toggler {
 	--ui-button-size: 1.1em;
-	position: absolute;
+	position: fixed;
 	left: 0.6rem;
 	top: 0.4rem;
 	z-index: 11;
@@ -56,10 +66,8 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	.mobile-show { margin-left: 0; }
 	.nav-toggler { display: flex; }
 	aside {
-		width: 230px;
-		margin-left: -230px;
+		margin-left: calc(var(--sidebar-width) * -1);
 		transition: margin .2s ease-out;
-		position: absolute;
 		z-index: 10;
 		box-shadow: 2px 1px 10px #0006;
 	}

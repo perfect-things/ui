@@ -8,7 +8,7 @@
 }
 
 
-.table table { border-spacing: 0; width: 100%; }
+.table table { border-spacing: 0; width: 100%; table-layout: fixed; }
 
 .table.round { border-radius: var(--ui-border-radius-s); }
 .table.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
@@ -24,7 +24,7 @@
 	font-weight: 400;
 	text-align: left;
 	vertical-align: middle;
-	background: var(--ui-color-background-2);
+	background: var(--ui-color-background-input);
 }
 
 .table tr:focus-within,
@@ -48,4 +48,4 @@
 .table th:last-child,
 .table td:last-child { padding-right: var(--ui-margin-l); }
 
-.table tbody tr:last-child td { border-bottom: none; }
+.table tbody:last-of-type tr:last-child td { border-bottom: none; }

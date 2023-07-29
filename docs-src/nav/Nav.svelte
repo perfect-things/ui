@@ -53,7 +53,7 @@
 
 </aside>
 
-<svelte:window on:hashchange="{onhashchange}" />
+<svelte:window on:hashchange="{onhashchange}" on:popstate="{onpopstate}" />
 <svelte:document on:click="{onDocClick}" />
 
 <script>
@@ -75,7 +75,7 @@ function onhashchange () {
 	active = location.hash.substr(1);
 	component = components[active];
 	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
-	document.querySelector('main').scrollTop = 0;
+	document.documentElement.scrollTop = 0;
 }
 
 
@@ -83,6 +83,9 @@ function toggleNav () {
 	navMobileShow = !navMobileShow;
 }
 
+function onpopstate () {
+	navMobileShow = false;
+}
 
 function onDocClick (e) {
 	if (navMobileShow && !e.target.closest('aside,.nav-toggler')) {

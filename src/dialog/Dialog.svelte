@@ -20,6 +20,7 @@
 </div>
 <svelte:options accessors={true}/>
 
+
 <script>
 import { createEventDispatcher, onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
@@ -34,7 +35,7 @@ export let skipFirstFocus = false;
 export let element;
 
 const dispatch = createEventDispatcher();
-let dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer;
+let dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer, scrollPos;
 
 
 
@@ -116,6 +117,20 @@ function onDocKeydown (e) {
 }
 
 
+function freezeBody (freeze) {
+	if (freeze) {
+		scrollPos = window.pageYOffset;
+		document.body.classList.add('has-dialog');
+		document.body.style.top = `-${scrollPos}px`;
+	}
+	else {
+		document.body.classList.remove('has-dialog');
+		document.documentElement.scrollTop = scrollPos;
+		document.body.style.top = '';
+	}
+}
+
+
 export function open (openedBy) {
 	if (opened) return;
 
@@ -134,6 +149,7 @@ export function open (openedBy) {
 		element.style.display = 'flex';
 		if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
 		document.addEventListener('keydown', onDocKeydown);
+		freezeBody(true);
 		dispatch('open');
 	}, 100);
 }
@@ -151,6 +167,7 @@ export function close () {
 		if (triggerEl && triggerEl !== document.body) {
 			triggerEl.removeAttribute('aria-expanded');
 		}
+		freezeBody(false);
 		dispatch('close');
 	}, $ANIMATION_SPEED);
 }

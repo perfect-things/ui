@@ -38,6 +38,7 @@ body {
 }
 body * { box-sizing: inherit; }
 
+
 .icon-tabler { width: 1.5rem; height: 1.5rem; }
 
 /* meatballs icon is misaligned */

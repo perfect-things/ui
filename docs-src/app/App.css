@@ -1,22 +1,21 @@
 html,
 body {
-	box-sizing: border-box;
-	touch-action: none;
-	height: 100%;
-	width: 100%;
 	margin: 0;
 	background-color: var(--ui-color-background);
 	color: var(--ui-color-text);
+
+	--sidebar-width: 220px;
 }
 
-body * { box-sizing: inherit; }
 
-#app {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-flow: row;
+@font-face {
+	font-family: 'Prime Light';
+	src: url('prime_light-webfont.woff2') format('woff2'),
+		url('prime_light-webfont.woff') format('woff');
+	font-weight: light;
+	font-style: normal;
 }
+
 
 a { color: inherit; }
 a:hover {
@@ -26,10 +25,8 @@ a:hover {
 }
 
 main {
-	flex: 1;
 	padding: 0 2rem 8rem;
-	height: 100%;
-	overflow-y: auto;
+	margin-left: var(--sidebar-width);
 }
 
 h1,
@@ -74,4 +71,10 @@ hr {
 	justify-content: flex-start;
 	gap: 0.5rem;
 	flex-shrink: 0;
+}
+
+
+
+@media (1px <= width <= 700px) {
+	main { margin-left: 0; }
 }

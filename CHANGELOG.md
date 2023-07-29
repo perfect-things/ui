@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v8.1.2 *(2023-07-29)*
+- Small table style tweaks
+- Docs improvements
+
+
 ## v8.1.1 *(2023-07-28)*
 - Bring back `--ui-color-accent-semi` and `--ui-color-highlight-semi` colors.
 - `Combobox` and `InputDate` buttons should not be tabbable.
