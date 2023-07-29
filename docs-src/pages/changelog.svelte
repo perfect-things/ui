@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v8.1.2 <em>(2023-07-29)</em></h2>
+<ul>
+<li>Small table style tweaks</li>
+<li>Docs improvements</li>
+</ul>
 <h2>v8.1.1 <em>(2023-07-28)</em></h2>
 <ul>
 <li>Bring back <code>--ui-color-accent-semi</code> and <code>--ui-color-highlight-semi</code> colors.</li>
