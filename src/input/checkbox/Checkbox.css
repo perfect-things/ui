@@ -26,6 +26,8 @@
 	color: var(--ui-color-text-1);
 	font: inherit;   /* required for proper sizing */
 	flex-shrink: 0;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
 }
 
 .checkbox input:focus { border-color: var(--ui-color-accent); }

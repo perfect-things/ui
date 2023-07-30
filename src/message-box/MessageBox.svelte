@@ -10,9 +10,10 @@
 		</div>
 		<div slot="footer">
 			{#if $config.buttons}
-				{#each $config.buttons as button}
-					<button class="button button-normal button-has-text {button.type || ''}"
-						on:click="{e => onclick(e, button)}">{button.label}</button>
+				{#each $config.buttons as button (button.type)}
+					<Button data-class="{button.type || ''}" on:click="{e => onclick(e, button)}">
+						{button.label}
+					</Button>
 				{/each}
 			{/if}
 		</div>
@@ -22,6 +23,7 @@
 import { onDestroy, onMount } from 'svelte';
 import { config } from './MessageBox.js';
 import { Dialog } from '../dialog';
+import { Button } from '../button';
 import { Icon } from '../icon';
 
 export let element = undefined;

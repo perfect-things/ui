@@ -20,6 +20,7 @@
 	<Button on:click="{() => showMessage('Default message', null, 'Default title')}">Show message with title</Button>
 	<Button info on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}">Show message with title</Button>
 	<Button on:click="{() => showMessage(longMessage, null, 'Info title')}">Show long message</Button>
+	<Button info on:click="{() => showMessage(longMessage, MessageType.INFO, 'Info title')}">Show long message</Button>
 </div>
 
 

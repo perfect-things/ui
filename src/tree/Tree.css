@@ -1,6 +1,11 @@
 .tree,
 .tree ul { padding: 0; margin: 0; list-style: none; }
-.tree li { display: block; width: 100%; padding: 0; }
+.tree ul li {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
 
 .tree {
 	display: flex;
@@ -25,6 +30,8 @@
 	align-items: center;
 	border-radius: var(--ui-border-radius);
 	padding: 0 0.5rem;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
 }
 
 .tree-node.selected { background-color: var(--ui-color-highlight-1); }
