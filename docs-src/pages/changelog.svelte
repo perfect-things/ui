@@ -1,4 +1,13 @@
 <h1>Changelog</h1>
+<h2>v8.1.3 <em>(2023-07-30)</em></h2>
+<ul>
+<li><code>PushButton</code> now has better contrast (when pressed).</li>
+<li>Fixed <code>showMessage</code> style for long messages on mobile.</li>
+<li>Fixed password strength popup style.</li>
+<li>Docs: fancy font should be applied do docs only, not to the components.</li>
+<li>Docs: try swipeRight on mobile to open sidebar.</li>
+<li>Added touch-action: manipulation to <code>Label</code> and some other missing places.</li>
+</ul>
 <h2>v8.1.2 <em>(2023-07-29)</em></h2>
 <ul>
 <li>Small table style tweaks</li>

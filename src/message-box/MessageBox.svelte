@@ -10,8 +10,13 @@
 		</div>
 		<div slot="footer">
 			{#if $config.buttons}
-				{#each $config.buttons as button (button.type)}
-					<Button data-class="{button.type || ''}" on:click="{e => onclick(e, button)}">
+				{#each $config.buttons as button}
+					<Button
+						info="{button.type === 'info'}"
+						warning="{button.type === 'warning'}"
+						danger="{button.type === 'error' || button.type === 'danger'}"
+						success="{button.type === 'success'}"
+						on:click="{e => onclick(e, button)}">
 						{button.label}
 					</Button>
 				{/each}

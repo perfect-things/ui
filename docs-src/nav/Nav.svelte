@@ -57,7 +57,8 @@
 <svelte:document on:click="{onDocClick}" />
 
 <script>
-import { Button as UIButton } from '../../src';
+import { onMount } from 'svelte';
+import { Button as UIButton, initSwipe } from '../../src';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
@@ -68,7 +69,19 @@ const components = { GetStarted, Changelog, ...TestComponents, };
 let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
 let navMobileShow = false;
+let swiping = false;
 
+
+onMount(() => {
+	initSwipe(80);
+
+	document.addEventListener('swipeRight', () => {
+		navMobileShow = true;
+		swiping = true;
+		setTimeout(() => swiping = false, 500);
+	});
+
+});
 
 
 function onhashchange () {
@@ -87,10 +100,10 @@ function onpopstate () {
 	navMobileShow = false;
 }
 
+
 function onDocClick (e) {
-	if (navMobileShow && !e.target.closest('aside,.nav-toggler')) {
-		navMobileShow = false;
-	}
+	const notSidebar = !e.target.closest('aside,.nav-toggler');
+	if (navMobileShow && !swiping && notSidebar) navMobileShow = false;
 }
 
 

@@ -54,5 +54,4 @@ let touching = false;
 
 $:props = pluck($$props, ['id', 'title', 'disabled', 'form', 'aria-pressed', 'data-', 'tabindex']);
 
-
 </script>

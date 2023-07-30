@@ -1,6 +1,15 @@
 Changelog
 =========
 
+## v8.1.3 *(2023-07-30)*
+- `PushButton` now has better contrast (when pressed).
+- Fixed `showMessage` style for long messages on mobile.
+- Fixed password strength popup style.
+- Docs: fancy font should be applied do docs only, not to the components.
+- Docs: try swipeRight on mobile to open sidebar.
+- Added touch-action: manipulation to `Label` and some other missing places.
+
+
 ## v8.1.2 *(2023-07-29)*
 - Small table style tweaks
 - Docs improvements
