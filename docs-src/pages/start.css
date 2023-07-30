@@ -95,20 +95,21 @@
 	padding: 0 0 3rem;
 }
 
-
-h1 {
+main>h1,
+main>h2,
+.sticky-block>h1,
+.sticky-block>h2 {
 	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	margin: 2rem -2rem 1rem;
 	padding: 0.5rem 130px 0.5rem 2rem;
 }
 
-h2 {
-	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+/* stylelint-disable-next-line no-descending-specificity */
+main>h2,
+.sticky-block>h2 {
 	font-size: 1.8rem;
 	width: auto;
 	border-bottom: 1px solid var(--ui-color-border-2);
-	margin: 2rem -2rem 1rem;
-	padding: 0.5rem 130px 0.5rem 2rem;
 	position: sticky;
 	top: 0;
 	z-index: 9;
@@ -121,8 +122,9 @@ h2 {
 }
 
 
+
 /* stylelint-disable-next-line no-descending-specificity */
-h2 em {
+main>h2 em {
 	color: var(--ui-color-text-semi);
 	font-size: 1.2rem;
 	line-height: 1.8rem;
@@ -130,8 +132,8 @@ h2 em {
 	vertical-align: text-top;
 }
 
-p code,
-li code {
+main>p code,
+main>li code {
 	display: inline;
 	padding: 0;
 	margin: 0;
@@ -143,6 +145,8 @@ li code {
 
 
 @media (1px <= width <= 700px) {
-	h1,
-	h2 { padding-left: 54px; }
+	main>h1,
+	main>h2,
+	.sticky-block>h1,
+	.sticky-block>h2 { padding-left: 54px; }
 }

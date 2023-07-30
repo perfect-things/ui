@@ -1,5 +1,5 @@
 <Nav bind:component="{component}" />
-<main>
+<main class="{pageName}">
 	<Header />
 	<svelte:component this="{component}"/>
 </main>
@@ -11,4 +11,6 @@ import { Header } from '../header';
 
 let component = undefined;
 
+
+$:pageName = (component && component.name || '').toLowerCase();
 </script>

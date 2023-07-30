@@ -1,5 +1,5 @@
 .push-button[aria-pressed="true"] {
-	filter: brightness(0.85);
+	filter: brightness(0.75) contrast(1.12);
 	transform: translateY(1px);
 	box-shadow: none;
 }

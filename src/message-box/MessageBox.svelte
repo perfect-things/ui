@@ -11,8 +11,14 @@
 		<div slot="footer">
 			{#if $config.buttons}
 				{#each $config.buttons as button}
-					<button class="button button-normal button-has-text {button.type || ''}"
-						on:click="{e => onclick(e, button)}">{button.label}</button>
+					<Button
+						info="{button.type === 'info'}"
+						warning="{button.type === 'warning'}"
+						danger="{button.type === 'error' || button.type === 'danger'}"
+						success="{button.type === 'success'}"
+						on:click="{e => onclick(e, button)}">
+						{button.label}
+					</Button>
 				{/each}
 			{/if}
 		</div>
@@ -22,6 +28,7 @@
 import { onDestroy, onMount } from 'svelte';
 import { config } from './MessageBox.js';
 import { Dialog } from '../dialog';
+import { Button } from '../button';
 import { Icon } from '../icon';
 
 export let element = undefined;
