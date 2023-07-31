@@ -24,11 +24,11 @@
 
 <h4>Disabled</h4>
 <div class="docs-buttons-row">
-	<PushButton disabled>Hello</PushButton>
-	<PushButton disabled info>Info</PushButton>
-	<PushButton disabled success>Success</PushButton>
-	<PushButton disabled warning>Warning</PushButton>
-	<PushButton disabled danger>Danger</PushButton>
+	<PushButton pressed disabled>Hello</PushButton>
+	<PushButton pressed disabled info>Info</PushButton>
+	<PushButton pressed disabled success>Success</PushButton>
+	<PushButton pressed disabled warning>Warning</PushButton>
+	<PushButton pressed disabled danger>Danger</PushButton>
 </div>
 
 

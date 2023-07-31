@@ -54,7 +54,7 @@
 </aside>
 
 <svelte:window on:hashchange="{onhashchange}" on:popstate="{onpopstate}" />
-<svelte:document on:click="{onDocClick}" />
+<svelte:document on:touchstart="{onDocClick}" on:click="{onDocClick}" />
 
 <script>
 import { onMount } from 'svelte';

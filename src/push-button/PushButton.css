@@ -1,7 +1,9 @@
+.push-button:active,
+.push-button.touching,
 .push-button[aria-pressed="true"] {
-	filter: brightness(0.75) contrast(1.12);
+	filter: brightness(0.85) contrast(1.1);
 	transform: translateY(1px);
-	box-shadow: none;
+	box-shadow: 0 1px 0 rgb(0 0 0/0.8) inset;
 }
 
 .push-button[aria-pressed="true"].button-outline { background-color: var(--ui-color-secondary-semi); }
@@ -9,3 +11,8 @@
 .push-button[aria-pressed="true"].button-outline.success { background-color: var(--ui-color-success-semi); }
 .push-button[aria-pressed="true"].button-outline.warning { background-color: var(--ui-color-warning-semi); }
 .push-button[aria-pressed="true"].button-outline.danger { background-color: var(--ui-color-danger-semi); }
+
+
+.push-button.button-outline:active,
+.push-button.button-outline.touching,
+.push-button.button-outline[aria-pressed="true"] { box-shadow: none; }

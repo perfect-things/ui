@@ -4,6 +4,7 @@ let touchendX = 0;
 let touchendY = 0;
 
 let MIN_DISTANCE = 100;
+let IS_TOUCH = false;
 
 
 function gestureType () {
@@ -23,18 +24,26 @@ function gestureType () {
 
 
 function onTouchStart (e) {
-	// touchstartX = e.changedTouches[0].screenX;
-	// touchstartY = e.changedTouches[0].screenY;
-	touchstartX = e.clientX;
-	touchstartY = e.clientY;
+	if (IS_TOUCH) {
+		touchstartX = e.changedTouches[0].screenX;
+		touchstartY = e.changedTouches[0].screenY;
+	}
+	else {
+		touchstartX = e.clientX;
+		touchstartY = e.clientY;
+	}
 }
 
 
 function onTouchEnd (e) {
-	// touchendX = e.changedTouches[0].screenX;
-	// touchendY = e.changedTouches[0].screenY;
-	touchendX = e.clientX;
-	touchendY = e.clientY;
+	if (IS_TOUCH) {
+		touchendX = e.changedTouches[0].screenX;
+		touchendY = e.changedTouches[0].screenY;
+	}
+	else {
+		touchendX = e.clientX;
+		touchendY = e.clientY;
+	}
 	const type = gestureType();
 	if (type) fireEvent(e, type);
 }
@@ -55,12 +64,12 @@ export function initSwipe (minDistance = 100) {
 
 	MIN_DISTANCE = minDistance;
 	// check if we're using a touch screen
-	const isTouch = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator['msMaxTouchPoints'] > 0));
+	IS_TOUCH = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator['msMaxTouchPoints'] > 0));
 	const hasPointerEvents = (('PointerEvent' in window) || (navigator && 'msPointerEnabled' in navigator));
 
 	// switch to pointer events or touch events if using a touch screen
-	const mouseDown = isTouch ? 'touchstart' : hasPointerEvents ? 'pointerdown' : 'mousedown';
-	const mouseUp = isTouch ? 'touchend' : hasPointerEvents ? 'pointerup' : 'mouseup';
+	const mouseDown = IS_TOUCH ? 'touchstart' : hasPointerEvents ? 'pointerdown' : 'mousedown';
+	const mouseUp = IS_TOUCH ? 'touchend' : hasPointerEvents ? 'pointerup' : 'mouseup';
 
 	document.addEventListener(mouseDown, onTouchStart, false);
 	document.addEventListener(mouseUp, onTouchEnd, false);

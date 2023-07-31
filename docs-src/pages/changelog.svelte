@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v8.1.4 <em>(2023-07-31)</em></h2>
+<ul>
+<li>Improved <code>PushButton</code> pressed styling.</li>
+<li>Some buttons should now react faster on mobile (touch-action added to notification buttons and all inputs, selects and textareas).</li>
+</ul>
 <h2>v8.1.3 <em>(2023-07-30)</em></h2>
 <ul>
 <li><code>PushButton</code> now has better contrast (when pressed).</li>

@@ -45,8 +45,8 @@
 </div>
 
 <div class="sticky-block">
-	<h2>Usage with SvelteKit</h2>
-	<p>Available from <em>v6.4.0</em>.</p>
+	<h2>SvelteKit</h2>
+	<p>This framework works with SvelteKit from version <em>6.4.0</em>.</p>
 
 	<h3>1. Config</h3>
 	<p>

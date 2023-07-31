@@ -1,3 +1,5 @@
+button { -ms-touch-action: manipulation; touch-action: manipulation; }
+
 .button {
 	--ui-button-size: 1rem;
 
@@ -26,23 +28,14 @@
 	vertical-align: middle;
 	border-radius: var(--ui-border-radius);
 	text-decoration: none;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
 }
+
 
 .button:hover { text-decoration: none; }
 .button:focus {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 	outline: 1px solid transparent;
-}
-
-.button.touching,
-.button:active {
-	outline: 1px solid transparent;
-	box-shadow: none;
-	transform: translateY(1px);
-	filter: brightness(0.85);
 }
 
 .button[disabled] {
@@ -64,7 +57,6 @@
 .button:not(.button-has-text) { padding: 0 var(--ui-margin-m); }
 .button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
 
-
 .button.round {
 	padding: var(--ui-margin);
 	border-radius: var(--ui-border-radius-xl);
@@ -72,3 +64,14 @@
 .button.round:not(.button-has-text) { aspect-ratio: 1/1; }
 
 .button-has-text.round { padding-inline: var(--ui-margin-l); }
+
+
+.button.touching,
+.button:active {
+	outline: 1px solid transparent;
+	transform: translateY(1px);
+	filter: brightness(0.85);
+}
+
+.button:not(.push-button):active,
+.button:not(.push-button).touching { box-shadow: none; }

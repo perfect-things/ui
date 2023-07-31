@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v8.1.4 *(2023-07-31)*
+- Improved `PushButton` pressed styling.
+- Some buttons should now react faster on mobile (touch-action added to notification buttons and all inputs, selects and textareas).
+
+
 ## v8.1.3 *(2023-07-30)*
 - `PushButton` now has better contrast (when pressed).
 - Fixed `showMessage` style for long messages on mobile.
