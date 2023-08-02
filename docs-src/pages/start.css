@@ -101,7 +101,11 @@ main>h2,
 .sticky-block>h2 {
 	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	margin: 2rem -2rem 1rem;
-	padding: 0.5rem 130px 0.5rem 2rem;
+	padding: 0.5rem 100px 0.5rem 2rem;
+}
+
+.prime-light {
+	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */

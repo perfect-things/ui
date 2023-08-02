@@ -95,7 +95,7 @@
 	<ul>
 		<li><a href="https://developer.apple.com/design/human-interface-guidelines/components/">Human Interface Guidelines</a> from Apple
 		<li>Icons from <a href="https://tablericons.com">Tabler Icons</a>
-		<li><i>Prime Light</i> font from <a href="https://www.fontfabric.com">Fontfabric</a>
+		<li><span class="prime-light">Prime Light</span> font from <a href="https://www.fontfabric.com">Fontfabric</a>
 	</ul>
 
 

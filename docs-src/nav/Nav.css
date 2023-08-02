@@ -51,24 +51,27 @@ menu a.active { background-color: var(--ui-color-highlight); }
 .nav-toggler {
 	--ui-button-size: 1.1em;
 	position: fixed;
-	left: 0.6rem;
+	left: 0;
 	top: 0.4rem;
 	z-index: 11;
-	transition: left .2s ease-out;
 	color: var(--ui-color-text-1);
 	display: none;
+	transform: translateX(10px);
 }
 .nav-toggler:hover { color: var(--ui-color-text); background: none; }
 
-.nav-toggler.visible { left: 182px; box-shadow: none; }
 
 @media (1px <= width <= 700px) {
-	.mobile-show { margin-left: 0; }
 	.nav-toggler { display: flex; }
+	.nav-toggler.expanded { transform: translateX(calc(var(--sidebar-width) - 40px)); }
+
 	aside {
-		margin-left: calc(var(--sidebar-width) * -1);
-		transition: margin .2s ease-out;
 		z-index: 10;
 		box-shadow: 2px 1px 10px #0006;
+		transform: translateX(calc(var(--sidebar-width) * -1));
 	}
+	aside.expanded { transform: translateX(0); }
+
+	.nav-toggler:not(.swiping),
+	aside:not(.swiping) { transition: transform .2s ease-out; }
 }

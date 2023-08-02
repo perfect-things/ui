@@ -1,9 +1,10 @@
 <UIButton text round
 	icon="sidebarLeft"
-	class="nav-toggler {navMobileShow ? 'visible' : ''}"
+	class="nav-toggler {expanded ? 'expanded' : ''} {swiping ? 'swiping' : ''}"
+	bind:element="{navTogglerBtn}"
 	on:click="{toggleNav}"/>
 
-<aside class:mobile-show="{navMobileShow}">
+<aside class:expanded class:swiping bind:this="{sidebarEl}">
 	<menu>
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
@@ -54,11 +55,11 @@
 </aside>
 
 <svelte:window on:hashchange="{onhashchange}" on:popstate="{onpopstate}" />
-<svelte:document on:touchstart="{onDocClick}" on:click="{onDocClick}" />
 
 <script>
 import { onMount } from 'svelte';
-import { Button as UIButton, initSwipe } from '../../src';
+import { Button as UIButton } from '../../src';
+import VanillaSwipe from 'vanilla-swipe';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
@@ -68,20 +69,100 @@ const components = { GetStarted, Changelog, ...TestComponents, };
 
 let active = location.hash.substr(1) || 'GetStarted';
 export let component = components[active];
-let navMobileShow = false;
+
+const SIDEBAR_WIDTH = 220;
+let expanded = false;
+let wasExpanded = false;
 let swiping = false;
+let sidebarEl, navTogglerBtn;
 
 
 onMount(() => {
-	initSwipe(80);
 
-	document.addEventListener('swipeRight', () => {
-		navMobileShow = true;
-		swiping = true;
-		setTimeout(() => swiping = false, 500);
+	const swiper = new VanillaSwipe({
+		element: document.body,
+		delta: 3,
+		mouseTrackingEnabled: true,
+		preventTrackingOnMouseleave: true,
+		onSwipeStart: onSwipeStart,
+		onSwiping: onSwipe,
+		onSwiped: onSwipeEnd,
+		onTap: onTap,
 	});
+	swiper.init();
 
 });
+
+function onSwipeStart () {
+	if (window.innerWidth > 700) return;
+
+	wasExpanded = expanded;
+	swiping = true;
+}
+
+function onSwipe (e, data) {
+	if (window.innerWidth > 700) return;
+	if (!swiping) return;
+
+	if (Math.abs(data.deltaY) > Math.abs(data.deltaX)) {
+		sidebarEl.style.transform = '';
+		navTogglerBtn.style.transform = '';
+		return;
+	}
+
+	e.preventDefault();
+
+	let left = wasExpanded ? 0 : -SIDEBAR_WIDTH;
+	left += data.deltaX;
+	left = Math.max(-SIDEBAR_WIDTH, left);
+	left = Math.min(0, left);
+	sidebarEl.style.transform = `translateX(${left}px)`;
+
+	let btnLeft = left + 180;
+	btnLeft = Math.max(10, btnLeft);
+	navTogglerBtn.style.transform = `translateX(${btnLeft}px)`;
+}
+
+
+function onSwipeEnd (e, data) {
+	if (window.innerWidth > 700) return;
+	if (!swiping) return;
+	swiping = false;
+
+	if (Math.abs(data.deltaY) > Math.abs(data.deltaX)) {
+		sidebarEl.style.transform = '';
+		navTogglerBtn.style.transform = '';
+		expanded = wasExpanded;
+		return;
+	}
+	if (data.directionX === 'LEFT' && !wasExpanded) {
+		sidebarEl.style.transform = '';
+		navTogglerBtn.style.transform = '';
+		expanded = wasExpanded;
+		return;
+	}
+	if (data.directionX === 'RIGHT' && wasExpanded) {
+		sidebarEl.style.transform = '';
+		navTogglerBtn.style.transform = '';
+		expanded = wasExpanded;
+		return;
+	}
+
+	const delta = Math.abs(data.deltaX) + data.velocity * 50;
+	const half = SIDEBAR_WIDTH / 2;
+	if (delta > half) expanded = !wasExpanded;
+
+	wasExpanded = expanded;
+	sidebarEl.style.transform = '';
+	navTogglerBtn.style.transform = '';
+}
+
+function onTap (e) {
+	if (window.innerWidth > 700) return;
+	if (e.target.closest('aside,.nav-toggler')) return;
+	if (wasExpanded) expanded = false;
+	wasExpanded = expanded;
+}
 
 
 function onhashchange () {
@@ -93,18 +174,15 @@ function onhashchange () {
 
 
 function toggleNav () {
-	navMobileShow = !navMobileShow;
+	expanded = !expanded;
+	wasExpanded = expanded;
 }
 
 function onpopstate () {
-	navMobileShow = false;
+	expanded = false;
+	wasExpanded = expanded;
 }
 
-
-function onDocClick (e) {
-	const notSidebar = !e.target.closest('aside,.nav-toggler');
-	if (navMobileShow && !swiping && notSidebar) navMobileShow = false;
-}
 
 
 </script>

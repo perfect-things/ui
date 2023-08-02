@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "vanillajs-datepicker": "^1.3.3",
+    "vanilla-swipe": "^2.4.1",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
