@@ -40,6 +40,7 @@
 				on:keydown|capture="{onkeydown}"
 				on:show="{onshow}"
 				on:hide="{onhide}"
+				on:blur={onblur}
 				bind:this="{inputElement}"
 				bind:value="{value}">
 		</div>
@@ -152,6 +153,10 @@ function onshow () {
 
 function onhide () {
 	open = false;
+}
+
+function onblur () {
+	picker.hide();
 }
 
 

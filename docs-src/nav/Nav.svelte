@@ -93,9 +93,12 @@ onMount(() => {
 
 });
 
-function onSwipeStart () {
+function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
 
+	if (e.target.closest('.api-table, .input, .button, .dialog-backdrop, pre>code'))	{
+		return;
+	}
 	wasExpanded = expanded;
 	swiping = true;
 }
@@ -155,6 +158,7 @@ function onSwipeEnd (e, data) {
 	wasExpanded = expanded;
 	sidebarEl.style.transform = '';
 	navTogglerBtn.style.transform = '';
+	requestAnimationFrame(() => document.body.focus());
 }
 
 function onTap (e) {
