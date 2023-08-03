@@ -69,9 +69,15 @@ menu a.active { background-color: var(--ui-color-highlight); }
 		z-index: 10;
 		box-shadow: 2px 1px 10px #0006;
 		transform: translateX(calc(var(--sidebar-width) * -1));
+
+		--sidebar-elastic-padding: 50px;
+		width: calc(var(--sidebar-width) + var(--sidebar-elastic-padding));
+		left: calc(var(--sidebar-elastic-padding) * -1);
+		padding-left: calc(var(--sidebar-elastic-padding) + 1rem);
+
 	}
 	aside.expanded { transform: translateX(0); }
 
 	.nav-toggler:not(.swiping),
-	aside:not(.swiping) { transition: transform .2s ease-out; }
+	aside:not(.swiping) { transition: transform .4s cubic-bezier(.5, .2, .5, 1.2); }
 }

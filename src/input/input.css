@@ -1,4 +1,7 @@
-input, select, textarea { -ms-touch-action: manipulation; touch-action: manipulation; }
+input, select, textarea, label {
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
 
 
 .theme-dark input { color-scheme: dark; }

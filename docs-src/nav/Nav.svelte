@@ -96,7 +96,7 @@ onMount(() => {
 function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
 
-	if (e.target.closest('.api-table, .input, .button, .dialog-backdrop, pre>code'))	{
+	if (e.target.closest('.api-table, .input, .button, .toggle, .dialog-backdrop, pre>code'))	{
 		return;
 	}
 	wasExpanded = expanded;
@@ -115,15 +115,26 @@ function onSwipe (e, data) {
 
 	e.preventDefault();
 
-	let left = wasExpanded ? 0 : -SIDEBAR_WIDTH;
-	left += data.deltaX;
-	left = Math.max(-SIDEBAR_WIDTH, left);
-	left = Math.min(0, left);
-	sidebarEl.style.transform = `translateX(${left}px)`;
+	let sidebarX = 0;
 
-	let btnLeft = left + 180;
-	btnLeft = Math.max(10, btnLeft);
-	navTogglerBtn.style.transform = `translateX(${btnLeft}px)`;
+	if (wasExpanded) {
+		sidebarX = 0;
+		if (data.deltaX > 0) sidebarX += data.deltaX / 10;
+		else sidebarX += data.deltaX;
+
+	}
+	else {
+		sidebarX = -SIDEBAR_WIDTH;
+		if (data.deltaX > 0) {
+			if (data.deltaX < SIDEBAR_WIDTH) sidebarX += data.deltaX;
+			else sidebarX = (sidebarX + data.deltaX) / 10;
+		}
+	}
+	sidebarEl.style.transform = `translateX(${sidebarX}px)`;
+
+	let btnX = sidebarX + 180;
+	btnX = Math.max(10, btnX);
+	navTogglerBtn.style.transform = `translateX(${btnX}px)`;
 }
 
 

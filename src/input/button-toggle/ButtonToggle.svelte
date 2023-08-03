@@ -23,7 +23,7 @@
 						{disabled}
 						class="button button-normal"
 						class:button-has-text="{item.name}"
-						on:touchstart="{onmousedown}"
+						on:touchstart="{ontouchstart}"
 						on:mousedown="{onmousedown}">
 							{#if item.icon}
 								<Icon name="{item.icon}"/>
@@ -83,11 +83,20 @@ $:_items = items.map(item => {
 });
 
 
-function onmousedown (e) {
-	const btnEl = e.target.querySelector('input');
-	if (!btnEl) return;
+function ontouchstart (e) {
+	const inputEl = e.target.querySelector('input');
+	if (!inputEl) return;
+	inputEl.checked = true;
+	inputEl.focus();
+}
 
-	requestAnimationFrame(() => btnEl.focus());
+function onmousedown (e) {
+	const inputEl = e.target.querySelector('input');
+	if (!inputEl) return;
+	e.preventDefault();
+	inputEl.checked = true;
+	inputEl.focus();
+
 }
 
 

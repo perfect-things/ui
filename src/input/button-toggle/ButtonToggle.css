@@ -77,7 +77,3 @@
 	border-top-right-radius: var(--ui-border-radius-xl);
 	border-bottom-right-radius: var(--ui-border-radius-xl);
 }
-
-
-/* .button-toggle .input-row .button:first-child { border-left: none; }
-.button-toggle .input-row .button:last-child { border-right: none; } */
