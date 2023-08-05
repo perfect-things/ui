@@ -74,6 +74,7 @@ const SIDEBAR_WIDTH = 220;
 let expanded = false;
 let wasExpanded = false;
 let swiping = false;
+const swipeSlowDownFactor = 4;
 let sidebarEl, navTogglerBtn;
 
 
@@ -119,7 +120,7 @@ function onSwipe (e, data) {
 
 	if (wasExpanded) {
 		sidebarX = 0;
-		if (data.deltaX > 0) sidebarX += data.deltaX / 10;
+		if (data.deltaX > 0) sidebarX += data.deltaX / swipeSlowDownFactor;
 		else sidebarX += data.deltaX;
 
 	}
@@ -127,7 +128,7 @@ function onSwipe (e, data) {
 		sidebarX = -SIDEBAR_WIDTH;
 		if (data.deltaX > 0) {
 			if (data.deltaX < SIDEBAR_WIDTH) sidebarX += data.deltaX;
-			else sidebarX = (sidebarX + data.deltaX) / 10;
+			else sidebarX = (sidebarX + data.deltaX) / swipeSlowDownFactor;
 		}
 	}
 	sidebarEl.style.transform = `translateX(${sidebarX}px)`;

@@ -2,6 +2,8 @@
 
 .combobox input { padding-right: 36px; }
 
+.combobox-button:focus { box-shadow: none; }
+
 .combobox-list {
 	position: absolute;
 	z-index: 100;

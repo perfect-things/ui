@@ -41,16 +41,22 @@ export function quickPositionRecalc (listEl, inputEl) {
 
 // proper recalc that ensures the dropdown is always visible and fits into the screen
 function properRecalculateListPosition (listEl, inputEl, elevated) {
-	const offsetX = 1;
+	const offsetX = -1;
 	const offsetY = 3;
 	const inputBox = inputEl.getBoundingClientRect();
+	let left, top;
 
 	if (elevated) {
-		listEl.style.top = (inputBox.top + inputBox.height + offsetY) + 'px';
-		listEl.style.left = (inputBox.left - offsetX) + 'px';
+		top = window.scrollY + inputBox.top + inputBox.height + offsetY;
+		left = window.scrollX + inputBox.left + offsetX;
 	}
-	else listEl.style.top = offsetY + 'px';
+	else {
+		top = offsetY;
+		left = offsetX;
+	}
 
+	listEl.style.top = top + 'px';
+	listEl.style.left = left + 'px';
 	listEl.style.minWidth = inputBox.width + 'px';
 	listEl.style.height = 'auto';
 
@@ -67,7 +73,7 @@ function properRecalculateListPosition (listEl, inputEl, elevated) {
 
 	if (listT + maxH + 10 > winH) {
 		listEl.style.height = listBox.height + 'px';
-		if (elevated) listEl.style.top = (inputBox.top - listBox.height - offsetY) + 'px';
+		if (elevated) listEl.style.top = (window.scrollY + inputBox.top - listBox.height - offsetY) + 'px';
 		else listEl.style.top = -inputBox.height - listBox.height - offsetY + 'px';
 	}
 }

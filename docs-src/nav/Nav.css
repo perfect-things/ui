@@ -70,7 +70,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 		box-shadow: 2px 1px 10px #0006;
 		transform: translateX(calc(var(--sidebar-width) * -1));
 
-		--sidebar-elastic-padding: 50px;
+		--sidebar-elastic-padding: 80px;
 		width: calc(var(--sidebar-width) + var(--sidebar-elastic-padding));
 		left: calc(var(--sidebar-elastic-padding) * -1);
 		padding-left: calc(var(--sidebar-elastic-padding) + 1rem);
