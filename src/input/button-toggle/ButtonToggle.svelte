@@ -18,13 +18,14 @@
 		<div class="input-scroller">
 			<div class="input-row" id="{_id}">
 				{#each _items as item}
-					<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+					<!-- svelte-ignore
+						a11y-no-noninteractive-element-interactions
+						a11y-click-events-have-key-events -->
 					<label
 						{disabled}
 						class="button button-normal"
 						class:button-has-text="{item.name}"
-						on:touchstart="{ontouchstart}"
-						on:mousedown="{onmousedown}">
+						on:click="{onclick}">
 							{#if item.icon}
 								<Icon name="{item.icon}"/>
 							{/if}
@@ -83,20 +84,11 @@ $:_items = items.map(item => {
 });
 
 
-function ontouchstart (e) {
-	const inputEl = e.target.querySelector('input');
-	if (!inputEl) return;
-	inputEl.checked = true;
-	inputEl.focus();
-}
-
-function onmousedown (e) {
-	const inputEl = e.target.querySelector('input');
-	if (!inputEl) return;
-	e.preventDefault();
-	inputEl.checked = true;
-	inputEl.focus();
-
+function onclick (e) {
+	const inputElement = e.target && e.target.querySelector('input');
+	if (!inputElement) return;
+	inputElement.click();
+	inputElement.focus();
 }
 
 
