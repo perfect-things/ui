@@ -7,8 +7,8 @@
 
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
-import { getMouseX, getMouseY, innerWidth, innerHeight, ANIMATION_SPEED,
-	minHeight, minWidth, getFlexFlow, maxHeight, maxWidth } from '../utils';
+import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
+import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
 
 
 let className = '';
@@ -26,6 +26,8 @@ let parentEl, targetEl;
 let initialTargetBox, startX, startY;
 let mousedownTargetBox;
 let isDragging = false, bodyCursor;
+
+
 
 
 onMount(() => {

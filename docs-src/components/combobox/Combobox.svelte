@@ -2,7 +2,7 @@
 
 <h3>Normal</h3>
 <Combobox
-	data="{data}"
+	{items}
 	on:change="{onChange}"
 	bind:value="{itemValue}" />
 
@@ -11,24 +11,24 @@
 
 
 <h3>Disabled</h3>
-<Combobox disabled data="{data}" bind:value="{itemValue}" />
+<Combobox disabled {items} bind:value="{itemValue}" />
 
 <h3>Allow arbitrary values</h3>
 <Combobox
-	data="{data}"
+	{items}
 	placeholder="Type to filter"
 	allowNew="true"
 	bind:value="{itemValue}" />
 
 <h3>Show on focus</h3>
-<Combobox showOnFocus="true" data="{data}" bind:value="{itemValue}" />
+<Combobox showOnFocus="true" {items} bind:value="{itemValue}" />
 
 <h3>Simpler data (no ID, just 'name')</h3>
-<Combobox data="{dataSimple}" placeholder="Type to filter"
+<Combobox items="{dataSimple}" placeholder="Type to filter"
 	bind:value="{valueSimple}" />
 
 <h3>Simplest data (just an array of strings)</h3>
-<Combobox data="{dataSimplest}" placeholder="Type to filter" allowNew="true"
+<Combobox items="{dataSimplest}" placeholder="Type to filter" allowNew="true"
 	bind:value="{valueSimplest}" />
 
 <h3>In a container with <em>overflow: hidden</em></h3>
@@ -36,23 +36,23 @@
 	property must be set on the component.</p>
 <div class="docs-overflow-box">
 	<small>overflow: hidden</small>
-	<Combobox data="{data}" elevate="true" bind:value="{itemValue}" />
+	<Combobox {items} elevate="true" bind:value="{itemValue}" />
 </div>
 <p>This option should only be used when absolutely necessary (e.g. when Combobox
 	is used inside dialogs/popups), because it makes the component less accessible
 	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
 
 <h3>Label</h3>
-<Combobox data="{data}" label="Combobox label" />
+<Combobox {items} label="Combobox label" />
 
 <h3>Info</h3>
-<Combobox data="{data}" label="Combobox label" info="Select something here" />
+<Combobox {items} label="Combobox label" info="Select something here" />
 
 <h3>Error</h3>
-<Combobox data="{data}" label="Combobox label" error="You picked the wrong side!" />
+<Combobox {items} label="Combobox label" error="You picked the wrong side!" />
 
 <h3>Label on the left</h3>
-<Combobox data="{data}" label="Label is on the left" labelOnTheLeft="true"/>
+<Combobox {items} label="Label is on the left" labelOnTheLeft="true"/>
 
 
 
@@ -72,14 +72,14 @@ const apiProps = [
 	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the combobox will be cleared when Escape is pressed.' },
-	{ name: 'data', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
 	{ name: 'disabled', description: 'Make the combobox disabled.' },
 	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
+	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
 	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
 	{ name: 'hideOnScroll', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - scrolling the window will close the popup.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
 	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
+	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
 	{ name: 'label', type: 'string', description: 'Label for the combobox.' },
 	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
@@ -97,12 +97,12 @@ const apiProps = [
 
 const exampleHtml = `
 <Combobox
-    data="{ data }"
+    {items}
     on:change="{ onChange }"
     bind:value="{ value }" />
 
 <script>
-const data = [
+const items = [
     { id: 1, name: 'Alpha', group: 'Group 1' },
     { id: 2, name: 'Beta', group: 'Group 1' },
     { id: 3, name: 'Gamma', group: 'Group 2' },
@@ -119,7 +119,7 @@ function onChange (e) {
 
 
 
-const data = [
+const items = [
 	{ id: 1, name: 'Alpha', group: 'Group 1' },
 	{ id: 2, name: 'Beta', group: 'Group 1' },
 	{ id: 3, name: 'Gamma', group: 'Group 1' },
@@ -140,7 +140,7 @@ const data = [
 	{ id: 16, name: 'Kappa', group: 'Group 3' },
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
-let itemValue = data[1];
+let itemValue = items[1];
 
 
 const dataSimple = [

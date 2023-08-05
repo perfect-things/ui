@@ -98,8 +98,8 @@
 
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
-import { deepCopy, emphasize, fuzzy, highlight, recalculateListPosition, groupData } from './utils';
-import { pluck, guid } from '../../utils';
+import { emphasize, highlight, recalculateListPosition, groupData } from './utils';
+import { deepCopy, empty, fuzzy, pluck, guid } from '../../utils';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -111,7 +111,7 @@ export { className as class };
 export let disabled = false;
 export let required = undefined;
 export let id = '';
-export let data = [];
+export let items = [];
 export let value = null;
 export let allowNew = false;
 export let showAllInitially = true;
@@ -128,6 +128,11 @@ export let labelOnTheLeft = false;
 export let element = undefined;
 export let inputElement = undefined;
 export let listElement = undefined;
+
+
+// @deprecated. Use `items` instead
+export let data = [];
+
 
 
 $:_id = id || name || guid();
@@ -162,9 +167,10 @@ onDestroy(() => {
 
 
 afterUpdate(() => {
-	if (!opened && data.length) {
-		if (data.length && typeof data[0] === 'string') {
-			data = data.map(item => ({ name: item }));
+	if (empty(items) && !empty(data)) items = data;
+	if (!opened && items.length) {
+		if (items.length && typeof items[0] === 'string') {
+			items = items.map(item => ({ name: item }));
 		}
 		filter();
 		setInitialValue();
@@ -173,7 +179,7 @@ afterUpdate(() => {
 
 
 function filter () {
-	let filtered = deepCopy(data);
+	let filtered = deepCopy(items);
 	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
 	if (!showAll && inputElement.value) {
 		const q = inputElement.value.toLowerCase().trim();

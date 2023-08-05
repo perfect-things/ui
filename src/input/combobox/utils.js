@@ -88,25 +88,6 @@ export function recalculateListPosition (listEl, inputEl, elevated) {
 }
 
 
-
-export function deepCopy (o) {
-	return structuredClone(o);
-}
-
-
-export function fuzzy (hay = '', s = '') {
-	if (s.length === 0) return true;
-	if (hay.length === 0) return false;
-	if (s.length > hay.length) return false;
-	if (s === hay) return true;
-	hay = hay.toLowerCase();
-	s = s.toLowerCase();
-	let n = -1;
-	for (const l of s) if (!~(n = hay.indexOf(l, n + 1))) return false;
-	return true;
-}
-
-
 export function emphasize (str, q) {
 	if (!q) return str;
 	str = '' + str;

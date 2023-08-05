@@ -1,122 +1,104 @@
-import { screen } from '@testing-library/dom';
 import jest from 'jest-mock';
 import { get } from 'svelte/store';
 
 import './helpers/utils';
-import * as util from '../src/utils';
+import * as utils from '../src/utils';
 
 
 
-test('util - matchMedia', () => {
-	expect(get(util.ANIMATION_SPEED)).toStrictEqual(300);
+test('utils - matchMedia', () => {
+	expect(get(utils.ANIMATION_SPEED)).toStrictEqual(300);
 });
 
 
-test('util - animate', async () => {
+test('utils - animate', async () => {
 	const div = document.createElement('div');
 	document.body.appendChild(div);
 
 	// spy on div.animate
 	const spy = jest.spyOn(div, 'animate');
-	await util.animate(div, {}, {});
+	await utils.animate(div, {}, {});
 	expect(spy).toHaveBeenCalled();
 });
 
 
-test('util - pluckOne', () => {
-	const obj = { a: 1, b: 2, c: 3, d: 4 };
-	const objRes = { a: 1, c: 3 };
-	const plucked = util.pluck(obj, ['a', 'c']);
-	expect(plucked).toEqual(objRes);
+test('utils - blink', () => {
+	const div = document.createElement('div');
+	document.body.appendChild(div);
 
-	const pluckedSimple = util.pluck(obj, 'a');
-	expect(pluckedSimple).toEqual(objRes.a);
-
-	const pluckedEmpty = util.pluck();
-	expect(pluckedEmpty).toEqual({});
+	const spy = jest.spyOn(div, 'animate');
+	utils.blink(div);
+	expect(spy).toHaveBeenCalled();
 });
 
 
-test('util - mouse events', () => {
+test('utils - deepCopy', () => {
+	const obj = { a: 1, b: { c: 2 } };
+	const obj2 = utils.deepCopy(obj);
+	expect(obj2).toEqual(obj);
+	expect(obj2).not.toBe(obj);
+	expect(obj2.b).not.toBe(obj.b);
+});
+
+
+test('utils - fuzzy', () => {
+	expect(utils.fuzzy()).toBe(true);
+	expect(utils.fuzzy('')).toBe(true);
+	expect(utils.fuzzy('', '')).toBe(true);
+	expect(utils.fuzzy('a', '')).toBe(true);
+	expect(utils.fuzzy('', 'a')).toBe(false);
+	expect(utils.fuzzy('a', 'ab')).toBe(false);
+	expect(utils.fuzzy('ab', 'ab')).toBe(true);
+
+	expect(utils.fuzzy('abc', 'ab')).toBe(true);
+	expect(utils.fuzzy('abc', 'bc')).toBe(true);
+	expect(utils.fuzzy('abc', 'AB')).toBe(true);
+	expect(utils.fuzzy('ABC', 'ac')).toBe(true);
+	expect(utils.fuzzy('ABC', 'ad')).toBe(false);
+});
+
+
+test('utils - guid', () => {
+	const id = utils.guid();
+	expect(id).toBeTruthy();
+});
+
+
+test('utils - mouse events', () => {
 	const e = { type: 'touch', touches: [{ clientX: 100, clientY: 100 }], clientX: 200, clientY: 200 };
-	const x = util.getMouseX(e);
-	const y = util.getMouseY(e);
+	const x = utils.getMouseX(e);
+	const y = utils.getMouseY(e);
 	expect(x).toBe(100);
 	expect(y).toBe(100);
 
 	e.type = 'click';
-	const x2 = util.getMouseX(e);
-	const y2 = util.getMouseY(e);
+	const x2 = utils.getMouseX(e);
+	const y2 = utils.getMouseY(e);
 	expect(x2).toBe(200);
 	expect(y2).toBe(200);
 
-	const [x3, y3] = util.getMouseXY(e);
+	const [x3, y3] = utils.getMouseXY(e);
 	expect(x3).toBe(200);
 	expect(y3).toBe(200);
 });
 
 
-test('util - getFlexFlow', () => {
-	const div = document.createElement('div');
-	div.style.flexDirection = 'row-reverse';
-	const flow = util.getFlexFlow(div);
-	expect(flow).toBe('row');
+test('utils - pluckOne', () => {
+	const obj = { a: 1, b: 2, c: 3, d: 4 };
+	const objRes = { a: 1, c: 3 };
+	const plucked = utils.pluck(obj, ['a', 'c']);
+	expect(plucked).toEqual(objRes);
+
+	const pluckedSimple = utils.pluck(obj, 'a');
+	expect(pluckedSimple).toEqual(objRes.a);
+
+	const pluckedEmpty = utils.pluck();
+	expect(pluckedEmpty).toEqual({});
 });
 
 
-test('util - getCSSvalueInPx', () => {
-	const div = document.createElement('div');
-	div.style.minWidth = '100px';
-	div.style.minHeight = '100px';
-	div.style.maxWidth = '100px';
-	div.style.maxHeight = '100px';
-
-	const minW = util.minWidth(div);
-	const minH = util.minHeight(div);
-	const maxW = util.maxWidth(div);
-	const maxH = util.maxHeight(div);
-
-	expect(minW).toBe(100);
-	expect(minH).toBe(100);
-	expect(maxW).toBe(100);
-	expect(maxH).toBe(100);
-});
-
-
-test('util - innerWidth', async () => {
-	const w = 100;
-	const h = 100;
-	const style = `width: ${w}px; height: ${h}px; padding: 10px; border: 1px solid black;`;
-	document.body.innerHTML = `<div title="test-div" style="${style}">Example</div>`;
-
-	const div = screen.getByTitle('test-div');
-	div.getBoundingClientRect = () => ({ width: w, height: h, top: 0, left: 0, right: 0, bottom: 0, });
-
-	const width = util.innerWidth(div);
-	const height = util.innerHeight(div);
-	expect(width).toBe(78);
-	expect(height).toBe(78);
-});
-
-
-test('util - guid', () => {
-	const id = util.guid();
-	expect(id).toBeTruthy();
-});
-
-
-test('util - roundAmount', () => {
+test('utils - roundAmount', () => {
 	const amount = 123.456;
-	const rounded = util.roundAmount(amount);
+	const rounded = utils.roundAmount(amount);
 	expect(rounded).toBe(123.46);
-});
-
-
-test('util - blink', () => {
-	const div = document.createElement('div');
-	document.body.appendChild(div);
-
-	const spy = jest.spyOn(div, 'animate');
-	util.blink(div);
-	expect(spy).toHaveBeenCalled();
 });

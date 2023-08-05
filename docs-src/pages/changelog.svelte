@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v8.2.0 <em>(2023-08-?)</em></h2>
+<ul>
+<li><code>data</code> attribute in <code>Combobox</code> is deprecated. It will be removed in the next major version. Use <code>items</code> instead.</li>
+</ul>
 <h2>v8.1.4 <em>(2023-07-31)</em></h2>
 <ul>
 <li>Improved <code>PushButton</code> pressed styling.</li>

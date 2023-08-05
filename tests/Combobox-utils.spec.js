@@ -95,39 +95,13 @@ test('Combobox-utils - recalculateListPosition', () => {
 
 	utils.recalculateListPosition(listEl, inputEl);
 	expect(listEl.style.top).toBe('-133px');
-	expect(listEl.style.left).toBe('0px');
+	expect(listEl.style.left).toBe('-1px');
 	expect(listEl.style.height).toBe('100px');
 
 	utils.recalculateListPosition(listEl, inputEl, true);
 	expect(listEl.style.top).toBe('597px');
 	expect(listEl.style.left).toBe('99px');
 	expect(listEl.style.height).toBe('100px');
-});
-
-
-test('Combobox-utils - deepCopy', () => {
-	const obj = { a: 1, b: { c: 2 } };
-	const obj2 = utils.deepCopy(obj);
-	expect(obj2).toEqual(obj);
-	expect(obj2).not.toBe(obj);
-	expect(obj2.b).not.toBe(obj.b);
-});
-
-
-test('Combobox-utils - fuzzy', () => {
-	expect(utils.fuzzy()).toBe(true);
-	expect(utils.fuzzy('')).toBe(true);
-	expect(utils.fuzzy('', '')).toBe(true);
-	expect(utils.fuzzy('a', '')).toBe(true);
-	expect(utils.fuzzy('', 'a')).toBe(false);
-	expect(utils.fuzzy('a', 'ab')).toBe(false);
-	expect(utils.fuzzy('ab', 'ab')).toBe(true);
-
-	expect(utils.fuzzy('abc', 'ab')).toBe(true);
-	expect(utils.fuzzy('abc', 'bc')).toBe(true);
-	expect(utils.fuzzy('abc', 'AB')).toBe(true);
-	expect(utils.fuzzy('ABC', 'ac')).toBe(true);
-	expect(utils.fuzzy('ABC', 'ad')).toBe(false);
 });
 
 

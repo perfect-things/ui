@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v8.2.0 *(2023-08-?)*
+- `data` attribute in `Combobox` is deprecated. It will be removed in the next major version. Use `items` instead.
+
+
 ## v8.1.4 *(2023-07-31)*
 - Improved `PushButton` pressed styling.
 - Some buttons should now react faster on mobile (touch-action added to notification buttons and all inputs, selects and textareas).
