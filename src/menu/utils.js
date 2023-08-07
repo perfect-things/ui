@@ -34,26 +34,37 @@ export function updatePosition (e, type, menuEl, offset, align, isBelowTarget) {
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 
 	const etype = e && e.type;
+	let left, top;
 
 	if (type === 'context') {
 		if (etype === 'contextmenu') {
-			menuEl.style.top = e.y + 'px';
-			menuEl.style.left = e.x + 'px';
+			top = e.y;
+			left = e.x;
 		}
 		else if (etype === 'longpress') {
-			menuEl.style.top = e.detail.y + 'px';
-			menuEl.style.left = e.detail.x + 'px';
+			top = e.detail.y;
+			left = e.detail.x;
 		}
+
+		top += window.scrollY;
+		left += window.scrollX;
+		menuEl.style.top = top + 'px';
+		menuEl.style.left = left + 'px';
 	}
 
 	// regular menu
 	else if (etype === 'click' || etype === 'focus') {
 		const btnBox = e.target.getBoundingClientRect();
-		menuEl.style.top = (btnBox.top + btnBox.height + offset) + 'px';
-		menuEl.style.left = btnBox.left + 'px';
+		top = (btnBox.top + btnBox.height + offset);
+		left = btnBox.left;
 		if (align === 'right') {
-			menuEl.style.left = (btnBox.left + btnBox.width - menuEl.offsetWidth) + 'px';
+			left = (btnBox.left + btnBox.width - menuEl.offsetWidth);
 		}
+		top += window.scrollY;
+		left += window.scrollX;
+
+		menuEl.style.top = top + 'px';
+		menuEl.style.left = left + 'px';
 	}
 
 	// ensure it stays on screen
@@ -70,30 +81,30 @@ export function updatePosition (e, type, menuEl, offset, align, isBelowTarget) {
 		menuEl.style.maxHeight = Math.max(spaceAbove, spaceBelow) + 'px';
 		if (spaceAbove > spaceBelow) {
 			isBelowTarget = false;
-			const top = winH - height - padding;
-			if (top < y) {
-				menuEl.style.top = (btnBox.top - height - offset) + 'px';
-			}
+			top = winH - height - padding;
+			if (top < y) top = (btnBox.top - height - offset);
+			top += window.scrollY;
+			menuEl.style.top = top + 'px';
 		}
 		else isBelowTarget = true;
 	}
 
 	// context menu - check if not outside of the screen
 	else if (y > winH - height - padding) {
-		let top = winH - height - padding;
+		top = winH - height - padding;
 		if (top < 0) top = 2;
-		menuEl.style.top = top + 'px';
+		menuEl.style.top = top + window.scrollY + 'px';
 	}
 
 	// check if the menu is off the right side of the screen
 	if (x > winW - width - padding) {
-		let left = winW - width - padding;
+		left = winW - width - padding;
 		if (left < 0) left = 2;
-		menuEl.style.left = left + 'px';
+		menuEl.style.left = left + window.scrollX + 'px';
 	}
 
 	// check if the menu is off the left side of the screen
-	if (x < padding) menuEl.style.left = padding + 'px';
+	if (x < padding) menuEl.style.left = padding + window.scrollX + 'px';
 
 	return isBelowTarget;
 }

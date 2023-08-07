@@ -91,7 +91,7 @@ function onDocumentClick (e) {
 
 
 function onscroll () {
-	if (!hovering && opened) return _close();
+	// if (!hovering && opened) return _close();
 }
 
 
