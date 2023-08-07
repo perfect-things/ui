@@ -144,7 +144,7 @@ body * { box-sizing: inherit; }
 	--ui-color-text-2: #666;
 
 
-	--ui-popup-border: 1px solid #fff;
+	--ui-popup-border: 1px solid #ccc;
 	--ui-popup-background: var(--ui-color-background);
 
 	--ui-shadow-button: 0 1px 0 #000c;

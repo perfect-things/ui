@@ -4937,6 +4937,59 @@ function timeAgo(date, now2) {
   const [d, t] = new Date(date).toISOString().split("T");
   return `${d} ${t.slice(0, 5)}`;
 }
+function alignItem({
+  element: element3,
+  target,
+  alignH = "left",
+  offsetH = 2,
+  alignV = "bottom",
+  offsetV = 2,
+  viewportPadding = 10
+}) {
+  if (!element3 || !target)
+    return;
+  const winH = window.innerHeight;
+  const winW = window.innerWidth;
+  let targetBox = {};
+  let top, left;
+  if (target instanceof Event && target.type !== "click") {
+    if (target.type === "contextmenu") {
+      targetBox = { top: target.y, left: target.x };
+    } else if (target.type === "longpress") {
+      targetBox = { top: target.detail.y, left: target.detail.x };
+    }
+    targetBox.height = 0;
+    targetBox.width = 0;
+  } else if (target.type === "click")
+    targetBox = target.target.getBoundingClientRect();
+  else
+    targetBox = target.getBoundingClientRect();
+  top = targetBox.top + targetBox.height + offsetH;
+  left = targetBox.left;
+  if (alignH === "right")
+    left += targetBox.width - element3.offsetWidth;
+  element3.style.top = top + window.scrollY + "px";
+  element3.style.left = left + window.scrollX + "px";
+  const spaceAbove = targetBox.top - viewportPadding;
+  const spaceBelow = winH - targetBox.top - targetBox.height - viewportPadding;
+  element3.style.maxHeight = Math.max(spaceAbove, spaceBelow) + "px";
+  const elementBox = element3.getBoundingClientRect();
+  if (alignV === "top" || spaceBelow < elementBox.height) {
+    top = winH - elementBox.height - viewportPadding;
+    if (top < elementBox.y)
+      top = targetBox.top - elementBox.height - offsetV;
+    element3.style.top = top + window.scrollY + "px";
+  }
+  if (elementBox.x > winW - elementBox.width - viewportPadding) {
+    left = winW - elementBox.width - viewportPadding;
+    if (left < 0)
+      left = 2;
+    element3.style.left = left + window.scrollX + "px";
+  }
+  if (elementBox.x < viewportPadding) {
+    element3.style.left = viewportPadding + window.scrollX + "px";
+  }
+}
 
 // src/button/Button.svelte
 var file = "src/button/Button.svelte";
@@ -21476,71 +21529,6 @@ function addArias(el) {
   el.setAttribute("aria-haspopup", "true");
   el.setAttribute("aria-expanded", "true");
 }
-function updatePosition(e, type, menuEl, offset, align, isBelowTarget) {
-  if (!menuEl)
-    return isBelowTarget;
-  if (e && e.detail && e.detail instanceof Event)
-    e = e.detail;
-  const etype = e && e.type;
-  let left, top;
-  if (type === "context") {
-    if (etype === "contextmenu") {
-      top = e.y;
-      left = e.x;
-    } else if (etype === "longpress") {
-      top = e.detail.y;
-      left = e.detail.x;
-    }
-    top += window.scrollY;
-    left += window.scrollX;
-    menuEl.style.top = top + "px";
-    menuEl.style.left = left + "px";
-  } else if (etype === "click" || etype === "focus") {
-    const btnBox = e.target.getBoundingClientRect();
-    top = btnBox.top + btnBox.height + offset;
-    left = btnBox.left;
-    if (align === "right") {
-      left = btnBox.left + btnBox.width - menuEl.offsetWidth;
-    }
-    top += window.scrollY;
-    left += window.scrollX;
-    menuEl.style.top = top + "px";
-    menuEl.style.left = left + "px";
-  }
-  const { x, y, width, height } = menuEl.getBoundingClientRect();
-  const winH = window.innerHeight;
-  const winW = window.innerWidth;
-  const padding = 10;
-  if (etype === "click" || etype === "focus") {
-    const btnBox = e.target.getBoundingClientRect();
-    const spaceAbove = btnBox.top - padding;
-    const spaceBelow = winH - btnBox.top - btnBox.height - padding;
-    menuEl.style.maxHeight = Math.max(spaceAbove, spaceBelow) + "px";
-    if (spaceAbove > spaceBelow) {
-      isBelowTarget = false;
-      top = winH - height - padding;
-      if (top < y)
-        top = btnBox.top - height - offset;
-      top += window.scrollY;
-      menuEl.style.top = top + "px";
-    } else
-      isBelowTarget = true;
-  } else if (y > winH - height - padding) {
-    top = winH - height - padding;
-    if (top < 0)
-      top = 2;
-    menuEl.style.top = top + window.scrollY + "px";
-  }
-  if (x > winW - width - padding) {
-    left = winW - width - padding;
-    if (left < 0)
-      left = 2;
-    menuEl.style.left = left + window.scrollX + "px";
-  }
-  if (x < padding)
-    menuEl.style.left = padding + window.scrollX + "px";
-  return isBelowTarget;
-}
 
 // src/menu/longpress.js
 var maxDiffX = 10;
@@ -21614,13 +21602,13 @@ function create_if_block10(ctx) {
   let current;
   const default_slot_template = (
     /*#slots*/
-    ctx[12].default
+    ctx[11].default
   );
   const default_slot = create_slot(
     default_slot_template,
     ctx,
     /*$$scope*/
-    ctx[11],
+    ctx[10],
     null
   );
   const block = {
@@ -21638,26 +21626,26 @@ function create_if_block10(ctx) {
       if (default_slot) {
         default_slot.m(menu, null);
       }
-      ctx[13](menu);
+      ctx[12](menu);
       current = true;
     },
     p: function update2(ctx2, dirty) {
       if (default_slot) {
         if (default_slot.p && (!current || dirty[0] & /*$$scope*/
-        2048)) {
+        1024)) {
           update_slot_base(
             default_slot,
             default_slot_template,
             ctx2,
             /*$$scope*/
-            ctx2[11],
+            ctx2[10],
             !current ? get_all_dirty_from_scope(
               /*$$scope*/
-              ctx2[11]
+              ctx2[10]
             ) : get_slot_changes(
               default_slot_template,
               /*$$scope*/
-              ctx2[11],
+              ctx2[10],
               dirty,
               null
             ),
@@ -21687,7 +21675,7 @@ function create_if_block10(ctx) {
       }
       if (default_slot)
         default_slot.d(detaching);
-      ctx[13](null);
+      ctx[12](null);
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
@@ -21774,8 +21762,6 @@ function create_fragment25(ctx) {
   return block;
 }
 var buttonSelector = ".menu-item:not(.disabled,.menu-separator)";
-function onscroll() {
-}
 function instance25($$self2, $$props2, $$invalidate2) {
   let elevated;
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
@@ -21788,12 +21774,10 @@ function instance25($$self2, $$props2, $$invalidate2) {
   let { targetSelector = "body" } = $$props2;
   let { closeOnClick = true } = $$props2;
   let { elevate = false } = $$props2;
-  let { offset = 2 } = $$props2;
   let { align = "left" } = $$props2;
   let { element: element3 = void 0 } = $$props2;
   const menuButtons = [];
   let targetEl, focusedEl, opened = false;
-  let isBelowTarget = true;
   let hovering = false;
   setContext("MenuContext", { targetEl: () => targetEl });
   onMount(() => {
@@ -21833,6 +21817,8 @@ function instance25($$self2, $$props2, $$invalidate2) {
     open(e);
   }
   function onDocumentClick(e) {
+    if (!element3)
+      return;
     if (!element3.contains(e.target))
       _close();
     else {
@@ -21937,7 +21923,7 @@ function instance25($$self2, $$props2, $$invalidate2) {
       if (elevated)
         document.body.appendChild(element3);
       indexButtons();
-      isBelowTarget = updatePosition(e, type, element3, offset, align, isBelowTarget);
+      alignItem({ element: element3, target: e, alignH: align });
       dispatch3("open", { event: e, target: targetEl });
       addEventListeners();
       requestAnimationFrame(resolve);
@@ -21980,13 +21966,11 @@ function instance25($$self2, $$props2, $$invalidate2) {
   function addEventListeners() {
     document.addEventListener("click", onDocumentClick);
     document.addEventListener("keydown", onKeydown2);
-    document.addEventListener("scroll", onscroll, true);
     document.addEventListener("mouseover", onmouseover);
   }
   function removeEventListeners() {
     document.removeEventListener("click", onDocumentClick);
     document.removeEventListener("keydown", onKeydown2);
-    document.removeEventListener("scroll", onscroll, true);
     document.removeEventListener("mouseover", onmouseover);
   }
   const writable_props = [
@@ -21995,7 +21979,6 @@ function instance25($$self2, $$props2, $$invalidate2) {
     "targetSelector",
     "closeOnClick",
     "elevate",
-    "offset",
     "align",
     "element"
   ];
@@ -22020,14 +22003,12 @@ function instance25($$self2, $$props2, $$invalidate2) {
       $$invalidate2(5, closeOnClick = $$props3.closeOnClick);
     if ("elevate" in $$props3)
       $$invalidate2(6, elevate = $$props3.elevate);
-    if ("offset" in $$props3)
-      $$invalidate2(7, offset = $$props3.offset);
     if ("align" in $$props3)
-      $$invalidate2(8, align = $$props3.align);
+      $$invalidate2(7, align = $$props3.align);
     if ("element" in $$props3)
       $$invalidate2(0, element3 = $$props3.element);
     if ("$$scope" in $$props3)
-      $$invalidate2(11, $$scope2 = $$props3.$$scope);
+      $$invalidate2(10, $$scope2 = $$props3.$$scope);
   };
   $$self2.$capture_state = () => ({
     createEventDispatcher,
@@ -22037,8 +22018,8 @@ function instance25($$self2, $$props2, $$invalidate2) {
     addArias,
     removeArias,
     matchQuery,
-    updatePosition,
     initLongPressEvent: init2,
+    alignItem,
     dispatch: dispatch3,
     isMobileSafari,
     contextmenu,
@@ -22047,7 +22028,6 @@ function instance25($$self2, $$props2, $$invalidate2) {
     targetSelector,
     closeOnClick,
     elevate,
-    offset,
     align,
     element: element3,
     menuButtons,
@@ -22055,13 +22035,11 @@ function instance25($$self2, $$props2, $$invalidate2) {
     targetEl,
     focusedEl,
     opened,
-    isBelowTarget,
     hovering,
     indexButtons,
     matchTypeQuery,
     onContextMenu,
     onDocumentClick,
-    onscroll,
     onmouseover,
     highlightElement,
     onKeydown: onKeydown2,
@@ -22088,10 +22066,8 @@ function instance25($$self2, $$props2, $$invalidate2) {
       $$invalidate2(5, closeOnClick = $$props3.closeOnClick);
     if ("elevate" in $$props3)
       $$invalidate2(6, elevate = $$props3.elevate);
-    if ("offset" in $$props3)
-      $$invalidate2(7, offset = $$props3.offset);
     if ("align" in $$props3)
-      $$invalidate2(8, align = $$props3.align);
+      $$invalidate2(7, align = $$props3.align);
     if ("element" in $$props3)
       $$invalidate2(0, element3 = $$props3.element);
     if ("targetEl" in $$props3)
@@ -22100,8 +22076,6 @@ function instance25($$self2, $$props2, $$invalidate2) {
       focusedEl = $$props3.focusedEl;
     if ("opened" in $$props3)
       $$invalidate2(2, opened = $$props3.opened);
-    if ("isBelowTarget" in $$props3)
-      isBelowTarget = $$props3.isBelowTarget;
     if ("hovering" in $$props3)
       hovering = $$props3.hovering;
     if ("elevated" in $$props3)
@@ -22125,7 +22099,6 @@ function instance25($$self2, $$props2, $$invalidate2) {
     targetSelector,
     closeOnClick,
     elevate,
-    offset,
     align,
     open,
     close,
@@ -22149,11 +22122,10 @@ var Menu = class extends SvelteComponentDev {
         targetSelector: 4,
         closeOnClick: 5,
         elevate: 6,
-        offset: 7,
-        align: 8,
+        align: 7,
         element: 0,
-        open: 9,
-        close: 10
+        open: 8,
+        close: 9
       },
       null,
       [-1, -1]
@@ -22200,15 +22172,8 @@ var Menu = class extends SvelteComponentDev {
     this.$$set({ elevate });
     flush();
   }
-  get offset() {
-    return this.$$.ctx[7];
-  }
-  set offset(offset) {
-    this.$$set({ offset });
-    flush();
-  }
   get align() {
-    return this.$$.ctx[8];
+    return this.$$.ctx[7];
   }
   set align(align) {
     this.$$set({ align });
@@ -22222,13 +22187,13 @@ var Menu = class extends SvelteComponentDev {
     flush();
   }
   get open() {
-    return this.$$.ctx[9];
+    return this.$$.ctx[8];
   }
   set open(value2) {
     throw new Error("<Menu>: Cannot set read-only property 'open'");
   }
   get close() {
-    return this.$$.ctx[10];
+    return this.$$.ctx[9];
   }
   set close(value2) {
     throw new Error("<Menu>: Cannot set read-only property 'close'");

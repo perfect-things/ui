@@ -9,8 +9,9 @@
 
 <script>
 import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
-import { addArias, removeArias, matchQuery, updatePosition } from './utils.js';
+import { addArias, removeArias, matchQuery } from './utils.js';
 import initLongPressEvent from './longpress.js';
+import { alignItem } from '../utils.js';
 
 const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
@@ -22,7 +23,6 @@ export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
 export let elevate = false;
-export let offset = 2;
 export let align = 'left';			// can be 'left' or 'right'
 
 export let element = undefined;
@@ -33,7 +33,6 @@ const menuButtons = [];
 const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
 let targetEl, focusedEl, opened = false;
-let isBelowTarget = true;	// default - screen size may change that
 let hovering = false;
 
 setContext('MenuContext', {
@@ -81,6 +80,7 @@ function onContextMenu (e) {
 
 
 function onDocumentClick (e) {
+	if (!element) return;
 	if (!element.contains(e.target)) _close();
 	else {
 		const shouldClose = closeOnClick === true || closeOnClick === 'true';
@@ -89,10 +89,6 @@ function onDocumentClick (e) {
 	}
 }
 
-
-function onscroll () {
-	// if (!hovering && opened) return _close();
-}
 
 
 function onmouseover (e) {
@@ -195,7 +191,8 @@ export function open (e) {
 		indexButtons();
 
 		// needs to finish rendering first
-		isBelowTarget = updatePosition(e, type, element, offset, align, isBelowTarget);
+		alignItem({ element, target: e, alignH: align });
+
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
 		requestAnimationFrame(resolve);
@@ -242,7 +239,6 @@ function _close () {
 function addEventListeners () {
 	document.addEventListener('click', onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
-	document.addEventListener('scroll', onscroll, true);
 	document.addEventListener('mouseover', onmouseover);
 }
 
@@ -250,7 +246,6 @@ function addEventListeners () {
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
-	document.removeEventListener('scroll', onscroll, true);
 	document.removeEventListener('mouseover', onmouseover);
 }
 

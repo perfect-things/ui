@@ -176,3 +176,72 @@ export function timeAgo (date, now) {
 	const [d, t] = new Date(date).toISOString().split('T');
 	return `${d} ${t.slice(0, 5)}`;		// 2020-01-01 12:34
 }
+
+
+export function alignItem ({
+	element, target,
+	alignH = 'left',
+	offsetH = 2,
+	alignV = 'bottom',
+	offsetV = 2,
+	viewportPadding = 10,
+}) {
+	if (!element || !target) return;
+	const winH = window.innerHeight;
+	const winW = window.innerWidth;
+	let targetBox = {};
+	let top, left;
+
+	// target is a context | longpress event
+	if (target instanceof Event && target.type !== 'click') {
+		if (target.type === 'contextmenu') {
+			targetBox = { top: target.y, left: target.x, };
+		}
+		else if (target.type === 'longpress') {
+			targetBox = { top: target.detail.y, left: target.detail.x, };
+		}
+		targetBox.height = 0;
+		targetBox.width = 0;
+	}
+
+	// target is a click event on a button
+	else if (target.type === 'click') targetBox = target.target.getBoundingClientRect();
+
+	// target is an element
+	else targetBox = target.getBoundingClientRect();
+
+
+	top = targetBox.top + targetBox.height + offsetH;
+	left = targetBox.left;
+	if (alignH === 'right') left += targetBox.width - element.offsetWidth;
+
+	element.style.top = top + window.scrollY + 'px';
+	element.style.left = left + window.scrollX + 'px';
+
+
+
+	// ensure it stays on screen
+	const spaceAbove = targetBox.top - viewportPadding;
+	const spaceBelow = winH - targetBox.top - targetBox.height - viewportPadding;
+	element.style.maxHeight = Math.max(spaceAbove, spaceBelow) + 'px';
+	const elementBox = element.getBoundingClientRect();
+
+	if (alignV === 'top' || spaceBelow < elementBox.height) {
+		top = winH - elementBox.height - viewportPadding;
+		if (top < elementBox.y) top = targetBox.top - elementBox.height - offsetV;
+		element.style.top = top + window.scrollY + 'px';
+	}
+
+	// check if the menu is off the right side of the screen
+	if (elementBox.x > winW - elementBox.width - viewportPadding) {
+		left = winW - elementBox.width - viewportPadding;
+		if (left < 0) left = 2;
+		element.style.left = left + window.scrollX + 'px';
+	}
+
+	// check if the menu is off the left side of the screen
+	if (elementBox.x < viewportPadding) {
+		element.style.left = viewportPadding + window.scrollX + 'px';
+	}
+
+}
