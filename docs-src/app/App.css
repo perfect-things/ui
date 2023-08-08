@@ -43,6 +43,8 @@ p b { font-weight: 700; letter-spacing: 0.5px; }
 ul { line-height: 1.7; margin: 0; padding-left: 1.3rem; }
 ul li { margin-block: 0.5rem; }
 
+p + ul { margin-top: -1rem }
+
 em { color: var(--ui-color-accent); font-style: normal; }
 
 

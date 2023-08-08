@@ -123,8 +123,8 @@ function align () {
 		top = targetBox.top + targetBox.height + (parseFloat(offset) || 2);
 		_position = 'bottom';
 	}
-	element.style.top = top + 'px';
-	element.style.left = left + 'px';
+	element.style.top = top + window.scrollY + 'px';
+	element.style.left = left + window.scrollX + 'px';
 }
 
 

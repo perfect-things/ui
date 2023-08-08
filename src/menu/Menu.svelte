@@ -22,13 +22,11 @@ export { className as class };
 export let type = undefined;          // can be undefined or 'context'
 export let targetSelector = 'body';   // target element for context menu
 export let closeOnClick = true;
-export let elevate = false;
 export let align = 'left';			// can be 'left' or 'right'
 
 export let element = undefined;
 
 
-$:elevated = elevate === 'true' || elevate === true;
 const menuButtons = [];
 const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
@@ -49,7 +47,7 @@ onMount(() => {
 
 onDestroy(() => {
 	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
-	if (elevated && element) element.remove();
+	if (element) element.remove();
 });
 
 
@@ -187,7 +185,9 @@ export function open (e) {
 	}
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		if (elevated) document.body.appendChild(element);
+		if (element.parentElement !== document.body) {
+			document.body.appendChild(element);
+		}
 		indexButtons();
 
 		// needs to finish rendering first

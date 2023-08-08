@@ -179,12 +179,14 @@ export function timeAgo (date, now) {
 
 
 export function alignItem ({
-	element, target,
+	element,
+	target,
 	alignH = 'left',
 	offsetH = 2,
 	alignV = 'bottom',
 	offsetV = 2,
 	viewportPadding = 10,
+	setMinWidthToTarget = false,
 }) {
 	if (!element || !target) return;
 	const winH = window.innerHeight;
@@ -217,6 +219,9 @@ export function alignItem ({
 
 	element.style.top = top + window.scrollY + 'px';
 	element.style.left = left + window.scrollX + 'px';
+	if (setMinWidthToTarget) {
+		element.style.minWidth = targetBox.width + 'px';
+	}
 
 
 

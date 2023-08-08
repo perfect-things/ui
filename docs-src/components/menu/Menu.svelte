@@ -1,8 +1,10 @@
 <h2>Menu</h2>
 
 <h3>Normal menu</h3>
-<Button data-name="show-menu-button" on:click="{thingsMenu.open}">Show menu</Button>
-<Button data-name="show-menu-button" on:click="{thingsMenu2.open}">Show menu aligned to right</Button>
+<div class="docs-buttons-row">
+	<Button data-name="show-menu-button" on:click="{thingsMenu.open}">Show menu</Button>
+	<Button data-name="show-menu-button" on:click="{thingsMenu2.open}">Show menu aligned to right side of the button</Button>
+</div>
 
 <Menu bind:this="{thingsMenu}">
 	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
@@ -32,48 +34,27 @@
 
 
 
-<h3>In a container with <em>overflow: hidden</em></h3>
-<p>Where parent container has <em>overflow: hidden</em>, and/or another container is covering the menu,
-	<em>elevate="true"</em> property must be set on the component.</p>
-<div class="docs-overflow-box">
-	<small>parent: <em>overflow: hidden</em></small>
-	<Button on:click="{someMenu1.open}">Regular Menu</Button>
-	<Menu bind:this="{someMenu1}">
-		<MenuItem><Icon name="plus"/> Add some</MenuItem>
-		<MenuItem>Add some more</MenuItem>
-		<MenuSeparator />
-		<MenuItem><Icon name="close"/> Close something</MenuItem>
-	</Menu>
-
-	<Button on:click="{someMenu2.open}">Elevated Menu</Button>
-	<Menu bind:this="{someMenu2}" elevate="true">
-		<MenuItem><Icon name="plus"/> Add some</MenuItem>
-		<MenuItem>Add some more</MenuItem>
-		<MenuSeparator />
-		<MenuItem><Icon name="close"/> Close something</MenuItem>
-	</Menu>
-
-	<Button class="docs-menu-align-right" on:click="{someMenu3.open}">Right edge</Button>
-	<Menu bind:this="{someMenu3}" elevate="true">
-		<MenuItem><Icon name="plus"/> A very long text</MenuItem>
-		<MenuItem>Another very long text</MenuItem>
-		<MenuSeparator />
-		<MenuItem><Icon name="close"/> Probably the longest text in the world!</MenuItem>
-	</Menu>
-
+<h3>Close to the edge of the screen</h3>
+<div class="docs-menu-align-right">
+	<Button on:click="{someMenu3.open}">Right edge</Button>
 </div>
-<div class="another-element-with-z-index">
-	<small>parent's sibling with <em>z-index</em> higher than parent</small>
-</div>
-<p>This option should only be used when absolutely necessary, because it makes the component less accessible
-	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
 
+<Menu bind:this="{someMenu3}">
+	<MenuItem><Icon name="plus"/> A very long text</MenuItem>
+	<MenuItem>Another very long text</MenuItem>
+	<MenuSeparator />
+	<MenuItem><Icon name="close"/> Probably the longest text in the world!</MenuItem>
+</Menu>
 
 
 
 
 <h3>Context menu</h3>
-<small>(Right-click on the boxes below)</small>
+<p>To open the context menu:</p>
+<ul>
+	<li>On the desktop: right-click on the boxes below .
+	<li>On mobile: long-press on them.
+</ul>
 
 <div class="div div1">Tab</div>
 <div class="div div2">Window</div>
@@ -109,7 +90,6 @@ const apiProps = [
 	{ name: 'align', type: ['left', 'right'], default: 'left', description: 'Align to the <em>left</em> or <em>right</em> edge of the target.' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
-	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the menu will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
 	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
 	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
@@ -171,7 +151,7 @@ const exampleHtml = `
 `;
 
 
-let someMenu1, someMenu2, someMenu3, thingsMenu, thingsMenu2, tabsMenu, windowsMenu;
+let someMenu3, thingsMenu, thingsMenu2, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;
