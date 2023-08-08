@@ -90,7 +90,7 @@ function _hide () {
  */
 function hide (e) {
 	const targetIsSelf = (targetEl instanceof Node) && (e.target instanceof Node) && targetEl.contains(e.target);
-	const targetIsTooltip = element && (targetEl instanceof Node) && element.contains(e.target);
+	const targetIsTooltip = element && (e.target instanceof Node) && element.contains(e.target);
 
 	if ((e.type === 'mousedown' || e.type === 'click') && targetIsSelf) return;
 	if (showTimer && shownEvent !== 'click') {
