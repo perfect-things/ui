@@ -1,4 +1,3 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="input combobox {className}"
 	class:open="{opened}"
@@ -45,61 +44,62 @@
 				on:keydown|capture="{onkeydown}"
 				on:keypress="{onkeypress}">
 		</div>
-		<!-- svelte-ignore a11y-interactive-supports-focus -->
-		<div class="input-row">
-			<div
-				id="combobox-list-{gui}"
-				class="combobox-list {opened ? '' : 'hidden'}"
-				role="listbox"
-				on:mouseenter|capture="{() => mouseOverList = true}"
-				on:mouseleave|capture="{() => mouseOverList = false}"
-				on:mousedown={onListMouseDown}
-				bind:this="{listElement}">
-				{#if filteredData.length}
-					{#each groupedData as group}
-						{#if group.name}
-							<div class="combobox-list-header">{group.name}</div>
-						{/if}
-						{#if group.items}
-							{#each group.items as item}
-								<!-- svelte-ignore a11y-interactive-supports-focus -->
-								<div
-									role="option"
-									aria-selected="{item.idx === highlightIndex}"
-									class="combobox-list-item"
-									class:in-group="{!!item.group}"
-									class:selected="{item.idx === highlightIndex}"
-									on:click="{() => onclick(item)}">
-									{@html item.highlightedName || item.name}
-								</div>
-							{/each}
-						{/if}
-					{/each}
-				{:else if allowNew !== true && allowNew !== 'true'}
-					<div class="combobox-list-empty">No items found</div>
-				{/if}
-
-				{#if shouldShowNewItem}
-					<div class="combobox-list-header">Create new item</div>
-					<div
-						role="option"
-						aria-selected="{highlightIndex === filteredData.length}"
-						class="combobox-list-item"
-						class:selected="{highlightIndex === filteredData.length}"
-						on:click="{() => onclick({ name: inputElement.value, idx: filteredData.length })}">
-							{inputElement.value}
-					</div>
-				{/if}
-			</div>
-		</div>
 	</div>
-
 </div>
 
+
+<!-- svelte-ignore a11y-interactive-supports-focus a11y-click-events-have-key-events -->
+{#if opened}
+	<div
+		id="combobox-list-{gui}"
+		class="combobox-list {opened ? '' : 'hidden'}"
+		role="listbox"
+		on:mouseenter|capture="{() => mouseOverList = true}"
+		on:mouseleave|capture="{() => mouseOverList = false}"
+		on:mousedown={onListMouseDown}
+		bind:this="{listElement}">
+		{#if filteredData.length}
+			{#each groupedData as group}
+				{#if group.name}
+					<div class="combobox-list-header">{group.name}</div>
+				{/if}
+				{#if group.items}
+					{#each group.items as item}
+						<div
+							role="option"
+							aria-selected="{item.idx === highlightIndex}"
+							class="combobox-list-item"
+							class:in-group="{!!item.group}"
+							class:selected="{item.idx === highlightIndex}"
+							on:click="{() => onclick(item)}">
+							{@html item.highlightedName || item.name}
+						</div>
+					{/each}
+				{/if}
+			{/each}
+		{:else if allowNew !== true && allowNew !== 'true'}
+			<div class="combobox-list-empty">No items found</div>
+		{/if}
+
+		{#if shouldShowNewItem}
+		<div class="combobox-list-header">Create new item</div>
+			<div
+				role="option"
+				aria-selected="{highlightIndex === filteredData.length}"
+				class="combobox-list-item"
+				class:selected="{highlightIndex === filteredData.length}"
+				on:click="{() => onclick({ name: inputElement.value, idx: filteredData.length })}">
+					{inputElement.value}
+			</div>
+		{/if}
+	</div>
+{/if}
+
+
 <script>
-import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
-import { emphasize, highlight, recalculateListPosition, groupData } from './utils';
-import { deepCopy, empty, fuzzy, pluck, guid } from '../../utils';
+import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
+import { emphasize, highlight, groupData } from './utils';
+import { deepCopy, empty, fuzzy, pluck, guid, alignItem } from '../../utils';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -116,9 +116,7 @@ export let value = null;
 export let allowNew = false;
 export let showAllInitially = true;
 export let clearOnEsc = false;
-export let elevate = false;
 export let showOnFocus = false;
-export let hideOnScroll = false;
 export let hideOnResize = false;
 export let label = '';
 export let error = undefined;
@@ -136,7 +134,6 @@ export let data = [];
 
 
 $:_id = id || name || guid();
-$:elevated = elevate === 'true' || elevate === true;
 $:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputElement.value));
 $:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputElement && inputElement.value && !valueMatchesItem;
@@ -156,13 +153,9 @@ let hasSetValue = true;
 let isSelecting = false;
 let isHiding = false;
 
-onMount(() => {
-	if (elevated) document.body.appendChild(listElement);
-});
-
 
 onDestroy(() => {
-	if (elevated) listElement.remove();
+	if (listElement) listElement.remove();
 });
 
 
@@ -193,23 +186,25 @@ function filter () {
 				if (item.name.toLowerCase() === q) item.score = 4;
 				if (item.name === q) item.score = 5;
 				return item;
-			});
-		filtered = filtered.sort((a, b) => b.score - a.score);
-		filtered.forEach(item => {
-			item.highlightedName = emphasize(item.name, q);
-		});
+			})
+			.sort((a, b) => b.score - a.score);
 	}
 	groupedData = groupData(filtered);
 	const filteredAndSorted = [];
 	let idx = 0;
 	groupedData.forEach(g => {
-		g.items.forEach(i => i.idx = idx++);
-		filteredAndSorted.push(...g.items);
+		g.items.forEach(i => {
+			i.idx = idx++;
+			filteredAndSorted.push(i);
+		});
 	});
 	filteredData = filteredAndSorted;
 
 	highlightIndex = 0;
-	if (listElement) highlight(listElement);
+	highlight(listElement);
+	requestAnimationFrame(() => {
+		alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true });
+	});
 }
 
 
@@ -217,12 +212,17 @@ function open (e) {
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
-	addEventListeners();
-	recalculateListPosition(listElement, inputElement, elevated);
-
-	highlight(listElement);
 	requestAnimationFrame(() => {
-		if (e && e.type === 'focus') inputElement.select();
+		if (listElement.parentElement !== document.body) {
+			document.body.appendChild(listElement);
+		}
+
+		addEventListeners();
+		highlight(listElement);
+		requestAnimationFrame(() => {
+			alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true });
+			if (e && e.type === 'focus') inputElement.select();
+		});
 	});
 }
 
@@ -334,7 +334,6 @@ function oninput () {
 	inputElement.value = inputElement.value;	// svelte needs this to rerender some stuff
 	open();
 	requestAnimationFrame(filter);
-	recalculateListPosition(listElement, inputElement, elevated);
 	hasEdited = true;
 	hasSetValue = false;
 }
@@ -423,13 +422,10 @@ function onIconClick () {
 }
 
 
-function onScrollOrResize (e) {
+function onResize (e) {
 	if (!opened) return;
 	if (e.target === listElement || e.target === inputElement || mouseOverList) return;
-
-	if (e.type === 'resize' && hideOnResize !== true && hideOnResize !== 'true') return;
-	if (e.type === 'scroll' && hideOnScroll !== true && hideOnScroll !== 'true') return;
-
+	if (hideOnResize !== true && hideOnResize !== 'true') return;
 	inputElement.blur();
 	return close();
 }
@@ -438,23 +434,18 @@ function onScrollOrResize (e) {
 function onDocumentClick (e) {
 	const notEl = element && !element.contains(e.target);
 	const notList = listElement && !listElement.contains(e.target);
-	if (open && notEl && notList) {
-		e.stopPropagation();
-		close();
-	}
+	if (open && notEl && notList) close();
 }
 
 
 function addEventListeners () {
-	window.addEventListener('resize', onScrollOrResize);
-	document.addEventListener('scroll', onScrollOrResize, true);
+	window.addEventListener('resize', onResize);
 	document.addEventListener('click', onDocumentClick, true);
 }
 
 
 function removeEventListeners () {
-	window.removeEventListener('resize', onScrollOrResize);
-	document.removeEventListener('scroll', onScrollOrResize, true);
+	window.removeEventListener('resize', onResize);
 	document.removeEventListener('click', onDocumentClick, true);
 }
 /*** EVENT LISTENERS ******************************************************************************/

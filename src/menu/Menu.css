@@ -1,5 +1,5 @@
 .menu {
-	position: fixed;
+	position: absolute;
 	padding: 0.2rem 0.25rem;
 	margin: 0;
 	display: flex;

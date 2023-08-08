@@ -61,7 +61,7 @@ test('Combobox', async () => {
 	await waitForTimeout();
 
 	// verify that the item was selected
-	expect(comboboxList).toHaveClass('hidden');
+	expect(comboboxList).not.toBeInTheDocument();
 	expect(combobox).not.toHaveClass('open');
 	expect(input.value).toBe(value.name);
 

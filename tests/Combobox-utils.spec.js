@@ -71,40 +71,6 @@ test('Combobox-utils - highlight', () => {
 });
 
 
-test('Combobox-utils - quickPositionRecalc', () => {
-	const listEl = { style: { top: '0px', left: '0px' } };
-	const inputEl = {
-		getBoundingClientRect: () => ({ top: 100, left: 100, height: 50, width: 50 })
-	};
-
-	utils.quickPositionRecalc(listEl, inputEl);
-	expect(listEl.style.top).toBe('153px');
-	expect(listEl.style.left).toBe('99px');
-});
-
-
-test('Combobox-utils - recalculateListPosition', () => {
-	const inputEl = {
-		getBoundingClientRect: () => ({ top: 700, left: 100, height: 30, width: 50 })
-	};
-	utils.recalculateListPosition(null, inputEl);
-	const listEl = {
-		getBoundingClientRect: () => ({ top: 730, left: 100, height: 100, width: 50 }),
-		style: { top: '0px', left: '0px' }
-	};
-
-	utils.recalculateListPosition(listEl, inputEl);
-	expect(listEl.style.top).toBe('-133px');
-	expect(listEl.style.left).toBe('-1px');
-	expect(listEl.style.height).toBe('100px');
-
-	utils.recalculateListPosition(listEl, inputEl, true);
-	expect(listEl.style.top).toBe('597px');
-	expect(listEl.style.left).toBe('99px');
-	expect(listEl.style.height).toBe('100px');
-});
-
-
 test('Combobox-utils - emphasize', () => {
 	expect(utils.emphasize('abc')).toBe('abc');
 	expect(utils.emphasize('abc', 'ab')).toBe('<b>ab</b>c');

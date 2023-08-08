@@ -13,6 +13,7 @@ export function groupData (items) {
 
 
 export function highlight (listEl) {
+	if (!listEl) return;
 	requestAnimationFrame(() => {
 		const selectedEl = listEl.querySelector('.selected');
 		if (!selectedEl || !listEl.scrollTo) return;
@@ -28,62 +29,6 @@ export function highlight (listEl) {
 			top = selectedEl.offsetTop + selectedEl.offsetHeight - listEl.offsetHeight + paddingBottom;
 			if (listEl.scrollTop < top) listEl.scrollTo({ top });
 		}
-	});
-}
-
-
-// quick and instant recalc to minimise visual flyover of the dropdown across the screen
-export function quickPositionRecalc (listEl, inputEl) {
-	const inputBox = inputEl.getBoundingClientRect();
-	listEl.style.top = (inputBox.top + inputBox.height + 3) + 'px';
-	listEl.style.left = (inputBox.left - 1) + 'px';
-}
-
-// proper recalc that ensures the dropdown is always visible and fits into the screen
-function properRecalculateListPosition (listEl, inputEl, elevated) {
-	const offsetX = -1;
-	const offsetY = 3;
-	const inputBox = inputEl.getBoundingClientRect();
-	let left, top;
-
-	if (elevated) {
-		top = window.scrollY + inputBox.top + inputBox.height + offsetY;
-		left = window.scrollX + inputBox.left + offsetX;
-	}
-	else {
-		top = offsetY;
-		left = offsetX;
-	}
-
-	listEl.style.top = top + 'px';
-	listEl.style.left = left + 'px';
-	listEl.style.minWidth = inputBox.width + 'px';
-	listEl.style.height = 'auto';
-
-	const listBox = listEl.getBoundingClientRect();
-	const listT = listBox.top;
-	const listH = listBox.height;
-	const winH = window.innerHeight;
-	let maxH = 0;
-
-	if (listT + listH + 10 > winH) {
-		maxH = Math.max(winH - listT - 10, 100);
-		listEl.style.height = maxH + 'px';
-	}
-
-	if (listT + maxH + 10 > winH) {
-		listEl.style.height = listBox.height + 'px';
-		if (elevated) listEl.style.top = (window.scrollY + inputBox.top - listBox.height - offsetY) + 'px';
-		else listEl.style.top = -inputBox.height - listBox.height - offsetY + 'px';
-	}
-}
-
-
-export function recalculateListPosition (listEl, inputEl, elevated) {
-	if (elevated) quickPositionRecalc(listEl, inputEl);
-	requestAnimationFrame(() => {
-		if (!listEl || !listEl.style) return;
-		properRecalculateListPosition(listEl, inputEl, elevated);
 	});
 }
 

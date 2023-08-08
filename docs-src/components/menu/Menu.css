@@ -4,19 +4,14 @@
 	width: 200px;
 	display: inline-grid;
 	place-items: center;
-	margin: 0 10px 10px 0;
+	margin: 1rem 1rem 1rem 0;
 	-webkit-user-select: none;
 	user-select: none;
 }
-small { display: block; margin: 5px 0 15px; }
 
-.another-element-with-z-index {
-	border: 2px dotted var(--ui-color-accent);
-	background-color: var(--ui-color-background);
-	padding: 20px;
-	position: relative;
-	z-index: 5;
-	margin-top: 1rem;
+
+.docs-menu-align-right {
+	padding: 2rem 0;
+	border: 1px dashed var(--ui-color-accent);
+	text-align: right;
 }
-
-.docs-menu-align-right { float: right; }

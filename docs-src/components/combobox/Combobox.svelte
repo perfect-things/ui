@@ -31,17 +31,6 @@
 <Combobox items="{dataSimplest}" placeholder="Type to filter" allowNew="true"
 	bind:value="{valueSimplest}" />
 
-<h3>In a container with <em>overflow: hidden</em></h3>
-<p>Where parent container has <em>overflow: hidden</em>, <em>elevate="true"</em>
-	property must be set on the component.</p>
-<div class="docs-overflow-box">
-	<small>overflow: hidden</small>
-	<Combobox {items} elevate="true" bind:value="{itemValue}" />
-</div>
-<p>This option should only be used when absolutely necessary (e.g. when Combobox
-	is used inside dialogs/popups), because it makes the component less accessible
-	(the list container is rendered directly in the <em>&lt;body&gt;</em>, and not next to the input).</p>
-
 <h3>Label</h3>
 <Combobox {items} label="Combobox label" />
 
@@ -73,10 +62,8 @@ const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the combobox will be cleared when Escape is pressed.' },
 	{ name: 'disabled', description: 'Make the combobox disabled.' },
-	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
 	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
-	{ name: 'hideOnScroll', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - scrolling the window will close the popup.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
 	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
