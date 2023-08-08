@@ -1,9 +1,9 @@
 Changelog
 =========
 
-## v8.2.0 *(2023-08-?)*
+## v8.2.0 *(2023-08-08)*
 - `data` attribute in `Combobox` is deprecated. It will be removed in the next major version. Use `items` instead.
-- `Combobox` and `Menu` now use the same align function (for consistency and performance) and there's no need to add `elevate` attribute to either of them, as all dropdowns are rendered inside the `body` element and only when they are opened (to avoid polluting the dom with unnecessary elements).
+- `Combobox` and `Menu` now use the same align function (for consistency and performance) and there's no need to add `elevate` attribute to either of them, as both popups are rendered inside the `body` element and are only added to the DOM, when they are opened (to avoid polluting the DOM with unnecessary elements).
 
 
 ## v8.1.4 *(2023-07-31)*
