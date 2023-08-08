@@ -1,8 +1,8 @@
 <h1>Changelog</h1>
-<h2>v8.2.0 <em>(2023-08-?)</em></h2>
+<h2>v8.2.0 <em>(2023-08-08)</em></h2>
 <ul>
 <li><code>data</code> attribute in <code>Combobox</code> is deprecated. It will be removed in the next major version. Use <code>items</code> instead.</li>
-<li><code>Combobox</code> and <code>Menu</code> now use the same align function (for consistency and performance) and there&#39;s no need to add <code>elevate</code> attribute to either of them, as all dropdowns are rendered inside the <code>body</code> element and only when they are opened (to avoid polluting the dom with unnecessary elements).</li>
+<li><code>Combobox</code> and <code>Menu</code> now use the same align function (for consistency and performance) and there&#39;s no need to add <code>elevate</code> attribute to either of them, as both popups are rendered inside the <code>body</code> element and are only added to the DOM, when they are opened (to avoid polluting the DOM with unnecessary elements).</li>
 </ul>
 <h2>v8.1.4 <em>(2023-07-31)</em></h2>
 <ul>
