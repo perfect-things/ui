@@ -9,6 +9,7 @@ export { InputDate } from './input-date';
 export { InputMath } from './input-math';
 export { InputNumber } from './input-number';
 export { InputPassword } from './input-password';
+export { InputSearch } from './input-search';
 export { InputText } from './input-text';
 export { Radio } from './radio';
 export { Select } from './select';

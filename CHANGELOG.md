@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v8.3.0 *(2023-08-?)*
+- **New:** `InputSearch` component. Not much more than `InputText`, except the search icon and (depending on the browser) - the clear button.
+
+
 ## v8.2.0 *(2023-08-08)*
 - `data` attribute in `Combobox` is deprecated. It will be removed in the next major version. Use `items` instead.
 - `Combobox` and `Menu` now use the same align function (for consistency and performance) and there's no need to add `elevate` attribute to either of them, as both popups are rendered inside the `body` element and are only added to the DOM, when they are opened (to avoid polluting the DOM with unnecessary elements).

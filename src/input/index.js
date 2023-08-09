@@ -6,6 +6,7 @@ export * from './input-error';
 export * from './input-math';
 export * from './input-number';
 export * from './input-password';
+export * from './input-search';
 export * from './input-text';
 export * from './label';
 export * from './radio';

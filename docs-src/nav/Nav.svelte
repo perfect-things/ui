@@ -24,6 +24,7 @@
 		<NavItem name="Input Number" {active} />
 		<NavItem name="Input Math" {active} />
 		<NavItem name="Input Password" {active} />
+		<NavItem name="Input Search" {active} />
 		<NavItem name="Radio" {active} />
 		<NavItem name="Select" {active} />
 		<NavItem name="Textarea" {active} />
