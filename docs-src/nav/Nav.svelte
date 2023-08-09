@@ -74,12 +74,11 @@ const SIDEBAR_WIDTH = 220;
 let expanded = false;
 let wasExpanded = false;
 let swiping = false;
-const swipeSlowDownFactor = 4;
+const swipeSlowDownFactor = 2.5;
 let sidebarEl, navTogglerBtn;
 
 
 onMount(() => {
-
 	const swiper = new VanillaSwipe({
 		element: document.body,
 		delta: 3,
@@ -91,13 +90,12 @@ onMount(() => {
 		onTap: onTap,
 	});
 	swiper.init();
-
 });
 
 function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
-
-	if (e.target.closest('.api-table, .input, .button, .toggle, .dialog-backdrop, pre>code'))	{
+	const untouchables = '.api-table, .input, .button, .toggle, .dialog-backdrop, pre>code, [aria-haspopup="true"]';
+	if (e.target.closest(untouchables)) {
 		return;
 	}
 	wasExpanded = expanded;
@@ -120,7 +118,7 @@ function onSwipe (e, data) {
 
 	if (wasExpanded) {
 		sidebarX = 0;
-		if (data.deltaX > 0) sidebarX += data.deltaX / swipeSlowDownFactor;
+		if (data.deltaX > 0) sidebarX += data.deltaX * Math.exp(-swipeSlowDownFactor);
 		else sidebarX += data.deltaX;
 
 	}
@@ -128,7 +126,7 @@ function onSwipe (e, data) {
 		sidebarX = -SIDEBAR_WIDTH;
 		if (data.deltaX > 0) {
 			if (data.deltaX < SIDEBAR_WIDTH) sidebarX += data.deltaX;
-			else sidebarX = (sidebarX + data.deltaX) / swipeSlowDownFactor;
+			else sidebarX = (sidebarX + data.deltaX) * Math.exp(-swipeSlowDownFactor);
 		}
 	}
 	sidebarEl.style.transform = `translateX(${sidebarX}px)`;

@@ -15,7 +15,6 @@ import { alignItem } from '../utils.js';
 
 const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
-const contextmenu = isMobileSafari ? 'longpress' : 'contextmenu';
 
 let className = '';
 export { className as class };
@@ -32,6 +31,8 @@ const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
 let targetEl, focusedEl, opened = false;
 let hovering = false;
+let longpressing = false;
+let closing = false;
 
 setContext('MenuContext', {
 	targetEl: () => targetEl
@@ -39,14 +40,27 @@ setContext('MenuContext', {
 
 onMount(() => {
 	if (type === 'context') {
-		initLongPressEvent();
-		document.addEventListener(contextmenu, onContextMenu);
+		// safari does not translate contextmenu to longpress
+		if (isMobileSafari) {
+			initLongPressEvent();
+			document.addEventListener('longpress', onLongPress);
+		}
+		else {
+			document.addEventListener('contextmenu', onContextMenu);
+		}
 	}
 });
 
 
 onDestroy(() => {
-	if (type === 'context') document.removeEventListener(contextmenu, onContextMenu);
+	if (type === 'context') {
+		if (isMobileSafari) {
+			document.removeEventListener('longpress', onLongPress);
+		}
+		else {
+			document.removeEventListener('contextmenu', onContextMenu);
+		}
+	}
 	if (element) element.remove();
 });
 
@@ -66,6 +80,15 @@ function matchTypeQuery (key) {
 }
 
 
+function onLongPress (e) {
+	longpressing = true;
+	onContextMenu(e);
+}
+
+function onTouchend () {
+	requestAnimationFrame(() => longpressing = false);
+}
+
 function onContextMenu (e) {
 	_close();
 	targetEl = e.target.closest(targetSelector);
@@ -78,6 +101,7 @@ function onContextMenu (e) {
 
 
 function onDocumentClick (e) {
+	if (longpressing) return;
 	if (!element) return;
 	if (!element.contains(e.target)) _close();
 	else {
@@ -170,6 +194,7 @@ function focusPrev () {
 
 
 export function open (e) {
+	if (closing) return;
 	if (opened) {
 		if (type !== 'context') return close();
 		return Promise.resolve();
@@ -195,8 +220,8 @@ export function open (e) {
 
 		dispatch('open', { event: e, target: targetEl });
 		addEventListeners();
-		requestAnimationFrame(resolve);
 		if (element) element.focus();
+		requestAnimationFrame(resolve);
 	}));
 }
 
@@ -224,6 +249,7 @@ function _close () {
 	if (!opened) return Promise.resolve();
 
 	opened = false;
+	closing = true;
 	removeArias(targetSelector);
 	removeArias(targetEl);
 
@@ -232,12 +258,18 @@ function _close () {
 		removeEventListeners();
 		focusTarget();
 		requestAnimationFrame(resolve);
+		setTimeout(() => closing = false, 300);
 	}));
 }
 
 
 function addEventListeners () {
 	document.addEventListener('click', onDocumentClick);
+	document.addEventListener('touchstart', onDocumentClick);
+
+	document.addEventListener('touchend', onTouchend);
+	document.addEventListener('mouseup', onTouchend);
+
 	document.addEventListener('keydown', onKeydown);
 	document.addEventListener('mouseover', onmouseover);
 }
@@ -245,6 +277,11 @@ function addEventListeners () {
 
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
+	document.removeEventListener('touchstart', onDocumentClick);
+
+	document.removeEventListener('touchend', onTouchend);
+	document.removeEventListener('mouseup', onTouchend);
+
 	document.removeEventListener('keydown', onKeydown);
 	document.removeEventListener('mouseover', onmouseover);
 }

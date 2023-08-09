@@ -78,5 +78,5 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	aside.expanded { transform: translateX(0); }
 
 	.nav-toggler:not(.swiping),
-	aside:not(.swiping) { transition: transform .4s cubic-bezier(.5, .2, .5, 1.2); }
+	aside:not(.swiping) { transition: transform .3s cubic-bezier(.5, .2, .5, 1.2); }
 }

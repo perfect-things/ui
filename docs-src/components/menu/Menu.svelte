@@ -52,8 +52,8 @@
 <h3>Context menu</h3>
 <p>To open the context menu:</p>
 <ul>
-	<li>On the desktop: right-click on the boxes below .
-	<li>On mobile: long-press on them.
+	<li>Desktop: right-click on the boxes below
+	<li>Mobile: long-press on them
 </ul>
 
 <div class="div div1">Tab</div>
