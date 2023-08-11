@@ -15,6 +15,8 @@ import { alignItem } from '../utils.js';
 
 const dispatch = createEventDispatcher();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
+// safari does not translate contextmenu to longpress
+const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
 let className = '';
 export { className as class };
@@ -31,166 +33,33 @@ const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
 let targetEl, focusedEl, opened = false;
 let hovering = false;
-let longpressing = false;
 let closing = false;
+let eventsAdded = false;
 
-setContext('MenuContext', {
-	targetEl: () => targetEl
-});
+
+setContext('MenuContext', { targetEl: () => targetEl });
+
 
 onMount(() => {
 	if (type === 'context') {
-		// safari does not translate contextmenu to longpress
 		if (isMobileSafari) {
 			initLongPressEvent();
-			document.addEventListener('longpress', onLongPress);
+			document.addEventListener('touchend', onTouchend);
 		}
-		else {
-			document.addEventListener('contextmenu', onContextMenu);
-		}
+		document.addEventListener(contextmenuEventName, onContextMenu);
 	}
 });
 
 
 onDestroy(() => {
 	if (type === 'context') {
-		if (isMobileSafari) {
-			document.removeEventListener('longpress', onLongPress);
-		}
-		else {
-			document.removeEventListener('contextmenu', onContextMenu);
-		}
+		if (isMobileSafari) document.removeEventListener('touchend', onTouchend);
+		document.removeEventListener(contextmenuEventName, onContextMenu);
 	}
 	if (element) element.remove();
 });
 
 
-
-function indexButtons () {
-	if (!element) return;
-	menuButtons.length = 0;
-	const addBtn = el => menuButtons.push({ el, text: el.textContent.trim().toLowerCase() });
-	element.querySelectorAll(buttonSelector).forEach(addBtn);
-}
-
-
-function matchTypeQuery (key) {
-	const btn = matchQuery(menuButtons, key);
-	if (btn && btn.el) highlightElement(btn.el);
-}
-
-
-function onLongPress (e) {
-	longpressing = true;
-	onContextMenu(e);
-}
-
-function onTouchend () {
-	requestAnimationFrame(() => longpressing = false);
-}
-
-function onContextMenu (e) {
-	_close();
-	targetEl = e.target.closest(targetSelector);
-	if (!targetEl) return;
-
-	e.stopPropagation();
-	e.preventDefault();
-	open(e);
-}
-
-
-function onDocumentClick (e) {
-	if (longpressing) return;
-	if (!element) return;
-	if (!element.contains(e.target)) _close();
-	else {
-		const shouldClose = closeOnClick === true || closeOnClick === 'true';
-		const clickedOnItem = !!e.target.closest(buttonSelector);
-		if (shouldClose && clickedOnItem) close(e);
-	}
-}
-
-
-
-function onmouseover (e) {
-	const isOverMenu = e.target.closest('.menu');
-
-	if (isOverMenu && !hovering) hovering = true;
-	else if (!isOverMenu && hovering) hovering = false;
-
-	if (hovering) {
-		const btn = e.target.closest(buttonSelector);
-		if (btn) highlightElement(btn);
-	}
-	else highlightElement(null);
-}
-
-
-
-function highlightElement (el) {
-	focusedEl = el;
-	if (focusedEl) {
-		focusedEl.scrollIntoView({ block: 'nearest' });
-		focusedEl.focus();
-	}
-	else element && element.focus();
-}
-
-
-function onKeydown (e) {
-	if (e.key === 'Escape' || !element.contains(e.target)) return _close();
-	if (e.key === 'Enter' || e.key === ' ') return;
-	if (e.key === 'Tab') {
-		e.preventDefault();
-		e.stopPropagation();
-		if (e.shiftKey) return focusPrev();
-		return focusNext();
-	}
-	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
-
-	if (e.key === 'ArrowDown') return focusNext();
-	if (e.key === 'ArrowUp') return focusPrev();
-	if (e.key === 'ArrowLeft') return focusFirst();
-	if (e.key === 'ArrowRight') return focusLast();
-
-	matchTypeQuery(e.key);
-}
-
-
-function focusTarget () {
-	if (targetEl && targetEl.focus) targetEl.focus();
-}
-
-
-function focusFirst () {
-	const buttons = Array.from(element.querySelectorAll(buttonSelector));
-	highlightElement(buttons[0]);
-}
-
-
-function focusLast () {
-	const buttons = Array.from(element.querySelectorAll(buttonSelector));
-	highlightElement(buttons[buttons.length - 1]);
-}
-
-
-function focusNext () {
-	const buttons = Array.from(element.querySelectorAll(buttonSelector));
-	let idx = -1;
-	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
-	if (idx >= buttons.length - 1) idx = -1;
-	highlightElement(buttons[idx + 1]);
-}
-
-
-function focusPrev () {
-	const buttons = Array.from(element.querySelectorAll(buttonSelector));
-	let idx = buttons.length;
-	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
-	if (idx <= 0) idx = buttons.length;
-	highlightElement(buttons[idx - 1]);
-}
 
 
 export function open (e) {
@@ -219,9 +88,9 @@ export function open (e) {
 		alignItem({ element, target: e, alignH: align });
 
 		dispatch('open', { event: e, target: targetEl });
-		addEventListeners();
 		if (element) element.focus();
 		requestAnimationFrame(resolve);
+		if (!isMobileSafari || type !== 'context') addEventListeners();
 	}));
 }
 
@@ -263,27 +132,152 @@ function _close () {
 }
 
 
+
+/*** EVENTS & LISTENERS ***************************************************************************/
+function onTouchend (e) {
+	if (opened && !eventsAdded) {
+		e.preventDefault();
+		requestAnimationFrame(addEventListeners);
+	}
+}
+
+
+function onContextMenu (e) {
+	_close();
+	targetEl = e.target.closest(targetSelector);
+	if (!targetEl) return;
+
+	e.preventDefault();
+	open(e);
+}
+
+
+function onDocumentClick (e) {
+	if (!element) return;
+	if (!element.contains(e.target)) _close();
+	else {
+		const shouldClose = closeOnClick === true || closeOnClick === 'true';
+		const clickedOnItem = !!e.target.closest(buttonSelector);
+		if (shouldClose && clickedOnItem) close(e);
+	}
+}
+
+
+function onMouseOver (e) {
+	const isOverMenu = e.target.closest('.menu');
+
+	if (isOverMenu && !hovering) hovering = true;
+	else if (!isOverMenu && hovering) hovering = false;
+
+	if (hovering) {
+		const btn = e.target.closest(buttonSelector);
+		if (btn) highlightElement(btn);
+	}
+	else highlightElement(null);
+}
+
+
+function onKeydown (e) {
+	if (e.key === 'Escape' || !element.contains(e.target)) return _close();
+	if (e.key === 'Enter' || e.key === ' ') return;
+	if (e.key === 'Tab') {
+		e.preventDefault();
+		e.stopPropagation();
+		if (e.shiftKey) return focusPrev();
+		return focusNext();
+	}
+	if (e.key.startsWith('Arrow') || e.key.startsWith(' ')) e.preventDefault();
+
+	if (e.key === 'ArrowDown') return focusNext();
+	if (e.key === 'ArrowUp') return focusPrev();
+	if (e.key === 'ArrowLeft') return focusFirst();
+	if (e.key === 'ArrowRight') return focusLast();
+
+	matchTypeQuery(e.key);
+}
+
+
 function addEventListeners () {
+	if (eventsAdded) return;
 	document.addEventListener('click', onDocumentClick);
-	document.addEventListener('touchstart', onDocumentClick);
-
-	document.addEventListener('touchend', onTouchend);
-	document.addEventListener('mouseup', onTouchend);
-
+	if (type !== 'context') document.addEventListener(contextmenuEventName, onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
-	document.addEventListener('mouseover', onmouseover);
+	document.addEventListener('mouseover', onMouseOver);
+	eventsAdded = true;
 }
 
 
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
-	document.removeEventListener('touchstart', onDocumentClick);
-
-	document.removeEventListener('touchend', onTouchend);
-	document.removeEventListener('mouseup', onTouchend);
-
+	if (type !== 'context') document.removeEventListener(contextmenuEventName, onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
-	document.removeEventListener('mouseover', onmouseover);
+	document.removeEventListener('mouseover', onMouseOver);
+	eventsAdded = false;
 }
+/*** EVENTS & LISTENERS ***************************************************************************/
+
+
+
+
+
+/*** FOCUS & HIGHLIGHT ****************************************************************************/
+function indexButtons () {
+	if (!element) return;
+	menuButtons.length = 0;
+	const addBtn = el => menuButtons.push({ el, text: el.textContent.trim().toLowerCase() });
+	element.querySelectorAll(buttonSelector).forEach(addBtn);
+}
+
+
+function matchTypeQuery (key) {
+	const btn = matchQuery(menuButtons, key);
+	if (btn && btn.el) highlightElement(btn.el);
+}
+
+
+function highlightElement (el) {
+	focusedEl = el;
+	if (focusedEl) {
+		focusedEl.scrollIntoView({ block: 'nearest' });
+		focusedEl.focus();
+	}
+	else element && element.focus();
+}
+
+
+function focusTarget () {
+	if (targetEl && targetEl.focus) targetEl.focus();
+}
+
+
+function focusFirst () {
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
+	highlightElement(buttons[0]);
+}
+
+
+function focusLast () {
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
+	highlightElement(buttons[buttons.length - 1]);
+}
+
+
+function focusNext () {
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
+	let idx = -1;
+	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
+	if (idx >= buttons.length - 1) idx = -1;
+	highlightElement(buttons[idx + 1]);
+}
+
+
+function focusPrev () {
+	const buttons = Array.from(element.querySelectorAll(buttonSelector));
+	let idx = buttons.length;
+	if (focusedEl) idx = buttons.findIndex(el => el === focusedEl);
+	if (idx <= 0) idx = buttons.length;
+	highlightElement(buttons[idx - 1]);
+}
+/*** FOCUS & HIGHLIGHT ****************************************************************************/
 
 </script>

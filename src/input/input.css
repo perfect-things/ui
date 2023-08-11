@@ -117,7 +117,7 @@ input[type=color] {
 
 .input-row>.icon {
 	color: var(--ui-color-text-2);
-	left: 7px;
+	left: 0.3rem;
 	width: 1.5rem;
 	pointer-events: none;
 }
