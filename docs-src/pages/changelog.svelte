@@ -1,7 +1,8 @@
 <h1>Changelog</h1>
-<h2>v8.3.0 <em>(2023-08-?)</em></h2>
+<h2>v8.3.0 <em>(2023-08-11)</em></h2>
 <ul>
 <li><strong>New:</strong> <code>InputSearch</code> component. Not much more than <code>InputText</code>, except the search icon and (depending on the browser) - the clear button.</li>
+<li>Fixed a weird and edge-case issue with <code>Menu</code> on mobile Safari (#119).</li>
 </ul>
 <h2>v8.2.0 <em>(2023-08-08)</em></h2>
 <ul>
