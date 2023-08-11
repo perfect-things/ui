@@ -1,8 +1,9 @@
 Changelog
 =========
 
-## v8.3.0 *(2023-08-?)*
+## v8.3.0 *(2023-08-11)*
 - **New:** `InputSearch` component. Not much more than `InputText`, except the search icon and (depending on the browser) - the clear button.
+- Fixed a weird and edge-case issue with `Menu` on mobile Safari (#119).
 
 
 ## v8.2.0 *(2023-08-08)*
