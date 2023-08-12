@@ -38,7 +38,7 @@
 	user-select: none;
 }
 
-.datepicker-main { padding: 0.1rem; }
+.datepicker-main { padding: var(--ui-margin-s); }
 
 
 .datepicker-grid,

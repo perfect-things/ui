@@ -55,7 +55,7 @@
 
 
 <script>
-import { onMount } from 'svelte';
+import { onDestroy, onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import { Icon } from '../../icon';
 import { PushButton } from '../../push-button';
@@ -106,6 +106,11 @@ onMount(() => {
 		else removeEvents();
 	});
 	if (initial) requestAnimationFrame(() => initial = false);
+});
+
+
+onDestroy(() => {
+	if (el) el.remove();
 });
 
 

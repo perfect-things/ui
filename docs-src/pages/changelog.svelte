@@ -1,4 +1,11 @@
 <h1>Changelog</h1>
+<h2>v8.3.1 <em>(2023-08-?)</em></h2>
+<ul>
+<li>Removed <code>--ui-margin-xl</code> and <code>--ui-margin-xxl</code> as they were not used.</li>
+<li>Merged <code>--ui-border-radius-s</code> with <code>--ui-border-radius</code> and changed to a rem value that calculates to the whole pixel (so that browsers would render it better).</li>
+<li>Fixed the <code>NotificationCenter</code> issue, where toasts would not close if navigated away from the page that initialises the component.</li>
+<li>Tweaked dialog border-radius to render a bit better (for dialog&#39;s header and footer).</li>
+</ul>
 <h2>v8.3.0 <em>(2023-08-11)</em></h2>
 <ul>
 <li><strong>New:</strong> <code>InputSearch</code> component. Not much more than <code>InputText</code>, except the search icon and (depending on the browser) - the clear button.</li>

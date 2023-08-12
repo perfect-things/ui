@@ -10,7 +10,7 @@
 
 .table table { border-spacing: 0; width: 100%; table-layout: fixed; }
 
-.table.round { border-radius: var(--ui-border-radius-s); }
+.table.round { border-radius: var(--ui-border-radius); }
 .table.selectable { cursor: default; -webkit-user-select: none; user-select: none; }
 
 .table thead,

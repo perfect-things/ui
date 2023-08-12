@@ -18,7 +18,7 @@
 	width: 100%;
 	padding: 0;
 	border: 1px solid  var(--ui-color-border);
-	border-radius: calc(var(--ui-border-radius) + 0.26rem);
+	border-radius: calc(var(--ui-border-radius) + 0.16rem);
 	background-color: var(--ui-color-background-input);
 	overflow: hidden;
 }
@@ -51,15 +51,15 @@
 	flex-flow: row;
 	align-items: center;
 	justify-content: flex-start;
-	width: calc(100% - 0.4rem);
-	margin: 0.2rem;
-	padding: 0.1rem 0.1rem 0.1rem 0.75rem;
+	width: calc(100% - calc(var(--ui-margin-s) * 4));
+	margin: calc(var(--ui-margin-s) * 2);
+	padding: var(--ui-margin-s) var(--ui-margin-s) var(--ui-margin-s) 0.75rem;
 	border-radius: var(--ui-border-radius);
 }
 
 .radio-item:has(:disabled) { opacity: 0.75; color: var(--ui-color-text-semi); }
 
-.radio-item .label { padding: 0.5rem 1rem; }
+.radio-item .label { padding: var(--ui-margin-m) var(--ui-margin-l); }
 
 .radio-item:not(.disabled):focus-within,
 .radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); }

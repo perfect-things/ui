@@ -24,21 +24,21 @@ menu {
 
 menu h3 {
 	margin: 0 -1rem;
-	padding: 0.5rem 1rem;
+	padding: var(--ui-margin-m) var(--ui-margin-l);
 	white-space: nowrap;
 	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 1.4rem;
 }
 
-menu h3:not(:first-child) { margin-top: 1rem; }
+menu h3:not(:first-child) { margin-top: var(--ui-margin-l); }
 
 menu a {
 	color: var(--ui-color-text);
 	text-decoration: none;
 	display: block;
-	margin: 0.1rem 0;
-	padding: 0.5rem 1.4rem;
-	border-radius: var(--ui-border-radius-s);
+	margin: var(--ui-margin-s) 0;
+	padding: var(--ui-margin-m) 1.4rem;
+	border-radius: var(--ui-border-radius);
 	white-space: nowrap;
 	touch-action: manipulation;
 }

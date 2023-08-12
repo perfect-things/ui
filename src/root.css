@@ -1,7 +1,6 @@
 :root {
-	--ui-border-radius: 0.3rem;
-	--ui-border-radius-s: 0.5rem;
-	--ui-border-radius-m: 0.7rem;
+	--ui-border-radius: 0.375rem;
+	--ui-border-radius-m: 0.6877rem;
 	--ui-border-radius-l: 1rem;
 	--ui-border-radius-xl: 5rem;
 
@@ -10,8 +9,6 @@
 	--ui-margin-s: 0.1rem;
 	--ui-margin-m: 0.5rem;
 	--ui-margin-l: 1rem;
-	--ui-margin-xl: 1.5rem;
-	--ui-margin-xxl: 2rem;
 
 	--ui-animation-speed: .3s;
 

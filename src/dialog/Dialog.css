@@ -52,8 +52,8 @@
 	margin: 0;
 	padding: 0.4rem 1rem;
 	border-bottom: 1px solid var(--ui-color-border);
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
+	border-top-left-radius: calc(var(--ui-border-radius-m) - 1px);
+	border-top-right-radius: calc(var(--ui-border-radius-m) - 1px);
 }
 
 .dialog-content {
@@ -77,8 +77,8 @@
 .dialog-footer {
 	border-top: 1px solid var(--ui-color-border);
 	padding: 0.7rem 1rem;
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
+	border-bottom-left-radius: calc(var(--ui-border-radius-m) - 1px);
+	border-bottom-right-radius: calc(var(--ui-border-radius-m) - 1px);
 }
 
 .dialog-footer [slot="footer"] {

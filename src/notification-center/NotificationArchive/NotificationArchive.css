@@ -19,7 +19,7 @@
 	z-index: 1;
 	background-color: var(--ui-color-background-input);
 	padding: 0.75rem 0.5rem 0.75rem 1rem;
-	border-radius: var(--ui-border-radius-s);
+	border-radius: var(--ui-border-radius);
 }
 
 .notification-archive button {

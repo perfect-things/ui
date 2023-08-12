@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## v8.3.1 *(2023-08-?)*
+- Removed `--ui-margin-xl` and `--ui-margin-xxl` as they were not used.
+- Merged `--ui-border-radius-s` with `--ui-border-radius` and changed to a rem value that calculates to the whole pixel (so that browsers would render it better).
+- Fixed the `NotificationCenter` issue, where toasts would not close if navigated away from the page that initialises the component.
+- Tweaked dialog border-radius to render a bit better (for dialog's header and footer).
+
+
 ## v8.3.0 *(2023-08-11)*
 - **New:** `InputSearch` component. Not much more than `InputText`, except the search icon and (depending on the browser) - the clear button.
 - Fixed a weird and edge-case issue with `Menu` on mobile Safari (#119).

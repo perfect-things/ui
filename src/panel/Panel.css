@@ -46,10 +46,8 @@
 
 
 
-.panel.round { border-radius: var(--ui-border-radius-s); }
-.panel.round .panel-content {
-	border-radius: calc(var(--ui-border-radius-s) - 2px);
-}
+.panel.round { border-radius: var(--ui-border-radius); }
+.panel.round .panel-content { border-radius: calc(var(--ui-border-radius) - 2px); }
 
 
 .panel.disabled { opacity: 0.5; }
