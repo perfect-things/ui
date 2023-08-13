@@ -250,3 +250,20 @@ export function alignItem ({
 	}
 
 }
+
+
+
+function isScrollable (node) {
+	const overflow = getComputedStyle(node, null).overflowX;
+	if (!/(auto|scroll)/.test(overflow)) return false;
+	return (node.scrollWidth > node.clientWidth);
+}
+
+export function isInScrollable (node) {
+	if (!(node instanceof HTMLElement || node instanceof SVGElement)) return;
+	if (isScrollable(node)) return true;
+	while (node = node.parentElement) {
+		if (isScrollable(node)) return true;
+	}
+	return false;
+}

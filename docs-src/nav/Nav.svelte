@@ -59,7 +59,7 @@
 
 <script>
 import { onMount } from 'svelte';
-import { Button as UIButton } from '../../src';
+import { Button as UIButton, isInScrollable } from '../../src';
 import VanillaSwipe from 'vanilla-swipe';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
@@ -95,10 +95,12 @@ onMount(() => {
 
 function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
-	const untouchables = '.api-table, .input, .button, .toggle, .dialog-backdrop, pre>code, [aria-haspopup="true"]';
-	if (e.target.closest(untouchables)) {
-		return;
-	}
+
+	if (isInScrollable(e.target)) return false;
+	const untouchables = 'input, button, .toggle, .dialog-backdrop, [aria-haspopup="true"]';
+	if (e.target.closest(untouchables)) return;
+
+
 	wasExpanded = expanded;
 	swiping = true;
 }
