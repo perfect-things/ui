@@ -27,7 +27,7 @@ menu h3 {
 	padding: var(--ui-margin-m) var(--ui-margin-l);
 	white-space: nowrap;
 	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 1.4rem;
+	font-size: var(--ui-font-xl);
 }
 
 menu h3:not(:first-child) { margin-top: var(--ui-margin-l); }

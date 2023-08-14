@@ -2,7 +2,7 @@
 <div
 	{id}
 	{title}
-	class="radio {className}"
+	class="check-and-radio radio {className}"
 	class:has-error="{error}"
 	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
 	bind:this="{element}">

@@ -31,5 +31,5 @@
 	height: 20px;
 	text-align: center;
 	overflow-wrap: break-word;
-	font-size: 0.9em;
+	font-size: var(--ui-font-s)
 }

@@ -43,14 +43,13 @@
 .opened .dialog { opacity: 1; transform: scale(1); }
 
 .dialog-header,
-.dialog-footer { background: var(--ui-color-background-input); }
+.dialog-footer { background: var(--ui-color-background-input); padding: 0.7rem 1rem; }
 
 .dialog-header {
 	text-align: center;
-	font-size: 1.4rem;
-	font-weight: 400;
+	font-size: var(--ui-font-xl);
+	font-weight: 300;
 	margin: 0;
-	padding: 0.4rem 1rem;
 	border-bottom: 1px solid var(--ui-color-border);
 	border-top-left-radius: calc(var(--ui-border-radius-m) - 1px);
 	border-top-right-radius: calc(var(--ui-border-radius-m) - 1px);
@@ -76,7 +75,7 @@
 
 .dialog-footer {
 	border-top: 1px solid var(--ui-color-border);
-	padding: 0.7rem 1rem;
+
 	border-bottom-left-radius: calc(var(--ui-border-radius-m) - 1px);
 	border-bottom-right-radius: calc(var(--ui-border-radius-m) - 1px);
 }

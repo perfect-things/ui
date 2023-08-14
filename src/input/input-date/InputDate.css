@@ -81,7 +81,7 @@
 
 .datepicker-footer .datepicker-controls .button { width: 100%; }
 
-.datepicker-view .dow { height: 1.5rem; line-height: 1.5rem; font-size: 0.875rem; }
+.datepicker-view .dow { height: 1.5rem; line-height: 1.5rem; font-size: var(--ui-font-xs); }
 .datepicker-view .week { width: 2.25rem; font-size: 0.75rem; }
 
 .datepicker-cell.prev:not(.disabled),

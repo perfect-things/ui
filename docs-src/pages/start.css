@@ -39,7 +39,7 @@
 
 .logotype em { font-weight: 500; }
 .logotype sub {
-	font-size: 1rem;
+	font-size: var(--ui-font-m);
 	font-weight: 300;
 	color: var(--ui-color-text-semi);
 	margin: -1rem 0 0 -63px;

@@ -18,7 +18,7 @@
 	align-items: center;
 	justify-content: space-between;
 	font-weight: 300;
-	font-size: 1rem;
+	font-size: var(--ui-font-m);
 	padding: 0 0.6rem 0 1rem;
 	height: 2.6rem;
 	-webkit-user-select: none;

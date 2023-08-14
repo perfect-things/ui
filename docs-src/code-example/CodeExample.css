@@ -3,7 +3,7 @@ code {
 	background-color: #1a1a1a;
 	color: #ccc;
 	border-radius: var(--ui-border-radius);
-	font-size: 0.9rem;
+	font-size: var(--ui-font-s)
 }
 
 code {

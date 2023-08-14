@@ -12,8 +12,16 @@
 
 	--ui-animation-speed: .3s;
 
-	/* 2.25rem; = 36px */
-	--ui-button-height: 2.25rem;
+	--ui-button-height: 2.25rem;    /* 36px */
+
+
+	/* font sizes */
+	--ui-font-xs: 0.875rem;         /* 14px */
+	--ui-font-s: 0.9375rem;         /* 15px */
+	--ui-font-m: 1rem;              /* 16px */
+	--ui-font-l: 1.0625rem;         /* 17px */
+	--ui-font-xl: 1.375rem;         /* 22px */
+
 
 	/* shadows */
 	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);

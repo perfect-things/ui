@@ -24,7 +24,7 @@
 
 .notification-archive button {
 	color: inherit;
-	font-size: 1.1rem;
+	font-size: var(--ui-font-l);
 	font-weight: 300;
 	min-width: 1.8rem;
 	min-height: 1.8rem;
@@ -33,7 +33,7 @@
 
 .notification-archive h2 {
 	color: inherit;
-	font-size: 1.1rem;
+	font-size: var(--ui-font-l);
 	margin: 0;
 	padding: 0;
 	border: none;
@@ -62,8 +62,12 @@
 
 
 .notification.archived { filter: saturate(0.3); }
-.notification-timestamp { color: var(--ui-color-text-semi); font-size: 0.85rem; margin-inline: 0.5rem; }
 
+.notification-timestamp {
+	color: var(--ui-color-text-semi);
+	font-size: var(--ui-font-xs);
+	margin-inline: 0.5rem;
+}
 .show-archive .notification-archive {
 	margin-left: 0;
 	margin-bottom: 10rem;

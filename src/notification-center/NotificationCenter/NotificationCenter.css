@@ -24,7 +24,7 @@
 
 
 .notification {
-	font-size: 1rem;
+	font-size: var(--ui-font-m);
 	position: relative;
 	overflow: hidden;
 	flex-grow: 0;

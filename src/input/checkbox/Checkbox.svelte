@@ -1,6 +1,6 @@
 <div
 	{title}
-	class="checkbox {className}"
+	class="check-and-radio checkbox {className}"
 	class:indeterminate
 	class:disabled
 	class:has-error="{error}"

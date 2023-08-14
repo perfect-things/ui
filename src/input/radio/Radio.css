@@ -1,14 +1,21 @@
-:where(input:is([type=radio])) {
-	vertical-align: inherit;
-	transform: scale(1.6);
-	filter: brightness(1.4);
-	accent-color: var(--ui-color-highlight);
-	border-radius: 50px;
-}
-
-.theme-light :where(input:is([type=radio])) { filter: brightness(0.9); }
+/* more styling defined in ../check-and-radio.css */
 
 .radio { min-width: 26ch; width: min-content; max-width: 100%; }
+
+
+.radio input {
+	border-radius: 10rem;
+	width: 1.3rem;
+	height: 1.3rem;
+}
+.radio input:focus { box-shadow: none }
+.radio input::after {
+	background: var(--ui-color-text-1);
+	width: 65%;
+	height: 65%;
+	border-radius: inherit;
+}
+
 
 .radio-inner {
 	display: flex;
@@ -23,43 +30,55 @@
 	overflow: hidden;
 }
 
-.has-error .radio-inner { border-color: var(--ui-color-danger); background-color: var(--ui-color-danger-semi); }
-
-.radio-inner:focus-within,
-.radio-inner:has(:active):not(.disabled) { border-color: var(--ui-color-accent); box-shadow: var(--ui-shadow-focus); }
-
-.has-error .radio-inner:focus-within,
-.has-error .radio-inner:has(:active):not(.disabled) { box-shadow: var(--ui-shadow-danger); border-color: var(--ui-color-danger); }
-
-
-.has-error.radio .info-bar-error { background-color: transparent; }
-
 
 .radio-items {
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: flex-start;
+	gap: 0.2rem;
 	width: 100%;
 	padding: 0.2rem 0;
 	background-color: var(--ui-color-background-input);
 	border-radius: inherit;
 }
 
+
 .radio-item {
 	display: flex;
 	flex-flow: row;
 	align-items: center;
 	justify-content: flex-start;
+	gap: 0.5rem;
 	width: calc(100% - calc(var(--ui-margin-s) * 4));
 	margin: 0 calc(var(--ui-margin-s) * 2);
-	padding: 0 var(--ui-margin-s) 0 0.75rem;
+	padding: 0 var(--ui-margin);
 	border-radius: var(--ui-border-radius);
 }
 
-.radio-item:has(:disabled) { opacity: 0.75; color: var(--ui-color-text-semi); }
-
-.radio-item .label { padding: 0 var(--ui-margin-l); }
+.radio-item.disabled { opacity: 0.5; }
+.radio-item.disabled input { opacity: 1; }
 
 .radio-item:not(.disabled):focus-within,
 .radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); }
+
+
+
+.radio-inner:focus-within,
+.radio-inner:has(:active):not(.disabled) {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+
+.radio.has-error .radio-inner {
+	border-color: var(--ui-color-danger);
+	background-color: var(--ui-color-danger-semi);
+}
+.radio.has-error .info-bar-error { background-color: transparent; }
+
+
+.has-error .radio-inner:focus-within,
+.has-error .radio-inner:has(:active):not(.disabled) {
+	box-shadow: var(--ui-shadow-danger);
+	border-color: var(--ui-color-danger);
+}
