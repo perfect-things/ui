@@ -53,6 +53,7 @@ function clearTimer () {
  * Starts the timer on mouse down and logs current position
  */
 function mouseDownHandler (e) {
+	e = unifyEvent(e);
 	startX = e.clientX;
 	startY = e.clientY;
 	startTimer(e);
@@ -63,6 +64,7 @@ function mouseDownHandler (e) {
  * If the mouse moves n pixels during long-press, cancel the timer
  */
 function mouseMoveHandler (e) {
+	e = unifyEvent(e);
 	const diffX = Math.abs(startX - e.clientX);
 	const diffY = Math.abs(startY - e.clientY);
 	if (diffX >= maxDiffX || diffY >= maxDiffY) clearTimer();
