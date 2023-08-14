@@ -1,5 +1,5 @@
 <h1>Changelog</h1>
-<h2>v8.3.1 <em>(2023-08-?)</em></h2>
+<h2>v8.3.1 <em>(2023-08-14)</em></h2>
 <ul>
 <li>Removed <code>--ui-margin-xl</code> and <code>--ui-margin-xxl</code> as they were not used.</li>
 <li>Merged <code>--ui-border-radius-s</code> with <code>--ui-border-radius</code> and changed to a rem value that calculates to the whole pixel (so that browsers would render it better).</li>
