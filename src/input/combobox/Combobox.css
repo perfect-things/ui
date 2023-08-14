@@ -27,18 +27,24 @@
 .combobox-list:not(:empty) { min-height: 2rem; }
 .combobox-list.hidden { display: none; }
 
-.combobox-list-header {
-	padding: 1rem 1rem 0.5rem;
-	margin: 0;
-	color: var(--ui-color-text-2);
+.combobox-list-header,
+.combobox-list-item {
+	height: var(--ui-button-height);
+	display: flex;
+	align-items: center;
 	line-height: 1;
-	font-weight: 500;
-	cursor: default;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow-x: hidden;
+	padding: 0 1rem;
 }
 
+.combobox-list-header {
+	margin: 0.5rem 0 0;
+	color: var(--ui-color-text-2);
+	font-weight: 500;
+	cursor: default;
+}
 
 .combobox-list-header:last-child { display: none; }
 
@@ -50,13 +56,8 @@
 }
 
 .combobox-list-item {
-	padding: 0.5rem 1rem;
 	color: var(--ui-color-text);
 	cursor: pointer;
-	line-height: 1;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow-x: hidden;
 	border-radius: var(--ui-border-radius);
 	-ms-touch-action: manipulation;
 	touch-action: manipulation;

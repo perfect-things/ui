@@ -5,13 +5,13 @@
 	flex-flow: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	border-radius: var(--ui-border-radius);
+	border-radius: calc(var(--ui-border-radius) + 1px);
 }
 
 .button-toggle .input-inner {
 	width: 100%;
 	overflow: hidden;
-	border-radius: var(--ui-border-radius);
+	border-radius: calc(var(--ui-border-radius) + 1px);
 }
 
 .button-toggle .input-scroller {
@@ -55,7 +55,6 @@
 	border-bottom-right-radius: var(--ui-border-radius);
 }
 
-
 .button-toggle .button input {
 	position: absolute;
 	top: -100px;
@@ -64,6 +63,8 @@
 }
 
 
+
+/* round buttons */
 .button-toggle.round { border-radius: var(--ui-border-radius-xl); }
 
 .button-toggle.round:not(.has-error) .input-inner { border-radius: var(--ui-border-radius-xl); }

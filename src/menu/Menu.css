@@ -28,7 +28,8 @@
 
 
 .menu-item {
-	font-family: inherit;
+	font: inherit;
+	font-size: 0.9375rem; /* 15px */
 	align-items: center;
 	border-radius: var(--ui-border-radius);
 	color: inherit;
@@ -36,12 +37,11 @@
 	border: none;
 	display: flex;
 	flex-shrink: 0;
-	font-size: 0.86rem;
 	letter-spacing: 0.1px;
 	justify-content: space-between;
 	margin: 0;
 	overflow: hidden;
-	padding: 0.5rem 0.9rem;
+	padding: 0.6rem 0.9rem;
 	position: relative;
 	text-align: left;
 	white-space: nowrap;

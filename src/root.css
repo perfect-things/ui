@@ -12,9 +12,8 @@
 
 	--ui-animation-speed: .3s;
 
-	/* 2.0834rem; = 34px */
-	/* 2.206rem; = 36px */
-	--ui-button-height: 2.206rem;
+	/* 2.25rem; = 36px */
+	--ui-button-height: 2.25rem;
 
 	/* shadows */
 	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);
@@ -30,7 +29,7 @@
 
 
 body {
-	font: 400 102% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 400 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
 	box-sizing: border-box;
 }
 body * { box-sizing: inherit; }
