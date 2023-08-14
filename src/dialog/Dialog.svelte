@@ -125,7 +125,7 @@ function freezeBody (freeze) {
 	}
 	else {
 		document.body.classList.remove('has-dialog');
-		document.documentElement.scrollTop = scrollPos;
+		document.scrollingElement.scrollTop = scrollPos;
 		document.body.style.top = '';
 	}
 }

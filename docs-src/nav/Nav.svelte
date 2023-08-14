@@ -186,7 +186,7 @@ function onhashchange () {
 	active = location.hash.substr(1);
 	component = components[active];
 	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
-	document.documentElement.scrollTop = 0;
+	document.scrollingElement.scrollTop = 0;
 }
 
 
