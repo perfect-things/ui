@@ -1,11 +1,15 @@
 Changelog
 =========
 
-## v8.3.1 *(2023-08-?)*
+## v8.3.1 *(2023-08-14)*
 - Removed `--ui-margin-xl` and `--ui-margin-xxl` as they were not used.
 - Merged `--ui-border-radius-s` with `--ui-border-radius` and changed to a rem value that calculates to the whole pixel (so that browsers would render it better).
 - Fixed the `NotificationCenter` issue, where toasts would not close if navigated away from the page that initialises the component.
 - Tweaked dialog border-radius to render a bit better (for dialog's header and footer).
+- Aligned components heights (`Menu`, `Combobox`, and `InputRadio` items).
+- Fixed `Menu`'s longpress event to not triger when moving the finger (touchmove should stop longpress).
+- Improve navigation swipe event (swiping can now be triggered by any element that is not scrollable and has no scrollable ancestors).
+- Increased `Menu` font size slightly, while decreasing it for everything (102% -> 100% on `body`).
 
 
 ## v8.3.0 *(2023-08-11)*

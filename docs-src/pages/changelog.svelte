@@ -5,6 +5,10 @@
 <li>Merged <code>--ui-border-radius-s</code> with <code>--ui-border-radius</code> and changed to a rem value that calculates to the whole pixel (so that browsers would render it better).</li>
 <li>Fixed the <code>NotificationCenter</code> issue, where toasts would not close if navigated away from the page that initialises the component.</li>
 <li>Tweaked dialog border-radius to render a bit better (for dialog&#39;s header and footer).</li>
+<li>Aligned components heights (<code>Menu</code>, <code>Combobox</code>, and <code>InputRadio</code> items).</li>
+<li>Fixed <code>Menu</code>&#39;s longpress event to not triger when moving the finger (touchmove should stop longpress).</li>
+<li>Improve navigation swipe event (swiping can now be triggered by any element that is not scrollable and has no scrollable ancestors).</li>
+<li>Increased <code>Menu</code> font size slightly, while decreasing it for everything (102% -&gt; 100% on <code>body</code>).</li>
 </ul>
 <h2>v8.3.0 <em>(2023-08-11)</em></h2>
 <ul>

@@ -2,6 +2,10 @@ import { get } from 'svelte/store';
 import { ANIMATION_SPEED } from '../../src';
 import jest from 'jest-mock';
 
+document.scrollingElement = jest.fn().mockImplementation(() => ({
+	scrollTop: jest.fn(),
+}));
+
 // workaround for structuredClone not being available in JSDOM
 window.structuredClone = (val) => JSON.parse(JSON.stringify(val));
 
