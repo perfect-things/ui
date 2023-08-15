@@ -16,6 +16,8 @@
 
 
 	/* font sizes */
+	--ui-font-system: system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
 	--ui-font-xs: 0.875rem;         /* 14px */
 	--ui-font-s: 0.9375rem;         /* 15px */
 	--ui-font-m: 1rem;              /* 16px */
@@ -37,7 +39,9 @@
 
 
 body {
-	font: 400 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-size: 100%;
+	font-family: var(--ui-font-system);
 	box-sizing: border-box;
 }
 body * { box-sizing: inherit; }

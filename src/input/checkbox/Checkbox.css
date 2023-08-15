@@ -17,7 +17,11 @@
 
 
 .checkbox input:focus { border-color: var(--ui-color-accent); }
-.checkbox input::after { content: "✕"; }
+.checkbox input::after {
+	content: "✕";
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.1;
+}
 
 .checkbox.indeterminate input::after {
 	content: " ";

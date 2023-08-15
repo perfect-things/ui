@@ -1,15 +1,12 @@
 .select { font: inherit; position: relative; }
 
-.select optgroup {
-	font-weight: 500;
-}
-
 .select select {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
 
-	font: inherit;
+	font-size: 1rem;
+	font-family: inherit;
 	background: none;
 	padding: 0 30px 0 var(--ui-margin-m);
 	width: 100%;
@@ -24,6 +21,7 @@
 
 .select select:focus { outline: 0; }
 
+.select optgroup { font-weight: 500; }
 
 .select .input-row::after {
 	content: "";

@@ -3,7 +3,7 @@
 .push-button[aria-pressed="true"] {
 	filter: brightness(0.85) contrast(1.1);
 	transform: translateY(1px);
-	box-shadow: 0 1px 0 rgb(0 0 0/0.8) inset;
+	box-shadow: 0 1px 0 rgb(0 0 0/0.8) inset, var(--ui-shadow-focus);
 }
 
 .push-button[aria-pressed="true"].button-outline { background-color: var(--ui-color-secondary-semi); }

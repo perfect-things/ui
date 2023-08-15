@@ -1,6 +1,6 @@
 <h2>Select</h2>
-<p>Select component is based on the native HTML select control.
-	It provides some visual styling and also better data management,
+<p>Select component is based on the native HTML select control.<br>
+	It provides some visual styling and also better data management,<br>
 	i.e. it accepts an array of strings or objects.
 </p>
 
