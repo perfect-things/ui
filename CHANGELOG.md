@@ -5,7 +5,7 @@ Changelog
 ## v8.3.2 *(2023-08-?)*
 - Improve `InputRadio` styling to look more like the rest of the inputs (e.g. checkbox).
 - Standardise font sizes into css variables: `--ui-font-xs`=14px, `--ui-font-s`=15px, `--ui-font-m`=16px, `--ui-font-l`=17px, `--ui-font-xl`=22px
-
+- Correct the symbol for Return (⏎) in `Menu`.
 
 
 ## v8.3.1 *(2023-08-14)*

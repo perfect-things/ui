@@ -50,7 +50,7 @@ function replaceKeySymbols (txt) {
 		.replace(/SHIFT/g, '⇧')
 		.replace(/CONTROL|CTRL/g, '⌃')
 		.replace(/DELETE|DEL|BACKSPACE/g, '⌫')
-		.replace(/ENTER|RETURN/g, '↩')
+		.replace(/ENTER|RETURN/g, '⏎')
 		.replace(/ESCAPE|ESC/g, '⎋');
 }
 

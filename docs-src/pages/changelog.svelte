@@ -3,6 +3,7 @@
 <ul>
 <li>Improve <code>InputRadio</code> styling to look more like the rest of the inputs (e.g. checkbox).</li>
 <li>Standardise font sizes into css variables: <code>--ui-font-xs</code>=14px, <code>--ui-font-s</code>=15px, <code>--ui-font-m</code>=16px, <code>--ui-font-l</code>=17px, <code>--ui-font-xl</code>=22px</li>
+<li>Correct the symbol for Return (⏎) in <code>Menu</code>.</li>
 </ul>
 <h2>v8.3.1 <em>(2023-08-14)</em></h2>
 <ul>
