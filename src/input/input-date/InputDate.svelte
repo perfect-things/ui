@@ -24,7 +24,7 @@
 			<input
 				type="text"
 				autocomplete="off"
-
+				class="prevent-scrolling-on-focus"
 				aria-invalid="{error}"
 				aria-errormessage="{error ? errorMessageId : undefined}"
 				aria-required="{required}"

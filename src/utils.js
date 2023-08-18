@@ -188,8 +188,9 @@ export function alignItem ({
 	setMinWidthToTarget = false,
 }) {
 	if (!element || !target) return;
-	const winH = window.innerHeight;
-	const winW = window.innerWidth;
+	const winH = window.visualViewport.height || window.innerHeight;
+	const winW = window.visualViewport.width || window.innerWidth;
+
 	let targetBox = {};
 	let top, left;
 
@@ -261,6 +262,12 @@ function isScrollable (node) {
 	return (node.scrollWidth > node.clientWidth);
 }
 
+/**
+ * Checks if any parent element is scrollable
+ * Useful fot determining if an element can start a swipe gesture.
+ * @param {HTMLElement} node
+ * @returns boolean
+ */
 export function isInScrollable (node) {
 	if (!(node instanceof HTMLElement || node instanceof SVGElement)) return;
 	if (isScrollable(node)) return true;

@@ -32,6 +32,13 @@ window.Element.prototype.animate = jest.fn().mockImplementation(() => {
 	return obj;
 });
 
+window.visualViewport = {
+	width: window.innerWidth,
+	height: window.innerHeight,
+	addEventListener: jest.fn().mockImplementation((name, cb) => cb()),
+	removeEventListener: jest.fn().mockImplementation((name, cb) => cb()),
+};
+window.Element.prototype.scrollIntoView = jest.fn().mockImplementation(() => {});
 window.Element.prototype.scrollIntoView = jest.fn().mockImplementation(() => {});
 
 

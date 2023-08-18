@@ -1,4 +1,10 @@
 <h1>Changelog</h1>
+<h2>v8.3.3 <em>(2023-08-?)</em></h2>
+<ul>
+<li>Inputs with dropdowns (e.g. <code>Combobox</code> and <code>InputDate</code>) will not trigger page scroll on focus (in mobile Safari).</li>
+<li><code>Combobox</code> dropdown will now auto-adjust its position when the virtual keyboard opens (in mobile Safari).</li>
+<li><code>:focus</code> has been updated to <code>:focus-visible</code> for a better look, when not using the keyboard.</li>
+</ul>
 <h2>v8.3.2 <em>(2023-08-18)</em></h2>
 <ul>
 <li>Improve <code>InputRadio</code> styling to look more like the rest of the inputs (e.g. checkbox).</li>

@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+## v8.3.3 *(2023-08-?)*
+- Inputs with dropdowns (e.g. `Combobox` and `InputDate`) will not trigger page scroll on focus (in mobile Safari).
+- `Combobox` dropdown will now auto-adjust its position when the virtual keyboard opens (in mobile Safari).
+- `:focus` has been updated to `:focus-visible` for a better look, when not using the keyboard.
+
+
 ## v8.3.2 *(2023-08-18)*
 - Improve `InputRadio` styling to look more like the rest of the inputs (e.g. checkbox).
 - Standardise font sizes into css variables: `--ui-font-xs`=14px, `--ui-font-s`=15px, `--ui-font-m`=16px, `--ui-font-l`=17px, `--ui-font-xl`=22px

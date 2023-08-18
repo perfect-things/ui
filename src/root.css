@@ -53,3 +53,12 @@ body * { box-sizing: inherit; }
 .icon-tabler-dots-vertical { margin-left: -1px; }
 
 .flex-spacer { flex: 1; }
+
+
+/* adding this class to input elements will prevent scrolling on focus in mobile safari */
+.mobile .prevent-scrolling-on-focus:focus { animation: prevent-scrolling-on-focus 10ms; }
+
+@keyframes prevent-scrolling-on-focus {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}

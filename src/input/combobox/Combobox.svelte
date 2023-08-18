@@ -23,6 +23,7 @@
 			<input
 				type="text"
 				role="combobox"
+				class="prevent-scrolling-on-focus"
 				aria-autocomplete="list"
 				aria-controls="combobox-list-{gui}"
 				aria-expanded="{opened}"
@@ -54,8 +55,6 @@
 		id="combobox-list-{gui}"
 		class="combobox-list {opened ? '' : 'hidden'}"
 		role="listbox"
-		on:mouseenter|capture="{() => mouseOverList = true}"
-		on:mouseleave|capture="{() => mouseOverList = false}"
 		on:mousedown={onListMouseDown}
 		bind:this="{listElement}">
 		{#if filteredData.length}
@@ -145,7 +144,6 @@ const errorMessageId = guid();
 
 let opened = false;
 let hasEdited = false;
-let mouseOverList = false;
 let highlightIndex = 0;
 let filteredData = [], groupedData = [];
 let originalText = '';
@@ -202,9 +200,7 @@ function filter () {
 
 	highlightIndex = 0;
 	highlight(listElement);
-	requestAnimationFrame(() => {
-		alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true, offsetH: -1, });
-	});
+	alignDropdown();
 }
 
 
@@ -219,10 +215,20 @@ function open (e) {
 
 		addEventListeners();
 		highlight(listElement);
-		requestAnimationFrame(() => {
-			alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true, offsetH: -1 });
-			if (e && e.type === 'focus') inputElement.select();
+		alignDropdown(e);
+	});
+}
+
+
+function alignDropdown (e) {
+	requestAnimationFrame(() => {
+		alignItem({
+			element: listElement,
+			target: inputElement,
+			setMinWidthToTarget: true,
+			offsetH: -1
 		});
+		if (e && e.type === 'focus') inputElement.select();
 	});
 }
 
@@ -230,7 +236,6 @@ function open (e) {
 function close () {
 	if (!opened) return;
 	removeEventListeners();
-	mouseOverList = false;
 	opened = false;
 	isSelecting = false;
 }
@@ -422,12 +427,16 @@ function onIconClick () {
 }
 
 
-function onResize (e) {
+function onResize () {
 	if (!opened) return;
-	if (e.target === listElement || e.target === inputElement || mouseOverList) return;
 	if (hideOnResize !== true && hideOnResize !== 'true') return;
 	inputElement.blur();
 	return close();
+}
+
+function onViewportResize () {
+	if (!opened) return;
+	alignDropdown();
 }
 
 
@@ -441,12 +450,14 @@ function onDocumentClick (e) {
 function addEventListeners () {
 	window.addEventListener('resize', onResize);
 	document.addEventListener('click', onDocumentClick, true);
+	window.visualViewport.addEventListener('resize', onViewportResize);
 }
 
 
 function removeEventListeners () {
 	window.removeEventListener('resize', onResize);
 	document.removeEventListener('click', onDocumentClick, true);
+	window.visualViewport.removeEventListener('resize', onViewportResize);
 }
 /*** EVENT LISTENERS ******************************************************************************/
 

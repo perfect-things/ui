@@ -88,5 +88,4 @@ test('Combobox', async () => {
 	await waitForTimeout();
 	info = cmp.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
-
 });

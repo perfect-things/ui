@@ -48,6 +48,8 @@
 
 .datepicker-grid { flex-wrap: wrap; width: 15.75rem; }
 
+.datepicker-cell { -ms-touch-action: manipulation; touch-action: manipulation; }
+
 .datepicker-cell,
 .datepicker-view .week { height: 2.25rem; line-height: 2.25rem; }
 
