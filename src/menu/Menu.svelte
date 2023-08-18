@@ -9,21 +9,23 @@
 
 <script>
 import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
-import { addArias, removeArias, matchQuery } from './utils.js';
+import { addArias, removeArias } from './utils.js';
 import initLongPressEvent from './longpress.js';
-import { alignItem } from '../utils.js';
+import { alignItem, isMobile } from '../utils.js';
 
 const dispatch = createEventDispatcher();
+const isAnyMobile = isMobile();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
 // safari does not translate contextmenu to longpress
 const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
 let className = '';
 export { className as class };
-export let type = undefined;          // can be undefined or 'context'
-export let targetSelector = 'body';   // target element for context menu
+export let type = undefined;			// can be undefined or 'context'
+export let targetSelector = 'body';		// target element for context menu
 export let closeOnClick = true;
-export let align = 'left';			// can be 'left' or 'right'
+export let align = undefined;			// can be 'left', 'right' or 'center'
+export let valign = undefined;			// can be 'top' or 'bottom' (preference only, as screen size/position decides ultimately)
 
 export let element = undefined;
 
@@ -35,6 +37,7 @@ let targetEl, focusedEl, opened = false;
 let hovering = false;
 let closing = false;
 let eventsAdded = false;
+let typeQuery = '', typeTimer;
 
 
 setContext('MenuContext', { targetEl: () => targetEl });
@@ -42,10 +45,8 @@ setContext('MenuContext', { targetEl: () => targetEl });
 
 onMount(() => {
 	if (type === 'context') {
-		if (isMobileSafari) {
-			initLongPressEvent();
-			document.addEventListener('touchend', onTouchend);
-		}
+		if (isMobileSafari) initLongPressEvent();
+		if (isAnyMobile) document.addEventListener('touchend', onTouchend);
 		document.addEventListener(contextmenuEventName, onContextMenu);
 	}
 });
@@ -53,7 +54,7 @@ onMount(() => {
 
 onDestroy(() => {
 	if (type === 'context') {
-		if (isMobileSafari) document.removeEventListener('touchend', onTouchend);
+		if (isAnyMobile) document.removeEventListener('touchend', onTouchend);
 		document.removeEventListener(contextmenuEventName, onContextMenu);
 	}
 	if (element) element.remove();
@@ -85,12 +86,16 @@ export function open (e) {
 		indexButtons();
 
 		// needs to finish rendering first
-		alignItem({ element, target: e, alignH: align });
+		const isContextMobile = type === 'context' && isAnyMobile;
+		const alignH = align || (isContextMobile ? 'center' : 'left');
+		const alignV = valign || (isContextMobile ? 'top' : 'bottom');
+		const offsetV = isContextMobile ? 20 : 2;
+		alignItem({ element, target: e, alignH, alignV, offsetV });
 
 		dispatch('open', { event: e, target: targetEl });
 		if (element) element.focus();
 		requestAnimationFrame(resolve);
-		if (!isMobileSafari || type !== 'context') addEventListeners();
+		if (!isAnyMobile || type !== 'context') addEventListeners();
 	}));
 }
 
@@ -179,7 +184,9 @@ function onMouseOver (e) {
 
 function onKeydown (e) {
 	if (e.key === 'Escape' || !element.contains(e.target)) return _close();
-	if (e.key === 'Enter' || e.key === ' ') return;
+	if (e.key === 'Enter') return;
+	if (e.key === ' ' && !typeQuery) return;
+
 	if (e.key === 'Tab') {
 		e.preventDefault();
 		e.stopPropagation();
@@ -193,7 +200,22 @@ function onKeydown (e) {
 	if (e.key === 'ArrowLeft') return focusFirst();
 	if (e.key === 'ArrowRight') return focusLast();
 
-	matchTypeQuery(e.key);
+	const btn = matchQuery(menuButtons, e.key);
+	if (btn && btn.el) highlightElement(btn.el);
+}
+
+
+function matchQuery (buttons, key) {
+	if (!/^[\w| ]+$/i.test(key)) return;
+	if (typeTimer) clearTimeout(typeTimer);
+	typeTimer = setTimeout(() => typeQuery = '', 300);
+	typeQuery += key;
+	const reg = new RegExp(`^${typeQuery}`, 'i');
+	const btns = buttons.filter(b => reg.test(b.text));
+
+	if (!btns.length) return;
+	if (btns.length === 1 || btns[0].el !== focusedEl) return btns[0];
+	return btns[1];
 }
 
 
@@ -226,12 +248,6 @@ function indexButtons () {
 	menuButtons.length = 0;
 	const addBtn = el => menuButtons.push({ el, text: el.textContent.trim().toLowerCase() });
 	element.querySelectorAll(buttonSelector).forEach(addBtn);
-}
-
-
-function matchTypeQuery (key) {
-	const btn = matchQuery(menuButtons, key);
-	if (btn && btn.el) highlightElement(btn.el);
 }
 
 

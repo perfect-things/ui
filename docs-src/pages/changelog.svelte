@@ -1,9 +1,13 @@
 <h1>Changelog</h1>
-<h2>v8.3.2 <em>(2023-08-?)</em></h2>
+<h2>v8.3.2 <em>(2023-08-18)</em></h2>
 <ul>
 <li>Improve <code>InputRadio</code> styling to look more like the rest of the inputs (e.g. checkbox).</li>
 <li>Standardise font sizes into css variables: <code>--ui-font-xs</code>=14px, <code>--ui-font-s</code>=15px, <code>--ui-font-m</code>=16px, <code>--ui-font-l</code>=17px, <code>--ui-font-xl</code>=22px</li>
 <li>Correct the symbol for Return (⏎) in <code>Menu</code>.</li>
+<li><code>Menu</code> can now be centered with the target button (using <code>align</code> attribute).</li>
+<li>Context <code>Menu</code> will now open above the long-pressed spot on mobile (by default).</li>
+<li>Pressing the same letter key, with the <code>Menu</code> open will now cycle through the items starting with that letter.</li>
+<li>Pressing space with the <code>Menu</code> open, while typing something quickly, will not trigger the click event on the currently selected item. This allows to type-to-highlight elements that contain space in the text. Pressing space standalone (while not typing), will trigger the click event.</li>
 </ul>
 <h2>v8.3.1 <em>(2023-08-14)</em></h2>
 <ul>

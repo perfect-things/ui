@@ -151,7 +151,6 @@ export function roundAmount (val, precision = 2) {
 
 
 export function timeAgo (date, now) {
-	console.log(now);
 	if (!date || !now) return '';
 	now = now || new Date().getTime();
 	let seconds = (now - +date) / 1000;
@@ -213,15 +212,16 @@ export function alignItem ({
 	else targetBox = target.getBoundingClientRect();
 
 
-	top = targetBox.top + targetBox.height + offsetH;
-	left = targetBox.left;
+	top = targetBox.top + targetBox.height + offsetV;
+	left = targetBox.left + offsetH;
 	if (alignH === 'right') left += targetBox.width - element.offsetWidth;
+	else if (alignH === 'center') {
+		left = (targetBox.width - element.offsetWidth) / 2 + targetBox.left;
+	}
 
 	element.style.top = top + window.scrollY + 'px';
 	element.style.left = left + window.scrollX + 'px';
-	if (setMinWidthToTarget) {
-		element.style.minWidth = targetBox.width + 'px';
-	}
+	if (setMinWidthToTarget) element.style.minWidth = targetBox.width + 'px';
 
 
 
@@ -233,14 +233,16 @@ export function alignItem ({
 
 	if (alignV === 'top' || spaceBelow < elementBox.height) {
 		top = winH - elementBox.height - viewportPadding;
-		if (top < elementBox.y) top = targetBox.top - elementBox.height - offsetV;
+		if (alignV === 'top' || top < elementBox.y) {
+			top = targetBox.top - elementBox.height - offsetV;
+		}
 		element.style.top = top + window.scrollY + 'px';
 	}
 
 	// check if the menu is off the right side of the screen
 	if (elementBox.x > winW - elementBox.width - viewportPadding) {
 		left = winW - elementBox.width - viewportPadding;
-		if (left < 0) left = 2;
+		if (left < 0) left = viewportPadding;
 		element.style.left = left + window.scrollX + 'px';
 	}
 

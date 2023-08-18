@@ -3,7 +3,8 @@
 <h3>Normal menu</h3>
 <div class="docs-buttons-row">
 	<Button data-name="show-menu-button" on:click="{thingsMenu.open}">Show menu</Button>
-	<Button data-name="show-menu-button" on:click="{thingsMenu2.open}">Show menu aligned to right side of the button</Button>
+	<Button data-name="show-menu-button" on:click="{thingsMenu1.open}">Show menu aligned to the center of the button</Button>
+	<Button data-name="show-menu-button" on:click="{thingsMenu2.open}">Show menu aligned to the right side of the button</Button>
 </div>
 
 <Menu bind:this="{thingsMenu}">
@@ -19,6 +20,14 @@
 	<MenuItem shortcut="cmd+option+s">Ninth, the beginning of the menu item text</MenuItem>
 	<MenuItem>Tenth, and it should be focused</MenuItem>
 	<MenuItem disabled>A disabled option too</MenuItem>
+	<MenuSeparator />
+	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
+</Menu>
+
+
+<Menu align="center" bind:this="{thingsMenu1}">
+	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
+	<MenuItem>Add another one</MenuItem>
 	<MenuSeparator />
 	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
 </Menu>
@@ -87,7 +96,11 @@ import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
 const apiProps = [
-	{ name: 'align', type: ['left', 'right'], default: 'left', description: 'Align to the <em>left</em> or <em>right</em> edge of the target.' },
+	{ name: 'align', type: ['left', 'right', 'center'], default: 'left', description: 'Align horizontally with the target.<br>' +
+		'Context menus will default to "center" on mobile.' },
+	{ name: 'valign', type: ['top', 'bottom'], default: 'bottom', description: 'Show the menu above or below the target.<br>' +
+		'Context menus will default to "top" on mobile.<br>' +
+		'This may be overridden to ensure that the menu remains within the visible screen area.' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
 	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
@@ -151,7 +164,7 @@ const exampleHtml = `
 `;
 
 
-let someMenu3, thingsMenu, thingsMenu2, tabsMenu, windowsMenu;
+let someMenu3, thingsMenu, thingsMenu1, thingsMenu2, tabsMenu, windowsMenu;
 let closeThingsText = 'Close all things';
 let closeTabsText = 'Close all tabs';
 let thingsMenuTimer, tabsMenutimer;
@@ -174,7 +187,7 @@ function menuCloseThings (e) {
 	}
 	else {
 		Promise
-			.all([thingsMenu.close(), thingsMenu2.close()])
+			.all([thingsMenu.close(), thingsMenu1.close(), thingsMenu2.close()])
 			.then(() => {
 				closeThingsText = initial;
 				if (thingsMenuTimer) clearTimeout(thingsMenuTimer);

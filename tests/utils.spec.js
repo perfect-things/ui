@@ -121,29 +121,29 @@ describe('utils - alignItem', () => {
 
 
 	test('should align element to the bottom left of target', () => {
-		utils.alignItem({ element, target, viewportPadding: 0 });
-		expect(element.style.top).toBe(`${target.offsetTop + target.offsetHeight + 2}px`);
+		utils.alignItem({ element, target, viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		expect(element.style.top).toBe(`${target.offsetTop + target.offsetHeight}px`);
 		expect(element.style.left).toBe(`${target.offsetLeft}px`);
 	});
 
 
 	test('should align element to the bottom right of target', () => {
-		utils.alignItem({ element, target, alignH: 'right', viewportPadding: 0 });
-		expect(element.style.top).toBe(`${target.offsetTop + target.offsetHeight + 2}px`);
+		utils.alignItem({ element, target, alignH: 'right', viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		expect(element.style.top).toBe(`${target.offsetTop + target.offsetHeight}px`);
 		expect(element.style.left).toBe(`${target.offsetLeft + target.offsetWidth - element.offsetWidth}px`);
 	});
 
 
 	test('should align element to the top left of target', () => {
-		utils.alignItem({ element, target, alignV: 'top', viewportPadding: 0 });
-		expect(element.style.top).toBe('768px');	// discover why is this so
+		utils.alignItem({ element, target, alignV: 'top', viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		expect(element.style.top).toBe('0px');
 		expect(element.style.left).toBe(`${target.offsetLeft}px`);
 	});
 
 
 	test('should align element to the top right of target', () => {
-		utils.alignItem({ element, target, alignH: 'right', alignV: 'top', viewportPadding: 0 });
-		expect(element.style.top).toBe('768px');
+		utils.alignItem({ element, target, alignH: 'right', alignV: 'top', viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		expect(element.style.top).toBe('0px');
 		expect(element.style.left).toBe(`${target.offsetLeft + target.offsetWidth - element.offsetWidth}px`);
 	});
 

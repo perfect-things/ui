@@ -2,10 +2,14 @@ Changelog
 =========
 
 
-## v8.3.2 *(2023-08-?)*
+## v8.3.2 *(2023-08-18)*
 - Improve `InputRadio` styling to look more like the rest of the inputs (e.g. checkbox).
 - Standardise font sizes into css variables: `--ui-font-xs`=14px, `--ui-font-s`=15px, `--ui-font-m`=16px, `--ui-font-l`=17px, `--ui-font-xl`=22px
 - Correct the symbol for Return (⏎) in `Menu`.
+- `Menu` can now be centered with the target button (using `align` attribute).
+- Context `Menu` will now open above the long-pressed spot on mobile (by default).
+- Pressing the same letter key, with the `Menu` open will now cycle through the items starting with that letter.
+- Pressing space with the `Menu` open, while typing something quickly, will not trigger the click event on the currently selected item. This allows to type-to-highlight elements that contain space in the text. Pressing space standalone (while not typing), will trigger the click event.
 
 
 ## v8.3.1 *(2023-08-14)*
