@@ -203,7 +203,7 @@ function filter () {
 	highlightIndex = 0;
 	highlight(listElement);
 	requestAnimationFrame(() => {
-		alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true });
+		alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true, offsetH: -1, });
 	});
 }
 
@@ -220,7 +220,7 @@ function open (e) {
 		addEventListeners();
 		highlight(listElement);
 		requestAnimationFrame(() => {
-			alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true });
+			alignItem({ element: listElement, target: inputElement, setMinWidthToTarget: true, offsetH: -1 });
 			if (e && e.type === 'focus') inputElement.select();
 		});
 	});

@@ -181,7 +181,7 @@ export function alignItem ({
 	element,
 	target,
 	alignH = 'left',
-	offsetH = 2,
+	offsetH = 0,
 	alignV = 'bottom',
 	offsetV = 2,
 	viewportPadding = 10,
