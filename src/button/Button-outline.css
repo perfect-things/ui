@@ -5,25 +5,25 @@
 	min-height: calc(var(--ui-button-size) * 2);
 }
 
-.button-outline:focus,
+.button-outline:focus-visible,
 .button-outline:hover { background-color: var(--ui-color-secondary-semi); }
 
 .button-outline.info { border-color: var(--ui-color-info); }
-.button-outline.info:focus,
+.button-outline.info:focus-visible,
 .button-outline.info:hover { background-color: var(--ui-color-info-semi); }
 
 .button-outline.success { border-color: var(--ui-color-success); }
-.button-outline.success:focus,
+.button-outline.success:focus-visible,
 .button-outline.success:hover { background-color: var(--ui-color-success-semi); }
 
 .button-outline.warning { border-color: var(--ui-color-warning); }
-.button-outline.warning:focus,
+.button-outline.warning:focus-visible,
 .button-outline.warning:hover { background-color: var(--ui-color-warning-semi); }
 
 .button-outline.error,
 .button-outline.danger { border-color: var(--ui-color-danger); }
 
-.button-outline.error:focus,
+.button-outline.error:focus-visible,
 .button-outline.error:hover,
-.button-outline.danger:focus,
+.button-outline.danger:focus-visible,
 .button-outline.danger:hover { background-color: var(--ui-color-danger-semi); }

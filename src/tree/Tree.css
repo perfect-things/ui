@@ -18,8 +18,8 @@
 	padding: .3rem;
 	border-radius: var(--ui-border-radius);
 }
-.tree:focus {
-	outline: 0;
+.tree:focus { outline: none; }
+.tree:focus-visible {
 	box-shadow:
 		0 0 0 1px var(--ui-color-accent),
 		var(--ui-shadow-focus);

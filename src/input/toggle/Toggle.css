@@ -27,8 +27,8 @@
 
 .toggle:has(:disabled) { pointer-events: none; opacity: 0.6; }
 
-.toggle:focus { outline: 1px solid transparent; }
-.toggle:focus .toggle-inner {
+.toggle:focus { outline: none; }
+.toggle:focus-visible .toggle-inner {
 	box-shadow: var(--ui-shadow-focus);
 	border-color: var(--ui-color-accent);
 }

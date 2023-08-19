@@ -66,10 +66,10 @@
 	min-height: 3rem;
 }
 
-.dialog-content:focus {
+.dialog-content:focus { outline: none; }
+.dialog-content:focus-visible {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus) inset;
-	outline: 1px solid transparent;
 }
 
 

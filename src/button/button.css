@@ -32,7 +32,7 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 
 
 .button:hover { text-decoration: none; }
-.button:focus {
+.button:focus-visible {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 	outline: 1px solid transparent;

@@ -38,6 +38,8 @@
 	overflow: hidden;
 }
 
+.button-group-inner .button:focus { z-index: 2; }
+
 .button-group .button-normal[disabled] { box-shadow: var(--ui-shadow-button); }
 
 .button-group .button:first-of-type {

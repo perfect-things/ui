@@ -18,7 +18,7 @@
 <h3>With info and error</h3>
 <Radio
 	items="{strings}"
-	name="my-radio5"
+	name="my-radio6"
 	label="Select option 5"
 	error="Here be error message."
 	info="Here be info message." />

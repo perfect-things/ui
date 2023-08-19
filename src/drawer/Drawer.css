@@ -16,7 +16,7 @@
 	transform: translateZ(1px);
 }
 
-.drawer:focus { outline: 1px solid transparent; }
+.drawer:focus { outline: none; }
 
 .drawer-header {
 	position: sticky;

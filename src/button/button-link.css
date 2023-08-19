@@ -12,20 +12,20 @@
 	text-decoration: underline;
 }
 
-.button.button-link:focus,
+.button.button-link:focus-visible,
 .button.button-link:hover { text-decoration: underline; text-underline-offset: 0.2rem; }
 
 
-.button-link.info:focus,
+.button-link.info:focus-visible,
 .button-link.info:hover { text-decoration-color: var(--ui-color-info); }
 
-.button-link.success:focus,
+.button-link.success:focus-visible,
 .button-link.success:hover { text-decoration-color: var(--ui-color-success); }
 
-.button-link.warning:focus,
+.button-link.warning:focus-visible,
 .button-link.warning:hover { text-decoration-color: var(--ui-color-warning); }
 
-.button-link.error:focus,
+.button-link.error:focus-visible,
 .button-link.error:hover,
-.button-link.danger:focus,
+.button-link.danger:focus-visible,
 .button-link.danger:hover { text-decoration-color: var(--ui-color-danger); }

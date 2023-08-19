@@ -73,6 +73,7 @@ export function toggle (e) {
 	// manually handling space on keydown fixes that
 	if (e.type === 'keydown' && e.key !== ' ') return;
 	e.preventDefault();
+
 	if (expanded) {
 		expanded = false;
 		animate(element, expandedProps, collapsedProps)
@@ -84,10 +85,7 @@ export function toggle (e) {
 	else {
 		expanded = true;
 		open = true;
-		animate(element, collapsedProps, expandedProps)
-			.then(() => {
-				dispatch('open');
-			});
+		animate(element, collapsedProps, expandedProps).then(() => dispatch('open'));
 	}
 }
 

@@ -4,9 +4,9 @@
 	align-items: stretch;
 	justify-content: flex-start;
 	width: 100%;
-	margin-left: calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem);
-	transition: margin-left var(--ui-animation-speed) ease-out;
 	z-index: 5;
+	transform: translateX(calc(var(--ui-notification-width) + var(--ui-notification-gap) + 1rem));
+	transition: transform var(--ui-animation-speed) ease-out;
 }
 
 .notification-archive .notification { z-index: 1; }
@@ -69,7 +69,7 @@
 	margin-inline: 0.5rem;
 }
 .show-archive .notification-archive {
-	margin-left: 0;
+	transform: translateX(0);
 	margin-bottom: 10rem;
 	height: auto;
 	overflow: visible;

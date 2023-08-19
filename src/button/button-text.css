@@ -6,19 +6,19 @@
 	box-shadow: none;
 }
 
-.button-text:focus,
+.button-text:focus-visible,
 .button-text:hover { background-color: var(--ui-color-secondary); }
 
-.button-text.info:focus,
+.button-text.info:focus-visible,
 .button-text.info:hover { background-color: var(--ui-color-info); }
 
-.button-text.success:focus,
+.button-text.success:focus-visible,
 .button-text.success:hover { background-color: var(--ui-color-success); }
 
-.button-text.warning:focus,
+.button-text.warning:focus-visible,
 .button-text.warning:hover { background-color: var(--ui-color-warning); }
 
-.button-text.error:focus,
+.button-text.error:focus-visible,
 .button-text.error:hover,
-.button-text.danger:focus,
+.button-text.danger:focus-visible,
 .button-text.danger:hover { background-color: var(--ui-color-danger); }

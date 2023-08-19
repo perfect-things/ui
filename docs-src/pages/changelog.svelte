@@ -3,7 +3,7 @@
 <ul>
 <li>Inputs with dropdowns (e.g. <code>Combobox</code> and <code>InputDate</code>) will not trigger page scroll on focus (in mobile Safari).</li>
 <li><code>Combobox</code> dropdown will now auto-adjust its position when the virtual keyboard opens (in mobile Safari).</li>
-<li><code>:focus</code> has been updated to <code>:focus-visible</code> for a better look, when not using the keyboard.</li>
+<li><code>:focus</code> has been updated to <code>:focus-visible</code> for non-input elements, for a better look.</li>
 </ul>
 <h2>v8.3.2 <em>(2023-08-18)</em></h2>
 <ul>

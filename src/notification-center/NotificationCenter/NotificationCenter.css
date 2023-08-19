@@ -57,7 +57,7 @@
 	border: 1px solid transparent;
 }
 
-.notification button:focus {
+.notification button:focus-visible {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 	outline: none;
