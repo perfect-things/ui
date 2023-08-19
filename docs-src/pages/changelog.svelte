@@ -1,5 +1,5 @@
 <h1>Changelog</h1>
-<h2>v8.3.3 <em>(2023-08-?)</em></h2>
+<h2>v8.3.3 <em>(2023-08-19)</em></h2>
 <ul>
 <li>Inputs with dropdowns (e.g. <code>Combobox</code> and <code>InputDate</code>) will not trigger page scroll on focus (in mobile Safari).</li>
 <li><code>Combobox</code> dropdown will now auto-adjust its position when the virtual keyboard opens (in mobile Safari).</li>
