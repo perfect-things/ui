@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v8.4.0 <em>(2023-08-?)</em></h2>
+<ul>
+<li><strong>New:</strong> <code>Popover</code> component. If a <code>Dialog</code> and <code>Tooltip</code> had a child - this would be it. It&#39;s a container that can be opened like a dialog, but will be attached to the target element (like a tooltip). It&#39;s a great way to display additional information or actions for a specific element on the page. It can contain other components (e.g. buttons) and can serve as a free-form menu.</li>
+</ul>
 <h2>v8.3.3 <em>(2023-08-19)</em></h2>
 <ul>
 <li>Inputs with dropdowns (e.g. <code>Combobox</code> and <code>InputDate</code>) will not trigger page scroll on focus (in mobile Safari).</li>

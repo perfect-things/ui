@@ -7,8 +7,10 @@ The perfect toggle component in Svelte:
 	<li>accessible (based on a checkbox input)
 	<li>no bloat, no dependencies
 </ul>
-<br>
 
+<hr>
+
+<h3>Normal</h3>
 <Toggle bind:value="{toggleValue}" /> {toggleValue}
 <div class="toggle-box" class:visible="{toggleValue}">
 	<Toggle /> hidden initially<br>

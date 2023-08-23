@@ -42,6 +42,7 @@
 		<NavItem name="Dialog" {active} />
 		<NavItem name="Drawer" {active} />
 		<NavItem name="Panel" {active} />
+		<NavItem name="Popover" {active} />
 		<NavItem name="Table" {active} />
 		<NavItem name="Tree" {active} />
 

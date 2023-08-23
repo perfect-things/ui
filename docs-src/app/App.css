@@ -40,7 +40,7 @@ h3:first-of-type { margin-top: 0; }
 p { line-height: 1.7; margin-block: 1.5rem; max-width: 120ch; }
 p b { font-weight: 700; letter-spacing: 0.5px; }
 
-ul { line-height: 1.7; margin: 0; padding-left: 1.3rem; }
+ul { line-height: 1.7; margin: 0; padding-left: 2rem; }
 ul li { margin-block: 0.5rem; }
 
 p + ul { margin-top: -1rem }

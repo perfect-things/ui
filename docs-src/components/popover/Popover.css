@@ -1,0 +1,14 @@
+.tooltip-box {
+	display: inline-block;
+	margin: 10px 0 0;
+	line-height: 2.4em;
+	padding: 1em;
+	border: 1px solid #ccc;
+	min-width: 6em;
+	text-align: center;
+}
+
+.tooltip-html h1,
+.tooltip-html p { margin: 0; }
+.tooltip-html b { color: var(--ui-color-accent); }
+.tooltip-html a:hover { text-decoration: none; }

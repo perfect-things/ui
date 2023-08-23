@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v8.4.0 *(2023-08-?)*
+- **New:** `Popover` component. If a `Dialog` and `Tooltip` had a child - this would be it. It's a container that can be opened like a dialog, but will be attached to the target element (like a tooltip). It's a great way to display additional information or actions for a specific element on the page. It can contain other components (e.g. buttons) and can serve as a free-form menu.
+
+
+
 ## v8.3.3 *(2023-08-19)*
 - Inputs with dropdowns (e.g. `Combobox` and `InputDate`) will not trigger page scroll on focus (in mobile Safari).
 - `Combobox` dropdown will now auto-adjust its position when the virtual keyboard opens (in mobile Safari).

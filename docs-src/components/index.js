@@ -16,17 +16,19 @@ export { Select } from './select';
 export { Textarea } from './textarea';
 export { Toggle } from './toggle';
 
+export { InfoBar } from './info-bar';
+export { NotificationCenter } from './notification-center';
+export { MessageBox } from './message-box';
+export { Tooltip } from './tooltip';
+
 export { Dialog } from './dialog';
 export { Drawer } from './drawer';
-export { InfoBar } from './info-bar';
-export { Menu } from './menu';
-export { MessageBox } from './message-box';
 export { Panel } from './panel';
-export { Splitter } from './splitter';
+export { Popover } from './popover';
 export { Table } from './table';
 export { Tree } from './tree';
 
+export { Menu } from './menu';
 export { Icon } from './icon';
-export { NotificationCenter } from './notification-center';
-export { Tooltip } from './tooltip';
+export { Splitter } from './splitter';
 export { ColorPalette } from './color-palette';
