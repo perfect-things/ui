@@ -1,6 +1,6 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#if opened}
-	<div class="popover-plate {className}" bind:this="{element}">
+	<div class="popover-plate popover-{position} {className}" bind:this="{element}">
 		<div class="popover">
 			<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 			<div class="popover-content" bind:this="{contentEl}">
@@ -25,6 +25,7 @@ export { className as class };
 export let offset = 2;
 export let element = undefined;
 export let contentEl = undefined;
+export let position = 'bottom';
 
 let targetEl, opened = false;
 let closing = false;
@@ -46,13 +47,13 @@ export function open (e) {
 			document.body.appendChild(element);
 		}
 
-		alignItem({ element, target: e, alignH: 'center', alignV: 'bottom', offsetV: +offset });
+		position = alignItem({ element, target: e, alignH: 'center', alignV: 'bottom', offsetV: +offset });
 
 		dispatch('open', { event: e, target: targetEl });
 
 		focusFirst();
-		requestAnimationFrame(resolve);
 		addEventListeners();
+		requestAnimationFrame(resolve);
 	}));
 }
 
@@ -87,7 +88,6 @@ function focusFirst () {
 		contentEl.setAttribute('tabindex', 0);
 		first = contentEl;
 	}
-	if (last) last.scrollIntoView({ block: 'end' });
 	if (first) first.focus();
 }
 
@@ -99,7 +99,6 @@ function focusLast () {
 		contentEl.setAttribute('tabindex', 0);
 		last = contentEl;
 	}
-	if (first) first.scrollIntoView({ block: 'end' });
 	if (last) last.focus();
 }
 

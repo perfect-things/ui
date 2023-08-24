@@ -11,7 +11,7 @@
 	--tooltip-border-radius: 5px;
 }
 
-.tooltip-plate { position: absolute; padding-bottom: var(--tooltip-tip-size); }
+.tooltip-plate { position: absolute; }
 
 .tooltip {
 	position: relative;
@@ -26,7 +26,6 @@
 	display: block;
 	width: var(--tooltip-tip-size);
 	height: var(--tooltip-tip-size);
-	bottom: calc(var(--tooltip-tip-size) / -2);
 	transform: rotate(45deg) skew(8deg, 8deg);
 	left: 50%;
 	margin-left: calc(var(--tooltip-tip-size) / -2);
@@ -37,7 +36,6 @@
 	background-color: var(--tooltip-color);
 	border: var(--tooltip-border);
 	border-width: 1.5px;
-	border-radius: 0 0 3px;
 	margin-left: calc(var(--tooltip-tip-size) / -2 - 1.5px);
 }
 
@@ -52,21 +50,18 @@
 }
 
 .tooltip-content * { position: relative; }
-.tooltip-content::before {
-	background-color: inherit;
-	border-radius: 0 0 2px;
-	z-index: -1;
-}
+.tooltip-content::before { background-color: inherit; z-index: -1; }
 
 
 /* TOOLTIP BELOW TARGET  */
+.tooltip-top { padding-bottom: var(--tooltip-tip-size); }
+.tooltip-top .tooltip::before { border-radius: 0 0 3px; bottom: calc(var(--tooltip-tip-size) / -2); }
+.tooltip-top .tooltip-content::before { border-radius: 0 0 2px; bottom: calc(var(--tooltip-tip-size) / -2);  }
+
+
 .tooltip-bottom { padding-bottom: 0; padding-top: var(--tooltip-tip-size); }
-
-.tooltip-bottom .tooltip::before,
-.tooltip-bottom .tooltip-content::before { bottom: auto; top: calc(var(--tooltip-tip-size) / -2); }
-
-.tooltip-bottom .tooltip::before { border-radius: 3px 0 0; }
-.tooltip-bottom .tooltip-content::before { border-radius: 2px 0 0; }
+.tooltip-bottom .tooltip::before { border-radius: 3px 0 0; top: calc(var(--tooltip-tip-size) / -2); }
+.tooltip-bottom .tooltip-content::before { border-radius: 2px 0 0; top: calc(var(--tooltip-tip-size) / -2);  }
 
 
 

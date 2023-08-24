@@ -193,6 +193,7 @@ export function alignItem ({
 
 	let targetBox = {};
 	let top, left;
+	let position = alignV;
 
 	// target is a context | longpress event
 	if (target instanceof Event && target.type !== 'click') {
@@ -236,6 +237,7 @@ export function alignItem ({
 		top = winH - elementBox.height - viewportPadding;
 		if (alignV === 'top' || top < elementBox.y) {
 			top = targetBox.top - elementBox.height - offsetV;
+			position = 'top';
 		}
 		element.style.top = top + window.scrollY + 'px';
 	}
@@ -252,6 +254,7 @@ export function alignItem ({
 		element.style.left = viewportPadding + window.scrollX + 'px';
 	}
 
+	return position;
 }
 
 
