@@ -98,7 +98,7 @@ function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
 
 	if (isInScrollable(e.target)) return false;
-	const untouchables = 'input, button, .toggle, .dialog-backdrop, [aria-haspopup="true"]';
+	const untouchables = 'input, button, .toggle, .dialog-backdrop, .popover, [aria-haspopup="true"]';
 	if (e.target.closest(untouchables)) return;
 
 
