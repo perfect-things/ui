@@ -65,4 +65,4 @@
 
 
 /* THEME LIGHT  */
-.theme-light .popover-plate { --tooltip-color: #fff; }
+.theme-light .popover-plate { --popover-color: #fff; }

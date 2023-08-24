@@ -82,7 +82,7 @@ const apiProps = [
 	{ name: 'events', type: ['hover', 'click', 'focus'], default: 'hover,focus', description: 'Type of mouse event that should trigger the tooltip. Multiple events can be entered in a comma-separated string.<br>Note, that these events will dictate how the tooltip shows up as well as disappears, e.g.:<br><em>hover</em> - tooltip will show up on mouse over and disappear on mouse out<br><em>click</em> - tooltip will show up on click and will disappear when anything else (but the target or tooltip) is clicked.<br><em>focus</em> - tooltip will show up on focus and disappear on blur.' },
 	{ name: 'info', description: 'Tooltip type: info' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize tooltip offset. Use negative number for smaller offset or positive for bigger' },
-	{ name: 'position', type: ['top', 'bottom'], default: 'auto', description: 'Enforce the position of the tooltip to be above (top) or below (bottom) the target element.<br>Auto - will auto-position the tooltip so it stays on screen.' },
+	{ name: 'position', type: ['top', 'bottom'], default: 'top', description: 'Enforce the position of the tooltip to be above (top) or below (bottom) the target element.' },
 	{ name: 'success', description: 'Tooltip type: success' },
 	{ name: 'target', required: true, type: 'string', description: 'ID of the target element.' },
 	{ name: 'warning', description: 'Tooltip type: warning' },

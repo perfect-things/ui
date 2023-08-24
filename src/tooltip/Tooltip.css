@@ -1,76 +1,13 @@
-.tooltip-container {
-	z-index: 9999;
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	transform: translateZ(1px);
-	--tooltip-tip-size: 10px;
-	--tooltip-color: #292929;
-	--tooltip-border: var(--ui-popup-border);
-	--tooltip-border-radius: 5px;
+.tooltip-plate {
+	--popover-tip-size: 10px;
+	--popover-color: #292929;
 }
 
-.tooltip-plate { position: absolute; }
-
-.tooltip {
-	position: relative;
-	border-radius: var(--tooltip-border-radius);
-	box-shadow: var(--ui-shadow-tooltip);
-}
-
-.tooltip::before,
-.tooltip-content::before {
-	content: '';
-	position: absolute;
-	display: block;
-	width: var(--tooltip-tip-size);
-	height: var(--tooltip-tip-size);
-	transform: rotate(45deg) skew(8deg, 8deg);
-	left: 50%;
-	margin-left: calc(var(--tooltip-tip-size) / -2);
-}
-
-.tooltip::before {
-	box-shadow: var(--ui-shadow-tooltip);
-	background-color: var(--tooltip-color);
-	border: var(--tooltip-border);
-	border-width: 1.5px;
-	margin-left: calc(var(--tooltip-tip-size) / -2 - 1.5px);
-}
-
-.tooltip-content {
-	padding: 0.5rem 0.7rem;
-	text-align: center;
-	position: relative;
-	border-radius: inherit;
-	z-index: 1;
-	background-color: var(--tooltip-color);
-	border: var(--tooltip-border);
-}
-
-.tooltip-content * { position: relative; }
-.tooltip-content::before { background-color: inherit; z-index: -1; }
-
-
-/* TOOLTIP BELOW TARGET  */
-.tooltip-top { padding-bottom: var(--tooltip-tip-size); }
-.tooltip-top .tooltip::before { border-radius: 0 0 3px; bottom: calc(var(--tooltip-tip-size) / -2); }
-.tooltip-top .tooltip-content::before { border-radius: 0 0 2px; bottom: calc(var(--tooltip-tip-size) / -2);  }
-
-
-.tooltip-bottom { padding-bottom: 0; padding-top: var(--tooltip-tip-size); }
-.tooltip-bottom .tooltip::before { border-radius: 3px 0 0; top: calc(var(--tooltip-tip-size) / -2); }
-.tooltip-bottom .tooltip-content::before { border-radius: 2px 0 0; top: calc(var(--tooltip-tip-size) / -2);  }
-
-
-
-/* THEME LIGHT  */
-.theme-light .tooltip { --tooltip-color: #fff; }
-
+.tooltip { border-radius: 5px; }
+.tooltip-content { padding: 0.5rem 0.7rem; }
 
 /* COLOR VARIATIONS */
-.info    .tooltip { --tooltip-color: var(--ui-color-info); }
-.success .tooltip { --tooltip-color: var(--ui-color-success); }
-.danger  .tooltip { --tooltip-color: var(--ui-color-danger); }
-.warning .tooltip { --tooltip-color: var(--ui-color-warning); }
+.info    .tooltip { --popover-color: var(--ui-color-info); }
+.success .tooltip { --popover-color: var(--ui-color-success); }
+.danger  .tooltip { --popover-color: var(--ui-color-danger); }
+.warning .tooltip { --popover-color: var(--ui-color-warning); }

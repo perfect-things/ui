@@ -1,8 +1,9 @@
 <h1>Changelog</h1>
-<h2>v8.4.1, v8.4.0 <em>(2023-08-24)</em></h2>
+<h2>v8.4.2, v8.4.1, v8.4.0 <em>(2023-08-24)</em></h2>
 <ul>
 <li><strong>New:</strong> <code>Popover</code> component. If a <code>Dialog</code> and <code>Tooltip</code> had a child - this would be it. It&#39;s a container that can be opened like a dialog, but will be attached to the target element (like a tooltip). It&#39;s a great way to display additional information or actions for a specific element on the page. It can contain other components (e.g. buttons) and can serve as a free-form menu.</li>
 <li>Fix popover above the target styling.</li>
+<li>Simplify &amp; refactor <code>Tooltip</code> to share more code with <code>Popover</code>. Styling and core functionality is now almost the same, while the UX and usage remains a bit different.</li>
 </ul>
 <h2>v8.3.3 <em>(2023-08-19)</em></h2>
 <ul>
@@ -163,7 +164,7 @@
 <li><code>--ui-shadow-invalid</code> --&gt; <code>--ui-shadow-danger</code></li>
 </ul>
 <hr>
-<h2>v6.8.1, v6.8.2 <em>(2023-06-21)</em></h2>
+<h2>v6.8.2, v6.8.1 <em>(2023-06-21)</em></h2>
 <ul>
 <li>Allow HTML in <code>MessageBox</code>.</li>
 <li>Improve styling for multi-line messages in <code>MessageBox</code>.</li>
@@ -215,13 +216,13 @@
 <li>Bring back <code>--ui-shadow-small</code> property.</li>
 <li><code>Menu</code> performance improvements: menu will not be rendered until it&#39;s opened.</li>
 </ul>
-<h2>v6.6.0, v6.6.1, v6.6.2, v6.6.3 <em>(2023-05-11)</em></h2>
+<h2>v6.6.3, v6.6.2, v6.6.1, v6.6.0,  <em>(2023-05-11)</em></h2>
 <ul>
 <li><code>Select</code> now also accepts an array of strings for items.</li>
 <li><code>ButtonToggle</code> now also accepts an array of strings for items.</li>
 <li><code>em</code> to <code>rem</code>, as it&#39;s more consistent and predictable.</li>
 </ul>
-<h2>v6.5.3, v6.5.4, v6.5.5 <em>(2023-05-09)</em></h2>
+<h2>v6.5.5, v6.5.4, v6.5.3 <em>(2023-05-09)</em></h2>
 <ul>
 <li>Standardise button height to match all the other controls.</li>
 <li>Standardise placeholder and input-icon colours.</li>
@@ -247,7 +248,7 @@
 <li>Improve <code>&lt;InputPassword/&gt;</code> component: don&#39;t rerender when eye button is clicked, minor alignment style tweak.</li>
 <li><code>Autocomplete</code> keyboard scrolling alignment fix (highlighted item was partially cropped).</li>
 </ul>
-<h2>v6.4.1, v6.4.2 <em>(2023-04-22)</em></h2>
+<h2>v6.4.2, v6.4.1 <em>(2023-04-22)</em></h2>
 <ul>
 <li>Remove the need to inline svg icons in the consumer&#39;s build.</li>
 <li>Add <code>addIcon</code> function to allow adding custom icons.</li>
@@ -257,12 +258,12 @@
 <ul>
 <li>Tweaks to allow it to be used with SvelteKit.</li>
 </ul>
-<h2>v6.3.15, v6.3.16 <em>(2023-04-15)</em></h2>
+<h2>v6.3.16, v6.3.15 <em>(2023-04-15)</em></h2>
 <ul>
 <li>New icons: <code>undo</code> and <code>redo</code>.</li>
 <li>Fix <code>ButtonGroup</code> styling for other button types.</li>
 </ul>
-<h2>v6.3.13, v6.3.14 <em>(2023-04-12)</em></h2>
+<h2>v6.3.14, v6.3.13 <em>(2023-04-12)</em></h2>
 <ul>
 <li><code>Tooltip</code> style tweaks, so it&#39;s finally perfect.</li>
 <li>Minor fix in <code>Tooltip</code>.</li>
@@ -271,12 +272,12 @@
 <ul>
 <li>Cleanup.</li>
 </ul>
-<h2>v6.3.9, v6.3.10, v6.3.11, v6.3.12 <em>(2023-04-07)</em></h2>
+<h2>v6.3.12, v6.3.11, v6.3.10, v6.3.9 <em>(2023-04-07)</em></h2>
 <ul>
 <li><code>Menu</code> on-close should resolve instantly, when the menu is already closed.</li>
 <li><code>Menu</code> new attribute <code>align</code> allows to align the menu to the right with the target.</li>
 </ul>
-<h2>v6.3.4, v6.3.5, v6.3.6, v6.3.7, v6.3.8 <em>(2023-04-06)</em></h2>
+<h2>v6.3.8, v6.3.7, v6.3.6, v6.3.5, v6.3.4 <em>(2023-04-06)</em></h2>
 <ul>
 <li>Handle svelte&#39;s newest a11y warnings.</li>
 <li>Tweak media query notation.</li>
@@ -331,7 +332,7 @@
 <li>update table docs (missing <code>data</code> prop)</li>
 <li>change button&#39;s <code>active</code> class to <code>touching</code> for touch events (to not conflict with popular <code>active</code> class name that may be used by consumers)</li>
 </ul>
-<h2>v6.2.2, v6.2.3 <em>(2023-03-24)</em></h2>
+<h2>v6.2.3, v6.2.2 <em>(2023-03-24)</em></h2>
 <ul>
 <li>Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.</li>
 </ul>
@@ -354,7 +355,7 @@
 <ul>
 <li><code>Toggle</code> component has been completely rewritten to make it more flexible and perfect.</li>
 </ul>
-<h2>v6.0.0, v6.0.1, v6.0.2 <em>(2023-03-13)</em></h2>
+<h2>v6.0.2, v6.0.1, v6.0.0 <em>(2023-03-13)</em></h2>
 <ul>
 <li>rebrand <code>simple-ui-components-in-svelte</code> to <code>@perfectthings/ui</code></li>
 </ul>
@@ -429,19 +430,19 @@
 <li>fixed: autocomplete issue, where clicking on a filtered list would not select.</li>
 <li>tweak: autocomplete will now show &quot;create new item&quot; always (when enabled), not only when the query did not match anything. Except when the query matches an item exactly.</li>
 </ul>
-<h2>v3.0.1 (2022-12-30)</h2>
+<h2>v3.0.1 <em>(2022-12-30)</em></h2>
 <ul>
 <li>autocomplete should revert when entered value is not on the list</li>
 </ul>
-<h2>v3.0.0 (2022-12-28)</h2>
+<h2>v3.0.0 <em>(2022-12-28)</em></h2>
 <ul>
 <li>breaking change: <code>cssClass</code> property available on some components has been renamed to <code>className</code> (to be more aligned with the standard workaround in other libs/frameworks).</li>
 <li>some components (where possible) are now using <code>$$props</code> to pass-through the properties of the instance down to the component.</li>
 </ul>
 <hr>
-<h2>v2.1.1 (2022-12-24)</h2>
+<h2>v2.1.1 <em>(2022-12-24)</em></h2>
 <ul>
 <li>breaking change: <code>dist</code> folder has been renamed to <code>docs</code>, as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).</li>
 </ul>
 <hr>
-<h2>v1.7.12</h2>
+<h2>v1.7.12 <em>(2022)</em></h2>

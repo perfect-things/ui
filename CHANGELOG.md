@@ -2,10 +2,10 @@ Changelog
 =========
 
 
-## v8.4.1, v8.4.0 *(2023-08-24)*
+## v8.4.2, v8.4.1, v8.4.0 *(2023-08-24)*
 - **New:** `Popover` component. If a `Dialog` and `Tooltip` had a child - this would be it. It's a container that can be opened like a dialog, but will be attached to the target element (like a tooltip). It's a great way to display additional information or actions for a specific element on the page. It can contain other components (e.g. buttons) and can serve as a free-form menu.
 - Fix popover above the target styling.
-
+- Simplify & refactor `Tooltip` to share more code with `Popover`. Styling and core functionality is now almost the same, while the UX and usage remains a bit different.
 
 
 ## v8.3.3 *(2023-08-19)*
@@ -164,7 +164,7 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 ----
 
 
-## v6.8.1, v6.8.2 *(2023-06-21)*
+## v6.8.2, v6.8.1 *(2023-06-21)*
 - Allow HTML in `MessageBox`.
 - Improve styling for multi-line messages in `MessageBox`.
 
@@ -210,13 +210,13 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 - `Menu` performance improvements: menu will not be rendered until it's opened.
 
 
-## v6.6.0, v6.6.1, v6.6.2, v6.6.3 *(2023-05-11)*
+## v6.6.3, v6.6.2, v6.6.1, v6.6.0,  *(2023-05-11)*
 - `Select` now also accepts an array of strings for items.
 - `ButtonToggle` now also accepts an array of strings for items.
 - `em` to `rem`, as it's more consistent and predictable.
 
 
-## v6.5.3, v6.5.4, v6.5.5 *(2023-05-09)*
+## v6.5.5, v6.5.4, v6.5.3 *(2023-05-09)*
 - Standardise button height to match all the other controls.
 - Standardise placeholder and input-icon colours.
 - Enhance Autocomplete's and DatePicker's input-icon click experience.
@@ -242,7 +242,7 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 - `Autocomplete` keyboard scrolling alignment fix (highlighted item was partially cropped).
 
 
-## v6.4.1, v6.4.2 *(2023-04-22)*
+## v6.4.2, v6.4.1 *(2023-04-22)*
 - Remove the need to inline svg icons in the consumer's build.
 - Add `addIcon` function to allow adding custom icons.
 - Fix `menu.open` issue when event was not passed.
@@ -252,12 +252,12 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 - Tweaks to allow it to be used with SvelteKit.
 
 
-## v6.3.15, v6.3.16 *(2023-04-15)*
+## v6.3.16, v6.3.15 *(2023-04-15)*
 - New icons: `undo` and `redo`.
 - Fix `ButtonGroup` styling for other button types.
 
 
-## v6.3.13, v6.3.14 *(2023-04-12)*
+## v6.3.14, v6.3.13 *(2023-04-12)*
 - `Tooltip` style tweaks, so it's finally perfect.
 - Minor fix in `Tooltip`.
 
@@ -266,12 +266,12 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 - Cleanup.
 
 
-## v6.3.9, v6.3.10, v6.3.11, v6.3.12 *(2023-04-07)*
+## v6.3.12, v6.3.11, v6.3.10, v6.3.9 *(2023-04-07)*
 - `Menu` on-close should resolve instantly, when the menu is already closed.
 - `Menu` new attribute `align` allows to align the menu to the right with the target.
 
 
-## v6.3.4, v6.3.5, v6.3.6, v6.3.7, v6.3.8 *(2023-04-06)*
+## v6.3.8, v6.3.7, v6.3.6, v6.3.5, v6.3.4 *(2023-04-06)*
 - Handle svelte's newest a11y warnings.
 - Tweak media query notation.
 - Remove menu of type='input'.
@@ -326,7 +326,7 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 - change button's `active` class to `touching` for touch events (to not conflict with popular `active` class name that may be used by consumers)
 
 
-## v6.2.2, v6.2.3 *(2023-03-24)*
+## v6.2.3, v6.2.2 *(2023-03-24)*
 - Fix issue where a selectable table would become non-selectable if another table on the same page was destroyed.
 
 
@@ -349,7 +349,7 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 - `Toggle` component has been completely rewritten to make it more flexible and perfect.
 
 
-## v6.0.0, v6.0.1, v6.0.2 *(2023-03-13)*
+## v6.0.2, v6.0.1, v6.0.0 *(2023-03-13)*
 - rebrand `simple-ui-components-in-svelte` to `@perfectthings/ui`
 
 
@@ -423,11 +423,11 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 - tweak: autocomplete will now show "create new item" always (when enabled), not only when the query did not match anything. Except when the query matches an item exactly.
 
 
-## v3.0.1 (2022-12-30)
+## v3.0.1 *(2022-12-30)*
 - autocomplete should revert when entered value is not on the list
 
 
-## v3.0.0 (2022-12-28)
+## v3.0.0 *(2022-12-28)*
 - breaking change: `cssClass` property available on some components has been renamed to `className` (to be more aligned with the standard workaround in other libs/frameworks).
 - some components (where possible) are now using `$$props` to pass-through the properties of the instance down to the component.
 
@@ -435,11 +435,11 @@ Other (not mentioned above) color variations, (i.e. `-light-` and `-dark-`) have
 ----
 
 
-## v2.1.1 (2022-12-24)
+## v2.1.1 *(2022-12-24)*
 - breaking change: `dist` folder has been renamed to `docs`, as this is the only allowed name for a GH pages folder so that the GH pages is published automatically (without writing a GH action specifically for this).
 
 
 ----
 
 
-## v1.7.12
+## v1.7.12 *(2022)*

@@ -64,8 +64,7 @@ export function open (e) {
 export function close () {
 	if (!opened) return Promise.resolve();
 
-	else if (targetEl) targetEl.focus();
-	console.log(targetEl);
+	if (targetEl) targetEl.focus();
 
 	opened = false;
 	closing = true;

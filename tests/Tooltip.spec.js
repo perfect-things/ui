@@ -7,9 +7,6 @@ import { waitForTimeout } from './helpers/utils';
 test('Tooltip', async () => {
 	const { container, component } = render(Tooltip);
 
-	const cmp = container.querySelector('.tooltip-container');
-	expect(cmp).toBeInTheDocument();
-
 	const btn = container.querySelector('#box1');
 	await userEvent.hover(btn);
 

@@ -1,25 +1,26 @@
-{#if visible}
+{#if opened}
 	<div
-		class="tooltip-plate tooltip-{_position}"
-		class:visible
+		class="popover-plate popover-{_position} tooltip-plate"
+		class:opened
 		class:info
 		class:success
 		class:warning
 		class:danger
 		bind:this="{element}">
 
-		<div class="tooltip {className}" role="tooltip">
-			<div class="tooltip-content"><slot/> </div>
+		<div class="popover tooltip {className}" role="tooltip">
+			<div class="popover-content tooltip-content"><slot/> </div>
 		</div>
 	</div>
 {/if}
 <script>
 import { afterUpdate, onDestroy, onMount } from 'svelte';
+import { alignItem } from '../utils.js';
 export let target = '';
 export let delay = 0;
-export let position = 'auto';
+export let position = 'top';
 export let offset = 2;
-export let screenPadding = 5;
+// export let screenPadding = 5;
 
 let className = '';
 export { className as class };
@@ -32,13 +33,12 @@ export let element = undefined;
 
 
 let _position = 'top';
-let visible = false;
+let opened = false;
 let showTimer, hideTimer, shownEvent, noHide = false;
-let targetEl, tooltipContainer;
+let targetEl;
 
 
 onMount(() => {
-	initContainer();
 	targetEl = target ? document.querySelector('#' + target) : document.body;
 	addTargetEvents();
 });
@@ -52,21 +52,30 @@ function show (e) {
 		clearTimeout(hideTimer);
 		hideTimer = null;
 	}
-	if (visible || showTimer) return;
+	if (opened || showTimer) return;
 	showTimer = setTimeout(() => _show(e), parseFloat(delay) || 0);
 }
 
 
 function _show (e) {
-	visible = true;
+	opened = true;
 	noHide = false;
 	showTimer = null;
 	shownEvent = e.type;
 	requestAnimationFrame(() => {
-		tooltipContainer.appendChild(element);
+		if (element.parentElement !== document.body) {
+			document.body.appendChild(element);
+		}
+
+		addTooltipEvents();
 		align();
 	});
-	requestAnimationFrame(addTooltipEvents);
+}
+
+
+function align () {
+	const alignV = position || 'top';
+	_position = alignItem({ element, target: targetEl, alignH: 'center', alignV, offsetV: +offset });
 }
 
 
@@ -76,7 +85,7 @@ function preventHiding () {
 
 
 function _hide () {
-	visible = false;
+	opened = false;
 	removeTooltipEvents();
 }
 
@@ -97,8 +106,7 @@ function hide (e) {
 		clearTimeout(showTimer);
 		showTimer = null;
 	}
-	if (!visible) return;
-	if (e.type === 'scroll' || e.type === 'resize') return _hide();
+	if (!opened) return;
 	if (e.type === 'click' || e.type === 'mousedown') {
 		if (targetIsSelf || targetIsTooltip) return;
 		_hide();
@@ -107,34 +115,6 @@ function hide (e) {
 	if (shownEvent === 'focus' && e.type === 'blur' && !noHide) return _hide();
 	if (shownEvent === 'mousedown' && e.type === 'mousedown') return _hide();
 	if (e.type === 'keydown') return _hide();
-}
-
-
-function align () {
-	if (!visible) return;
-	const targetBox = targetEl.getBoundingClientRect();
-	const tooltipBox = element.getBoundingClientRect();
-
-	_position = 'top';
-	let top = targetBox.top - tooltipBox.height - (parseFloat(offset) || 2);
-	const left = targetBox.left + (targetBox.width / 2) - (tooltipBox.width / 2);
-
-	if (top < screenPadding || position === 'bottom') {
-		top = targetBox.top + targetBox.height + (parseFloat(offset) || 2);
-		_position = 'bottom';
-	}
-	element.style.top = top + window.scrollY + 'px';
-	element.style.left = left + window.scrollX + 'px';
-}
-
-
-function initContainer () {
-	tooltipContainer = document.querySelector('.tooltip-container');
-	if (!tooltipContainer) {
-		tooltipContainer = document.createElement('DIV');
-		tooltipContainer.className = 'tooltip-container';
-		document.body.appendChild(tooltipContainer);
-	}
 }
 
 
@@ -154,8 +134,6 @@ function addTooltipEvents () {
 		element.addEventListener('mouseover', show);
 		element.addEventListener('mouseout', hide);
 	}
-	window.addEventListener('resize', hide);
-	document.addEventListener('scroll', hide, true);
 	document.addEventListener('keydown', onKey);
 }
 
@@ -171,8 +149,6 @@ function removeTooltipEvents () {
 		element.removeEventListener('mouseover', show);
 		element.removeEventListener('mouseout', hide);
 	}
-	window.removeEventListener('resize', hide);
-	document.removeEventListener('scroll', hide, true);
 	document.removeEventListener('keydown', onKey);
 }
 
