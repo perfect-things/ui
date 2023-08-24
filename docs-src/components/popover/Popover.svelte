@@ -44,6 +44,7 @@ let popover1, popover2, popover3;
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize popover offset. Use negative number for smaller offset or positive for bigger' },
+	{ name: 'position', type: ['top', 'bottom'], default: 'bottom', description: 'Prefer the position of the popover to be above (top) or below (bottom) the target element.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:contentElement', type: 'element', description: 'Exposes the HTML element of the content div.' },
 ];
