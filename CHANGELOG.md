@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v8.4.3 *(2023-08-25)*
+- Fix `InputRadio` group block padding.
+
+
 ## v8.4.2, v8.4.1, v8.4.0 *(2023-08-24)*
 - **New:** `Popover` component. If a `Dialog` and `Tooltip` had a child - this would be it. It's a container that can be opened like a dialog, but will be attached to the target element (like a tooltip). It's a great way to display additional information or actions for a specific element on the page. It can contain other components (e.g. buttons) and can serve as a free-form menu.
 - Fix popover above the target styling.
