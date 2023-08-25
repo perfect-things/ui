@@ -38,7 +38,7 @@
 	justify-content: flex-start;
 	gap: 0.2rem;
 	width: 100%;
-	padding: 0.2rem 0;
+	padding: var(--ui-margin-m) 0;
 	background-color: var(--ui-color-background-input);
 	border-radius: inherit;
 }
@@ -50,8 +50,8 @@
 	align-items: center;
 	justify-content: flex-start;
 	gap: 0.5rem;
-	width: calc(100% - calc(var(--ui-margin-s) * 4));
-	margin: 0 calc(var(--ui-margin-s) * 2);
+	width: calc(100% - calc(var(--ui-margin-m) * 2));
+	margin: 0 var(--ui-margin-m);
 	padding: 0 var(--ui-margin);
 	border-radius: var(--ui-border-radius);
 }
