@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## v8.4.3 *(2023-08-26)*
+## v8.4.4 *(2023-08-26)*
 - Standardise `InputSearch` UX: clear button and Escape-to-clear behaviour now works the same in different browsers.
 
 

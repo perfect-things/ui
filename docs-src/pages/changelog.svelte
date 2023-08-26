@@ -1,5 +1,5 @@
 <h1>Changelog</h1>
-<h2>v8.4.3 <em>(2023-08-26)</em></h2>
+<h2>v8.4.4 <em>(2023-08-26)</em></h2>
 <ul>
 <li>Standardise <code>InputSearch</code> UX: clear button and Escape-to-clear behaviour now works the same in different browsers.</li>
 </ul>
