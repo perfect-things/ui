@@ -20,7 +20,7 @@
 
 <API props="{apiProps}"/>
 
-<API props="{instanceApiProps}" title="Instance API" description="A component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<API props="{instanceApiProps}" title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
 <script>
 import { Button, Drawer } from '../../../src';
