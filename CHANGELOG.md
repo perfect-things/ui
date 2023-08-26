@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v8.4.3 *(2023-08-26)*
+- Standardise `InputSearch` UX: clear button and Escape-to-clear behaviour now works the same in different browsers.
+
+
 ## v8.4.3 *(2023-08-25)*
 - Fix `InputRadio` group block padding.
 

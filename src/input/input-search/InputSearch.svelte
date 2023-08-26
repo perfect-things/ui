@@ -1,6 +1,7 @@
 <div
 	class="input input-search {className}"
 	class:has-error="{error}"
+	class:has-value="{value !== ''}"
 	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
 	bind:this="{element}">
 
@@ -25,16 +26,22 @@
 				bind:this="{inputElement}"
 				bind:value="{value}"
 				on:input
-				on:keydown
+				on:keydown="{onkeydown}"
 				on:change
 				on:focus
 				on:blur>
+
+			<Button link
+				icon="close"
+				class="input-search-button {value !== '' && !disabled ? 'visible' : ''}"
+				on:click="{clear}"/>
 		</div>
 	</div>
 </div>
 
 <script>
 import { pluck, guid } from '../../utils';
+import { Button } from '../../button';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -61,4 +68,13 @@ $:_id = id || name || guid();
 
 const errorMessageId = guid();
 
+
+function clear () {
+	value = '';
+}
+
+
+function onkeydown (event) {
+	if (event.key === 'Escape') clear();
+}
 </script>
