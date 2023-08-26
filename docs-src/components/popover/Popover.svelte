@@ -28,9 +28,19 @@
 <Popover bind:this="{popover3}" offset="20">Bigger offset</Popover>
 
 
+<h3>Update contents</h3>
+<Button on:click="{popover4.open}">Open popover</Button>
+<Popover bind:this="{popover4}" position="top">
+	{@html content}
+	<Button success on:click="{updateContent}">Update content</Button>
+	<Button on:click="{popover4.close}">Close</Button>
+</Popover>
+
+
 
 <CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>
+<API props="{instanceApiProps}" title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
 
 <script>
@@ -38,8 +48,12 @@ import { Popover, Button } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-let popover1, popover2, popover3;
+let popover1, popover2, popover3, popover4;
+let content = '<h2>Context information</h2><p>Some text</p>';
 
+function updateContent () {
+	content = '<h2>Updated content</h2><p>Some text</p><p>Some more text</p>';
+}
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
@@ -49,6 +63,11 @@ const apiProps = [
 	{ name: 'bind:contentElement', type: 'element', description: 'Exposes the HTML element of the content div.' },
 ];
 
+const instanceApiProps = [
+	{ name: 'close', type: 'function', description: 'Closes the popover.' },
+	{ name: 'open', type: 'function', description: 'Opens the popover.' },
+	{ name: 'updatePosition', type: 'function', description: 'Recalculates the position of the popover.' },
+];
 
 
 const exampleHtml = `

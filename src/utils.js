@@ -196,7 +196,7 @@ export function alignItem ({
 	let position = alignV;
 
 	// target is a context | longpress event
-	if (target instanceof Event && target.type !== 'click') {
+	if (target instanceof Event && (target.type === 'contextmenu' || target.type === 'longpress')) {
 		if (target.type === 'contextmenu') {
 			targetBox = { top: target.y, left: target.x, };
 		}

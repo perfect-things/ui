@@ -1,7 +1,10 @@
 <h1>Changelog</h1>
-<h2>v8.4.4 <em>(2023-08-26)</em></h2>
+<h2>v8.4.5, v8.4.4 <em>(2023-08-26)</em></h2>
 <ul>
 <li>Standardise <code>InputSearch</code> UX: clear button and Escape-to-clear behaviour now works the same in different browsers.</li>
+<li>Enhance <code>Popover</code> so that it updates its position after it detects a content changes.</li>
+<li>Expose <code>Popover</code>&#39;s <code>updatePosition</code> function.</li>
+<li>Tweak the dropdown-align function for popover.</li>
 </ul>
 <h2>v8.4.3 <em>(2023-08-25)</em></h2>
 <ul>

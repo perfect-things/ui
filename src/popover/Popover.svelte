@@ -31,6 +31,21 @@ let targetEl, opened = false;
 let closing = false;
 let eventsAdded = false;
 
+const observer = new MutationObserver(onContentChange);
+
+
+
+
+export function updatePosition () {
+	if (!opened) return;
+	position = alignItem({
+		element,
+		target: targetEl,
+		alignH: 'center',
+		alignV: position,
+		offsetV: +offset
+	});
+}
 
 
 export function open (e) {
@@ -39,16 +54,18 @@ export function open (e) {
 	opened = true;
 
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
-	targetEl = e && e.target;
+
+	if (e instanceof Event) targetEl = e && e.target;
+	if (e instanceof HTMLElement) targetEl = e;
+
 	if (targetEl) addArias(targetEl);
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		if (element.parentElement !== document.body) {
+		if (element && element.parentElement !== document.body) {
 			document.body.appendChild(element);
 		}
 
-		position = alignItem({ element, target: e, alignH: 'center', alignV: 'bottom', offsetV: +offset });
-
+		updatePosition();
 		dispatch('open', { event: e, target: targetEl });
 
 		focusFirst();
@@ -109,6 +126,10 @@ function getFocusableElements () {
 
 
 /*** EVENTS & LISTENERS ***************************************************************************/
+function onContentChange () {
+	updatePosition();
+}
+
 function onDocumentClick (e) {
 	if (!element) return;
 	if (!element.contains(e.target)) close();
@@ -129,6 +150,7 @@ function addEventListeners () {
 	if (eventsAdded) return;
 	document.addEventListener('click', onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
+	observer.observe(element, { attributes: false, childList: true, subtree: true });
 	eventsAdded = true;
 }
 
@@ -136,6 +158,7 @@ function addEventListeners () {
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
+	observer.disconnect();
 	eventsAdded = false;
 }
 /*** EVENTS & LISTENERS ***************************************************************************/

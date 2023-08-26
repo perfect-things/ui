@@ -2,8 +2,11 @@ Changelog
 =========
 
 
-## v8.4.4 *(2023-08-26)*
+## v8.4.5, v8.4.4 *(2023-08-26)*
 - Standardise `InputSearch` UX: clear button and Escape-to-clear behaviour now works the same in different browsers.
+- Enhance `Popover` so that it updates its position after it detects a content changes.
+- Expose `Popover`'s `updatePosition` function.
+- Tweak the dropdown-align function for popover.
 
 
 ## v8.4.3 *(2023-08-25)*
