@@ -2,10 +2,11 @@
 	--popover-tip-size: 14px;
 	--popover-color: var(--ui-popup-background);
 	--popover-border: var(--ui-popup-border);
+	--tip-offset: 50%;
 
 	position: absolute;
 	transform: translateZ(1px);
-	z-index: 9999;
+	z-index: 99;
 }
 
 .popover {
@@ -22,9 +23,10 @@
 	width: var(--popover-tip-size);
 	height: var(--popover-tip-size);
 	transform: rotate(45deg) skew(8deg, 8deg);
-	left: 50%;
+	left: var(--tip-offset);
 	margin-left: calc(var(--popover-tip-size) / -2);
 }
+
 
 .popover::before {
 	box-shadow: var(--ui-shadow-tooltip);

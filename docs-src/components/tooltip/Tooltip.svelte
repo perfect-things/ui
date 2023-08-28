@@ -10,6 +10,7 @@
 <Tooltip target="box2" class="tooltip-html">
 	<h1>Some Title</h1>
 	<p>Some <b>html</b> tooltip content with a <a href="#Tooltip">link</a></p>
+	<p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
 </Tooltip>
 
 
@@ -53,24 +54,12 @@
 <Tooltip target="box5" delay="700">Showing with a delay</Tooltip>
 
 
-<h3>On Click</h3>
-<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
-<div class="tooltip-box" tabindex="0" id="box3">box with a tooltip</div>
-<Tooltip target="box3" events="click">Showing on click</Tooltip>
-
-
-<h3>On Click and on Focus</h3>
-<Button id="box4">button with a tooltip on-focus & on-click</Button>
-<Tooltip target="box4" events="click,focus">Showing on click</Tooltip>
-
-
-
 <CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>
 
 
 <script>
-import { Tooltip, Button } from '../../../src';
+import { Tooltip } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
@@ -79,10 +68,9 @@ const apiProps = [
 	{ name: 'danger', description: 'Tooltip type: danger' },
 	{ name: 'delay', type: 'number', default: '0', description: 'Delay after which the tooltip should appear (in milliseconds).' },
 	{ name: 'error', description: 'Tooltip type: error' },
-	{ name: 'events', type: ['hover', 'click', 'focus'], default: 'hover,focus', description: 'Type of mouse event that should trigger the tooltip. Multiple events can be entered in a comma-separated string.<br>Note, that these events will dictate how the tooltip shows up as well as disappears, e.g.:<br><em>hover</em> - tooltip will show up on mouse over and disappear on mouse out<br><em>click</em> - tooltip will show up on click and will disappear when anything else (but the target or tooltip) is clicked.<br><em>focus</em> - tooltip will show up on focus and disappear on blur.' },
 	{ name: 'info', description: 'Tooltip type: info' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize tooltip offset. Use negative number for smaller offset or positive for bigger' },
-	{ name: 'position', type: ['top', 'bottom'], default: 'top', description: 'Enforce the position of the tooltip to be above (top) or below (bottom) the target element.' },
+	{ name: 'position', type: ['top', 'bottom'], default: 'top', description: 'Prefer the position of the tooltip to be above (top) or below (bottom) the target element.' },
 	{ name: 'success', description: 'Tooltip type: success' },
 	{ name: 'target', required: true, type: 'string', description: 'ID of the target element.' },
 	{ name: 'warning', description: 'Tooltip type: warning' },
@@ -94,9 +82,6 @@ const apiProps = [
 const exampleHtml = `
 <div id="box1"></div>
 <Tooltip position="bottom" target="box1" offset="5">Some tooltip text</Tooltip>
-
-<button id="box4">button with a tooltip on-focus & on-click</button>
- <Tooltip target="box4" events="click,focus">Showing on click</Tooltip>
 `;
 
 </script>

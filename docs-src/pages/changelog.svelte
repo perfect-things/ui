@@ -1,8 +1,20 @@
 <h1>Changelog</h1>
+<h2>v9.0.0 <em>(2023-08-28)</em></h2>
+<ul>
+<li><strong>Improved</strong>: <code>Tooltip</code> was simplified and now the positioning ensures that the tooltip is always visible on the screen.</li>
+<li><strong>Improved</strong>: <code>Popover</code> will now update its position when the window is resized.</li>
+<li>The tip of the <code>Tooltip</code> and <code>Popover</code> will now try to be centered on the target element (if the box was offset from the screen edge).</li>
+</ul>
+<h3>Breaking changes</h3>
+<ul>
+<li>The <code>events</code> property was dropped from the <code>Tooltip</code>, leaving <em>hover</em> and <em>focus</em> events as the default. For use cases when the <em>click</em> was needed, <code>Popover</code> should be used instead.</li>
+<li><code>z-index</code> value of the <code>Popover</code> and <code>Tooltip</code> has been reduced from <code>9999</code> to <code>99</code>, so that it&#39;s closer to the content it describes. Ideally tooltips should slide under some other floating elements of the UI (like toolbars or drawers), while remaining above the content layer. This can be o overriden in the app&#39;s own css if needed.</li>
+</ul>
+<hr>
 <h2>v8.4.5, v8.4.4 <em>(2023-08-26)</em></h2>
 <ul>
 <li>Standardise <code>InputSearch</code> UX: clear button and Escape-to-clear behaviour now works the same in different browsers.</li>
-<li>Enhance <code>Popover</code> so that it updates its position after it detects a content changes.</li>
+<li>Enhance <code>Popover</code> so that it updates its position after it detects a content change.</li>
 <li>Expose <code>Popover</code>&#39;s <code>updatePosition</code> function.</li>
 <li>Tweak the dropdown-align function for popover.</li>
 </ul>

@@ -116,7 +116,7 @@ main>h2,
 	border-bottom: 1px solid var(--ui-color-border-2);
 	position: sticky;
 	top: 0;
-	z-index: 9;
+	z-index: 999;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

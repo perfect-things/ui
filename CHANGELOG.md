@@ -2,6 +2,19 @@ Changelog
 =========
 
 
+## v9.0.0 *(2023-08-28)*
+- **Improved**: `Tooltip` was simplified and now the positioning ensures that the tooltip is always visible on the screen.
+- **Improved**: `Popover` will now update its position when the window is resized.
+- The tip of the `Tooltip` and `Popover` will now try to be centered on the target element (if the box was offset from the screen edge).
+
+### Breaking changes
+- The `events` property was dropped from the `Tooltip`, leaving *hover* and *focus* events as the default. For use cases when the *click* was needed, `Popover` should be used instead.
+- `z-index` value of the `Popover` and `Tooltip` has been reduced from `9999` to `99`, so that it's closer to the content it describes. Ideally tooltips should slide under some other floating elements of the UI (like toolbars or drawers), while remaining above the content layer. This can be o overriden in the app's own css if needed.
+
+
+----
+
+
 ## v8.4.5, v8.4.4 *(2023-08-26)*
 - Standardise `InputSearch` UX: clear button and Escape-to-clear behaviour now works the same in different browsers.
 - Enhance `Popover` so that it updates its position after it detects a content change.

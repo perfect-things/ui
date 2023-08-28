@@ -16,7 +16,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { addArias, removeArias } from './utils.js';
-import { alignItem, FOCUSABLE_SELECTOR } from '../utils.js';
+import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils.js';
 
 const dispatch = createEventDispatcher();
 
@@ -126,9 +126,21 @@ function getFocusableElements () {
 
 
 /*** EVENTS & LISTENERS ***************************************************************************/
+const throttledResize = throttle(updatePosition, 200);
+const debouncedResize = debounce(updatePosition, 200);
+
+// throttle ensures that the popover is repositioned max once every 200ms (to not overload resize events)
+// but it doesn't ensure that the fn is called at the end of resizing. Debounce ensures that.
+function onResize () {
+	throttledResize();
+	debouncedResize();
+}
+
+
 function onContentChange () {
 	updatePosition();
 }
+
 
 function onDocumentClick (e) {
 	if (!element) return;
@@ -150,6 +162,7 @@ function addEventListeners () {
 	if (eventsAdded) return;
 	document.addEventListener('click', onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
+	window.addEventListener('resize', onResize);
 	observer.observe(element, { attributes: false, childList: true, subtree: true });
 	eventsAdded = true;
 }
@@ -158,6 +171,7 @@ function addEventListeners () {
 function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
+	window.removeEventListener('resize', onResize);
 	observer.disconnect();
 	eventsAdded = false;
 }

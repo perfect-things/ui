@@ -59,6 +59,26 @@ export function deepCopy (o) {
 }
 
 
+
+export function debounce (func, timeout = 300) {
+	let timer;
+	return (...args) => {
+		if (timer) clearTimeout(timer);
+		timer = setTimeout(() => func.apply(this, args), timeout);
+	};
+}
+
+
+export function throttle (fn, delay = 300) {
+	let lastCalled = 0;
+	return (...args) => {
+		const now = new Date().getTime();
+		if (now - lastCalled < delay) return;
+		lastCalled = now;
+		return fn(...args);
+	};
+}
+
 export function empty (v) {
 	if (v === null || typeof v === 'undefined') return true;
 	if (v === '') return true;
@@ -150,8 +170,18 @@ export function roundAmount (val, precision = 2) {
 }
 
 
+export function formatDate (date) {
+	const year = date.getFullYear();
+	const month = ('0' + (date.getMonth() + 1)).slice(-2);
+	const day = ('0' + date.getDate()).slice(-2);
+	const hours = ('0' + date.getHours()).slice(-2);
+	const minutes = ('0' + date.getMinutes()).slice(-2);
+	return `${year}-${month}-${day} ${hours}:${minutes}`;
+}
+
+
 export function timeAgo (date, now) {
-	if (!date || !now) return '';
+	if (!date) return '';
 	now = now || new Date().getTime();
 	let seconds = (now - +date) / 1000;
 	const intervals = [
@@ -172,8 +202,8 @@ export function timeAgo (date, now) {
 	if (chunks.length === 1) return chunks[0] + ' ago';
 	// return chunks.join(', ') + ' ago';
 
-	const [d, t] = new Date(date).toISOString().split('T');
-	return `${d} ${t.slice(0, 5)}`;		// 2020-01-01 12:34
+	// format the date to YYYY-MM-DD HH:mm
+	return formatDate(date);
 }
 
 
@@ -193,7 +223,6 @@ export function alignItem ({
 
 	let targetBox = {};
 	let top, left;
-	let position = alignV;
 
 	// target is a context | longpress event
 	if (target instanceof Event && (target.type === 'contextmenu' || target.type === 'longpress')) {
@@ -233,34 +262,50 @@ export function alignItem ({
 	element.style.maxHeight = Math.max(spaceAbove, spaceBelow) + 'px';
 	const elementBox = element.getBoundingClientRect();
 
-	if (alignV === 'top' || spaceBelow < elementBox.height) {
+	if ((alignV === 'top' && spaceAbove > elementBox.height) || spaceBelow < elementBox.height) {
 		top = winH - elementBox.height - viewportPadding;
 		if (alignV === 'top' || top < elementBox.y) {
 			top = targetBox.top - elementBox.height - offsetV;
-			position = 'top';
 		}
 		element.style.top = top + window.scrollY + 'px';
 	}
 
 	// check if the menu is off the right side of the screen
-	if (elementBox.x > winW - elementBox.width - viewportPadding) {
-		left = winW - elementBox.width - viewportPadding;
+	if (winW < elementBox.x + elementBox.width + viewportPadding * 2) {
+		left = winW - elementBox.width - (viewportPadding * 2) - 20;
 		if (left < 0) left = viewportPadding;
-		element.style.left = left + window.scrollX + 'px';
+		left = left + window.scrollX;
 	}
 
 	// check if the menu is off the left side of the screen
 	if (elementBox.x < viewportPadding) {
-		element.style.left = viewportPadding + window.scrollX + 'px';
+		left = viewportPadding + window.scrollX;
 	}
+	element.style.left = left + 'px';
+	element.style.maxWidth = `calc(100% - ${left + viewportPadding}px)`;
 
-	return position;
+	// set the property for the tip offset
+	// so when the popover is at the edge of the screen, and is offset left/right
+	// from the original position, the tip will try to be centered on the target
+	element.style.setProperty('--tip-offset', findTipOffset(targetBox, element));
+
+	return top > targetBox.top ? 'bottom' : 'top';
 }
 
 
+function findTipOffset (targetBox, element) {
+	const elementBox = element.getBoundingClientRect();
+	const targetCenter = targetBox.left + targetBox.width / 2;
+	const elementCenter = elementBox.left + elementBox.width / 2;
+	const tOffset = Math.round(50 + (targetCenter - elementCenter) / elementBox.width * 100);
+	const tooltipOffset = Math.max(0, Math.min(100, tOffset));
+	return `${tooltipOffset}%`;
+}
+
 
 function isScrollable (node) {
-	const overflow = getComputedStyle(node, null).overflowX;
+	const css = getComputedStyle(node, null);
+	const overflow = css.overflowX || css.overflow;
 	if (!/(auto|scroll)/.test(overflow)) return false;
 	return (node.scrollWidth > node.clientWidth);
 }

@@ -52,7 +52,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	position: fixed;
 	left: 0;
 	top: 0.4rem;
-	z-index: 11;
+	z-index: 1001;
 	color: var(--ui-color-text-1);
 	display: none;
 	transform: translateX(10px);
@@ -65,7 +65,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	.nav-toggler.expanded { transform: translateX(calc(var(--sidebar-width) - 40px)); }
 
 	aside {
-		z-index: 10;
+		z-index: 1000;
 		box-shadow: 2px 1px 10px #0006;
 		transform: translateX(calc(var(--sidebar-width) * -1));
 
