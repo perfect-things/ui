@@ -50,6 +50,7 @@
 		<h3>Generic</h3>
 		<NavItem name="Menu" {active} />
 		<NavItem name="Icon" {active} />
+		<NavItem name="Utils" {active} />
 		<!-- <NavItem name="Splitter" {active} /> -->
 		<NavItem name="Color Palette" {active} />
 	</menu>
@@ -98,7 +99,7 @@ function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
 
 	if (isInScrollable(e.target)) return false;
-	const untouchables = 'input, button, .toggle, .dialog-backdrop, .popover, [aria-haspopup="true"]';
+	const untouchables = 'input, button, .toggle, .dialog-backdrop, .notification, .popover, [aria-haspopup="true"]';
 	if (e.target.closest(untouchables)) return;
 
 

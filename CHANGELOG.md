@@ -2,10 +2,17 @@ Changelog
 =========
 
 
-## v9.0.0 *(2023-08-28)*
-- **Improved**: `Tooltip` was simplified and now the positioning ensures that the tooltip is always visible on the screen.
-- **Improved**: `Popover` will now update its position when the window is resized.
+## v9.0.0 *(2023-08-?)*
+- **New**: added `Utils` page in the docs with APIs to the utility functions exposed by the library.
+- `Tooltip` was simplified and now the positioning ensures that the tooltip is always visible on the screen.
+- `Popover` will now update its position when the window is resized.
 - The tip of the `Tooltip` and `Popover` will now try to be centered on the target element (if the box was offset from the screen edge).
+- Improved keyboard focus for notifications: when a notification is dismissed from the keyboard (Escape) the focus will be moved to the next available notification.
+- Improved & standardised z-index throughout the components.
+- Tweaked `Menu` positioning to update on window resize.
+- Tweaked `MenuItem` for responsiveness (e.g. add ellipsis if the text is too long).
+
+
 
 ### Breaking changes
 - The `events` property was dropped from the `Tooltip`, leaving *hover* and *focus* events as the default. For use cases when the *click* was needed, `Popover` should be used instead.

@@ -63,6 +63,7 @@ import { Notifications, ArchivedNotifications, createTimer, timers, hideNotifica
 	send, flip, fly, slideDown } from '../store.js';
 import { NotificationArchive } from '../NotificationArchive';
 import { ANIMATION_SPEED } from '../../utils.js';
+import { getNextNotification } from '../utils.js';
 
 let className = '';
 export { className as class };
@@ -143,8 +144,16 @@ function _send (node, params) {
 }
 
 
+
+
 function onKeydown (e, notification) {
-	if (e.key === 'Escape') hideNotification(notification.id);
+	if (e.key === 'Escape') {
+		const nextEl = getNextNotification(el, notification.id);
+		hideNotification(notification.id)
+			.then(() => {
+				if (nextEl) nextEl.focus();
+			});
+	}
 }
 
 </script>

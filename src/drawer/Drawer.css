@@ -8,7 +8,7 @@
 	width: 24rem;
 	min-height: 20rem;
 	box-shadow: var(--ui-shadow-large);
-	z-index: 11;
+	z-index: calc(var(--ui-z-index-popup) - 2);
 	color: var(--ui-color-text);
 	padding: 0;
 	overflow-y: auto;

@@ -11,7 +11,7 @@
 import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
 import { addArias, removeArias } from './utils.js';
 import initLongPressEvent from './longpress.js';
-import { alignItem, isMobile } from '../utils.js';
+import { alignItem, throttle, debounce, isMobile } from '../utils.js';
 
 const dispatch = createEventDispatcher();
 const isAnyMobile = isMobile();
@@ -38,6 +38,7 @@ let hovering = false;
 let closing = false;
 let eventsAdded = false;
 let typeQuery = '', typeTimer;
+let openEvent;	// needed for alignment of context menus
 
 
 setContext('MenuContext', { targetEl: () => targetEl });
@@ -78,19 +79,15 @@ export function open (e) {
 		removeArias(targetSelector);
 		addArias(targetEl);
 	}
+	openEvent = e;
 
 	return new Promise(resolve => requestAnimationFrame(() => {
 		if (element.parentElement !== document.body) {
 			document.body.appendChild(element);
 		}
 		indexButtons();
-
 		// needs to finish rendering first
-		const isContextMobile = type === 'context' && isAnyMobile;
-		const alignH = align || (isContextMobile ? 'center' : 'left');
-		const alignV = valign || (isContextMobile ? 'top' : 'bottom');
-		const offsetV = isContextMobile ? 20 : 2;
-		alignItem({ element, target: e, alignH, alignV, offsetV });
+		updatePosition();
 
 		dispatch('open', { event: e, target: targetEl });
 		if (element) element.focus();
@@ -134,6 +131,16 @@ function _close () {
 		requestAnimationFrame(resolve);
 		setTimeout(() => closing = false, 300);
 	}));
+}
+
+
+
+function updatePosition () {
+	const isContextMobile = type === 'context' && isAnyMobile;
+	const alignH = align || (isContextMobile ? 'center' : 'left');
+	const alignV = valign || (isContextMobile ? 'top' : 'bottom');
+	const offsetV = isContextMobile ? 20 : 2;
+	alignItem({ element, target: openEvent, alignH, alignV, offsetV });
 }
 
 
@@ -219,12 +226,25 @@ function matchQuery (buttons, key) {
 }
 
 
+const throttledResize = throttle(updatePosition, 200);
+const debouncedResize = debounce(updatePosition, 200);
+
+// throttle ensures that the popover is repositioned max once every 200ms (to not overload resize events)
+// but it doesn't ensure that the fn is called at the end of resizing. Debounce ensures that.
+function onResize () {
+	throttledResize();
+	debouncedResize();
+}
+
+
+
 function addEventListeners () {
 	if (eventsAdded) return;
 	document.addEventListener('click', onDocumentClick);
 	if (type !== 'context') document.addEventListener(contextmenuEventName, onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
 	document.addEventListener('mouseover', onMouseOver);
+	window.addEventListener('resize', onResize);
 	eventsAdded = true;
 }
 
@@ -234,6 +254,7 @@ function removeEventListeners () {
 	if (type !== 'context') document.removeEventListener(contextmenuEventName, onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
 	document.removeEventListener('mouseover', onMouseOver);
+	window.removeEventListener('resize', onResize);
 	eventsAdded = false;
 }
 /*** EVENTS & LISTENERS ***************************************************************************/

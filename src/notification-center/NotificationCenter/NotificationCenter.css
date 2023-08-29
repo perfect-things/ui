@@ -20,7 +20,7 @@
 }
 
 .notification-center.archive-is-visible,
-.notification-center.has-active-notifications { z-index: 999; }
+.notification-center.has-active-notifications { z-index: var(--ui-z-index-popup); }
 
 
 .notification {
@@ -37,7 +37,7 @@
 	margin: var(--ui-notification-gap) var(--ui-notification-gap) 0;
 	box-shadow: var(--ui-shadow-fancy);
 	border-radius: var(--ui-notification-border-radius);
-	z-index: 9;
+	z-index: var(--ui-z-index-popup);
 }
 
 .notification:last-child { margin-bottom: calc(var(--ui-notification-gap) + 10px); }

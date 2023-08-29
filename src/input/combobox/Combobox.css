@@ -6,7 +6,7 @@
 
 .combobox-list {
 	position: absolute;
-	z-index: 100;
+	z-index: var(--ui-z-index-popup);
 	overflow-y: auto;
 	overscroll-behavior-y: contain;
 	padding: 0.2rem;

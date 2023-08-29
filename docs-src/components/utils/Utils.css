@@ -1,0 +1,5 @@
+.utilities h3.util {
+	font-size: 1.1rem;
+	color: var(--ui-color-accent);
+	font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
+}

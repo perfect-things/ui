@@ -92,10 +92,13 @@ export function showNotification (msg, type = 'info', timeout = 5000, btn, cb = 
 
 
 export function hideNotification (id) {
-	Notifications.update(list => {
-		addToArchive(list[id]);
-		delete list[id];
-		return list;
+	return new Promise(resolve => {
+		Notifications.update(list => {
+			addToArchive(list[id]);
+			delete list[id];
+			return list;
+		});
+		requestAnimationFrame(resolve);
 	});
 }
 
@@ -111,8 +114,11 @@ function addToArchive (notification) {
 
 
 export function removeFromArchive (id) {
-	ArchivedNotifications.update(list => {
-		delete list[id];
-		return list;
+	return new Promise(resolve => {
+		ArchivedNotifications.update(list => {
+			delete list[id];
+			return list;
+		});
+		requestAnimationFrame(resolve);
 	});
 }

@@ -70,7 +70,7 @@
 }
 .show-archive .notification-archive {
 	transform: translateX(0);
-	margin-bottom: 10rem;
+	margin-bottom: 1rem;
 	height: auto;
 	overflow: visible;
 }

@@ -10,7 +10,7 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	cursor: default;
-	z-index: 999;
+	z-index: var(--ui-z-index-popup);
 	max-height: calc(100vh - 4px);
 	-webkit-user-select: none;
 	user-select: none;
@@ -65,10 +65,14 @@
 
 .menu-item-content {
 	display: flex;
+	min-width: 0;
 	align-items: center;
 	justify-content: space-between;
-	margin-right: 2rem;
+	margin-right: 1rem;
 }
+
+.menu-item-text { overflow: hidden; text-overflow: ellipsis; }
+
 
 .menu-separator {
 	height: 0;
