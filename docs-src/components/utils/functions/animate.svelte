@@ -1,4 +1,4 @@
-<h3 class="util">animate(element, from, to, options?)</h3>
+<h3 class="util" id="Animate">animate(element, from, to, options?)</h3>
 
 <p>Animates an element from one state to another. Shortcut & wrapper for the native javascript animation.</p>
 
@@ -10,8 +10,8 @@
 
 
 <script>
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { API } from '../../../api-table';
+import { CodeExample } from '../../../code-example';
 
 const apiProps = [
 	{ name: 'element', type: 'HTMLElement', description: 'An element that will be animated.' },

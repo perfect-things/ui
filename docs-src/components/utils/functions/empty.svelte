@@ -1,4 +1,4 @@
-<h3 class="util">empty(value)</h3>
+<h3 class="util" id="Empty">empty(value)</h3>
 <p>Similar to PHP's <em>empty</em> - returns true if a value is empty.</p>
 <ul>
 	<li><em>value</em> - any data type.
@@ -17,7 +17,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

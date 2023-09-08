@@ -1,4 +1,4 @@
-<h3 class="util">FOCUSABLE_SELECTOR</h3>
+<h3 class="util" id="FocusableSelector">FOCUSABLE_SELECTOR</h3>
 <ul>
 	<li>Svelte store<em>*</em>
 	<li>Type: string
@@ -7,7 +7,7 @@
 <CodeExample nohr html="{example}" />
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

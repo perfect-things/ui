@@ -1,4 +1,4 @@
-<h3 class="util">fuzzy (haystack = '', needle = '')</h3>
+<h3 class="util" id="Fuzzy">fuzzy(haystack = '', needle = '')</h3>
 <p>Fuzzy finds if <em>haystack</em> contains characters from the <em>needle</em> in the same order.</p>
 <ul>
 	<li><em>haystack</em> - a string to be searched in.
@@ -11,7 +11,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

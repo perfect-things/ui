@@ -1,4 +1,4 @@
-<h3 class="util">blink(element, duration = 160)</h3>
+<h3 class="util" id="Blink">blink(element, duration = 160)</h3>
 <p>Animates an element by changing its opacity from 0.5 to 1.</p>
 <ul>
 	<li><em>element</em> - HTMLElement to animate
@@ -9,7 +9,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

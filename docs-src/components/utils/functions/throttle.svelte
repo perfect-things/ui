@@ -1,4 +1,4 @@
-<h3 class="util">throttle(fn, timeout = 300)</h3>
+<h3 class="util" id="Throttle">throttle(fn, timeout = 300)</h3>
 <p>The "throttled" function will only be called once every <em>timeout</em> milliseconds.</p>
 <ul>
 	<li><em>fn</em> - function to debounce.
@@ -27,7 +27,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

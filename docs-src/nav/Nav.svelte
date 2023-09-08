@@ -70,7 +70,7 @@ import * as TestComponents from '../components';
 
 const components = { GetStarted, Changelog, ...TestComponents, };
 
-let active = location.hash.substr(1) || 'GetStarted';
+let [active, heading] = getSection();
 export let component = components[active];
 
 const SIDEBAR_WIDTH = 220;
@@ -80,6 +80,9 @@ let swiping = false;
 const swipeSlowDownFactor = 2.5;
 let sidebarEl, navTogglerBtn;
 
+$: {
+	if (heading) waitForElementAndScroll(heading);
+}
 
 onMount(() => {
 	const swiper = new VanillaSwipe({
@@ -93,7 +96,17 @@ onMount(() => {
 		onTap: onTap,
 	});
 	swiper.init();
+	[active, heading] = getSection();
 });
+
+
+function waitForElementAndScroll (selector, count = 10) {
+	if (count === 0) return;
+	const el = document.getElementById(selector);
+	if (!el) return setTimeout(() => waitForElementAndScroll(selector, count - 1), 200);
+	el.scrollIntoView({ behavior: 'smooth' });
+}
+
 
 function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
@@ -184,17 +197,25 @@ function onTap (e) {
 }
 
 
-function onhashchange () {
-	active = location.hash.substr(1);
-	component = components[active];
-	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
-	document.scrollingElement.scrollTop = 0;
-}
-
 
 function toggleNav () {
 	expanded = !expanded;
 	wasExpanded = expanded;
+}
+
+
+function getSection () {
+	let [_section, _heading] = location.hash.substr(1).split('/');
+	_section = _section || 'GetStarted';
+	_heading = _heading || 'top';
+	return [_section, _heading];
+}
+
+function onhashchange () {
+	[active, heading] = getSection();
+	component = components[active];
+	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
+	document.scrollingElement.scrollTop = 0;
 }
 
 function onpopstate () {

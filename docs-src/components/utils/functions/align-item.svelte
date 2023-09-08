@@ -1,4 +1,4 @@
-<h3 class="util">alignItem (config)</h3>
+<h3 class="util" id="AlignItem">alignItem(config)</h3>
 <p>Aligns an element to another element,
 	ensuring that the aligned element remains within the viewport.
 </p>
@@ -13,8 +13,8 @@
 
 
 <script>
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { API } from '../../../api-table';
+import { CodeExample } from '../../../code-example';
 
 
 const apiProps = [

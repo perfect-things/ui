@@ -1,4 +1,4 @@
-<h3 class="util">deepCopy(object)</h3>
+<h3 class="util" id="DeepCopy">deepCopy(object)</h3>
 <p>This is just an alias for an oddly-named native function: <b>structuredClone</b>.</p>
 <ul>
 	<li><em>object</em> - any object or array to clone.
@@ -7,7 +7,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

@@ -1,11 +1,11 @@
-<h3 class="util">guid ()</h3>
+<h3 class="util" id="Guid">guid()</h3>
 <p>Generates a globally unique identifier.</p>
 
 <CodeExample nohr html="{example}" />
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

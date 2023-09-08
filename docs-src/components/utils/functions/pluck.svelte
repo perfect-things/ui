@@ -1,4 +1,4 @@
-<h3 class="util">pluck (object, props)</h3>
+<h3 class="util" id="Pluck">pluck(object, props)</h3>
 <p>Creates a new object with only the plucked properties from the original object..</p>
 <ul>
 	<li><em>object</em> - object to pluck from.
@@ -9,7 +9,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

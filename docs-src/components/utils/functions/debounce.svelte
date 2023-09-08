@@ -1,4 +1,4 @@
-<h3 class="util">debounce(fn, timeout = 300)</h3>
+<h3 class="util" id="Debounce">debounce(fn, timeout = 300)</h3>
 <p>The "debounced" function will only be called after it has not been called for <em>timeout</em> milliseconds.</p>
 <ul>
 	<li><em>fn</em> - function to debounce.
@@ -15,7 +15,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

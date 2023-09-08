@@ -1,11 +1,11 @@
-<h3 class="util">formatDate (date)</h3>
+<h3 class="util" id="FormatDate">formatDate(date)</h3>
 <p>Converts date to a string in the format: <em>YYYY-MM-DD HH:mm</em>.</p>
 
 <CodeExample nohr html="{example}" />
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>

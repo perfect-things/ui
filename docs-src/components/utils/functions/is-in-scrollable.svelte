@@ -1,4 +1,4 @@
-<h3 class="util">isInScrollable (node)</h3>
+<h3 class="util" id="IsInScrollable">isInScrollable(node)</h3>
 <p>Checks whether the given node is inside a scrollable element.</p>
 <p>This function is useful when determining whether a swipe event should be allowed
 	to start on a given element.<br>
@@ -10,7 +10,7 @@
 
 
 <script>
-import { CodeExample } from '../../code-example';
+import { CodeExample } from '../../../code-example';
 
 const example = `
 <script>
