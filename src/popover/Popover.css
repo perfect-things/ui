@@ -6,7 +6,7 @@
 
 	position: absolute;
 	transform: translateZ(1px);
-	z-index: 99;
+	z-index: var(--ui-z-index-elevated);
 }
 
 .popover {

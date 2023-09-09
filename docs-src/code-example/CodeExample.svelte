@@ -1,5 +1,6 @@
 {#if !notitle}
-	<hr><h3>Example</h3>
+	{#if nohr === undefined}<hr>{/if}
+	<h3>Example</h3>
 {/if}
 <pre><code class="language-svelte">
 	{@html encode(html)}
@@ -8,6 +9,7 @@
 <script>
 export let html = '';
 export let notitle = false;
+export let nohr = undefined;
 
 function encode (s) {
 	return s

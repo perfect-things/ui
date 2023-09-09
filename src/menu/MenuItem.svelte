@@ -13,7 +13,7 @@
 
 	<span class="menu-item-content">
 		{#if icon}<Icon name="{icon}" />{/if}
-		<slot />
+		<div class="menu-item-text"><slot /></div>
 	</span>
 	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
 </button>

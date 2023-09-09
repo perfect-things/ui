@@ -92,7 +92,7 @@
 .sticky-block {
 	background: var(--ui-color-background);
 	margin: 0;
-	padding: 0 0 3rem;
+	padding: 0;
 }
 
 main>h1,
@@ -116,7 +116,7 @@ main>h2,
 	border-bottom: 1px solid var(--ui-color-border-2);
 	position: sticky;
 	top: 0;
-	z-index: 999;
+	z-index: 50;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

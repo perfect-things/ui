@@ -1,0 +1,47 @@
+.section-utils {
+	--nav-sidebar-width: 240px;
+}
+.section-utils .dark-mode-switch { right: calc(var(--nav-sidebar-width) + 20px); }
+
+.utilities { padding-bottom: 3rem; margin-right: var(--nav-sidebar-width); }
+
+
+.utilities h3.util {
+	scroll-margin-top: 4.2rem;
+	font-size: 1.1rem;
+	color: var(--ui-color-accent);
+	font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
+}
+
+
+.utilities-nav {
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 52;
+	margin: 0;
+	padding: 1rem 2rem;
+	overflow-y: auto;
+	width: var(--nav-sidebar-width);
+	border-left: 1px solid var(--ui-color-border-2);
+	background-color: var(--ui-color-background-input);
+}
+
+.section-utils .btn-scroll-top { right: calc(var(--nav-sidebar-width) + 20px); }
+
+
+@media (1px <= width <= 900px) {
+	.section-utils .dark-mode-switch { right: 0.6rem; }
+	.section-utils .btn-scroll-top { right: 1rem; }
+	.utilities { margin-right: 0; }
+	.utilities-nav {
+		position: static;
+		border-left: none;
+		width: auto;
+		z-index: initial;
+		margin-top: 2rem;
+		background-color: unset;
+	}
+
+}

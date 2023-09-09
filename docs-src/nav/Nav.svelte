@@ -50,17 +50,25 @@
 		<h3>Generic</h3>
 		<NavItem name="Menu" {active} />
 		<NavItem name="Icon" {active} />
+		<NavItem name="Utils" {active} />
 		<!-- <NavItem name="Splitter" {active} /> -->
 		<NavItem name="Color Palette" {active} />
 	</menu>
 
 </aside>
 
+<UIButton round info
+	icon="arrowNarrowUp"
+	class="btn-scroll-top {showScrollTopBtn ? '' : 'hidden'}"
+	title="Scroll to the top"
+	on:click="{scrollToTop}" />
+
 <svelte:window on:hashchange="{onhashchange}" on:popstate="{onpopstate}" />
 
+
 <script>
-import { onMount } from 'svelte';
-import { Button as UIButton, isInScrollable } from '../../src';
+import { onDestroy, onMount } from 'svelte';
+import { Button as UIButton, isInScrollable, debounce } from '../../src';
 import VanillaSwipe from 'vanilla-swipe';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
@@ -69,15 +77,23 @@ import * as TestComponents from '../components';
 
 const components = { GetStarted, Changelog, ...TestComponents, };
 
-let active = location.hash.substr(1) || 'GetStarted';
+let [active, heading] = getSection();
 export let component = components[active];
 
 const SIDEBAR_WIDTH = 220;
+const swipeSlowDownFactor = 2.5;
+const onScroll = debounce(checkScrollOffset);
+
+let showScrollTopBtn = false;
 let expanded = false;
 let wasExpanded = false;
 let swiping = false;
-const swipeSlowDownFactor = 2.5;
 let sidebarEl, navTogglerBtn;
+
+
+$: {
+	waitForElementAndScroll(heading);
+}
 
 
 onMount(() => {
@@ -92,13 +108,22 @@ onMount(() => {
 		onTap: onTap,
 	});
 	swiper.init();
+	[active, heading] = getSection();
+
+	window.addEventListener('scroll', onScroll);
 });
+
+
+onDestroy(() => {
+	window.removeEventListener('scroll', onScroll);
+});
+
 
 function onSwipeStart (e) {
 	if (window.innerWidth > 700) return;
 
 	if (isInScrollable(e.target)) return false;
-	const untouchables = 'input, button, .toggle, .dialog-backdrop, .popover, [aria-haspopup="true"]';
+	const untouchables = 'input, button, .toggle, .dialog-backdrop, .notification, .popover, [aria-haspopup="true"]';
 	if (e.target.closest(untouchables)) return;
 
 
@@ -183,17 +208,43 @@ function onTap (e) {
 }
 
 
-function onhashchange () {
-	active = location.hash.substr(1);
-	component = components[active];
-	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
-	document.scrollingElement.scrollTop = 0;
-}
-
 
 function toggleNav () {
 	expanded = !expanded;
 	wasExpanded = expanded;
+}
+
+
+function scrollToTop () {
+	document.scrollingElement.scrollTo({ top: 0, behavior: 'smooth' });
+	setTimeout(() => {
+		let section = location.hash.substring(1);
+		if (section.includes('/')) section = section.substr(0, section.indexOf('/'));
+		location.hash = section;
+	}, 300);
+}
+
+function waitForElementAndScroll (selector, count = 10) {
+	if (count === 0) return;
+	const el = document.getElementById(selector);
+	if (!el) return setTimeout(() => waitForElementAndScroll(selector, count - 1), 200);
+	el.scrollIntoView({ behavior: 'smooth' });
+}
+
+
+function getSection () {
+	let [_section, _heading] = location.hash.substr(1).split('/');
+	_section = _section || 'GetStarted';
+	_heading = _heading || 'top';
+	document.body.className = 'section-' + _section.toLocaleLowerCase();
+	return [_section, _heading];
+}
+
+function onhashchange () {
+	[active, heading] = getSection();
+	component = components[active];
+	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
+	document.scrollingElement.scrollTop = 0;
 }
 
 function onpopstate () {
@@ -201,6 +252,9 @@ function onpopstate () {
 	wasExpanded = expanded;
 }
 
+function checkScrollOffset () {
+	showScrollTopBtn = document.scrollingElement.scrollTop > 200;
+}
 
 
 </script>

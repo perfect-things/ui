@@ -10,7 +10,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 100;
+	z-index: var(--ui-z-index-popup);
 	padding-top: 0.2rem;
 }
 

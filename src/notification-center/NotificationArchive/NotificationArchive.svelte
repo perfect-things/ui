@@ -19,6 +19,7 @@
 		{#each archived as notification (notification.id)}
 			<div
 				tabindex="0"
+				data-id="{notification.id}"
 				class="notification notification-{notification.type} archived"
 				on:keydown="{e => onKeydown(e, notification)}"
 				in:_in="{{ key: notification.id }}"
@@ -39,6 +40,8 @@ import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
 import { ArchivedNotifications, removeFromArchive, receive, fly, slideUp, flip } from '../store.js';
 import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
+import { getNextNotification } from '../utils.js';
+
 
 export let show = false;
 export let expanded = false;
@@ -82,7 +85,13 @@ function clearAll (e) {
 
 
 function onKeydown (e, notification) {
-	if (e.key === 'Escape') removeFromArchive(notification.id);
+	if (e.key === 'Escape') {
+		const nextEl = getNextNotification(el, notification.id);
+		removeFromArchive(notification.id)
+			.then(() => {
+				if (nextEl) nextEl.focus();
+			});
+	}
 }
 
 

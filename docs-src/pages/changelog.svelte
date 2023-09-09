@@ -1,9 +1,14 @@
 <h1>Changelog</h1>
-<h2>v9.0.0 <em>(2023-08-28)</em></h2>
+<h2>v9.0.0 <em>(2023-08-?)</em></h2>
 <ul>
-<li><strong>Improved</strong>: <code>Tooltip</code> was simplified and now the positioning ensures that the tooltip is always visible on the screen.</li>
-<li><strong>Improved</strong>: <code>Popover</code> will now update its position when the window is resized.</li>
+<li><strong>New</strong>: added <code>Utils</code> page in the docs with APIs to the utility functions exposed by the library.</li>
+<li><code>Tooltip</code> was simplified and now the positioning ensures that the tooltip is always visible on the screen.</li>
+<li><code>Popover</code> will now update its position when the window is resized.</li>
 <li>The tip of the <code>Tooltip</code> and <code>Popover</code> will now try to be centered on the target element (if the box was offset from the screen edge).</li>
+<li>Improved keyboard focus for notifications: when a notification is dismissed from the keyboard (Escape) the focus will be moved to the next available notification.</li>
+<li>Improved &amp; standardised z-index throughout the components.</li>
+<li>Tweaked <code>Menu</code> positioning to update on window resize.</li>
+<li>Tweaked <code>MenuItem</code> for responsiveness (e.g. add ellipsis if the text is too long).</li>
 </ul>
 <h3>Breaking changes</h3>
 <ul>

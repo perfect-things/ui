@@ -245,6 +245,7 @@ export function alignItem ({
 
 	top = targetBox.top + targetBox.height + offsetV;
 	left = targetBox.left + offsetH;
+
 	if (alignH === 'right') left += targetBox.width - element.offsetWidth;
 	else if (alignH === 'center') {
 		left = (targetBox.width - element.offsetWidth) / 2 + targetBox.left;
@@ -271,8 +272,9 @@ export function alignItem ({
 	}
 
 	// check if the menu is off the right side of the screen
-	if (winW < elementBox.x + elementBox.width + viewportPadding * 2) {
-		left = winW - elementBox.width - (viewportPadding * 2) - 20;
+	const padding = alignH === 'center' ? viewportPadding * 2 : viewportPadding;
+	if (winW < elementBox.x + elementBox.width + padding) {
+		left = winW - elementBox.width - padding;
 		if (left < 0) left = viewportPadding;
 		left = left + window.scrollX;
 	}
