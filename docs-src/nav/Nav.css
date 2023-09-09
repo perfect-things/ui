@@ -59,6 +59,14 @@ menu a.active { background-color: var(--ui-color-highlight); }
 }
 .nav-toggler:hover { color: var(--ui-color-text); background: none; }
 
+.btn-scroll-top {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	z-index: 999;
+}
+.btn-scroll-top.hidden { display: none; }
+
 
 @media (1px <= width <= 700px) {
 	.nav-toggler { display: flex; }

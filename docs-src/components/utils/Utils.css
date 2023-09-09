@@ -1,6 +1,9 @@
-.utils .dark-mode-switch { right: 260px; }
+.section-utils {
+	--nav-sidebar-width: 240px;
+}
+.section-utils .dark-mode-switch { right: calc(var(--nav-sidebar-width) + 20px); }
 
-.utilities { padding-bottom: 3rem; margin-right: 240px; }
+.utilities { padding-bottom: 3rem; margin-right: var(--nav-sidebar-width); }
 
 
 .utilities h3.util {
@@ -20,7 +23,25 @@
 	margin: 0;
 	padding: 1rem 2rem;
 	overflow-y: auto;
-	width: 240px;
+	width: var(--nav-sidebar-width);
 	border-left: 1px solid var(--ui-color-border-2);
 	background-color: var(--ui-color-background-input);
+}
+
+.section-utils .btn-scroll-top { right: calc(var(--nav-sidebar-width) + 20px); }
+
+
+@media (1px <= width <= 900px) {
+	.section-utils .dark-mode-switch { right: 0.6rem; }
+	.section-utils .btn-scroll-top { right: 1rem; }
+	.utilities { margin-right: 0; }
+	.utilities-nav {
+		position: static;
+		border-left: none;
+		width: auto;
+		z-index: initial;
+		margin-top: 2rem;
+		background-color: unset;
+	}
+
 }
