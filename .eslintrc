@@ -2,15 +2,15 @@
     "root": true,
     "extends": [
         "eslint:recommended",
-		"plugin:svelte/recommended",
+        "plugin:svelte/recommended",
         "plugin:import/recommended",
         "plugin:import/errors",
         "plugin:import/warnings"
     ],
     "env": {
         "browser": true,
-		"jest": true,
-		"node": true,
+        "jest": true,
+        "node": true,
         "es2022": true
     },
     "parserOptions": {
@@ -19,22 +19,22 @@
         "project": ["./jsconfig.json"],
         "extraFileExtensions": [".svelte"]
     },
-	"settings": {
-		"import/parsers": {
-		  "svelte-eslint-parser": [".svelte"],
-		  "@typescript-eslint/parser": [ ".ts", ".tsx" ],
-		  "espree": [".js"]
-		},
-		"import/resolver": {
-			"node": { "extensions": [ ".js", ".svelte", ".ts" ] },
-			"eslint-import-resolver-custom-alias": {
-				"alias": {
-					"@testing-library/svelte": "./node_modules/@testing-library/svelte/src",
-					"svelte": "./node_modules/svelte/src/runtime"
-				}
-			}
-		}
-	},
+    "settings": {
+        "import/parsers": {
+          "svelte-eslint-parser": [".svelte"],
+          "@typescript-eslint/parser": [ ".ts", ".tsx" ],
+          "espree": [".js"]
+        },
+        "import/resolver": {
+            "node": { "extensions": [ ".js", ".svelte", ".ts" ] },
+            "eslint-import-resolver-custom-alias": {
+                "alias": {
+                    "@testing-library/svelte": "./node_modules/@testing-library/svelte/src",
+                    "svelte": "./node_modules/svelte/src/runtime"
+                }
+            }
+        }
+    },
     "plugins": [ "import" ],
     "rules": {
         "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
@@ -67,6 +67,6 @@
         "import/namespace": 2,
         "import/default": 2,
         "import/export": 2,
-		"svelte/no-at-html-tags": 0
+        "svelte/no-at-html-tags": 0
     }
 }
