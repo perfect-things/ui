@@ -1,11 +1,9 @@
-<h3 class="util" id="TimeAgo">timeAgo(date, now)</h3>
-<p>Converts date to a string describing how long time ago was the given date.</p>
-
-<CodeExample nohr html="{example}" />
-
+<Util id="TimeAgo" name="timeAgo(date, now)" {example}>
+	<p>Converts date to a string describing how long time ago was the given date.</p>
+</Util>
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

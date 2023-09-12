@@ -3,10 +3,10 @@
 }
 .section-utils .dark-mode-switch { right: calc(var(--nav-sidebar-width) + 20px); }
 
-.utilities { padding-bottom: 3rem; margin-right: var(--nav-sidebar-width); }
+.section-utils .sticky-block { padding-bottom: 3rem; margin-right: var(--nav-sidebar-width); }
 
 
-.utilities h3.util {
+.section-utils .sticky-block .utility h3 {
 	scroll-margin-top: 4.2rem;
 	font-size: 1.1rem;
 	color: var(--ui-color-accent);
@@ -14,7 +14,7 @@
 }
 
 
-.utilities-nav {
+.section-utils .utilities-nav {
 	position: fixed;
 	right: 0;
 	top: 0;
@@ -28,14 +28,21 @@
 	background-color: var(--ui-color-background-input);
 }
 
+.section-utils .utility {
+	margin: 0 -2rem;
+	padding: 1rem 2rem;
+	border-bottom: 1px solid var(--ui-color-border-2);
+}
+
+
 .section-utils .btn-scroll-top { right: calc(var(--nav-sidebar-width) + 20px); }
 
 
 @media (1px <= width <= 900px) {
 	.section-utils .dark-mode-switch { right: 0.6rem; }
 	.section-utils .btn-scroll-top { right: 1rem; }
-	.utilities { margin-right: 0; }
-	.utilities-nav {
+	.section-utils .sticky-block { margin-right: 0; }
+	.section-utils .utilities-nav {
 		position: static;
 		border-left: none;
 		width: auto;

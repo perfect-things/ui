@@ -1,11 +1,10 @@
-<h3 class="util" id="GetMouseX">getMouseX(event)</h3>
-<p>Returns the mouse X position. Event is standardised across platforms (touch & pointer)</p>
-
-<CodeExample nohr html="{example}" />
+<Util id="GetMouseX" name="getMouseX(event)" {example}>
+	<p>Returns the mouse X position. Event is standardised across platforms (touch & pointer)</p>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

@@ -1,15 +1,14 @@
-<h3 class="util" id="Pluck">pluck(object, props)</h3>
-<p>Creates a new object with only the plucked properties from the original object..</p>
-<ul>
-	<li><em>object</em> - object to pluck from.
-	<li><em>props</em> - an array of property names.
-</ul>
-
-<CodeExample nohr html="{example}" />
+<Util id="Pluck" name="pluck(object, props)" {example}>
+	<p>Creates a new object with only the plucked properties from the original object..</p>
+	<ul>
+		<li><em>object</em> - object to pluck from.
+		<li><em>props</em> - an array of property names.
+	</ul>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

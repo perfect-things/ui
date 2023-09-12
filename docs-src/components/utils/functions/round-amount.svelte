@@ -1,11 +1,10 @@
-<h3 class="util" id="RoundAmount">roundAmount(value, precision = 2)</h3>
-<p>Rounds a number to 2 decimal places (by default).</p>
-
-<CodeExample nohr html="{example}" />
+<Util id="RoundAmount" name="roundAmount(value, precision = 2)" {example}>
+	<p>Rounds a number to 2 decimal places (by default).</p>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

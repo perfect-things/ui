@@ -1,23 +1,22 @@
-<h3 class="util" id="Empty">empty(value)</h3>
-<p>Similar to PHP's <em>empty</em> - returns true if a value is empty.</p>
-<ul>
-	<li><em>value</em> - any data type.
-</ul>
+<Util id="Empty" name="empty(value)" {example}>
+	<p>Similar to PHP's <em>empty</em> - returns true if a value is empty.</p>
+	<ul>
+		<li><em>value</em> - any data type.
+	</ul>
 
-<p>Empty will return true if the <em>value</em> is one of the following:</p>
-<ul>
-	<li><em>undefined</em>
-	<li><em>null</em>
-	<li><em>empty string</em>
-	<li><em>empty array</em>
-	<li><em>empty object</em>
-</ul>
-
-<CodeExample nohr html="{example}" />
+	<p>Empty will return true if the <em>value</em> is one of the following:</p>
+	<ul>
+		<li><em>undefined</em>
+		<li><em>null</em>
+		<li><em>empty string</em>
+		<li><em>empty array</em>
+		<li><em>empty object</em>
+	</ul>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

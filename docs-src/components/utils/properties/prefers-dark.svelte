@@ -1,16 +1,14 @@
-<h3 class="util" id="PrefersDark">PREFERS_DARK</h3>
-<ul>
-	<li>Svelte store<em>*</em>
-	<li>Type: boolean
-	<li>Updates on system theme change.
-	<li>Returns user preference for dark mode.
-</ul>
-
-<CodeExample nohr html="{example}" />
+<Util id="PrefersDark" name="PREFERS_DARK" {example}>
+	<ul>
+		<li>Svelte store<em>*</em>
+		<li>Type: boolean
+		<li>Updates on system theme change.
+		<li>Returns user preference for dark mode.
+	</ul>
+</Util>
 
 <script>
-import { CodeExample } from '../../../code-example';
-
+import Util from '../Util.svelte';
 const example = `
 <script>
 	import { PREFERS_DARK } from '@perfectthings/ui';

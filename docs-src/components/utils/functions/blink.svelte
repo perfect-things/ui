@@ -1,15 +1,15 @@
-<h3 class="util" id="Blink">blink(element, duration = 160)</h3>
-<p>Animates an element by changing its opacity from 0.5 to 1.</p>
-<ul>
-	<li><em>element</em> - HTMLElement to animate
-	<li><em>duration</em> - how long to animate (in ms).
-	<li>Returns a promise which resolves when the animation finishes.
-</ul>
-<CodeExample nohr html="{example}" />
+<Util id="Blink" name="blink(element, duration = 160)" {example}>
+	<p>Animates an element by changing its opacity from 0.5 to 1.</p>
+	<ul>
+		<li><em>element</em> - HTMLElement to animate
+		<li><em>duration</em> - how long to animate (in ms).
+		<li>Returns a promise which resolves when the animation finishes.
+	</ul>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>
@@ -17,6 +17,5 @@ const example = `
 	blink(el).then(() => console.log('animation finished'));
 &lt;/script>
 `;
-
 
 </script>

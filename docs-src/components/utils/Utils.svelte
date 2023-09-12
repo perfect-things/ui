@@ -1,4 +1,4 @@
-<div class="sticky-block utilities utilities-nav">
+<div class="sticky-block utilities-nav">
 	<h3>Utility properties</h3>
 	<ul>
 		{#each props as item}
@@ -14,12 +14,10 @@
 	</ul>
 </div>
 
-<div class="sticky-block utilities" id="top">
+<div class="sticky-block" id="top">
 	<h2>Utility properties</h2>
 	{#each props as item}
-		<div class="utility">
-			<svelte:component this="{Properties[item]}" /><br>
-		</div>
+		<svelte:component this="{Properties[item]}" /><br>
 	{/each}
 	<p>
 		<em>*</em> <a href="https://svelte.dev/docs/svelte-components#script-4-prefix-stores-with-$-to-access-their-values">
@@ -28,12 +26,10 @@
 	</p>
 </div>
 
-<div class="sticky-block utilities">
+<div class="sticky-block">
 	<h2>Utility Functions</h2>
 	{#each fns as item}
-		<div class="utility">
-			<svelte:component this="{Functions[item]}" /><br>
-		</div>
+		<svelte:component this="{Functions[item]}" /><br>
 	{/each}
 </div>
 

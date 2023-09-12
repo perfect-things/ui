@@ -1,13 +1,13 @@
-<h3 class="util" id="DeepCopy">deepCopy(object)</h3>
-<p>This is just an alias for an oddly-named native function: <b>structuredClone</b>.</p>
-<ul>
-	<li><em>object</em> - any object or array to clone.
-</ul>
-<CodeExample nohr html="{example}" />
+<Util id="DeepCopy" name="deepCopy(object)" {example}>
+	<p>This is just an alias for an oddly-named native function: <b>structuredClone</b>.</p>
+	<ul>
+		<li><em>object</em> - any object or array to clone.
+	</ul>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>
@@ -15,6 +15,5 @@ const example = `
 	const clone = deepCopy(original);
 &lt;/script>
 `;
-
 
 </script>

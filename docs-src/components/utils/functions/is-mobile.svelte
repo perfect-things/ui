@@ -1,11 +1,10 @@
-<h3 class="util" id="IsMobile">isMobile()</h3>
-<p>Checks if the current platform is mobile.</p>
-
-<CodeExample nohr html="{example}" />
+<Util id="IsMobile" name="isMobile()" {example}>
+	<p>Checks if the current platform is mobile.</p>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

@@ -1,13 +1,13 @@
-<h3 class="util" id="FocusableSelector">FOCUSABLE_SELECTOR</h3>
-<ul>
-	<li>Svelte store<em>*</em>
-	<li>Type: string
-	<li>Returns a list of selectors that can be focused.
-</ul>
-<CodeExample nohr html="{example}" />
+<Util id="FocusableSelector" name="FOCUSABLE_SELECTOR" {example}>
+	<ul>
+		<li>Svelte store<em>*</em>
+		<li>Type: string
+		<li>Returns a list of selectors that can be focused.
+	</ul>
+</Util>
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

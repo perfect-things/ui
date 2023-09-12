@@ -1,17 +1,16 @@
-<h3 class="util" id="Fuzzy">fuzzy(haystack = '', needle = '')</h3>
-<p>Fuzzy finds if <em>haystack</em> contains characters from the <em>needle</em> in the same order.</p>
-<ul>
-	<li><em>haystack</em> - a string to be searched in.
-	<li><em>needle</em> - a string to search for.
-</ul>
+<Util id="Fuzzy" name="fuzzy(haystack = '', needle = '')" {example}>
+	<p>Fuzzy finds if <em>haystack</em> contains characters from the <em>needle</em> in the same order.</p>
+	<ul>
+		<li><em>haystack</em> - a string to be searched in.
+		<li><em>needle</em> - a string to search for.
+	</ul>
 
-<p>It's useful for filtering lists of items by a search string.</p>
-
-<CodeExample nohr html="{example}" />
+	<p>It's useful for filtering lists of items by a search string.</p>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>
@@ -21,6 +20,5 @@ const example = `
 	fuzzy('hello world', 'hellooo'); // false
 &lt;/script>
 `;
-
 
 </script>

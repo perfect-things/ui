@@ -1,11 +1,9 @@
-<h3 class="util" id="FormatDate">formatDate(date)</h3>
-<p>Converts date to a string in the format: <em>YYYY-MM-DD HH:mm</em>.</p>
-
-<CodeExample nohr html="{example}" />
-
+<Util id="FormatDate" name="formatDate(date)" {example}>
+	<p>Converts date to a string in the format: <em>YYYY-MM-DD HH:mm</em>.</p>
+</Util>
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>

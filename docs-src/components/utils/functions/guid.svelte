@@ -1,11 +1,10 @@
-<h3 class="util" id="Guid">guid()</h3>
-<p>Generates a globally unique identifier.</p>
-
-<CodeExample nohr html="{example}" />
+<Util id="Guid" name="guid()" {example}>
+	<p>Generates a globally unique identifier.</p>
+</Util>
 
 
 <script>
-import { CodeExample } from '../../../code-example';
+import Util from '../Util.svelte';
 
 const example = `
 <script>
