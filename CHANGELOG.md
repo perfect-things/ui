@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## v9.0.1 *(2023-09-09)*
+## v9.0.1 *(2023-09-16)*
 - Make `title` optional for `Panel`.
 
 
