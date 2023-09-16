@@ -56,8 +56,9 @@ function calcHeights () {
 		const wrapCss = getComputedStyle(element);
 		const borderTop = parseInt(wrapCss.borderTopWidth || 0, 10);
 		const borderBottom = parseInt(wrapCss.borderTopWidth || 0, 10);
+		const headerH = headerEl ? headerEl.offsetHeight : 0;
 		expandedProps.height = element.getBoundingClientRect().height + 'px';
-		collapsedProps.height = (headerEl.offsetHeight + borderTop + borderBottom) + 'px';
+		collapsedProps.height = (headerH + borderTop + borderBottom) + 'px';
 		open = wasOpen;
 	});
 }
