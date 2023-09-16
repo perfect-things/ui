@@ -10,6 +10,16 @@
 	<p>This is panel contents</p>
 </Panel>
 
+<h3>No title</h3>
+
+<Panel>
+	<p>This is panel contents</p>
+</Panel>
+
+<Panel round>
+	<p>This is panel contents</p>
+</Panel>
+
 
 <h3>Round & disabled</h3>
 

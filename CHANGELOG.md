@@ -1,8 +1,11 @@
 Changelog
 =========
 
+## v9.0.1 *(2023-09-09)*
+- Make `title` optional for `Panel`.
 
-## v9.0.0 *(2023-08-?)*
+
+## v9.0.0 *(2023-09-09)*
 - **New**: added `Utils` page in the docs with APIs to the utility functions exposed by the library.
 - `Tooltip` was simplified and now the positioning ensures that the tooltip is always visible on the screen.
 - `Popover` will now update its position when the window is resized.

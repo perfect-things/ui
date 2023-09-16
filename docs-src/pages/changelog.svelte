@@ -1,5 +1,9 @@
 <h1>Changelog</h1>
-<h2>v9.0.0 <em>(2023-08-?)</em></h2>
+<h2>v9.0.1 <em>(2023-09-09)</em></h2>
+<ul>
+<li>Make <code>title</code> optional for <code>Panel</code>.</li>
+</ul>
+<h2>v9.0.0 <em>(2023-09-09)</em></h2>
 <ul>
 <li><strong>New</strong>: added <code>Utils</code> page in the docs with APIs to the utility functions exposed by the library.</li>
 <li><code>Tooltip</code> was simplified and now the positioning ensures that the tooltip is always visible on the screen.</li>

@@ -8,15 +8,19 @@
 	inert="{disabled}"
 	bind:this="{element}">
 
-	<details open="{open}" on:keydown={toggle} on:click={toggle}>
-		<summary class="panel-header" bind:this="{headerEl}" inert="{!collapsible}">
-			{title}
-			{#if collapsible}
-				<div class="chevron">{@html icons.chevronRight}</div>
-			{/if}
-		</summary>
-		<div class="panel-content"><slot></slot></div>
-	</details>
+	{#if title}
+		<details open="{open}" on:keydown={toggle} on:click={toggle}>
+			<summary class="panel-header" bind:this="{headerEl}" inert="{!collapsible}">
+				{title}
+				{#if collapsible}
+					<div class="chevron">{@html icons.chevronRight}</div>
+				{/if}
+			</summary>
+			<div class="panel-content"><slot/></div>
+		</details>
+	{:else}
+		<div class="panel-content"><slot/></div>
+	{/if}
 </div>
 
 <script>
@@ -36,7 +40,7 @@ export let disabled = false;
 export let element = undefined;
 
 
-let headerEl, expanded = open;
+let headerEl, expanded = open || !title;
 const expandedProps = { height: 0 };
 const collapsedProps = { height: 0 };
 
