@@ -1,8 +1,10 @@
 Changelog
 =========
 
-## v9.0.3, v9.0.2, v9.0.1 *(2023-09-16)*
+## v9.0.4, v9.0.3, v9.0.2, v9.0.1 *(2023-09-16)*
 - Make `title` optional for `Panel`.
+- Add `ANIMATION_SPEED` to utils/properties.
+- Correct `FOCUSABLE_SELECTOR` (it's a constant, not a svelte store).
 
 
 ## v9.0.0 *(2023-09-09)*

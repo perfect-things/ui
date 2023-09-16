@@ -1,7 +1,9 @@
 <h1>Changelog</h1>
-<h2>v9.0.3, v9.0.2, v9.0.1 <em>(2023-09-16)</em></h2>
+<h2>v9.0.4, v9.0.3, v9.0.2, v9.0.1 <em>(2023-09-16)</em></h2>
 <ul>
 <li>Make <code>title</code> optional for <code>Panel</code>.</li>
+<li>Add <code>ANIMATION_SPEED</code> to utils/properties.</li>
+<li>Correct <code>FOCUSABLE_SELECTOR</code> (it&#39;s a constant, not a svelte store).</li>
 </ul>
 <h2>v9.0.0 <em>(2023-09-09)</em></h2>
 <ul>
