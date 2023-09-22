@@ -1,0 +1,38 @@
+.input-rating { min-width: fit-content; }
+.input-rating .input-inner,
+.input-rating .input-inner:focus { outline: none; }
+.input-rating input { position: absolute; visibility: hidden; }
+
+.input-rating .input-row {
+	align-items: stretch;
+	justify-content: flex-start;
+	height: var(--ui-button-height);
+	background-color: var(--ui-color-background-input);
+}
+
+.input-rating .button {
+	position: static;
+	right: unset;
+	cursor: default;
+	user-select: none;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	font-size: 1.2rem;
+	margin: 0;
+}
+
+.input-rating .button:focus-visible { box-shadow: none; }
+
+.input-rating .btn-reset { margin-left: auto; }
+.input-rating .btn-reset:focus-visible { color: var(--ui-color-accent); }
+
+.input-rating .button.active svg { color: var(--ui-color-accent); fill: var(--ui-color-accent); }
+
+.input-rating .button:focus-visible,
+.input-rating .button.highlighted svg { color: var(--ui-color-highlight); fill: var(--ui-color-highlight); }
+
+.input-rating .button.button-link,
+.input-rating .button.button-link:focus-visible,
+.input-rating .button.button-link:hover {
+	text-decoration: none;
+}

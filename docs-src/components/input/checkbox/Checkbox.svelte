@@ -39,9 +39,9 @@
 
 
 <script>
-import { Checkbox } from '../../../src';
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { Checkbox } from '../../../../src';
+import { API } from '../../../api-table';
+import { CodeExample } from '../../../code-example';
 
 const apiProps = [
 	{ name: 'checked', type: ['true', 'false'], description: 'Make the checkbox checked or unchecked.' },

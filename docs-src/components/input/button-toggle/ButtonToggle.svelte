@@ -64,9 +64,9 @@ so you can either use <i>string</i> for both - like in the example, or <i>number
 
 
 <script>
-import { ButtonToggle } from '../../../src';
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { ButtonToggle } from '../../../../src';
+import { API } from '../../../api-table';
+import { CodeExample } from '../../../code-example';
 
 
 const apiProps = [

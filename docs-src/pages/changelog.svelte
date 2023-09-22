@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v9.1.0 <em>(2023-09-22)</em></h2>
+<ul>
+<li>New component <code>InputRating</code>.</li>
+<li>Small bugfixes and improvements.</li>
+</ul>
 <h2>v9.0.5 <em>(2023-09-22)</em></h2>
 <ul>
 <li>Reduce <code>Dialog</code> <code>z-index</code> so that the popups from the dialog show up on top of it.</li>

@@ -3,7 +3,8 @@
 <br>
 
 <h3>Normal</h3>
-<InputDate on:keydown="{onkey}"/>
+<InputDate on:keydown="{onkey}" bind:value="{item.datevalue}"/>
+{item.datevalue || ''}
 
 <h3>Show on focus</h3>
 <InputDate showOnFocus="true" placeholder="Custom placeholder" />
@@ -48,9 +49,11 @@
 
 
 <script>
-import { InputDate } from '../../../src';
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { InputDate } from '../../../../src';
+import { API } from '../../../api-table';
+import { CodeExample } from '../../../code-example';
+
+const item = {};
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },

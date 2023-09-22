@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v9.1.0 *(2023-09-22)*
+- New component `InputRating`.
+- Small bugfixes and improvements.
+
+
 ## v9.0.5 *(2023-09-22)*
 - Reduce `Dialog` `z-index` so that the popups from the dialog show up on top of it.
 

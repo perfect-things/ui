@@ -40,9 +40,9 @@
 
 
 <script>
-import { Select } from '../../../src';
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { Select } from '../../../../src';
+import { API } from '../../../api-table';
+import { CodeExample } from '../../../code-example';
 let val = 'Beta';
 
 const apiProps = [

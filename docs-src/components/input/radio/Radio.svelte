@@ -34,9 +34,9 @@
 
 
 <script>
-import { Radio } from '../../../src';
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { Radio } from '../../../../src';
+import { API } from '../../../api-table';
+import { CodeExample } from '../../../code-example';
 
 
 const apiProps = [

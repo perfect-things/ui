@@ -20,11 +20,12 @@
 		<NavItem name="Checkbox" {active} />
 		<NavItem name="Combobox" {active} />
 		<NavItem name="Input Date" {active} />
-		<NavItem name="Input Text" {active} />
-		<NavItem name="Input Number" {active} />
 		<NavItem name="Input Math" {active} />
+		<NavItem name="Input Number" {active} />
 		<NavItem name="Input Password" {active} />
+		<NavItem name="Input Rating" {active} />
 		<NavItem name="Input Search" {active} />
+		<NavItem name="Input Text" {active} />
 		<NavItem name="Radio" {active} />
 		<NavItem name="Select" {active} />
 		<NavItem name="Textarea" {active} />

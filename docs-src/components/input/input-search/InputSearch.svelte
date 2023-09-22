@@ -1,22 +1,16 @@
-<h2>Input</h2>
+<h2>Input Search</h2>
 
-<p>
-	The basic inputs are styled with css.<br>
-	Enhanced components provide additional functionality and better DX.
-</p>
-
-<br>
 
 <h3>Normal</h3>
-<InputText on:input="{oninput}" bind:value="{val}" />
+<InputSearch on:input="{oninput}" bind:value="{val}" />
 <p>Input value: {val}</p>
 
 <h3>Disabled</h3>
-<InputText disabled value="disabled value" on:input="{oninput}" />
+<InputSearch disabled value="disabled value" on:input="{oninput}" />
 
 
 <h3>With validation</h3>
-<InputText
+<InputSearch
 	label="Validate on change"
 	error="{error1}"
 	value="{val}"
@@ -24,7 +18,7 @@
 
 <br>
 
-<InputText
+<InputSearch
 	label="Validate on input"
 	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
 	required
@@ -34,7 +28,7 @@
 
 
 <h3>Label on the left</h3>
-<InputText label="Label is on the left" labelOnTheLeft="true"/>
+<InputSearch label="Label is on the left" labelOnTheLeft="true"/>
 
 
 
@@ -44,9 +38,9 @@
 
 
 <script>
-import { InputText } from '../../../src';
-import { CodeExample } from '../../code-example';
-import { API } from '../../api-table';
+import { InputSearch } from '../../../../src';
+import { CodeExample } from '../../../code-example';
+import { API } from '../../../api-table';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
@@ -69,7 +63,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<InputText label="Email" error="Invalid email" value="admin" on:change="{onChange}" />
+<InputSearch label="Email" error="Invalid email" value="admin" on:change="{onChange}" />
 
 <script>
 function onChange (e) {
@@ -81,11 +75,9 @@ function onChange (e) {
 let val = 'Hi!';
 let error1 = '', error2 = '';
 
-const email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 function validate (v) {
 	if (!v) return 'This field is required';
-	if (!email.test(v)) return 'Invalid email';
 	return;
 }
 
