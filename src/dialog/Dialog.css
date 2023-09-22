@@ -11,7 +11,7 @@
 	display: none;
 	align-items: center;
 	justify-content: center;
-	z-index: var(--ui-z-index-popup);
+	z-index: calc(var(--ui-z-index-popup) - 1);
 	background-color: rgba(0 0 0 / 0);
 	transition: background-color var(--ui-animation-speed) ease-out;
 	transform: translateZ(1px);

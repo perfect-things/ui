@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.0.5 <em>(2023-09-22)</em></h2>
+<ul>
+<li>Reduce <code>Dialog</code> <code>z-index</code> so that the popups from the dialog show up on top of it.</li>
+</ul>
 <h2>v9.0.4, v9.0.3, v9.0.2, v9.0.1 <em>(2023-09-16)</em></h2>
 <ul>
 <li>Make <code>title</code> optional for <code>Panel</code>.</li>
