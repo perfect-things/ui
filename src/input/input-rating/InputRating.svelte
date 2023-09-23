@@ -4,6 +4,7 @@
 	class="input input-rating {className}"
 	class:has-error="{error}"
 	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class:light
 	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
@@ -41,9 +42,7 @@
 				on:mouseout="{() => highlighted = 0}"
 				on:click="{reset}"/>
 			<input
-				type="number"
-				autocomplete="off"
-				inert="true"
+				type="hidden"
 				{name}
 				{disabled}
 				id="{_id}"
@@ -84,6 +83,7 @@ export let info = undefined;
 export let labelOnTheLeft = false;
 export let max = 5;
 export let icon = 'star';
+export let light = undefined;
 
 export let element = undefined;
 export let inputElement = undefined;

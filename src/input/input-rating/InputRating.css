@@ -1,7 +1,7 @@
 .input-rating { min-width: fit-content; }
+
 .input-rating .input-inner,
 .input-rating .input-inner:focus { outline: none; }
-.input-rating input { position: absolute; visibility: hidden; }
 
 .input-rating .input-row {
 	align-items: stretch;
@@ -33,6 +33,7 @@
 
 .input-rating .button.button-link,
 .input-rating .button.button-link:focus-visible,
-.input-rating .button.button-link:hover {
-	text-decoration: none;
-}
+.input-rating .button.button-link:hover { text-decoration: none; }
+
+.input-rating.light:not(.has-error) .input-inner,
+.input-rating.light:not(.has-error) .input-row { background-color: transparent; border: none; }

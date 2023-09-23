@@ -3,22 +3,29 @@
 <br>
 
 <h3>Normal</h3>
-<InputRating on:keydown="{onkey}" bind:value="{item.datevalue}"/>
-{item.datevalue || ''}
+<InputRating on:keydown="{onkey}" bind:value="{item.value}"/>
+{item.value || ''}
 
 
 <h3>Different symbol</h3>
 <InputRating icon="circle" />
 
+
 <h3>More stars</h3>
 <InputRating max="10" />
+
+
+<h3>Light (no background)</h3>
+<InputRating light />
 
 
 <h3>Label</h3>
 <InputRating label="Pick one" />
 
+
 <h3>Info</h3>
 <InputRating label="Pick one" info="Pick your pick" />
+
 
 <h3>Error</h3>
 <InputRating
@@ -42,7 +49,7 @@ import { InputRating } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 
-const item = {};
+const item = { value: 2 };
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
@@ -53,6 +60,7 @@ const apiProps = [
 	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
 	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
+	{ name: 'light', description: 'Disable background and border - for use cases other than in form context.<br>Light does not work when the input has error.' },
 	{ name: 'max', type: 'number', description: 'How many stars to show.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.' },
@@ -65,11 +73,13 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<InputDate on:change="{ onChange }" />
+<InputRating on:change="{ onChange }" bind:value="{value}" />
 
 <script>
+let value = 4;
 function onChange (e) {
-    console.log(e.detail.value);
+	const val = e.detail;
+    console.log(val);
 }
 &lt;/script>
 
