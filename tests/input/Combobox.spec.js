@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import { Combobox } from '../src/input/combobox';
-import { waitForTimeout } from './helpers/utils';
+import { Combobox } from '../../src/input/combobox';
+import { waitForTimeout } from '../helpers/utils';
 
 
 const data = [

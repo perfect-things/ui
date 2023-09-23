@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import { Select } from '../src/input/select';
-import { waitForTimeout } from './helpers/utils';
+import { Select } from '../../src/input/select';
+import { waitForTimeout } from '../helpers/utils';
 
 
 const data = [

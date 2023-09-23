@@ -1,8 +1,8 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import jest from 'jest-mock';
 
-import { Checkbox } from '../src/input';
-import { waitForTimeout } from './helpers/utils';
+import { Checkbox } from '../../src/input';
+import { waitForTimeout } from '../helpers/utils';
 
 
 test('Checkbox', async () => {

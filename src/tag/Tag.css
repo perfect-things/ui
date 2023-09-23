@@ -1,0 +1,34 @@
+.ui-tag {
+	border: 1px solid var(--ui-color-border);
+	background: var(--ui-color-secondary);
+	border-radius: var(--ui-border-radius);
+	padding: 0.2rem 0.5rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.1rem;
+	height: 1.6rem;
+	cursor: default;
+	color: var(--ui-color-text);
+}
+
+.ui-tag .icon { width: 1.2rem; height: 1.2rem; }
+
+.ui-tag:focus-visible {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+	outline: 1px solid transparent;
+}
+
+.ui-tag.dark { color: #fff; }
+
+.ui-tag.round { border-radius: var(--ui-border-radius-xl); }
+
+.ui-tag.info { background-color: var(--ui-color-info); }
+.ui-tag.success { background-color: var(--ui-color-success); }
+.ui-tag.danger { background-color: var(--ui-color-danger); }
+.ui-tag.warning { background-color: var(--ui-color-warning); }
+
+.ui-tag.info,
+.ui-tag.success,
+.ui-tag.danger,
+.ui-tag.warning { color: var(--ui-color-text); }

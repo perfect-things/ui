@@ -25,6 +25,7 @@
 		<NavItem name="Input Password" {active} />
 		<NavItem name="Input Rating" {active} />
 		<NavItem name="Input Search" {active} />
+		<NavItem name="Input Tag" {active} />
 		<NavItem name="Input Text" {active} />
 		<NavItem name="Radio" {active} />
 		<NavItem name="Select" {active} />
@@ -50,6 +51,7 @@
 
 		<h3>Generic</h3>
 		<NavItem name="Menu" {active} />
+		<NavItem name="Tag" {active} />
 		<NavItem name="Icon" {active} />
 		<NavItem name="Utils" {active} />
 		<!-- <NavItem name="Splitter" {active} /> -->

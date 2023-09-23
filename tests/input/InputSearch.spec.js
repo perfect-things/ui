@@ -1,8 +1,8 @@
 import { render } from '@testing-library/svelte';
 import jest from 'jest-mock';
 
-import { InputText } from '../src/input';
-import { waitForTimeout } from './helpers/utils';
+import { InputSearch } from '../../src/input';
+import { waitForTimeout } from '../helpers/utils';
 
 
 const props = {
@@ -17,8 +17,8 @@ const props = {
 };
 
 
-test('InputText', async () => {
-	const { container, component, getByTitle } = render(InputText, props);
+test('InputSearch', async () => {
+	const { container, component, getByTitle } = render(InputSearch, props);
 	const mock = jest.fn();
 	component.$on('change', mock);
 

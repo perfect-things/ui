@@ -1,7 +1,7 @@
 import jest from 'jest-mock';
 
-import * as utils from '../src/input/combobox/utils';
-import { offsetHeight, offsetTop } from './helpers/utils';
+import * as utils from '../../src/input/combobox/utils';
+import { offsetHeight, offsetTop } from '../helpers/utils';
 
 const arr = [
 	{ id: 1, name: 'Alpha', group: 'Group 1' },

@@ -2,7 +2,7 @@ Changelog
 =========
 
 ## v9.1.0 *(2023-09-22)*
-- New component `InputRating`.
+- New components `InputRating`, `Tag`.
 - Small bugfixes and improvements.
 
 
