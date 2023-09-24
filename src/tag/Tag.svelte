@@ -11,7 +11,7 @@
 	{#if icon}
 		<Icon name="{icon}"/>
 	{/if}
-	<slot/>
+	<div class="ui-tag-label"><slot/></div>
 </div>
 
 <script>

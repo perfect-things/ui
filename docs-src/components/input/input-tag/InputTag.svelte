@@ -5,8 +5,13 @@
 <InputTag bind:value="{val}" />
 <p>Input value: {val}</p>
 
+<InputTag
+	value="tag1, anotherOne, long-tag-name"
+	{tags}
+	on:input="{oninput}" />
+
 <h3>Disabled</h3>
-<InputTag disabled value="disabled value" on:input="{oninput}" />
+<InputTag disabled value="disabled" />
 
 
 <h3>Label on the left</h3>
@@ -54,7 +59,11 @@ function onChange (e) {
 &lt;/script>
 `;
 
-let val = '';
-
+let val = 'tag1, tag2';
+const tags = [
+	{ text: 'Tag1', color: 'blue' },
+	{ text: 'AnotherOne', color: 'green' },
+	{ text: 'Long-name-tag-3' },
+];
 
 </script>

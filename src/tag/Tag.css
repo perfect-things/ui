@@ -11,13 +11,14 @@
 	color: var(--ui-color-text);
 }
 
-.ui-tag .icon { width: 1.2rem; height: 1.2rem; }
+.ui-tag .icon { width: 1.2rem; height: 1.2rem; margin-left: -4px; }
 
 .ui-tag:focus-visible {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 	outline: 1px solid transparent;
 }
+.ui-tag .ui-tag-label { line-height: 1.2rem; }
 
 .ui-tag.dark { color: #fff; }
 
