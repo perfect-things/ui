@@ -1,8 +1,9 @@
 Changelog
 =========
 
-## v9.1.0 *(2023-09-22)*
+## v9.1.0 *(2023-09-?)*
 - New components `InputRating`, `Tag`.
+- Add `hideTip` property to `Popover`.
 - Small bugfixes and improvements.
 
 

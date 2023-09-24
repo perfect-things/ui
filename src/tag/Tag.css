@@ -9,6 +9,8 @@
 	height: 1.6rem;
 	cursor: default;
 	color: var(--ui-color-text);
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .ui-tag .icon { width: 1.2rem; height: 1.2rem; margin-left: -4px; }

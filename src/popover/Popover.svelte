@@ -1,6 +1,8 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#if opened}
-	<div class="popover-plate popover-{position} {className}" bind:this="{element}">
+	<div
+		class="popover-plate popover-{position} {className} {hideTip ? 'hide-tip' : ''}"
+		bind:this="{element}">
 		<div class="popover">
 			<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 			<div class="popover-content" bind:this="{contentEl}">
@@ -26,6 +28,8 @@ export let offset = 2;
 export let element = undefined;
 export let contentEl = undefined;
 export let position = 'bottom';
+export let hideTip = false;
+export let dontHideOnTargetClick = false;
 
 let targetEl, opened = false;
 let closing = false;
@@ -144,7 +148,10 @@ function onContentChange () {
 
 function onDocumentClick (e) {
 	if (!element) return;
-	if (!element.contains(e.target)) close();
+	if (element.contains(e.target)) return;
+	if (dontHideOnTargetClick && targetEl &&
+		(targetEl === e.target || targetEl.contains(e.target))) return;
+	close();
 }
 
 

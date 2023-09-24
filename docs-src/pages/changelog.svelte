@@ -1,7 +1,8 @@
 <h1>Changelog</h1>
-<h2>v9.1.0 <em>(2023-09-22)</em></h2>
+<h2>v9.1.0 <em>(2023-09-?)</em></h2>
 <ul>
 <li>New components <code>InputRating</code>, <code>Tag</code>.</li>
+<li>Add <code>hideTip</code> property to <code>Popover</code>.</li>
 <li>Small bugfixes and improvements.</li>
 </ul>
 <h2>v9.0.5 <em>(2023-09-22)</em></h2>

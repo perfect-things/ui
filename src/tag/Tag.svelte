@@ -1,12 +1,12 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="ui-tag {className} {colorClass}"
 	class:round
 	class:dark="{color && isColorDark(color)}"
 	style="{color ? `background-color: ${color};` : ''}"
 	role="button"
-	tabindex="0"
+	tabindex="{noTabIndex ? undefined : 0}"
 	bind:this="{element}"
+	on:keydown="{onkeydown}"
 	on:click="{onclick}">
 	{#if icon}
 		<Icon name="{icon}"/>
@@ -27,10 +27,15 @@ export let round = false;
 export let icon = undefined;
 export let color = undefined;
 export let element = undefined;
+export let noTabIndex = false;
 
 $: colorClass = (['info', 'warning', 'danger', 'success'].includes(color) ? color : '');
 
 function onclick () {
 	dispatch('click', { target: element });
+}
+
+function onkeydown (e) {
+	if (e.key === 'Enter' || e.key === ' ') onclick();
 }
 </script>

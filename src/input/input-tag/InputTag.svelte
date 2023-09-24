@@ -1,27 +1,32 @@
+<!-- svelte-ignore a11y-no-static-element-interactions a11y-no-noninteractive-tabindex -->
 <div
+	{title}
 	class="input input-tag {className}"
 	class:has-error="{error}"
 	class:has-value="{value !== ''}"
 	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	{title}
 	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="input-inner" class:disabled>
+	<div
+		class="input-inner"
+		class:disabled
+		inert="{disabled}"
+		tabindex="0"
+		on:keydown="{onkeydown}"
+		on:click="{open}"
+		bind:this="{boxElement}">
+
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-row">
 			<Icon name="tag"/>
 			{#each _value as tag}
-				<Tag icon="close">{tag}</Tag>
+				<Tag noTabIndex icon="close"
+					on:click="{() => removeTagFromValue(tag)}">{tag}</Tag>
 			{/each}
-			<Button link
-				icon="add"
-				class="input-add-button"
-				{disabled}
-				on:click="{toggle}"/>
 
 			<input
 				{name}
@@ -34,29 +39,32 @@
 	</div>
 </div>
 
-{#if opened}
-	<div
-		id="input-tag-list-{listId}"
-		class="input-tag-list {opened ? '' : 'hidden'}"
-		role="listbox"
-		bind:this="{listElement}">
-		<div class="input-tag-list-tags">
-			{#each tags as tag}
-				<Tag icon="add">{tag.text}</Tag>
-			{/each}
-		</div>
-		<form class="input-tag-list-add-row" on:submit|preventDefault="{addTag}">
-			<InputText bind:value="{newTagName}"/>
-			<Button submit link icon="add"/>
-		</form>
+<Popover
+	hideTip
+	dontHideOnTargetClick
+	class="input-tag-popover"
+	on:close="{onclose}"
+	bind:element="{listElement}"
+	bind:this="{listPopover}">
+
+	<div class="input-tag-list-tags">
+		{#each tags as tag}
+			<Tag icon="add"
+				on:click="{() => addTagToValue(tag.text)}">{tag.text}</Tag>
+		{/each}
 	</div>
-{/if}
+	<form class="input-tag-list-add-row" on:submit|preventDefault="{addTag}">
+		<InputText bind:value="{newTagName}"/>
+		<Button submit link icon="add"/>
+	</form>
+</Popover>
 
 <script>
 import { InputText } from '../input-text';
 import { Button } from '../../button';
+import { Popover } from '../../popover';
 import { Tag } from '../../tag';
-import { guid, alignItem, FOCUSABLE_SELECTOR } from '../../utils';
+import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -77,44 +85,59 @@ export let value = '';
 export let tags = [];
 
 export let element = undefined;
+export let boxElement = undefined;
 export let inputElement = undefined;
 export let listElement = undefined;
 
-
-const listId = guid();
 const errorMessageId = guid();
-let opened = false;
 let newTagName = '';
+let opened = false;
+let listPopover;
 
 
 $:_id = id || name || guid();
-$:_value = value.split(/[, ;]/).map(tag => tag.trim()).filter(tag => tag !== '');
+$:_value = valueToArray(value);
 
-
-
-function toggle () {
-	if (opened) close();
-	else open();
+function valueToArray (val) {
+	return val.split(/[, ;]/).map(tag => tag.trim()).filter(tag => tag !== '');
 }
 
-function open (e) {
+function open () {
 	if (opened) return;
 	opened = true;
-	requestAnimationFrame(() => {
-		if (listElement.parentElement !== document.body) {
-			document.body.appendChild(listElement);
-		}
-		addEventListeners();
-		alignDropdown(e);
-		listElement.querySelector(FOCUSABLE_SELECTOR).focus();
-	});
+	listPopover.open(boxElement);
 }
 
-
-function close () {
+function updatePosition () {
 	if (!opened) return;
-	removeEventListeners();
+	requestAnimationFrame(listPopover.updatePosition);
+}
+
+function onclose () {
 	opened = false;
+}
+
+function onkeydown (e) {
+	if (e.key === 'Enter') open();
+}
+
+function addTagToValue (tag) {
+	const val = valueToArray(value);
+	val.push(tag);
+	// unique list of tags
+	value = [...new Set(val)].join(', ');
+	updatePosition();
+}
+
+function removeTagFromValue (tag) {
+	const val = valueToArray(value).filter(t => t !== tag);
+	// wait for docclick in popover to fire
+	// before removing the tag from the value
+	// so that the popover can check that the click was within the target and do nothing
+	requestAnimationFrame(() => {
+		value = val.join(', ');
+		updatePosition();
+	});
 }
 
 
@@ -127,45 +150,6 @@ function addTag () {
 
 	tags = [...tags, ...newTags];
 	newTagName = '';
-}
-
-function alignDropdown () {
-	alignItem({
-		element: listElement,
-		target: element,
-		setMinWidthToTarget: true,
-	});
-}
-
-
-function onResize () {
-	if (!opened) return;
-	return close();
-}
-
-function onViewportResize () {
-	if (!opened) return;
-	alignDropdown();
-}
-
-function onDocumentClick (e) {
-	const notEl = element && !element.contains(e.target);
-	const notList = listElement && !listElement.contains(e.target);
-	if (open && notEl && notList) close();
-}
-
-
-function addEventListeners () {
-	window.addEventListener('resize', onResize);
-	document.addEventListener('click', onDocumentClick, true);
-	window.visualViewport.addEventListener('resize', onViewportResize);
-}
-
-
-function removeEventListeners () {
-	window.removeEventListener('resize', onResize);
-	document.removeEventListener('click', onDocumentClick, true);
-	window.visualViewport.removeEventListener('resize', onViewportResize);
 }
 
 </script>
