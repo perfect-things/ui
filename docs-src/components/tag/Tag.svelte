@@ -37,6 +37,7 @@ import { CodeExample } from '../../code-example';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'color', type: 'string', description: 'Tag color. Standard variations are included (info, warning, danger, success). A color hash or name can also be provided.' },
+	{ name: 'disabled', description: 'Makes the tag <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Icon name to display in the tag.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:click', type: 'function', description: 'Triggered when the tag is clicked.' },

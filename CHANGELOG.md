@@ -2,13 +2,13 @@ Changelog
 =========
 
 ## v9.1.0 *(2023-09-?)*
-- New components `InputRating`, `Tag`.
-- Add `hideTip` property to `Popover`.
+- New components: `InputRating`, `Tag`, `InputTag`.
+- Add `hideTip` and more, to `Popover`.
 - Small bugfixes and improvements.
 
 
 ## v9.0.5 *(2023-09-22)*
-- Reduce `Dialog` `z-index` so that the popups from the dialog show up on top of it.
+- Reduce `Dialog's` `z-index` so that the popups from the dialog show up on top of it.
 
 
 ## v9.0.4, v9.0.3, v9.0.2, v9.0.1 *(2023-09-16)*

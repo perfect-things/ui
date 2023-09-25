@@ -12,7 +12,7 @@
 
 
 <h3>More stars</h3>
-<InputRating max="10" />
+<InputRating max="8" />
 
 
 <h3>Light (no background)</h3>

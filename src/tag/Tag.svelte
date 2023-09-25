@@ -2,9 +2,11 @@
 	class="ui-tag {className} {colorClass}"
 	class:round
 	class:dark="{color && isColorDark(color)}"
+	class:disabled
 	style="{color ? `background-color: ${color};` : ''}"
 	role="button"
-	tabindex="{noTabIndex ? undefined : 0}"
+	tabindex="{disabled ? undefined : 0}"
+	inert="{disabled}"
 	bind:this="{element}"
 	on:keydown="{onkeydown}"
 	on:click="{onclick}">
@@ -27,15 +29,15 @@ export let round = false;
 export let icon = undefined;
 export let color = undefined;
 export let element = undefined;
-export let noTabIndex = false;
+export let disabled = false;
 
 $: colorClass = (['info', 'warning', 'danger', 'success'].includes(color) ? color : '');
 
-function onclick () {
-	dispatch('click', { target: element });
+function onclick (e) {
+	dispatch('click', { target: element, originalEvent: e });
 }
 
 function onkeydown (e) {
-	if (e.key === 'Enter' || e.key === ' ') onclick();
+	if (e.key === 'Enter' || e.key === ' ') onclick(e);
 }
 </script>

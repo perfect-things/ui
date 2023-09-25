@@ -13,9 +13,14 @@
 	<div
 		class="input-inner"
 		tabindex="0"
-		on:blur={() => highlighted = 0}
-		on:mouseout={() => highlighted = 0}
+		on:touchstart="{e => {
+			e.preventDefault();
+			set(e.target.dataset.star);
+		}}"
+		on:touchmove="{e => set(getTouchStar(e))}"
+		on:touchend="{e => set(getTouchStar(e))}"
 		on:keydown="{onKey}">
+
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-row">
@@ -24,23 +29,18 @@
 					link
 					icon="{icon}"
 					tabindex="-1"
-					class="{value >= star ? 'active' : ''} {highlighted >= star ? 'highlighted' : ''}"
-					on:focus="{() => highlighted = star}"
-					on:blur="{() => highlighted = 0}"
-					on:mouseover="{() => highlighted = star}"
-					on:mouseout="{() => highlighted = 0}"
-					on:click="{() => set(star)}"></Button>
+					data-star="{star}"
+					class="{value >= star ? 'active' : ''}"
+					on:mousedown="{() => set(star)}"
+					on:mouseup="{() => set(star)}"/>
 			{/each}
-			<Button
-				link
+
+			<Button link
 				icon="close"
 				class="btn-reset"
 				disabled="{value === ''}"
-				on:focus="{() => highlighted = 0}"
-				on:blur="{() => highlighted = 0}"
-				on:mouseover="{() => highlighted = 0}"
-				on:mouseout="{() => highlighted = 0}"
 				on:click="{reset}"/>
+
 			<input
 				type="hidden"
 				{name}
@@ -95,31 +95,28 @@ const errorMessageId = guid();
 
 $:_id = id || name || guid();
 
-let highlighted = 0;
 
 function fireKeydown (event) { dispatch('keydown', { event, value }); }
 
 
 function onKey (e) {
 	if (e.target.closest('.btn-reset')) return;
-	const key = e.key;
-	if (key === 'ArrowRight') highlighted = Math.min(highlighted + 1, max);
-	else if (key === 'ArrowLeft') highlighted = Math.max(highlighted - 1, 0);
-	else if (key === 'Enter') set(highlighted);
-	else if (key === 'Escape') highlighted = 0;
-	else if (key === 'Tab') highlighted = 0;
-	else if (key === 'ArrowUp') e.preventDefault();
-	else if (key === 'ArrowDown') e.preventDefault();
+	const key = e.key, v = parseInt(value, 10) || 0;
+	if (key === 'ArrowRight') set(Math.min(v + 1, max));
+	else if (key === 'ArrowLeft') set(Math.max(v - 1, 0));
+	else if (key === 'Escape') set();
 
 	if (key) return fireKeydown(e);
 	e.preventDefault();
 }
+
 
 function reset (e) {
 	e.preventDefault();
 	e.stopPropagation();
 	set();
 }
+
 
 function set (v) {
 	if (typeof v !== 'undefined' && v !== '') {
@@ -129,5 +126,12 @@ function set (v) {
 	else value = '';
 	element.querySelector('.input-inner').focus();
 	dispatch('change', value);
+}
+
+
+function getTouchStar (e) {
+	const touch = e.changedTouches[0];
+	const target = document.elementFromPoint(touch.clientX, touch.clientY);
+	if (target && target.dataset) return target.dataset.star;
 }
 </script>

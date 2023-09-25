@@ -24,8 +24,7 @@
 		<div class="input-row">
 			<Icon name="tag"/>
 			{#each _value as tag}
-				<Tag noTabIndex icon="close"
-					on:click="{() => removeTagFromValue(tag)}">{tag}</Tag>
+				<Tag icon="close" on:click="{e => removeTagFromValue(tag, e)}">{tag}</Tag>
 			{/each}
 
 			<input
@@ -42,24 +41,25 @@
 <Popover
 	hideTip
 	dontHideOnTargetClick
+	setMinWidthToTarget
 	class="input-tag-popover"
 	on:close="{onclose}"
 	bind:element="{listElement}"
 	bind:this="{listPopover}">
 
 	<div class="input-tag-list-tags">
-		{#each tags as tag}
-			<Tag icon="add"
-				on:click="{() => addTagToValue(tag.text)}">{tag.text}</Tag>
+		{#each _tags as tag(tag.text)}
+			<Tag icon="add" disabled="{tag.disabled}" on:click="{() => addTagToValue(tag.text)}">{tag.text}</Tag>
 		{/each}
 	</div>
-	<form class="input-tag-list-add-row" on:submit|preventDefault="{addTag}">
+	<form class="input-tag-list-add-row" on:submit|preventDefault="{addNewTag}">
 		<InputText bind:value="{newTagName}"/>
 		<Button submit link icon="add"/>
 	</form>
 </Popover>
 
 <script>
+import { beforeUpdate, createEventDispatcher } from 'svelte';
 import { InputText } from '../input-text';
 import { Button } from '../../button';
 import { Popover } from '../../popover';
@@ -85,71 +85,95 @@ export let value = '';
 export let tags = [];
 
 export let element = undefined;
-export let boxElement = undefined;
 export let inputElement = undefined;
+export let boxElement = undefined;
 export let listElement = undefined;
 
+const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 let newTagName = '';
 let opened = false;
 let listPopover;
-
+let _tags = [];
 
 $:_id = id || name || guid();
 $:_value = valueToArray(value);
 
-function valueToArray (val) {
-	return val.split(/[, ;]/).map(tag => tag.trim()).filter(tag => tag !== '');
+
+beforeUpdate(hydrateTags);
+
+
+function hydrateTags () {
+	const val = valueToArray(value);
+	_tags = tags.map(tag => {
+		return { text: tag, disabled: val.includes(tag) };
+	});
 }
+
 
 function open () {
 	if (opened) return;
-	opened = true;
-	listPopover.open(boxElement);
+	return listPopover.open(boxElement).then(() => opened = listPopover.isOpened());
 }
+
+
+function onclose () {
+	opened = false;
+}
+
 
 function updatePosition () {
 	if (!opened) return;
 	requestAnimationFrame(listPopover.updatePosition);
 }
 
-function onclose () {
-	opened = false;
-}
 
 function onkeydown (e) {
 	if (e.key === 'Enter') open();
+	else if (e.key === 'ArrowDown') {
+		e.preventDefault();
+		open().then(() => {
+			listElement.querySelector('.ui-tag').focus();
+		});
+	}
+}
+
+
+function valueToArray (val) {
+	return val.split(/[, ;]/).map(tag => tag.trim()).filter(tag => tag !== '');
+}
+
+
+function setValue (arr) {
+	// unique list of tags
+	value = [...new Set(arr)].join(', ');
+	updatePosition();
+	dispatch('change', { value });
 }
 
 function addTagToValue (tag) {
 	const val = valueToArray(value);
 	val.push(tag);
-	// unique list of tags
-	value = [...new Set(val)].join(', ');
-	updatePosition();
+	setValue(val);
 }
 
-function removeTagFromValue (tag) {
+
+function removeTagFromValue (tag, e) {
+	if (e && e.detail && e.detail.originalEvent) e.detail.originalEvent.stopPropagation();
+
 	const val = valueToArray(value).filter(t => t !== tag);
 	// wait for docclick in popover to fire
 	// before removing the tag from the value
 	// so that the popover can check that the click was within the target and do nothing
-	requestAnimationFrame(() => {
-		value = val.join(', ');
-		updatePosition();
-	});
+	requestAnimationFrame(() => setValue(val));
 }
 
 
-function addTag () {
-	const newTags = newTagName
-		.split(/[, ;]/)
-		.map(tag => tag.trim())
-		.filter(tag => tag !== '')
-		.map(tag => ({ text: tag }));
-
-	tags = [...tags, ...newTags];
+function addNewTag () {
+	const val = valueToArray(value);
+	const newTags = valueToArray(newTagName);
 	newTagName = '';
+	requestAnimationFrame(() => setValue([...val, ...newTags]));
 }
 
 </script>

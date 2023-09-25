@@ -28,9 +28,6 @@
 
 .input-rating .button.active svg { color: var(--ui-color-accent); fill: var(--ui-color-accent); }
 
-.input-rating .button:focus-visible,
-.input-rating .button.highlighted svg { color: var(--ui-color-highlight); fill: var(--ui-color-highlight); }
-
 .input-rating .button.button-link,
 .input-rating .button.button-link:focus-visible,
 .input-rating .button.button-link:hover { text-decoration: none; }

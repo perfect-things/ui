@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import userEvent from '@testing-library/user-event';
 import jest from 'jest-mock';
 
 import { InputRating } from '../../src/input/input-rating';
@@ -30,19 +29,20 @@ test('InputRating', async () => {
 	expect(input).toHaveAttribute('name', 'Component1');
 	expect(input).toHaveAttribute('aria-required');
 
-	const secondStar = cmp.querySelector('.button:nth-child(2)');
-	await fireEvent.click(secondStar);
+	const star2 = cmp.querySelector('.button:nth-child(2)');
+	await fireEvent.mouseDown(star2);
 	await waitForTimeout();
 
-	expect(secondStar).toBeInTheDocument();
-	expect(secondStar).toHaveClass('active');
+	expect(star2).toBeInTheDocument();
+	expect(star2).toHaveClass('active');
 	expect(mock).toHaveBeenCalled();
 
-	const thirdStar = cmp.querySelector('.button:nth-child(2)');
-	expect(thirdStar).toBeInTheDocument();
+	const star3 = cmp.querySelector('.button:nth-child(3)');
+	expect(star3).toBeInTheDocument();
+	expect(star3).not.toHaveClass('active');
 
-	await userEvent.hover(thirdStar);
+	await fireEvent.mouseDown(star3);
 	await waitForTimeout();
-	expect(secondStar).toHaveClass('active');
+	expect(star3).toHaveClass('active');
 
 });

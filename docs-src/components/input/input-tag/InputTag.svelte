@@ -5,10 +5,12 @@
 <InputTag bind:value="{val}" />
 <p>Input value: {val}</p>
 
-<InputTag
-	value="tag1, anotherOne, long-tag-name"
-	{tags}
-	on:input="{oninput}" />
+<h3>With onChange callback</h3>
+<InputTag value="tag1, anotherOne, long-tag-name" {tags} on:change="{onchange}" />
+
+<h3>Long list of tags</h3>
+<InputTag value="tag1, anotherOne, long-tag-name" tags="{tags2}"/>
+
 
 <h3>Disabled</h3>
 <InputTag disabled value="disabled" />
@@ -38,32 +40,40 @@ const apiProps = [
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
 	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
-	{ name: 'required', description: 'Mark the input as <i>aria-required</i>. The actual validation must be done in the consumer.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
+	{ name: 'tags', type: 'array', required: true, description: 'An array of strings (the list should contain unique values).' },
+	{ name: 'title', type: 'string', description: 'Assign title to the component' },
+	{ name: 'value', type: ['string'], description: 'Initial value of the input - a comma-separated string.' },
+
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered after the value changes and the focus leaves the input.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered as soon as the input value changes.' },
+	{ name: 'bind:listElement', type: 'element', description: 'Exposes the HTML element of the list.' },
+	{ name: 'on:change', type: 'function', description: 'Triggered when tag is added/removed from the input value.' },
 ];
 
 
 const exampleHtml = `
-<InputTag label="Email" error="Invalid email" value="admin" on:change="{onChange}" />
+<InputTag label="Tags" value="tag1, tag2" on:change="{onChange}" />
 
 <script>
 function onChange (e) {
-    console.log('value', e.target.value);
+    console.log('tags', e.detail.value);
 }
 &lt;/script>
 `;
 
+
+
 let val = 'tag1, tag2';
 const tags = [
-	{ text: 'Tag1', color: 'blue' },
-	{ text: 'AnotherOne', color: 'green' },
-	{ text: 'Long-name-tag-3' },
+	'Tag1',
+	'AnotherOne',
+	'Long-name-tag-3',
+	...Array.from({ length: 40 }, (v, i) => `Long-name-tag-${i+4}`)
 ];
 
+const tags2 = Array.from({ length: 40 }, (v, i) => 'Tag-' + i);
+
+function onchange (e) {
+	console.log('value', e.detail.value);
+}
 </script>

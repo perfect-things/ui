@@ -70,9 +70,11 @@ function updateContent () {
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'offset', type: 'number', default: '2', description: 'Customize popover offset. Use negative number for smaller offset or positive for bigger' },
+	{ name: 'dontHideOnTargetClick', description: 'When present, it will keep the popover open when the target is clicked again.' },
 	{ name: 'hideTip', description: 'Display just the container, without the tip (small triangle pointing at the target).' },
+	{ name: 'offset', type: 'number', default: '2', description: 'Customize popover offset. Use negative number for smaller offset or positive for bigger' },
 	{ name: 'position', type: ['top', 'bottom'], default: 'bottom', description: 'Prefer the position of the popover to be above (top) or below (bottom) the target element.' },
+	{ name: 'setMinWidthToTarget', description: 'When present, it will make the popover min-width the same as the target.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:contentElement', type: 'element', description: 'Exposes the HTML element of the content div.' },
 ];
@@ -80,6 +82,7 @@ const apiProps = [
 const instanceApiProps = [
 	{ name: 'close', type: 'function', description: 'Closes the popover.' },
 	{ name: 'open', type: 'function', description: 'Opens the popover.' },
+	{ name: 'isOpened', type: 'function', description: 'Returns the opened state.' },
 	{ name: 'updatePosition', type: 'function', description: 'Recalculates the position of the popover.' },
 ];
 
