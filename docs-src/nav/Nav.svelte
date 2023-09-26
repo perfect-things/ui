@@ -27,6 +27,7 @@
 		<NavItem name="Input Search" {active} />
 		<NavItem name="Input Tag" {active} />
 		<NavItem name="Input Text" {active} />
+		<NavItem name="Input Time" {active} />
 		<NavItem name="Radio" {active} />
 		<NavItem name="Select" {active} />
 		<NavItem name="Textarea" {active} />

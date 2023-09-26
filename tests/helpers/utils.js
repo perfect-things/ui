@@ -2,6 +2,8 @@ import { get } from 'svelte/store';
 import { ANIMATION_SPEED } from '../../src';
 import jest from 'jest-mock';
 
+document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: {} }));
+
 document.scrollingElement = jest.fn().mockImplementation(() => ({
 	scrollTop: jest.fn(),
 }));

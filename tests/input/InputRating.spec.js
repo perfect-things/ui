@@ -30,10 +30,13 @@ test('InputRating', async () => {
 	expect(input).toHaveAttribute('aria-required');
 
 	const star2 = cmp.querySelector('.button:nth-child(2)');
+	expect(star2).toBeInTheDocument();
+	expect(star2).not.toHaveClass('active');
+
+	document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: { star: '2' } }));
 	await fireEvent.mouseDown(star2);
 	await waitForTimeout();
 
-	expect(star2).toBeInTheDocument();
 	expect(star2).toHaveClass('active');
 	expect(mock).toHaveBeenCalled();
 
@@ -41,6 +44,7 @@ test('InputRating', async () => {
 	expect(star3).toBeInTheDocument();
 	expect(star3).not.toHaveClass('active');
 
+	document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: { star: '3' } }));
 	await fireEvent.mouseDown(star3);
 	await waitForTimeout();
 	expect(star3).toHaveClass('active');
