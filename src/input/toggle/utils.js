@@ -1,10 +1,6 @@
 export const isTouchDevice = 'ontouchstart' in document.documentElement;
 
 
-export function getMouseX (e) {
-	return (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
-}
-
 export function initialMeasure (toggleEl) {
 	const isHidden = toggleEl.offsetParent === null;
 	if (isHidden) {

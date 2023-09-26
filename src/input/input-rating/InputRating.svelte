@@ -13,13 +13,10 @@
 	<div
 		class="input-inner"
 		tabindex="0"
-		on:touchstart="{e => {
-			e.preventDefault();
-			set(e.target.dataset.star);
-		}}"
-		on:touchmove="{e => set(getTouchStar(e))}"
-		on:touchend="{e => set(getTouchStar(e))}"
-		on:keydown="{onKey}">
+		on:touchstart="{onMouseDown}"
+		on:mousedown={onMouseDown}
+		on:keydown="{onKey}"
+		bind:this="{innerBox}">
 
 		<InputError id="{errorMessageId}" msg="{error}" />
 
@@ -30,9 +27,9 @@
 					icon="{icon}"
 					tabindex="-1"
 					data-star="{star}"
-					class="{value >= star ? 'active' : ''}"
-					on:mousedown="{() => set(star)}"
-					on:mouseup="{() => set(star)}"/>
+					class="{value >= star ? 'active' : ''}"/>
+					<!-- on:mousedown="{() => set(star)}"
+					on:mouseup="{() => set(star)}"/> -->
 			{/each}
 
 			<Button link
@@ -63,7 +60,7 @@
 <script>
 import { Button } from '../../button';
 import { createEventDispatcher } from 'svelte';
-import { guid } from '../../utils';
+import { guid, getMouseY, getMouseX } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
@@ -87,6 +84,8 @@ export let light = undefined;
 
 export let element = undefined;
 export let inputElement = undefined;
+let innerBox = undefined;
+let mouseY = 0;
 
 $:stars = new Array(+max).fill(0).map((_, i) => i + 1);
 
@@ -129,9 +128,40 @@ function set (v) {
 }
 
 
-function getTouchStar (e) {
-	const touch = e.changedTouches[0];
-	const target = document.elementFromPoint(touch.clientX, touch.clientY);
-	if (target && target.dataset) return target.dataset.star;
+function setStarFromCursor (e) {
+	const mouseX = getMouseX(e);
+	const target = document.elementFromPoint(mouseX, mouseY);
+	if (target && target.dataset) set(target.dataset.star);
+}
+
+
+function onMouseDown (e) {
+	e.preventDefault();
+	mouseY = getMouseY(e);
+	setStarFromCursor(e);
+	addEventListeners();
+}
+
+function onMouseMove (e) {
+	setStarFromCursor(e);
+}
+
+function onMouseUp (e) {
+	setStarFromCursor(e);
+	removeEventListeners();
+}
+
+function addEventListeners () {
+	document.addEventListener('mouseup', onMouseUp);
+	document.addEventListener('mousemove', onMouseMove);
+	document.addEventListener('touchend', onMouseUp);
+	document.addEventListener('touchmove', onMouseMove);
+}
+
+function removeEventListeners () {
+	document.removeEventListener('mouseup', onMouseUp);
+	document.removeEventListener('mousemove', onMouseMove);
+	document.removeEventListener('touchend', onMouseUp);
+	document.removeEventListener('touchmove', onMouseMove);
 }
 </script>

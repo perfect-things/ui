@@ -41,8 +41,8 @@
 
 <script>
 import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
-import { guid } from '../../utils';
-import { getMouseX, isTouchDevice, initialMeasure } from './utils';
+import { guid, getMouseX } from '../../utils';
+import { isTouchDevice, initialMeasure } from './utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
