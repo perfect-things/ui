@@ -110,11 +110,11 @@ export function guid () {
 
 
 export function getMouseX (e) {
-	return (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+	return (e.type.includes('touch')) ? e.changedTouches[0].clientX : e.clientX;
 }
 
 export function getMouseY (e) {
-	return (e.type.includes('touch')) ? e.touches[0].clientY : e.clientY;
+	return (e.type.includes('touch')) ? e.changedTouches[0].clientY : e.clientY;
 }
 
 export function getMouseXY (e) {
@@ -325,4 +325,19 @@ export function isInScrollable (node) {
 		if (isScrollable(node)) return true;
 	}
 	return false;
+}
+
+
+export function isColorDark (hex) {
+	hex = (hex[0] === '#') ? hex.slice(1) : hex;
+	if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+	if (hex.length !== 6) return false;
+
+	const r = parseInt(hex.substring(0, 2), 16); // red
+	const g = parseInt(hex.substring(2, 4), 16); // green
+	const b = parseInt(hex.substring(4, 6), 16); // blue
+	if (isNaN(r) || isNaN(g) || isNaN(b)) return false;
+
+	const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+	return isNaN(brightness) ? false : brightness < 140;
 }

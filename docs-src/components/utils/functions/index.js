@@ -12,6 +12,7 @@ export { default as GetMouseY } from './get-mouse-y.svelte.svelte';
 export { default as Guid } from './guid.svelte';
 export { default as IsInScrollable } from './is-in-scrollable.svelte';
 export { default as IsMobile } from './is-mobile.svelte';
+export { default as IsColorDark } from './is-color-dark.svelte';
 export { default as Pluck } from './pluck.svelte';
 export { default as RoundAmount } from './round-amount.svelte';
 export { default as Throttle } from './throttle.svelte';

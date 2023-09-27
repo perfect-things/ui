@@ -15,7 +15,7 @@
     "url": "https://github.com/perfect-things/ui.git"
   },
   "scripts": {
-    "test-coverage": "jest --coverage",
+    "test-coverage": "NODE_NO_WARNINGS=1 NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "test": "NODE_NO_WARNINGS=1 NODE_OPTIONS=--experimental-vm-modules jest",
     "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.svelte",
     "lint": "gulp lint",

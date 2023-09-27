@@ -11,7 +11,6 @@ aside {
 	padding: 0 1rem calc(100lvh - 100svh);
 
 	overscroll-behavior: contain;
-	z-index: 60;
 }
 
 menu {
@@ -75,6 +74,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	aside {
 		box-shadow: 2px 1px 10px #0006;
 		transform: translateX(calc(var(--sidebar-width) * -1));
+		z-index: 60;
 
 		--sidebar-elastic-padding: 80px;
 		width: calc(var(--sidebar-width) + var(--sidebar-elastic-padding));

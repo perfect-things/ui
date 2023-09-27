@@ -1,0 +1,6 @@
+.input-time .input-row {
+	border-radius: inherit;
+	background: var(--ui-color-background-input);
+}
+
+.input-time input { margin-left: calc(2rem - 2px); }

@@ -20,11 +20,14 @@
 		<NavItem name="Checkbox" {active} />
 		<NavItem name="Combobox" {active} />
 		<NavItem name="Input Date" {active} />
-		<NavItem name="Input Text" {active} />
-		<NavItem name="Input Number" {active} />
 		<NavItem name="Input Math" {active} />
+		<NavItem name="Input Number" {active} />
 		<NavItem name="Input Password" {active} />
+		<NavItem name="Input Rating" {active} />
 		<NavItem name="Input Search" {active} />
+		<NavItem name="Input Tag" {active} />
+		<NavItem name="Input Text" {active} />
+		<NavItem name="Input Time" {active} />
 		<NavItem name="Radio" {active} />
 		<NavItem name="Select" {active} />
 		<NavItem name="Textarea" {active} />
@@ -49,6 +52,7 @@
 
 		<h3>Generic</h3>
 		<NavItem name="Menu" {active} />
+		<NavItem name="Tag" {active} />
 		<NavItem name="Icon" {active} />
 		<NavItem name="Utils" {active} />
 		<!-- <NavItem name="Splitter" {active} /> -->

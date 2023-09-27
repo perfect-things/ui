@@ -13,6 +13,7 @@ export * from './popover/index.js';
 export * from './push-button/index.js';
 export * from './splitter/index.js';
 export * from './table/index.js';
+export * from './tag/index.js';
 export * from './tooltip/index.js';
 export * from './tree/index.js';
 export * from './utils.js';

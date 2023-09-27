@@ -60,7 +60,7 @@ const errorMessageId = guid();
 const allowedKeys = [
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 	'ArrowLeft', 'ArrowDown', 'ArrowUp', 'ArrowRight',
-	'Backspace', 'Delete', 'Tab', 'Meta',
+	'Meta', 'Ctrl', 'Shift', 'Backspace', 'Delete', 'Tab', 'Enter', 'Escape'
 ];
 
 

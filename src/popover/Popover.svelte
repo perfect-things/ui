@@ -1,6 +1,8 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#if opened}
-	<div class="popover-plate popover-{position} {className}" bind:this="{element}">
+	<div
+		class="popover-plate popover-{_position} {className} {hideTip ? 'hide-tip' : ''}"
+		bind:this="{element}">
 		<div class="popover">
 			<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 			<div class="popover-content" bind:this="{contentEl}">
@@ -26,30 +28,37 @@ export let offset = 2;
 export let element = undefined;
 export let contentEl = undefined;
 export let position = 'bottom';
+export let hideTip = false;
+export let dontHideOnTargetClick = false;
+export let setMinWidthToTarget = false;
 
 let targetEl, opened = false;
 let closing = false;
 let eventsAdded = false;
+let _position = position;
 
-const observer = new MutationObserver(onContentChange);
+const observer = new MutationObserver(updatePosition);
 
 
 
 
 export function updatePosition () {
 	if (!opened) return;
-	position = alignItem({
+	_position = alignItem({
 		element,
 		target: targetEl,
 		alignH: 'center',
 		alignV: position,
-		offsetV: +offset
+		offsetV: +offset,
+		setMinWidthToTarget: setMinWidthToTarget
 	});
 }
 
 
+export const isOpened = () => opened;
+
 export function open (e) {
-	if (closing) return;
+	if (closing) return Promise.resolve();
 	if (opened) return close();
 	opened = true;
 
@@ -59,18 +68,17 @@ export function open (e) {
 	if (e instanceof HTMLElement) targetEl = e;
 
 	if (targetEl) addArias(targetEl);
+	if (element && element.parentElement !== document.body) {
+		document.body.appendChild(element);
+	}
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		if (element && element.parentElement !== document.body) {
-			document.body.appendChild(element);
-		}
-
 		updatePosition();
-		dispatch('open', { event: e, target: targetEl });
-
 		focusFirst();
 		addEventListeners();
-		requestAnimationFrame(resolve);
+		resolve();
+		dispatch('open', { event: e, target: targetEl });
+		requestAnimationFrame(updatePosition);
 	}));
 }
 
@@ -80,7 +88,6 @@ export function open (e) {
  */
 export function close () {
 	if (!opened) return Promise.resolve();
-
 	if (targetEl) targetEl.focus();
 
 	opened = false;
@@ -88,9 +95,9 @@ export function close () {
 	removeArias(targetEl);
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		dispatch('close', { target: targetEl });
 		removeEventListeners();
-		requestAnimationFrame(resolve);
+		resolve();
+		dispatch('close', { target: targetEl });
 		setTimeout(() => closing = false, 300);
 	}));
 }
@@ -137,14 +144,12 @@ function onResize () {
 }
 
 
-function onContentChange () {
-	updatePosition();
-}
-
-
 function onDocumentClick (e) {
 	if (!element) return;
-	if (!element.contains(e.target)) close();
+	if (element.contains(e.target)) return;
+	if (dontHideOnTargetClick && targetEl &&
+		(targetEl === e.target || targetEl.contains(e.target))) return;
+	close();
 }
 
 
@@ -163,6 +168,7 @@ function addEventListeners () {
 	document.addEventListener('click', onDocumentClick);
 	document.addEventListener('keydown', onKeydown);
 	window.addEventListener('resize', onResize);
+	window.addEventListener('scroll', onResize);
 	observer.observe(element, { attributes: false, childList: true, subtree: true });
 	eventsAdded = true;
 }
@@ -172,6 +178,7 @@ function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick);
 	document.removeEventListener('keydown', onKeydown);
 	window.removeEventListener('resize', onResize);
+	window.removeEventListener('scroll', onResize);
 	observer.disconnect();
 	eventsAdded = false;
 }

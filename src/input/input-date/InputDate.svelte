@@ -1,6 +1,7 @@
 <div
 	class="input input-date {className}"
 	class:open
+	class:native="{useNative}"
 	aria-expanded="{open}"
 	class:has-error="{error}"
 	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
@@ -21,28 +22,42 @@
 				on:mousedown="{onIconMouseDown}"
 				on:click="{onIconClick}"/>
 
-			<input
-				type="text"
-				autocomplete="off"
-				class="prevent-scrolling-on-focus"
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-
-				{placeholder}
-				{title}
-				{name}
-				{disabled}
-				id="{_id}"
-
-				on:changeDate="{onchange}"
-				on:input="{oninput}"
-				on:keydown|capture="{onkeydown}"
-				on:show="{onshow}"
-				on:hide="{onhide}"
-				on:blur={onblur}
-				bind:this="{inputElement}"
-				bind:value="{value}">
+			{#if useNative}
+				<input
+					type="date"
+					class="prevent-scrolling-on-focus"
+					aria-invalid="{error}"
+					aria-errormessage="{error ? errorMessageId : undefined}"
+					aria-required="{required}"
+					{title}
+					{name}
+					{disabled}
+					id="{_id}"
+					on:change="{onchange}"
+					bind:this="{inputElement}"
+					bind:value="{value}">
+			{:else}
+				<input
+					type="text"
+					autocomplete="off"
+					class="prevent-scrolling-on-focus"
+					aria-invalid="{error}"
+					aria-errormessage="{error ? errorMessageId : undefined}"
+					aria-required="{required}"
+					{placeholder}
+					{title}
+					{name}
+					{disabled}
+					id="{_id}"
+					on:changeDate="{onchange}"
+					on:input="{oninput}"
+					on:keydown|capture="{onkeydown}"
+					on:show="{onshow}"
+					on:hide="{onhide}"
+					on:blur={onblur}
+					bind:this="{inputElement}"
+					bind:value="{value}">
+			{/if}
 		</div>
 	</div>
 </div>
@@ -52,7 +67,7 @@ import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { icons } from '../../icon';
 import { Button } from '../../button';
-import { guid } from '../../utils';
+import { guid, isMobile } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
@@ -75,6 +90,7 @@ export let name = undefined;
 export let error = undefined;
 export let info = undefined;
 export let labelOnTheLeft = false;
+export let useNativeOnMobile = false;
 
 export let element = undefined;
 export let inputElement = undefined;
@@ -84,11 +100,18 @@ $:elevated = elevate === true || elevate === 'true';
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
+const useNative = isMobile() && (useNativeOnMobile === true || useNativeOnMobile === 'true');
+
 let picker;
-let open = false;
+let open = useNative ? true : false;
 let isHiding = false;
 
-onMount(() => {
+
+onMount(initDatePicker);
+
+
+function initDatePicker () {
+	if (useNative) return;
 	picker = new Datepicker(inputElement, {
 		autohide: true,
 		buttonClass: 'button button-text',
@@ -104,8 +127,7 @@ onMount(() => {
 		updateOnBlur: true,
 		weekStart: 1,
 	});
-});
-
+}
 
 function onkeydown (e) {
 	const isActive = picker.active;
@@ -143,7 +165,8 @@ function oninput () {
 }
 
 function onchange () {
-	value = picker.getDate(format);
+	if (picker) value = picker.getDate(format);
+	else value = inputElement.value;
 	dispatch('change', value);
 }
 

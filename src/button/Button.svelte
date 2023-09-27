@@ -1,3 +1,4 @@
+<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <button
 	type="{submit ? 'submit' : 'button'}"
 	bind:this="{element}"
@@ -21,6 +22,9 @@
 	on:keydown
 	on:mousedown
 	on:mouseup
+	on:mouseover
+	on:mouseout
+	on:mousemove
 	on:touchstart="{() => touching = true}"
 	on:touchend="{() => touching = false}"
 	on:click>

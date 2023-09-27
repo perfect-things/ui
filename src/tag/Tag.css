@@ -1,0 +1,49 @@
+.ui-tag {
+	border: 1px solid var(--ui-color-border);
+	background: var(--ui-color-secondary);
+	border-radius: var(--ui-border-radius);
+	padding: 0.4rem 0.7rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.2rem;
+	height: 2rem;
+	cursor: default;
+	color: var(--ui-color-text);
+	-webkit-user-select: none;
+	user-select: none;
+	touch-action: manipulation;
+}
+
+.ui-tag .icon {
+	width: 1rem;
+	height: 1rem;
+	margin-left: -4px;
+	/* a fix safari rendering issue */
+	/* when tag was pressed, the icon would slide to the left */
+	transform: translateZ(1px);
+}
+
+.ui-tag:focus-visible {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+	outline: 1px solid transparent;
+}
+.ui-tag .ui-tag-label { padding-bottom: 2px; }
+
+.ui-tag.dark { color: #fff; }
+.ui-tag.light { color: #000; }
+
+.ui-tag.disabled { opacity: 0.5; }
+.ui-tag.round { border-radius: var(--ui-border-radius-xl); }
+
+.ui-tag.info { background-color: var(--ui-color-info); }
+.ui-tag.success { background-color: var(--ui-color-success); }
+.ui-tag.danger { background-color: var(--ui-color-danger); }
+.ui-tag.warning { background-color: var(--ui-color-warning); }
+
+.ui-tag.info,
+.ui-tag.success,
+.ui-tag.danger,
+.ui-tag.warning { color: var(--ui-color-text); }
+
+.ui-tag:not(.disabled):active { transform: translateY(1px); filter: brightness(0.85); }
