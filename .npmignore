@@ -16,6 +16,8 @@ docs/*.woff*
 
 docs-src/
 
+src/**/*.css
+
 coverage/
 tests/
 .*
