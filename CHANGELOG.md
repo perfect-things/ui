@@ -1,12 +1,12 @@
 Changelog
 =========
 
-## v9.1.1, v9.1.0 *(2023-09-27)*
+## v9.1.2, v9.1.1, v9.1.0 *(2023-09-27)*
 - New components: `InputRating`, `Tag`, `InputTag`, `InputTime`.
 - Add `hideTip` and more, to `Popover`.
 - Add `useNativeOnMobile` to `InputDate`.
-- Many other smaller bugfixes and improvements.
 - Fix `Popover` z-index (so that it shows over dialogs)
+- Many other smaller bugfixes and improvements.
 
 ## v9.0.5 *(2023-09-22)*
 - Reduce `Dialog's` `z-index` so that the popups from the dialog show up on top of it.

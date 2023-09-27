@@ -2,6 +2,7 @@
 {#if opened}
 	<div
 		class="popover-plate popover-{_position} {className} {hideTip ? 'hide-tip' : ''}"
+		class:opening
 		bind:this="{element}">
 		<div class="popover">
 			<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
@@ -33,7 +34,7 @@ export let dontHideOnTargetClick = false;
 export let setMinWidthToTarget = false;
 
 let targetEl, opened = false;
-let closing = false;
+let opening = false, closing = false;
 let eventsAdded = false;
 let _position = position;
 
@@ -61,6 +62,7 @@ export function open (e) {
 	if (closing) return Promise.resolve();
 	if (opened) return close();
 	opened = true;
+	opening = true;
 
 	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 
@@ -69,19 +71,19 @@ export function open (e) {
 
 	if (targetEl) addArias(targetEl);
 
-	requestAnimationFrame(() => {
+	return new Promise(resolve => requestAnimationFrame(() => {
 		if (element && element.parentElement !== document.body) {
 			document.body.appendChild(element);
 		}
-	});
-
-	return new Promise(resolve => requestAnimationFrame(() => {
 		updatePosition();
 		focusFirst();
 		addEventListeners();
-		resolve();
+		requestAnimationFrame(() => {
+			updatePosition();
+			opening = false;
+		});
 		dispatch('open', { event: e, target: targetEl });
-		requestAnimationFrame(updatePosition);
+		resolve();
 	}));
 }
 
@@ -158,7 +160,11 @@ function onDocumentClick (e) {
 
 function onKeydown (e) {
 	const hasFocus = element.contains(document.activeElement);
-	if (e.key === 'Tab' && !hasFocus) return focusFirst();
+	if (e.key === 'Tab') {
+		e.stopPropagation();
+		if (!hasFocus) focusFirst();
+		return;
+	}
 	if (e.key === 'Escape') {
 		e.stopPropagation();
 		return close();
@@ -168,8 +174,8 @@ function onKeydown (e) {
 
 function addEventListeners () {
 	if (eventsAdded) return;
-	document.addEventListener('click', onDocumentClick);
-	document.addEventListener('keydown', onKeydown);
+	document.addEventListener('click', onDocumentClick, true);
+	document.addEventListener('keydown', onKeydown, true);
 	window.addEventListener('resize', onResize);
 	window.addEventListener('scroll', onResize);
 	observer.observe(element, { attributes: false, childList: true, subtree: true });
@@ -178,8 +184,8 @@ function addEventListeners () {
 
 
 function removeEventListeners () {
-	document.removeEventListener('click', onDocumentClick);
-	document.removeEventListener('keydown', onKeydown);
+	document.removeEventListener('click', onDocumentClick, true);
+	document.removeEventListener('keydown', onKeydown, true);
 	window.removeEventListener('resize', onResize);
 	window.removeEventListener('scroll', onResize);
 	observer.disconnect();

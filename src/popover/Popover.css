@@ -9,6 +9,8 @@
 	z-index: var(--ui-z-index-popup);
 }
 
+.popover-plate.opening { opacity: 0; }
+
 .popover {
 	position: relative;
 	border-radius: var(--ui-border-radius-m);

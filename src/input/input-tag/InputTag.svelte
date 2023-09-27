@@ -123,16 +123,16 @@ function onclose () {
 
 
 function updatePosition () {
-	if (!opened) return;
+	if (opened) return Promise.resolve();
 	requestAnimationFrame(listPopover.updatePosition);
 }
 
 
 function onkeydown (e) {
-	if (e.key === 'Enter') open();
-	else if (e.key === 'ArrowDown') {
+	if (e.key === 'Enter') return open();
+	if (e.key === 'ArrowDown') {
 		e.preventDefault();
-		open().then(() => {
+		return open().then(() => {
 			listElement.querySelector('.ui-tag').focus();
 		});
 	}
