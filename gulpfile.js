@@ -126,6 +126,34 @@ export function js () {
 		.pipe(livereload());
 }
 
+export function wc () {
+	const cfg = {
+		outfile: 'button.js',
+		mainFields: ['svelte', 'browser', 'module', 'main'],
+		bundle: true,
+		minify: true,
+		sourcemap: false,
+		logLevel: 'warning',
+		// https://esbuild.github.io/api/#log-override
+		logOverride: { 'direct-eval': 'silent' },
+		legalComments: 'none',
+		format: 'esm',
+		treeShaking: true,
+		color: true,
+		plugins: [
+			sveltePlugin({ compilerOptions: { dev: false, css: 'injected', customElement: true } }),
+			// @ts-ignore
+			NodeResolve.default({ extensions: ['.js', '.svelte'] }),
+		],
+	};
+
+	return src('src/button/Button.svelte')
+		// @ts-ignore
+		.pipe(gulpEsbuild(cfg))
+		.pipe(dest(PATHS.DIST))
+		.pipe(livereload());
+}
+
 
 
 export function libCSS () {
@@ -165,4 +193,5 @@ function serveTask () {
 export const lint = parallel(eslint, stylelint);
 export const build = series(cleanup, parallel(js, libCSS, lint, docsCSS, html, assets, externals));
 export const prod = series(setProd, build);
+export const dist = prod;
 export default parallel(watchTask, series(build, serveTask));

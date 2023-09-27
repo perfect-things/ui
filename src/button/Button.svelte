@@ -32,6 +32,9 @@
 	{#if icon}<Icon name="{icon}"/>{/if}
 	<slot></slot>
 </button>
+
+<svelte:options customElement="ui-button" />
+<style>@import 'ui.css';</style>
 <script>
 import { Icon } from '../icon';
 import { pluck } from '../utils';
