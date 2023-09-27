@@ -31,6 +31,7 @@
 .ui-tag .ui-tag-label { padding-bottom: 2px; }
 
 .ui-tag.dark { color: #fff; }
+.ui-tag.light { color: #000; }
 
 .ui-tag.disabled { opacity: 0.5; }
 .ui-tag.round { border-radius: var(--ui-border-radius-xl); }

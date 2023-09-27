@@ -6,8 +6,16 @@
 <InputDate on:keydown="{onkey}" bind:value="{item.datevalue}"/>
 {item.datevalue || ''}
 
-<h3>Show on focus</h3>
+<h3>Show on focus (when using keyboard)</h3>
 <InputDate showOnFocus="true" placeholder="Custom placeholder" />
+
+
+<h3>Initial value</h3>
+<InputDate value="2061-01-01"/>
+
+<h3>Use native on mobile</h3>
+<InputDate useNativeOnMobile value="2061-01-01" />
+
 
 <h3>Change date format</h3>
 <InputDate format="dd-mm-yy" />
@@ -70,7 +78,9 @@ const apiProps = [
 	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.' },
 	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the datepicker will be automatically open when the input gets focus (normally opens on click).' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'useNativeOnMobile', type: ['true', 'false'], default: 'false', description: 'Use native date picker on mobile devices.<br>In some cases this may provide prefered UX, but it has also some restrictions depending on the device/browser, like date format is enforced by device locale and placeholder text may not be available.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
+
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },

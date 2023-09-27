@@ -65,7 +65,7 @@ test('utils - guid', () => {
 
 
 test('utils - mouse events', () => {
-	const e = { type: 'touch', touches: [{ clientX: 100, clientY: 100 }], clientX: 200, clientY: 200 };
+	const e = { type: 'touch', changedTouches: [{ clientX: 100, clientY: 100 }], clientX: 200, clientY: 200 };
 	const x = utils.getMouseX(e);
 	const y = utils.getMouseY(e);
 	expect(x).toBe(100);
@@ -282,5 +282,29 @@ describe('utils - alignItem', () => {
 		utils.alignItem({ element: null, target: null });
 		expect(element.style.top).toBe('');
 		expect(element.style.left).toBe('');
+	});
+});
+
+
+describe('isColorDark', () => {
+	it('returns true for dark colors', () => {
+		expect(utils.isColorDark('#333333')).toBe(true);
+		expect(utils.isColorDark('#000000')).toBe(true);
+	});
+
+	it('returns false for light colors', () => {
+		expect(utils.isColorDark('#ffffff')).toBe(false);
+		expect(utils.isColorDark('#cccccc')).toBe(false);
+	});
+
+	it('handles shorthand hex colors', () => {
+		expect(utils.isColorDark('#333')).toBe(true);
+		expect(utils.isColorDark('#fff')).toBe(false);
+	});
+
+	it('handles invalid hex colors', () => {
+		expect(utils.isColorDark('not a hex color')).toBe(false);
+		expect(utils.isColorDark('#12345')).toBe(false);
+		expect(utils.isColorDark('#gggggg')).toBe(false);
 	});
 });

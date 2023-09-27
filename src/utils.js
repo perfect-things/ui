@@ -110,11 +110,11 @@ export function guid () {
 
 
 export function getMouseX (e) {
-	return (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+	return (e.type.includes('touch')) ? e.changedTouches[0].clientX : e.clientX;
 }
 
 export function getMouseY (e) {
-	return (e.type.includes('touch')) ? e.touches[0].clientY : e.clientY;
+	return (e.type.includes('touch')) ? e.changedTouches[0].clientY : e.clientY;
 }
 
 export function getMouseXY (e) {
@@ -329,10 +329,15 @@ export function isInScrollable (node) {
 
 
 export function isColorDark (hex) {
-	const color = (hex.charAt(0) === '#') ? hex.substring(1, 7) : hex;
-	const r = parseInt(color.substring(0, 2), 16); // red
-	const g = parseInt(color.substring(2, 4), 16); // green
-	const b = parseInt(color.substring(4, 6), 16); // blue
+	hex = (hex[0] === '#') ? hex.slice(1) : hex;
+	if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+	if (hex.length !== 6) return false;
+
+	const r = parseInt(hex.substring(0, 2), 16); // red
+	const g = parseInt(hex.substring(2, 4), 16); // green
+	const b = parseInt(hex.substring(4, 6), 16); // blue
+	if (isNaN(r) || isNaN(g) || isNaN(b)) return false;
+
 	const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-	return brightness < 140;
+	return isNaN(brightness) ? false : brightness < 140;
 }

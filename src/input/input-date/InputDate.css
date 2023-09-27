@@ -1,7 +1,9 @@
 .input-date .input-text-inner { position: relative; overflow: unset; }
 
-.input-date input { width: 100%; padding-right: 36px; }
+.input-date input { flex: 1; width: 100%; padding-right: 36px; }
 
+
+.input-date.native .input-date-button { pointer-events: none; }
 
 .datepicker { display: none; transform: translateZ(1px); }
 .datepicker.active { display: block; }

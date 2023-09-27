@@ -4,7 +4,8 @@ Changelog
 ## v9.1.0 *(2023-09-26)*
 - New components: `InputRating`, `Tag`, `InputTag`, `InputTime`.
 - Add `hideTip` and more, to `Popover`.
-- Small bugfixes and improvements.
+- Add `useNativeOnMobile` to `InputDate`.
+- Many other smaller bugfixes and improvements.
 
 
 ## v9.0.5 *(2023-09-22)*

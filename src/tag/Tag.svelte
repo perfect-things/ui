@@ -2,6 +2,7 @@
 	class="ui-tag {className} {colorClass}"
 	class:round
 	class:dark="{color && isColorDark(color)}"
+	class:light="{color && !isColorDark(color)}"
 	class:disabled
 	style="{color ? `background-color: ${color};` : ''}"
 	role="button"
