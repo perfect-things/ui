@@ -68,9 +68,12 @@ export function open (e) {
 	if (e instanceof HTMLElement) targetEl = e;
 
 	if (targetEl) addArias(targetEl);
-	if (element && element.parentElement !== document.body) {
-		document.body.appendChild(element);
-	}
+
+	requestAnimationFrame(() => {
+		if (element && element.parentElement !== document.body) {
+			document.body.appendChild(element);
+		}
+	});
 
 	return new Promise(resolve => requestAnimationFrame(() => {
 		updatePosition();
