@@ -53,6 +53,7 @@ function clearTimer () {
  * Starts the timer on mouse down and logs current position
  */
 function mouseDownHandler (e) {
+	if (e.pointerType === 'mouse' && e.button !== 0) return;
 	e = unifyEvent(e);
 	startX = e.clientX;
 	startY = e.clientY;
