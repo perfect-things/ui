@@ -62,11 +62,12 @@ input[type=color] {
 
 
  /* label on the left */
-  .radio.label-on-the-left,
-  .button-toggle.input.label-on-the-left,
- .textarea.label-on-the-left,
- .toggle.label-on-the-left,
- .input.label-on-the-left {
+.radio.label-on-the-left,
+.button-toggle.input.label-on-the-left,
+.textarea.label-on-the-left,
+.toggle.label-on-the-left,
+.range.label-on-the-left,
+.input.label-on-the-left {
 	display: inline-flex;
 	flex-flow: row;
 	align-items: flex-start;
@@ -74,6 +75,7 @@ input[type=color] {
 	gap: 1rem;
 }
 .label-on-the-left .label { padding-inline: 0; width: max-content; white-space: nowrap; }
+.label-on-the-left .range-inner,
 .label-on-the-left .input-inner { flex: 1; }
 
 
@@ -86,10 +88,12 @@ input[type=color] {
 
 .input,
 .textarea textarea:disabled,
+.range input:disabled,
 .input select:disabled,
 .input input:disabled { opacity: 1; color: var(--ui-color-text); }
 
 .input .input-inner:has(:disabled),
+.range .range-inner:has(:disabled),
 .textarea .textarea-inner:has(:disabled) { opacity: 0.7; }
 
 .input input:not([type=radio]) { width: 100%; border: none; }

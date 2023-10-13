@@ -11,6 +11,7 @@ export * from './input-tag';
 export * from './input-time';
 export * from './input-text';
 export * from './radio';
+export * from './range';
 export * from './select';
 export * from './textarea';
 export * from './toggle';

@@ -1,0 +1,84 @@
+.range {
+	position: relative;
+	width: 25ch;
+	vertical-align: top;
+	--range-size: calc(var(--ui-button-height) / 3 * 2);
+}
+
+.range .range-inner {
+	display: flex;
+	flex-flow: column;
+	gap: 0.5rem;
+	flex: 1;
+	padding: 0.75rem 0;
+	position: relative;
+}
+
+.range input {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+	width: 100%;
+	height: 0.5rem;
+	border-radius: 5rem;
+	padding-inline: 0;
+	border: 1px solid var(--ui-color-border);
+	background: var(--ui-color-background-input);
+	background-image: linear-gradient(var(--ui-color-highlight), var(--ui-color-highlight));
+	background-size: 70% 100%;
+	background-repeat: no-repeat;
+	background-clip: padding-box;
+}
+
+.range input::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	display: flex;
+	align-items: center;
+	height: 0.5rem;
+	border-radius: 0.5rem;
+}
+
+.range input::-moz-range-track {
+	display: flex;
+	align-items: center;
+	background-color: var(--ui-color-background-input);
+	height: 0.5rem;
+	border-radius: 0.5rem;
+}
+
+.range input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: var(--ui-color-text);
+	height: var(--range-size);
+	width: var(--range-size);
+	border-radius: 5rem;
+	box-shadow: 0 1px 3px #000c;
+}
+
+.range input::-moz-range-thumb {
+	background-color: var(--ui-color-text);
+	height: var(--range-size);
+	width: var(--range-size);
+	border-radius: 5rem;
+	box-shadow: 0 1px 3px #000c;
+}
+
+/* Cannot be merged, as it won't work in safari */
+.range:not(.disabled) input::-webkit-slider-thumb:active { transform: scale(0.9); }
+.range:not(.disabled) input::-moz-slider-thumb:active { transform: scale(0.9); }
+
+
+.range-tooltip {
+	position: absolute;
+	bottom: 0;
+	width: calc(100% - var(--range-size) - 2px);
+	margin-inline: calc(var(--range-size) / 2 + 1px);
+	transform: translateY(calc(var(--range-size) * -1 - 0.3rem));
+	display: none;
+}
+
+.range-tooltip .tooltip-plate { display: inline-flex; position: relative; transform: translateX(-50%); }
+
+.range:not(.disabled):focus-within .range-tooltip,
+.range:not(.disabled):active .range-tooltip { display: block; }

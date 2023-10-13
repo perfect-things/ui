@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.2.0 <em>(2023-10-13)</em></h2>
+<ul>
+<li>New component: <code>Range</code>.</li>
+</ul>
 <h2>v9.1.2, v9.1.1, v9.1.0 <em>(2023-09-27)</em></h2>
 <ul>
 <li>New components: <code>InputRating</code>, <code>Tag</code>, <code>InputTag</code>, <code>InputTime</code>.</li>

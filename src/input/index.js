@@ -13,6 +13,7 @@ export * from './input-time';
 export * from './input-text';
 export * from './label';
 export * from './radio';
+export * from './range';
 export * from './select';
 export * from './textarea';
 export * from './toggle';

@@ -27,7 +27,7 @@ test('Radio', async () => {
 	const cmp = getByTitle(props.title);
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('test-class');
-	expect(cmp).toHaveAttribute('id', 'Radio1');
+	expect(cmp).toHaveAttribute('id', props.id);
 
 
 	let err = cmp.querySelector('.info-bar-error');
@@ -51,7 +51,7 @@ test('Radio', async () => {
 
 	const lbl = cmp.querySelector('label');
 	expect(lbl).toBeInTheDocument();
-	expect(lbl).toHaveAttribute('for', 'Radio1');
+	expect(lbl).toHaveAttribute('for', props.id);
 	expect(lbl).toHaveTextContent(props.label);
 
 
@@ -62,8 +62,8 @@ test('Radio', async () => {
 	expect(inp0).not.toBeChecked();
 	expect(inp1).not.toBeChecked();
 
-	expect(inp0).toHaveAttribute('name', 'Radio1');
-	expect(inp1).toHaveAttribute('name', 'Radio1');
+	expect(inp0).toHaveAttribute('name', props.name);
+	expect(inp1).toHaveAttribute('name', props.name);
 
 	expect(inp0).toBeDisabled();
 	expect(inp1).not.toBeDisabled();

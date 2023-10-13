@@ -29,6 +29,7 @@
 		<NavItem name="Input Text" {active} />
 		<NavItem name="Input Time" {active} />
 		<NavItem name="Radio" {active} />
+		<NavItem name="Range" {active} />
 		<NavItem name="Select" {active} />
 		<NavItem name="Textarea" {active} />
 		<NavItem name="Toggle" {active} />

@@ -119,7 +119,7 @@ function onDocKeydown (e) {
 
 function freezeBody (freeze) {
 	if (freeze) {
-		scrollPos = window.pageYOffset;
+		scrollPos = window.scrollY;
 		document.body.classList.add('has-dialog');
 		document.body.style.top = `-${scrollPos}px`;
 	}
