@@ -4,10 +4,11 @@
 	class:dark="{color && isColorDark(color)}"
 	class:light="{color && !isColorDark(color)}"
 	class:disabled
+	class:clickable
 	style="{color ? `background-color: ${color};` : ''}"
 	role="button"
-	tabindex="{disabled ? undefined : 0}"
-	inert="{disabled}"
+	tabindex="{disabled || !clickable ? undefined : 0}"
+	inert="{disabled || !clickable}"
 	bind:this="{element}"
 	on:keydown="{onkeydown}"
 	on:click="{onclick}">
@@ -31,6 +32,7 @@ export let icon = undefined;
 export let color = undefined;
 export let element = undefined;
 export let disabled = false;
+export let clickable = false;
 
 $: colorClass = (['info', 'warning', 'danger', 'success'].includes(color) ? color : '');
 

@@ -22,7 +22,7 @@
 
 
 <h3>With click action</h3>
-<Tag on:click="{onclick}">Click me</Tag>
+<Tag clickable on:click="{onclick}">Click me</Tag>
 
 
 <CodeExample html="{exampleHtml}" />
@@ -36,6 +36,7 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'clickable', description: 'When passed, the tag will be interactive.' },
 	{ name: 'color', type: 'string', description: 'Tag color. Standard variations are included (info, warning, danger, success). A color hash or name can also be provided.' },
 	{ name: 'disabled', description: 'Makes the tag <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Icon name to display in the tag.' },

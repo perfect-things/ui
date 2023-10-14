@@ -11,8 +11,17 @@
 	color: var(--ui-color-text);
 	-webkit-user-select: none;
 	user-select: none;
-	touch-action: manipulation;
 }
+
+.ui-tag.clickable {
+	touch-action: manipulation;
+	cursor: pointer;
+}
+.ui-tag.clickable:not(.disabled):active {
+	transform: translateY(1px);
+	filter: brightness(0.85);
+}
+
 
 .ui-tag .icon {
 	width: 1rem;
@@ -45,5 +54,3 @@
 .ui-tag.success,
 .ui-tag.danger,
 .ui-tag.warning { color: var(--ui-color-text); }
-
-.ui-tag:not(.disabled):active { transform: translateY(1px); filter: brightness(0.85); }

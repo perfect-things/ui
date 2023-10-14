@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.2.1 *(2023-10-14)*
+- `Tag` should not be clickable (or focusable) by default. It can be made interactive by adding the new `clickable` attribute.
+
+
 ## v9.2.0 *(2023-10-13)*
 - New component: `Range`.
 

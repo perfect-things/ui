@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.2.1 <em>(2023-10-14)</em></h2>
+<ul>
+<li><code>Tag</code> should not be clickable (or focusable) by default. It can be made interactive by adding the new <code>clickable</code> attribute.</li>
+</ul>
 <h2>v9.2.0 <em>(2023-10-13)</em></h2>
 <ul>
 <li>New component: <code>Range</code>.</li>
