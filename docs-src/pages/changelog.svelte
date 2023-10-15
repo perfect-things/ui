@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.2.2 <em>(2023-10-15)</em></h2>
+<ul>
+<li>Change tooltip to ticks in <code>Range</code> component, for better accessibility.</li>
+</ul>
 <h2>v9.2.1 <em>(2023-10-14)</em></h2>
 <ul>
 <li><code>Tag</code> should not be clickable (or focusable) by default. It can be made interactive by adding the new <code>clickable</code> attribute.</li>

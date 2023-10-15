@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.2.2 *(2023-10-15)*
+- Change tooltip to ticks in `Range` component, for better accessibility.
+
+
 ## v9.2.1 *(2023-10-14)*
 - `Tag` should not be clickable (or focusable) by default. It can be made interactive by adding the new `clickable` attribute.
 

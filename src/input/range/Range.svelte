@@ -11,6 +11,13 @@
 
 	<div class="range-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
+
+		{#if !hideTicks}
+			<div class="range-ticks">
+				{#each ticks as tick (tick)}<span>{tick}</span>{/each}
+			</div>
+		{/if}
+
 		<input
 			type="range"
 			{name}
@@ -26,16 +33,6 @@
 			bind:value="{value}"
 			on:change
 			on:input>
-
-		{#if !hideTooltip}
-			<div class="range-tooltip">
-				<div class="popover-plate popover-top tooltip-plate opened" style="left: {progress}%;">
-					<div class="popover tooltip" role="tooltip">
-						<div class="popover-content tooltip-content">{value}</div>
-					</div>
-				</div>
-			</div>
-		{/if}
 	</div>
 </div>
 
@@ -62,16 +59,17 @@ export let min = 0;
 export let max = 10;
 export let step = 1;
 export let value = min;
-export let hideTooltip = false;
+export let hideTicks = false;
 
 export let element = undefined;
 export let inputElement = undefined;
 
+const errorMessageId = guid();
 
 $:_id = id || name || guid();
 $:progress = (value - min) / (max - min) * 100;
 
-const errorMessageId = guid();
+$:ticks = Array.from({ length: 6 }, (_, i) => +min + i * ((max - min) / 5));
 
 
 </script>

@@ -10,9 +10,11 @@
 	flex-flow: column;
 	gap: 0.5rem;
 	flex: 1;
-	padding: 0.75rem 0;
+	padding: 0 0 0.5rem;
 	position: relative;
+	height: 100%;
 }
+
 
 .range input {
 	-webkit-appearance: none;
@@ -29,6 +31,11 @@
 	background-repeat: no-repeat;
 	background-clip: padding-box;
 }
+
+
+
+
+
 
 .range input::-webkit-slider-runnable-track {
 	-webkit-appearance: none;
@@ -64,21 +71,20 @@
 	box-shadow: 0 1px 3px #000c;
 }
 
+
 /* Cannot be merged, as it won't work in safari */
 .range:not(.disabled) input::-webkit-slider-thumb:active { transform: scale(0.9); }
 .range:not(.disabled) input::-moz-slider-thumb:active { transform: scale(0.9); }
 
 
-.range-tooltip {
-	position: absolute;
-	bottom: 0;
-	width: calc(100% - var(--range-size) - 2px);
-	margin-inline: calc(var(--range-size) / 2 + 1px);
-	transform: translateY(calc(var(--range-size) * -1 - 0.3rem));
-	display: none;
+
+.range-ticks {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 -0.1rem 0.4rem;
 }
+.range-ticks span { width: 3ch; text-align: center; }
 
-.range-tooltip .tooltip-plate { display: inline-flex; position: relative; transform: translateX(-50%); }
 
-.range:not(.disabled):focus-within .range-tooltip,
-.range:not(.disabled):active .range-tooltip { display: block; }
+.range.label-on-the-left { align-items: flex-end; }
+.range.label-on-the-left .label { height: 1.8rem; }

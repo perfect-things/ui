@@ -51,14 +51,7 @@ test('Range', async () => {
 	expect(lbl).toHaveAttribute('for', props.id);
 	expect(lbl).toHaveTextContent(props.label);
 
-	const ttip = cmp.querySelector('.range-tooltip');
-	expect(ttip).toBeInTheDocument();
-	await fireEvent.focus(input);
-	await waitForTimeout();
-	expect(ttip).toBeVisible();
-	expect(ttip).toHaveTextContent(props.value);
-
 	await fireEvent.change(input, { target: { value: 6 } });
 	await waitForTimeout();
-	expect(ttip).toHaveTextContent(parseFloat(props.value) + 1);
+	expect(mock).toHaveBeenCalledTimes(1);
 });

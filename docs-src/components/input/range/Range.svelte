@@ -7,8 +7,8 @@
 <h3>Disabled</h3>
 <Range disabled />
 
-<h3>With tooltip hidden</h3>
-<Range hideTooltip />
+<h3>With ticks hidden</h3>
+<Range hideTicks />
 
 <h3>With different constraints</h3>
 <Range min="10" max="100" step="5" />
@@ -46,7 +46,7 @@ const apiProps = [
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
 	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
-	{ name: 'hideTooltip', description: 'If present, the value tooltip will not be shown.' },
+	{ name: 'hideTicks', description: 'If present, the ticks will not be shown.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'label', type: 'string', description: 'Label for the input.' },
 	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
@@ -62,7 +62,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Range autogrow on:change="{onChange}" error="Invalid text" />
+<Range on:change="{onChange}" error="Invalid text" />
 
 <script>
 function onChange (e) {
