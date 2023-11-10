@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.2.3 *(2023-11-10)*
+- Fix `InputTag`.
+
+
 ## v9.2.2 *(2023-10-15)*
 - Change tooltip to ticks in `Range` component, for better accessibility.
 

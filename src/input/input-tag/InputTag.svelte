@@ -24,7 +24,7 @@
 		<div class="input-row">
 			<Icon name="tag"/>
 			{#each _value as tag}
-				<Tag icon="close" on:click="{e => removeTagFromValue(tag, e)}">{tag}</Tag>
+				<Tag icon="close" clickable on:click="{e => removeTagFromValue(tag, e)}">{tag}</Tag>
 			{/each}
 
 			<input
@@ -49,7 +49,7 @@
 
 	<div class="input-tag-list-tags">
 		{#each _tags as tag(tag.text)}
-			<Tag icon="add" disabled="{tag.disabled}" on:click="{() => addTagToValue(tag.text)}">{tag.text}</Tag>
+			<Tag clickable icon="add" disabled="{tag.disabled}" on:click="{() => addTagToValue(tag.text)}">{tag.text}</Tag>
 		{/each}
 	</div>
 	<form class="input-tag-list-add-row" on:submit|preventDefault="{addNewTag}">
@@ -123,7 +123,6 @@ function onclose () {
 
 
 function updatePosition () {
-	if (opened) return Promise.resolve();
 	requestAnimationFrame(listPopover.updatePosition);
 }
 

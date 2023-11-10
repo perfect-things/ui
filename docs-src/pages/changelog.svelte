@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.2.3 <em>(2023-11-10)</em></h2>
+<ul>
+<li>Fix <code>InputTag</code>.</li>
+</ul>
 <h2>v9.2.2 <em>(2023-10-15)</em></h2>
 <ul>
 <li>Change tooltip to ticks in <code>Range</code> component, for better accessibility.</li>

@@ -41,7 +41,6 @@ window.visualViewport = {
 	removeEventListener: jest.fn().mockImplementation((name, cb) => cb()),
 };
 window.Element.prototype.scrollIntoView = jest.fn().mockImplementation(() => {});
-window.Element.prototype.scrollIntoView = jest.fn().mockImplementation(() => {});
 
 
 export function offsetHeight (el, value = 50) {
