@@ -1,6 +1,7 @@
 <h1>Changelog</h1>
-<h2>v9.2.4 <em>(2023-12-12)</em></h2>
+<h2>v9.3.0, v9.2.4 <em>(2023-12-12)</em></h2>
 <ul>
+<li><code>Panel</code> types (color variations).</li>
 <li>New icons (<code>print</code>).</li>
 <li>Icon optimisations.</li>
 </ul>

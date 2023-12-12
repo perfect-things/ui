@@ -65,7 +65,7 @@
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
-import { icons } from '../../icon';
+import { getIcon } from '../../icon';
 import { Button } from '../../button';
 import { guid, isMobile } from '../../utils';
 import { Info } from '../../info-bar';
@@ -122,8 +122,8 @@ function initDatePicker () {
 		orientation,
 		todayHighlight: true,
 		showOnFocus: (showOnFocus === 'true' || showOnFocus === true),
-		prevArrow: icons.chevronLeft,
-		nextArrow: icons.chevronRight,
+		prevArrow: getIcon('chevronLeft'),
+		nextArrow: getIcon('chevronRight'),
 		updateOnBlur: true,
 		weekStart: 1,
 	});

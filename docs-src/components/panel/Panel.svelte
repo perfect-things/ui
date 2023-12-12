@@ -10,6 +10,10 @@
 	<p>This is panel contents</p>
 </Panel>
 
+<Panel title="Round" round>
+	<p>This is panel contents</p>
+</Panel>
+
 <h3>No title</h3>
 
 <Panel>
@@ -17,6 +21,24 @@
 </Panel>
 
 <Panel round>
+	<p>This is panel contents</p>
+</Panel>
+
+
+<h3>Types & variations</h3>
+<Panel title="info" info>
+	<p>This is panel contents</p>
+</Panel>
+
+<Panel title="success round" success round>
+	<p>This is panel contents</p>
+</Panel>
+
+<Panel title="warning round collapsible" warning round collapsible>
+	<p>This is panel contents</p>
+</Panel>
+
+<Panel title="danger round collapsible open" danger round collapsible open>
 	<p>This is panel contents</p>
 </Panel>
 

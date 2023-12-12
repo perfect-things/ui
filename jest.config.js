@@ -11,12 +11,12 @@ export default {
 	extensionsToTreatAsEsm: ['.svelte', '.ts'],
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [
-		'@testing-library/jest-dom/extend-expect'
+		'@testing-library/jest-dom'
 	],
 	coveragePathIgnorePatterns: [
 		'coverage',
 		'tests/helpers',
 		'index.js',
 		'icons.js',
-	]
+	],
 };

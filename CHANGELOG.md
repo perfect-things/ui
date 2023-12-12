@@ -1,7 +1,8 @@
 Changelog
 =========
 
-## v9.2.4 *(2023-12-12)*
+## v9.3.0, v9.2.4 *(2023-12-12)*
+- `Panel` types (color variations).
 - New icons (`print`).
 - Icon optimisations.
 

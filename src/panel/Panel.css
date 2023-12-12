@@ -61,3 +61,21 @@
 	box-shadow: var(--ui-shadow-focus);
 	z-index: 2;
 }
+
+
+.panel.info {
+	border-color: var(--ui-color-info);
+	background: var(--ui-color-info-semi);
+}
+.panel.success {
+	border-color: var(--ui-color-success);
+	background: var(--ui-color-success-semi);
+}
+.panel.warning {
+	border-color: var(--ui-color-warning);
+	background: var(--ui-color-warning-semi);
+}
+.panel.danger {
+	border-color: var(--ui-color-danger);
+	background: var(--ui-color-danger-semi);
+}

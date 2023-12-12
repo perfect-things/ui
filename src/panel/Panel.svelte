@@ -5,6 +5,10 @@
 	class:expanded
 	class:round
 	class:disabled
+	class:info
+	class:success
+	class:warning
+	class:danger
 	inert="{disabled}"
 	bind:this="{element}">
 
@@ -13,7 +17,7 @@
 			<summary class="panel-header" bind:this="{headerEl}" inert="{!collapsible}">
 				{title}
 				{#if collapsible}
-					<div class="chevron">{@html icons.chevronRight}</div>
+					<div class="chevron">{@html getIcon('chevronRight')}</div>
 				{/if}
 			</summary>
 			<div class="panel-content"><slot/></div>
@@ -25,7 +29,7 @@
 
 <script>
 import { createEventDispatcher , onMount } from 'svelte';
-import { icons } from '../icon';
+import { getIcon } from '../icon';
 import { animate } from '../utils';
 const dispatch = createEventDispatcher();
 
@@ -36,6 +40,10 @@ export let open = false;
 export let round = false;
 export let collapsible = false;
 export let disabled = false;
+export let info = false;
+export let success = false;
+export let warning = false;
+export let danger = false;
 
 export let element = undefined;
 
