@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v9.2.4 <em>(2023-12-12)</em></h2>
+<ul>
+<li>New icons (<code>print</code>).</li>
+<li>Icon optimisations.</li>
+</ul>
 <h2>v9.2.3 <em>(2023-11-10)</em></h2>
 <ul>
 <li>Fix <code>InputTag</code>.</li>

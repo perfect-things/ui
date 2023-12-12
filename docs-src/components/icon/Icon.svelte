@@ -6,6 +6,12 @@
 			<div class="icon-block-name">{icon}</div>
 		</div>
 	{/each}
+	{#each Object.keys(customIcons) as icon}
+		<div class="icon-block" title="{icon}">
+			<div class="icon-block-icon"><Icon name="{icon}"/></div>
+			<div class="icon-block-name">{icon}</div>
+		</div>
+	{/each}
 </div>
 
 <h2>Custom Icon</h2>
@@ -13,11 +19,12 @@
 
 <CodeExample html="{exampleHtml}" />
 <API props="{apiProps}"/>
-<API props="{addIconAPI}" title="addIcon function" description="A component exports a global <em>addIcon</em> function with the following arguments:"/>
+<API props="{addIconAPI}" title="addIcon function" description="The component exports a global <em>addIcon</em> function with the following arguments:"/>
+<API props="{getIconAPI}" title="getIcon function" description="The component exports a global <em>getIcon</em> function that can be used to retrieve the icon's svg code (as string). The function accepts the following argument:"/>
 
 
 <script>
-import { Icon, icons, addIcon, Button } from '../../../src';
+import { Icon, icons, customIcons, addIcon, Button } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
@@ -30,6 +37,10 @@ const apiProps = [
 const addIconAPI = [
 	{ name: 'name', type: 'string', description: 'Name of the custom icon.' },
 	{ name: 'svg', type: 'string', description: 'SVG code.' },
+];
+
+const getIconAPI = [
+	{ name: 'name', type: 'string', description: 'Name of the icon.' },
 ];
 
 const exampleHtml = `

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.2.4 *(2023-12-12)*
+- New icons (`print`).
+- Icon optimisations.
+
 ## v9.2.3 *(2023-11-10)*
 - Fix `InputTag`.
 
