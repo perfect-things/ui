@@ -1,10 +1,12 @@
 {
-	"compilerOptions": {
-		"target": "esnext",
-		"module": "esnext",
-		"lib": [ "esnext", "DOM", "DOM.Iterable" ],
-		"moduleResolution": "node"
-	},
-	"include": [ "src", "docs-src", "tests" ],
-	"exclude": [ "docs", "node_modules" ]
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [ "esnext", "DOM", "DOM.Iterable" ],
+    "moduleResolution": "node",
+    "maxNodeModuleJsDepth": 10
+
+  },
+  "include": [ "src", "docs-src", "tests" ],
+  "exclude": [ "docs", "node_modules" ]
 }
