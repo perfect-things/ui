@@ -12,15 +12,15 @@
 
 		<div class="input-row">
 			<select
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
+				id="{_id}"
 
 				{title}
 				{name}
 				{disabled}
-				id="{_id}"
 
+				aria-invalid="{error}"
+				aria-errormessage="{error ? errorMessageId : undefined}"
+				aria-required="{required}"
 				bind:value="{value}"
 				bind:this="{inputElement}"
 				on:change>

@@ -1,7 +1,7 @@
 <h1>Changelog</h1>
-<h2>v9.3.1 <em>(2023-12-17)</em></h2>
+<h2>v9.3.2, v9.3.1 <em>(2023-12-17)</em></h2>
 <ul>
-<li>Update <code>Panel</code> docs with types (color variations).</li>
+<li>Add <code>$$restProps</code> to some components, to allow passing through custom props.</li>
 <li>Fix <code>Range</code> offset issue in chromium browsers.</li>
 </ul>
 <h2>v9.3.0, v9.2.4 <em>(2023-12-12)</em></h2>

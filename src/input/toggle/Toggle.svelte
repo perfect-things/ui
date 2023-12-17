@@ -24,10 +24,10 @@
 				<div class="toggle-handle" bind:this="{handle}"><div class="toggle-knob"></div></div>
 				<div class="toggle-option"></div>
 				<input
-					class="toggle-input"
-					type="checkbox"
-					{disabled}
 					id="{_id}"
+					type="checkbox"
+					class="toggle-input"
+					{disabled}
 					{name}
 					aria-invalid="{error}"
 					aria-errormessage="{error ? errorMessageId : undefined}"

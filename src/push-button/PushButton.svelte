@@ -2,7 +2,6 @@
 	<Button
 		class="push-button {className}"
 		aria-pressed="{pressed}"
-		{...props}
 		{outline}
 		{info}
 		{success}
@@ -10,6 +9,7 @@
 		{danger}
 		{round}
 		{icon}
+		{...$$restProps}
 		bind:element="{element}"
 		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}">
@@ -19,7 +19,6 @@
 	<Button
 		class="push-button {className}"
 		aria-pressed="{pressed}"
-		{...props}
 		{outline}
 		{info}
 		{success}
@@ -27,6 +26,7 @@
 		{danger}
 		{round}
 		{icon}
+		{...$$restProps}
 		bind:element="{element}"
 		on:keydown="{onKeydown}"
 		on:mousedown="{onMouseDown}"/>
@@ -34,7 +34,6 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { Button } from '../button';
-import { pluck } from '../utils';
 
 let className = '';
 export { className as class };
@@ -52,8 +51,6 @@ export let round = undefined;	// round button
 
 export let element = undefined;
 
-
-$:props = pluck($$props, ['id', 'title', 'disabled']);
 
 
 const dispatch = createEventDispatcher();

@@ -15,9 +15,9 @@
 			<input
 				type="text"
 				autocomplete="off"
-				{...props}
 				{disabled}
 				id="{_id}"
+				{...$$restProps}
 				aria-invalid="{error}"
 				aria-errormessage="{error ? errorMessageId : undefined}"
 				aria-required="{required}"
@@ -34,7 +34,7 @@
 <script>
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
-import { pluck, roundAmount, guid } from '../../utils';
+import { roundAmount, guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
@@ -66,8 +66,7 @@ const allowedKeys = [
 ];
 
 
-$:props = pluck($$props, ['title', 'name', 'placeholder']);
-$:_id = id || props.name || guid();
+$:_id = id || $$restProps.name || guid();
 
 
 

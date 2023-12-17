@@ -3,7 +3,7 @@
 <h3>Live demo</h3>
 <div class="docs-buttons-row" style="height: 3rem;">
 	{#if buttonText}
-		<Button {...props}>{buttonText}</Button>
+		<Button data-one="123" {...props}>{buttonText}</Button>
 	{:else}
 		<Button {...props}/>
 	{/if}

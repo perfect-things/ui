@@ -137,9 +137,6 @@ export function isMobile () {
 
 function pluckOne (obj, key) {
 	if (key in obj) return obj[key];
-	for (const k in obj) {
-		if (k.startsWith(key)) return obj[k];
-	}
 }
 
 
@@ -147,11 +144,6 @@ function pluckMany (obj, keys) {
 	const newObj = {};
 	keys.forEach(key => {
 		if (key in obj) newObj[key] = obj[key];
-		else {
-			for (const k in obj) {
-				if (k.startsWith(key)) newObj[k] = obj[k];
-			}
-		}
 	});
 	return newObj;
 }

@@ -1,15 +1,14 @@
 <button
 	role="menuitem"
 	class="menu-item {className}"
-	class:disabled="{props.disabled}"
+	class:disabled
 	class:success
 	class:warning
 	class:danger
-	{...props}
+	{...$$restProps}
 	on:mousedown|preventDefault
 	on:click|capture="{onclick}"
-	bind:this="{element}"
-	>
+	bind:this="{element}">
 
 	<span class="menu-item-content">
 		{#if icon}<Icon name="{icon}" />{/if}
@@ -21,7 +20,7 @@
 <script>
 import { createEventDispatcher, getContext } from 'svelte';
 import { Icon } from '../icon';
-import { pluck, blink } from '../utils';
+import { blink } from '../utils';
 
 export let shortcut = '';
 export let icon = undefined;
@@ -30,11 +29,10 @@ export { className as class };
 export let success = false;
 export let warning = false;
 export let danger = false;
+export let disabled = false;
 
 export let element = undefined;
 
-
-$:props = pluck($$props, ['id', 'title', 'disabled', 'data']);
 
 
 const dispatch = createEventDispatcher();

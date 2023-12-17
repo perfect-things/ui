@@ -33,9 +33,9 @@
 				autocomplete="off"
 				value="{value && value.name || ''}"
 
-				{...props}
 				{disabled}
 				id="{_id}"
+				{...$$restProps}
 
 				bind:this="{inputElement}"
 				on:input="{oninput}"
@@ -98,7 +98,7 @@
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
 import { emphasize, highlight, groupData } from './utils';
-import { deepCopy, empty, fuzzy, pluck, guid, alignItem } from '../../utils';
+import { deepCopy, empty, fuzzy, guid, alignItem } from '../../utils';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -133,7 +133,6 @@ export let data = [];
 
 
 $:_id = id || name || guid();
-$:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputElement.value));
 $:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputElement && inputElement.value && !valueMatchesItem;
 

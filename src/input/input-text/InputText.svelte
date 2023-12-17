@@ -11,11 +11,11 @@
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<input
+			id="{_id}"
 			autocomplete="off"
 			type="text"
-			{...props}
 			{disabled}
-			id="{_id}"
+			{...$$restProps}
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
@@ -30,12 +30,11 @@
 </div>
 
 <script>
-import { pluck, guid } from '../../utils';
+import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-$:props = pluck($$props, ['title', 'name', 'placeholder']);
 
 let className = '';
 export { className as class };

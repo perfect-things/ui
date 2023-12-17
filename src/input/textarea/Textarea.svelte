@@ -12,12 +12,12 @@
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<textarea
-			{...props}
+			id="{_id}"
 			{disabled}
+			{...$$restProps}
 			aria-invalid="{error}"
 			aria-errormessage="{error ? errorMessageId : undefined}"
 			aria-required="{required}"
-			id="{_id}"
 			bind:this="{inputElement}"
 			bind:value="{value}"
 			on:change
@@ -25,7 +25,7 @@
 	</div>
 </div>
 <script>
-import { pluck, guid } from '../../utils';
+import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
@@ -48,7 +48,6 @@ export let element = undefined;
 export let inputElement = undefined;
 
 
-$:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:_id = id || name || guid();
 
 const errorMessageId = guid();

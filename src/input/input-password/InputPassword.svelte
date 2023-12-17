@@ -13,15 +13,15 @@
 
 		<div class="input-row" class:visible>
 			<input
-				autocomplete="off"
-				{...props}
 				id="{_id}"
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
+				autocomplete="off"
 				{type}
 				{value}
 				{disabled}
+				{...$$restProps}
+				aria-invalid="{error}"
+				aria-errormessage="{error ? errorMessageId : undefined}"
+				aria-required="{required}"
 				bind:this="{inputElement}"
 				on:input="{oninput}"
 				on:keydown
@@ -49,7 +49,7 @@
 <script>
 import { onMount, createEventDispatcher } from 'svelte';
 import { Button } from '../../button';
-import { pluck, guid } from '../../utils';
+import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
@@ -92,9 +92,8 @@ let strengthInfoText = '';
 let colorClass = '';
 
 
-$:props = pluck($$props, ['title', 'name', 'placeholder']);
 $:type = visible ? 'text' : 'password';
-$:_id = id || props.name || guid();
+$:_id = id || $$restProps.name || guid();
 
 $: {
 	const { score, text } = measure(value);

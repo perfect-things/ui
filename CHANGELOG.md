@@ -1,8 +1,8 @@
 Changelog
 =========
 
-## v9.3.1 *(2023-12-17)*
-- Update `Panel` docs with types (color variations).
+## v9.3.2, v9.3.1 *(2023-12-17)*
+- Add `$$restProps` to some components, to allow passing through custom props.
 - Fix `Range` offset issue in chromium browsers.
 
 ## v9.3.0, v9.2.4 *(2023-12-12)*

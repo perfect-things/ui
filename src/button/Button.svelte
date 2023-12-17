@@ -16,7 +16,7 @@
 	class:danger
 	class:error
 	class:touching
-	{...props}
+	{...$$restProps}
 
 	on:focus
 	on:keydown
@@ -34,7 +34,6 @@
 </button>
 <script>
 import { Icon } from '../icon';
-import { pluck } from '../utils';
 
 export let element = undefined;
 
@@ -55,7 +54,5 @@ let className = '';
 export { className as class };
 
 let touching = false;
-
-$:props = pluck($$props, ['id', 'title', 'disabled', 'form', 'aria-pressed', 'data-', 'tabindex']);
 
 </script>
