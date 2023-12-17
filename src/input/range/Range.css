@@ -35,8 +35,6 @@
 
 
 
-
-
 .range input::-webkit-slider-runnable-track {
 	-webkit-appearance: none;
 	display: flex;
@@ -61,6 +59,7 @@
 	width: var(--range-size);
 	border-radius: 5rem;
 	box-shadow: 0 1px 3px #000c;
+    margin-top: calc(var(--range-size) / -2 + 4px);
 }
 
 .range input::-moz-range-thumb {

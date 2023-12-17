@@ -78,11 +78,15 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+	{ name: 'danger', description: 'Panel type: danger' },
 	{ name: 'disabled', description: 'Make the panel disabled.' },
 	{ name: 'collapsible', description: 'If present, the panel will expand/collapse on title click or Enter key or Space.' },
+	{ name: 'info', description: 'Panel type: info' },
 	{ name: 'open', description: 'Panel initial open state.' },
 	{ name: 'round', description: 'Adds rounded corners to the panel.' },
+	{ name: 'success', description: 'Panel type: success' },
 	{ name: 'title', type: 'string', description: 'Panel title.' },
+	{ name: 'warning', description: 'Panel type: warning' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the panel is closed.' },
 	{ name: 'on:open', type: 'function', description: 'Triggered after the panel is opened.' },
