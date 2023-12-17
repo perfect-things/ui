@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v9.3.1 <em>(2023-12-17)</em></h2>
+<ul>
+<li>Update <code>Panel</code> docs with types (color variations).</li>
+<li>Fix <code>Range</code> offset issue in chromium browsers.</li>
+</ul>
 <h2>v9.3.0, v9.2.4 <em>(2023-12-12)</em></h2>
 <ul>
 <li><code>Panel</code> types (color variations).</li>

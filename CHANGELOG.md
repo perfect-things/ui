@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.3.1 *(2023-12-17)*
+- Update `Panel` docs with types (color variations).
+- Fix `Range` offset issue in chromium browsers.
+
 ## v9.3.0, v9.2.4 *(2023-12-12)*
 - `Panel` types (color variations).
 - New icons (`print`).
