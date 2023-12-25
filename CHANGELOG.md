@@ -1,8 +1,9 @@
 Changelog
 =========
 
-## v9.3.3 *(2023-12-25)*
+## v9.3.4, v9.3.3 *(2023-12-25)*
 - Fix `InputDate` when picker was not in sync with the input value.
+- Better dropdown alignment for `Popover` and `Menu` onScroll (should work if scrolling other elements beside the `<body>`).
 
 
 ## v9.3.2, v9.3.1 *(2023-12-17)*

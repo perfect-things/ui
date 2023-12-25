@@ -138,8 +138,8 @@ function getFocusableElements () {
 
 
 /*** EVENTS & LISTENERS ***************************************************************************/
-const throttledResize = throttle(updatePosition, 200);
-const debouncedResize = debounce(updatePosition, 200);
+const throttledResize = throttle(updatePosition, 50);
+const debouncedResize = debounce(updatePosition, 50);
 
 // throttle ensures that the popover is repositioned max once every 200ms (to not overload resize events)
 // but it doesn't ensure that the fn is called at the end of resizing. Debounce ensures that.
@@ -177,7 +177,7 @@ function addEventListeners () {
 	document.addEventListener('click', onDocumentClick, true);
 	document.addEventListener('keydown', onKeydown, true);
 	window.addEventListener('resize', onResize);
-	window.addEventListener('scroll', onResize);
+	window.addEventListener('scroll', onResize, true);
 	observer.observe(element, { attributes: false, childList: true, subtree: true });
 	eventsAdded = true;
 }
@@ -187,7 +187,7 @@ function removeEventListeners () {
 	document.removeEventListener('click', onDocumentClick, true);
 	document.removeEventListener('keydown', onKeydown, true);
 	window.removeEventListener('resize', onResize);
-	window.removeEventListener('scroll', onResize);
+	window.removeEventListener('scroll', onResize, true);
 	observer.disconnect();
 	eventsAdded = false;
 }

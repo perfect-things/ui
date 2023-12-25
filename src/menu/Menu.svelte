@@ -226,8 +226,8 @@ function matchQuery (buttons, key) {
 }
 
 
-const throttledResize = throttle(updatePosition, 200);
-const debouncedResize = debounce(updatePosition, 200);
+const throttledResize = throttle(updatePosition, 50);
+const debouncedResize = debounce(updatePosition, 50);
 
 // throttle ensures that the popover is repositioned max once every 200ms (to not overload resize events)
 // but it doesn't ensure that the fn is called at the end of resizing. Debounce ensures that.
@@ -245,6 +245,7 @@ function addEventListeners () {
 	document.addEventListener('keydown', onKeydown);
 	document.addEventListener('mouseover', onMouseOver);
 	window.addEventListener('resize', onResize);
+	window.addEventListener('scroll', onResize, true);
 	eventsAdded = true;
 }
 
@@ -255,6 +256,7 @@ function removeEventListeners () {
 	document.removeEventListener('keydown', onKeydown);
 	document.removeEventListener('mouseover', onMouseOver);
 	window.removeEventListener('resize', onResize);
+	window.removeEventListener('scroll', onResize, true);
 	eventsAdded = false;
 }
 /*** EVENTS & LISTENERS ***************************************************************************/
