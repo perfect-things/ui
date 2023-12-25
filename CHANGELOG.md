@@ -1,14 +1,20 @@
 Changelog
 =========
 
+## v9.3.3 *(2023-12-25)*
+- Fix `InputDate` when picker was not in sync with the input value.
+
+
 ## v9.3.2, v9.3.1 *(2023-12-17)*
 - Add `$$restProps` to some components, to allow passing through custom props.
 - Fix `Range` offset issue in chromium browsers.
+
 
 ## v9.3.0, v9.2.4 *(2023-12-12)*
 - `Panel` types (color variations).
 - New icons (`print`).
 - Icon optimisations.
+
 
 ## v9.2.3 *(2023-11-10)*
 - Fix `InputTag`.

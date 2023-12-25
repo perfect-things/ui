@@ -63,7 +63,7 @@
 </div>
 
 <script>
-import { onMount, createEventDispatcher } from 'svelte';
+import { onMount, afterUpdate, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
 import { Button } from '../../button';
@@ -108,7 +108,9 @@ let isHiding = false;
 
 
 onMount(initDatePicker);
-
+afterUpdate(() => {
+	if (value !== picker.getDate(format)) oninput();
+});
 
 function initDatePicker () {
 	if (useNative) return;
@@ -158,7 +160,7 @@ function oninput () {
 		const d = Datepicker.parseDate(value, format);
 		const df = Datepicker.formatDate(d, format);
 		if (df === value) {
-			picker.setDate(value);
+			if (picker) picker.setDate(value);
 			if (wasOpen) picker.show();
 		}
 	});
