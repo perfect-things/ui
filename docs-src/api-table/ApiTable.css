@@ -1,7 +1,6 @@
 .api-table {
 	height: unset;
-	overflow-y: visible;
-	overflow-x: auto;
+	overflow: auto visible;
 	overscroll-behavior-y: unset;
 }
 .api-table table { min-width: 900px; }

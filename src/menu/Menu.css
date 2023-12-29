@@ -7,8 +7,7 @@
 	flex-flow: column;
 	align-items: stretch;
 	list-style: none;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: hidden auto;
 	cursor: default;
 	z-index: var(--ui-z-index-popup);
 	max-height: calc(100vh - 4px);
