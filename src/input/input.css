@@ -9,7 +9,10 @@ input, select, textarea, label {
 
 
 textarea::placeholder,
-input::placeholder { color: var(--ui-color-text-1); }
+input::placeholder {
+	color: var(--ui-color-text-1);
+	font-style: italic;
+}
 
 
 :where(input:not([type=radio],[type=checkbox])) {

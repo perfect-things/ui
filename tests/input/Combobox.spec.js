@@ -3,13 +3,13 @@ import { Combobox } from '../../src/input/combobox';
 import { waitForTimeout } from '../helpers/utils';
 
 
-const data = [
+const items = [
 	{ id: 1, name: 'Alpha', group: 'Group 1' },
 	{ id: 2, name: 'Beta', group: 'Group 1' },
 	{ id: 3, name: 'Gamma', group: 'Group 2' },
 	{ id: 4, name: 'Delta', group: 'Group 2' },
 ];
-const value = data[1];
+const value = items[1];
 const props = {
 	id: 'Component1',
 	name: 'Component1',
@@ -19,7 +19,7 @@ const props = {
 	required: true,
 	label: 'Component1',
 	error: 'error',
-	data,
+	items,
 	value
 };
 

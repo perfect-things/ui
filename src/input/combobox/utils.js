@@ -55,3 +55,18 @@ export function emphasize (str, q) {
 	}
 	return stra.join('');
 }
+
+
+
+function findSourceItem (v, items) {
+	v = v.id || v.name || v;
+	const idx = items.findIndex(i => (i.id || i.name || i) === v);
+	return items[idx];
+}
+
+
+export function findValueInSource (val, items) {
+	if (!val) return val;
+	if (!Array.isArray(val)) return findSourceItem(val, items);
+	return val.map(v => findSourceItem(v, items));
+}
