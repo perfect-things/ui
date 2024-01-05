@@ -7,7 +7,7 @@
 	bind:value="{itemValue}" />
 
 <h4>Selected value: </h4>
-<code>{JSON.stringify(itemValue || {})}</code>
+<JsonBox value="{itemValue}" />
 
 
 <h3>Disabled</h3>
@@ -17,19 +17,28 @@
 <Combobox
 	{items}
 	placeholder="Type to filter"
-	allowNew="true"
+	allowNew
 	bind:value="{itemValue}" />
+
 
 <h3>Show on focus</h3>
 <Combobox showOnFocus="true" {items} bind:value="{itemValue}" />
 
 <h3>Simpler data (no ID, just 'name')</h3>
-<Combobox items="{dataSimple}" placeholder="Type to filter"
+<Combobox items="{dataSimpler}" placeholder="Type to filter"
+	bind:value="{valueSimpler}" />
+
+<h4>Selected value: </h4>
+<JsonBox value="{valueSimpler}" />
+
+
+<h3>Simple data (just an array of strings)</h3>
+<Combobox items="{dataSimple}" placeholder="Type to filter" allowNew
 	bind:value="{valueSimple}" />
 
-<h3>Simplest data (just an array of strings)</h3>
-<Combobox items="{dataSimplest}" placeholder="Type to filter" allowNew="true"
-	bind:value="{valueSimplest}" />
+<h4>Selected value: </h4>
+<JsonBox value="{valueSimple}" />
+
 
 <h3>Label</h3>
 <Combobox {items} label="Combobox label" />
@@ -41,7 +50,31 @@
 <Combobox {items} label="Combobox label" error="You picked the wrong side!" />
 
 <h3>Label on the left</h3>
-<Combobox {items} label="Label is on the left" labelOnTheLeft="true"/>
+<Combobox {items} label="Label is on the left" labelOnTheLeft/>
+
+
+
+<h2>Multiselect</h2>
+<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
+
+<h3>Simple data</h3>
+<Combobox
+	items="{dataSimple}"
+	multiselect
+	placeholder="Type to filter"
+	bind:value="{multiselectSimpleValue}" />
+<h4>Selected value: </h4>
+<JsonBox value="{multiselectSimpleValue}" />
+
+
+<h3>Complex data</h3>
+<Combobox
+	{items}
+	multiselect
+	placeholder="Type to filter"
+	bind:value="{multiselectValue}" />
+<h4>Selected value: </h4>
+<JsonBox value="{multiselectValue}" />
 
 
 
@@ -54,28 +87,36 @@
 <script>
 import { Combobox } from '../../../../src';
 import { API } from '../../../api-table';
-import { CodeExample } from '../../../code-example';
+import { CodeExample, JsonBox } from '../../../code-example';
 
 
 const apiProps = [
-	{ name: 'allowNew', type: ['true', 'false'], default: 'false', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
+	{ name: 'allowNew', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'clearOnEsc', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the combobox will be cleared when Escape is pressed.' },
+	{ name: 'clearOnEsc', description: 'If present - the combobox will be cleared when Escape is pressed.' },
 	{ name: 'disabled', description: 'Make the combobox disabled.' },
 	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
-	{ name: 'hideOnResize', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - resizing the window will close the popup.' },
+	{ name: 'hideOnResize', description: 'If present - resizing the window will close the popup.' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
 	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
 	{ name: 'label', type: 'string', description: 'Label for the combobox.' },
-	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
+	{ name: 'labelOnTheLeft', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
+	{ name: 'multiselect', description: 'This changes the control to a multiselect. The following changes will apply:<ul>' +
+		'<li>dropdown items will receive checkboxes,' +
+		'<li>the input textbox will become read-only,' +
+		'<li>text input will loose the auto-lookup functionality,' +
+		'<li>the control will only allow to change the value by clicking on items (or check them using the `Space` key),' +
+		'<li>the value will become an array,' +
+		'<li>arguments `allowNew`, `clearOnEsc` and `placeholder` will have no effect.' +
+		'</ul>'
+	},
 	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
 	{ name: 'required', description: 'Mark the combobox as <i>aria-required</i>.' },
-	{ name: 'showAllInitially', type: ['true', 'false'], default: 'true', description: 'When the combobox has a value - the list in the poput is filtered by the combobox value.<br>If this option is set to true (default) - when user navigates to the combobox (with a value)<br> or clicks such an combobox - the poput initially will show all items unfiltered, and only once<br> user starts typing - the list will be filtered again.<br> If this value is set to <i>"false"</i> (or boolean <i>false</i>) - the list will always be filtered. ' },
-	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
+	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the combobox.' },
+	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array. ' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
@@ -128,9 +169,9 @@ const items = [
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
 let itemValue = items[1];
+let multiselectValue = [items[0], items[1]];
 
-
-const dataSimple = [
+const dataSimpler = [
 	{ name: 'Alpha', group: 'Group 1' },
 	{ name: 'Beta', group: 'Group 1' },
 	{ name: 'Gamma', group: 'Group 1' },
@@ -150,9 +191,9 @@ const dataSimple = [
 	{ name: 'Delta' },
 	{ name: 'Epsilon' },
 ];
-let valueSimple = dataSimple[3];
+let valueSimpler = dataSimpler[3];
 
-const dataSimplest = [
+const dataSimple = [
 	'Alpha',
 	'Beta',
 	'Gamma',
@@ -162,15 +203,16 @@ const dataSimplest = [
 	'Eta',
 	'Theta',
 	'Iota',
-	'Iota',
 	'Kappa',
 	'Lambda is the last item in this list',
 ];
-let valueSimplest = 'Gamma';
+let valueSimple = 'Gamma';
+let multiselectSimpleValue = [dataSimple[0], dataSimple[1]];
 
 
 function onChange (e) {
 	const { value, oldValue } = e.detail;
 	console.log({ value, oldValue });
 }
+
 </script>

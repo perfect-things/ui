@@ -79,3 +79,37 @@ test('Combobox-utils - emphasize', () => {
 	expect(utils.emphasize('ABC', 'ac')).toBe('<b>A</b>B<b>C</b>');
 	expect(utils.emphasize('ABC', 'ad')).toBe('<b>A</b>BC');
 });
+
+
+
+
+test('Combobox-utils - findValueInSource', () => {
+	const items = [
+		{ id: 1, name: 'Item 1' },
+		{ id: 2, name: 'Item 2' },
+		{ id: 3, name: 'Item 3' },
+	];
+	const names = items.map(i => i.name);
+
+	// primitives
+	expect(utils.findValueInSource(null, items)).toBe(null);
+	expect(utils.findValueInSource(undefined, items)).toBe(undefined);
+	expect(utils.findValueInSource('', items)).toBe('');
+
+	// strings
+	expect(utils.findValueInSource(names[0], names)).toEqual(names[0]);
+	expect(utils.findValueInSource(names[1], names)).toEqual(names[1]);
+
+	// objects
+	expect(utils.findValueInSource(items[0].id, items)).toEqual(items[0]);
+	expect(utils.findValueInSource(items[1], items)).toEqual(items[1]);
+
+	// multiselect strings
+	expect(utils.findValueInSource(names[0], names)).toEqual(names[0]);
+	expect(utils.findValueInSource(names[2], names)).toEqual(names[2]);
+	expect(utils.findValueInSource([names[1], names[2]], names)).toEqual([names[1], names[2]]);
+
+	// multiselect objects
+	expect(utils.findValueInSource([items[0].id, items[1].id], items)).toEqual([items[0], items[1]]);
+	expect(utils.findValueInSource([items[0], items[1]], items)).toEqual([items[0], items[1]]);
+});

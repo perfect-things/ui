@@ -2,7 +2,8 @@
 	class="input combobox {className}"
 	class:open="{opened}"
 	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class:label-on-the-left="{!!labelOnTheLeft}"
+	class:multiselect
 	bind:this="{element}">
 
 	<Label {label} {disabled} for="{_id}"/>
@@ -31,15 +32,18 @@
 				aria-errormessage="{error ? errorMessageId : undefined}"
 				aria-required="{required}"
 				autocomplete="off"
-				value="{value && value.name || ''}"
+				value="{valueName}"
+				readonly="{multiselect}"
 
 				{disabled}
+				placeholder="{multiselect ? 'Select...' : placeholder}"
 				id="{_id}"
 				{...$$restProps}
 
 				bind:this="{inputElement}"
 				on:input="{oninput}"
 				on:focus="{onfocus}"
+				on:mousedown="{open}"
 				on:click="{open}"
 				on:blur="{onblur}"
 				on:keydown|capture="{onkeydown}"
@@ -54,6 +58,8 @@
 	<div
 		id="combobox-list-{gui}"
 		class="combobox-list {opened ? '' : 'hidden'}"
+		class:multiselect
+		class:empty="{!filteredData.length && !shouldShowNewItem}"
 		role="listbox"
 		on:mousedown={onListMouseDown}
 		bind:this="{listElement}">
@@ -70,13 +76,26 @@
 							class="combobox-list-item"
 							class:in-group="{!!item.group}"
 							class:selected="{item.idx === highlightIndex}"
-							on:click="{() => onclick(item)}">
+							on:click="{e => onclick(item, e)}"
+							on:mouseenter="{() => highlightIndex = item.idx}"
+							on:mousedown|preventDefault
+							on:mouseup="{e => onclick(item, e)}"
+							on:touchstart="{touchStart}"
+							on:touchend="{touchEnd}"
+							>
+							{#if multiselect}
+								{#if selectedItems.includes(item)}
+									<Icon name="checkboxChecked" />
+								{:else}
+									<Icon name="checkbox" />
+								{/if}
+							{/if}
 							{@html item.highlightedName || item.name}
 						</div>
 					{/each}
 				{/if}
 			{/each}
-		{:else if allowNew !== true && allowNew !== 'true'}
+		{:else if allowNew}
 			<div class="combobox-list-empty">No items found</div>
 		{/if}
 
@@ -87,7 +106,7 @@
 				aria-selected="{highlightIndex === filteredData.length}"
 				class="combobox-list-item"
 				class:selected="{highlightIndex === filteredData.length}"
-				on:click="{() => onclick({ name: inputElement.value, idx: filteredData.length })}">
+				on:click="{e => onclick({ name: inputElement.value, idx: filteredData.length }, e)}">
 					{inputElement.value}
 			</div>
 		{/if}
@@ -97,8 +116,9 @@
 
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
-import { emphasize, highlight, groupData } from './utils';
-import { deepCopy, empty, fuzzy, guid, alignItem } from '../../utils';
+import { emphasize, highlight, groupData, findValueInSource } from './utils';
+import { deepCopy, fuzzy, guid, alignItem, isMobile } from '../../utils';
+import { Icon } from '../../icon';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -112,35 +132,34 @@ export let required = undefined;
 export let id = '';
 export let items = [];
 export let value = null;
-export let allowNew = false;
-export let showAllInitially = true;
-export let clearOnEsc = false;
-export let showOnFocus = false;
-export let hideOnResize = false;
+export let allowNew = undefined;
+export let clearOnEsc = undefined;
+export let showOnFocus = undefined;
+export let hideOnResize = undefined;
 export let label = '';
 export let error = undefined;
 export let info = undefined;
-export let labelOnTheLeft = false;
+export let labelOnTheLeft = undefined;
+export let placeholder = undefined;
+
+export let multiselect = undefined;
+export let selectedItems = [];
 
 export let element = undefined;
 export let inputElement = undefined;
 export let listElement = undefined;
 
 
-// @deprecated. Use `items` instead
-export let data = [];
-
-
-
 $:_id = id || name || guid();
 $:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputElement.value));
-$:shouldShowNewItem = (allowNew === true || allowNew === 'true') && inputElement && inputElement.value && !valueMatchesItem;
+$:shouldShowNewItem = allowNew && inputElement && inputElement.value && !valueMatchesItem;
 
 const dispatch = createEventDispatcher();
 const gui = guid();
 const errorMessageId = guid();
 
-
+let originalItems = null;
+let valueName = value && value.name || '';
 let opened = false;
 let hasEdited = false;
 let highlightIndex = 0;
@@ -151,14 +170,15 @@ let isSelecting = false;
 let isHiding = false;
 
 
+
 onDestroy(() => {
 	if (listElement) listElement.remove();
 });
 
 
 afterUpdate(() => {
-	if (empty(items) && !empty(data)) items = data;
 	if (!opened && items.length) {
+		if (!originalItems) originalItems = deepCopy(items);
 		if (items.length && typeof items[0] === 'string') {
 			items = items.map(item => ({ name: item }));
 		}
@@ -170,7 +190,7 @@ afterUpdate(() => {
 
 function filter () {
 	let filtered = deepCopy(items);
-	const showAll = (showAllInitially === true || showAllInitially === 'true') && !hasEdited;
+	const showAll = multiselect || !hasEdited;
 	if (!showAll && inputElement.value) {
 		const q = inputElement.value.toLowerCase().trim();
 		filtered = filtered
@@ -204,6 +224,7 @@ function filter () {
 
 
 function open (e) {
+	if (isMobile() && e && e.type !== 'click') return;
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
@@ -240,32 +261,54 @@ function close () {
 }
 
 
+function selectSingle (item) {
+	if (multiselect || hasSetValue) return;
+	const oldValue = deepCopy(value);
 
-function selectItem () {
-	if (hasSetValue) return;
-
-	const oldValue = value;
-	if (filteredData[highlightIndex]) {
-		value = filteredData[highlightIndex];
-		if (value && value.name && inputElement.value !== value.name) inputElement.value = value.name;
+	if (!item) {
+		if (filteredData[highlightIndex]) item = filteredData[highlightIndex];
+		else if (allowNew) item = { name: inputElement.value };
+		else if (value && value.name && inputElement.value !== value.name) valueName = value.name;
 	}
-	// should create a new item
-	else if (allowNew) {
-		value = { name: inputElement.value };
-	}
-	// entered value does not match any record - revert
-	else {
-		if (value && value.name && inputElement.value !== value.name) inputElement.value = value.name;
+	if (item) {
+		value = findValueInSource(item, originalItems) || item;
+		if (value && value.name && inputElement.value !== value.name) valueName = item.name;
 	}
 
 	hasSetValue = true;
 	dispatch('change', { value, oldValue });
-	close();
+	requestAnimationFrame(() => {
+		inputElement.focus();
+		close();
+	});
+
+}
+
+function selectMultiselect (item) {
+	const oldValue = deepCopy(value);
+	selectedItems = selectedItems || [];
+	const isChecked = selectedItems.includes(item);
+	if (!isChecked) selectedItems.push(item);
+	else selectedItems = selectedItems.filter(i => i !== item);
+
+	value = findValueInSource(selectedItems, originalItems) || [];
+	valueName = selectedItems.map(i => i.name).join(', ');
+	dispatch('change', { value, oldValue });
+	requestAnimationFrame(() => {
+		inputElement.focus();
+	});
 }
 
 
 function setInitialValue () {
-	if (filteredData && filteredData.length) {
+	if (!filteredData || !filteredData.length) return;
+
+	if (multiselect) {
+		const selectedIds = value.map(i => i.id || i.name || i);
+		selectedItems = filteredData.filter(i => selectedIds.includes(i.id || i.name || i));
+		valueName = selectedItems.map(i => i.name).join(', ');
+	}
+	else {
 		let itemId = value;
 		if (typeof value === 'object' && value !== null) {
 			itemId = value.id || value.name;
@@ -313,6 +356,7 @@ function down () {
 
 
 function revert () {
+	if (multiselect) return;	// in multiselect selection is applied when item is clicked
 	if (originalText && originalText !== inputElement.value) inputElement.value = originalText;
 	else if (value && value.name) inputElement.value = value.name;
 	else inputElement.value = '';
@@ -330,7 +374,7 @@ function clear () {
 /*** EVENT LISTENERS ******************************************************************************/
 function onfocus () {
 	originalText = inputElement.value;
-	if (showOnFocus === true || showOnFocus === 'true') open();
+	if (showOnFocus) open();
 }
 
 
@@ -346,7 +390,7 @@ function oninput () {
 function onblur () {
 	if (isSelecting) return;
 	if (opened && !inputElement.value) return revert();
-	selectItem();
+	selectSingle();
 	setTimeout(() => {
 		if (document.activeElement != inputElement) close();
 	}, 200);
@@ -358,29 +402,41 @@ function onListMouseDown () {
 }
 
 
-function onclick (item) {
-	const oldValue = value;
-	value = item;
-	inputElement.value = item.name;
-	highlightIndex = item.idx;
-	dispatch('change', { value, oldValue });
-	requestAnimationFrame(() => {
-		inputElement.focus();
-		close();
-	});
+function touchStart (e) {
+	const el = e.target.closest('.combobox-list-item');
+	el.classList.add('blinking');
+}
+
+
+function touchEnd (e) {
+	const el = e.target.closest('.combobox-list-item');
+	requestAnimationFrame(() => el.classList.remove('blinking'));
+}
+
+
+function onclick (item, e) {
+	// click should only be handled on touch devices
+	if (isMobile() && e.type !== 'click') return e.preventDefault();
+	if (!isMobile() && e.type === 'click') return;
+
+	if (multiselect) selectMultiselect(item);
+	else {
+		hasSetValue = false;
+		selectSingle(item);
+	}
 }
 
 
 function onkeydown (e) {
 	if (e.key === 'Tab') {
-		selectItem();
+		selectSingle();
 		return close();
 	}
-
 	const fnmap = {
 		ArrowDown: down,
 		ArrowUp: up,
 		Escape: onEsc,
+		' ': onSpace
 	};
 	if (typeof fnmap[e.key] === 'function') {
 		e.preventDefault();
@@ -390,11 +446,29 @@ function onkeydown (e) {
 
 
 function onkeypress (e) {
-	if (e.key === 'Enter' && opened) {
-		e.preventDefault();
-		hasSetValue = false;
-		selectItem();
+	if (e.key === 'Enter') onEnter(e);
+}
+
+
+function onEnter (e) {
+	if (!opened) return open();
+
+	e.preventDefault();
+	if (multiselect) {
+		close();
+		inputElement.focus();
 	}
+	else {
+		hasSetValue = false;
+		selectSingle();
+	}
+}
+
+function onSpace (e) {
+	if (!multiselect || !opened) return;
+	e.preventDefault();
+	const item = filteredData[highlightIndex];
+	onclick(item, e);
 }
 
 
@@ -417,6 +491,7 @@ function onIconMouseDown () {
 	isHiding = opened;
 }
 
+
 function onIconClick () {
 	if (isHiding) close();
 	else open();
@@ -428,10 +503,11 @@ function onIconClick () {
 
 function onResize () {
 	if (!opened) return;
-	if (hideOnResize !== true && hideOnResize !== 'true') return;
+	if (hideOnResize) return;
 	inputElement.blur();
 	return close();
 }
+
 
 function onViewportResize () {
 	if (!opened) return;

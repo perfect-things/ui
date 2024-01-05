@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.4.0 *(2024-01-04)*
+- Add `multiselect` option to the `Combobox`.
+
+
 ## v9.3.4, v9.3.3 *(2023-12-25)*
 - Fix `InputDate` when picker was not in sync with the input value.
 - Better dropdown alignment for `Popover` and `Menu` onScroll (should work if scrolling other elements beside the `<body>`).

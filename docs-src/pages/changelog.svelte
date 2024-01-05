@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.4.0 <em>(2024-01-04)</em></h2>
+<ul>
+<li>Add <code>multiselect</code> option to the <code>Combobox</code>.</li>
+</ul>
 <h2>v9.3.4, v9.3.3 <em>(2023-12-25)</em></h2>
 <ul>
 <li>Fix <code>InputDate</code> when picker was not in sync with the input value.</li>
