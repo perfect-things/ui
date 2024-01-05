@@ -43,6 +43,7 @@
 				bind:this="{inputElement}"
 				on:input="{oninput}"
 				on:focus="{onfocus}"
+				on:mousedown="{open}"
 				on:click="{open}"
 				on:blur="{onblur}"
 				on:keydown|capture="{onkeydown}"
@@ -75,7 +76,13 @@
 							class="combobox-list-item"
 							class:in-group="{!!item.group}"
 							class:selected="{item.idx === highlightIndex}"
-							on:click="{() => onclick(item)}">
+							on:click="{e => onclick(item, e)}"
+							on:mouseenter="{() => highlightIndex = item.idx}"
+							on:mousedown|preventDefault
+							on:mouseup="{e => onclick(item, e)}"
+							on:touchstart="{touchStart}"
+							on:touchend="{touchEnd}"
+							>
 							{#if multiselect}
 								{#if selectedItems.includes(item)}
 									<Icon name="checkboxChecked" />
@@ -99,7 +106,7 @@
 				aria-selected="{highlightIndex === filteredData.length}"
 				class="combobox-list-item"
 				class:selected="{highlightIndex === filteredData.length}"
-				on:click="{() => onclick({ name: inputElement.value, idx: filteredData.length })}">
+				on:click="{e => onclick({ name: inputElement.value, idx: filteredData.length }, e)}">
 					{inputElement.value}
 			</div>
 		{/if}
@@ -110,7 +117,7 @@
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
 import { emphasize, highlight, groupData, findValueInSource } from './utils';
-import { deepCopy, fuzzy, guid, alignItem } from '../../utils';
+import { deepCopy, fuzzy, guid, alignItem, isMobile } from '../../utils';
 import { Icon } from '../../icon';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
@@ -217,6 +224,7 @@ function filter () {
 
 
 function open (e) {
+	if (isMobile() && e && e.type !== 'click') return;
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
@@ -394,7 +402,23 @@ function onListMouseDown () {
 }
 
 
-function onclick (item) {
+function touchStart (e) {
+	const el = e.target.closest('.combobox-list-item');
+	el.classList.add('blinking');
+}
+
+
+function touchEnd (e) {
+	const el = e.target.closest('.combobox-list-item');
+	requestAnimationFrame(() => el.classList.remove('blinking'));
+}
+
+
+function onclick (item, e) {
+	// click should only be handled on touch devices
+	if (isMobile() && e.type !== 'click') return e.preventDefault();
+	if (!isMobile() && e.type === 'click') return;
+
 	if (multiselect) selectMultiselect(item);
 	else {
 		hasSetValue = false;
@@ -444,7 +468,7 @@ function onSpace (e) {
 	if (!multiselect || !opened) return;
 	e.preventDefault();
 	const item = filteredData[highlightIndex];
-	onclick(item);
+	onclick(item, e);
 }
 
 

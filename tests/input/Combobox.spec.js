@@ -44,7 +44,7 @@ test('Combobox', async () => {
 	expect(input).toHaveAttribute('aria-required');
 
 	// open list
-	await fireEvent.click(input);
+	await fireEvent.mouseDown(input);
 	await waitForTimeout();
 
 	// verify list
@@ -57,7 +57,7 @@ test('Combobox', async () => {
 	expect(item).toBeInTheDocument();
 
 	// click on list item
-	await fireEvent.click(item);
+	await fireEvent.mouseUp(item);
 	await waitForTimeout();
 
 	// verify that the item was selected

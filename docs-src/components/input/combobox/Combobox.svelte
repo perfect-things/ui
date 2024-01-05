@@ -203,7 +203,6 @@ const dataSimple = [
 	'Eta',
 	'Theta',
 	'Iota',
-	'Iota',
 	'Kappa',
 	'Lambda is the last item in this list',
 ];
