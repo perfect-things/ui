@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Current version: $(cat package.json | grep '"version"' | cut -d '"' -f 4)."
 echo "0. don't bump"
 echo "1. major"
 echo "2. minor"
