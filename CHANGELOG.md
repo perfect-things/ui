@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.4.1 *(2024-01-07)*
+- Add `title` attribute to the multiselect `Combobox` input, so that when it's too long, the value can be read easily.
+
+
 ## v9.4.0 *(2024-01-04)*
 - Add `multiselect` option to the `Combobox`.
 

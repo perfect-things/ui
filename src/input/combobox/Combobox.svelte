@@ -12,7 +12,7 @@
 	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-row">
+		<div class="input-row" title="{valueName}">
 			<Button
 				link
 				icon="dots"
