@@ -132,6 +132,7 @@ function focusLast () {
 
 
 function getFocusableElements () {
+	if (!contentEl) return [];
 	return Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 }
 

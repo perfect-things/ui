@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v9.4.2 *(2024-01-10)*
+- Minor bugfixes to `Popover` and `Combobox`.
+
+
 ## v9.4.1 *(2024-01-07)*
 - Add `title` attribute to the multiselect `Combobox` input, so that when it's too long, the value can be read easily.
 

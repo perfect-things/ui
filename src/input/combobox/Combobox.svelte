@@ -294,14 +294,16 @@ function selectMultiselect (item) {
 	value = findValueInSource(selectedItems, originalItems) || [];
 	valueName = selectedItems.map(i => i.name).join(', ');
 	dispatch('change', { value, oldValue });
-	requestAnimationFrame(() => {
-		inputElement.focus();
-	});
+	requestAnimationFrame(() => inputElement.focus());
 }
 
 
 function setInitialValue () {
 	if (!filteredData || !filteredData.length) return;
+
+	if (!value || !value.length) return;
+
+	if (multiselect && !Array.isArray(value)) value = [value];
 
 	if (multiselect) {
 		const selectedIds = value.map(i => i.id || i.name || i);

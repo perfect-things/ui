@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.4.2 <em>(2024-01-10)</em></h2>
+<ul>
+<li>Minor bugfixes to <code>Popover</code> and <code>Combobox</code>.</li>
+</ul>
 <h2>v9.4.1 <em>(2024-01-07)</em></h2>
 <ul>
 <li>Add <code>title</code> attribute to the multiselect <code>Combobox</code> input, so that when it&#39;s too long, the value can be read easily.</li>
