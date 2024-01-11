@@ -59,6 +59,7 @@ onDestroy(() => {
 		document.removeEventListener(contextmenuEventName, onContextMenu);
 	}
 	if (element) element.remove();
+	removeEventListeners();
 });
 
 
@@ -190,6 +191,7 @@ function onMouseOver (e) {
 
 
 function onKeydown (e) {
+	if (!element) return;
 	if (e.key === 'Escape' || !element.contains(e.target)) return _close();
 	if (e.key === 'Enter') return;
 	if (e.key === ' ' && !typeQuery) return;
