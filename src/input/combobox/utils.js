@@ -8,6 +8,14 @@ export function groupData (items) {
 	});
 	const groups = Object.values(_groups).filter(g => !!g.items.length);
 	if (nogroup.length) groups.unshift({ items: nogroup });
+
+	let idx = 0;
+	groups.forEach(g => {
+		g.items.forEach(i => {
+			i.idx = idx++;
+		});
+	});
+
 	return groups;
 }
 
@@ -70,3 +78,34 @@ export function findValueInSource (val, items) {
 	if (!Array.isArray(val)) return findSourceItem(val, items);
 	return val.map(v => findSourceItem(v, items));
 }
+
+
+
+function hasSingleValueChanged (oldV, newV) {
+	return (oldV.id || oldV.name || oldV) !== (newV.id || newV.name || newV);
+}
+
+export function hasValueChanged (oldV, newV, multiselect = false) {
+	if (!multiselect) return hasSingleValueChanged(oldV, newV);
+
+	if (!Array.isArray(oldV)) oldV = [oldV];
+	if (!Array.isArray(newV)) newV = [newV];
+	if (oldV.length !== newV.length) return true;
+	for (let i = 0; i < newV.length; i++) {
+		if (hasSingleValueChanged(oldV[i], newV[i])) return true;
+	}
+	return false;
+}
+
+
+// export function alignDropdown (listElement, inputElement, e) {
+// 	requestAnimationFrame(() => {
+// 		alignItem({
+// 			element: listElement,
+// 			target: inputElement,
+// 			setMinWidthToTarget: true,
+// 			offsetH: -1
+// 		});
+// 		if (e && e.type === 'focus') inputElement.select();
+// 	});
+// }

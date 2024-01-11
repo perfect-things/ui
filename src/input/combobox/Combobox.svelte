@@ -12,7 +12,7 @@
 	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-row" title="{valueName}">
+		<div class="input-row" title="{inputValue}">
 			<Button
 				link
 				icon="dots"
@@ -21,425 +21,147 @@
 				on:mousedown="{onIconMouseDown}"
 				on:click="{onIconClick}"/>
 
-			<input
-				type="text"
-				role="combobox"
-				class="prevent-scrolling-on-focus"
-				aria-autocomplete="list"
-				aria-controls="combobox-list-{gui}"
-				aria-expanded="{opened}"
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-				autocomplete="off"
-				value="{valueName}"
-				readonly="{multiselect}"
-
+			<ComboInput
+				{id}
 				{disabled}
-				placeholder="{multiselect ? 'Select...' : placeholder}"
-				id="{_id}"
-				{...$$restProps}
-
-				bind:this="{inputElement}"
-				on:input="{oninput}"
-				on:focus="{onfocus}"
-				on:mousedown="{open}"
-				on:click="{open}"
-				on:blur="{onblur}"
-				on:keydown|capture="{onkeydown}"
-				on:keypress="{onkeypress}">
+				{required}
+				guid="{uuid}"
+				placeholder="{placeholder ? placeholder : (multiselect ? 'Select...' : '')}"
+				expanded="{opened}"
+				bind:value="{inputValue}"
+				bind:element="{inputElement}"
+				on:event="{onInputEvent}"/>
 		</div>
 	</div>
 </div>
 
-
-<!-- svelte-ignore a11y-interactive-supports-focus a11y-click-events-have-key-events -->
-{#if opened}
-	<div
-		id="combobox-list-{gui}"
-		class="combobox-list {opened ? '' : 'hidden'}"
-		class:multiselect
-		class:empty="{!filteredData.length && !shouldShowNewItem}"
-		role="listbox"
-		on:mousedown={onListMouseDown}
-		bind:this="{listElement}">
-		{#if filteredData.length}
-			{#each groupedData as group}
-				{#if group.name}
-					<div class="combobox-list-header">{group.name}</div>
-				{/if}
-				{#if group.items}
-					{#each group.items as item}
-						<div
-							role="option"
-							aria-selected="{item.idx === highlightIndex}"
-							class="combobox-list-item"
-							class:in-group="{!!item.group}"
-							class:selected="{item.idx === highlightIndex}"
-							on:click="{e => onclick(item, e)}"
-							on:mouseenter="{() => highlightIndex = item.idx}"
-							on:mousedown|preventDefault
-							on:mouseup="{e => onclick(item, e)}"
-							on:touchstart="{touchStart}"
-							on:touchend="{touchEnd}"
-							>
-							{#if multiselect}
-								{#if selectedItems.includes(item)}
-									<Icon name="checkboxChecked" />
-								{:else}
-									<Icon name="checkbox" />
-								{/if}
-							{/if}
-							{@html item.highlightedName || item.name}
-						</div>
-					{/each}
-				{/if}
-			{/each}
-		{:else if allowNew}
-			<div class="combobox-list-empty">No items found</div>
-		{/if}
-
-		{#if shouldShowNewItem}
-		<div class="combobox-list-header">Create new item</div>
-			<div
-				role="option"
-				aria-selected="{highlightIndex === filteredData.length}"
-				class="combobox-list-item"
-				class:selected="{highlightIndex === filteredData.length}"
-				on:click="{e => onclick({ name: inputElement.value, idx: filteredData.length }, e)}">
-					{inputElement.value}
-			</div>
-		{/if}
-	</div>
-{/if}
+<ComboList
+	guid="{uuid}"
+	items="{$FilteredItems}"
+	inputElement="{inputElement}"
+	{multiselect}
+	{allowNew}
+	{shouldShowNewItem}
+	bind:opened="{opened}"
+	bind:this="{list}"
+	bind:element="{listElement}"
+	on:click="{onclick}" />
 
 
 <script>
-import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
-import { emphasize, highlight, groupData, findValueInSource } from './utils';
-import { deepCopy, fuzzy, guid, alignItem, isMobile } from '../../utils';
-import { Icon } from '../../icon';
+import { afterUpdate } from 'svelte';
+import { Filter, Items, FilteredItems, CheckedItems } from './store';
+import { guid } from '../../utils';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
+import ComboInput from './ComboInput.svelte';
+import ComboList from './ComboList.svelte';
 
 
 let className = '';
 export { className as class };
+export let id = '';
 export let disabled = false;
 export let required = undefined;
-export let id = '';
-export let items = [];
-export let value = null;
 export let allowNew = undefined;
-export let clearOnEsc = undefined;
 export let showOnFocus = undefined;
-export let hideOnResize = undefined;
+// export let hideOnResize = undefined;
 export let label = '';
 export let error = undefined;
 export let info = undefined;
 export let labelOnTheLeft = undefined;
 export let placeholder = undefined;
-
 export let multiselect = undefined;
-export let selectedItems = [];
+
+export let items = [];
+export let value = null;
 
 export let element = undefined;
 export let inputElement = undefined;
 export let listElement = undefined;
 
+const uuid = guid();
+
+
+const shouldShowNewItem = false;
 
 $:_id = id || name || guid();
-$:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputElement.value));
-$:shouldShowNewItem = allowNew && inputElement && inputElement.value && !valueMatchesItem;
-
-const dispatch = createEventDispatcher();
-const gui = guid();
+// $:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputElement.value));
+// $:shouldShowNewItem = allowNew && inputElement && inputElement.value && !valueMatchesItem;
+// const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 
-let originalItems = null;
-let valueName = value && value.name || '';
+
+let list = undefined;
+let inputValue = '';
+// let valueName = value && value.name || '';
 let opened = false;
-let hasEdited = false;
-let highlightIndex = 0;
-let filteredData = [], groupedData = [];
-let originalText = '';
-let hasSetValue = true;
-let isSelecting = false;
-let isHiding = false;
+// let hasEdited = false;
+// let highlightIndex = 0;
+// let filteredData = [], groupedData = [];
+// let originalText = '';
+// let hasSetValue = true;
+// let isSelecting = false;
+// let isHiding = false;
 
-
-
-onDestroy(() => {
-	if (listElement) listElement.remove();
-});
 
 
 afterUpdate(() => {
-	if (!opened && items.length) {
-		if (!originalItems) originalItems = deepCopy(items);
-		if (items.length && typeof items[0] === 'string') {
-			items = items.map(item => ({ name: item }));
-		}
-		filter();
-		setInitialValue();
-	}
+	Items.init(items);
+	Filter.set('');
+	setInputValue(value);
 });
 
 
-function filter () {
-	let filtered = deepCopy(items);
-	const showAll = multiselect || !hasEdited;
-	if (!showAll && inputElement.value) {
-		const q = inputElement.value.toLowerCase().trim();
-		filtered = filtered
-			.filter(item => fuzzy(item.name, q))
-			.map(item => {
-				item.highlightedName = emphasize(item.name, q);
-				item.score = 1;
-				if (item.name.toLowerCase().includes(q)) item.score = 2;
-				if (item.name.includes(q)) item.score = 3;
-				if (item.name.toLowerCase() === q) item.score = 4;
-				if (item.name === q) item.score = 5;
-				return item;
-			})
-			.sort((a, b) => b.score - a.score);
-	}
-	groupedData = groupData(filtered);
-	const filteredAndSorted = [];
-	let idx = 0;
-	groupedData.forEach(g => {
-		g.items.forEach(i => {
-			i.idx = idx++;
-			filteredAndSorted.push(i);
-		});
-	});
-	filteredData = filteredAndSorted;
-
-	highlightIndex = 0;
-	highlight(listElement);
-	alignDropdown();
-}
-
-
-function open (e) {
-	if (isMobile() && e && e.type !== 'click') return;
-	if (opened) return;
-	opened = true;
-	hasEdited = false;
-	requestAnimationFrame(() => {
-		if (listElement.parentElement !== document.body) {
-			document.body.appendChild(listElement);
-		}
-
-		addEventListeners();
-		highlight(listElement);
-		alignDropdown(e);
-	});
-}
-
-
-function alignDropdown (e) {
-	requestAnimationFrame(() => {
-		alignItem({
-			element: listElement,
-			target: inputElement,
-			setMinWidthToTarget: true,
-			offsetH: -1
-		});
-		if (e && e.type === 'focus') inputElement.select();
-	});
-}
-
-
-function close () {
-	if (!opened) return;
-	removeEventListeners();
-	opened = false;
-	isSelecting = false;
-}
-
-
-function selectSingle (item) {
-	if (multiselect || hasSetValue) return;
-	const oldValue = deepCopy(value);
-
-	if (!item) {
-		if (filteredData[highlightIndex]) item = filteredData[highlightIndex];
-		else if (allowNew) item = { name: inputElement.value };
-		else if (value && value.name && inputElement.value !== value.name) valueName = value.name;
-	}
-	if (item) {
-		value = findValueInSource(item, originalItems) || item;
-		if (value && value.name && inputElement.value !== value.name) valueName = item.name;
-	}
-
-	hasSetValue = true;
-	dispatch('change', { value, oldValue });
-	requestAnimationFrame(() => {
-		inputElement.focus();
-		close();
-	});
-
-}
-
-function selectMultiselect (item) {
-	const oldValue = deepCopy(value);
-	selectedItems = selectedItems || [];
-	const isChecked = selectedItems.includes(item);
-	if (!isChecked) selectedItems.push(item);
-	else selectedItems = selectedItems.filter(i => i !== item);
-
-	value = findValueInSource(selectedItems, originalItems) || [];
-	valueName = selectedItems.map(i => i.name).join(', ');
-	dispatch('change', { value, oldValue });
-	requestAnimationFrame(() => inputElement.focus());
-}
-
-
-function setInitialValue () {
-	if (!filteredData || !filteredData.length) return;
-
-	if (!value || !value.length) return;
-
-	if (multiselect && !Array.isArray(value)) value = [value];
-
+function setInputValue (_value) {
 	if (multiselect) {
-		const selectedIds = value.map(i => i.id || i.name || i);
-		selectedItems = filteredData.filter(i => selectedIds.includes(i.id || i.name || i));
-		valueName = selectedItems.map(i => i.name).join(', ');
+		if (!Array.isArray(_value)) _value = [_value];
+		inputValue = _value.map(i => i.name || i).join(', ');
 	}
-	else {
-		let itemId = value;
-		if (typeof value === 'object' && value !== null) {
-			itemId = value.id || value.name;
-		}
-		if (itemId) {
-			const idx = filteredData.findIndex(i => i.id === itemId || i.name === itemId);
-			if (idx > -1) {
-				highlightIndex = idx;
-				inputElement.value = filteredData[highlightIndex].name;
-			}
-			highlight(listElement);
-		}
-		else inputElement.value = '';
-	}
+	else inputValue = _value && _value.name || '';
 }
 
 
-function up () {
-	if (!opened) return open();
-	let idx = highlightIndex - 1;
-	while (idx > 0 && !filteredData[idx]) idx -= 1;
-	if (idx !== highlightIndex && filteredData[idx]) {
-		highlightIndex = filteredData[idx].idx;
-		highlight(listElement);
-	}
-}
-
-
-function down () {
-	if (!opened) return open();
-	let idx = highlightIndex + 1;
-	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
-
-	let item = filteredData[idx];
-
-	if (shouldShowNewItem && idx === filteredData.length) {
-		item = { idx: filteredData.length };
-	}
-
-	if (idx !== highlightIndex && item) {
-		highlightIndex = item.idx;
-		highlight(listElement);
-	}
-}
-
-
-function revert () {
-	if (multiselect) return;	// in multiselect selection is applied when item is clicked
-	if (originalText && originalText !== inputElement.value) inputElement.value = originalText;
-	else if (value && value.name) inputElement.value = value.name;
-	else inputElement.value = '';
-}
-
-
-function clear () {
-	inputElement.value = '';
-	filter();
-	requestAnimationFrame(() => inputElement.focus());
+function onInputEvent (e) {
+	e = e.detail;
+	if (e.type === 'focus') onfocus(e.event);
+	else if (e.type === 'click') onclick(e.event, e.item);
+	else if (e.type === 'keydown') onkeydown(e.event, e.item);
 }
 
 
 
-/*** EVENT LISTENERS ******************************************************************************/
 function onfocus () {
-	originalText = inputElement.value;
-	if (showOnFocus) open();
+	// originalText = inputElement.value;
+	if (showOnFocus) opened = true;
 }
 
 
-function oninput () {
-	inputElement.value = inputElement.value;	// svelte needs this to rerender some stuff
-	open();
-	requestAnimationFrame(filter);
-	hasEdited = true;
-	hasSetValue = false;
+function onclick () {
+	opened = true;
+	// if (multiselect) selectMultiselect(item);
+	// else {
+	// 	hasSetValue = false;
+	// 	selectSingle(item);
+	// }
 }
 
 
-function onblur () {
-	if (isSelecting) return;
-	if (opened && !inputElement.value) return revert();
-	selectSingle();
-	setTimeout(() => {
-		if (document.activeElement != inputElement) close();
-	}, 200);
-}
-
-
-function onListMouseDown () {
-	isSelecting = true;
-}
-
-
-function touchStart (e) {
-	const el = e.target.closest('.combobox-list-item');
-	el.classList.add('blinking');
-}
-
-
-function touchEnd (e) {
-	const el = e.target.closest('.combobox-list-item');
-	requestAnimationFrame(() => el.classList.remove('blinking'));
-}
-
-
-function onclick (item, e) {
-	// click should only be handled on touch devices
-	if (isMobile() && e.type !== 'click') return e.preventDefault();
-	if (!isMobile() && e.type === 'click') return;
-
-	if (multiselect) selectMultiselect(item);
-	else {
-		hasSetValue = false;
-		selectSingle(item);
-	}
-}
 
 
 function onkeydown (e) {
-	if (e.key === 'Tab') {
-		selectSingle();
-		return close();
-	}
+	if (e.key === 'Tab') opened = false;
+
 	const fnmap = {
-		ArrowDown: down,
-		ArrowUp: up,
+		ArrowDown: () => list.down(),
+		ArrowUp: () => list.up(),
 		Escape: onEsc,
-		' ': onSpace
+		' ': onSpace,
+		Enter: onEnter,
 	};
+
 	if (typeof fnmap[e.key] === 'function') {
 		e.preventDefault();
 		fnmap[e.key](e);
@@ -447,95 +169,279 @@ function onkeydown (e) {
 }
 
 
-function onkeypress (e) {
-	if (e.key === 'Enter') onEnter(e);
+function onEnter () {
+	if (!opened) return opened = true;
+	if (!multiselect) value = list.getItem();
+	opened = false;
 }
 
 
-function onEnter (e) {
-	if (!opened) return open();
-
-	e.preventDefault();
-	if (multiselect) {
-		close();
-		inputElement.focus();
-	}
-	else {
-		hasSetValue = false;
-		selectSingle();
-	}
-}
-
-function onSpace (e) {
+function onSpace () {
 	if (!multiselect || !opened) return;
-	e.preventDefault();
-	const item = filteredData[highlightIndex];
-	onclick(item, e);
+	Items.toggle(list.getItem());
+	value = $CheckedItems;
+	setInputValue(value);
 }
 
 
 function onEsc (e) {
-	if (clearOnEsc && inputElement.value) {
-		e.stopPropagation();
-		return clear();
-	}
 	if (opened) {
 		e.stopPropagation();
-		revert();
+		// revert();
+		// filter();
 		inputElement.focus();
-		return close();
+		opened = false;
 	}
-	dispatch('keydown', e);
 }
 
 
+
+
+
+
+
+// function filter () {
+// 	let filtered = deepCopy(items);
+// 	if (hasEdited && inputElement.value) {
+// 		const q = inputElement.value.toLowerCase().trim();
+// 		filtered = filtered
+// 			.filter(item => fuzzy(item.name, q))
+// 			.map(item => {
+// 				item.highlightedName = emphasize(item.name, q);
+// 				item.score = 1;
+// 				if (item.name.toLowerCase().includes(q)) item.score = 2;
+// 				if (item.name.includes(q)) item.score = 3;
+// 				if (item.name.toLowerCase() === q) item.score = 4;
+// 				if (item.name === q) item.score = 5;
+// 				return item;
+// 			})
+// 			.sort((a, b) => b.score - a.score);
+// 	}
+// 	groupedData = groupData(filtered);
+// 	if (multiselect) setSelectedItems();
+
+// 	const filteredAndSorted = [];
+// 	let idx = 0;
+// 	groupedData.forEach(g => {
+// 		g.items.forEach(i => {
+// 			i.idx = idx++;
+// 			filteredAndSorted.push(i);
+// 		});
+// 	});
+// 	filteredData = filteredAndSorted;
+
+// 	highlightIndex = 0;
+// 	highlight(listElement);
+// }
+
+
+// function setSelectedItems () {
+// 	const selectedIds = value.map(i => i.id || i.name || i);
+// 	selectedItems = items.filter(i => selectedIds.includes(i.id || i.name || i));
+
+// 	groupedData.forEach(g => {
+// 		g.items.forEach(i => {
+// 			i.checked = selectedIds.includes(i.id || i.name || i);
+// 		});
+// 	});
+// 	groupedData = groupedData;
+// }
+
+// function open (e) {
+// 	const eType = e && e.type;
+// 	const clickOnMobile = isMobile() && eType === 'click';
+// 	const mousedownElsewhere = !isMobile() && eType === 'mousedown';
+
+// 	if (e && !(clickOnMobile || mousedownElsewhere)) return;
+// 	if (e && mousedownElsewhere && multiselect && opened) return close();
+// 	if (opened) return;
+
+// 	opened = true;
+// 	hasEdited = false;
+// 	if (multiselect) {
+// 		inputElement.value = '';
+// 		valueName = '';
+// 		filter();
+// 	}
+// 	requestAnimationFrame(() => {
+// 		if (listElement && listElement.parentElement !== document.body) {
+// 			document.body.appendChild(listElement);
+// 		}
+// 		addEventListeners();
+// 		highlight(listElement);
+// 	});
+// }
+
+
+// function close () {
+// 	if (!opened) return;
+// 	removeEventListeners();
+// 	opened = false;
+// 	isSelecting = false;
+// 	if (multiselect) valueName = selectedItems.map(i => i.name || i).join(', ');
+// }
+
+
+
+// function selectSingle (item) {
+// 	if (multiselect || hasSetValue) return;
+// 	const oldValue = deepCopy(value);
+
+// 	if (!item) {
+// 		if (filteredData[highlightIndex]) item = filteredData[highlightIndex];
+// 		else if (allowNew) item = { name: inputElement.value };
+// 		else if (value && value.name && inputElement.value !== value.name) valueName = value.name;
+// 	}
+// 	if (item) {
+// 		value = findValueInSource(item, originalItems) || item;
+// 		if (value && value.name && (inputElement.value !== value.name || valueName !== value.name)) {
+// 			inputElement.value = value.name;
+// 			valueName = value.name;
+// 		}
+// 		originalText = '';
+// 	}
+
+// 	hasSetValue = true;
+// 	filter();
+
+// 	if (hasValueChanged(oldValue, value)) dispatch('change', { value, oldValue });
+// 	requestAnimationFrame(() => {
+// 		inputElement.focus();
+// 		close();
+// 	});
+
+// }
+
+// function selectMultiselect (item) {
+// 	const oldValue = deepCopy(value);
+// 	selectedItems = selectedItems || [];
+// 	if (!item.checked) selectedItems.push(item);
+// 	else {
+// 		const _item = item.id || item.name || item;
+// 		selectedItems = selectedItems.filter(i => (i.id || i.name || i) !== _item);
+// 	}
+// 	value = findValueInSource(selectedItems, originalItems) || [];
+
+// 	setSelectedItems();
+
+// 	if (hasValueChanged(oldValue, value, true)) dispatch('change', { value, oldValue });
+// 	requestAnimationFrame(() => inputElement.focus());
+// }
+
+
+// function setInitialValue () {
+// 	if (!filteredData || !filteredData.length) return;
+
+// 	if (!value || (multiselect && !value.length)) return;
+
+// 	if (multiselect) {
+// 		if (!Array.isArray(value)) value = [value];
+// 		setSelectedItems();
+
+// 		if (opened) valueName = '';
+// 		else valueName = selectedItems.map(i => i.name || i).join(', ');
+// 	}
+// 	else {
+// 		const itemId = value.id || value.name || value;
+// 		if (itemId) {
+// 			console.log(filteredData);
+// 			const idx = filteredData.findIndex(i => (i.id || i.name || i) === itemId);
+// 			if (idx > -1) {
+// 				highlightIndex = idx;
+// 				inputElement.value = filteredData[highlightIndex].name;
+// 			}
+// 			// highlight(listElement);
+// 		}
+// 		else inputElement.value = '';
+// 	}
+// }
+
+
+// function revert () {
+// 	if (multiselect) return;	// in multiselect selection is applied when item is clicked
+// 	if (originalText && originalText !== inputElement.value) inputElement.value = originalText;
+// 	else if (value && value.name) inputElement.value = value.name;
+// 	else inputElement.value = '';
+// }
+
+
+
+// /*** EVENT LISTENERS ******************************************************************************/
+
+
+// function oninput () {
+// 	open();
+// 	requestAnimationFrame(filter);
+// 	hasEdited = true;
+// 	hasSetValue = false;
+// }
+
+
+// function onblur () {
+// 	if (isSelecting) return;
+// 	if (opened && !inputElement.value) return revert();
+// 	selectSingle();
+// }
+
+
+// function onclick (e) {
+// 	const item = e.detail?.item;
+// 	if (multiselect) selectMultiselect(item);
+// 	else {
+// 		hasSetValue = false;
+// 		selectSingle(item);
+// 	}
+// }
+
+
+
 function onIconMouseDown () {
-	isHiding = opened;
+// 	isHiding = opened;
 }
 
 
 function onIconClick () {
-	if (isHiding) close();
-	else open();
+// 	if (isHiding) close();
+// 	else open();
 
-	isHiding = false;
-	if (inputElement) inputElement.focus();
+// 	isHiding = false;
+// 	if (inputElement) inputElement.focus();
 }
 
 
-function onResize () {
-	if (!opened) return;
-	if (hideOnResize) return;
-	inputElement.blur();
-	return close();
-}
+// function onResize () {
+// 	if (!opened) return;
+// 	if (hideOnResize) return;
+// 	inputElement.blur();
+// 	return close();
+// }
 
 
-function onViewportResize () {
-	if (!opened) return;
-	alignDropdown();
-}
+// function onViewportResize () {
+// 	if (!opened) return;
+// 	// alignDropdown(listElement, inputElement);
+// }
 
 
-function onDocumentClick (e) {
-	const notEl = element && !element.contains(e.target);
-	const notList = listElement && !listElement.contains(e.target);
-	if (open && notEl && notList) close();
-}
+// function onDocumentClick (e) {
+// 	const notEl = element && !element.contains(e.target);
+// 	const notList = listElement && !listElement.contains(e.target);
+// 	if (open && notEl && notList) close();
+// }
 
 
-function addEventListeners () {
-	window.addEventListener('resize', onResize);
-	document.addEventListener('click', onDocumentClick, true);
-	window.visualViewport.addEventListener('resize', onViewportResize);
-}
+// function addEventListeners () {
+// 	window.addEventListener('resize', onResize);
+// 	document.addEventListener('click', onDocumentClick, true);
+// 	window.visualViewport.addEventListener('resize', onViewportResize);
+// }
 
 
-function removeEventListeners () {
-	window.removeEventListener('resize', onResize);
-	document.removeEventListener('click', onDocumentClick, true);
-	window.visualViewport.removeEventListener('resize', onViewportResize);
-}
+// function removeEventListeners () {
+// 	window.removeEventListener('resize', onResize);
+// 	document.removeEventListener('click', onDocumentClick, true);
+// 	window.visualViewport.removeEventListener('resize', onViewportResize);
+// }
 /*** EVENT LISTENERS ******************************************************************************/
 
 </script>

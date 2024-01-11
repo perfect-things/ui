@@ -5,7 +5,7 @@
 	{items}
 	on:change="{onChange}"
 	bind:value="{itemValue}" />
-
+<!--
 <h4>Selected value: </h4>
 <JsonBox value="{itemValue}" />
 
@@ -55,7 +55,7 @@
 
 
 <h2>Multiselect</h2>
-<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
+<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p> -->
 
 <h3>Simple data</h3>
 <Combobox
@@ -67,83 +67,82 @@
 <JsonBox value="{multiselectSimpleValue}" />
 
 
-<h3>Complex data</h3>
+<!-- <h3>Complex data</h3>
 <Combobox
 	{items}
 	multiselect
 	placeholder="Type to filter"
 	bind:value="{multiselectValue}" />
 <h4>Selected value: </h4>
-<JsonBox value="{multiselectValue}" />
+<JsonBox value="{multiselectValue}" /> -->
 
 
-
+<!--
 <CodeExample html="{exampleHtml}" />
 
 <hr>
-<API props="{apiProps}"/>
+<API props="{apiProps}"/> -->
 
 
 <script>
 import { Combobox } from '../../../../src';
-import { API } from '../../../api-table';
-import { CodeExample, JsonBox } from '../../../code-example';
+// import { API } from '../../../api-table';
+// import { CodeExample, JsonBox } from '../../../code-example';
+import { JsonBox } from '../../../code-example';
 
 
-const apiProps = [
-	{ name: 'allowNew', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'clearOnEsc', description: 'If present - the combobox will be cleared when Escape is pressed.' },
-	{ name: 'disabled', description: 'Make the combobox disabled.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
-	{ name: 'hideOnResize', description: 'If present - resizing the window will close the popup.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
-	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'label', type: 'string', description: 'Label for the combobox.' },
-	{ name: 'labelOnTheLeft', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'multiselect', description: 'This changes the control to a multiselect. The following changes will apply:<ul>' +
-		'<li>dropdown items will receive checkboxes,' +
-		'<li>the input textbox will become read-only,' +
-		'<li>text input will loose the auto-lookup functionality,' +
-		'<li>the control will only allow to change the value by clicking on items (or check them using the `Space` key),' +
-		'<li>the value will become an array,' +
-		'<li>arguments `allowNew`, `clearOnEsc` and `placeholder` will have no effect.' +
-		'</ul>'
-	},
-	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
-	{ name: 'required', description: 'Mark the combobox as <i>aria-required</i>.' },
-	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array. ' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
-];
+// const apiProps = [
+// 	{ name: 'allowNew', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
+// 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+// 	{ name: 'disabled', description: 'Make the combobox disabled.' },
+// 	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
+// 	{ name: 'hideOnResize', description: 'If present - resizing the window will close the popup.' },
+// 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
+// 	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
+// 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
+// 	{ name: 'label', type: 'string', description: 'Label for the combobox.' },
+// 	{ name: 'labelOnTheLeft', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
+// 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
+// 	{ name: 'multiselect', description: 'This changes the control to a multiselect. The following changes will apply:<ul>' +
+// 		'<li>dropdown items will receive checkboxes,' +
+// 		'<li>the value will become an array of checked items,' +
+// 		'<li>text input will work as an auto-lookup when the list is open, but will show the value when the list is closed,' +
+// 		'<li>the control will allow to change the value by clicking on items (or checking them using the `Space` key),' +
+// 		'<li>argument `allowNew` will have no effect.' +
+// 		'</ul>'
+// 	},
+// 	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
+// 	{ name: 'required', description: 'Mark the combobox as <i>aria-required</i>.' },
+// 	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
+// 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+// 	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array. ' },
+// 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+// 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
+// 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
+// 	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
+// ];
 
-const exampleHtml = `
-<Combobox
-    {items}
-    on:change="{ onChange }"
-    bind:value="{ value }" />
+// const exampleHtml = `
+// <Combobox
+//     {items}
+//     on:change="{ onChange }"
+//     bind:value="{ value }" />
 
-<script>
-const items = [
-    { id: 1, name: 'Alpha', group: 'Group 1' },
-    { id: 2, name: 'Beta', group: 'Group 1' },
-    { id: 3, name: 'Gamma', group: 'Group 2' },
-    { id: 4, name: 'Delta', group: 'Group 2' },
-];
-let value = data[1];
+// <script>
+// const items = [
+//     { id: 1, name: 'Alpha', group: 'Group 1' },
+//     { id: 2, name: 'Beta', group: 'Group 1' },
+//     { id: 3, name: 'Gamma', group: 'Group 2' },
+//     { id: 4, name: 'Delta', group: 'Group 2' },
+// ];
+// let value = data[1];
 
-function onChange (e) {
-    const { value, oldValue } = e.detail;
-    console.log({ value, oldValue });
-}
-&lt;/script>
-`;
+// function onChange (e) {
+//     const { value, oldValue } = e.detail;
+//     console.log({ value, oldValue });
+// }
+// &lt;/script>
+// `;
 
 
 
@@ -169,29 +168,29 @@ const items = [
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
 let itemValue = items[1];
-let multiselectValue = [items[0], items[1]];
+// let multiselectValue = [items[0], items[1]];
 
-const dataSimpler = [
-	{ name: 'Alpha', group: 'Group 1' },
-	{ name: 'Beta', group: 'Group 1' },
-	{ name: 'Gamma', group: 'Group 1' },
-	{ name: 'Delta', group: 'Group 1' },
-	{ name: 'Epsilon', group: 'Group 1' },
+// const dataSimpler = [
+// 	{ name: 'Alpha', group: 'Group 1' },
+// 	{ name: 'Beta', group: 'Group 1' },
+// 	{ name: 'Gamma', group: 'Group 1' },
+// 	{ name: 'Delta', group: 'Group 1' },
+// 	{ name: 'Epsilon', group: 'Group 1' },
 
-	{ name: 'Zeta', group: '😀 Group 2 has a very long name' },
-	{ name: 'Eta', group: '😀 Group 2 has a very long name' },
-	{ name: 'Theta', group: '😀 Group 2 has a very long name' },
-	{ name: 'Iota', group: '😀 Group 2 has a very long name' },
-	{ name: 'Kappa', group: '😀 Group 2 has a very long name' },
-	{ name: 'Lambda is the last item in Group 2', group: '😀 Group 2 has a very long name' },
+// 	{ name: 'Zeta', group: '😀 Group 2 has a very long name' },
+// 	{ name: 'Eta', group: '😀 Group 2 has a very long name' },
+// 	{ name: 'Theta', group: '😀 Group 2 has a very long name' },
+// 	{ name: 'Iota', group: '😀 Group 2 has a very long name' },
+// 	{ name: 'Kappa', group: '😀 Group 2 has a very long name' },
+// 	{ name: 'Lambda is the last item in Group 2', group: '😀 Group 2 has a very long name' },
 
-	{ name: 'Alpha' },
-	{ name: 'Beta' },
-	{ name: 'Gamma' },
-	{ name: 'Delta' },
-	{ name: 'Epsilon' },
-];
-let valueSimpler = dataSimpler[3];
+// 	{ name: 'Alpha' },
+// 	{ name: 'Beta' },
+// 	{ name: 'Gamma' },
+// 	{ name: 'Delta' },
+// 	{ name: 'Epsilon' },
+// ];
+// const valueSimpler = dataSimpler[3];
 
 const dataSimple = [
 	'Alpha',
@@ -206,7 +205,7 @@ const dataSimple = [
 	'Kappa',
 	'Lambda is the last item in this list',
 ];
-let valueSimple = 'Gamma';
+// const valueSimple = 'Gamma';
 let multiselectSimpleValue = [dataSimple[0], dataSimple[1]];
 
 
