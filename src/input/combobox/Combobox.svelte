@@ -235,23 +235,22 @@ function open (e) {
 	const mousedownElsewhere = !isMobile() && eType === 'mousedown';
 
 	if (e && !(clickOnMobile || mousedownElsewhere)) return;
-	if (e && mousedownElsewhere && multiselect && opened) return close();
+	if (e && mousedownElsewhere && opened) return close();
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
 	if (multiselect) {
-		inputElement.value = '';
-		inputValue = '';
+		// this causes the first letter to be ignored
+		// inputElement.value = '';
+		// inputValue = '';
 		filter();
 	}
 
 	requestAnimationFrame(() => {
-		if (listElement.parentElement !== document.body) {
+		if (listElement && listElement.parentElement !== document.body) {
 			document.body.appendChild(listElement);
 		}
 		addEventListeners();
-		// scrollToSelectedItem(listElement);
-		if (!multiselect) setInitialValue();
 		alignDropdown(listElement, inputElement, e);
 	});
 }
@@ -263,7 +262,10 @@ function close () {
 	opened = false;
 	isSelecting = false;
 
-	if (multiselect) inputValue = getInputValue(value, multiselect);
+	const empty = !inputElement.value;
+	const notInList = !multiselect && !allowNew && inputElement.value !== inputValue;
+	const notInSelected = multiselect && inputElement.value !== inputValue;
+	if (empty || notInList || notInSelected) revert();
 }
 
 
@@ -299,6 +301,7 @@ function selectMultiselect (item) {
 	else selectedItems.splice(itemIndex, 1);
 
 	value = findValueInSource(selectedItems, originalItems) || [];
+	inputValue = getInputValue(selectedItems, multiselect);
 
 	dispatch('change', { value, oldValue });
 	requestAnimationFrame(() => inputElement.focus());
@@ -363,8 +366,10 @@ function down () {
 
 
 function revert () {
-	if (multiselect) return;	// in multiselect selection is applied when item is clicked
-	if (originalText && originalText !== inputElement.value) inputElement.value = originalText;
+	if (multiselect) {
+		inputElement.value = inputValue = getInputValue(selectedItems, multiselect);
+	}
+	else if (originalText && originalText !== inputElement.value) inputElement.value = originalText;
 	else if (value && value.name) inputElement.value = value.name;
 	else inputElement.value = '';
 }
@@ -386,7 +391,6 @@ function onfocus () {
 
 
 function oninput () {
-	inputElement.value = inputElement.value;	// svelte needs this to rerender some stuff
 	open();
 	requestAnimationFrame(filter);
 	hasEdited = true;
@@ -396,11 +400,14 @@ function oninput () {
 
 function onblur () {
 	if (isSelecting) return;
-	if (opened && !inputElement.value) return revert();
-	selectSingle();
-	setTimeout(() => {
-		if (document.activeElement != inputElement) close();
-	}, 200);
+	close();
+	// if (!inputElement.value) {
+	// 	if (multiselect || opened) return revert();
+	// }
+	// selectSingle();
+	// setTimeout(() => {
+	// 	if (document.activeElement != inputElement) close();
+	// }, 200);
 }
 
 

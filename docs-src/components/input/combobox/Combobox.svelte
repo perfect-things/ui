@@ -33,7 +33,7 @@
 
 
 <h3>Simple data (just an array of strings)</h3>
-<Combobox items="{dataSimple}" placeholder="Type to filter" allowNew
+<Combobox items="{dataSimple}" placeholder="Type to filter"
 	bind:value="{valueSimple}" />
 
 <h4>Selected value: </h4>
@@ -54,9 +54,9 @@
 
 
 
-<h2>Multiselect</h2>
-<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
+<h2 id="Multiselect"><a href="#Combobox/Multiselect">Multiselect</a></h2>
 
+<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
 <h3>Simple data</h3>
 <Combobox
 	items="{dataSimple}"

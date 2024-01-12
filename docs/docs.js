@@ -10442,24 +10442,20 @@ function instance13($$self2, $$props2, $$invalidate2) {
     const mousedownElsewhere = !isMobile() && eType === "mousedown";
     if (e && !(clickOnMobile || mousedownElsewhere))
       return;
-    if (e && mousedownElsewhere && multiselect && opened)
+    if (e && mousedownElsewhere && opened)
       return close();
     if (opened)
       return;
     $$invalidate2(16, opened = true);
     hasEdited = false;
     if (multiselect) {
-      $$invalidate2(0, inputElement2.value = "", inputElement2);
-      $$invalidate2(15, inputValue = "");
       filter();
     }
     requestAnimationFrame(() => {
-      if (listElement.parentElement !== document.body) {
+      if (listElement && listElement.parentElement !== document.body) {
         document.body.appendChild(listElement);
       }
       addEventListeners();
-      if (!multiselect)
-        setInitialValue();
       alignDropdown(listElement, inputElement2, e);
     });
   }
@@ -10469,8 +10465,11 @@ function instance13($$self2, $$props2, $$invalidate2) {
     removeEventListeners();
     $$invalidate2(16, opened = false);
     isSelecting = false;
-    if (multiselect)
-      $$invalidate2(15, inputValue = getInputValue(value2, multiselect));
+    const empty2 = !inputElement2.value;
+    const notInList = !multiselect && !allowNew && inputElement2.value !== inputValue;
+    const notInSelected = multiselect && inputElement2.value !== inputValue;
+    if (empty2 || notInList || notInSelected)
+      revert();
   }
   function selectSingle(item) {
     if (multiselect || hasSetValue)
@@ -10506,6 +10505,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     else
       selectedItems.splice(itemIndex, 1);
     $$invalidate2(34, value2 = findValueInSource(selectedItems, originalItems) || []);
+    $$invalidate2(15, inputValue = getInputValue(selectedItems, multiselect));
     dispatch3("change", { value: value2, oldValue });
     requestAnimationFrame(() => inputElement2.focus());
   }
@@ -10563,9 +10563,9 @@ function instance13($$self2, $$props2, $$invalidate2) {
     }
   }
   function revert() {
-    if (multiselect)
-      return;
-    if (originalText && originalText !== inputElement2.value)
+    if (multiselect) {
+      $$invalidate2(0, inputElement2.value = $$invalidate2(15, inputValue = getInputValue(selectedItems, multiselect)), inputElement2);
+    } else if (originalText && originalText !== inputElement2.value)
       $$invalidate2(0, inputElement2.value = originalText, inputElement2);
     else if (value2 && value2.name)
       $$invalidate2(0, inputElement2.value = value2.name, inputElement2);
@@ -10583,7 +10583,6 @@ function instance13($$self2, $$props2, $$invalidate2) {
       open();
   }
   function oninput() {
-    $$invalidate2(0, inputElement2);
     open();
     requestAnimationFrame(filter);
     hasEdited = true;
@@ -10592,16 +10591,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   function onblur() {
     if (isSelecting)
       return;
-    if (opened && !inputElement2.value)
-      return revert();
-    selectSingle();
-    setTimeout(
-      () => {
-        if (document.activeElement != inputElement2)
-          close();
-      },
-      200
-    );
+    close();
   }
   function onListMouseDown() {
     isSelecting = true;
@@ -51387,6 +51377,7 @@ function create_fragment57(ctx) {
   let combobox9;
   let t40;
   let h21;
+  let a;
   let t42;
   let p;
   let t43;
@@ -51530,8 +51521,7 @@ function create_fragment57(ctx) {
       /*dataSimple*/
       ctx[9]
     ),
-    placeholder: "Type to filter",
-    allowNew: true
+    placeholder: "Type to filter"
   };
   if (
     /*valueSimple*/
@@ -51730,7 +51720,8 @@ function create_fragment57(ctx) {
       create_component(combobox9.$$.fragment);
       t40 = space();
       h21 = element2("h2");
-      h21.textContent = "Multiselect";
+      a = element2("a");
+      a.textContent = "Multiselect";
       t42 = space();
       p = element2("p");
       t43 = text("This adds checkboxes to the list items, but it disables the auto-lookup functionality,");
@@ -51771,19 +51762,22 @@ function create_fragment57(ctx) {
       add_location(h34, file51, 26, 0, 453);
       add_location(h41, file51, 30, 0, 590);
       add_location(h35, file51, 34, 0, 653);
-      add_location(h42, file51, 38, 0, 802);
-      add_location(h36, file51, 42, 0, 864);
-      add_location(h37, file51, 45, 0, 924);
-      add_location(h38, file51, 48, 0, 1012);
-      add_location(h39, file51, 51, 0, 1107);
-      add_location(h21, file51, 56, 0, 1201);
-      add_location(br, file51, 57, 89, 1311);
-      add_location(p, file51, 57, 0, 1222);
-      add_location(h310, file51, 59, 0, 1403);
-      add_location(h43, file51, 65, 0, 1523);
-      add_location(h311, file51, 69, 0, 1596);
-      add_location(h44, file51, 74, 0, 1686);
-      add_location(hr, file51, 81, 0, 1792);
+      add_location(h42, file51, 38, 0, 793);
+      add_location(h36, file51, 42, 0, 855);
+      add_location(h37, file51, 45, 0, 915);
+      add_location(h38, file51, 48, 0, 1003);
+      add_location(h39, file51, 51, 0, 1098);
+      attr_dev(a, "href", "#Combobox/Multiselect");
+      add_location(a, file51, 56, 21, 1213);
+      attr_dev(h21, "id", "Multiselect");
+      add_location(h21, file51, 56, 0, 1192);
+      add_location(br, file51, 58, 89, 1356);
+      add_location(p, file51, 58, 0, 1267);
+      add_location(h310, file51, 59, 0, 1447);
+      add_location(h43, file51, 65, 0, 1567);
+      add_location(h311, file51, 69, 0, 1640);
+      add_location(h44, file51, 74, 0, 1730);
+      add_location(hr, file51, 81, 0, 1836);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -51844,6 +51838,7 @@ function create_fragment57(ctx) {
       mount_component(combobox9, target, anchor);
       insert_dev(target, t40, anchor);
       insert_dev(target, h21, anchor);
+      append_dev(h21, a);
       insert_dev(target, t42, anchor);
       insert_dev(target, p, anchor);
       append_dev(p, t43);
