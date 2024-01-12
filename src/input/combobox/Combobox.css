@@ -75,15 +75,9 @@
 	background-color: var(--ui-color-highlight-1);
 }
 
-
-.desktop .combobox-list-item.selected {
-	background-color: var(--ui-color-highlight-1);
-	outline: 1px solid transparent;
-}
-.desktop .combobox-list-item:hover {
-	background-color: var(--ui-color-highlight);
-	outline: 1px solid transparent;
-}
+.desktop .combobox-list-item.checked { background-color: var(--ui-color-highlight-semi); }
+.desktop .combobox-list-item.selected { background-color: var(--ui-color-highlight-1); }
+.desktop .combobox-list-item:hover { background-color: var(--ui-color-highlight); }
 
 .combobox-list-item b { color: var(--ui-color-accent); }
 

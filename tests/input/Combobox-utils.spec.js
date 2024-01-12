@@ -51,13 +51,13 @@ test('Combobox-utils - highlight', () => {
 
 	// select 1st item
 	let selectedEl = listEl.children[0];
-	utils.highlight(listEl);	// just tests the lack of the selected item
+	utils.scrollToSelectedItem(listEl);	// just tests the lack of the selected item
 
 	// scroll to the end
 	listEl.scrollTop = 500;
 	selectedEl.classList.add('selected');
 
-	utils.highlight(listEl);
+	utils.scrollToSelectedItem(listEl);
 	expect(listEl.scrollTop).toBe(-3);
 
 	selectedEl.classList.remove('selected');
@@ -66,7 +66,7 @@ test('Combobox-utils - highlight', () => {
 	selectedEl = listEl.children[listEl.children.length - 1];
 	selectedEl.classList.add('selected');
 
-	utils.highlight(listEl);
+	utils.scrollToSelectedItem(listEl);
 	expect(listEl.scrollTop).toBe(456);
 });
 

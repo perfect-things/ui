@@ -12,7 +12,7 @@
 	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
-		<div class="input-row" title="{valueName}">
+		<div class="input-row" title="{inputValue}">
 			<Button
 				link
 				icon="dots"
@@ -32,11 +32,10 @@
 				aria-errormessage="{error ? errorMessageId : undefined}"
 				aria-required="{required}"
 				autocomplete="off"
-				value="{valueName}"
-				readonly="{multiselect}"
+				value="{inputValue}"
 
 				{disabled}
-				placeholder="{multiselect ? 'Type to filter...' : placeholder}"
+				placeholder="{multiselect && opened ? 'Type to filter...' : placeholder}"
 				id="{_id}"
 				{...$$restProps}
 
@@ -69,12 +68,20 @@
 				{/if}
 				{#if group.items}
 					{#each group.items as item}
+						{@const isChecked = multiselect && selectedItems
+							.find(i => (i.id || i.name || i) === (item.id || item.name || item))
+						}
 						<div
 							role="option"
-							aria-selected="{item.idx === highlightIndex}"
 							class="combobox-list-item"
 							class:in-group="{!!item.group}"
+
+							aria-selected="{item.idx === highlightIndex}"
 							class:selected="{item.idx === highlightIndex}"
+
+							aria-checked="{isChecked}"
+							class:checked="{isChecked}"
+
 							on:click="{e => onclick(item, e)}"
 							on:mouseenter="{() => highlightIndex = item.idx}"
 							on:mousedown|preventDefault
@@ -83,7 +90,7 @@
 							on:touchend="{touchEnd}"
 							>
 							{#if multiselect}
-								{#if selectedItems.includes(item)}
+								{#if isChecked}
 									<Icon name="checkboxChecked" />
 								{:else}
 									<Icon name="checkbox" />
@@ -115,8 +122,8 @@
 
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
-import { emphasize, highlight, groupData, findValueInSource } from './utils';
-import { deepCopy, fuzzy, guid, alignItem, isMobile } from '../../utils';
+import { emphasize, scrollToSelectedItem, groupData, findValueInSource, getInputValue, alignDropdown } from './utils';
+import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
 import { Icon } from '../../icon';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
@@ -157,8 +164,8 @@ const dispatch = createEventDispatcher();
 const gui = guid();
 const errorMessageId = guid();
 
+let inputValue = getInputValue(value, multiselect);
 let originalItems = null;
-let valueName = value && value.name || '';
 let opened = false;
 let hasEdited = false;
 let highlightIndex = 0;
@@ -187,10 +194,10 @@ afterUpdate(() => {
 });
 
 
+
 function filter () {
 	let filtered = deepCopy(items);
-	const showAll = multiselect || !hasEdited;
-	if (!showAll && inputElement.value) {
+	if (hasEdited && inputElement.value) {
 		const q = inputElement.value.toLowerCase().trim();
 		filtered = filtered
 			.filter(item => fuzzy(item.name, q))
@@ -217,37 +224,35 @@ function filter () {
 	filteredData = filteredAndSorted;
 
 	highlightIndex = 0;
-	highlight(listElement);
-	alignDropdown();
+	scrollToSelectedItem(listElement);
+	alignDropdown(listElement, inputElement);
 }
 
 
 function open (e) {
-	if (isMobile() && e && e.type !== 'click') return;
+	const eType = e && e.type;
+	const clickOnMobile = isMobile() && eType === 'click';
+	const mousedownElsewhere = !isMobile() && eType === 'mousedown';
+
+	if (e && !(clickOnMobile || mousedownElsewhere)) return;
+	if (e && mousedownElsewhere && multiselect && opened) return close();
 	if (opened) return;
 	opened = true;
 	hasEdited = false;
+	if (multiselect) {
+		inputElement.value = '';
+		inputValue = '';
+		filter();
+	}
+
 	requestAnimationFrame(() => {
 		if (listElement.parentElement !== document.body) {
 			document.body.appendChild(listElement);
 		}
-
 		addEventListeners();
-		highlight(listElement);
-		alignDropdown(e);
-	});
-}
-
-
-function alignDropdown (e) {
-	requestAnimationFrame(() => {
-		alignItem({
-			element: listElement,
-			target: inputElement,
-			setMinWidthToTarget: true,
-			offsetH: -1
-		});
-		if (e && e.type === 'focus') inputElement.select();
+		// scrollToSelectedItem(listElement);
+		if (!multiselect) setInitialValue();
+		alignDropdown(listElement, inputElement, e);
 	});
 }
 
@@ -257,6 +262,8 @@ function close () {
 	removeEventListeners();
 	opened = false;
 	isSelecting = false;
+
+	if (multiselect) inputValue = getInputValue(value, multiselect);
 }
 
 
@@ -267,11 +274,11 @@ function selectSingle (item) {
 	if (!item) {
 		if (filteredData[highlightIndex]) item = filteredData[highlightIndex];
 		else if (allowNew) item = { name: inputElement.value };
-		else if (value && value.name && inputElement.value !== value.name) valueName = value.name;
+		else if (value && value.name && inputElement.value !== value.name) inputValue = value.name;
 	}
 	if (item) {
 		value = findValueInSource(item, originalItems) || item;
-		if (value && value.name && inputElement.value !== value.name) valueName = item.name;
+		if (value && value.name && inputElement.value !== value.name) inputValue = item.name;
 	}
 
 	hasSetValue = true;
@@ -286,12 +293,13 @@ function selectSingle (item) {
 function selectMultiselect (item) {
 	const oldValue = deepCopy(value);
 	selectedItems = selectedItems || [];
-	const isChecked = selectedItems.includes(item);
-	if (!isChecked) selectedItems.push(item);
-	else selectedItems = selectedItems.filter(i => i !== item);
+	const itemId = item.id || item.name || item;
+	const itemIndex = selectedItems.findIndex(i => (i.id || i.name || i) === itemId);
+	if (itemIndex === -1) selectedItems.push(item);
+	else selectedItems.splice(itemIndex, 1);
 
 	value = findValueInSource(selectedItems, originalItems) || [];
-	valueName = selectedItems.map(i => i.name).join(', ');
+
 	dispatch('change', { value, oldValue });
 	requestAnimationFrame(() => inputElement.focus());
 }
@@ -299,28 +307,26 @@ function selectMultiselect (item) {
 
 function setInitialValue () {
 	if (!filteredData || !filteredData.length) return;
-
-	if (!value || !value.length) return;
-
-	if (multiselect && !Array.isArray(value)) value = [value];
+	if (!value || (Array.isArray(value) && !value.length)) return;
 
 	if (multiselect) {
+		if (!Array.isArray(value)) value = [value];
+
 		const selectedIds = value.map(i => i.id || i.name || i);
-		selectedItems = filteredData.filter(i => selectedIds.includes(i.id || i.name || i));
-		valueName = selectedItems.map(i => i.name).join(', ');
+		selectedItems = originalItems.filter(i => selectedIds.includes(i.id || i.name || i));
+
+		if (opened) inputValue = '';
+		else inputValue = getInputValue(selectedItems, multiselect);
 	}
 	else {
-		let itemId = value;
-		if (typeof value === 'object' && value !== null) {
-			itemId = value.id || value.name;
-		}
+		const itemId = value.id || value.name || value;
 		if (itemId) {
-			const idx = filteredData.findIndex(i => i.id === itemId || i.name === itemId);
-			if (idx > -1) {
-				highlightIndex = idx;
+			const item = filteredData.find(i => (i.id || i.name || i) === itemId);
+			if (item) {
+				highlightIndex = item.idx;
 				inputElement.value = filteredData[highlightIndex].name;
 			}
-			highlight(listElement);
+			scrollToSelectedItem(listElement);
 		}
 		else inputElement.value = '';
 	}
@@ -333,7 +339,7 @@ function up () {
 	while (idx > 0 && !filteredData[idx]) idx -= 1;
 	if (idx !== highlightIndex && filteredData[idx]) {
 		highlightIndex = filteredData[idx].idx;
-		highlight(listElement);
+		scrollToSelectedItem(listElement);
 	}
 }
 
@@ -351,7 +357,7 @@ function down () {
 
 	if (idx !== highlightIndex && item) {
 		highlightIndex = item.idx;
-		highlight(listElement);
+		scrollToSelectedItem(listElement);
 	}
 }
 
@@ -504,7 +510,7 @@ function onResize () {
 
 function onViewportResize () {
 	if (!opened) return;
-	alignDropdown();
+	alignDropdown(listElement, inputElement);
 }
 
 

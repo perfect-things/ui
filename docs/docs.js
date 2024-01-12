@@ -2630,7 +2630,7 @@ var require_prism = __commonJS({
          *
          * @param {ParentNode} [container=document]
          */
-        highlight: function highlight2(container) {
+        highlight: function highlight(container) {
           var elements = (container || document).querySelectorAll(SELECTOR);
           for (var i = 0, element3; element3 = elements[i++]; ) {
             Prism2.highlightElement(element3);
@@ -8176,7 +8176,7 @@ function groupData(items) {
     groups.unshift({ items: nogroup });
   return groups;
 }
-function highlight(listEl) {
+function scrollToSelectedItem(listEl) {
   if (!listEl)
     return;
   requestAnimationFrame(() => {
@@ -8226,6 +8226,25 @@ function findValueInSource(val, items) {
   if (!Array.isArray(val))
     return findSourceItem(val, items);
   return val.map((v) => findSourceItem(v, items));
+}
+function getInputValue(_val, isMultiselect = false) {
+  if (!isMultiselect)
+    return _val?.name || _val || "";
+  if (!Array.isArray(_val))
+    _val = [_val];
+  return _val.map((i) => i.name || i).join(", ");
+}
+function alignDropdown(listElement, inputElement2, e) {
+  requestAnimationFrame(() => {
+    alignItem({
+      element: listElement,
+      target: inputElement2,
+      setMinWidthToTarget: true,
+      offsetH: -1
+    });
+    if (e && e.type === "focus")
+      inputElement2.select();
+  });
 }
 
 // src/input/input-error/InputError.svelte
@@ -8813,6 +8832,21 @@ function get_each_context(ctx, list, i) {
 function get_each_context_1(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[76] = list[i];
+  const constants_0 = (
+    /*multiselect*/
+    child_ctx[13] && /*selectedItems*/
+    child_ctx[1].find(function func(...args) {
+      return (
+        /*func*/
+        ctx[46](
+          /*item*/
+          child_ctx[76],
+          ...args
+        )
+      );
+    })
+  );
+  child_ctx[77] = constants_0;
   return child_ctx;
 }
 function create_if_block6(ctx) {
@@ -8869,7 +8903,7 @@ function create_if_block6(ctx) {
       toggle_class(div, "empty", !/*filteredData*/
       ctx[14].length && !/*shouldShowNewItem*/
       ctx[19]);
-      add_location(div, file8, 56, 1, 1357);
+      add_location(div, file8, 55, 1, 1340);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -8879,7 +8913,7 @@ function create_if_block6(ctx) {
       append_dev(div, t);
       if (if_block1)
         if_block1.m(div, null);
-      ctx[47](div);
+      ctx[48](div);
       current = true;
       if (!mounted) {
         dispose = listen_dev(
@@ -8979,7 +9013,7 @@ function create_if_block6(ctx) {
       }
       if (if_block1)
         if_block1.d();
-      ctx[47](null);
+      ctx[48](null);
       mounted = false;
       dispose();
     }
@@ -8988,7 +9022,7 @@ function create_if_block6(ctx) {
     block,
     id: create_if_block6.name,
     type: "if",
-    source: "(56:0) {#if opened}",
+    source: "(55:0) {#if opened}",
     ctx
   });
   return block;
@@ -9000,7 +9034,7 @@ function create_if_block_7(ctx) {
       div = element2("div");
       div.textContent = "No items found";
       attr_dev(div, "class", "combobox-list-empty");
-      add_location(div, file8, 97, 3, 2576);
+      add_location(div, file8, 104, 3, 2751);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -9018,7 +9052,7 @@ function create_if_block_7(ctx) {
     block,
     id: create_if_block_7.name,
     type: "if",
-    source: "(97:21) ",
+    source: "(104:21) ",
     ctx
   });
   return block;
@@ -9054,7 +9088,7 @@ function create_if_block_2(ctx) {
       current = true;
     },
     p: function update2(ctx2, dirty) {
-      if (dirty[0] & /*groupedData, highlightIndex, onclick, selectedItems, multiselect*/
+      if (dirty[0] & /*groupedData, highlightIndex, multiselect, selectedItems, onclick*/
       268836866) {
         each_value = ensure_array_like_dev(
           /*groupedData*/
@@ -9106,7 +9140,7 @@ function create_if_block_2(ctx) {
     block,
     id: create_if_block_2.name,
     type: "if",
-    source: "(65:2) {#if filteredData.length}",
+    source: "(64:2) {#if filteredData.length}",
     ctx
   });
   return block;
@@ -9123,7 +9157,7 @@ function create_if_block_6(ctx) {
       div = element2("div");
       t = text(t_value);
       attr_dev(div, "class", "combobox-list-header");
-      add_location(div, file8, 67, 5, 1684);
+      add_location(div, file8, 66, 5, 1667);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -9145,7 +9179,7 @@ function create_if_block_6(ctx) {
     block,
     id: create_if_block_6.name,
     type: "if",
-    source: "(67:4) {#if group.name}",
+    source: "(66:4) {#if group.name}",
     ctx
   });
   return block;
@@ -9181,7 +9215,7 @@ function create_if_block_3(ctx) {
       current = true;
     },
     p: function update2(ctx2, dirty) {
-      if (dirty[0] & /*groupedData, highlightIndex, onclick, selectedItems, multiselect*/
+      if (dirty[0] & /*groupedData, highlightIndex, multiselect, selectedItems, onclick*/
       268836866) {
         each_value_1 = ensure_array_like_dev(
           /*group*/
@@ -9233,13 +9267,12 @@ function create_if_block_3(ctx) {
     block,
     id: create_if_block_3.name,
     type: "if",
-    source: "(70:4) {#if group.items}",
+    source: "(69:4) {#if group.items}",
     ctx
   });
   return block;
 }
 function create_if_block_4(ctx) {
-  let show_if;
   let current_block_type_index;
   let if_block;
   let if_block_anchor;
@@ -9247,16 +9280,10 @@ function create_if_block_4(ctx) {
   const if_block_creators = [create_if_block_5, create_else_block];
   const if_blocks = [];
   function select_block_type_1(ctx2, dirty) {
-    if (dirty[0] & /*selectedItems, groupedData*/
-    262146)
-      show_if = null;
-    if (show_if == null)
-      show_if = !!/*selectedItems*/
-      ctx2[1].includes(
-        /*item*/
-        ctx2[76]
-      );
-    if (show_if)
+    if (
+      /*isChecked*/
+      ctx2[77]
+    )
       return 0;
     return 1;
   }
@@ -9312,7 +9339,7 @@ function create_if_block_4(ctx) {
     block,
     id: create_if_block_4.name,
     type: "if",
-    source: "(85:7) {#if multiselect}",
+    source: "(92:7) {#if multiselect}",
     ctx
   });
   return block;
@@ -9350,7 +9377,7 @@ function create_else_block(ctx) {
     block,
     id: create_else_block.name,
     type: "else",
-    source: "(88:8) {:else}",
+    source: "(95:8) {:else}",
     ctx
   });
   return block;
@@ -9388,7 +9415,7 @@ function create_if_block_5(ctx) {
     block,
     id: create_if_block_5.name,
     type: "if",
-    source: "(86:8) {#if selectedItems.includes(item)}",
+    source: "(93:8) {#if isChecked}",
     ctx
   });
   return block;
@@ -9404,6 +9431,7 @@ function create_each_block_1(ctx) {
   );
   let t1;
   let div_aria_selected_value;
+  let div_aria_checked_value;
   let current;
   let mounted;
   let dispose;
@@ -9450,10 +9478,12 @@ function create_each_block_1(ctx) {
       t1 = space();
       html_tag.a = t1;
       attr_dev(div, "role", "option");
+      attr_dev(div, "class", "combobox-list-item");
       attr_dev(div, "aria-selected", div_aria_selected_value = /*item*/
       ctx[76].idx === /*highlightIndex*/
       ctx[17]);
-      attr_dev(div, "class", "combobox-list-item");
+      attr_dev(div, "aria-checked", div_aria_checked_value = /*isChecked*/
+      ctx[77]);
       toggle_class(div, "in-group", !!/*item*/
       ctx[76].group);
       toggle_class(
@@ -9463,7 +9493,13 @@ function create_each_block_1(ctx) {
         ctx[76].idx === /*highlightIndex*/
         ctx[17]
       );
-      add_location(div, file8, 71, 6, 1808);
+      toggle_class(
+        div,
+        "checked",
+        /*isChecked*/
+        ctx[77]
+      );
+      add_location(div, file8, 73, 6, 1930);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -9524,6 +9560,11 @@ function create_each_block_1(ctx) {
       ctx[17])) {
         attr_dev(div, "aria-selected", div_aria_selected_value);
       }
+      if (!current || dirty[0] & /*multiselect, selectedItems, groupedData*/
+      270338 && div_aria_checked_value !== (div_aria_checked_value = /*isChecked*/
+      ctx[77])) {
+        attr_dev(div, "aria-checked", div_aria_checked_value);
+      }
       if (!current || dirty[0] & /*groupedData*/
       262144) {
         toggle_class(div, "in-group", !!/*item*/
@@ -9537,6 +9578,15 @@ function create_each_block_1(ctx) {
           /*item*/
           ctx[76].idx === /*highlightIndex*/
           ctx[17]
+        );
+      }
+      if (!current || dirty[0] & /*multiselect, selectedItems, groupedData*/
+      270338) {
+        toggle_class(
+          div,
+          "checked",
+          /*isChecked*/
+          ctx[77]
         );
       }
     },
@@ -9564,7 +9614,7 @@ function create_each_block_1(ctx) {
     block,
     id: create_each_block_1.name,
     type: "each",
-    source: "(71:5) {#each group.items as item}",
+    source: "(70:5) {#each group.items as item}",
     ctx
   });
   return block;
@@ -9664,7 +9714,7 @@ function create_each_block(ctx) {
     block,
     id: create_each_block.name,
     type: "each",
-    source: "(66:3) {#each groupedData as group}",
+    source: "(65:3) {#each groupedData as group}",
     ctx
   });
   return block;
@@ -9689,7 +9739,7 @@ function create_if_block_1(ctx) {
       div1 = element2("div");
       t2 = text(t2_value);
       attr_dev(div0, "class", "combobox-list-header");
-      add_location(div0, file8, 101, 2, 2667);
+      add_location(div0, file8, 108, 2, 2842);
       attr_dev(div1, "role", "option");
       attr_dev(div1, "aria-selected", div1_aria_selected_value = /*highlightIndex*/
       ctx[17] === /*filteredData*/
@@ -9702,7 +9752,7 @@ function create_if_block_1(ctx) {
         ctx[17] === /*filteredData*/
         ctx[14].length
       );
-      add_location(div1, file8, 102, 3, 2726);
+      add_location(div1, file8, 109, 3, 2901);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div0, anchor);
@@ -9714,7 +9764,7 @@ function create_if_block_1(ctx) {
           div1,
           "click",
           /*click_handler_1*/
-          ctx[46],
+          ctx[47],
           false,
           false,
           false,
@@ -9759,7 +9809,7 @@ function create_if_block_1(ctx) {
     block,
     id: create_if_block_1.name,
     type: "if",
-    source: "(101:2) {#if shouldShowNewItem}",
+    source: "(108:2) {#if shouldShowNewItem}",
     ctx
   });
   return block;
@@ -9872,12 +9922,8 @@ function create_fragment13(ctx) {
     ) },
     { autocomplete: "off" },
     { value: (
-      /*valueName*/
+      /*inputValue*/
       ctx[15]
-    ) },
-    { readOnly: (
-      /*multiselect*/
-      ctx[13]
     ) },
     { disabled: (
       /*disabled*/
@@ -9885,7 +9931,8 @@ function create_fragment13(ctx) {
     ) },
     {
       placeholder: input_placeholder_value = /*multiselect*/
-      ctx[13] ? "Type to filter..." : (
+      ctx[13] && /*opened*/
+      ctx[16] ? "Type to filter..." : (
         /*placeholder*/
         ctx[12]
       )
@@ -9924,12 +9971,12 @@ function create_fragment13(ctx) {
         if_block.c();
       if_block_anchor = empty();
       set_attributes(input, input_data);
-      add_location(input, file8, 23, 3, 542);
+      add_location(input, file8, 23, 3, 543);
       attr_dev(div0, "class", "input-row");
       attr_dev(
         div0,
         "title",
-        /*valueName*/
+        /*inputValue*/
         ctx[15]
       );
       add_location(div0, file8, 14, 2, 344);
@@ -10118,25 +10165,21 @@ function create_fragment13(ctx) {
           ctx2[6]
         ) },
         { autocomplete: "off" },
-        (!current || dirty[0] & /*valueName*/
-        32768 && input.value !== /*valueName*/
+        (!current || dirty[0] & /*inputValue*/
+        32768 && input.value !== /*inputValue*/
         ctx2[15]) && { value: (
-          /*valueName*/
+          /*inputValue*/
           ctx2[15]
-        ) },
-        (!current || dirty[0] & /*multiselect*/
-        8192) && { readOnly: (
-          /*multiselect*/
-          ctx2[13]
         ) },
         (!current || dirty[0] & /*disabled*/
         32) && { disabled: (
           /*disabled*/
           ctx2[5]
         ) },
-        (!current || dirty[0] & /*multiselect, placeholder*/
-        12288 && input_placeholder_value !== (input_placeholder_value = /*multiselect*/
-        ctx2[13] ? "Type to filter..." : (
+        (!current || dirty[0] & /*multiselect, opened, placeholder*/
+        77824 && input_placeholder_value !== (input_placeholder_value = /*multiselect*/
+        ctx2[13] && /*opened*/
+        ctx2[16] ? "Type to filter..." : (
           /*placeholder*/
           ctx2[12]
         ))) && { placeholder: input_placeholder_value },
@@ -10152,12 +10195,12 @@ function create_fragment13(ctx) {
       if ("value" in input_data) {
         input.value = input_data.value;
       }
-      if (!current || dirty[0] & /*valueName*/
+      if (!current || dirty[0] & /*inputValue*/
       32768) {
         attr_dev(
           div0,
           "title",
-          /*valueName*/
+          /*inputValue*/
           ctx2[15]
         );
       }
@@ -10336,8 +10379,8 @@ function instance13($$self2, $$props2, $$invalidate2) {
   const dispatch3 = createEventDispatcher();
   const gui = guid();
   const errorMessageId2 = guid();
+  let inputValue = getInputValue(value2, multiselect);
   let originalItems = null;
-  let valueName = value2 && value2.name || "";
   let opened = false;
   let hasEdited = false;
   let highlightIndex = 0;
@@ -10363,8 +10406,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   });
   function filter() {
     let filtered = deepCopy(items);
-    const showAll = multiselect || !hasEdited;
-    if (!showAll && inputElement2.value) {
+    if (hasEdited && inputElement2.value) {
       const q = inputElement2.value.toLowerCase().trim();
       filtered = filtered.filter((item) => fuzzy(item.name, q)).map((item) => {
         item.highlightedName = emphasize(item.name, q);
@@ -10391,35 +10433,34 @@ function instance13($$self2, $$props2, $$invalidate2) {
     });
     $$invalidate2(14, filteredData = filteredAndSorted);
     $$invalidate2(17, highlightIndex = 0);
-    highlight(listElement);
-    alignDropdown();
+    scrollToSelectedItem(listElement);
+    alignDropdown(listElement, inputElement2);
   }
   function open(e) {
-    if (isMobile() && e && e.type !== "click")
+    const eType = e && e.type;
+    const clickOnMobile = isMobile() && eType === "click";
+    const mousedownElsewhere = !isMobile() && eType === "mousedown";
+    if (e && !(clickOnMobile || mousedownElsewhere))
       return;
+    if (e && mousedownElsewhere && multiselect && opened)
+      return close();
     if (opened)
       return;
     $$invalidate2(16, opened = true);
     hasEdited = false;
+    if (multiselect) {
+      $$invalidate2(0, inputElement2.value = "", inputElement2);
+      $$invalidate2(15, inputValue = "");
+      filter();
+    }
     requestAnimationFrame(() => {
       if (listElement.parentElement !== document.body) {
         document.body.appendChild(listElement);
       }
       addEventListeners();
-      highlight(listElement);
-      alignDropdown(e);
-    });
-  }
-  function alignDropdown(e) {
-    requestAnimationFrame(() => {
-      alignItem({
-        element: listElement,
-        target: inputElement2,
-        setMinWidthToTarget: true,
-        offsetH: -1
-      });
-      if (e && e.type === "focus")
-        inputElement2.select();
+      if (!multiselect)
+        setInitialValue();
+      alignDropdown(listElement, inputElement2, e);
     });
   }
   function close() {
@@ -10428,6 +10469,8 @@ function instance13($$self2, $$props2, $$invalidate2) {
     removeEventListeners();
     $$invalidate2(16, opened = false);
     isSelecting = false;
+    if (multiselect)
+      $$invalidate2(15, inputValue = getInputValue(value2, multiselect));
   }
   function selectSingle(item) {
     if (multiselect || hasSetValue)
@@ -10439,12 +10482,12 @@ function instance13($$self2, $$props2, $$invalidate2) {
       else if (allowNew)
         item = { name: inputElement2.value };
       else if (value2 && value2.name && inputElement2.value !== value2.name)
-        $$invalidate2(15, valueName = value2.name);
+        $$invalidate2(15, inputValue = value2.name);
     }
     if (item) {
       $$invalidate2(34, value2 = findValueInSource(item, originalItems) || item);
       if (value2 && value2.name && inputElement2.value !== value2.name)
-        $$invalidate2(15, valueName = item.name);
+        $$invalidate2(15, inputValue = item.name);
     }
     hasSetValue = true;
     dispatch3("change", { value: value2, oldValue });
@@ -10456,39 +10499,39 @@ function instance13($$self2, $$props2, $$invalidate2) {
   function selectMultiselect(item) {
     const oldValue = deepCopy(value2);
     $$invalidate2(1, selectedItems = selectedItems || []);
-    const isChecked = selectedItems.includes(item);
-    if (!isChecked)
+    const itemId = item.id || item.name || item;
+    const itemIndex = selectedItems.findIndex((i) => (i.id || i.name || i) === itemId);
+    if (itemIndex === -1)
       selectedItems.push(item);
     else
-      $$invalidate2(1, selectedItems = selectedItems.filter((i) => i !== item));
+      selectedItems.splice(itemIndex, 1);
     $$invalidate2(34, value2 = findValueInSource(selectedItems, originalItems) || []);
-    $$invalidate2(15, valueName = selectedItems.map((i) => i.name).join(", "));
     dispatch3("change", { value: value2, oldValue });
     requestAnimationFrame(() => inputElement2.focus());
   }
   function setInitialValue() {
     if (!filteredData || !filteredData.length)
       return;
-    if (!value2 || !value2.length)
+    if (!value2 || Array.isArray(value2) && !value2.length)
       return;
-    if (multiselect && !Array.isArray(value2))
-      $$invalidate2(34, value2 = [value2]);
     if (multiselect) {
+      if (!Array.isArray(value2))
+        $$invalidate2(34, value2 = [value2]);
       const selectedIds = value2.map((i) => i.id || i.name || i);
-      $$invalidate2(1, selectedItems = filteredData.filter((i) => selectedIds.includes(i.id || i.name || i)));
-      $$invalidate2(15, valueName = selectedItems.map((i) => i.name).join(", "));
+      $$invalidate2(1, selectedItems = originalItems.filter((i) => selectedIds.includes(i.id || i.name || i)));
+      if (opened)
+        $$invalidate2(15, inputValue = "");
+      else
+        $$invalidate2(15, inputValue = getInputValue(selectedItems, multiselect));
     } else {
-      let itemId = value2;
-      if (typeof value2 === "object" && value2 !== null) {
-        itemId = value2.id || value2.name;
-      }
+      const itemId = value2.id || value2.name || value2;
       if (itemId) {
-        const idx = filteredData.findIndex((i) => i.id === itemId || i.name === itemId);
-        if (idx > -1) {
-          $$invalidate2(17, highlightIndex = idx);
+        const item = filteredData.find((i) => (i.id || i.name || i) === itemId);
+        if (item) {
+          $$invalidate2(17, highlightIndex = item.idx);
           $$invalidate2(0, inputElement2.value = filteredData[highlightIndex].name, inputElement2);
         }
-        highlight(listElement);
+        scrollToSelectedItem(listElement);
       } else
         $$invalidate2(0, inputElement2.value = "", inputElement2);
     }
@@ -10501,7 +10544,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
       idx -= 1;
     if (idx !== highlightIndex && filteredData[idx]) {
       $$invalidate2(17, highlightIndex = filteredData[idx].idx);
-      highlight(listElement);
+      scrollToSelectedItem(listElement);
     }
   }
   function down() {
@@ -10516,7 +10559,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     }
     if (idx !== highlightIndex && item) {
       $$invalidate2(17, highlightIndex = item.idx);
-      highlight(listElement);
+      scrollToSelectedItem(listElement);
     }
   }
   function revert() {
@@ -10643,7 +10686,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   function onViewportResize() {
     if (!opened)
       return;
-    alignDropdown();
+    alignDropdown(listElement, inputElement2);
   }
   function onDocumentClick(e) {
     const notEl = element3 && !element3.contains(e.target);
@@ -10679,6 +10722,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   const click_handler = (item, e) => onclick3(item, e);
   const mouseenter_handler = (item) => $$invalidate2(17, highlightIndex = item.idx);
   const mouseup_handler = (item, e) => onclick3(item, e);
+  const func = (item, i) => (i.id || i.name || i) === (item.id || item.name || item);
   const click_handler_1 = (e) => onclick3(
     {
       name: inputElement2.value,
@@ -10741,13 +10785,14 @@ function instance13($$self2, $$props2, $$invalidate2) {
     createEventDispatcher,
     onDestroy,
     emphasize,
-    highlight,
+    scrollToSelectedItem,
     groupData,
     findValueInSource,
+    getInputValue,
+    alignDropdown,
     deepCopy,
     fuzzy,
     guid,
-    alignItem,
     isMobile,
     Icon: Icon_default,
     Button: Button_default,
@@ -10777,8 +10822,8 @@ function instance13($$self2, $$props2, $$invalidate2) {
     dispatch: dispatch3,
     gui,
     errorMessageId: errorMessageId2,
+    inputValue,
     originalItems,
-    valueName,
     opened,
     hasEdited,
     highlightIndex,
@@ -10790,7 +10835,6 @@ function instance13($$self2, $$props2, $$invalidate2) {
     isHiding,
     filter,
     open,
-    alignDropdown,
     close,
     selectSingle,
     selectMultiselect,
@@ -10862,10 +10906,10 @@ function instance13($$self2, $$props2, $$invalidate2) {
       $$invalidate2(0, inputElement2 = $$new_props.inputElement);
     if ("listElement" in $$props2)
       $$invalidate2(3, listElement = $$new_props.listElement);
+    if ("inputValue" in $$props2)
+      $$invalidate2(15, inputValue = $$new_props.inputValue);
     if ("originalItems" in $$props2)
       originalItems = $$new_props.originalItems;
-    if ("valueName" in $$props2)
-      $$invalidate2(15, valueName = $$new_props.valueName);
     if ("opened" in $$props2)
       $$invalidate2(16, opened = $$new_props.opened);
     if ("hasEdited" in $$props2)
@@ -10928,7 +10972,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     placeholder,
     multiselect,
     filteredData,
-    valueName,
+    inputValue,
     opened,
     highlightIndex,
     groupedData,
@@ -10959,6 +11003,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     click_handler,
     mouseenter_handler,
     mouseup_handler,
+    func,
     click_handler_1,
     div_binding
   ];
@@ -51556,7 +51601,7 @@ function create_fragment57(ctx) {
       ctx[9]
     ),
     multiselect: true,
-    placeholder: "Type to filter"
+    clearOnEsc: true
   };
   if (
     /*multiselectSimpleValue*/
@@ -51582,8 +51627,7 @@ function create_fragment57(ctx) {
       /*items*/
       ctx[7]
     ),
-    multiselect: true,
-    placeholder: "Type to filter"
+    multiselect: true
   };
   if (
     /*multiselectValue*/
@@ -51736,10 +51780,10 @@ function create_fragment57(ctx) {
       add_location(br, file51, 57, 89, 1311);
       add_location(p, file51, 57, 0, 1222);
       add_location(h310, file51, 59, 0, 1403);
-      add_location(h43, file51, 65, 0, 1541);
-      add_location(h311, file51, 69, 0, 1614);
-      add_location(h44, file51, 75, 0, 1734);
-      add_location(hr, file51, 82, 0, 1840);
+      add_location(h43, file51, 65, 0, 1523);
+      add_location(h311, file51, 69, 0, 1596);
+      add_location(h44, file51, 74, 0, 1686);
+      add_location(hr, file51, 81, 0, 1792);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -52138,7 +52182,7 @@ function instance57($$self2, $$props2, $$invalidate2) {
     },
     {
       name: "multiselect",
-      description: "This changes the control to a multiselect. The following changes will apply:<ul><li>dropdown items will receive checkboxes,<li>the input textbox will become read-only,<li>text input will loose the auto-lookup functionality,<li>the control will only allow to change the value by clicking on items (or check them using the `Space` key),<li>the value will become an array,<li>arguments `allowNew`, `clearOnEsc` and `placeholder` will have no effect.</ul>"
+      description: "This changes the control to a multiselect. The following changes will apply:<ul><li>dropdown items will receive checkboxes,<li>and the control will only allow to change the value by clicking on items (or check them using the `Space` key),<li>the value will become an array,<li>argument `allowNew` will have no effect.</ul>"
     },
     {
       name: "placeholder",
@@ -52161,7 +52205,7 @@ function instance57($$self2, $$props2, $$invalidate2) {
     {
       name: "value",
       type: ["string", "number", "object", "array"],
-      description: "Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array. "
+      description: "Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. "
     },
     {
       name: "bind:element",

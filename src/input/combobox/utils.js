@@ -1,3 +1,5 @@
+import { alignItem } from '../../utils';
+
 export function groupData (items) {
 	const nogroup = [];
 	const _groups = {};
@@ -12,7 +14,7 @@ export function groupData (items) {
 }
 
 
-export function highlight (listEl) {
+export function scrollToSelectedItem (listEl) {
 	if (!listEl) return;
 	requestAnimationFrame(() => {
 		const selectedEl = listEl.querySelector('.selected');
@@ -69,4 +71,24 @@ export function findValueInSource (val, items) {
 	if (!val) return val;
 	if (!Array.isArray(val)) return findSourceItem(val, items);
 	return val.map(v => findSourceItem(v, items));
+}
+
+
+export function getInputValue (_val, isMultiselect = false) {
+	if (!isMultiselect) return _val?.name || _val || '';
+	if (!Array.isArray(_val)) _val = [_val];
+	return _val.map(i => i.name || i).join(', ');
+}
+
+
+export function alignDropdown (listElement, inputElement, e) {
+	requestAnimationFrame(() => {
+		alignItem({
+			element: listElement,
+			target: inputElement,
+			setMinWidthToTarget: true,
+			offsetH: -1
+		});
+		if (e && e.type === 'focus') inputElement.select();
+	});
 }
