@@ -8826,27 +8826,27 @@ var Label_default = Label;
 var file8 = "src/input/combobox/Combobox.svelte";
 function get_each_context(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[73] = list[i];
+  child_ctx[74] = list[i];
   return child_ctx;
 }
 function get_each_context_1(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[76] = list[i];
+  child_ctx[77] = list[i];
   const constants_0 = (
     /*multiselect*/
     child_ctx[13] && /*selectedItems*/
     child_ctx[1].find(function func(...args) {
       return (
         /*func*/
-        ctx[46](
+        ctx[47](
           /*item*/
-          child_ctx[76],
+          child_ctx[77],
           ...args
         )
       );
     })
   );
-  child_ctx[77] = constants_0;
+  child_ctx[78] = constants_0;
   return child_ctx;
 }
 function create_if_block6(ctx) {
@@ -8879,7 +8879,7 @@ function create_if_block6(ctx) {
   }
   let if_block1 = (
     /*shouldShowNewItem*/
-    ctx[19] && create_if_block_1(ctx)
+    ctx[20] && create_if_block_1(ctx)
   );
   const block = {
     c: function create() {
@@ -8890,7 +8890,7 @@ function create_if_block6(ctx) {
       if (if_block1)
         if_block1.c();
       attr_dev(div, "id", div_id_value = "combobox-list-" + /*gui*/
-      ctx[21]);
+      ctx[22]);
       attr_dev(div, "class", div_class_value = "combobox-list " + /*opened*/
       (ctx[16] ? "" : "hidden"));
       attr_dev(div, "role", "listbox");
@@ -8902,7 +8902,7 @@ function create_if_block6(ctx) {
       );
       toggle_class(div, "empty", !/*filteredData*/
       ctx[14].length && !/*shouldShowNewItem*/
-      ctx[19]);
+      ctx[20]);
       add_location(div, file8, 55, 1, 1340);
     },
     m: function mount(target, anchor) {
@@ -8913,14 +8913,14 @@ function create_if_block6(ctx) {
       append_dev(div, t);
       if (if_block1)
         if_block1.m(div, null);
-      ctx[48](div);
+      ctx[49](div);
       current = true;
       if (!mounted) {
         dispose = listen_dev(
           div,
           "mousedown",
           /*onListMouseDown*/
-          ctx[27],
+          ctx[28],
           false,
           false,
           false,
@@ -8960,7 +8960,7 @@ function create_if_block6(ctx) {
       }
       if (
         /*shouldShowNewItem*/
-        ctx2[19]
+        ctx2[20]
       ) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
@@ -8988,10 +8988,10 @@ function create_if_block6(ctx) {
         );
       }
       if (!current || dirty[0] & /*opened, filteredData, shouldShowNewItem*/
-      606208) {
+      1130496) {
         toggle_class(div, "empty", !/*filteredData*/
         ctx2[14].length && !/*shouldShowNewItem*/
-        ctx2[19]);
+        ctx2[20]);
       }
     },
     i: function intro(local) {
@@ -9013,7 +9013,7 @@ function create_if_block6(ctx) {
       }
       if (if_block1)
         if_block1.d();
-      ctx[48](null);
+      ctx[49](null);
       mounted = false;
       dispose();
     }
@@ -9089,7 +9089,7 @@ function create_if_block_2(ctx) {
     },
     p: function update2(ctx2, dirty) {
       if (dirty[0] & /*groupedData, highlightIndex, multiselect, selectedItems, onclick*/
-      268836866) {
+      537272322) {
         each_value = ensure_array_like_dev(
           /*groupedData*/
           ctx2[18]
@@ -9149,7 +9149,7 @@ function create_if_block_6(ctx) {
   let div;
   let t_value = (
     /*group*/
-    ctx[73].name + ""
+    ctx[74].name + ""
   );
   let t;
   const block = {
@@ -9166,7 +9166,7 @@ function create_if_block_6(ctx) {
     p: function update2(ctx2, dirty) {
       if (dirty[0] & /*groupedData*/
       262144 && t_value !== (t_value = /*group*/
-      ctx2[73].name + ""))
+      ctx2[74].name + ""))
         set_data_dev(t, t_value);
     },
     d: function destroy(detaching) {
@@ -9189,7 +9189,7 @@ function create_if_block_3(ctx) {
   let current;
   let each_value_1 = ensure_array_like_dev(
     /*group*/
-    ctx[73].items
+    ctx[74].items
   );
   let each_blocks = [];
   for (let i = 0; i < each_value_1.length; i += 1) {
@@ -9216,10 +9216,10 @@ function create_if_block_3(ctx) {
     },
     p: function update2(ctx2, dirty) {
       if (dirty[0] & /*groupedData, highlightIndex, multiselect, selectedItems, onclick*/
-      268836866) {
+      537272322) {
         each_value_1 = ensure_array_like_dev(
           /*group*/
-          ctx2[73].items
+          ctx2[74].items
         );
         let i;
         for (i = 0; i < each_value_1.length; i += 1) {
@@ -9282,7 +9282,7 @@ function create_if_block_4(ctx) {
   function select_block_type_1(ctx2, dirty) {
     if (
       /*isChecked*/
-      ctx2[77]
+      ctx2[78]
     )
       return 0;
     return 1;
@@ -9426,8 +9426,8 @@ function create_each_block_1(ctx) {
   let html_tag;
   let raw_value = (
     /*item*/
-    (ctx[76].highlightedName || /*item*/
-    ctx[76].name) + ""
+    (ctx[77].highlightedName || /*item*/
+    ctx[77].name) + ""
   );
   let t1;
   let div_aria_selected_value;
@@ -9442,9 +9442,9 @@ function create_each_block_1(ctx) {
   function click_handler(...args) {
     return (
       /*click_handler*/
-      ctx[43](
+      ctx[44](
         /*item*/
-        ctx[76],
+        ctx[77],
         ...args
       )
     );
@@ -9452,18 +9452,18 @@ function create_each_block_1(ctx) {
   function mouseenter_handler() {
     return (
       /*mouseenter_handler*/
-      ctx[44](
+      ctx[45](
         /*item*/
-        ctx[76]
+        ctx[77]
       )
     );
   }
   function mouseup_handler(...args) {
     return (
       /*mouseup_handler*/
-      ctx[45](
+      ctx[46](
         /*item*/
-        ctx[76],
+        ctx[77],
         ...args
       )
     );
@@ -9480,24 +9480,24 @@ function create_each_block_1(ctx) {
       attr_dev(div, "role", "option");
       attr_dev(div, "class", "combobox-list-item");
       attr_dev(div, "aria-selected", div_aria_selected_value = /*item*/
-      ctx[76].idx === /*highlightIndex*/
+      ctx[77].idx === /*highlightIndex*/
       ctx[17]);
       attr_dev(div, "aria-checked", div_aria_checked_value = /*isChecked*/
-      ctx[77]);
+      ctx[78]);
       toggle_class(div, "in-group", !!/*item*/
-      ctx[76].group);
+      ctx[77].group);
       toggle_class(
         div,
         "selected",
         /*item*/
-        ctx[76].idx === /*highlightIndex*/
+        ctx[77].idx === /*highlightIndex*/
         ctx[17]
       );
       toggle_class(
         div,
         "checked",
         /*isChecked*/
-        ctx[77]
+        ctx[78]
       );
       add_location(div, file8, 73, 6, 1930);
     },
@@ -9515,7 +9515,7 @@ function create_each_block_1(ctx) {
           listen_dev(div, "mouseenter", mouseenter_handler, false, false, false, false),
           listen_dev(div, "mousedown", prevent_default(
             /*mousedown_handler*/
-            ctx[40]
+            ctx[41]
           ), false, true, false, false),
           listen_dev(div, "mouseup", mouseup_handler, false, false, false, false),
           listen_dev(div, "touchstart", touchStart, false, false, false, false),
@@ -9551,24 +9551,24 @@ function create_each_block_1(ctx) {
       }
       if ((!current || dirty[0] & /*groupedData*/
       262144) && raw_value !== (raw_value = /*item*/
-      (ctx[76].highlightedName || /*item*/
-      ctx[76].name) + ""))
+      (ctx[77].highlightedName || /*item*/
+      ctx[77].name) + ""))
         html_tag.p(raw_value);
       if (!current || dirty[0] & /*groupedData, highlightIndex*/
       393216 && div_aria_selected_value !== (div_aria_selected_value = /*item*/
-      ctx[76].idx === /*highlightIndex*/
+      ctx[77].idx === /*highlightIndex*/
       ctx[17])) {
         attr_dev(div, "aria-selected", div_aria_selected_value);
       }
       if (!current || dirty[0] & /*multiselect, selectedItems, groupedData*/
       270338 && div_aria_checked_value !== (div_aria_checked_value = /*isChecked*/
-      ctx[77])) {
+      ctx[78])) {
         attr_dev(div, "aria-checked", div_aria_checked_value);
       }
       if (!current || dirty[0] & /*groupedData*/
       262144) {
         toggle_class(div, "in-group", !!/*item*/
-        ctx[76].group);
+        ctx[77].group);
       }
       if (!current || dirty[0] & /*groupedData, highlightIndex*/
       393216) {
@@ -9576,7 +9576,7 @@ function create_each_block_1(ctx) {
           div,
           "selected",
           /*item*/
-          ctx[76].idx === /*highlightIndex*/
+          ctx[77].idx === /*highlightIndex*/
           ctx[17]
         );
       }
@@ -9586,7 +9586,7 @@ function create_each_block_1(ctx) {
           div,
           "checked",
           /*isChecked*/
-          ctx[77]
+          ctx[78]
         );
       }
     },
@@ -9625,11 +9625,11 @@ function create_each_block(ctx) {
   let current;
   let if_block0 = (
     /*group*/
-    ctx[73].name && create_if_block_6(ctx)
+    ctx[74].name && create_if_block_6(ctx)
   );
   let if_block1 = (
     /*group*/
-    ctx[73].items && create_if_block_3(ctx)
+    ctx[74].items && create_if_block_3(ctx)
   );
   const block = {
     c: function create() {
@@ -9652,7 +9652,7 @@ function create_each_block(ctx) {
     p: function update2(ctx2, dirty) {
       if (
         /*group*/
-        ctx2[73].name
+        ctx2[74].name
       ) {
         if (if_block0) {
           if_block0.p(ctx2, dirty);
@@ -9667,7 +9667,7 @@ function create_each_block(ctx) {
       }
       if (
         /*group*/
-        ctx2[73].items
+        ctx2[74].items
       ) {
         if (if_block1) {
           if_block1.p(ctx2, dirty);
@@ -9723,10 +9723,6 @@ function create_if_block_1(ctx) {
   let div0;
   let t1;
   let div1;
-  let t2_value = (
-    /*inputElement*/
-    ctx[0].value + ""
-  );
   let t2;
   let div1_aria_selected_value;
   let mounted;
@@ -9737,14 +9733,17 @@ function create_if_block_1(ctx) {
       div0.textContent = "Create new item";
       t1 = space();
       div1 = element2("div");
-      t2 = text(t2_value);
+      t2 = text(
+        /*newItemName*/
+        ctx[19]
+      );
       attr_dev(div0, "class", "combobox-list-header");
       add_location(div0, file8, 108, 2, 2842);
       attr_dev(div1, "role", "option");
+      attr_dev(div1, "class", "combobox-list-item");
       attr_dev(div1, "aria-selected", div1_aria_selected_value = /*highlightIndex*/
       ctx[17] === /*filteredData*/
       ctx[14].length);
-      attr_dev(div1, "class", "combobox-list-item");
       toggle_class(
         div1,
         "selected",
@@ -9764,7 +9763,7 @@ function create_if_block_1(ctx) {
           div1,
           "click",
           /*click_handler_1*/
-          ctx[47],
+          ctx[48],
           false,
           false,
           false,
@@ -9774,10 +9773,13 @@ function create_if_block_1(ctx) {
       }
     },
     p: function update2(ctx2, dirty) {
-      if (dirty[0] & /*inputElement*/
-      1 && t2_value !== (t2_value = /*inputElement*/
-      ctx2[0].value + ""))
-        set_data_dev(t2, t2_value);
+      if (dirty[0] & /*newItemName*/
+      524288)
+        set_data_dev(
+          t2,
+          /*newItemName*/
+          ctx2[19]
+        );
       if (dirty[0] & /*highlightIndex, filteredData*/
       147456 && div1_aria_selected_value !== (div1_aria_selected_value = /*highlightIndex*/
       ctx2[17] === /*filteredData*/
@@ -9848,7 +9850,7 @@ function create_fragment13(ctx) {
       ),
       for: (
         /*_id*/
-        ctx[20]
+        ctx[21]
       )
     },
     $$inline: true
@@ -9864,7 +9866,7 @@ function create_fragment13(ctx) {
     props: {
       id: (
         /*errorMessageId*/
-        ctx[22]
+        ctx[23]
       ),
       msg: (
         /*error*/
@@ -9885,12 +9887,12 @@ function create_fragment13(ctx) {
   button.$on(
     "mousedown",
     /*onIconMouseDown*/
-    ctx[30]
+    ctx[31]
   );
   button.$on(
     "click",
     /*onIconClick*/
-    ctx[31]
+    ctx[32]
   );
   let input_levels = [
     { type: "text" },
@@ -9899,7 +9901,7 @@ function create_fragment13(ctx) {
     { "aria-autocomplete": "list" },
     {
       "aria-controls": input_aria_controls_value = "combobox-list-" + /*gui*/
-      ctx[21]
+      ctx[22]
     },
     { "aria-expanded": (
       /*opened*/
@@ -9913,7 +9915,7 @@ function create_fragment13(ctx) {
       "aria-errormessage": input_aria_errormessage_value = /*error*/
       ctx[9] ? (
         /*errorMessageId*/
-        ctx[22]
+        ctx[23]
       ) : void 0
     },
     { "aria-required": (
@@ -9939,10 +9941,10 @@ function create_fragment13(ctx) {
     },
     { id: (
       /*_id*/
-      ctx[20]
+      ctx[21]
     ) },
     /*$$restProps*/
-    ctx[32]
+    ctx[33]
   ];
   let input_data = {};
   for (let i = 0; i < input_levels.length; i += 1) {
@@ -10033,8 +10035,8 @@ function create_fragment13(ctx) {
       }
       if (input.autofocus)
         input.focus();
-      ctx[41](input);
-      ctx[42](div2);
+      ctx[42](input);
+      ctx[43](div2);
       insert_dev(target, t4, anchor);
       if (if_block)
         if_block.m(target, anchor);
@@ -10046,7 +10048,7 @@ function create_fragment13(ctx) {
             input,
             "input",
             /*oninput*/
-            ctx[25],
+            ctx[26],
             false,
             false,
             false,
@@ -10056,7 +10058,7 @@ function create_fragment13(ctx) {
             input,
             "focus",
             /*onfocus*/
-            ctx[24],
+            ctx[25],
             false,
             false,
             false,
@@ -10066,7 +10068,7 @@ function create_fragment13(ctx) {
             input,
             "mousedown",
             /*open*/
-            ctx[23],
+            ctx[24],
             false,
             false,
             false,
@@ -10076,7 +10078,7 @@ function create_fragment13(ctx) {
             input,
             "click",
             /*open*/
-            ctx[23],
+            ctx[24],
             false,
             false,
             false,
@@ -10086,7 +10088,7 @@ function create_fragment13(ctx) {
             input,
             "blur",
             /*onblur*/
-            ctx[26],
+            ctx[27],
             false,
             false,
             false,
@@ -10096,7 +10098,7 @@ function create_fragment13(ctx) {
             input,
             "keydown",
             /*onkeydown*/
-            ctx[29],
+            ctx[30],
             true,
             false,
             false,
@@ -10117,9 +10119,9 @@ function create_fragment13(ctx) {
         label_1_changes.disabled = /*disabled*/
         ctx2[5];
       if (dirty[0] & /*_id*/
-      1048576)
+      2097152)
         label_1_changes.for = /*_id*/
-        ctx2[20];
+        ctx2[21];
       label_1.$set(label_1_changes);
       const info_1_changes = {};
       if (dirty[0] & /*info*/
@@ -10155,7 +10157,7 @@ function create_fragment13(ctx) {
         512 && input_aria_errormessage_value !== (input_aria_errormessage_value = /*error*/
         ctx2[9] ? (
           /*errorMessageId*/
-          ctx2[22]
+          ctx2[23]
         ) : void 0)) && {
           "aria-errormessage": input_aria_errormessage_value
         },
@@ -10184,13 +10186,13 @@ function create_fragment13(ctx) {
           ctx2[12]
         ))) && { placeholder: input_placeholder_value },
         (!current || dirty[0] & /*_id*/
-        1048576) && { id: (
+        2097152) && { id: (
           /*_id*/
-          ctx2[20]
+          ctx2[21]
         ) },
         dirty[1] & /*$$restProps*/
-        2 && /*$$restProps*/
-        ctx2[32]
+        4 && /*$$restProps*/
+        ctx2[33]
       ]));
       if ("value" in input_data) {
         input.value = input_data.value;
@@ -10302,8 +10304,8 @@ function create_fragment13(ctx) {
       destroy_component(info_1);
       destroy_component(inputerror);
       destroy_component(button);
-      ctx[41](null);
       ctx[42](null);
+      ctx[43](null);
       if (if_block)
         if_block.d(detaching);
       mounted = false;
@@ -10389,6 +10391,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   let hasSetValue = true;
   let isSelecting = false;
   let isHiding = false;
+  let newItemName = "";
   onDestroy(() => {
     if (listElement)
       listElement.remove();
@@ -10398,7 +10401,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
       if (!originalItems)
         originalItems = deepCopy(items);
       if (items.length && typeof items[0] === "string") {
-        $$invalidate2(33, items = items.map((item) => ({ name: item })));
+        $$invalidate2(34, items = items.map((item) => ({ name: item })));
       }
       filter();
       setInitialValue();
@@ -10437,18 +10440,24 @@ function instance13($$self2, $$props2, $$invalidate2) {
     alignDropdown(listElement, inputElement2);
   }
   function open(e) {
-    const eType = e && e.type;
+    const eType = e?.type;
     const clickOnMobile = isMobile() && eType === "click";
     const mousedownElsewhere = !isMobile() && eType === "mousedown";
-    if (e && !(clickOnMobile || mousedownElsewhere))
+    const typing = eType === "typing";
+    const navigating = eType === "navigating";
+    if (!clickOnMobile && !mousedownElsewhere && !typing && !navigating)
       return;
-    if (e && mousedownElsewhere && opened)
+    if (mousedownElsewhere && opened)
       return close();
     if (opened)
       return;
     $$invalidate2(16, opened = true);
     hasEdited = false;
     if (multiselect) {
+      if (!typing) {
+        $$invalidate2(0, inputElement2.value = "", inputElement2);
+        $$invalidate2(15, inputValue = "");
+      }
       filter();
     }
     requestAnimationFrame(() => {
@@ -10484,7 +10493,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
         $$invalidate2(15, inputValue = value2.name);
     }
     if (item) {
-      $$invalidate2(34, value2 = findValueInSource(item, originalItems) || item);
+      $$invalidate2(35, value2 = findValueInSource(item, originalItems) || item);
       if (value2 && value2.name && inputElement2.value !== value2.name)
         $$invalidate2(15, inputValue = item.name);
     }
@@ -10504,8 +10513,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
       selectedItems.push(item);
     else
       selectedItems.splice(itemIndex, 1);
-    $$invalidate2(34, value2 = findValueInSource(selectedItems, originalItems) || []);
-    $$invalidate2(15, inputValue = getInputValue(selectedItems, multiselect));
+    $$invalidate2(35, value2 = findValueInSource(selectedItems, originalItems) || []);
     dispatch3("change", { value: value2, oldValue });
     requestAnimationFrame(() => inputElement2.focus());
   }
@@ -10516,7 +10524,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
       return;
     if (multiselect) {
       if (!Array.isArray(value2))
-        $$invalidate2(34, value2 = [value2]);
+        $$invalidate2(35, value2 = [value2]);
       const selectedIds = value2.map((i) => i.id || i.name || i);
       $$invalidate2(1, selectedItems = originalItems.filter((i) => selectedIds.includes(i.id || i.name || i)));
       if (opened)
@@ -10538,7 +10546,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   }
   function up() {
     if (!opened)
-      return open();
+      return open({ type: "navigating" });
     let idx = highlightIndex - 1;
     while (idx > 0 && !filteredData[idx])
       idx -= 1;
@@ -10549,7 +10557,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   }
   function down() {
     if (!opened)
-      return open();
+      return open({ type: "navigating" });
     let idx = highlightIndex + 1;
     while (idx < filteredData.length - 1 && !filteredData[idx])
       idx += 1;
@@ -10580,13 +10588,14 @@ function instance13($$self2, $$props2, $$invalidate2) {
   function onfocus() {
     originalText = inputElement2.value;
     if (showOnFocus)
-      open();
+      open({ type: "navigating" });
   }
   function oninput() {
-    open();
+    open({ type: "typing" });
     requestAnimationFrame(filter);
     hasEdited = true;
     hasSetValue = false;
+    $$invalidate2(19, newItemName = inputElement2.value);
   }
   function onblur() {
     if (isSelecting)
@@ -10597,9 +10606,9 @@ function instance13($$self2, $$props2, $$invalidate2) {
     isSelecting = true;
   }
   function onclick3(item, e) {
-    if (isMobile() && e.type !== "click")
+    if (isMobile() && e?.type !== "click")
       return e.preventDefault();
-    if (!isMobile() && e.type === "click")
+    if (!isMobile() && e?.type === "click")
       return;
     if (multiselect)
       selectMultiselect(item);
@@ -10625,7 +10634,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   }
   function onEnter() {
     if (!opened)
-      return open();
+      return open({ type: "navigating" });
     if (multiselect) {
       close();
       inputElement2.focus();
@@ -10660,7 +10669,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     if (isHiding)
       close();
     else
-      open();
+      open({ type: "navigating" });
     isHiding = false;
     if (inputElement2)
       inputElement2.focus();
@@ -10713,13 +10722,10 @@ function instance13($$self2, $$props2, $$invalidate2) {
   const mouseenter_handler = (item) => $$invalidate2(17, highlightIndex = item.idx);
   const mouseup_handler = (item, e) => onclick3(item, e);
   const func = (item, i) => (i.id || i.name || i) === (item.id || item.name || item);
-  const click_handler_1 = (e) => onclick3(
-    {
-      name: inputElement2.value,
-      idx: filteredData.length
-    },
-    e
-  );
+  const click_handler_1 = () => onclick3({
+    name: newItemName,
+    idx: filteredData.length
+  });
   function div_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
       listElement = $$value;
@@ -10728,7 +10734,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   }
   $$self2.$$set = ($$new_props) => {
     $$props2 = assign(assign({}, $$props2), exclude_internal_props($$new_props));
-    $$invalidate2(32, $$restProps2 = compute_rest_props($$props2, omit_props_names2));
+    $$invalidate2(33, $$restProps2 = compute_rest_props($$props2, omit_props_names2));
     if ("class" in $$new_props)
       $$invalidate2(4, className2 = $$new_props.class);
     if ("disabled" in $$new_props)
@@ -10736,19 +10742,19 @@ function instance13($$self2, $$props2, $$invalidate2) {
     if ("required" in $$new_props)
       $$invalidate2(6, required2 = $$new_props.required);
     if ("id" in $$new_props)
-      $$invalidate2(35, id2 = $$new_props.id);
+      $$invalidate2(36, id2 = $$new_props.id);
     if ("items" in $$new_props)
-      $$invalidate2(33, items = $$new_props.items);
+      $$invalidate2(34, items = $$new_props.items);
     if ("value" in $$new_props)
-      $$invalidate2(34, value2 = $$new_props.value);
+      $$invalidate2(35, value2 = $$new_props.value);
     if ("allowNew" in $$new_props)
       $$invalidate2(7, allowNew = $$new_props.allowNew);
     if ("clearOnEsc" in $$new_props)
-      $$invalidate2(36, clearOnEsc = $$new_props.clearOnEsc);
+      $$invalidate2(37, clearOnEsc = $$new_props.clearOnEsc);
     if ("showOnFocus" in $$new_props)
-      $$invalidate2(37, showOnFocus = $$new_props.showOnFocus);
+      $$invalidate2(38, showOnFocus = $$new_props.showOnFocus);
     if ("hideOnResize" in $$new_props)
-      $$invalidate2(38, hideOnResize = $$new_props.hideOnResize);
+      $$invalidate2(39, hideOnResize = $$new_props.hideOnResize);
     if ("label" in $$new_props)
       $$invalidate2(8, label2 = $$new_props.label);
     if ("error" in $$new_props)
@@ -10823,6 +10829,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     hasSetValue,
     isSelecting,
     isHiding,
+    newItemName,
     filter,
     open,
     close,
@@ -10863,19 +10870,19 @@ function instance13($$self2, $$props2, $$invalidate2) {
     if ("required" in $$props2)
       $$invalidate2(6, required2 = $$new_props.required);
     if ("id" in $$props2)
-      $$invalidate2(35, id2 = $$new_props.id);
+      $$invalidate2(36, id2 = $$new_props.id);
     if ("items" in $$props2)
-      $$invalidate2(33, items = $$new_props.items);
+      $$invalidate2(34, items = $$new_props.items);
     if ("value" in $$props2)
-      $$invalidate2(34, value2 = $$new_props.value);
+      $$invalidate2(35, value2 = $$new_props.value);
     if ("allowNew" in $$props2)
       $$invalidate2(7, allowNew = $$new_props.allowNew);
     if ("clearOnEsc" in $$props2)
-      $$invalidate2(36, clearOnEsc = $$new_props.clearOnEsc);
+      $$invalidate2(37, clearOnEsc = $$new_props.clearOnEsc);
     if ("showOnFocus" in $$props2)
-      $$invalidate2(37, showOnFocus = $$new_props.showOnFocus);
+      $$invalidate2(38, showOnFocus = $$new_props.showOnFocus);
     if ("hideOnResize" in $$props2)
-      $$invalidate2(38, hideOnResize = $$new_props.hideOnResize);
+      $$invalidate2(39, hideOnResize = $$new_props.hideOnResize);
     if ("label" in $$props2)
       $$invalidate2(8, label2 = $$new_props.label);
     if ("error" in $$props2)
@@ -10918,32 +10925,34 @@ function instance13($$self2, $$props2, $$invalidate2) {
       isSelecting = $$new_props.isSelecting;
     if ("isHiding" in $$props2)
       isHiding = $$new_props.isHiding;
+    if ("newItemName" in $$props2)
+      $$invalidate2(19, newItemName = $$new_props.newItemName);
     if ("shouldShowNewItem" in $$props2)
-      $$invalidate2(19, shouldShowNewItem = $$new_props.shouldShowNewItem);
+      $$invalidate2(20, shouldShowNewItem = $$new_props.shouldShowNewItem);
     if ("valueMatchesItem" in $$props2)
-      $$invalidate2(39, valueMatchesItem = $$new_props.valueMatchesItem);
+      $$invalidate2(40, valueMatchesItem = $$new_props.valueMatchesItem);
     if ("_id" in $$props2)
-      $$invalidate2(20, _id2 = $$new_props._id);
+      $$invalidate2(21, _id2 = $$new_props._id);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
   $$self2.$$.update = () => {
     if ($$self2.$$.dirty[1] & /*id*/
-    16) {
+    32) {
       $:
-        $$invalidate2(20, _id2 = id2 || name || guid());
+        $$invalidate2(21, _id2 = id2 || name || guid());
     }
     if ($$self2.$$.dirty[0] & /*filteredData, inputElement*/
     16385) {
       $:
-        $$invalidate2(39, valueMatchesItem = filteredData && filteredData.length && filteredData.find((i) => i.name === inputElement2.value));
+        $$invalidate2(40, valueMatchesItem = filteredData?.length && filteredData.find((i) => i.name === inputElement2.value));
     }
     if ($$self2.$$.dirty[0] & /*allowNew, inputElement*/
     129 | $$self2.$$.dirty[1] & /*valueMatchesItem*/
-    256) {
+    512) {
       $:
-        $$invalidate2(19, shouldShowNewItem = allowNew && inputElement2 && inputElement2.value && !valueMatchesItem);
+        $$invalidate2(20, shouldShowNewItem = allowNew && inputElement2?.value && !valueMatchesItem);
     }
   };
   return [
@@ -10966,6 +10975,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     opened,
     highlightIndex,
     groupedData,
+    newItemName,
     shouldShowNewItem,
     _id2,
     gui,
@@ -11011,13 +11021,13 @@ var Combobox = class extends SvelteComponentDev {
         class: 4,
         disabled: 5,
         required: 6,
-        id: 35,
-        items: 33,
-        value: 34,
+        id: 36,
+        items: 34,
+        value: 35,
         allowNew: 7,
-        clearOnEsc: 36,
-        showOnFocus: 37,
-        hideOnResize: 38,
+        clearOnEsc: 37,
+        showOnFocus: 38,
+        hideOnResize: 39,
         label: 8,
         error: 9,
         info: 10,

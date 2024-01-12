@@ -109,11 +109,11 @@
 		<div class="combobox-list-header">Create new item</div>
 			<div
 				role="option"
-				aria-selected="{highlightIndex === filteredData.length}"
 				class="combobox-list-item"
 				class:selected="{highlightIndex === filteredData.length}"
-				on:click="{e => onclick({ name: inputElement.value, idx: filteredData.length }, e)}">
-					{inputElement.value}
+				aria-selected="{highlightIndex === filteredData.length}"
+				on:click="{() => onclick({ name: newItemName, idx: filteredData.length })}">
+					{newItemName}
 			</div>
 		{/if}
 	</div>
@@ -157,8 +157,8 @@ export let listElement = undefined;
 
 
 $:_id = id || name || guid();
-$:valueMatchesItem = (filteredData && filteredData.length && filteredData.find(i => i.name === inputElement.value));
-$:shouldShowNewItem = allowNew && inputElement && inputElement.value && !valueMatchesItem;
+$:valueMatchesItem = (filteredData?.length && filteredData.find(i => i.name === inputElement.value));
+$:shouldShowNewItem = allowNew && inputElement?.value && !valueMatchesItem;
 
 const dispatch = createEventDispatcher();
 const gui = guid();
@@ -175,6 +175,7 @@ let hasSetValue = true;
 let isSelecting = false;
 let isHiding = false;
 
+let newItemName = '';
 
 
 onDestroy(() => {
@@ -230,19 +231,23 @@ function filter () {
 
 
 function open (e) {
-	const eType = e && e.type;
+	const eType = e?.type;
 	const clickOnMobile = isMobile() && eType === 'click';
 	const mousedownElsewhere = !isMobile() && eType === 'mousedown';
+	const typing = eType === 'typing';
+	const navigating = eType === 'navigating';
 
-	if (e && !(clickOnMobile || mousedownElsewhere)) return;
-	if (e && mousedownElsewhere && opened) return close();
+	if (!clickOnMobile && !mousedownElsewhere && !typing && !navigating) return;
+	if (mousedownElsewhere && opened) return close();
 	if (opened) return;
+
 	opened = true;
 	hasEdited = false;
 	if (multiselect) {
-		// this causes the first letter to be ignored
-		// inputElement.value = '';
-		// inputValue = '';
+		if (!typing) {
+			inputElement.value = '';
+			inputValue = '';
+		}
 		filter();
 	}
 
@@ -301,7 +306,6 @@ function selectMultiselect (item) {
 	else selectedItems.splice(itemIndex, 1);
 
 	value = findValueInSource(selectedItems, originalItems) || [];
-	inputValue = getInputValue(selectedItems, multiselect);
 
 	dispatch('change', { value, oldValue });
 	requestAnimationFrame(() => inputElement.focus());
@@ -337,7 +341,7 @@ function setInitialValue () {
 
 
 function up () {
-	if (!opened) return open();
+	if (!opened) return open({ type: 'navigating' });
 	let idx = highlightIndex - 1;
 	while (idx > 0 && !filteredData[idx]) idx -= 1;
 	if (idx !== highlightIndex && filteredData[idx]) {
@@ -348,7 +352,7 @@ function up () {
 
 
 function down () {
-	if (!opened) return open();
+	if (!opened) return open({ type: 'navigating' });
 	let idx = highlightIndex + 1;
 	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
 
@@ -386,15 +390,16 @@ function clear () {
 /*** EVENT LISTENERS ******************************************************************************/
 function onfocus () {
 	originalText = inputElement.value;
-	if (showOnFocus) open();
+	if (showOnFocus) open({ type: 'navigating' });
 }
 
 
 function oninput () {
-	open();
+	open({ type: 'typing' });
 	requestAnimationFrame(filter);
 	hasEdited = true;
 	hasSetValue = false;
+	newItemName = inputElement.value;
 }
 
 
@@ -430,8 +435,8 @@ function touchEnd (e) {
 
 function onclick (item, e) {
 	// click should only be handled on touch devices
-	if (isMobile() && e.type !== 'click') return e.preventDefault();
-	if (!isMobile() && e.type === 'click') return;
+	if (isMobile() && e?.type !== 'click') return e.preventDefault();
+	if (!isMobile() && e?.type === 'click') return;
 
 	if (multiselect) selectMultiselect(item);
 	else {
@@ -459,7 +464,7 @@ function onkeydown (e) {
 
 
 function onEnter () {
-	if (!opened) return open();
+	if (!opened) return open({ type: 'navigating' });
 
 	if (multiselect) {
 		close();
@@ -500,7 +505,7 @@ function onIconMouseDown () {
 
 function onIconClick () {
 	if (isHiding) close();
-	else open();
+	else open({ type: 'navigating' });
 
 	isHiding = false;
 	if (inputElement) inputElement.focus();
