@@ -36,7 +36,7 @@
 				readonly="{multiselect}"
 
 				{disabled}
-				placeholder="{multiselect ? 'Select...' : placeholder}"
+				placeholder="{multiselect ? 'Type to filter...' : placeholder}"
 				id="{_id}"
 				{...$$restProps}
 
@@ -46,8 +46,7 @@
 				on:mousedown="{open}"
 				on:click="{open}"
 				on:blur="{onblur}"
-				on:keydown|capture="{onkeydown}"
-				on:keypress="{onkeypress}">
+				on:keydown|capture="{onkeydown}">
 		</div>
 	</div>
 </div>
@@ -430,15 +429,14 @@ function onclick (item, e) {
 
 
 function onkeydown (e) {
-	if (e.key === 'Tab') {
-		selectSingle();
-		return close();
-	}
+	if (e.key === 'Tab') return close();
+
 	const fnmap = {
 		ArrowDown: down,
 		ArrowUp: up,
 		Escape: onEsc,
-		' ': onSpace
+		' ': onSpace,
+		Enter: onEnter,
 	};
 	if (typeof fnmap[e.key] === 'function') {
 		e.preventDefault();
@@ -447,15 +445,9 @@ function onkeydown (e) {
 }
 
 
-function onkeypress (e) {
-	if (e.key === 'Enter') onEnter(e);
-}
-
-
-function onEnter (e) {
+function onEnter () {
 	if (!opened) return open();
 
-	e.preventDefault();
 	if (multiselect) {
 		close();
 		inputElement.focus();
@@ -468,7 +460,6 @@ function onEnter (e) {
 
 function onSpace (e) {
 	if (!multiselect || !opened) return;
-	e.preventDefault();
 	const item = filteredData[highlightIndex];
 	onclick(item, e);
 }
