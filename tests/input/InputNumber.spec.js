@@ -1,7 +1,7 @@
 import { render } from '@testing-library/svelte';
 import jest from 'jest-mock';
 import { InputNumber } from '../../src/input';
-import userEvent from '@testing-library/user-event';
+import { default as userEvent } from '@testing-library/user-event';
 import { waitForTimeout } from '../helpers/utils';
 
 

@@ -391,6 +391,7 @@ function clear () {
 function onfocus () {
 	originalText = inputElement.value;
 	if (showOnFocus) open({ type: 'navigating' });
+	requestAnimationFrame(() => inputElement.select());
 }
 
 
@@ -404,15 +405,7 @@ function oninput () {
 
 
 function onblur () {
-	if (isSelecting) return;
-	close();
-	// if (!inputElement.value) {
-	// 	if (multiselect || opened) return revert();
-	// }
-	// selectSingle();
-	// setTimeout(() => {
-	// 	if (document.activeElement != inputElement) close();
-	// }, 200);
+	if (!isSelecting) close();
 }
 
 

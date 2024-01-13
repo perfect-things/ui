@@ -10589,6 +10589,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     originalText = inputElement2.value;
     if (showOnFocus)
       open({ type: "navigating" });
+    requestAnimationFrame(() => inputElement2.select());
   }
   function oninput() {
     open({ type: "typing" });
@@ -10598,9 +10599,8 @@ function instance13($$self2, $$props2, $$invalidate2) {
     $$invalidate2(19, newItemName = inputElement2.value);
   }
   function onblur() {
-    if (isSelecting)
-      return;
-    close();
+    if (!isSelecting)
+      close();
   }
   function onListMouseDown() {
     isSelecting = true;

@@ -31,9 +31,9 @@
 .combobox-list-header,
 .combobox-list-item {
 	height: var(--ui-button-height);
-	display: flex;
+	line-height: var(--ui-button-height);
+	display: block;
 	align-items: center;
-	line-height: 1;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow-x: hidden;
