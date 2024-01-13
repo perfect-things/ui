@@ -27,10 +27,10 @@ const props = {
 
 
 describe('Combobox multi-select interactions', () => {
-	let container, component, getByTitle, getByText, combobox, cmp, input, mock;
+	let container, component, getByTitle, combobox, cmp, input, mock;
 
 	beforeEach(() => {
-		({ container, component, getByTitle, getByText } = render(Combobox, props));
+		({ container, component, getByTitle } = render(Combobox, props));
 
 		mock = jest.fn();
 		component.$on('change', mock);
@@ -91,8 +91,7 @@ describe('Combobox multi-select interactions', () => {
 		const comboboxList = container.querySelector('.combobox-list');
 		expect(comboboxList).toBeInTheDocument();
 
-		const itemToClick = items[2].name;
-		const item = getByText(itemToClick);
+		const item = container.querySelectorAll('.combobox-list-item')[2];
 		expect(item).toBeInTheDocument();
 		expect(item).not.toHaveClass('checked');
 

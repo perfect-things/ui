@@ -43,6 +43,7 @@
 				on:input="{oninput}"
 				on:focus="{onfocus}"
 				on:mousedown="{open}"
+				on:mouseup="{onmouseup}"
 				on:click="{open}"
 				on:blur="{onblur}"
 				on:keydown|capture="{onkeydown}">
@@ -90,13 +91,12 @@
 							on:touchend="{touchEnd}"
 							>
 							{#if multiselect}
-								{#if isChecked}
-									<Icon name="checkboxChecked" />
-								{:else}
-									<Icon name="checkbox" />
-								{/if}
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" class="icon icon-tabler icon-tabler-square-check">
+									<rect x="4" y="4" width="16" height="16" rx="3"></rect>
+									<path class="tick" d="M8 12l3 3l5.5 -5.5"></path>
+								</svg>
 							{/if}
-							{@html item.highlightedName || item.name}
+							<span>{@html item.highlightedName || item.name}</span>
 						</div>
 					{/each}
 				{/if}
@@ -124,7 +124,6 @@
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
 import { emphasize, scrollToSelectedItem, groupData, findValueInSource, getInputValue, alignDropdown } from './utils';
 import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
-import { Icon } from '../../icon';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -174,6 +173,7 @@ let originalText = '';
 let hasSetValue = true;
 let isSelecting = false;
 let isHiding = false;
+let hasMouseDown = false;
 
 let newItemName = '';
 
@@ -229,16 +229,24 @@ function filter () {
 	alignDropdown(listElement, inputElement);
 }
 
+function onmouseup () {
+	hasMouseDown = false;
+}
 
 function open (e) {
-	const eType = e?.type;
-	const clickOnMobile = isMobile() && eType === 'click';
-	const mousedownElsewhere = !isMobile() && eType === 'mousedown';
-	const typing = eType === 'typing';
-	const navigating = eType === 'navigating';
+	const type = e?.type;
+	const clickOnMobile = isMobile() && type === 'click';
+	const mousedownOnDesktop = !isMobile() && type === 'mousedown';
+	const typing = type === 'typing';
+	const navigating = type === 'navigating';
 
-	if (!clickOnMobile && !mousedownElsewhere && !typing && !navigating) return;
-	if (mousedownElsewhere && opened) return close();
+	// allow the user to do a 1-click selection
+	// by not "selecting" the text in the input if the mouse button is down
+	hasMouseDown = mousedownOnDesktop;
+	setTimeout(() => hasMouseDown = false, 500);
+
+	if (!clickOnMobile && !mousedownOnDesktop && !typing && !navigating) return;
+	if (mousedownOnDesktop && opened) return close();
 	if (opened) return;
 
 	opened = true;
@@ -391,7 +399,15 @@ function clear () {
 function onfocus () {
 	originalText = inputElement.value;
 	if (showOnFocus) open({ type: 'navigating' });
-	requestAnimationFrame(() => inputElement.select());
+
+	// allow the user to do a 1-click selection
+	// by not "selecting" the text in the input if the mouse button is down
+	setTimeout(() => {
+		if (hasMouseDown) return;
+		// if clicked (quickly) or focused using keyboard - select the text
+		// in the input for easy editing
+		requestAnimationFrame(() => inputElement.select());
+	}, 200);
 }
 
 
