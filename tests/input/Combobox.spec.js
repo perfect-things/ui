@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
 import { Combobox } from '../../src/input/combobox';
 import { waitForTimeout } from '../helpers/utils';
 
@@ -24,9 +25,10 @@ const props = {
 };
 
 
-
 test('Combobox', async () => {
 	const { container, component, getByTitle, getByText } = render(Combobox, props);
+	const mock = jest.fn();
+	component.$on('change', mock);
 
 	const combobox = container.querySelector('.combobox');
 	expect(combobox).toBeInTheDocument();
@@ -53,7 +55,8 @@ test('Combobox', async () => {
 	expect(comboboxList).not.toHaveClass('hidden');
 	expect(combobox).toHaveClass('open');
 
-	const item = getByText(value.name);
+	const itemToClick = items[2].name;
+	const item = getByText(itemToClick);
 	expect(item).toBeInTheDocument();
 
 	// click on list item
@@ -63,7 +66,8 @@ test('Combobox', async () => {
 	// verify that the item was selected
 	expect(comboboxList).not.toBeInTheDocument();
 	expect(combobox).not.toHaveClass('open');
-	expect(input.value).toBe(value.name);
+	expect(input.value).toBe(itemToClick);
+	expect(mock).toHaveBeenCalled();
 
 	const lbl = cmp.querySelector('label');
 	expect(lbl).toBeInTheDocument();

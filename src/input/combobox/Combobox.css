@@ -31,9 +31,9 @@
 .combobox-list-header,
 .combobox-list-item {
 	height: var(--ui-button-height);
+	line-height: 1;
 	display: flex;
 	align-items: center;
-	line-height: 1;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow-x: hidden;
@@ -65,6 +65,8 @@
 }
 
 .combobox-list-item svg { margin-right: 0.5rem; }
+.combobox-list-item .tick { display: none; }
+.combobox-list-item.checked .tick { display: block; }
 
 .combobox-list:not(.multiselect) .combobox-list-item.in-group { padding-left: 2rem; }
 
@@ -75,15 +77,9 @@
 	background-color: var(--ui-color-highlight-1);
 }
 
-
-.desktop .combobox-list-item.selected {
-	background-color: var(--ui-color-highlight-1);
-	outline: 1px solid transparent;
-}
-.desktop .combobox-list-item:hover {
-	background-color: var(--ui-color-highlight);
-	outline: 1px solid transparent;
-}
+.desktop .combobox-list-item.checked { background-color: var(--ui-color-highlight-semi); }
+.desktop .combobox-list-item.selected { background-color: var(--ui-color-highlight-1); }
+.desktop .combobox-list-item:hover { background-color: var(--ui-color-highlight); }
 
 .combobox-list-item b { color: var(--ui-color-accent); }
 

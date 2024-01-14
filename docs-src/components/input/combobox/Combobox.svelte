@@ -33,7 +33,7 @@
 
 
 <h3>Simple data (just an array of strings)</h3>
-<Combobox items="{dataSimple}" placeholder="Type to filter" allowNew
+<Combobox items="{dataSimple}" placeholder="Type to filter"
 	bind:value="{valueSimple}" />
 
 <h4>Selected value: </h4>
@@ -54,14 +54,14 @@
 
 
 
-<h2>Multiselect</h2>
-<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
+<h2 id="Multiselect"><a href="#Combobox/Multiselect">Multiselect</a></h2>
 
+<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
 <h3>Simple data</h3>
 <Combobox
 	items="{dataSimple}"
 	multiselect
-	placeholder="Type to filter"
+	clearOnEsc
 	bind:value="{multiselectSimpleValue}" />
 <h4>Selected value: </h4>
 <JsonBox value="{multiselectSimpleValue}" />
@@ -71,7 +71,6 @@
 <Combobox
 	{items}
 	multiselect
-	placeholder="Type to filter"
 	bind:value="{multiselectValue}" />
 <h4>Selected value: </h4>
 <JsonBox value="{multiselectValue}" />
@@ -105,18 +104,16 @@ const apiProps = [
 	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'multiselect', description: 'This changes the control to a multiselect. The following changes will apply:<ul>' +
 		'<li>dropdown items will receive checkboxes,' +
-		'<li>the input textbox will become read-only,' +
-		'<li>text input will loose the auto-lookup functionality,' +
-		'<li>the control will only allow to change the value by clicking on items (or check them using the `Space` key),' +
+		'<li>and the control will only allow to change the value by clicking on items (or check them using the `Space` key),' +
 		'<li>the value will become an array,' +
-		'<li>arguments `allowNew`, `clearOnEsc` and `placeholder` will have no effect.' +
+		'<li>argument `allowNew` will have no effect.' +
 		'</ul>'
 	},
 	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
 	{ name: 'required', description: 'Mark the combobox as <i>aria-required</i>.' },
 	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array. ' },
+	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. ' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },

@@ -1,8 +1,12 @@
 Changelog
 =========
 
+## v9.4.3 *(2024-01-14)*
+- More bugfixes, tests and some optimisations of the `Combobox` component.
+
+
 ## v9.4.2 *(2024-01-10)*
-- Minor bugfixes to `Popover` and `Combobox`.
+- Minor bugfixes for `Popover` and `Combobox`.
 
 
 ## v9.4.1 *(2024-01-07)*

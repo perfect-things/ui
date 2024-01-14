@@ -1,7 +1,11 @@
 <h1>Changelog</h1>
+<h2>v9.4.3 <em>(2024-01-14)</em></h2>
+<ul>
+<li>More bugfixes, tests and some optimisations of the <code>Combobox</code> component.</li>
+</ul>
 <h2>v9.4.2 <em>(2024-01-10)</em></h2>
 <ul>
-<li>Minor bugfixes to <code>Popover</code> and <code>Combobox</code>.</li>
+<li>Minor bugfixes for <code>Popover</code> and <code>Combobox</code>.</li>
 </ul>
 <h2>v9.4.1 <em>(2024-01-07)</em></h2>
 <ul>

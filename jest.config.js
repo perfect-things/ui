@@ -1,5 +1,7 @@
 export default {
 	rootDir: './',
+	// 10s - tests are interactive and have to wait for animations & rendering
+	slowTestThreshold: 10,
 	transform: {
 		'^.+\\.svelte$': 'svelte-jester',
 		'^.+\\.js$': 'babel-jest',
