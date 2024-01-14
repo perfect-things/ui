@@ -122,7 +122,8 @@
 
 <script>
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
-import { emphasize, scrollToSelectedItem, groupData, findValueInSource, getInputValue, alignDropdown } from './utils';
+import { emphasize, scrollToSelectedItem, groupData, findValueInSource, getInputValue,
+	alignDropdown, hasValueChanged } from './utils';
 import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
@@ -229,9 +230,11 @@ function filter () {
 	alignDropdown(listElement, inputElement);
 }
 
+
 function onmouseup () {
 	hasMouseDown = false;
 }
+
 
 function open (e) {
 	const type = e?.type;
@@ -297,7 +300,7 @@ function selectSingle (item) {
 	}
 
 	hasSetValue = true;
-	dispatch('change', { value, oldValue });
+	if (hasValueChanged(oldValue, value)) dispatch('change', { value, oldValue });
 	requestAnimationFrame(() => {
 		inputElement.focus();
 		close();
@@ -315,7 +318,7 @@ function selectMultiselect (item) {
 
 	value = findValueInSource(selectedItems, originalItems) || [];
 
-	dispatch('change', { value, oldValue });
+	if (hasValueChanged(oldValue, value, true)) dispatch('change', { value, oldValue });
 	requestAnimationFrame(() => inputElement.focus());
 }
 

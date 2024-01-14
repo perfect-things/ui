@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## v9.4.3 *(2024-01-13)*
+## v9.4.3 *(2024-01-14)*
 - More bugfixes, tests and some optimisations of the `Combobox` component.
 
 

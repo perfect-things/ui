@@ -34,7 +34,7 @@ test('Combobox-utils - groupData', () => {
 });
 
 
-test('Combobox-utils - highlight', () => {
+test('Combobox-utils - scrollToSelectedItem', () => {
 	// make a list wrapper
 	const listEl = document.createElement('div');
 	offsetHeight(listEl, 100);
@@ -112,4 +112,72 @@ test('Combobox-utils - findValueInSource', () => {
 	// multiselect objects
 	expect(utils.findValueInSource([items[0].id, items[1].id], items)).toEqual([items[0], items[1]]);
 	expect(utils.findValueInSource([items[0], items[1]], items)).toEqual([items[0], items[1]]);
+});
+
+
+
+describe('utils - getInputValue', () => {
+	test('should return the name property if it exists and multiselect is false', () => {
+		expect(utils.getInputValue({ name: 'test' }, false)).toBe('test');
+	});
+
+	test('should return the value itself if it is not an object and multiselect is false', () => {
+		expect(utils.getInputValue('test', false)).toBe('test');
+	});
+
+	test('should return an empty string if the value is undefined or null and multiselect is false', () => {
+		expect(utils.getInputValue(undefined, false)).toBe('');
+		expect(utils.getInputValue(null, false)).toBe('');
+	});
+
+	test('should return a comma-separated string of names if the value is an array and multiselect is true', () => {
+		expect(utils.getInputValue([{ name: 'test1' }, { name: 'test2' }], true)).toBe('test1, test2');
+	});
+
+	test('should return a comma-separated string of values if the value is an array of non-objects and multiselect is true', () => {
+		expect(utils.getInputValue(['test1', 'test2'], true)).toBe('test1, test2');
+	});
+
+	test('should return the name property if the value is a single object and multiselect is true', () => {
+		expect(utils.getInputValue({ name: 'test' }, true)).toBe('test');
+	});
+
+	test('should return the value itself if it is a single non-object value and multiselect is true', () => {
+		expect(utils.getInputValue('test', true)).toBe('test');
+	});
+});
+
+
+describe('utils - hasValueChanged', () => {
+	test('should return false if both values are the same and multiselect is false', () => {
+		expect(utils.hasValueChanged('a', 'a', false)).toBe(false);
+	});
+
+	test('should return true if values are different and multiselect is false', () => {
+		expect(utils.hasValueChanged('a', 'b', false)).toBe(true);
+	});
+
+	test('should return false if both values are the same arrays and multiselect is true', () => {
+		expect(utils.hasValueChanged(['a', 'b'], ['a', 'b'], true)).toBe(false);
+	});
+
+	test('should return true if arrays have different lengths and multiselect is true', () => {
+		expect(utils.hasValueChanged(['a', 'b'], ['a', 'b', 'c'], true)).toBe(true);
+	});
+
+	test('should return true if arrays have the same length but different elements and multiselect is true', () => {
+		expect(utils.hasValueChanged(['a', 'b'], ['a', 'c'], true)).toBe(true);
+	});
+
+	test('should return false if both values are the same non-array values and multiselect is true', () => {
+		expect(utils.hasValueChanged('a', 'a', true)).toBe(false);
+	});
+
+	test('should return true if values are different non-array values and multiselect is true', () => {
+		expect(utils.hasValueChanged('a', 'b', true)).toBe(true);
+	});
+
+	test('should return false if one value is not an array and the other is, and multiselect is true', () => {
+		expect(utils.hasValueChanged('a', ['a'], true)).toBe(false);
+	});
 });

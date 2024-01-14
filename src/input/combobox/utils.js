@@ -92,3 +92,21 @@ export function alignDropdown (listElement, inputElement, e) {
 		if (e && e.type === 'focus') inputElement.select();
 	});
 }
+
+
+function hasSingleValueChanged (oldV, newV) {
+	return (oldV.id || oldV.name || oldV) !== (newV.id || newV.name || newV);
+}
+
+
+export function hasValueChanged (oldV, newV, multiselect = false) {
+	if (!multiselect) return hasSingleValueChanged(oldV, newV);
+
+	if (!Array.isArray(oldV)) oldV = [oldV];
+	if (!Array.isArray(newV)) newV = [newV];
+	if (oldV.length !== newV.length) return true;
+	for (let i = 0; i < newV.length; i++) {
+		if (hasSingleValueChanged(oldV[i], newV[i])) return true;
+	}
+	return false;
+}
