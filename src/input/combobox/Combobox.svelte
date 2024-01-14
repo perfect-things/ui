@@ -325,7 +325,6 @@ function selectMultiselect (item) {
 
 function setInitialValue () {
 	if (!filteredData || !filteredData.length) return;
-	if (!value || (Array.isArray(value) && !value.length)) return;
 
 	if (multiselect) {
 		if (!Array.isArray(value)) value = [value];
@@ -337,7 +336,7 @@ function setInitialValue () {
 		else inputValue = getInputValue(selectedItems, multiselect);
 	}
 	else {
-		const itemId = value.id || value.name || value;
+		const itemId = value?.id || value?.name || value;
 		if (itemId) {
 			const item = filteredData.find(i => (i.id || i.name || i) === itemId);
 			if (item) {

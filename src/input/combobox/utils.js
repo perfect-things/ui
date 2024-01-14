@@ -95,7 +95,7 @@ export function alignDropdown (listElement, inputElement, e) {
 
 
 function hasSingleValueChanged (oldV, newV) {
-	return (oldV.id || oldV.name || oldV) !== (newV.id || newV.name || newV);
+	return (oldV?.id || oldV?.name || oldV) !== (newV?.id || newV?.name || newV);
 }
 
 

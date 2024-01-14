@@ -1,7 +1,8 @@
 <h1>Changelog</h1>
-<h2>v9.4.3 <em>(2024-01-14)</em></h2>
+<h2>v9.4.4, v9.4.3 <em>(2024-01-14)</em></h2>
 <ul>
 <li>More bugfixes, tests and some optimisations of the <code>Combobox</code> component.</li>
+<li>Fix to allow to clear the value of the <code>Combobox</code> by setting its value to <code>null</code> or <code>[]</code>.</li>
 </ul>
 <h2>v9.4.2 <em>(2024-01-10)</em></h2>
 <ul>

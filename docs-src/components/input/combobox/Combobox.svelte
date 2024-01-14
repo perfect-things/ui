@@ -8,7 +8,7 @@
 
 <h4>Selected value: </h4>
 <JsonBox value="{itemValue}" />
-
+<Button on:click="{resetSingle}">Reset</Button>
 
 <h3>Disabled</h3>
 <Combobox disabled {items} bind:value="{itemValue}" />
@@ -65,7 +65,7 @@
 	bind:value="{multiselectSimpleValue}" />
 <h4>Selected value: </h4>
 <JsonBox value="{multiselectSimpleValue}" />
-
+<Button on:click="{resetMulti}">Reset</Button>
 
 <h3>Complex data</h3>
 <Combobox
@@ -84,7 +84,7 @@
 
 
 <script>
-import { Combobox } from '../../../../src';
+import { Combobox, Button } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample, JsonBox } from '../../../code-example';
 
@@ -210,6 +210,14 @@ let multiselectSimpleValue = [dataSimple[0], dataSimple[1]];
 function onChange (e) {
 	const { value, oldValue } = e.detail;
 	console.log({ value, oldValue });
+}
+
+function resetSingle () {
+	itemValue = null;
+}
+
+function resetMulti () {
+	multiselectSimpleValue = [];
 }
 
 </script>
