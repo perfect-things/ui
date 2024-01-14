@@ -312,7 +312,7 @@ function selectMultiselect (item) {
 	const oldValue = deepCopy(value);
 	selectedItems = selectedItems || [];
 	const itemId = item.id || item.name || item;
-	const itemIndex = selectedItems.findIndex(i => (i.id || i.name || i) === itemId);
+	const itemIndex = selectedItems.findIndex(i => (i?.id || i?.name || i) === itemId);
 	if (itemIndex === -1) selectedItems.push(item);
 	else selectedItems.splice(itemIndex, 1);
 
@@ -327,9 +327,10 @@ function setInitialValue () {
 	if (!filteredData || !filteredData.length) return;
 
 	if (multiselect) {
+		if (value === null || value === undefined) value = [];
 		if (!Array.isArray(value)) value = [value];
 
-		const selectedIds = value.map(i => i.id || i.name || i);
+		const selectedIds = value.map(i => i?.id || i?.name || i);
 		selectedItems = originalItems.filter(i => selectedIds.includes(i.id || i.name || i));
 
 		if (opened) inputValue = '';
