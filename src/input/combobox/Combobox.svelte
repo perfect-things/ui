@@ -43,7 +43,6 @@
 				on:input="{oninput}"
 				on:focus="{onfocus}"
 				on:mousedown="{open}"
-				on:mouseup="{onmouseup}"
 				on:click="{open}"
 				on:blur="{onblur}"
 				on:keydown|capture="{onkeydown}">
@@ -174,7 +173,6 @@ let originalText = '';
 let hasSetValue = true;
 let isSelecting = false;
 let isHiding = false;
-let hasMouseDown = false;
 
 let newItemName = '';
 
@@ -231,22 +229,12 @@ function filter () {
 }
 
 
-function onmouseup () {
-	hasMouseDown = false;
-}
-
-
 function open (e) {
 	const type = e?.type;
 	const clickOnMobile = isMobile() && type === 'click';
 	const mousedownOnDesktop = !isMobile() && type === 'mousedown';
 	const typing = type === 'typing';
 	const navigating = type === 'navigating';
-
-	// allow the user to do a 1-click selection
-	// by not "selecting" the text in the input if the mouse button is down
-	hasMouseDown = mousedownOnDesktop;
-	setTimeout(() => hasMouseDown = false, 500);
 
 	if (!clickOnMobile && !mousedownOnDesktop && !typing && !navigating) return;
 	if (mousedownOnDesktop && opened) return close();
@@ -302,7 +290,7 @@ function selectSingle (item) {
 	hasSetValue = true;
 	if (hasValueChanged(oldValue, value)) dispatch('change', { value, oldValue });
 	requestAnimationFrame(() => {
-		inputElement.focus();
+		inputElement.select();
 		close();
 	});
 
@@ -319,7 +307,7 @@ function selectMultiselect (item) {
 	value = findValueInSource(selectedItems, originalItems) || [];
 
 	if (hasValueChanged(oldValue, value, true)) dispatch('change', { value, oldValue });
-	requestAnimationFrame(() => inputElement.focus());
+	requestAnimationFrame(() => inputElement.select());
 }
 
 
@@ -393,7 +381,7 @@ function revert () {
 function clear () {
 	inputElement.value = '';
 	filter();
-	requestAnimationFrame(() => inputElement.focus());
+	requestAnimationFrame(() => inputElement.select());
 }
 
 
@@ -402,15 +390,6 @@ function clear () {
 function onfocus () {
 	originalText = inputElement.value;
 	if (showOnFocus) open({ type: 'navigating' });
-
-	// allow the user to do a 1-click selection
-	// by not "selecting" the text in the input if the mouse button is down
-	setTimeout(() => {
-		if (hasMouseDown) return;
-		// if clicked (quickly) or focused using keyboard - select the text
-		// in the input for easy editing
-		requestAnimationFrame(() => inputElement.select());
-	}, 200);
 }
 
 
@@ -480,7 +459,7 @@ function onEnter () {
 
 	if (multiselect) {
 		close();
-		inputElement.focus();
+		inputElement.select();
 	}
 	else {
 		hasSetValue = false;
@@ -503,7 +482,7 @@ function onEsc (e) {
 	if (opened) {
 		e.stopPropagation();
 		revert();
-		inputElement.focus();
+		inputElement.select();
 		return close();
 	}
 	dispatch('keydown', e);
@@ -520,7 +499,7 @@ function onIconClick () {
 	else open({ type: 'navigating' });
 
 	isHiding = false;
-	if (inputElement) inputElement.focus();
+	if (inputElement) inputElement.select();
 }
 
 

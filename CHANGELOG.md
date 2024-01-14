@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## v9.4.5, v9.4.4, v9.4.3 *(2024-01-14)*
+## v9.4.6, v9.4.5, v9.4.4, v9.4.3 *(2024-01-14)*
 - More bugfixes, tests and some optimisations of the `Combobox` component.
 - Fix to allow to clear the value of the `Combobox` by setting its value to `null` or `[]`.
 
