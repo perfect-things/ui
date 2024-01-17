@@ -14,7 +14,10 @@
 
 		{#if !hideTicks}
 			<div class="range-ticks">
-				{#each ticks as tick (tick)}<span>{tick}</span>{/each}
+				<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
+				{#each ticks as tick (tick)}
+					<span on:click="{() => onTickClick(tick)}">{tick}</span>
+				{/each}
 			</div>
 		{/if}
 
@@ -71,5 +74,11 @@ $:progress = (value - min) / (max - min) * 100;
 
 $:ticks = Array.from({ length: 6 }, (_, i) => +min + i * ((max - min) / 5));
 
+
+function onTickClick (tick) {
+	if (tick === value || disabled) return;
+	inputElement.value = value = tick;
+	inputElement.dispatchEvent(new Event('change'));
+}
 
 </script>

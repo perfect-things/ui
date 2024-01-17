@@ -37,16 +37,7 @@
 
 .range input::-webkit-slider-runnable-track {
 	-webkit-appearance: none;
-	display: flex;
-	align-items: center;
-	height: 0.5rem;
-	border-radius: 0.5rem;
-}
-
-.range input::-moz-range-track {
-	display: flex;
-	align-items: center;
-	background-color: var(--ui-color-background-input);
+	display: block;
 	height: 0.5rem;
 	border-radius: 0.5rem;
 }
@@ -59,7 +50,17 @@
 	width: var(--range-size);
 	border-radius: 5rem;
 	box-shadow: 0 1px 3px #000c;
-    margin-top: calc(var(--range-size) / -2 + 4px);
+    transform: translateY(calc(-50% + 0.25rem - 1px));
+	transform-origin: center 25%;
+}
+
+
+.range input::-moz-range-track {
+	display: flex;
+	align-items: center;
+	background-color: var(--ui-color-background-input);
+	height: 0.5rem;
+	border-radius: 0.5rem;
 }
 
 .range input::-moz-range-thumb {
@@ -72,8 +73,8 @@
 
 
 /* Cannot be merged, as it won't work in safari */
-.range:not(.disabled) input::-webkit-slider-thumb:active { transform: scale(0.9); }
-.range:not(.disabled) input::-moz-slider-thumb:active { transform: scale(0.9); }
+.range:not(.disabled) input::-webkit-slider-thumb:active { scale: 0.9; }
+.range:not(.disabled) input::-moz-slider-thumb:active { scale: 0.9; }
 
 
 
@@ -81,8 +82,10 @@
 	display: flex;
 	justify-content: space-between;
 	margin: 0 -0.1rem 0.4rem;
+	cursor: default;
 }
 .range-ticks span { width: 3ch; text-align: center; }
+.range:not(.disabled) .range-ticks span { cursor: pointer; }
 
 
 .range.label-on-the-left { align-items: flex-end; }
