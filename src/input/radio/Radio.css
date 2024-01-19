@@ -1,6 +1,12 @@
 /* more styling defined in ../check-and-radio.css */
 
-.radio { min-width: 26ch; width: min-content; max-width: 100%; }
+.radio {
+	min-width: 26ch;
+	width: min-content;
+	max-width: 100%;
+
+	--ui-radio-padding: var(--ui-margin-s);
+}
 
 
 .radio input {
@@ -25,7 +31,7 @@
 	width: 100%;
 	padding: 0;
 	border: 1px solid  var(--ui-color-border);
-	border-radius: calc(var(--ui-border-radius) + 0.16rem);
+	border-radius: calc(var(--ui-border-radius) + var(--ui-radio-padding));
 	background-color: var(--ui-color-background-input);
 	overflow: hidden;
 }
@@ -36,9 +42,9 @@
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: flex-start;
-	gap: 0.2rem;
+	gap: var(--ui-radio-padding);
 	width: 100%;
-	padding: var(--ui-margin-m) 0;
+	padding: var(--ui-radio-padding) 0;
 	background-color: var(--ui-color-background-input);
 	border-radius: inherit;
 }
@@ -50,8 +56,8 @@
 	align-items: center;
 	justify-content: flex-start;
 	gap: 0.5rem;
-	width: calc(100% - calc(var(--ui-margin-m) * 2));
-	margin: 0 var(--ui-margin-m);
+	width: calc(100% - calc(var(--ui-radio-padding) * 2));
+	margin: 0 var(--ui-radio-padding);
 	padding: 0 var(--ui-margin);
 	border-radius: var(--ui-border-radius);
 }
