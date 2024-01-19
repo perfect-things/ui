@@ -1,9 +1,14 @@
 Changelog
 =========
 
+
+## v9.4.8 *(2024-01-19)*
+- Style tweak: reduce margin around `Radio` items.
+
+
 ## v9.4.7 *(2024-01-17)*
-- Fixed: `Range` - knob alignment in Safari is off
-- Fixed: `Range` - clicking on ticks should set the value
+- Fixed: `Range` - knob alignment in Safari is off.
+- Fixed: `Range` - clicking on ticks should set the value.
 
 
 ## v9.4.6, v9.4.5, v9.4.4, v9.4.3 *(2024-01-14)*

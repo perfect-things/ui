@@ -1,8 +1,12 @@
 <h1>Changelog</h1>
+<h2>v9.4.8 <em>(2024-01-19)</em></h2>
+<ul>
+<li>Style tweak: reduce margin around <code>Radio</code> items.</li>
+</ul>
 <h2>v9.4.7 <em>(2024-01-17)</em></h2>
 <ul>
-<li>Fixed: <code>Range</code> - knob alignment in Safari is off</li>
-<li>Fixed: <code>Range</code> - clicking on ticks should set the value</li>
+<li>Fixed: <code>Range</code> - knob alignment in Safari is off.</li>
+<li>Fixed: <code>Range</code> - clicking on ticks should set the value.</li>
 </ul>
 <h2>v9.4.6, v9.4.5, v9.4.4, v9.4.3 <em>(2024-01-14)</em></h2>
 <ul>
