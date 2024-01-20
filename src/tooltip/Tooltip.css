@@ -3,7 +3,7 @@
 	--popover-color: #292929;
 }
 
-.tooltip { border-radius: 5px; }
+.tooltip { border-radius: 5px; max-width: 75vw; }
 .tooltip-content { padding: 0.5rem 0.7rem; }
 
 /* COLOR VARIATIONS */

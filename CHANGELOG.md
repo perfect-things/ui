@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v9.4.9 *(2024-01-20)*
+## v9.4.10, v9.4.9 *(2024-01-20)*
 - Minor style tweaks (label-on-the-left alignment).
+- Fix tip positioning when popups are not centered on targets (for `Tooltip` and `Popover`).
 
 
 ## v9.4.8 *(2024-01-19)*

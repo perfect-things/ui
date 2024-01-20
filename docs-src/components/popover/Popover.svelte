@@ -16,9 +16,15 @@
 <Popover bind:this="{popover1}">
 	<h2>Context information</h2>
 	<p>Some text</p>
+
 	<Button on:click="{popover1.close}">Click me</Button>
 </Popover>
 
+
+<h3>Target at the edge - tip should remain aligned</h3>
+<div style="display: flex; justify-content: flex-end; padding: 1rem; background-color: #0003;">
+	<Button on:click="{popover1.open}">Open popover</Button>
+</div>
 
 <h3>No tip</h3>
 <p>Styling is different than the normal popover, because the use-case for no-tip popover
