@@ -24,8 +24,14 @@
 	width: max-content;
 	white-space: nowrap;
 }
+
+
+.radio.label-on-the-left,
 .input-tag.label-on-the-left,
 .textarea.label-on-the-left { align-items: flex-start; }
 
+.radio.label-on-the-left>.label,
 .input-tag.label-on-the-left .label,
 .textarea.label-on-the-left .label { height: calc(var(--ui-button-height) + 2px); }
+
+.radio.label-on-the-left>.label { margin-block: var(--ui-margin-s); }

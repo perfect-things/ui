@@ -1,5 +1,5 @@
 <h1>Changelog</h1>
-<h2>v9.4.10, v9.4.9 <em>(2024-01-20)</em></h2>
+<h2>v9.4.11, v9.4.10, v9.4.9 <em>(2024-01-20)</em></h2>
 <ul>
 <li>Minor style tweaks (label-on-the-left alignment).</li>
 <li>Fix tip positioning when popups are not centered on targets (for <code>Tooltip</code> and <code>Popover</code>).</li>
