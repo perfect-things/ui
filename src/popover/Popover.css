@@ -52,7 +52,7 @@
 	border: var(--popover-border);
 }
 
-.popover-content * { position: relative; }
+.popover-content > * { position: relative; }
 .popover-plate:not(.hide-tip) .popover-content::before { background-color: inherit; z-index: -1; }
 
 

@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.4.9 <em>(2024-01-20)</em></h2>
+<ul>
+<li>Minor style tweaks (label-on-the-left alignment).</li>
+</ul>
 <h2>v9.4.8 <em>(2024-01-19)</em></h2>
 <ul>
 <li>Style tweak: reduce margin around <code>Radio</code> items.</li>

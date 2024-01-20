@@ -16,3 +16,16 @@
 
 /* to offset input's border (visually) */
 .input .label { padding-inline: 1px; }
+
+
+.label-on-the-left .label {
+	padding-inline: 0;
+	padding-top: 1px;
+	width: max-content;
+	white-space: nowrap;
+}
+.input-tag.label-on-the-left,
+.textarea.label-on-the-left { align-items: flex-start; }
+
+.input-tag.label-on-the-left .label,
+.textarea.label-on-the-left .label { height: calc(var(--ui-button-height) + 2px); }

@@ -73,11 +73,10 @@ input[type=color] {
 .input.label-on-the-left {
 	display: inline-flex;
 	flex-flow: row;
-	align-items: flex-start;
+	align-items: center;
 	width: 100%;
 	gap: 1rem;
 }
-.label-on-the-left .label { padding-inline: 0; width: max-content; white-space: nowrap; }
 .label-on-the-left .range-inner,
 .label-on-the-left .input-inner { flex: 1; }
 

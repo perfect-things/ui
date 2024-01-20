@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v9.4.9 *(2024-01-20)*
+- Minor style tweaks (label-on-the-left alignment).
+
+
 ## v9.4.8 *(2024-01-19)*
 - Style tweak: reduce margin around `Radio` items.
 
