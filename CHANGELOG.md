@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v9.4.12 *(2024-01-25)*
+- Fix `InputRating` - it would select value on mouse-down. This - where an error message was displayed above the input - would cause the error message to be removed, and input to slide up, which would unselect the value (while mouse was down), and cause the error message to reappear.
+
+
 ## v9.4.11, v9.4.10, v9.4.9 *(2024-01-20)*
 - Minor style tweaks (label-on-the-left alignment).
 - Fix tip positioning when popups are not centered on targets (for `Tooltip` and `Popover`).

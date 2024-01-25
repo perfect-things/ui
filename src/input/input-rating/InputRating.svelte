@@ -138,7 +138,6 @@ function setStarFromCursor (e) {
 function onMouseDown (e) {
 	e.preventDefault();
 	mouseY = getMouseY(e);
-	setStarFromCursor(e);
 	addEventListeners();
 }
 

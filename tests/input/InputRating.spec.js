@@ -35,6 +35,7 @@ test('InputRating', async () => {
 
 	document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: { star: '2' } }));
 	await fireEvent.mouseDown(star2);
+	await fireEvent.mouseUp(star2);
 	await waitForTimeout();
 
 	expect(star2).toHaveClass('active');
@@ -46,6 +47,7 @@ test('InputRating', async () => {
 
 	document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: { star: '3' } }));
 	await fireEvent.mouseDown(star3);
+	await fireEvent.mouseUp(star3);
 	await waitForTimeout();
 	expect(star3).toHaveClass('active');
 
