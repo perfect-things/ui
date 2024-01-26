@@ -39,7 +39,7 @@
 	background-color: var(--popover-color);
 	border: var(--popover-border);
 	border-width: 1.5px;
-	margin-left: calc(var(--popover-tip-size) / -2 - 1.5px);
+	margin-left: calc(var(--popover-tip-size) / -2 - 0.5px);
 }
 
 .popover-content {

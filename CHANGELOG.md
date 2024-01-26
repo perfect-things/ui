@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+## v9.4.13 *(2024-01-26)*
+- `Dialog`'s backdrop style tweaks (add some effects to the backdrop).
+- `Popover` tip style tweaks (it's now offset using full pixels, so the tip's border will look consistently all around).
+
+
+
 ## v9.4.12 *(2024-01-25)*
 - Fix `InputRating` - it would select value on mouse-down. This - where an error message was displayed above the input - would cause the error message to be removed, and input to slide up, which would unselect the value (while mouse was down), and cause the error message to reappear.
 

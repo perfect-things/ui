@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v9.4.13 <em>(2024-01-26)</em></h2>
+<ul>
+<li><code>Dialog</code>&#39;s backdrop style tweaks (add some effects to the backdrop).</li>
+<li><code>Popover</code> tip style tweaks (it&#39;s now offset using full pixels, so the tip&#39;s border will look consistently all around).</li>
+</ul>
 <h2>v9.4.12 <em>(2024-01-25)</em></h2>
 <ul>
 <li>Fix <code>InputRating</code> - it would select value on mouse-down. This - where an error message was displayed above the input - would cause the error message to be removed, and input to slide up, which would unselect the value (while mouse was down), and cause the error message to reappear.</li>
