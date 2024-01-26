@@ -23,7 +23,7 @@
 
 <h3>Target at the edge - tip should remain aligned</h3>
 <div style="display: flex; justify-content: flex-end; padding: 1rem; background-color: #0003;">
-	<Button on:click="{popover1.open}">Open popover</Button>
+	<Button round icon="cog" on:click="{popover1.open}" />
 </div>
 
 <h3>No tip</h3>
@@ -48,7 +48,7 @@
 
 
 <h3>Update contents</h3>
-<Button on:click="{popover4.open}">Open popover</Button>
+<Button round icon="help" on:click="{popover4.open}" />
 <Popover bind:this="{popover4}" position="top">
 	{@html content}
 	<Button success on:click="{updateContent}">Update content</Button>

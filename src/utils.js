@@ -292,10 +292,10 @@ function findTipOffset (targetBox, element) {
 	const targetCenter = targetBox.left + targetBox.width / 2;
 	const elementCenter = elementBox.left + elementBox.width / 2;
 	const elemWidth = elementBox.width ? elementBox.width / 100 : 1;
-	const tOffset = Math.round(50 + (targetCenter - elementCenter) / elemWidth);
+	const tOffset = 50 + (targetCenter - elementCenter) / elemWidth;
 	// constrain tip to min 8% and max 93% to account for the border-radius
 	const tooltipOffsetPercent = Math.max(8, Math.min(93, tOffset));
-	const tooltipOffset = Math.round(tooltipOffsetPercent * elemWidth);
+	const tooltipOffset = Math.round(tooltipOffsetPercent * elemWidth - 1);
 	return `${tooltipOffset}px`;
 }
 
