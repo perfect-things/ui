@@ -142,7 +142,10 @@ function onkeydown (e) {
 	else if (e.key === 'Enter') {
 		if (isActive) e.preventDefault();
 		else dispatch('keydown', params);
-		requestAnimationFrame(() => picker.hide());
+		requestAnimationFrame(() => {
+			picker.hide();					// set value first
+			dispatch('keydown', params);	// trigger event with new value
+		});
 	}
 
 	else dispatch('keydown', params);

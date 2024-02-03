@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v9.4.14 *(2024-02-03)*
+- Fix `InputDate`'s value setting on `Enter`, after input was emptied.
+
+
+
 ## v9.4.13 *(2024-01-26)*
 - `Dialog`'s backdrop style tweaks (add some effects to the backdrop).
 - `Popover` tip style tweaks (it's now offset using full pixels, so the tip's border will look consistently all around).

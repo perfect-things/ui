@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.4.14 <em>(2024-02-03)</em></h2>
+<ul>
+<li>Fix <code>InputDate</code>&#39;s value setting on <code>Enter</code>, after input was emptied.</li>
+</ul>
 <h2>v9.4.13 <em>(2024-01-26)</em></h2>
 <ul>
 <li><code>Dialog</code>&#39;s backdrop style tweaks (add some effects to the backdrop).</li>
