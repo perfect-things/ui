@@ -143,8 +143,9 @@ function onkeydown (e) {
 		if (isActive) e.preventDefault();
 		else dispatch('keydown', params);
 		requestAnimationFrame(() => {
-			picker.hide();					// set value first
-			dispatch('keydown', params);	// trigger event with new value
+			picker.hide();
+			if (value !== inputElement.value) value = inputElement.value;	// set value first
+			dispatch('keydown', params);									// trigger with new value
 		});
 	}
 
