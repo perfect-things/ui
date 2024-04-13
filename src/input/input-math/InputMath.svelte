@@ -97,7 +97,7 @@ function parseAmount (amount) {
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
 	if ((/[+\-\\*/.]+/i).test(amount)) {
 		try { amount = eval(amount); }
-		catch (e) { amount = 0; }
+		catch { amount = 0; }
 	}
 	const num = parseFloat(amount);
 	return (num === Infinity || isNaN(num)) ? 0 : roundAmount(num);

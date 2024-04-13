@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.4.16 <em>(2024-04-13)</em></h2>
+<ul>
+<li>Maintenance release; updating dependencies.</li>
+</ul>
 <h2>v9.4.15, v9.4.14 <em>(2024-02-03)</em></h2>
 <ul>
 <li>Fix <code>InputDate</code>&#39;s value setting on <code>Enter</code>, after input was emptied.</li>

@@ -5,9 +5,9 @@ import { deleteAsync } from 'del';
 import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
 import gulp from 'gulp';
-// eslint-disable-next-line import/no-unresolved
 import gulpEslint from 'gulp-eslint-new';
-import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
+// import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
+import gulpStylelint from 'gulp-stylelint-esm';
 import inject from 'gulp-inject-string';
 import livereload from 'gulp-livereload';
 import NodeResolve from '@esbuild-plugins/node-resolve';

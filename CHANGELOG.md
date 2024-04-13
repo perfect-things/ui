@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+
+## v9.4.16 *(2024-04-13)*
+- Maintenance release; updating dependencies.
+
+
 ## v9.4.15, v9.4.14 *(2024-02-03)*
 - Fix `InputDate`'s value setting on `Enter`, after input was emptied.
 

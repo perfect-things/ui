@@ -46,7 +46,7 @@ import { getNextNotification } from '../utils.js';
 export let show = false;
 export let expanded = false;
 
-const duration = 100000 || $ANIMATION_SPEED;
+const duration = $ANIMATION_SPEED;
 
 let el;
 let archived = [];
