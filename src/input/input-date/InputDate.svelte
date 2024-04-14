@@ -144,6 +144,7 @@ function onkeydown (e) {
 		else dispatch('keydown', params);
 		requestAnimationFrame(() => {
 			picker.hide();
+			if (!inputElement) return;
 			if (value !== inputElement.value) value = inputElement.value;	// set value first
 			dispatch('keydown', params);									// trigger with new value
 		});

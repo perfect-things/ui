@@ -3,6 +3,10 @@ Changelog
 
 
 
+## v9.4.17 *(2024-04-14)*
+- InputDate event handling race-condition fix (when enter was pressed).
+
+
 ## v9.4.16 *(2024-04-13)*
 - Maintenance release; updating dependencies.
 
