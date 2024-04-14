@@ -60,19 +60,19 @@ export function html () {
 	let script = isProd ? analyticsScript : reloadScript;
 	const version = getVersion();
 	script += `\n\t<script>window.UI_VERSION='${version}';</script>`;
-	return src(PATHS.HTML)
+	return src(PATHS.HTML, { encoding: false })
 		.pipe(inject.replace(comment, script))
 		.pipe(dest(PATHS.DIST));
 }
 
 
 export function assets () {
-	return src(PATHS.ASSETS).pipe(dest(PATHS.DIST));
+	return src(PATHS.ASSETS, { encoding: false }).pipe(dest(PATHS.DIST));
 }
 
 
 export function externals () {
-	return src(PATHS.EXTERNAL).pipe(dest(PATHS.DIST));
+	return src(PATHS.EXTERNAL, { encoding: false }).pipe(dest(PATHS.DIST));
 }
 
 
