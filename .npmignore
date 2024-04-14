@@ -28,3 +28,6 @@ jsconfig.json
 gulpfile.js
 release.sh
 screen.png
+
+eslint.config.js
+stylelint.config.js
