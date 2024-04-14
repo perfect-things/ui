@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.4.17 <em>(2024-04-14)</em></h2>
+<ul>
+<li>InputDate event handling race-condition fix (when enter was pressed).</li>
+</ul>
 <h2>v9.4.16 <em>(2024-04-13)</em></h2>
 <ul>
 <li>Maintenance release; updating dependencies.</li>
