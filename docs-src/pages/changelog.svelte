@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v9.4.18 <em>(2024-05-01)</em></h2>
+<ul>
+<li>Fix icon alignment in <code>Menu</code>.</li>
+<li>Fix tests to work with the latest version of svelte testing library.</li>
+</ul>
 <h2>v9.4.17 <em>(2024-04-14)</em></h2>
 <ul>
 <li>InputDate event handling race-condition fix (when enter was pressed).</li>

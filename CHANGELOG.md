@@ -3,6 +3,11 @@ Changelog
 
 
 
+## v9.4.18 *(2024-05-01)*
+- Fix icon alignment in `Menu`.
+- Fix tests to work with the latest version of svelte testing library.
+
+
 ## v9.4.17 *(2024-04-14)*
 - InputDate event handling race-condition fix (when enter was pressed).
 
