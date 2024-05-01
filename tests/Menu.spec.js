@@ -5,15 +5,15 @@ import { waitForTimeout } from './helpers/utils';
 
 test('Menu', async () => {
 	const props = {};
-	const { container } = render(Menu, props);
+	const { baseElement } = render(Menu, props);
 
-	let cmp = container.querySelector('.test-menu');
+	let cmp = baseElement.querySelector('.test-menu');
 	expect(cmp).not.toBeInTheDocument();
 
-	const btn = container.querySelector('.open-menu-button');
+	const btn = baseElement.querySelector('.open-menu-button');
 	await fireEvent.click(btn);
 	await waitForTimeout();
-	cmp = container.querySelector('.test-menu');
+	cmp = baseElement.querySelector('.test-menu');
 	expect(cmp).toBeInTheDocument();
 
 	fireEvent.click(document.body);
@@ -23,10 +23,10 @@ test('Menu', async () => {
 
 	fireEvent.click(btn);
 	await waitForTimeout();
-	cmp = container.querySelector('.test-menu');
+	cmp = baseElement.querySelector('.test-menu');
 	expect(cmp).toBeInTheDocument();
 
-	const menuItem = container.querySelector('.test-menu .menu-item');
+	const menuItem = baseElement.querySelector('.test-menu .menu-item');
 
 	expect(menuItem).toBeInTheDocument();
 	expect(menuItem).toHaveTextContent('Add');

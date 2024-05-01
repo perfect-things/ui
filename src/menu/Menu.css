@@ -60,7 +60,7 @@
 
 .menu-item:focus .menu-item-shortcut { opacity: 1; }
 
-.menu-item svg { width: 1.1rem; height: 1.1rem; margin: -0.1rem 0.5rem -0.1rem 0; }
+.menu-item svg { width: 1.1rem; height: 1.1rem; margin: 0 0.5rem 0 0; }
 
 .menu-item-content {
 	display: flex;
@@ -70,7 +70,7 @@
 	margin-right: 1rem;
 }
 
-.menu-item-text { overflow: hidden; text-overflow: ellipsis; }
+.menu-item-text { overflow: hidden; text-overflow: ellipsis; line-height: 1.1rem; }
 
 
 .menu-separator {

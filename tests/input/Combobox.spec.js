@@ -26,15 +26,15 @@ const props = {
 
 
 test('Combobox', async () => {
-	const { container, component, getByTitle, getByText } = render(Combobox, props);
+	const { baseElement, component, getByTitle, getByText } = render(Combobox, props);
 	const mock = jest.fn();
 	component.$on('change', mock);
 
-	const combobox = container.querySelector('.combobox');
+	const combobox = baseElement.querySelector('.combobox');
 	expect(combobox).toBeInTheDocument();
 	expect(combobox).toHaveClass('test-class');
 
-	const cmp = container.querySelector('.test-class');
+	const cmp = baseElement.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 
 	// verify props
@@ -50,7 +50,7 @@ test('Combobox', async () => {
 	await waitForTimeout();
 
 	// verify list
-	const comboboxList = container.querySelector('.combobox-list');
+	const comboboxList = baseElement.querySelector('.combobox-list');
 	expect(comboboxList).toBeInTheDocument();
 	expect(comboboxList).not.toHaveClass('hidden');
 	expect(combobox).toHaveClass('open');

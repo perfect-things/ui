@@ -26,15 +26,15 @@ const props = {
 
 
 describe('Combobox single-select interactions', () => {
-	let container, component, getByTitle, combobox, cmp, input, mock;
+	let baseElement, component, getByTitle, combobox, cmp, input, mock;
 
 	beforeEach(() => {
-		({ container, component, getByTitle } = render(Combobox, props));
+		({ baseElement, component, getByTitle } = render(Combobox, props));
 
 		mock = jest.fn();
 		component.$on('change', mock);
-		combobox = container.querySelector('.combobox');
-		cmp = container.querySelector('.test-class');
+		combobox = baseElement.querySelector('.combobox');
+		cmp = baseElement.querySelector('.test-class');
 		input = getByTitle('Component1');
 	});
 
@@ -47,7 +47,7 @@ describe('Combobox single-select interactions', () => {
 		// open list
 		await fireEvent.mouseDown(input);
 		await waitForTimeout();
-		const comboboxList = container.querySelector('.combobox-list');
+		const comboboxList = baseElement.querySelector('.combobox-list');
 		expect(comboboxList).toBeInTheDocument();
 
 		const comboboxListItems = comboboxList.querySelectorAll('.combobox-list-item');
@@ -62,10 +62,10 @@ describe('Combobox single-select interactions', () => {
 		await fireEvent.input(input, { target: { value: firstLetters } });
 		await waitForTimeout();
 
-		const comboboxListItems = container.querySelectorAll('.combobox-list-item');
+		const comboboxListItems = baseElement.querySelectorAll('.combobox-list-item');
 		expect(comboboxListItems.length).toBe(1);
 
-		const comboboxList = container.querySelector('.combobox-list');
+		const comboboxList = baseElement.querySelector('.combobox-list');
 		await fireEvent.keyDown(input, { key: 'Enter' });
 		await waitForTimeout();
 		expect(comboboxList).not.toBeInTheDocument();
@@ -81,7 +81,7 @@ describe('Combobox single-select interactions', () => {
 
 		await fireEvent.keyDown(input, { key: 'ArrowDown' });
 		await waitForTimeout();
-		const comboboxList = container.querySelector('.combobox-list');
+		const comboboxList = baseElement.querySelector('.combobox-list');
 		expect(comboboxList).toBeInTheDocument();
 
 		await fireEvent.keyDown(input, { key: 'Escape' });
@@ -94,7 +94,7 @@ describe('Combobox single-select interactions', () => {
 		await fireEvent.keyDown(input, { key: 'ArrowUp' });
 		await waitForTimeout();
 		// list is destroyed when closed, so need to recapture it
-		const comboboxList = container.querySelector('.combobox-list');
+		const comboboxList = baseElement.querySelector('.combobox-list');
 		expect(comboboxList).toBeInTheDocument();
 
 		await fireEvent.keyDown(input, { key: 'Escape' });
@@ -109,7 +109,7 @@ describe('Combobox single-select interactions', () => {
 		await fireEvent.input(input, { target: { value: firstLetter } });
 		await waitForTimeout();
 		// list is destroyed when closed, so need to recapture it
-		const comboboxList = container.querySelector('.combobox-list');
+		const comboboxList = baseElement.querySelector('.combobox-list');
 		expect(comboboxList).toBeInTheDocument();
 
 		// select first value on the filtered list

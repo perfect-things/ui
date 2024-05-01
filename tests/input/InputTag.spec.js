@@ -17,11 +17,11 @@ const props = {
 
 
 test('InputTag', async () => {
-	const { container, component } = render(InputTag, props);
+	const { baseElement, component } = render(InputTag, props);
 	const mock = jest.fn();
 	component.$on('change', mock);
 
-	const cmp = container.querySelector('.test-class');
+	const cmp = baseElement.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveAttribute('title', props.title);
 	expect(cmp).toHaveClass('test-class');
@@ -57,13 +57,13 @@ test('InputTag', async () => {
 	expect(lbl).toHaveTextContent(props.label);
 
 	const box = cmp.querySelector('.input-inner');
-	let list = container.querySelector('.input-tag-popover');
+	let list = baseElement.querySelector('.input-tag-popover');
 	expect(list).not.toBeInTheDocument();
 
 	await fireEvent.click(box);
 	await waitForTimeout();
 
-	list = container.querySelector('.input-tag-popover');
+	list = baseElement.querySelector('.input-tag-popover');
 	expect(list).toBeInTheDocument();
 
 	// add tag to value

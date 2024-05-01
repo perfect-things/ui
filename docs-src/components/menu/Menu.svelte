@@ -49,10 +49,10 @@
 </div>
 
 <Menu bind:this="{someMenu3}">
-	<MenuItem><Icon name="plus"/> A very long text</MenuItem>
+	<MenuItem icon="plus">A very long text</MenuItem>
 	<MenuItem>Another very long text</MenuItem>
 	<MenuSeparator />
-	<MenuItem><Icon name="close"/> Probably the longest text in the world!</MenuItem>
+	<MenuItem icon="close">Probably the longest text in the world!</MenuItem>
 </Menu>
 
 
@@ -69,10 +69,10 @@
 <div class="div div2">Window</div>
 
 <Menu type="context" targetSelector=".div1" bind:this="{tabsMenu}" on:close="{onTabsMenuClose}">
-	<MenuItem shortcut="cmd+t" on:click="{newTab}"><Icon name="plus"/> New Tab</MenuItem>
+	<MenuItem shortcut="cmd+t" on:click="{newTab}" icon="plus">New Tab</MenuItem>
 	<MenuItem shortcut="cmd+shift+t" on:click="{newPrivateTab}">New Private Tab</MenuItem>
 	<MenuSeparator />
-	<MenuItem shortcut="cmd+shift+w" on:click="{closeTabs}"><Icon name="close"/> {closeTabsText}</MenuItem>
+	<MenuItem shortcut="cmd+shift+w" icon="close" on:click="{closeTabs}">{closeTabsText}</MenuItem>
 </Menu>
 
 <Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
@@ -91,7 +91,7 @@
 
 
 <script>
-import { Button, Menu, MenuItem, MenuSeparator, Icon } from '../../../src';
+import { Button, Menu, MenuItem, MenuSeparator } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 

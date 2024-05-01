@@ -11,13 +11,13 @@ test('Dialog', async () => {
 		title: 'Dialog1',
 		class: 'test-class',
 	};
-	const { container, component } = render(Dialog, props);
+	const { baseElement, component } = render(Dialog, props);
 	const openMock = jest.fn();
 	const closeMock = jest.fn();
 	component.$on('open', openMock);
 	component.$on('close', closeMock);
 
-	const cmp = container.querySelector('.test-class');
+	const cmp = baseElement.querySelector('.test-class');
 	const dialogTitle = cmp.querySelector('.dialog-header');
 	expect(cmp).toBeInTheDocument();
 

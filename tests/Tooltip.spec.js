@@ -5,12 +5,12 @@ import { waitForTimeout } from './helpers/utils';
 
 
 test('Tooltip', async () => {
-	const { container, component } = render(Tooltip);
+	const { baseElement, component } = render(Tooltip);
 
-	const btn = container.querySelector('#box1');
+	const btn = baseElement.querySelector('#box1');
 	await userEvent.hover(btn);
 
-	let tooltip = container.querySelector('.tooltip-content');
+	let tooltip = baseElement.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
 	expect(tooltip.parentNode).toHaveClass('test-class');
 	expect(tooltip).toHaveTextContent('Some tooltip text');
@@ -21,11 +21,11 @@ test('Tooltip', async () => {
 
 	await userEvent.hover(btn);
 	await waitForTimeout();
-	tooltip = container.querySelector('.tooltip-content');
+	tooltip = baseElement.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
 
 	// test color variations
-	const plate = container.querySelector('.tooltip-plate');
+	const plate = baseElement.querySelector('.tooltip-plate');
 	await component.$set({ success: true });
 	expect(plate).toHaveClass('success');
 	await component.$set({ success: false });

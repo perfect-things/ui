@@ -6,19 +6,19 @@ import { waitForTimeout } from './helpers/utils';
 
 
 test('MessageBox', async () => {
-	const { container } = render(MessageBox);
+	const { baseElement } = render(MessageBox);
 
 	// first message box
 	showMessage('test');
 	await waitForTimeout();
-	let msg = container.querySelector('.message');
+	let msg = baseElement.querySelector('.message');
 	expect(msg).toHaveTextContent('test');
 
-	let box = container.querySelector('.message-box');
+	let box = baseElement.querySelector('.message-box');
 	expect(box).toHaveClass('opened');
 
 
-	let btn = container.querySelector('.message-box .dialog-footer button');
+	let btn = baseElement.querySelector('.message-box .dialog-footer button');
 	await fireEvent.click(btn);
 	await waitForTimeout();
 	expect(box).not.toHaveClass('opened');
@@ -27,17 +27,17 @@ test('MessageBox', async () => {
 	// second message box
 	showMessage('test2', MessageType.WARNING, 'Warning');
 	await waitForTimeout();
-	msg = container.querySelector('.message');
+	msg = baseElement.querySelector('.message');
 	expect(msg).toHaveTextContent('test2');
 
-	let title = container.querySelector('.message-box .dialog-header');
+	let title = baseElement.querySelector('.message-box .dialog-header');
 	expect(title).toHaveTextContent('Warning');
 
-	box = container.querySelector('.message-box');
+	box = baseElement.querySelector('.message-box');
 	expect(box).toHaveClass('message-warning');
 	expect(box).toHaveClass('opened');
 
-	btn = container.querySelector('.message-box .dialog-footer button');
+	btn = baseElement.querySelector('.message-box .dialog-footer button');
 	await fireEvent.click(btn);
 	await waitForTimeout();
 	expect(box).not.toHaveClass('opened');
@@ -58,17 +58,17 @@ test('MessageBox', async () => {
 	};
 	showMessage(cfg);
 	await waitForTimeout();
-	msg = container.querySelector('.message');
+	msg = baseElement.querySelector('.message');
 	expect(msg).toHaveTextContent(cfg.message);
 
-	title = container.querySelector('.message-box .dialog-header');
+	title = baseElement.querySelector('.message-box .dialog-header');
 	expect(title).toHaveTextContent(cfg.title);
 
-	box = container.querySelector('.message-box');
+	box = baseElement.querySelector('.message-box');
 	expect(box).toHaveClass('message-error');
 	expect(box).toHaveClass('opened');
 
-	const btns = container.querySelectorAll('.message-box .dialog-footer button');
+	const btns = baseElement.querySelectorAll('.message-box .dialog-footer button');
 	expect(btns).toHaveLength(cfg.buttons.length);
 	expect(btns[0]).toHaveClass('danger');
 
