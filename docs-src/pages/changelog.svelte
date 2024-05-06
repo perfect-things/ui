@@ -1,4 +1,13 @@
 <h1>Changelog</h1>
+<h2>v9.4.19 <em>(2024-05-06)</em></h2>
+<ul>
+<li>Hide error on <code>InputPassword</code> where <code>zxcvbn</code> wasn&#39;t loaded.</li>
+<li>Correct icons&#39; alignment.</li>
+<li>Renamed icons: <code>pluscircle</code> to <code>plusCircle</code> and <code>minuscircle</code> to <code>minusCircle</code>.</li>
+<li>Fixed: <code>chartLine</code> icon (there was <code>/&gt;</code> showing in the icon).</li>
+<li>Fixed: <code>InputPassword</code> it was focusable when disabled.</li>
+<li>Fixed: <code>InputPassword</code> incorrect layout when <code>strength</code> and <code>labelOnTheLeft</code> was set.</li>
+</ul>
 <h2>v9.4.18 <em>(2024-05-01)</em></h2>
 <ul>
 <li>Fix icon alignment in <code>Menu</code>.</li>
