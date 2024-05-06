@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+## v9.4.19 *(2024-05-06)*
+- Hide error on `InputPassword` where `zxcvbn` wasn't loaded.
+- Correct icons' alignment.
+- Renamed icons: `pluscircle` to `plusCircle` and `minuscircle` to `minusCircle`.
+- Fixed: `chartLine` icon (there was `/>` showing in the icon).
+- Fixed: `InputPassword` it was focusable when disabled.
+- Fixed: `InputPassword` incorrect layout when `strength` and `labelOnTheLeft` was set.
+
 
 ## v9.4.18 *(2024-05-01)*
 - Fix icon alignment in `Menu`.

@@ -130,8 +130,7 @@ input[type=color] {
 
 
 
-/* stylelint-disable-next-line no-descending-specificity */
-.check-and-radio input {
+.check-and-radio input[type] {
 	appearance: none;
 	width: 1.4rem;
 	height: 1.4rem;

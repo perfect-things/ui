@@ -8,7 +8,7 @@
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="input-inner">
+	<div class="input-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<div class="input-row" class:visible>
@@ -30,20 +30,22 @@
 				on:blur>
 			<Button link icon="{visible ? 'eye' : 'eyeOff'}" class="input-password-button" on:click="{toggle}"/>
 		</div>
+
+		{#if strength && lib && value}
+			<div class="input-row">
+				<div class="password-strength" title="{quality}">
+					<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
+				</div>
+			</div>
+			<div class="input-row">
+				<div class="password-strength-info {colorClass}">
+					<h2>{quality}</h2>
+					<small>{@html strengthInfoText}</small>
+				</div>
+			</div>
+		{/if}
+
 	</div>
-	{#if strength && lib && value}
-		<div class="input-row">
-			<div class="password-strength" title="{quality}">
-				<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
-			</div>
-		</div>
-		<div class="input-row">
-			<div class="password-strength-info {colorClass}">
-				<h2>{quality}</h2>
-				<small>{@html strengthInfoText}</small>
-			</div>
-		</div>
-	{/if}
 </div>
 
 <script>
@@ -111,17 +113,16 @@ onMount(() => {
 
 function oninput (e) {
 	value = e.target.value;
-	dispatch('input', { event, value });
+	dispatch('input', { event: e, value });
 }
 
 function checkLib () {
 	lib = window.zxcvbn;
-	if (strength && !lib) console.error('zxcvbn library is missing.');
 }
 
 
 function measure (pass) {
-	if (strength && !lib) lib = window.zxcvbn; // try again, just in case
+	if (strength && !lib) checkLib(); // try again, just in case
 	if (!lib || !pass || !strength) return { score: 0, info: '' };
 
 	const res = lib(pass);

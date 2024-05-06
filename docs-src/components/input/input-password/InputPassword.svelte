@@ -12,6 +12,9 @@
 <InputPassword label="Current password" name="password" placeholder="Not 123456" bind:value="{val}"/><br>
 <p>Your secret password is: {val}</p>
 
+<h3>Disabled</h3>
+<InputPassword label="Current password" name="password" disabled bind:value="{val}"/><br>
+
 <h3>With password strength indicator</h3>
 
 
@@ -27,7 +30,10 @@
 <InputPassword strength label="New password" info="Password rules" error="Your password is weak!"/>
 
 <h3>Label on the left</h3>
-<InputPassword label="Label is on the left" labelOnTheLeft="true"/>
+<InputPassword label="Label is on the left" labelOnTheLeft/>
+
+<h3>With password strength and label on the left</h3>
+<InputPassword strength labelOnTheLeft label="New password"/>
 
 
 

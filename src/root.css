@@ -48,7 +48,7 @@
 body {
 	font-weight: 300;
 	font-size: 100%;
-	font-family: var(--ui-font-system);
+	font-family: var(--ui-font-system), sans-serif;
 	box-sizing: border-box;
 }
 body * { box-sizing: inherit; }
@@ -61,6 +61,9 @@ body * { box-sizing: inherit; }
 
 .flex-spacer { flex: 1; }
 
+/* Icon visual alignment corrections */
+.icon-tabler-alert-triangle { transform: translateY(1px); }
+.icon-tabler-logout { transform: translateX(3px); }
 
 /* adding this class to input elements will prevent scrolling on focus in mobile safari */
 .mobile .prevent-scrolling-on-focus:focus { animation: prevent-scrolling-on-focus 10ms; }
