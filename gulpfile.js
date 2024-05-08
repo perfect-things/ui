@@ -6,11 +6,10 @@ import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
 import gulp from 'gulp';
 import gulpEslint from 'gulp-eslint-new';
-// import gulpStylelint from '@ronilaukkarinen/gulp-stylelint';
 import gulpStylelint from 'gulp-stylelint-esm';
 import inject from 'gulp-inject-string';
 import livereload from 'gulp-livereload';
-import NodeResolve from '@esbuild-plugins/node-resolve';
+import { NodeResolvePlugin as NodeResolve } from '@esbuild-plugins/node-resolve';
 import server from 'gulp-webserver';
 import sveltePlugin from 'esbuild-svelte';
 
@@ -42,6 +41,7 @@ const PATHS = {
 	],
 	DIST: 'docs/',
 };
+
 
 function getVersion () {
 	const pkg = fs.readFileSync('./package.json', 'utf8');
@@ -104,8 +104,8 @@ export function js () {
 		bundle: true,
 		minify: isProd,
 		sourcemap: !isProd,
-		loader: { '.svg': 'text' },
 		logLevel: 'warning',
+		// loader: { '.svg': 'text' },
 		// https://esbuild.github.io/api/#log-override
 		logOverride: { 'direct-eval': 'silent' },
 		legalComments: 'none',
@@ -114,18 +114,15 @@ export function js () {
 		color: true,
 		plugins: [
 			sveltePlugin({ compilerOptions: { dev: !isProd, css: 'external' } }),
-			// @ts-ignore
-			NodeResolve.default({ extensions: ['.js', '.svelte'] }),
+			NodeResolve({ extensions: ['.js', '.svelte'] }),
 		],
 	};
 
 	return src(PATHS.JS.INPUT, { sourcemaps: !isProd })
-		// @ts-ignore
 		.pipe(gulpEsbuild(cfg))
 		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
-
 
 
 export function libCSS () {
