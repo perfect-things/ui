@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-## v9.4.20 *(2024-05-11)*
+## v9.4.21, v9.4.20*(2024-05-11)*
 - Fixed: `MenuItem` descenders were 1px cropped when using some fonts.
+- Fixed: active style in `ButtonToggle` was showing despite the disabled attribute.
 - Improve js & css linting and build process.
 - Upgrade dependencies.
 

@@ -1,7 +1,8 @@
 <h1>Changelog</h1>
-<h2>v9.4.20 <em>(2024-05-11)</em></h2>
+<h2>v9.4.21, v9.4.20*(2024-05-11)*</h2>
 <ul>
 <li>Fixed: <code>MenuItem</code> descenders were 1px cropped when using some fonts.</li>
+<li>Fixed: active style in <code>ButtonToggle</code> was showing despite the disabled attribute.</li>
 <li>Improve js &amp; css linting and build process.</li>
 <li>Upgrade dependencies.</li>
 </ul>
