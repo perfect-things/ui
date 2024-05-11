@@ -1,26 +1,32 @@
-import fs from 'fs';
+// import { NodeResolvePlugin as NodeResolve } from '@esbuild-plugins/node-resolve';
 import { createGulpEsbuild } from 'gulp-esbuild';
-import { default as throught2 } from 'through2';
 import { deleteAsync } from 'del';
+import cache from 'gulp-cached';
 import cleanCSS from 'gulp-clean-css';
+import clear from 'screen-clear';
 import concat from 'gulp-concat';
+import fs from 'fs';
 import gulp from 'gulp';
 import gulpEslint from 'gulp-eslint-new';
 import gulpStylelint from 'gulp-stylelint-esm';
+import gulpif from 'gulp-if';
 import inject from 'gulp-inject-string';
 import livereload from 'gulp-livereload';
-import { NodeResolvePlugin as NodeResolve } from '@esbuild-plugins/node-resolve';
+import size from 'gulp-size';
+import stylelintFormatter from 'stylelint-formatter-pretty';
 import server from 'gulp-webserver';
 import sveltePlugin from 'esbuild-svelte';
 
 
 const { series, parallel, src, dest, watch } = gulp;
-const noop = throught2.obj;
+
 let isProd = false;
 let gulpEsbuild = createGulpEsbuild({ incremental: false });
 
+const clrscr = (done) => { clear(); done(); };
 const setProd = (done) => { isProd = true; done(); };
 const cleanup = () => deleteAsync([PATHS.DIST + '/*']);
+
 
 const PATHS = {
 	HTML: 'docs-src/index.html',
@@ -80,7 +86,7 @@ export function eslint () {
 	return src(PATHS.JS.LINT)
 		.pipe(gulpEslint({ fix: true }))   // Lint files, create fixes.
 		.pipe(gulpEslint.fix())            // Fix files if necessary.
-		.pipe(gulpEslint.format())
+		.pipe(gulpEslint.format('pretty'))
 		.pipe(gulpEslint.results(results => {
 			if (results.errorCount) console.log('\x07');    // beep
 		}));
@@ -89,23 +95,20 @@ export function eslint () {
 
 export function stylelint () {
 	return src(PATHS.CSS.LINT)
-		.pipe(gulpStylelint({ reporters: [{ formatter: 'string', console: true }] }))
-		.on('error', function () {
-			console.log('\x07');    // beep
-			this.emit('end');
-		});
+		.pipe(cache('stylelint'))
+		.pipe(gulpStylelint({ reporters: [{ formatter: stylelintFormatter, console: true }] }));
 }
 
 
-export function js () {
+export function js (done) {
 	const cfg = {
 		outfile: 'docs.js',
 		mainFields: ['svelte', 'browser', 'module', 'main'],
 		bundle: true,
+		write: false,
 		minify: isProd,
 		sourcemap: !isProd,
-		logLevel: 'warning',
-		// loader: { '.svg': 'text' },
+		logLevel: 'info',
 		// https://esbuild.github.io/api/#log-override
 		logOverride: { 'direct-eval': 'silent' },
 		legalComments: 'none',
@@ -114,12 +117,14 @@ export function js () {
 		color: true,
 		plugins: [
 			sveltePlugin({ compilerOptions: { dev: !isProd, css: 'external' } }),
-			NodeResolve({ extensions: ['.js', '.svelte'] }),
+			// NodeResolve({ extensions: ['.js', '.svelte'] }),
 		],
 	};
 
 	return src(PATHS.JS.INPUT, { sourcemaps: !isProd })
 		.pipe(gulpEsbuild(cfg))
+		.on('error', () => done())
+		.pipe(size({ title: ' JS', showFiles: true, showTotal: false, }))
 		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
@@ -128,7 +133,8 @@ export function js () {
 export function libCSS () {
 	return src(PATHS.CSS.LIB.INPUT, { sourcemaps: !isProd })
 		.pipe(concat(PATHS.CSS.LIB.OUT))
-		.pipe(isProd ? cleanCSS() : noop())
+		.pipe(gulpif(isProd, cleanCSS()))
+		.pipe(size({ title: 'lib CSS', showFiles: true, showTotal: false, }))
 		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
@@ -137,7 +143,8 @@ export function libCSS () {
 export function docsCSS () {
 	return src(PATHS.CSS.DOCS.INPUT, { sourcemaps: !isProd })
 		.pipe(concat(PATHS.CSS.DOCS.OUT))
-		.pipe(isProd ? cleanCSS() : noop())
+		.pipe(gulpif(isProd, cleanCSS()))
+		.pipe(size({ title: 'docs CSS', showFiles: true, showTotal: false, }))
 		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
 		.pipe(livereload());
 }
@@ -145,12 +152,13 @@ export function docsCSS () {
 
 function watchTask (done) {
 	if (isProd) return done();
-	livereload.listen();
+	livereload.listen({ quiet: true });
 	gulpEsbuild = createGulpEsbuild({ incremental: true });
-	watch(PATHS.CSS.LIB.INPUT, series(libCSS, stylelint));
-	watch(PATHS.CSS.DOCS.INPUT, series(docsCSS, stylelint));
+
 	watch(PATHS.HTML, html);
-	watch(PATHS.JS.LINT[0], series(js, eslint));
+	watch(PATHS.CSS.LIB.INPUT, series(clrscr, libCSS, stylelint));
+	watch(PATHS.CSS.DOCS.INPUT, series(clrscr, docsCSS, stylelint));
+	watch(PATHS.JS.LINT[0], series(clrscr, js, eslint));
 }
 
 
@@ -160,6 +168,6 @@ function serveTask () {
 
 
 export const lint = parallel(eslint, stylelint);
-export const build = series(cleanup, parallel(js, libCSS, lint, docsCSS, html, assets, externals));
+export const build = series(cleanup, clrscr, parallel(js, libCSS, lint, docsCSS, html, assets, externals));
 export const prod = series(setProd, build);
 export default parallel(watchTask, series(build, serveTask));

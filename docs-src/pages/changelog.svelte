@@ -1,4 +1,10 @@
 <h1>Changelog</h1>
+<h2>v9.4.20 <em>(2024-05-11)</em></h2>
+<ul>
+<li>Fixed: <code>MenuItem</code> descenders were 1px cropped when using some fonts.</li>
+<li>Improve js &amp; css linting and build process.</li>
+<li>Upgrade dependencies.</li>
+</ul>
 <h2>v9.4.19 <em>(2024-05-06)</em></h2>
 <ul>
 <li>Hide error on <code>InputPassword</code> where <code>zxcvbn</code> wasn&#39;t loaded.</li>

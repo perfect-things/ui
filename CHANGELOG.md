@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+## v9.4.20 *(2024-05-11)*
+- Fixed: `MenuItem` descenders were 1px cropped when using some fonts.
+- Improve js & css linting and build process.
+- Upgrade dependencies.
+
+
 ## v9.4.19 *(2024-05-06)*
 - Hide error on `InputPassword` where `zxcvbn` wasn't loaded.
 - Correct icons' alignment.

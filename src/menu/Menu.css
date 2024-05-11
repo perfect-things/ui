@@ -40,14 +40,19 @@
 	justify-content: space-between;
 	margin: 0;
 	overflow: hidden;
-	padding: 0.6rem 0.9rem;
+	padding: 0.5rem 0.9rem;
 	position: relative;
 	text-align: left;
 	white-space: nowrap;
 	width: 100%;
 }
 
-.menu-item-shortcut { margin: -0.1rem 0 -0.1rem auto; letter-spacing: 0.1rem; opacity: 0.5; }
+.menu-item-shortcut {
+	margin: -0.1rem 0 -0.1rem auto;
+	letter-spacing: 0.1rem;
+	line-height: 1.35;
+	opacity: 0.5;
+}
 .menu-item-shortcut:empty { visibility: hidden; }
 
 .menu-item.disabled { pointer-events: none; opacity: 0.6; }
@@ -70,7 +75,11 @@
 	margin-right: 1rem;
 }
 
-.menu-item-text { overflow: hidden; text-overflow: ellipsis; line-height: 1.1rem; }
+.menu-item-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.35;
+}
 
 
 .menu-separator {

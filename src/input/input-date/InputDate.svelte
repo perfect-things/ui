@@ -103,7 +103,7 @@ const dispatch = createEventDispatcher();
 const useNative = isMobile() && (useNativeOnMobile === true || useNativeOnMobile === 'true');
 
 let picker;
-let open = useNative ? true : false;
+let open = !!useNative;
 let isHiding = false;
 
 
