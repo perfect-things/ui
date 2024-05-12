@@ -52,6 +52,42 @@ input[type=color] {
 
 :where(input:disabled) { opacity: 0.75; cursor: default; }
 
+
+
+
+.check-and-radio input {
+	appearance: none;
+	width: 1.4rem;
+	height: 1.4rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.3em;
+	background: var(--ui-color-background-input);
+	border: 1px solid var(--ui-color-text-2);
+	color: var(--ui-color-text-1);
+	font: inherit;   /* required for proper sizing */
+	flex-shrink: 0;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
+
+.check-and-radio input::after {
+	content: " ";
+	display: block;
+	opacity: 0;
+	font-size: var(--ui-font-m);
+	line-height: 1;
+	align-self: center;
+	color: inherit;
+	margin: 0;
+	transition: opacity calc(var(--ui-animation-speed) / 2) ease-out;
+}
+
+.check-and-radio input:checked::after { opacity: 1; }
+
+
+
 .input { width: 25ch; vertical-align: middle; }
 .input .input-inner {
 	display: flex;
@@ -88,6 +124,7 @@ input[type=color] {
 }
 
 
+
 .input,
 .textarea textarea:disabled,
 .range input:disabled,
@@ -101,7 +138,6 @@ input[type=color] {
 .input input:not([type=radio]) { width: 100%; border: none; }
 .input input:not([type=radio]):focus,
 .input input:not([type=radio]):invalid { box-shadow: none; border: none; }
-
 
 
 
@@ -127,36 +163,3 @@ input[type=color] {
 	width: 1.5rem;
 	pointer-events: none;
 }
-
-
-
-.check-and-radio input[type] {
-	appearance: none;
-	width: 1.4rem;
-	height: 1.4rem;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 0.3em;
-	background: var(--ui-color-background-input);
-	border: 1px solid var(--ui-color-text-2);
-	color: var(--ui-color-text-1);
-	font: inherit;   /* required for proper sizing */
-	flex-shrink: 0;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-}
-
-.check-and-radio input::after {
-	content: " ";
-	display: block;
-	opacity: 0;
-	font-size: var(--ui-font-m);
-	line-height: 1;
-	align-self: center;
-	color: inherit;
-	margin: 0;
-	transition: opacity calc(var(--ui-animation-speed) / 2) ease-out;
-}
-
-.check-and-radio input:checked::after { opacity: 1; }

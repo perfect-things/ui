@@ -1,12 +1,13 @@
 <h1>Changelog</h1>
-<h2>v9.5.0 <em>(2024-05-12)</em></h2>
+<h2>v9.5.1, v9.5.0 <em>(2024-05-12)</em></h2>
 <ul>
 <li>New property for <code>Dialog</code>: <code>modal</code>.</li>
+<li>Fix square radiobuttons bug.</li>
 </ul>
 <h2>v9.4.21, v9.4.20 <em>(2024-05-11)</em></h2>
 <ul>
-<li>Fixed: <code>MenuItem</code> descenders were 1px cropped when using some fonts.</li>
-<li>Fixed: active style in <code>ButtonToggle</code> was showing despite the disabled attribute.</li>
+<li>Fix <code>MenuItem</code> descenders were 1px cropped when using some fonts.</li>
+<li>Fix active style in <code>ButtonToggle</code> was showing despite the disabled attribute.</li>
 <li>Improve js &amp; css linting and build process.</li>
 <li>Upgrade dependencies.</li>
 </ul>
@@ -15,9 +16,9 @@
 <li>Hide error on <code>InputPassword</code> where <code>zxcvbn</code> wasn&#39;t loaded.</li>
 <li>Correct icons&#39; alignment.</li>
 <li>Renamed icons: <code>pluscircle</code> to <code>plusCircle</code> and <code>minuscircle</code> to <code>minusCircle</code>.</li>
-<li>Fixed: <code>chartLine</code> icon (there was <code>/&gt;</code> showing in the icon).</li>
-<li>Fixed: <code>InputPassword</code> it was focusable when disabled.</li>
-<li>Fixed: <code>InputPassword</code> incorrect layout when <code>strength</code> and <code>labelOnTheLeft</code> was set.</li>
+<li>Fix <code>chartLine</code> icon (there was <code>/&gt;</code> showing in the icon).</li>
+<li>Fix <code>InputPassword</code> it was focusable when disabled.</li>
+<li>Fix <code>InputPassword</code> incorrect layout when <code>strength</code> and <code>labelOnTheLeft</code> was set.</li>
 </ul>
 <h2>v9.4.18 <em>(2024-05-01)</em></h2>
 <ul>
@@ -56,8 +57,8 @@
 </ul>
 <h2>v9.4.7 <em>(2024-01-17)</em></h2>
 <ul>
-<li>Fixed: <code>Range</code> - knob alignment in Safari is off.</li>
-<li>Fixed: <code>Range</code> - clicking on ticks should set the value.</li>
+<li>Fix <code>Range</code> - knob alignment in Safari is off.</li>
+<li>Fix <code>Range</code> - clicking on ticks should set the value.</li>
 </ul>
 <h2>v9.4.6, v9.4.5, v9.4.4, v9.4.3 <em>(2024-01-14)</em></h2>
 <ul>

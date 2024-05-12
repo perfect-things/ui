@@ -2,13 +2,14 @@ Changelog
 =========
 
 
-## v9.5.0 *(2024-05-12)*
+## v9.5.1, v9.5.0 *(2024-05-12)*
 - New property for `Dialog`: `modal`.
+- Fix square radiobuttons bug.
 
 
 ## v9.4.21, v9.4.20 *(2024-05-11)*
-- Fixed: `MenuItem` descenders were 1px cropped when using some fonts.
-- Fixed: active style in `ButtonToggle` was showing despite the disabled attribute.
+- Fix `MenuItem` descenders were 1px cropped when using some fonts.
+- Fix active style in `ButtonToggle` was showing despite the disabled attribute.
 - Improve js & css linting and build process.
 - Upgrade dependencies.
 
@@ -17,9 +18,9 @@ Changelog
 - Hide error on `InputPassword` where `zxcvbn` wasn't loaded.
 - Correct icons' alignment.
 - Renamed icons: `pluscircle` to `plusCircle` and `minuscircle` to `minusCircle`.
-- Fixed: `chartLine` icon (there was `/>` showing in the icon).
-- Fixed: `InputPassword` it was focusable when disabled.
-- Fixed: `InputPassword` incorrect layout when `strength` and `labelOnTheLeft` was set.
+- Fix `chartLine` icon (there was `/>` showing in the icon).
+- Fix `InputPassword` it was focusable when disabled.
+- Fix `InputPassword` incorrect layout when `strength` and `labelOnTheLeft` was set.
 
 
 ## v9.4.18 *(2024-05-01)*
@@ -60,8 +61,8 @@ Changelog
 
 
 ## v9.4.7 *(2024-01-17)*
-- Fixed: `Range` - knob alignment in Safari is off.
-- Fixed: `Range` - clicking on ticks should set the value.
+- Fix `Range` - knob alignment in Safari is off.
+- Fix `Range` - clicking on ticks should set the value.
 
 
 ## v9.4.6, v9.4.5, v9.4.4, v9.4.3 *(2024-01-14)*
