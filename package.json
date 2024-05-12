@@ -22,7 +22,7 @@
     "dist": "gulp prod",
     "build": "gulp build",
     "start": "gulp -LL",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "vanilla-swipe": "^2.4.1",
@@ -49,7 +49,7 @@
     "esbuild-svelte": "^0.8.0",
     "eslint": "^9.2.0",
     "eslint-formatter-pretty": "^6.0.1",
-    "eslint-plugin-svelte": "^2.38.0",
+    "eslint-plugin-svelte": "^2.39.0",
     "globals": "^15.2.0",
     "gulp": "^5.0.0",
     "gulp-cached": "^1.1.1",
