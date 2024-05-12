@@ -3,15 +3,18 @@
 <ul>
 	<li>simple, small, no dependencies
 	<li>accessible (full keyboard support, focus trap)
+	<li>configurable
 </ul>
+<hr>
 
-<br>
 
+<h3>Typical use-cases</h3>
 <div class="docs-buttons-row">
-	<Button on:click="{dialog1.open}">Show dialog 1</Button>
-	<Button on:click="{dialog2.open}">Show dialog 2</Button>
-	<Button on:click="{dialog3.open}">Show dialog 3</Button>
-	<Button on:click="{dialog4.open}">Show dialog 4</Button>
+	<Button on:click="{dialog1.open}">Large dialog</Button>
+	<Button on:click="{dialog2.open}">No buttons</Button>
+	<Button on:click="{dialog3.open}">Confirmation</Button>
+	<Button on:click="{dialog4.open}">With title and buttons</Button>
+	<Button on:click="{dialog5.open}">Modal</Button>
 </div>
 
 
@@ -55,6 +58,16 @@
 </Dialog>
 
 
+<Dialog bind:this="{dialog5}" title="Modal dialog" modal>
+	<p style="line-height: 2; margin: 0">This means that it will not close when clicking outside of it.<br>
+		This is useful for when an intentional action is required from the user.</p>
+	<div slot="footer">
+		<Button success on:click="{() => dialog5.close()}">Confirm</Button>
+		<Button text on:click="{() => dialog5.close()}">Cancel</Button>
+	</div>
+</Dialog>
+
+
 <CodeExample html="{exampleHtml}" />
 
 
@@ -75,6 +88,7 @@ const apiProps = [
 	{ name: 'opened', type: ['true' , 'false'], default: 'false', description: 'Set dialog\'s open state.' },
 	{ name: 'skipFirstFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
 	{ name: 'title', type: 'string', description: 'Set title for the dialog.' },
+	{ name: 'modal', description: 'If present - the dialog will not close when the user clicks outside of it or presses Escape.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:this', type: 'object', description: 'Exposes the component instance.' },
 	{ name: 'on:close', type: 'function', description: 'Triggered after the dialog is closed.' },
@@ -101,6 +115,6 @@ const exampleHtml = `
 &lt;/script>
 `;
 
-let dialog1, dialog2, dialog3, dialog4;
+let dialog1, dialog2, dialog3, dialog4, dialog5;
 
 </script>

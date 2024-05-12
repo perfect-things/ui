@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v9.5.0 *(2024-05-12)*
+- New property for `Dialog`: `modal`.
+
+
 ## v9.4.21, v9.4.20 *(2024-05-11)*
 - Fixed: `MenuItem` descenders were 1px cropped when using some fonts.
 - Fixed: active style in `ButtonToggle` was showing despite the disabled attribute.

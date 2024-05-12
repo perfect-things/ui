@@ -9,6 +9,7 @@
 	class="dialog-backdrop {className}"
 	class:opened
 	bind:this="{element}"
+	on:mousedown="{onBackdropMousedown}"
 	on:click="{onBackdropClick}">
 	<div class="dialog" bind:this="{dialogEl}">
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
@@ -31,6 +32,7 @@ export { className as class };
 export let title = '';
 export let opened = false;
 export let skipFirstFocus = false;
+export let modal = false;
 
 export let element;
 
@@ -75,8 +77,16 @@ function getFocusableElements () {
 }
 
 
+function onBackdropMousedown (e) {
+	if (modal) {
+		e.stopPropagation();
+		e.preventDefault();
+	}
+}
+
+
 function onBackdropClick (e) {
-	if (!dialogEl.contains(e.target)) {
+	if (!dialogEl.contains(e.target) && !modal) {
 		e.stopPropagation();
 		close();
 	}
@@ -91,12 +101,12 @@ function focusOtherButton (target, key) {
 		ArrowLeft: 'nextElementSibling',
 		ArrowRight: 'previousElementSibling',
 	};
-	let otherBtn;
-	while (otherBtn = btnMap[key] && target[btnMap[key]]) {
-		if (!otherBtn || otherBtn.tagName === 'BUTTON') break;
-		target = otherBtn;
-	}
 
+	const direction = btnMap[key];
+	let otherBtn = target[direction];
+	while (otherBtn && otherBtn.tagName !== 'BUTTON') {
+		otherBtn = otherBtn[direction];
+	}
 	if (otherBtn) otherBtn.focus();
 }
 
@@ -105,13 +115,12 @@ function onDocKeydown (e) {
 	if (!opened) return;
 	const hasFocus = element.contains(document.activeElement);
 	if (e.key === 'Tab' && !hasFocus) return focusFirst();
-	if (e.key === 'Escape') {
+	if (e.key === 'Escape' && !modal) {
 		e.stopPropagation();
 		return close();
 	}
-	const target = e.target && e.target.closest('button');
-	if (target && e.key.startsWith('Arrow')) {
-		e.preventDefault();
+	const target = e.target?.closest('button');
+	if (target && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
 		focusOtherButton(target, e.key);
 	}
 }
