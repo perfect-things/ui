@@ -14,7 +14,7 @@
 	--ui-margin-l: 1rem;			/* 16px */
 
 
-	--ui-animation-speed: .3s;
+	--ui-animation-speed: .25s;
 	--ui-button-height: 2.25rem;    /* 36px */
 
 
@@ -31,7 +31,7 @@
 	--ui-shadow-focus: 0 0 2px 1px var(--ui-color-accent);
 	--ui-shadow-danger: 0 0 2px 1px var(--ui-color-danger);
 	--ui-shadow-small: 0 0 0 0.5px #fff4, 0 3px 10px #0006;
-	--ui-shadow-large: 0 0 0 1px #000, 0 5px 20px #000a;
+	--ui-shadow-large: 0 0 0 1px #0003, 0 5px 20px #000a;
 	--ui-shadow-fancy:
 		0 0 0 0.5px #111,
 		0 1px 5px rgb(0 0 0 / 30%),

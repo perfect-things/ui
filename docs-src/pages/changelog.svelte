@@ -1,4 +1,10 @@
 <h1>Changelog</h1>
+<h2>v9.5.2 <em>(2024-05-15)</em></h2>
+<ul>
+<li>Fix <code>--ui-shadow-large</code> in light-mode (was a bit too dark).</li>
+<li>Animation speed increased from 0.3 to 0.25s.</li>
+<li>Fix <code>Dialog</code>&#39;s rendering artifacts in Safari.</li>
+</ul>
 <h2>v9.5.1, v9.5.0 <em>(2024-05-12)</em></h2>
 <ul>
 <li>New property for <code>Dialog</code>: <code>modal</code>.</li>

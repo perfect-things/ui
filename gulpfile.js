@@ -2,7 +2,7 @@
 import { createGulpEsbuild } from 'gulp-esbuild';
 import { deleteAsync } from 'del';
 import cache from 'gulp-cached';
-import cleanCSS from 'gulp-clean-css';
+import cleanCSS from 'gulp-cleaner-css';
 import clear from 'screen-clear';
 import concat from 'gulp-concat';
 import fs from 'fs';

@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+
+## v9.5.2 *(2024-05-15)*
+- Fix `--ui-shadow-large` in light-mode (was a bit too dark).
+- Animation speed increased from 0.3 to 0.25s.
+- Fix `Dialog`'s rendering artifacts in Safari. 
+
+
 ## v9.5.1, v9.5.0 *(2024-05-12)*
 - New property for `Dialog`: `modal`.
 - Fix square radiobuttons bug.

@@ -11,7 +11,7 @@
 	bind:this="{element}"
 	on:mousedown="{onBackdropMousedown}"
 	on:click="{onBackdropClick}">
-	<div class="dialog" bind:this="{dialogEl}">
+	<div class="dialog" class:no-title="{!title}" bind:this="{dialogEl}">
 		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
 		<h1 class="dialog-header">{title}</h1>
 		<div class="dialog-content" bind:this="{contentEl}"><slot/></div>

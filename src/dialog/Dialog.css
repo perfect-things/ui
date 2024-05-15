@@ -21,6 +21,9 @@
 
 
 .dialog {
+	--ui-dialog-border-radius: var(--ui-border-radius-l);
+	--ui-dialog-inner-border-radius: calc(var(--ui-dialog-border-radius) - 1px);
+
 	opacity: 0;
 	transform: scale(0.8);
 	transition:
@@ -30,7 +33,7 @@
 	min-width: 15rem;
 	max-width: 95vw;
 	color: var(--ui-color-text);
-	border-radius: var(--ui-border-radius-m);
+	border-radius: var(--ui-dialog-border-radius);
 	background: var(--ui-popup-background);
 	border: var(--ui-popup-border);
 	box-shadow: var(--ui-shadow-large);
@@ -38,7 +41,6 @@
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: stretch;
-	overflow: hidden;
 }
 
 .opened .dialog { opacity: 1; transform: scale(1); }
@@ -51,9 +53,7 @@
 	font-size: var(--ui-font-xl);
 	font-weight: 300;
 	margin: 0;
-	border-bottom: 1px solid var(--ui-color-border);
-	border-top-left-radius: calc(var(--ui-border-radius-m) - 1px);
-	border-top-right-radius: calc(var(--ui-border-radius-m) - 1px);
+	border-bottom: 0.5px solid var(--ui-color-border);
 }
 
 .dialog-content {
@@ -73,12 +73,10 @@
 	box-shadow: var(--ui-shadow-focus) inset;
 }
 
-
 .dialog-footer {
-	border-top: 1px solid var(--ui-color-border);
-
-	border-bottom-left-radius: calc(var(--ui-border-radius-m) - 1px);
-	border-bottom-right-radius: calc(var(--ui-border-radius-m) - 1px);
+	border-top: 0.5px solid var(--ui-color-border);
+	border-bottom-left-radius: var(--ui-dialog-inner-border-radius);
+	border-bottom-right-radius: var(--ui-dialog-inner-border-radius);
 }
 
 .dialog-footer [slot="footer"] {
@@ -90,9 +88,14 @@
 	gap: 0.5rem;
 }
 
-
-
 .dialog-footer .button-has-text { min-width: 9ch; }
+
+
+.dialog-header,
+.dialog.no-title .dialog-content {
+	border-top-left-radius: var(--ui-dialog-inner-border-radius);
+	border-top-right-radius: var(--ui-dialog-inner-border-radius);
+}
 
 .dialog-header:empty { display: none; }
 
@@ -104,9 +107,6 @@
 	max-width: 100%;
 	box-shadow: none;
 }
-
-
-
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
 	.dialog-backdrop.opened {
