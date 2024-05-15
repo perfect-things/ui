@@ -21,7 +21,7 @@
 
 
 .dialog {
-	--ui-dialog-border-radius: var(--ui-border-radius-l);
+	--ui-dialog-border-radius: var(--ui-border-radius-m);
 	--ui-dialog-inner-border-radius: calc(var(--ui-dialog-border-radius) - 1px);
 
 	opacity: 0;

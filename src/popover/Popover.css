@@ -9,7 +9,9 @@
 	z-index: var(--ui-z-index-popup);
 }
 
-.popover-plate.opening { opacity: 0; }
+.popover-plate.opening {
+	opacity: 0;
+}
 
 .popover {
 	position: relative;
@@ -18,7 +20,7 @@
 }
 
 .popover-plate.hide-tip .popover {
-	box-shadow: var(--ui-shadow-fancy);;
+	box-shadow: var(--ui-shadow-fancy);
 }
 
 .popover-plate:not(.hide-tip) .popover::before,
@@ -52,29 +54,56 @@
 	border: var(--popover-border);
 }
 
-.popover-content > * { position: relative; }
-.popover-plate:not(.hide-tip) .popover-content::before { background-color: inherit; z-index: -1; }
+.popover-content > * {
+	position: relative;
+}
+
+.popover-plate:not(.hide-tip) .popover-content::before {
+	background-color: inherit;
+	z-index: -1;
+}
 
 
 .popover-plate:focus,
 .popover-plate .popover:focus,
-.popover-content:focus { outline: none; }
+.popover-content:focus {
+	outline: none;
+}
 
 
+.popover-top:not(.hide-tip) {
+	padding-bottom: var(--popover-tip-size);
+}
 
-.popover-top:not(.hide-tip) { padding-bottom: var(--popover-tip-size); }
-.popover-top:not(.hide-tip) .popover::before { border-radius: 0 0 3px; bottom: calc(var(--popover-tip-size) / -2); }
-.popover-top:not(.hide-tip) .popover-content::before { border-radius: 0 0 2px; bottom: calc(var(--popover-tip-size) / -2); }
+.popover-top:not(.hide-tip) .popover::before {
+	border-radius: 0 0 3px;
+	bottom: calc(var(--popover-tip-size) / -2);
+}
 
-.popover-bottom:not(.hide-tip) { padding-top: var(--popover-tip-size); }
-.popover-bottom:not(.hide-tip) .popover::before { border-radius: 3px 0 0; top: calc(var(--popover-tip-size) / -2); }
-.popover-bottom:not(.hide-tip) .popover-content::before { border-radius: 2px 0 0; top: calc(var(--popover-tip-size) / -2); }
+.popover-top:not(.hide-tip) .popover-content::before {
+	border-radius: 0 0 2px;
+	bottom: calc(var(--popover-tip-size) / -2);
+}
 
+.popover-bottom:not(.hide-tip) {
+	padding-top: var(--popover-tip-size);
+}
+
+.popover-bottom:not(.hide-tip) .popover::before {
+	border-radius: 3px 0 0;
+	top: calc(var(--popover-tip-size) / -2);
+}
+
+.popover-bottom:not(.hide-tip) .popover-content::before {
+	border-radius: 2px 0 0;
+	top: calc(var(--popover-tip-size) / -2);
+}
 
 
 /* THEME LIGHT  */
-.theme-light .popover-plate { --popover-color: #fff; }
-
+.theme-light .popover-plate {
+	--popover-color: #fff;
+}
 
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
