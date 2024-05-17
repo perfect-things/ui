@@ -1,0 +1,7 @@
+.table-viewport {
+	width: 500px;
+	max-width: 100%;
+	height: 500px;
+	border: 2px dashed red;
+	padding: 5px;
+}

@@ -45,6 +45,7 @@
 		<h3>Containers</h3>
 		<NavItem name="Dialog" {active} />
 		<NavItem name="Drawer" {active} />
+		<NavItem name="Grid" {active} />
 		<NavItem name="Panel" {active} />
 		<NavItem name="Popover" {active} />
 		<NavItem name="Table" {active} />
