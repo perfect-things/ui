@@ -83,6 +83,16 @@
 
 .combobox-list-item b { color: var(--ui-color-accent); }
 
+/* has checked element before */
+.combobox-list-item.checked + .combobox-list-item.checked {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+/* has checked element after it */
+.combobox-list-item.checked:has(+ .combobox-list-item.checked) {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
 
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
