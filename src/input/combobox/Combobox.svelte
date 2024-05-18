@@ -79,7 +79,7 @@
 							aria-selected="{item.idx === highlightIndex}"
 							class:selected="{item.idx === highlightIndex}"
 
-							aria-checked="{isChecked}"
+							aria-checked="{!!isChecked}"
 							class:checked="{isChecked}"
 
 							on:click="{e => onclick(item, e)}"
@@ -184,7 +184,7 @@ onDestroy(() => {
 
 afterUpdate(() => {
 	if (!opened && items.length) {
-		if (!originalItems) originalItems = deepCopy(items);
+		originalItems = deepCopy(items);
 		if (items.length && typeof items[0] === 'string') {
 			items = items.map(item => ({ name: item }));
 		}
@@ -235,7 +235,6 @@ function open (e) {
 	const mousedownOnDesktop = !isMobile() && type === 'mousedown';
 	const typing = type === 'typing';
 	const navigating = type === 'navigating';
-
 	if (!clickOnMobile && !mousedownOnDesktop && !typing && !navigating) return;
 	if (mousedownOnDesktop && opened) return close();
 	if (opened) return;
