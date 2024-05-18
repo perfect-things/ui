@@ -71,8 +71,9 @@ function sortData (items, field, order) {
 	if (!items || !items.length) return [];
 	if (field === '') return items.sort(numberSort('id', order));
 
-	// const numFields = ['amount_in', 'amount_out'];
-	// if (numFields.includes(field)) return items.sort(numberSort(field, order));
+	if (typeof items[0][field] === 'number') {
+		return items.sort(numberSort(field, order));
+	}
 
 	return items.sort(stringSort(field, order));
 }

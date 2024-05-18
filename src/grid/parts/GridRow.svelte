@@ -12,7 +12,7 @@
 			</td>
 		{/if}
 		{#each $Columns as column}
-			<td>
+			<td class="td-{getType(column)}">
 				{item[column.field] || ''}
 			</td>
 		{/each}
@@ -24,8 +24,13 @@ import { Checkbox } from '../../input';
 export let item = {};
 export let multiselect = false;
 export let Columns = [];
+export let Data = [];
+
 
 $:id = item.id || item.field;
 
+function getType (column) {
+	return typeof $Data[0][column.field];
+}
 
 </script>

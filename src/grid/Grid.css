@@ -53,6 +53,10 @@
 }
 
 
+.grid .th-number,
+.grid .td-number { text-align: right; }
+
+
 /*** SORTABLE TABLE *******************************************************************************/
 .grid-sortable thead th { cursor: pointer; }
 .grid-sortable thead th span:hover { text-decoration: underline; }

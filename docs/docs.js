@@ -7354,6 +7354,9 @@ function sortData(items, field, order) {
     return [];
   if (field === "")
     return items.sort(numberSort("id", order));
+  if (typeof items[0][field] === "number") {
+    return items.sort(numberSort(field, order));
+  }
   return items.sort(stringSort(field, order));
 }
 function numberSort(field, order = "ASC") {
@@ -9171,7 +9174,7 @@ function create_if_block_6(ctx) {
       div = element2("div");
       div.textContent = "No items found";
       attr_dev(div, "class", "combobox-list-empty");
-      add_location(div, file8, 103, 3, 2993);
+      add_location(div, file8, 103, 3, 2995);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -9375,10 +9378,10 @@ function create_if_block_4(ctx) {
       attr_dev(rect, "width", "16");
       attr_dev(rect, "height", "16");
       attr_dev(rect, "rx", "3");
-      add_location(rect, file8, 93, 9, 2716);
+      add_location(rect, file8, 93, 9, 2718);
       attr_dev(path, "class", "tick");
       attr_dev(path, "d", "M8 12l3 3l5.5 -5.5");
-      add_location(path, file8, 94, 9, 2781);
+      add_location(path, file8, 94, 9, 2783);
       attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
       attr_dev(svg, "viewBox", "0 0 24 24");
       attr_dev(svg, "stroke-width", "1.5");
@@ -9387,7 +9390,7 @@ function create_if_block_4(ctx) {
       attr_dev(svg, "stroke-linecap", "round");
       attr_dev(svg, "stroke-linejoin", "round");
       attr_dev(svg, "class", "icon icon-tabler icon-tabler-square-check");
-      add_location(svg, file8, 92, 8, 2496);
+      add_location(svg, file8, 92, 8, 2498);
     },
     m: function mount(target, anchor) {
       insert_dev(target, svg, anchor);
@@ -9464,13 +9467,13 @@ function create_each_block_1(ctx) {
       t0 = space();
       span = element2("span");
       t1 = space();
-      add_location(span, file8, 97, 7, 2866);
+      add_location(span, file8, 97, 7, 2868);
       attr_dev(div, "role", "option");
       attr_dev(div, "class", "combobox-list-item");
       attr_dev(div, "aria-selected", div_aria_selected_value = /*item*/
       ctx[77].idx === /*highlightIndex*/
       ctx[17]);
-      attr_dev(div, "aria-checked", div_aria_checked_value = /*isChecked*/
+      attr_dev(div, "aria-checked", div_aria_checked_value = !!/*isChecked*/
       ctx[78]);
       toggle_class(div, "in-group", !!/*item*/
       ctx[77].group);
@@ -9541,7 +9544,7 @@ function create_each_block_1(ctx) {
         attr_dev(div, "aria-selected", div_aria_selected_value);
       }
       if (dirty[0] & /*multiselect, selectedItems, groupedData*/
-      270338 && div_aria_checked_value !== (div_aria_checked_value = /*isChecked*/
+      270338 && div_aria_checked_value !== (div_aria_checked_value = !!/*isChecked*/
       ctx[78])) {
         attr_dev(div, "aria-checked", div_aria_checked_value);
       }
@@ -9688,7 +9691,7 @@ function create_if_block_1(ctx) {
         ctx[19]
       );
       attr_dev(div0, "class", "combobox-list-header");
-      add_location(div0, file8, 107, 2, 3084);
+      add_location(div0, file8, 107, 2, 3086);
       attr_dev(div1, "role", "option");
       attr_dev(div1, "class", "combobox-list-item");
       attr_dev(div1, "aria-selected", div1_aria_selected_value = /*highlightIndex*/
@@ -9701,7 +9704,7 @@ function create_if_block_1(ctx) {
         ctx[17] === /*filteredData*/
         ctx[14].length
       );
-      add_location(div1, file8, 108, 3, 3143);
+      add_location(div1, file8, 108, 3, 3145);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div0, anchor);
@@ -10338,8 +10341,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   });
   afterUpdate(() => {
     if (!opened && items.length) {
-      if (!originalItems)
-        originalItems = deepCopy(items);
+      originalItems = deepCopy(items);
       if (items.length && typeof items[0] === "string") {
         $$invalidate2(34, items = items.map((item) => ({ name: item })));
       }
@@ -28212,6 +28214,7 @@ function create_fragment32(ctx) {
   let current_block_type_index;
   let if_block;
   let th_title_value;
+  let th_class_value;
   let current;
   let mounted;
   let dispose;
@@ -28220,12 +28223,12 @@ function create_fragment32(ctx) {
   function select_block_type(ctx2, dirty) {
     if (
       /*sortasc*/
-      ctx2[1]
+      ctx2[2]
     )
       return 0;
     if (
       /*sortdesc*/
-      ctx2[2]
+      ctx2[3]
     )
       return 1;
     return -1;
@@ -28242,24 +28245,25 @@ function create_fragment32(ctx) {
       t1 = space();
       if (if_block)
         if_block.c();
-      add_location(span, file27, 9, 3, 195);
+      add_location(span, file27, 9, 3, 205);
       attr_dev(div, "class", "cell-aligner");
-      add_location(div, file27, 8, 2, 165);
+      add_location(div, file27, 8, 2, 175);
       attr_dev(th, "title", th_title_value = /*column*/
       ctx[0].label);
-      attr_dev(th, "class", "th-sortable");
+      attr_dev(th, "class", th_class_value = "th-sortable th-" + /*type*/
+      ctx[4]);
       attr_dev(th, "tabindex", "0");
       toggle_class(
         th,
         "sortasc",
         /*sortasc*/
-        ctx[1]
+        ctx[2]
       );
       toggle_class(
         th,
         "sortdesc",
         /*sortdesc*/
-        ctx[2]
+        ctx[3]
       );
       add_location(th, file27, 0, 0, 0);
     },
@@ -28282,7 +28286,7 @@ function create_fragment32(ctx) {
             th,
             "keydown",
             /*keydown_handler*/
-            ctx[11],
+            ctx[13],
             false,
             false,
             false,
@@ -28292,7 +28296,7 @@ function create_fragment32(ctx) {
             th,
             "click",
             /*sort*/
-            ctx[5],
+            ctx[7],
             false,
             false,
             false,
@@ -28336,22 +28340,27 @@ function create_fragment32(ctx) {
       ctx2[0].label)) {
         attr_dev(th, "title", th_title_value);
       }
-      if (!current || dirty & /*sortasc*/
-      2) {
+      if (!current || dirty & /*type*/
+      16 && th_class_value !== (th_class_value = "th-sortable th-" + /*type*/
+      ctx2[4])) {
+        attr_dev(th, "class", th_class_value);
+      }
+      if (!current || dirty & /*type, sortasc*/
+      20) {
         toggle_class(
           th,
           "sortasc",
           /*sortasc*/
-          ctx2[1]
+          ctx2[2]
         );
       }
-      if (!current || dirty & /*sortdesc*/
-      4) {
+      if (!current || dirty & /*type, sortdesc*/
+      24) {
         toggle_class(
           th,
           "sortdesc",
           /*sortdesc*/
-          ctx2[2]
+          ctx2[3]
         );
       }
     },
@@ -28390,14 +28399,19 @@ function instance32($$self2, $$props2, $$invalidate2) {
   let sortOrder;
   let isDateField;
   let isASC;
-  let $sortOrder, $$unsubscribe_sortOrder = noop, $$subscribe_sortOrder = () => ($$unsubscribe_sortOrder(), $$unsubscribe_sortOrder = subscribe(sortOrder, ($$value) => $$invalidate2(9, $sortOrder = $$value)), sortOrder);
-  let $sortField, $$unsubscribe_sortField = noop, $$subscribe_sortField = () => ($$unsubscribe_sortField(), $$unsubscribe_sortField = subscribe(sortField, ($$value) => $$invalidate2(10, $sortField = $$value)), sortField);
+  let type;
+  let $sortOrder, $$unsubscribe_sortOrder = noop, $$subscribe_sortOrder = () => ($$unsubscribe_sortOrder(), $$unsubscribe_sortOrder = subscribe(sortOrder, ($$value) => $$invalidate2(10, $sortOrder = $$value)), sortOrder);
+  let $sortField, $$unsubscribe_sortField = noop, $$subscribe_sortField = () => ($$unsubscribe_sortField(), $$unsubscribe_sortField = subscribe(sortField, ($$value) => $$invalidate2(11, $sortField = $$value)), sortField);
+  let $Data, $$unsubscribe_Data = noop, $$subscribe_Data = () => ($$unsubscribe_Data(), $$unsubscribe_Data = subscribe(Data, ($$value) => $$invalidate2(12, $Data = $$value)), Data);
   $$self2.$$.on_destroy.push(() => $$unsubscribe_sortOrder());
   $$self2.$$.on_destroy.push(() => $$unsubscribe_sortField());
+  $$self2.$$.on_destroy.push(() => $$unsubscribe_Data());
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   validate_slots("GridHeadTH", slots2, []);
   let { column = {} } = $$props2;
   let { Data = [] } = $$props2;
+  validate_store(Data, "Data");
+  $$subscribe_Data();
   let sortasc = false;
   let sortdesc = false;
   function sort() {
@@ -28418,7 +28432,7 @@ function instance32($$self2, $$props2, $$invalidate2) {
     if ("column" in $$props3)
       $$invalidate2(0, column = $$props3.column);
     if ("Data" in $$props3)
-      $$invalidate2(6, Data = $$props3.Data);
+      $$subscribe_Data($$invalidate2(1, Data = $$props3.Data));
   };
   $$self2.$capture_state = () => ({
     Icon: Icon_default,
@@ -28429,69 +28443,78 @@ function instance32($$self2, $$props2, $$invalidate2) {
     sort,
     isDateField,
     isASC,
+    type,
     sortOrder,
     sortField,
     $sortOrder,
-    $sortField
+    $sortField,
+    $Data
   });
   $$self2.$inject_state = ($$props3) => {
     if ("column" in $$props3)
       $$invalidate2(0, column = $$props3.column);
     if ("Data" in $$props3)
-      $$invalidate2(6, Data = $$props3.Data);
+      $$subscribe_Data($$invalidate2(1, Data = $$props3.Data));
     if ("sortasc" in $$props3)
-      $$invalidate2(1, sortasc = $$props3.sortasc);
+      $$invalidate2(2, sortasc = $$props3.sortasc);
     if ("sortdesc" in $$props3)
-      $$invalidate2(2, sortdesc = $$props3.sortdesc);
+      $$invalidate2(3, sortdesc = $$props3.sortdesc);
     if ("isDateField" in $$props3)
-      $$invalidate2(7, isDateField = $$props3.isDateField);
+      $$invalidate2(8, isDateField = $$props3.isDateField);
     if ("isASC" in $$props3)
-      $$invalidate2(8, isASC = $$props3.isASC);
+      $$invalidate2(9, isASC = $$props3.isASC);
+    if ("type" in $$props3)
+      $$invalidate2(4, type = $$props3.type);
     if ("sortOrder" in $$props3)
-      $$subscribe_sortOrder($$invalidate2(3, sortOrder = $$props3.sortOrder));
+      $$subscribe_sortOrder($$invalidate2(5, sortOrder = $$props3.sortOrder));
     if ("sortField" in $$props3)
-      $$subscribe_sortField($$invalidate2(4, sortField = $$props3.sortField));
+      $$subscribe_sortField($$invalidate2(6, sortField = $$props3.sortField));
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
   $$self2.$$.update = () => {
     if ($$self2.$$.dirty & /*Data*/
-    64) {
+    2) {
       $:
-        $$subscribe_sortField($$invalidate2(4, sortField = Data.sortField));
+        $$subscribe_sortField($$invalidate2(6, sortField = Data.sortField));
     }
     if ($$self2.$$.dirty & /*Data*/
-    64) {
+    2) {
       $:
-        $$subscribe_sortOrder($$invalidate2(3, sortOrder = Data.sortOrder));
+        $$subscribe_sortOrder($$invalidate2(5, sortOrder = Data.sortOrder));
     }
     if ($$self2.$$.dirty & /*column*/
     1) {
       $:
-        $$invalidate2(7, isDateField = column.field.includes("date"));
+        $$invalidate2(8, isDateField = column.field.includes("date"));
     }
     if ($$self2.$$.dirty & /*$sortOrder*/
-    512) {
+    1024) {
       $:
-        $$invalidate2(8, isASC = $sortOrder === "ASC");
+        $$invalidate2(9, isASC = $sortOrder === "ASC");
+    }
+    if ($$self2.$$.dirty & /*$Data, column*/
+    4097) {
+      $:
+        $$invalidate2(4, type = typeof $Data[0][column.field]);
     }
     if ($$self2.$$.dirty & /*$sortField, column, isDateField, isASC*/
-    1409) {
+    2817) {
       $: {
-        $$invalidate2(1, sortasc = false);
-        $$invalidate2(2, sortdesc = false);
+        $$invalidate2(2, sortasc = false);
+        $$invalidate2(3, sortdesc = false);
         if ($sortField === column.field) {
           if (isDateField) {
             if (isASC)
-              $$invalidate2(2, sortdesc = true);
+              $$invalidate2(3, sortdesc = true);
             else
-              $$invalidate2(1, sortasc = true);
+              $$invalidate2(2, sortasc = true);
           } else {
             if (isASC)
-              $$invalidate2(1, sortasc = true);
+              $$invalidate2(2, sortasc = true);
             else
-              $$invalidate2(2, sortdesc = true);
+              $$invalidate2(3, sortdesc = true);
           }
         }
       }
@@ -28499,23 +28522,25 @@ function instance32($$self2, $$props2, $$invalidate2) {
   };
   return [
     column,
+    Data,
     sortasc,
     sortdesc,
+    type,
     sortOrder,
     sortField,
     sort,
-    Data,
     isDateField,
     isASC,
     $sortOrder,
     $sortField,
+    $Data,
     keydown_handler
   ];
 }
 var GridHeadTH = class extends SvelteComponentDev {
   constructor(options) {
     super(options);
-    init(this, options, instance32, create_fragment32, safe_not_equal, { column: 0, Data: 6 });
+    init(this, options, instance32, create_fragment32, safe_not_equal, { column: 0, Data: 1 });
     dispatch_dev("SvelteRegisterComponent", {
       component: this,
       tagName: "GridHeadTH",
@@ -29013,7 +29038,7 @@ var GridHead_default = GridHead;
 var file29 = "src/grid/parts/GridRow.svelte";
 function get_each_context9(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[6] = list[i];
+  child_ctx[9] = list[i];
   return child_ctx;
 }
 function create_if_block16(ctx) {
@@ -29022,7 +29047,7 @@ function create_if_block16(ctx) {
   let updating_checked;
   let current;
   function checkbox_checked_binding(value2) {
-    ctx[5](value2);
+    ctx[7](value2);
   }
   let checkbox_props = { tabindex: "-1" };
   if (
@@ -29089,16 +29114,22 @@ function create_each_block9(ctx) {
     /*item*/
     (ctx[0][
       /*column*/
-      ctx[6].field
+      ctx[9].field
     ] || "") + ""
   );
   let t0;
   let t1;
+  let td_class_value;
   const block = {
     c: function create() {
       td = element2("td");
       t0 = text(t0_value);
       t1 = space();
+      attr_dev(td, "class", td_class_value = "td-" + /*getType*/
+      ctx[6](
+        /*column*/
+        ctx[9]
+      ));
       add_location(td, file29, 14, 3, 321);
     },
     m: function mount(target, anchor) {
@@ -29108,12 +29139,20 @@ function create_each_block9(ctx) {
     },
     p: function update2(ctx2, dirty) {
       if (dirty & /*item, $Columns*/
-      17 && t0_value !== (t0_value = /*item*/
+      33 && t0_value !== (t0_value = /*item*/
       (ctx2[0][
         /*column*/
-        ctx2[6].field
+        ctx2[9].field
       ] || "") + ""))
         set_data_dev(t0, t0_value);
+      if (dirty & /*$Columns*/
+      32 && td_class_value !== (td_class_value = "td-" + /*getType*/
+      ctx2[6](
+        /*column*/
+        ctx2[9]
+      ))) {
+        attr_dev(td, "class", td_class_value);
+      }
     },
     d: function destroy(detaching) {
       if (detaching) {
@@ -29142,7 +29181,7 @@ function create_fragment34(ctx) {
   );
   let each_value = ensure_array_like_dev(
     /*$Columns*/
-    ctx[4]
+    ctx[5]
   );
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
@@ -29163,10 +29202,10 @@ function create_fragment34(ctx) {
         tbody,
         "data-id",
         /*id*/
-        ctx[3]
+        ctx[4]
       );
       attr_dev(tbody, "class", tbody_class_value = "item item-" + /*id*/
-      ctx[3]);
+      ctx[4]);
       attr_dev(tbody, "tabindex", "0");
       toggle_class(
         tbody,
@@ -29216,11 +29255,11 @@ function create_fragment34(ctx) {
         });
         check_outros();
       }
-      if (dirty & /*item, $Columns*/
-      17) {
+      if (dirty & /*getType, $Columns, item*/
+      97) {
         each_value = ensure_array_like_dev(
           /*$Columns*/
-          ctx2[4]
+          ctx2[5]
         );
         let i;
         for (i = 0; i < each_value.length; i += 1) {
@@ -29239,21 +29278,21 @@ function create_fragment34(ctx) {
         each_blocks.length = each_value.length;
       }
       if (!current || dirty & /*id*/
-      8) {
+      16) {
         attr_dev(
           tbody,
           "data-id",
           /*id*/
-          ctx2[3]
+          ctx2[4]
         );
       }
       if (!current || dirty & /*id*/
-      8 && tbody_class_value !== (tbody_class_value = "item item-" + /*id*/
-      ctx2[3])) {
+      16 && tbody_class_value !== (tbody_class_value = "item item-" + /*id*/
+      ctx2[4])) {
         attr_dev(tbody, "class", tbody_class_value);
       }
       if (!current || dirty & /*id, item*/
-      9) {
+      17) {
         toggle_class(
           tbody,
           "row-selected",
@@ -29292,7 +29331,9 @@ function create_fragment34(ctx) {
 }
 function instance34($$self2, $$props2, $$invalidate2) {
   let id2;
-  let $Columns, $$unsubscribe_Columns = noop, $$subscribe_Columns = () => ($$unsubscribe_Columns(), $$unsubscribe_Columns = subscribe(Columns, ($$value) => $$invalidate2(4, $Columns = $$value)), Columns);
+  let $Data, $$unsubscribe_Data = noop, $$subscribe_Data = () => ($$unsubscribe_Data(), $$unsubscribe_Data = subscribe(Data, ($$value) => $$invalidate2(8, $Data = $$value)), Data);
+  let $Columns, $$unsubscribe_Columns = noop, $$subscribe_Columns = () => ($$unsubscribe_Columns(), $$unsubscribe_Columns = subscribe(Columns, ($$value) => $$invalidate2(5, $Columns = $$value)), Columns);
+  $$self2.$$.on_destroy.push(() => $$unsubscribe_Data());
   $$self2.$$.on_destroy.push(() => $$unsubscribe_Columns());
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   validate_slots("GridRow", slots2, []);
@@ -29301,7 +29342,13 @@ function instance34($$self2, $$props2, $$invalidate2) {
   let { Columns = [] } = $$props2;
   validate_store(Columns, "Columns");
   $$subscribe_Columns();
-  const writable_props = ["item", "multiselect", "Columns"];
+  let { Data = [] } = $$props2;
+  validate_store(Data, "Data");
+  $$subscribe_Data();
+  function getType(column) {
+    return typeof $Data[0][column.field];
+  }
+  const writable_props = ["item", "multiselect", "Columns", "Data"];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<GridRow> was created with unknown prop '${key}'`);
@@ -29319,13 +29366,18 @@ function instance34($$self2, $$props2, $$invalidate2) {
       $$invalidate2(1, multiselect = $$props3.multiselect);
     if ("Columns" in $$props3)
       $$subscribe_Columns($$invalidate2(2, Columns = $$props3.Columns));
+    if ("Data" in $$props3)
+      $$subscribe_Data($$invalidate2(3, Data = $$props3.Data));
   };
   $$self2.$capture_state = () => ({
     Checkbox: Checkbox_default,
     item,
     multiselect,
     Columns,
+    Data,
+    getType,
     id: id2,
+    $Data,
     $Columns
   });
   $$self2.$inject_state = ($$props3) => {
@@ -29335,8 +29387,10 @@ function instance34($$self2, $$props2, $$invalidate2) {
       $$invalidate2(1, multiselect = $$props3.multiselect);
     if ("Columns" in $$props3)
       $$subscribe_Columns($$invalidate2(2, Columns = $$props3.Columns));
+    if ("Data" in $$props3)
+      $$subscribe_Data($$invalidate2(3, Data = $$props3.Data));
     if ("id" in $$props3)
-      $$invalidate2(3, id2 = $$props3.id);
+      $$invalidate2(4, id2 = $$props3.id);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
@@ -29345,15 +29399,29 @@ function instance34($$self2, $$props2, $$invalidate2) {
     if ($$self2.$$.dirty & /*item*/
     1) {
       $:
-        $$invalidate2(3, id2 = item.id || item.field);
+        $$invalidate2(4, id2 = item.id || item.field);
     }
   };
-  return [item, multiselect, Columns, id2, $Columns, checkbox_checked_binding];
+  return [
+    item,
+    multiselect,
+    Columns,
+    Data,
+    id2,
+    $Columns,
+    getType,
+    checkbox_checked_binding
+  ];
 }
 var GridRow = class extends SvelteComponentDev {
   constructor(options) {
     super(options);
-    init(this, options, instance34, create_fragment34, safe_not_equal, { item: 0, multiselect: 1, Columns: 2 });
+    init(this, options, instance34, create_fragment34, safe_not_equal, {
+      item: 0,
+      multiselect: 1,
+      Columns: 2,
+      Data: 3
+    });
     dispatch_dev("SvelteRegisterComponent", {
       component: this,
       tagName: "GridRow",
@@ -29377,6 +29445,12 @@ var GridRow = class extends SvelteComponentDev {
     throw new Error("<GridRow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   set Columns(value2) {
+    throw new Error("<GridRow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get Data() {
+    throw new Error("<GridRow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set Data(value2) {
     throw new Error("<GridRow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
@@ -29404,6 +29478,10 @@ function create_each_block10(ctx) {
       Columns: (
         /*Columns*/
         ctx[2]
+      ),
+      Data: (
+        /*Data*/
+        ctx[1]
       )
     },
     $$inline: true
@@ -29430,6 +29508,10 @@ function create_each_block10(ctx) {
       4)
         gridrow_changes.Columns = /*Columns*/
         ctx2[2];
+      if (dirty & /*Data*/
+      2)
+        gridrow_changes.Data = /*Data*/
+        ctx2[1];
       gridrow.$set(gridrow_changes);
     },
     i: function intro(local) {
@@ -29489,8 +29571,8 @@ function create_fragment35(ctx) {
       current = true;
     },
     p: function update2(ctx2, [dirty]) {
-      if (dirty & /*$Data, multiselect, Columns*/
-      13) {
+      if (dirty & /*$Data, multiselect, Columns, Data*/
+      15) {
         each_value = ensure_array_like_dev(
           /*$Data*/
           ctx2[3]
@@ -29625,7 +29707,7 @@ var GridBody_default = GridBody;
 var file30 = "src/grid/parts/GridFoot.svelte";
 function get_each_context11(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[6] = list[i];
+  child_ctx[7] = list[i];
   return child_ctx;
 }
 function create_if_block17(ctx) {
@@ -29657,19 +29739,25 @@ function create_each_block11(ctx) {
   let td;
   let t_value = (
     /*column*/
-    (ctx[6].total ? (
+    (ctx[7].total ? (
       /*sumColumn*/
       ctx[4](
         /*column*/
-        ctx[6]
+        ctx[7]
       )
     ) : "") + ""
   );
   let t;
+  let td_class_value;
   const block = {
     c: function create() {
       td = element2("td");
       t = text(t_value);
+      attr_dev(td, "class", td_class_value = "td-" + /*getType*/
+      ctx[5](
+        /*column*/
+        ctx[7]
+      ));
       add_location(td, file30, 6, 3, 87);
     },
     m: function mount(target, anchor) {
@@ -29679,14 +29767,22 @@ function create_each_block11(ctx) {
     p: function update2(ctx2, dirty) {
       if (dirty & /*$Columns*/
       8 && t_value !== (t_value = /*column*/
-      (ctx2[6].total ? (
+      (ctx2[7].total ? (
         /*sumColumn*/
         ctx2[4](
           /*column*/
-          ctx2[6]
+          ctx2[7]
         )
       ) : "") + ""))
         set_data_dev(t, t_value);
+      if (dirty & /*$Columns*/
+      8 && td_class_value !== (td_class_value = "td-" + /*getType*/
+      ctx2[5](
+        /*column*/
+        ctx2[7]
+      ))) {
+        attr_dev(td, "class", td_class_value);
+      }
     },
     d: function destroy(detaching) {
       if (detaching) {
@@ -29762,8 +29858,8 @@ function create_fragment36(ctx) {
         if_block.d(1);
         if_block = null;
       }
-      if (dirty & /*$Columns, sumColumn*/
-      24) {
+      if (dirty & /*getType, $Columns, sumColumn*/
+      56) {
         each_value = ensure_array_like_dev(
           /*$Columns*/
           ctx2[3]
@@ -29806,7 +29902,7 @@ function create_fragment36(ctx) {
   return block;
 }
 function instance36($$self2, $$props2, $$invalidate2) {
-  let $Data, $$unsubscribe_Data = noop, $$subscribe_Data = () => ($$unsubscribe_Data(), $$unsubscribe_Data = subscribe(Data, ($$value) => $$invalidate2(5, $Data = $$value)), Data);
+  let $Data, $$unsubscribe_Data = noop, $$subscribe_Data = () => ($$unsubscribe_Data(), $$unsubscribe_Data = subscribe(Data, ($$value) => $$invalidate2(6, $Data = $$value)), Data);
   let $Columns, $$unsubscribe_Columns = noop, $$subscribe_Columns = () => ($$unsubscribe_Columns(), $$unsubscribe_Columns = subscribe(Columns, ($$value) => $$invalidate2(3, $Columns = $$value)), Columns);
   $$self2.$$.on_destroy.push(() => $$unsubscribe_Data());
   $$self2.$$.on_destroy.push(() => $$unsubscribe_Columns());
@@ -29821,6 +29917,9 @@ function instance36($$self2, $$props2, $$invalidate2) {
   $$subscribe_Columns();
   function sumColumn(column) {
     return $Data.reduce((acc, row) => acc + +row[column.field], 0);
+  }
+  function getType(column) {
+    return typeof $Data[0][column.field];
   }
   const writable_props = ["multiselect", "Data", "Columns"];
   Object.keys($$props2).forEach((key) => {
@@ -29840,6 +29939,7 @@ function instance36($$self2, $$props2, $$invalidate2) {
     Data,
     Columns,
     sumColumn,
+    getType,
     $Data,
     $Columns
   });
@@ -29854,7 +29954,7 @@ function instance36($$self2, $$props2, $$invalidate2) {
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
-  return [multiselect, Data, Columns, $Columns, sumColumn];
+  return [multiselect, Data, Columns, $Columns, sumColumn, getType];
 }
 var GridFoot = class extends SvelteComponentDev {
   constructor(options) {

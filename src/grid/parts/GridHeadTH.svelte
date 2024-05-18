@@ -1,6 +1,6 @@
 <th
 	title="{column.label}"
-	class="th-sortable"
+	class="th-sortable th-{type}"
 	class:sortasc
 	class:sortdesc
 	tabindex="0"
@@ -27,7 +27,7 @@ $:sortOrder = Data.sortOrder;
 
 $:isDateField = column.field.includes('date');
 $:isASC = $sortOrder === 'ASC';
-
+$:type = typeof $Data[0][column.field];
 
 $: {
 	sortasc = false;

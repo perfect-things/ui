@@ -1,5 +1,5 @@
 {#each $Data as item}
-	<GridRow {item} {multiselect} {Columns}/>
+	<GridRow {item} {multiselect} {Columns} {Data}/>
 {/each}
 
 <script>
