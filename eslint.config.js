@@ -54,6 +54,11 @@ export default [
 			'prefer-promise-reject-errors': 'error',
 
 			'svelte/no-at-html-tags': 0,
+			// 'import/no-unresolved': [2, { 'commonjs': true, 'amd': true }],
+			// 'import/named': 2,
+			// 'import/namespace': 2,
+			// 'import/default': 2,
+			// 'import/export': 2,
 		}
 	}
 ];
