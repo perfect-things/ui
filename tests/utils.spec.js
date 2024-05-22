@@ -104,6 +104,7 @@ test('utils - fuzzy', () => {
 test('utils - guid', () => {
 	const id = utils.guid();
 	expect(id).toBeTruthy();
+	expect(id.length).toBe(36);
 });
 
 
