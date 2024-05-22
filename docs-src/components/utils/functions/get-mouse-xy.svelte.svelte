@@ -1,4 +1,4 @@
-<Util id="GetMouseXY" name="getMouseXY(event)" {example}>
+<Util id="getMouseXY" name="getMouseXY(event)" {example}>
 	<p>Returns the mouse XY position (as an array: [x, y]). Event is standardised across platforms (touch & pointer)</p>
 </Util>
 

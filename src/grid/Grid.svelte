@@ -164,7 +164,12 @@ function onDblClick (e) {
 	if (shouldSkipNav(e, element)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
-	onClick(e);
+	// onClick(e);
+	const rowEl = e.target.closest(rowSelector);
+	if (!rowEl) return;
+	const item = { id: +rowEl.dataset.id };
+	Data.toggleSelection(item, e.detail.event, false);
+
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems(element)[selectedIdx];
 		dispatch('dblclick', { event: e, selectedItem });

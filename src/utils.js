@@ -54,12 +54,6 @@ export function blink (el, duration = 160) {
 }
 
 
-export function deepCopy (o) {
-	return structuredClone(o);
-}
-
-
-
 export function debounce (func, timeout = 300) {
 	let timer;
 	return (...args) => {
@@ -79,12 +73,18 @@ export function throttle (fn, delay = 300) {
 	};
 }
 
+
 export function empty (v) {
 	if (v === null || typeof v === 'undefined') return true;
 	if (v === '') return true;
 	if (Array.isArray(v) && v.length === 0) return true;
 	if (typeof v === 'object' && Object.keys(v).length === 0) return true;
 	return false;
+}
+
+
+export function isset (v) {
+	return typeof v !== 'undefined' && v !== null;
 }
 
 
@@ -314,10 +314,13 @@ function isScrollable (node) {
  * @returns boolean
  */
 export function isInScrollable (node) {
-	if (!(node instanceof HTMLElement || node instanceof SVGElement)) return;
+	if (!(node instanceof HTMLElement || node instanceof SVGElement)) return false;
 	if (isScrollable(node)) return true;
-	while (node = node.parentElement) {
-		if (isScrollable(node)) return true;
+
+	let parent = node.parentElement;
+	while (parent) {
+		if (isScrollable(parent)) return true;
+		parent = parent.parentElement;
 	}
 	return false;
 }

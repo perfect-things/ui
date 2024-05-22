@@ -1,4 +1,4 @@
-<Util id="IsMobile" name="isMobile()" {example}>
+<Util id="isMobile" name="isMobile()" {example}>
 	<p>Checks if the current platform is mobile.</p>
 </Util>
 

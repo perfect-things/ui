@@ -1,4 +1,4 @@
-<Util id="FormatDate" name="formatDate(date)" {example}>
+<Util id="formatDate" name="formatDate(date)" {example}>
 	<p>Converts date to a string in the format: <em>YYYY-MM-DD HH:mm</em>.</p>
 </Util>
 

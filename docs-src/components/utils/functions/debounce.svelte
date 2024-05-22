@@ -1,4 +1,4 @@
-<Util id="Debounce" name="debounce(fn, timeout = 300)" {example}>
+<Util id="debounce" name="debounce(fn, timeout = 300)" {example}>
 	<p>The "debounced" function will only be called after it has not been called for <em>timeout</em> milliseconds.</p>
 	<ul>
 		<li><em>fn</em> - function to debounce.

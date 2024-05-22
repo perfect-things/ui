@@ -1,4 +1,5 @@
 import { writable, get } from 'svelte/store';
+import { isset } from '../../utils.js';
 
 
 export function DataStore () {
@@ -9,22 +10,25 @@ export function DataStore () {
 	const someSelected = writable(false);
 	const sortField = writable('');
 	const sortOrder = writable('ASC');
+	let lastSelectedItemId = null;
 
 
-	function toggleSelection (item, /* e */) {
-		let count = 0;
-		const unselectOthers = false;
-		const $Data = get(this);
-		$Data.forEach(_item => {
-			if (item.id === _item.id) {
-				_item.selected = !_item.selected;
-			}
-			else if (unselectOthers) _item.selected = false;
-			if (_item.selected) count += 1;
-		});
-		allSelected.set($Data.length === count);
-		someSelected.set(count > 0 && !get(allSelected));
+	function getById (id) {
+		return get(_this).find(i => i.id === id);
+	}
+
+	function toggleSelection (item, event , forceState) {
+		if (event.shiftKey && lastSelectedItemId) return selectRange(event);
+
+		const $Data = get(_this);
+		const _item = getById(item.id);
+		if (!isset(forceState)) _item.selected = !_item.selected;
+		else _item.selected = forceState;
+
+		if (_item.selected) lastSelectedItemId = _item.id;
+
 		set($Data);
+		updateSelectedCounters();
 		// onSelectionChange();
 	}
 
@@ -34,14 +38,46 @@ export function DataStore () {
 			if (get(someSelected)) allSelected.set(false);
 			else allSelected.set(!get(allSelected));
 		}
-		someSelected.set(false);
-		const selected = get(allSelected);
-		const $Data = get(this);
-		$Data.forEach(_item => _item.selected = selected);
+		const $Data = get(_this);
+		$Data.forEach(_item => _item.selected = allSelected);
 		set($Data);
+		someSelected.set(false);
 		// onSelectionChange();
 	}
 
+	function selectRange (event) {
+		const rowEl = event.target.closest('.item');
+		const gridEl = rowEl.closest('.grid');
+		const lastSelectedRowEl = gridEl.querySelector(`.item[data-id="${lastSelectedItemId}"]`);
+		if (!rowEl || !lastSelectedRowEl) return;
+
+		const $Data = get(_this);
+		const rows = gridEl.querySelectorAll('.item');
+		// find rows between last selected and current
+		const rowsToSelect = [rowEl, lastSelectedRowEl];
+		let start = false;
+		for (let i = 0; i < rows.length; i++) {
+			if (rows[i] === rowEl || rows[i] === lastSelectedRowEl) {
+				if (start) break;
+				start = true;
+			}
+			if (start) rowsToSelect.push(rows[i]);
+		}
+		rowsToSelect.forEach(id => {
+			getById(+id.dataset.id).selected = true;
+		});
+
+		set($Data);
+		updateSelectedCounters();
+		// onSelectionChange();
+	}
+
+	function updateSelectedCounters () {
+		const $Data = get(_this);
+		const countSelected = $Data.filter(t => t.selected).length;
+		allSelected.set($Data.length === countSelected);
+		someSelected.set(countSelected > 0 && !allSelected);
+	}
 
 	sortField.subscribe(field => {
 		if (field) set(sortData(get(_this), field, get(sortOrder)));

@@ -1,4 +1,4 @@
-<Util id="AlignItem" name="alignItem(config)" {example} {api}>
+<Util id="alignItem" name="alignItem(config)" {example} {api}>
 	<p>Aligns an element to another element,
 		ensuring that the aligned element remains within the viewport.
 	</p>

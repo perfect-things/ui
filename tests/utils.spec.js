@@ -32,12 +32,55 @@ test('utils - blink', () => {
 });
 
 
-test('utils - deepCopy', () => {
-	const obj = { a: 1, b: { c: 2 } };
-	const obj2 = utils.deepCopy(obj);
-	expect(obj2).toEqual(obj);
-	expect(obj2).not.toBe(obj);
-	expect(obj2.b).not.toBe(obj.b);
+test('utils - debounce', async () => {
+	const fn = jest.fn();
+	const debounced = utils.debounce(fn, 100);
+	debounced();
+	debounced();
+	debounced();
+	expect(fn).toHaveBeenCalledTimes(0);
+	await new Promise(resolve => setTimeout(resolve, 200));
+	expect(fn).toHaveBeenCalledTimes(1);
+});
+
+
+test('utils - throttle', async () => {
+	const fn = jest.fn();
+	const throttled = utils.throttle(fn, 100);
+	throttled();
+	throttled();
+	throttled();
+	expect(fn).toHaveBeenCalledTimes(1);
+	await new Promise(resolve => setTimeout(resolve, 200));
+	expect(fn).toHaveBeenCalledTimes(1);
+});
+
+
+test('utils - empty', () => {
+	expect(utils.empty()).toBe(true);
+	expect(utils.empty('')).toBe(true);
+	expect(utils.empty([])).toBe(true);
+	expect(utils.empty({})).toBe(true);
+	expect(utils.empty(null)).toBe(true);
+	expect(utils.empty(undefined)).toBe(true);
+	expect(utils.empty(0)).toBe(false);
+	expect(utils.empty('a')).toBe(false);
+	expect(utils.empty([1])).toBe(false);
+	expect(utils.empty({ a: 1 })).toBe(false);
+});
+
+
+test('utils - isset', () => {
+	expect(utils.isset()).toBe(false);
+	expect(utils.isset('')).toBe(true);
+	expect(utils.isset([])).toBe(true);
+	expect(utils.isset({})).toBe(true);
+	expect(utils.isset(null)).toBe(false);
+	expect(utils.isset(undefined)).toBe(false);
+	expect(utils.isset(0)).toBe(true);
+	expect(utils.isset('a')).toBe(true);
+	expect(utils.isset([1])).toBe(true);
+	expect(utils.isset({ a: 1 })).toBe(true);
 });
 
 

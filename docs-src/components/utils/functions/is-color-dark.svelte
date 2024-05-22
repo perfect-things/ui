@@ -1,4 +1,4 @@
-<Util id="IsColorDark" name="isColorDark(hex)" {example}>
+<Util id="isColorDark" name="isColorDark(hex)" {example}>
 	<p>Checks if a colour is dark or light (so that e.g. a text colour can have a better contrast against the background).</p>
 </Util>
 

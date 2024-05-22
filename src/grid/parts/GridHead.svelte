@@ -27,6 +27,6 @@ $:checked = Data.allSelected;
 $:indeterminate = Data.someSelected;
 
 function toggleSelectAll () {
-	Data.toggleSelectAll(!$checked);
+	Data.toggleSelectAll(!$checked && !$indeterminate);
 }
 </script>

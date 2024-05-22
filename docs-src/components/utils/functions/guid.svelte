@@ -1,4 +1,4 @@
-<Util id="Guid" name="guid()" {example}>
+<Util id="guid" name="guid()" {example}>
 	<p>Generates a globally unique identifier.</p>
 </Util>
 
