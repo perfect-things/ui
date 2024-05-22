@@ -12,16 +12,16 @@
 		<h1 class="grid-title">{title}</h1>
 	{/if}
 	<table>
-		<GridHead {multiselect} {Data} {Columns} />
-		<GridBody {multiselect} {Data} {Columns}/>
-		<GridFoot {multiselect} {Data} {Columns}/>
+		<GridHead {multiselect} {Data} />
+		<GridBody {multiselect} {Data}/>
+		<GridFoot {multiselect} {Data}/>
 	</table>
 </div>
 
 <script>
-import { createEventDispatcher, beforeUpdate } from 'svelte';
-import { shouldSkipNav, getSelectableItems } from './utils.js';
-import { DataStore, ColumnsStore } from './store';
+import { onMount, createEventDispatcher, beforeUpdate } from 'svelte';
+import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';
+import { DataStore } from './DataStore.js';
 import { GridHead, GridFoot, GridBody } from './parts';
 
 
@@ -31,7 +31,7 @@ export let title = '';
 export let interactive = true;
 export let round = false;
 export let scrollContainer = undefined;
-export let scrollCorrectionOffset = 0;
+export let scrollCorrectionOffset = '0';
 export let columns = [];
 export let data = [];
 export let multiselect = false;
@@ -39,11 +39,10 @@ export let multiselect = false;
 export let element = undefined;
 
 const dispatch = createEventDispatcher();
-const headerHeight = 0;
+let headerHeight = 0;
 const rowSelector = 'tbody';
 
 const Data = DataStore();
-const Columns = ColumnsStore();
 
 let selectedIdx = -1;
 let clickTimer;
@@ -52,76 +51,61 @@ let previousKey;
 $:_interactive = (interactive === true || interactive === 'true');
 
 
-beforeUpdate(() => {
-	if (data) Data.set(data);
-	if (columns) Columns.set(columns);
+onMount(() => {
+	Object.assign(element.dataset, data);
+	if (_interactive) requestAnimationFrame(() => headerHeight = getHeaderHeight(element));
 });
 
 
+beforeUpdate(() => {
+	if (data) Data.set(data);
+	if (columns) Data.columns.set(columns);
+});
 
 
-
-
-function selectPrev (skipEvent = false) {
+function selectPrev () {
 	const rows = getSelectableItems(element);
 	if (selectedIdx <= 0) return;
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
+	dispatch('select', { selectedItem: rowEl });
 }
 
 
-function selectNext (skipEvent = false) {
+function selectNext () {
 	const rows = getSelectableItems(element);
 	if (selectedIdx >= rows.length - 1) return;
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
+	dispatch('select', { selectedItem: rowEl });
 }
 
 
-function getScrollContainer () {
-	let scrlCont;
-	if (scrollContainer) {
-		if (typeof scrollContainer === 'string') scrlCont = element.closest(scrollContainer);
-		else scrlCont = scrollContainer;
-	}
-	return scrlCont || element;
-}
 
-
-function selectClicked (skipEvent = false) {
-	const rows = getSelectableItems(element);
-	const rowEl = rows[selectedIdx];
+function selectRow (rowEl) {
 	if (!rowEl) return;
-	if (rowEl != document.activeElement) rowEl.focus();
+	if (rowEl !== document.activeElement) rowEl.focus();
 
-	const scrlCont = getScrollContainer();
-	if (!scrlCont || !scrlCont.scrollTo) return;
-
-	const topMargin = (scrlCont === element ? 0 : element.offsetTop);
-
-	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
-	if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top: Math.round(top) });
-
-	else {
-		const paddingBottom = 4;
-		top = rowEl.offsetTop + rowEl.offsetHeight - scrlCont.offsetHeight +
-			headerHeight + topMargin + parseFloat(scrollCorrectionOffset) + paddingBottom;
-		if (scrlCont.scrollTop < top) scrlCont.scrollTo({ top: Math.round(top) });
-	}
-
-	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
-}
-
-
-function selectFocusedRow (rowEl) {
-	if (!rowEl) return;
 	const rows = getSelectableItems(element);
 	selectedIdx = rows.findIndex(item => item === rowEl);
-	selectClicked(true);
+
+	const scrollEl = getScrollContainer(element, scrollContainer);
+	if (!scrollEl) return;
+
+	const topMargin = (scrollEl === element ? 0 : element.offsetTop);
+	const scrollCorrection = parseFloat(scrollCorrectionOffset);
+	const paddingTop = 10;
+	const paddingBottom = 2;
+	let top = rowEl.offsetTop + topMargin + scrollCorrection + paddingTop;
+
+	if (scrollEl.scrollTop > top) scrollEl.scrollTo({ top: Math.round(top) });
+	else {
+		top = rowEl.offsetTop + rowEl.offsetHeight - scrollEl.offsetHeight +
+			headerHeight + topMargin + scrollCorrection + paddingBottom;
+		if (scrollEl.scrollTop < top) scrollEl.scrollTo({ top: Math.round(top) });
+	}
 }
 
 
@@ -132,7 +116,7 @@ function onFocus (e) {
 
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
-		selectFocusedRow(rowEl);
+		selectRow(rowEl);
 		dispatch('click', { event: e, selectedItem: rowEl });
 	}
 }
@@ -148,13 +132,12 @@ function onClick (e) {
 	if (clickTimer) clearTimeout(clickTimer);
 	clickTimer = setTimeout(() => dispatch('select', { event: e, selectedItem: rowEl }), 300);
 
-
 	if (e.target.closest('.column-check')) {
 		const item = { id: +rowEl.dataset.id };
 		Data.toggleSelection(item, e);
 	}
 
-	selectFocusedRow(rowEl);
+	selectRow(rowEl);
 	dispatch('click', { event: e, selectedItem: rowEl });
 }
 
@@ -164,11 +147,11 @@ function onDblClick (e) {
 	if (shouldSkipNav(e, element)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
-	// onClick(e);
+
 	const rowEl = e.target.closest(rowSelector);
 	if (!rowEl) return;
 	const item = { id: +rowEl.dataset.id };
-	Data.toggleSelection(item, e.detail.event, false);
+	Data.toggleSelection(item, e, false);
 
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems(element)[selectedIdx];
@@ -200,23 +183,20 @@ function onKeyDown (e) {
 		selectedIdx = rows && rows.length - 2;
 		selectNext();
 	}
-	if (e.target.closest && e.target.closest('.menu,.dialog,.drawer,.popover')) return;
 
-	const rowEl = e && e.target;
-	if (rowEl) {
-		const item = { id: +rowEl.dataset.id };
-		if (e.key === ' ' && item) {
-			if (['BUTTON', 'A'].includes(e.target.tagName)) return;
-			e.preventDefault();
-			return Data.toggleSelection(item, e);
-		}
-	}
-
-	if (e.metaKey && e.key === 'a') {
+	const rowEl = e && e.target && e.target.closest(rowSelector);
+	if (rowEl && e.key === ' ') {
 		e.preventDefault();
-		return Data.toggleSelectAll(true);
+		Data.toggleSelection({ id: +rowEl.dataset.id }, e);
 	}
-	if (e.metaKey && e.key === '0') return Data.toggleSelectAll(false);
+
+	else if (e.metaKey) {
+		if (e.key === 'a') {
+			e.preventDefault();
+			Data.toggleSelectAll(true);
+		}
+		else if (e.key === '0') Data.toggleSelectAll(false);
+	}
 
 	previousKey = e.key;
 	const selectedItem = getSelectableItems(element)[selectedIdx];

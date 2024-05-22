@@ -595,8 +595,9 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 	background: var(--ui-color-background-input);
 	border-bottom: 1px solid var(--ui-color-border);
 	box-shadow: 0 .5px 0 var(--ui-color-background-1);
-	z-index: 5;
-	position: relative;
+	position: sticky;
+	top: 0;
+	z-index: 1;
 }
 
 .grid {
@@ -605,7 +606,12 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 	cursor: default;
 }
 
-.grid table { table-layout: fixed; }
+.grid table {
+	table-layout: fixed;
+	position: sticky;
+	top: 0;
+	z-index: 2;
+}
 .grid-item { content-visibility: auto; }
 
 .grid .column-check { width: 3em; padding: 0 0.5em; }
@@ -656,8 +662,7 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 	text-overflow: ellipsis;
 	flex: 1;
 }
-.grid-sortable thead th.sortasc svg,
-.grid-sortable thead th.sortdesc svg {
+.grid-sortable thead th svg {
 	width: 20px;
 	height: 20px;
 	color: var(--ui-color-text-2);

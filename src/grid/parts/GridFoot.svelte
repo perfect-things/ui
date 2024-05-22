@@ -3,7 +3,7 @@
 		{#if multiselect}
 			<td></td>
 		{/if}
-		{#each $Columns as column}
+		{#each $columns as column}
 			<td class="td-{getType(column)}">{column.total ? sumColumn(column) : ''}</td>
 		{/each}
 	</tr>
@@ -12,8 +12,8 @@
 <script>
 export let multiselect = false;
 export let Data = [];
-export let Columns = [];
 
+$:columns = Data.columns;
 
 function sumColumn (column) {
 	return $Data.reduce((acc, row) => acc + +row[column.field], 0);

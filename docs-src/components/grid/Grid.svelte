@@ -1,6 +1,6 @@
 <h2>Grid</h2>
 <p>Grid component is basically a table on steroids. </p>
-<div class="table-viewport">
+<div class="grid-viewport">
 	<Grid round title="Grid with data" {columns} {data} multiselect />
 </div>
 
@@ -46,7 +46,22 @@ const data = [
 	{ id: 2, name: 'Jane Doe', date: '2020-01-02', price: 200 },
 	{ id: 3, name: 'Jim Doe', date: '2020-01-03', price: 300 },
 	{ id: 4, name: 'Jill Doe', date: '2020-01-04', price: 400 },
-	{ id: 5, name: 'Jack Doe', date: '2020-01-05', price: 500 }
+	{ id: 5, name: 'Jack Doe', date: '2020-01-05', price: 500 },
+	{ id: 6, name: 'John Smith', date: '2023-01-01', price: 100 },
+	{ id: 7, name: 'Jane Smith', date: '2023-01-02', price: 200 },
+	{ id: 8, name: 'Jim Smith', date: '2023-01-03', price: 300 },
+	{ id: 9, name: 'Jill Smith', date: '2023-01-04', price: 400 },
+	{ id: 10, name: 'Jack Smith', date: '2023-01-05', price: 500 },
+	{ id: 11, name: 'John Doe', date: '2020-01-01', price: 100 },
+	{ id: 12, name: 'Jane Doe', date: '2020-01-02', price: 200 },
+	{ id: 13, name: 'Jim Doe', date: '2020-01-03', price: 300 },
+	{ id: 14, name: 'Jill Doe', date: '2020-01-04', price: 400 },
+	{ id: 15, name: 'Jack Doe', date: '2020-01-05', price: 500 },
+	{ id: 16, name: 'John Smith', date: '2023-01-01', price: 100 },
+	{ id: 17, name: 'Jane Smith', date: '2023-01-02', price: 200 },
+	{ id: 18, name: 'Jim Smith', date: '2023-01-03', price: 300 },
+	{ id: 19, name: 'Jill Smith', date: '2023-01-04', price: 400 },
+	{ id: 20, name: 'Jack Smith', date: '2023-01-05', price: 500 }
 ];
 
 // const data2 = [

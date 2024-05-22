@@ -29,3 +29,34 @@ export function getSelectableItems (element) {
 	if (rows && rows.length) return Array.from(rows);
 	return [];
 }
+
+
+/**
+ * Returns the scroll container element.
+ * @param element - The main grid element
+ * @param scrollContainer - Element or selector of the grid container that is scrollable (if passed by the consumer)
+ * @returns {HTMLElement}
+ */
+export function getScrollContainer (element, scrollContainer) {
+	let scrollEl = element;
+	if (scrollContainer) {
+		if (typeof scrollContainer === 'string') scrollEl = element.closest(scrollContainer);
+		else scrollEl = scrollContainer;
+	}
+	return scrollEl.scrollTo ? scrollEl : null;
+}
+
+
+/**
+ * Returns the height of the title + thead section of the grid.
+ * @param element - The main grid element
+ * @returns {number}
+ */
+export function getHeaderHeight (element) {
+	if (!element) return 0;
+	const _title = element.querySelector('.grid-title');
+	const titleHeight = _title ? _title.offsetHeight : 0;
+	const head = element.querySelector('thead');
+	const headHeight = head ? head.offsetHeight : 0;
+	return headHeight + titleHeight;
+}

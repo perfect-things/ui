@@ -2,9 +2,11 @@ Changelog
 =========
 
 
-## v10.0.0 *(2024-05-15)*
+## v10.0.0 *(2024-?-?)*
 - Breaking change: Dropped `deepCopy` in favour of the native (and unwrapped) `structuredClone`.
 - New component: `Grid`. 
+- Use `crypto` for `guid` generation in `utils`.
+
 
 ## v9.5.3 *(2024-05-18)*
 - Fix `Combobox` issue for some edge cases.

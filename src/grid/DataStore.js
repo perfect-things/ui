@@ -1,15 +1,22 @@
 import { writable, get } from 'svelte/store';
-import { isset } from '../../utils.js';
+import { isset } from '../utils.js';
 
 
+/**
+ * DataStore
+ * @description Store for all grid data
+ * @returns {Object} DataStore
+ */
 export function DataStore () {
 	const _this = writable([]);
 	const { subscribe, set } = _this;
 
+	const columns = writable([]);
 	const allSelected = writable(false);
 	const someSelected = writable(false);
 	const sortField = writable('');
 	const sortOrder = writable('ASC');
+
 	let lastSelectedItemId = null;
 
 
@@ -33,15 +40,17 @@ export function DataStore () {
 	}
 
 	function toggleSelectAll (forceState = null) {
-		if (typeof forceState === 'boolean') allSelected.set(forceState);
-		else {
-			if (get(someSelected)) allSelected.set(false);
-			else allSelected.set(!get(allSelected));
-		}
-		const $Data = get(_this);
-		$Data.forEach(_item => _item.selected = allSelected);
-		set($Data);
+		let isAll = get(allSelected);
+
+		if (typeof forceState === 'boolean') isAll = forceState;
+		else isAll = get(someSelected) ? false : !isAll;
+
+		allSelected.set(isAll);
 		someSelected.set(false);
+
+		const $Data = get(_this);
+		$Data.forEach(_item => _item.selected = isAll);
+		set($Data);
 		// onSelectionChange();
 	}
 
@@ -75,8 +84,9 @@ export function DataStore () {
 	function updateSelectedCounters () {
 		const $Data = get(_this);
 		const countSelected = $Data.filter(t => t.selected).length;
-		allSelected.set($Data.length === countSelected);
-		someSelected.set(countSelected > 0 && !allSelected);
+		const isAll = $Data.length === countSelected;
+		allSelected.set(isAll);
+		someSelected.set(countSelected > 0 && !isAll);
 	}
 
 	sortField.subscribe(field => {
@@ -91,10 +101,13 @@ export function DataStore () {
 		subscribe,
 		set,
 		get: () => _this,
+
+		columns,
 		allSelected,
 		someSelected,
 		sortField,
 		sortOrder,
+
 		toggleSelection,
 		toggleSelectAll,
 		reset: () => set([])
@@ -116,13 +129,13 @@ function sortData (items, field, order) {
 
 
 
-export function numberSort (field, order = 'ASC') {
+function numberSort (field, order = 'ASC') {
 	if (order === 'ASC') return (a, b) => Math.abs(a[field]) - Math.abs(b[field]);
 	return (a, b) => Math.abs(b[field]) - Math.abs(a[field]);
 }
 
 
-export function stringSort (field, order = 'ASC') {
+function stringSort (field, order = 'ASC') {
 	if (order === 'ASC') return (a, b) => ('' + a[field]).localeCompare('' + b[field]);
 	return (a, b) => ('' + b[field]).localeCompare('' + a[field]);
 }

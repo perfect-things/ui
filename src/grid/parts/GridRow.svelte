@@ -11,7 +11,7 @@
 				<Checkbox bind:checked="{item.selected}" tabindex="-1"/>
 			</td>
 		{/if}
-		{#each $Columns as column}
+		{#each $columns as column}
 			<td class="td-{getType(column)}">
 				{item[column.field] || ''}
 			</td>
@@ -23,10 +23,9 @@
 import { Checkbox } from '../../input';
 export let item = {};
 export let multiselect = false;
-export let Columns = [];
 export let Data = [];
 
-
+$:columns = Data.columns;
 $:id = item.id || item.field;
 
 function getType (column) {
