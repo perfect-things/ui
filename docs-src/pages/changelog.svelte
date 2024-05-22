@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.5.3 <em>(2024-05-18)</em></h2>
+<ul>
+<li>Fix <code>Combobox</code> issue for some edge cases.</li>
+</ul>
 <h2>v9.5.2 <em>(2024-05-15)</em></h2>
 <ul>
 <li>Fix <code>--ui-shadow-large</code> in light-mode (was a bit too dark).</li>

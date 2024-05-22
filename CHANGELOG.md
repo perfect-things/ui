@@ -2,6 +2,9 @@ Changelog
 =========
 
 
+## v9.5.3 *(2024-05-18)*
+- Fix `Combobox` issue for some edge cases.
+
 
 ## v9.5.2 *(2024-05-15)*
 - Fix `--ui-shadow-large` in light-mode (was a bit too dark).
