@@ -52,8 +52,9 @@ $:_interactive = (interactive === true || interactive === 'true');
 
 
 onMount(() => {
-	Object.assign(element.dataset, data);
-	if (_interactive) requestAnimationFrame(() => headerHeight = getHeaderHeight(element));
+	if (_interactive) {
+		requestAnimationFrame(() => headerHeight = getHeaderHeight(element));
+	}
 });
 
 

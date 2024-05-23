@@ -1,4 +1,4 @@
-<h2>Grid</h2>
+<h2>Grid [alpha version]</h2>
 <p>Grid component is basically a table on steroids. </p>
 <div class="grid-viewport">
 	<Grid round title="Grid with data" {columns} {data} multiselect />

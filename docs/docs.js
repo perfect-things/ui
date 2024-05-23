@@ -29873,7 +29873,6 @@ var GridFoot = class extends SvelteComponentDev {
 var GridFoot_default = GridFoot;
 
 // src/grid/Grid.svelte
-var { Object: Object_12 } = globals;
 var file31 = "src/grid/Grid.svelte";
 function create_if_block18(ctx) {
   let h1;
@@ -30180,9 +30179,9 @@ function instance37($$self2, $$props2, $$invalidate2) {
   let clickTimer;
   let previousKey;
   onMount(() => {
-    Object.assign(element3.dataset, data);
-    if (_interactive)
+    if (_interactive) {
       requestAnimationFrame(() => headerHeight = getHeaderHeight(element3));
+    }
   });
   beforeUpdate(() => {
     if (data)
@@ -30327,7 +30326,7 @@ function instance37($$self2, $$props2, $$invalidate2) {
     "multiselect",
     "element"
   ];
-  Object_12.keys($$props2).forEach((key) => {
+  Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Grid> was created with unknown prop '${key}'`);
   });
@@ -33338,7 +33337,7 @@ function getNextNotification(el, id2) {
 }
 
 // src/notification-center/NotificationArchive/NotificationArchive.svelte
-var { Object: Object_13 } = globals;
+var { Object: Object_12 } = globals;
 var file36 = "src/notification-center/NotificationArchive/NotificationArchive.svelte";
 function get_each_context13(ctx, list, i) {
   const child_ctx = ctx.slice();
@@ -34147,7 +34146,7 @@ function instance43($$self2, $$props2, $$invalidate2) {
     return slideUp(node, { duration: 0 });
   }
   const writable_props = ["show", "expanded"];
-  Object_13.keys($$props2).forEach((key) => {
+  Object_12.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<NotificationArchive> was created with unknown prop '${key}'`);
   });
@@ -34265,7 +34264,7 @@ var NotificationArchive = class extends SvelteComponentDev {
 var NotificationArchive_default = NotificationArchive;
 
 // src/notification-center/NotificationCenter/NotificationCenter.svelte
-var { Object: Object_14 } = globals;
+var { Object: Object_13 } = globals;
 var file37 = "src/notification-center/NotificationCenter/NotificationCenter.svelte";
 function get_each_context14(ctx, list, i) {
   const child_ctx = ctx.slice();
@@ -35116,7 +35115,7 @@ function instance44($$self2, $$props2, $$invalidate2) {
     }
   }
   const writable_props = ["class", "round", "outline", "hideButton"];
-  Object_14.keys($$props2).forEach((key) => {
+  Object_13.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<NotificationCenter> was created with unknown prop '${key}'`);
   });
@@ -36540,7 +36539,7 @@ var Splitter = class extends SvelteComponentDev {
 var Splitter_default = Splitter;
 
 // src/table/Table.svelte
-var { Object: Object_15 } = globals;
+var { Object: Object_14 } = globals;
 var file40 = "src/table/Table.svelte";
 function create_fragment47(ctx) {
   let div;
@@ -36919,7 +36918,7 @@ function instance47($$self2, $$props2, $$invalidate2) {
     "rowSelector",
     "data"
   ];
-  Object_15.keys($$props2).forEach((key) => {
+  Object_14.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Table> was created with unknown prop '${key}'`);
   });
@@ -70069,7 +70068,7 @@ function create_fragment86(ctx) {
   const block = {
     c: function create() {
       h2 = element2("h2");
-      h2.textContent = "Grid";
+      h2.textContent = "Grid [alpha version]";
       t1 = space();
       p = element2("p");
       p.textContent = "Grid component is basically a table on steroids.";
@@ -70081,9 +70080,9 @@ function create_fragment86(ctx) {
       t5 = space();
       create_component(api.$$.fragment);
       add_location(h2, file79, 0, 0, 0);
-      add_location(p, file79, 1, 0, 14);
+      add_location(p, file79, 1, 0, 30);
       attr_dev(div, "class", "grid-viewport");
-      add_location(div, file79, 2, 0, 71);
+      add_location(div, file79, 2, 0, 87);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -75135,7 +75134,7 @@ var Menu_1 = class extends SvelteComponentDev {
 var Menu_default2 = Menu_1;
 
 // docs-src/components/icon/Icon.svelte
-var { Object: Object_16 } = globals;
+var { Object: Object_15 } = globals;
 var file83 = "docs-src/components/icon/Icon.svelte";
 function get_each_context18(ctx, list, i) {
   const child_ctx = ctx.slice();
@@ -75607,7 +75606,7 @@ function instance90($$self2, $$props2, $$invalidate2) {
 &lt;/script>
 `;
   const writable_props = [];
-  Object_16.keys($$props2).forEach((key) => {
+  Object_15.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Icon> was created with unknown prop '${key}'`);
   });
@@ -80098,7 +80097,7 @@ var Prefers_dark = class extends SvelteComponentDev {
 var prefers_dark_default = Prefers_dark;
 
 // docs-src/components/utils/Utils.svelte
-var { Object: Object_17 } = globals;
+var { Object: Object_16 } = globals;
 var file108 = "docs-src/components/utils/Utils.svelte";
 function get_each_context19(ctx, list, i) {
   const child_ctx = ctx.slice();
@@ -80699,7 +80698,7 @@ function instance115($$self2, $$props2, $$invalidate2) {
   const props = Object.keys(properties_exports);
   const fns = Object.keys(functions_exports);
   const writable_props = [];
-  Object_17.keys($$props2).forEach((key) => {
+  Object_16.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<Utils> was created with unknown prop '${key}'`);
   });

@@ -128,7 +128,6 @@ function sortData (items, field, order) {
 }
 
 
-
 function numberSort (field, order = 'ASC') {
 	if (order === 'ASC') return (a, b) => Math.abs(a[field]) - Math.abs(b[field]);
 	return (a, b) => Math.abs(b[field]) - Math.abs(a[field]);
