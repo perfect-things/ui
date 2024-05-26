@@ -97,7 +97,7 @@
 <API props="{apiProps}"/>
 
 <script>
-import { ButtonGroup, Button, PushButton } from '../../../src';
+import { Button, ButtonGroup, PushButton } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 

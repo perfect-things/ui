@@ -53319,8 +53319,8 @@ function onChange (e) {
       console.warn(`<ButtonGroup> was created with unknown prop '${key}'`);
   });
   $$self2.$capture_state = () => ({
-    ButtonGroup: ButtonGroup_default,
     Button: Button_default,
+    ButtonGroup: ButtonGroup_default,
     PushButton: PushButton_default,
     API: ApiTable_default,
     CodeExample: CodeExample_default,
