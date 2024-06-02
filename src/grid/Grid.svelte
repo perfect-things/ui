@@ -35,6 +35,7 @@ export let scrollCorrectionOffset = '0';
 export let columns = [];
 export let data = [];
 export let multiselect = false;
+export let dblClickDelay = 500;
 
 export let element = undefined;
 
@@ -85,12 +86,17 @@ function selectNext () {
 
 
 
-function selectRow (rowEl) {
+function selectRow (e, rowEl) {
 	if (!rowEl) return;
+
 	if (rowEl !== document.activeElement) rowEl.focus();
 
+	const oldIdx = selectedIdx;
 	const rows = getSelectableItems(element);
 	selectedIdx = rows.findIndex(item => item === rowEl);
+
+	if (oldIdx !== selectedIdx) dispatch('select', { event: e, selectedItem: rowEl });
+
 
 	const scrollEl = getScrollContainer(element, scrollContainer);
 	if (!scrollEl) return;
@@ -117,8 +123,8 @@ function onFocus (e) {
 
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
-		selectRow(rowEl);
-		dispatch('click', { event: e, selectedItem: rowEl });
+		selectRow(e, rowEl);
+		dispatch('focus', { event: e, selectedItem: rowEl });
 	}
 }
 
@@ -129,17 +135,16 @@ function onClick (e) {
 	const rowEl = e.target.closest(rowSelector);
 	if (!rowEl) return;
 
-	// debounce, so to not duplicate events when dbl-clicking
-	if (clickTimer) clearTimeout(clickTimer);
-	clickTimer = setTimeout(() => dispatch('select', { event: e, selectedItem: rowEl }), 300);
-
 	if (e.target.closest('.column-check')) {
 		const item = { id: +rowEl.dataset.id };
 		Data.toggleSelection(item, e);
 	}
 
-	selectRow(rowEl);
-	dispatch('click', { event: e, selectedItem: rowEl });
+	selectRow(e, rowEl);
+
+	// debounce, so to not duplicate events when dbl-clicking
+	if (clickTimer) clearTimeout(clickTimer);
+	clickTimer = setTimeout(() => dispatch('click', { event: e, selectedItem: rowEl }), dblClickDelay);
 }
 
 

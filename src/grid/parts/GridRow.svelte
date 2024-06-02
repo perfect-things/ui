@@ -13,7 +13,7 @@
 		{/if}
 		{#each $columns as column}
 			<td class="td-{getType(column)}">
-				{item[column.field] || ''}
+				{@html cellRenderer(column, item)}
 			</td>
 		{/each}
 	</tr>
@@ -31,5 +31,12 @@ $:id = item.id || item.field;
 function getType (column) {
 	return typeof $Data[0][column.field];
 }
+
+
+function cellRenderer (column, _item) {
+	if (column.renderer) return column.renderer(_item);
+	return item[column.field] || '';
+}
+
 
 </script>

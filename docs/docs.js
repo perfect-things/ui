@@ -10589,7 +10589,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
   function onListMouseDown() {
     isSelecting = true;
   }
-  function onclick3(item, e) {
+  function onclick4(item, e) {
     if (isMobile() && e?.type !== "click")
       return e.preventDefault();
     if (!isMobile() && e?.type === "click")
@@ -10631,7 +10631,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     if (!multiselect || !opened)
       return;
     const item = filteredData[highlightIndex];
-    onclick3(item, e);
+    onclick4(item, e);
   }
   function onEsc(e) {
     if (clearOnEsc && inputElement2.value) {
@@ -10702,11 +10702,11 @@ function instance13($$self2, $$props2, $$invalidate2) {
       $$invalidate2(2, element3);
     });
   }
-  const click_handler = (item, e) => onclick3(item, e);
+  const click_handler = (item, e) => onclick4(item, e);
   const mouseenter_handler = (item) => $$invalidate2(17, highlightIndex = item.idx);
-  const mouseup_handler = (item, e) => onclick3(item, e);
+  const mouseup_handler = (item, e) => onclick4(item, e);
   const func = (item, i) => (i.id || i.name || i) === (item.id || item.name || item);
-  const click_handler_1 = () => onclick3({
+  const click_handler_1 = () => onclick4({
     name: newItemName,
     idx: filteredData.length
   });
@@ -10829,7 +10829,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     onListMouseDown,
     touchStart,
     touchEnd,
-    onclick: onclick3,
+    onclick: onclick4,
     onkeydown: onkeydown2,
     onEnter,
     onSpace,
@@ -10968,7 +10968,7 @@ function instance13($$self2, $$props2, $$invalidate2) {
     oninput,
     onblur,
     onListMouseDown,
-    onclick3,
+    onclick4,
     onkeydown2,
     onIconMouseDown,
     onIconClick,
@@ -21955,12 +21955,12 @@ function instance24($$self2, $$props2, $$invalidate2) {
   let { element: element3 = void 0 } = $$props2;
   let { disabled: disabled2 = false } = $$props2;
   let { clickable = false } = $$props2;
-  function onclick3(e) {
+  function onclick4(e) {
     dispatch3("click", { target: element3, originalEvent: e });
   }
   function onkeydown2(e) {
     if (e.key === "Enter" || e.key === " ")
-      onclick3(e);
+      onclick4(e);
   }
   const writable_props = ["class", "round", "icon", "color", "element", "disabled", "clickable"];
   Object.keys($$props2).forEach((key) => {
@@ -22003,7 +22003,7 @@ function instance24($$self2, $$props2, $$invalidate2) {
     element: element3,
     disabled: disabled2,
     clickable,
-    onclick: onclick3,
+    onclick: onclick4,
     onkeydown: onkeydown2,
     colorClass
   });
@@ -22044,7 +22044,7 @@ function instance24($$self2, $$props2, $$invalidate2) {
     disabled2,
     clickable,
     colorClass,
-    onclick3,
+    onclick4,
     onkeydown2,
     $$scope2,
     slots2,
@@ -28162,8 +28162,8 @@ var Toggle = class extends SvelteComponentDev {
 };
 var Toggle_default = Toggle;
 
-// src/grid/parts/GridHeadTH.svelte
-var file27 = "src/grid/parts/GridHeadTH.svelte";
+// src/grid/parts/GridHeadTh.svelte
+var file27 = "src/grid/parts/GridHeadTh.svelte";
 function create_if_block14(ctx) {
   let icon;
   let current;
@@ -28373,7 +28373,7 @@ function instance32($$self2, $$props2, $$invalidate2) {
   $$self2.$$.on_destroy.push(() => $$unsubscribe_sortField());
   $$self2.$$.on_destroy.push(() => $$unsubscribe_Data());
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
-  validate_slots("GridHeadTH", slots2, []);
+  validate_slots("GridHeadTh", slots2, []);
   let { column = {} } = $$props2;
   let { Data = [] } = $$props2;
   validate_store(Data, "Data");
@@ -28389,7 +28389,7 @@ function instance32($$self2, $$props2, $$invalidate2) {
   const writable_props = ["column", "Data"];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console.warn(`<GridHeadTH> was created with unknown prop '${key}'`);
+      console.warn(`<GridHeadTh> was created with unknown prop '${key}'`);
   });
   const keydown_handler = (e) => e.key === "Enter" && sort();
   $$self2.$$set = ($$props3) => {
@@ -28464,31 +28464,31 @@ function instance32($$self2, $$props2, $$invalidate2) {
     keydown_handler
   ];
 }
-var GridHeadTH = class extends SvelteComponentDev {
+var GridHeadTh = class extends SvelteComponentDev {
   constructor(options) {
     super(options);
     init(this, options, instance32, create_fragment32, safe_not_equal, { column: 0, Data: 1 });
     dispatch_dev("SvelteRegisterComponent", {
       component: this,
-      tagName: "GridHeadTH",
+      tagName: "GridHeadTh",
       options,
       id: create_fragment32.name
     });
   }
   get column() {
-    throw new Error("<GridHeadTH>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    throw new Error("<GridHeadTh>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   set column(value2) {
-    throw new Error("<GridHeadTH>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    throw new Error("<GridHeadTh>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get Data() {
-    throw new Error("<GridHeadTH>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    throw new Error("<GridHeadTh>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   set Data(value2) {
-    throw new Error("<GridHeadTH>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    throw new Error("<GridHeadTh>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
 };
-var GridHeadTH_default = GridHeadTH;
+var GridHeadTh_default = GridHeadTh;
 
 // src/grid/parts/GridHead.svelte
 var file28 = "src/grid/parts/GridHead.svelte";
@@ -28672,7 +28672,7 @@ function create_if_block15(ctx) {
 function create_each_block8(ctx) {
   let headth;
   let current;
-  headth = new GridHeadTH_default({
+  headth = new GridHeadTh_default({
     props: {
       column: (
         /*column*/
@@ -28875,7 +28875,7 @@ function instance33($$self2, $$props2, $$invalidate2) {
   };
   $$self2.$capture_state = () => ({
     Checkbox: Checkbox_default,
-    HeadTH: GridHeadTH_default,
+    HeadTh: GridHeadTh_default,
     multiselect,
     Data,
     toggleSelectAll,
@@ -28960,7 +28960,7 @@ var GridHead_default = GridHead;
 var file29 = "src/grid/parts/GridRow.svelte";
 function get_each_context9(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[9] = list[i];
+  child_ctx[10] = list[i];
   return child_ctx;
 }
 function create_if_block16(ctx) {
@@ -28969,7 +28969,7 @@ function create_if_block16(ctx) {
   let updating_checked;
   let current;
   function checkbox_checked_binding(value2) {
-    ctx[7](value2);
+    ctx[8](value2);
   }
   let checkbox_props = { tabindex: "-1" };
   if (
@@ -29032,46 +29032,51 @@ function create_if_block16(ctx) {
 }
 function create_each_block9(ctx) {
   let td;
-  let t0_value = (
-    /*item*/
-    (ctx[0][
+  let html_tag;
+  let raw_value = (
+    /*cellRenderer*/
+    ctx[7](
       /*column*/
-      ctx[9].field
-    ] || "") + ""
+      ctx[10],
+      /*item*/
+      ctx[0]
+    ) + ""
   );
-  let t0;
-  let t1;
+  let t;
   let td_class_value;
   const block = {
     c: function create() {
       td = element2("td");
-      t0 = text(t0_value);
-      t1 = space();
+      html_tag = new HtmlTag(false);
+      t = space();
+      html_tag.a = t;
       attr_dev(td, "class", td_class_value = "td-" + /*getType*/
       ctx[6](
         /*column*/
-        ctx[9]
+        ctx[10]
       ));
       add_location(td, file29, 14, 3, 321);
     },
     m: function mount(target, anchor) {
       insert_dev(target, td, anchor);
-      append_dev(td, t0);
-      append_dev(td, t1);
+      html_tag.m(raw_value, td);
+      append_dev(td, t);
     },
     p: function update2(ctx2, dirty) {
-      if (dirty & /*item, $columns*/
-      33 && t0_value !== (t0_value = /*item*/
-      (ctx2[0][
+      if (dirty & /*$columns, item*/
+      33 && raw_value !== (raw_value = /*cellRenderer*/
+      ctx2[7](
         /*column*/
-        ctx2[9].field
-      ] || "") + ""))
-        set_data_dev(t0, t0_value);
+        ctx2[10],
+        /*item*/
+        ctx2[0]
+      ) + ""))
+        html_tag.p(raw_value);
       if (dirty & /*$columns*/
       32 && td_class_value !== (td_class_value = "td-" + /*getType*/
       ctx2[6](
         /*column*/
-        ctx2[9]
+        ctx2[10]
       ))) {
         attr_dev(td, "class", td_class_value);
       }
@@ -29177,8 +29182,8 @@ function create_fragment34(ctx) {
         });
         check_outros();
       }
-      if (dirty & /*getType, $columns, item*/
-      97) {
+      if (dirty & /*getType, $columns, cellRenderer, item*/
+      225) {
         each_value = ensure_array_like_dev(
           /*$columns*/
           ctx2[5]
@@ -29254,7 +29259,7 @@ function create_fragment34(ctx) {
 function instance34($$self2, $$props2, $$invalidate2) {
   let columns;
   let id2;
-  let $Data, $$unsubscribe_Data = noop, $$subscribe_Data = () => ($$unsubscribe_Data(), $$unsubscribe_Data = subscribe(Data, ($$value) => $$invalidate2(8, $Data = $$value)), Data);
+  let $Data, $$unsubscribe_Data = noop, $$subscribe_Data = () => ($$unsubscribe_Data(), $$unsubscribe_Data = subscribe(Data, ($$value) => $$invalidate2(9, $Data = $$value)), Data);
   let $columns, $$unsubscribe_columns = noop, $$subscribe_columns = () => ($$unsubscribe_columns(), $$unsubscribe_columns = subscribe(columns, ($$value) => $$invalidate2(5, $columns = $$value)), columns);
   $$self2.$$.on_destroy.push(() => $$unsubscribe_Data());
   $$self2.$$.on_destroy.push(() => $$unsubscribe_columns());
@@ -29267,6 +29272,11 @@ function instance34($$self2, $$props2, $$invalidate2) {
   $$subscribe_Data();
   function getType(column) {
     return typeof $Data[0][column.field];
+  }
+  function cellRenderer(column, _item) {
+    if (column.renderer)
+      return column.renderer(_item);
+    return item[column.field] || "";
   }
   const writable_props = ["item", "multiselect", "Data"];
   Object.keys($$props2).forEach((key) => {
@@ -29293,6 +29303,7 @@ function instance34($$self2, $$props2, $$invalidate2) {
     multiselect,
     Data,
     getType,
+    cellRenderer,
     id: id2,
     columns,
     $Data,
@@ -29333,6 +29344,7 @@ function instance34($$self2, $$props2, $$invalidate2) {
     columns,
     $columns,
     getType,
+    cellRenderer,
     checkbox_checked_binding
   ];
 }
@@ -30014,7 +30026,7 @@ function create_fragment37(ctx) {
       mount_component(gridbody, table, null);
       append_dev(table, t2);
       mount_component(gridfoot, table, null);
-      ctx[16](div);
+      ctx[17](div);
       current = true;
       if (!mounted) {
         dispose = [
@@ -30143,7 +30155,7 @@ function create_fragment37(ctx) {
       destroy_component(gridhead);
       destroy_component(gridbody);
       destroy_component(gridfoot);
-      ctx[16](null);
+      ctx[17](null);
       mounted = false;
       run_all(dispose);
     }
@@ -30171,6 +30183,7 @@ function instance37($$self2, $$props2, $$invalidate2) {
   let { columns = [] } = $$props2;
   let { data = [] } = $$props2;
   let { multiselect = false } = $$props2;
+  let { dblClickDelay = 500 } = $$props2;
   let { element: element3 = void 0 } = $$props2;
   const dispatch3 = createEventDispatcher();
   let headerHeight = 0;
@@ -30207,13 +30220,16 @@ function instance37($$self2, $$props2, $$invalidate2) {
     rowEl.focus();
     dispatch3("select", { selectedItem: rowEl });
   }
-  function selectRow(rowEl) {
+  function selectRow(e, rowEl) {
     if (!rowEl)
       return;
     if (rowEl !== document.activeElement)
       rowEl.focus();
+    const oldIdx = selectedIdx;
     const rows = getSelectableItems(element3);
     selectedIdx = rows.findIndex((item) => item === rowEl);
+    if (oldIdx !== selectedIdx)
+      dispatch3("select", { event: e, selectedItem: rowEl });
     const scrollEl = getScrollContainer(element3, scrollContainer);
     if (!scrollEl)
       return;
@@ -30238,8 +30254,8 @@ function instance37($$self2, $$props2, $$invalidate2) {
       return;
     const rowEl = e.target.closest(rowSelector);
     if (rowEl) {
-      selectRow(rowEl);
-      dispatch3("click", { event: e, selectedItem: rowEl });
+      selectRow(e, rowEl);
+      dispatch3("focus", { event: e, selectedItem: rowEl });
     }
   }
   function onClick(e) {
@@ -30248,15 +30264,14 @@ function instance37($$self2, $$props2, $$invalidate2) {
     const rowEl = e.target.closest(rowSelector);
     if (!rowEl)
       return;
-    if (clickTimer)
-      clearTimeout(clickTimer);
-    clickTimer = setTimeout(() => dispatch3("select", { event: e, selectedItem: rowEl }), 300);
     if (e.target.closest(".column-check")) {
       const item = { id: +rowEl.dataset.id };
       Data.toggleSelection(item, e);
     }
-    selectRow(rowEl);
-    dispatch3("click", { event: e, selectedItem: rowEl });
+    selectRow(e, rowEl);
+    if (clickTimer)
+      clearTimeout(clickTimer);
+    clickTimer = setTimeout(() => dispatch3("click", { event: e, selectedItem: rowEl }), dblClickDelay);
   }
   function onDblClick(e) {
     if (!_interactive)
@@ -30324,6 +30339,7 @@ function instance37($$self2, $$props2, $$invalidate2) {
     "columns",
     "data",
     "multiselect",
+    "dblClickDelay",
     "element"
   ];
   Object.keys($$props2).forEach((key) => {
@@ -30355,6 +30371,8 @@ function instance37($$self2, $$props2, $$invalidate2) {
       $$invalidate2(15, data = $$props3.data);
     if ("multiselect" in $$props3)
       $$invalidate2(4, multiselect = $$props3.multiselect);
+    if ("dblClickDelay" in $$props3)
+      $$invalidate2(16, dblClickDelay = $$props3.dblClickDelay);
     if ("element" in $$props3)
       $$invalidate2(0, element3 = $$props3.element);
   };
@@ -30379,6 +30397,7 @@ function instance37($$self2, $$props2, $$invalidate2) {
     columns,
     data,
     multiselect,
+    dblClickDelay,
     element: element3,
     dispatch: dispatch3,
     headerHeight,
@@ -30415,6 +30434,8 @@ function instance37($$self2, $$props2, $$invalidate2) {
       $$invalidate2(15, data = $$props3.data);
     if ("multiselect" in $$props3)
       $$invalidate2(4, multiselect = $$props3.multiselect);
+    if ("dblClickDelay" in $$props3)
+      $$invalidate2(16, dblClickDelay = $$props3.dblClickDelay);
     if ("element" in $$props3)
       $$invalidate2(0, element3 = $$props3.element);
     if ("headerHeight" in $$props3)
@@ -30455,6 +30476,7 @@ function instance37($$self2, $$props2, $$invalidate2) {
     scrollCorrectionOffset,
     columns,
     data,
+    dblClickDelay,
     div_binding
   ];
 }
@@ -30471,6 +30493,7 @@ var Grid = class extends SvelteComponentDev {
       columns: 14,
       data: 15,
       multiselect: 4,
+      dblClickDelay: 16,
       element: 0
     });
     dispatch_dev("SvelteRegisterComponent", {
@@ -30532,6 +30555,12 @@ var Grid = class extends SvelteComponentDev {
     throw new Error("<Grid>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   set multiselect(value2) {
+    throw new Error("<Grid>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  get dblClickDelay() {
+    throw new Error("<Grid>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+  }
+  set dblClickDelay(value2) {
     throw new Error("<Grid>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
   }
   get element() {
@@ -31638,7 +31667,7 @@ function instance39($$self2, $$props2, $$invalidate2) {
   let { element: element3 = void 0 } = $$props2;
   const dispatch3 = createEventDispatcher();
   const { targetEl } = getContext("MenuContext");
-  function onclick3(e) {
+  function onclick4(e) {
     const btn = e.target.closest(".menu-item");
     if (btn)
       btn.focus();
@@ -31698,7 +31727,7 @@ function instance39($$self2, $$props2, $$invalidate2) {
     dispatch: dispatch3,
     targetEl,
     replaceKeySymbols,
-    onclick: onclick3
+    onclick: onclick4
   });
   $$self2.$inject_state = ($$new_props) => {
     if ("shortcut" in $$props2)
@@ -31730,7 +31759,7 @@ function instance39($$self2, $$props2, $$invalidate2) {
     warning,
     danger,
     disabled2,
-    onclick3,
+    onclick4,
     $$restProps2,
     $$scope2,
     slots2,
@@ -32407,7 +32436,7 @@ function instance41($$self2, $$props2, $$invalidate2) {
     sub();
     config.set({});
   });
-  function onclick3(e, button) {
+  function onclick4(e, button) {
     e.preventDefault();
     set_store_value(config, $config.result = button.value || button.label, $config);
     dialog.close();
@@ -32423,7 +32452,7 @@ function instance41($$self2, $$props2, $$invalidate2) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
       console.warn(`<MessageBox> was created with unknown prop '${key}'`);
   });
-  const click_handler = (button, e) => onclick3(e, button);
+  const click_handler = (button, e) => onclick4(e, button);
   function dialog_1_element_binding(value2) {
     element3 = value2;
     $$invalidate2(0, element3);
@@ -32448,7 +32477,7 @@ function instance41($$self2, $$props2, $$invalidate2) {
     element: element3,
     dialog,
     sub,
-    onclick: onclick3,
+    onclick: onclick4,
     onclose: onclose2,
     $config
   });
@@ -32467,7 +32496,7 @@ function instance41($$self2, $$props2, $$invalidate2) {
     element3,
     dialog,
     $config,
-    onclick3,
+    onclick4,
     onclose2,
     click_handler,
     dialog_1_element_binding,
@@ -70022,6 +70051,7 @@ var Popover_1 = class extends SvelteComponentDev {
 var Popover_default2 = Popover_1;
 
 // docs-src/components/grid/Grid.svelte
+var { console: console_114 } = globals;
 var file79 = "docs-src/components/grid/Grid.svelte";
 function create_fragment86(ctx) {
   let h2;
@@ -70051,6 +70081,9 @@ function create_fragment86(ctx) {
     },
     $$inline: true
   });
+  grid.$on("select", onclick2);
+  grid.$on("click", onclick2);
+  grid.$on("dblclick", onclick2);
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -70139,6 +70172,9 @@ function create_fragment86(ctx) {
   });
   return block;
 }
+function onclick2(e) {
+  console.log(e.type);
+}
 function instance86($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   validate_slots("Grid", slots2, []);
@@ -70149,9 +70185,14 @@ function instance86($$self2, $$props2, $$invalidate2) {
       description: "Additional css class name to be added to the component."
     },
     {
+      name: "columns",
+      type: "array",
+      description: "Array of columns definition. Each objects defines and describes a column in the grid."
+    },
+    {
       name: "data",
-      type: "object",
-      description: "Props to attach to the element's <em>dataset</em> attribute."
+      type: "array",
+      description: "Array of items (each would constitute 1 row of the grid)."
     },
     {
       name: "round",
@@ -70179,6 +70220,16 @@ function instance86($$self2, $$props2, $$invalidate2) {
       name: "interactive",
       type: ["true", "false"],
       description: "Makes table rows selectable with mouse and adds keyboard navigation."
+    },
+    {
+      name: "multiselect",
+      type: ["true", "false"],
+      description: "If true - a column with checkboxes will be added to the grid."
+    },
+    {
+      name: "title",
+      type: "string",
+      description: "Ads header with title on top of the grid."
     },
     {
       name: "bind:element",
@@ -70210,7 +70261,8 @@ function instance86($$self2, $$props2, $$invalidate2) {
     {
       field: "name",
       label: "Name",
-      sortable: true
+      sortable: true,
+      renderer: (item) => `<a href="#Grid/${item.id}">${item.name}</a>`
     },
     {
       field: "date",
@@ -70223,7 +70275,8 @@ function instance86($$self2, $$props2, $$invalidate2) {
       label: "Price",
       width: 200,
       sortable: true,
-      total: true
+      total: true,
+      renderer: (item) => `\u20AC${item.price}`
     }
   ];
   const data = [
@@ -70349,12 +70402,36 @@ function instance86($$self2, $$props2, $$invalidate2) {
     }
   ];
   const exampleHtml = `
-<Grid />
+<Grid {data} {columns} on:click="{onclick}"/>
+
+<script>
+import { Grid } from '@perfect-things/ui';
+
+const columns = [
+	{ field: 'name', label: 'Name', sortable: true },
+	{ field: 'date', label: 'Date', width: 200, sortable: true },
+	{ field: 'price', label: 'Price', width: 200, sortable: true, total: true,
+		renderer: (item) => \`\u20AC\${item.price}\`
+	}
+];
+const data = [
+	{ id: 1, name: 'John Doe', date: '2020-01-01', price: 100 },
+	{ id: 2, name: 'Jane Doe', date: '2020-01-02', price: 200 },
+	{ id: 3, name: 'Jim Doe', date: '2020-01-03', price: 300 },
+	{ id: 4, name: 'Jill Doe', date: '2020-01-04', price: 400 },
+	{ id: 5, name: 'Jack Doe', date: '2020-01-05', price: 500 }
+];
+
+function onclick (e) {
+	console.log(e.type);
+}
+
+&lt;/script>
 `;
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console.warn(`<Grid> was created with unknown prop '${key}'`);
+      console_114.warn(`<Grid> was created with unknown prop '${key}'`);
   });
   $$self2.$capture_state = () => ({
     Grid: Grid_default,
@@ -70363,6 +70440,7 @@ function instance86($$self2, $$props2, $$invalidate2) {
     apiProps,
     columns,
     data,
+    onclick: onclick2,
     exampleHtml
   });
   return [apiProps, columns, data, exampleHtml];
@@ -70382,7 +70460,7 @@ var Grid_1 = class extends SvelteComponentDev {
 var Grid_default2 = Grid_1;
 
 // docs-src/components/table/Table.svelte
-var { console: console_114 } = globals;
+var { console: console_115 } = globals;
 var file80 = "docs-src/components/table/Table.svelte";
 function create_default_slot17(ctx) {
   let thead0;
@@ -72266,7 +72344,7 @@ function instance87($$self2, $$props2, $$invalidate2) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_114.warn(`<Table> was created with unknown prop '${key}'`);
+      console_115.warn(`<Table> was created with unknown prop '${key}'`);
   });
   $$self2.$capture_state = () => ({
     Table: Table_default,
@@ -72294,7 +72372,7 @@ var Table_1 = class extends SvelteComponentDev {
 var Table_default2 = Table_1;
 
 // docs-src/components/tree/Tree.svelte
-var { console: console_115 } = globals;
+var { console: console_116 } = globals;
 var file81 = "docs-src/components/tree/Tree.svelte";
 function create_fragment88(ctx) {
   let h2;
@@ -72521,7 +72599,7 @@ function onSelect (e) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_115.warn(`<Tree> was created with unknown prop '${key}'`);
+      console_116.warn(`<Tree> was created with unknown prop '${key}'`);
   });
   $$self2.$capture_state = () => ({
     Tree: Tree_default,
@@ -72549,7 +72627,7 @@ var Tree_1 = class extends SvelteComponentDev {
 var Tree_default2 = Tree_1;
 
 // docs-src/components/menu/Menu.svelte
-var { console: console_116 } = globals;
+var { console: console_117 } = globals;
 var file82 = "docs-src/components/menu/Menu.svelte";
 function create_default_slot_362(ctx) {
   let t;
@@ -74996,7 +75074,7 @@ function instance89($$self2, $$props2, $$invalidate2) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_116.warn(`<Menu> was created with unknown prop '${key}'`);
+      console_117.warn(`<Menu> was created with unknown prop '${key}'`);
   });
   function menu0_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -75997,7 +76075,7 @@ function create_fragment91(ctx) {
     },
     $$inline: true
   });
-  tag9.$on("click", onclick2);
+  tag9.$on("click", onclick3);
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
@@ -76246,7 +76324,7 @@ function create_fragment91(ctx) {
   });
   return block;
 }
-function onclick2() {
+function onclick3() {
   alert("Clicked!");
 }
 function instance91($$self2, $$props2, $$invalidate2) {
@@ -76310,7 +76388,7 @@ function instance91($$self2, $$props2, $$invalidate2) {
     CodeExample: CodeExample_default,
     apiProps,
     exampleHtml,
-    onclick: onclick2
+    onclick: onclick3
   });
   return [apiProps, exampleHtml];
 }
@@ -80720,7 +80798,7 @@ var Utils = class extends SvelteComponentDev {
 var Utils_default = Utils;
 
 // docs-src/components/splitter/Splitter.svelte
-var { console: console_117 } = globals;
+var { console: console_118 } = globals;
 var file109 = "docs-src/components/splitter/Splitter.svelte";
 function create_default_slot43(ctx) {
   let t;
@@ -81106,7 +81184,7 @@ function onchanged (e) {
   const writable_props = [];
   Object.keys($$props2).forEach((key) => {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot")
-      console_117.warn(`<Splitter> was created with unknown prop '${key}'`);
+      console_118.warn(`<Splitter> was created with unknown prop '${key}'`);
   });
   function splitter0_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
