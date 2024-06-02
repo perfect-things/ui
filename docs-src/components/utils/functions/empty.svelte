@@ -1,4 +1,4 @@
-<Util id="Empty" name="empty(value)" {example}>
+<Util id="empty" name="empty(value)" {example}>
 	<p>Similar to PHP's <em>empty</em> - returns true if a value is empty.</p>
 	<ul>
 		<li><em>value</em> - any data type.

@@ -1,4 +1,4 @@
-<Util id="IsInScrollable" name="isInScrollable(node)" {example}>
+<Util id="isInScrollable" name="isInScrollable(node)" {example}>
 	<p>Checks whether the given node is inside a scrollable element.</p>
 	<p>This function is useful when determining whether a swipe event should be allowed
 		to start on a given element.<br>

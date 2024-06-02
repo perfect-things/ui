@@ -1,4 +1,4 @@
-<Util id="GetMouseX" name="getMouseX(event)" {example}>
+<Util id="getMouseX" name="getMouseX(event)" {example}>
 	<p>Returns the mouse X position. Event is standardised across platforms (touch & pointer)</p>
 </Util>
 

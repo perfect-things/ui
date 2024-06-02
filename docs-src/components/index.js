@@ -13,6 +13,7 @@ export { Dialog } from './dialog';
 export { Drawer } from './drawer';
 export { Panel } from './panel';
 export { Popover } from './popover';
+export { Grid } from './grid';
 export { Table } from './table';
 export { Tree } from './tree';
 

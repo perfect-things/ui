@@ -45,7 +45,7 @@ export let error = false;
 export let submit = false;
 
 export let outline = false;		// button without background, but with border
-export let link = false;		// looks like a link, get's colored underline on hover
+export let link = false;		// looks like a link, gets colored underline on hover
 export let text = false;		// looks like normal text, but like a button on hover
 export let icon = undefined;	// name of the icon
 export let round = undefined;	// round button

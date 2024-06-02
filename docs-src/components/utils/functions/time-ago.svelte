@@ -1,4 +1,4 @@
-<Util id="TimeAgo" name="timeAgo(date, now)" {example}>
+<Util id="timeAgo" name="timeAgo(date, now)" {example}>
 	<p>Converts date to a string describing how long time ago was the given date.</p>
 </Util>
 

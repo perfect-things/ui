@@ -1,4 +1,4 @@
-<Util id="Animate" name="animate(element, from, to, options?)" {example} {api}>
+<Util id="animate" name="animate(element, from, to, options?)" {example} {api}>
 	<p>Animates an element from one state to another. Shortcut & wrapper for the native javascript animation.</p>
 	<p>Returns a promise which resolves when the animation finishes.</p>
 </Util>

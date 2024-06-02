@@ -1,4 +1,4 @@
-<Util id="RoundAmount" name="roundAmount(value, precision = 2)" {example}>
+<Util id="roundAmount" name="roundAmount(value, precision = 2)" {example}>
 	<p>Rounds a number to 2 decimal places (by default).</p>
 </Util>
 

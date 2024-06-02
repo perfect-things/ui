@@ -1,4 +1,4 @@
-<Util id="Fuzzy" name="fuzzy(haystack = '', needle = '')" {example}>
+<Util id="fuzzy" name="fuzzy(haystack = '', needle = '')" {example}>
 	<p>Fuzzy finds if <em>haystack</em> contains characters from the <em>needle</em> in the same order.</p>
 	<ul>
 		<li><em>haystack</em> - a string to be searched in.

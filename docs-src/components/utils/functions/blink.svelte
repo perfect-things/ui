@@ -1,4 +1,4 @@
-<Util id="Blink" name="blink(element, duration = 160)" {example}>
+<Util id="blink" name="blink(element, duration = 160)" {example}>
 	<p>Animates an element by changing its opacity from 0.5 to 1.</p>
 	<ul>
 		<li><em>element</em> - HTMLElement to animate

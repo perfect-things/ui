@@ -1,4 +1,4 @@
-<Util id="Throttle" name="throttle(fn, timeout = 300)" {example}>
+<Util id="throttle" name="throttle(fn, timeout = 300)" {example}>
 	<p>The "throttled" function will only be called once every <em>timeout</em> milliseconds.</p>
 	<ul>
 		<li><em>fn</em> - function to debounce.
