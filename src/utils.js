@@ -63,6 +63,31 @@ export function debounce (func, timeout = 300) {
 }
 
 
+export function deepCopy (o) {
+	if (!o || typeof o !== 'object') return o;
+	if (Array.isArray(o)) {
+		const newO = [];
+		for (let i = 0; i < o.length; i += 1) {
+			const val = !o[i] || typeof o[i] !== 'object' ? o[i] : deepCopy(o[i]);
+			newO[i] = val === undefined ? null : val;
+		}
+		return newO;
+	}
+	if (o instanceof Date) return new Date(o);
+	if (o instanceof RegExp) return new RegExp(o);
+	if (o instanceof Map) return new Map([...o]);
+	if (o instanceof Set) return new Set([...o]);
+
+	const newO = {};
+	for (const i of Object.keys(o)) {
+		const val = !o[i] || typeof o[i] !== 'object' ? o[i] : deepCopy(o[i]);
+		if (val === undefined) continue;
+		newO[i] = val;
+	}
+	return newO;
+}
+
+
 export function throttle (fn, delay = 300) {
 	let lastCalled = 0;
 	return (...args) => {

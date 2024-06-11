@@ -1,4 +1,9 @@
 <h1>Changelog</h1>
+<h2>v9.5.4 <em>(2024-06-?)</em></h2>
+<ul>
+<li>New component: <code>Grid</code> (alpha). This should not be used for production yet, as it&#39;s still in development (or it may even be dropped). </li>
+<li>Use <code>crypto</code> for <code>guid</code> generation in <code>utils</code>.</li>
+</ul>
 <h2>v9.5.3 <em>(2024-05-18)</em></h2>
 <ul>
 <li>Fix <code>Combobox</code> issue for some edge cases.</li>

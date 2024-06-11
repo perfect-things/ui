@@ -8,8 +8,6 @@ document.scrollingElement = jest.fn().mockImplementation(() => ({
 	scrollTop: jest.fn(),
 }));
 
-// workaround for structuredClone not being available in JSDOM
-window.structuredClone = (val) => JSON.parse(JSON.stringify(val));
 
 // workaround for ResizeObserver not being available in JSDOM
 window.ResizeObserver = jest.fn().mockImplementation(() => ({

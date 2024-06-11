@@ -123,7 +123,7 @@
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
 import { emphasize, scrollToSelectedItem, groupData, findValueInSource, getInputValue,
 	alignDropdown, hasValueChanged } from './utils';
-import { fuzzy, guid, isMobile } from '../../utils';
+import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
 import { Button } from '../../button';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -184,7 +184,7 @@ onDestroy(() => {
 
 afterUpdate(() => {
 	if (!opened && items.length) {
-		originalItems = structuredClone(items);
+		originalItems = deepCopy(items);
 		if (items.length && typeof items[0] === 'string') {
 			items = items.map(item => ({ name: item }));
 		}
@@ -196,7 +196,7 @@ afterUpdate(() => {
 
 
 function filter () {
-	let filtered = structuredClone(items);
+	let filtered = deepCopy(items);
 	if (hasEdited && inputElement.value) {
 		const q = inputElement.value.toLowerCase().trim();
 		filtered = filtered
@@ -274,7 +274,7 @@ function close () {
 
 function selectSingle (item) {
 	if (multiselect || hasSetValue) return;
-	const oldValue = structuredClone(value);
+	const oldValue = deepCopy(value);
 
 	if (!item) {
 		if (filteredData[highlightIndex]) item = filteredData[highlightIndex];
@@ -296,7 +296,7 @@ function selectSingle (item) {
 }
 
 function selectMultiselect (item) {
-	const oldValue = structuredClone(value);
+	const oldValue = deepCopy(value);
 	selectedItems = selectedItems || [];
 	const itemId = item.id || item.name || item;
 	const itemIndex = selectedItems.findIndex(i => (i?.id || i?.name || i) === itemId);
