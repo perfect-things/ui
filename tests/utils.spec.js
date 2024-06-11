@@ -199,7 +199,7 @@ test('utils - pluckOne', () => {
 test('utils - roundAmount', () => {
 	const amount = 123.456;
 	const rounded = utils.roundAmount(amount);
-	expect(rounded).toBe(123.46);
+	expect(rounded).toBe('123.46');
 });
 
 

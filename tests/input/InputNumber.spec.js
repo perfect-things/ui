@@ -79,7 +79,7 @@ test('InputNumber', async () => {
 	await userEvent.clear(input);
 	await userEvent.type(input, '.0.0');
 	await userEvent.keyboard('[Tab]');
-	expect(input).toHaveValue('0');
+	expect(input).toHaveValue('.00');
 
 	await userEvent.clear(input);
 	await userEvent.type(input, 'abc');
@@ -89,7 +89,7 @@ test('InputNumber', async () => {
 	await userEvent.clear(input);
 	await userEvent.type(input, '1.0000a');
 	await userEvent.keyboard('[Tab]');
-	expect(input).toHaveValue('1');
+	expect(input).toHaveValue('1.0000');
 
 	await userEvent.clear(input);
 	await userEvent.type(input, '1e');

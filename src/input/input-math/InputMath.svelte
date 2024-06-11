@@ -26,6 +26,7 @@
 				on:input
 				on:keydown="{onkeydown}"
 				on:change="{onchange}"
+				on:paste="{onpaste}"
 				on:focus
 				on:blur>
 		</div>
@@ -57,7 +58,7 @@ export let inputElement = undefined;
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
-const DECIMAL_SEPARATOR = '.';
+const separator = '.';
 const allowedKeys = [
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 	'+', '-', '/', '*', '(', ')',
@@ -79,8 +80,16 @@ function onkeydown (e) {
 	}
 	if (allowedKeys.includes(e.key)) return;
 	if (e.metaKey || e.ctrlKey) return;
-	if (e.key === DECIMAL_SEPARATOR) return;
+	if (e.key === 'v' && e.metaKey) return;
+	if (e.key === 'c' && e.metaKey) return;
+	if (e.key === 'x' && e.metaKey) return;
+	if (e.key === separator) return;
 	e.preventDefault();
+}
+
+
+function onpaste (e) {
+	requestAnimationFrame(() => onchange(e));
 }
 
 
@@ -93,7 +102,7 @@ function onchange (e) {
 
 function parseAmount (amount) {
 	if (!amount) return '';
-	amount = ('' + amount).replace(/[\s,]/g, '');
+	amount = ('' + amount).replace(/[\s,]/g, '').replace(/^-?0+(?=\d)/, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
 	if ((/[+\-\\*/.]+/i).test(amount)) {
 		try { amount = eval(amount); }

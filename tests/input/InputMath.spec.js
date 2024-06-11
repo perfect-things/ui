@@ -65,7 +65,7 @@ test('InputMath', async () => {
 	await userEvent.clear(input);
 	await userEvent.type(input, '123456');
 	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('123456');
+	expect(input).toHaveValue('123456.00');
 
 	// test fractions
 	await userEvent.clear(input);
@@ -79,7 +79,7 @@ test('InputMath', async () => {
 	await userEvent.clear(input);
 	await userEvent.type(input, '12+13');
 	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('25');
+	expect(input).toHaveValue('25.00');
 
 	// test fractions addition (inc. js bug when adding 0.1 and 0.2)
 	await userEvent.clear(input);
@@ -91,14 +91,14 @@ test('InputMath', async () => {
 	await userEvent.clear(input);
 	await userEvent.type(input, '10 * 2 - 10 / 2 + 1');
 	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('16');
+	expect(input).toHaveValue('16.00');
 
 
 	// test incorrect input
 	await userEvent.clear(input);
 	await userEvent.type(input, '.0.0');
 	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('0');
+	expect(input).toHaveValue('0.00');
 
 	await userEvent.clear(input);
 	await userEvent.type(input, 'abc');
@@ -108,10 +108,10 @@ test('InputMath', async () => {
 	await userEvent.clear(input);
 	await userEvent.type(input, '1.0000a');
 	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('1');
+	expect(input).toHaveValue('1.00');
 
 	await userEvent.clear(input);
 	await userEvent.type(input, '1e');
 	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('1');
+	expect(input).toHaveValue('1.00');
 });

@@ -181,7 +181,7 @@ export function pluck (obj, keys) {
 
 export function roundAmount (val, precision = 2) {
 	const multiplier = Math.pow(10, precision);
-	return Math.round(val * multiplier) / multiplier;
+	return (Math.round(val * multiplier) / multiplier).toFixed(precision);
 }
 
 

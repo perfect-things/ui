@@ -24,6 +24,7 @@
 			bind:value="{value}"
 			on:keydown="{onkeydown}"
 			on:change="{onchange}"
+			on:paste="{onpaste}"
 			on:input
 			on:focus
 			on:blur>
@@ -77,6 +78,9 @@ function onkeydown (e) {
 	const val = ('' + value);
 
 	if (allowedKeys.includes(key)) return fireKeydown(e);
+	if (key === 'v' && e.metaKey) return fireKeydown(e);
+	if (key === 'c' && e.metaKey) return fireKeydown(e);
+	if (key === 'x' && e.metaKey) return fireKeydown(e);
 	if (key === '-' && !val.includes('-')) return fireKeydown(e);
 	if (key === separator && !val.includes(separator)) return fireKeydown(e);
 
@@ -84,10 +88,21 @@ function onkeydown (e) {
 }
 
 
+function onpaste () {
+	requestAnimationFrame(onchange);
+}
+
+
 function onchange () {
 	const v = ('' + value).replace(separator, '.');
 	const num = parseFloat(v);
-	value = isNaN(num) ? '' : ('' + num).replace('.', separator);
+	if (isNaN(num)) value = '';
+	else {
+		value = value
+			.replace(/^0+(?=\d)/, '')
+			.replace(/[^0-9.-]+/g, '')
+			.replace(/^0+(?=\d)/, '');
+	}
 	dispatch('change', { value });
 }
 </script>
