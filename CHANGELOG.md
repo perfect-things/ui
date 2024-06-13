@@ -2,9 +2,10 @@ Changelog
 =========
 
 
-## v9.5.4 *(2024-06-?)*
+## v9.5.4 *(2024-06-13)*
 - New component: `Grid` (alpha). This should not be used for production yet, as it's still in development (or it may even be dropped). 
 - Use `crypto` for `guid` generation in `utils`.
+- Improve `InputNumber` and `InputMath` to better filter out invalid characters and keep the formatting.
 
 
 ## v9.5.3 *(2024-05-18)*

@@ -25,6 +25,7 @@
 			on:keydown="{onkeydown}"
 			on:change="{onchange}"
 			on:paste="{onpaste}"
+			on:drop="{ondrop}"
 			on:input
 			on:focus
 			on:blur>
@@ -81,12 +82,18 @@ function onkeydown (e) {
 	if (key === 'v' && e.metaKey) return fireKeydown(e);
 	if (key === 'c' && e.metaKey) return fireKeydown(e);
 	if (key === 'x' && e.metaKey) return fireKeydown(e);
-	if (key === '-' && !val.includes('-')) return fireKeydown(e);
+	if (key === '-' && inputElement.selectionStart === 0 && !val.includes('-')) {
+		return fireKeydown(e);
+	}
 	if (key === separator && !val.includes(separator)) return fireKeydown(e);
 
 	e.preventDefault();
 }
 
+
+function ondrop () {
+	requestAnimationFrame(onchange);
+}
 
 function onpaste () {
 	requestAnimationFrame(onchange);
@@ -94,15 +101,19 @@ function onpaste () {
 
 
 function onchange () {
-	const v = ('' + value).replace(separator, '.');
+	value = ('' + value)
+		.replace(/^0+(?=\d)/, '')    // remove leading zeros if they are not followed by a dot
+		.replace(/[^0-9.-]+/g, '')   // remove all non-numeric characters except the dot and the minus sign
+		.replace(/(?!^)-/g, '')      // remove minus sign if it's not the first character
+		.replace(/\.$/g, '');        // remove dot if it's the last character
+
+	if (separator !== '.') {         // if separator is not a dot
+		value = value.replace(new RegExp(separator + '$', 'g'), '');
+	}
+
+	const v = value.replace(separator, '.');
 	const num = parseFloat(v);
 	if (isNaN(num)) value = '';
-	else {
-		value = value
-			.replace(/^0+(?=\d)/, '')
-			.replace(/[^0-9.-]+/g, '')
-			.replace(/^0+(?=\d)/, '');
-	}
 	dispatch('change', { value });
 }
 </script>
