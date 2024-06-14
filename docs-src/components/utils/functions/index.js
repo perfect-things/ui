@@ -2,6 +2,7 @@ export { default as alignItem } from './align-item.svelte';
 export { default as animate } from './animate.svelte';
 export { default as blink } from './blink.svelte';
 export { default as debounce } from './debounce.svelte';
+export { default as deepCopy } from './deep-copy.svelte';
 export { default as empty } from './empty.svelte';
 export { default as isset } from './isset.svelte';
 export { default as formatDate } from './format-date.svelte';
