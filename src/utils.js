@@ -88,6 +88,50 @@ export function deepCopy (o) {
 }
 
 
+/**
+ * Get a value from an object for a given path
+ * @param obj {object}
+ * @param path {string} - e.g. child[4]['some name][2].property
+ * @param defaultValue {*}
+ * @returns {*}
+ */
+export function getValueAtPath (obj, path, defaultValue) {
+	try {
+		return path
+			.replace(/^\./, '')                           // strip a leading dot
+			.replace(/\[['"]?([\w\s]+)['"]?]/ig, '.$1')   // convert indexes to properties
+			.split('.')
+			.reduce((acc, key) => acc && acc[key], obj) || defaultValue;
+	}
+	catch {
+		return defaultValue;
+	}
+}
+
+
+/**
+ * Set a value on an object for a given path.
+ * @param obj
+ * @param path
+ * @param value
+ * @returns {boolean}
+ */
+export function setValueAtPath (obj, path, value) {
+	const keys = path
+		.replace(/^\./, '')                           // strip a leading dot
+		.replace(/\[['"]?([\w\s]+)['"]?]/ig, '.$1')   // convert indexes to properties
+		.split('.');
+	const lastKey = keys.pop();
+	const lastObj = keys.reduce((acc, key) => {
+		if (typeof acc[key] === 'object') return acc[key];
+		return acc[key] = {};
+	}, obj);
+	if (!lastObj) return false;
+
+	lastObj[lastKey] = value;
+}
+
+
 export function throttle (fn, delay = 300) {
 	let lastCalled = 0;
 	return (...args) => {

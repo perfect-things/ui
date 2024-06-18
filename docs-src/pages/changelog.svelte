@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.5.6 <em>(2024-06-18)</em></h2>
+<ul>
+<li>Added 2 new functions to utils <code>getValueAtPath</code> and <code>setValueAtPath</code> to handle deeply and uncertain object structures.</li>
+</ul>
 <h2>v9.5.5 <em>(2024-06-13)</em></h2>
 <ul>
 <li>Improve <code>InputNumber</code> and <code>InputMath</code> to better filter out invalid characters and keep the formatting.</li>

@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v9.5.6 *(2024-06-18)*
+- Added 2 new functions to utils `getValueAtPath` and `setValueAtPath` to handle deeply and uncertain object structures.
+
+
 ## v9.5.5 *(2024-06-13)*
 - Improve `InputNumber` and `InputMath` to better filter out invalid characters and keep the formatting.
 
