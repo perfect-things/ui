@@ -91,11 +91,11 @@ export function deepCopy (o) {
 /**
  * Get a value from an object for a given path
  * @param obj {object}
- * @param path {string} - e.g. child[4]['some name][2].property
+ * @param path {string} - e.g. child[4]['some name'][2].property
  * @param defaultValue {*}
  * @returns {*}
  */
-export function getValueAtPath (obj, path, defaultValue) {
+export function getValueAtPath (obj, path, defaultValue = null) {
 	try {
 		return path
 			.replace(/^\./, '')                           // strip a leading dot
