@@ -112,7 +112,7 @@ export function close () {
 function focusFirst () {
 	let first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
-	if (!first && !last) {
+	if (!first && !last && contentEl) {
 		contentEl.setAttribute('tabindex', 0);
 		first = contentEl;
 	}
@@ -123,7 +123,7 @@ function focusFirst () {
 function focusLast () {
 	const first = getFocusableElements().shift();
 	let last = getFocusableElements().pop();
-	if (!first && !last) {
+	if (!first && !last && contentEl) {
 		contentEl.setAttribute('tabindex', 0);
 		last = contentEl;
 	}
