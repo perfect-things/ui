@@ -13,11 +13,31 @@
 
 <h3>Normal</h3>
 <Button on:click="{popover1.open}">Open popover</Button>
+
+<Button on:click="{popover1top.open}">Open to top</Button>
+<Button on:click="{popover1right.open}">Open to right</Button>
+<Button on:click="{popover1left.open}">Open to left</Button>
+
 <Popover bind:this="{popover1}">
 	<h2>Context information</h2>
 	<p>Some text</p>
-
 	<Button on:click="{popover1.close}">Click me</Button>
+</Popover>
+
+<Popover bind:this="{popover1top}" position="top">
+	<h2>Context information</h2>
+	<p>Some text</p>
+	<Button on:click="{popover1top.close}">Click me</Button>
+</Popover>
+<Popover bind:this="{popover1left}" position="left">
+	<h2>Context information</h2>
+	<p>Some text</p>
+	<Button on:click="{popover1left.close}">Click me</Button>
+</Popover>
+<Popover bind:this="{popover1right}" position="right">
+	<h2>Context information</h2>
+	<p>Some text</p>
+	<Button on:click="{popover1right.close}">Click me</Button>
 </Popover>
 
 
@@ -67,7 +87,7 @@ import { Popover, Button } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-let popover1, popover2, popover3, popover4, popover5;
+let popover1, popover1top, popover1left, popover1right, popover2, popover3, popover4, popover5;
 let content = '<h2>Context information</h2><p>Some text</p>';
 
 function updateContent () {
@@ -79,7 +99,7 @@ const apiProps = [
 	{ name: 'dontHideOnTargetClick', description: 'When present, it will keep the popover open when the target is clicked again.' },
 	{ name: 'hideTip', description: 'Display just the container, without the tip (small triangle pointing at the target).' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize popover offset. Use negative number for smaller offset or positive for bigger' },
-	{ name: 'position', type: ['top', 'bottom'], default: 'bottom', description: 'Prefer the position of the popover to be above (top) or below (bottom) the target element.' },
+	{ name: 'position', type: ['top', 'bottom', 'left', 'right'], default: 'bottom', description: 'Prefer the position of the popover to be above (top), below (bottom), left or right of the target element.' },
 	{ name: 'setMinWidthToTarget', description: 'When present, it will make the popover min-width the same as the target.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:contentElement', type: 'element', description: 'Exposes the HTML element of the content div.' },

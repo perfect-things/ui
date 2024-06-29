@@ -5951,6 +5951,8 @@ function alignItem({
   const winW = window.visualViewport.width || window.innerWidth;
   let targetBox = {};
   let top, left;
+  let isLeft = false;
+  let isRight = false;
   if (target instanceof Event && (target.type === "contextmenu" || target.type === "longpress")) {
     if (target.type === "contextmenu") {
       targetBox = { top: target.y, left: target.x };
@@ -5976,9 +5978,23 @@ function alignItem({
     element3.style.minWidth = targetBox.width + "px";
   const spaceAbove = targetBox.top - viewportPadding;
   const spaceBelow = winH - targetBox.top - targetBox.height - viewportPadding;
+  const spaceBefore = targetBox.left - viewportPadding;
+  const spaceAfter = winW - targetBox.left - targetBox.width - viewportPadding;
   element3.style.maxHeight = Math.max(spaceAbove, spaceBelow) + "px";
-  const elementBox = element3.getBoundingClientRect();
-  if (alignV === "top" && spaceAbove > elementBox.height || spaceBelow < elementBox.height) {
+  let elementBox = element3.getBoundingClientRect();
+  if (alignV === "left" && spaceBefore > elementBox.width) {
+    isLeft = true;
+    top = targetBox.top + (targetBox.height - elementBox.height) / 2;
+    left = Math.max(targetBox.left - elementBox.width, viewportPadding);
+    element3.style.top = top + window.scrollY + "px";
+    element3.style.left = left + window.scrollX + "px";
+  } else if (alignV === "right" && spaceAfter > elementBox.width) {
+    isRight = true;
+    top = targetBox.top + (targetBox.height - elementBox.height) / 2;
+    left = Math.max(targetBox.left + targetBox.width, viewportPadding);
+    element3.style.top = top + window.scrollY + "px";
+    element3.style.left = left + window.scrollX + "px";
+  } else if (alignV === "top" && spaceAbove > elementBox.height || spaceBelow < elementBox.height) {
     top = winH - elementBox.height - viewportPadding;
     if (alignV === "top" || top < elementBox.y) {
       top = targetBox.top - elementBox.height - offsetV;
@@ -5992,13 +6008,22 @@ function alignItem({
       left = viewportPadding;
     left = left + window.scrollX;
   }
+  elementBox = element3.getBoundingClientRect();
   if (elementBox.x < viewportPadding) {
     left = viewportPadding + window.scrollX;
   }
   element3.style.left = left + "px";
   element3.style.maxWidth = `calc(100% - ${left + viewportPadding}px)`;
+  if (isLeft || isRight) {
+    if (isLeft)
+      return "left";
+    if (isRight)
+      return "right";
+  }
   element3.style.setProperty("--tip-offset", findTipOffset(targetBox, element3));
-  return top > targetBox.top ? "bottom" : "top";
+  if (top > targetBox.top)
+    return "bottom";
+  return "top";
 }
 function findTipOffset(targetBox, element3) {
   const elementBox = element3.getBoundingClientRect();
@@ -65347,6 +65372,54 @@ var MessageBox_default2 = MessageBox_1;
 
 // docs-src/components/tooltip/Tooltip.svelte
 var file74 = "docs-src/components/tooltip/Tooltip.svelte";
+function create_default_slot_117(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Some tooltip text");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_117.name,
+    type: "slot",
+    source: '(6:0) <Tooltip target=\\"box1\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_104(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Some tooltip text");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_104.name,
+    type: "slot",
+    source: '(10:0) <Tooltip position=\\"bottom\\" target=\\"box-below\\">',
+    ctx
+  });
+  return block;
+}
 function create_default_slot_94(ctx) {
   let t;
   const block = {
@@ -65366,12 +65439,132 @@ function create_default_slot_94(ctx) {
     block,
     id: create_default_slot_94.name,
     type: "slot",
-    source: '(6:0) <Tooltip target=\\"box1\\">',
+    source: '(14:0) <Tooltip position=\\"right\\" target=\\"box-right\\">',
     ctx
   });
   return block;
 }
 function create_default_slot_84(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Some tooltip text");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_84.name,
+    type: "slot",
+    source: '(18:0) <Tooltip position=\\"left\\" target=\\"box-left\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_75(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Some tooltip text");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_75.name,
+    type: "slot",
+    source: '(25:0) <Tooltip info target=\\"box-info\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_65(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Some tooltip text");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_65.name,
+    type: "slot",
+    source: '(29:0) <Tooltip success target=\\"box-success\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_55(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Some tooltip text");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_55.name,
+    type: "slot",
+    source: '(33:0) <Tooltip warning target=\\"box-warning\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_48(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Some tooltip text");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_48.name,
+    type: "slot",
+    source: '(37:0) <Tooltip danger target=\\"box-error\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_313(ctx) {
   let h1;
   let t1;
   let p0;
@@ -65396,12 +65589,12 @@ function create_default_slot_84(ctx) {
       t6 = space();
       p1 = element2("p");
       p1.textContent = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.";
-      add_location(h1, file74, 10, 1, 390);
-      add_location(b, file74, 11, 9, 419);
+      add_location(h1, file74, 43, 1, 1861);
+      add_location(b, file74, 44, 9, 1890);
       attr_dev(a, "href", "#Tooltip");
-      add_location(a, file74, 11, 44, 454);
-      add_location(p0, file74, 11, 1, 411);
-      add_location(p1, file74, 12, 1, 487);
+      add_location(a, file74, 44, 44, 1925);
+      add_location(p0, file74, 44, 1, 1882);
+      add_location(p1, file74, 45, 1, 1958);
     },
     m: function mount(target, anchor) {
       insert_dev(target, h1, anchor);
@@ -65427,129 +65620,9 @@ function create_default_slot_84(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_84.name,
-    type: "slot",
-    source: '(10:0) <Tooltip target=\\"box2\\" class=\\"tooltip-html\\">',
-    ctx
-  });
-  return block;
-}
-function create_default_slot_75(ctx) {
-  let t;
-  const block = {
-    c: function create() {
-      t = text("Some tooltip text");
-    },
-    m: function mount(target, anchor) {
-      insert_dev(target, t, anchor);
-    },
-    d: function destroy(detaching) {
-      if (detaching) {
-        detach_dev(t);
-      }
-    }
-  };
-  dispatch_dev("SvelteRegisterBlock", {
-    block,
-    id: create_default_slot_75.name,
-    type: "slot",
-    source: '(20:0) <Tooltip info target=\\"box-info\\">',
-    ctx
-  });
-  return block;
-}
-function create_default_slot_65(ctx) {
-  let t;
-  const block = {
-    c: function create() {
-      t = text("Some tooltip text");
-    },
-    m: function mount(target, anchor) {
-      insert_dev(target, t, anchor);
-    },
-    d: function destroy(detaching) {
-      if (detaching) {
-        detach_dev(t);
-      }
-    }
-  };
-  dispatch_dev("SvelteRegisterBlock", {
-    block,
-    id: create_default_slot_65.name,
-    type: "slot",
-    source: '(24:0) <Tooltip success target=\\"box-success\\">',
-    ctx
-  });
-  return block;
-}
-function create_default_slot_55(ctx) {
-  let t;
-  const block = {
-    c: function create() {
-      t = text("Some tooltip text");
-    },
-    m: function mount(target, anchor) {
-      insert_dev(target, t, anchor);
-    },
-    d: function destroy(detaching) {
-      if (detaching) {
-        detach_dev(t);
-      }
-    }
-  };
-  dispatch_dev("SvelteRegisterBlock", {
-    block,
-    id: create_default_slot_55.name,
-    type: "slot",
-    source: '(28:0) <Tooltip warning target=\\"box-warning\\">',
-    ctx
-  });
-  return block;
-}
-function create_default_slot_48(ctx) {
-  let t;
-  const block = {
-    c: function create() {
-      t = text("Some tooltip text");
-    },
-    m: function mount(target, anchor) {
-      insert_dev(target, t, anchor);
-    },
-    d: function destroy(detaching) {
-      if (detaching) {
-        detach_dev(t);
-      }
-    }
-  };
-  dispatch_dev("SvelteRegisterBlock", {
-    block,
-    id: create_default_slot_48.name,
-    type: "slot",
-    source: '(32:0) <Tooltip danger target=\\"box-error\\">',
-    ctx
-  });
-  return block;
-}
-function create_default_slot_313(ctx) {
-  let t;
-  const block = {
-    c: function create() {
-      t = text("Some tooltip text");
-    },
-    m: function mount(target, anchor) {
-      insert_dev(target, t, anchor);
-    },
-    d: function destroy(detaching) {
-      if (detaching) {
-        detach_dev(t);
-      }
-    }
-  };
-  dispatch_dev("SvelteRegisterBlock", {
-    block,
     id: create_default_slot_313.name,
     type: "slot",
-    source: '(39:0) <Tooltip position=\\"bottom\\" target=\\"box-below\\">',
+    source: '(43:0) <Tooltip target=\\"box2\\" class=\\"tooltip-html\\">',
     ctx
   });
   return block;
@@ -65573,12 +65646,12 @@ function create_default_slot_214(ctx) {
     block,
     id: create_default_slot_214.name,
     type: "slot",
-    source: '(44:0) <Tooltip target=\\"box-offset\\" offset=\\"-20\\">',
+    source: '(53:0) <Tooltip target=\\"box-offset\\" offset=\\"-20\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_117(ctx) {
+function create_default_slot_118(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -65595,9 +65668,9 @@ function create_default_slot_117(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_117.name,
+    id: create_default_slot_118.name,
     type: "slot",
-    source: '(48:0) <Tooltip target=\\"box-offset2\\" offset=\\"20\\">',
+    source: '(57:0) <Tooltip target=\\"box-offset2\\" offset=\\"20\\">',
     ctx
   });
   return block;
@@ -65621,7 +65694,7 @@ function create_default_slot12(ctx) {
     block,
     id: create_default_slot12.name,
     type: "slot",
-    source: '(54:0) <Tooltip target=\\"box5\\" delay=\\"700\\">',
+    source: '(63:0) <Tooltip target=\\"box5\\" delay=\\"700\\">',
     ctx
   });
   return block;
@@ -65639,15 +65712,15 @@ function create_fragment81(ctx) {
   let t8;
   let tooltip1;
   let t9;
-  let h31;
-  let t11;
   let div2;
-  let t13;
+  let t11;
   let tooltip2;
-  let t14;
+  let t12;
   let div3;
-  let t16;
+  let t14;
   let tooltip3;
+  let t15;
+  let h31;
   let t17;
   let div4;
   let t19;
@@ -65657,50 +65730,76 @@ function create_fragment81(ctx) {
   let t22;
   let tooltip5;
   let t23;
-  let h32;
-  let t25;
   let div6;
-  let t27;
+  let t25;
   let tooltip6;
-  let t28;
-  let h33;
-  let t30;
+  let t26;
   let div7;
-  let t32;
+  let t28;
   let tooltip7;
-  let t33;
+  let t29;
+  let h32;
+  let t31;
   let div8;
-  let t35;
+  let t33;
   let tooltip8;
+  let t34;
+  let h33;
   let t36;
-  let h34;
-  let t38;
   let div9;
-  let t40;
+  let t38;
   let tooltip9;
+  let t39;
+  let div10;
   let t41;
-  let codeexample;
+  let tooltip10;
   let t42;
+  let h34;
+  let t44;
+  let div11;
+  let t46;
+  let tooltip11;
+  let t47;
+  let codeexample;
+  let t48;
   let api;
   let current;
   tooltip0 = new Tooltip_default({
     props: {
       target: "box1",
-      $$slots: { default: [create_default_slot_94] },
+      $$slots: { default: [create_default_slot_117] },
       $$scope: { ctx }
     },
     $$inline: true
   });
   tooltip1 = new Tooltip_default({
     props: {
-      target: "box2",
-      class: "tooltip-html",
-      $$slots: { default: [create_default_slot_84] },
+      position: "bottom",
+      target: "box-below",
+      $$slots: { default: [create_default_slot_104] },
       $$scope: { ctx }
     },
     $$inline: true
   });
   tooltip2 = new Tooltip_default({
+    props: {
+      position: "right",
+      target: "box-right",
+      $$slots: { default: [create_default_slot_94] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  tooltip3 = new Tooltip_default({
+    props: {
+      position: "left",
+      target: "box-left",
+      $$slots: { default: [create_default_slot_84] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  tooltip4 = new Tooltip_default({
     props: {
       info: true,
       target: "box-info",
@@ -65709,7 +65808,7 @@ function create_fragment81(ctx) {
     },
     $$inline: true
   });
-  tooltip3 = new Tooltip_default({
+  tooltip5 = new Tooltip_default({
     props: {
       success: true,
       target: "box-success",
@@ -65718,7 +65817,7 @@ function create_fragment81(ctx) {
     },
     $$inline: true
   });
-  tooltip4 = new Tooltip_default({
+  tooltip6 = new Tooltip_default({
     props: {
       warning: true,
       target: "box-warning",
@@ -65727,7 +65826,7 @@ function create_fragment81(ctx) {
     },
     $$inline: true
   });
-  tooltip5 = new Tooltip_default({
+  tooltip7 = new Tooltip_default({
     props: {
       danger: true,
       target: "box-error",
@@ -65736,16 +65835,16 @@ function create_fragment81(ctx) {
     },
     $$inline: true
   });
-  tooltip6 = new Tooltip_default({
+  tooltip8 = new Tooltip_default({
     props: {
-      position: "bottom",
-      target: "box-below",
+      target: "box2",
+      class: "tooltip-html",
       $$slots: { default: [create_default_slot_313] },
       $$scope: { ctx }
     },
     $$inline: true
   });
-  tooltip7 = new Tooltip_default({
+  tooltip9 = new Tooltip_default({
     props: {
       target: "box-offset",
       offset: "-20",
@@ -65754,16 +65853,16 @@ function create_fragment81(ctx) {
     },
     $$inline: true
   });
-  tooltip8 = new Tooltip_default({
+  tooltip10 = new Tooltip_default({
     props: {
       target: "box-offset2",
       offset: "20",
-      $$slots: { default: [create_default_slot_117] },
+      $$slots: { default: [create_default_slot_118] },
       $$scope: { ctx }
     },
     $$inline: true
   });
-  tooltip9 = new Tooltip_default({
+  tooltip11 = new Tooltip_default({
     props: {
       target: "box5",
       delay: "700",
@@ -65795,69 +65894,79 @@ function create_fragment81(ctx) {
       h30.textContent = "Normal";
       t3 = space();
       div0 = element2("div");
-      div0.textContent = "box with a tooltip";
+      div0.textContent = "tooltip above the target";
       t5 = space();
       create_component(tooltip0.$$.fragment);
       t6 = space();
       div1 = element2("div");
-      div1.textContent = "box with a tooltip";
+      div1.textContent = "tooltip below the target";
       t8 = space();
       create_component(tooltip1.$$.fragment);
       t9 = space();
+      div2 = element2("div");
+      div2.textContent = "tooltip right of the target";
+      t11 = space();
+      create_component(tooltip2.$$.fragment);
+      t12 = space();
+      div3 = element2("div");
+      div3.textContent = "tooltip left of the target";
+      t14 = space();
+      create_component(tooltip3.$$.fragment);
+      t15 = space();
       h31 = element2("h3");
       h31.textContent = "Colour variants (tooltip type)";
-      t11 = space();
-      div2 = element2("div");
-      div2.textContent = "info";
-      t13 = space();
-      create_component(tooltip2.$$.fragment);
-      t14 = space();
-      div3 = element2("div");
-      div3.textContent = "success";
-      t16 = space();
-      create_component(tooltip3.$$.fragment);
       t17 = space();
       div4 = element2("div");
-      div4.textContent = "warning";
+      div4.textContent = "info";
       t19 = space();
       create_component(tooltip4.$$.fragment);
       t20 = space();
       div5 = element2("div");
-      div5.textContent = "danger";
+      div5.textContent = "success";
       t22 = space();
       create_component(tooltip5.$$.fragment);
       t23 = space();
-      h32 = element2("h3");
-      h32.textContent = "Show below target";
-      t25 = space();
       div6 = element2("div");
-      div6.textContent = "box with a tooltip";
-      t27 = space();
+      div6.textContent = "warning";
+      t25 = space();
       create_component(tooltip6.$$.fragment);
-      t28 = space();
-      h33 = element2("h3");
-      h33.textContent = "Custom offset";
-      t30 = space();
+      t26 = space();
       div7 = element2("div");
-      div7.textContent = "box with a tooltip";
-      t32 = space();
+      div7.textContent = "danger";
+      t28 = space();
       create_component(tooltip7.$$.fragment);
-      t33 = space();
+      t29 = space();
+      h32 = element2("h3");
+      h32.textContent = "Show HTML content";
+      t31 = space();
       div8 = element2("div");
       div8.textContent = "box with a tooltip";
-      t35 = space();
+      t33 = space();
       create_component(tooltip8.$$.fragment);
+      t34 = space();
+      h33 = element2("h3");
+      h33.textContent = "Custom offset";
       t36 = space();
-      h34 = element2("h3");
-      h34.textContent = "Show delay";
-      t38 = space();
       div9 = element2("div");
       div9.textContent = "box with a tooltip";
-      t40 = space();
+      t38 = space();
       create_component(tooltip9.$$.fragment);
+      t39 = space();
+      div10 = element2("div");
+      div10.textContent = "box with a tooltip";
       t41 = space();
-      create_component(codeexample.$$.fragment);
+      create_component(tooltip10.$$.fragment);
       t42 = space();
+      h34 = element2("h3");
+      h34.textContent = "Show delay";
+      t44 = space();
+      div11 = element2("div");
+      div11.textContent = "box with a tooltip";
+      t46 = space();
+      create_component(tooltip11.$$.fragment);
+      t47 = space();
+      create_component(codeexample.$$.fragment);
+      t48 = space();
       create_component(api.$$.fragment);
       add_location(h2, file74, 0, 0, 0);
       add_location(h30, file74, 2, 0, 18);
@@ -65867,44 +65976,52 @@ function create_fragment81(ctx) {
       add_location(div0, file74, 4, 0, 90);
       attr_dev(div1, "class", "tooltip-box");
       attr_dev(div1, "tabindex", "0");
-      attr_dev(div1, "id", "box2");
-      add_location(div1, file74, 8, 0, 271);
-      add_location(h31, file74, 16, 0, 683);
+      attr_dev(div1, "id", "box-below");
+      add_location(div1, file74, 8, 0, 277);
       attr_dev(div2, "class", "tooltip-box");
       attr_dev(div2, "tabindex", "0");
-      attr_dev(div2, "id", "box-info");
-      add_location(div2, file74, 18, 0, 779);
+      attr_dev(div2, "id", "box-right");
+      add_location(div2, file74, 12, 0, 492);
       attr_dev(div3, "class", "tooltip-box");
       attr_dev(div3, "tabindex", "0");
-      attr_dev(div3, "id", "box-success");
-      add_location(div3, file74, 22, 0, 959);
+      attr_dev(div3, "id", "box-left");
+      add_location(div3, file74, 16, 0, 709);
+      add_location(h31, file74, 21, 0, 868);
       attr_dev(div4, "class", "tooltip-box");
       attr_dev(div4, "tabindex", "0");
-      attr_dev(div4, "id", "box-warning");
-      add_location(div4, file74, 26, 0, 1151);
+      attr_dev(div4, "id", "box-info");
+      add_location(div4, file74, 23, 0, 964);
       attr_dev(div5, "class", "tooltip-box");
       attr_dev(div5, "tabindex", "0");
-      attr_dev(div5, "id", "box-error");
-      add_location(div5, file74, 30, 0, 1343);
-      add_location(h32, file74, 35, 0, 1475);
+      attr_dev(div5, "id", "box-success");
+      add_location(div5, file74, 27, 0, 1144);
       attr_dev(div6, "class", "tooltip-box");
       attr_dev(div6, "tabindex", "0");
-      attr_dev(div6, "id", "box-below");
-      add_location(div6, file74, 37, 0, 1558);
-      add_location(h33, file74, 40, 0, 1711);
+      attr_dev(div6, "id", "box-warning");
+      add_location(div6, file74, 31, 0, 1336);
       attr_dev(div7, "class", "tooltip-box");
       attr_dev(div7, "tabindex", "0");
-      attr_dev(div7, "id", "box-offset");
-      add_location(div7, file74, 42, 0, 1790);
+      attr_dev(div7, "id", "box-error");
+      add_location(div7, file74, 35, 0, 1528);
+      add_location(h32, file74, 39, 0, 1659);
       attr_dev(div8, "class", "tooltip-box");
       attr_dev(div8, "tabindex", "0");
-      attr_dev(div8, "id", "box-offset2");
-      add_location(div8, file74, 46, 0, 1993);
-      add_location(h34, file74, 50, 0, 2141);
+      attr_dev(div8, "id", "box2");
+      add_location(div8, file74, 41, 0, 1742);
+      add_location(h33, file74, 49, 0, 2154);
       attr_dev(div9, "class", "tooltip-box");
       attr_dev(div9, "tabindex", "0");
-      attr_dev(div9, "id", "box5");
-      add_location(div9, file74, 52, 0, 2217);
+      attr_dev(div9, "id", "box-offset");
+      add_location(div9, file74, 51, 0, 2233);
+      attr_dev(div10, "class", "tooltip-box");
+      attr_dev(div10, "tabindex", "0");
+      attr_dev(div10, "id", "box-offset2");
+      add_location(div10, file74, 55, 0, 2436);
+      add_location(h34, file74, 59, 0, 2584);
+      attr_dev(div11, "class", "tooltip-box");
+      attr_dev(div11, "tabindex", "0");
+      attr_dev(div11, "id", "box5");
+      add_location(div11, file74, 61, 0, 2660);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -65922,15 +66039,15 @@ function create_fragment81(ctx) {
       insert_dev(target, t8, anchor);
       mount_component(tooltip1, target, anchor);
       insert_dev(target, t9, anchor);
-      insert_dev(target, h31, anchor);
-      insert_dev(target, t11, anchor);
       insert_dev(target, div2, anchor);
-      insert_dev(target, t13, anchor);
+      insert_dev(target, t11, anchor);
       mount_component(tooltip2, target, anchor);
-      insert_dev(target, t14, anchor);
+      insert_dev(target, t12, anchor);
       insert_dev(target, div3, anchor);
-      insert_dev(target, t16, anchor);
+      insert_dev(target, t14, anchor);
       mount_component(tooltip3, target, anchor);
+      insert_dev(target, t15, anchor);
+      insert_dev(target, h31, anchor);
       insert_dev(target, t17, anchor);
       insert_dev(target, div4, anchor);
       insert_dev(target, t19, anchor);
@@ -65940,30 +66057,38 @@ function create_fragment81(ctx) {
       insert_dev(target, t22, anchor);
       mount_component(tooltip5, target, anchor);
       insert_dev(target, t23, anchor);
-      insert_dev(target, h32, anchor);
-      insert_dev(target, t25, anchor);
       insert_dev(target, div6, anchor);
-      insert_dev(target, t27, anchor);
+      insert_dev(target, t25, anchor);
       mount_component(tooltip6, target, anchor);
-      insert_dev(target, t28, anchor);
-      insert_dev(target, h33, anchor);
-      insert_dev(target, t30, anchor);
+      insert_dev(target, t26, anchor);
       insert_dev(target, div7, anchor);
-      insert_dev(target, t32, anchor);
+      insert_dev(target, t28, anchor);
       mount_component(tooltip7, target, anchor);
-      insert_dev(target, t33, anchor);
+      insert_dev(target, t29, anchor);
+      insert_dev(target, h32, anchor);
+      insert_dev(target, t31, anchor);
       insert_dev(target, div8, anchor);
-      insert_dev(target, t35, anchor);
+      insert_dev(target, t33, anchor);
       mount_component(tooltip8, target, anchor);
+      insert_dev(target, t34, anchor);
+      insert_dev(target, h33, anchor);
       insert_dev(target, t36, anchor);
-      insert_dev(target, h34, anchor);
-      insert_dev(target, t38, anchor);
       insert_dev(target, div9, anchor);
-      insert_dev(target, t40, anchor);
+      insert_dev(target, t38, anchor);
       mount_component(tooltip9, target, anchor);
+      insert_dev(target, t39, anchor);
+      insert_dev(target, div10, anchor);
       insert_dev(target, t41, anchor);
-      mount_component(codeexample, target, anchor);
+      mount_component(tooltip10, target, anchor);
       insert_dev(target, t42, anchor);
+      insert_dev(target, h34, anchor);
+      insert_dev(target, t44, anchor);
+      insert_dev(target, div11, anchor);
+      insert_dev(target, t46, anchor);
+      mount_component(tooltip11, target, anchor);
+      insert_dev(target, t47, anchor);
+      mount_component(codeexample, target, anchor);
+      insert_dev(target, t48, anchor);
       mount_component(api, target, anchor);
       current = true;
     },
@@ -66028,6 +66153,18 @@ function create_fragment81(ctx) {
         tooltip9_changes.$$scope = { dirty, ctx: ctx2 };
       }
       tooltip9.$set(tooltip9_changes);
+      const tooltip10_changes = {};
+      if (dirty & /*$$scope*/
+      4) {
+        tooltip10_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      tooltip10.$set(tooltip10_changes);
+      const tooltip11_changes = {};
+      if (dirty & /*$$scope*/
+      4) {
+        tooltip11_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      tooltip11.$set(tooltip11_changes);
     },
     i: function intro(local) {
       if (current)
@@ -66042,6 +66179,8 @@ function create_fragment81(ctx) {
       transition_in(tooltip7.$$.fragment, local);
       transition_in(tooltip8.$$.fragment, local);
       transition_in(tooltip9.$$.fragment, local);
+      transition_in(tooltip10.$$.fragment, local);
+      transition_in(tooltip11.$$.fragment, local);
       transition_in(codeexample.$$.fragment, local);
       transition_in(api.$$.fragment, local);
       current = true;
@@ -66057,6 +66196,8 @@ function create_fragment81(ctx) {
       transition_out(tooltip7.$$.fragment, local);
       transition_out(tooltip8.$$.fragment, local);
       transition_out(tooltip9.$$.fragment, local);
+      transition_out(tooltip10.$$.fragment, local);
+      transition_out(tooltip11.$$.fragment, local);
       transition_out(codeexample.$$.fragment, local);
       transition_out(api.$$.fragment, local);
       current = false;
@@ -66073,13 +66214,13 @@ function create_fragment81(ctx) {
         detach_dev(div1);
         detach_dev(t8);
         detach_dev(t9);
-        detach_dev(h31);
-        detach_dev(t11);
         detach_dev(div2);
-        detach_dev(t13);
-        detach_dev(t14);
+        detach_dev(t11);
+        detach_dev(t12);
         detach_dev(div3);
-        detach_dev(t16);
+        detach_dev(t14);
+        detach_dev(t15);
+        detach_dev(h31);
         detach_dev(t17);
         detach_dev(div4);
         detach_dev(t19);
@@ -66087,25 +66228,31 @@ function create_fragment81(ctx) {
         detach_dev(div5);
         detach_dev(t22);
         detach_dev(t23);
-        detach_dev(h32);
-        detach_dev(t25);
         detach_dev(div6);
-        detach_dev(t27);
-        detach_dev(t28);
-        detach_dev(h33);
-        detach_dev(t30);
+        detach_dev(t25);
+        detach_dev(t26);
         detach_dev(div7);
-        detach_dev(t32);
-        detach_dev(t33);
+        detach_dev(t28);
+        detach_dev(t29);
+        detach_dev(h32);
+        detach_dev(t31);
         detach_dev(div8);
-        detach_dev(t35);
+        detach_dev(t33);
+        detach_dev(t34);
+        detach_dev(h33);
         detach_dev(t36);
-        detach_dev(h34);
-        detach_dev(t38);
         detach_dev(div9);
-        detach_dev(t40);
+        detach_dev(t38);
+        detach_dev(t39);
+        detach_dev(div10);
         detach_dev(t41);
         detach_dev(t42);
+        detach_dev(h34);
+        detach_dev(t44);
+        detach_dev(div11);
+        detach_dev(t46);
+        detach_dev(t47);
+        detach_dev(t48);
       }
       destroy_component(tooltip0, detaching);
       destroy_component(tooltip1, detaching);
@@ -66117,6 +66264,8 @@ function create_fragment81(ctx) {
       destroy_component(tooltip7, detaching);
       destroy_component(tooltip8, detaching);
       destroy_component(tooltip9, detaching);
+      destroy_component(tooltip10, detaching);
+      destroy_component(tooltip11, detaching);
       destroy_component(codeexample, detaching);
       destroy_component(api, detaching);
     }
@@ -66165,9 +66314,9 @@ function instance81($$self2, $$props2, $$invalidate2) {
     },
     {
       name: "position",
-      type: ["top", "bottom"],
+      type: ["top", "bottom", "left", "right"],
       default: "top",
-      description: "Prefer the position of the tooltip to be above (top) or below (bottom) the target element."
+      description: "Prefer the position of the tooltip to be above (top), below (bottom), left or right of the target element."
     },
     {
       name: "success",
@@ -66343,7 +66492,7 @@ function create_default_slot_124(ctx) {
   });
   return block;
 }
-function create_default_slot_118(ctx) {
+function create_default_slot_119(ctx) {
   let t0;
   let br;
   let t1;
@@ -66416,14 +66565,14 @@ function create_default_slot_118(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_118.name,
+    id: create_default_slot_119.name,
     type: "slot",
     source: '(21:0) <Dialog bind:this=\\"{dialog1}\\" title=\\"Hello\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_104(ctx) {
+function create_default_slot_105(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -66440,7 +66589,7 @@ function create_default_slot_104(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_104.name,
+    id: create_default_slot_105.name,
     type: "slot",
     source: '(32:2) <Button on:click=\\"{() => dialog1.close()}\\">',
     ctx
@@ -66453,7 +66602,7 @@ function create_footer_slot_3(ctx) {
   let current;
   button = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_104] },
+      $$slots: { default: [create_default_slot_105] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -66920,7 +67069,7 @@ function create_default_slot_215(ctx) {
   });
   return block;
 }
-function create_default_slot_119(ctx) {
+function create_default_slot_120(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -66937,7 +67086,7 @@ function create_default_slot_119(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_119.name,
+    id: create_default_slot_120.name,
     type: "slot",
     source: '(65:2) <Button success on:click=\\"{() => dialog5.close()}\\">',
     ctx
@@ -66977,7 +67126,7 @@ function create_footer_slot2(ctx) {
   button0 = new Button_default({
     props: {
       success: true,
-      $$slots: { default: [create_default_slot_119] },
+      $$slots: { default: [create_default_slot_120] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -67172,7 +67321,7 @@ function create_fragment82(ctx) {
     title: "Hello",
     $$slots: {
       footer: [create_footer_slot_3],
-      default: [create_default_slot_118]
+      default: [create_default_slot_119]
     },
     $$scope: { ctx }
   };
@@ -67697,7 +67846,7 @@ function create_default_slot_216(ctx) {
   });
   return block;
 }
-function create_default_slot_120(ctx) {
+function create_default_slot_121(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -67714,7 +67863,7 @@ function create_default_slot_120(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_120.name,
+    id: create_default_slot_121.name,
     type: "slot",
     source: '(9:1) <Button on:click=\\"{() => drawer.close()}\\">',
     ctx
@@ -67743,7 +67892,7 @@ function create_default_slot14(ctx) {
   let current;
   button = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_120] },
+      $$slots: { default: [create_default_slot_121] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -68208,7 +68357,7 @@ function create_default_slot_1110(ctx) {
   });
   return block;
 }
-function create_default_slot_105(ctx) {
+function create_default_slot_106(ctx) {
   let p;
   const block = {
     c: function create() {
@@ -68228,7 +68377,7 @@ function create_default_slot_105(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_105.name,
+    id: create_default_slot_106.name,
     type: "slot",
     source: "(19:0) <Panel>",
     ctx
@@ -68451,7 +68600,7 @@ function create_default_slot_217(ctx) {
   });
   return block;
 }
-function create_default_slot_121(ctx) {
+function create_default_slot_126(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -68468,7 +68617,7 @@ function create_default_slot_121(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_121.name,
+    id: create_default_slot_126.name,
     type: "slot",
     source: "(66:1) <Button>",
     ctx
@@ -68486,7 +68635,7 @@ function create_default_slot15(ctx) {
   let current;
   button = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_121] },
+      $$slots: { default: [create_default_slot_126] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -68627,7 +68776,7 @@ function create_fragment84(ctx) {
   });
   panel3 = new Panel_default({
     props: {
-      $$slots: { default: [create_default_slot_105] },
+      $$slots: { default: [create_default_slot_106] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -69115,7 +69264,7 @@ var Panel_default2 = Panel_1;
 
 // docs-src/components/popover/Popover.svelte
 var file78 = "docs-src/components/popover/Popover.svelte";
-function create_default_slot_126(ctx) {
+function create_default_slot_218(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -69132,14 +69281,86 @@ function create_default_slot_126(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_126.name,
+    id: create_default_slot_218.name,
     type: "slot",
     source: '(15:0) <Button on:click=\\"{popover1.open}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_1111(ctx) {
+function create_default_slot_203(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Open to top");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_203.name,
+    type: "slot",
+    source: '(17:0) <Button on:click=\\"{popover1top.open}\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_193(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Open to right");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_193.name,
+    type: "slot",
+    source: '(18:0) <Button on:click=\\"{popover1right.open}\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_183(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Open to left");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_183.name,
+    type: "slot",
+    source: '(19:0) <Button on:click=\\"{popover1left.open}\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_173(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -69156,14 +69377,14 @@ function create_default_slot_1111(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_1111.name,
+    id: create_default_slot_173.name,
     type: "slot",
-    source: '(20:1) <Button on:click=\\"{popover1.close}\\">',
+    source: '(24:1) <Button on:click=\\"{popover1.close}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_106(ctx) {
+function create_default_slot_164(ctx) {
   let h2;
   let t1;
   let p;
@@ -69172,7 +69393,7 @@ function create_default_slot_106(ctx) {
   let current;
   button = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_1111] },
+      $$slots: { default: [create_default_slot_173] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -69193,8 +69414,8 @@ function create_default_slot_106(ctx) {
       p.textContent = "Some text";
       t3 = space();
       create_component(button.$$.fragment);
-      add_location(h2, file78, 16, 1, 705);
-      add_location(p, file78, 17, 1, 735);
+      add_location(h2, file78, 21, 1, 890);
+      add_location(p, file78, 22, 1, 920);
     },
     m: function mount(target, anchor) {
       insert_dev(target, h2, anchor);
@@ -69208,7 +69429,7 @@ function create_default_slot_106(ctx) {
       ctx = new_ctx;
       const button_changes = {};
       if (dirty & /*$$scope*/
-      32768) {
+      2097152) {
         button_changes.$$scope = { dirty, ctx };
       }
       button.$set(button_changes);
@@ -69235,9 +69456,318 @@ function create_default_slot_106(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_106.name,
+    id: create_default_slot_164.name,
     type: "slot",
-    source: '(16:0) <Popover bind:this=\\"{popover1}\\">',
+    source: '(21:0) <Popover bind:this=\\"{popover1}\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_154(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Click me");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_154.name,
+    type: "slot",
+    source: '(30:1) <Button on:click=\\"{popover1top.close}\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_144(ctx) {
+  let h2;
+  let t1;
+  let p;
+  let t3;
+  let button;
+  let current;
+  button = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot_154] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button.$on("click", function() {
+    if (is_function(
+      /*popover1top*/
+      ctx[1].close
+    ))
+      ctx[1].close.apply(this, arguments);
+  });
+  const block = {
+    c: function create() {
+      h2 = element2("h2");
+      h2.textContent = "Context information";
+      t1 = space();
+      p = element2("p");
+      p.textContent = "Some text";
+      t3 = space();
+      create_component(button.$$.fragment);
+      add_location(h2, file78, 27, 1, 1056);
+      add_location(p, file78, 28, 1, 1086);
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, h2, anchor);
+      insert_dev(target, t1, anchor);
+      insert_dev(target, p, anchor);
+      insert_dev(target, t3, anchor);
+      mount_component(button, target, anchor);
+      current = true;
+    },
+    p: function update2(new_ctx, dirty) {
+      ctx = new_ctx;
+      const button_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        button_changes.$$scope = { dirty, ctx };
+      }
+      button.$set(button_changes);
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      transition_in(button.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      transition_out(button.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(h2);
+        detach_dev(t1);
+        detach_dev(p);
+        detach_dev(t3);
+      }
+      destroy_component(button, detaching);
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_144.name,
+    type: "slot",
+    source: '(27:0) <Popover bind:this=\\"{popover1top}\\" position=\\"top\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_136(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Click me");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_136.name,
+    type: "slot",
+    source: '(35:1) <Button on:click=\\"{popover1left.close}\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_127(ctx) {
+  let h2;
+  let t1;
+  let p;
+  let t3;
+  let button;
+  let current;
+  button = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot_136] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button.$on("click", function() {
+    if (is_function(
+      /*popover1left*/
+      ctx[2].close
+    ))
+      ctx[2].close.apply(this, arguments);
+  });
+  const block = {
+    c: function create() {
+      h2 = element2("h2");
+      h2.textContent = "Context information";
+      t1 = space();
+      p = element2("p");
+      p.textContent = "Some text";
+      t3 = space();
+      create_component(button.$$.fragment);
+      add_location(h2, file78, 32, 1, 1226);
+      add_location(p, file78, 33, 1, 1256);
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, h2, anchor);
+      insert_dev(target, t1, anchor);
+      insert_dev(target, p, anchor);
+      insert_dev(target, t3, anchor);
+      mount_component(button, target, anchor);
+      current = true;
+    },
+    p: function update2(new_ctx, dirty) {
+      ctx = new_ctx;
+      const button_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        button_changes.$$scope = { dirty, ctx };
+      }
+      button.$set(button_changes);
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      transition_in(button.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      transition_out(button.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(h2);
+        detach_dev(t1);
+        detach_dev(p);
+        detach_dev(t3);
+      }
+      destroy_component(button, detaching);
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_127.name,
+    type: "slot",
+    source: '(32:0) <Popover bind:this=\\"{popover1left}\\" position=\\"left\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_1111(ctx) {
+  let t;
+  const block = {
+    c: function create() {
+      t = text("Click me");
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(t);
+      }
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_1111.name,
+    type: "slot",
+    source: '(40:1) <Button on:click=\\"{popover1right.close}\\">',
+    ctx
+  });
+  return block;
+}
+function create_default_slot_107(ctx) {
+  let h2;
+  let t1;
+  let p;
+  let t3;
+  let button;
+  let current;
+  button = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot_1111] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button.$on("click", function() {
+    if (is_function(
+      /*popover1right*/
+      ctx[3].close
+    ))
+      ctx[3].close.apply(this, arguments);
+  });
+  const block = {
+    c: function create() {
+      h2 = element2("h2");
+      h2.textContent = "Context information";
+      t1 = space();
+      p = element2("p");
+      p.textContent = "Some text";
+      t3 = space();
+      create_component(button.$$.fragment);
+      add_location(h2, file78, 37, 1, 1399);
+      add_location(p, file78, 38, 1, 1429);
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, h2, anchor);
+      insert_dev(target, t1, anchor);
+      insert_dev(target, p, anchor);
+      insert_dev(target, t3, anchor);
+      mount_component(button, target, anchor);
+      current = true;
+    },
+    p: function update2(new_ctx, dirty) {
+      ctx = new_ctx;
+      const button_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        button_changes.$$scope = { dirty, ctx };
+      }
+      button.$set(button_changes);
+    },
+    i: function intro(local) {
+      if (current)
+        return;
+      transition_in(button.$$.fragment, local);
+      current = true;
+    },
+    o: function outro(local) {
+      transition_out(button.$$.fragment, local);
+      current = false;
+    },
+    d: function destroy(detaching) {
+      if (detaching) {
+        detach_dev(h2);
+        detach_dev(t1);
+        detach_dev(p);
+        detach_dev(t3);
+      }
+      destroy_component(button, detaching);
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block,
+    id: create_default_slot_107.name,
+    type: "slot",
+    source: '(37:0) <Popover bind:this=\\"{popover1right}\\" position=\\"right\\">',
     ctx
   });
   return block;
@@ -69261,7 +69791,7 @@ function create_default_slot_97(ctx) {
     block,
     id: create_default_slot_97.name,
     type: "slot",
-    source: '(34:0) <Button on:click=\\"{popover5.open}\\">',
+    source: '(54:0) <Button on:click=\\"{popover5.open}\\">',
     ctx
   });
   return block;
@@ -69285,7 +69815,7 @@ function create_default_slot_87(ctx) {
     block,
     id: create_default_slot_87.name,
     type: "slot",
-    source: '(38:1) <Button on:click=\\"{popover5.close}\\">',
+    source: '(58:1) <Button on:click=\\"{popover5.close}\\">',
     ctx
   });
   return block;
@@ -69307,9 +69837,9 @@ function create_default_slot_78(ctx) {
   button.$on("click", function() {
     if (is_function(
       /*popover5*/
-      ctx[4].close
+      ctx[7].close
     ))
-      ctx[4].close.apply(this, arguments);
+      ctx[7].close.apply(this, arguments);
   });
   const block = {
     c: function create() {
@@ -69320,8 +69850,8 @@ function create_default_slot_78(ctx) {
       p.textContent = "Some text";
       t3 = space();
       create_component(button.$$.fragment);
-      add_location(h2, file78, 35, 1, 1365);
-      add_location(p, file78, 36, 1, 1395);
+      add_location(h2, file78, 55, 1, 2063);
+      add_location(p, file78, 56, 1, 2093);
     },
     m: function mount(target, anchor) {
       insert_dev(target, h2, anchor);
@@ -69335,7 +69865,7 @@ function create_default_slot_78(ctx) {
       ctx = new_ctx;
       const button_changes = {};
       if (dirty & /*$$scope*/
-      32768) {
+      2097152) {
         button_changes.$$scope = { dirty, ctx };
       }
       button.$set(button_changes);
@@ -69364,7 +69894,7 @@ function create_default_slot_78(ctx) {
     block,
     id: create_default_slot_78.name,
     type: "slot",
-    source: '(35:0) <Popover hideTip bind:this=\\"{popover5}\\">',
+    source: '(55:0) <Popover hideTip bind:this=\\"{popover5}\\">',
     ctx
   });
   return block;
@@ -69388,7 +69918,7 @@ function create_default_slot_68(ctx) {
     block,
     id: create_default_slot_68.name,
     type: "slot",
-    source: '(43:0) <Button on:click=\\"{popover2.open}\\">',
+    source: '(63:0) <Button on:click=\\"{popover2.open}\\">',
     ctx
   });
   return block;
@@ -69412,7 +69942,7 @@ function create_default_slot_58(ctx) {
     block,
     id: create_default_slot_58.name,
     type: "slot",
-    source: '(44:0) <Popover bind:this=\\"{popover2}\\" offset=\\"-20\\">',
+    source: '(64:0) <Popover bind:this=\\"{popover2}\\" offset=\\"-20\\">',
     ctx
   });
   return block;
@@ -69436,7 +69966,7 @@ function create_default_slot_411(ctx) {
     block,
     id: create_default_slot_411.name,
     type: "slot",
-    source: '(46:0) <Button on:click=\\"{popover3.open}\\">',
+    source: '(66:0) <Button on:click=\\"{popover3.open}\\">',
     ctx
   });
   return block;
@@ -69460,12 +69990,12 @@ function create_default_slot_316(ctx) {
     block,
     id: create_default_slot_316.name,
     type: "slot",
-    source: '(47:0) <Popover bind:this=\\"{popover3}\\" offset=\\"20\\">',
+    source: '(67:0) <Popover bind:this=\\"{popover3}\\" offset=\\"20\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_218(ctx) {
+function create_default_slot_219(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -69482,14 +70012,14 @@ function create_default_slot_218(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_218.name,
+    id: create_default_slot_219.name,
     type: "slot",
-    source: '(54:1) <Button success on:click=\\"{updateContent}\\">',
+    source: '(74:1) <Button success on:click=\\"{updateContent}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_127(ctx) {
+function create_default_slot_128(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -69506,9 +70036,9 @@ function create_default_slot_127(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_127.name,
+    id: create_default_slot_128.name,
     type: "slot",
-    source: '(55:1) <Button on:click=\\"{popover4.close}\\">',
+    source: '(75:1) <Button on:click=\\"{popover4.close}\\">',
     ctx
   });
   return block;
@@ -69523,7 +70053,7 @@ function create_default_slot16(ctx) {
   button0 = new Button_default({
     props: {
       success: true,
-      $$slots: { default: [create_default_slot_218] },
+      $$slots: { default: [create_default_slot_219] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -69531,11 +70061,11 @@ function create_default_slot16(ctx) {
   button0.$on(
     "click",
     /*updateContent*/
-    ctx[6]
+    ctx[9]
   );
   button1 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_127] },
+      $$slots: { default: [create_default_slot_128] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -69543,9 +70073,9 @@ function create_default_slot16(ctx) {
   button1.$on("click", function() {
     if (is_function(
       /*popover4*/
-      ctx[3].close
+      ctx[6].close
     ))
-      ctx[3].close.apply(this, arguments);
+      ctx[6].close.apply(this, arguments);
   });
   const block = {
     c: function create() {
@@ -69559,7 +70089,7 @@ function create_default_slot16(ctx) {
     m: function mount(target, anchor) {
       html_tag.m(
         /*content*/
-        ctx[5],
+        ctx[8],
         target,
         anchor
       );
@@ -69572,20 +70102,20 @@ function create_default_slot16(ctx) {
     p: function update2(new_ctx, dirty) {
       ctx = new_ctx;
       if (!current || dirty & /*content*/
-      32)
+      256)
         html_tag.p(
           /*content*/
-          ctx[5]
+          ctx[8]
         );
       const button0_changes = {};
       if (dirty & /*$$scope*/
-      32768) {
+      2097152) {
         button0_changes.$$scope = { dirty, ctx };
       }
       button0.$set(button0_changes);
       const button1_changes = {};
       if (dirty & /*$$scope*/
-      32768) {
+      2097152) {
         button1_changes.$$scope = { dirty, ctx };
       }
       button1.$set(button1_changes);
@@ -69616,7 +70146,7 @@ function create_default_slot16(ctx) {
     block,
     id: create_default_slot16.name,
     type: "slot",
-    source: '(52:0) <Popover bind:this=\\"{popover4}\\" position=\\"top\\">',
+    source: '(72:0) <Popover bind:this=\\"{popover4}\\" position=\\"top\\">',
     ctx
   });
   return block;
@@ -69644,46 +70174,58 @@ function create_fragment85(ctx) {
   let t16;
   let button0;
   let t17;
-  let popover0;
-  let t18;
-  let h31;
-  let t20;
-  let div;
   let button1;
-  let t21;
-  let h32;
-  let t23;
-  let p1;
-  let t25;
+  let t18;
   let button2;
-  let t26;
-  let popover1_1;
-  let t27;
-  let h33;
-  let t29;
+  let t19;
   let button3;
-  let t30;
+  let t20;
+  let popover0;
+  let t21;
+  let popover1_1;
+  let t22;
   let popover2_1;
-  let t31;
-  let button4;
-  let t32;
+  let t23;
   let popover3_1;
-  let t33;
-  let h34;
-  let t35;
+  let t24;
+  let h31;
+  let t26;
+  let div;
+  let button4;
+  let t27;
+  let h32;
+  let t29;
+  let p1;
+  let t31;
   let button5;
-  let t36;
+  let t32;
   let popover4_1;
+  let t33;
+  let h33;
+  let t35;
+  let button6;
+  let t36;
+  let popover5_1;
   let t37;
-  let codeexample;
+  let button7;
   let t38;
-  let api0;
+  let popover6;
   let t39;
+  let h34;
+  let t41;
+  let button8;
+  let t42;
+  let popover7;
+  let t43;
+  let codeexample;
+  let t44;
+  let api0;
+  let t45;
   let api1;
   let current;
   button0 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_126] },
+      $$slots: { default: [create_default_slot_218] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -69695,115 +70237,178 @@ function create_fragment85(ctx) {
     ))
       ctx[0].open.apply(this, arguments);
   });
-  let popover0_props = {
-    $$slots: { default: [create_default_slot_106] },
-    $$scope: { ctx }
-  };
-  popover0 = new Popover_default({ props: popover0_props, $$inline: true });
-  ctx[10](popover0);
   button1 = new Button_default({
-    props: { round: true, icon: "cog" },
+    props: {
+      $$slots: { default: [create_default_slot_203] },
+      $$scope: { ctx }
+    },
     $$inline: true
   });
   button1.$on("click", function() {
     if (is_function(
-      /*popover1*/
-      ctx[0].open
+      /*popover1top*/
+      ctx[1].open
     ))
-      ctx[0].open.apply(this, arguments);
+      ctx[1].open.apply(this, arguments);
   });
   button2 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_97] },
+      $$slots: { default: [create_default_slot_193] },
       $$scope: { ctx }
     },
     $$inline: true
   });
   button2.$on("click", function() {
     if (is_function(
-      /*popover5*/
-      ctx[4].open
+      /*popover1right*/
+      ctx[3].open
     ))
-      ctx[4].open.apply(this, arguments);
+      ctx[3].open.apply(this, arguments);
   });
-  let popover1_1_props = {
-    hideTip: true,
-    $$slots: { default: [create_default_slot_78] },
-    $$scope: { ctx }
-  };
-  popover1_1 = new Popover_default({ props: popover1_1_props, $$inline: true });
-  ctx[11](popover1_1);
   button3 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_68] },
+      $$slots: { default: [create_default_slot_183] },
       $$scope: { ctx }
     },
     $$inline: true
   });
   button3.$on("click", function() {
     if (is_function(
-      /*popover2*/
-      ctx[1].open
+      /*popover1left*/
+      ctx[2].open
     ))
-      ctx[1].open.apply(this, arguments);
+      ctx[2].open.apply(this, arguments);
   });
+  let popover0_props = {
+    $$slots: { default: [create_default_slot_164] },
+    $$scope: { ctx }
+  };
+  popover0 = new Popover_default({ props: popover0_props, $$inline: true });
+  ctx[13](popover0);
+  let popover1_1_props = {
+    position: "top",
+    $$slots: { default: [create_default_slot_144] },
+    $$scope: { ctx }
+  };
+  popover1_1 = new Popover_default({ props: popover1_1_props, $$inline: true });
+  ctx[14](popover1_1);
   let popover2_1_props = {
+    position: "left",
+    $$slots: { default: [create_default_slot_127] },
+    $$scope: { ctx }
+  };
+  popover2_1 = new Popover_default({ props: popover2_1_props, $$inline: true });
+  ctx[15](popover2_1);
+  let popover3_1_props = {
+    position: "right",
+    $$slots: { default: [create_default_slot_107] },
+    $$scope: { ctx }
+  };
+  popover3_1 = new Popover_default({ props: popover3_1_props, $$inline: true });
+  ctx[16](popover3_1);
+  button4 = new Button_default({
+    props: { round: true, icon: "cog" },
+    $$inline: true
+  });
+  button4.$on("click", function() {
+    if (is_function(
+      /*popover1*/
+      ctx[0].open
+    ))
+      ctx[0].open.apply(this, arguments);
+  });
+  button5 = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot_97] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button5.$on("click", function() {
+    if (is_function(
+      /*popover5*/
+      ctx[7].open
+    ))
+      ctx[7].open.apply(this, arguments);
+  });
+  let popover4_1_props = {
+    hideTip: true,
+    $$slots: { default: [create_default_slot_78] },
+    $$scope: { ctx }
+  };
+  popover4_1 = new Popover_default({ props: popover4_1_props, $$inline: true });
+  ctx[17](popover4_1);
+  button6 = new Button_default({
+    props: {
+      $$slots: { default: [create_default_slot_68] },
+      $$scope: { ctx }
+    },
+    $$inline: true
+  });
+  button6.$on("click", function() {
+    if (is_function(
+      /*popover2*/
+      ctx[4].open
+    ))
+      ctx[4].open.apply(this, arguments);
+  });
+  let popover5_1_props = {
     offset: "-20",
     $$slots: { default: [create_default_slot_58] },
     $$scope: { ctx }
   };
-  popover2_1 = new Popover_default({ props: popover2_1_props, $$inline: true });
-  ctx[12](popover2_1);
-  button4 = new Button_default({
+  popover5_1 = new Popover_default({ props: popover5_1_props, $$inline: true });
+  ctx[18](popover5_1);
+  button7 = new Button_default({
     props: {
       $$slots: { default: [create_default_slot_411] },
       $$scope: { ctx }
     },
     $$inline: true
   });
-  button4.$on("click", function() {
+  button7.$on("click", function() {
     if (is_function(
       /*popover3*/
-      ctx[2].open
+      ctx[5].open
     ))
-      ctx[2].open.apply(this, arguments);
+      ctx[5].open.apply(this, arguments);
   });
-  let popover3_1_props = {
+  let popover6_props = {
     offset: "20",
     $$slots: { default: [create_default_slot_316] },
     $$scope: { ctx }
   };
-  popover3_1 = new Popover_default({ props: popover3_1_props, $$inline: true });
-  ctx[13](popover3_1);
-  button5 = new Button_default({
+  popover6 = new Popover_default({ props: popover6_props, $$inline: true });
+  ctx[19](popover6);
+  button8 = new Button_default({
     props: { round: true, icon: "help" },
     $$inline: true
   });
-  button5.$on("click", function() {
+  button8.$on("click", function() {
     if (is_function(
       /*popover4*/
-      ctx[3].open
+      ctx[6].open
     ))
-      ctx[3].open.apply(this, arguments);
+      ctx[6].open.apply(this, arguments);
   });
-  let popover4_1_props = {
+  let popover7_props = {
     position: "top",
     $$slots: { default: [create_default_slot16] },
     $$scope: { ctx }
   };
-  popover4_1 = new Popover_default({ props: popover4_1_props, $$inline: true });
-  ctx[14](popover4_1);
+  popover7 = new Popover_default({ props: popover7_props, $$inline: true });
+  ctx[20](popover7);
   codeexample = new CodeExample_default({
     props: { html: (
       /*exampleHtml*/
-      ctx[9]
+      ctx[12]
     ) },
     $$inline: true
   });
   api0 = new ApiTable_default({
     props: { props: (
       /*apiProps*/
-      ctx[7]
+      ctx[10]
     ) },
     $$inline: true
   });
@@ -69811,7 +70416,7 @@ function create_fragment85(ctx) {
     props: {
       props: (
         /*instanceApiProps*/
-        ctx[8]
+        ctx[11]
       ),
       title: "Instance API",
       description: "The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"
@@ -69851,46 +70456,58 @@ function create_fragment85(ctx) {
       t16 = space();
       create_component(button0.$$.fragment);
       t17 = space();
-      create_component(popover0.$$.fragment);
+      create_component(button1.$$.fragment);
       t18 = space();
+      create_component(button2.$$.fragment);
+      t19 = space();
+      create_component(button3.$$.fragment);
+      t20 = space();
+      create_component(popover0.$$.fragment);
+      t21 = space();
+      create_component(popover1_1.$$.fragment);
+      t22 = space();
+      create_component(popover2_1.$$.fragment);
+      t23 = space();
+      create_component(popover3_1.$$.fragment);
+      t24 = space();
       h31 = element2("h3");
       h31.textContent = "Target at the edge - tip should remain aligned";
-      t20 = space();
+      t26 = space();
       div = element2("div");
-      create_component(button1.$$.fragment);
-      t21 = space();
+      create_component(button4.$$.fragment);
+      t27 = space();
       h32 = element2("h3");
       h32.textContent = "No tip";
-      t23 = space();
+      t29 = space();
       p1 = element2("p");
       p1.textContent = "Styling is different than the normal popover, because the use-case for no-tip popover\n	is more similar to a dropdown rather than a tooltip or a popover,\n	so it makes sense that it also looks for the role.";
-      t25 = space();
-      create_component(button2.$$.fragment);
-      t26 = space();
-      create_component(popover1_1.$$.fragment);
-      t27 = space();
+      t31 = space();
+      create_component(button5.$$.fragment);
+      t32 = space();
+      create_component(popover4_1.$$.fragment);
+      t33 = space();
       h33 = element2("h3");
       h33.textContent = "Custom offset";
-      t29 = space();
-      create_component(button3.$$.fragment);
-      t30 = space();
-      create_component(popover2_1.$$.fragment);
-      t31 = space();
-      create_component(button4.$$.fragment);
-      t32 = space();
-      create_component(popover3_1.$$.fragment);
-      t33 = space();
+      t35 = space();
+      create_component(button6.$$.fragment);
+      t36 = space();
+      create_component(popover5_1.$$.fragment);
+      t37 = space();
+      create_component(button7.$$.fragment);
+      t38 = space();
+      create_component(popover6.$$.fragment);
+      t39 = space();
       h34 = element2("h3");
       h34.textContent = "Update contents";
-      t35 = space();
-      create_component(button5.$$.fragment);
-      t36 = space();
-      create_component(popover4_1.$$.fragment);
-      t37 = space();
+      t41 = space();
+      create_component(button8.$$.fragment);
+      t42 = space();
+      create_component(popover7.$$.fragment);
+      t43 = space();
       create_component(codeexample.$$.fragment);
-      t38 = space();
+      t44 = space();
       create_component(api0.$$.fragment);
-      t39 = space();
+      t45 = space();
       create_component(api1.$$.fragment);
       add_location(h2, file78, 0, 0, 0);
       add_location(em0, file78, 2, 8, 26);
@@ -69904,16 +70521,16 @@ function create_fragment85(ctx) {
       add_location(ul, file78, 3, 0, 99);
       add_location(hr, file78, 11, 0, 592);
       add_location(h30, file78, 13, 0, 598);
-      add_location(h31, file78, 23, 0, 821);
+      add_location(h31, file78, 43, 0, 1519);
       set_style(div, "display", "flex");
       set_style(div, "justify-content", "flex-end");
       set_style(div, "padding", "1rem");
       set_style(div, "background-color", "#0003");
-      add_location(div, file78, 24, 0, 877);
-      add_location(h32, file78, 28, 0, 1037);
-      add_location(p1, file78, 29, 0, 1053);
-      add_location(h33, file78, 41, 0, 1480);
-      add_location(h34, file78, 49, 0, 1758);
+      add_location(div, file78, 44, 0, 1575);
+      add_location(h32, file78, 48, 0, 1735);
+      add_location(p1, file78, 49, 0, 1751);
+      add_location(h33, file78, 61, 0, 2178);
+      add_location(h34, file78, 69, 0, 2456);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -69941,41 +70558,53 @@ function create_fragment85(ctx) {
       insert_dev(target, t16, anchor);
       mount_component(button0, target, anchor);
       insert_dev(target, t17, anchor);
-      mount_component(popover0, target, anchor);
+      mount_component(button1, target, anchor);
       insert_dev(target, t18, anchor);
-      insert_dev(target, h31, anchor);
-      insert_dev(target, t20, anchor);
-      insert_dev(target, div, anchor);
-      mount_component(button1, div, null);
-      insert_dev(target, t21, anchor);
-      insert_dev(target, h32, anchor);
-      insert_dev(target, t23, anchor);
-      insert_dev(target, p1, anchor);
-      insert_dev(target, t25, anchor);
       mount_component(button2, target, anchor);
-      insert_dev(target, t26, anchor);
-      mount_component(popover1_1, target, anchor);
-      insert_dev(target, t27, anchor);
-      insert_dev(target, h33, anchor);
-      insert_dev(target, t29, anchor);
+      insert_dev(target, t19, anchor);
       mount_component(button3, target, anchor);
-      insert_dev(target, t30, anchor);
+      insert_dev(target, t20, anchor);
+      mount_component(popover0, target, anchor);
+      insert_dev(target, t21, anchor);
+      mount_component(popover1_1, target, anchor);
+      insert_dev(target, t22, anchor);
       mount_component(popover2_1, target, anchor);
-      insert_dev(target, t31, anchor);
-      mount_component(button4, target, anchor);
-      insert_dev(target, t32, anchor);
+      insert_dev(target, t23, anchor);
       mount_component(popover3_1, target, anchor);
-      insert_dev(target, t33, anchor);
-      insert_dev(target, h34, anchor);
-      insert_dev(target, t35, anchor);
+      insert_dev(target, t24, anchor);
+      insert_dev(target, h31, anchor);
+      insert_dev(target, t26, anchor);
+      insert_dev(target, div, anchor);
+      mount_component(button4, div, null);
+      insert_dev(target, t27, anchor);
+      insert_dev(target, h32, anchor);
+      insert_dev(target, t29, anchor);
+      insert_dev(target, p1, anchor);
+      insert_dev(target, t31, anchor);
       mount_component(button5, target, anchor);
-      insert_dev(target, t36, anchor);
+      insert_dev(target, t32, anchor);
       mount_component(popover4_1, target, anchor);
+      insert_dev(target, t33, anchor);
+      insert_dev(target, h33, anchor);
+      insert_dev(target, t35, anchor);
+      mount_component(button6, target, anchor);
+      insert_dev(target, t36, anchor);
+      mount_component(popover5_1, target, anchor);
       insert_dev(target, t37, anchor);
-      mount_component(codeexample, target, anchor);
+      mount_component(button7, target, anchor);
       insert_dev(target, t38, anchor);
-      mount_component(api0, target, anchor);
+      mount_component(popover6, target, anchor);
       insert_dev(target, t39, anchor);
+      insert_dev(target, h34, anchor);
+      insert_dev(target, t41, anchor);
+      mount_component(button8, target, anchor);
+      insert_dev(target, t42, anchor);
+      mount_component(popover7, target, anchor);
+      insert_dev(target, t43, anchor);
+      mount_component(codeexample, target, anchor);
+      insert_dev(target, t44, anchor);
+      mount_component(api0, target, anchor);
+      insert_dev(target, t45, anchor);
       mount_component(api1, target, anchor);
       current = true;
     },
@@ -69983,73 +70612,115 @@ function create_fragment85(ctx) {
       ctx = new_ctx;
       const button0_changes = {};
       if (dirty & /*$$scope*/
-      32768) {
+      2097152) {
         button0_changes.$$scope = { dirty, ctx };
       }
       button0.$set(button0_changes);
-      const popover0_changes = {};
-      if (dirty & /*$$scope, popover1*/
-      32769) {
-        popover0_changes.$$scope = { dirty, ctx };
+      const button1_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        button1_changes.$$scope = { dirty, ctx };
       }
-      popover0.$set(popover0_changes);
+      button1.$set(button1_changes);
       const button2_changes = {};
       if (dirty & /*$$scope*/
-      32768) {
+      2097152) {
         button2_changes.$$scope = { dirty, ctx };
       }
       button2.$set(button2_changes);
-      const popover1_1_changes = {};
-      if (dirty & /*$$scope, popover5*/
-      32784) {
-        popover1_1_changes.$$scope = { dirty, ctx };
-      }
-      popover1_1.$set(popover1_1_changes);
       const button3_changes = {};
       if (dirty & /*$$scope*/
-      32768) {
+      2097152) {
         button3_changes.$$scope = { dirty, ctx };
       }
       button3.$set(button3_changes);
+      const popover0_changes = {};
+      if (dirty & /*$$scope, popover1*/
+      2097153) {
+        popover0_changes.$$scope = { dirty, ctx };
+      }
+      popover0.$set(popover0_changes);
+      const popover1_1_changes = {};
+      if (dirty & /*$$scope, popover1top*/
+      2097154) {
+        popover1_1_changes.$$scope = { dirty, ctx };
+      }
+      popover1_1.$set(popover1_1_changes);
       const popover2_1_changes = {};
-      if (dirty & /*$$scope*/
-      32768) {
+      if (dirty & /*$$scope, popover1left*/
+      2097156) {
         popover2_1_changes.$$scope = { dirty, ctx };
       }
       popover2_1.$set(popover2_1_changes);
-      const button4_changes = {};
-      if (dirty & /*$$scope*/
-      32768) {
-        button4_changes.$$scope = { dirty, ctx };
-      }
-      button4.$set(button4_changes);
       const popover3_1_changes = {};
-      if (dirty & /*$$scope*/
-      32768) {
+      if (dirty & /*$$scope, popover1right*/
+      2097160) {
         popover3_1_changes.$$scope = { dirty, ctx };
       }
       popover3_1.$set(popover3_1_changes);
+      const button5_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        button5_changes.$$scope = { dirty, ctx };
+      }
+      button5.$set(button5_changes);
       const popover4_1_changes = {};
-      if (dirty & /*$$scope, popover4, content*/
-      32808) {
+      if (dirty & /*$$scope, popover5*/
+      2097280) {
         popover4_1_changes.$$scope = { dirty, ctx };
       }
       popover4_1.$set(popover4_1_changes);
+      const button6_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        button6_changes.$$scope = { dirty, ctx };
+      }
+      button6.$set(button6_changes);
+      const popover5_1_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        popover5_1_changes.$$scope = { dirty, ctx };
+      }
+      popover5_1.$set(popover5_1_changes);
+      const button7_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        button7_changes.$$scope = { dirty, ctx };
+      }
+      button7.$set(button7_changes);
+      const popover6_changes = {};
+      if (dirty & /*$$scope*/
+      2097152) {
+        popover6_changes.$$scope = { dirty, ctx };
+      }
+      popover6.$set(popover6_changes);
+      const popover7_changes = {};
+      if (dirty & /*$$scope, popover4, content*/
+      2097472) {
+        popover7_changes.$$scope = { dirty, ctx };
+      }
+      popover7.$set(popover7_changes);
     },
     i: function intro(local) {
       if (current)
         return;
       transition_in(button0.$$.fragment, local);
-      transition_in(popover0.$$.fragment, local);
       transition_in(button1.$$.fragment, local);
       transition_in(button2.$$.fragment, local);
-      transition_in(popover1_1.$$.fragment, local);
       transition_in(button3.$$.fragment, local);
+      transition_in(popover0.$$.fragment, local);
+      transition_in(popover1_1.$$.fragment, local);
       transition_in(popover2_1.$$.fragment, local);
-      transition_in(button4.$$.fragment, local);
       transition_in(popover3_1.$$.fragment, local);
+      transition_in(button4.$$.fragment, local);
       transition_in(button5.$$.fragment, local);
       transition_in(popover4_1.$$.fragment, local);
+      transition_in(button6.$$.fragment, local);
+      transition_in(popover5_1.$$.fragment, local);
+      transition_in(button7.$$.fragment, local);
+      transition_in(popover6.$$.fragment, local);
+      transition_in(button8.$$.fragment, local);
+      transition_in(popover7.$$.fragment, local);
       transition_in(codeexample.$$.fragment, local);
       transition_in(api0.$$.fragment, local);
       transition_in(api1.$$.fragment, local);
@@ -70057,16 +70728,22 @@ function create_fragment85(ctx) {
     },
     o: function outro(local) {
       transition_out(button0.$$.fragment, local);
-      transition_out(popover0.$$.fragment, local);
       transition_out(button1.$$.fragment, local);
       transition_out(button2.$$.fragment, local);
-      transition_out(popover1_1.$$.fragment, local);
       transition_out(button3.$$.fragment, local);
+      transition_out(popover0.$$.fragment, local);
+      transition_out(popover1_1.$$.fragment, local);
       transition_out(popover2_1.$$.fragment, local);
-      transition_out(button4.$$.fragment, local);
       transition_out(popover3_1.$$.fragment, local);
+      transition_out(button4.$$.fragment, local);
       transition_out(button5.$$.fragment, local);
       transition_out(popover4_1.$$.fragment, local);
+      transition_out(button6.$$.fragment, local);
+      transition_out(popover5_1.$$.fragment, local);
+      transition_out(button7.$$.fragment, local);
+      transition_out(popover6.$$.fragment, local);
+      transition_out(button8.$$.fragment, local);
+      transition_out(popover7.$$.fragment, local);
       transition_out(codeexample.$$.fragment, local);
       transition_out(api0.$$.fragment, local);
       transition_out(api1.$$.fragment, local);
@@ -70086,45 +70763,60 @@ function create_fragment85(ctx) {
         detach_dev(t16);
         detach_dev(t17);
         detach_dev(t18);
-        detach_dev(h31);
+        detach_dev(t19);
         detach_dev(t20);
-        detach_dev(div);
         detach_dev(t21);
-        detach_dev(h32);
+        detach_dev(t22);
         detach_dev(t23);
-        detach_dev(p1);
-        detach_dev(t25);
+        detach_dev(t24);
+        detach_dev(h31);
         detach_dev(t26);
+        detach_dev(div);
         detach_dev(t27);
-        detach_dev(h33);
+        detach_dev(h32);
         detach_dev(t29);
-        detach_dev(t30);
+        detach_dev(p1);
         detach_dev(t31);
         detach_dev(t32);
         detach_dev(t33);
-        detach_dev(h34);
+        detach_dev(h33);
         detach_dev(t35);
         detach_dev(t36);
         detach_dev(t37);
         detach_dev(t38);
         detach_dev(t39);
+        detach_dev(h34);
+        detach_dev(t41);
+        detach_dev(t42);
+        detach_dev(t43);
+        detach_dev(t44);
+        detach_dev(t45);
       }
       destroy_component(button0, detaching);
-      ctx[10](null);
-      destroy_component(popover0, detaching);
-      destroy_component(button1);
+      destroy_component(button1, detaching);
       destroy_component(button2, detaching);
-      ctx[11](null);
-      destroy_component(popover1_1, detaching);
       destroy_component(button3, detaching);
-      ctx[12](null);
-      destroy_component(popover2_1, detaching);
-      destroy_component(button4, detaching);
       ctx[13](null);
-      destroy_component(popover3_1, detaching);
-      destroy_component(button5, detaching);
+      destroy_component(popover0, detaching);
       ctx[14](null);
+      destroy_component(popover1_1, detaching);
+      ctx[15](null);
+      destroy_component(popover2_1, detaching);
+      ctx[16](null);
+      destroy_component(popover3_1, detaching);
+      destroy_component(button4);
+      destroy_component(button5, detaching);
+      ctx[17](null);
       destroy_component(popover4_1, detaching);
+      destroy_component(button6, detaching);
+      ctx[18](null);
+      destroy_component(popover5_1, detaching);
+      destroy_component(button7, detaching);
+      ctx[19](null);
+      destroy_component(popover6, detaching);
+      destroy_component(button8, detaching);
+      ctx[20](null);
+      destroy_component(popover7, detaching);
       destroy_component(codeexample, detaching);
       destroy_component(api0, detaching);
       destroy_component(api1, detaching);
@@ -70142,10 +70834,10 @@ function create_fragment85(ctx) {
 function instance85($$self2, $$props2, $$invalidate2) {
   let { $$slots: slots2 = {}, $$scope: $$scope2 } = $$props2;
   validate_slots("Popover", slots2, []);
-  let popover1, popover2, popover3, popover4, popover5;
+  let popover1, popover1top, popover1left, popover1right, popover2, popover3, popover4, popover5;
   let content = "<h2>Context information</h2><p>Some text</p>";
   function updateContent() {
-    $$invalidate2(5, content = "<h2>Updated content</h2><p>Some text</p><p>Some more text</p>");
+    $$invalidate2(8, content = "<h2>Updated content</h2><p>Some text</p><p>Some more text</p>");
   }
   const apiProps = [
     {
@@ -70169,9 +70861,9 @@ function instance85($$self2, $$props2, $$invalidate2) {
     },
     {
       name: "position",
-      type: ["top", "bottom"],
+      type: ["top", "bottom", "left", "right"],
       default: "bottom",
-      description: "Prefer the position of the popover to be above (top) or below (bottom) the target element."
+      description: "Prefer the position of the popover to be above (top), below (bottom), left or right of the target element."
     },
     {
       name: "setMinWidthToTarget",
@@ -70235,26 +70927,44 @@ function instance85($$self2, $$props2, $$invalidate2) {
   }
   function popover1_1_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
-      popover5 = $$value;
-      $$invalidate2(4, popover5);
+      popover1top = $$value;
+      $$invalidate2(1, popover1top);
     });
   }
   function popover2_1_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
-      popover2 = $$value;
-      $$invalidate2(1, popover2);
+      popover1left = $$value;
+      $$invalidate2(2, popover1left);
     });
   }
   function popover3_1_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
-      popover3 = $$value;
-      $$invalidate2(2, popover3);
+      popover1right = $$value;
+      $$invalidate2(3, popover1right);
     });
   }
   function popover4_1_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
+      popover5 = $$value;
+      $$invalidate2(7, popover5);
+    });
+  }
+  function popover5_1_binding($$value) {
+    binding_callbacks[$$value ? "unshift" : "push"](() => {
+      popover2 = $$value;
+      $$invalidate2(4, popover2);
+    });
+  }
+  function popover6_binding($$value) {
+    binding_callbacks[$$value ? "unshift" : "push"](() => {
+      popover3 = $$value;
+      $$invalidate2(5, popover3);
+    });
+  }
+  function popover7_binding($$value) {
+    binding_callbacks[$$value ? "unshift" : "push"](() => {
       popover4 = $$value;
-      $$invalidate2(3, popover4);
+      $$invalidate2(6, popover4);
     });
   }
   $$self2.$capture_state = () => ({
@@ -70263,6 +70973,9 @@ function instance85($$self2, $$props2, $$invalidate2) {
     API: ApiTable_default,
     CodeExample: CodeExample_default,
     popover1,
+    popover1top,
+    popover1left,
+    popover1right,
     popover2,
     popover3,
     popover4,
@@ -70276,22 +70989,31 @@ function instance85($$self2, $$props2, $$invalidate2) {
   $$self2.$inject_state = ($$props3) => {
     if ("popover1" in $$props3)
       $$invalidate2(0, popover1 = $$props3.popover1);
+    if ("popover1top" in $$props3)
+      $$invalidate2(1, popover1top = $$props3.popover1top);
+    if ("popover1left" in $$props3)
+      $$invalidate2(2, popover1left = $$props3.popover1left);
+    if ("popover1right" in $$props3)
+      $$invalidate2(3, popover1right = $$props3.popover1right);
     if ("popover2" in $$props3)
-      $$invalidate2(1, popover2 = $$props3.popover2);
+      $$invalidate2(4, popover2 = $$props3.popover2);
     if ("popover3" in $$props3)
-      $$invalidate2(2, popover3 = $$props3.popover3);
+      $$invalidate2(5, popover3 = $$props3.popover3);
     if ("popover4" in $$props3)
-      $$invalidate2(3, popover4 = $$props3.popover4);
+      $$invalidate2(6, popover4 = $$props3.popover4);
     if ("popover5" in $$props3)
-      $$invalidate2(4, popover5 = $$props3.popover5);
+      $$invalidate2(7, popover5 = $$props3.popover5);
     if ("content" in $$props3)
-      $$invalidate2(5, content = $$props3.content);
+      $$invalidate2(8, content = $$props3.content);
   };
   if ($$props2 && "$$inject" in $$props2) {
     $$self2.$inject_state($$props2.$$inject);
   }
   return [
     popover1,
+    popover1top,
+    popover1left,
+    popover1right,
     popover2,
     popover3,
     popover4,
@@ -70305,7 +71027,10 @@ function instance85($$self2, $$props2, $$invalidate2) {
     popover1_1_binding,
     popover2_1_binding,
     popover3_1_binding,
-    popover4_1_binding
+    popover4_1_binding,
+    popover5_1_binding,
+    popover6_binding,
+    popover7_binding
   ];
 }
 var Popover_1 = class extends SvelteComponentDev {
@@ -73277,7 +74002,7 @@ function create_default_slot_224(ctx) {
   });
   return block;
 }
-function create_default_slot_219(ctx) {
+function create_default_slot_2110(ctx) {
   let menuitem0;
   let t0;
   let menuitem1;
@@ -73615,14 +74340,14 @@ function create_default_slot_219(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_219.name,
+    id: create_default_slot_2110.name,
     type: "slot",
     source: '(10:0) <Menu bind:this=\\"{thingsMenu}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_203(ctx) {
+function create_default_slot_204(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -73639,14 +74364,14 @@ function create_default_slot_203(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_203.name,
+    id: create_default_slot_204.name,
     type: "slot",
     source: '(29:1) <MenuItem success icon=\\"plus\\" data-value=\\"add-something\\" on:click=\\"{onMenuClick}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_193(ctx) {
+function create_default_slot_194(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -73663,14 +74388,14 @@ function create_default_slot_193(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_193.name,
+    id: create_default_slot_194.name,
     type: "slot",
     source: "(30:1) <MenuItem>",
     ctx
   });
   return block;
 }
-function create_default_slot_183(ctx) {
+function create_default_slot_184(ctx) {
   let t0;
   let t1;
   const block = {
@@ -73703,14 +74428,14 @@ function create_default_slot_183(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_183.name,
+    id: create_default_slot_184.name,
     type: "slot",
     source: '(32:1) <MenuItem danger icon=\\"close\\" on:click=\\"{menuCloseThings}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_173(ctx) {
+function create_default_slot_174(ctx) {
   let menuitem0;
   let t0;
   let menuitem1;
@@ -73724,7 +74449,7 @@ function create_default_slot_173(ctx) {
       success: true,
       icon: "plus",
       "data-value": "add-something",
-      $$slots: { default: [create_default_slot_203] },
+      $$slots: { default: [create_default_slot_204] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -73732,7 +74457,7 @@ function create_default_slot_173(ctx) {
   menuitem0.$on("click", onMenuClick);
   menuitem1 = new MenuItem_default({
     props: {
-      $$slots: { default: [create_default_slot_193] },
+      $$slots: { default: [create_default_slot_194] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -73742,7 +74467,7 @@ function create_default_slot_173(ctx) {
     props: {
       danger: true,
       icon: "close",
-      $$slots: { default: [create_default_slot_183] },
+      $$slots: { default: [create_default_slot_184] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -73822,14 +74547,14 @@ function create_default_slot_173(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_173.name,
+    id: create_default_slot_174.name,
     type: "slot",
     source: '(28:0) <Menu align=\\"center\\" bind:this=\\"{thingsMenu1}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_164(ctx) {
+function create_default_slot_165(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -73846,14 +74571,14 @@ function create_default_slot_164(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_164.name,
+    id: create_default_slot_165.name,
     type: "slot",
     source: '(37:1) <MenuItem success icon=\\"plus\\" data-value=\\"add-something\\" on:click=\\"{onMenuClick}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_154(ctx) {
+function create_default_slot_155(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -73870,14 +74595,14 @@ function create_default_slot_154(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_154.name,
+    id: create_default_slot_155.name,
     type: "slot",
     source: "(38:1) <MenuItem>",
     ctx
   });
   return block;
 }
-function create_default_slot_144(ctx) {
+function create_default_slot_145(ctx) {
   let t0;
   let t1;
   const block = {
@@ -73910,14 +74635,14 @@ function create_default_slot_144(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_144.name,
+    id: create_default_slot_145.name,
     type: "slot",
     source: '(40:1) <MenuItem danger icon=\\"close\\" on:click=\\"{menuCloseThings}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_136(ctx) {
+function create_default_slot_137(ctx) {
   let menuitem0;
   let t0;
   let menuitem1;
@@ -73931,7 +74656,7 @@ function create_default_slot_136(ctx) {
       success: true,
       icon: "plus",
       "data-value": "add-something",
-      $$slots: { default: [create_default_slot_164] },
+      $$slots: { default: [create_default_slot_165] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -73939,7 +74664,7 @@ function create_default_slot_136(ctx) {
   menuitem0.$on("click", onMenuClick);
   menuitem1 = new MenuItem_default({
     props: {
-      $$slots: { default: [create_default_slot_154] },
+      $$slots: { default: [create_default_slot_155] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -73949,7 +74674,7 @@ function create_default_slot_136(ctx) {
     props: {
       danger: true,
       icon: "close",
-      $$slots: { default: [create_default_slot_144] },
+      $$slots: { default: [create_default_slot_145] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -74029,14 +74754,14 @@ function create_default_slot_136(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_136.name,
+    id: create_default_slot_137.name,
     type: "slot",
     source: '(36:0) <Menu align=\\"right\\" bind:this=\\"{thingsMenu2}\\">',
     ctx
   });
   return block;
 }
-function create_default_slot_128(ctx) {
+function create_default_slot_129(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -74053,7 +74778,7 @@ function create_default_slot_128(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_128.name,
+    id: create_default_slot_129.name,
     type: "slot",
     source: '(48:1) <Button on:click=\\"{someMenu3.open}\\">',
     ctx
@@ -74084,7 +74809,7 @@ function create_default_slot_1112(ctx) {
   });
   return block;
 }
-function create_default_slot_107(ctx) {
+function create_default_slot_108(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -74101,7 +74826,7 @@ function create_default_slot_107(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_107.name,
+    id: create_default_slot_108.name,
     type: "slot",
     source: "(53:1) <MenuItem>",
     ctx
@@ -74151,7 +74876,7 @@ function create_default_slot_88(ctx) {
   });
   menuitem1 = new MenuItem_default({
     props: {
-      $$slots: { default: [create_default_slot_107] },
+      $$slots: { default: [create_default_slot_108] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -74502,7 +75227,7 @@ function create_default_slot_220(ctx) {
   });
   return block;
 }
-function create_default_slot_129(ctx) {
+function create_default_slot_130(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -74519,7 +75244,7 @@ function create_default_slot_129(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_129.name,
+    id: create_default_slot_130.name,
     type: "slot",
     source: '(82:1) <MenuItem shortcut=\\"cmd+shift+q\\" on:click=\\"{closeWindows}\\">',
     ctx
@@ -74565,7 +75290,7 @@ function create_default_slot18(ctx) {
   menuitem2 = new MenuItem_default({
     props: {
       shortcut: "cmd+shift+q",
-      $$slots: { default: [create_default_slot_129] },
+      $$slots: { default: [create_default_slot_130] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -74747,28 +75472,28 @@ function create_fragment89(ctx) {
       ctx[3].open.apply(this, arguments);
   });
   let menu0_props = {
-    $$slots: { default: [create_default_slot_219] },
+    $$slots: { default: [create_default_slot_2110] },
     $$scope: { ctx }
   };
   menu0 = new Menu_default({ props: menu0_props, $$inline: true });
   ctx[20](menu0);
   let menu1_props = {
     align: "center",
-    $$slots: { default: [create_default_slot_173] },
+    $$slots: { default: [create_default_slot_174] },
     $$scope: { ctx }
   };
   menu1 = new Menu_default({ props: menu1_props, $$inline: true });
   ctx[21](menu1);
   let menu2_props = {
     align: "right",
-    $$slots: { default: [create_default_slot_136] },
+    $$slots: { default: [create_default_slot_137] },
     $$scope: { ctx }
   };
   menu2 = new Menu_default({ props: menu2_props, $$inline: true });
   ctx[22](menu2);
   button3 = new Button_default({
     props: {
-      $$slots: { default: [create_default_slot_128] },
+      $$slots: { default: [create_default_slot_129] },
       $$scope: { ctx }
     },
     $$inline: true
@@ -76183,7 +76908,7 @@ function create_default_slot_221(ctx) {
   });
   return block;
 }
-function create_default_slot_130(ctx) {
+function create_default_slot_131(ctx) {
   let t;
   const block = {
     c: function create() {
@@ -76200,7 +76925,7 @@ function create_default_slot_130(ctx) {
   };
   dispatch_dev("SvelteRegisterBlock", {
     block,
-    id: create_default_slot_130.name,
+    id: create_default_slot_131.name,
     type: "slot",
     source: "(21:0) <Tag round>",
     ctx
@@ -76334,7 +77059,7 @@ function create_fragment91(ctx) {
   tag8 = new Tag_default({
     props: {
       round: true,
-      $$slots: { default: [create_default_slot_130] },
+      $$slots: { default: [create_default_slot_131] },
       $$scope: { ctx }
     },
     $$inline: true

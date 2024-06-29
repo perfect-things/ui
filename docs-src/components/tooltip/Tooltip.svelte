@@ -2,16 +2,21 @@
 
 <h3>Normal</h3>
 <!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
-<div class="tooltip-box" tabindex="0" id="box1">box with a tooltip</div>
+<div class="tooltip-box" tabindex="0" id="box1">tooltip above the target</div>
 <Tooltip target="box1">Some tooltip text</Tooltip>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
-<div class="tooltip-box" tabindex="0" id="box2">box with a tooltip</div>
-<Tooltip target="box2" class="tooltip-html">
-	<h1>Some Title</h1>
-	<p>Some <b>html</b> tooltip content with a <a href="#Tooltip">link</a></p>
-	<p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
-</Tooltip>
+<div class="tooltip-box" tabindex="0" id="box-below">tooltip below the target</div>
+<Tooltip position="bottom" target="box-below">Some tooltip text</Tooltip>
+
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-right">tooltip right of the target</div>
+<Tooltip position="right" target="box-right">Some tooltip text</Tooltip>
+
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-left">tooltip left of the target</div>
+<Tooltip position="left" target="box-left">Some tooltip text</Tooltip>
+
 
 
 <h3>Colour variants (tooltip type)</h3>
@@ -32,11 +37,15 @@
 <Tooltip danger target="box-error">Some tooltip text</Tooltip>
 
 
-
-<h3>Show below target</h3>
+<h3>Show HTML content</h3>
 <!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
-<div class="tooltip-box" tabindex="0" id="box-below">box with a tooltip</div>
-<Tooltip position="bottom" target="box-below">Some tooltip text</Tooltip>
+<div class="tooltip-box" tabindex="0" id="box2">box with a tooltip</div>
+<Tooltip target="box2" class="tooltip-html">
+	<h1>Some Title</h1>
+	<p>Some <b>html</b> tooltip content with a <a href="#Tooltip">link</a></p>
+	<p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
+</Tooltip>
+
 
 <h3>Custom offset</h3>
 <!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
@@ -70,7 +79,7 @@ const apiProps = [
 	{ name: 'error', description: 'Tooltip type: error' },
 	{ name: 'info', description: 'Tooltip type: info' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize tooltip offset. Use negative number for smaller offset or positive for bigger' },
-	{ name: 'position', type: ['top', 'bottom'], default: 'top', description: 'Prefer the position of the tooltip to be above (top) or below (bottom) the target element.' },
+	{ name: 'position', type: ['top', 'bottom', 'left', 'right'], default: 'top', description: 'Prefer the position of the tooltip to be above (top), below (bottom), left or right of the target element.' },
 	{ name: 'success', description: 'Tooltip type: success' },
 	{ name: 'target', required: true, type: 'string', description: 'ID of the target element.' },
 	{ name: 'warning', description: 'Tooltip type: warning' },

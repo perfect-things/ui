@@ -282,6 +282,9 @@ export function alignItem ({
 
 	let targetBox = {};
 	let top, left;
+	let isLeft = false;
+	let isRight = false;
+
 
 	// target is a context | longpress event
 	if (target instanceof Event && (target.type === 'contextmenu' || target.type === 'longpress')) {
@@ -319,10 +322,29 @@ export function alignItem ({
 	// ensure it stays on screen
 	const spaceAbove = targetBox.top - viewportPadding;
 	const spaceBelow = winH - targetBox.top - targetBox.height - viewportPadding;
-	element.style.maxHeight = Math.max(spaceAbove, spaceBelow) + 'px';
-	const elementBox = element.getBoundingClientRect();
+	const spaceBefore = targetBox.left - viewportPadding;
+	const spaceAfter = winW - targetBox.left - targetBox.width - viewportPadding;
 
-	if ((alignV === 'top' && spaceAbove > elementBox.height) || spaceBelow < elementBox.height) {
+	element.style.maxHeight = Math.max(spaceAbove, spaceBelow) + 'px';
+	let elementBox = element.getBoundingClientRect();
+
+	if (alignV === 'left' && spaceBefore > elementBox.width) {
+		isLeft = true;
+		top = targetBox.top + ((targetBox.height - elementBox.height) / 2);
+		left = Math.max(targetBox.left - elementBox.width, viewportPadding);
+		element.style.top = top + window.scrollY + 'px';
+		element.style.left = left + window.scrollX + 'px';
+	}
+
+	else if (alignV === 'right' && spaceAfter > elementBox.width) {
+		isRight = true;
+		top = targetBox.top + ((targetBox.height - elementBox.height) / 2);
+		left = Math.max(targetBox.left + targetBox.width, viewportPadding);
+		element.style.top = top + window.scrollY + 'px';
+		element.style.left = left + window.scrollX + 'px';
+	}
+
+	else if ((alignV === 'top' && spaceAbove > elementBox.height) || spaceBelow < elementBox.height) {
 		top = winH - elementBox.height - viewportPadding;
 		if (alignV === 'top' || top < elementBox.y) {
 			top = targetBox.top - elementBox.height - offsetV;
@@ -338,6 +360,7 @@ export function alignItem ({
 		left = left + window.scrollX;
 	}
 
+	elementBox = element.getBoundingClientRect();
 	// check if the menu is off the left side of the screen
 	if (elementBox.x < viewportPadding) {
 		left = viewportPadding + window.scrollX;
@@ -345,12 +368,17 @@ export function alignItem ({
 	element.style.left = left + 'px';
 	element.style.maxWidth = `calc(100% - ${left + viewportPadding}px)`;
 
+	if (isLeft || isRight) {
+		if (isLeft) return 'left';
+		if (isRight) return 'right';
+	}
+
 	// set the property for the tip offset
 	// so when the popover is at the edge of the screen, and is offset left/right
 	// from the original position, the tip will try to be centered on the target
 	element.style.setProperty('--tip-offset', findTipOffset(targetBox, element));
-
-	return top > targetBox.top ? 'bottom' : 'top';
+	if (top > targetBox.top) return 'bottom';
+	return 'top';
 }
 
 

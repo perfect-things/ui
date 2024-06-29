@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v9.6.0 *(2024-06-29)*
+- Added experimental `left` and `right` positioning to the `Popover` and `Tooltip` components.
+
+
 ## v9.5.6 *(2024-06-18)*
 - Added 2 new functions to utils `getValueAtPath` and `setValueAtPath` to handle deeply and uncertain object structures.
 
@@ -11,7 +15,7 @@ Changelog
 
 
 ## v9.5.4 *(2024-06-11)*
-- New component: `Grid` (alpha). This should not be used for production yet, as it's still in development (or it may even be dropped). 
+- New component: `Grid` (alpha). This should not be used for production yet, as it's still in development (or it may even be dropped).
 - Use `crypto` for `guid` generation in `utils`.
 
 
@@ -22,7 +26,7 @@ Changelog
 ## v9.5.2 *(2024-05-15)*
 - Fix `--ui-shadow-large` in light-mode (was a bit too dark).
 - Animation speed increased from 0.3 to 0.25s.
-- Fix `Dialog`'s rendering artifacts in Safari. 
+- Fix `Dialog`'s rendering artifacts in Safari.
 
 
 ## v9.5.1, v9.5.0 *(2024-05-12)*
