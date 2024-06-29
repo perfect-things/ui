@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.6.0 <em>(2024-06-29)</em></h2>
+<ul>
+<li>Added experimental <code>left</code> and <code>right</code> positioning to the <code>Popover</code> and <code>Tooltip</code> components.</li>
+</ul>
 <h2>v9.5.6 <em>(2024-06-18)</em></h2>
 <ul>
 <li>Added 2 new functions to utils <code>getValueAtPath</code> and <code>setValueAtPath</code> to handle deeply and uncertain object structures.</li>
@@ -9,7 +13,7 @@
 </ul>
 <h2>v9.5.4 <em>(2024-06-11)</em></h2>
 <ul>
-<li>New component: <code>Grid</code> (alpha). This should not be used for production yet, as it&#39;s still in development (or it may even be dropped). </li>
+<li>New component: <code>Grid</code> (alpha). This should not be used for production yet, as it&#39;s still in development (or it may even be dropped).</li>
 <li>Use <code>crypto</code> for <code>guid</code> generation in <code>utils</code>.</li>
 </ul>
 <h2>v9.5.3 <em>(2024-05-18)</em></h2>
