@@ -26,7 +26,7 @@
 			on:blur="{e => createTimer(notification, e.target)}"
 			on:keydown="{e => onKeydown(e, notification)}"
 			out:_send="{{ key: notification.id }}"
-			in:fly
+			in:fly="{{ duration }}"
 			animate:flip>
 
 			<div class="notification-icon"><Icon name="{notification.type}"/></div>
@@ -72,7 +72,6 @@ export let outline = false;
 export let hideButton = false;
 
 const showArchive = writable(false);
-const duration = $ANIMATION_SPEED;
 let archiveIsVisible = false;
 let archiveIsExpanded = false;
 
@@ -82,6 +81,7 @@ let initial = true;
 let hasActiveNotifications = false;
 
 
+$:duration = $ANIMATION_SPEED;
 $:hasArchivedNotifications = Object.keys($ArchivedNotifications).length ? 'has-archived-notifications' : '';
 $:hasNotifications = (notifications.length || hasArchivedNotifications) ? 'has-notifications' : '';
 
@@ -97,7 +97,7 @@ onMount(() => {
 
 		if (notifications.length > 0) hasActiveNotifications = true;
 		// letting the last toast finish sliding out before pushing the main component to z-index -1
-		else setTimeout(() => hasActiveNotifications = false, $ANIMATION_SPEED);
+		else setTimeout(() => hasActiveNotifications = false, duration);
 	});
 
 
@@ -138,9 +138,10 @@ function onDocClick (e) {
 
 
 function _send (node, params) {
+	params = { ...params, duration };
 	if (!$showArchive) return fly(node);						// dismissing with archive hidden
 	if (!archiveIsExpanded) return slideDown(node, params);		// dismissing with archive visible but collapsed
-	return send(node, { ...params, duration });
+	return send(node, params);
 }
 
 

@@ -12,10 +12,11 @@ export const FOCUSABLE_SELECTOR = [
 	'[tabindex]:not(.focus-trap)', // warning: this will try to focus tabindex="-1" elements
 ].join(',');
 
-export const ANIMATION_SPEED = writable(300);
+const DEFAULT_ANIMATION_SPEED = 200;
+export const ANIMATION_SPEED = writable(DEFAULT_ANIMATION_SPEED);
 export const PREFERS_DARK = writable(false);
 
-const setReducedMotion = query => ANIMATION_SPEED.set((!query || query.matches) ? 0 : 200);
+const setReducedMotion = query => ANIMATION_SPEED.set((!query || query.matches) ? 0 : DEFAULT_ANIMATION_SPEED);
 const setPrefersDark = query => PREFERS_DARK.set(query && query.matches);
 
 
