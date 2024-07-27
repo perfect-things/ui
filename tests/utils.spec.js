@@ -7,7 +7,7 @@ import * as utils from '../src/utils';
 
 
 test('utils - matchMedia', () => {
-	expect(get(utils.ANIMATION_SPEED)).toStrictEqual(300);
+	expect(get(utils.ANIMATION_SPEED)).toStrictEqual(200);
 });
 
 

@@ -58,6 +58,6 @@ export function offsetLeft (el, value = 50) {
 }
 
 export function waitForTimeout (timeout) {
-	timeout = timeout || get(ANIMATION_SPEED) + 100;
+	timeout = typeof timeout === 'number' ? timeout : get(ANIMATION_SPEED) + 200;
 	return new Promise((resolve) => setTimeout(resolve, timeout));
 }

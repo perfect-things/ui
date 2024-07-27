@@ -38,7 +38,7 @@
     "@babel/preset-env": "^7.25.0",
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@eslint/js": "^9.8.0",
-    "@stylistic/eslint-plugin-js": "^2.3.0",
+    "@stylistic/eslint-plugin-js": "^2.4.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/svelte": "^5.2.1",
