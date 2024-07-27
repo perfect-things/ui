@@ -435,3 +435,24 @@ export function isColorDark (hex) {
 	const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
 	return isNaN(brightness) ? false : brightness < 140;
 }
+
+
+export function isSymbol (txt) {
+	const symbols = ['⌘', '⌥', '⇧', '⌃', '⌫', '⏎', '⎋'];
+	return symbols.includes(txt);
+}
+
+
+export function replaceKeySymbols (txt) {
+	return ('' + txt)
+		.trim()
+		.toUpperCase()
+		.replace(/\+/g, '')
+		.replace(/CMD|COMMAND/g, '⌘')
+		.replace(/ALT|OPTION/g, '⌥')
+		.replace(/SHIFT/g, '⇧')
+		.replace(/CONTROL|CTRL/g, '⌃')
+		.replace(/DELETE|DEL|BACKSPACE/g, '⌫')
+		.replace(/ENTER|RETURN/g, '⏎')
+		.replace(/ESCAPE|ESC/g, '⎋');
+}

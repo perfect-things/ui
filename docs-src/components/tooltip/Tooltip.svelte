@@ -46,6 +46,21 @@
 	<p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
 </Tooltip>
 
+<h3>Show keyboard shortcuts</h3>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-shortcut1">control + c</div>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-shortcut2">cmd + c</div>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-shortcut3">option + command + x</div>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
+<div class="tooltip-box" tabindex="0" id="box-shortcut4">shift + enter</div>
+
+<Tooltip target="box-shortcut1" shortcut="Ctrl + C">Open something</Tooltip>
+<Tooltip target="box-shortcut2" shortcut="⌘ + C">Another one</Tooltip>
+<Tooltip target="box-shortcut3" shortcut="option command x">Another one</Tooltip>
+<Tooltip target="box-shortcut4" shortcut="shift enter">Another one</Tooltip>
+
 
 <h3>Custom offset</h3>
 <!-- svelte-ignore a11y-no-noninteractive-tabindex  -->
@@ -80,6 +95,7 @@ const apiProps = [
 	{ name: 'info', description: 'Tooltip type: info' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize tooltip offset. Use negative number for smaller offset or positive for bigger' },
 	{ name: 'position', type: ['top', 'bottom', 'left', 'right'], default: 'top', description: 'Prefer the position of the tooltip to be above (top), below (bottom), left or right of the target element.' },
+	{ name: 'shortcut', type: 'string', description: 'Display a nicely formatted keyboard shortcut in the tooltip.' },
 	{ name: 'success', description: 'Tooltip type: success' },
 	{ name: 'target', required: true, type: 'string', description: 'ID of the target element.' },
 	{ name: 'warning', description: 'Tooltip type: warning' },
@@ -90,7 +106,7 @@ const apiProps = [
 
 const exampleHtml = `
 <div id="box1"></div>
-<Tooltip position="bottom" target="box1" offset="5">Some tooltip text</Tooltip>
+<Tooltip position="bottom" target="box1" offset="5" shortcut="cmd c">Some tooltip text</Tooltip>
 `;
 
 </script>

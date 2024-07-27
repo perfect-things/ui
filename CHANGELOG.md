@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v9.6.1 *(2024-07-27)*
+- Added new property: `shortcut` the `Tooltip` component.
+
+
 ## v9.6.0 *(2024-06-29)*
 - Added experimental `left` and `right` positioning to the `Popover` and `Tooltip` components.
 

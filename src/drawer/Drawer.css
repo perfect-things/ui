@@ -20,8 +20,6 @@
 
 .drawer-header {
 	position: sticky;
-	/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
-	position: -webkit-sticky;
 	background-color: inherit;
 	top: 0;
 	width: 100%;

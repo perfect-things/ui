@@ -12,5 +12,6 @@ import { Header } from '../header';
 let component = undefined;
 
 
-$:pageName = (component && component.name || '').toLowerCase();
+$:pageName = (component?.name ?? '').toLowerCase();
+
 </script>

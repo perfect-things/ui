@@ -11,3 +11,33 @@
 .success .tooltip { --popover-color: var(--ui-color-success); }
 .danger  .tooltip { --popover-color: var(--ui-color-danger); }
 .warning .tooltip { --popover-color: var(--ui-color-warning); }
+
+
+.tooltip .tooltip-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.2rem;
+}
+
+.tooltip .tooltip-content .tooltip-text {
+	padding: 0.2rem 0.4rem;
+
+}
+
+.tooltip kbd {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: default;
+	padding: 0 0.375rem;
+	border-radius: 4px;
+	line-height: 1cap;
+	height: 1.4rem;
+	min-width: 1.4rem;
+	background-color: var(--ui-color-background-1);
+	border: 0.5px solid var(--ui-color-text-2);
+	box-shadow: 0 2px 1px var(--ui-color-background-2);
+}
+
+.tooltip kbd.symbol { font-size: 1.4em; font-weight: 100; }

@@ -1,4 +1,8 @@
 <h1>Changelog</h1>
+<h2>v9.6.1 <em>(2024-07-27)</em></h2>
+<ul>
+<li>Added new property: <code>shortcut</code> the <code>Tooltip</code> component.</li>
+</ul>
 <h2>v9.6.0 <em>(2024-06-29)</em></h2>
 <ul>
 <li>Added experimental <code>left</code> and <code>right</code> positioning to the <code>Popover</code> and <code>Tooltip</code> components.</li>

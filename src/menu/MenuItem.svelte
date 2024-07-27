@@ -12,7 +12,7 @@
 
 	<span class="menu-item-content">
 		{#if icon}<Icon name="{icon}" />{/if}
-		<div class="menu-item-text"><slot /></div>
+		<span class="menu-item-text"><slot /></span>
 	</span>
 	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
 </button>
@@ -20,7 +20,7 @@
 <script>
 import { createEventDispatcher, getContext } from 'svelte';
 import { Icon } from '../icon';
-import { blink } from '../utils';
+import { blink, replaceKeySymbols } from '../utils';
 
 export let shortcut = '';
 export let icon = undefined;
@@ -37,20 +37,6 @@ export let element = undefined;
 
 const dispatch = createEventDispatcher();
 const { targetEl } = getContext('MenuContext');
-
-function replaceKeySymbols (txt) {
-	return ('' + txt)
-		.trim()
-		.toUpperCase()
-		.replace(/\+/g, '')
-		.replace(/CMD/g, '⌘')
-		.replace(/ALT|OPTION/g, '⌥')
-		.replace(/SHIFT/g, '⇧')
-		.replace(/CONTROL|CTRL/g, '⌃')
-		.replace(/DELETE|DEL|BACKSPACE/g, '⌫')
-		.replace(/ENTER|RETURN/g, '⏎')
-		.replace(/ESCAPE|ESC/g, '⎋');
-}
 
 
 function onclick (e) {

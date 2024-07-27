@@ -9,17 +9,22 @@
 		bind:this="{element}">
 
 		<div class="popover tooltip {className}" role="tooltip">
-			<div class="popover-content tooltip-content"><slot/> </div>
+			<div class="popover-content tooltip-content">
+				<div class="tooltip-text"><slot/></div>
+				{@html formatShortcut(shortcut)}
+			</div>
 		</div>
 	</div>
 {/if}
 <script>
 import { afterUpdate, onDestroy, onMount } from 'svelte';
-import { alignItem } from '../utils.js';
+import { alignItem, isSymbol, replaceKeySymbols } from '../utils.js';
 export let target = '';
 export let delay = 0;
 export let position = 'top';
 export let offset = 2;
+export let shortcut = '';
+
 
 let className = '';
 export { className as class };
@@ -43,6 +48,17 @@ onMount(() => {
 
 onDestroy(removeTargetEvents);
 afterUpdate(align);
+
+
+function formatShortcut () {
+	if (!shortcut) return '';
+	return replaceKeySymbols(shortcut)
+		.replace(/\+/g, ' ')
+		.replace(/\s+/g, ' ')
+		.split(' ')
+		.map(key => `<kbd ${isSymbol(key) ? 'class="symbol"' : ''}>${key}</kbd>`)
+		.join(' ');
+}
 
 
 function show (e) {
