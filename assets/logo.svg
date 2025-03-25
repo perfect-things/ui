@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>logo copy@1x</title>
-    <defs>
-        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="69.4622567%" gradientTransform="translate(0.500000,0.500000),scale(1.000000,0.907895),rotate(90.000000),translate(-0.500000,-0.500000)" id="radialGradient-1">
-            <stop stop-color="#FF8B2B" offset="0%"></stop>
-            <stop stop-color="#321364" offset="100%"></stop>
-        </radialGradient>
-    </defs>
-    <g id="logo-copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
-        <path d="M255.5,202 L302.520738,228.25 L302.520738,280.75 L255.5,307 L208.479262,280.75 L208.479262,228.25 L255.5,202 Z M281,441.021454 L254.948357,484 L102,399.649583 L102.420188,231.350417 L254.948357,147 M157,204 L157,372.265079 L309.578512,457 L463,372.666667 L436.867769,329.696825 M157,311.666667 L309.789546,396 L463,312.469841 L463,143 L411.228336,143 M257.051643,365 L409.579812,280.649583 L410,112.350417 L257.051643,28 L231,70.9785459 M355,308 L355,139.734921 L202.421488,55 L49,139.333333 L75.1322314,182.303175 M355,201.799682 L202.210454,118 L49,201.00159 L49,369 L100.771664,369" id="Shape" stroke="url(#radialGradient-1)" stroke-width="30"></path>
-    </g>
-</svg>
+<svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><radialGradient id="a" cx="50%" cy="50%" gradientTransform="matrix(0 .907895 -1 0 1 .046052)" r="69.462257%"><stop offset="0" stop-color="#ff8b2b"/><stop offset="1" stop-color="#321364"/></radialGradient><path d="m255.5 202 47.020738 26.25v52.5l-47.020738 26.25-47.020738-26.25v-52.5zm25.5 239.021454-26.051643 42.978546-152.948357-84.350417.420188-168.299166 152.528169-84.350417m-97.948357 57v168.265079l152.578512 84.734921 153.421488-84.333333-26.132231-42.969842m-279.867769-18.030158 152.789546 84.333333 153.210454-83.530159v-169.469841h-51.771664m-154.176693 222 152.528169-84.350417.420188-168.299166-152.948357-84.350417-26.051643 42.9785459m124 237.0214541v-168.265079l-152.578512-84.734921-153.421488 84.333333 26.1322314 42.969842m279.8677686 19.496507-152.789546-83.799682-153.210454 83.00159v167.99841h51.771664" fill="none" stroke="url(#a)" stroke-linejoin="round" stroke-width="30"/></svg>
