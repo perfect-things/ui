@@ -2,3 +2,4 @@ node_modules/
 coverage/
 bun.lockb
 *.map
+.DS_Store

@@ -8,7 +8,7 @@
 	<Label {label} {disabled} for="{_id}"/>
 	<Info msg="{info}" />
 
-	<div class="textarea-inner" class:disabled data-value="{autogrow ? value : undefined}">
+	<div class="textarea-inner" class:disabled>
 		<InputError id="{errorMessageId}" msg="{error}" />
 
 		<textarea
