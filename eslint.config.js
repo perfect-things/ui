@@ -1,19 +1,25 @@
+import { defineConfig, globalIgnores } from 'eslint/config';
 import js from '@eslint/js';
-import eslintPluginSvelte from 'eslint-plugin-svelte';
 import globals from 'globals';
 import stylisticJs from '@stylistic/eslint-plugin-js';
+// import eslintPluginSvelte from 'eslint-plugin-svelte';
+// @ts-ignore
+import importPlugin from 'eslint-plugin-import';
 
 
-export default [
+export default defineConfig([
 	js.configs.recommended,
-	...eslintPluginSvelte.configs['flat/recommended'],
+	// ...eslintPluginSvelte.configs['flat/base'],
+	importPlugin.flatConfigs.recommended,
+
+	globalIgnores(['docs/*.js']),
+
 	{
 		plugins: {
-			'@stylistic/js': stylisticJs
+			'@stylistic/js': stylisticJs,
 		},
-		ignores: ['docs/*'],
 		languageOptions: {
-			ecmaVersion: 2022,
+			ecmaVersion: 'latest',
 			sourceType: 'module',
 			globals: {
 				...globals.browser,
@@ -54,10 +60,11 @@ export default [
 
 			'svelte/no-at-html-tags': 0,
 			// 'import/no-unresolved': [2, { 'commonjs': true, 'amd': true }],
-			// 'import/named': 2,
-			// 'import/namespace': 2,
-			// 'import/default': 2,
-			// 'import/export': 2,
+			'import/no-unresolved': 0,
+			'import/named': 2,
+			'import/namespace': 2,
+			'import/default': 2,
+			'import/export': 2,
 		}
 	}
-];
+]);

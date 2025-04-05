@@ -4,7 +4,10 @@
     "module": "esnext",
     "lib": [ "esnext", "DOM", "DOM.Iterable" ],
     "moduleResolution": "node",
-    "maxNodeModuleJsDepth": 10
+    "maxNodeModuleJsDepth": 10,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": false,
 
   },
   "include": [ "src", "docs-src", "tests" ],

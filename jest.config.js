@@ -21,4 +21,31 @@ export default {
 		'index.js',
 		'icons.js',
 	],
+	collectCoverageFrom: [
+		'src/**/*.{js,svelte}',
+		'!src/**/index.js',
+		'!src/icons.js'
+	],
+	coverageDirectory: 'coverage',
+	coverageReporters: [
+		'json',
+		'lcov',
+		'text',
+		'clover',
+		'html'
+	],
+	// coverageThreshold: {
+	// 	global: {
+	// 		branches: 70,
+	// 		functions: 75,
+	// 		lines: 80,
+	// 		statements: 80
+	// 	},
+	// 	'./src/input/': {
+	// 		branches: 80,
+	// 		functions: 85,
+	// 		lines: 90,
+	// 		statements: 90
+	// 	}
+	// }
 };

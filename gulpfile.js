@@ -33,7 +33,7 @@ const PATHS = {
 	JS: {
 		INPUT: './docs-src/index.js',
 		OUT: 'index.js',
-		LINT: ['{src,docs-src}/**/*.{js,svelte}', '*.js']
+		LINT: ['{src,docs-src,tests}/**/*.{js,svelte}', '*.js']
 	},
 	CSS: {
 		LIB: { INPUT: 'src/**/*.css', OUT: 'ui.css' },
@@ -122,6 +122,7 @@ export function js (done) {
 	};
 
 	return src(PATHS.JS.INPUT, { sourcemaps: !isProd })
+		// @ts-ignore
 		.pipe(gulpEsbuild(cfg))
 		.on('error', () => done())
 		.pipe(size({ title: ' JS', showFiles: true, showTotal: false, }))
@@ -133,6 +134,7 @@ export function js (done) {
 export function libCSS () {
 	return src(PATHS.CSS.LIB.INPUT, { sourcemaps: !isProd })
 		.pipe(concat(PATHS.CSS.LIB.OUT))
+		// @ts-ignore
 		.pipe(gulpif(isProd, cleanCSS()))
 		.pipe(size({ title: 'lib CSS', showFiles: true, showTotal: false, }))
 		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
@@ -143,6 +145,7 @@ export function libCSS () {
 export function docsCSS () {
 	return src(PATHS.CSS.DOCS.INPUT, { sourcemaps: !isProd })
 		.pipe(concat(PATHS.CSS.DOCS.OUT))
+		// @ts-ignore
 		.pipe(gulpif(isProd, cleanCSS()))
 		.pipe(size({ title: 'docs CSS', showFiles: true, showTotal: false, }))
 		.pipe(dest(PATHS.DIST, { sourcemaps: '.' }))
