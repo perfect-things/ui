@@ -1,0 +1,233 @@
+// filepath: /Users/tom/Projects/ui/tests/NotificationArchive.spec.js
+import { render, fireEvent } from '@testing-library/svelte';
+import jest from 'jest-mock';
+import { NotificationArchive } from '../src/notification-center/NotificationArchive';
+import { ArchivedNotifications } from '../src/notification-center/store';
+import { waitForTimeout } from './helpers/utils';
+
+// Helper to set archived notifications for testing
+function setArchivedNotifications(notifications) {
+	const archiveData = {};
+	notifications.forEach(n => {
+		archiveData[n.id] = n;
+	});
+	ArchivedNotifications.set(archiveData);
+}
+
+beforeEach(() => {
+	// Reset archived notifications before each test
+	ArchivedNotifications.set({});
+});
+
+test('NotificationArchive renders with no notifications', async () => {
+	const { container, getByText } = render(NotificationArchive, {
+		show: true
+	});
+
+	// Check archive container exists
+	const archive = container.querySelector('.notification-archive');
+	expect(archive).toBeInTheDocument();
+
+	// Should display "No recent notifications"
+	expect(getByText('No recent notifications')).toBeInTheDocument();
+
+	// Close button should be present
+	const closeBtn = getByText('×');
+	expect(closeBtn).toBeInTheDocument();
+});
+
+test('NotificationArchive displays archived notifications when expanded', async () => {
+	// Set up test notifications
+	const notifications = [
+		{
+			id: 'notif1',
+			msg: 'Test notification 1',
+			type: 'info',
+			timestamp: new Date().getTime() - 60000 // 1 minute ago
+		},
+		{
+			id: 'notif2',
+			msg: 'Test notification 2',
+			type: 'error',
+			timestamp: new Date().getTime() - 120000 // 2 minutes ago
+		}
+	];
+
+	setArchivedNotifications(notifications);
+
+	const { container, getByText } = render(NotificationArchive, {
+		show: true,
+		expanded: true
+	});
+
+	// Header should show count of notifications
+	expect(getByText(/Recent notifications \(2\)/)).toBeInTheDocument();
+
+	// Both notifications should be displayed
+	expect(getByText('Test notification 1')).toBeInTheDocument();
+	expect(getByText('Test notification 2')).toBeInTheDocument();
+
+	// Clear all button should be present
+	expect(getByText('Clear all')).toBeInTheDocument();
+});
+
+test('NotificationArchive toggling expanded state', async () => {
+	// Set up test notifications
+	const notifications = [
+		{
+			id: 'notif1',
+			msg: 'Test notification 1',
+			type: 'info',
+			timestamp: new Date().getTime()
+		}
+	];
+
+	setArchivedNotifications(notifications);
+
+	const { container, getByText, queryByText, component } = render(NotificationArchive, {
+		show: true,
+		expanded: false
+	});
+
+	// Header should be visible but notification shouldn't be
+	expect(getByText(/Recent notifications \(1\)/)).toBeInTheDocument();
+	expect(queryByText('Test notification 1')).not.toBeInTheDocument();
+
+	// Click the toggle button
+	const toggleBtn = getByText(/Recent notifications \(1\)/);
+	await fireEvent.click(toggleBtn);
+
+	// Now notification should be visible
+	await waitForTimeout(10);
+	expect(queryByText('Test notification 1')).toBeInTheDocument();
+
+	// Toggle back to collapsed
+	await fireEvent.click(toggleBtn);
+	expect(component.$$.ctx[1]).toBe(false); // Check expanded state is false
+});
+
+test('NotificationArchive clear all functionality', async () => {
+	// Set up test notifications
+	const notifications = [
+		{
+			id: 'notif1',
+			msg: 'Test notification 1',
+			type: 'info',
+			timestamp: new Date().getTime()
+		},
+		{
+			id: 'notif2',
+			msg: 'Test notification 2',
+			type: 'warning',
+			timestamp: new Date().getTime()
+		}
+	];
+
+	setArchivedNotifications(notifications);
+
+	const { getByText, queryByText } = render(NotificationArchive, {
+		show: true,
+		expanded: true
+	});
+
+	// Verify notifications exist
+	expect(getByText('Test notification 1')).toBeInTheDocument();
+	expect(getByText('Test notification 2')).toBeInTheDocument();
+
+	// Click clear all button
+	const clearBtn = getByText('Clear all');
+	await fireEvent.click(clearBtn);
+
+	// Should now show "No recent notifications"
+	await waitForTimeout(10);
+	expect(getByText('No recent notifications')).toBeInTheDocument();
+
+	// Notifications should be gone
+	expect(queryByText('Test notification 1')).not.toBeInTheDocument();
+	expect(queryByText('Test notification 2')).not.toBeInTheDocument();
+});
+
+test('NotificationArchive close button hides archive', async () => {
+	const { getByText, component } = render(NotificationArchive, {
+		show: true
+	});
+
+	// Click close button
+	const closeBtn = getByText('×');
+	await fireEvent.click(closeBtn);
+
+	// show should be false
+	expect(component.$$.ctx[0]).toBe(false);
+});
+
+test('NotificationArchive individual notification removal', async () => {
+	// Set up test notifications
+	const notifications = [
+		{
+			id: 'notif1',
+			msg: 'Test notification 1',
+			type: 'info',
+			timestamp: new Date().getTime()
+		},
+		{
+			id: 'notif2',
+			msg: 'Test notification 2',
+			type: 'warning',
+			timestamp: new Date().getTime()
+		}
+	];
+
+	setArchivedNotifications(notifications);
+
+	const { container, getByText, queryByText } = render(NotificationArchive, {
+		show: true,
+		expanded: true
+	});
+
+	// Both notifications should exist
+	expect(getByText('Test notification 1')).toBeInTheDocument();
+	expect(getByText('Test notification 2')).toBeInTheDocument();
+
+	// Click close button on first notification
+	const notificationElements = container.querySelectorAll('.notification');
+	const closeBtn = notificationElements[0].querySelector('.notification-close');
+	await fireEvent.click(closeBtn);
+
+	// Wait longer for animation to complete (1000ms instead of 300ms)
+	await waitForTimeout(1000);
+
+	// Only the second notification should remain
+	expect(queryByText('Test notification 1')).not.toBeInTheDocument();
+	expect(getByText('Test notification 2')).toBeInTheDocument();
+});
+
+test('NotificationArchive keyboard interaction', async () => {
+	// Set up test notifications
+	const notifications = [
+		{
+			id: 'notif1',
+			msg: 'Test notification 1',
+			type: 'info',
+			timestamp: new Date().getTime()
+		}
+	];
+
+	setArchivedNotifications(notifications);
+
+	const { container, queryByText } = render(NotificationArchive, {
+		show: true,
+		expanded: true
+	});
+
+	// Find notification
+	const notification = container.querySelector('.notification');
+
+	// Press Escape to remove notification
+	await fireEvent.keyDown(notification, { key: 'Escape' });
+
+	// Wait longer for animation
+	await waitForTimeout(1000);
+
+	// Notification should be removed
+	expect(queryByText('Test notification 1')).not.toBeInTheDocument();
+});
