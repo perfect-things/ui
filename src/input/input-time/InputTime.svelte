@@ -16,6 +16,7 @@
 
 			<input
 				id="{_id}"
+				name="{name}"
 				autocomplete="off"
 				type="time"
 				{disabled}
@@ -44,6 +45,7 @@ import { Label } from '../label';
 let className = '';
 export { className as class };
 export let id = '';
+export let name = '';
 export let required = undefined;
 export let disabled = false;
 export let value = '';

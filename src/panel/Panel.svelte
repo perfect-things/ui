@@ -77,7 +77,7 @@ export function toggle (e) {
 		return;
 	}
 
-	e ||= { target: null, type: 'click', preventDefault: () => {} };
+	e = e || { target: null, type: 'click', preventDefault: () => {} };
 	const skipToggleOn = ['BUTTON', 'INPUT', 'A', 'SELECT', 'TEXTAREA'];
 	if (e.target && skipToggleOn.includes(e.target.tagName)) return;
 	if (e.target && e.target.closest('.panel-content')) return;

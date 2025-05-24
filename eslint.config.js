@@ -1,31 +1,52 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
 import js from '@eslint/js';
 import globals from 'globals';
 import stylisticJs from '@stylistic/eslint-plugin-js';
-// import eslintPluginSvelte from 'eslint-plugin-svelte';
+import eslintPluginSvelte from 'eslint-plugin-svelte';
+import svelteParser from 'svelte-eslint-parser';
+
 // @ts-ignore
-import importPlugin from 'eslint-plugin-import';
+// import importPlugin from 'eslint-plugin-import';
 
 
-export default defineConfig([
+export default [
+	...eslintPluginSvelte.configs['flat/base'],
 	js.configs.recommended,
-	// ...eslintPluginSvelte.configs['flat/base'],
-	importPlugin.flatConfigs.recommended,
-
-	globalIgnores(['docs/*.js']),
-
+	// importPlugin.flatConfigs.recommended,
 	{
-		plugins: {
-			'@stylistic/js': stylisticJs,
-		},
+		ignores: [
+			'docs/*',                      // Ignore compiled output
+			'**/index.js',                 // Ignore all index.js files (usually just exports)
+			'**/node_modules/**',          // Ignore node_modules
+			'**/vanillajs-datepicker/**',  // Ignore third party modules
+			'src/**/utils.js',
+			'src/icon/icons.js'
+		]
+	},
+	{ plugins: { '@stylistic/js': stylisticJs, }, },
+	{
+		files: ['**/*.svelte', '**/*.svelte.js'],
+		languageOptions: {
+			parser: svelteParser,
+			ecmaVersion: 'latest',
+			sourceType: 'module',
+			globals: {
+				...globals.browser,
+				...globals.jest,
+			},
+		}
+	},
+	{
+		files: ['**/*.{js,mjs,cjs}'],
 		languageOptions: {
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 			globals: {
 				...globals.browser,
 				...globals.jest,
-			}
+			},
 		},
+	},
+	{
 		rules: {
 			'@stylistic/js/array-bracket-spacing': ['error', 'never'],
 			'@stylistic/js/brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],
@@ -59,12 +80,13 @@ export default defineConfig([
 			'prefer-promise-reject-errors': 'error',
 
 			'svelte/no-at-html-tags': 0,
+
 			// 'import/no-unresolved': [2, { 'commonjs': true, 'amd': true }],
-			'import/no-unresolved': 0,
-			'import/named': 2,
-			'import/namespace': 2,
-			'import/default': 2,
-			'import/export': 2,
+			// 'import/no-unresolved': 0,
+			// 'import/named': 2,
+			// 'import/namespace': 2,
+			// 'import/default': 2,
+			// 'import/export': 2,
 		}
 	}
-]);
+];

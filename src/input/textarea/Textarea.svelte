@@ -13,6 +13,7 @@
 
 		<textarea
 			id="{_id}"
+			name="{name}"
 			{disabled}
 			{...$$restProps}
 			aria-invalid="{error}"
@@ -35,6 +36,7 @@ let className = '';
 export { className as class };
 
 export let id = '';
+export let name = '';
 export let value = '';
 export let autogrow = false;
 export let required = undefined;
