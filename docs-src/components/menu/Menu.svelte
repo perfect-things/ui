@@ -61,8 +61,8 @@
 <h3>Context menu</h3>
 <p>To open the context menu:</p>
 <ul>
-	<li>Desktop: right-click on the boxes below
-	<li>Mobile: long-press on them
+	<li>Desktop: right-click on the boxes below</li>
+	<li>Mobile: long-press on them</li>
 </ul>
 
 <div class="div div1">Tab</div>
@@ -94,6 +94,7 @@
 import { Button, Menu, MenuItem, MenuSeparator } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './Menu.css';
 
 const apiProps = [
 	{ name: 'align', type: ['left', 'right', 'center'], default: 'left', description: 'Align horizontally with the target.<br>' +

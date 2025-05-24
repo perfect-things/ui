@@ -80,6 +80,8 @@ import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
 import * as TestComponents from '../components';
+import './Nav.css';
+
 
 const components = { GetStarted, Changelog, ...TestComponents, };
 

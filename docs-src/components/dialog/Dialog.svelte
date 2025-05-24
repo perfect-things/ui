@@ -1,9 +1,9 @@
 <h2>Dialog</h2>
 
 <ul>
-	<li>simple, small, no dependencies
-	<li>accessible (full keyboard support, focus trap)
-	<li>configurable
+	<li>simple, small, no dependencies</li>
+	<li>accessible (full keyboard support, focus trap)</li>
+	<li>configurable</li>
 </ul>
 <hr>
 

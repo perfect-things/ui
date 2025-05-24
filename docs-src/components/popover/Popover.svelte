@@ -2,11 +2,11 @@
 
 <p>If a <em>Dialog</em> and <em>Tooltip</em> had a child - this would be it.</p>
 <ul>
-	<li>It's a container that can be opened like a dialog, but will be attached to the target element, like a tooltip.
-	<li>It's a great way to display additional information or actions for a specific element on the page.
-	<li>It can contain other components (e.g. buttons) and can serve as a free-form menu.
-	<li>It has focus-trap (like dialog), so once it's opened - focus goes in and user can not tab-out of it.
-	<li>It can be closed using Escape key or by clicking outside of it.
+	<li>It's a container that can be opened like a dialog, but will be attached to the target element, like a tooltip.</li>
+	<li>It's a great way to display additional information or actions for a specific element on the page.</li>
+	<li>It can contain other components (e.g. buttons) and can serve as a free-form menu.</li>
+	<li>It has focus-trap (like dialog), so once it's opened - focus goes in and user can not tab-out of it.</li>
+	<li>It can be closed using Escape key or by clicking outside of it.</li>
 </ul>
 
 <hr>
@@ -86,6 +86,7 @@
 import { Popover, Button } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './Popover.css';
 
 let popover1, popover1top, popover1left, popover1right, popover2, popover3, popover4, popover5;
 let content = '<h2>Context information</h2><p>Some text</p>';

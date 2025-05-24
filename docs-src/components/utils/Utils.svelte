@@ -2,14 +2,14 @@
 	<h3>Utility properties</h3>
 	<ul>
 		{#each props as item}
-			<li><a href="#Utils/{item}">{item}</a>
+			<li><a href="#Utils/{item}">{item}</a></li>
 		{/each}
 	</ul>
 
 	<h3>Utility Functions</h3>
 	<ul>
 		{#each fns as item}
-			<li><a href="#Utils/{item}">{item}</a>
+			<li><a href="#Utils/{item}">{item}</a></li>
 		{/each}
 	</ul>
 </div>
@@ -38,6 +38,7 @@
 <script>
 import * as Functions from './functions';
 import * as Properties from './properties';
+import './Utils.css';
 
 const props = Object.keys(Properties);
 const fns = Object.keys(Functions);

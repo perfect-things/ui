@@ -10,7 +10,7 @@
 <script>
 import { ButtonToggle } from '../../src';
 import { PREFERS_DARK } from '../../src/utils';
-
+import './Header.css';
 
 const themes = [
 	{ value: false, icon: 'sun' },

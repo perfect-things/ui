@@ -19,6 +19,9 @@
 
 <script>
 import { Table } from '../../src';
+import './ApiTable.css';
+
+
 export let title = 'API';
 export let description = '';
 export let props = [

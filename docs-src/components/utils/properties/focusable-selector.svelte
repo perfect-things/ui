@@ -1,7 +1,7 @@
 <Util id="FocusableSelector" name="FOCUSABLE_SELECTOR" {example}>
 	<ul>
-		<li>Type: string
-		<li>Returns a list of selectors that can be focused.
+		<li>Type: string</li>
+		<li>Returns a list of selectors that can be focused.</li>
 	</ul>
 </Util>
 

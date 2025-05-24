@@ -7,6 +7,8 @@
 </code></pre>
 
 <script>
+import './CodeExample.css';
+
 export let html = '';
 export let notitle = false;
 export let nohr = undefined;

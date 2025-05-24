@@ -1,9 +1,9 @@
 <Util id="PrefersDark" name="PREFERS_DARK" {example}>
 	<ul>
-		<li>Svelte store<em>*</em>
-		<li>Type: boolean
-		<li>Updates on system theme change.
-		<li>Returns user preference for dark mode.
+		<li>Svelte store<em>*</em></li>
+		<li>Type: boolean</li>
+		<li>Updates on system theme change.</li>
+		<li>Returns user preference for dark mode.</li>
 	</ul>
 </Util>
 

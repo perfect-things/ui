@@ -53,6 +53,7 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 import { Button, NotificationCenter, showNotification, hideNotification, Toggle } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './NotificationCenter.css';
 
 let hideButton = false;
 

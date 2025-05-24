@@ -27,6 +27,7 @@
 import { Icon, icons, customIcons, addIcon, Button } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './Icon.css';
 
 addIcon('customIcon', '<[CUSTOM ICON]>');
 

@@ -7,6 +7,7 @@
 <script>
 import { Nav } from '../nav';
 import { Header } from '../header';
+import './App.css';
 
 
 let component = undefined;

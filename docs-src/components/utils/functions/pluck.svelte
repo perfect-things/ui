@@ -1,8 +1,8 @@
 <Util id="pluck" name="pluck(object, props)" {example}>
 	<p>Creates a new object with only the plucked properties from the original object..</p>
 	<ul>
-		<li><em>object</em> - object to pluck from.
-		<li><em>props</em> - an array of property names.
+		<li><em>object</em> - object to pluck from.</li>
+		<li><em>props</em> - an array of property names.</li>
 	</ul>
 </Util>
 

@@ -30,6 +30,7 @@
 import { Button, ButtonToggle, Toggle, InputText } from '../../../src';
 import { API } from '../../api-table';
 import { CodeBox } from '../../code-example';
+import './Button.css';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },

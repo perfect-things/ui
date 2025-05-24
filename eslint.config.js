@@ -15,11 +15,11 @@ export default [
 	{
 		ignores: [
 			'docs/*',                      // Ignore compiled output
-			'**/index.js',                 // Ignore all index.js files (usually just exports)
 			'**/node_modules/**',          // Ignore node_modules
 			'**/vanillajs-datepicker/**',  // Ignore third party modules
-			'src/**/utils.js',
-			'src/icon/icons.js'
+			// '**/index.js',                 // Ignore all index.js files (usually just exports)
+			// 'src/**/utils.js',
+			// 'src/icon/icons.js'
 		]
 	},
 	{ plugins: { '@stylistic/js': stylisticJs, }, },

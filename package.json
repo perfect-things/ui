@@ -23,10 +23,13 @@
     "coverage:ci": "NODE_NO_WARNINGS=1 NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage --coverageReporters=\"text-summary\" --coverageReporters=\"json\" --coverageReporters=\"lcov\"",
     "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.svelte",
     "lint": "gulp lint",
-    "dist": "gulp prod",
-    "build": "gulp build",
-    "start": "gulp -LL",
-    "prepare": "husky"
+    "_dist": "gulp prod",
+    "_build": "gulp build",
+    "_start": "gulp -LL",
+    "prepare": "husky",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "vanilla-swipe": "^2.4.1",
@@ -40,6 +43,7 @@
     "@esbuild-plugins/node-resolve": "^0.2.2",
     "@eslint/js": "^9.26.0",
     "@stylistic/eslint-plugin-js": "^4.2.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.7",
@@ -71,13 +75,15 @@
     "marked": "^15.0.11",
     "prism-svelte": "^0.5.0",
     "prismjs": "^1.30.0",
+    "rollup-plugin-copy": "^3.5.0",
     "screen-clear": "^1.0.13",
     "stylelint": "^16.17.0",
     "stylelint-config-standard": "^37.0.0",
     "stylelint-formatter-pretty": "^4.0.1",
-    "svelte": "^4.2.20",
+    "svelte": "^5.23.1",
     "svelte-eslint-parser": "^1.2.0",
     "svelte-jester": "^5.0.0",
-    "ts-jest": "^29.3.1"
+    "ts-jest": "^29.3.1",
+    "vite": "^6.3.1"
   }
 }

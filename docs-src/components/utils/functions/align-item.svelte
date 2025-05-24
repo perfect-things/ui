@@ -3,8 +3,8 @@
 		ensuring that the aligned element remains within the viewport.
 	</p>
 	<ul>
-		<li><em>config</em> - an object with the configuration (see below).
-		<li>Returns <em>position</em> - whether the aligned item is above (top) or below (bottom) the target.
+		<li><em>config</em> - an object with the configuration (see below).</li>
+		<li>Returns <em>position</em> - whether the aligned item is above (top) or below (bottom) the target.</li>
 	</ul>
 </Util>
 

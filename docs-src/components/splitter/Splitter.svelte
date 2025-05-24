@@ -1,8 +1,8 @@
 <h2>Splitter</h2>
 <p>Resizable splitter component.</p>
 <ul>
-	<li>It uses <em>flex flow</em> property to determine the direction of resizing (row=horizontal, column=vertical).
-	<li>It uses <em>min-width</em> and <em>max-width</em> props to determine how much to resize;
+	<li>It uses <em>flex flow</em> property to determine the direction of resizing (row=horizontal, column=vertical).</li>
+	<li>It uses <em>min-width</em> and <em>max-width</em> props to determine how much to resize;</li>
 </ul>
 
 <hr>
@@ -30,6 +30,7 @@
 import { Splitter, Button } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './Splitter.css';
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },

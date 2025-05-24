@@ -20,4 +20,8 @@ export * from './tree/index.js';
 export * from './utils.js';
 import { isMobile } from './utils.js';
 
+import './root.css';
+import './theme-dark.css';
+import './theme-light.css';
+
 document.documentElement.classList.add(isMobile() ? 'mobile' : 'desktop');

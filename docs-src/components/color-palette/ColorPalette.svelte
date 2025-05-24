@@ -66,5 +66,6 @@
 
 <script>
 import PaletteBox from './ColorPaletteBox.svelte';
+import './ColorPalette.css';
 
 </script>
