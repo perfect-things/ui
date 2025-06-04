@@ -6,6 +6,7 @@
 
 
 <script>
+import './InputError.css';
 import { ANIMATION_SPEED } from '../../utils';
 import Error from '../../info-bar/Error.svelte';
 

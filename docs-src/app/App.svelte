@@ -12,7 +12,6 @@ import './App.css';
 
 let component = undefined;
 
-
 $:pageName = (component?.name ?? '').toLowerCase();
 
 </script>

@@ -55,6 +55,7 @@
 
 
 <script>
+import './NotificationCenter.css';
 import { onDestroy, onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import { Icon } from '../../icon';

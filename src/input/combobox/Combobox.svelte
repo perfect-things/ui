@@ -120,6 +120,7 @@
 
 
 <script>
+import './Combobox.css';
 import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
 import { emphasize, scrollToSelectedItem, groupData, findValueInSource, getInputValue,
 	alignDropdown, hasValueChanged } from './utils';

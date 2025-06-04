@@ -10,7 +10,7 @@
 	background-color: var(--ui-color-background-input);
 }
 
-.input-rating .button {
+.input-rating .input-row .button {
 	position: static;
 	right: unset;
 	cursor: default;

@@ -72,6 +72,10 @@
 }
 
 
+.range.disabled input::-webkit-slider-thumb { box-shadow: none; }
+.range.disabled input::-moz-range-thumb { box-shadow: none; }
+
+
 /* Cannot be merged, as it won't work in safari */
 .range:not(.disabled) input::-webkit-slider-thumb:active { scale: 0.9; }
 .range:not(.disabled) input::-moz-slider-thumb:active { scale: 0.9; }

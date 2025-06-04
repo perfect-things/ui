@@ -34,6 +34,11 @@
 </button>
 <script>
 import { Icon } from '../icon';
+import './Button.css';
+import './Button-normal.css';
+import './Button-outline.css';
+import './Button-text.css';
+import './Button-link.css';
 
 export let element = undefined;
 

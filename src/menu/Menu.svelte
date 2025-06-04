@@ -8,6 +8,7 @@
 <svelte:options accessors={true}/>
 
 <script>
+import './Menu.css';
 import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
 import { addArias, removeArias } from './utils.js';
 import initLongPressEvent from './longpress.js';

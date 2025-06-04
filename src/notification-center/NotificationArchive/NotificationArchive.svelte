@@ -36,6 +36,7 @@
 
 
 <script>
+import './NotificationArchive.css';
 import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
 import { ArchivedNotifications, removeFromArchive, receive, fly, slideUp, flip } from '../store.js';

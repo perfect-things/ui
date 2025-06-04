@@ -19,6 +19,7 @@
 </div>
 
 <script>
+import './Grid.css';
 import { onMount, createEventDispatcher, beforeUpdate } from 'svelte';
 import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';
 import { DataStore } from './DataStore.js';

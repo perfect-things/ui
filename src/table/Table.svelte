@@ -13,6 +13,7 @@
 </div>
 
 <script>
+import './Table.css';
 import { onDestroy, onMount, createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 

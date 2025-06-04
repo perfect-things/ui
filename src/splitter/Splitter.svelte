@@ -6,6 +6,7 @@
 	bind:this="{element}"></div>
 
 <script>
+import './Splitter.css';
 import { onMount, createEventDispatcher } from 'svelte';
 import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
 import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';

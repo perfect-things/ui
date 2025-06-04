@@ -17,6 +17,7 @@
 <svelte:options accessors={true}/>
 
 <script>
+import './Popover.css';
 import { createEventDispatcher } from 'svelte';
 import { addArias, removeArias } from './utils.js';
 import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils.js';

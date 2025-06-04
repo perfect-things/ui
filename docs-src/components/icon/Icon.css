@@ -1,4 +1,4 @@
-.icons { margin-bottom: 2em; }
+.icons { margin-bottom: 2em; overflow: auto; }
 
 .icon-block {
 	float: left;

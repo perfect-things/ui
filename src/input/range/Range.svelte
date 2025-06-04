@@ -41,6 +41,7 @@
 
 
 <script>
+import './Range.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';

@@ -19,6 +19,7 @@
 </div>
 
 <script>
+import './Tag.css';
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../icon';
 import { isColorDark } from '../utils';

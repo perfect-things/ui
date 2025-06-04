@@ -31,6 +31,7 @@
 </div>
 
 <script>
+import './Checkbox.css';
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';

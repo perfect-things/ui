@@ -40,6 +40,7 @@
 </div>
 
 <script>
+import './Toggle.css';
 import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
 import { guid, getMouseX } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';

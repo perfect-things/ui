@@ -7,9 +7,9 @@
 </div>
 
 <script>
+import './ButtonGroup.css';
 let className = '';
 export { className as class };
 export let round = undefined;	// round button
 export let element = undefined;
-
 </script>

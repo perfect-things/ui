@@ -49,6 +49,7 @@
 </div>
 
 <script>
+import './InputPassword.css';
 import { onMount, createEventDispatcher } from 'svelte';
 import { Button } from '../../button';
 import { guid } from '../../utils';

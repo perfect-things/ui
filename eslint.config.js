@@ -14,7 +14,7 @@ export default [
 	// importPlugin.flatConfigs.recommended,
 	{
 		ignores: [
-			'docs/*',                      // Ignore compiled output
+			'docs/**',                      // Ignore compiled output
 			'**/node_modules/**',          // Ignore node_modules
 			'**/vanillajs-datepicker/**',  // Ignore third party modules
 			// '**/index.js',                 // Ignore all index.js files (usually just exports)

@@ -101,15 +101,13 @@ function onpaste () {
 
 
 function onchange () {
+	const nonNumeric = new RegExp(`[^0-9${separator}-]+`, 'g');
+	const trailingSeparator = new RegExp(`${separator}$`, 'g');
 	value = ('' + value)
-		.replace(/^0+(?=\d)/, '')    // remove leading zeros if they are not followed by a dot
-		.replace(/[^0-9.-]+/g, '')   // remove all non-numeric characters except the dot and the minus sign
-		.replace(/(?!^)-/g, '')      // remove minus sign if it's not the first character
-		.replace(/\.$/g, '');        // remove dot if it's the last character
-
-	if (separator !== '.') {         // if separator is not a dot
-		value = value.replace(new RegExp(separator + '$', 'g'), '');
-	}
+		.replace(/^0+(?=\d)/, '')        // remove leading zeros if they are not followed by a dot
+		.replace(nonNumeric, '')         // remove all non-numeric characters except the dot and the minus sign
+		.replace(/(?!^)-/g, '')          // remove minus sign if it's not the first character
+		.replace(trailingSeparator, ''); // remove separator if it's the last character
 
 	const v = value.replace(separator, '.');
 	const num = parseFloat(v);

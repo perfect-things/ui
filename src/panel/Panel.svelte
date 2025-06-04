@@ -28,6 +28,7 @@
 </div>
 
 <script>
+import './Panel.css';
 import { createEventDispatcher , onMount } from 'svelte';
 import { getIcon } from '../icon';
 import { animate } from '../utils';

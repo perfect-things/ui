@@ -22,6 +22,7 @@
 
 
 <script>
+import './Dialog.css';
 import { createEventDispatcher, onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 

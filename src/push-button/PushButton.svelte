@@ -32,6 +32,7 @@
 		on:mousedown="{onMouseDown}"/>
 {/if}
 <script>
+import './PushButton.css';
 import { createEventDispatcher } from 'svelte';
 import { Button } from '../button';
 

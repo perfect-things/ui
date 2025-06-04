@@ -40,6 +40,7 @@
 </div>
 
 <script>
+import './InputSearch.css';
 import { guid } from '../../utils';
 import { Button } from '../../button';
 import { Icon } from '../../icon';

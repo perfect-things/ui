@@ -17,6 +17,7 @@
 	</div>
 {/if}
 <script>
+import './Tooltip.css';
 import { afterUpdate, onDestroy, onMount } from 'svelte';
 import { alignItem, isSymbol, replaceKeySymbols } from '../utils.js';
 export let target = '';

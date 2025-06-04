@@ -35,6 +35,7 @@
 </div>
 
 <script>
+import './InputTime.css';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';

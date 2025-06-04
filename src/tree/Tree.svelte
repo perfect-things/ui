@@ -15,6 +15,7 @@
 </ul>
 
 <script>
+import './Tree.css';
 import { createEventDispatcher } from 'svelte';
 import TreeNode from './TreeNode.svelte';
 

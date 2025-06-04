@@ -5,6 +5,7 @@
 	</div>
 {/if}
 <script>
+import './InfoBar.css';
 import { Icon } from '../icon';
 
 let className = '';

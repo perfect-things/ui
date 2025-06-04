@@ -7,7 +7,7 @@
 {/if}
 
 <script>
-
+import './Label.css';
 let className = '';
 export { className as class };
 

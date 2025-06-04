@@ -36,6 +36,7 @@
 	</div>
 </div>
 <script>
+import './Radio.css';
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';

@@ -58,6 +58,7 @@
 
 
 <script>
+import './InputRating.css';
 import { Button } from '../../button';
 import { createEventDispatcher } from 'svelte';
 import { guid, getMouseY, getMouseX } from '../../utils';

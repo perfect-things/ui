@@ -25,6 +25,7 @@
 </Dialog>
 
 <script>
+import './MessageBox.css';
 import { onDestroy, onMount } from 'svelte';
 import { config } from './MessageBox.js';
 import { Dialog } from '../dialog';

@@ -45,6 +45,7 @@
 </div>
 
 <script>
+import './ButtonToggle.css';
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';

@@ -1,4 +1,4 @@
-/* more styling defined in ../check-and-radio.css */
+/* more styling defined in ../input.css .check-and-radio {} */
 
 .radio {
 	min-width: 26ch;
@@ -7,21 +7,6 @@
 
 	--ui-radio-padding: var(--ui-margin-s);
 }
-
-
-.radio input {
-	border-radius: 10rem;
-	width: 1.3rem;
-	height: 1.3rem;
-}
-.radio input:focus { box-shadow: none }
-.radio input::after {
-	background: var(--ui-color-text-1);
-	width: 65%;
-	height: 65%;
-	border-radius: inherit;
-}
-
 
 .radio-inner {
 	display: flex;
@@ -50,7 +35,7 @@
 }
 
 
-.radio-item {
+.radio .radio-item {
 	display: flex;
 	flex-flow: row;
 	align-items: center;
@@ -62,8 +47,22 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.radio-item.disabled { opacity: 0.5; }
-.radio-item.disabled input { opacity: 1; }
+.radio .radio-item input {
+	border-radius: 10rem;
+	width: 1.3rem;
+	height: 1.3rem;
+}
+.radio .radio-item input:focus { box-shadow: none }
+.radio .radio-item input::after {
+	background: var(--ui-color-text-1);
+	width: 65%;
+	height: 65%;
+	border-radius: inherit;
+}
+
+
+.radio .radio-item.disabled { opacity: 0.5; }
+.radio .radio-item.disabled input { opacity: 1; }
 
 .radio-item:not(.disabled):focus-within,
 .radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); }

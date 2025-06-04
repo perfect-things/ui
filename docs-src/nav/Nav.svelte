@@ -57,7 +57,7 @@
 		<NavItem name="Tag" {active} />
 		<NavItem name="Icon" {active} />
 		<NavItem name="Utils" {active} />
-		<!-- <NavItem name="Splitter" {active} /> -->
+		<NavItem name="Splitter" {active} />
 		<NavItem name="Color Palette" {active} />
 	</menu>
 

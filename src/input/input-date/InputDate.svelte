@@ -63,6 +63,7 @@
 </div>
 
 <script>
+import './InputDate.css';
 import { onMount, afterUpdate, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';

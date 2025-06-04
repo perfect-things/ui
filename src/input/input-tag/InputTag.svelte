@@ -59,6 +59,7 @@
 </Popover>
 
 <script>
+import './InputTag.css';
 import { beforeUpdate, createEventDispatcher } from 'svelte';
 import { InputText } from '../input-text';
 import { Button } from '../../button';

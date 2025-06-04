@@ -20,6 +20,7 @@
 <svelte:options accessors={true}/>
 
 <script>
+import './Drawer.css';
 import { createEventDispatcher } from 'svelte';
 import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';

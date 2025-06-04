@@ -33,6 +33,7 @@
 	</div>
 </div>
 <script>
+import './InputMath.css';
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
 import { roundAmount, guid } from '../../utils';

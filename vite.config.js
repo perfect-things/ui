@@ -8,11 +8,13 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+	base: './',
 	plugins: [
 		svelte({
 			compilerOptions: {
 				compatibility: { componentApi: 4 },
+				hmr: false
 			}
 		}),
 		copy({
@@ -25,6 +27,17 @@ export default defineConfig({
 				{ src: 'assets/*', dest: 'docs' },
 			],
 		}),
+		{
+			name: 'inject-analytics',
+			transformIndexHtml: {
+				enforce: 'pre',
+				transform (html) {
+					const analyticsScript = '<script defer data-domain="ui.perfectthings.dev" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
+					if (command === 'build') html = html.replace('<!-- scripts-go-here -->', analyticsScript);
+					return html;
+				}
+			}
+		}
 	],
 	root: 'docs-src',
 	publicDir: '../docs',
@@ -33,14 +46,12 @@ export default defineConfig({
 		cssCodeSplit: false,
 		emptyOutDir: false,
 		rollupOptions: {
-			input: resolve(__dirname, 'docs-src/index.html')
+			input: resolve(__dirname, 'docs-src/index.html'),
+			output: {
+				entryFileNames: '[name].[hash].js',
+				chunkFileNames: '[name].[hash].js',
+				assetFileNames: '[name].[hash].[ext]'
+			}
 		}
 	},
-	server: { fs: { allow: ['..'] } },
-	resolve: {
-		alias: {
-			// Allow importing from the src directory (your component library)
-			'@': resolve(__dirname, 'src')
-		}
-	}
-});
+}));
