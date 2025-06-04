@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import { default as userEvent } from '@testing-library/user-event';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 
 import { Dialog } from '../src/dialog';
 import { waitForTimeout } from './helpers/utils';
@@ -12,8 +12,8 @@ test('Dialog', async () => {
 		class: 'test-class',
 	};
 	const { baseElement, component } = render(Dialog, props);
-	const openMock = jest.fn();
-	const closeMock = jest.fn();
+	const openMock = vi.fn();
+	const closeMock = vi.fn();
 	component.$on('open', openMock);
 	component.$on('close', closeMock);
 

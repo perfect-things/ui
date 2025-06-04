@@ -102,7 +102,11 @@ function onpaste () {
 
 function onchange () {
 	const nonNumeric = new RegExp(`[^0-9${separator}-]+`, 'g');
-	const trailingSeparator = new RegExp(`${separator}$`, 'g');
+
+	// escape regex special chars, as if separator='.' - it would remove any character
+	const escapedSeparator = separator.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	const trailingSeparator = new RegExp(`${escapedSeparator}$`);
+
 	value = ('' + value)
 		.replace(/^0+(?=\d)/, '')        // remove leading zeros if they are not followed by a dot
 		.replace(nonNumeric, '')         // remove all non-numeric characters except the dot and the minus sign

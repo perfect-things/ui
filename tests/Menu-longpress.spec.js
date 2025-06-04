@@ -1,5 +1,5 @@
 import initLongPress from '../src/menu/longpress';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 
 
 describe('Menu longpress functionality', () => {
@@ -10,12 +10,13 @@ describe('Menu longpress functionality', () => {
 	beforeEach(() => {
 		originalAddEventListener = document.addEventListener;
 
-		mockEventListener = jest.fn();
+		mockEventListener = vi.fn();
 		document.addEventListener = mockEventListener;
 
-		longpressCallback = jest.fn();
+		longpressCallback = vi.fn();
 		document.body.addEventListener('longpress', longpressCallback);
 
+		// @ts-ignore
 		delete window.longPressEventInitialised;
 	});
 
@@ -41,7 +42,7 @@ describe('Menu longpress functionality', () => {
 		const customDelay = 1000;
 		const customEventName = 'customlongpress';
 
-		const customCallback = jest.fn();
+		const customCallback = vi.fn();
 		document.body.addEventListener(customEventName, customCallback);
 
 		initLongPress(customDelay, customEventName);

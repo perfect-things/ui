@@ -1,32 +1,32 @@
 import { get } from 'svelte/store';
 import { ANIMATION_SPEED } from '../../src';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 
-document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: {} }));
+document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: {} }));
 
-document.scrollingElement = jest.fn().mockImplementation(() => ({
-	scrollTop: jest.fn(),
+document.scrollingElement = vi.fn().mockImplementation(() => ({
+	scrollTop: vi.fn(),
 }));
 
 
 // workaround for ResizeObserver not being available in JSDOM
-window.ResizeObserver = jest.fn().mockImplementation(() => ({
-	disconnect: jest.fn(),
-	observe: jest.fn(),
-	unobserve: jest.fn(),
+window.ResizeObserver = vi.fn().mockImplementation(() => ({
+	disconnect: vi.fn(),
+	observe: vi.fn(),
+	unobserve: vi.fn(),
 }));
 
 // workaround for window.matchMedia not being available in JSDOM
-window.matchMedia = jest.fn().mockImplementation(() => ({
+window.matchMedia = vi.fn().mockImplementation(() => ({
 	matches: false,
-	addEventListener: jest.fn(),
+	addEventListener: vi.fn(),
 }));
 
 // workaround for element.animate not being available in JSDOM
-window.Element.prototype.animate = jest.fn().mockImplementation(() => {
+window.Element.prototype.animate = vi.fn().mockImplementation(() => {
 	const obj = {
-		onfinish: jest.fn(),
-		oncancel: jest.fn(),
+		onfinish: vi.fn(),
+		oncancel: vi.fn(),
 	};
 	requestAnimationFrame(() => obj.onfinish());
 	return obj;
@@ -35,10 +35,10 @@ window.Element.prototype.animate = jest.fn().mockImplementation(() => {
 window.visualViewport = {
 	width: window.innerWidth,
 	height: window.innerHeight,
-	addEventListener: jest.fn().mockImplementation((name, cb) => cb()),
-	removeEventListener: jest.fn().mockImplementation((name, cb) => cb()),
+	addEventListener: vi.fn().mockImplementation((name, cb) => cb()),
+	removeEventListener: vi.fn().mockImplementation((name, cb) => cb()),
 };
-window.Element.prototype.scrollIntoView = jest.fn().mockImplementation(() => {});
+window.Element.prototype.scrollIntoView = vi.fn().mockImplementation(() => {});
 
 
 export function offsetHeight (el, value = 50) {

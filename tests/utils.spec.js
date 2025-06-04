@@ -1,8 +1,9 @@
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 import { get } from 'svelte/store';
 
 import './helpers/utils';
 import * as utils from '../src/utils';
+import { waitForTimeout } from './helpers/utils';
 
 
 
@@ -16,24 +17,25 @@ test('utils - animate', async () => {
 	document.body.appendChild(div);
 
 	// spy on div.animate
-	const spy = jest.spyOn(div, 'animate');
+	const spy = vi.spyOn(div, 'animate');
 	await utils.animate(div, {}, {});
 	expect(spy).toHaveBeenCalled();
 });
 
 
-test('utils - blink', () => {
+test('utils - blink', async () => {
 	const div = document.createElement('div');
 	document.body.appendChild(div);
 
-	const spy = jest.spyOn(div, 'animate');
+	const spy = vi.spyOn(div, 'animate');
 	utils.blink(div);
+	await waitForTimeout();
 	expect(spy).toHaveBeenCalled();
 });
 
 
 test('utils - debounce', async () => {
-	const fn = jest.fn();
+	const fn = vi.fn();
 	const debounced = utils.debounce(fn, 100);
 	debounced();
 	debounced();
@@ -217,7 +219,7 @@ describe('setValueAtPath', () => {
 
 
 test('utils - throttle', async () => {
-	const fn = jest.fn();
+	const fn = vi.fn();
 	const throttled = utils.throttle(fn, 100);
 	throttled();
 	throttled();
@@ -524,5 +526,3 @@ describe('isColorDark', () => {
 		expect(utils.isColorDark('#gggggg')).toBe(false);
 	});
 });
-
-

@@ -10,6 +10,21 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
 	base: './',
+	customLogger: {
+		hasWarned: false,
+		clearScreen: () => {},
+		hasErrorLogged: () => false,
+		error: console.error,
+		info (msg) { console.info(msg); },
+		warn (msg) {
+			if (msg.includes('zxcvbn.js')) return;
+			console.warn(msg);
+		},
+		warnOnce (msg) {
+			if (msg.includes('prime_light-webfont')) return;
+			console.warn(msg);
+		}
+	},
 	plugins: [
 		svelte({
 			compilerOptions: {
@@ -20,7 +35,7 @@ export default defineConfig(({ command }) => ({
 		copy({
 			copyOnce: true,
 			verbose: true,
-			copySync: true,
+			copySync: false,
 			hook: 'buildStart',
 			targets: [
 				{ src: 'node_modules/zxcvbn/dist/zxcvbn.js', dest: 'docs' },
@@ -30,8 +45,8 @@ export default defineConfig(({ command }) => ({
 		{
 			name: 'inject-analytics',
 			transformIndexHtml: {
-				enforce: 'pre',
-				transform (html) {
+				order: 'pre',
+				handler (html) {
 					const analyticsScript = '<script defer data-domain="ui.perfectthings.dev" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
 					if (command === 'build') html = html.replace('<!-- scripts-go-here -->', analyticsScript);
 					return html;
@@ -40,13 +55,18 @@ export default defineConfig(({ command }) => ({
 		}
 	],
 	root: 'docs-src',
-	publicDir: '../docs',
+	publicDir: false,
 	build: {
 		outDir: '../docs',
 		cssCodeSplit: false,
 		emptyOutDir: false,
+		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			input: resolve(__dirname, 'docs-src/index.html'),
+			onwarn (warning, warn) {
+				if (warning.code === 'EVAL') return;
+				warn(warning);
+			},
 			output: {
 				entryFileNames: '[name].[hash].js',
 				chunkFileNames: '[name].[hash].js',

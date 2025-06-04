@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 import { Combobox } from '../../src/input/combobox';
 import { waitForTimeout } from '../helpers/utils';
 
@@ -31,7 +31,7 @@ describe('Combobox single-select interactions', () => {
 	beforeEach(() => {
 		({ baseElement, component, getByTitle } = render(Combobox, props));
 
-		mock = jest.fn();
+		mock = vi.fn();
 		component.$on('change', mock);
 		combobox = baseElement.querySelector('.combobox');
 		cmp = baseElement.querySelector('.test-class');

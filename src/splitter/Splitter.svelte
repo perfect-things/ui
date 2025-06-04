@@ -79,7 +79,7 @@ function init () {
 	targetEl.style.flex = 'unset';
 	targetEl.style.overflow = 'auto';
 	if (isVertical) element.style.height = size + 'px';
-	else element.style.width = size + 'px';
+	else if (element) element.style.width = size + 'px';
 	if (element && element.nextElementSibling) element.nextElementSibling.style.overflow = 'auto';
 }
 

@@ -58,7 +58,7 @@ let className = '';
 export { className as class };
 export let disabled = undefined;
 export let round = undefined;	// round button
-export let items = '';
+export let items = [];
 export let id = '';
 export let name = guid();
 export let value = '';

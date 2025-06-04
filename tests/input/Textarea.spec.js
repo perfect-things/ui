@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 import { Textarea } from '../../src/input';
 
 const props = {
@@ -17,7 +17,7 @@ const props = {
 
 test('Textarea renders with correct props', async () => {
 	const { container, component, getByTitle } = render(Textarea, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const cmp = container.querySelector('.test-class');
@@ -40,8 +40,8 @@ test('Textarea renders with correct props', async () => {
 
 test('Textarea handles input events', async () => {
 	const { container, component } = render(Textarea, { value: '' });
-	const changeMock = jest.fn();
-	const inputMock = jest.fn();
+	const changeMock = vi.fn();
+	const inputMock = vi.fn();
 	component.$on('change', changeMock);
 	component.$on('input', inputMock);
 
@@ -81,7 +81,8 @@ test('Textarea binds value correctly', async () => {
 	expect(textarea.value).toBe('updated value');
 
 	await fireEvent.input(textarea, { target: { value: 'input value' } });
-	expect(component.$$.ctx[0]).toBe('input value'); // Accessing the value prop from context
+
+	expect(component.value).toBe('input value'); // Accessing the value prop from context
 });
 
 
@@ -126,6 +127,7 @@ test('Textarea with autogrow property has correct class and behavior', async () 
 
 	expect(textarea.style.height).toBe('150px');
 
+	// @ts-ignore
 	delete HTMLElement.prototype.scrollHeight;
 });
 
@@ -157,7 +159,7 @@ test('Textarea with labelOnTheLeft has correct class', async () => {
 	const textareaContainer = container.querySelector('.textarea');
 	expect(textareaContainer).toHaveClass('label-on-the-left');
 
-	const { container: container2 } = render(Textarea, { labelOnTheLeft: 'true' });
+	const { container: container2 } = render(Textarea, { labelOnTheLeft: true });
 	const textareaContainer2 = container2.querySelector('.textarea');
 	expect(textareaContainer2).toHaveClass('label-on-the-left');
 });
@@ -221,19 +223,6 @@ test('Textarea maintains required flag when value changes', async () => {
 
 	await component.$set({ required: false });
 	expect(textarea).toHaveAttribute('aria-required', 'false');
-});
-
-
-
-test('Textarea properly cleans up autogrow functionality on destroy', async () => {
-	const { container, component } = render(Textarea, { autogrow: true });
-
-	const textareaContainer = container.querySelector('.textarea');
-	expect(textareaContainer).toHaveClass('autogrow');
-
-	component.$destroy();
-
-	expect(true).toBeTruthy();
 });
 
 

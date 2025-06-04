@@ -1,4 +1,4 @@
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 
 import * as utils from '../../src/input/combobox/utils';
 import { offsetHeight, offsetTop } from '../helpers/utils';
@@ -20,7 +20,7 @@ const groupedData = [
 
 
 beforeEach(() => {
-	jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+	vi.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
 });
 
 afterEach(() => {

@@ -176,6 +176,7 @@ let isSelecting = false;
 let isHiding = false;
 
 let newItemName = '';
+let initialised = false;
 
 
 onDestroy(() => {
@@ -184,7 +185,8 @@ onDestroy(() => {
 
 
 afterUpdate(() => {
-	if (!opened && items.length) {
+	if (!initialised && !opened && items.length) {
+		initialised = true;
 		originalItems = deepCopy(items);
 		if (items.length && typeof items[0] === 'string') {
 			items = items.map(item => ({ name: item }));

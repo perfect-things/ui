@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 
 import { Button } from '../src/button';
 import SlotTest from './helpers/Button.svelte';
@@ -12,7 +12,7 @@ test('Button', async () => {
 		class: 'test-class',
 	};
 	const { getByTitle, component } = render(Button, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('click', mock);
 
 	const btn = getByTitle('Button1');

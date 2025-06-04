@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 
 import { MessageBox, MessageType, showMessage } from '../src/message-box';
 import { waitForTimeout } from './helpers/utils';
@@ -44,7 +44,7 @@ test('MessageBox', async () => {
 
 
 	// third message box - complex
-	const cb = jest.fn();
+	const cb = vi.fn();
 	const cfg = {
 		message: 'Are you sure you want to delete this thing?',
 		type: MessageType.DANGER,

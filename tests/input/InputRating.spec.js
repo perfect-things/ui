@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import jest from 'jest-mock';
+import { vi } from 'vitest';
 
 import { InputRating } from '../../src/input/input-rating';
 import { waitForTimeout } from '../helpers/utils';
@@ -15,7 +15,7 @@ test('InputRating', async () => {
 		class: 'test-class',
 	};
 	const { container, component } = render(InputRating, props);
-	const mock = jest.fn();
+	const mock = vi.fn();
 	component.$on('change', mock);
 
 	const cmp = container.querySelector('.test-class');
@@ -33,7 +33,7 @@ test('InputRating', async () => {
 	expect(star2).toBeInTheDocument();
 	expect(star2).not.toHaveClass('active');
 
-	document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: { star: '2' } }));
+	document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: { star: '2' } }));
 	await fireEvent.mouseDown(star2);
 	await fireEvent.mouseUp(star2);
 	await waitForTimeout();
@@ -45,7 +45,7 @@ test('InputRating', async () => {
 	expect(star3).toBeInTheDocument();
 	expect(star3).not.toHaveClass('active');
 
-	document.elementFromPoint = jest.fn().mockImplementation(() => ({ dataset: { star: '3' } }));
+	document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: { star: '3' } }));
 	await fireEvent.mouseDown(star3);
 	await fireEvent.mouseUp(star3);
 	await waitForTimeout();
