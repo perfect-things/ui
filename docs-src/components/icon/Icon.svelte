@@ -1,14 +1,14 @@
 <h2>Icons</h2>
 <div class="icons">
 	{#each Object.keys(icons) as icon}
-		<div class="icon-block" title="{icon}">
-			<div class="icon-block-icon"><Icon name="{icon}"/></div>
+		<div class="icon-block" title={icon}>
+			<div class="icon-block-icon"><Icon name={icon}/></div>
 			<div class="icon-block-name">{icon}</div>
 		</div>
 	{/each}
 	{#each Object.keys(customIcons) as icon}
-		<div class="icon-block" title="{icon}">
-			<div class="icon-block-icon"><Icon name="{icon}"/></div>
+		<div class="icon-block" title={icon}>
+			<div class="icon-block-icon"><Icon name={icon}/></div>
 			<div class="icon-block-name">{icon}</div>
 		</div>
 	{/each}
@@ -17,10 +17,10 @@
 <h2>Custom Icon</h2>
 <Button icon="customIcon">Custom Icon Button</Button>
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
-<API props="{addIconAPI}" title="addIcon function" description="The component exports a global <em>addIcon</em> function with the following arguments:"/>
-<API props="{getIconAPI}" title="getIcon function" description="The component exports a global <em>getIcon</em> function that can be used to retrieve the icon's svg code (as string). The function accepts the following argument:"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
+<API props={addIconAPI} title="addIcon function" description="The component exports a global <em>addIcon</em> function with the following arguments:"/>
+<API props={getIconAPI} title="getIcon function" description="The component exports a global <em>getIcon</em> function that can be used to retrieve the icon's svg code (as string). The function accepts the following argument:"/>
 
 
 <script>

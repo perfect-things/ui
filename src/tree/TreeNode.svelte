@@ -1,17 +1,17 @@
-<li bind:this="{element}">
+<li bind:this={element}>
 	<div
 		class="tree-node"
-		role="{item.items ? 'group' : 'treeitem'}"
+		role={item.items ? 'group' : 'treeitem'}
 		aria-selected="false"
-		aria-label="{item.name}"
-		aria-expanded="{item.items ? expanded : undefined}"
+		aria-label={item.name}
+		aria-expanded={item.items ? expanded : undefined}
 		class:expanded
-		data-type="{nodeType}"
-		data-level="{level}"
-		data-expanded="{item.items ? expanded : undefined}"
-		data-id="{item.id || undefined}"
-		on:click={item.items ? toggle : undefined}
-		on:key="{onkey}">
+		data-type={nodeType}
+		data-level={level}
+		data-expanded={item.items ? expanded : undefined}
+		data-id={item.id || undefined}
+		onclick={item.items ? toggle : undefined}
+		{onkey}>
 
 		{#each indents as indent}
 			<div class="tree-indent indent-{indent}"></div>
@@ -23,7 +23,7 @@
 	{#if item.items && expanded}
 		<ul>
 			{#each item.items as subitem}
-				<svelte:self level="{level + 1}" item="{subitem}" />
+				<TreeNode level={level + 1} item={subitem} />
 			{/each}
 		</ul>
 	{/if}
@@ -32,13 +32,25 @@
 
 
 <script>
-export let item = {};
-export let level = 0;
-export let expanded = false;
-export let element = undefined;
+	import TreeNode from './TreeNode.svelte';
+	/**
+	 * @typedef {Object} Props
+	 * @property {any} [item]
+	 * @property {number} [level]
+	 * @property {boolean} [expanded]
+	 * @property {any} [element]
+	 */
 
-$:nodeType = item.items ? 'folder' : 'file';
-$:indents = new Array(level).fill(0);
+	/** @type {Props} */
+	let {
+		item = {},
+		level = 0,
+		expanded = $bindable(false),
+		element = $bindable(undefined)
+	} = $props();
+
+const nodeType = $derived(item.items ? 'folder' : 'file');
+const indents = $derived(new Array(level).fill(0));
 
 
 function toggle () {

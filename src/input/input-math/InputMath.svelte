@@ -1,14 +1,14 @@
-<div
+ <div
 	class="input input-math {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+	class:has-error={error}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	bind:this={element}>
 
-	<Label {label} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} for={_id}/>
+	<Info msg={info} />
 
 	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			<Icon name="calculator"/>
@@ -16,23 +16,26 @@
 				type="text"
 				autocomplete="off"
 				{disabled}
-				id="{_id}"
-				{...$$restProps}
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-				bind:this="{inputElement}"
-				bind:value="{value}"
-				on:input
-				on:keydown="{onkeydown}"
-				on:change="{onchange}"
-				on:paste="{onpaste}"
-				on:focus
-				on:blur>
+				id={_id}
+				{...rest}
+				aria-invalid={error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				bind:this={inputElement}
+				bind:value={value}
+				oninput={bubble('input')}
+				{onkeydown}
+				{onchange}
+				{onpaste}
+				onfocus={bubble('focus')}
+				onblur={bubble('blur')}>
 		</div>
 	</div>
 </div>
 <script>
+import { createBubbler } from 'svelte/legacy';
+
+const bubble = createBubbler();
 import './InputMath.css';
 import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
@@ -42,19 +45,38 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let required = undefined;
-export let disabled = false;
-export let value = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
 
-export let element = undefined;
-export let inputElement = undefined;
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {any} [required]
+ * @property {boolean} [disabled]
+ * @property {string} [value]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ */
+
+/** @type {Props & { [key: string]: any }} */
+let {
+	class: className = '',
+	id = '',
+	required = undefined,
+	disabled = false,
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	...rest
+} = $props();
 
 
 const errorMessageId = guid();
@@ -68,7 +90,7 @@ const allowedKeys = [
 ];
 
 
-$:_id = id || $$restProps.name || guid();
+const _id = $derived(id || rest.name || guid());
 
 
 
@@ -106,7 +128,7 @@ function parseAmount (amount) {
 	amount = ('' + amount).replace(/[\s,]/g, '').replace(/^-?0+(?=\d)/, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
 	if ((/[+\-\\*/.]+/i).test(amount)) {
-		try { amount = eval(amount); }
+		try { amount = new Function(`return ${amount}`)(); }
 		catch { amount = 0; }
 	}
 	const num = parseFloat(amount);

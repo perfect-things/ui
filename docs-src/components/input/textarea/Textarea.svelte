@@ -18,7 +18,7 @@
 <Textarea label="Write some text" info="This is some extra info for you"></Textarea>
 
 <h3>With error and live validation</h3>
-<Textarea label="Write some text" {error} on:input="{oninput}"></Textarea>
+<Textarea label="Write some text" {error} on:input={oninput}></Textarea>
 
 <h3>With info, error and autogrow</h3>
 <Textarea label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>
@@ -28,9 +28,9 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -59,7 +59,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Textarea autogrow on:change="{onChange}" error="Invalid text" />
+<Textarea autogrow on:change={onChange} error="Invalid text" />
 
 <script>
 function onChange (e) {
@@ -69,7 +69,7 @@ function onChange (e) {
 `;
 
 
-let error = 'Enter "hello" to pass.';
+let error = $state('Enter "hello" to pass.');
 function oninput (e) {
 	error = e.target.value === 'hello' ? '' : 'Enter "hello" to pass.';
 }

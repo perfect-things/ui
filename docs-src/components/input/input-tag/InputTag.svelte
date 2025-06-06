@@ -2,14 +2,14 @@
 
 
 <h3>Normal</h3>
-<InputTag bind:value="{val}" />
+<InputTag bind:value={val} />
 <p>Input value: {val}</p>
 
 <h3>With onChange callback</h3>
-<InputTag value="tag1, anotherOne, long-tag-name" {tags} on:change="{onchange}" />
+<InputTag value="tag1, anotherOne, long-tag-name" {tags} on:change={onchange} />
 
 <h3>Long list of tags</h3>
-<InputTag value="tag1, anotherOne, long-tag-name" tags="{tags2}"/>
+<InputTag value="tag1, anotherOne, long-tag-name" tags={tags2}/>
 
 
 <h3>Disabled</h3>
@@ -21,9 +21,9 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -52,7 +52,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<InputTag label="Tags" value="tag1, tag2" on:change="{onChange}" />
+<InputTag label="Tags" value="tag1, tag2" on:change={onChange} />
 
 <script>
 function onChange (e) {
@@ -63,7 +63,7 @@ function onChange (e) {
 
 
 
-let val = 'tag1, tag2';
+let val = $state('tag1, tag2');
 const tags = [
 	'Tag1',
 	'AnotherOne',

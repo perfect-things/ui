@@ -9,22 +9,22 @@
 	{/if}
 </div>
 
-<CodeBox tag="Button" text="{buttonText}" {props} />
+<CodeBox tag="Button" text={buttonText} {props} />
 
 <hr>
 
 <div class="button-demo-props">
-	<InputText label="Text" bind:value="{buttonText}"/>
-	<ButtonToggle label="Style" items="{buttonStyles}" value="" on:change="{onStyleChange}" />
-	<ButtonToggle label="Type" items="{buttonTypes}" value="" on:change="{onTypeChange}" />
-	<ButtonToggle label="Icon" items="{buttonIcons}" value="" on:change="{onIconChange}" />
-	<Toggle label="Round" bind:value="{props.round}"/>
-	<Toggle label="Disabled" bind:value="{props.disabled}"/>
+	<InputText label="Text" bind:value={buttonText}/>
+	<ButtonToggle label="Style" items={buttonStyles} value="" on:change={onStyleChange} />
+	<ButtonToggle label="Type" items={buttonTypes} value="" on:change={onTypeChange} />
+	<ButtonToggle label="Icon" items={buttonIcons} value="" on:change={onIconChange} />
+	<Toggle label="Round" bind:value={props.round}/>
+	<Toggle label="Disabled" bind:value={props.disabled}/>
 </div>
 
 
 <hr>
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 <script>
 import { Button, ButtonToggle, Toggle, InputText } from '../../../src';
@@ -53,8 +53,8 @@ const apiProps = [
 ];
 
 
-const props = {};
-let buttonText = 'Demo button';
+const props = $state({});
+let buttonText = $state('Demo button');
 const buttonStyles = [
 	{ name: 'Normal', value: '' },
 	{ name: 'Outline', value: 'outline' },

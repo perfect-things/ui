@@ -5,45 +5,45 @@
 </p>
 
 <h3>Normal</h3>
-<Select placeholder="None" items="{selectItems}"/>
+<Select placeholder="None" items={selectItems}/>
 
 <h3>Disabled</h3>
-<Select items="{[{ name: 'Disabled' }]}" disabled/>
+<Select items={[{ name: 'Disabled' }]} disabled/>
 
 <h3>With placeholder</h3>
-<Select placeholder="Select something" items="{[]}" />
+<Select placeholder="Select something" items={[]} />
 
 <h3>With initial value</h3>
-<Select placeholder="Empty" items="{selectItems}" bind:value="{val}"/> Selected value: {val}
+<Select placeholder="Empty" items={selectItems} bind:value={val}/> Selected value: {val}
 
 <h3>With array of strings for <em>items</em></h3>
-<Select placeholder="Please select..." items="{stringItems}" bind:value="{val}"/> Selected value: {val}
+<Select placeholder="Please select..." items={stringItems} bind:value={val}/> Selected value: {val}
 
 
 <h3>Label</h3>
-<Select items="{selectItems}" label="Select label" />
+<Select items={selectItems} label="Select label" />
 
 <h3>Info</h3>
-<Select items="{selectItems}" label="Select label" info="Select something here" />
+<Select items={selectItems} label="Select label" info="Select something here" />
 
 <h3>Error</h3>
-<Select items="{selectItems}" label="Select label" error="You picked the wrong side!" />
+<Select items={selectItems} label="Select label" error="You picked the wrong side!" />
 
 <h3>Label on the left</h3>
-<Select items="{selectItems}" label="Label is on the left" labelOnTheLeft="true"/>
+<Select items={selectItems} label="Label is on the left" labelOnTheLeft="true"/>
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
 import { Select } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
-let val = 'Beta';
+let val = $state('Beta');
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
@@ -65,7 +65,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Select items="{items}" on:change="{onChange}" />
+<Select items={items} on:change={onChange} />
 
 <script>
 const items = [

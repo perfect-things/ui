@@ -1,5 +1,5 @@
 import { render } from '@testing-library/svelte';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { default as userEvent } from '@testing-library/user-event';
 
 import { InputTime } from '../../src/input';

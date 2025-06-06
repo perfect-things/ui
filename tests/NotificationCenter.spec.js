@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/svelte';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { NotificationCenter, showNotification, hideNotification } from '../src/notification-center';
 import { waitForTimeout } from './helpers/utils';
 

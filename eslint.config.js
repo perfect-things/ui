@@ -47,6 +47,16 @@ export default [
 		},
 	},
 	{
+		files: ['vite.config.js', '*.config.js'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+			},
+			ecmaVersion: 2022,
+			sourceType: 'module'
+		}
+	},
+	{
 		rules: {
 			'@stylistic/js/array-bracket-spacing': ['error', 'never'],
 			'@stylistic/js/brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],

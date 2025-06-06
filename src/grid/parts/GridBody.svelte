@@ -5,7 +5,13 @@
 <script>
 import GridRow from './GridRow.svelte';
 
-export let multiselect = false;
-export let Data = [];
+/**
+ * @typedef {Object} Props
+ * @property {boolean} [multiselect]
+ * @property {any} [Data]
+ */
+
+/** @type {Props} */
+const { multiselect = false, Data = [] } = $props();
 
 </script>

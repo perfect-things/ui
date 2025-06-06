@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import { ButtonToggle } from '../../src/input/button-toggle';
 import { waitForTimeout } from '../helpers/utils';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 
 test('ButtonToggle', async () => {

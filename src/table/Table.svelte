@@ -1,15 +1,15 @@
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	class="table {className}"
 	class:round
-	class:selectable="{_selectable}"
-	bind:this="{element}"
-	on:click="{onClick}"
-	on:focus|capture="{onFocus}"
-	on:keydown="{onKeyDown}"
-	on:dblclick="{onDblClick}">
+	class:selectable={_selectable}
+	bind:this={element}
+	onclick={onClick}
+	onfocuscapture={onFocus}
+	onkeydown={onKeyDown}
+	ondblclick={onDblClick}>
 
-	<table><slot /></table>
+	<table>{@render children?.()}</table>
 </div>
 
 <script>
@@ -17,27 +17,44 @@ import './Table.css';
 import { onDestroy, onMount, createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
-let className = '';
-export { className as class };
-export let selectable = true;
-export let round = false;
-export let scrollContainer = undefined;
-export let scrollCorrectionOffset = 0;
 
-export let element = undefined;
+
 
 
 // useful for when row-groups are needed.
-// then tbody.row-selector can be set to allow highlighting whole groups
-export let rowSelector = 'tbody tr';
-export let data = {};
+
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {boolean} [selectable]
+	 * @property {boolean} [round]
+	 * @property {any} [scrollContainer]
+	 * @property {number} [scrollCorrectionOffset]
+	 * @property {any} [element]
+	 * @property {string} [rowSelector] - then tbody.row-selector can be set to allow highlighting whole groups
+	 * @property {any} [data]
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let {
+		class: className = '',
+		selectable = true,
+		round = false,
+		scrollContainer = undefined,
+		scrollCorrectionOffset = 0,
+		element = $bindable(undefined),
+		rowSelector = 'tbody tr',
+		data = {},
+		children
+	} = $props();
 
 let selectedIdx = -1;
 let headerHeight = 0;
 let clickTimer;
 let previousKey;
 
-$:_selectable = (selectable === true || selectable === 'true');
+const _selectable = ($derived(selectable === true || selectable === 'true'));
 
 
 onMount(() => {

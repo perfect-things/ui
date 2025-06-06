@@ -1,5 +1,5 @@
 import initLongPress from '../src/menu/longpress';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 
 describe('Menu longpress functionality', () => {

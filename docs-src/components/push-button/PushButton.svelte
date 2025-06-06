@@ -78,8 +78,8 @@
 </div>
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 
 <script>
@@ -105,7 +105,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<PushButton round icon="info" on:change="{onChange}"></PushButton>
+<PushButton round icon="info" on:change={onChange}></PushButton>
 
 <script>
 function onChange (e) {

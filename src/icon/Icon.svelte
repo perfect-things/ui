@@ -2,7 +2,14 @@
 
 <script>
 import { getIcon } from './icons.js';
-export let name = '';
 
-$:svg = getIcon(name);
+/**
+ * @typedef {Object} Props
+ * @property {string} [name]
+ */
+
+/** @type {Props} */
+const { name = '' } = $props();
+
+const svg = $derived(getIcon(name));
 </script>

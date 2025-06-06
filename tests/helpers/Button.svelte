@@ -1,6 +1,13 @@
-<script>
-	export let Component;
-	export let text = '';
-</script>
+<Component {...rest}>{text}</Component>
 
-<svelte:component this={Component}>{text}</svelte:component>
+
+<script>
+/**
+ * @typedef {Object} Props
+ * @property {any} Component
+ * @property {string} [text]
+ */
+
+/** @type {Props} */
+const { Component, text = '', ...rest } = $props();
+</script>

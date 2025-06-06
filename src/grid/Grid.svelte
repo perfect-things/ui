@@ -2,12 +2,12 @@
 <div
 	class="table grid grid-sortable {className}"
 	class:round
-	class:interactive="{_interactive}"
-	bind:this="{element}"
-	on:click="{onClick}"
-	on:focus|capture="{onFocus}"
-	on:keydown="{onKeyDown}"
-	on:dblclick="{onDblClick}">
+	class:interactive={_interactive}
+	bind:this={element}
+	on:click={onClick}
+	on:focus|capture={onFocus}
+	on:keydown={onKeyDown}
+	on:dblclick={onDblClick}>
 	{#if title}
 		<h1 class="grid-title">{title}</h1>
 	{/if}

@@ -1,13 +1,13 @@
 <ul
 	class="tree {className}"
 	role="tree"
-	aria-label="{title}"
+	aria-label={title}
 	{title}
 	tabindex="0"
-	bind:this="{element}"
-	on:focus="{selectFirst}"
-	on:click="{selectClicked}"
-	on:keydown="{onkeydown}">
+	bind:this={element}
+	onfocus={selectFirst}
+	onclick={selectClicked}
+	{onkeydown}>
 
 	{#each items as item}
 		<TreeNode {item} />
@@ -20,11 +20,22 @@ import { createEventDispatcher } from 'svelte';
 import TreeNode from './TreeNode.svelte';
 
 
-let className = '';
-export { className as class };
-export let items = [];
-export let title = undefined;
-export let element;
+
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {any} [items]
+	 * @property {any} [title]
+	 * @property {any} element
+	 */
+
+	/** @type {Props} */
+	let {
+		class: className = '',
+		items = [],
+		title = undefined,
+		element = $bindable()
+	} = $props();
 
 
 const dispatch = createEventDispatcher();

@@ -1,12 +1,12 @@
 <h2>Tree</h2>
 
 <div style="display: inline-block; width: 200px;">
-	<Tree {items} on:select="{onSelect}"/>
+	<Tree {items} on:select={onSelect}/>
 </div>
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 <script>
 import { Tree } from '../../../src';
@@ -21,7 +21,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Tree {items} on:select="{onSelect}"/>
+<Tree {items} on:select={onSelect}/>
 
 <script>
 const items = [

@@ -12,38 +12,38 @@
 <hr>
 
 <h3>Normal</h3>
-<Button on:click="{popover1.open}">Open popover</Button>
+<Button on:click={popover1.open}>Open popover</Button>
 
-<Button on:click="{popover1top.open}">Open to top</Button>
-<Button on:click="{popover1right.open}">Open to right</Button>
-<Button on:click="{popover1left.open}">Open to left</Button>
+<Button on:click={popover1top.open}>Open to top</Button>
+<Button on:click={popover1right.open}>Open to right</Button>
+<Button on:click={popover1left.open}>Open to left</Button>
 
-<Popover bind:this="{popover1}">
+<Popover bind:this={popover1}>
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click="{popover1.close}">Click me</Button>
+	<Button on:click={popover1.close}>Click me</Button>
 </Popover>
 
-<Popover bind:this="{popover1top}" position="top">
+<Popover bind:this={popover1top} position="top">
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click="{popover1top.close}">Click me</Button>
+	<Button on:click={popover1top.close}>Click me</Button>
 </Popover>
-<Popover bind:this="{popover1left}" position="left">
+<Popover bind:this={popover1left} position="left">
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click="{popover1left.close}">Click me</Button>
+	<Button on:click={popover1left.close}>Click me</Button>
 </Popover>
-<Popover bind:this="{popover1right}" position="right">
+<Popover bind:this={popover1right} position="right">
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click="{popover1right.close}">Click me</Button>
+	<Button on:click={popover1right.close}>Click me</Button>
 </Popover>
 
 
 <h3>Target at the edge - tip should remain aligned</h3>
 <div style="display: flex; justify-content: flex-end; padding: 1rem; background-color: #0003;">
-	<Button round icon="cog" on:click="{popover1.open}" />
+	<Button round icon="cog" on:click={popover1.open} />
 </div>
 
 <h3>No tip</h3>
@@ -51,35 +51,35 @@
 	is more similar to a dropdown rather than a tooltip or a popover,
 	so it makes sense that it also looks for the role.</p>
 
-<Button on:click="{popover5.open}">Open popover</Button>
-<Popover hideTip bind:this="{popover5}">
+<Button on:click={popover5.open}>Open popover</Button>
+<Popover hideTip bind:this={popover5}>
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click="{popover5.close}">Click me</Button>
+	<Button on:click={popover5.close}>Click me</Button>
 </Popover>
 
 
 <h3>Custom offset</h3>
-<Button on:click="{popover2.open}">Open popover</Button>
-<Popover bind:this="{popover2}" offset="-20">Smaller offset</Popover>
+<Button on:click={popover2.open}>Open popover</Button>
+<Popover bind:this={popover2} offset="-20">Smaller offset</Popover>
 
-<Button on:click="{popover3.open}">Open popover</Button>
-<Popover bind:this="{popover3}" offset="20">Bigger offset</Popover>
+<Button on:click={popover3.open}>Open popover</Button>
+<Popover bind:this={popover3} offset="20">Bigger offset</Popover>
 
 
 <h3>Update contents</h3>
-<Button round icon="help" on:click="{popover4.open}" />
-<Popover bind:this="{popover4}" position="top">
+<Button round icon="help" on:click={popover4.open} />
+<Popover bind:this={popover4} position="top">
 	{@html content}
-	<Button success on:click="{updateContent}">Update content</Button>
-	<Button on:click="{popover4.close}">Close</Button>
+	<Button success on:click={updateContent}>Update content</Button>
+	<Button on:click={popover4.close}>Close</Button>
 </Popover>
 
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
-<API props="{instanceApiProps}" title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
+<API props={instanceApiProps} title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
 
 <script>
@@ -88,8 +88,8 @@ import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 import './Popover.css';
 
-let popover1, popover1top, popover1left, popover1right, popover2, popover3, popover4, popover5;
-let content = '<h2>Context information</h2><p>Some text</p>';
+let popover1 = $state(), popover1top = $state(), popover1left = $state(), popover1right = $state(), popover2 = $state(), popover3 = $state(), popover4 = $state(), popover5 = $state();
+let content = $state('<h2>Context information</h2><p>Some text</p>');
 
 function updateContent () {
 	content = '<h2>Updated content</h2><p>Some text</p><p>Some more text</p>';
@@ -115,11 +115,11 @@ const instanceApiProps = [
 
 
 const exampleHtml = `
-<Button on:click="{popover1.open}">Open popover</Button>
-<Popover bind:this="{popover1}">
+<Button on:click={popover1.open}>Open popover</Button>
+<Popover bind:this={popover1}>
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click="{popover1.close}">Click me</Button>
+	<Button on:click={popover1.close}>Click me</Button>
 </Popover>
 
 <script>

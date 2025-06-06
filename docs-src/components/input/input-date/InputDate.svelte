@@ -3,7 +3,7 @@
 <br>
 
 <h3>Normal</h3>
-<InputDate on:keydown="{onkey}" bind:value="{item.datevalue}"/>
+<InputDate on:keydown={onkey} bind:value={item.datevalue}/>
 {item.datevalue || ''}
 
 <h3>Show on focus (when using keyboard)</h3>
@@ -42,8 +42,8 @@
 <h3>Error</h3>
 <InputDate
 	label="Pick one"
-	error="{error}"
-	on:change="{onchange}"/>
+	error={error}
+	on:change={onchange}/>
 
 
 <h3>Label on the left</h3>
@@ -51,9 +51,9 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -61,7 +61,7 @@ import { InputDate } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 
-const item = {};
+const item = $state({});
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
@@ -88,7 +88,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<InputDate on:change="{ onChange }" />
+<InputDate on:change={ onChange } />
 
 <script>
 function onChange (e) {
@@ -100,7 +100,7 @@ function onChange (e) {
 
 
 
-let error = 'You picked wrong!';
+let error = $state('You picked wrong!');
 
 function onchange (e) {
 	const val = e.detail;

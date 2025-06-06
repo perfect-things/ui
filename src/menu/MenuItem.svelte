@@ -5,33 +5,54 @@
 	class:success
 	class:warning
 	class:danger
-	{...$$restProps}
-	on:mousedown|preventDefault
-	on:click|capture="{onclick}"
-	bind:this="{element}">
+	{...rest}
+	onmousedown={preventDefault(bubble('mousedown'))}
+	onclickcapture={onclick}
+	bind:this={element}>
 
 	<span class="menu-item-content">
-		{#if icon}<Icon name="{icon}" />{/if}
-		<span class="menu-item-text"><slot /></span>
+		{#if icon}<Icon name={icon} />{/if}
+		<span class="menu-item-text">{@render children?.()}</span>
 	</span>
 	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
 </button>
 
 <script>
+	import { createBubbler, preventDefault } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 import { createEventDispatcher, getContext } from 'svelte';
 import { Icon } from '../icon';
 import { blink, replaceKeySymbols } from '../utils';
 
-export let shortcut = '';
-export let icon = undefined;
-let className = '';
-export { className as class };
-export let success = false;
-export let warning = false;
-export let danger = false;
-export let disabled = false;
 
-export let element = undefined;
+
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [shortcut]
+	 * @property {any} [icon]
+	 * @property {string} [class]
+	 * @property {boolean} [success]
+	 * @property {boolean} [warning]
+	 * @property {boolean} [danger]
+	 * @property {boolean} [disabled]
+	 * @property {any} [element]
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props & { [key: string]: any }} */
+	let {
+		shortcut = '',
+		icon = undefined,
+		class: className = '',
+		success = false,
+		warning = false,
+		danger = false,
+		disabled = false,
+		element = $bindable(undefined),
+		children,
+		...rest
+	} = $props();
 
 
 

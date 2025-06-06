@@ -67,8 +67,8 @@
 </Panel>
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 
 <script>

@@ -5,7 +5,7 @@ export default defineConfig({
 	plugins: [
 		svelte({
 			compilerOptions: {
-				compatibility: { componentApi: 4 },
+				// compatibility: { componentApi: 4 },
 			},
 			hot: false,
 		}),
@@ -15,13 +15,10 @@ export default defineConfig({
 		environment: 'jsdom',
 		setupFiles: ['./tests/_setup.js'],
 		include: [
-			'tests/**/*.spec.js'
+			'tests/**/*.spec.js',
+			'tests/**/*.spec.svelte.js'
 		],
-		css: {
-			modules: {
-				classNameStrategy: 'non-scoped'
-			}
-		},
+		css: { modules: { classNameStrategy: 'non-scoped' } },
 		coverage: {
 			provider: 'v8', // or 'istanbul'
 			reporter: ['text', 'json', 'html'],

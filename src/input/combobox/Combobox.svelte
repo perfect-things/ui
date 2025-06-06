@@ -1,25 +1,27 @@
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 <div
 	class="input combobox {className}"
-	class:open="{opened}"
-	class:has-error="{error}"
-	class:label-on-the-left="{!!labelOnTheLeft}"
+	class:open={opened}
+	class:has-error={error}
+	class:label-on-the-left={!!labelOnTheLeft}
 	class:multiselect
-	bind:this="{element}">
+	bind:this={element}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
 	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
-		<div class="input-row" title="{inputValue}">
+		<div class="input-row" title={inputValue}>
 			<Button
 				link
 				icon="dots"
 				class="combobox-button"
 				tabindex="-1"
-				on:mousedown="{onIconMouseDown}"
-				on:click="{onIconClick}"/>
+				on:mousedown={onIconMouseDown}
+				on:click={onIconClick}/>
 
 			<input
 				type="text"
@@ -27,25 +29,25 @@
 				class="prevent-scrolling-on-focus"
 				aria-autocomplete="list"
 				aria-controls="combobox-list-{gui}"
-				aria-expanded="{opened}"
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
+				aria-expanded={opened}
+				aria-invalid={error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
 				autocomplete="off"
-				value="{inputValue}"
+				value={inputValue}
 
 				{disabled}
-				placeholder="{multiselect && opened ? 'Type to filter...' : placeholder}"
-				id="{_id}"
+				placeholder={multiselect && opened ? 'Type to filter...' : placeholder}
+				id={_id}
 				{...$$restProps}
 
-				bind:this="{inputElement}"
-				on:input="{oninput}"
-				on:focus="{onfocus}"
-				on:mousedown="{open}"
-				on:click="{open}"
-				on:blur="{onblur}"
-				on:keydown|capture="{onkeydown}">
+				bind:this={inputElement}
+				on:input={oninput}
+				on:focus={onfocus}
+				on:mousedown={open}
+				on:click={open}
+				on:blur={onblur}
+				on:keydown|capture={onkeydown}>
 		</div>
 	</div>
 </div>
@@ -57,10 +59,10 @@
 		id="combobox-list-{gui}"
 		class="combobox-list {opened ? '' : 'hidden'}"
 		class:multiselect
-		class:empty="{!filteredData.length && !shouldShowNewItem}"
+		class:empty={!filteredData.length && !shouldShowNewItem}
 		role="listbox"
 		on:mousedown={onListMouseDown}
-		bind:this="{listElement}">
+		bind:this={listElement}>
 		{#if filteredData.length}
 			{#each groupedData as group}
 				{#if group.name}
@@ -74,20 +76,20 @@
 						<div
 							role="option"
 							class="combobox-list-item"
-							class:in-group="{!!item.group}"
+							class:in-group={!!item.group}
 
-							aria-selected="{item.idx === highlightIndex}"
-							class:selected="{item.idx === highlightIndex}"
+							aria-selected={item.idx === highlightIndex}
+							class:selected={item.idx === highlightIndex}
 
-							aria-checked="{!!isChecked}"
-							class:checked="{isChecked}"
+							aria-checked={!!isChecked}
+							class:checked={isChecked}
 
-							on:click="{e => onclick(item, e)}"
-							on:mouseenter="{() => highlightIndex = item.idx}"
+							on:click={e => onclick(item, e)}
+							on:mouseenter={() => highlightIndex = item.idx}
 							on:mousedown|preventDefault
-							on:mouseup="{e => onclick(item, e)}"
-							on:touchstart="{touchStart}"
-							on:touchend="{touchEnd}"
+							on:mouseup={e => onclick(item, e)}
+							on:touchstart={touchStart}
+							on:touchend={touchEnd}
 							>
 							{#if multiselect}
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-square-check">
@@ -109,8 +111,8 @@
 			<div
 				role="option"
 				class="combobox-list-item"
-				class:selected="{highlightIndex === filteredData.length}"
-				aria-selected="{highlightIndex === filteredData.length}"
+				class:selected={highlightIndex === filteredData.length}
+				aria-selected={highlightIndex === filteredData.length}
 				on:click="{() => onclick({ name: newItemName, idx: filteredData.length })}">
 					{newItemName}
 			</div>

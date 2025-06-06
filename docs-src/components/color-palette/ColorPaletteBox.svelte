@@ -4,6 +4,12 @@
 </div>
 
 <script>
-export let bg = 'color-background';
-export let text = 'color-text';
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [bg]
+	 * @property {string} [text]
+	 */
+
+	/** @type {Props} */
+	const { bg = 'color-background', text = 'color-text' } = $props();
 </script>

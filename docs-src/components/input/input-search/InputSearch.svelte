@@ -2,19 +2,19 @@
 
 
 <h3>Normal</h3>
-<InputSearch on:input="{oninput}" bind:value="{val}" />
+<InputSearch on:input={oninput} bind:value={val} />
 <p>Input value: {val}</p>
 
 <h3>Disabled</h3>
-<InputSearch disabled value="disabled value" on:input="{oninput}" />
+<InputSearch disabled value="disabled value" on:input={oninput} />
 
 
 <h3>With validation</h3>
 <InputSearch
 	label="Validate on change"
-	error="{error1}"
-	value="{val}"
-	on:change="{onchange}" />
+	error={error1}
+	value={val}
+	on:change={onchange} />
 
 <br>
 
@@ -22,9 +22,9 @@
 	label="Validate on input"
 	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
 	required
-	error="{error2}"
-	value="{val}"
-	on:input="{oninput}" />
+	error={error2}
+	value={val}
+	on:input={oninput} />
 
 
 <h3>Label on the left</h3>
@@ -32,9 +32,9 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -63,7 +63,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<InputSearch label="Email" error="Invalid email" value="admin" on:change="{onChange}" />
+<InputSearch label="Email" error="Invalid email" value="admin" on:change={onChange} />
 
 <script>
 function onChange (e) {
@@ -72,8 +72,8 @@ function onChange (e) {
 &lt;/script>
 `;
 
-let val = 'Hi!';
-let error1 = '', error2 = '';
+let val = $state('Hi!');
+let error1 = $state(''), error2 = $state('');
 
 
 function validate (v) {

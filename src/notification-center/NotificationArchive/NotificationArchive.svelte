@@ -1,34 +1,34 @@
-<div class="notification-archive" bind:this="{el}" inert="{!show}" class:expanded class:inert="{!show}">
+<div class="notification-archive" bind:this={el} inert={!show} class:expanded class:inert={!show}>
 	<header>
 		{#if archived.length}
-			<h2><Button icon="chevronRight" text on:click="{toggle}"> Recent notifications ({archived.length})</Button></h2>
+			<h2><Button icon="chevronRight" text on:click={toggle}> Recent notifications ({archived.length})</Button></h2>
 			<div class="notification-archive-buttons">
-				<Button text on:click="{clearAll}">Clear all</Button>
-				<Button text class="btn-close" on:click="{() => (show = false)}">&times;</Button>
+				<Button text on:click={clearAll}>Clear all</Button>
+				<Button text class="btn-close" on:click={() => (show = false)}>&times;</Button>
 			</div>
 		{:else}
 			<h2>No recent notifications</h2>
 			<div class="notification-archive-buttons">
-				<Button text class="btn-close" on:click="{() => (show = false)}">&times;</Button>
+				<Button text class="btn-close" on:click={() => (show = false)}>&times;</Button>
 			</div>
 		{/if}
 	</header>
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	{#if archived.length && expanded}
 		{#each archived as notification (notification.id)}
 			<div
 				tabindex="0"
-				data-id="{notification.id}"
+				data-id={notification.id}
 				class="notification notification-{notification.type} archived"
-				on:keydown="{e => onKeydown(e, notification)}"
+				onkeydown={e => onKeydown(e, notification)}
 				in:_in="{{ key: notification.id }}"
 				out:_out
 				animate:flip>
 
-				<div class="notification-msg" role="{notification.type === 'info' ? 'status' : 'alert'}">{@html notification.msg}</div>
+				<div class="notification-msg" role={notification.type === 'info' ? 'status' : 'alert'}>{@html notification.msg}</div>
 				<div class="notification-timestamp">{timeAgo(notification.timestamp, now)}</div>
-				<button class="notification-close" on:click|stopPropagation="{() => removeFromArchive(notification.id)}">&times;</button>
+				<button class="notification-close" onclick={stopPropagation(() => removeFromArchive(notification.id))}>&times;</button>
 			</div>
 		{/each}
 	{/if}
@@ -36,6 +36,8 @@
 
 
 <script>
+	import { run, stopPropagation } from 'svelte/legacy';
+
 import './NotificationArchive.css';
 import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
@@ -44,21 +46,27 @@ import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
 import { getNextNotification } from '../utils.js';
 
 
-export let show = false;
-export let expanded = false;
+	/**
+	 * @typedef {Object} Props
+	 * @property {boolean} [show]
+	 * @property {boolean} [expanded]
+	 */
+
+	/** @type {Props} */
+	let { show = $bindable(false), expanded = $bindable(false) } = $props();
 
 const duration = $ANIMATION_SPEED;
 
-let el;
-let archived = [];
+let el = $state();
+let archived = $state([]);
 let timer;
-let now = new Date().getTime();
+let now = $state(new Date().getTime());
 
 
 
-$: {
+run(() => {
 	if (!show && el) el.addEventListener('transitionend', () => expanded = false, { once: true });
-}
+});
 
 onMount(() => {
 	timer = setInterval(() => (now = new Date().getTime()), 10000);

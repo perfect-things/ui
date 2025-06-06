@@ -3,9 +3,9 @@
 <div class="table-viewport">
 	<Table round
 		rowSelector=".row-sel"
-		on:keydown="{onKey}"
-		on:dblclick="{onSelect}"
-		on:select="{onSelect}">
+		on:keydown={onKey}
+		on:dblclick={onSelect}
+		on:select={onSelect}>
 		<thead>
 			<tr><th>Year</th><th>Month</th><th>Price</th></tr>
 		</thead>
@@ -107,9 +107,9 @@
 	</Table>
 </div>
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -136,7 +136,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<Table rowSelector=".row-sel" round data="{{ id: 'table-id-1' }}">
+<Table rowSelector=".row-sel" round data={{ id: 'table-id-1' }}>
 		<thead>
 			<tr><th>Year</th><th>Month</th><th>Price</th></tr>
 		</thead>

@@ -1,17 +1,19 @@
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 <div
 	class="input input-date {className}"
 	class:open
-	class:native="{useNative}"
-	aria-expanded="{open}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+	class:native={useNative}
+	aria-expanded={open}
+	class:has-error={error}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	bind:this={element}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
 	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			<Button
@@ -19,44 +21,44 @@
 				icon="calendar"
 				class="input-date-button"
 				tabindex="-1"
-				on:mousedown="{onIconMouseDown}"
-				on:click="{onIconClick}"/>
+				on:mousedown={onIconMouseDown}
+				on:click={onIconClick}/>
 
 			{#if useNative}
 				<input
 					type="date"
 					class="prevent-scrolling-on-focus"
-					aria-invalid="{error}"
-					aria-errormessage="{error ? errorMessageId : undefined}"
-					aria-required="{required}"
+					aria-invalid={error}
+					aria-errormessage={error ? errorMessageId : undefined}
+					aria-required={required}
 					{title}
 					{name}
 					{disabled}
-					id="{_id}"
-					on:change="{onchange}"
-					bind:this="{inputElement}"
-					bind:value="{value}">
+					id={_id}
+					on:change={onchange}
+					bind:this={inputElement}
+					bind:value={value}>
 			{:else}
 				<input
 					type="text"
 					autocomplete="off"
 					class="prevent-scrolling-on-focus"
-					aria-invalid="{error}"
-					aria-errormessage="{error ? errorMessageId : undefined}"
-					aria-required="{required}"
+					aria-invalid={error}
+					aria-errormessage={error ? errorMessageId : undefined}
+					aria-required={required}
 					{placeholder}
 					{title}
 					{name}
 					{disabled}
-					id="{_id}"
-					on:changeDate="{onchange}"
-					on:input="{oninput}"
-					on:keydown|capture="{onkeydown}"
-					on:show="{onshow}"
-					on:hide="{onhide}"
+					id={_id}
+					on:changeDate={onchange}
+					on:input={oninput}
+					on:keydown|capture={onkeydown}
+					on:show={onshow}
+					on:hide={onhide}
 					on:blur={onblur}
-					bind:this="{inputElement}"
-					bind:value="{value}">
+					bind:this={inputElement}
+					bind:value={value}>
 			{/if}
 		</div>
 	</div>

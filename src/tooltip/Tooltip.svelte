@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 {#if opened}
 	<div
 		class="popover-plate popover-{_position} tooltip-plate"
@@ -6,7 +8,7 @@
 		class:success
 		class:warning
 		class:danger
-		bind:this="{element}">
+		bind:this={element}>
 
 		<div class="popover tooltip {className}" role="tooltip">
 			<div class="popover-content tooltip-content">

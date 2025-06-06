@@ -17,9 +17,9 @@
 <InputMath label="Label is on the left" labelOnTheLeft="true"/>
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -48,7 +48,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<InputMath label="Enter amount" on:change="{onChange}" />
+<InputMath label="Enter amount" on:change={onChange} />
 
 <script>
 function onChange (e) {

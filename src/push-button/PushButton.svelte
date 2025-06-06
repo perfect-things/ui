@@ -1,7 +1,7 @@
-{#if $$slots.default}
+{#if children}
 	<Button
 		class="push-button {className}"
-		aria-pressed="{pressed}"
+		aria-pressed={pressed}
 		{outline}
 		{info}
 		{success}
@@ -9,16 +9,16 @@
 		{danger}
 		{round}
 		{icon}
-		{...$$restProps}
-		bind:element="{element}"
-		on:keydown="{onKeydown}"
-		on:mousedown="{onMouseDown}">
-			<slot></slot>
+		{...rest}
+		bind:element={element}
+		on:keydown={onKeydown}
+		on:mousedown={onMouseDown}>
+			{@render children?.()}
 	</Button>
 {:else}
 	<Button
 		class="push-button {className}"
-		aria-pressed="{pressed}"
+		aria-pressed={pressed}
 		{outline}
 		{info}
 		{success}
@@ -26,31 +26,51 @@
 		{danger}
 		{round}
 		{icon}
-		{...$$restProps}
-		bind:element="{element}"
-		on:keydown="{onKeydown}"
-		on:mousedown="{onMouseDown}"/>
+		{...rest}
+		bind:element={element}
+		on:keydown={onKeydown}
+		on:mousedown={onMouseDown}/>
 {/if}
 <script>
 import './PushButton.css';
 import { createEventDispatcher } from 'svelte';
 import { Button } from '../button';
 
-let className = '';
-export { className as class };
 
-export let pressed = false;
 
-export let info = false;
-export let success = false;
-export let warning = false;
-export let danger = false;
-export let outline = false;		// button without background, but with border
 
-export let icon = undefined;	// name of the icon
-export let round = undefined;	// round button
 
-export let element = undefined;
+
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {boolean} [pressed]
+	 * @property {boolean} [info]
+	 * @property {boolean} [success]
+	 * @property {boolean} [warning]
+	 * @property {boolean} [danger]
+	 * @property {boolean} [outline] - button without background, but with border
+	 * @property {any} [icon] - name of the icon
+	 * @property {any} [round] - round button
+	 * @property {any} [element]
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props & { [key: string]: any }} */
+	let {
+		class: className = '',
+		pressed = $bindable(false),
+		info = false,
+		success = false,
+		warning = false,
+		danger = false,
+		outline = false,
+		icon = undefined,
+		round = undefined,
+		element = $bindable(undefined),
+		children,
+		...rest
+	} = $props();
 
 
 

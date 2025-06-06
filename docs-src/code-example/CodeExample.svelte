@@ -9,9 +9,15 @@
 <script>
 import './CodeExample.css';
 
-export let html = '';
-export let notitle = false;
-export let nohr = undefined;
+/**
+ * @typedef {Object} Props
+ * @property {string} [html]
+ * @property {boolean} [notitle]
+ * @property {any} [nohr]
+ */
+
+/** @type {Props} */
+const { html = '', notitle = false, nohr = undefined } = $props();
 
 function encode (s) {
 	return s

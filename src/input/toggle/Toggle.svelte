@@ -1,39 +1,41 @@
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 <div
 	class="toggle {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class:has-error={error}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
 	role="switch"
-	aria-checked="{value}"
-	tabindex="{disabled ? undefined : 0}"
-	bind:this="{element}"
-	on:keydown="{onKey}"
+	aria-checked={value}
+	tabindex={disabled ? undefined : 0}
+	bind:this={element}
+	on:keydown={onKey}
 	on:touchstart={dragStart}
 	on:mousedown={dragStart}
 	on:contextmenu|preventDefault
 	on:click|preventDefault>
 
-	<Label {label} {disabled} for="{_id}"/>
+	<Label {label} {disabled} for={_id}/>
 
-	<Info msg="{info}" />
-	<InputError id="{errorMessageId}" msg="{error}" animOpacity="true"/>
+	<Info msg={info} />
+	<InputError id={errorMessageId} msg={error} animOpacity="true"/>
 
 	<div class="toggle-inner">
 		<label class="toggle-label" {title}>
-			<div class="toggle-scroller" bind:this="{scroller}">
+			<div class="toggle-scroller" bind:this={scroller}>
 				<div class="toggle-option"></div>
-				<div class="toggle-handle" bind:this="{handle}"><div class="toggle-knob"></div></div>
+				<div class="toggle-handle" bind:this={handle}><div class="toggle-knob"></div></div>
 				<div class="toggle-option"></div>
 				<input
-					id="{_id}"
+					id={_id}
 					type="checkbox"
 					class="toggle-input"
 					{disabled}
 					{name}
-					aria-invalid="{error}"
-					aria-errormessage="{error ? errorMessageId : undefined}"
-					aria-required="{required}"
-					bind:this="{inputElement}"
-					bind:checked="{value}">
+					aria-invalid={error}
+					aria-errormessage={error ? errorMessageId : undefined}
+					aria-required={required}
+					bind:this={inputElement}
+					bind:checked={value}>
 			</div>
 		</label>
 	</div>

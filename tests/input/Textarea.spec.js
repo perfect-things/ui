@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { Textarea } from '../../src/input';
 
 const props = {

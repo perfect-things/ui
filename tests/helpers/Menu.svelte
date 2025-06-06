@@ -10,5 +10,5 @@ import { Button } from '../../src/button';
 import { Icon } from '../../src/icon';
 import { MenuItem, Menu, MenuSeparator } from '../../src/menu';
 
-let menu;
+let menu = $state();
 </script>

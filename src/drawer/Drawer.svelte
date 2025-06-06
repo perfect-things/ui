@@ -1,24 +1,22 @@
 {#if isVisible}
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<div
 		class="drawer {className}"
 		tabindex="-1"
 		use:docclick
-		bind:this="{element}"
+		bind:this={element}
 		in:fly="{{ x: 300, duration: $ANIMATION_SPEED }}"
 		out:fly="{{ x: 300, duration: $ANIMATION_SPEED ? $ANIMATION_SPEED + 100 : 0 }}"
 	>
-		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
-		<header class="drawer-header" bind:this="{headerEl}" >
+		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
+		<header class="drawer-header" bind:this={headerEl} >
 			<h2>{title}</h2>
-			<Button round text icon="close" class="btn-close" title="Close" on:click="{close}"/>
+			<Button round text icon="close" class="btn-close" title="Close" on:click={close}/>
 		</header>
-		<div class="drawer-content"><slot></slot></div>
-		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
+		<div class="drawer-content">{@render children?.()}</div>
+		<div tabindex="0" class="focus-trap focus-trap-bottom" onfocus={focusFirst}></div>
 	</div>
 {/if}
-<svelte:options accessors={true}/>
-
 <script>
 import './Drawer.css';
 import { createEventDispatcher } from 'svelte';
@@ -26,15 +24,27 @@ import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 import { Button } from '../button';
 
-let className = '';
-export { className as class };
-export let title = 'Drawer';
-export let element = undefined;
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [title]
+ * @property {any} [element]
+ * @property {import('svelte').Snippet} [children]
+ */
+
+/** @type {Props} */
+let {
+	class: className = '',
+	title = 'Drawer',
+	element = $bindable(undefined),
+	children
+} = $props();
 
 
 const dispatch = createEventDispatcher();
-let isVisible = false;
-let headerEl, targetBtn;
+let isVisible = $state(false);
+let headerEl = $state(), targetBtn;
 
 
 function docclick () {
@@ -95,4 +105,10 @@ function getFocusableElements () {
 	return Array.from(element.querySelectorAll(FOCUSABLE_SELECTOR));
 }
 
+
+export {
+	className,
+	title,
+	element,
+};
 </script>

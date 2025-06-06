@@ -1,42 +1,43 @@
 <div
 	class="input button-toggle {className}"
 	class:round
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class:has-error={error}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
 	role="radiogroup"
-	aria-invalid="{error}"
-	aria-errormessage="{error ? errorMessageId : undefined}"
+	aria-invalid={error}
+	aria-errormessage={error ? errorMessageId : undefined}
 	{title}
-	bind:this="{element}">
+	bind:this={element}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
 	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-scroller">
-			<div class="input-row" id="{_id}">
-				{#each _items as item}
+			<div class="input-row">
+				{#each _items as item, idx (item.value)}
 					<!-- svelte-ignore
-						a11y-no-noninteractive-element-interactions
-						a11y-click-events-have-key-events -->
+						a11y_no_noninteractive_element_interactions,
+						a11y_click_events_have_key_events -->
 					<label
 						{disabled}
 						class="button button-normal"
-						class:button-has-text="{item.name}"
-						on:click="{onclick}">
+						class:button-has-text={item.name}
+						{onclick}>
 							{#if item.icon}
-								<Icon name="{item.icon}"/>
+								<Icon name={item.icon}/>
 							{/if}
 							{item.name || ''}
 							<input
 								{disabled}
 								{name}
+								id={idx === 0 ? _id : undefined}
 								type="radio"
-								checked="{item.value === value}"
-								value="{item.value}"
-								on:change="{e => onchange(e, item)}">
+								checked={item.value === value}
+								value={item.value}
+								onchange={e => onchange(e, item)}>
 					</label>
 				{/each}
 			</div>
@@ -54,35 +55,55 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let disabled = undefined;
-export let round = undefined;	// round button
-export let items = [];
-export let id = '';
-export let name = guid();
-export let value = '';
-export let title = undefined;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
 
-export let element = undefined;
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {any} [disabled]
+ * @property {any} [round] - round button
+ * @property {any} [items]
+ * @property {string} [id]
+ * @property {any} [name]
+ * @property {string} [value]
+ * @property {any} [title]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ */
+
+/** @type {Props} */
+let {
+	class: className = '',
+	disabled = undefined,
+	round = undefined,
+	items = [],
+	id = '',
+	name = guid(),
+	value = $bindable(''),
+	title = undefined,
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined)
+} = $props();
 
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
 
 
-$:_id = id || name || guid();
+const _id = $derived(id || name || guid());
 
-$:_items = items.map(item => {
+const _items = $derived(items.map(item => {
 	if (typeof item === 'string') {
 		return { name: item, value: item };
 	}
 	return item;
-});
+}));
 
 
 function onclick (e) {

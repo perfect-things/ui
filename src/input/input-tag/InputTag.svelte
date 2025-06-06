@@ -1,39 +1,41 @@
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with beforeUpdate. Please migrate by hand. -->
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with beforeUpdate. Please migrate by hand. -->
 <!-- svelte-ignore a11y-no-static-element-interactions a11y-no-noninteractive-tabindex -->
 <div
 	{title}
 	class="input input-tag {className}"
-	class:has-error="{error}"
-	class:has-value="{value !== ''}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+	class:has-error={error}
+	class:has-value={value !== ''}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	bind:this={element}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
 	<div
 		class="input-inner"
 		class:disabled
-		inert="{disabled}"
+		inert={disabled}
 		tabindex="0"
-		on:keydown="{onkeydown}"
-		on:click="{open}"
-		bind:this="{boxElement}">
+		on:keydown={onkeydown}
+		on:click={open}
+		bind:this={boxElement}>
 
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			<Icon name="tag"/>
 			{#each _value as tag}
-				<Tag icon="close" clickable on:click="{e => removeTagFromValue(tag, e)}">{tag}</Tag>
+				<Tag icon="close" clickable on:click={e => removeTagFromValue(tag, e)}>{tag}</Tag>
 			{/each}
 
 			<input
 				{name}
 				{disabled}
-				id="{_id}"
+				id={_id}
 				type="hidden"
-				bind:value="{value}"
-				bind:this="{inputElement}"/>
+				bind:value={value}
+				bind:this={inputElement}/>
 		</div>
 	</div>
 </div>
@@ -43,17 +45,17 @@
 	dontHideOnTargetClick
 	setMinWidthToTarget
 	class="input-tag-popover"
-	on:close="{onclose}"
-	bind:element="{listElement}"
-	bind:this="{listPopover}">
+	on:close={onclose}
+	bind:element={listElement}
+	bind:this={listPopover}>
 
 	<div class="input-tag-list-tags">
 		{#each _tags as tag(tag.text)}
-			<Tag clickable icon="add" disabled="{tag.disabled}" on:click="{() => addTagToValue(tag.text)}">{tag.text}</Tag>
+			<Tag clickable icon="add" disabled={tag.disabled} on:click={() => addTagToValue(tag.text)}>{tag.text}</Tag>
 		{/each}
 	</div>
-	<form class="input-tag-list-add-row" on:submit|preventDefault="{addNewTag}">
-		<InputText bind:value="{newTagName}"/>
+	<form class="input-tag-list-add-row" on:submit|preventDefault={addNewTag}>
+		<InputText bind:value={newTagName}/>
 		<Button submit link icon="add"/>
 	</form>
 </Popover>

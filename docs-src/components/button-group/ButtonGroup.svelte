@@ -92,9 +92,9 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 <script>
 import { Button, ButtonGroup, PushButton } from '../../../src';

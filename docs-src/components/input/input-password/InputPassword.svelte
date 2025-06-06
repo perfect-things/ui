@@ -9,11 +9,11 @@
 <hr>
 
 <h3>Default</h3>
-<InputPassword label="Current password" name="password" placeholder="Not 123456" bind:value="{val}"/><br>
+<InputPassword label="Current password" name="password" placeholder="Not 123456" bind:value={val}/><br>
 <p>Your secret password is: {val}</p>
 
 <h3>Disabled</h3>
-<InputPassword label="Current password" name="password" disabled bind:value="{val}"/><br>
+<InputPassword label="Current password" name="password" disabled bind:value={val}/><br>
 
 <h3>With password strength indicator</h3>
 
@@ -37,16 +37,16 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
 import { InputPassword } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
-let val;
+let val = $state();
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
@@ -69,7 +69,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<InputPassword strength label="Current password" on:change="{onChange}" />
+<InputPassword strength label="Current password" on:change={onChange} />
 
 <script>
 function onChange (e) {

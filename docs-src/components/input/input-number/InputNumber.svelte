@@ -6,7 +6,7 @@
 <InputNumber label="Enter amount" />
 
 <h3>With validation error</h3>
-<InputNumber label="Enter amount" {error} bind:value="{value}" on:input="{validator}" />
+<InputNumber label="Enter amount" {error} bind:value={value} on:input={validator} />
 
 <h3>With info box</h3>
 <InputNumber label="Enter amount" info="Additional information." />
@@ -19,8 +19,8 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 
 <script>
@@ -28,8 +28,8 @@ import { InputNumber } from '../../../../src';
 import { CodeExample } from '../../../code-example';
 import { API } from '../../../api-table';
 
-let error = 'Number must be <100';
-let value = 123;
+let error = $state('Number must be <100');
+let value = $state(123);
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },

@@ -1,27 +1,29 @@
 <Dialog
-	title="{$config.title}"
+	title={$config.title}
 	class="message-box message-{$config.type}"
-	bind:element="{element}"
-	bind:this="{dialog}"
-	on:close="{onclose}">
-		<Icon name="{$config.icon || $config.type}"/>
+	bind:element={element}
+	bind:this={dialog}
+	on:close={onclose}>
+		<Icon name={$config.icon || $config.type}/>
 		<div class="message">
 			<div class="message-content">{@html $config.message}</div>
 		</div>
-		<div slot="footer">
-			{#if $config.buttons}
-				{#each $config.buttons as button}
-					<Button
-						info="{button.type === 'info'}"
-						warning="{button.type === 'warning'}"
-						danger="{button.type === 'error' || button.type === 'danger'}"
-						success="{button.type === 'success'}"
-						on:click="{e => onclick(e, button)}">
-						{button.label}
-					</Button>
-				{/each}
-			{/if}
-		</div>
+		{#snippet footer()}
+		<div >
+				{#if $config.buttons}
+					{#each $config.buttons as button}
+						<Button
+							info={button.type === 'info'}
+							warning={button.type === 'warning'}
+							danger={button.type === 'error' || button.type === 'danger'}
+							success={button.type === 'success'}
+							on:click={e => onclick(e, button)}>
+							{button.label}
+						</Button>
+					{/each}
+				{/if}
+			</div>
+	{/snippet}
 </Dialog>
 
 <script>
@@ -32,9 +34,9 @@ import { Dialog } from '../dialog';
 import { Button } from '../button';
 import { Icon } from '../icon';
 
-export let element = undefined;
+	let { element = $bindable(undefined) } = $props();
 
-let dialog, sub;
+let dialog = $state(), sub;
 
 onMount(() => {
 	sub = config.subscribe(cfg => {

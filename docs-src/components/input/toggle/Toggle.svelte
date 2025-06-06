@@ -11,15 +11,15 @@ The perfect toggle component in Svelte:
 <hr>
 
 <h3>Normal</h3>
-<Toggle bind:value="{toggleValue}" /> {toggleValue}
-<div class="toggle-box" class:visible="{toggleValue}">
+<Toggle bind:value={toggleValue} /> {toggleValue}
+<div class="toggle-box" class:visible={toggleValue}>
 	<Toggle /> hidden initially<br>
 	<Toggle value="true"/> hidden initially
 </div>
 <br><br><br>
 
 <h3>Disabled</h3>
-<Toggle value="{true}" disabled /> (disabled)
+<Toggle value={true} disabled /> (disabled)
 
 
 <h3>Label</h3>
@@ -29,15 +29,15 @@ The perfect toggle component in Svelte:
 <Toggle label="Toggle the lights" info="This toggle switches the bathroom lights on/off" />
 
 <h3>Error</h3>
-<Toggle label="Toggle the lights" error="{error}" on:change="{onchange}"/>
+<Toggle label="Toggle the lights" error={error} on:change={onchange}/>
 
 <h3>Label on the left</h3>
 <Toggle label="Label is on the left" labelOnTheLeft="true"/>
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -63,7 +63,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Toggle value="true" label="Field label" on:change="{onChange}" />
+<Toggle value="true" label="Field label" on:change={onChange} />
 
 <script>
 function onChange (e) {
@@ -73,8 +73,8 @@ function onChange (e) {
 `;
 
 
-let error = 'I can\'t see anything now!';
-let toggleValue = false;
+let error = $state('I can\'t see anything now!');
+let toggleValue = $state(false);
 
 function onchange (e) {
 	const val = e.detail;

@@ -7,23 +7,23 @@
 
 <hr>
 
-<Button on:click="{toggle}">Toggle</Button>
+<Button on:click={toggle}>Toggle</Button>
 <div class="split-wrap">
 	<div class="split-box min-w">Left</div>
-	<Splitter on:changed={onchange} bind:this="{splitter1}"/>
+	<Splitter on:changed={onchange} bind:this={splitter1}/>
 	<div class="split-box">Right</div>
 </div>
 <br>
 <div class="split-wrap split-wrap-v">
 	<div class="split-box min-h">Top</div>
-	<Splitter on:changed={onchange} bind:this="{splitter2}"/>
+	<Splitter on:changed={onchange} bind:this={splitter2}/>
 	<div class="split-box">Bottom</div>
 </div>
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
-<API props="{instanceApiProps}" title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<API props={apiProps}/>
+<API props={instanceApiProps} title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
 
 <script>
@@ -48,10 +48,10 @@ const instanceApiProps = [
 
 
 const exampleHtml = `
-<Button on:click="{toggle}">Toggle</Button>
+<Button on:click={toggle}>Toggle</Button>
 <div style="flex-flow:row">
 	<div>Left</div>
-	<Splitter on:changed={onchanged} bind:this="{splitter1}" />
+	<Splitter on:changed={onchanged} bind:this={splitter1} />
 	<div>Right</div>
 </div>
 
@@ -69,7 +69,7 @@ function onchanged (e) {
 &lt;/script>
 `;
 
-let splitter1, splitter2;
+let splitter1 = $state(), splitter2 = $state();
 
 function onchange (e) {
 	console.log(e.detail);

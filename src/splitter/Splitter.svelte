@@ -1,9 +1,9 @@
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="splitter {className}"
-	class:vertical="{isVertical}"
-	class:is-dragging="{isDragging}"
-	on:mousedown="{mousedown}"
-	bind:this="{element}"></div>
+	class:vertical={isVertical}
+	class:is-dragging={isDragging}
+	onmousedown={mousedown}
+	bind:this={element}></div>
 
 <script>
 import './Splitter.css';
@@ -12,9 +12,15 @@ import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getF
 import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
 
 
-let className = '';
-export { className as class };
-export let element = undefined;
+
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {any} [element]
+	 */
+
+	/** @type {Props} */
+	let { class: className = '', element = $bindable(undefined) } = $props();
 
 
 const dispatch = createEventDispatcher();
@@ -22,11 +28,11 @@ const size = 8, halfsize = size / 2;
 const Box = {};
 
 
-let isVertical = false;
+let isVertical = $state(false);
 let parentEl, targetEl;
 let initialTargetBox, startX, startY;
 let mousedownTargetBox;
-let isDragging = false, bodyCursor;
+let isDragging = $state(false), bodyCursor;
 
 
 

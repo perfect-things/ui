@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { get } from 'svelte/store';
 
 import './helpers/utils';

@@ -1,38 +1,41 @@
 <div
 	class="input input-number {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+	class:has-error={error}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	bind:this={element}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
 	<div class="input-inner">
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<input
 			type="text"
 			autocomplete="off"
 			{name}
 			{disabled}
-			id="{_id}"
-			{...$$restProps}
-			aria-invalid="{error}"
-			aria-errormessage="{error ? errorMessageId : undefined}"
-			aria-required="{required}"
-			bind:this="{inputElement}"
-			bind:value="{value}"
-			on:keydown="{onkeydown}"
-			on:change="{onchange}"
-			on:paste="{onpaste}"
-			on:drop="{ondrop}"
-			on:input
-			on:focus
-			on:blur>
+			id={_id}
+			{...rest}
+			aria-invalid={error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value={value}
+			{onkeydown}
+			{onchange}
+			{onpaste}
+			{ondrop}
+			oninput={bubble('input')}
+			onfocus={bubble('focus')}
+			onblur={bubble('blur')}>
 	</div>
 </div>
 
 <script>
+import { createBubbler } from 'svelte/legacy';
+
+const bubble = createBubbler();
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -40,21 +43,42 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = guid();
-export let disabled = undefined;
-export let required = undefined;
-export let value = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let separator = '.';		// decimal separator
-export let labelOnTheLeft = false;
 
-export let element = undefined;
-export let inputElement = undefined;
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {any} [name]
+ * @property {any} [disabled]
+ * @property {any} [required]
+ * @property {string} [value]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {string} [separator] - decimal separator
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ */
+
+/** @type {Props & { [key: string]: any }} */
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	disabled = undefined,
+	required = undefined,
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	separator = '.',
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	...rest
+} = $props();
 
 
 const dispatch = createEventDispatcher();
@@ -66,7 +90,7 @@ const allowedKeys = [
 ];
 
 
-$:_id = id || name || guid();
+const _id = $derived(id || name || guid());
 
 
 function fireKeydown (event) {

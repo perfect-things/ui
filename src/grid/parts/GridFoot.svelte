@@ -10,10 +10,17 @@
 </tfoot>
 
 <script>
-export let multiselect = false;
-export let Data = [];
 
-$:columns = Data.columns;
+/**
+ * @typedef {Object} Props
+ * @property {boolean} [multiselect]
+ * @property {any} [Data]
+ */
+
+/** @type {Props} */
+const { multiselect = false, Data = [] } = $props();
+
+const columns = $derived(Data.columns);
 
 function sumColumn (column) {
 	return $Data.reduce((acc, row) => acc + +row[column.field], 0);

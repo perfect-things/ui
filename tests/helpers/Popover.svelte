@@ -7,5 +7,5 @@
 import { Button } from '../../src/button';
 import { Popover } from '../../src/popover';
 
-let popover;
+let popover = $state();
 </script>

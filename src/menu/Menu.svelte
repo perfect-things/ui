@@ -1,11 +1,9 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
-	<menu tabindex="0" class="menu {className}" bind:this="{element}">
-		<slot></slot>
+	<menu tabindex="0" class="menu {className}" bind:this={element}>
+		{@render children?.()}
 	</menu>
 {/if}
-
-<svelte:options accessors={true}/>
 
 <script>
 import './Menu.css';
@@ -20,21 +18,37 @@ const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.
 // safari does not translate contextmenu to longpress
 const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
-let className = '';
-export { className as class };
-export let type = undefined;			// can be undefined or 'context'
-export let targetSelector = 'body';		// target element for context menu
-export let closeOnClick = true;
-export let align = undefined;			// can be 'left', 'right' or 'center'
-export let valign = undefined;			// can be 'top' or 'bottom' (preference only, as screen size/position decides ultimately)
 
-export let element = undefined;
+
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {any} [type] - can be undefined or 'context'
+	 * @property {string} [targetSelector] - target element for context menu
+	 * @property {boolean} [closeOnClick]
+	 * @property {any} [align] - can be 'left', 'right' or 'center'
+	 * @property {any} [valign] - can be 'top' or 'bottom' (preference only, as screen size/position decides ultimately)
+	 * @property {any} [element]
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let {
+		class: className = '',
+		type = undefined,
+		targetSelector = 'body',
+		closeOnClick = true,
+		align = undefined,
+		valign = undefined,
+		element = $bindable(undefined),
+		children
+	} = $props();
 
 
 const menuButtons = [];
 const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
-let targetEl, focusedEl, opened = false;
+let targetEl, focusedEl, opened = $state(false);
 let hovering = false;
 let closing = false;
 let eventsAdded = false;
@@ -322,4 +336,14 @@ function focusPrev () {
 }
 /*** FOCUS & HIGHLIGHT ****************************************************************************/
 
+
+	export {
+		className,
+		type,
+		targetSelector,
+		closeOnClick,
+		align,
+		valign,
+		element,
+	};
 </script>

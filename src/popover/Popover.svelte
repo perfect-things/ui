@@ -1,20 +1,21 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- @migration-task Error while migrating Svelte code: Expected token >
+https://svelte.dev/e/expected_token -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
 	<div
 		class="popover-plate popover-{_position} {className} {hideTip ? 'hide-tip' : ''}"
 		class:opening
-		bind:this="{element}">
+		bind:this={element}>
 		<div class="popover">
-			<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
-			<div class="popover-content" bind:this="{contentEl}">
-				<slot/>
+			<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
+			<div class="popover-content" bind:this={contentEl}>
+				{@render children?.()}
 			</div>
-			<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
+			<div tabindex="0" class="focus-trap focus-trap-bottom" onfocus={focusFirst}></div>
 		</div>
 	</div>
 {/if}
 
-<svelte:options accessors={true}/>
 
 <script>
 import './Popover.css';
@@ -24,20 +25,37 @@ import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils.js';
 
 const dispatch = createEventDispatcher();
 
-let className = '';
-export { className as class };
-export let offset = 2;
-export let element = undefined;
-export let contentEl = undefined;
-export let position = 'bottom';
-export let hideTip = false;
-export let dontHideOnTargetClick = false;
-export let setMinWidthToTarget = false;
 
-let targetEl, opened = false;
-let opening = false, closing = false;
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {number} [offset]
+	 * @property {any} [element]
+	 * @property {any} [contentEl]
+	 * @property {string} [position]
+	 * @property {boolean} [hideTip]
+	 * @property {boolean} [dontHideOnTargetClick]
+	 * @property {boolean} [setMinWidthToTarget]
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let {
+		class: className = '',
+		offset = 2,
+		element = $bindable(undefined),
+		contentEl = $bindable(undefined),
+		position = 'bottom',
+		hideTip = false,
+		dontHideOnTargetClick = false,
+		setMinWidthToTarget = false,
+		children
+	} = $props();
+
+let targetEl, opened = $state(false);
+let opening = $state(false), closing = false;
 let eventsAdded = false;
-let _position = position;
+let _position = $state(position);
 
 const observer = new MutationObserver(updatePosition);
 
@@ -195,4 +213,15 @@ function removeEventListeners () {
 }
 /*** EVENTS & LISTENERS ***************************************************************************/
 
+
+	export {
+		className,
+		offset,
+		element,
+		contentEl,
+		position,
+		hideTip,
+		dontHideOnTargetClick,
+		setMinWidthToTarget,
+	};
 </script>

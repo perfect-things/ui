@@ -9,7 +9,7 @@ import { Splitter } from '../../src/splitter';
 import { createEventDispatcher } from 'svelte';
 
 const dispatch = createEventDispatcher();
-let splitter1;
+let splitter1 = $state();
 
 function onchange (e) {
 	dispatch('changed', e.detail);

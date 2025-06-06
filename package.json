@@ -20,16 +20,18 @@
     "build": "vite build",
     "preview": "vite preview",
     "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.svelte",
+
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
     "lint:js": "eslint \"src/**/*.{js,svelte}\" \"docs-src/**/*.{js,svelte}\" --format=pretty",
     "lint:js:fix": "eslint \"src/**/*.{js,svelte}\" \"docs-src/**/*.{js,svelte}\" --fix --format=pretty",
     "lint:css": "stylelint \"src/**/*.css\" \"docs-src/**/*.css\"",
     "lint:css:fix": "stylelint \"src/**/*.css\" \"docs-src/**/*.css\" --fix",
+
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "vanilla-swipe": "^2.4.1",

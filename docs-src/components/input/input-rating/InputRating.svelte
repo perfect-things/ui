@@ -3,7 +3,7 @@
 <br>
 
 <h3>Normal</h3>
-<InputRating on:keydown="{onkey}" bind:value="{item.value}"/>
+<InputRating on:keydown={onkey} bind:value={item.value}/>
 {item.value || ''}
 
 
@@ -30,8 +30,8 @@
 <h3>Error</h3>
 <InputRating
 	label="Pick one"
-	error="{error}"
-	on:change="{onchange}"/>
+	error={error}
+	on:change={onchange}/>
 
 
 <h3>Label on the left</h3>
@@ -39,9 +39,9 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -49,7 +49,7 @@ import { InputRating } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 
-const item = { value: 2 };
+const item = $state({ value: 2 });
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
@@ -73,7 +73,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<InputRating on:change="{ onChange }" bind:value="{value}" />
+<InputRating on:change={ onChange } bind:value={value} />
 
 <script>
 let value = 4;
@@ -87,7 +87,7 @@ function onChange (e) {
 
 
 
-let error = 'You picked wrong!';
+let error = $state('You picked wrong!');
 
 function onchange (e) {
 	const val = e.detail;

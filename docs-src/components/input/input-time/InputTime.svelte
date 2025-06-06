@@ -3,7 +3,7 @@
 
 
 <h3>Normal</h3>
-<InputTime bind:value="{val}" />
+<InputTime bind:value={val} />
 <p>Input value: {val}</p>
 
 <h3>Disabled</h3>
@@ -13,9 +13,9 @@
 <h3>With validation</h3>
 <InputTime
 	label="Select Midnight"
-	error="{error1}"
+	error={error1}
 	value="00:01"
-	on:change="{onchange}" />
+	on:change={onchange} />
 
 
 <h3>Label on the left</h3>
@@ -23,9 +23,9 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -54,7 +54,7 @@ const apiProps = [
 
 
 const exampleHtml = `
-<InputTime label="Email" error="Invalid email" value="00:00" on:change="{onChange}" />
+<InputTime label="Email" error="Invalid email" value="00:00" on:change={onChange} />
 
 <script>
 function onChange (e) {
@@ -63,8 +63,8 @@ function onChange (e) {
 &lt;/script>
 `;
 
-let val = '00:00';
-let error1 = 'Select midnight please.';
+let val = $state('00:00');
+let error1 = $state('Select midnight please.');
 
 function onchange (e) {
 	error1 = (e.target.value === '00:00' ? '' : 'Select midnight please.');

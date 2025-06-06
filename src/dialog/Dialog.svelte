@@ -1,25 +1,23 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <!-- svelte-ignore a11y_interactive_supports_focus -->
 <div
 	role="dialog"
 	aria-modal="true"
-	aria-label="{title}"
+	aria-label={title}
 	class="dialog-backdrop {className}"
 	class:opened
-	bind:this="{element}"
-	on:mousedown="{onBackdropMousedown}"
-	on:click="{onBackdropClick}">
-	<div class="dialog" class:no-title="{!title}" bind:this="{dialogEl}">
-		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
+	bind:this={element}
+	onmousedown={onBackdropMousedown}
+	onclick={onBackdropClick}>
+	<div class="dialog" class:no-title={!title} bind:this={dialogEl}>
+		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 		<h1 class="dialog-header">{title}</h1>
-		<div class="dialog-content" bind:this="{contentEl}"><slot/></div>
-		<div class="dialog-footer" bind:this="{footerEl}"><slot name="footer"/></div>
-		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
+		<div class="dialog-content" bind:this={contentEl}>{@render children?.()}</div>
+		<div class="dialog-footer" bind:this={footerEl}>{@render footer?.()}</div>
+		<div tabindex="0" class="focus-trap focus-trap-bottom" onfocus={focusFirst}></div>
 	</div>
 </div>
-<svelte:options accessors={true}/>
-
 
 <script>
 import './Dialog.css';
@@ -27,17 +25,37 @@ import { createEventDispatcher, onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 
 
-let className = '';
-export { className as class };
-export let title = '';
-export let opened = false;
-export let skipFirstFocus = false;
-export let modal = false;
 
-export let element;
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [title]
+ * @property {boolean} [opened]
+ * @property {boolean} [skipFirstFocus]
+ * @property {boolean} [modal]
+ * @property {any} element
+ * @property {import('svelte').Snippet} [children]
+ * @property {import('svelte').Snippet} [footer]
+ */
+
+/** @type {Props} */
+let {
+	class: className = '',
+	title = '',
+	opened = $bindable(false),
+	skipFirstFocus = false,
+	modal = false,
+	element = $bindable(),
+	children,
+	footer
+} = $props();
 
 const dispatch = createEventDispatcher();
-let dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer, scrollPos;
+let dialogEl = $state();
+let contentEl = $state();
+let footerEl = $state();
+let triggerEl, openTimer, closeTimer, scrollPos;
 
 
 
@@ -181,4 +199,13 @@ export function close () {
 	}, $ANIMATION_SPEED);
 }
 
+
+export {
+	className,
+	title,
+	opened,
+	skipFirstFocus,
+	modal,
+	element,
+};
 </script>

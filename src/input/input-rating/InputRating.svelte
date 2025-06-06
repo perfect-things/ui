@@ -1,56 +1,56 @@
-<!-- svelte-ignore a11y-no-static-element-interactions a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_tabindex -->
 <div
 	{title}
 	class="input input-rating {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class:has-error={error}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
 	class:light
-	bind:this="{element}">
+	bind:this={element}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
 	<div
 		class="input-inner"
 		tabindex="0"
-		on:touchstart="{onMouseDown}"
-		on:mousedown={onMouseDown}
-		on:keydown="{onKey}"
-		bind:this="{innerBox}">
+		ontouchstart={onMouseDown}
+		onmousedown={onMouseDown}
+		onkeydown={onKey}
+		bind:this={innerBox}>
 
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			{#each stars as star}
 				<Button
 					link
-					icon="{icon}"
+					icon={icon}
 					tabindex="-1"
-					data-star="{star}"
-					class="{value >= star ? 'active' : ''}"/>
-					<!-- on:mousedown="{() => set(star)}"
-					on:mouseup="{() => set(star)}"/> -->
+					data-star={star}
+					class={value >= star ? 'active' : ''}/>
+					<!-- on:mousedown={() => set(star)}
+					on:mouseup={() => set(star)}/> -->
 			{/each}
 
 			<Button link
 				icon="close"
 				class="btn-reset"
-				disabled="{value === ''}"
-				on:click="{reset}"/>
+				disabled={value === ''}
+				on:click={reset}/>
 
 			<input
 				type="hidden"
 				{name}
 				{disabled}
-				id="{_id}"
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-				bind:this="{inputElement}"
-				bind:value="{value}"
-				on:input
-				on:focus
-				on:blur>
+				id={_id}
+				aria-invalid={error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				bind:this={inputElement}
+				bind:value={value}
+				oninput={bubble('input')}
+				onfocus={bubble('focus')}
+				onblur={bubble('blur')}>
 		</div>
 	</div>
 </div>
@@ -58,6 +58,9 @@
 
 
 <script>
+import { createBubbler } from 'svelte/legacy';
+
+const bubble = createBubbler();
 import './InputRating.css';
 import { Button } from '../../button';
 import { createEventDispatcher } from 'svelte';
@@ -67,33 +70,56 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = guid();
-export let disabled = undefined;
-export let required = undefined;
-export let value = '';
-export let title = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-export let max = 5;
-export let icon = 'star';
-export let light = undefined;
 
-export let element = undefined;
-export let inputElement = undefined;
-let innerBox = undefined;
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {any} [name]
+ * @property {any} [disabled]
+ * @property {any} [required]
+ * @property {string} [value]
+ * @property {string} [title]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {number} [max]
+ * @property {string} [icon]
+ * @property {any} [light]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ */
+
+/** @type {Props} */
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	disabled = undefined,
+	required = undefined,
+	value = $bindable(''),
+	title = '',
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	max = 5,
+	icon = 'star',
+	light = undefined,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined)
+} = $props();
+let innerBox = $state(undefined);
 let mouseY = 0;
 
-$:stars = new Array(+max).fill(0).map((_, i) => i + 1);
+const stars = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
 
 const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 
-$:_id = id || name || guid();
+const _id = $derived(id || name || guid());
 
 
 function fireKeydown (event) { dispatch('keydown', { event, value }); }

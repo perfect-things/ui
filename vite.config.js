@@ -7,8 +7,16 @@ import { fileURLToPath, URL } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 
+function injectScripts (html) {
+	// Inject version and analytics scripts into the HTML
+	const versionScript = `<script>window.UI_VERSION = '${process.env.npm_package_version}';</script>`;
+	const analyticsScript = '<script defer data-domain="ui.perfectthings.dev" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
+	return html.replace('<!-- scripts-go-here -->', `${versionScript}\n${analyticsScript}`);
+}
+
+
 // https://vite.dev/config/
-export default defineConfig(({ command }) => ({
+export default defineConfig(() => ({
 	base: './',
 	customLogger: {
 		hasWarned: false,
@@ -27,10 +35,7 @@ export default defineConfig(({ command }) => ({
 	},
 	plugins: [
 		svelte({
-			compilerOptions: {
-				compatibility: { componentApi: 4 },
-				hmr: false
-			}
+			// compilerOptions: { hmr: false }
 		}),
 		copy({
 			copyOnce: true,
@@ -38,35 +43,23 @@ export default defineConfig(({ command }) => ({
 			copySync: false,
 			hook: 'buildStart',
 			targets: [
-				{ src: 'node_modules/zxcvbn/dist/zxcvbn.js', dest: 'docs' },
-				{ src: 'assets/*', dest: 'docs' },
+				{ src: 'node_modules/zxcvbn/dist/zxcvbn.js', dest: 'assets' },
 			],
 		}),
 		{
 			name: 'inject-analytics',
-			transformIndexHtml: {
-				order: 'pre',
-				handler (html) {
-					const analyticsScript = '<script defer data-domain="ui.perfectthings.dev" src="https://plausible.borychowski.net/js/script.hash.outbound-links.js"></script>';
-					if (command === 'build') html = html.replace('<!-- scripts-go-here -->', analyticsScript);
-					return html;
-				}
-			}
+			transformIndexHtml: { order: 'pre', handler: injectScripts }
 		}
 	],
 	root: 'docs-src',
-	publicDir: false,
+	publicDir: '../assets',
 	build: {
 		outDir: '../docs',
 		cssCodeSplit: false,
-		emptyOutDir: false,
+		emptyOutDir: true,
 		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			input: resolve(__dirname, 'docs-src/index.html'),
-			onwarn (warning, warn) {
-				if (warning.code === 'EVAL') return;
-				warn(warning);
-			},
 			output: {
 				entryFileNames: '[name].[hash].js',
 				chunkFileNames: '[name].[hash].js',

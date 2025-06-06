@@ -1,4 +1,4 @@
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
 	class="panel {className}"
 	class:collapsible
@@ -9,21 +9,21 @@
 	class:success
 	class:warning
 	class:danger
-	inert="{disabled}"
-	bind:this="{element}">
+	inert={disabled}
+	bind:this={element}>
 
 	{#if title}
-		<details open="{open}" on:keydown={toggle} on:click={toggle}>
-			<summary class="panel-header" bind:this="{headerEl}" inert="{!collapsible}">
+		<details open={open} onkeydown={toggle} onclick={toggle}>
+			<summary class="panel-header" bind:this={headerEl} inert={!collapsible}>
 				{title}
 				{#if collapsible}
 					<div class="chevron">{@html getIcon('chevronRight')}</div>
 				{/if}
 			</summary>
-			<div class="panel-content"><slot/></div>
+			<div class="panel-content">{@render children?.()}</div>
 		</details>
 	{:else}
-		<div class="panel-content"><slot/></div>
+		<div class="panel-content">{@render children?.()}</div>
 	{/if}
 </div>
 
@@ -34,22 +34,42 @@ import { getIcon } from '../icon';
 import { animate } from '../utils';
 const dispatch = createEventDispatcher();
 
-let className = '';
-export { className as class };
-export let title = '';
-export let open = false;
-export let round = false;
-export let collapsible = false;
-export let disabled = false;
-export let info = false;
-export let success = false;
-export let warning = false;
-export let danger = false;
-
-export let element = undefined;
 
 
-let headerEl, expanded = open || !title;
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {string} [title]
+	 * @property {boolean} [open]
+	 * @property {boolean} [round]
+	 * @property {boolean} [collapsible]
+	 * @property {boolean} [disabled]
+	 * @property {boolean} [info]
+	 * @property {boolean} [success]
+	 * @property {boolean} [warning]
+	 * @property {boolean} [danger]
+	 * @property {any} [element]
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let {
+		class: className = '',
+		title = '',
+		open = $bindable(false),
+		round = false,
+		collapsible = false,
+		disabled = false,
+		info = false,
+		success = false,
+		warning = false,
+		danger = false,
+		element = $bindable(undefined),
+		children
+	} = $props();
+
+
+let headerEl = $state(), expanded = $state(open || !title);
 const expandedProps = { height: 0 };
 const collapsedProps = { height: 0 };
 

@@ -6,38 +6,38 @@
 		bind:pressed={$showArchive}/>
 {/if}
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	class="notification-center {className}"
-	class:show-archive="{$showArchive}"
-	class:archive-is-visible="{archiveIsVisible}"
-	class:has-active-notifications="{hasActiveNotifications}"
-	bind:this="{el}">
+	class:show-archive={$showArchive}
+	class:archive-is-visible={archiveIsVisible}
+	class:has-active-notifications={hasActiveNotifications}
+	bind:this={el}>
 
 	{#each notifications as notification (notification.id)}
 		<div
 			class="notification notification-{notification.type}"
-			data-id="{notification.id}"
+			data-id={notification.id}
 			tabindex="0"
-			on:mouseover="{() => clearTimer(notification)}"
-			on:focus="{() => clearTimer(notification)}"
-			on:mouseleave="{e => createTimer(notification, e.target)}"
-			on:blur="{e => createTimer(notification, e.target)}"
-			on:keydown="{e => onKeydown(e, notification)}"
+			onmouseover={() => clearTimer(notification)}
+			onfocus={() => clearTimer(notification)}
+			onmouseleave={e => createTimer(notification, e.target)}
+			onblur={e => createTimer(notification, e.target)}
+			onkeydown={e => onKeydown(e, notification)}
 			out:_send="{{ key: notification.id }}"
 			in:fly="{{ duration }}"
 			animate:flip>
 
-			<div class="notification-icon"><Icon name="{notification.type}"/></div>
-			<div class="notification-msg" role="{notification.type === 'info' ? 'status' : 'alert'}">{@html notification.msg}</div>
+			<div class="notification-icon"><Icon name={notification.type}/></div>
+			<div class="notification-msg" role={notification.type === 'info' ? 'status' : 'alert'}>{@html notification.msg}</div>
 
 			<div class="notification-buttons">
 				{#if notification.btn}
-					<button on:click|preventDefault="{() => notification.cb(notification.id)}">{notification.btn}</button>
+					<button onclick={preventDefault(() => notification.cb(notification.id))}>{notification.btn}</button>
 				{/if}
 
-				<button class="notification-close" on:click|stopPropagation="{() => hideNotification(notification.id)}">&times;</button>
+				<button class="notification-close" onclick={stopPropagation(() => hideNotification(notification.id))}>&times;</button>
 			</div>
 
 			{#if notification.showProgress}
@@ -48,13 +48,15 @@
 		</div>
 	{/each}
 
-	{#if !hideButton}<NotificationArchive bind:show="{$showArchive}" bind:expanded="{archiveIsExpanded}"/>{/if}
+	{#if !hideButton}<NotificationArchive bind:show={$showArchive} bind:expanded={archiveIsExpanded}/>{/if}
 
 </div>
 
 
 
 <script>
+	import { preventDefault, stopPropagation } from 'svelte/legacy';
+
 import './NotificationCenter.css';
 import { onDestroy, onMount } from 'svelte';
 import { writable } from 'svelte/store';
@@ -66,25 +68,36 @@ import { NotificationArchive } from '../NotificationArchive';
 import { ANIMATION_SPEED } from '../../utils.js';
 import { getNextNotification } from '../utils.js';
 
-let className = '';
-export { className as class };
-export let round = false;
-export let outline = false;
-export let hideButton = false;
+
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [class]
+	 * @property {boolean} [round]
+	 * @property {boolean} [outline]
+	 * @property {boolean} [hideButton]
+	 */
+
+	/** @type {Props} */
+	const {
+		class: className = '',
+		round = false,
+		outline = false,
+		hideButton = false
+	} = $props();
 
 const showArchive = writable(false);
-let archiveIsVisible = false;
-let archiveIsExpanded = false;
+let archiveIsVisible = $state(false);
+let archiveIsExpanded = $state(false);
 
-let el;
-let notifications = [];
+let el = $state();
+let notifications = $state([]);
 let initial = true;
-let hasActiveNotifications = false;
+let hasActiveNotifications = $state(false);
 
 
-$:duration = $ANIMATION_SPEED;
-$:hasArchivedNotifications = Object.keys($ArchivedNotifications).length ? 'has-archived-notifications' : '';
-$:hasNotifications = (notifications.length || hasArchivedNotifications) ? 'has-notifications' : '';
+const duration = $derived($ANIMATION_SPEED);
+const hasArchivedNotifications = $derived(Object.keys($ArchivedNotifications).length ? 'has-archived-notifications' : '');
+const hasNotifications = $derived((notifications.length || hasArchivedNotifications) ? 'has-notifications' : '');
 
 
 onMount(() => {

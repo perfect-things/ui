@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 import * as utils from '../../src/input/combobox/utils';
 import { offsetHeight, offsetTop } from '../helpers/utils';

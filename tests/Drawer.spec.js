@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import { default as userEvent } from '@testing-library/user-event';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 import { Drawer } from '../src/drawer';
 import { waitForTimeout } from './helpers/utils';

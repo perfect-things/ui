@@ -7,37 +7,37 @@
 
 <h3>Types</h3>
 <div class="docs-buttons-row">
-	<Button on:click="{() => showMessage('This is the message')}">Default message</Button>
-	<Button info on:click="{() => showMessage('This is the message', MessageType.INFO)}">Show info</Button>
-	<Button warning on:click="{() => showMessage('This is the message', MessageType.WARNING)}">Show warning</Button>
-	<Button danger on:click="{() => showMessage('This is the message', MessageType.DANGER)}">Show error</Button>
-	<Button success on:click="{() => showMessage('This is the message', MessageType.SUCCESS)}">Show success</Button>
+	<Button on:click={() => showMessage('This is the message')}>Default message</Button>
+	<Button info on:click={() => showMessage('This is the message', MessageType.INFO)}>Show info</Button>
+	<Button warning on:click={() => showMessage('This is the message', MessageType.WARNING)}>Show warning</Button>
+	<Button danger on:click={() => showMessage('This is the message', MessageType.DANGER)}>Show error</Button>
+	<Button success on:click={() => showMessage('This is the message', MessageType.SUCCESS)}>Show success</Button>
 </div>
 
 
 <h3>Title</h3>
 <div class="docs-buttons-row">
-	<Button on:click="{() => showMessage('Default message', null, 'Default title')}">Show message with title</Button>
-	<Button info on:click="{() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}">Show message with title</Button>
-	<Button on:click="{() => showMessage(longMessage, null, 'Info title')}">Show long message</Button>
-	<Button info on:click="{() => showMessage(longMessage, MessageType.INFO, 'Info title')}">Show long message</Button>
+	<Button on:click={() => showMessage('Default message', null, 'Default title')}>Show message with title</Button>
+	<Button info on:click={() => showMessage('Info messagebox', MessageType.INFO, 'Info title')}>Show message with title</Button>
+	<Button on:click={() => showMessage(longMessage, null, 'Info title')}>Show long message</Button>
+	<Button info on:click={() => showMessage(longMessage, MessageType.INFO, 'Info title')}>Show long message</Button>
 </div>
 
 
 <h3>Message with HTML</h3>
 <div class="docs-buttons-row">
-	<Button on:click="{() => showMessage('Message with <i>html</i><br><a href="#MessageBox" target="_blank">Link</a>', null, 'Info title', 'Close')}">Show message</Button>
+	<Button on:click={() => showMessage('Message with <i>html</i><br><a href="#MessageBox" target="_blank">Link</a>', null, 'Info title', 'Close')}>Show message</Button>
 </div>
 
 
 <h3>MessageBox with callback action</h3>
 <div class="docs-buttons-row">
-	<Button on:click="{() => showMessage('Info messagebox', null, 'Info title', 'Close', onclose)}">Show Info with title and button label and callback</Button>
+	<Button on:click={() => showMessage('Info messagebox', null, 'Info title', 'Close', onclose)}>Show Info with title and button label and callback</Button>
 </div>
 
 
 <h3>Complex Message</h3>
-<Button info on:click="{showComplex}">Show complex message</Button>
+<Button info on:click={showComplex}>Show complex message</Button>
 
 
 
@@ -45,10 +45,10 @@
 <MessageBox />
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
 <API
-	props="{apiProps}"
+	props={apiProps}
 	title="Function API - arguments"
 	description="A component exports a <em>showMessage</em> function which accepts either
 	a config object or a list of arguments.  If it is a list of arguments - this is the API:"/>

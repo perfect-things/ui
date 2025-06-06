@@ -1,23 +1,23 @@
 <h2>Radio</h2>
 
 <h3>Normal</h3>
-<Radio items="{items1}" name="my-radio1" bind:value="{val}" label="Select option 1" on:change="{onchange}" />
+<Radio items={items1} name="my-radio1" bind:value={val} label="Select option 1" on:change={onchange} />
 
 <h3>Disabled</h3>
-<Radio items="{items2}" name="my-radio2" label="Select option 2" disabled />
+<Radio items={items2} name="my-radio2" label="Select option 2" disabled />
 
 <h3>List of strings as values</h3>
-<Radio items="{strings}" name="my-radio3" label="Select option 3" on:change="{onchange}" />
+<Radio items={strings} name="my-radio3" label="Select option 3" on:change={onchange} />
 
 <h3>With error and live validation</h3>
-<Radio items="{strings}" name="my-radio4" label="Select option 4" error="{error4}" on:change="{validate4}" />
+<Radio items={strings} name="my-radio4" label="Select option 4" error={error4} on:change={validate4} />
 
 <h3>With info</h3>
-<Radio items="{strings}" name="my-radio5" label="Select option 5" info="Here be info message." />
+<Radio items={strings} name="my-radio5" label="Select option 5" info="Here be info message." />
 
 <h3>With info and error</h3>
 <Radio
-	items="{strings}"
+	items={strings}
 	name="my-radio6"
 	label="Select option 5"
 	error="Here be error message."
@@ -25,12 +25,12 @@
 
 
 <h3>Label on the left</h3>
-<Radio items="{strings}" label="Label is on the left" labelOnTheLeft="true"/>
+<Radio items={strings} label="Label is on the left" labelOnTheLeft="true"/>
 
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 
 <script>
@@ -56,7 +56,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Radio {items} name="my-radio" bind:value="{value}" label="Select option" />
+<Radio {items} name="my-radio" bind:value={value} label="Select option" />
 
 
 <script>
@@ -81,7 +81,7 @@ const items1 = [
 	{ name: 'Four', value: 4 },
 ];
 
-let val = items1[1].value;
+let val = $state(items1[1].value);
 
 const items2 = ['One', 'Two', 'Three', 'Four'];
 const strings = ['One', 'Two', 'Three', 'Four'];
@@ -91,7 +91,7 @@ function onchange (e) {
 	console.log(item, value);
 }
 
-let error4 = 'You must select "Four"!';
+let error4 = $state('You must select "Four"!');
 function validate4 (e) {
 	const { value } = e.detail;
 	error4 = value === strings[3] ? '' : 'You must select "Four"!';

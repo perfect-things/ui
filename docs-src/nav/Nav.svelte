@@ -1,10 +1,10 @@
 <UIButton text round
 	icon="sidebarLeft"
 	class="nav-toggler {expanded ? 'expanded' : ''} {swiping ? 'swiping' : ''}"
-	bind:element="{navTogglerBtn}"
-	on:click="{toggleNav}"/>
+	bind:element={navTogglerBtn}
+	on:click={toggleNav}/>
 
-<aside class:expanded class:swiping bind:this="{sidebarEl}">
+<aside class:expanded class:swiping bind:this={sidebarEl}>
 	<menu>
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
@@ -67,12 +67,14 @@
 	icon="arrowNarrowUp"
 	class="btn-scroll-top {showScrollTopBtn ? '' : 'hidden'}"
 	title="Scroll to the top"
-	on:click="{scrollToTop}" />
+	on:click={scrollToTop} />
 
-<svelte:window on:hashchange="{onhashchange}" on:popstate="{onpopstate}" />
+<svelte:window {onhashchange} {onpopstate} />
 
 
 <script>
+import { run } from 'svelte/legacy';
+
 import { onDestroy, onMount } from 'svelte';
 import { Button as UIButton, isInScrollable, debounce } from '../../src';
 import VanillaSwipe from 'vanilla-swipe';
@@ -85,23 +87,24 @@ import './Nav.css';
 
 const components = { GetStarted, Changelog, ...TestComponents, };
 
-let [active, heading] = getSection();
-export let component = components[active];
+let [active, heading] = $state(getSection());
+let { component = $bindable() } = $props();
+
+$effect(() => {
+	component = components[active] || components[component] || GetStarted;
+});
 
 const SIDEBAR_WIDTH = 220;
 const swipeSlowDownFactor = 2.5;
 const onScroll = debounce(checkScrollOffset);
 
-let showScrollTopBtn = false;
-let expanded = false;
+let showScrollTopBtn = $state(false);
+let expanded = $state(false);
 let wasExpanded = false;
-let swiping = false;
-let sidebarEl, navTogglerBtn;
+let swiping = $state(false);
+let sidebarEl = $state(), navTogglerBtn = $state();
 
 
-$: {
-	waitForElementAndScroll(heading);
-}
 
 
 onMount(() => {
@@ -265,4 +268,7 @@ function checkScrollOffset () {
 }
 
 
+run(() => {
+	waitForElementAndScroll(heading);
+});
 </script>

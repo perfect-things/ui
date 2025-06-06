@@ -3,41 +3,41 @@
 <h3>Normal</h3>
 <Combobox
 	{items}
-	on:change="{onChange}"
-	bind:value="{itemValue}" />
+	on:change={onChange}
+	bind:value={itemValue} />
 
 <h4>Selected value: </h4>
-<JsonBox value="{itemValue}" />
-<Button on:click="{resetSingle}">Reset</Button>
+<JsonBox value={itemValue} />
+<Button on:click={resetSingle}>Reset</Button>
 
 <h3>Disabled</h3>
-<Combobox disabled {items} bind:value="{itemValue}" />
+<Combobox disabled {items} bind:value={itemValue} />
 
 <h3>Allow arbitrary values</h3>
 <Combobox
 	{items}
 	placeholder="Type to filter"
 	allowNew
-	bind:value="{itemValue}" />
+	bind:value={itemValue} />
 
 
 <h3>Show on focus</h3>
-<Combobox showOnFocus="true" {items} bind:value="{itemValue}" />
+<Combobox showOnFocus="true" {items} bind:value={itemValue} />
 
 <h3>Simpler data (no ID, just 'name')</h3>
-<Combobox items="{dataSimpler}" placeholder="Type to filter"
-	bind:value="{valueSimpler}" />
+<Combobox items={dataSimpler} placeholder="Type to filter"
+	bind:value={valueSimpler} />
 
 <h4>Selected value: </h4>
-<JsonBox value="{valueSimpler}" />
+<JsonBox value={valueSimpler} />
 
 
 <h3>Simple data (just an array of strings)</h3>
-<Combobox items="{dataSimple}" placeholder="Type to filter"
-	bind:value="{valueSimple}" />
+<Combobox items={dataSimple} placeholder="Type to filter"
+	bind:value={valueSimple} />
 
 <h4>Selected value: </h4>
-<JsonBox value="{valueSimple}" />
+<JsonBox value={valueSimple} />
 
 
 <h3>Label</h3>
@@ -59,28 +59,28 @@
 <p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
 <h3>Simple data</h3>
 <Combobox
-	items="{dataSimple}"
+	items={dataSimple}
 	multiselect
 	clearOnEsc
-	bind:value="{multiselectSimpleValue}" />
+	bind:value={multiselectSimpleValue} />
 <h4>Selected value: </h4>
-<JsonBox value="{multiselectSimpleValue}" />
-<Button on:click="{resetMulti}">Reset</Button>
+<JsonBox value={multiselectSimpleValue} />
+<Button on:click={resetMulti}>Reset</Button>
 
 <h3>Complex data</h3>
 <Combobox
 	{items}
 	multiselect
-	bind:value="{multiselectValue}" />
+	bind:value={multiselectValue} />
 <h4>Selected value: </h4>
-<JsonBox value="{multiselectValue}" />
+<JsonBox value={multiselectValue} />
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
 <hr>
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -123,8 +123,8 @@ const apiProps = [
 const exampleHtml = `
 <Combobox
     {items}
-    on:change="{ onChange }"
-    bind:value="{ value }" />
+    on:change={ onChange }
+    bind:value={ value } />
 
 <script>
 const items = [
@@ -165,8 +165,8 @@ const items = [
 	{ id: 16, name: 'Kappa', group: 'Group 3' },
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
-let itemValue = items[1];
-let multiselectValue = [items[0], items[1]];
+let itemValue = $state(items[1]);
+let multiselectValue = $state([items[0], items[1]]);
 
 const dataSimpler = [
 	{ name: 'Alpha', group: 'Group 1' },
@@ -188,7 +188,7 @@ const dataSimpler = [
 	{ name: 'Delta' },
 	{ name: 'Epsilon' },
 ];
-let valueSimpler = dataSimpler[3];
+let valueSimpler = $state(dataSimpler[3]);
 
 const dataSimple = [
 	'Alpha',
@@ -203,8 +203,8 @@ const dataSimple = [
 	'Kappa',
 	'Lambda is the last item in this list',
 ];
-let valueSimple = 'Gamma';
-let multiselectSimpleValue = [dataSimple[0], dataSimple[1]];
+let valueSimple = $state('Gamma');
+let multiselectSimpleValue = $state([dataSimple[0], dataSimple[1]]);
 
 
 function onChange (e) {

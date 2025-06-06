@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
 import { ANIMATION_SPEED } from '../../src';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: {} }));
 

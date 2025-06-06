@@ -1,14 +1,14 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <tbody
-	data-id="{id}"
+	data-id={id}
 	class="item item-{id}"
 	tabindex="0"
-	class:row-selected="{item.selected}"
+	class:row-selected={item.selected}
 >
 	<tr>
 		{#if multiselect}
 			<td class="column-check">
-				<Checkbox bind:checked="{item.selected}" tabindex="-1"/>
+				<Checkbox bind:checked={item.selected} tabindex="-1"/>
 			</td>
 		{/if}
 		{#each $columns as column}
@@ -21,12 +21,19 @@
 
 <script>
 import { Checkbox } from '../../input';
-export let item = {};
-export let multiselect = false;
-export let Data = [];
 
-$:columns = Data.columns;
-$:id = item.id || item.field;
+/**
+ * @typedef {Object} Props
+ * @property {any} [item]
+ * @property {boolean} [multiselect]
+ * @property {any} [Data]
+ */
+
+/** @type {Props} */
+let { item = $bindable({}), multiselect = false, Data = [] } = $props();
+
+const columns = $derived(Data.columns);
+const id = $derived(item.id || item.field);
 
 function getType (column) {
 	return typeof $Data[0][column.field];

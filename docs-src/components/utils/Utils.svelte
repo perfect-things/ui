@@ -16,9 +16,10 @@
 
 <div class="sticky-block" id="top">
 	<h2>Utility properties</h2>
-	{#each props as item}
-		<svelte:component this="{Properties[item]}" /><br>
-	{/each}
+	<!-- {#each props as item}
+		{@const SvelteComponent = Properties[item]}
+		<SvelteComponent" /><br>
+	{/each} -->
 	<p>
 		<em>*</em> <a href="https://svelte.dev/docs/svelte-components#script-4-prefix-stores-with-$-to-access-their-values">
 		svelte store variables</a> - when reading the value, add <em>$</em> to the name, e.g.
@@ -28,9 +29,10 @@
 
 <div class="sticky-block">
 	<h2>Utility Functions</h2>
-	{#each fns as item}
-		<svelte:component this="{Functions[item]}" /><br>
-	{/each}
+	<!-- {#each fns as item}
+		{@const SvelteComponent_1 = Functions[item]}
+		<SvelteComponent_1" /><br>
+	{/each} -->
 </div>
 
 

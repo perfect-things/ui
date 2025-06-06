@@ -21,10 +21,7 @@
 import { Table } from '../../src';
 import './ApiTable.css';
 
-
-export let title = 'API';
-export let description = '';
-export let props = [
+const _props = [
 	{
 		name: 'id',
 		type: 'string',
@@ -33,6 +30,19 @@ export let props = [
 		description: 'assign ID to the underlying component'
 	}
 ];
+
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {any} [props]
+ */
+
+/** @type {Props} */
+const { title = 'API', description = '', props = _props } = $props();
+
+
 
 function buildType (prop) {
 	const res = [];

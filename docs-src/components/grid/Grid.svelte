@@ -16,9 +16,9 @@
 <!--	<Grid round title="Grid with data" {columns} data={data2} multiselect />-->
 <!--</div>-->
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
 <script>
@@ -96,7 +96,7 @@ function onclick (e) {
 
 
 const exampleHtml = `
-<Grid {data} {columns} on:click="{onclick}"/>
+<Grid {data} {columns} on:click={onclick}/>
 
 <script>
 import { Grid } from '@perfect-things/ui';

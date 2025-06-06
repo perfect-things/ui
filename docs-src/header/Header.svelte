@@ -1,9 +1,9 @@
 <ButtonToggle round
 	class="dark-mode-switch"
 	title="Dark mode toggle"
-	items="{themes}"
-	value="{$PREFERS_DARK}"
-	on:change="{switchColorMode}"/>
+	items={themes}
+	value={$PREFERS_DARK}
+	on:change={switchColorMode}/>
 
 
 

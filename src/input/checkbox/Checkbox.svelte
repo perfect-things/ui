@@ -3,30 +3,30 @@
 	class="check-and-radio checkbox {className}"
 	class:indeterminate
 	class:disabled
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class:has-error={error}
+	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
 
-	bind:this="{element}">
+	bind:this={element}>
 
-	<Info msg="{info}" />
-	<InputError id="{errorMessageId}" msg="{error}" animOffset="8" />
+	<Info msg={info} />
+	<InputError id={errorMessageId} msg={error} animOffset="8" />
 
 	<div class="checkbox-row">
 		<input
 			type="checkbox"
 			{name}
-			id="{_id}"
+			id={_id}
 			{disabled}
 			{tabindex}
-			bind:this="{inputElement}"
-			bind:checked="{checked}"
-			bind:indeterminate="{indeterminate}"
-			aria-invalid="{error}"
-			aria-errormessage="{error ? errorMessageId : undefined}"
-			aria-required="{required}"
-			on:change="{onchange}">
+			bind:this={inputElement}
+			bind:checked={checked}
+			bind:indeterminate={indeterminate}
+			aria-invalid={error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			{onchange}>
 
-		<Label {label} for="{_id}"/>
+		<Label {label} for={_id}/>
 	</div>
 </div>
 
@@ -39,29 +39,51 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let indeterminate = false;
-export let checked = false;
-export let disabled = false;
-export let id = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let title = undefined;
-export let tabindex = undefined;
-export let name = '';
-export let required = undefined;
-export let labelOnTheLeft = false;
 
-export let element = undefined;
-export let inputElement = undefined;
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {boolean} [indeterminate]
+ * @property {boolean} [checked]
+ * @property {boolean} [disabled]
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {any} [title]
+ * @property {any} [tabindex]
+ * @property {string} [name]
+ * @property {any} [required]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ */
+
+/** @type {Props} */
+let {
+	class: className = '',
+	indeterminate = $bindable(),
+	checked = $bindable(),
+	disabled = false,
+	id = '',
+	label = '',
+	error = undefined,
+	info = undefined,
+	title = undefined,
+	tabindex = undefined,
+	name = '',
+	required = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined)
+} = $props();
 
 
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
 
-$:_id = id || name || guid();
+const _id = $derived(id || name || guid());
 
 
 function onchange (event) {
