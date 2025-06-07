@@ -34,10 +34,10 @@
 
 			<div class="notification-buttons">
 				{#if notification.btn}
-					<button onclick={preventDefault(() => notification.cb(notification.id))}>{notification.btn}</button>
+					<button class="notification-button" onclick={e => onToastClick(e, notification)}>{notification.btn}</button>
 				{/if}
 
-				<button class="notification-close" onclick={stopPropagation(() => hideNotification(notification.id))}>&times;</button>
+				<button class="notification-close" onclick={e => onToastCloseClick(e, notification)}>&times;</button>
 			</div>
 
 			{#if notification.showProgress}
@@ -55,8 +55,6 @@
 
 
 <script>
-	import { preventDefault, stopPropagation } from 'svelte/legacy';
-
 import './NotificationCenter.css';
 import { onDestroy, onMount } from 'svelte';
 import { writable } from 'svelte/store';
@@ -69,21 +67,22 @@ import { ANIMATION_SPEED } from '../../utils.js';
 import { getNextNotification } from '../utils.js';
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {boolean} [round]
-	 * @property {boolean} [outline]
-	 * @property {boolean} [hideButton]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {boolean} [round]
+ * @property {boolean} [outline]
+ * @property {boolean} [hideButton]
+ */
 
-	/** @type {Props} */
-	const {
-		class: className = '',
-		round = false,
-		outline = false,
-		hideButton = false
-	} = $props();
+/** @type {Props} */
+const {
+	class: className = '',
+	round = false,
+	outline = false,
+	hideButton = false
+} = $props();
+
 
 const showArchive = writable(false);
 let archiveIsVisible = $state(false);
@@ -127,6 +126,19 @@ onMount(() => {
 onDestroy(() => {
 	if (el) el.remove();
 });
+
+
+
+function onToastClick (e, notification) {
+	e.preventDefault();
+	notification.cb(notification.id);
+}
+
+function onToastCloseClick (e, notification) {
+	e.stopPropagation();
+	hideNotification(notification.id);
+}
+
 
 
 function addEvents () {

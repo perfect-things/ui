@@ -13,7 +13,7 @@
 	bind:this={element}>
 
 	{#if title}
-		<details open={open} onkeydown={toggle} onclick={toggle}>
+		<details {open} onkeydown={e => toggle(e)} onclick={e => toggle(e)}>
 			<summary class="panel-header" bind:this={headerEl} inert={!collapsible}>
 				{title}
 				{#if collapsible}
@@ -29,44 +29,47 @@
 
 <script>
 import './Panel.css';
-import { createEventDispatcher , onMount } from 'svelte';
+import { onMount } from 'svelte';
 import { getIcon } from '../icon';
 import { animate } from '../utils';
-const dispatch = createEventDispatcher();
 
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {string} [title]
-	 * @property {boolean} [open]
-	 * @property {boolean} [round]
-	 * @property {boolean} [collapsible]
-	 * @property {boolean} [disabled]
-	 * @property {boolean} [info]
-	 * @property {boolean} [success]
-	 * @property {boolean} [warning]
-	 * @property {boolean} [danger]
-	 * @property {any} [element]
-	 * @property {import('svelte').Snippet} [children]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [title]
+ * @property {boolean} [open]
+ * @property {boolean} [round]
+ * @property {boolean} [collapsible]
+ * @property {boolean} [disabled]
+ * @property {boolean} [info]
+ * @property {boolean} [success]
+ * @property {boolean} [warning]
+ * @property {boolean} [danger]
+ * @property {any} [element]
+ * @property {function} [onopen]
+ * @property {function} [onclose]
+ * @property {import('svelte').Snippet} [children]
+ */
 
-	/** @type {Props} */
-	let {
-		class: className = '',
-		title = '',
-		open = $bindable(false),
-		round = false,
-		collapsible = false,
-		disabled = false,
-		info = false,
-		success = false,
-		warning = false,
-		danger = false,
-		element = $bindable(undefined),
-		children
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	title = '',
+	open = $bindable(false),
+	round = false,
+	collapsible = false,
+	disabled = false,
+	info = false,
+	success = false,
+	warning = false,
+	danger = false,
+	element = $bindable(undefined),
+	onopen = () => {},
+	onclose = () => {},
+	children
+} = $props();
 
 
 let headerEl = $state(), expanded = $state(open || !title);
@@ -113,13 +116,13 @@ export function toggle (e) {
 		animate(element, expandedProps, collapsedProps)
 			.then(() => {
 				open = expanded;
-				dispatch('close');
+				onclose();
 			});
 	}
 	else {
 		expanded = true;
 		open = true;
-		animate(element, collapsedProps, expandedProps).then(() => dispatch('open'));
+		animate(element, collapsedProps, expandedProps).then(() => onopen());
 	}
 }
 

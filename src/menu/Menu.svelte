@@ -7,42 +7,44 @@
 
 <script>
 import './Menu.css';
-import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
+import { onDestroy, onMount, setContext } from 'svelte';
 import { addArias, removeArias } from './utils.js';
 import initLongPressEvent from './longpress.js';
 import { alignItem, throttle, debounce, isMobile } from '../utils.js';
 
-const dispatch = createEventDispatcher();
 const isAnyMobile = isMobile();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
 // safari does not translate contextmenu to longpress
 const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {any} [type] - can be undefined or 'context'
+ * @property {string} [targetSelector] - target element for context menu
+ * @property {boolean} [closeOnClick]
+ * @property {any} [align] - can be 'left', 'right' or 'center'
+ * @property {any} [valign] - can be 'top' or 'bottom' (preference only, as screen size/position decides ultimately)
+ * @property {any} [element]
+ * @property {import('svelte').Snippet} [children]
+ * @property {function} [onopen] - callback when the menu is opened
+ * @property {function} [onclose] - callback when the menu is closed
+ */
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {any} [type] - can be undefined or 'context'
-	 * @property {string} [targetSelector] - target element for context menu
-	 * @property {boolean} [closeOnClick]
-	 * @property {any} [align] - can be 'left', 'right' or 'center'
-	 * @property {any} [valign] - can be 'top' or 'bottom' (preference only, as screen size/position decides ultimately)
-	 * @property {any} [element]
-	 * @property {import('svelte').Snippet} [children]
-	 */
-
-	/** @type {Props} */
-	let {
-		class: className = '',
-		type = undefined,
-		targetSelector = 'body',
-		closeOnClick = true,
-		align = undefined,
-		valign = undefined,
-		element = $bindable(undefined),
-		children
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	type = undefined,
+	targetSelector = 'body',
+	closeOnClick = true,
+	align = undefined,
+	valign = undefined,
+	element = $bindable(undefined),
+	children,
+	onopen = () => {},
+	onclose = () => {},
+} = $props();
 
 
 const menuButtons = [];
@@ -98,14 +100,14 @@ export function open (e) {
 	openEvent = e;
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		if (element.parentElement !== document.body) {
-			document.body.appendChild(element);
+		if (element?.parentElement !== document.body) {
+			if (element) document.body.appendChild(element);
 		}
 		indexButtons();
 		// needs to finish rendering first
 		updatePosition();
 
-		dispatch('open', { event: e, target: targetEl });
+		onopen({ event: e, target: targetEl });
 		if (element) element.focus();
 		requestAnimationFrame(resolve);
 		if (!isAnyMobile || type !== 'context') addEventListeners();
@@ -141,7 +143,7 @@ function _close () {
 	removeArias(targetEl);
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		dispatch('close', { target: targetEl });
+		onclose({ target: targetEl });
 		removeEventListeners();
 		focusTarget();
 		requestAnimationFrame(resolve);
@@ -337,13 +339,13 @@ function focusPrev () {
 /*** FOCUS & HIGHLIGHT ****************************************************************************/
 
 
-	export {
-		className,
-		type,
-		targetSelector,
-		closeOnClick,
-		align,
-		valign,
-		element,
-	};
+export {
+	className,
+	type,
+	targetSelector,
+	closeOnClick,
+	align,
+	valign,
+	element,
+};
 </script>

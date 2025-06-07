@@ -80,7 +80,7 @@ function _show (e) {
 	showTimer = null;
 	shownEvent = e.type;
 	requestAnimationFrame(() => {
-		if (element.parentElement !== document.body) {
+		if (element?.parentElement !== document.body && element) {
 			document.body.appendChild(element);
 		}
 

@@ -10,8 +10,8 @@
 	tabindex={disabled || !clickable ? undefined : 0}
 	inert={disabled || !clickable}
 	bind:this={element}
-	{onkeydown}
-	{onclick}>
+	onkeydown={_onkeydown}
+	onclick={_onclick}>
 	{#if icon}
 		<Icon name={icon}/>
 	{/if}
@@ -20,44 +20,45 @@
 
 <script>
 import './Tag.css';
-import { createEventDispatcher } from 'svelte';
 import { Icon } from '../icon';
 import { isColorDark } from '../utils';
 
-const dispatch = createEventDispatcher();
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {boolean} [round]
-	 * @property {any} [icon]
-	 * @property {any} [color]
-	 * @property {any} [element]
-	 * @property {boolean} [disabled]
-	 * @property {boolean} [clickable]
-	 * @property {import('svelte').Snippet} [children]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {boolean} [round]
+ * @property {any} [icon]
+ * @property {any} [color]
+ * @property {any} [element]
+ * @property {boolean} [disabled]
+ * @property {boolean} [clickable]
+ * @property {function} [onclick] - Callback function when the tag is clicked
+ * @property {import('svelte').Snippet} [children]
+ */
 
-	/** @type {Props} */
-	let {
-		class: className = '',
-		round = false,
-		icon = undefined,
-		color = undefined,
-		element = $bindable(undefined),
-		disabled = false,
-		clickable = false,
-		children
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	round = false,
+	icon = undefined,
+	color = undefined,
+	element = $bindable(undefined),
+	disabled = false,
+	clickable = false,
+	onclick = () => {},
+	children
+} = $props();
 
-const colorClass = ($derived(['info', 'warning', 'danger', 'success'].includes(color) ? color : ''));
 
-function onclick (e) {
-	dispatch('click', { target: element, originalEvent: e });
+const colorClass = $derived(['info', 'warning', 'danger', 'success'].includes(color) ? color : '');
+
+function _onclick (e) {
+	onclick({ target: element, originalEvent: e });
 }
 
-function onkeydown (e) {
-	if (e.key === 'Enter' || e.key === ' ') onclick(e);
+function _onkeydown (e) {
+	if (e.key === 'Enter' || e.key === ' ') _onclick(e);
 }
 </script>

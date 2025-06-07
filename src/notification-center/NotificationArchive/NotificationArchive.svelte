@@ -1,15 +1,15 @@
 <div class="notification-archive" bind:this={el} inert={!show} class:expanded class:inert={!show}>
 	<header>
 		{#if archived.length}
-			<h2><Button icon="chevronRight" text on:click={toggle}> Recent notifications ({archived.length})</Button></h2>
+			<h2><Button icon="chevronRight" text onclick={e => toggle(e)}> Recent notifications ({archived.length})</Button></h2>
 			<div class="notification-archive-buttons">
-				<Button text on:click={clearAll}>Clear all</Button>
-				<Button text class="btn-close" on:click={() => (show = false)}>&times;</Button>
+				<Button text class="btn-clear" onclick={e => clearAll(e)}>Clear all</Button>
+				<Button text class="btn-close" onclick={() => (show = false)}>&times;</Button>
 			</div>
 		{:else}
 			<h2>No recent notifications</h2>
 			<div class="notification-archive-buttons">
-				<Button text class="btn-close" on:click={() => (show = false)}>&times;</Button>
+				<Button text class="btn-close" onclick={() => (show = false)}>&times;</Button>
 			</div>
 		{/if}
 	</header>
@@ -46,14 +46,17 @@ import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
 import { getNextNotification } from '../utils.js';
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {boolean} [show]
-	 * @property {boolean} [expanded]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {boolean} [show]
+ * @property {boolean} [expanded]
+ */
 
-	/** @type {Props} */
-	let { show = $bindable(false), expanded = $bindable(false) } = $props();
+/** @type {Props} */
+let {
+	show = $bindable(false),
+	expanded = $bindable(false),
+} = $props();
 
 const duration = $ANIMATION_SPEED;
 

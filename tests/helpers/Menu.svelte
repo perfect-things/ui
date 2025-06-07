@@ -1,4 +1,5 @@
-<Button class="open-menu-button" on:click="{menu.open}">Open Menu</Button>
+<Button class="open-menu-button" onclick={e => menu.open(e)}>Open Menu</Button>
+
 <Menu class="test-menu" bind:this="{menu}">
 	<MenuItem><Icon name="plus"/> Add</MenuItem>
 	<MenuSeparator />

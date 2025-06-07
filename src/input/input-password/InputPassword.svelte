@@ -24,11 +24,11 @@
 				aria-required={required}
 				bind:this={inputElement}
 				{oninput}
-				onkeydown={bubble('keydown')}
-				onchange={bubble('change')}
-				onfocus={bubble('focus')}
-				onblur={bubble('blur')}>
-			<Button link icon={visible ? 'eye' : 'eyeOff'} class="input-password-button" on:click={toggle}/>
+				{onkeydown}
+				{onchange}
+				{onfocus}
+				{onblur}>
+			<Button link icon={visible ? 'eye' : 'eyeOff'} class="input-password-button" onclick={toggle}/>
 		</div>
 
 		{#if strength && lib && value}
@@ -49,10 +49,8 @@
 </div>
 
 <script>
-import { run, createBubbler } from 'svelte/legacy';
-
-const bubble = createBubbler();
 import './InputPassword.css';
+import { run } from 'svelte/legacy';
 import { onMount, createEventDispatcher } from 'svelte';
 import { Button } from '../../button';
 import { guid } from '../../utils';
@@ -93,6 +91,10 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
+	onkeydown = () => {},
+	onchange = () => {},
+	onfocus = () => {},
+	onblur = () => {},
 	...rest
 } = $props();
 

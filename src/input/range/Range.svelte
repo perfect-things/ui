@@ -34,16 +34,13 @@
 			aria-errormessage={error ? errorMessageId : undefined}
 			bind:this={inputElement}
 			bind:value={value}
-			onchange={bubble('change')}
-			oninput={bubble('input')}>
+			{onchange}
+			{oninput}>
 	</div>
 </div>
 
 
 <script>
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 import './Range.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -52,47 +49,47 @@ import { Label } from '../label';
 
 
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {boolean} [disabled]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {any} [title]
+ * @property {any} [name]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {number} [min]
+ * @property {number} [max]
+ * @property {number} [step]
+ * @property {any} [value]
+ * @property {boolean} [hideTicks]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ */
 
-
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {string} [id]
-	 * @property {boolean} [disabled]
-	 * @property {string} [label]
-	 * @property {any} [error]
-	 * @property {any} [info]
-	 * @property {any} [title]
-	 * @property {any} [name]
-	 * @property {boolean} [labelOnTheLeft]
-	 * @property {number} [min]
-	 * @property {number} [max]
-	 * @property {number} [step]
-	 * @property {any} [value]
-	 * @property {boolean} [hideTicks]
-	 * @property {any} [element]
-	 * @property {any} [inputElement]
-	 */
-
-	/** @type {Props} */
-	let {
-		class: className = '',
-		id = '',
-		disabled = false,
-		label = '',
-		error = undefined,
-		info = undefined,
-		title = undefined,
-		name = undefined,
-		labelOnTheLeft = false,
-		min = 0,
-		max = 10,
-		step = 1,
-		value = $bindable(min),
-		hideTicks = false,
-		element = $bindable(undefined),
-		inputElement = $bindable(undefined)
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	id = '',
+	disabled = false,
+	label = '',
+	error = undefined,
+	info = undefined,
+	title = undefined,
+	name = undefined,
+	labelOnTheLeft = false,
+	min = 0,
+	max = 10,
+	step = 1,
+	value = $bindable(min),
+	hideTicks = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onchange = () => {},
+	oninput = () => {}
+} = $props();
 
 const errorMessageId = guid();
 

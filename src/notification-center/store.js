@@ -19,6 +19,7 @@ export const flip = (node, animations, params) => _flip(node, animations, { dura
 
 export const [send, receive] = crossfade({
 	duration: d => d,
+	// @ts-ignore
 	fallback (node, params) {
 		const style = getComputedStyle(node);
 		const transform = style.transform === 'none' ? '' : style.transform;
@@ -69,7 +70,8 @@ function getProgress (id) {
  * If this is done using svelte's props & store, the flip animation will be jagged (as the notification is re-rendered).
  */
 function applyProgress (id, progress) {
-	const el = document.querySelector(`[data-id="${id}"] .notification-progress`);
+	const el = document?.querySelector(`[data-id="${id}"] .notification-progress`);
+	// @ts-ignore
 	if (el) el.style.width = `${progress}%`;
 }
 

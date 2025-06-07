@@ -1,0 +1,48 @@
+import { expect, test } from 'vitest';
+import { flushSync, mount, unmount } from 'svelte';
+import Tooltip from './helpers/Tooltip.svelte';
+import userEvent from '@testing-library/user-event';
+
+
+test('Tooltip', async () => {
+	const props = $state({});
+
+	const component = mount(Tooltip, { target: document.body, props });
+
+	const btn = document.body.querySelector('#box1');
+	await userEvent.hover(btn);
+
+	let tooltip = document.body.querySelector('.tooltip-content');
+	expect(tooltip).toBeInTheDocument();
+	expect(tooltip.parentNode).toHaveClass('test-class');
+	expect(tooltip).toHaveTextContent('Some tooltip text');
+
+	await userEvent.unhover(btn);
+	flushSync();
+	// expect(tooltip).not.toBeInTheDocument();
+
+	await userEvent.hover(btn);
+	flushSync();
+	tooltip = document.body.querySelector('.tooltip-content');
+	expect(tooltip).toBeInTheDocument();
+
+	// test color variations
+	const plate = document.body.querySelector('.tooltip-plate');
+	expect(plate).toBeInTheDocument();
+
+	const types = ['success', 'danger', 'warning', 'info'];
+	for (const type of types) {
+		props[type] = true;
+		flushSync();
+		expect(plate).toHaveClass(type);
+		props[type] = false;
+	}
+
+
+	// test closing with Escape
+	// await userEvent.keyboard('[Escape]');
+	// flushSync();
+	// expect(tooltip).not.toBeInTheDocument();
+
+	unmount(component);
+});

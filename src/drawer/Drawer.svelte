@@ -19,7 +19,6 @@
 {/if}
 <script>
 import './Drawer.css';
-import { createEventDispatcher } from 'svelte';
 import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 import { Button } from '../button';
@@ -30,6 +29,8 @@ import { Button } from '../button';
  * @property {string} [class]
  * @property {string} [title]
  * @property {any} [element]
+ * @property {function} [onopen]
+ * @property {function} [onclose]
  * @property {import('svelte').Snippet} [children]
  */
 
@@ -38,11 +39,12 @@ let {
 	class: className = '',
 	title = 'Drawer',
 	element = $bindable(undefined),
+	onopen = () => {},
+	onclose = () => {},
 	children
 } = $props();
 
 
-const dispatch = createEventDispatcher();
 let isVisible = $state(false);
 let headerEl = $state(), targetBtn;
 
@@ -73,15 +75,15 @@ export function toggle (target) {
 export function open (target) {
 	targetBtn = target || document.activeElement;
 	isVisible = true;
-	requestAnimationFrame(() => headerEl.querySelector('.btn-close').focus());
-	dispatch('open');
+	requestAnimationFrame(() => headerEl?.querySelector('.btn-close').focus());
+	onopen();
 }
 
 
 export function close () {
 	isVisible = false;
 	if (targetBtn) targetBtn.focus();
-	dispatch('close');
+	onclose();
 }
 
 

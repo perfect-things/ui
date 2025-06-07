@@ -3,8 +3,8 @@
 	role="tree"
 	aria-label={title}
 	{title}
-	tabindex="0"
 	bind:this={element}
+	tabindex="0"
 	onfocus={selectFirst}
 	onclick={selectClicked}
 	{onkeydown}>
@@ -16,29 +16,29 @@
 
 <script>
 import './Tree.css';
-import { createEventDispatcher } from 'svelte';
 import TreeNode from './TreeNode.svelte';
 
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {any} [items]
-	 * @property {any} [title]
-	 * @property {any} element
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {any} [items]
+ * @property {any} [title]
+ * @property {any} element
+ */
 
-	/** @type {Props} */
-	let {
-		class: className = '',
-		items = [],
-		title = undefined,
-		element = $bindable()
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	items = [],
+	title = undefined,
+	element = $bindable(),
+	select = () => {},
+	keydown = () => {},
+} = $props();
 
 
-const dispatch = createEventDispatcher();
 let selectedItem;
 
 
@@ -52,7 +52,7 @@ function unselectAll () {
 }
 
 
-function select (node) {
+function _select (node) {
 	if (!node || selectedItem === node) return;
 	unselectAll();
 	selectedItem = node;
@@ -61,45 +61,45 @@ function select (node) {
 		selectedItem.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 	}
 	const item = tryToGetSelectedItem();
-	dispatch('select', { selectedItem, item });
+	select({ selectedItem, item });
 }
 
 
 function selectClicked (e) {
-	select(e.target.closest('.tree-node'));
+	_select(e.target.closest('.tree-node'));
 }
 
 
 function selectFirst () {
-	select(getVisibleNodes()[0]);
+	_select(getVisibleNodes()[0]);
 }
 
 function selectFirstChild () {
 	const children = selectedItem.nextElementSibling;
 	if (!children) return;
 	const firstChild = children.querySelector('.tree-node');
-	if (firstChild) select(firstChild);
+	if (firstChild) _select(firstChild);
 }
 
 
 function selectPrev () {
 	const nodes = getVisibleNodes();
 	const idx = nodes.indexOf(selectedItem);
-	if (idx > 0) select(nodes[idx - 1]);
+	if (idx > 0) _select(nodes[idx - 1]);
 }
 
 
 function selectNext () {
 	const nodes = getVisibleNodes();
 	const idx = nodes.indexOf(selectedItem);
-	if (idx < nodes.length - 1) select(nodes[idx + 1]);
+	if (idx < nodes.length - 1) _select(nodes[idx + 1]);
 }
 
 
 function selectParent () {
 	const level = +selectedItem.dataset.level;
 	if (level === 0) return selectFirst();
-	select(selectedItem.parentElement.parentElement.previousElementSibling);
+	_select(selectedItem.parentElement.parentElement.previousElementSibling);
 }
 
 
@@ -147,7 +147,7 @@ function onkeydown (e) {
 		keyMap[e.key](e);
 	}
 	const item = tryToGetSelectedItem();
-	dispatch('keydown', { event: e, selectedItem, item });
+	keydown({ event: e, selectedItem, item });
 }
 
 

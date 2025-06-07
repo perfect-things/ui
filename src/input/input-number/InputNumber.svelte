@@ -13,9 +13,9 @@
 		<input
 			type="text"
 			autocomplete="off"
+			id={_id}
 			{name}
 			{disabled}
-			id={_id}
 			{...rest}
 			aria-invalid={error}
 			aria-errormessage={error ? errorMessageId : undefined}
@@ -26,16 +26,13 @@
 			{onchange}
 			{onpaste}
 			{ondrop}
-			oninput={bubble('input')}
-			onfocus={bubble('focus')}
-			onblur={bubble('blur')}>
+			{oninput}
+			{onfocus}
+			{onblur}>
 	</div>
 </div>
 
 <script>
-import { createBubbler } from 'svelte/legacy';
-
-const bubble = createBubbler();
 import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -60,6 +57,9 @@ import { Label } from '../label';
  * @property {boolean} [labelOnTheLeft]
  * @property {any} [element]
  * @property {any} [inputElement]
+ * @property {function} [oninput]
+ * @property {function} [onfocus]
+ * @property {function} [onblur]
  */
 
 /** @type {Props & { [key: string]: any }} */
@@ -77,6 +77,9 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
+	oninput = undefined,
+	onfocus = undefined,
+	onblur = undefined,
 	...rest
 } = $props();
 

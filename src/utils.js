@@ -38,6 +38,7 @@ export function animate (el, from, to, _options = {}) {
 
 	return new Promise(resolve => {
 		requestAnimationFrame(() => {
+			if (!el || !el.animate) return;
 			const anim = el.animate([from, to], opts);
 			anim.oncancel = resolve;
 			anim.onfinish = resolve;
@@ -278,8 +279,8 @@ export function alignItem ({
 	setMinWidthToTarget = false,
 }) {
 	if (!element || !target) return;
-	const winH = window.visualViewport.height || window.innerHeight;
-	const winW = window.visualViewport.width || window.innerWidth;
+	const winH = window.visualViewport?.height || window.innerHeight;
+	const winW = window.visualViewport?.width || window.innerWidth;
 
 	let targetBox = {};
 	let top, left;
@@ -290,9 +291,11 @@ export function alignItem ({
 	// target is a context | longpress event
 	if (target instanceof Event && (target.type === 'contextmenu' || target.type === 'longpress')) {
 		if (target.type === 'contextmenu') {
+			// @ts-ignore
 			targetBox = { top: target.y, left: target.x, };
 		}
 		else if (target.type === 'longpress') {
+			// @ts-ignore
 			targetBox = { top: target.detail.y, left: target.detail.x, };
 		}
 		targetBox.height = 0;
@@ -410,6 +413,7 @@ function isScrollable (node) {
  * @returns boolean
  */
 export function isInScrollable (node) {
+	// @ts-ignore
 	if (!(node instanceof HTMLElement || node instanceof SVGElement)) return false;
 	if (isScrollable(node)) return true;
 

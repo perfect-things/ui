@@ -1,4 +1,3 @@
-<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	{id}
 	{title}
@@ -28,7 +27,7 @@
 						value={item.value}
 						checked={item.value === value}
 						disabled={disabled || item.disabled}
-						onchange={e => onchange(e, item)}>
+						onchange={e => _onchange(e, item)}>
 					<Label disabled={disabled || item.disabled} for={item.id} label={item.name}/>
 				</div>
 			{/each}
@@ -37,7 +36,6 @@
 </div>
 <script>
 import './Radio.css';
-import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -46,47 +44,48 @@ import { Label } from '../label';
 
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {string} [id]
-	 * @property {any} [name]
-	 * @property {any} [title]
-	 * @property {string} [label]
-	 * @property {boolean} [disabled]
-	 * @property {any} [items]
-	 * @property {string} [value]
-	 * @property {string} [error]
-	 * @property {string} [info]
-	 * @property {boolean} [labelOnTheLeft]
-	 * @property {any} [element]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {any} [name]
+ * @property {any} [title]
+ * @property {string} [label]
+ * @property {boolean} [disabled]
+ * @property {any} [items]
+ * @property {string} [value]
+ * @property {string} [error]
+ * @property {string} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {function} [onchange] - Callback function when the value changes
+ */
 
-	/** @type {Props} */
-	let {
-		class: className = '',
-		id = '',
-		name = guid(),
-		title = undefined,
-		label = '',
-		disabled = false,
-		items = [],
-		value = $bindable(''),
-		error = '',
-		info = '',
-		labelOnTheLeft = false,
-		element = $bindable(undefined)
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	title = undefined,
+	label = '',
+	disabled = false,
+	items = [],
+	value = $bindable(''),
+	error = '',
+	info = '',
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	onchange = () => {},
+} = $props();
 
-const dispatch = createEventDispatcher();
+
 const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
 
 const _items = $derived(items.map(item => {
 	if (typeof item === 'string') item = { name: item, value: item };
-	item.id = item.id || guid();
-	return item;
+	return { ...item, id: item.id || guid() };
 }));
 
 
@@ -99,9 +98,9 @@ function onmousedown (e) {
 	}
 }
 
-function onchange (event, item) {
+function _onchange (event, item) {
 	value = item.value;
-	dispatch('change', { event, value, item });
+	onchange({ event, value, item });
 }
 
 </script>

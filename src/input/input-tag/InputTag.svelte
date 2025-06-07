@@ -1,6 +1,5 @@
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with beforeUpdate. Please migrate by hand. -->
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with beforeUpdate. Please migrate by hand. -->
-<!-- svelte-ignore a11y-no-static-element-interactions a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
 	{title}
 	class="input input-tag {className}"
@@ -17,8 +16,8 @@
 		class:disabled
 		inert={disabled}
 		tabindex="0"
-		on:keydown={onkeydown}
-		on:click={open}
+		onkeydown={onkeydown}
+		onclick={open}
 		bind:this={boxElement}>
 
 		<InputError id={errorMessageId} msg={error} />
@@ -26,7 +25,7 @@
 		<div class="input-row">
 			<Icon name="tag"/>
 			{#each _value as tag}
-				<Tag icon="close" clickable on:click={e => removeTagFromValue(tag, e)}>{tag}</Tag>
+				<Tag icon="close" clickable onclick={() => removeTagFromValue(tag)}>{tag}</Tag>
 			{/each}
 
 			<input
@@ -34,7 +33,7 @@
 				{disabled}
 				id={_id}
 				type="hidden"
-				bind:value={value}
+				{value}
 				bind:this={inputElement}/>
 		</div>
 	</div>
@@ -45,16 +44,16 @@
 	dontHideOnTargetClick
 	setMinWidthToTarget
 	class="input-tag-popover"
-	on:close={onclose}
+	onclose={onclose}
 	bind:element={listElement}
 	bind:this={listPopover}>
 
 	<div class="input-tag-list-tags">
 		{#each _tags as tag(tag.text)}
-			<Tag clickable icon="add" disabled={tag.disabled} on:click={() => addTagToValue(tag.text)}>{tag.text}</Tag>
+			<Tag clickable icon="add" disabled={tag.disabled} onclick={() => addTagToValue(tag.text)}>{tag.text}</Tag>
 		{/each}
 	</div>
-	<form class="input-tag-list-add-row" on:submit|preventDefault={addNewTag}>
+	<form class="input-tag-list-add-row" onsubmit={addNewTag}>
 		<InputText bind:value={newTagName}/>
 		<Button submit link icon="add"/>
 	</form>
@@ -62,7 +61,6 @@
 
 <script>
 import './InputTag.css';
-import { beforeUpdate, createEventDispatcher } from 'svelte';
 import { InputText } from '../input-text';
 import { Button } from '../../button';
 import { Popover } from '../../popover';
@@ -74,36 +72,62 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = '';
-export let disabled = false;
-export let title = false;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-export let value = '';
-export let tags = [];
 
-export let element = undefined;
-export let inputElement = undefined;
-export let boxElement = undefined;
-export let listElement = undefined;
 
-const dispatch = createEventDispatcher();
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {boolean} [disabled]
+ * @property {string} [value]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [name]
+ * @property {any} [title]
+ * @property {any} [tags]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ * @property {any} [boxElement]
+ * @property {any} [listElement]
+ * @property {function} [onchange]
+ */
+
+/** @type {Props & { [key: string]: any }} */
+let {
+	class: className = '',
+	id = '',
+	name = '',
+	title = false,
+	disabled = false,
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	tags = [],
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	boxElement = $bindable(undefined),
+	listElement = $bindable(undefined),
+	onchange = () => {},
+} = $props();
+
+
+
 const errorMessageId = guid();
-let newTagName = '';
 let opened = false;
 let listPopover;
-let _tags = [];
 
-$:_id = id || name || guid();
-$:_value = valueToArray(value);
+let newTagName = $state('');
+let _tags = $state([]);
+
+const _id = $derived(id || name || guid());
+const _value = $derived(valueToArray(value));
 
 
-beforeUpdate(hydrateTags);
+$effect(hydrateTags);
 
 
 function hydrateTags () {
@@ -148,9 +172,9 @@ function valueToArray (val) {
 
 function setValue (arr) {
 	// unique list of tags
-	value = [...new Set(arr)].join(', ');
+	value = [...new Set(arr)].join(',');
 	updatePosition();
-	dispatch('change', { value });
+	onchange({ value });
 }
 
 function addTagToValue (tag) {
@@ -160,22 +184,19 @@ function addTagToValue (tag) {
 }
 
 
-function removeTagFromValue (tag, e) {
-	if (e && e.detail && e.detail.originalEvent) e.detail.originalEvent.stopPropagation();
-
+function removeTagFromValue (tag) {
 	const val = valueToArray(value).filter(t => t !== tag);
-	// wait for docclick in popover to fire
-	// before removing the tag from the value
-	// so that the popover can check that the click was within the target and do nothing
-	requestAnimationFrame(() => setValue(val));
+	setValue(val);
 }
 
 
-function addNewTag () {
+function addNewTag (e) {
+	e.preventDefault();
 	const val = valueToArray(value);
 	const newTags = valueToArray(newTagName);
 	newTagName = '';
-	requestAnimationFrame(() => setValue([...val, ...newTags]));
+	// requestAnimationFrame(() => setValue([...val, ...newTags]));
+	setValue([...val, ...newTags]);
 }
 
 </script>

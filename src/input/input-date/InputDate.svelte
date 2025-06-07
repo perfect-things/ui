@@ -1,5 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 <div
 	class="input input-date {className}"
 	class:open
@@ -21,8 +19,8 @@
 				icon="calendar"
 				class="input-date-button"
 				tabindex="-1"
-				on:mousedown={onIconMouseDown}
-				on:click={onIconClick}/>
+				onmousedown={onIconMouseDown}
+				onclick={onIconClick}/>
 
 			{#if useNative}
 				<input
@@ -35,7 +33,7 @@
 					{name}
 					{disabled}
 					id={_id}
-					on:change={onchange}
+					onchange={onchange}
 					bind:this={inputElement}
 					bind:value={value}>
 			{:else}
@@ -46,17 +44,17 @@
 					aria-invalid={error}
 					aria-errormessage={error ? errorMessageId : undefined}
 					aria-required={required}
+					id={_id}
 					{placeholder}
 					{title}
 					{name}
 					{disabled}
-					id={_id}
-					on:changeDate={onchange}
-					on:input={oninput}
-					on:keydown|capture={onkeydown}
-					on:show={onshow}
-					on:hide={onhide}
-					on:blur={onblur}
+					{oninput}
+					{onshow}
+					{onhide}
+					{onblur}
+					onchangeDate={onchange}
+					onkeydowncapture={onkeydown}
 					bind:this={inputElement}
 					bind:value={value}>
 			{/if}
@@ -66,7 +64,7 @@
 
 <script>
 import './InputDate.css';
-import { onMount, afterUpdate, createEventDispatcher } from 'svelte';
+import { onMount, createEventDispatcher } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
 import { Button } from '../../button';
@@ -76,44 +74,75 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let format = 'yyyy-mm-dd';
-export let value = '';
-export let placeholder = format;
-export let elevate = false;
-export let showOnFocus = false;
-export let orientation = 'auto';	// '[left|right|auto] [top|bottom|auto]'
-export let disabled = false;
-export let required = undefined;
-export let id = '';
-export let label = '';
-export let title = undefined;
-export let name = undefined;
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-export let useNativeOnMobile = false;
 
-export let element = undefined;
-export let inputElement = undefined;
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {any} [name]
+ * @property {any} [disabled]
+ * @property {any} [required]
+ * @property {string} [value]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {string} [separator] - decimal separator
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ * @property {string} [format] - date format, default 'yyyy-mm-dd'
+ * @property {string} [placeholder] - placeholder text, default is the same as format
+ * @property {boolean} [elevate] - if true, the datepicker will be elevated to the body
+ * @property {boolean} [showOnFocus] - if true, the datepicker will be shown on focus
+ * @property {string} [orientation] - datepicker orientation, default 'auto'
+ * @property {string} [title] - input title
+ * @property {boolean|string} [useNativeOnMobile] - if true, the native date input will be used on mobile devices
+ *
+ */
 
-$:_id = id || name || guid();
-$:elevated = elevate === true || elevate === 'true';
+/** @type {Props & { [key: string]: any }} */
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	disabled = undefined,
+	required = undefined,
+	value = $bindable(),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	format = 'yyyy-mm-dd',
+	placeholder = format,
+	elevate = false,
+	showOnFocus = false,
+	orientation = 'auto',	// '[left|right|auto] [top|bottom|auto]'
+	title = undefined,
+	useNativeOnMobile = false,
+} = $props();
 
+
+let picker;
+let isHiding = false;
 const errorMessageId = guid();
 const dispatch = createEventDispatcher();
 const useNative = isMobile() && (useNativeOnMobile === true || useNativeOnMobile === 'true');
 
-let picker;
-let open = !!useNative;
-let isHiding = false;
+let open = $state(!!useNative);
+
+const _id = $derived(id || name || guid());
+const elevated = $derived(elevate === true || elevate === 'true');
+
+
 
 
 onMount(initDatePicker);
-afterUpdate(() => {
+$effect(() => {
 	if (value !== picker.getDate(format)) oninput();
 });
+
 
 function initDatePicker () {
 	if (useNative) return;

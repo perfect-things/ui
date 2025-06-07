@@ -23,7 +23,7 @@
 				aria-required={required}
 				bind:value={value}
 				bind:this={inputElement}
-				onchange={bubble('change')}>
+				{onchange}>
 
 				{#if placeholder}
 					<option value="">{placeholder}</option>
@@ -45,9 +45,6 @@
 </div>
 
 <script>
-	import { run, createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 import './Select.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -56,44 +53,45 @@ import { Label } from '../label';
 
 
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {boolean} [disabled]
+ * @property {any} [required]
+ * @property {any} [value]
+ * @property {any} [placeholder]
+ * @property {any} [items]
+ * @property {any} [title]
+ * @property {any} [name]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ * @property {function} [onchange] - function to call when select value changes
+ */
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {string} [id]
-	 * @property {boolean} [disabled]
-	 * @property {any} [required]
-	 * @property {any} [value]
-	 * @property {any} [placeholder]
-	 * @property {any} [items]
-	 * @property {any} [title]
-	 * @property {any} [name]
-	 * @property {string} [label]
-	 * @property {any} [error]
-	 * @property {any} [info]
-	 * @property {boolean} [labelOnTheLeft]
-	 * @property {any} [element]
-	 * @property {any} [inputElement]
-	 */
-
-	/** @type {Props} */
-	let {
-		class: className = '',
-		id = '',
-		disabled = false,
-		required = undefined,
-		value = $bindable(undefined),
-		placeholder = undefined,
-		items = [],
-		title = undefined,
-		name = undefined,
-		label = '',
-		error = undefined,
-		info = undefined,
-		labelOnTheLeft = false,
-		element = $bindable(undefined),
-		inputElement = $bindable(undefined)
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	id = '',
+	disabled = false,
+	required = undefined,
+	value = $bindable(undefined),
+	placeholder = undefined,
+	items = [],
+	title = undefined,
+	name = undefined,
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onchange = () => {}
+} = $props();
 
 
 let groups = $state([]);
@@ -101,7 +99,7 @@ const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
 
-run(() => {
+$effect(() => {
 	const nogroup = [];
 	const _groups = {};
 	items.forEach(item => {

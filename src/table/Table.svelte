@@ -4,50 +4,53 @@
 	class:round
 	class:selectable={_selectable}
 	bind:this={element}
-	onclick={onClick}
+	onclick={_onclick}
 	onfocuscapture={onFocus}
-	onkeydown={onKeyDown}
-	ondblclick={onDblClick}>
+	onkeydown={_onkeydown}
+	ondblclick={_ondblclick}>
 
 	<table>{@render children?.()}</table>
 </div>
 
 <script>
 import './Table.css';
-import { onDestroy, onMount, createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
+import { onDestroy, onMount } from 'svelte';
 
 
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {boolean} [selectable]
+ * @property {boolean} [round]
+ * @property {any} [scrollContainer]
+ * @property {number} [scrollCorrectionOffset]
+ * @property {any} [element]
+ * @property {string} [rowSelector] - then tbody.row-selector can be set to allow highlighting whole groups
+ * @property {any} [data]
+ * @property {function} [onselect]
+ * @property {function} [onclick]
+ * @property {function} [ondblclick]
+ * @property {function} [onkeydown]
+ * @property {import('svelte').Snippet} [children]
+ */
 
-
-// useful for when row-groups are needed.
-
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {boolean} [selectable]
-	 * @property {boolean} [round]
-	 * @property {any} [scrollContainer]
-	 * @property {number} [scrollCorrectionOffset]
-	 * @property {any} [element]
-	 * @property {string} [rowSelector] - then tbody.row-selector can be set to allow highlighting whole groups
-	 * @property {any} [data]
-	 * @property {import('svelte').Snippet} [children]
-	 */
-
-	/** @type {Props} */
-	let {
-		class: className = '',
-		selectable = true,
-		round = false,
-		scrollContainer = undefined,
-		scrollCorrectionOffset = 0,
-		element = $bindable(undefined),
-		rowSelector = 'tbody tr',
-		data = {},
-		children
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	selectable = true,
+	round = false,
+	scrollContainer = undefined,
+	scrollCorrectionOffset = 0,
+	element = $bindable(undefined),
+	rowSelector = 'tbody tr',
+	data = {},
+	onselect = () => {},
+	onclick = () => {},
+	ondblclick = () => {},
+	onkeydown = () => {},
+	children
+} = $props();
 
 let selectedIdx = -1;
 let headerHeight = 0;
@@ -104,7 +107,7 @@ function selectPrev (skipEvent = false) {
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
+	if (!skipEvent) onselect({ selectedItem: rowEl });
 }
 
 
@@ -114,7 +117,7 @@ function selectNext (skipEvent = false) {
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
+	if (!skipEvent) onselect({ selectedItem: rowEl });
 }
 
 
@@ -149,7 +152,7 @@ function selectClicked (skipEvent = false) {
 		if (scrlCont.scrollTop < top) scrlCont.scrollTo({ top: Math.round(top) });
 	}
 
-	if (!skipEvent) dispatch('select', { selectedItem: rowEl });
+	if (!skipEvent) onselect({ selectedItem: rowEl });
 }
 
 
@@ -171,42 +174,42 @@ function onFocus (e) {
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
 		selectFocusedRow(rowEl);
-		dispatch('click', { event: e, selectedItem: rowEl });
+		onclick({ event: e, selectedItem: rowEl });
 	}
 }
 
 
-function onClick (e) {
+function _onclick (e) {
 	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	// debounce, so to not duplicate events when dblclicking
 	if (clickTimer) clearTimeout(clickTimer);
-	clickTimer = setTimeout(() => dispatch('select', { event: e, selectedItem: rowEl }), 300);
+	clickTimer = setTimeout(() => onselect({ event: e, selectedItem: rowEl }), 300);
 
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
 		selectFocusedRow(rowEl);
-		dispatch('click', { event: e, selectedItem: rowEl });
+		onclick({ event: e, selectedItem: rowEl });
 	}
 }
 
 
-function onDblClick (e) {
+function _ondblclick (e) {
 	if (!_selectable) return;
 	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
-	onClick(e);
+	onclick({ event: e });
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems()[selectedIdx];
-		dispatch('dblclick', { event: e, selectedItem });
+		ondblclick({ event: e, selectedItem });
 	});
 }
 
 
-function onKeyDown (e) {
+function _onkeydown (e) {
 	if (!_selectable) return;
 	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
@@ -232,7 +235,7 @@ function onKeyDown (e) {
 	}
 	previousKey = e.key;
 	const selectedItem = getSelectableItems()[selectedIdx];
-	dispatch('keydown', { event: e, key: e.key, selectedItem });
+	onkeydown({ event: e, key: e.key, selectedItem });
 }
 
 

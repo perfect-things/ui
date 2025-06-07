@@ -3,8 +3,8 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] fix tests that fail due to animations not running (custom svelte transitions) (all inputs!)
-- [ ]
+- [ ] fix tests that fail due to animations not running (custom svelte transitions)
+- [ ] ensure there's no commented-put `// expect...` in the code
 
 
 

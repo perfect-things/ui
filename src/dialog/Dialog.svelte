@@ -21,10 +21,8 @@
 
 <script>
 import './Dialog.css';
-import { createEventDispatcher, onMount } from 'svelte';
+import { onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
-
-
 
 
 /**
@@ -37,6 +35,8 @@ import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
  * @property {any} element
  * @property {import('svelte').Snippet} [children]
  * @property {import('svelte').Snippet} [footer]
+ * @property {() => void} [onopen]
+ * @property {() => void} [onclose]
  */
 
 /** @type {Props} */
@@ -48,10 +48,12 @@ let {
 	modal = false,
 	element = $bindable(),
 	children,
-	footer
+	footer,
+	onopen = () => {},
+	onclose = () => {},
 } = $props();
 
-const dispatch = createEventDispatcher();
+
 let dialogEl = $state();
 let contentEl = $state();
 let footerEl = $state();
@@ -67,7 +69,7 @@ onMount(() => {
 function focusFirst () {
 	let first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
-	if (!first && !last) {
+	if (!first && !last && contentEl) {
 		contentEl.setAttribute('tabindex', 0);
 		first = contentEl;
 	}
@@ -89,6 +91,7 @@ function focusLast () {
 
 
 function getFocusableElements () {
+	if (!dialogEl || !contentEl || !footerEl) return [];
 	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	return [...contentElements, ...footerElements];
@@ -169,15 +172,15 @@ export function open (openedBy) {
 		triggerEl.setAttribute('aria-expanded', 'true');
 	}
 
-	element.style.display = 'flex';
+	if (element) element.style.display = 'flex';
 	if (openTimer) clearTimeout(openTimer);
 	openTimer = setTimeout(() => {
 		opened = true;
-		element.style.display = 'flex';
+		if (element) element.style.display = 'flex';
 		if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
 		document.addEventListener('keydown', onDocKeydown);
 		freezeBody(true);
-		dispatch('open');
+		onopen();
 	}, 100);
 }
 
@@ -195,7 +198,7 @@ export function close () {
 			triggerEl.removeAttribute('aria-expanded');
 		}
 		freezeBody(false);
-		dispatch('close');
+		onclose();
 	}, $ANIMATION_SPEED);
 }
 

@@ -12,38 +12,38 @@
 <hr>
 
 <h3>Normal</h3>
-<Button on:click={popover1.open}>Open popover</Button>
+<Button onclick={(e) => popover1.open(e)}>Open popover</Button>
 
-<Button on:click={popover1top.open}>Open to top</Button>
-<Button on:click={popover1right.open}>Open to right</Button>
-<Button on:click={popover1left.open}>Open to left</Button>
+<Button onclick={(e) => popover1top.open(e)}>Open to top</Button>
+<Button onclick={(e) => popover1right.open(e)}>Open to right</Button>
+<Button onclick={(e) => popover1left.open(e)}>Open to left</Button>
 
 <Popover bind:this={popover1}>
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click={popover1.close}>Click me</Button>
+	<Button onclick={popover1.close}>Click me</Button>
 </Popover>
 
 <Popover bind:this={popover1top} position="top">
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click={popover1top.close}>Click me</Button>
+	<Button onclick={popover1top.close}>Click me</Button>
 </Popover>
 <Popover bind:this={popover1left} position="left">
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click={popover1left.close}>Click me</Button>
+	<Button onclick={popover1left.close}>Click me</Button>
 </Popover>
 <Popover bind:this={popover1right} position="right">
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click={popover1right.close}>Click me</Button>
+	<Button onclick={popover1right.close}>Click me</Button>
 </Popover>
 
 
 <h3>Target at the edge - tip should remain aligned</h3>
 <div style="display: flex; justify-content: flex-end; padding: 1rem; background-color: #0003;">
-	<Button round icon="cog" on:click={popover1.open} />
+	<Button round icon="cog" onclick={(e) => popover1.open(e)} />
 </div>
 
 <h3>No tip</h3>
@@ -51,28 +51,28 @@
 	is more similar to a dropdown rather than a tooltip or a popover,
 	so it makes sense that it also looks for the role.</p>
 
-<Button on:click={popover5.open}>Open popover</Button>
+<Button onclick={(e) => popover5.open(e)}>Open popover</Button>
 <Popover hideTip bind:this={popover5}>
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click={popover5.close}>Click me</Button>
+	<Button onclick={popover5.close}>Click me</Button>
 </Popover>
 
 
 <h3>Custom offset</h3>
-<Button on:click={popover2.open}>Open popover</Button>
+<Button onclick={(e) => popover2.open(e)}>Open popover</Button>
 <Popover bind:this={popover2} offset="-20">Smaller offset</Popover>
 
-<Button on:click={popover3.open}>Open popover</Button>
+<Button onclick={(e) => popover3.open(e)}>Open popover</Button>
 <Popover bind:this={popover3} offset="20">Bigger offset</Popover>
 
 
 <h3>Update contents</h3>
-<Button round icon="help" on:click={popover4.open} />
+<Button round icon="help" onclick={(e) => popover4.open(e)} />
 <Popover bind:this={popover4} position="top">
 	{@html content}
-	<Button success on:click={updateContent}>Update content</Button>
-	<Button on:click={popover4.close}>Close</Button>
+	<Button success onclick={updateContent}>Update content</Button>
+	<Button onclick={popover4.close}>Close</Button>
 </Popover>
 
 
@@ -115,11 +115,11 @@ const instanceApiProps = [
 
 
 const exampleHtml = `
-<Button on:click={popover1.open}>Open popover</Button>
+<Button onclick={e => popover1.open(e)}>Open popover</Button>
 <Popover bind:this={popover1}>
 	<h2>Context information</h2>
 	<p>Some text</p>
-	<Button on:click={popover1.close}>Click me</Button>
+	<Button onclick={popover1.close}>Click me</Button>
 </Popover>
 
 <script>

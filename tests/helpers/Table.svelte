@@ -1,5 +1,4 @@
-<Table class="test-class" rowSelector=".row-sel" round
-	on:keydown on:dblclick on:select on:click>
+<Table class="test-class" rowSelector=".row-sel" round {...props}>
 	<thead>
 		<tr><th>Year</th><th>Month</th><th>Price</th></tr>
 	</thead>
@@ -35,5 +34,7 @@
 
 <script>
 import { Table } from '../../src/table';
+
+const props = $props();
 
 </script>

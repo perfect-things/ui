@@ -1,5 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: Expected token >
-https://svelte.dev/e/expected_token -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
 	<div
@@ -19,46 +17,47 @@ https://svelte.dev/e/expected_token -->
 
 <script>
 import './Popover.css';
-import { createEventDispatcher } from 'svelte';
 import { addArias, removeArias } from './utils.js';
 import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils.js';
 
-const dispatch = createEventDispatcher();
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {number} [offset]
+ * @property {any} [element]
+ * @property {any} [contentEl]
+ * @property {string} [position]
+ * @property {boolean} [hideTip]
+ * @property {boolean} [dontHideOnTargetClick]
+ * @property {boolean} [setMinWidthToTarget]
+ * @property {import('svelte').Snippet} [children]
+ */
+
+/** @type {Props} */
+let {
+	class: className = '',
+	offset = 2,
+	element = $bindable(undefined),
+	contentEl = $bindable(undefined),
+	position = 'bottom',
+	hideTip = false,
+	dontHideOnTargetClick = false,
+	setMinWidthToTarget = false,
+	children,
+	onopen = () => {},
+	onclose = () => {},
+} = $props();
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {number} [offset]
-	 * @property {any} [element]
-	 * @property {any} [contentEl]
-	 * @property {string} [position]
-	 * @property {boolean} [hideTip]
-	 * @property {boolean} [dontHideOnTargetClick]
-	 * @property {boolean} [setMinWidthToTarget]
-	 * @property {import('svelte').Snippet} [children]
-	 */
-
-	/** @type {Props} */
-	let {
-		class: className = '',
-		offset = 2,
-		element = $bindable(undefined),
-		contentEl = $bindable(undefined),
-		position = 'bottom',
-		hideTip = false,
-		dontHideOnTargetClick = false,
-		setMinWidthToTarget = false,
-		children
-	} = $props();
-
-let targetEl, opened = $state(false);
-let opening = $state(false), closing = false;
-let eventsAdded = false;
+let opened = $state(false);
+let opening = $state(false);
+let closing = $state(false);
 let _position = $state(position);
+let targetEl = $state();
+let eventsAdded = false;
 
 const observer = new MutationObserver(updatePosition);
-
 
 
 
@@ -101,7 +100,7 @@ export function open (e) {
 			updatePosition();
 			opening = false;
 		});
-		dispatch('open', { event: e, target: targetEl });
+		onopen({ event: e, target: targetEl });
 		resolve();
 	}));
 }
@@ -121,7 +120,7 @@ export function close () {
 	return new Promise(resolve => requestAnimationFrame(() => {
 		removeEventListeners();
 		resolve();
-		dispatch('close', { target: targetEl });
+		onclose({ target: targetEl });
 		setTimeout(() => closing = false, 300);
 	}));
 }
@@ -198,7 +197,7 @@ function addEventListeners () {
 	document.addEventListener('keydown', onKeydown, true);
 	window.addEventListener('resize', onResize);
 	window.addEventListener('scroll', onResize, true);
-	observer.observe(element, { attributes: false, childList: true, subtree: true });
+	if (element) observer.observe(element, { attributes: false, childList: true, subtree: true });
 	eventsAdded = true;
 }
 
@@ -214,14 +213,14 @@ function removeEventListeners () {
 /*** EVENTS & LISTENERS ***************************************************************************/
 
 
-	export {
-		className,
-		offset,
-		element,
-		contentEl,
-		position,
-		hideTip,
-		dontHideOnTargetClick,
-		setMinWidthToTarget,
-	};
+export {
+	className,
+	offset,
+	element,
+	contentEl,
+	position,
+	hideTip,
+	dontHideOnTargetClick,
+	setMinWidthToTarget,
+};
 </script>

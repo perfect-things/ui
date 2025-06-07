@@ -3,7 +3,7 @@
 	class="message-box message-{$config.type}"
 	bind:element={element}
 	bind:this={dialog}
-	on:close={onclose}>
+	{onclose}>
 		<Icon name={$config.icon || $config.type}/>
 		<div class="message">
 			<div class="message-content">{@html $config.message}</div>
@@ -34,7 +34,7 @@ import { Dialog } from '../dialog';
 import { Button } from '../button';
 import { Icon } from '../icon';
 
-	let { element = $bindable(undefined) } = $props();
+let { element = $bindable(undefined) } = $props();
 
 let dialog = $state(), sub;
 

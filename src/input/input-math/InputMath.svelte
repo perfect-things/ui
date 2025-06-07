@@ -17,27 +17,21 @@
 				autocomplete="off"
 				{disabled}
 				id={_id}
+				name={name}
 				{...rest}
 				aria-invalid={error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
 				bind:value={value}
-				oninput={bubble('input')}
-				{onkeydown}
-				{onchange}
-				{onpaste}
-				onfocus={bubble('focus')}
-				onblur={bubble('blur')}>
+				onchange={_onchange}
+				onkeydown={_onkeydown}
+				onpaste={_onpaste}>
 		</div>
 	</div>
 </div>
 <script>
-import { createBubbler } from 'svelte/legacy';
-
-const bubble = createBubbler();
 import './InputMath.css';
-import { createEventDispatcher } from 'svelte';
 import { Icon } from '../../icon';
 import { roundAmount, guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -60,12 +54,15 @@ import { Label } from '../label';
  * @property {boolean} [labelOnTheLeft]
  * @property {any} [element]
  * @property {any} [inputElement]
+ * @property {function} [onchange]
+ * @property {function} [onkeydown]
  */
 
 /** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
+	name = '',
 	required = undefined,
 	disabled = false,
 	value = $bindable(''),
@@ -75,12 +72,13 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
+	onchange = () => {},
+	onkeydown = () => {},
 	...rest
 } = $props();
 
 
 const errorMessageId = guid();
-const dispatch = createEventDispatcher();
 const separator = '.';
 const allowedKeys = [
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -90,12 +88,12 @@ const allowedKeys = [
 ];
 
 
-const _id = $derived(id || rest.name || guid());
+const _id = $derived(id || name || guid());
 
 
 
-function onkeydown (e) {
-	dispatch('keydown', e);
+function _onkeydown (e) {
+	onkeydown(e);
 	if (e.key === 'Enter') {
 		const num = parseAmount(value);
 		value = isNaN(num) ? '' : num;
@@ -111,15 +109,15 @@ function onkeydown (e) {
 }
 
 
-function onpaste (e) {
-	requestAnimationFrame(() => onchange(e));
+function _onpaste (e) {
+	requestAnimationFrame(() => _onchange(e));
 }
 
 
-function onchange (e) {
+function _onchange (e) {
 	const num = parseAmount(value);
 	value = isNaN(num) ? '' : num;
-	dispatch('change', e);
+	onchange(e);
 }
 
 

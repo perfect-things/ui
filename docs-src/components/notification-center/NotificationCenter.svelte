@@ -28,18 +28,18 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 
 <h3>Notifications</h3>
 <div class="docs-buttons-row">
-	<Button info on:click={() => showNotification('Hello')}>Show info</Button>
-	<Button success on:click={() => showNotification('Hello', 'success')}>Show success</Button>
-	<Button warning on:click={() => showNotification('Hello', 'warning')}>Show warning</Button>
-	<Button danger on:click={() => showNotification('Hello', 'error', 10000, 'Undo', cb)}>Show error for 10s</Button>
+	<Button info onclick={() => showNotification('Hello')}>Show info</Button>
+	<Button success onclick={() => showNotification('Hello', 'success')}>Show success</Button>
+	<Button warning onclick={() => showNotification('Hello', 'warning')}>Show warning</Button>
+	<Button danger onclick={() => showNotification('Hello', 'error', 10000, 'Undo', cb)}>Show error for 10s</Button>
 </div>
 
 <h3>No auto-close</h3>
 <div class="docs-buttons-row">
-	<Button info on:click={() => showNotification('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', false)}>A very long message</Button>
-	<Button success on:click={() => showNotification('Hello', 'success', false)}>Show success</Button>
-	<Button warning on:click={() => showNotification('Hello', 'warning', false)}>Show warning</Button>
-	<Button danger on:click={() => showNotification('Hello', 'error', false)}>Show error</Button>
+	<Button info onclick={() => showNotification('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', false)}>A very long message</Button>
+	<Button success onclick={() => showNotification('Hello', 'success', false)}>Show success</Button>
+	<Button warning onclick={() => showNotification('Hello', 'warning', false)}>Show warning</Button>
+	<Button danger onclick={() => showNotification('Hello', 'error', false)}>Show error</Button>
 </div>
 
 
@@ -79,11 +79,11 @@ const hideNotificationAPI = [
 const exampleHtml = `
 <NotificationCenter outline round/>
 
-<Button on:click={() => showNotification('Hello')}>Show info</Button>
-<Button success on:click={() => showNotification('Hello', 'success')}>Show success</Button>
-<Button warning on:click={() => showNotification('Hello', 'warning')}>Show warning</Button>
-<Button danger on:click={() => showNotification('Hello', 'error', 10000, 'Undo', cb)}>Show error</Button>
-<Button danger on:click={() => showNotification('Hello', 'error', false)}>No auto-close</Button>
+<Button onclick={() => showNotification('Hello')}>Show info</Button>
+<Button success onclick={() => showNotification('Hello', 'success')}>Show success</Button>
+<Button warning onclick={() => showNotification('Hello', 'warning')}>Show warning</Button>
+<Button danger onclick={() => showNotification('Hello', 'error', 10000, 'Undo', cb)}>Show error</Button>
+<Button danger onclick={() => showNotification('Hello', 'error', false)}>No auto-close</Button>
 
 <script>
 import { NotificationCenter, showNotification, hideNotification, Button } from '@perfectthings/ui';
