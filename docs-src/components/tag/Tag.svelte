@@ -22,7 +22,7 @@
 
 
 <h3>With click action</h3>
-<Tag clickable on:click={onclick}>Click me</Tag>
+<Tag clickable onclick={onclick}>Click me</Tag>
 
 
 <CodeExample html={exampleHtml} />
@@ -41,14 +41,14 @@ const apiProps = [
 	{ name: 'disabled', description: 'Makes the tag <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Icon name to display in the tag.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered when the tag is clicked.' },
+	{ name: 'onclick', type: 'function', description: 'Triggered when the tag is clicked.' },
 ];
 
 const exampleHtml = `
 <Tag icon="close">Closable tag</Tag>
 <Tag color="success">Success</Tag>
 <Tag color="#132231">Custom color</Tag>
-<Tag on:click={onclick}>Click me</Tag>
+<Tag onclick={onclick}>Click me</Tag>
 
 <script>
 	function onclick () {

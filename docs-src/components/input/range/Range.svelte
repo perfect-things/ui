@@ -20,7 +20,7 @@
 <Range label="Write some text" info="This is some info for you" />
 
 <h3>With label and error and live validation</h3>
-<Range label="Move the slider" {error} on:change={onChange} value="5" />
+<Range label="Move the slider" {error} onchange={onChange} value="5" />
 
 <h3>With label, info, and error</h3>
 <Range label="Move the slider" info="Don't make any mistakes!" error="You did not slide!" />
@@ -57,12 +57,12 @@ const apiProps = [
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered when input value is edited.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'oninput', type: 'function', description: 'Triggered when input value is edited.' },
 ];
 
 const exampleHtml = `
-<Range on:change={onChange} error="Invalid text" />
+<Range onchange={onChange} error="Invalid text" />
 
 <script>
 function onChange (e) {

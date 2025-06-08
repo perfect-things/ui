@@ -1,7 +1,7 @@
 <h2>Checkbox</h2>
 
 <h3>Normal</h3>
-<Checkbox on:change={onchange} label="I do not wish to be excluded from the dont-send-newsletter list, not." />
+<Checkbox onchange={onchange} label="I do not wish to be excluded from the dont-send-newsletter list, not." />
 
 <h3>Disabled</h3>
 <Checkbox disabled label="I would like to receive all your spam, please."/><br>
@@ -16,7 +16,7 @@
 
 
 <h3>With error and live validation</h3>
-<Checkbox {error} label="Please, check this by mistake." on:change={onchange}/>
+<Checkbox {error} label="Please, check this by mistake." onchange={onchange}/>
 
 <h3>With info</h3>
 <Checkbox info="This checkbox is the most important box ever!" label="Please, check this by mistake."/>
@@ -57,11 +57,11 @@ const apiProps = [
 	{ name: 'title', type: 'string', description: 'Assign title to the component.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `
-<Checkbox on:change={onChange} label="I'm a little label" {error} />
+<Checkbox onchange={onChange} label="I'm a little label" {error} />
 
 <script>
 let error = '';

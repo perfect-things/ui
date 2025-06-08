@@ -4,10 +4,10 @@
 	class:round
 	class:interactive={_interactive}
 	bind:this={element}
-	on:click={onClick}
-	on:focus|capture={onFocus}
-	on:keydown={onKeyDown}
-	on:dblclick={onDblClick}>
+	onclick={onClick}
+	onfocuscapture={onFocus}
+	onkeydown={onKeyDown}
+	ondblclick={onDblClick}>
 	{#if title}
 		<h1 class="grid-title">{title}</h1>
 	{/if}

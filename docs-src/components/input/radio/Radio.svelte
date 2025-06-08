@@ -1,16 +1,16 @@
 <h2>Radio</h2>
 
 <h3>Normal</h3>
-<Radio items={items1} name="my-radio1" bind:value={val} label="Select option 1" on:change={onchange} />
+<Radio items={items1} name="my-radio1" bind:value={val} label="Select option 1" onchange={onchange} />
 
 <h3>Disabled</h3>
 <Radio items={items2} name="my-radio2" label="Select option 2" disabled />
 
 <h3>List of strings as values</h3>
-<Radio items={strings} name="my-radio3" label="Select option 3" on:change={onchange} />
+<Radio items={strings} name="my-radio3" label="Select option 3" onchange={onchange} />
 
 <h3>With error and live validation</h3>
-<Radio items={strings} name="my-radio4" label="Select option 4" error={error4} on:change={validate4} />
+<Radio items={strings} name="my-radio4" label="Select option 4" error={error4} onchange={validate4} />
 
 <h3>With info</h3>
 <Radio items={strings} name="my-radio5" label="Select option 5" info="Here be info message." />
@@ -52,7 +52,7 @@ const apiProps = [
 	{ name: 'title', type: 'string', description: 'Assign title to whole component.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Value of the component (=value of the checked item).' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `

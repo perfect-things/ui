@@ -29,7 +29,7 @@ The perfect toggle component in Svelte:
 <Toggle label="Toggle the lights" info="This toggle switches the bathroom lights on/off" />
 
 <h3>Error</h3>
-<Toggle label="Toggle the lights" error={error} on:change={onchange}/>
+<Toggle label="Toggle the lights" error={error} onchange={onchange}/>
 
 <h3>Label on the left</h3>
 <Toggle label="Label is on the left" labelOnTheLeft="true"/>
@@ -59,11 +59,11 @@ const apiProps = [
 	{ name: 'value', type: ['true', 'false'], description: 'Initial value of the toggle.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `
-<Toggle value="true" label="Field label" on:change={onChange} />
+<Toggle value="true" label="Field label" onchange={onChange} />
 
 <script>
 function onChange (e) {

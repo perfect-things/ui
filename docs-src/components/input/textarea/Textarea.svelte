@@ -18,7 +18,7 @@
 <Textarea label="Write some text" info="This is some extra info for you"></Textarea>
 
 <h3>With error and live validation</h3>
-<Textarea label="Write some text" {error} on:input={oninput}></Textarea>
+<Textarea label="Write some text" {error} oninput={oninput}></Textarea>
 
 <h3>With info, error and autogrow</h3>
 <Textarea label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>
@@ -54,12 +54,12 @@ const apiProps = [
 	{ name: 'value', type: 'string', description: 'Initial value of the textarea.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered when textarea value is edited.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'oninput', type: 'function', description: 'Triggered when textarea value is edited.' },
 ];
 
 const exampleHtml = `
-<Textarea autogrow on:change={onChange} error="Invalid text" />
+<Textarea autogrow onchange={onChange} error="Invalid text" />
 
 <script>
 function onChange (e) {

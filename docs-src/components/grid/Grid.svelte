@@ -7,8 +7,8 @@
 		{columns}
 		{data}
 		multiselect
-		on:select={onclick}
-		on:click={onclick}
+		onselect={onclick}
+		onclick={onclick}
 		on:dblclick={onclick}/>
 </div>
 
@@ -40,10 +40,10 @@ const apiProps = [
 	{ name: 'title', type: 'string', description: 'Ads header with title on top of the grid.' },
 
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered after a row has been clicked.' },
-	{ name: 'on:dblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered after key has been pressed.' },
-	{ name: 'on:select', type: 'function', description: 'Triggered after a row selection has changed.' },
+	{ name: 'onclick', type: 'function', description: 'Triggered after a row has been clicked.' },
+	{ name: 'ondblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
+	{ name: 'onkeydown', type: 'function', description: 'Triggered after key has been pressed.' },
+	{ name: 'onselect', type: 'function', description: 'Triggered after a row selection has changed.' },
 ];
 
 
@@ -96,7 +96,7 @@ function onclick (e) {
 
 
 const exampleHtml = `
-<Grid {data} {columns} on:click={onclick}/>
+<Grid {data} {columns} onclick={onclick}/>
 
 <script>
 import { Grid } from '@perfect-things/ui';

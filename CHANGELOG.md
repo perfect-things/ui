@@ -2,6 +2,22 @@ Changelog
 =========
 
 
+## v10.0.0 *(2025-07-01)*
+- Thousand thanks to Svelte team, for a long week of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time.
+- Added new property: `shortcut` the `Tooltip` component.
+
+
+### Breaking changes
+- All v4 events (e.g. `on:change`) are now loosing the colon (e.g. `onchange`).
+- Context of event handlers may need to be "fixed" by arrow-functions, e.g.
+  - before: `<Button on:click={handleClick}></Button>`
+  - after: `<Button onclick={e => handleClick(e)}></Button>`
+
+
+----
+
+
+
 ## v9.6.1 *(2024-07-27)*
 - Added new property: `shortcut` the `Tooltip` component.
 

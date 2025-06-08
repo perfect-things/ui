@@ -15,7 +15,7 @@
 	label="Select Midnight"
 	error={error1}
 	value="00:01"
-	on:change={onchange} />
+	onchange={onchange} />
 
 
 <h3>Label on the left</h3>
@@ -48,13 +48,13 @@ const apiProps = [
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered after the value changes and the focus leaves the input.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered as soon as the input value changes.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered after the value changes and the focus leaves the input.' },
+	{ name: 'oninput', type: 'function', description: 'Triggered as soon as the input value changes.' },
 ];
 
 
 const exampleHtml = `
-<InputTime label="Email" error="Invalid email" value="00:00" on:change={onChange} />
+<InputTime label="Email" error="Invalid email" value="00:00" onchange={onChange} />
 
 <script>
 function onChange (e) {

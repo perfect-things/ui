@@ -7,16 +7,16 @@
 
 <hr>
 
-<Button on:click={toggle}>Toggle</Button>
+<Button onclick={toggle}>Toggle</Button>
 <div class="split-wrap">
 	<div class="split-box min-w">Left</div>
-	<Splitter on:changed={onchange} bind:this={splitter1}/>
+	<Splitter onchanged={onchange} bind:this={splitter1}/>
 	<div class="split-box">Right</div>
 </div>
 <br>
 <div class="split-wrap split-wrap-v">
 	<div class="split-box min-h">Top</div>
-	<Splitter on:changed={onchange} bind:this={splitter2}/>
+	<Splitter onchanged={onchange} bind:this={splitter2}/>
 	<div class="split-box">Bottom</div>
 </div>
 
@@ -35,8 +35,8 @@ import './Splitter.css';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered during the resizing (mousemove).' },
-	{ name: 'on:changed', type: 'function', description: 'Triggered when resizing finished (mouseup).' },
+	{ name: 'onchange', type: 'function', description: 'Triggered during the resizing (mousemove).' },
+	{ name: 'onchanged', type: 'function', description: 'Triggered when resizing finished (mouseup).' },
 ];
 
 const instanceApiProps = [
@@ -48,10 +48,10 @@ const instanceApiProps = [
 
 
 const exampleHtml = `
-<Button on:click={toggle}>Toggle</Button>
+<Button onclick={toggle}>Toggle</Button>
 <div style="flex-flow:row">
 	<div>Left</div>
-	<Splitter on:changed={onchanged} bind:this={splitter1} />
+	<Splitter onchanged={onchanged} bind:this={splitter1} />
 	<div>Right</div>
 </div>
 

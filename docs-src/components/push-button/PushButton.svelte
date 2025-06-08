@@ -101,11 +101,11 @@ const apiProps = [
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
 	{ name: 'warning', description: 'Button type: warning' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
+	{ name: 'onclick', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 
 const exampleHtml = `
-<PushButton round icon="info" on:change={onChange}></PushButton>
+<PushButton round icon="info" onchange={onChange}></PushButton>
 
 <script>
 function onChange (e) {

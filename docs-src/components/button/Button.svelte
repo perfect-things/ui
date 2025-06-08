@@ -15,9 +15,9 @@
 
 <div class="button-demo-props">
 	<InputText label="Text" bind:value={buttonText}/>
-	<ButtonToggle label="Style" items={buttonStyles} value="" on:change={onStyleChange} />
-	<ButtonToggle label="Type" items={buttonTypes} value="" on:change={onTypeChange} />
-	<ButtonToggle label="Icon" items={buttonIcons} value="" on:change={onIconChange} />
+	<ButtonToggle label="Style" items={buttonStyles} value="" onchange={onStyleChange} />
+	<ButtonToggle label="Type" items={buttonTypes} value="" onchange={onTypeChange} />
+	<ButtonToggle label="Icon" items={buttonIcons} value="" onchange={onIconChange} />
 	<Toggle label="Round" bind:value={props.round}/>
 	<Toggle label="Disabled" bind:value={props.disabled}/>
 </div>
@@ -35,7 +35,7 @@ import './Button.css';
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'data-', description: 'Dataset attribute allows to pass some data of a primitive type (string, number, boolean), which will be accessible in the <em>on:click</em> event listener, via button reference.' },
+	{ name: 'data-', description: 'Dataset attribute allows to pass some data of a primitive type (string, number, boolean), which will be accessible in the <em>onclick</em> event listener, via button reference.' },
 	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
 	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
 	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
@@ -49,7 +49,7 @@ const apiProps = [
 	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
 	{ name: 'warning', description: 'Button type: warning' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
+	{ name: 'onclick', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 
 

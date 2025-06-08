@@ -17,7 +17,7 @@
 							warning={button.type === 'warning'}
 							danger={button.type === 'error' || button.type === 'danger'}
 							success={button.type === 'success'}
-							on:click={e => onclick(e, button)}>
+							onclick={e => onclick(e, button)}>
 							{button.label}
 						</Button>
 					{/each}

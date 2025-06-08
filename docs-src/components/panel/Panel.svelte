@@ -89,8 +89,8 @@ const apiProps = [
 	{ name: 'title', type: 'string', description: 'Panel title.' },
 	{ name: 'warning', description: 'Panel type: warning' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:close', type: 'function', description: 'Triggered after the panel is closed.' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the panel is opened.' },
+	{ name: 'onclose', type: 'function', description: 'Triggered after the panel is closed.' },
+	{ name: 'onopen', type: 'function', description: 'Triggered after the panel is opened.' },
 ];
 
 const exampleHtml = `

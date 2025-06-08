@@ -3,7 +3,7 @@
 <br>
 
 <h3>Normal</h3>
-<InputRating on:keydown={onkey} bind:value={item.value}/>
+<InputRating onkeydown={onkey} bind:value={item.value}/>
 {item.value || ''}
 
 
@@ -31,7 +31,7 @@
 <InputRating
 	label="Pick one"
 	error={error}
-	on:change={onchange}/>
+	onchange={onchange}/>
 
 
 <h3>Label on the left</h3>
@@ -68,12 +68,12 @@ const apiProps = [
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onkeydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 const exampleHtml = `
-<InputRating on:change={ onChange } bind:value={value} />
+<InputRating onchange={ onChange } bind:value={value} />
 
 <script>
 let value = 4;

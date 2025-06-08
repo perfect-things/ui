@@ -28,15 +28,15 @@
 					tabindex="-1"
 					data-star={star}
 					class={value >= star ? 'active' : ''}/>
-					<!-- on:mousedown={() => set(star)}
-					on:mouseup={() => set(star)}/> -->
+					<!-- onmousedown={() => set(star)}
+					onmouseup={() => set(star)}/> -->
 			{/each}
 
 			<Button link
 				icon="close"
 				class="btn-reset"
 				disabled={value === ''}
-				on:click={reset}/>
+				onclick={reset}/>
 
 			<input
 				type="hidden"

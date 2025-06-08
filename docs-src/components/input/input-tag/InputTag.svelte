@@ -6,7 +6,7 @@
 <p>Input value: {val}</p>
 
 <h3>With onChange callback</h3>
-<InputTag value="tag1, anotherOne, long-tag-name" {tags} on:change={onchange} />
+<InputTag value="tag1, anotherOne, long-tag-name" {tags} onchange={onchange} />
 
 <h3>Long list of tags</h3>
 <InputTag value="tag1, anotherOne, long-tag-name" tags={tags2}/>
@@ -47,12 +47,12 @@ const apiProps = [
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
 	{ name: 'bind:listElement', type: 'element', description: 'Exposes the HTML element of the list.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when tag is added/removed from the input value.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when tag is added/removed from the input value.' },
 ];
 
 
 const exampleHtml = `
-<InputTag label="Tags" value="tag1, tag2" on:change={onChange} />
+<InputTag label="Tags" value="tag1, tag2" onchange={onChange} />
 
 <script>
 function onChange (e) {

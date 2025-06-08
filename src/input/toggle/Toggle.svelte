@@ -1,5 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 <div
 	class="toggle {className}"
 	class:has-error={error}
@@ -8,11 +6,11 @@
 	aria-checked={value}
 	tabindex={disabled ? undefined : 0}
 	bind:this={element}
-	on:keydown={onKey}
-	on:touchstart={dragStart}
-	on:mousedown={dragStart}
-	on:contextmenu|preventDefault
-	on:click|preventDefault>
+	onkeydown={onKey}
+	ontouchstart={dragStart}
+	onmousedown={dragStart}
+	oncontextmenu={e => e.preventDefault()}
+	onclick={e => e.preventDefault()}>
 
 	<Label {label} {disabled} for={_id}/>
 
@@ -43,50 +41,71 @@
 
 <script>
 import './Toggle.css';
-import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
 import { guid, getMouseX } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [title]
+ * @property {any} [required]
+ * @property {boolean} [disabled]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [value]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ * @property {function} [onchange]
+ */
 
-const dispatch = createEventDispatcher();
+/** @type {Props & { [key: string]: any }} */
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	title = '',
+	required = undefined,
+	disabled = false,
+	label = '',
+	error = undefined,
+	info = undefined,
+	value = $bindable(false),
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onchange = () => {},
+} = $props();
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = guid();
-export let title = '';
-export let required = undefined;
-export let disabled = false;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let value = false;
-export let labelOnTheLeft = false;
-
-export let element = undefined;
-export let inputElement = undefined;
-
-
-$:_id = id || name || guid();
+const _id = $derived(id || name || guid());
 
 const errorMessageId = guid();
 
-let scroller, handle, startX, currentX = 0;
-let scrollerStartX, scrollerEndX, handleStartX;
-let isClick = false, isDragging = false;
-let oldValue;
+let scroller = $state();
+let handle = $state();
+let startX = $state();
+let currentX = $state(0);
+let scrollerStartX = $state();
+let scrollerEndX = $state();
+let handleStartX = $state();
+let isClick = $state(false);
+let isDragging = $state(false);
+let oldValue = $state();
 
-
-onMount(() => {
-	toggleTransitions(false);
-	({ scrollerStartX, scrollerEndX, handleStartX } = initialMeasure(element));
+$effect(() => {
+	if (element) {
+		toggleTransitions(false);
+		({ scrollerStartX, scrollerEndX, handleStartX } = initialMeasure(element));
+	}
 });
 
-
-afterUpdate(() => {
+$effect(() => {
 	if (typeof value !== 'boolean') value = !!value;
 	setValue(value);
 });
@@ -100,7 +119,7 @@ function setValue (v = false, force = false) {
 	startX = currentX = value ? scrollerEndX : scrollerStartX;
 	oldValue = value;
 	setKnobPosition();
-	dispatch('change', value);
+	onchange(value);
 }
 
 

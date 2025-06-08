@@ -1,22 +1,16 @@
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
-<pre><code class="language-json">{@html code}</code></pre>
+<pre class="language-json"><code class="language-json">{@html code}</code></pre>
 
 <script>
-import { afterUpdate } from 'svelte';
-export let value ='';
-let code ='';
+/**
+ * @typedef {Object} Props
+ * @property {string} [value]
+ */
 
+/** @type {Props} */
+const { value = '' } = $props();
 
-afterUpdate(() => {
-	requestAnimationFrame(update);
-});
-
-
-function update () {
-	if (typeof value !== 'string') value = stringify(value);
-	code = window.Prism.highlight(value, window.Prism.languages.json, 'json');
-}
+const valueString = $derived((typeof value !== 'string') ? stringify(value) : value);
+const code = $derived(window.Prism.highlight(valueString, window.Prism.languages.json, 'json'));
 
 
 

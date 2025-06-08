@@ -1,4 +1,19 @@
 <h1>Changelog</h1>
+<h2>v10.0.0 <em>(2025-07-01)</em></h2>
+<ul>
+<li>Thousand thanks to Svelte team, for a long week of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time.</li>
+<li>Added new property: <code>shortcut</code> the <code>Tooltip</code> component.</li>
+</ul>
+<h3>Breaking changes</h3>
+<ul>
+<li>All v4 events (e.g. <code>on:change</code>) are now loosing the colon (e.g. <code>onchange</code>).</li>
+<li>Context of event handlers may need to be &quot;fixed&quot; by arrow-functions, e.g.<ul>
+<li>before: <code>&lt;Button on:click={handleClick}&gt;&lt;/Button&gt;</code></li>
+<li>after: <code>&lt;Button onclick={e =&gt; handleClick(e)}&gt;&lt;/Button&gt;</code></li>
+</ul>
+</li>
+</ul>
+<hr>
 <h2>v9.6.1 <em>(2024-07-27)</em></h2>
 <ul>
 <li>Added new property: <code>shortcut</code> the <code>Tooltip</code> component.</li>

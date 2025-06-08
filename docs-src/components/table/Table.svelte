@@ -3,9 +3,9 @@
 <div class="table-viewport">
 	<Table round
 		rowSelector=".row-sel"
-		on:keydown={onKey}
+		onkeydown={onKey}
 		on:dblclick={onSelect}
-		on:select={onSelect}>
+		onselect={onSelect}>
 		<thead>
 			<tr><th>Year</th><th>Month</th><th>Price</th></tr>
 		</thead>
@@ -127,10 +127,10 @@ const apiProps = [
 	{ name: 'scrollCorrectionOffset', type: 'number', default: '0', description: 'If an external <em>scrollContainer</em> is used - it is possible that it will have non-zero padding set, thus the table wrapper will be offset from the beginning of the container. This offset should be set here, so that the sticky headers work correctly.' },
 	{ name: 'selectable', type: ['true', 'false'], description: 'Makes table rows selectable with mouse and adds keyboard navigation.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered after a row has been clicked.' },
-	{ name: 'on:dblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered after key has been pressed.' },
-	{ name: 'on:select', type: 'function', description: 'Triggered after a row selection has changed.' },
+	{ name: 'onclick', type: 'function', description: 'Triggered after a row has been clicked.' },
+	{ name: 'ondblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
+	{ name: 'onkeydown', type: 'function', description: 'Triggered after key has been pressed.' },
+	{ name: 'onselect', type: 'function', description: 'Triggered after a row selection has changed.' },
 ];
 
 

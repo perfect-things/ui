@@ -1,7 +1,7 @@
 <h2>Tree</h2>
 
 <div style="display: inline-block; width: 200px;">
-	<Tree {items} on:select={onSelect}/>
+	<Tree {items} onselect={onSelect}/>
 </div>
 
 
@@ -17,11 +17,11 @@ const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'title', type: 'string', description: 'Title of the component.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:select', type: 'function', description: 'Triggered after an item was selected.' },
+	{ name: 'onselect', type: 'function', description: 'Triggered after an item was selected.' },
 ];
 
 const exampleHtml = `
-<Tree {items} on:select={onSelect}/>
+<Tree {items} onselect={onSelect}/>
 
 <script>
 const items = [

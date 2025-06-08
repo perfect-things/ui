@@ -47,7 +47,7 @@
 <ButtonToggle items={items}
 	label="Pick one"
 	error={error}
-	on:change={onchange}/>
+	onchange={onchange}/>
 
 
 <h3>Label on the left</h3>
@@ -83,7 +83,7 @@ const apiProps = [
 	{ name: 'title', type: 'string', description: 'Assign title to the component' },
 	{ name: 'value', type: ['string', 'number'], description: 'Assign initial value to the underlying radio group' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `

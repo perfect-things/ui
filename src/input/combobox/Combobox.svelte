@@ -20,8 +20,8 @@
 				icon="dots"
 				class="combobox-button"
 				tabindex="-1"
-				on:mousedown={onIconMouseDown}
-				on:click={onIconClick}/>
+				onmousedown={onIconMouseDown}
+				onclick={onIconClick}/>
 
 			<input
 				type="text"
@@ -42,12 +42,12 @@
 				{...$$restProps}
 
 				bind:this={inputElement}
-				on:input={oninput}
-				on:focus={onfocus}
-				on:mousedown={open}
-				on:click={open}
-				on:blur={onblur}
-				on:keydown|capture={onkeydown}>
+				oninput={oninput}
+				onfocus={onfocus}
+				onmousedown={open}
+				onclick={open}
+				onblur={onblur}
+				onkeydowncapture={onkeydown}>
 		</div>
 	</div>
 </div>
@@ -61,7 +61,7 @@
 		class:multiselect
 		class:empty={!filteredData.length && !shouldShowNewItem}
 		role="listbox"
-		on:mousedown={onListMouseDown}
+		onmousedown={onListMouseDown}
 		bind:this={listElement}>
 		{#if filteredData.length}
 			{#each groupedData as group}
@@ -84,12 +84,12 @@
 							aria-checked={!!isChecked}
 							class:checked={isChecked}
 
-							on:click={e => onclick(item, e)}
-							on:mouseenter={() => highlightIndex = item.idx}
-							on:mousedown|preventDefault
-							on:mouseup={e => onclick(item, e)}
-							on:touchstart={touchStart}
-							on:touchend={touchEnd}
+							onclick={e => onclick(item, e)}
+							onmouseenter={() => highlightIndex = item.idx}
+							onmousedown={e => e.preventDefault()}
+							onmouseup={e => onclick(item, e)}
+							ontouchstart={touchStart}
+							ontouchend={touchEnd}
 							>
 							{#if multiselect}
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-square-check">
@@ -113,7 +113,7 @@
 				class="combobox-list-item"
 				class:selected={highlightIndex === filteredData.length}
 				aria-selected={highlightIndex === filteredData.length}
-				on:click="{() => onclick({ name: newItemName, idx: filteredData.length })}">
+				onclick="{() => onclick({ name: newItemName, idx: filteredData.length })}">
 					{newItemName}
 			</div>
 		{/if}

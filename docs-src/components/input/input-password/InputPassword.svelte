@@ -64,12 +64,12 @@ const apiProps = [
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onkeydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 const exampleHtml = `
-<InputPassword strength label="Current password" on:change={onChange} />
+<InputPassword strength label="Current password" onchange={onChange} />
 
 <script>
 function onChange (e) {

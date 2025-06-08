@@ -3,7 +3,7 @@
 	title="Dark mode toggle"
 	items={themes}
 	value={$PREFERS_DARK}
-	on:change={switchColorMode}/>
+	onchange={switchColorMode}/>
 
 
 

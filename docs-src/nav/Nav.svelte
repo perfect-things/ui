@@ -1,10 +1,11 @@
 <UIButton text round
 	icon="sidebarLeft"
 	class="nav-toggler {expanded ? 'expanded' : ''} {swiping ? 'swiping' : ''}"
-	bind:element={navTogglerBtn}
-	on:click={toggleNav}/>
 
-<aside class:expanded class:swiping bind:this={sidebarEl}>
+	bind:element={navTogglerBtn}
+	onclick={toggleNav}/>
+
+<aside class={{ expanded: expanded, swiping: swiping }} bind:this={sidebarEl}>
 	<menu>
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
@@ -67,14 +68,12 @@
 	icon="arrowNarrowUp"
 	class="btn-scroll-top {showScrollTopBtn ? '' : 'hidden'}"
 	title="Scroll to the top"
-	on:click={scrollToTop} />
+	onclick={scrollToTop} />
 
 <svelte:window {onhashchange} {onpopstate} />
 
 
 <script>
-import { run } from 'svelte/legacy';
-
 import { onDestroy, onMount } from 'svelte';
 import { Button as UIButton, isInScrollable, debounce } from '../../src';
 import VanillaSwipe from 'vanilla-swipe';
@@ -86,18 +85,12 @@ import './Nav.css';
 
 
 const components = { GetStarted, Changelog, ...TestComponents, };
-
-let [active, heading] = $state(getSection());
-let { component = $bindable() } = $props();
-
-$effect(() => {
-	component = components[active] || components[component] || GetStarted;
-});
-
 const SIDEBAR_WIDTH = 220;
 const swipeSlowDownFactor = 2.5;
 const onScroll = debounce(checkScrollOffset);
 
+let [active, heading] = $state(getSection());
+let { component = $bindable() } = $props();
 let showScrollTopBtn = $state(false);
 let expanded = $state(false);
 let wasExpanded = false;
@@ -105,6 +98,13 @@ let swiping = $state(false);
 let sidebarEl = $state(), navTogglerBtn = $state();
 
 
+$effect(() => {
+	component = components[active] || components[component] || GetStarted;
+});
+
+$effect(() => {
+	waitForElementAndScroll(heading);
+});
 
 
 onMount(() => {
@@ -252,10 +252,14 @@ function getSection () {
 }
 
 function onhashchange () {
-	[active, heading] = getSection();
+	const [newActive, newHeading] = getSection();
+	if (newActive !== active) {
+		document.scrollingElement.scrollTop = 0;
+		active = newActive;
+	}
+	heading = newHeading;
 	component = components[active];
 	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
-	document.scrollingElement.scrollTop = 0;
 }
 
 function onpopstate () {
@@ -267,8 +271,4 @@ function checkScrollOffset () {
 	showScrollTopBtn = document.scrollingElement.scrollTop > 200;
 }
 
-
-run(() => {
-	waitForElementAndScroll(heading);
-});
 </script>

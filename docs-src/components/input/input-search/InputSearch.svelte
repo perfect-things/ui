@@ -2,11 +2,11 @@
 
 
 <h3>Normal</h3>
-<InputSearch on:input={oninput} bind:value={val} />
+<InputSearch oninput={oninput} bind:value={val} />
 <p>Input value: {val}</p>
 
 <h3>Disabled</h3>
-<InputSearch disabled value="disabled value" on:input={oninput} />
+<InputSearch disabled value="disabled value" oninput={oninput} />
 
 
 <h3>With validation</h3>
@@ -14,7 +14,7 @@
 	label="Validate on change"
 	error={error1}
 	value={val}
-	on:change={onchange} />
+	onchange={onchange} />
 
 <br>
 
@@ -24,7 +24,7 @@
 	required
 	error={error2}
 	value={val}
-	on:input={oninput} />
+	oninput={oninput} />
 
 
 <h3>Label on the left</h3>
@@ -57,13 +57,13 @@ const apiProps = [
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered after the value changes and the focus leaves the input.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered as soon as the input value changes.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered after the value changes and the focus leaves the input.' },
+	{ name: 'oninput', type: 'function', description: 'Triggered as soon as the input value changes.' },
 ];
 
 
 const exampleHtml = `
-<InputSearch label="Email" error="Invalid email" value="admin" on:change={onChange} />
+<InputSearch label="Email" error="Invalid email" value="admin" onchange={onChange} />
 
 <script>
 function onChange (e) {

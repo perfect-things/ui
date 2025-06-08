@@ -11,7 +11,7 @@
 		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 		<header class="drawer-header" bind:this={headerEl} >
 			<h2>{title}</h2>
-			<Button round text icon="close" class="btn-close" title="Close" on:click={close}/>
+			<Button round text icon="close" class="btn-close" title="Close" onclick={close}/>
 		</header>
 		<div class="drawer-content">{@render children?.()}</div>
 		<div tabindex="0" class="focus-trap focus-trap-bottom" onfocus={focusFirst}></div>

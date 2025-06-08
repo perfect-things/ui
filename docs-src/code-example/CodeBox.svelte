@@ -1,23 +1,19 @@
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
-<pre><code class="language-">{@html html}</code></pre>
+<pre><code class="language-">{@html highlightedHtml}</code></pre>
 
 <script>
-import { afterUpdate } from 'svelte';
-export let tag = 'div';
-export let props = {};
-export let text = '';
-let html ='';
+/**
+ * @typedef {Object} Props
+ * @property {string} [tag]
+ * @property {Object} [props]
+ * @property {string} [text]
+ */
 
+/** @type {Props} */
+const { tag = 'div', props = {}, text = '' } = $props();
 
-afterUpdate(() => {
-	requestAnimationFrame(update);
-});
+const html = $derived(buildHtml(props));
+const highlightedHtml = $derived(window.Prism.highlight(html, window.Prism.languages.svelte, 'svelte'));
 
-
-function update () {
-	html = window.Prism.highlight(buildHtml(), window.Prism.languages.svelte, 'svelte');
-}
 
 function buildHtml () {
 	const _props = {};

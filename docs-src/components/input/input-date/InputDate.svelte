@@ -3,7 +3,7 @@
 <br>
 
 <h3>Normal</h3>
-<InputDate on:keydown={onkey} bind:value={item.datevalue}/>
+<InputDate onkeydown={onkey} bind:value={item.datevalue}/>
 {item.datevalue || ''}
 
 <h3>Show on focus (when using keyboard)</h3>
@@ -43,7 +43,7 @@
 <InputDate
 	label="Pick one"
 	error={error}
-	on:change={onchange}/>
+	onchange={onchange}/>
 
 
 <h3>Label on the left</h3>
@@ -83,12 +83,12 @@ const apiProps = [
 
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onkeydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 const exampleHtml = `
-<InputDate on:change={ onChange } />
+<InputDate onchange={ onChange } />
 
 <script>
 function onChange (e) {

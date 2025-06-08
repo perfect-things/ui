@@ -34,7 +34,7 @@
 			<Button link
 				icon="close"
 				class="input-search-button {value !== '' && !disabled ? 'visible' : ''}"
-				on:click={clear}/>
+				onclick={clear}/>
 		</div>
 	</div>
 </div>

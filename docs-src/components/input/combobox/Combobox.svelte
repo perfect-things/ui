@@ -3,12 +3,12 @@
 <h3>Normal</h3>
 <Combobox
 	{items}
-	on:change={onChange}
+	onchange={onChange}
 	bind:value={itemValue} />
 
 <h4>Selected value: </h4>
 <JsonBox value={itemValue} />
-<Button on:click={resetSingle}>Reset</Button>
+<Button onclick={resetSingle}>Reset</Button>
 
 <h3>Disabled</h3>
 <Combobox disabled {items} bind:value={itemValue} />
@@ -65,7 +65,7 @@
 	bind:value={multiselectSimpleValue} />
 <h4>Selected value: </h4>
 <JsonBox value={multiselectSimpleValue} />
-<Button on:click={resetMulti}>Reset</Button>
+<Button onclick={resetMulti}>Reset</Button>
 
 <h3>Complex data</h3>
 <Combobox
@@ -116,14 +116,14 @@ const apiProps = [
 	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. ' },
 	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
+	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
+	{ name: 'onkeydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 const exampleHtml = `
 <Combobox
     {items}
-    on:change={ onChange }
+    onchange={ onChange }
     bind:value={ value } />
 
 <script>
