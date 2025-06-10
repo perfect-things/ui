@@ -37,7 +37,7 @@
 								type="radio"
 								checked={item.value === value}
 								value={item.value}
-								onchange={e => onchange(e, item)}>
+								onchange={e => _onchange(e, item)}>
 					</label>
 				{/each}
 			</div>
@@ -47,7 +47,6 @@
 
 <script>
 import './ButtonToggle.css';
-import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
@@ -72,6 +71,7 @@ import { Label } from '../label';
  * @property {any} [info]
  * @property {boolean} [labelOnTheLeft]
  * @property {any} [element]
+ * @property {function} [onchange] - Callback function when the value changes
  */
 
 /** @type {Props} */
@@ -88,12 +88,12 @@ let {
 	error = undefined,
 	info = undefined,
 	labelOnTheLeft = false,
-	element = $bindable(undefined)
+	element = $bindable(undefined),
+	onchange = () => {},
 } = $props();
 
 
 const errorMessageId = guid();
-const dispatch = createEventDispatcher();
 
 
 const _id = $derived(id || name || guid());
@@ -114,14 +114,14 @@ function onclick (e) {
 }
 
 
-function onchange (e, button) {
+function _onchange (e, button) {
 	if (button.value === value) return;
 
 	const btnEl = e.target && e.target.closest('label');
 	if (btnEl) btnEl.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 
 	value = button.value;
-	dispatch('change', value);
+	onchange(value);
 }
 
 </script>

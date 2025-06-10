@@ -3,6 +3,7 @@ PerfectThings/UI
 
 
 # TODO
+- [ ] remove `createEventDispatcher` code
 - [ ] fix tests that fail due to animations not running (custom svelte transitions)
 - [ ] ensure there's no commented-put `// expect...` in the code
 

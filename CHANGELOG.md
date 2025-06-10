@@ -9,7 +9,7 @@ Changelog
 
 ### Breaking changes
 - All v4 events (e.g. `on:change`) are now loosing the colon (e.g. `onchange`).
-- Context of event handlers may need to be "fixed" by arrow-functions, e.g.
+- Context of event handlers may need to be "fixed" by wrapping them in arrow-functions, e.g.
   - before: `<Button on:click={handleClick}></Button>`
   - after: `<Button onclick={e => handleClick(e)}></Button>`
 

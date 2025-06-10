@@ -1,26 +1,28 @@
 <button
 	type={submit ? 'submit' : 'button'}
 	bind:this={element}
-
-	class="button {className}"
-	class:button-normal={!link && !text && !outline}
-	class:button-outline={outline}
-	class:button-link={link}
-	class:button-text={text}
-	class:button-has-text={children}
-	class:round
-	class:info
-	class:success
-	class:warning
-	class:danger
-	class:error
-	class:touching
+	class={{
+		button: true,
+		[className]: className,
+		'button-normal': !link && !text && !outline,
+		'button-outline': outline,
+		'button-link': link,
+		'button-text': text,
+		'button-has-text': children,
+		round: round,
+		info: info,
+		success: success,
+		warning: warning,
+		danger: danger,
+		error: error,
+		touching: touching
+	}}
 	{...rest}
 	ontouchstart={() => touching = true}
 	ontouchend={() => touching = false}>
 		{#if icon}<Icon name={icon}/>{/if}
 		{@render children?.()}
-</button>
+	</button>
 <script>
 import { Icon } from '../icon';
 import './Button.css';
@@ -32,7 +34,7 @@ import './Button-link.css';
 
 /**
  * @typedef {Object} Props
- * @property {any} [element]
+ * @property {string} [class]
  * @property {boolean} [info]
  * @property {boolean} [success]
  * @property {boolean} [warning]
@@ -44,13 +46,13 @@ import './Button-link.css';
  * @property {boolean} [text] - looks like normal text, but like a button on hover
  * @property {any} [icon] - name of the icon
  * @property {any} [round] - round button
- * @property {string} [class]
+ * @property {any} [element]
  * @property {import('svelte').Snippet} [children]
  */
 
 /** @type {Props & { [key: string]: any }} */
 let {
-	element = $bindable(undefined),
+	class: className = '',
 	info = false,
 	success = false,
 	warning = false,
@@ -62,7 +64,7 @@ let {
 	text = false,
 	icon = undefined,
 	round = undefined,
-	class: className = '',
+	element = $bindable(undefined),
 	children,
 	...rest
 } = $props();

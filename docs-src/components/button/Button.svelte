@@ -53,8 +53,21 @@ const apiProps = [
 ];
 
 
-const props = $state({});
+const props = $state({
+	round: false,
+	disabled: false,
+	outline: false,
+	text: false,
+	link: false,
+	icon: '',
+	info: false,
+	success: false,
+	warning: false,
+	danger: false,
+});
+
 let buttonText = $state('Demo button');
+
 const buttonStyles = [
 	{ name: 'Normal', value: '' },
 	{ name: 'Outline', value: 'outline' },
@@ -84,7 +97,7 @@ function onStyleChange (e) {
 	props.outline = false;
 	props.text = false;
 	props.link = false;
-	setProp(e.detail, true);
+	setProp(e, true);
 }
 
 function onTypeChange (e) {
@@ -92,11 +105,11 @@ function onTypeChange (e) {
 	props.success = false;
 	props.warning = false;
 	props.danger = false;
-	setProp(e.detail, true);
+	setProp(e, true);
 }
 
 function onIconChange (e) {
-	setProp('icon', e.detail);
+	setProp('icon', e);
 }
 
 function setProp (name, val) {

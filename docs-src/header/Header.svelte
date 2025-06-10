@@ -18,8 +18,8 @@ const themes = [
 ];
 
 
-function switchColorMode (e) {
-	document.documentElement.className = e.detail ? 'theme-dark' : 'theme-light';
+function switchColorMode (val) {
+	document.documentElement.className = val ? 'theme-dark' : 'theme-light';
 }
 
 

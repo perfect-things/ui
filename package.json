@@ -19,7 +19,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.svelte",
+    "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.html",
 
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",

@@ -1,4 +1,5 @@
-<pre><code class="language-">{@html highlightedHtml}</code></pre>
+<pre><code class="language">{@html html}</code></pre>
+
 
 <script>
 /**
@@ -11,27 +12,30 @@
 /** @type {Props} */
 const { tag = 'div', props = {}, text = '' } = $props();
 
-const html = $derived(buildHtml(props));
-const highlightedHtml = $derived(window.Prism.highlight(html, window.Prism.languages.svelte, 'svelte'));
+const html = $derived(buildHtml(props, text, tag));
 
 
-function buildHtml () {
-	const _props = {};
-	for (const prop in props) {
+function buildHtml (_props, _text, _tag) {
+	const _filteredProps = {};
+	for (const prop in _props) {
 		if (props[prop] === false) continue;
 		if (props[prop] === '') continue;
-		_props[prop] = props[prop];
+		_filteredProps[prop] = _props[prop];
 	}
-	let propsStr = JSON.stringify(_props)
+	let propsStr = JSON.stringify(_filteredProps)
 		.replace(/"([^"]+)":/g, '$1:')
 		.replace(/(:)/g, '=')
 		.replace(/,/g, ' ')
 		.replace(/({|}|=true|default)/g, '')
 		.trim();
+
 	if (propsStr) propsStr = ' ' + propsStr;
 
-	if (!text) return `<${tag}${propsStr}/>`;
-	return `<${tag}${propsStr}>${text}</${tag}>`;
+	let _html = '';
+	if (_text) _html = `<${_tag}${propsStr}>${_text}</${_tag}>`;
+	else _html = `<${_tag}${propsStr} />`;
+
+	return window.Prism.highlight(_html, window.Prism.languages.svelte, 'svelte');
 }
 
 </script>
