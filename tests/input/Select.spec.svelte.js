@@ -44,7 +44,6 @@ beforeEach(() => {
 test('Select renders with correct props', async () => {
 	const props = $state({ ...defaultProps, onchange: vi.fn() });
 	const component = mount(Select, { target: document.body, props });
-	flushSync();
 
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
@@ -59,7 +58,6 @@ test('Select renders with correct props', async () => {
 
 	await fireEvent.click(select);
 	await fireEvent.focus(select);
-	flushSync();
 
 	const opts = select.querySelectorAll('option');
 	expect(opts.length).toBe(data.length + 1); // +1 for placeholder
@@ -100,8 +98,7 @@ test('Select handles grouped items correctly', async () => {
 		items: data,
 		value: data[0]
 	});
-	const component = mount(Select, { target: document.body, props });
-	flushSync();
+	const component = await mount(Select, { target: document.body, props });
 
 	const select = document.body.querySelector('select');
 	const optgroups = select.querySelectorAll('optgroup');
@@ -119,8 +116,7 @@ test('Select handles ungrouped items correctly', async () => {
 		items: ungroupedData,
 		value: ungroupedData[0]
 	});
-	const component = mount(Select, { target: document.body, props });
-	flushSync();
+	const component = await mount(Select, { target: document.body, props });
 
 	const select = document.body.querySelector('select');
 	const optgroups = select.querySelectorAll('optgroup');
@@ -138,8 +134,7 @@ test('Select handles string items correctly', async () => {
 		items: stringData,
 		value: stringData[0]
 	});
-	const component = mount(Select, { target: document.body, props });
-	flushSync();
+	const component = await mount(Select, { target: document.body, props });
 
 	const options = document.body.querySelectorAll('select option');
 	expect(options.length).toBe(stringData.length);
@@ -156,8 +151,7 @@ test('Select shows placeholder when provided', async () => {
 		items: data,
 		placeholder: placeholderText
 	});
-	const component = mount(Select, { target: document.body, props });
-	flushSync();
+	const component = await mount(Select, { target: document.body, props });
 
 	const select = document.body.querySelector('select');
 	const firstOption = select.querySelector('option');
@@ -174,8 +168,7 @@ test('Select handles disabled state', async () => {
 		items: data,
 		disabled: true
 	});
-	const component = mount(Select, { target: document.body, props });
-	flushSync();
+	const component = await mount(Select, { target: document.body, props });
 
 	const select = document.body.querySelector('select');
 	expect(select).toBeDisabled();
@@ -189,24 +182,18 @@ test('Select with labelOnTheLeft has correct class', async () => {
 		items: data,
 		labelOnTheLeft: true
 	});
-	const component1 = mount(Select, { target: document.body, props: props1 });
-	flushSync();
-
+	const component1 = await mount(Select, { target: document.body, props: props1 });
 	const selectContainer = document.body.querySelector('.input');
 	expect(selectContainer).toHaveClass('label-on-the-left');
-
 	unmount(component1);
 
 	const props2 = $state({
 		items: data,
 		labelOnTheLeft: true // Changed from 'true' to true for type compatibility
 	});
-	const component2 = mount(Select, { target: document.body, props: props2 });
-	flushSync();
-
+	const component2 = await mount(Select, { target: document.body, props: props2 });
 	const selectContainer2 = document.body.querySelector('.input');
 	expect(selectContainer2).toHaveClass('label-on-the-left');
-
 	unmount(component2);
 });
 
@@ -216,18 +203,15 @@ test('Select without id generates a unique id', async () => {
 		items: data,
 		name: 'testName'
 	});
-	const component1 = mount(Select, { target: document.body, props: props1 });
-	flushSync();
+	const component1 = await mount(Select, { target: document.body, props: props1 });
 
 	const select1 = document.body.querySelector('select');
 	expect(select1.id).toBe('testName');
 
 	unmount(component1);
 
-	const props2 = $state({
-		items: data
-	});
-	const component2 = mount(Select, { target: document.body, props: props2 });
+	const props2 = $state({ items: data });
+	const component2 = await mount(Select, { target: document.body, props: props2 });
 
 	const select2 = document.body.querySelector('select');
 	expect(select2.id).toBeTruthy();
@@ -238,12 +222,8 @@ test('Select without id generates a unique id', async () => {
 
 
 test('Select exposes element and inputElement references', async () => {
-	const props = $state({
-		items: data
-	});
-	const component = mount(Select, { target: document.body, props });
-	flushSync();
-
+	const props = $state({ items: data });
+	const component = await mount(Select, { target: document.body, props });
 	const element = document.body.querySelector('.input');
 	expect(element.classList.contains('input')).toBe(true);
 	expect(element.classList.contains('select')).toBe(true);
@@ -261,8 +241,7 @@ test('Select with error shows correct validation styling', async () => {
 		items: data,
 		error: errorMessage
 	});
-	const component = mount(Select, { target: document.body, props });
-	flushSync();
+	const component = await mount(Select, { target: document.body, props });
 
 	const selectContainer = document.body.querySelector('.select');
 	expect(selectContainer).toHaveClass('has-error');

@@ -10,25 +10,23 @@
 import './Label.css';
 
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [for]
+ * @property {string} [label]
+ * @property {boolean} [disabled]
+ * @property {any} [element]
+ */
 
-
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {string} [for]
-	 * @property {string} [label]
-	 * @property {boolean} [disabled]
-	 * @property {any} [element]
-	 */
-
-	/** @type {Props} */
-	let {
-		class: className = '',
-		for: _for = '',
-		label = '',
-		disabled = false,
-		element = $bindable(undefined)
-	} = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	for: _for = '',
+	label = '',
+	disabled = false,
+	element = $bindable(undefined)
+} = $props();
 
 
 </script>

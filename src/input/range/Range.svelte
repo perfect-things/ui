@@ -34,8 +34,7 @@
 			aria-errormessage={error ? errorMessageId : undefined}
 			bind:this={inputElement}
 			bind:value={value}
-			{onchange}
-			{oninput}>
+			{...restProps}>
 	</div>
 </div>
 
@@ -67,6 +66,7 @@ import { Label } from '../label';
  * @property {boolean} [hideTicks]
  * @property {any} [element]
  * @property {any} [inputElement]
+ * @property {Object} [restProps] - Any other props that should be passed to the input element
  */
 
 /** @type {Props} */
@@ -87,15 +87,13 @@ let {
 	hideTicks = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
-	onchange = () => {},
-	oninput = () => {}
+	...restProps
 } = $props();
 
 const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
 const progress = $derived((value - min) / (max - min) * 100);
-
 const ticks = $derived(Array.from({ length: 6 }, (_, i) => +min + i * ((max - min) / 5)));
 
 

@@ -1,4 +1,5 @@
-export const isTouchDevice = 'ontouchstart' in document.documentElement;
+// @ts-ignore
+export const isTouchDevice = (('ontouchstart' in window) && (navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0));
 
 
 export function initialMeasure (toggleEl) {

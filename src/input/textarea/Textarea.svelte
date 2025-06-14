@@ -20,15 +20,10 @@
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
 			bind:this={inputElement}
-			bind:value={value}
-			onchange={bubble('change')}
-			oninput={bubble('input')}></textarea>
+			bind:value={value}></textarea>
 	</div>
 </div>
 <script>
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 import './Textarea.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -37,46 +32,43 @@ import { Label } from '../label';
 
 
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [value]
+ * @property {boolean} [autogrow]
+ * @property {any} [required]
+ * @property {boolean} [disabled]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ */
 
-
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {string} [id]
-	 * @property {string} [name]
-	 * @property {string} [value]
-	 * @property {boolean} [autogrow]
-	 * @property {any} [required]
-	 * @property {boolean} [disabled]
-	 * @property {string} [label]
-	 * @property {any} [error]
-	 * @property {any} [info]
-	 * @property {boolean} [labelOnTheLeft]
-	 * @property {any} [element]
-	 * @property {any} [inputElement]
-	 */
-
-	/** @type {Props & { [key: string]: any }} */
-	let {
-		class: className = '',
-		id = '',
-		name = '',
-		value = $bindable(''),
-		autogrow = false,
-		required = undefined,
-		disabled = false,
-		label = '',
-		error = undefined,
-		info = undefined,
-		labelOnTheLeft = false,
-		element = $bindable(undefined),
-		inputElement = $bindable(undefined),
-		...rest
-	} = $props();
+/** @type {Props & { [key: string]: any }} */
+let {
+	class: className = '',
+	id = '',
+	name = '',
+	value = $bindable(''),
+	autogrow = false,
+	required = undefined,
+	disabled = false,
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	...rest
+} = $props();
 
 
 const _id = $derived(id || name || guid());
-
 const errorMessageId = guid();
 
 

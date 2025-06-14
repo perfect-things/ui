@@ -33,7 +33,7 @@
 					{name}
 					{disabled}
 					id={_id}
-					onchange={onchange}
+					onchange={_onchange}
 					bind:this={inputElement}
 					bind:value={value}>
 			{:else}
@@ -53,8 +53,8 @@
 					{onshow}
 					{onhide}
 					{onblur}
-					onchangeDate={onchange}
-					onkeydowncapture={onkeydown}
+					onchangeDate={_onchange}
+					onkeydowncapture={_onkeydown}
 					bind:this={inputElement}
 					bind:value={value}>
 			{/if}
@@ -64,7 +64,7 @@
 
 <script>
 import './InputDate.css';
-import { onMount, createEventDispatcher } from 'svelte';
+import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
 import { Button } from '../../button';
@@ -97,6 +97,8 @@ import { Label } from '../label';
  * @property {string} [orientation] - datepicker orientation, default 'auto'
  * @property {string} [title] - input title
  * @property {boolean|string} [useNativeOnMobile] - if true, the native date input will be used on mobile devices
+ * @property {function} [onchange] - function to call on date change
+ * @property {function} [onkeydown] - function to call on keydown event
  *
  */
 
@@ -121,13 +123,14 @@ let {
 	orientation = 'auto',	// '[left|right|auto] [top|bottom|auto]'
 	title = undefined,
 	useNativeOnMobile = false,
+	onchange = () => {},
+	onkeydown = () => {},
 } = $props();
 
 
 let picker;
 let isHiding = false;
 const errorMessageId = guid();
-const dispatch = createEventDispatcher();
 const useNative = isMobile() && (useNativeOnMobile === true || useNativeOnMobile === 'true');
 
 let open = $state(!!useNative);
@@ -163,26 +166,26 @@ function initDatePicker () {
 	});
 }
 
-function onkeydown (e) {
+function _onkeydown (e) {
 	const isActive = picker.active;
 	const params = { event: e, component: picker };
 	if (e.key === 'Escape') {
 		if (isActive) e.stopPropagation();
-		else dispatch('keydown', params);
+		else onkeydown(params);
 		requestAnimationFrame(() => picker.hide());
 	}
 	else if (e.key === 'Enter') {
 		if (isActive) e.preventDefault();
-		else dispatch('keydown', params);
+		else onkeydown(params);
 		requestAnimationFrame(() => {
 			picker.hide();
 			if (!inputElement) return;
 			if (value !== inputElement.value) value = inputElement.value;	// set value first
-			dispatch('keydown', params);									// trigger with new value
+			onkeydown(params);									// trigger with new value
 		});
 	}
 
-	else dispatch('keydown', params);
+	else onkeydown(params);
 
 	// prevents picker's events in Safari
 	// if (e.key.includes('Arrow') && picker.active) {
@@ -203,10 +206,10 @@ function oninput () {
 	});
 }
 
-function onchange () {
+function _onchange () {
 	if (picker) value = picker.getDate(format);
 	else value = inputElement.value;
-	dispatch('change', value);
+	onchange(value);
 }
 
 function onshow () {

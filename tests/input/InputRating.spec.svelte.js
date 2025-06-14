@@ -1,5 +1,5 @@
 import { fireEvent } from '@testing-library/svelte';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
 
 import { InputRating } from '../../src/input/input-rating';
@@ -17,6 +17,8 @@ test('InputRating', async () => {
 		onchange: vi.fn(),
 	});
 
+	// @ts-ignore
+	window.setTimeout = (cb) => { cb(); };
 	const component = mount(InputRating, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');

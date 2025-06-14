@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import Menu from './helpers/Menu.svelte';
 
 
@@ -14,7 +14,6 @@ test('Menu', async () => {
 
 	const btn = document.body.querySelector('.open-menu-button');
 	await userEvent.click(btn);
-	flushSync();
 	cmp = document.body.querySelector('.test-menu');
 	expect(cmp).toBeInTheDocument();
 
@@ -24,17 +23,14 @@ test('Menu', async () => {
 	expect(menuItem).toHaveTextContent('Add');
 
 	// await userEvent.click(menuItem);
-	// flushSync();
 	// expect(cmp).not.toBeInTheDocument();
 
 
 	await userEvent.click(document.body);
-	flushSync();
 	expect(cmp).not.toBeInTheDocument();
 
 
 	// await userEvent.click(btn);
-	// flushSync();
 	// cmp = document.body.querySelector('.test-menu');
 	// expect(cmp).toBeInTheDocument();
 

@@ -34,21 +34,20 @@ test('Combobox', async () => {
 	const combobox = document.body.querySelector('.combobox');
 	expect(combobox).toBeInTheDocument();
 	expect(combobox).toHaveClass('test-class');
+	expect(combobox).toHaveAttribute('title', 'Component1');
 
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 
 	// verify props
-	const input = document.body.querySelector(`[title="${props.title}"]`);
+	const input = document.body.querySelector('input');
 	expect(input).toHaveAttribute('id', 'Component1');
-	expect(input).toHaveAttribute('title', 'Component1');
 	expect(input).toHaveAttribute('name', 'Component1');
 	expect(input).toHaveAttribute('placeholder', 'Component1');
 	expect(input).toHaveAttribute('aria-required');
 
 	// open list
 	await fireEvent.mouseDown(input);
-	flushSync();
 
 	// verify list
 	const comboboxList = document.body.querySelector('.combobox-list');
@@ -62,7 +61,6 @@ test('Combobox', async () => {
 
 	// click on list item
 	await fireEvent.mouseUp(item);
-	flushSync();
 
 	// verify that the item was selected
 	const comboboxListAfterClick = document.body.querySelector('.combobox-list');

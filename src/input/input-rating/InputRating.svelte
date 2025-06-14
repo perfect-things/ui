@@ -15,7 +15,7 @@
 		tabindex="0"
 		ontouchstart={onMouseDown}
 		onmousedown={onMouseDown}
-		onkeydown={onKey}
+		onkeydown={_onkeydown}
 		bind:this={innerBox}>
 
 		<InputError id={errorMessageId} msg={error} />
@@ -48,9 +48,7 @@
 				aria-required={required}
 				bind:this={inputElement}
 				bind:value={value}
-				oninput={bubble('input')}
-				onfocus={bubble('focus')}
-				onblur={bubble('blur')}>
+				{...restProps}>
 		</div>
 	</div>
 </div>
@@ -58,12 +56,8 @@
 
 
 <script>
-import { createBubbler } from 'svelte/legacy';
-
-const bubble = createBubbler();
 import './InputRating.css';
 import { Button } from '../../button';
-import { createEventDispatcher } from 'svelte';
 import { guid, getMouseY, getMouseX } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -90,6 +84,9 @@ import { Label } from '../label';
  * @property {any} [light]
  * @property {any} [element]
  * @property {any} [inputElement]
+ * @property {function} [onchange]
+ * @property {function} [onkeydown]
+ * @property {Object} [restProps] - Any other props that should be passed to the input element
  */
 
 /** @type {Props} */
@@ -109,30 +106,28 @@ let {
 	icon = 'star',
 	light = undefined,
 	element = $bindable(undefined),
-	inputElement = $bindable(undefined)
+	inputElement = $bindable(undefined),
+	onchange = () => {},
+	onkeydown = () => {},
+	...restProps
 } = $props();
+
 let innerBox = $state(undefined);
 let mouseY = 0;
-
-const stars = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
-
-const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
+const stars = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
 
 
-function fireKeydown (event) { dispatch('keydown', { event, value }); }
-
-
-function onKey (e) {
+function _onkeydown (e) {
 	if (e.target.closest('.btn-reset')) return;
 	const key = e.key, v = parseInt(value, 10) || 0;
 	if (key === 'ArrowRight') set(Math.min(v + 1, max));
 	else if (key === 'ArrowLeft') set(Math.max(v - 1, 0));
 	else if (key === 'Escape') set();
 
-	if (key) return fireKeydown(e);
+	if (key) return onkeydown({ event: e, value });
 	e.preventDefault();
 }
 
@@ -151,7 +146,7 @@ function set (v) {
 	}
 	else value = '';
 	element.querySelector('.input-inner').focus();
-	dispatch('change', value);
+	onchange(value);
 }
 
 

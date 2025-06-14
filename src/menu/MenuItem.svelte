@@ -6,8 +6,8 @@
 	class:warning
 	class:danger
 	{...rest}
-	onmousedown={preventDefault(bubble('mousedown'))}
-	onclickcapture={onclick}
+	onmousedown={_onmousedown}
+	onclickcapture={_onclick}
 	bind:this={element}>
 
 	<span class="menu-item-content">
@@ -18,54 +18,64 @@
 </button>
 
 <script>
-	import { createBubbler, preventDefault } from 'svelte/legacy';
-
-	const bubble = createBubbler();
-import { createEventDispatcher, getContext } from 'svelte';
+import { getContext } from 'svelte';
 import { Icon } from '../icon';
 import { blink, replaceKeySymbols } from '../utils';
 
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [shortcut]
-	 * @property {any} [icon]
-	 * @property {string} [class]
-	 * @property {boolean} [success]
-	 * @property {boolean} [warning]
-	 * @property {boolean} [danger]
-	 * @property {boolean} [disabled]
-	 * @property {any} [element]
-	 * @property {import('svelte').Snippet} [children]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [shortcut]
+ * @property {any} [icon]
+ * @property {string} [class]
+ * @property {boolean} [success]
+ * @property {boolean} [warning]
+ * @property {boolean} [danger]
+ * @property {boolean} [disabled]
+ * @property {any} [element]
+ * @property {import('svelte').Snippet} [children]
+ * @property {(e: MouseEvent) => any} [onclick]
+ * @property {(e: MouseEvent) => any} [onmousedown]
+ * * @typedef {Props & { [key: string]: any }} PropsWithRest
+ *
+ */
 
-	/** @type {Props & { [key: string]: any }} */
-	let {
-		shortcut = '',
-		icon = undefined,
-		class: className = '',
-		success = false,
-		warning = false,
-		danger = false,
-		disabled = false,
-		element = $bindable(undefined),
-		children,
-		...rest
-	} = $props();
+/** @type {Props & { [key: string]: any }} */
+let {
+	shortcut = '',
+	icon = undefined,
+	class: className = '',
+	success = false,
+	warning = false,
+	danger = false,
+	disabled = false,
+	element = $bindable(undefined),
+	children,
+	onclick = () => {},
+	onmousedown = () => {},
+	...rest
+} = $props();
 
 
 
-const dispatch = createEventDispatcher();
 const { targetEl } = getContext('MenuContext');
 
 
-function onclick (e) {
+function _onclick (e) {
 	const btn = e.target.closest('.menu-item');
 	if (btn) btn.focus();
 	blink(btn, 200).then(() => {
-		const target = targetEl();
-		const res = dispatch('click', { event: e, target, button: btn }, { cancelable: true });
+		// modify the event so that:
+		// target is the button that opens the menu
+		// button is the menuItem <button> that was clicked
+		// cancellable is true so that the menu can remain open if event is prevented
+		Object.defineProperties(e, {
+			target: { value: targetEl(), writable: false, enumerable: true, configurable: true },
+			button: { value: btn, writable: false, enumerable: true, configurable: true },
+			cancellable: { value: true, writable: false, enumerable: true, configurable: true }
+		});
+		const res = onclick(e);
 		if (res === false) {
 			e.stopPropagation();
 			e.preventDefault();
@@ -73,4 +83,9 @@ function onclick (e) {
 	});
 }
 
+
+function _onmousedown (e) {
+	e.preventDefault();
+	onmousedown(e);
+}
 </script>

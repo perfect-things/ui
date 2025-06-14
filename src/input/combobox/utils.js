@@ -1,6 +1,18 @@
 import { alignItem } from '../../utils';
 
+
+export function normalizeItems (_items) {
+	if (!_items || !_items.length) return [];
+	return _items.map(item => {
+		if (typeof item === 'string') return { name: item };
+		if (item.name) return item;
+		return { name: item.toString() };
+	});
+}
+
+
 export function groupData (items) {
+	if (!items || !items.length) return [];
 	const nogroup = [];
 	const _groups = {};
 	items.forEach(item => {
@@ -10,6 +22,10 @@ export function groupData (items) {
 	});
 	const groups = Object.values(_groups).filter(g => !!g.items.length);
 	if (nogroup.length) groups.unshift({ items: nogroup });
+
+	let idx = 0;
+	groups.forEach(g => g.items.forEach(i => i.idx = idx++));
+
 	return groups;
 }
 

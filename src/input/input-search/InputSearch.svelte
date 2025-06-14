@@ -19,17 +19,13 @@
 				autocomplete="off"
 				type="search"
 				{disabled}
-				{...rest}
 				aria-invalid={error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
 				bind:value={value}
-				oninput={bubble('input')}
 				{onkeydown}
-				onchange={bubble('change')}
-				onfocus={bubble('focus')}
-				onblur={bubble('blur')}>
+				{...restProps}>
 
 			<Button link
 				icon="close"
@@ -40,9 +36,6 @@
 </div>
 
 <script>
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 import './InputSearch.css';
 import { guid } from '../../utils';
 import { Button } from '../../button';
@@ -54,40 +47,40 @@ import { Label } from '../label';
 
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {string} [id]
-	 * @property {any} [required]
-	 * @property {boolean} [disabled]
-	 * @property {string} [value]
-	 * @property {string} [label]
-	 * @property {any} [error]
-	 * @property {any} [info]
-	 * @property {boolean} [labelOnTheLeft]
-	 * @property {any} [element]
-	 * @property {any} [inputElement]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [id]
+ * @property {any} [required]
+ * @property {boolean} [disabled]
+ * @property {string} [value]
+ * @property {string} [label]
+ * @property {any} [error]
+ * @property {any} [info]
+ * @property {boolean} [labelOnTheLeft]
+ * @property {any} [element]
+ * @property {any} [inputElement]
+ * @property {Object} [restProps] - Any other props that should be passed to the input element
+ */
 
-	/** @type {Props & { [key: string]: any }} */
-	let {
-		class: className = '',
-		id = '',
-		required = undefined,
-		disabled = false,
-		value = $bindable(''),
-		label = '',
-		error = undefined,
-		info = undefined,
-		labelOnTheLeft = false,
-		element = $bindable(undefined),
-		inputElement = $bindable(undefined),
-		...rest
-	} = $props();
+/** @type {Props & { [key: string]: any }} */
+let {
+	class: className = '',
+	id = '',
+	required = undefined,
+	disabled = false,
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	...restProps
+} = $props();
 
 
 const _id = $derived(id || name || guid());
-
 const errorMessageId = guid();
 
 

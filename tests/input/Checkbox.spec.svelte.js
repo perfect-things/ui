@@ -20,11 +20,8 @@ test('Checkbox', async () => {
 		onchange: mock
 	});
 
-	const component = mount(Checkbox, {
-		target: document.body,
-		// @ts-ignore
-		props
-	});
+	// @ts-ignore
+	const component = mount(Checkbox, { target: document.body, props });
 
 	const chbox = document.body.querySelector('[title="Checkbox1"]');
 	expect(chbox).toBeInTheDocument();

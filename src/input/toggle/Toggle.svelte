@@ -86,7 +86,6 @@ let {
 const _id = $derived(id || name || guid());
 
 const errorMessageId = guid();
-
 let scroller = $state();
 let handle = $state();
 let startX = $state();

@@ -3,10 +3,19 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] remove `createEventDispatcher` code
-- [ ] fix tests that fail due to animations not running (custom svelte transitions)
+- [ ] upgrade all `class:` attrs
 - [ ] ensure there's no commented-put `// expect...` in the code
+- [ ] fix tests that fail due to animations not running (custom svelte transitions)
+- [ ] ensure `aria-invalid` is `true`/`false` and not error message
+- [ ] remove flushSync when not needed
+- [ ] fix json code bits live updating
+- [ ] uncomment & fix InputNumber tests
 
+
+- [x] fix comboboxes
+- [x] remove `bubble` code
+- [x] remove `createEventDispatcher` code
+- [x] ensure value, element, etc. are bindable `value = $bindable('')`
 
 
 

@@ -42,7 +42,6 @@ test('Drawer', async () => {
 	expect(cmp.contains(document.activeElement)).toBeTruthy();
 
 	await userEvent.click(document.body);
-	flushSync();
 	expect(closeMock).toHaveBeenCalled();
 	// cmp = document.body.querySelector('.test-class');
 	// expect(cmp).not.toBeInTheDocument();
@@ -54,7 +53,6 @@ test('Drawer', async () => {
 
 	const closer = document.body.querySelector('.test-class .drawer-header .btn-close');
 	await userEvent.click(closer);
-	// flushSync();
 	// cmp = document.body.querySelector('.test-class');
 	// expect(cmp).not.toBeInTheDocument();
 

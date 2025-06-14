@@ -10,11 +10,11 @@
 
 <h3>Typical use-cases</h3>
 <div class="docs-buttons-row">
-	<Button onclick={dialog1.open}>Large dialog</Button>
-	<Button onclick={dialog2.open}>No buttons</Button>
-	<Button onclick={dialog3.open}>Confirmation</Button>
-	<Button onclick={dialog4.open}>With title and buttons</Button>
-	<Button onclick={dialog5.open}>Modal</Button>
+	<Button onclick={e => dialog1.open(e)}>Large dialog</Button>
+	<Button onclick={e => dialog2.open(e)}>No buttons</Button>
+	<Button onclick={e => dialog3.open(e)}>Confirmation</Button>
+	<Button onclick={e => dialog4.open(e)}>With title and buttons</Button>
+	<Button onclick={e => dialog5.open(e)}>Modal</Button>
 </div>
 
 
@@ -29,9 +29,7 @@
 	<p>Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut. </p>
 
 	{#snippet footer()}
-		<div >
-			<Button onclick={() => dialog1.close()}>Close</Button>
-		</div>
+		<Button onclick={() => dialog1.close()}>Close</Button>
 	{/snippet}
 </Dialog>
 
@@ -43,10 +41,8 @@
 <Dialog bind:this={dialog3}>
 	Are you sure?
 	{#snippet footer()}
-		<div >
-			<Button onclick={() => dialog3.close()}>Yes</Button>
-			<Button onclick={() => dialog3.close()}>No</Button>
-		</div>
+		<Button onclick={() => dialog3.close()}>Yes</Button>
+		<Button onclick={() => dialog3.close()}>No</Button>
 	{/snippet}
 </Dialog>
 
@@ -54,12 +50,10 @@
 <Dialog bind:this={dialog4} title="Edit something">
 	Form goes here...
 	{#snippet footer()}
-		<div >
-			<Button success onclick={() => dialog4.close()}>Yes</Button>
-			<Button onclick={() => dialog4.close()}>No</Button>
-			<div class="flex-spacer"></div>
-			<Button danger icon="trash" onclick={() => dialog4.close()}></Button>
-		</div>
+		<Button success onclick={() => dialog4.close()}>Yes</Button>
+		<Button onclick={() => dialog4.close()}>No</Button>
+		<div class="flex-spacer"></div>
+		<Button danger icon="trash" onclick={() => dialog4.close()}></Button>
 	{/snippet}
 </Dialog>
 
@@ -68,10 +62,8 @@
 	<p style="line-height: 2; margin: 0">This means that it will not close when clicking outside of it.<br>
 		This is useful for when an intentional action is required from the user.</p>
 	{#snippet footer()}
-		<div >
-			<Button success onclick={() => dialog5.close()}>Confirm</Button>
-			<Button text onclick={() => dialog5.close()}>Cancel</Button>
-		</div>
+		<Button success onclick={() => dialog5.close()}>Confirm</Button>
+		<Button text onclick={() => dialog5.close()}>Cancel</Button>
 	{/snippet}
 </Dialog>
 
@@ -111,12 +103,12 @@ const instanceApiProps = [
 const exampleHtml = `
 <Dialog bind:this={dialog1}>
     Are you sure?
-    <div slot="footer">
-        <Button onclick={() => dialog1.close()}>Close</Button>
-    </div>
+	{#snippet footer()}
+        <Button onclick={e => dialog1.close(e)}>Close</Button>
+	{/snippet}
 </Dialog>
 
-<Button onclick={() => dialog1.open()}>Show dialog</Button>
+<Button onclick={e => dialog1.open(e)}>Show dialog</Button>
 
 <script>
     let dialog1;

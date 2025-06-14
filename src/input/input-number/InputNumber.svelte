@@ -22,23 +22,18 @@
 			aria-required={required}
 			bind:this={inputElement}
 			bind:value={value}
-			{onkeydown}
-			{onchange}
+			onkeydown={_onkeydown}
+			onchange={_onchange}
 			{onpaste}
-			{ondrop}
-			{oninput}
-			{onfocus}
-			{onblur}>
+			{ondrop}>
 	</div>
 </div>
 
 <script>
-import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
-
 
 
 
@@ -57,9 +52,8 @@ import { Label } from '../label';
  * @property {boolean} [labelOnTheLeft]
  * @property {any} [element]
  * @property {any} [inputElement]
- * @property {function} [oninput]
- * @property {function} [onfocus]
- * @property {function} [onblur]
+ * @property {function} [onchange]
+ * @property {function} [onkeydown]
  */
 
 /** @type {Props & { [key: string]: any }} */
@@ -77,14 +71,12 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
-	oninput = undefined,
-	onfocus = undefined,
-	onblur = undefined,
+	onchange = () => {},
+	onkeydown = () => {},
 	...rest
 } = $props();
 
 
-const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 const allowedKeys = [
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -97,11 +89,11 @@ const _id = $derived(id || name || guid());
 
 
 function fireKeydown (event) {
-	dispatch('keydown', { event, value });
+	onkeydown({ event, value });
 }
 
 
-function onkeydown (e) {
+function _onkeydown (e) {
 	const key = e.key;
 	const val = ('' + value);
 
@@ -119,15 +111,15 @@ function onkeydown (e) {
 
 
 function ondrop () {
-	requestAnimationFrame(onchange);
+	requestAnimationFrame(_onchange);
 }
 
 function onpaste () {
-	requestAnimationFrame(onchange);
+	requestAnimationFrame(_onchange);
 }
 
 
-function onchange () {
+function _onchange () {
 	const nonNumeric = new RegExp(`[^0-9${separator}-]+`, 'g');
 
 	// escape regex special chars, as if separator='.' - it would remove any character
@@ -143,6 +135,6 @@ function onchange () {
 	const v = value.replace(separator, '.');
 	const num = parseFloat(v);
 	if (isNaN(num)) value = '';
-	dispatch('change', { value });
+	onchange({ value });
 }
 </script>

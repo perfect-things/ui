@@ -38,7 +38,6 @@ test('InputNumber renders with correct props', async () => {
 
 	props.error = '';
 	flushSync();
-	await waitForTimeout();
 	err = cmp.querySelector('.info-bar-error');
 	// Error element may still exist but be hidden
 
@@ -99,15 +98,12 @@ test('InputNumber handles min and max values', async () => {
 // 	const component = mount(InputNumber, { target: document.body, props });
 
 // 	const input = document.body.querySelector('input');
-// 	flushSync();
 // 	expect(input).toHaveAttribute('step', '5');
 
 // 	await userEvent.keyboard('[ArrowUp]');
-// 	flushSync();
 // 	expect(input.value).toBe('10');
 
 // 	await userEvent.keyboard('[ArrowDown]');
-// 	flushSync();
 // 	expect(input.value).toBe('5');
 
 // 	unmount(component);
@@ -207,11 +203,9 @@ test('InputNumber handles focus and blur events', async () => {
 	const input = document.body.querySelector('input');
 
 	await userEvent.click(input);
-	flushSync();
 	expect(props.onfocus).toHaveBeenCalled();
 
 	await userEvent.tab(); // Simulate blur by tabbing away
-	flushSync();
 	expect(props.onblur).toHaveBeenCalled();
 
 	unmount(component);

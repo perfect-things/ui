@@ -339,13 +339,13 @@ function focusPrev () {
 /*** FOCUS & HIGHLIGHT ****************************************************************************/
 
 
-export {
-	className,
-	type,
-	targetSelector,
-	closeOnClick,
-	align,
-	valign,
-	element,
-};
+// export {
+// 	className,
+// 	type,
+// 	targetSelector,
+// 	closeOnClick,
+// 	align,
+// 	valign,
+// 	element,
+// };
 </script>

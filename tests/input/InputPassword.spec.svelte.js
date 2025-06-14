@@ -85,10 +85,11 @@ test('InputPassword', async () => {
 
 	// test excellent password
 	res = 'Excellent';
+	const pass = 'I\'m a great password! €4142';
 	await userEvent.clear(input);
-	await userEvent.type(input, 'I\'m a great password!');
+	await userEvent.type(input, pass);
 	await userEvent.keyboard('[Enter]');
-	expect(input).toHaveValue('I\'m a great password!');
+	expect(input).toHaveValue(pass);
 
 	strengthInfoText = document.body.querySelector('.password-strength-info h2');
 	expect(strengthInfoText).toHaveTextContent(res);
@@ -98,7 +99,6 @@ test('InputPassword', async () => {
 	expect(input.type).toBe('password');
 	const showPasswordBtn = document.body.querySelector('.input-password-button');
 	await userEvent.click(showPasswordBtn);
-	flushSync();
 	// @ts-ignore
 	expect(input.type).toBe('text');
 

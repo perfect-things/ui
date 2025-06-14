@@ -171,17 +171,18 @@ export function open (openedBy) {
 		triggerEl.setAttribute('aria-haspopup', 'true');
 		triggerEl.setAttribute('aria-expanded', 'true');
 	}
-
 	if (element) element.style.display = 'flex';
-	if (openTimer) clearTimeout(openTimer);
-	openTimer = setTimeout(() => {
-		opened = true;
-		if (element) element.style.display = 'flex';
-		if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
-		document.addEventListener('keydown', onDocKeydown);
-		freezeBody(true);
-		onopen();
-	}, 100);
+	return new Promise(resolve => {
+		if (openTimer) clearTimeout(openTimer);
+		openTimer = setTimeout(() => {
+			freezeBody(true);
+			opened = true;
+			if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
+			document.addEventListener('keydown', onDocKeydown);
+			onopen();
+			resolve();
+		}, $ANIMATION_SPEED / 2);
+	});
 }
 
 
@@ -189,26 +190,20 @@ export function close () {
 	if (!opened) return;
 	opened = false;
 	if (triggerEl && triggerEl.focus) triggerEl.focus();
-	if (closeTimer) clearTimeout(closeTimer);
-	closeTimer = setTimeout(() => {
-		opened = false;
-		element.style.display = 'none';
-		document.removeEventListener('keydown', onDocKeydown);
-		if (triggerEl && triggerEl !== document.body) {
-			triggerEl.removeAttribute('aria-expanded');
-		}
-		freezeBody(false);
-		onclose();
-	}, $ANIMATION_SPEED);
+	return new Promise(resolve => {
+		if (closeTimer) clearTimeout(closeTimer);
+		closeTimer = setTimeout(() => {
+			opened = false;
+			element.style.display = 'none';
+			document.removeEventListener('keydown', onDocKeydown);
+			if (triggerEl && triggerEl !== document.body) {
+				triggerEl.removeAttribute('aria-expanded');
+			}
+			freezeBody(false);
+			onclose();
+			resolve();
+		}, $ANIMATION_SPEED);
+	});
 }
 
-
-export {
-	className,
-	title,
-	opened,
-	skipFirstFocus,
-	modal,
-	element,
-};
 </script>

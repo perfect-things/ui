@@ -113,17 +113,19 @@ export function toggle (e) {
 
 	if (expanded) {
 		expanded = false;
-		animate(element, expandedProps, collapsedProps)
+		return animate(element, expandedProps, collapsedProps)
 			.then(() => {
 				open = expanded;
 				onclose();
 			});
 	}
-	else {
-		expanded = true;
-		open = true;
-		animate(element, collapsedProps, expandedProps).then(() => onopen());
-	}
+
+	expanded = true;
+	open = true;
+	return animate(element, collapsedProps, expandedProps)
+		.then(() => {
+			onopen();
+		});
 }
 
 </script>

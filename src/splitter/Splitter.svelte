@@ -7,23 +7,29 @@
 
 <script>
 import './Splitter.css';
-import { onMount, createEventDispatcher } from 'svelte';
+import { onMount } from 'svelte';
 import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
 import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
 
 
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [class]
-	 * @property {any} [element]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {any} [element]
+ * @property {(e: MouseEvent) => any} [onchange]
+ * @property {(e: MouseEvent) => any} [onchanged]
+ */
 
-	/** @type {Props} */
-	let { class: className = '', element = $bindable(undefined) } = $props();
+/** @type {Props} */
+let {
+	class: className = '',
+	element = $bindable(undefined),
+	onchange = () => {},
+	onchanged = () => {},
+} = $props();
 
 
-const dispatch = createEventDispatcher();
 const size = 8, halfsize = size / 2;
 const Box = {};
 
@@ -105,7 +111,7 @@ function updateSize (box, withAnimation = false) {
 		const collapsed = initialTargetBox.minHeight === box.height;
 		Box.height = box.height;
 		Box.collapsed = collapsed;
-		dispatch('change', Box);
+		onchange(Box);
 	}
 	else {
 		targetEl.style.width = box.width + 'px';
@@ -113,14 +119,14 @@ function updateSize (box, withAnimation = false) {
 		const collapsed = initialTargetBox.minWidth === box.width;
 		Box.width = box.width;
 		Box.collapsed = collapsed;
-		dispatch('change', Box);
+		onchange(Box);
 	}
 
 	if (withAnimation) {
 		setTimeout(() => {
 			targetEl.style.transition = originalTargetTransition;
 			element.style.transition = originalElTransition;
-			dispatch('changed', Box);
+			onchanged(Box);
 		}, ANIMATION_SPEED);
 	}
 }
@@ -167,6 +173,6 @@ function mouseup () {
 	document.removeEventListener('mouseup', mouseup);
 	document.removeEventListener('mousemove', mousemove);
 	document.body.style.cursor = bodyCursor;
-	dispatch('changed', Box);
+	onchanged(Box);
 }
 </script>

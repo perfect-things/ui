@@ -38,7 +38,8 @@ export function animate (el, from, to, _options = {}) {
 
 	return new Promise(resolve => {
 		requestAnimationFrame(() => {
-			if (!el || !el.animate) return;
+			if (!el || !el.animate) return resolve();
+
 			const anim = el.animate([from, to], opts);
 			anim.oncancel = resolve;
 			anim.onfinish = resolve;
@@ -58,7 +59,7 @@ export function blink (el, duration = 160) {
 
 export function debounce (func, timeout = 300) {
 	let timer;
-	return (...args) => {
+	return function (...args) { // Use regular function instead of arrow function
 		if (timer) clearTimeout(timer);
 		timer = setTimeout(() => func.apply(this, args), timeout);
 	};
@@ -120,8 +121,8 @@ export function getValueAtPath (obj, path, defaultValue = null) {
  */
 export function setValueAtPath (obj, path, value) {
 	const keys = path
-		.replace(/^\./, '')                           // strip a leading dot
-		.replace(/\[['"]?([\w\s]+)['"]?]/ig, '.$1')   // convert indexes to properties
+		.replace(/^\./, '')
+		.replace(/\[['"]?([\w\s]+)['"]?]/ig, '.$1')
 		.split('.');
 	const lastKey = keys.pop();
 	const lastObj = keys.reduce((acc, key) => {
@@ -131,6 +132,7 @@ export function setValueAtPath (obj, path, value) {
 	if (!lastObj) return false;
 
 	lastObj[lastKey] = value;
+	return true; // Add this line
 }
 
 

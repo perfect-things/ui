@@ -2,9 +2,9 @@
 
 <h3>Normal menu</h3>
 <div class="docs-buttons-row">
-	<Button data-name="show-menu-button" onclick={thingsMenu.open}>Show menu</Button>
-	<Button data-name="show-menu-button" onclick={thingsMenu1.open}>Show menu aligned to the center of the button</Button>
-	<Button data-name="show-menu-button" onclick={thingsMenu2.open}>Show menu aligned to the right side of the button</Button>
+	<Button data-name="show-menu-button" onclick={e => thingsMenu.open(e)}>Show menu</Button>
+	<Button data-name="show-menu-button" onclick={e => thingsMenu1.open(e)}>Show menu aligned to the center of the button</Button>
+	<Button data-name="show-menu-button" onclick={e => thingsMenu2.open(e)}>Show menu aligned to the right side of the button</Button>
 </div>
 
 <Menu bind:this={thingsMenu}>
@@ -45,7 +45,7 @@
 
 <h3>Close to the edge of the screen</h3>
 <div class="docs-menu-align-right">
-	<Button onclick={someMenu3.open}>Right edge</Button>
+	<Button onclick={e => someMenu3.open(e)}>Right edge</Button>
 </div>
 
 <Menu bind:this={someMenu3}>

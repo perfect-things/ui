@@ -39,7 +39,6 @@ test('Button', async () => {
 	expect(btn).toHaveClass('test-class');
 
 	await user.click(btn);
-	flushSync();
 	expect(mock).toHaveBeenCalled();
 
 	let types = ['success', 'danger', 'warning', 'info', 'round'];

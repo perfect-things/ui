@@ -1,13 +1,13 @@
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	class="table grid grid-sortable {className}"
 	class:round
 	class:interactive={_interactive}
 	bind:this={element}
-	onclick={onClick}
-	onfocuscapture={onFocus}
-	onkeydown={onKeyDown}
-	ondblclick={onDblClick}>
+	onclick={_onclick}
+	onfocuscapture={_onfocus}
+	onkeydown={_onkeydown}
+	ondblclick={_ondblclick}>
 	{#if title}
 		<h1 class="grid-title">{title}</h1>
 	{/if}
@@ -20,27 +20,54 @@
 
 <script>
 import './Grid.css';
-import { onMount, createEventDispatcher, beforeUpdate } from 'svelte';
+import { onMount } from 'svelte';
 import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';
 import { DataStore } from './DataStore.js';
 import { GridHead, GridFoot, GridBody } from './parts';
 
+/**
+ * @typedef {Object} Props
+ * @property {string} [class]
+ * @property {string} [title]
+ * @property {boolean|string} [interactive=true]
+ * @property {boolean} [round=false]
+ * @property {string|HTMLElement} [scrollContainer=undefined]
+ * @property {string} [scrollCorrectionOffset='0']
+ * @property {Array} [columns=[]]
+ * @property {Array} [data=[]]
+ * @property {boolean} [multiselect=false]
+ * @property {number} [dblClickDelay=500]
+ * @property {HTMLElement} [element=undefined]
+ * @property {function} [onselect]
+ * @property {function} [onfocus]
+ * @property {function} [onclick]
+ * @property {function} [ondblclick]
+ * @property {function} [onkeydown]
+ */
 
-let className = '';
-export { className as class };
-export let title = '';
-export let interactive = true;
-export let round = false;
-export let scrollContainer = undefined;
-export let scrollCorrectionOffset = '0';
-export let columns = [];
-export let data = [];
-export let multiselect = false;
-export let dblClickDelay = 500;
+/** @type {Props} */
+let {
+	class: className = '',
+	title = '',
+	interactive = true,
+	round = false,
+	scrollContainer = undefined,
+	scrollCorrectionOffset = '0',
+	columns = [],
+	data = [],
+	multiselect = false,
+	dblClickDelay = 500,
+	element = undefined,
+	onselect = () => {},
+	onfocus = () => {},
+	onclick = () => {},
+	ondblclick = () => {},
+	onkeydown = () => {},
+} = $props();
 
-export let element = undefined;
 
-const dispatch = createEventDispatcher();
+
+
 let headerHeight = 0;
 const rowSelector = 'tbody';
 
@@ -50,7 +77,7 @@ let selectedIdx = -1;
 let clickTimer;
 let previousKey;
 
-$:_interactive = (interactive === true || interactive === 'true');
+const _interactive = $derived(interactive === true || interactive === 'true');
 
 
 onMount(() => {
@@ -60,7 +87,7 @@ onMount(() => {
 });
 
 
-beforeUpdate(() => {
+$effect.pre(() => {
 	if (data) Data.set(data);
 	if (columns) Data.columns.set(columns);
 });
@@ -72,7 +99,7 @@ function selectPrev () {
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	dispatch('select', { selectedItem: rowEl });
+	onselect({ selectedItem: rowEl });
 }
 
 
@@ -82,7 +109,7 @@ function selectNext () {
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	dispatch('select', { selectedItem: rowEl });
+	onselect({ selectedItem: rowEl });
 }
 
 
@@ -96,7 +123,7 @@ function selectRow (e, rowEl) {
 	const rows = getSelectableItems(element);
 	selectedIdx = rows.findIndex(item => item === rowEl);
 
-	if (oldIdx !== selectedIdx) dispatch('select', { event: e, selectedItem: rowEl });
+	if (oldIdx !== selectedIdx) onselect({ event: e, selectedItem: rowEl });
 
 
 	const scrollEl = getScrollContainer(element, scrollContainer);
@@ -117,7 +144,7 @@ function selectRow (e, rowEl) {
 }
 
 
-function onFocus (e) {
+function _onfocus (e) {
 	if (shouldSkipNav(e, element)) return;
 	const notRowFocus = !e.target.matches(rowSelector);
 	if (notRowFocus || !_interactive) return;
@@ -125,12 +152,12 @@ function onFocus (e) {
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
 		selectRow(e, rowEl);
-		dispatch('focus', { event: e, selectedItem: rowEl });
+		onfocus({ event: e, selectedItem: rowEl });
 	}
 }
 
 
-function onClick (e) {
+function _onclick (e) {
 	if (shouldSkipNav(e, element)) return;
 
 	const rowEl = e.target.closest(rowSelector);
@@ -145,11 +172,11 @@ function onClick (e) {
 
 	// debounce, so to not duplicate events when dbl-clicking
 	if (clickTimer) clearTimeout(clickTimer);
-	clickTimer = setTimeout(() => dispatch('click', { event: e, selectedItem: rowEl }), dblClickDelay);
+	clickTimer = setTimeout(() => onclick({ event: e, selectedItem: rowEl }), dblClickDelay);
 }
 
 
-function onDblClick (e) {
+function _ondblclick (e) {
 	if (!_interactive) return;
 	if (shouldSkipNav(e, element)) return;
 
@@ -162,12 +189,12 @@ function onDblClick (e) {
 
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems(element)[selectedIdx];
-		dispatch('dblclick', { event: e, selectedItem });
+		ondblclick({ event: e, selectedItem });
 	});
 }
 
 
-function onKeyDown (e) {
+function _onkeydown (e) {
 	if (!_interactive) return;
 	if (shouldSkipNav(e, element)) return;
 
@@ -207,7 +234,7 @@ function onKeyDown (e) {
 
 	previousKey = e.key;
 	const selectedItem = getSelectableItems(element)[selectedIdx];
-	dispatch('keydown', { event: e, key: e.key, selectedItem });
+	onkeydown({ event: e, key: e.key, selectedItem });
 }
 
 

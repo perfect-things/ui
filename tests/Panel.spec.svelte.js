@@ -1,48 +1,44 @@
 import { expect, test, vi } from 'vitest';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import { Panel } from '../src/panel';
-import { fireEvent } from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
 
 
 test('Panel', async () => {
-	// window.requestAnimationFrame = (cb) => {
-	// 	cb(1);
-	// 	return 0;
-	// };
+	const onopen = vi.fn();
+	const onclose = vi.fn().mockImplementation(() => resolve());
+	let resolve = _ => _;
+	const resolvedByOnClose = new Promise(_res => { resolve = _res; });
 
-	const openMock = vi.fn();
-	const closeMock = vi.fn();
 	const props = $state({
 		title: 'Panel1',
 		class: 'test-class',
 		collapsible: true,
-		onopen: openMock,
-		onclose: closeMock,
+		onopen,
+		onclose,
 		children: undefined
 	});
-
-	const component = mount(Panel, { target: document.body, props });
+	const component = await mount(Panel, { target: document.body, props });
+	const user = userEvent.setup();
 
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).not.toHaveClass('expanded');
 
-	component.toggle();
-	flushSync();
+	await component.toggle();
 
 	expect(cmp).toHaveClass('expanded');
-	// expect(openMock).toHaveBeenCalled();
+	expect(onopen).toHaveBeenCalled();
 
 	const PanelTitle = document.body.querySelector('.test-class .panel-header');
 	expect(PanelTitle).toHaveTextContent(props.title);
 
 	const panel = document.body.querySelector('.test-class details');
-	// await userEvent.click(panel);
-	await fireEvent.click(panel);
-	flushSync();
+	await user.click(panel);
+	await resolvedByOnClose;
 
 	expect(cmp).not.toHaveClass('expanded');
-	// expect(closeMock).toHaveBeenCalled();
+	expect(onclose).toHaveBeenCalled();
 
 	unmount(component);
 });

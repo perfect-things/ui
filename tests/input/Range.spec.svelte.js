@@ -19,11 +19,8 @@ test('Range', async () => {
 		}
 	});
 
-	const component = mount(Range, {
-		target: document.body,
-		// @ts-ignore
-		props
-	});
+	// @ts-ignore
+	const component = mount(Range, { target: document.body, props });
 
 	const cmp = document.body.querySelector('[title="Range1"]');
 	expect(cmp).toBeInTheDocument();
@@ -62,7 +59,6 @@ test('Range', async () => {
 	expect(lbl).toHaveTextContent(props.label);
 
 	await fireEvent.change(input, { target: { value: '6' } });
-	flushSync();
 	expect(changeEvent).toBeDefined();
 
 	unmount(component);

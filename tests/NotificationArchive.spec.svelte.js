@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { mount, unmount, flushSync } from 'svelte';
 import { NotificationArchive } from '../src/notification-center/NotificationArchive/index';
 import { ArchivedNotifications } from '../src/notification-center/store';
-import { fireEvent } from '@testing-library/dom';
 
 function setArchivedNotifications (notifications) {
 	const archiveData = {};

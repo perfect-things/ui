@@ -6,13 +6,14 @@ vi.mock('*.css', () => ({}));
 
 // Mock Element.animate for tests since jsdom doesn't support it
 Object.defineProperty(Element.prototype, 'animate', {
+	configurable: true,
 	value: () => {
 		const obj = {
 			cancel: vi.fn(),
 			onfinish: vi.fn(),
 			oncancel: vi.fn(),
 		};
-		requestAnimationFrame(() => obj.onfinish());
+		setTimeout(() => obj.onfinish(), 10);
 		return obj;
 	}
 });

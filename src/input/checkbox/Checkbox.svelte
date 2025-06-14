@@ -24,7 +24,7 @@
 			aria-invalid={error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
-			{onchange}>
+			onchange={_onchange}>
 
 		<Label {label} for={_id}/>
 	</div>
@@ -32,7 +32,6 @@
 
 <script>
 import './Checkbox.css';
-import { createEventDispatcher } from 'svelte';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -58,6 +57,7 @@ import { Label } from '../label';
  * @property {boolean} [labelOnTheLeft]
  * @property {any} [element]
  * @property {any} [inputElement]
+ * @property {function} [onchange]
  */
 
 /** @type {Props} */
@@ -75,20 +75,21 @@ let {
 	name = '',
 	required = undefined,
 	labelOnTheLeft = false,
+
 	element = $bindable(undefined),
-	inputElement = $bindable(undefined)
+	inputElement = $bindable(undefined),
+	onchange = () => {}
 } = $props();
 
 
 const errorMessageId = guid();
-const dispatch = createEventDispatcher();
 
 const _id = $derived(id || name || guid());
 
 
-function onchange (event) {
+function _onchange (event) {
 	checked = event.target.checked;
 	indeterminate = event.target.indeterminate;
-	dispatch('change', { event, checked, indeterminate });
+	onchange({ event, checked, indeterminate });
 }
 </script>

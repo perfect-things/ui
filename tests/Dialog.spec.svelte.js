@@ -1,9 +1,7 @@
 import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { flushSync, mount, unmount } from 'svelte';
-
+import { mount, unmount } from 'svelte';
 import { Dialog } from '../src/dialog';
-import { waitForTimeout } from './helpers/utils';
 
 
 test('Dialog', async () => {
@@ -17,7 +15,9 @@ test('Dialog', async () => {
 		children: undefined,
 		footer: undefined
 	});
-
+	// @ts-ignore
+	window.setTimeout = (cb) => { cb(); };
+	const user = userEvent.setup();
 	const component = mount(Dialog, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');
@@ -27,38 +27,31 @@ test('Dialog', async () => {
 	expect(dialogTitle).toHaveTextContent(props.title);
 	expect(cmp).not.toHaveClass('opened');
 
-	component.open();
-	flushSync();
-	await waitForTimeout();
+	await component.open();
 
 	expect(cmp).toHaveClass('opened');
 	expect(openMock).toHaveBeenCalled();
 
 	// test focus traps
-	await userEvent.keyboard('[Tab]');
-	await userEvent.keyboard('[Tab]');
+	await user.keyboard('[Tab]');
+	await user.keyboard('[Tab]');
 
 	expect(cmp.contains(document.activeElement)).toBeTruthy();
-	await userEvent.keyboard('{Shift>}[Tab]{/Shift}');
-	await userEvent.keyboard('{Shift>}[Tab]{/Shift}');
-	await userEvent.keyboard('{Shift>}[Tab]{/Shift}');
+	await user.keyboard('{Shift>}[Tab]{/Shift}');
+	await user.keyboard('{Shift>}[Tab]{/Shift}');
+	await user.keyboard('{Shift>}[Tab]{/Shift}');
 	expect(cmp.contains(document.activeElement)).toBeTruthy();
 
-	await userEvent.click(cmp);
-	flushSync();
-	await waitForTimeout();
+
+	await user.click(cmp);
 	expect(cmp).not.toHaveClass('opened');
 	expect(closeMock).toHaveBeenCalled();
 
-	component.open();
-	flushSync();
-	await waitForTimeout();
+	await component.open();
 	expect(cmp).toHaveClass('opened');
 	expect(openMock).toHaveBeenCalled();
 
-	component.close();
-	flushSync();
-	await waitForTimeout();
+	await component.close();
 	expect(cmp).not.toHaveClass('opened');
 	expect(closeMock).toHaveBeenCalled();
 

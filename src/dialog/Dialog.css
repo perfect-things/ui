@@ -77,9 +77,6 @@
 	border-top: 0.5px solid var(--ui-color-border);
 	border-bottom-left-radius: var(--ui-dialog-inner-border-radius);
 	border-bottom-right-radius: var(--ui-dialog-inner-border-radius);
-}
-
-.dialog-footer [slot="footer"] {
 	width: 100%;
 	display: flex;
 	align-items: center;

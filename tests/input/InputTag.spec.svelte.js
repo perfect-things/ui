@@ -65,7 +65,6 @@ test('InputTag', async () => {
 	expect(list).not.toBeInTheDocument();
 
 	await fireEvent.click(box);
-	flushSync();
 
 	list = document.body.querySelector('.input-tag-popover');
 	expect(list).toBeInTheDocument();
@@ -75,7 +74,6 @@ test('InputTag', async () => {
 	expect(tags.length).toBe(props.tags.length);
 
 	await fireEvent.click(tags[0]);
-	flushSync();
 
 	expect(props.onchange).toHaveBeenCalledTimes(1);
 	expect(input).toHaveValue(originalValue + ',' + props.tags[0]);
@@ -85,7 +83,6 @@ test('InputTag', async () => {
 	expect(tags.length).toBe(originalValue.split(',').length + 1);
 
 	await fireEvent.click(tags[tags.length - 1]);
-	flushSync();
 
 	expect(props.onchange).toHaveBeenCalled();
 	expect(input).toHaveValue(originalValue);

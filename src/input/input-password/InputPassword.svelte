@@ -23,11 +23,7 @@
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				{oninput}
-				{onkeydown}
-				{onchange}
-				{onfocus}
-				{onblur}>
+				oninput={e => _oninput(e)}>
 			<Button link icon={visible ? 'eye' : 'eyeOff'} class="input-password-button" onclick={toggle}/>
 		</div>
 
@@ -50,8 +46,7 @@
 
 <script>
 import './InputPassword.css';
-import { run } from 'svelte/legacy';
-import { onMount, createEventDispatcher } from 'svelte';
+import { onMount } from 'svelte';
 import { Button } from '../../button';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -75,6 +70,7 @@ import { Label } from '../label';
  * @property {boolean} [labelOnTheLeft]
  * @property {any} [element]
  * @property {any} [inputElement]
+ * @property {function} [oninput]
  */
 
 /** @type {Props & { [key: string]: any }} */
@@ -83,7 +79,7 @@ let {
 	id = '',
 	required = undefined,
 	disabled = undefined,
-	value = $bindable(''),
+	value = $bindable(undefined),
 	strength = false,
 	label = '',
 	error = undefined,
@@ -91,10 +87,7 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
-	onkeydown = () => {},
-	onchange = () => {},
-	onfocus = () => {},
-	onblur = () => {},
+	oninput = () => {},
 	...rest
 } = $props();
 
@@ -108,7 +101,6 @@ let {
 // 4 - very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10^10)
 const qualities = ['Very Poor', 'Poor', 'Average', 'Safe', 'Excellent'];
 const colorClassNames = ['danger', 'danger', 'warning', 'info', 'success'];
-const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 
 
@@ -120,6 +112,8 @@ let strengthInfoText = $state('');
 let colorClass = $state('');
 
 
+const type = $derived(visible ? 'text' : 'password');
+const _id = $derived(id || rest.name || guid());
 
 
 
@@ -128,9 +122,19 @@ onMount(() => {
 });
 
 
-function oninput (e) {
+$effect(() => {
+	const { score, text } = measure(value);
+	quality = qualities[score];
+	percent = score ? score * 25 : 5;
+	colorClass = colorClassNames[score];
+	strengthInfoText = text;
+});
+
+
+
+function _oninput (e) {
 	value = e.target.value;
-	dispatch('input', { event: e, value });
+	oninput({ event: e, value });
 }
 
 function checkLib () {
@@ -155,13 +159,4 @@ function toggle () {
 	requestAnimationFrame(() => element.querySelector('input').focus());
 }
 
-const type = $derived(visible ? 'text' : 'password');
-const _id = $derived(id || rest.name || guid());
-run(() => {
-	const { score, text } = measure(value);
-	quality = qualities[score];
-	percent = score ? score * 25 : 5;
-	colorClass = colorClassNames[score];
-	strengthInfoText = text;
-});
 </script>
