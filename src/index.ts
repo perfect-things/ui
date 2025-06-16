@@ -17,8 +17,8 @@ export * from './table/index.js';
 export * from './tag/index.js';
 export * from './tooltip/index.js';
 export * from './tree/index.js';
-export * from './utils.js';
-import { isMobile } from './utils.js';
+export * from './utils/index.js';
+import { isMobile } from './utils/index.js';
 
 import './root.css';
 import './theme-dark.css';

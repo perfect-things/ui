@@ -7,7 +7,7 @@
 		<tr><th>Attribute</th><th>Type/Value</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		{#each props as prop}
+		{#each props as prop (prop.name)}
 			<tr>
 				<td>{prop.name}</td>
 				<td>{@html buildType(prop)}</td>

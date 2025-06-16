@@ -1,7 +1,7 @@
 <div class="notification-archive" bind:this={el} inert={!show} class:expanded class:inert={!show}>
 	<header>
 		{#if archived.length}
-			<h2><Button icon="chevronRight" text onclick={e => toggle(e)}> Recent notifications ({archived.length})</Button></h2>
+			<h2><Button icon="chevronRight" text onclick={() => toggle()}> Recent notifications ({archived.length})</Button></h2>
 			<div class="notification-archive-buttons">
 				<Button text class="btn-clear" onclick={e => clearAll(e)}>Clear all</Button>
 				<Button text class="btn-close" onclick={() => (show = false)}>&times;</Button>
@@ -28,7 +28,7 @@
 
 				<div class="notification-msg" role={notification.type === 'info' ? 'status' : 'alert'}>{@html notification.msg}</div>
 				<div class="notification-timestamp">{timeAgo(notification.timestamp, now)}</div>
-				<button class="notification-close" onclick={stopPropagation(() => removeFromArchive(notification.id))}>&times;</button>
+				<button class="notification-close" onclick={e => _removeFromArchive(e, notification.id)}>&times;</button>
 			</div>
 		{/each}
 	{/if}
@@ -36,14 +36,12 @@
 
 
 <script>
-	import { run, stopPropagation } from 'svelte/legacy';
-
 import './NotificationArchive.css';
 import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
-import { ArchivedNotifications, removeFromArchive, receive, fly, slideUp, flip } from '../store.js';
-import { ANIMATION_SPEED, timeAgo } from '../../utils.js';
-import { getNextNotification } from '../utils.js';
+import { ArchivedNotifications, removeFromArchive, receive, fly, slideUp, flip } from '../store';
+import { ANIMATION_SPEED, timeAgo } from '../../utils';
+import { getNextNotification } from '../utils';
 
 
 /**
@@ -67,7 +65,7 @@ let now = $state(new Date().getTime());
 
 
 
-run(() => {
+$effect(() => {
 	if (!show && el) el.addEventListener('transitionend', () => expanded = false, { once: true });
 });
 
@@ -95,6 +93,11 @@ function clearAll (e) {
 	ArchivedNotifications.set({});
 }
 
+
+function _removeFromArchive (e, id) {
+	e.stopPropagation();
+	removeFromArchive(id);
+}
 
 function onKeydown (e, notification) {
 	if (e.key === 'Escape') {

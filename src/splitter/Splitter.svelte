@@ -5,33 +5,31 @@
 	onmousedown={mousedown}
 	bind:this={element}></div>
 
-<script>
+
+<script lang="ts">
 import './Splitter.css';
 import { onMount } from 'svelte';
 import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
 import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
 
 
-
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {any} [element]
- * @property {(e: MouseEvent) => any} [onchange]
- * @property {(e: MouseEvent) => any} [onchanged]
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	element = $bindable(undefined),
-	onchange = () => {},
+	onchange = (_: any) => {},
 	onchanged = () => {},
 } = $props();
 
 
 const size = 8, halfsize = size / 2;
-const Box = {};
+
+type BoxType = {
+	width?: number;
+	height?: number;
+	collapsed?: boolean;
+};
+
+const Box: BoxType = {};
 
 
 let isVertical = $state(false);
@@ -101,7 +99,7 @@ function updateSize (box, withAnimation = false) {
 	if (withAnimation) {
 		originalTargetTransition = targetEl.style.transition;
 		originalElTransition = element.style.transition;
-		const anim = ANIMATION_SPEED + 'ms ease-out';
+		const anim = $ANIMATION_SPEED + 'ms ease-out';
 		targetEl.style.transition = `width ${anim}, height ${anim}`;
 		element.style.transition = `left ${anim}, top ${anim}`;
 	}
@@ -127,7 +125,7 @@ function updateSize (box, withAnimation = false) {
 			targetEl.style.transition = originalTargetTransition;
 			element.style.transition = originalElTransition;
 			onchanged(Box);
-		}, ANIMATION_SPEED);
+		}, $ANIMATION_SPEED);
 	}
 }
 

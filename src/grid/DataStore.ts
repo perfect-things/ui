@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import { isset } from '../utils.js';
+import { isset } from '../utils';
 
 
 /**

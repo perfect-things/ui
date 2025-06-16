@@ -16,6 +16,7 @@ export default defineConfig({
 		setupFiles: ['./tests/_setup.js'],
 		include: [
 			'tests/**/*.spec.js',
+			'tests/**/*.spec.ts',
 			'tests/**/*.spec.svelte.js'
 		],
 		css: { modules: { classNameStrategy: 'non-scoped' } },
@@ -24,7 +25,7 @@ export default defineConfig({
 			reporter: ['text', 'json', 'html'],
 			reportsDirectory: './coverage',
 			include: [
-				'src/**/*.{js,svelte}'
+				'src/**/*.{js,ts,svelte}'
 			],
 			exclude: [
 				'src/**/index.js',

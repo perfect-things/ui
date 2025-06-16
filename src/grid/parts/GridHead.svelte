@@ -6,7 +6,7 @@
 			</th>
 		{/if}
 		{#if $columns}
-			{#each $columns as column}
+			{#each $columns as column (column.field)}
 				<HeadTh {column} {Data} />
 			{/each}
 		{/if}

@@ -9,7 +9,7 @@
 	onclick={selectClicked}
 	{onkeydown}>
 
-	{#each items as item}
+	{#each items as item (item)}
 		<TreeNode {item} />
 	{/each}
 </ul>
@@ -19,16 +19,6 @@ import './Tree.css';
 import TreeNode from './TreeNode.svelte';
 
 
-
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {any} [items]
- * @property {any} [title]
- * @property {any} element
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	items = [],

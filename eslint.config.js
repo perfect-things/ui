@@ -1,82 +1,95 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import stylisticJs from '@stylistic/eslint-plugin-js';
-import eslintPluginSvelte from 'eslint-plugin-svelte';
+import stylistic from '@stylistic/eslint-plugin';
+import sveltePlugin from 'eslint-plugin-svelte';
 import svelteParser from 'svelte-eslint-parser';
-
-// @ts-ignore
-// import importPlugin from 'eslint-plugin-import';
+import ts from 'typescript-eslint';
 
 
-export default [
-	...eslintPluginSvelte.configs['flat/base'],
+export default ts.config(
 	js.configs.recommended,
-	// importPlugin.flatConfigs.recommended,
+	ts.configs.recommended,
+	// @ts-expect-error this is correct
+	...sveltePlugin.configs.recommended,
 	{
 		ignores: [
 			'docs/**',                      // Ignore compiled output
-			'**/node_modules/**',          // Ignore node_modules
-			'**/vanillajs-datepicker/**',  // Ignore third party modules
-			// '**/index.js',                 // Ignore all index.js files (usually just exports)
-			// 'src/**/utils.js',
-			// 'src/icon/icons.js'
+			'dist/**',                      // Ignore compiled output
+			'**/node_modules/**',           // Ignore node_modules
+			'**/vanillajs-datepicker/**',   // Ignore third party modules
 		]
 	},
-	{ plugins: { '@stylistic/js': stylisticJs, }, },
+	{ plugins: { '@stylistic': stylistic } },
 	{
-		files: ['**/*.svelte', '**/*.svelte.js'],
+		files: ['**/*.svelte', '**/*.svelte.js', '**/*.svelte.ts'],
 		languageOptions: {
 			parser: svelteParser,
+			parserOptions: {
+				parser: ts.parser, // Use TypeScript parser for <script> blocks
+				project: './tsconfig.json',
+				extraFileExtensions: ['.svelte']
+			},
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 			globals: {
 				...globals.browser,
-				...globals.jest,
+				...globals.vitest,
+				$state: 'readonly', // Svelte's $state shows undefined in test files
+				// ...sveltePlugin,
 			},
+		},
+		plugins: {
+			svelte: sveltePlugin,
+			'@typescript-eslint': ts.plugin,
 		}
 	},
 	{
-		files: ['**/*.{js,mjs,cjs}'],
+		files: ['**/*.{js,.ts,mjs}'],
 		languageOptions: {
+			parser: ts.parser,
+			parserOptions: {
+				project: './tsconfig.json',
+			},
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 			globals: {
 				...globals.browser,
-				...globals.jest,
+				...globals.vitest,
 			},
 		},
+		plugins: {
+			'@typescript-eslint': ts.plugin,
+		}
 	},
 	{
 		files: ['vite.config.js', '*.config.js'],
 		languageOptions: {
-			globals: {
-				...globals.node,
-			},
-			ecmaVersion: 2022,
+			globals: { ...globals.node, },
+			ecmaVersion: 'latest',
 			sourceType: 'module'
 		}
 	},
 	{
 		rules: {
-			'@stylistic/js/array-bracket-spacing': ['error', 'never'],
-			'@stylistic/js/brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],
-			'@stylistic/js/comma-dangle': 0,
-			'@stylistic/js/eol-last': 1,
-			'@stylistic/js/function-call-spacing': ['error', 'never'],
-			'@stylistic/js/indent': ['error', 'tab'],
-			'@stylistic/js/key-spacing': ['error', { 'beforeColon': false, 'afterColon': true, 'mode': 'strict' }],
-			'@stylistic/js/lines-between-class-members': ['error', 'always'],
-			'@stylistic/js/newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 3 }],
-			'@stylistic/js/no-mixed-spaces-and-tabs': 'error',
-			'@stylistic/js/no-multi-spaces': ['error', { 'ignoreEOLComments': true }],
-			'@stylistic/js/no-trailing-spaces': 'error',
-			'@stylistic/js/object-curly-spacing': ['error', 'always'],
-			'@stylistic/js/quotes': ['error', 'single', { 'avoidEscape': true }],
-			'@stylistic/js/semi': ['error', 'always'],
-			'@stylistic/js/space-before-blocks': ['error', 'always'],
-			'@stylistic/js/space-before-function-paren': ['error', 'always'],
-			'@stylistic/js/space-in-parens': ['error', 'never'],
-			'@stylistic/js/template-curly-spacing': ['error', 'never'],
+			'@stylistic/array-bracket-spacing': ['error', 'never'],
+			'@stylistic/brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],
+			'@stylistic/comma-dangle': 0,
+			'@stylistic/eol-last': 1,
+			'@stylistic/function-call-spacing': ['error', 'never'],
+			'@stylistic/indent': ['error', 'tab'],
+			'@stylistic/key-spacing': ['error', { 'beforeColon': false, 'afterColon': true, 'mode': 'strict' }],
+			'@stylistic/lines-between-class-members': ['error', 'always'],
+			'@stylistic/newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 3 }],
+			'@stylistic/no-mixed-spaces-and-tabs': 'error',
+			'@stylistic/no-multi-spaces': ['error', { 'ignoreEOLComments': true }],
+			'@stylistic/no-trailing-spaces': 'error',
+			'@stylistic/object-curly-spacing': ['error', 'always'],
+			'@stylistic/quotes': ['error', 'single', { 'avoidEscape': true }],
+			'@stylistic/semi': ['error', 'always'],
+			'@stylistic/space-before-blocks': ['error', 'always'],
+			'@stylistic/space-before-function-paren': ['error', 'always'],
+			'@stylistic/space-in-parens': ['error', 'never'],
+			'@stylistic/template-curly-spacing': ['error', 'never'],
 
 			'curly': ['error', 'multi-line'],
 			'dot-notation': 'error',
@@ -91,12 +104,9 @@ export default [
 
 			'svelte/no-at-html-tags': 0,
 
-			// 'import/no-unresolved': [2, { 'commonjs': true, 'amd': true }],
-			// 'import/no-unresolved': 0,
-			// 'import/named': 2,
-			// 'import/namespace': 2,
-			// 'import/default': 2,
-			// 'import/export': 2,
+			// '@typescript-eslint/no-unused-vars': 'off', // Allow unused vars during migration
+			'@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+			'@typescript-eslint/no-explicit-any': 'off', // Allow any types during migration
 		}
 	}
-];
+);

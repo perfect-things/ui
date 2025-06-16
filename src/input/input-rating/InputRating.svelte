@@ -21,7 +21,7 @@
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
-			{#each stars as star}
+			{#each stars as star (star)}
 				<Button
 					link
 					icon={icon}
@@ -55,7 +55,7 @@
 
 
 
-<script>
+<script lang="ts">
 import './InputRating.css';
 import { Button } from '../../button';
 import { guid, getMouseY, getMouseX } from '../../utils';
@@ -78,7 +78,7 @@ import { Label } from '../label';
  * @property {string} [label]
  * @property {any} [error]
  * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
+ * @property {boolean|string} [labelOnTheLeft]
  * @property {number} [max]
  * @property {string} [icon]
  * @property {any} [light]
@@ -96,7 +96,7 @@ let {
 	name = guid(),
 	disabled = undefined,
 	required = undefined,
-	value = $bindable(''),
+	value = $bindable(),
 	title = '',
 	label = '',
 	error = undefined,
@@ -117,7 +117,7 @@ let mouseY = 0;
 const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
-const stars = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
+const stars: number[] = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
 
 
 function _onkeydown (e) {
@@ -139,7 +139,7 @@ function reset (e) {
 }
 
 
-function set (v) {
+function set (v?) {
 	if (typeof v !== 'undefined' && v !== '') {
 		const num = parseFloat('' + v);
 		value = isNaN(num) ? '' : ('' + num);

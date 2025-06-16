@@ -19,27 +19,26 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './Dialog.css';
 import { onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [title]
- * @property {boolean} [opened]
- * @property {boolean} [skipFirstFocus]
- * @property {boolean} [modal]
- * @property {any} element
- * @property {import('svelte').Snippet} [children]
- * @property {import('svelte').Snippet} [footer]
- * @property {() => void} [onopen]
- * @property {() => void} [onclose]
- */
+interface DialogProps {
+	class?: string;
+	title?: string;
+	opened?: boolean;
+	skipFirstFocus?: boolean | string;
+	modal?: boolean;
+	element?: HTMLElement;
+	children?: import('svelte').Snippet;
+	footer?: import('svelte').Snippet;
+	onopen?: () => void;
+	onclose?: () => void;
+}
 
-/** @type {Props} */
+
 let {
 	class: className = '',
 	title = '',
@@ -51,13 +50,14 @@ let {
 	footer,
 	onopen = () => {},
 	onclose = () => {},
-} = $props();
+}: DialogProps = $props();
 
 
-let dialogEl = $state();
-let contentEl = $state();
-let footerEl = $state();
-let triggerEl, openTimer, closeTimer, scrollPos;
+let dialogEl: HTMLElement = $state();
+let contentEl: HTMLElement = $state();
+let footerEl: HTMLElement = $state();
+let triggerEl: HTMLElement = $state();
+let openTimer, closeTimer, scrollPos;
 
 
 
@@ -70,7 +70,7 @@ function focusFirst () {
 	let first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
 	if (!first && !last && contentEl) {
-		contentEl.setAttribute('tabindex', 0);
+		contentEl.setAttribute('tabindex', '0');
 		first = contentEl;
 	}
 	if (last) last.scrollIntoView({ block: 'end' });
@@ -82,7 +82,7 @@ function focusLast () {
 	const first = getFocusableElements().shift();
 	let last = getFocusableElements().pop();
 	if (!first && !last) {
-		contentEl.setAttribute('tabindex', 0);
+		contentEl.setAttribute('tabindex', '0');
 		last = contentEl;
 	}
 	if (first) first.scrollIntoView({ block: 'end' });
@@ -172,7 +172,7 @@ export function open (openedBy) {
 		triggerEl.setAttribute('aria-expanded', 'true');
 	}
 	if (element) element.style.display = 'flex';
-	return new Promise(resolve => {
+	return new Promise<void>(resolve => {
 		if (openTimer) clearTimeout(openTimer);
 		openTimer = setTimeout(() => {
 			freezeBody(true);
@@ -190,7 +190,7 @@ export function close () {
 	if (!opened) return;
 	opened = false;
 	if (triggerEl && triggerEl.focus) triggerEl.focus();
-	return new Promise(resolve => {
+	return new Promise<void>(resolve => {
 		if (closeTimer) clearTimeout(closeTimer);
 		closeTimer = setTimeout(() => {
 			opened = false;

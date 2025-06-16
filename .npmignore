@@ -25,7 +25,6 @@ babel.config.json
 CHANGELOG.md
 jest.config.js
 jsconfig.json
-gulpfile.js
 release.sh
 screen.png
 

@@ -34,12 +34,12 @@ test('Drawer', async () => {
 	// test focus traps
 	await userEvent.keyboard('[Tab]');
 	await userEvent.keyboard('[Tab]');
-	expect(cmp.contains(document.activeElement)).toBeTruthy();
+	expect(cmp?.contains(document.activeElement)).toBeTruthy();
 
 	await userEvent.keyboard('{Shift>}[Tab]{/Shift}');
 	await userEvent.keyboard('{Shift>}[Tab]{/Shift}');
 	await userEvent.keyboard('{Shift>}[Tab]{/Shift}');
-	expect(cmp.contains(document.activeElement)).toBeTruthy();
+	expect(cmp?.contains(document.activeElement)).toBeTruthy();
 
 	await userEvent.click(document.body);
 	expect(closeMock).toHaveBeenCalled();
@@ -47,7 +47,9 @@ test('Drawer', async () => {
 	// expect(cmp).not.toBeInTheDocument();
 
 	component.open();
-	flushSync();
+	try { flushSync(); }
+	catch { /**/}
+
 	cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 

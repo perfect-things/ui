@@ -5,12 +5,12 @@
 	</menu>
 {/if}
 
-<script>
+<script lang="ts">
 import './Menu.css';
 import { onDestroy, onMount, setContext } from 'svelte';
-import { addArias, removeArias } from './utils.js';
-import initLongPressEvent from './longpress.js';
-import { alignItem, throttle, debounce, isMobile } from '../utils.js';
+import { addArias, removeArias } from './utils';
+import initLongPressEvent from './longpress';
+import { alignItem, throttle, debounce, isMobile } from '../utils';
 
 const isAnyMobile = isMobile();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
@@ -18,21 +18,19 @@ const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.
 const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {any} [type] - can be undefined or 'context'
- * @property {string} [targetSelector] - target element for context menu
- * @property {boolean} [closeOnClick]
- * @property {any} [align] - can be 'left', 'right' or 'center'
- * @property {any} [valign] - can be 'top' or 'bottom' (preference only, as screen size/position decides ultimately)
- * @property {any} [element]
- * @property {import('svelte').Snippet} [children]
- * @property {function} [onopen] - callback when the menu is opened
- * @property {function} [onclose] - callback when the menu is closed
- */
+interface Props {
+	class?: string;
+	type?: 'context' | undefined;
+	targetSelector?: string;
+	closeOnClick?: boolean | string;
+	align?: 'left' | 'right' | 'center' | undefined;
+	valign?: 'top' | 'bottom' | undefined;
+	element?: any;
+	children?: import('svelte').Snippet;
+	onopen?: (e: { event: Event, target: Element }) => void;
+	onclose?: (e: { target: Element }) => void;
+}
 
-/** @type {Props} */
 let {
 	class: className = '',
 	type = undefined,
@@ -44,7 +42,7 @@ let {
 	children,
 	onopen = () => {},
 	onclose = () => {},
-} = $props();
+}: Props = $props();
 
 
 const menuButtons = [];
@@ -75,7 +73,7 @@ onDestroy(() => {
 		if (isAnyMobile) document.removeEventListener('touchend', onTouchend);
 		document.removeEventListener(contextmenuEventName, onContextMenu);
 	}
-	if (element) element.remove();
+	// if (element) element.remove();
 	removeEventListeners();
 });
 
@@ -118,14 +116,13 @@ export function open (e) {
 /**
  * Highlights the clicked button and closes the menu (provided that the button's event handler did not call preventDefault())
  */
-export function close (e) {
+export function close (e?: Event) {
 	if (!opened) return Promise.resolve();
 
-	if (e && e.detail && e.detail.target) e = e.detail;
 	if (e && e.target) e.target.focus();
 	// need to wait for the button to trigger click and check if it's not cancelled by consumers
 	// the timeout must be longer than the menu-item blink + some 20ms
-	return new Promise(resolve => {
+	return new Promise<void>(resolve => {
 		setTimeout(() => {
 			if (!e || !e.defaultPrevented) _close().then(() => resolve());
 			else resolve();
@@ -299,7 +296,7 @@ function highlightElement (el) {
 		focusedEl.scrollIntoView({ block: 'nearest' });
 		focusedEl.focus();
 	}
-	else element && element.focus();
+	else element?.focus();
 }
 
 
@@ -338,14 +335,4 @@ function focusPrev () {
 }
 /*** FOCUS & HIGHLIGHT ****************************************************************************/
 
-
-// export {
-// 	className,
-// 	type,
-// 	targetSelector,
-// 	closeOnClick,
-// 	align,
-// 	valign,
-// 	element,
-// };
 </script>

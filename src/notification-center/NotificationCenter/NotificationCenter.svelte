@@ -56,15 +56,15 @@
 
 <script>
 import './NotificationCenter.css';
-import { onDestroy, onMount } from 'svelte';
+import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import { Icon } from '../../icon';
 import { PushButton } from '../../push-button';
 import { Notifications, ArchivedNotifications, createTimer, timers, hideNotification, clearTimer,
 	send, flip, fly, slideDown } from '../store.js';
 import { NotificationArchive } from '../NotificationArchive';
-import { ANIMATION_SPEED } from '../../utils.js';
-import { getNextNotification } from '../utils.js';
+import { ANIMATION_SPEED } from '../../utils';
+import { getNextNotification } from '../utils';
 
 
 /**
@@ -121,12 +121,6 @@ onMount(() => {
 	});
 	if (initial) requestAnimationFrame(() => initial = false);
 });
-
-
-onDestroy(() => {
-	if (el) el.remove();
-});
-
 
 
 function onToastClick (e, notification) {

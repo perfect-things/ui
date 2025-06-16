@@ -6,22 +6,20 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './ButtonGroup.css';
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {any} [round] - round button
- * @property {any} [element]
- * @property {import('svelte').Snippet} [children]
- */
+interface ButtonGroupProps {
+	class?: string;
+	round?: any;
+	element?: HTMLDivElement;
+	children?: any;
+}
 
-/** @type {Props} */
 let {
 	class: className = '',
 	round = undefined,
 	element = $bindable(undefined),
 	children
-} = $props();
+}: ButtonGroupProps = $props();
 </script>

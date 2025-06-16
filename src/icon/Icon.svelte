@@ -1,15 +1,14 @@
 {@html svg}
 
-<script>
+<script lang="ts">
+
 import { getIcon } from './icons.js';
 
-/**
- * @typedef {Object} Props
- * @property {string} [name]
- */
+interface Props {
+	name?: string;
+}
 
-/** @type {Props} */
-const { name = '' } = $props();
+const { name = '' }: Props = $props();
 
 const svg = $derived(getIcon(name));
 </script>

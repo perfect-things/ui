@@ -3,7 +3,7 @@
 		{#if multiselect}
 			<td></td>
 		{/if}
-		{#each $columns as column}
+		{#each $columns as column (column.field)}
 			<td class="td-{getType(column)}">{column.total ? sumColumn(column) : ''}</td>
 		{/each}
 	</tr>

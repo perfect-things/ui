@@ -11,7 +11,7 @@
 				<Checkbox bind:checked={item.selected} tabindex="-1"/>
 			</td>
 		{/if}
-		{#each $columns as column}
+		{#each $columns as column (column.field)}
 			<td class="td-{getType(column)}">
 				{@html cellRenderer(column, item)}
 			</td>

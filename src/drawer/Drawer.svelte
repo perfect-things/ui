@@ -17,24 +17,21 @@
 		<div tabindex="0" class="focus-trap focus-trap-bottom" onfocus={focusFirst}></div>
 	</div>
 {/if}
-<script>
+<script lang="ts">
 import './Drawer.css';
 import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 import { Button } from '../button';
 
+interface DrawerProps {
+	class?: string;
+	title?: string;
+	element?: HTMLElement;
+	onopen?: () => void;
+	onclose?: () => void;
+	children?: import('svelte').Snippet;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [title]
- * @property {any} [element]
- * @property {function} [onopen]
- * @property {function} [onclose]
- * @property {import('svelte').Snippet} [children]
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	title = 'Drawer',
@@ -42,14 +39,14 @@ let {
 	onopen = () => {},
 	onclose = () => {},
 	children
-} = $props();
+}: DrawerProps = $props();
 
 
-let isVisible = $state(false);
-let headerEl = $state(), targetBtn;
+let isVisible: boolean = $state(false);
+let headerEl: HTMLElement = $state(), targetBtn;
 
 
-function docclick () {
+function docclick (_) {
 	requestAnimationFrame(() => document.addEventListener('click', onDocClick));
 	return {
 		destroy: () => document.removeEventListener('click', onDocClick)
@@ -68,14 +65,18 @@ function onDocClick (e) {
 
 export function toggle (target) {
 	if (target) targetBtn = target;
-	isVisible ? close() : open(target);
+	if (isVisible) close();
+	else open(target);
 }
 
 
 export function open (target) {
 	targetBtn = target || document.activeElement;
 	isVisible = true;
-	requestAnimationFrame(() => headerEl?.querySelector('.btn-close').focus());
+	requestAnimationFrame(() => {
+		const btn = headerEl?.querySelector('.btn-close');
+		if (btn) btn.focus();
+	});
 	onopen();
 }
 

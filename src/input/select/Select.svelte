@@ -28,10 +28,10 @@
 				{#if placeholder}
 					<option value="">{placeholder}</option>
 				{/if}
-				{#each groups as group}
+				{#each groups as group (group.id || group.name)}
 					{#if group.items}
 						<optgroup label={group.name}>
-							{#each group.items as item}
+							{#each group.items as item (item.id || item.name)}
 								<option value={item.id}>{item.name}</option>
 							{/each}
 						</optgroup>
@@ -44,7 +44,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './Select.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -53,27 +53,26 @@ import { Label } from '../label';
 
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {boolean} [disabled]
- * @property {any} [required]
- * @property {any} [value]
- * @property {any} [placeholder]
- * @property {any} [items]
- * @property {any} [title]
- * @property {any} [name]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {function} [onchange] - function to call when select value changes
- */
+interface Props {
+	class?: string;
+	id?: string;
+	disabled?: boolean;
+	required?: any;
+	value?: any;
+	placeholder?: any;
+	items?: any[];
+	title?: any;
+	name?: string;
+	label?: string;
+	error?: any;
+	info?: any;
+	labelOnTheLeft?: boolean | string;
+	element?: any;
+	inputElement?: any;
+	onchange?: (e: Event) => void;
+}
 
-/** @type {Props} */
+
 let {
 	class: className = '',
 	id = '',
@@ -91,7 +90,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	onchange = () => {}
-} = $props();
+}: Props = $props();
 
 
 let groups = $state([]);

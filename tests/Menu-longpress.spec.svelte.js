@@ -16,7 +16,7 @@ describe('Menu longpress functionality', () => {
 		longpressCallback = vi.fn();
 		document.body.addEventListener('longpress', longpressCallback);
 
-		// @ts-ignore
+		// @ts-expect-error custom property
 		delete window.longPressEventInitialised;
 	});
 
@@ -27,6 +27,9 @@ describe('Menu longpress functionality', () => {
 
 
 	test('initializes longpress event handlers', () => {
+		// vi mocks touch events that break test on desktop
+		delete window.ontouchstart;
+
 		initLongPress();
 		expect(mockEventListener).toHaveBeenCalledTimes(4);
 

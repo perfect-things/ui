@@ -1,5 +1,4 @@
 <!-- svelte-ignore a11y_interactive_supports_focus -->
-<!-- svelte-ignore a11y_click_events_have_key_events -->
 {#if opened}
 	<div
 		id="{listId}"
@@ -11,11 +10,11 @@
 		bind:this={listElement}>
 
 		{#if items.length}
-			{#each groupedItems as group}
+			{#each groupedItems as group (group)}
 				<ComboboxListHeader name={group.name} />
 
 				{#if group.items}
-					{#each group.items as item}
+					{#each group.items as item (item)}
 						<ComboboxListItem
 							{item}
 							{multiselect}
@@ -38,32 +37,31 @@
 {/if}
 
 
-<script>
-import { onDestroy } from 'svelte';
+<script lang="ts">
+// import { onDestroy } from 'svelte';
 import ComboboxListItem from './ComboboxListItem.svelte';
 import ComboboxListItemNew from './ComboboxListItemNew.svelte';
 import ComboboxListHeader from './ComboboxListHeader.svelte';
 import { groupData } from './utils';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [listId]
- * @property {boolean} [allowNew]
- * @property {boolean} [multiselect]
- * @property {Array} [items]
- * @property {Array} [selectedItems]
- * @property {boolean} [opened]
- * @property {boolean} [shouldShowNewItem]
- * @property {string} [newItemName]
- *
- * @property {number} [highlightIndex]
- * @property {HTMLElement} [listElement]
- * @property {Function} [onmousedown]
- * @property {Function} [onclick]
- */
+interface ComboboxListProps {
+	listId?: string;
+	allowNew?: boolean;
+	multiselect?: boolean;
+	items?: any[];
+	selectedItems?: any[];
+	opened?: boolean;
+	shouldShowNewItem?: boolean;
+	newItemName?: string;
 
-/** @type {Props} */
+	highlightIndex?: number;
+	listElement?: HTMLDivElement;
+
+	onmousedown?: (e: MouseEvent) => void;
+	onclick?: (item: any, e: MouseEvent) => void;
+}
+
 let {
 	listId = '',
 	allowNew = undefined,
@@ -78,14 +76,14 @@ let {
 	listElement = $bindable(undefined),
 	onmousedown = () => {},
 	onclick = () => {}
-} = $props();
+}: ComboboxListProps = $props();
 
 
 const groupedItems = $derived(groupData(items));
 
 
-onDestroy(() => {
-	if (listElement) listElement.remove();
-});
+// onDestroy(() => {
+// 	if (listElement) listElement.remove();
+// });
 
 </script>

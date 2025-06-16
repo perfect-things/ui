@@ -18,23 +18,9 @@
 <script>
 import './Popover.css';
 import { addArias, removeArias } from './utils.js';
-import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils.js';
+import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {number} [offset]
- * @property {any} [element]
- * @property {any} [contentEl]
- * @property {string} [position]
- * @property {boolean} [hideTip]
- * @property {boolean} [dontHideOnTargetClick]
- * @property {boolean} [setMinWidthToTarget]
- * @property {import('svelte').Snippet} [children]
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	offset = 2,

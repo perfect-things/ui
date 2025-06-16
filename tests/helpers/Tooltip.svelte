@@ -8,7 +8,6 @@
 <script>
 import { Tooltip } from '../../src/tooltip';
 
-/** @type {{ [key: string]: any }} */
 const props = $props();
 
 </script>

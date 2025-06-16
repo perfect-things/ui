@@ -11,9 +11,9 @@
 		data-expanded={item.items ? expanded : undefined}
 		data-id={item.id || undefined}
 		onclick={item.items ? toggle : undefined}
-		{onkey}>
+		{onkeydown}>
 
-		{#each indents as indent}
+		{#each indents as indent (indent)}
 			<div class="tree-indent indent-{indent}"></div>
 		{/each}
 		<div class="tree-icon tree-{nodeType}-icon"></div>
@@ -22,7 +22,7 @@
 
 	{#if item.items && expanded}
 		<ul>
-			{#each item.items as subitem}
+			{#each item.items as subitem (subitem.id || subitem.name)}
 				<TreeNode level={level + 1} item={subitem} />
 			{/each}
 		</ul>
@@ -58,7 +58,7 @@ function toggle () {
 }
 
 
-function onkey (e) {
+function onkeydown (e) {
 	const key = e && e.detail && e.detail.key;
 	if (key === 'right') expanded = true;
 	else if (key === 'left') expanded = false;

@@ -18,34 +18,33 @@
 	</table>
 </div>
 
-<script>
+<script lang="ts">
 import './Grid.css';
 import { onMount } from 'svelte';
 import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';
 import { DataStore } from './DataStore.js';
 import { GridHead, GridFoot, GridBody } from './parts';
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [title]
- * @property {boolean|string} [interactive=true]
- * @property {boolean} [round=false]
- * @property {string|HTMLElement} [scrollContainer=undefined]
- * @property {string} [scrollCorrectionOffset='0']
- * @property {Array} [columns=[]]
- * @property {Array} [data=[]]
- * @property {boolean} [multiselect=false]
- * @property {number} [dblClickDelay=500]
- * @property {HTMLElement} [element=undefined]
- * @property {function} [onselect]
- * @property {function} [onfocus]
- * @property {function} [onclick]
- * @property {function} [ondblclick]
- * @property {function} [onkeydown]
- */
 
-/** @type {Props} */
+interface Props {
+	class?: string;
+	title?: string;
+	interactive?: boolean | string;
+	round?: boolean;
+	scrollContainer?: string | HTMLElement;
+	scrollCorrectionOffset?: string;
+	columns?: Array<any>;
+	data?: typeof DataStore;
+	multiselect?: boolean;
+	dblClickDelay?: number;
+	element?: HTMLElement;
+	onselect?: (event: { event: Event, selectedItem: HTMLElement }) => void;
+	onfocus?: (event: { event: Event, selectedItem: HTMLElement }) => void;
+	onclick?: (event: { event: Event, selectedItem: HTMLElement }) => void;
+	ondblclick?: (event: { event: Event, selectedItem: HTMLElement }) => void;
+	onkeydown?: (event: { event: Event, key: string, selectedItem: HTMLElement }) => void;
+}
+
 let {
 	class: className = '',
 	title = '',
@@ -54,7 +53,7 @@ let {
 	scrollContainer = undefined,
 	scrollCorrectionOffset = '0',
 	columns = [],
-	data = [],
+	data = {} as typeof DataStore,
 	multiselect = false,
 	dblClickDelay = 500,
 	element = undefined,
@@ -63,7 +62,7 @@ let {
 	onclick = () => {},
 	ondblclick = () => {},
 	onkeydown = () => {},
-} = $props();
+}: Props = $props();
 
 
 
@@ -99,7 +98,7 @@ function selectPrev () {
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	onselect({ selectedItem: rowEl });
+	onselect({ selectedItem: rowEl } as any);
 }
 
 
@@ -109,7 +108,7 @@ function selectNext () {
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	onselect({ selectedItem: rowEl });
+	onselect({ selectedItem: rowEl } as any);
 }
 
 

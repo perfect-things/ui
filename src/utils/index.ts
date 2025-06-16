@@ -36,7 +36,7 @@ export function animate (el, from, to, _options = {}) {
 	const dflt = { duration: get(ANIMATION_SPEED), easing: 'ease-out', fill: 'forwards' };
 	const opts = Object.assign({}, dflt, _options);
 
-	return new Promise(resolve => {
+	return new Promise<void>(resolve => {
 		requestAnimationFrame(() => {
 			if (!el || !el.animate) return resolve();
 
@@ -284,24 +284,20 @@ export function alignItem ({
 	const winH = window.visualViewport?.height || window.innerHeight;
 	const winW = window.visualViewport?.width || window.innerWidth;
 
-	let targetBox = {};
+	let targetBox: { top: number; left: number; height: number; width: number };
 	let top, left;
 	let isLeft = false;
 	let isRight = false;
 
 
 	// target is a context | longpress event
-	if (target instanceof Event && (target.type === 'contextmenu' || target.type === 'longpress')) {
+	if (target.type === 'contextmenu' || target.type === 'longpress') {
 		if (target.type === 'contextmenu') {
-			// @ts-ignore
-			targetBox = { top: target.y, left: target.x, };
+			targetBox = { top: target.y, left: target.x, height: 0, width: 0 };
 		}
 		else if (target.type === 'longpress') {
-			// @ts-ignore
-			targetBox = { top: target.detail.y, left: target.detail.x, };
+			targetBox = { top: target.detail.y, left: target.detail.x, height: 0, width: 0 };
 		}
-		targetBox.height = 0;
-		targetBox.width = 0;
 	}
 
 	// target is a click event on a button
@@ -415,7 +411,6 @@ function isScrollable (node) {
  * @returns boolean
  */
 export function isInScrollable (node) {
-	// @ts-ignore
 	if (!(node instanceof HTMLElement || node instanceof SVGElement)) return false;
 	if (isScrollable(node)) return true;
 

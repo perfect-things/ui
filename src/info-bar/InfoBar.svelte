@@ -4,29 +4,27 @@
 		<p {id}>{@html msg}</p>
 	</div>
 {/if}
-<script>
+
+<script lang="ts">
 import './InfoBar.css';
 import { Icon } from '../icon';
 
 
+interface Props {
+	class?: string;
+	element?: HTMLElement;
+	id?: string;
+	msg?: string;
+	type?: 'info' | 'warning' | 'error' | 'success';
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {any} [element]
- * @property {any} [id]
- * @property {string} [msg]
- * @property {string} [type]
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	element = $bindable(undefined),
 	id = undefined,
 	msg = '',
 	type = 'info'
-} = $props();
+}: Props = $props();
 
 
 </script>

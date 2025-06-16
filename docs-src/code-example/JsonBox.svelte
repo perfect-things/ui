@@ -10,6 +10,7 @@
 const { value = '' } = $props();
 
 const valueString = $derived((typeof value !== 'string') ? stringify(value) : value);
+// @ts-expect-error this is correct
 const code = $derived(window.Prism.highlight(valueString, window.Prism.languages.json, 'json'));
 
 

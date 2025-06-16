@@ -1,12 +1,12 @@
 <h2>Icons</h2>
 <div class="icons">
-	{#each Object.keys(icons) as icon}
+	{#each Object.keys(icons) as icon (icon)}
 		<div class="icon-block" title={icon}>
 			<div class="icon-block-icon"><Icon name={icon}/></div>
 			<div class="icon-block-name">{icon}</div>
 		</div>
 	{/each}
-	{#each Object.keys(customIcons) as icon}
+	{#each Object.keys(customIcons) as icon (icon)}
 		<div class="icon-block" title={icon}>
 			<div class="icon-block-icon"><Icon name={icon}/></div>
 			<div class="icon-block-name">{icon}</div>

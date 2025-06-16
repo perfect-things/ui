@@ -19,12 +19,13 @@ export const flip = (node, animations, params) => _flip(node, animations, { dura
 
 export const [send, receive] = crossfade({
 	duration: d => d,
-	// @ts-ignore
+
 	fallback (node, params) {
 		const style = getComputedStyle(node);
 		const transform = style.transform === 'none' ? '' : style.transform;
+		const fallbackDuration = typeof params.duration === 'function' ? params.duration(0) : (params.duration || duration);
 		return {
-			duration: params.duration || duration,
+			duration: fallbackDuration,
 			css: t => `transform: ${transform} scale(${t}); opacity: ${t}`
 		};
 	}
@@ -71,7 +72,6 @@ function getProgress (id) {
  */
 function applyProgress (id, progress) {
 	const el = document?.querySelector(`[data-id="${id}"] .notification-progress`);
-	// @ts-ignore
 	if (el) el.style.width = `${progress}%`;
 }
 

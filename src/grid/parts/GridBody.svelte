@@ -1,4 +1,4 @@
-{#each $Data as item}
+{#each $Data as item (item.id || item.field)}
 	<GridRow {item} {multiselect} {Data}/>
 {/each}
 

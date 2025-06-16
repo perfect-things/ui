@@ -22,8 +22,10 @@
 	ontouchend={() => touching = false}>
 		{#if icon}<Icon name={icon}/>{/if}
 		{@render children?.()}
-	</button>
-<script>
+</button>
+
+
+<script lang="ts">
 import { Icon } from '../icon';
 import './Button.css';
 import './Button-normal.css';
@@ -32,25 +34,24 @@ import './Button-text.css';
 import './Button-link.css';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {boolean} [info]
- * @property {boolean} [success]
- * @property {boolean} [warning]
- * @property {boolean} [danger]
- * @property {boolean} [error]
- * @property {boolean} [submit]
- * @property {boolean} [outline] - button without background, but with border
- * @property {boolean} [link] - looks like a link, gets colored underline on hover
- * @property {boolean} [text] - looks like normal text, but like a button on hover
- * @property {any} [icon] - name of the icon
- * @property {any} [round] - round button
- * @property {any} [element]
- * @property {import('svelte').Snippet} [children]
- */
+interface ButtonProps {
+	class?: string;
+	info?: boolean;
+	success?: boolean;
+	warning?: boolean;
+	danger?: boolean;
+	error?: boolean;
+	submit?: boolean;
+	outline?: boolean;
+	link?: boolean;
+	text?: boolean;
+	icon?: any;
+	round?: any;
+	element?: HTMLButtonElement;
+	children?: any;
+	[key: string]: any;
+}
 
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	info = false,
@@ -67,9 +68,7 @@ let {
 	element = $bindable(undefined),
 	children,
 	...rest
-} = $props();
+}: ButtonProps = $props();
 
-
-let touching = $state(false);
-
+let touching: boolean = $state(false);
 </script>

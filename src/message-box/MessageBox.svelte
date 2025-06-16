@@ -11,7 +11,7 @@
 		{#snippet footer()}
 		<div >
 				{#if $config.buttons}
-					{#each $config.buttons as button}
+					{#each $config.buttons as button (button.value || button.label)}
 						<Button
 							info={button.type === 'info'}
 							warning={button.type === 'warning'}
@@ -26,7 +26,7 @@
 	{/snippet}
 </Dialog>
 
-<script>
+<script lang="ts">
 import './MessageBox.css';
 import { onDestroy, onMount } from 'svelte';
 import { config } from './MessageBox.js';
@@ -36,7 +36,12 @@ import { Icon } from '../icon';
 
 let { element = $bindable(undefined) } = $props();
 
-let dialog = $state(), sub;
+type Props = {
+	open: (openedBy?: any) => Promise<void>;
+	close: () => Promise<void>
+};
+
+let dialog: Props = $state(), sub;
 
 onMount(() => {
 	sub = config.subscribe(cfg => {

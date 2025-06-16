@@ -35,7 +35,7 @@ window.requestAnimationFrame = (cb) => {
 document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: {} }));
 
 
-// @ts-ignore
+// @ts-expect-error overriding
 document.scrollingElement = vi.fn().mockImplementation(() => ({
 	scrollTop: vi.fn(),
 }));
@@ -56,7 +56,7 @@ window.matchMedia = vi.fn().mockImplementation(() => ({
 }));
 
 
-// @ts-ignore
+// @ts-expect-error overriding
 window.visualViewport = {
 	width: window.innerWidth,
 	height: window.innerHeight,

@@ -1,5 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
-<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 {#if opened}
 	<div
 		class="popover-plate popover-{_position} tooltip-plate"
@@ -12,34 +10,39 @@
 
 		<div class="popover tooltip {className}" role="tooltip">
 			<div class="popover-content tooltip-content">
-				<div class="tooltip-text"><slot/></div>
+				<div class="tooltip-text">
+					{@render children?.()}
+				</div>
 				{@html formatShortcut(shortcut)}
 			</div>
 		</div>
 	</div>
 {/if}
+
 <script>
 import './Tooltip.css';
-import { afterUpdate, onDestroy, onMount } from 'svelte';
-import { alignItem, isSymbol, replaceKeySymbols } from '../utils.js';
-export let target = '';
-export let delay = 0;
-export let position = 'top';
-export let offset = 2;
-export let shortcut = '';
+import { onDestroy, onMount } from 'svelte';
+import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
 
 
-let className = '';
-export { className as class };
-export let info = false;
-export let success = false;
-export let warning = false;
-export let danger = false;
-export let element = undefined;
+let {
+	element = $bindable(undefined),
+	target = '',
+	delay = 0,
+	position = 'top',
+	offset = 2,
+	shortcut = '',
+	class: className = '',
+	info = false,
+	success = false,
+	warning = false,
+	danger = false,
+	children = $bindable(() => {}),
+} = $props();
 
 
-let _position = position;
-let opened = false;
+let _position = $state(position);
+let opened = $state(false);
 let showTimer, hideTimer, shownEvent, noHide = false;
 let targetEl;
 
@@ -50,12 +53,13 @@ onMount(() => {
 });
 
 onDestroy(removeTargetEvents);
-afterUpdate(align);
+
+$effect(align);
 
 
-function formatShortcut () {
-	if (!shortcut) return '';
-	return replaceKeySymbols(shortcut)
+function formatShortcut (_shortcut = shortcut) {
+	if (!_shortcut) return '';
+	return replaceKeySymbols(_shortcut)
 		.replace(/\+/g, ' ')
 		.replace(/\s+/g, ' ')
 		.split(' ')
@@ -70,7 +74,7 @@ function show (e) {
 		hideTimer = null;
 	}
 	if (opened || showTimer) return;
-	showTimer = setTimeout(() => _show(e), parseFloat(delay) || 0);
+	showTimer = setTimeout(() => _show(e), parseFloat(String(delay)) || 0);
 }
 
 

@@ -12,9 +12,24 @@
 		</div>
 </th>
 
-<script>
+<script lang="ts">
+import type { DataStore } from '../DataStore';
 import { Icon } from '../../icon';
-const { column = {}, Data = [] } = $props();
+
+interface Props {
+	column?: {
+		field: string;
+		label?: string;
+	};
+	Data?: typeof DataStore;
+}
+
+const {
+	column = {
+		field: ''
+	},
+	Data = {} as typeof DataStore
+}: Props = $props();
 
 const sortField = $derived(Data.sortField);
 const sortOrder = $derived(Data.sortOrder);

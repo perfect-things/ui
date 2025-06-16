@@ -12,30 +12,28 @@
 	<table>{@render children?.()}</table>
 </div>
 
-<script>
+<script lang="ts">
 import './Table.css';
 import { onDestroy, onMount } from 'svelte';
 
 
+interface Props {
+	class?: string;
+	selectable?: boolean | string;
+	round?: boolean | string;
+	scrollContainer?: any;
+	scrollCorrectionOffset?: number | string;
+	element?: any;
+	rowSelector?: string;
+	data?: Record<string, any>;
+	onselect?: (e: { selectedItem: Element }) => void;
+	onclick?: (e: { event: Event, selectedItem: Element }) => void;
+	ondblclick?: (e: { event: Event, selectedItem: Element }) => void;
+	onkeydown?: (e: { event: KeyboardEvent, key: string, selectedItem: Element }) => void;
+	children?: import('svelte').Snippet;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {boolean} [selectable]
- * @property {boolean} [round]
- * @property {any} [scrollContainer]
- * @property {number} [scrollCorrectionOffset]
- * @property {any} [element]
- * @property {string} [rowSelector] - then tbody.row-selector can be set to allow highlighting whole groups
- * @property {any} [data]
- * @property {function} [onselect]
- * @property {function} [onclick]
- * @property {function} [ondblclick]
- * @property {function} [onkeydown]
- * @property {import('svelte').Snippet} [children]
- */
 
-/** @type {Props} */
 let {
 	class: className = '',
 	selectable = true,
@@ -50,7 +48,7 @@ let {
 	ondblclick = () => {},
 	onkeydown = () => {},
 	children
-} = $props();
+}: Props = $props();
 
 let selectedIdx = -1;
 let headerHeight = 0;
@@ -83,7 +81,7 @@ onDestroy(() => {
  * For finding next/prev rows, we need to use all tables.
  * @param getFromAllTables
  */
-function getSelectableItems (getFromAllTables = true) {
+function getSelectableItems (getFromAllTables = true): Element[] {
 	const rootEl = getFromAllTables ? element.parentNode : element;
 	const rows = rootEl.querySelectorAll(`.table ${rowSelector}`);
 	if (rows && rows.length) return Array.from(rows);
@@ -92,7 +90,7 @@ function getSelectableItems (getFromAllTables = true) {
 
 
 function makeRowsSelectable () {
-	getSelectableItems(false).forEach(item => item.setAttribute('tabindex', 0));
+	getSelectableItems(false).forEach(item => item.setAttribute('tabindex', '0'));
 }
 
 
@@ -142,13 +140,13 @@ function selectClicked (skipEvent = false) {
 
 	const topMargin = (scrlCont === element ? 0 : element.offsetTop);
 
-	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(scrollCorrectionOffset);
+	let top = rowEl.offsetTop - headerHeight + topMargin + parseFloat(String(scrollCorrectionOffset));
 	if (scrlCont.scrollTop > top) scrlCont.scrollTo({ top: Math.round(top) });
 
 	else {
 		const paddingBottom = 4;
 		top = rowEl.offsetTop + rowEl.offsetHeight - scrlCont.offsetHeight +
-			headerHeight + topMargin + parseFloat(scrollCorrectionOffset) + paddingBottom;
+			headerHeight + topMargin + parseFloat(String(scrollCorrectionOffset)) + paddingBottom;
 		if (scrlCont.scrollTop < top) scrlCont.scrollTo({ top: Math.round(top) });
 	}
 
@@ -185,9 +183,10 @@ function _onclick (e) {
 
 	// debounce, so to not duplicate events when dblclicking
 	if (clickTimer) clearTimeout(clickTimer);
-	clickTimer = setTimeout(() => onselect({ event: e, selectedItem: rowEl }), 300);
-
 	const rowEl = e.target.closest(rowSelector);
+	e.selectedItem = rowEl;
+	clickTimer = setTimeout(() => onselect(e), 300);
+
 	if (rowEl) {
 		selectFocusedRow(rowEl);
 		onclick({ event: e, selectedItem: rowEl });
@@ -201,7 +200,7 @@ function _ondblclick (e) {
 	if (shouldSkipNav(e)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
-	onclick({ event: e });
+	onclick(e);
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems()[selectedIdx];
 		ondblclick({ event: e, selectedItem });

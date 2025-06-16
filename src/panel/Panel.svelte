@@ -73,8 +73,8 @@ let {
 
 
 let headerEl = $state(), expanded = $state(open || !title);
-const expandedProps = { height: 0 };
-const collapsedProps = { height: 0 };
+const expandedProps = { height: '0' };
+const collapsedProps = { height: '0' };
 
 
 
@@ -86,8 +86,8 @@ function calcHeights () {
 	requestAnimationFrame(() => {
 		if (!element) return;
 		const wrapCss = getComputedStyle(element);
-		const borderTop = parseInt(wrapCss.borderTopWidth || 0, 10);
-		const borderBottom = parseInt(wrapCss.borderTopWidth || 0, 10);
+		const borderTop = parseInt(wrapCss.borderTopWidth || '0', 10);
+		const borderBottom = parseInt(wrapCss.borderTopWidth || '0', 10);
 		const headerH = headerEl ? headerEl.offsetHeight : 0;
 		expandedProps.height = element.getBoundingClientRect().height + 'px';
 		collapsedProps.height = (headerH + borderTop + borderBottom) + 'px';

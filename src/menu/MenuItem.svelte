@@ -17,31 +17,26 @@
 	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
 </button>
 
-<script>
+<script lang="ts">
 import { getContext } from 'svelte';
 import { Icon } from '../icon';
 import { blink, replaceKeySymbols } from '../utils';
 
 
+interface Props {
+	shortcut?: string;
+	icon?: any;
+	class?: string;
+	success?: boolean;
+	warning?: boolean;
+	danger?: boolean;
+	disabled?: boolean;
+	element?: HTMLElement;
+	children?: import('svelte').Snippet;
+	onclick?: (e: MouseEvent) => any;
+	onmousedown?: (e: MouseEvent) => any;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [shortcut]
- * @property {any} [icon]
- * @property {string} [class]
- * @property {boolean} [success]
- * @property {boolean} [warning]
- * @property {boolean} [danger]
- * @property {boolean} [disabled]
- * @property {any} [element]
- * @property {import('svelte').Snippet} [children]
- * @property {(e: MouseEvent) => any} [onclick]
- * @property {(e: MouseEvent) => any} [onmousedown]
- * * @typedef {Props & { [key: string]: any }} PropsWithRest
- *
- */
-
-/** @type {Props & { [key: string]: any }} */
 let {
 	shortcut = '',
 	icon = undefined,
@@ -55,11 +50,11 @@ let {
 	onclick = () => {},
 	onmousedown = () => {},
 	...rest
-} = $props();
+}: Props = $props();
 
 
 
-const { targetEl } = getContext('MenuContext');
+const { targetEl } = getContext('MenuContext') as any;
 
 
 function _onclick (e) {

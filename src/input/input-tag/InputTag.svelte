@@ -24,6 +24,7 @@
 
 		<div class="input-row">
 			<Icon name="tag"/>
+			<!-- eslint-disable svelte/require-each-key -->
 			{#each _value as tag}
 				<Tag icon="close" clickable onclick={() => removeTagFromValue(tag)}>{tag}</Tag>
 			{/each}
@@ -49,7 +50,7 @@
 	bind:this={listPopover}>
 
 	<div class="input-tag-list-tags">
-		{#each _tags as tag(tag.text)}
+		{#each _tags as tag (tag.text)}
 			<Tag clickable icon="add" disabled={tag.disabled} onclick={() => addTagToValue(tag.text)}>{tag.text}</Tag>
 		{/each}
 	</div>
@@ -83,7 +84,7 @@ import { Label } from '../label';
  * @property {string} [label]
  * @property {any} [error]
  * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
+ * @property {boolean|string} [labelOnTheLeft]
  * @property {any} [name]
  * @property {any} [title]
  * @property {any} [tags]
