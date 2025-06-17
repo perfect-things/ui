@@ -2,13 +2,13 @@ import { expect, test, vi } from 'vitest';
 import { mount, unmount } from 'svelte';
 import { Panel } from '../src/panel';
 import userEvent from '@testing-library/user-event';
+import * as utils from '../src/utils';
 
 
 test('Panel', async () => {
 	const onopen = vi.fn();
-	const onclose = vi.fn().mockImplementation(() => resolve());
-	let resolve = _ => _;
-	const resolvedByOnClose = new Promise(_res => { resolve = _res; });
+	const onclose = vi.fn();
+	vi.spyOn(utils, 'animate').mockResolvedValue();
 
 	const props = $state({
 		title: 'Panel1',
@@ -35,7 +35,6 @@ test('Panel', async () => {
 
 	const panel = document.body.querySelector('.test-class details');
 	await user.click(panel);
-	await resolvedByOnClose;
 
 	expect(cmp).not.toHaveClass('expanded');
 	expect(onclose).toHaveBeenCalled();

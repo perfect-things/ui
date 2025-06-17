@@ -45,7 +45,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './ButtonToggle.css';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
@@ -55,26 +55,23 @@ import { Label } from '../label';
 
 
 
+interface Props {
+	class?: string;
+	disabled?: any;
+	round?: any;
+	items?: Array<{ name: string, value: string, icon?: string } | string>;
+	id?: string;
+	name?: string;
+	value?: any;
+	title?: any;
+	label?: string;
+	error?: any;
+	info?: any;
+	labelOnTheLeft?: boolean | string;
+	element?: any;
+	onchange?: (value: any) => void;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {any} [disabled]
- * @property {any} [round] - round button
- * @property {any} [items]
- * @property {string} [id]
- * @property {any} [name]
- * @property {string} [value]
- * @property {any} [title]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {function} [onchange] - Callback function when the value changes
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	disabled = undefined,
@@ -90,7 +87,7 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	onchange = () => {},
-} = $props();
+}: Props = $props();
 
 
 const errorMessageId = guid();

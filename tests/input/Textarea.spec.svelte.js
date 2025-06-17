@@ -51,8 +51,7 @@ test('Textarea handles input events', async () => {
 	const textarea = document.body.querySelector('textarea');
 
 	await fireEvent.input(textarea, { target: { value: 'test input' } });
-	// Note: Mock function assertions temporarily disabled during migration
-	// expect(props.oninput).toHaveBeenCalled();
+	expect(props.oninput).toHaveBeenCalled();
 
 	unmount(component);
 });
@@ -173,12 +172,10 @@ test('Textarea handles focus and blur events', async () => {
 	const textarea = document.body.querySelector('textarea');
 
 	await fireEvent.focus(textarea);
-	// Note: Mock function assertions temporarily disabled during migration
-	// expect(props.onfocus).toHaveBeenCalled();
+	expect(props.onfocus).toHaveBeenCalled();
 
 	await fireEvent.blur(textarea);
-	// Note: Mock function assertions temporarily disabled during migration
-	// expect(props.onblur).toHaveBeenCalled();
+	expect(props.onblur).toHaveBeenCalled();
 
 	unmount(component);
 });

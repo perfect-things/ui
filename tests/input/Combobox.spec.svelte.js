@@ -66,9 +66,9 @@ test('Combobox', async () => {
 	const comboboxListAfterClick = document.body.querySelector('.combobox-list');
 	expect(comboboxListAfterClick).not.toBeInTheDocument();
 	expect(combobox).not.toHaveClass('open');
-	// @ts-ignore
+
 	expect(input.value).toBe(itemToClick);
-	// expect(props.onchange).toHaveBeenCalled();
+	expect(props.onchange).toHaveBeenCalled();
 
 	const lbl = cmp.querySelector('label');
 	expect(lbl).toBeInTheDocument();
@@ -82,7 +82,7 @@ test('Combobox', async () => {
 	props.error = '';
 	flushSync();
 	err = cmp.querySelector('.info-bar-error');
-	// expect(err).not.toBeInTheDocument();
+	expect(err).not.toBeInTheDocument();
 
 	props.info = 'info';
 	flushSync();

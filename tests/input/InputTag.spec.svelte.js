@@ -40,7 +40,7 @@ test('InputTag', async () => {
 	flushSync();
 
 	err = cmp.querySelector('.info-bar-error');
-	// expect(err).not.toBeInTheDocument();
+	expect(err).not.toBeInTheDocument();
 
 	props.info = 'info';
 	flushSync();

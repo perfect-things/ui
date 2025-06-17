@@ -6,10 +6,16 @@ import { fireEvent } from '@testing-library/dom';
 
 test('NotificationCenter', async () => {
 	vi.useFakeTimers();
+	vi.mock('svelte/transition', () => {
+		return {
+			fly: vi.fn(),
+			crossfade: vi.fn().mockReturnValue([])
+		};
+	});
 
 	const component = mount(NotificationCenter, { target: document.body });
-
 	const toastSelector = '.notification-center .notification';
+
 
 	const cmp = document.body.querySelector('.notification-center');
 	expect(cmp).toBeInTheDocument();

@@ -1,8 +1,7 @@
+import { expect, test } from 'vitest';
 import { fireEvent } from '@testing-library/svelte';
 import { flushSync, mount, unmount } from 'svelte';
 import { ButtonToggle } from '../../src/input/button-toggle';
-import { expect, test } from 'vitest';
-
 
 test('ButtonToggle', async () => {
 	const items = [
@@ -23,7 +22,6 @@ test('ButtonToggle', async () => {
 		info: undefined
 	});
 
-	// @ts-ignore
 	const component = mount(ButtonToggle, { target: document.body, props });
 
 	const btnGroup = document.body.querySelector('.test-class');
@@ -54,10 +52,11 @@ test('ButtonToggle', async () => {
 	expect(err).toBeInTheDocument();
 	expect(err).toHaveTextContent(props.error);
 
+
 	props.error = '';
 	flushSync();
 	err = btnGroup.querySelector('.info-bar-error');
-	// expect(err).not.toBeInTheDocument();
+	expect(err).not.toBeInTheDocument();
 
 	props.info = 'info';
 	flushSync();

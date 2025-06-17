@@ -34,7 +34,7 @@ test('Checkbox', async () => {
 	props.error = '';
 	flushSync();
 	err = chbox.querySelector('.info-bar-error');
-	// expect(err).not.toBeInTheDocument();
+	expect(err).not.toBeInTheDocument();
 
 	props.info = 'info';
 	flushSync();
@@ -61,7 +61,7 @@ test('Checkbox', async () => {
 	await fireEvent.click(inp);
 	expect(inp).not.toBeChecked();
 
-	// expect(mock).toHaveBeenCalled();
+	expect(mock).toHaveBeenCalled();
 
 	unmount(component);
 });

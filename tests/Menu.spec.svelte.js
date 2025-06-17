@@ -5,8 +5,12 @@ import Menu from './helpers/Menu.svelte';
 
 
 test('Menu', async () => {
+	// @ts-ignore
+	vi.spyOn(window, 'setTimeout').mockImplementation(cb => cb());
+
 	const props = $state({});
 
+	const user = userEvent.setup();
 	const component = mount(Menu, { target: document.body, props });
 
 	let cmp = document.body.querySelector('.test-menu');
@@ -22,17 +26,19 @@ test('Menu', async () => {
 	expect(menuItem).toBeInTheDocument();
 	expect(menuItem).toHaveTextContent('Add');
 
-	// await userEvent.click(menuItem);
-	// expect(cmp).not.toBeInTheDocument();
+
+	await user.click(menuItem);
+	expect(menuItem).not.toBeInTheDocument();
+	expect(cmp).not.toBeInTheDocument();
 
 
 	await userEvent.click(document.body);
 	expect(cmp).not.toBeInTheDocument();
 
 
-	// await userEvent.click(btn);
-	// cmp = document.body.querySelector('.test-menu');
-	// expect(cmp).toBeInTheDocument();
+	await userEvent.click(btn);
+	cmp = document.body.querySelector('.test-menu');
+	expect(cmp).toBeInTheDocument();
 
 	unmount(component);
 });

@@ -4,24 +4,22 @@ import { get } from 'svelte/store';
 import './helpers/utils';
 import * as utils from '../src/utils';
 import { flushSync } from 'svelte';
-// import { waitForTimeout } from './helpers/utils';
 
 
 
 test('utils - matchMedia', () => {
-	expect(get(utils.ANIMATION_SPEED)).toStrictEqual(200);
+	expect(get(utils.ANIMATION_SPEED)).toStrictEqual(0);
 });
 
 
-// test('utils - animate', async () => {
-// 	const div = document.createElement('div');
-// 	document.body.appendChild(div);
+test('utils - animate', async () => {
+	const div = document.createElement('div');
+	document.body.appendChild(div);
 
-// 	// spy on div.animate
-// 	const spy = vi.spyOn(div, 'animate');
-// 	await utils.animate(div, {}, {});
-// 	expect(spy).toHaveBeenCalled();
-// });
+	const spy = vi.spyOn(div, 'animate');
+	await utils.animate(div, {}, {});
+	expect(spy).toHaveBeenCalled();
+});
 
 
 test('utils - blink', async () => {
@@ -29,22 +27,23 @@ test('utils - blink', async () => {
 	document.body.appendChild(div);
 
 	const spy = vi.spyOn(div, 'animate');
-	utils.blink(div);
+	await utils.blink(div);
 	flushSync();
-	// await waitForTimeout();
 	expect(spy).toHaveBeenCalled();
 });
 
 
 test('utils - debounce', async () => {
+	vi.useFakeTimers();
 	const fn = vi.fn();
 	const debounced = utils.debounce(fn, 100);
 	debounced();
 	debounced();
 	debounced();
 	expect(fn).toHaveBeenCalledTimes(0);
-	await new Promise(resolve => setTimeout(resolve, 200));
+	vi.advanceTimersByTime(300);
 	expect(fn).toHaveBeenCalledTimes(1);
+	vi.useRealTimers();
 });
 
 

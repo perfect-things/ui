@@ -43,20 +43,19 @@ test('Drawer', async () => {
 
 	await userEvent.click(document.body);
 	expect(closeMock).toHaveBeenCalled();
-	// cmp = document.body.querySelector('.test-class');
-	// expect(cmp).not.toBeInTheDocument();
+	cmp = document.body.querySelector('.test-class');
+	expect(cmp).not.toBeInTheDocument();
 
 	component.open();
-	try { flushSync(); }
-	catch { /**/}
+	flushSync();
 
 	cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 
 	const closer = document.body.querySelector('.test-class .drawer-header .btn-close');
 	await userEvent.click(closer);
-	// cmp = document.body.querySelector('.test-class');
-	// expect(cmp).not.toBeInTheDocument();
+	cmp = document.body.querySelector('.test-class');
+	expect(cmp).not.toBeInTheDocument();
 
 	unmount(component);
 });

@@ -5,8 +5,10 @@ import ContextMenu from './helpers/MenuContext.svelte';
 
 
 test('Context Menu', async () => {
-	const props = $state({});
+	// @ts-ignore
+	vi.spyOn(window, 'setTimeout').mockImplementation(cb => cb());
 
+	const props = $state({});
 	const component = mount(ContextMenu, { target: document.body, props });
 
 	let cmp = document.body.querySelector('.test-menu');
@@ -22,12 +24,12 @@ test('Context Menu', async () => {
 
 	await userEvent.pointer({ keys: '[MouseRight]', target });
 	cmp = document.body.querySelector('.test-menu');
-	// expect(cmp).toBeInTheDocument();
+	expect(cmp).toBeInTheDocument();
 
 	const menuItem = document.body.querySelector('.test-menu .menu-item');
 
-	// expect(menuItem).toBeInTheDocument();
-	// expect(menuItem).toHaveTextContent('New Tab');
+	expect(menuItem).toBeInTheDocument();
+	expect(menuItem).toHaveTextContent('New Tab');
 
 	await userEvent.click(menuItem);
 	expect(cmp).not.toBeInTheDocument();

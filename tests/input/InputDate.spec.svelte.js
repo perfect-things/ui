@@ -69,7 +69,6 @@ test('InputDate handles date selection', async () => {
 		value: new Date(2023, 5, 15),
 		onchange: vi.fn()
 	});
-	// @ts-ignore
 	const component = mount(InputDate, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -92,17 +91,6 @@ test('InputDate handles disabled state', async () => {
 
 	unmount(component);
 });
-
-
-// test('InputDate handles readonly state', async () => {
-// 	const props = $state({ ...defaultProps, readonly: true });
-// 	const component = mount(InputDate, { target: document.body, props });
-
-// 	const input = document.body.querySelector('input');
-// 	expect(input).toHaveAttribute('readonly');
-
-// 	unmount(component);
-// });
 
 
 test('InputDate with error shows validation styling', async () => {
@@ -143,14 +131,12 @@ test('InputDate handles clear functionality', async () => {
 		clearable: true,
 		onchange: vi.fn()
 	});
-	// @ts-ignore
 	const component = mount(InputDate, { target: document.body, props });
 
 	const clearBtn = document.body.querySelector('.input-date .clear');
 	if (clearBtn) {
 		await userEvent.click(clearBtn);
-		// Note: Mock function assertions temporarily disabled during migration
-		// expect(props.onchange).toHaveBeenCalled();
+		expect(props.onchange).toHaveBeenCalled();
 	}
 
 	unmount(component);

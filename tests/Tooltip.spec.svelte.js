@@ -5,23 +5,26 @@ import userEvent from '@testing-library/user-event';
 
 
 test('Tooltip', async () => {
+	const user = userEvent.setup();
+	// @ts-ignore
+	vi.spyOn(window, 'setTimeout').mockImplementation(cb => cb());
+
 	const props = $state({});
 
 	const component = mount(Tooltip, { target: document.body, props });
 
 	const btn = document.body.querySelector('#box1');
-	await userEvent.hover(btn);
+	await user.hover(btn);
 
 	let tooltip = document.body.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
 	expect(tooltip.parentNode).toHaveClass('test-class');
 	expect(tooltip).toHaveTextContent('Some tooltip text');
 
-	await userEvent.unhover(btn);
-	flushSync();
-	// expect(tooltip).not.toBeInTheDocument();
+	await user.unhover(btn);
+	expect(tooltip).not.toBeInTheDocument();
 
-	await userEvent.hover(btn);
+	await user.hover(btn);
 	flushSync();
 	tooltip = document.body.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
@@ -40,7 +43,7 @@ test('Tooltip', async () => {
 
 
 	// test closing with Escape
-	// await userEvent.keyboard('[Escape]');
+	// await user.keyboard('[Escape]');
 	// flushSync();
 	// expect(tooltip).not.toBeInTheDocument();
 

@@ -1,8 +1,12 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+import { writable } from 'svelte/store';
+import * as utils from '../src/utils';
 
 // Mock CSS imports
 vi.mock('*.css', () => ({}));
+vi.spyOn(utils, 'ANIMATION_SPEED', 'get').mockReturnValue(writable(0));
+
 
 // Mock Element.animate for tests since jsdom doesn't support it
 Object.defineProperty(Element.prototype, 'animate', {

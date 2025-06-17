@@ -65,11 +65,15 @@ function _onclick (e) {
 		// target is the button that opens the menu
 		// button is the menuItem <button> that was clicked
 		// cancellable is true so that the menu can remain open if event is prevented
-		Object.defineProperties(e, {
-			target: { value: targetEl(), writable: false, enumerable: true, configurable: true },
-			button: { value: btn, writable: false, enumerable: true, configurable: true },
-			cancellable: { value: true, writable: false, enumerable: true, configurable: true }
-		});
+		try {
+			Object.defineProperties(e, {
+				target: { value: targetEl(), writable: true, enumerable: true, configurable: true },
+				button: { value: btn, writable: true, enumerable: true, configurable: true },
+				cancellable: { value: true, writable: true, enumerable: true, configurable: true }
+			});
+		}
+		catch { /* ignore */ }
+
 		const res = onclick(e);
 		if (res === false) {
 			e.stopPropagation();

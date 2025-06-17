@@ -37,7 +37,7 @@ test('Radio', async () => {
 	props.error = '';
 	flushSync();
 	err = cmp.querySelector('.info-bar-error');
-	// expect(err).not.toBeInTheDocument();
+	expect(err).not.toBeInTheDocument();
 
 	props.info = 'info';
 	flushSync();
@@ -80,12 +80,12 @@ test('Radio', async () => {
 
 
 	await fireEvent.click(lbl0);
-	// expect(props.onchange).not.toHaveBeenCalled();	// first input should be disabled
+	expect(props.onchange).not.toHaveBeenCalled();	// first input should be disabled
 	expect(inp0).not.toBeChecked();
 	expect(inp1).not.toBeChecked();
 
 	await fireEvent.click(lbl1);
-	// expect(props.onchange).toHaveBeenCalled();
+	expect(props.onchange).toHaveBeenCalled();
 	expect(inp1).toBeChecked();
 
 	unmount(component);

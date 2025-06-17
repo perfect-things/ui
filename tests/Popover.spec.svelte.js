@@ -5,10 +5,10 @@ import Popover from './helpers/Popover.svelte';
 
 
 test('Popover', async () => {
-	window.requestAnimationFrame = (cb) => {
-		cb(1);
-		return 0;
-	};
+	// @ts-ignore
+	window.requestAnimationFrame = (cb) => cb();
+	// @ts-ignore
+	vi.spyOn(window, 'setTimeout').mockImplementation(cb => cb());
 
 	const props = $state({});
 	const component = mount(Popover, { target: document.body, props });
@@ -34,8 +34,8 @@ test('Popover', async () => {
 	await userEvent.click(btn);
 	flushSync();
 
-	// cmp = document.body.querySelector('.test-popover');
-	// expect(cmp).toBeInTheDocument();
+	cmp = document.body.querySelector('.test-popover');
+	expect(cmp).toBeInTheDocument();
 
 	unmount(component);
 });

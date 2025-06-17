@@ -42,7 +42,7 @@ test('InputRating', async () => {
 	await waitForTimeout();
 
 	expect(star2).toHaveClass('active');
-	// expect(props.onchange).toHaveBeenCalled();
+	expect(props.onchange).toHaveBeenCalled();
 
 	const star3 = cmp.querySelector('.button:nth-child(3)');
 	expect(star3).toBeInTheDocument();
