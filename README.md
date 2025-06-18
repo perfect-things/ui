@@ -4,14 +4,16 @@ PerfectThings/UI
 
 # TODO
 - [ ] upgrade all `class:` attrs
-- [ ] ensure there's no commented-put `// expect...` in the code
-- [ ] fix tests that fail due to animations not running (custom svelte transitions)
 - [ ] ensure `aria-invalid` is `true`/`false` and not error message
 - [ ] remove flushSync when not needed
 - [ ] fix json code bits live updating
 - [ ] uncomment & fix InputNumber tests
+- [ ] make reusable core input?
 
 
+- [x] ensure there's no commented-put `// expect...` in the code. (only 1 left in InputDate)
+- [x] fix tests that fail due to animations not running (custom svelte transitions)
+- [x] bug: tooltip: when mouse enters target from the top - tooltip shows up and hides instantly
 - [x] fix comboboxes
 - [x] remove `bubble` code
 - [x] remove `createEventDispatcher` code

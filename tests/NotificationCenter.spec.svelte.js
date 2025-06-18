@@ -32,10 +32,11 @@ test('NotificationCenter', async () => {
 	expect(toast).toHaveTextContent('Info');
 	expect(bellBtn).toHaveClass('has-notifications');
 
-	vi.advanceTimersByTime(1000);
+	vi.advanceTimersByTime(500);
+	flushSync();
 	toast = document.body.querySelector(toastSelector);
-	// expect(toast).not.toBeInTheDocument();
-	// expect(bellBtn).toHaveClass('has-archived-notifications');
+	expect(toast).not.toBeInTheDocument();
+	expect(bellBtn).toHaveClass('has-archived-notifications');
 
 	let tstId = showNotification('Warning', 'warning', 5000);
 	flushSync();
@@ -58,13 +59,11 @@ test('NotificationCenter', async () => {
 	const btn = document.body.querySelector(toastSelector + ' button');
 	expect(btn).toBeInTheDocument();
 	await fireEvent.click(btn);
-	flushSync();
-
 	expect(mock).toHaveBeenCalledWith(tstId);
 
 	hideNotification(tstId);
-	flushSync();
 	vi.advanceTimersByTime(20000);
+	flushSync();
 	expect(toast).not.toBeInTheDocument();
 
 	unmount(component);

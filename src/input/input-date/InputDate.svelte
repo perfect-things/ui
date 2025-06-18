@@ -1,4 +1,5 @@
 <div
+	{title}
 	class="input input-date {className}"
 	class:open
 	class:native={useNative}
@@ -29,7 +30,6 @@
 					aria-invalid={error}
 					aria-errormessage={error ? errorMessageId : undefined}
 					aria-required={required}
-					{title}
 					{name}
 					{disabled}
 					id={_id}
@@ -46,13 +46,11 @@
 					aria-required={required}
 					id={_id}
 					{placeholder}
-					{title}
 					{name}
 					{disabled}
 					{oninput}
-					{onshow}
-					{onhide}
 					{onblur}
+					{...({ onshow, onhide } as any)}
 					onchangeDate={_onchange}
 					onkeydowncapture={_onkeydown}
 					bind:this={inputElement}
@@ -62,7 +60,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './InputDate.css';
 import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
@@ -74,35 +72,31 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
+interface Props {
+	class?: string;
+	id?: string;
+	name?: any;
+	disabled?: any;
+	required?: any;
+	value?: string;
+	label?: string;
+	error?: any;
+	info?: any;
+	labelOnTheLeft?: boolean | string;
+	element?: any;
+	inputElement?: any;
+	format?: string;						// 'yyyy-mm-dd'
+	placeholder?: string;					// default is the same as format
+	elevate?: boolean | string;				// if true, the datepicker will be elevated to the body
+	showOnFocus?: boolean | string;			// if true, the datepicker will be shown on focus
+	orientation?: string;					// '[left|right|auto] [top|bottom|auto]'
+	title?: string;
+	useNativeOnMobile?: boolean | string;	// if true, the native date input will be used on mobile devices
+	onchange?: (value: string) => void;
+	onkeydown?: (params: { event: KeyboardEvent, component: Datepicker }) => void;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {any} [name]
- * @property {any} [disabled]
- * @property {any} [required]
- * @property {string} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {string} [separator] - decimal separator
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {string} [format] - date format, default 'yyyy-mm-dd'
- * @property {string} [placeholder] - placeholder text, default is the same as format
- * @property {boolean} [elevate] - if true, the datepicker will be elevated to the body
- * @property {boolean} [showOnFocus] - if true, the datepicker will be shown on focus
- * @property {string} [orientation] - datepicker orientation, default 'auto'
- * @property {string} [title] - input title
- * @property {boolean|string} [useNativeOnMobile] - if true, the native date input will be used on mobile devices
- * @property {function} [onchange] - function to call on date change
- * @property {function} [onkeydown] - function to call on keydown event
- *
- */
 
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -125,7 +119,7 @@ let {
 	useNativeOnMobile = false,
 	onchange = () => {},
 	onkeydown = () => {},
-} = $props();
+}: Props = $props();
 
 
 let picker;
@@ -139,9 +133,8 @@ const _id = $derived(id || name || guid());
 const elevated = $derived(elevate === true || elevate === 'true');
 
 
-
-
 onMount(initDatePicker);
+
 $effect(() => {
 	if (value !== picker.getDate(format)) oninput();
 });
@@ -212,6 +205,8 @@ function _onchange () {
 	onchange(value);
 }
 
+// Datepicker publishes these 2 events (onshow, onhide) on the input element
+// the weird syntax on <input> tag is used to ignore the lint errors on non-standard attributes
 function onshow () {
 	open = true;
 }

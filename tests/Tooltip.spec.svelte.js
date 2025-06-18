@@ -25,7 +25,6 @@ test('Tooltip', async () => {
 	expect(tooltip).not.toBeInTheDocument();
 
 	await user.hover(btn);
-	flushSync();
 	tooltip = document.body.querySelector('.tooltip-content');
 	expect(tooltip).toBeInTheDocument();
 
@@ -43,9 +42,9 @@ test('Tooltip', async () => {
 
 
 	// test closing with Escape
-	// await user.keyboard('[Escape]');
-	// flushSync();
-	// expect(tooltip).not.toBeInTheDocument();
+	await user.click(document.body);
+	await user.keyboard('[Escape]');
+	expect(tooltip).not.toBeInTheDocument();
 
 	unmount(component);
 });

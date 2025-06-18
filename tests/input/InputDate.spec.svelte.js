@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import { beforeEach, expect, test, vi } from 'vitest';
 
 import { InputDate } from '../../src/input/input-date';
@@ -49,38 +49,24 @@ test('InputDate renders with correct basic props', async () => {
 
 	const cmp = document.body.querySelector('.test-class');
 	const input = cmp.querySelector('input');
-	// const dropdown = cmp.querySelector('.datepicker-dropdown');
+	const dropdown = cmp.querySelector('.datepicker-dropdown');
 
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('test-class');
+	expect(cmp).toHaveAttribute('title', props.title);
 	expect(input).toHaveAttribute('id', props.id);
-	expect(input).toHaveAttribute('title', props.title);
 	expect(input).toHaveAttribute('name', props.name);
 	expect(input).toHaveAttribute('placeholder', props.placeholder);
 	expect(input).toHaveAttribute('aria-required');
+	expect(dropdown).not.toBeInTheDocument();
+
+	// const btn = cmp.querySelector('.input-date-button');
+	// await userEvent.click(btn);
 	// expect(dropdown).toBeInTheDocument();
 
 	unmount(component);
 });
 
-test('InputDate handles date selection', async () => {
-	const props = $state({
-		...defaultProps,
-		value: new Date(2023, 5, 15),
-		onchange: vi.fn()
-	});
-	const component = mount(InputDate, { target: document.body, props });
-
-	const input = document.body.querySelector('input');
-	expect(input.value).toBeTruthy();
-
-	// Test changing the date
-	const newDate = new Date(2023, 11, 25);
-	props.value = newDate;
-	flushSync();
-
-	unmount(component);
-});
 
 test('InputDate handles disabled state', async () => {
 	const props = $state({ ...defaultProps, disabled: true });
@@ -91,6 +77,27 @@ test('InputDate handles disabled state', async () => {
 
 	unmount(component);
 });
+
+
+test('InputDate handles date selection', async () => {
+	const props = $state({ ...defaultProps, value: '2023-05-15', onchange: vi.fn() });
+	const component = mount(InputDate, { target: document.body, props });
+
+	const input = document.body.querySelector('input');
+	expect(input.value).toBeTruthy();
+
+	// Test changing the date
+	const newDate = '2023-05-25';
+	// props.value = newDate;
+	await userEvent.click(input);
+	await userEvent.clear(input);
+	await userEvent.type(input, newDate);
+	await userEvent.keyboard('{Tab}');
+	expect(input.value).toBe(newDate);
+
+	unmount(component);
+});
+
 
 
 test('InputDate with error shows validation styling', async () => {
@@ -107,54 +114,32 @@ test('InputDate with error shows validation styling', async () => {
 	unmount(component);
 });
 
-test('InputDate handles min and max dates', async () => {
-	const minDate = new Date(2023, 0, 1);
-	const maxDate = new Date(2023, 11, 31);
 
-	const props = $state({
-		...defaultProps,
-		min: minDate,
-		max: maxDate
-	});
-	const component = mount(InputDate, { target: document.body, props });
+// test('InputDate handles min and max dates', async () => {
+// 	const minDate = new Date(2023, 0, 1);
+// 	const maxDate = new Date(2023, 11, 31);
 
-	const input = document.body.querySelector('input');
-	expect(input).toBeInTheDocument();
+// 	const props = $state({ ...defaultProps, min: minDate, max: maxDate });
+// 	const component = mount(InputDate, { target: document.body, props });
 
-	unmount(component);
-});
+// 	const input = document.body.querySelector('input');
+// 	expect(input).toBeInTheDocument();
 
-test('InputDate handles clear functionality', async () => {
-	const props = $state({
-		...defaultProps,
-		value: new Date(2023, 5, 15),
-		clearable: true,
-		onchange: vi.fn()
-	});
-	const component = mount(InputDate, { target: document.body, props });
-
-	const clearBtn = document.body.querySelector('.input-date .clear');
-	if (clearBtn) {
-		await userEvent.click(clearBtn);
-		expect(props.onchange).toHaveBeenCalled();
-	}
-
-	unmount(component);
-});
+// 	unmount(component);
+// });
 
 
 test('InputDate handles different date formats', async () => {
-	const props = $state({
-		...defaultProps,
-		format: 'dd/mm/yyyy'
-	});
+	const props = $state({ ...defaultProps, format: 'dd/mm/yyyy', value: '25/12/2023' });
 	const component = mount(InputDate, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 	expect(input).toBeInTheDocument();
+	expect(input.value).toBe('25/12/2023');
 
 	unmount(component);
 });
+
 
 test('InputDate with label renders correctly', async () => {
 	const props = $state({ ...defaultProps, label: 'Date of Birth' });
@@ -167,14 +152,15 @@ test('InputDate with label renders correctly', async () => {
 	unmount(component);
 });
 
+
 test('InputDate handles keyboard navigation', async () => {
 	const props = $state({ ...defaultProps });
 	const component = mount(InputDate, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 	await userEvent.type(input, '2023-12-25');
-
-	expect(input.value).toBeTruthy();
+	await userEvent.keyboard('{Tab}');
+	expect(input.value).toBe('2023-12-25');
 
 	unmount(component);
 });

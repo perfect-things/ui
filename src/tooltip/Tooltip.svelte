@@ -19,10 +19,25 @@
 	</div>
 {/if}
 
-<script>
+<script lang="ts">
 import './Tooltip.css';
 import { onDestroy, onMount } from 'svelte';
 import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
+
+interface Props {
+	element?: HTMLElement;
+	target?: string;
+	delay?: number;
+	position?: 'top' | 'bottom' | 'left' | 'right';
+	offset?: number;
+	shortcut?: string;
+	class?: string;
+	info?: boolean;
+	success?: boolean;
+	warning?: boolean;
+	danger?: boolean;
+	children?: () => any;
+}
 
 
 let {
@@ -38,7 +53,7 @@ let {
 	warning = false,
 	danger = false,
 	children = $bindable(() => {}),
-} = $props();
+}: Props = $props();
 
 
 let _position = $state(position);
@@ -87,9 +102,9 @@ function _show (e) {
 		if (element?.parentElement !== document.body && element) {
 			document.body.appendChild(element);
 		}
-
-		addTooltipEvents();
 		align();
+		// prevents flickering on tooltip show
+		requestAnimationFrame(addTooltipEvents);
 	});
 }
 
