@@ -9,6 +9,8 @@ declare global {
 
 	interface EventTarget {
 		focus(): void;
+		contains(element: Element): boolean;
+		closest: (selector: string) => Element | null;
 	}
 }
 

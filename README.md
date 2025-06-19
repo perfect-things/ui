@@ -3,14 +3,23 @@ PerfectThings/UI
 
 
 # TODO
+- [ ] clean all import('svelte').Snippet
+- [ ] ensure error, info and label are string types
+- [ ] upgrade all components to `lang="ts"` and `/** @type {Props}` to interfaces
 - [ ] upgrade all `class:` attrs
-- [ ] ensure `aria-invalid` is `true`/`false` and not error message
-- [ ] remove flushSync when not needed
 - [ ] fix json code bits live updating
 - [ ] uncomment & fix InputNumber tests
-- [ ] make reusable core input?
+- [ ] make reusable core input component?
+- [ ] correct the event handlers that use `.detail`
+- [ ] maybe allow the full class={} fanciness in the components?
+- [ ] standardise event params (so that all events from components have the same structure)
+- [ ] define a core props interface for all components to extend
 
 
+- [x] ensure that attributes without values (like `disabled`) are set correctly and working and have a boolean type
+- [x] ensure that `aria-invalid` produces the correct attribute & value
+- [x] ensure `aria-invalid` is `true`/`false` and not error message
+- [x] remove flushSync when not needed
 - [x] ensure there's no commented-put `// expect...` in the code. (only 1 left in InputDate)
 - [x] fix tests that fail due to animations not running (custom svelte transitions)
 - [x] bug: tooltip: when mouse enters target from the top - tooltip shows up and hides instantly

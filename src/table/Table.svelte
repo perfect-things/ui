@@ -2,10 +2,10 @@
 <div
 	class="table {className}"
 	class:round
-	class:selectable={_selectable}
+	class:selectable
 	bind:this={element}
 	onclick={_onclick}
-	onfocuscapture={onFocus}
+	onfocuscapture={_onfocus}
 	onkeydown={_onkeydown}
 	ondblclick={_ondblclick}>
 
@@ -14,23 +14,23 @@
 
 <script lang="ts">
 import './Table.css';
-import { onDestroy, onMount } from 'svelte';
+import { onDestroy, onMount, type Snippet } from 'svelte';
 
 
 interface Props {
 	class?: string;
-	selectable?: boolean | string;
-	round?: boolean | string;
-	scrollContainer?: any;
+	selectable?: boolean;
+	round?: boolean;
+	scrollContainer?: string | HTMLElement;
 	scrollCorrectionOffset?: number | string;
-	element?: any;
+	element?: HTMLElement;
 	rowSelector?: string;
 	data?: Record<string, any>;
 	onselect?: (e: { selectedItem: Element }) => void;
 	onclick?: (e: { event: Event, selectedItem: Element }) => void;
 	ondblclick?: (e: { event: Event, selectedItem: Element }) => void;
 	onkeydown?: (e: { event: KeyboardEvent, key: string, selectedItem: Element }) => void;
-	children?: import('svelte').Snippet;
+	children?: Snippet;
 }
 
 
@@ -55,12 +55,11 @@ let headerHeight = 0;
 let clickTimer;
 let previousKey;
 
-const _selectable = ($derived(selectable === true || selectable === 'true'));
 
 
 onMount(() => {
 	Object.assign(element.dataset, data);
-	if (_selectable) {
+	if (selectable) {
 		makeRowsSelectable();
 		requestAnimationFrame(() => {
 			const head = element && element.querySelector('thead');
@@ -71,7 +70,7 @@ onMount(() => {
 
 
 onDestroy(() => {
-	if (_selectable) makeRowsNotSelectable();
+	if (selectable) makeRowsNotSelectable();
 });
 
 
@@ -162,8 +161,8 @@ function selectFocusedRow (rowEl) {
 }
 
 
-function onFocus (e) {
-	if (!_selectable) return;
+function _onfocus (e) {
+	if (!selectable) return;
 	if (!element.contains(e.target)) return;
 	if (!e || !e.target || shouldSkipNav(e)) return;
 	if (e.target === document) return;
@@ -195,7 +194,7 @@ function _onclick (e) {
 
 
 function _ondblclick (e) {
-	if (!_selectable) return;
+	if (!selectable) return;
 	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 
@@ -209,7 +208,7 @@ function _ondblclick (e) {
 
 
 function _onkeydown (e) {
-	if (!_selectable) return;
+	if (!selectable) return;
 	if (!element.contains(e.target)) return;
 	if (shouldSkipNav(e)) return;
 

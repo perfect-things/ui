@@ -1,7 +1,7 @@
 <div
 	class="input input-text {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -16,15 +16,15 @@
 			type="text"
 			{disabled}
 			{...rest}
-			aria-invalid={error}
+			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
-			aria-required={required}
+			aria-required={required === 'true' || required === true}
 			bind:this={inputElement}
 			bind:value={value}>
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './InputText.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -33,23 +33,21 @@ import { Label } from '../label';
 
 
 
+interface Props {
+	class?: string;
+	id?: string;
+	required?: boolean | string;
+	disabled?: boolean;
+	value?: string;
+	label?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean | string;
+	element?: any;
+	inputElement?: any;
+	[key: string]: any; // Allow additional properties
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {any} [required]
- * @property {boolean} [disabled]
- * @property {string} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- */
-
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -63,7 +61,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...rest
-} = $props();
+}: Props = $props();
 
 
 const _id = $derived(id || name || guid());

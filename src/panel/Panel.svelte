@@ -27,33 +27,31 @@
 	{/if}
 </div>
 
-<script>
+<script lang="ts">
 import './Panel.css';
-import { onMount } from 'svelte';
+import { onMount, type Snippet } from 'svelte';
 import { getIcon } from '../icon';
 import { animate } from '../utils';
 
 
+interface Props {
+	class?: string;
+	title?: string;
+	open?: boolean;
+	round?: boolean;
+	collapsible?: boolean;
+	disabled?: boolean;
+	info?: boolean;
+	success?: boolean;
+	warning?: boolean;
+	danger?: boolean;
+	element?: HTMLElement | undefined;
+	onopen?: () => void;
+	onclose?: () => void;
+	children?: Snippet;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [title]
- * @property {boolean} [open]
- * @property {boolean} [round]
- * @property {boolean} [collapsible]
- * @property {boolean} [disabled]
- * @property {boolean} [info]
- * @property {boolean} [success]
- * @property {boolean} [warning]
- * @property {boolean} [danger]
- * @property {any} [element]
- * @property {function} [onopen]
- * @property {function} [onclose]
- * @property {import('svelte').Snippet} [children]
- */
 
-/** @type {Props} */
 let {
 	class: className = '',
 	title = '',
@@ -69,12 +67,14 @@ let {
 	onopen = () => {},
 	onclose = () => {},
 	children
-} = $props();
+}: Props = $props();
 
 
-let headerEl = $state(), expanded = $state(open || !title);
 const expandedProps = { height: '0' };
 const collapsedProps = { height: '0' };
+
+let headerEl: HTMLElement = $state();
+let expanded: boolean = $state(open || !title);
 
 
 
@@ -123,9 +123,7 @@ export function toggle (e) {
 	expanded = true;
 	open = true;
 	return animate(element, collapsedProps, expandedProps)
-		.then(() => {
-			onopen();
-		});
+		.then(() => onopen());
 }
 
 </script>

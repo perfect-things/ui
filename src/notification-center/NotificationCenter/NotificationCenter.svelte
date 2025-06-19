@@ -54,7 +54,7 @@
 
 
 
-<script>
+<script lang="ts">
 import './NotificationCenter.css';
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
@@ -67,31 +67,29 @@ import { ANIMATION_SPEED } from '../../utils';
 import { getNextNotification } from '../utils';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {boolean} [round]
- * @property {boolean} [outline]
- * @property {boolean} [hideButton]
- */
+interface Props {
+	class?: string;
+	round?: boolean;
+	outline?: boolean;
+	hideButton?: boolean;
+}
 
-/** @type {Props} */
 const {
 	class: className = '',
 	round = false,
 	outline = false,
 	hideButton = false
-} = $props();
+}: Props = $props();
 
 
 const showArchive = writable(false);
 let archiveIsVisible = $state(false);
 let archiveIsExpanded = $state(false);
 
-let el = $state();
+let el: HTMLElement = $state();
 let notifications = $state([]);
-let initial = true;
 let hasActiveNotifications = $state(false);
+let initial = $state(true);
 
 
 const duration = $derived($ANIMATION_SPEED);
@@ -159,7 +157,7 @@ function onDocClick (e) {
 
 function _send (node, params) {
 	params = { ...params, duration };
-	if (!$showArchive) return fly(node);						// dismissing with archive hidden
+	if (!$showArchive) return fly(node, {});						// dismissing with archive hidden
 	if (!archiveIsExpanded) return slideDown(node, params);		// dismissing with archive visible but collapsed
 	return send(node, params);
 }

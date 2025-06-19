@@ -5,7 +5,7 @@
 	class="input input-tag {className}"
 	class:has-error={error}
 	class:has-value={value !== ''}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -60,7 +60,7 @@
 	</form>
 </Popover>
 
-<script>
+<script lang="ts">
 import './InputTag.css';
 import { InputText } from '../input-text';
 import { Button } from '../../button';
@@ -74,28 +74,30 @@ import { Label } from '../label';
 
 
 
+interface TagItem {
+	text: string;
+	disabled: boolean;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {boolean} [disabled]
- * @property {string} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean|string} [labelOnTheLeft]
- * @property {any} [name]
- * @property {any} [title]
- * @property {any} [tags]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {any} [boxElement]
- * @property {any} [listElement]
- * @property {function} [onchange]
- */
+interface Props {
+	class?: string;
+	id?: string;
+	disabled?: boolean;
+	value?: string;
+	label?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean | string;
+	name?: string;
+	title?: boolean | string;
+	tags?: string[];
+	element?: HTMLDivElement;
+	inputElement?: HTMLInputElement;
+	boxElement?: HTMLDivElement;
+	listElement?: HTMLDivElement;
+	onchange?: (data: { value: string }) => void;
+}
 
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -113,16 +115,16 @@ let {
 	boxElement = $bindable(undefined),
 	listElement = $bindable(undefined),
 	onchange = () => {},
-} = $props();
+}: Props = $props();
 
 
 
 const errorMessageId = guid();
 let opened = false;
-let listPopover;
+let listPopover: any;
 
 let newTagName = $state('');
-let _tags = $state([]);
+let _tags = $state<TagItem[]>([]);
 
 const _id = $derived(id || name || guid());
 const _value = $derived(valueToArray(value));
@@ -131,7 +133,7 @@ const _value = $derived(valueToArray(value));
 $effect(hydrateTags);
 
 
-function hydrateTags () {
+function hydrateTags (): void {
 	const val = valueToArray(value);
 	_tags = tags.map(tag => {
 		return { text: tag, disabled: val.includes(tag) };
@@ -139,59 +141,59 @@ function hydrateTags () {
 }
 
 
-function open () {
+function open (): Promise<void> | undefined {
 	if (opened) return;
 	return listPopover.open(boxElement).then(() => opened = listPopover.isOpened());
 }
 
 
-function onclose () {
+function onclose (): void {
 	opened = false;
 }
 
 
-function updatePosition () {
+function updatePosition (): void {
 	requestAnimationFrame(listPopover.updatePosition);
 }
 
 
-function onkeydown (e) {
+function onkeydown (e: KeyboardEvent): void {
 	if (e.key === 'Enter') return open();
 	if (e.key === 'ArrowDown') {
 		e.preventDefault();
-		return open().then(() => {
-			listElement.querySelector('.ui-tag').focus();
+		return open()?.then(() => {
+			(listElement?.querySelector('.ui-tag') as HTMLElement)?.focus();
 		});
 	}
 }
 
 
-function valueToArray (val) {
+function valueToArray (val: string): string[] {
 	return val.split(/[, ;]/).map(tag => tag.trim()).filter(tag => tag !== '');
 }
 
 
-function setValue (arr) {
+function setValue (arr: string[]): void {
 	// unique list of tags
 	value = [...new Set(arr)].join(',');
 	updatePosition();
 	onchange({ value });
 }
 
-function addTagToValue (tag) {
+function addTagToValue (tag: string): void {
 	const val = valueToArray(value);
 	val.push(tag);
 	setValue(val);
 }
 
 
-function removeTagFromValue (tag) {
+function removeTagFromValue (tag: string): void {
 	const val = valueToArray(value).filter(t => t !== tag);
 	setValue(val);
 }
 
 
-function addNewTag (e) {
+function addNewTag (e: Event): void {
 	e.preventDefault();
 	const val = valueToArray(value);
 	const newTags = valueToArray(newTagName);

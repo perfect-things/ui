@@ -1,6 +1,6 @@
 import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import Table from './helpers/Table.svelte';
 
 
@@ -27,7 +27,6 @@ test('Table', async () => {
 
 	const row = rows[3];
 	await userEvent.click(row);
-	flushSync();
 	expect(clickMock).toHaveBeenCalled();
 
 	await userEvent.keyboard('[ArrowDown]');

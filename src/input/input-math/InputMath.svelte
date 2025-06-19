@@ -1,7 +1,7 @@
  <div
 	class="input input-math {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} for={_id}/>
@@ -19,7 +19,7 @@
 				id={_id}
 				name={name}
 				{...rest}
-				aria-invalid={error}
+				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
@@ -30,7 +30,7 @@
 		</div>
 	</div>
 </div>
-<script>
+<script lang="ts">
 import './InputMath.css';
 import { Icon } from '../../icon';
 import { roundAmount, guid } from '../../utils';
@@ -39,26 +39,24 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
+interface Props {
+	class?: string;
+	id?: string;
+	name?: string;
+	required?: boolean;
+	disabled?: boolean;
+	value?: string;
+	label?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean;
+	element?: HTMLElement;
+	inputElement?: HTMLInputElement;
+	onchange?: (e: Event) => void;
+	onkeydown?: (e: KeyboardEvent) => void;
+}
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {any} [required]
- * @property {boolean} [disabled]
- * @property {string} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {function} [onchange]
- * @property {function} [onkeydown]
- */
-
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -75,7 +73,7 @@ let {
 	onchange = () => {},
 	onkeydown = () => {},
 	...rest
-} = $props();
+}: Props = $props();
 
 
 const errorMessageId = guid();
@@ -96,7 +94,7 @@ function _onkeydown (e) {
 	onkeydown(e);
 	if (e.key === 'Enter') {
 		const num = parseAmount(value);
-		value = isNaN(num) ? '' : num;
+		value = String(num) || '';
 		return;
 	}
 	if (allowedKeys.includes(e.key)) return;
@@ -116,12 +114,12 @@ function _onpaste (e) {
 
 function _onchange (e) {
 	const num = parseAmount(value);
-	value = isNaN(num) ? '' : num;
+	value = String(num) || '';
 	onchange(e);
 }
 
 
-function parseAmount (amount) {
+function parseAmount (amount): number | string {
 	if (!amount) return '';
 	amount = ('' + amount).replace(/[\s,]/g, '').replace(/^-?0+(?=\d)/, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;

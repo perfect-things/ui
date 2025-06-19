@@ -2,37 +2,36 @@
 	<Button
 		class="push-button {className}"
 		aria-pressed={pressed}
-		{...rest}
-		bind:element={element}
-		onkeydown={_onkeydown}
-		onmousedown={_onmousedown}>
+		bind:element
+		{onkeydown}
+		{onmousedown}
+		{...rest}>
 			{@render children?.()}
 	</Button>
 {:else}
 	<Button
 		class="push-button {className}"
 		aria-pressed={pressed}
-		{...rest}
-		bind:element={element}
-		onkeydown={_onkeydown}
-		onmousedown={_onmousedown}/>
+		bind:element
+		{onkeydown}
+		{onmousedown}
+		{...rest}/>
 {/if}
 
-<script>
+<script lang="ts">
+import type { Snippet } from 'svelte';
 import './PushButton.css';
 import { Button } from '../button';
 
+interface Props {
+	class?: string;
+	pressed?: boolean;
+	element?: HTMLButtonElement;
+	onchange?: (e: { pressed: boolean }) => void;
+	children?: Snippet;
+	[key: string]: any;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {boolean} [pressed]
- * @property {any} [element]
- * @property {function} [onchange] - function to call when button is pressed
- * @property {import('svelte').Snippet} [children]
- */
-
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	pressed = $bindable(false),
@@ -40,11 +39,11 @@ let {
 	onchange = () => {},
 	children,
 	...rest
-} = $props();
+}: Props = $props();
 
 
 
-function _onkeydown (e) {
+function onkeydown (e) {
 	if (e.key === 'Enter' || e.key === ' ') {
 		e.preventDefault();
 		pressed = !pressed;
@@ -52,7 +51,7 @@ function _onkeydown (e) {
 	}
 }
 
-function _onmousedown (e) {
+function onmousedown (e) {
 	pressed = !pressed;
 	onchange({ ...e, pressed });
 }

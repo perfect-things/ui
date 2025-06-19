@@ -1,11 +1,11 @@
 <li bind:this={element}>
 	<div
 		class="tree-node"
+		class:expanded
 		role={item.items ? 'group' : 'treeitem'}
 		aria-selected="false"
 		aria-label={item.name}
 		aria-expanded={item.items ? expanded : undefined}
-		class:expanded
 		data-type={nodeType}
 		data-level={level}
 		data-expanded={item.items ? expanded : undefined}
@@ -31,23 +31,22 @@
 
 
 
-<script>
-	import TreeNode from './TreeNode.svelte';
-	/**
-	 * @typedef {Object} Props
-	 * @property {any} [item]
-	 * @property {number} [level]
-	 * @property {boolean} [expanded]
-	 * @property {any} [element]
-	 */
+<script lang="ts">
+import TreeNode from './TreeNode.svelte';
 
-	/** @type {Props} */
-	let {
-		item = {},
-		level = 0,
-		expanded = $bindable(false),
-		element = $bindable(undefined)
-	} = $props();
+interface Props {
+	item?: any;
+	level?: number;
+	expanded?: boolean;
+	element?: HTMLElement;
+}
+
+let {
+	item = {},
+	level = 0,
+	expanded = $bindable(false),
+	element = $bindable(undefined),
+}: Props = $props();
 
 const nodeType = $derived(item.items ? 'folder' : 'file');
 const indents = $derived(new Array(level).fill(0));

@@ -18,21 +18,21 @@
 </button>
 
 <script lang="ts">
-import { getContext } from 'svelte';
+import { getContext, type Snippet } from 'svelte';
 import { Icon } from '../icon';
 import { blink, replaceKeySymbols } from '../utils';
 
 
 interface Props {
 	shortcut?: string;
-	icon?: any;
+	icon?: string;
 	class?: string;
 	success?: boolean;
 	warning?: boolean;
 	danger?: boolean;
 	disabled?: boolean;
 	element?: HTMLElement;
-	children?: import('svelte').Snippet;
+	children?: Snippet;
 	onclick?: (e: MouseEvent) => any;
 	onmousedown?: (e: MouseEvent) => any;
 }

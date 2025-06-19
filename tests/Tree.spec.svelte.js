@@ -1,6 +1,6 @@
 import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import { Tree } from '../src/tree';
 
 
@@ -37,7 +37,6 @@ test('Tree', async () => {
 	expect(nodes.length).toBe(4);
 
 	await userEvent.click(nodes[0]);
-	flushSync();
 	expect(mock).toHaveBeenCalled();
 
 	await userEvent.click(nodes[1]);

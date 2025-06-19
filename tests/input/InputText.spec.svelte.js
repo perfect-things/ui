@@ -125,7 +125,7 @@ test('InputText with error shows correct validation styling', async () => {
 	expect(errorElement.textContent.trim()).toBe(errorMessage);
 
 	const input = document.body.querySelector('input');
-	expect(input).toHaveAttribute('aria-invalid', errorMessage);
+	expect(input).toHaveAttribute('aria-invalid', 'true');
 	expect(input).toHaveAttribute('aria-errormessage');
 
 	unmount(component);

@@ -3,7 +3,7 @@
 	{title}
 	class="check-and-radio radio {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 </div>
-<script>
+<script lang="ts">
 import './Radio.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -44,24 +44,22 @@ import { Label } from '../label';
 
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {any} [name]
- * @property {any} [title]
- * @property {string} [label]
- * @property {boolean} [disabled]
- * @property {any} [items]
- * @property {string} [value]
- * @property {string} [error]
- * @property {string} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {function} [onchange] - Callback function when the value changes
- */
+interface Props {
+	class?: string;
+	id?: string;
+	name?: string;
+	title?: string;
+	label?: string;
+	disabled?: boolean;
+	items?: any;
+	value?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean;
+	element?: HTMLElement;
+	onchange?: (args: { event: Event; value: string; item: any }) => void;
+}
 
-/** @type {Props} */
 let {
 	class: className = '',
 	id = '',
@@ -76,21 +74,21 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	onchange = () => {},
-} = $props();
+}: Props = $props();
 
 
 const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
 
-const _items = $derived(items.map(item => {
+const _items = $derived(items.map((item: any) => {
 	if (typeof item === 'string') item = { name: item, value: item };
 	return { ...item, id: item.id || guid() };
 }));
 
 
 function onmousedown (e) {
-	const inp = e.target.closest('.radio-item').querySelector('input');
+	const inp = e.target?.closest('.radio-item')?.querySelector('input');
 	if (inp && !inp.disabled) {
 		e.preventDefault();
 		inp.click();
@@ -98,7 +96,7 @@ function onmousedown (e) {
 	}
 }
 
-function _onchange (event, item) {
+function _onchange (event: Event, item: any) {
 	value = item.value;
 	onchange({ event, value, item });
 }

@@ -4,13 +4,14 @@
 {/if}
 
 
-<script>
-/**
- * @typedef {Object} Props
- * @property {string} [name]
- */
+<script lang="ts">
 
-/** @type {Props} */
-const { name = '' } = $props();
+interface Props {
+	name?: string;
+}
+
+const {
+	name = ''
+}: Props = $props();
 
 </script>

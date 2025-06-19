@@ -13,18 +13,21 @@
 	</tr>
 </thead>
 
-<script>
+<script lang="ts">
+import type { DataStoreType } from '../DataStore';
 import { Checkbox } from '../../input';
 import HeadTh from './GridHeadTh.svelte';
 
-/**
- * @typedef {Object} Props
- * @property {boolean} [multiselect]
- * @property {any} [Data]
- */
+interface Props {
+	multiselect?: boolean;
+	Data?: DataStoreType
+}
 
-/** @type {Props} */
-const { multiselect = false, Data = [] } = $props();
+const {
+	multiselect = false,
+	Data
+}: Props = $props();
+
 
 const columns = $derived(Data.columns);
 const checked = $derived(Data.allSelected);

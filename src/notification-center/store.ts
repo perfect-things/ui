@@ -15,7 +15,7 @@ export const fly = (node, params) => _fly(node, { duration, x: 500, opacity: 1, 
 export const slideUp = (node, params) => _fly(node, { duration, y: -50, ...params });
 export const slideDown = (node, params) => _fly(node, { duration, y: 50, ...params });
 
-export const flip = (node, animations, params) => _flip(node, animations, { duration, ...params });
+export const flip = (node, animations, params = {}) => _flip(node, animations, { duration, ...params });
 
 export const [send, receive] = crossfade({
 	duration: d => d,
@@ -33,7 +33,7 @@ export const [send, receive] = crossfade({
 
 
 
-export function createTimer (notification, targetEl) {
+export function createTimer (notification, targetEl?) {
 	if (!notification.showProgress) return;
 
 	// don't restart the timer if notification is focused

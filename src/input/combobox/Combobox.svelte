@@ -41,7 +41,7 @@
 	bind:listElement
 	onclick={onItemClick} />
 
-<script>
+<script lang="ts">
 import './Combobox.css';
 import { emphasize, scrollToSelectedItem, findValueInSource, getInputValue,
 	alignDropdown, hasValueChanged, groupData, normalizeItems } from './utils';
@@ -49,32 +49,38 @@ import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
 import ComboboxInput from './ComboboxInput.svelte';
 import ComboboxList from './ComboboxList.svelte';
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {boolean} [disabled]
- * @property {any} [required]
- * @property {string} [id]
- * @property {string} [name]
- * @property {Array} [items]
- * @property {any} [value]
- * @property {boolean} [allowNew]
- * @property {boolean} [showOnFocus]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {string} [placeholder]
- * @property {boolean} [multiselect]
- * @property {Array} [selectedItems]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {any} [listElement]
- * @property {function} [onchange]
- * @property {function} [onkeydown]
- */
 
-/** @type {Props} */
+interface Props {
+	class?: string;
+	id?: string;
+	title?: string;
+	element?: HTMLElement;
+	inputElement?: HTMLInputElement;
+	listElement?: HTMLDivElement;
+	items?: any[];
+	allowNew?: boolean;
+	showOnFocus?: boolean;
+	multiselect?: boolean;
+	selectedItems?: any[];
+	labelOnTheLeft?: boolean;
+	listId?: string;
+	name?: string;
+	disabled?: boolean;
+	required?: boolean;
+	label?: string;
+	error?: string;
+	info?: string;
+	opened?: boolean;
+	placeholder?: string;
+	value?: any;
+	onchange?: (e: { value: any; oldValue: any }) => void;
+	oniconclick?: () => void;
+	onclick?: () => void;
+	onkeydown?: (e: KeyboardEvent) => void;
+	onfocus?: () => void;
+	oninput?: () => void;
+}
+
 let {
 	class: className = '',
 	disabled = false,
@@ -100,7 +106,7 @@ let {
 	onchange = () => {},
 	onkeydown = () => {},
 	...restProps
-} = $props();
+}: Props = $props();
 
 
 const listId = `combobox-list-${guid()}`;
@@ -203,7 +209,7 @@ function close () {
 
 
 
-function selectSingle (item) {
+function selectSingle (item?) {
 	const oldValue = deepCopy(value);
 
 	if (!item) {

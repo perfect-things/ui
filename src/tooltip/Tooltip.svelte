@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import './Tooltip.css';
-import { onDestroy, onMount } from 'svelte';
+import { onDestroy, onMount, type Snippet } from 'svelte';
 import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
 
 interface Props {
@@ -36,7 +36,7 @@ interface Props {
 	success?: boolean;
 	warning?: boolean;
 	danger?: boolean;
-	children?: () => any;
+	children?: Snippet;
 }
 
 
@@ -52,7 +52,7 @@ let {
 	success = false,
 	warning = false,
 	danger = false,
-	children = $bindable(() => {}),
+	children
 }: Props = $props();
 
 

@@ -4,7 +4,7 @@
 	class:indeterminate
 	class:disabled
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 
 	bind:this={element}>
 
@@ -21,7 +21,7 @@
 			bind:this={inputElement}
 			bind:checked={checked}
 			bind:indeterminate={indeterminate}
-			aria-invalid={error}
+			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
 			onchange={_onchange}>
@@ -30,7 +30,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './Checkbox.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -38,29 +38,26 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
+interface Props {
+	class?: string;
+	indeterminate?: boolean;
+	checked?: boolean;
+	disabled?: boolean;
+	id?: string;
+	label?: string;
+	error?: string;
+	info?: string;
+	title?: string;
+	tabindex?: number;
+	name?: string;
+	required?: boolean;
+	labelOnTheLeft?: boolean;
 
+	element?: HTMLDivElement; 			// bindable
+	inputElement?: HTMLInputElement;	// bindable
+	onchange?: (event: { event: Event, checked: boolean, indeterminate: boolean }) => void;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {boolean} [indeterminate]
- * @property {boolean} [checked]
- * @property {boolean} [disabled]
- * @property {string} [id]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {any} [title]
- * @property {any} [tabindex]
- * @property {string} [name]
- * @property {any} [required]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {function} [onchange]
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	indeterminate = $bindable(),
@@ -73,13 +70,13 @@ let {
 	title = undefined,
 	tabindex = undefined,
 	name = '',
-	required = undefined,
+	required = false,
 	labelOnTheLeft = false,
 
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	onchange = () => {}
-} = $props();
+}: Props = $props();
 
 
 const errorMessageId = guid();

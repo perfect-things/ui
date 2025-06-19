@@ -11,7 +11,7 @@ export function normalizeItems (_items) {
 }
 
 
-export function groupData (items) {
+export function groupData (items: any[]) {
 	if (!items || !items.length) return [];
 	const nogroup = [];
 	const _groups = {};
@@ -20,11 +20,13 @@ export function groupData (items) {
 		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
 		_groups[item.group].items.push(item);
 	});
-	const groups = Object.values(_groups).filter(g => !!g.items.length);
+	const groups = Object.values(_groups)
+		.filter((g: any) => !!g.items.length);
+
 	if (nogroup.length) groups.unshift({ items: nogroup });
 
 	let idx = 0;
-	groups.forEach(g => g.items.forEach(i => i.idx = idx++));
+	groups.forEach((g: any) => g.items.forEach(i => i.idx = idx++));
 
 	return groups;
 }
@@ -97,7 +99,7 @@ export function getInputValue (_val, isMultiselect = false) {
 }
 
 
-export function alignDropdown (listElement, inputElement, e) {
+export function alignDropdown (listElement, inputElement, e?) {
 	requestAnimationFrame(() => {
 		alignItem({
 			element: listElement,

@@ -5,14 +5,14 @@
 
 <h3>Disabled</h3>
 <Checkbox disabled label="I would like to receive all your spam, please."/><br>
-<Checkbox checked="true" disabled label="You can't check me!"/>
+<Checkbox disabled checked label="You can't uncheck me!"/>
 
 <h3>Checked</h3>
-<Checkbox checked="true" label="Check the checkbox to have the checkbox checked."/>
+<Checkbox checked label="Check the checkbox to have the checkbox checked."/>
 
 
 <h3>Indeterminate</h3>
-<Checkbox indeterminate="true" label="Check, mate!"/>
+<Checkbox indeterminate label="Check, mate!"/>
 
 
 <h3>With error and live validation</h3>
@@ -29,7 +29,7 @@
 
 
 <h3>Label on the left</h3>
-<Checkbox label="Label is on the left" labelOnTheLeft="true"/>
+<Checkbox label="Label is on the left" labelOnTheLeft/>
 
 
 
@@ -77,7 +77,7 @@ function onChange (e) {
 let error = $state('You must check me!');
 
 function onchange (e) {
-	const { checked, indeterminate } = e.detail;
+	const { checked, indeterminate } = e;
 	error = checked ? '' : 'You must check me!';
 	console.log({ checked, indeterminate });
 }

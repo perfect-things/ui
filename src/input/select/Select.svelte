@@ -1,7 +1,7 @@
 <div
 	class="input select {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -18,9 +18,9 @@
 				{name}
 				{disabled}
 
-				aria-invalid={error}
+				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required}
+				aria-required={required === 'true' || required === true}
 				bind:value={value}
 				bind:this={inputElement}
 				{onchange}>
@@ -57,15 +57,15 @@ interface Props {
 	class?: string;
 	id?: string;
 	disabled?: boolean;
-	required?: any;
+	required?: boolean | string;
 	value?: any;
 	placeholder?: any;
 	items?: any[];
 	title?: any;
 	name?: string;
 	label?: string;
-	error?: any;
-	info?: any;
+	error?: string;
+	info?: string;
 	labelOnTheLeft?: boolean | string;
 	element?: any;
 	inputElement?: any;

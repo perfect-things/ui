@@ -2,7 +2,7 @@
 	class="input input-time {className}"
 	class:has-error={error}
 	class:has-value={value !== ''}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -20,7 +20,7 @@
 				autocomplete="off"
 				type="time"
 				{disabled}
-				aria-invalid={error}
+				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
@@ -30,7 +30,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './InputTime.css';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
@@ -40,23 +40,21 @@ import { Label } from '../label';
 
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {string} [name]
- * @property {any} [required]
- * @property {boolean} [disabled]
- * @property {string} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- */
+interface Props {
+	class?: string;
+	id?: string;
+	name?: string;
+	required?: boolean;
+	disabled?: boolean;
+	value?: string;
+	label?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean;
+	element?: HTMLDivElement;
+	inputElement?: HTMLInputElement;
+}
 
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -71,7 +69,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...rest
-} = $props();
+}: Props = $props();
 
 
 const _id = $derived(id || name || guid());

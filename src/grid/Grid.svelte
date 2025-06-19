@@ -2,7 +2,7 @@
 <div
 	class="table grid grid-sortable {className}"
 	class:round
-	class:interactive={_interactive}
+	class:interactive
 	bind:this={element}
 	onclick={_onclick}
 	onfocuscapture={_onfocus}
@@ -22,27 +22,27 @@
 import './Grid.css';
 import { onMount } from 'svelte';
 import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';
-import { DataStore } from './DataStore.js';
+import { DataStore, type DataItem } from './DataStore.js';
 import { GridHead, GridFoot, GridBody } from './parts';
 
 
 interface Props {
 	class?: string;
 	title?: string;
-	interactive?: boolean | string;
+	interactive?: boolean;
 	round?: boolean;
 	scrollContainer?: string | HTMLElement;
 	scrollCorrectionOffset?: string;
 	columns?: Array<any>;
-	data?: typeof DataStore;
+	data?: DataItem[];
 	multiselect?: boolean;
 	dblClickDelay?: number;
 	element?: HTMLElement;
-	onselect?: (event: { event: Event, selectedItem: HTMLElement }) => void;
-	onfocus?: (event: { event: Event, selectedItem: HTMLElement }) => void;
-	onclick?: (event: { event: Event, selectedItem: HTMLElement }) => void;
-	ondblclick?: (event: { event: Event, selectedItem: HTMLElement }) => void;
-	onkeydown?: (event: { event: Event, key: string, selectedItem: HTMLElement }) => void;
+	onselect?: (event: { event: Event, selectedItem: Element }) => void;
+	onfocus?: (event: { event: Event, selectedItem: Element }) => void;
+	onclick?: (event: { event: Event, selectedItem: Element }) => void;
+	ondblclick?: (event: { event: Event, selectedItem: Element }) => void;
+	onkeydown?: (event: { event: Event, key: string, selectedItem: Element }) => void;
 }
 
 let {
@@ -53,7 +53,7 @@ let {
 	scrollContainer = undefined,
 	scrollCorrectionOffset = '0',
 	columns = [],
-	data = {} as typeof DataStore,
+	data = [],
 	multiselect = false,
 	dblClickDelay = 500,
 	element = undefined,
@@ -76,11 +76,9 @@ let selectedIdx = -1;
 let clickTimer;
 let previousKey;
 
-const _interactive = $derived(interactive === true || interactive === 'true');
-
 
 onMount(() => {
-	if (_interactive) {
+	if (interactive) {
 		requestAnimationFrame(() => headerHeight = getHeaderHeight(element));
 	}
 });
@@ -146,7 +144,7 @@ function selectRow (e, rowEl) {
 function _onfocus (e) {
 	if (shouldSkipNav(e, element)) return;
 	const notRowFocus = !e.target.matches(rowSelector);
-	if (notRowFocus || !_interactive) return;
+	if (notRowFocus || !interactive) return;
 
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
@@ -176,7 +174,7 @@ function _onclick (e) {
 
 
 function _ondblclick (e) {
-	if (!_interactive) return;
+	if (!interactive) return;
 	if (shouldSkipNav(e, element)) return;
 
 	if (clickTimer) clearTimeout(clickTimer);
@@ -194,7 +192,7 @@ function _ondblclick (e) {
 
 
 function _onkeydown (e) {
-	if (!_interactive) return;
+	if (!interactive) return;
 	if (shouldSkipNav(e, element)) return;
 
 	if (e.key === 'ArrowUp' || e.key === 'k') {

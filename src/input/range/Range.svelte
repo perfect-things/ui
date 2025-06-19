@@ -1,7 +1,7 @@
 <div
 	class="range {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	class:disabled
 	{title}
 	bind:this={element}>
@@ -30,7 +30,7 @@
 			{step}
 			id={_id}
 			style="background-size: {progress}% 100%;"
-			aria-invalid={error}
+			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			bind:this={inputElement}
 			bind:value={value}
@@ -39,37 +39,33 @@
 </div>
 
 
-<script>
+<script lang="ts">
 import './Range.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
+interface Props {
+	class?: string;
+	id?: string;
+	disabled?: boolean;
+	label?: string;
+	error?: string;
+	info?: string;
+	title?: string;
+	name?: string;
+	labelOnTheLeft?: boolean;
+	min?: number;
+	max?: number;
+	step?: number;
+	value?: number;
+	hideTicks?: boolean;
+	element?: HTMLDivElement;
+	inputElement?: HTMLInputElement;
+	[key: string]: any;
+}
 
-
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {boolean} [disabled]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {any} [title]
- * @property {any} [name]
- * @property {boolean} [labelOnTheLeft]
- * @property {number} [min]
- * @property {number} [max]
- * @property {number} [step]
- * @property {any} [value]
- * @property {boolean} [hideTicks]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {Object} [restProps] - Any other props that should be passed to the input element
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	id = '',
@@ -88,18 +84,18 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...restProps
-} = $props();
+}: Props = $props();
 
-const errorMessageId = guid();
+const errorMessageId: string = guid();
 
-const _id = $derived(id || name || guid());
-const progress = $derived((value - min) / (max - min) * 100);
-const ticks = $derived(Array.from({ length: 6 }, (_, i) => +min + i * ((max - min) / 5)));
+const _id: string = $derived(id || name || guid());
+const progress: number = $derived((value - min) / (max - min) * 100);
+const ticks: number[] = $derived(Array.from({ length: 6 }, (_, i) => +min + i * ((max - min) / 5)));
 
-
-function onTickClick (tick) {
+function onTickClick (tick: number): void {
 	if (tick === value || disabled) return;
-	inputElement.value = value = tick;
+	value = tick;
+	inputElement.value = String(tick);
 	inputElement.dispatchEvent(new Event('change'));
 }
 

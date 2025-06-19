@@ -41,7 +41,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import { InputError } from '../input-error';
 import { Label } from '../label';
 import { Info } from '../../info-bar';
@@ -50,31 +50,29 @@ import { guid, isMobile } from '../../utils';
 import { Button } from '../../button';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [id]
- * @property {string} [listId]
- * @property {string} [name]
- * @property {boolean} [disabled]
- * @property {any} [required]
- * @property {any} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [opened]
- * @property {string} [placeholder]
- * @property {any} [inputElement]
- * @property {function} [onclick]
- * @property {function} [oniconclick]
- * @property {function} [oniconmousedown]
- * @property {function} [onkeydown]
- * @property {function} [onfocus]
- * @property {function} [oninput]
- * @property {function} [onblur]
- * @property {Object} [restProps]
- */
+interface Props {
+	id?: string;
+	listId?: string;
+	name?: string;
+	disabled?: boolean;
+	required?: boolean;
+	value?: any;
+	label?: string;
+	error?: string;
+	info?: string;
+	opened?: boolean;
+	placeholder?: string;
+	inputElement?: HTMLInputElement;
+	onclick?: (e: MouseEvent) => void;
+	oniconclick?: (e: MouseEvent) => void;
+	oniconmousedown?: (e: MouseEvent) => void;
+	onkeydown?: (e: KeyboardEvent) => void;
+	onfocus?: () => void;
+	oninput?: () => void;
+	onblur?: () => void;
+	restProps?: Record<string, any>;
+}
 
-/** @type {Props} */
 let {
 	id = '',
 	listId = '',
@@ -96,7 +94,7 @@ let {
 	oninput = () => {},
 	onblur = () => {},
 	...restProps
-} = $props();
+}: Props = $props();
 
 
 const _id = $derived(id || name || guid());

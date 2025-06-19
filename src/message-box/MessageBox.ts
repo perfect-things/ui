@@ -23,7 +23,7 @@ export const MessageType = {
 };
 
 
-export function showMessage (message, type = '', title = '', btnLabel = 'OK', cb) {
+export function showMessage (message, type = '', title = '', btnLabel = 'OK', cb = () => {}) {
 	if (typeof message === 'object') return config.set(message);
 
 	const buttons = [{ label: btnLabel, value: btnLabel, type }];

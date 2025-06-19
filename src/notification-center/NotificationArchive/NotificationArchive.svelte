@@ -35,7 +35,7 @@
 </div>
 
 
-<script>
+<script lang="ts">
 import './NotificationArchive.css';
 import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
@@ -44,21 +44,19 @@ import { ANIMATION_SPEED, timeAgo } from '../../utils';
 import { getNextNotification } from '../utils';
 
 
-/**
- * @typedef {Object} Props
- * @property {boolean} [show]
- * @property {boolean} [expanded]
- */
+interface Props {
+	show?: boolean;
+	expanded?: boolean;
+}
 
-/** @type {Props} */
 let {
 	show = $bindable(false),
 	expanded = $bindable(false),
-} = $props();
+}: Props = $props();
 
 const duration = $ANIMATION_SPEED;
 
-let el = $state();
+let el: HTMLElement = $state();
 let archived = $state([]);
 let timer;
 let now = $state(new Date().getTime());
@@ -110,15 +108,15 @@ function onKeydown (e, notification) {
 }
 
 
-function _in (node, params) {
+function _in (node, params = { key: '' }) {
 	if (!show) return fly(node, { duration: 0 });
 	if (show && expanded) return slideUp(node, params);
 	return receive(node, { ...params, delay: 100, duration });
 }
 
 
-function _out (node, params) {
-	if (show && expanded) return fly(node);					// deleting
+function _out (node, params = {}) {
+	if (show && expanded) return fly(node, params);			// deleting
 	if (show && !expanded) return slideUp(node, params);	// collapsing with archive visible
 	return slideUp(node, { duration: 0 });					// collapsing with archive hidden
 }

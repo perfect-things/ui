@@ -251,7 +251,7 @@ test('Select with error shows correct validation styling', async () => {
 	expect(errorElement.textContent.trim()).toBe(errorMessage);
 
 	const select = document.body.querySelector('select');
-	expect(select).toHaveAttribute('aria-invalid', errorMessage);
+	expect(select).toHaveAttribute('aria-invalid', 'true');
 	expect(select).toHaveAttribute('aria-errormessage');
 
 	unmount(component);

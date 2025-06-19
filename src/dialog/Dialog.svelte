@@ -21,19 +21,19 @@
 
 <script lang="ts">
 import './Dialog.css';
-import { onMount } from 'svelte';
+import { onMount, type Snippet } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 
 
-interface DialogProps {
+interface Props {
 	class?: string;
 	title?: string;
 	opened?: boolean;
-	skipFirstFocus?: boolean | string;
+	skipFirstFocus?: boolean;
 	modal?: boolean;
 	element?: HTMLElement;
-	children?: import('svelte').Snippet;
-	footer?: import('svelte').Snippet;
+	children?: Snippet;
+	footer?: Snippet;
 	onopen?: () => void;
 	onclose?: () => void;
 }
@@ -50,7 +50,7 @@ let {
 	footer,
 	onopen = () => {},
 	onclose = () => {},
-}: DialogProps = $props();
+}: Props = $props();
 
 
 let dialogEl: HTMLElement = $state();
@@ -177,7 +177,7 @@ export function open (openedBy) {
 		openTimer = setTimeout(() => {
 			freezeBody(true);
 			opened = true;
-			if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
+			if (!skipFirstFocus) focusFirst();
 			document.addEventListener('keydown', onDocKeydown);
 			onopen();
 			resolve();

@@ -2,7 +2,7 @@
 	class="input input-search {className}"
 	class:has-error={error}
 	class:has-value={value !== ''}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -19,7 +19,7 @@
 				autocomplete="off"
 				type="search"
 				{disabled}
-				aria-invalid={error}
+				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
@@ -35,7 +35,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './InputSearch.css';
 import { guid } from '../../utils';
 import { Button } from '../../button';
@@ -44,26 +44,21 @@ import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
+interface Props {
+	class?: string;
+	id?: string;
+	required?: boolean;
+	disabled?: boolean;
+	value?: string;
+	label?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean;
+	element?: HTMLDivElement;
+	inputElement?: HTMLInputElement;
+	[key: string]: any;
+}
 
-
-
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {any} [required]
- * @property {boolean} [disabled]
- * @property {string} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {Object} [restProps] - Any other props that should be passed to the input element
- */
-
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -77,19 +72,16 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...restProps
-} = $props();
+}: Props = $props();
 
+const _id: string = $derived(id || name || guid());
+const errorMessageId: string = guid();
 
-const _id = $derived(id || name || guid());
-const errorMessageId = guid();
-
-
-function clear () {
+function clear (): void {
 	value = '';
 }
 
-
-function onkeydown (event) {
+function onkeydown (event: KeyboardEvent): void {
 	if (event.key === 'Escape') clear();
 }
 </script>

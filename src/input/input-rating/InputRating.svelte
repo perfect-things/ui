@@ -3,7 +3,7 @@
 	{title}
 	class="input input-rating {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	class:light
 	bind:this={element}>
 
@@ -43,7 +43,7 @@
 				{name}
 				{disabled}
 				id={_id}
-				aria-invalid={error}
+				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}

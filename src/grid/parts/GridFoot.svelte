@@ -9,18 +9,22 @@
 	</tr>
 </tfoot>
 
-<script>
+<script lang="ts">
+import type { DataStoreType } from '../DataStore';
 
-/**
- * @typedef {Object} Props
- * @property {boolean} [multiselect]
- * @property {any} [Data]
- */
 
-/** @type {Props} */
-const { multiselect = false, Data = [] } = $props();
+interface Props {
+	multiselect?: boolean;
+	Data?: DataStoreType
+}
+
+const {
+	multiselect = false,
+	Data
+}: Props = $props();
 
 const columns = $derived(Data.columns);
+
 
 function sumColumn (column) {
 	return $Data.reduce((acc, row) => acc + +row[column.field], 0);

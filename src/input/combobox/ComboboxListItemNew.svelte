@@ -5,30 +5,28 @@
 	<div
 		role="option"
 		class="combobox-list-item"
-		class:selected={selected}
+		class:selected
 		aria-selected={selected}
-		onclick={onclick}>
+		{onclick}>
 			{name}
 	</div>
 {/if}
 
-<script>
+<script lang="ts">
 
-/**
- * @typedef {Object} Props
- * @property {boolean} [selected]
- * @property {boolean} [show]
- * @property {string} [name]
- * @property {Function} [onclick]
- */
+interface Props {
+	selected?: boolean;
+	show?: boolean;
+	name?: string;
+	onclick?: () => void;
+}
 
-/** @type {Props} */
 const {
 	selected = false,
 	show = false,
 	name = '',
 	onclick = () => {}
-} = $props();
+}: Props = $props();
 
 
 </script>

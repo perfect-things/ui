@@ -38,7 +38,6 @@
 
 
 <script lang="ts">
-// import { onDestroy } from 'svelte';
 import ComboboxListItem from './ComboboxListItem.svelte';
 import ComboboxListItemNew from './ComboboxListItemNew.svelte';
 import ComboboxListHeader from './ComboboxListHeader.svelte';
@@ -80,10 +79,5 @@ let {
 
 
 const groupedItems = $derived(groupData(items));
-
-
-// onDestroy(() => {
-// 	if (listElement) listElement.remove();
-// });
 
 </script>

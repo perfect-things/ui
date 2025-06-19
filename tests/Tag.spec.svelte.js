@@ -1,6 +1,6 @@
 import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import Tag from './helpers/Tag.svelte';
 
 
@@ -18,8 +18,6 @@ test('Tag', async () => {
 	expect(tag.querySelector('svg')).toBeInTheDocument();
 
 	await userEvent.click(tag);
-	flushSync();
-
 	expect(mock).toHaveBeenCalled();
 
 	unmount(component);

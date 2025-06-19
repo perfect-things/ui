@@ -3,7 +3,6 @@ import { get } from 'svelte/store';
 
 import './helpers/utils';
 import * as utils from '../src/utils';
-import { flushSync } from 'svelte';
 
 
 
@@ -28,7 +27,6 @@ test('utils - blink', async () => {
 
 	const spy = vi.spyOn(div, 'animate');
 	await utils.blink(div);
-	flushSync();
 	expect(spy).toHaveBeenCalled();
 });
 

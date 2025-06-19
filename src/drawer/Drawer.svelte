@@ -19,6 +19,7 @@
 {/if}
 <script lang="ts">
 import './Drawer.css';
+import type { Snippet } from 'svelte';
 import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 import { Button } from '../button';
@@ -29,7 +30,7 @@ interface DrawerProps {
 	element?: HTMLElement;
 	onopen?: () => void;
 	onclose?: () => void;
-	children?: import('svelte').Snippet;
+	children?: Snippet;
 }
 
 let {
@@ -43,7 +44,8 @@ let {
 
 
 let isVisible: boolean = $state(false);
-let headerEl: HTMLElement = $state(), targetBtn;
+let headerEl: HTMLElement = $state();
+let targetBtn: HTMLElement = $state();
 
 
 function docclick (_) {

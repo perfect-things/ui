@@ -1,4 +1,4 @@
-<InfoBar class={className} {id} {msg} type="success" bind:element={element}/>
+<InfoBar class={className} {id} {msg} type="success" bind:element/>
 
 <script lang="ts">
 import InfoBar from './InfoBar.svelte';

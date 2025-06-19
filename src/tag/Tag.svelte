@@ -18,27 +18,25 @@
 	<div class="ui-tag-label">{@render children?.()}</div>
 </div>
 
-<script>
+<script lang="ts">
+import type { Snippet } from 'svelte';
 import './Tag.css';
 import { Icon } from '../icon';
 import { isColorDark } from '../utils';
 
 
+interface Props {
+	class?: string;
+	round?: boolean;
+	icon?: string;
+	color?: string;
+	element?: HTMLElement;
+	disabled?: boolean;
+	clickable?: boolean;
+	onclick?: (event: { target: any, originalEvent: Event }) => void;
+	children?: Snippet;
+}
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {boolean} [round]
- * @property {any} [icon]
- * @property {any} [color]
- * @property {any} [element]
- * @property {boolean} [disabled]
- * @property {boolean} [clickable]
- * @property {function} [onclick] - Callback function when the tag is clicked
- * @property {import('svelte').Snippet} [children]
- */
-
-/** @type {Props} */
 let {
 	class: className = '',
 	round = false,
@@ -49,7 +47,7 @@ let {
 	clickable = false,
 	onclick = () => {},
 	children
-} = $props();
+}: Props = $props();
 
 
 const colorClass = $derived(['info', 'warning', 'danger', 'success'].includes(color) ? color : '');

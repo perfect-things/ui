@@ -1,7 +1,7 @@
 <div
 	class="input input-number {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -17,11 +17,11 @@
 			{name}
 			{disabled}
 			{...rest}
-			aria-invalid={error}
+			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
 			bind:this={inputElement}
-			bind:value={value}
+			bind:value
 			onkeydown={_onkeydown}
 			onchange={_onchange}
 			{onpaste}
@@ -29,34 +29,30 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
+interface Props {
+	class?: string;
+	id?: string;
+	name?: any;
+	disabled?: any;
+	required?: any;
+	value?: string;
+	label?: string;
+	error?: any;
+	info?: any;
+	separator?: string;
+	labelOnTheLeft?: boolean;
+	element?: any;
+	inputElement?: any;
+	onchange?: (data: { value: string }) => void;
+	onkeydown?: (data: { event: any; value: string }) => void;
+}
 
-
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {any} [name]
- * @property {any} [disabled]
- * @property {any} [required]
- * @property {string} [value]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {string} [separator] - decimal separator
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {function} [onchange]
- * @property {function} [onkeydown]
- */
-
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -74,7 +70,7 @@ let {
 	onchange = () => {},
 	onkeydown = () => {},
 	...rest
-} = $props();
+}: Props = $props();
 
 
 const errorMessageId = guid();

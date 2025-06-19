@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { flushSync, mount, unmount } from 'svelte';
+import { mount, unmount } from 'svelte';
 import Popover from './helpers/Popover.svelte';
 
 
@@ -18,7 +18,6 @@ test('Popover', async () => {
 
 	let btn = document.body.querySelector('.open-popover-button');
 	await userEvent.click(btn);
-	flushSync();
 
 	cmp = document.body.querySelector('.test-popover');
 	expect(cmp).toBeInTheDocument();
@@ -27,12 +26,10 @@ test('Popover', async () => {
 	expect(popoverItem).toBeInTheDocument();
 
 	await userEvent.click(document.body);
-	flushSync();
 	expect(cmp).not.toBeInTheDocument();
 
 	btn = document.body.querySelector('.open-popover-button');
 	await userEvent.click(btn);
-	flushSync();
 
 	cmp = document.body.querySelector('.test-popover');
 	expect(cmp).toBeInTheDocument();

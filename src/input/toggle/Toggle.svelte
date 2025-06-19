@@ -1,7 +1,7 @@
 <div
 	class="toggle {className}"
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	role="switch"
 	aria-checked={value}
 	tabindex={disabled ? undefined : 0}
@@ -29,7 +29,7 @@
 					class="toggle-input"
 					{disabled}
 					{name}
-					aria-invalid={error}
+					aria-invalid={!!error}
 					aria-errormessage={error ? errorMessageId : undefined}
 					aria-required={required}
 					bind:this={inputElement}
@@ -39,7 +39,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './Toggle.css';
 import { guid, getMouseX } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';
@@ -47,25 +47,23 @@ import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [title]
- * @property {any} [required]
- * @property {boolean} [disabled]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [value]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {function} [onchange]
- */
+interface Props {
+	class?: string;
+	id?: string;
+	name?: string;
+	title?: string;
+	required?: boolean;
+	disabled?: boolean;
+	label?: string;
+	error?: string;
+	info?: string;
+	value?: boolean;
+	labelOnTheLeft?: boolean;
+	element?: HTMLDivElement;
+	inputElement?: HTMLInputElement;
+	onchange?: (value: boolean) => void;
+}
 
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -81,21 +79,21 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	onchange = () => {},
-} = $props();
+}: Props = $props();
 
-const _id = $derived(id || name || guid());
+const _id: string = $derived(id || name || guid());
 
-const errorMessageId = guid();
-let scroller = $state();
-let handle = $state();
-let startX = $state();
-let currentX = $state(0);
-let scrollerStartX = $state();
-let scrollerEndX = $state();
-let handleStartX = $state();
-let isClick = $state(false);
-let isDragging = $state(false);
-let oldValue = $state();
+const errorMessageId: string = guid();
+let scroller = $state<HTMLDivElement>();
+let handle = $state<HTMLDivElement>();
+let startX = $state<number>();
+let currentX = $state<number>(0);
+let scrollerStartX = $state<number>();
+let scrollerEndX = $state<number>();
+let handleStartX = $state<number>();
+let isClick = $state<boolean>(false);
+let isDragging = $state<boolean>(false);
+let oldValue = $state<boolean>();
 
 $effect(() => {
 	if (element) {

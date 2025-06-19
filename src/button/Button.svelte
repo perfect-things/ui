@@ -1,6 +1,7 @@
 <button
 	type={submit ? 'submit' : 'button'}
 	bind:this={element}
+	{title}
 	class={{
 		button: true,
 		[className]: className,
@@ -26,6 +27,7 @@
 
 
 <script lang="ts">
+import { type Snippet } from 'svelte';
 import { Icon } from '../icon';
 import './Button.css';
 import './Button-normal.css';
@@ -36,6 +38,7 @@ import './Button-link.css';
 
 interface ButtonProps {
 	class?: string;
+	title?: string;
 	info?: boolean;
 	success?: boolean;
 	warning?: boolean;
@@ -45,15 +48,16 @@ interface ButtonProps {
 	outline?: boolean;
 	link?: boolean;
 	text?: boolean;
-	icon?: any;
-	round?: any;
+	round?: boolean;
+	icon?: string;
 	element?: HTMLButtonElement;
-	children?: any;
+	children?: Snippet;
 	[key: string]: any;
 }
 
 let {
 	class: className = '',
+	title = undefined,
 	info = false,
 	success = false,
 	warning = false,

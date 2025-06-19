@@ -6,27 +6,25 @@
 		for={_for}>{label}</label>
 {/if}
 
-<script>
+<script lang="ts">
 import './Label.css';
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [for]
- * @property {string} [label]
- * @property {boolean} [disabled]
- * @property {any} [element]
- */
+interface Props {
+	class?: string;
+	for?: string;
+	label?: string;
+	disabled?: boolean;
+	element?: HTMLElement;
+}
 
-/** @type {Props} */
 let {
 	class: className = '',
 	for: _for = '',
 	label = '',
 	disabled = false,
 	element = $bindable(undefined)
-} = $props();
+}: Props = $props();
 
 
 </script>

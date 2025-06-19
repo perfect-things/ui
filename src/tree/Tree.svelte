@@ -14,10 +14,19 @@
 	{/each}
 </ul>
 
-<script>
+<script lang="ts">
 import './Tree.css';
 import TreeNode from './TreeNode.svelte';
 
+
+interface Props {
+	class?: string;
+	items?: Array<any>;
+	title?: string;
+	element?: HTMLElement;
+	select?: (event: { selectedItem: Element, item: any }) => void;
+	keydown?: (event: { event: KeyboardEvent, selectedItem: Element, item: any }) => void;
+}
 
 let {
 	class: className = '',
@@ -26,7 +35,7 @@ let {
 	element = $bindable(),
 	select = () => {},
 	keydown = () => {},
-} = $props();
+}: Props = $props();
 
 
 let selectedItem;
@@ -147,8 +156,7 @@ function tryToGetSelectedItem () {
 }
 
 
-function findItem (id, nodes) {
-	if (!nodes) nodes = items;
+function findItem (id, nodes = items) {
 	for (let found, node, i = 0; node = nodes[i]; i++) {
 		// eqeq must stay here, because id can be a number
 		if (node.id == id) return node;

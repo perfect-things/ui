@@ -1,14 +1,34 @@
 import { writable, get } from 'svelte/store';
 import { isset } from '../utils';
 
+export type DataItem = {
+	id: number;
+	selected?: boolean;
+	field?: string;
+};
+
+export type DataStoreType = {
+	subscribe: (run: (value: DataItem[]) => void) => () => void;
+	set: (value: DataItem[]) => void;
+	get: () => DataItem[];
+	columns: any; // Define the type for columns if needed
+	allSelected: any; // Define the type for allSelected if needed
+	someSelected: any; // Define the type for someSelected if needed
+	sortField: any; // Define the type for sortField if needed
+	sortOrder: any; // Define the type for sortOrder if needed
+
+	toggleSelection: (item: DataItem, event?: MouseEvent, forceState?: boolean) => void;
+	toggleSelectAll: (forceState?: boolean) => void;
+	reset: () => void;
+};
+
 
 /**
  * DataStore
  * @description Store for all grid data
- * @returns {Object} DataStore
  */
-export function DataStore () {
-	const _this = writable([]);
+export function DataStore (): DataStoreType {
+	const _this = writable<DataItem[]>([]);
 	const { subscribe, set } = _this;
 
 	const columns = writable([]);
@@ -24,7 +44,7 @@ export function DataStore () {
 		return get(_this).find(i => i.id === id);
 	}
 
-	function toggleSelection (item, event , forceState) {
+	function toggleSelection (item, event , forceState = undefined) {
 		if (event.shiftKey && lastSelectedItemId) return selectRange(event);
 
 		const $Data = get(_this);
@@ -39,7 +59,7 @@ export function DataStore () {
 		// onSelectionChange();
 	}
 
-	function toggleSelectAll (forceState = null) {
+	function toggleSelectAll (forceState = undefined) {
 		let isAll = get(allSelected);
 
 		if (typeof forceState === 'boolean') isAll = forceState;
@@ -100,7 +120,7 @@ export function DataStore () {
 	return {
 		subscribe,
 		set,
-		get: () => _this,
+		get: () => get(_this),
 
 		columns,
 		allSelected,

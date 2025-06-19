@@ -23,7 +23,7 @@ export function shouldSkipNav (e, element) {
 /**
  * Finds all selectable rows in all tables on the page.
  */
-export function getSelectableItems (element) {
+export function getSelectableItems (element: HTMLElement): Element[] {
 	const rootEl = element.parentElement || document;
 	const rows = rootEl.querySelectorAll('.table tbody');
 	if (rows && rows.length) return Array.from(rows);

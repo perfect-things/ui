@@ -17,9 +17,15 @@
 	</tbody>
 </Table>
 
-<script>
+<script lang="ts">
 import { Table } from '../../src';
 import './ApiTable.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	props?: any;
+}
 
 const _props = [
 	{
@@ -31,16 +37,11 @@ const _props = [
 	}
 ];
 
-
-/**
- * @typedef {Object} Props
- * @property {string} [title]
- * @property {string} [description]
- * @property {any} [props]
- */
-
-/** @type {Props} */
-const { title = 'API', description = '', props = _props } = $props();
+const {
+	title = 'API',
+	description = '',
+	props = _props
+}: Props = $props();
 
 
 

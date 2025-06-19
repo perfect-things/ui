@@ -2,7 +2,7 @@
 	class="textarea {className}"
 	class:autogrow
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -16,40 +16,37 @@
 			name={name}
 			{disabled}
 			{...rest}
-			aria-invalid={error}
+			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
 			bind:this={inputElement}
 			bind:value={value}></textarea>
 	</div>
 </div>
-<script>
+<script lang="ts">
 import './Textarea.css';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
+interface Props {
+	class?: string;
+	id?: string;
+	name?: string;
+	value?: string;
+	autogrow?: boolean;
+	required?: boolean;
+	disabled?: boolean;
+	label?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean;
+	element?: HTMLDivElement;
+	inputElement?: HTMLTextAreaElement;
+	[key: string]: any;
+}
 
-
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [value]
- * @property {boolean} [autogrow]
- * @property {any} [required]
- * @property {boolean} [disabled]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- */
-
-/** @type {Props & { [key: string]: any }} */
 let {
 	class: className = '',
 	id = '',
@@ -65,11 +62,10 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...rest
-} = $props();
+}: Props = $props();
 
-
-const _id = $derived(id || name || guid());
-const errorMessageId = guid();
+const _id: string = $derived(id || name || guid());
+const errorMessageId: string = guid();
 
 
 </script>

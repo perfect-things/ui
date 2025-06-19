@@ -1,4 +1,8 @@
-<div class="button-group {className}" class:round bind:this={element}>
+<div
+	class="button-group {className}"
+	class:round
+	bind:this={element}>
+
 	<div class="button-group-scroller">
 		<div class="button-group-inner" role="group">
 			{@render children?.()}
@@ -7,13 +11,14 @@
 </div>
 
 <script lang="ts">
+import type { Snippet } from 'svelte';
 import './ButtonGroup.css';
 
-interface ButtonGroupProps {
+interface Props {
 	class?: string;
-	round?: any;
+	round?: boolean;
 	element?: HTMLDivElement;
-	children?: any;
+	children?: Snippet;
 }
 
 let {
@@ -21,5 +26,5 @@ let {
 	round = undefined,
 	element = $bindable(undefined),
 	children
-}: ButtonGroupProps = $props();
+}: Props = $props();
 </script>

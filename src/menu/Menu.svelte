@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import './Menu.css';
-import { onDestroy, onMount, setContext } from 'svelte';
+import { onDestroy, onMount, setContext, type Snippet } from 'svelte';
 import { addArias, removeArias } from './utils';
 import initLongPressEvent from './longpress';
 import { alignItem, throttle, debounce, isMobile } from '../utils';
@@ -25,8 +25,8 @@ interface Props {
 	closeOnClick?: boolean | string;
 	align?: 'left' | 'right' | 'center' | undefined;
 	valign?: 'top' | 'bottom' | undefined;
-	element?: any;
-	children?: import('svelte').Snippet;
+	element?: HTMLElement;
+	children?: Snippet;
 	onopen?: (e: { event: Event, target: Element }) => void;
 	onclose?: (e: { target: Element }) => void;
 }

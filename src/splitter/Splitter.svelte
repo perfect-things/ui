@@ -13,31 +13,35 @@ import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getF
 import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
 
 
-let {
-	class: className = '',
-	element = $bindable(undefined),
-	onchange = (_: any) => {},
-	onchanged = () => {},
-} = $props();
-
-
-const size = 8, halfsize = size / 2;
-
 type BoxType = {
 	width?: number;
 	height?: number;
 	collapsed?: boolean;
 };
 
-const Box: BoxType = {};
+interface Props {
+	class?: string;
+	element?: HTMLElement;
+	onchange?: (box: BoxType) => void;
+	onchanged?: (box: BoxType) => void;
+}
 
+let {
+	class: className = '',
+	element = $bindable(undefined),
+	onchange = () => {},
+	onchanged = () => {},
+}: Props = $props();
+
+
+const size = 8, halfsize = size / 2;
+const Box: BoxType = {};
 
 let isVertical = $state(false);
 let parentEl, targetEl;
 let initialTargetBox, startX, startY;
 let mousedownTargetBox;
 let isDragging = $state(false), bodyCursor;
-
 
 
 
@@ -78,11 +82,11 @@ function init () {
 	initialTargetBox = targetEl.getBoundingClientRect();
 	if (isVertical) {
 		initialTargetBox.minHeight = minHeight(targetEl);
-		initialTargetBox.maxHeight = Math.min(innerHeight(element.parentElement), maxHeight(targetEl));
+		initialTargetBox.maxHeight = Math.min(innerHeight(parentEl), maxHeight(targetEl));
 	}
 	else {
 		initialTargetBox.minWidth = minWidth(targetEl);
-		initialTargetBox.maxWidth = Math.min(innerWidth(element.parentElement), maxWidth(targetEl));
+		initialTargetBox.maxWidth = Math.min(innerWidth(parentEl), maxWidth(targetEl));
 	}
 	updateSize(initialTargetBox);
 

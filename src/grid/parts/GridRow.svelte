@@ -8,7 +8,7 @@
 	<tr>
 		{#if multiselect}
 			<td class="column-check">
-				<Checkbox bind:checked={item.selected} tabindex="-1"/>
+				<Checkbox bind:checked={item.selected} tabindex={-1}/>
 			</td>
 		{/if}
 		{#each $columns as column (column.field)}
@@ -19,21 +19,25 @@
 	</tr>
 </tbody>
 
-<script>
+<script lang="ts">
+import type { DataStoreType } from '../DataStore';
 import { Checkbox } from '../../input';
 
-/**
- * @typedef {Object} Props
- * @property {any} [item]
- * @property {boolean} [multiselect]
- * @property {any} [Data]
- */
+interface Props {
+	item?: any;
+	multiselect?: boolean;
+	Data?: DataStoreType;
+}
 
-/** @type {Props} */
-let { item = $bindable({}), multiselect = false, Data = [] } = $props();
+let {
+	item = $bindable({}),
+	multiselect = false,
+	Data
+}: Props = $props();
 
 const columns = $derived(Data.columns);
 const id = $derived(item.id || item.field);
+
 
 function getType (column) {
 	return typeof $Data[0][column.field];

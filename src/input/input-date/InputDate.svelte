@@ -5,7 +5,7 @@
 	class:native={useNative}
 	aria-expanded={open}
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -27,7 +27,7 @@
 				<input
 					type="date"
 					class="prevent-scrolling-on-focus"
-					aria-invalid={error}
+					aria-invalid={!!error}
 					aria-errormessage={error ? errorMessageId : undefined}
 					aria-required={required}
 					{name}
@@ -41,7 +41,7 @@
 					type="text"
 					autocomplete="off"
 					class="prevent-scrolling-on-focus"
-					aria-invalid={error}
+					aria-invalid={!!error}
 					aria-errormessage={error ? errorMessageId : undefined}
 					aria-required={required}
 					id={_id}

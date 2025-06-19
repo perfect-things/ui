@@ -2,7 +2,7 @@
 	class="input input-password {className}"
 	class:has-error={error}
 	class:visible
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	bind:this={element}>
 
 	<Label {label} {disabled} for={_id}/>
@@ -19,7 +19,7 @@
 				{value}
 				{disabled}
 				{...rest}
-				aria-invalid={error}
+				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
@@ -44,7 +44,7 @@
 	</div>
 </div>
 
-<script>
+<script lang="ts">
 import './InputPassword.css';
 import { onMount } from 'svelte';
 import { Button } from '../../button';
@@ -56,30 +56,46 @@ import { Label } from '../label';
 
 
 
-/**
- * @typedef {Object} Props
- * @property {string} [class]
- * @property {string} [id]
- * @property {any} [required]
- * @property {any} [disabled]
- * @property {string} [value]
- * @property {boolean} [strength]
- * @property {string} [label]
- * @property {any} [error]
- * @property {any} [info]
- * @property {boolean} [labelOnTheLeft]
- * @property {any} [element]
- * @property {any} [inputElement]
- * @property {function} [oninput]
- */
+interface Props {
+	class?: string;
+	id?: string;
+	required?: boolean;
+	disabled?: boolean;
+	value?: string;
+	strength?: boolean;
+	label?: string;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean;
+	element?: HTMLDivElement;
+	inputElement?: HTMLInputElement;
+	oninput?: (data: { event: Event; value: string }) => void;
+}
 
-/** @type {Props & { [key: string]: any }} */
+interface ZxcvbnResult {
+	score: number;
+	feedback: {
+		warning: string;
+		suggestions: string[];
+	};
+}
+
+interface ZxcvbnLib {
+	(password: string): ZxcvbnResult;
+}
+
+declare global {
+	interface Window {
+		zxcvbn?: ZxcvbnLib;
+	}
+}
+
 let {
 	class: className = '',
 	id = '',
 	required = undefined,
 	disabled = undefined,
-	value = $bindable(undefined),
+	value = $bindable(''),
 	strength = false,
 	label = '',
 	error = undefined,
@@ -89,7 +105,7 @@ let {
 	inputElement = $bindable(undefined),
 	oninput = () => {},
 	...rest
-} = $props();
+}: Props = $props();
 
 
 
@@ -105,7 +121,7 @@ const errorMessageId = guid();
 
 
 let visible = $state(false);	// show pass as text
-let lib = $state();
+let lib = $state<ZxcvbnLib | undefined>(undefined);
 let quality = $state('');
 let percent = $state(0);
 let strengthInfoText = $state('');
@@ -132,19 +148,20 @@ $effect(() => {
 
 
 
-function _oninput (e) {
-	value = e.target.value;
+function _oninput (e: Event) {
+	const target = e.target as HTMLInputElement;
+	value = target.value;
 	oninput({ event: e, value });
 }
 
-function checkLib () {
+function checkLib (): void {
 	lib = window.zxcvbn;
 }
 
 
-function measure (pass) {
+function measure (pass: string): { score: number; text: string } {
 	if (strength && !lib) checkLib(); // try again, just in case
-	if (!lib || !pass || !strength) return { score: 0, info: '' };
+	if (!lib || !pass || !strength) return { score: 0, text: '' };
 
 	const res = lib(pass);
 	const warning = res.feedback.warning;
@@ -154,9 +171,9 @@ function measure (pass) {
 }
 
 
-function toggle () {
+function toggle (): void {
 	visible = !visible;
-	requestAnimationFrame(() => element.querySelector('input').focus());
+	requestAnimationFrame(() => element?.querySelector('input')?.focus());
 }
 
 </script>

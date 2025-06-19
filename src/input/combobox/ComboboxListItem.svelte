@@ -27,25 +27,31 @@
 	<span>{@html item.highlightedName || item.name}</span>
 </div>
 
-<script>
+<script lang="ts">
 
-/**
- * @typedef {Object} Props
- * @property {Object} [item]
- * @property {boolean} [multiselect]
- * @property {Array} [selectedItems]
- * @property {number} [highlightIndex]
- * @property {Function} [onclick]
- */
+interface Item {
+	id?: string;
+	name?: string;
+	highlightedName?: string;
+	idx?: number;
+	group?: boolean;
+}
 
-/** @type {Props} */
+interface Props {
+	item?: Item;
+	multiselect?: boolean;
+	selectedItems?: Array<Item>;
+	highlightIndex?: number;
+	onclick?: (item: Item, event: MouseEvent | TouchEvent) => void;
+}
+
 let {
 	item = {},
 	multiselect = undefined,
 	selectedItems = [],
 	highlightIndex = $bindable(0),
 	onclick = () => {}
-} = $props();
+}: Props = $props();
 
 
 const selected = $derived(item.idx === highlightIndex);

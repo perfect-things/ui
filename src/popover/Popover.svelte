@@ -15,11 +15,25 @@
 {/if}
 
 
-<script>
+<script lang="ts">
+import type { Snippet } from 'svelte';
 import './Popover.css';
-import { addArias, removeArias } from './utils.js';
+import { addArias, removeArias } from './utils';
 import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils';
 
+interface Props {
+	class?: string;
+	offset?: number;
+	element?: HTMLElement;
+	contentEl?: HTMLElement;
+	position?: 'top' | 'bottom' | 'left' | 'right';
+	hideTip?: boolean;
+	dontHideOnTargetClick?: boolean;
+	setMinWidthToTarget?: boolean;
+	children?: Snippet;
+	onopen?: (event: { event: Event, target: EventTarget }) => void;
+	onclose?: (event: { target: EventTarget }) => void;
+}
 
 let {
 	class: className = '',
@@ -33,14 +47,14 @@ let {
 	children,
 	onopen = () => {},
 	onclose = () => {},
-} = $props();
+}: Props = $props();
 
 
 let opened = $state(false);
 let opening = $state(false);
 let closing = $state(false);
 let _position = $state(position);
-let targetEl = $state();
+let targetEl: EventTarget = $state();
 let eventsAdded = false;
 
 const observer = new MutationObserver(updatePosition);
@@ -75,7 +89,7 @@ export function open (e) {
 
 	if (targetEl) addArias(targetEl);
 
-	return new Promise(resolve => requestAnimationFrame(() => {
+	return new Promise<void>(resolve => requestAnimationFrame(() => {
 		if (element && element.parentElement !== document.body) {
 			document.body.appendChild(element);
 		}
@@ -103,7 +117,7 @@ export function close () {
 	closing = true;
 	removeArias(targetEl);
 
-	return new Promise(resolve => requestAnimationFrame(() => {
+	return new Promise<void>(resolve => requestAnimationFrame(() => {
 		removeEventListeners();
 		resolve();
 		onclose({ target: targetEl });
@@ -117,7 +131,7 @@ function focusFirst () {
 	let first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
 	if (!first && !last && contentEl) {
-		contentEl.setAttribute('tabindex', 0);
+		contentEl.setAttribute('tabindex', '0');
 		first = contentEl;
 	}
 	if (first) first.focus();
@@ -128,7 +142,7 @@ function focusLast () {
 	const first = getFocusableElements().shift();
 	let last = getFocusableElements().pop();
 	if (!first && !last && contentEl) {
-		contentEl.setAttribute('tabindex', 0);
+		contentEl.setAttribute('tabindex', '0');
 		last = contentEl;
 	}
 	if (last) last.focus();
@@ -198,15 +212,4 @@ function removeEventListeners () {
 }
 /*** EVENTS & LISTENERS ***************************************************************************/
 
-
-export {
-	className,
-	offset,
-	element,
-	contentEl,
-	position,
-	hideTip,
-	dontHideOnTargetClick,
-	setMinWidthToTarget,
-};
 </script>

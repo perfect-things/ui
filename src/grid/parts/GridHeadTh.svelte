@@ -13,7 +13,7 @@
 </th>
 
 <script lang="ts">
-import type { DataStore } from '../DataStore';
+import type { DataStoreType } from '../DataStore';
 import { Icon } from '../../icon';
 
 interface Props {
@@ -21,15 +21,14 @@ interface Props {
 		field: string;
 		label?: string;
 	};
-	Data?: typeof DataStore;
+	Data?: DataStoreType;
 }
 
 const {
-	column = {
-		field: ''
-	},
-	Data = {} as typeof DataStore
+	column = { field: '' },
+	Data
 }: Props = $props();
+
 
 const sortField = $derived(Data.sortField);
 const sortOrder = $derived(Data.sortOrder);

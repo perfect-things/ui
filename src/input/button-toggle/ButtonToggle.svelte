@@ -2,9 +2,9 @@
 	class="input button-toggle {className}"
 	class:round
 	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft === true || labelOnTheLeft === 'true'}
+	class:label-on-the-left={labelOnTheLeft}
 	role="radiogroup"
-	aria-invalid={error}
+	aria-invalid={!!error}
 	aria-errormessage={error ? errorMessageId : undefined}
 	{title}
 	bind:this={element}>
@@ -18,13 +18,10 @@
 		<div class="input-scroller">
 			<div class="input-row">
 				{#each _items as item, idx (item.value)}
-					<!-- svelte-ignore
-						a11y_no_noninteractive_element_interactions,
-						a11y_click_events_have_key_events -->
 					<label
-						{disabled}
 						class="button button-normal"
 						class:button-has-text={item.name}
+						{...({ disabled } as any)}
 						{onclick}>
 							{#if item.icon}
 								<Icon name={item.icon}/>
@@ -57,18 +54,18 @@ import { Label } from '../label';
 
 interface Props {
 	class?: string;
-	disabled?: any;
-	round?: any;
+	disabled?: boolean;
+	round?: boolean;
 	items?: Array<{ name: string, value: string, icon?: string } | string>;
 	id?: string;
 	name?: string;
 	value?: any;
-	title?: any;
+	title?: string;
 	label?: string;
-	error?: any;
-	info?: any;
+	error?: string;
+	info?: string;
 	labelOnTheLeft?: boolean | string;
-	element?: any;
+	element?: HTMLDivElement;
 	onchange?: (value: any) => void;
 }
 

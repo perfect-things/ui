@@ -18,10 +18,8 @@ test('InfoBar', async () => {
 		type: 'error',
 	});
 
-	const component = mount(InfoBar, {
-		target: document.body,
-		props
-	});
+	// @ts-ignore
+	const component = mount(InfoBar, { target: document.body, props });
 
 	let cmp = document.body.querySelector('.info-bar');
 
