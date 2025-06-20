@@ -17,17 +17,9 @@ const items = [
 
 
 test('Tree', async () => {
-	const mock = vi.fn();
-	const props = $state({
-		items,
-		class: 'test-class',
-		select: mock
-	});
-
-	const component = mount(Tree, {
-		target: document.body,
-		props
-	});
+	const onselect = vi.fn();
+	const props = $state({ items, class: 'test-class', onselect });
+	const component = mount(Tree, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
@@ -37,11 +29,11 @@ test('Tree', async () => {
 	expect(nodes.length).toBe(4);
 
 	await userEvent.click(nodes[0]);
-	expect(mock).toHaveBeenCalled();
+	expect(onselect).toHaveBeenCalled();
 
 	await userEvent.click(nodes[1]);
 	await userEvent.click(nodes[2]);
-	expect(mock).toHaveBeenCalledTimes(3);
+	expect(onselect).toHaveBeenCalledTimes(3);
 
 	unmount(component);
 });

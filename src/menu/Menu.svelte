@@ -14,6 +14,7 @@ import { alignItem, throttle, debounce, isMobile } from '../utils';
 
 const isAnyMobile = isMobile();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
+
 // safari does not translate contextmenu to longpress
 const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
@@ -52,7 +53,8 @@ let targetEl, focusedEl, opened = $state(false);
 let hovering = false;
 let closing = false;
 let eventsAdded = false;
-let typeQuery = '', typeTimer;
+let typeQuery = '';
+let typeTimer;
 let openEvent;	// needed for alignment of context menus
 
 
@@ -155,7 +157,7 @@ function updatePosition () {
 	const alignH = align || (isContextMobile ? 'center' : 'left');
 	const alignV = valign || (isContextMobile ? 'top' : 'bottom');
 	const offsetV = isContextMobile ? 20 : 2;
-	alignItem({ element, target: openEvent, alignH, alignV, offsetV });
+	alignItem({ element, event: openEvent, alignH, alignV, offsetV });
 }
 
 

@@ -65,7 +65,7 @@ export function updatePosition () {
 	if (!opened) return;
 	_position = alignItem({
 		element,
-		target: targetEl,
+		event: targetEl,
 		alignH: 'center',
 		alignV: position,
 		offsetV: +offset,

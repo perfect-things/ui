@@ -451,28 +451,28 @@ describe('utils - alignItem', () => {
 
 
 	test('should align element to the bottom left of target', () => {
-		utils.alignItem({ element, target, viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		utils.alignItem({ element, event: target, viewportPadding: 0, offsetV: 0, offsetH: 0 });
 		expect(element.style.top).toBe(`${target.offsetTop + target.offsetHeight}px`);
 		expect(element.style.left).toBe(`${target.offsetLeft}px`);
 	});
 
 
 	test('should align element to the bottom right of target', () => {
-		utils.alignItem({ element, target, alignH: 'right', viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		utils.alignItem({ element, event: target, alignH: 'right', viewportPadding: 0, offsetV: 0, offsetH: 0 });
 		expect(element.style.top).toBe(`${target.offsetTop + target.offsetHeight}px`);
 		expect(element.style.left).toBe(`${target.offsetLeft + target.offsetWidth - element.offsetWidth}px`);
 	});
 
 
 	test('should align element to the top left of target', () => {
-		utils.alignItem({ element, target, alignV: 'top', viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		utils.alignItem({ element, event: target, alignV: 'top', viewportPadding: 0, offsetV: 0, offsetH: 0 });
 		expect(element.style.top).toBe('0px');
 		expect(element.style.left).toBe(`${target.offsetLeft}px`);
 	});
 
 
 	test('should align element to the top right of target', () => {
-		utils.alignItem({ element, target, alignH: 'right', alignV: 'top', viewportPadding: 0, offsetV: 0, offsetH: 0 });
+		utils.alignItem({ element, event: target, alignH: 'right', alignV: 'top', viewportPadding: 0, offsetV: 0, offsetH: 0 });
 		expect(element.style.top).toBe('0px');
 		expect(element.style.left).toBe(`${target.offsetLeft + target.offsetWidth - element.offsetWidth}px`);
 	});
@@ -484,7 +484,7 @@ describe('utils - alignItem', () => {
 		event.x = 100;
 		// @ts-ignore
 		event.y = 200;
-		utils.alignItem({ element, target: event, offsetV: 0, offsetH: 0, viewportPadding: 0 });
+		utils.alignItem({ element, event, offsetV: 0, offsetH: 0, viewportPadding: 0 });
 		// @ts-ignore
 		expect(element.style.top).toBe(`${event.y}px`);
 		// @ts-ignore
@@ -494,7 +494,7 @@ describe('utils - alignItem', () => {
 
 	test('should align element to the bottom left of longpress event', () => {
 		const event = new CustomEvent('longpress', { detail: { x: 100, y: 200 } });
-		utils.alignItem({ element, target: event, offsetV: 0, offsetH: 0, viewportPadding: 0 });
+		utils.alignItem({ element, event, offsetV: 0, offsetH: 0, viewportPadding: 0 });
 
 		expect(element.style.top).toBe(`${event.detail.y}px`);
 		expect(element.style.left).toBe(`${event.detail.x}px`);
@@ -502,15 +502,15 @@ describe('utils - alignItem', () => {
 
 
 	test('should not align element if element or target is not provided', () => {
-		utils.alignItem({ element: null, target });
+		utils.alignItem({ element: null, event: target });
 		expect(element.style.top).toBe('');
 		expect(element.style.left).toBe('');
 
-		utils.alignItem({ element, target: null });
+		utils.alignItem({ element, event: null });
 		expect(element.style.top).toBe('');
 		expect(element.style.left).toBe('');
 
-		utils.alignItem({ element: null, target: null });
+		utils.alignItem({ element: null, event: null });
 		expect(element.style.top).toBe('');
 		expect(element.style.left).toBe('');
 	});

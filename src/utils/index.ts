@@ -272,7 +272,7 @@ export function timeAgo (date, now) {
 
 export function alignItem ({
 	element,
-	target,
+	event,
 	alignH = 'left',
 	offsetH = 0,
 	alignV = 'bottom',
@@ -280,7 +280,7 @@ export function alignItem ({
 	viewportPadding = 10,
 	setMinWidthToTarget = false,
 }) {
-	if (!element || !target) return;
+	if (!element || !event) return;
 	const winH = window.visualViewport?.height || window.innerHeight;
 	const winW = window.visualViewport?.width || window.innerWidth;
 
@@ -290,21 +290,17 @@ export function alignItem ({
 	let isRight = false;
 
 
-	// target is a context | longpress event
-	if (target.type === 'contextmenu' || target.type === 'longpress') {
-		if (target.type === 'contextmenu') {
-			targetBox = { top: target.y, left: target.x, height: 0, width: 0 };
-		}
-		else if (target.type === 'longpress') {
-			targetBox = { top: target.detail.y, left: target.detail.x, height: 0, width: 0 };
-		}
+	// event is a context | longpress event
+	if (event.type === 'contextmenu' || event.type === 'longpress') {
+		if (event.type === 'longpress' && event.detail) event = event.detail;
+		targetBox = { top: event.y, left: event.x, height: 0, width: 0 };
 	}
 
-	// target is a click event on a button
-	else if (target.type === 'click') targetBox = target.target.getBoundingClientRect();
+	// event is a click event on a button
+	else if (event.type === 'click') targetBox = event.target.getBoundingClientRect();
 
-	// target is an element
-	else targetBox = target.getBoundingClientRect();
+	// event is an element
+	else targetBox = event.getBoundingClientRect();
 
 
 	top = targetBox.top + targetBox.height + offsetV;

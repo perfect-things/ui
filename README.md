@@ -3,7 +3,6 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] correct the event handlers that use `.detail`
 - [ ] fix json code bits live updating
 - [ ] upgrade all `class:` attrs to `{{}}` and maybe allow the full class={} fanciness in the components?
 
@@ -11,8 +10,10 @@ PerfectThings/UI
 - [ ] make reusable core input component?
 - [ ] standardise event params (so that all events from components have the same structure)
 - [ ] define a core props interface for all components to extend
+- [ ] fix docs for all components
 
 
+- [x] correct the event handlers that use `.detail`
 - [x] uncomment & fix InputNumber tests
 - [x] upgrade all components to `lang="ts"` and `/** @type {Props}` to interfaces
 - [x] ensure error, info and label are string types

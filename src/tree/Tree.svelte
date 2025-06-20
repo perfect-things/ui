@@ -7,7 +7,7 @@
 	tabindex="0"
 	onfocus={selectFirst}
 	onclick={selectClicked}
-	{onkeydown}>
+	onkeydown={_onkeydown}>
 
 	{#each items as item (item)}
 		<TreeNode {item} />
@@ -24,8 +24,8 @@ interface Props {
 	items?: Array<any>;
 	title?: string;
 	element?: HTMLElement;
-	select?: (event: { selectedItem: Element, item: any }) => void;
-	keydown?: (event: { event: KeyboardEvent, selectedItem: Element, item: any }) => void;
+	onselect?: (event: { selectedItem: Element, item: any }) => void;
+	onkeydown?: (event: { event: KeyboardEvent, selectedItem: Element, item: any }) => void;
 }
 
 let {
@@ -33,8 +33,8 @@ let {
 	items = [],
 	title = undefined,
 	element = $bindable(),
-	select = () => {},
-	keydown = () => {},
+	onselect = () => {},
+	onkeydown = () => {},
 }: Props = $props();
 
 
@@ -60,7 +60,7 @@ function _select (node) {
 		selectedItem.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 	}
 	const item = tryToGetSelectedItem();
-	select({ selectedItem, item });
+	onselect({ selectedItem, item });
 }
 
 
@@ -133,7 +133,7 @@ function toggle () {
 }
 
 
-function onkeydown (e) {
+function _onkeydown (e) {
 	const keyMap = {
 		ArrowUp: selectPrev,
 		ArrowDown: selectNext,
@@ -146,7 +146,7 @@ function onkeydown (e) {
 		keyMap[e.key](e);
 	}
 	const item = tryToGetSelectedItem();
-	keydown({ event: e, selectedItem, item });
+	onkeydown({ event: e, selectedItem, item });
 }
 
 
