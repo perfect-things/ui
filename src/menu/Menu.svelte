@@ -22,7 +22,7 @@ interface Props {
 	class?: string;
 	type?: 'context' | undefined;
 	targetSelector?: string;
-	closeOnClick?: boolean | string;
+	closeOnClick?: boolean;
 	align?: 'left' | 'right' | 'center' | undefined;
 	valign?: 'top' | 'bottom' | undefined;
 	element?: HTMLElement;
@@ -183,9 +183,8 @@ function onDocumentClick (e) {
 	if (!element) return;
 	if (!element.contains(e.target)) _close();
 	else {
-		const shouldClose = closeOnClick === true || closeOnClick === 'true';
 		const clickedOnItem = !!e.target.closest(buttonSelector);
-		if (shouldClose && clickedOnItem) close(e);
+		if (closeOnClick && clickedOnItem) close(e);
 	}
 }
 

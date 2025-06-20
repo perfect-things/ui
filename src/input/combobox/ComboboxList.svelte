@@ -32,7 +32,7 @@
 			selected={highlightIndex === items.length}
 			show={shouldShowNewItem}
 			name={newItemName}
-			onclick={e => onclick({ name: newItemName, idx: items.length }, e)}/>
+			onclick={_onclick}/>
 	</div>
 {/if}
 
@@ -43,13 +43,25 @@ import ComboboxListItemNew from './ComboboxListItemNew.svelte';
 import ComboboxListHeader from './ComboboxListHeader.svelte';
 import { groupData } from './utils';
 
+type Item = {
+	id?: string;
+	name?: string;
+	highlightedName?: string;
+	idx?: number;
+	group?: boolean;
+};
+
+type Group = {
+	name: string;
+	items: Item[];
+};
 
 interface ComboboxListProps {
 	listId?: string;
 	allowNew?: boolean;
 	multiselect?: boolean;
-	items?: any[];
-	selectedItems?: any[];
+	items?: Item[];
+	selectedItems?: Item[];
 	opened?: boolean;
 	shouldShowNewItem?: boolean;
 	newItemName?: string;
@@ -57,8 +69,8 @@ interface ComboboxListProps {
 	highlightIndex?: number;
 	listElement?: HTMLDivElement;
 
-	onmousedown?: (e: MouseEvent) => void;
-	onclick?: (item: any, e: MouseEvent) => void;
+	onmousedown?: () => void;
+	onclick?: (item, event) => void;
 }
 
 let {
@@ -78,6 +90,13 @@ let {
 }: ComboboxListProps = $props();
 
 
-const groupedItems = $derived(groupData(items));
+const groupedItems: Group[] = $derived(groupData(items));
+
+
+function _onclick (e) {
+	const item = { name: newItemName, idx: items.length };
+	onclick(item, e);
+
+}
 
 </script>

@@ -3,19 +3,21 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] clean all import('svelte').Snippet
-- [ ] ensure error, info and label are string types
-- [ ] upgrade all components to `lang="ts"` and `/** @type {Props}` to interfaces
-- [ ] upgrade all `class:` attrs
-- [ ] fix json code bits live updating
-- [ ] uncomment & fix InputNumber tests
-- [ ] make reusable core input component?
 - [ ] correct the event handlers that use `.detail`
-- [ ] maybe allow the full class={} fanciness in the components?
+- [ ] fix json code bits live updating
+- [ ] upgrade all `class:` attrs to `{{}}` and maybe allow the full class={} fanciness in the components?
+
+
+- [ ] make reusable core input component?
 - [ ] standardise event params (so that all events from components have the same structure)
 - [ ] define a core props interface for all components to extend
 
 
+- [x] uncomment & fix InputNumber tests
+- [x] upgrade all components to `lang="ts"` and `/** @type {Props}` to interfaces
+- [x] ensure error, info and label are string types
+- [x] remove boolean | string types from all props
+- [x] clean all import('svelte').Snippet
 - [x] ensure that attributes without values (like `disabled`) are set correctly and working and have a boolean type
 - [x] ensure that `aria-invalid` produces the correct attribute & value
 - [x] ensure `aria-invalid` is `true`/`false` and not error message

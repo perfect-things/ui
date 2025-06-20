@@ -18,7 +18,7 @@ interface Props {
 	selected?: boolean;
 	show?: boolean;
 	name?: string;
-	onclick?: () => void;
+	onclick?: (e: Event) => void;
 }
 
 const {

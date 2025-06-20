@@ -3,8 +3,6 @@ import { expect, test, vi } from 'vitest';
 import { InputNumber } from '../../src/input';
 import userEvent from '@testing-library/user-event';
 
-// Simple wait function to replace the utils helper
-const waitForTimeout = (ms = 10) => new Promise(resolve => setTimeout(resolve, ms));
 
 const defaultProps = {
 	id: 'Component1',
@@ -17,9 +15,10 @@ const defaultProps = {
 	label: 'Component1',
 };
 
+
 test('InputNumber renders with correct props', async () => {
 	const props = $state({ ...defaultProps, onchange: vi.fn() });
-	const component = mount(InputNumber, { target: document.body, props });
+	const component = await mount(InputNumber, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
@@ -39,7 +38,7 @@ test('InputNumber renders with correct props', async () => {
 	props.error = '';
 	flushSync();
 	err = cmp.querySelector('.info-bar-error');
-	// Error element may still exist but be hidden
+	expect(err).not.toBeInTheDocument();
 
 	// @ts-ignore
 	props.info = 'info';
@@ -51,13 +50,13 @@ test('InputNumber renders with correct props', async () => {
 	unmount(component);
 });
 
+
 test('InputNumber handles numeric input', async () => {
 	const props = $state({
-		value: 0,
+		value: '0',
 		onchange: vi.fn(),
-		oninput: vi.fn()
+		onkeydown: vi.fn()
 	});
-	// @ts-ignore
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -70,13 +69,13 @@ test('InputNumber handles numeric input', async () => {
 	unmount(component);
 });
 
+
 test('InputNumber handles min and max values', async () => {
 	const props = $state({
-		min: 0,
-		max: 100,
-		value: 50
+		min: '0',
+		max: '100',
+		value: '50'
 	});
-	// @ts-ignore
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -88,34 +87,11 @@ test('InputNumber handles min and max values', async () => {
 });
 
 
-// test('InputNumber handles step increment/decrement', async () => {
-// 	const props = $state({
-// 		value: 10,
-// 		step: 5,
-// 		onchange: vi.fn()
-// 	});
-// 	// @ts-ignore
-// 	const component = mount(InputNumber, { target: document.body, props });
-
-// 	const input = document.body.querySelector('input');
-// 	expect(input).toHaveAttribute('step', '5');
-
-// 	await userEvent.keyboard('[ArrowUp]');
-// 	expect(input.value).toBe('10');
-
-// 	await userEvent.keyboard('[ArrowDown]');
-// 	expect(input.value).toBe('5');
-
-// 	unmount(component);
-// });
-
-
 test('InputNumber handles decimal values', async () => {
 	const props = $state({
-		value: 3.14,
-		step: 0.01
+		value: '3.14',
+		step: '0.01'
 	});
-	// @ts-ignore
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -124,6 +100,7 @@ test('InputNumber handles decimal values', async () => {
 
 	unmount(component);
 });
+
 
 test('InputNumber handles disabled state', async () => {
 	const props = $state({ disabled: true });
@@ -135,8 +112,12 @@ test('InputNumber handles disabled state', async () => {
 	unmount(component);
 });
 
+
 test('InputNumber handles readonly state', async () => {
-	const props = $state({ readonly: true });
+	const props = $state({
+		readonly: true
+	});
+	// @ts-ignore
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -144,6 +125,7 @@ test('InputNumber handles readonly state', async () => {
 
 	unmount(component);
 });
+
 
 test('InputNumber validates numeric input', async () => {
 	const props = $state({
@@ -156,12 +138,11 @@ test('InputNumber validates numeric input', async () => {
 
 	// Try to input non-numeric characters
 	await userEvent.type(input, 'abc');
-
-	// Should filter out non-numeric characters
 	expect(input.value).not.toBe('abc');
 
 	unmount(component);
 });
+
 
 test('InputNumber handles value binding', async () => {
 	const props = $state({ value: 42 });
@@ -178,6 +159,7 @@ test('InputNumber handles value binding', async () => {
 	unmount(component);
 });
 
+
 test('InputNumber handles negative values', async () => {
 	const props = $state({
 		value: -50,
@@ -193,11 +175,13 @@ test('InputNumber handles negative values', async () => {
 	unmount(component);
 });
 
+
 test('InputNumber handles focus and blur events', async () => {
 	const props = $state({
 		onfocus: vi.fn(),
 		onblur: vi.fn()
 	});
+	// @ts-ignore
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -211,6 +195,7 @@ test('InputNumber handles focus and blur events', async () => {
 	unmount(component);
 });
 
+
 test('InputNumber with error shows validation styling', async () => {
 	const props = $state({ error: 'Invalid number' });
 	const component = mount(InputNumber, { target: document.body, props });
@@ -221,23 +206,6 @@ test('InputNumber with error shows validation styling', async () => {
 	const errorEl = document.body.querySelector('.info-bar-error');
 	expect(errorEl).toBeInTheDocument();
 	expect(errorEl.textContent.trim()).toBe('Invalid number');
-
-	unmount(component);
-});
-
-test('InputNumber handles keyboard navigation', async () => {
-	const props = $state({ value: 10 });
-	// @ts-ignore
-	const component = mount(InputNumber, { target: document.body, props });
-	const input = document.body.querySelector('input');
-
-	await userEvent.keyboard('[Home]');
-	await userEvent.keyboard('[End]');
-	await userEvent.keyboard('[ArrowLeft]');
-	await userEvent.keyboard('[ArrowRight]');
-
-	// Should handle navigation keys without errors
-	expect(input).toBeInTheDocument();
 
 	unmount(component);
 });

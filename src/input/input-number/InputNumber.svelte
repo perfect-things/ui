@@ -38,19 +38,19 @@ import { Label } from '../label';
 interface Props {
 	class?: string;
 	id?: string;
-	name?: any;
-	disabled?: any;
-	required?: any;
+	name?: string;
+	disabled?: boolean;
+	required?: boolean;
 	value?: string;
 	label?: string;
-	error?: any;
-	info?: any;
+	error?: string;
+	info?: string;
 	separator?: string;
 	labelOnTheLeft?: boolean;
-	element?: any;
-	inputElement?: any;
+	element?: HTMLElement;
+	inputElement?: HTMLInputElement;
 	onchange?: (data: { value: string }) => void;
-	onkeydown?: (data: { event: any; value: string }) => void;
+	onkeydown?: (data: { event: Event; value: string }) => void;
 }
 
 let {

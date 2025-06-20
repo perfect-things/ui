@@ -18,9 +18,9 @@
 			{...rest}
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
-			aria-required={required === 'true' || required === true}
+			aria-required={required}
 			bind:this={inputElement}
-			bind:value={value}>
+			bind:value>
 	</div>
 </div>
 
@@ -36,15 +36,15 @@ import { Label } from '../label';
 interface Props {
 	class?: string;
 	id?: string;
-	required?: boolean | string;
+	required?: boolean;
 	disabled?: boolean;
 	value?: string;
 	label?: string;
 	error?: string;
 	info?: string;
-	labelOnTheLeft?: boolean | string;
-	element?: any;
-	inputElement?: any;
+	labelOnTheLeft?: boolean;
+	element?: HTMLElement;
+	inputElement?: HTMLInputElement;
 	[key: string]: any; // Allow additional properties
 }
 

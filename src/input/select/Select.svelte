@@ -13,14 +13,13 @@
 		<div class="input-row">
 			<select
 				id={_id}
-
 				{title}
 				{name}
 				{disabled}
 
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required === 'true' || required === true}
+				aria-required={required}
 				bind:value={value}
 				bind:this={inputElement}
 				{onchange}>
@@ -54,21 +53,21 @@ import { Label } from '../label';
 
 
 interface Props {
-	class?: string;
 	id?: string;
+	class?: string;
 	disabled?: boolean;
-	required?: boolean | string;
+	required?: boolean;
 	value?: any;
-	placeholder?: any;
+	placeholder?: string;
 	items?: any[];
-	title?: any;
+	title?: string;
 	name?: string;
 	label?: string;
 	error?: string;
 	info?: string;
-	labelOnTheLeft?: boolean | string;
-	element?: any;
-	inputElement?: any;
+	labelOnTheLeft?: boolean;
+	element?: HTMLElement;
+	inputElement?: HTMLSelectElement;
 	onchange?: (e: Event) => void;
 }
 
@@ -93,15 +92,17 @@ let {
 }: Props = $props();
 
 
-let groups = $state([]);
+// let groups = $state([]);
 const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
+const groups = $derived(groupItems(items));
 
-$effect(() => {
+
+function groupItems (_items) {
 	const nogroup = [];
 	const _groups = {};
-	items.forEach(item => {
+	_items.forEach(item => {
 		if (!item.group) return nogroup.push(item);
 		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
 		_groups[item.group].items.push(item);
@@ -111,7 +112,8 @@ $effect(() => {
 	if (typeof all[0] === 'string') {
 		all = all.map(item => ({ id: item, name: item }));
 	}
-	groups = all;
-});
+	return all;
+}
+
 
 </script>

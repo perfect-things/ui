@@ -13,11 +13,11 @@ import Error from '../../info-bar/Error.svelte';
 
 
 interface Props {
-	id?: any;
+	id?: string;
 	msg?: string;
-	element?: any;
-	animOffset?: number | string;		// - used in checkbox, as there is a gap between input and error
-	animOpacity?: boolean | string; 	// - so that the animation looks weird without the fadein/out
+	element?: HTMLElement;
+	animOffset?: number;		// - used in checkbox, as there is a gap between input and error
+	animOpacity?: boolean;		// - so that the animation looks weird without the fadein/out
 }
 
 let {
@@ -30,7 +30,7 @@ let {
 
 const _animOffset = $derived(parseInt(String(animOffset), 10) || 0);
 const _hasOffset = $derived(_animOffset > 0);
-const _animOpacity = $derived((animOpacity === 'true' || animOpacity === true) || _hasOffset);
+const _animOpacity = $derived(animOpacity || _hasOffset);
 
 
 function slideError (node) {

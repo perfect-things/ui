@@ -75,23 +75,23 @@ import { Label } from '../label';
 interface Props {
 	class?: string;
 	id?: string;
-	name?: any;
-	disabled?: any;
-	required?: any;
+	name?: string;
+	disabled?: boolean;
+	required?: boolean;
 	value?: string;
 	label?: string;
-	error?: any;
-	info?: any;
-	labelOnTheLeft?: boolean | string;
-	element?: any;
-	inputElement?: any;
+	error?: string;
+	info?: string;
+	labelOnTheLeft?: boolean;
+	element?: HTMLElement;
+	inputElement?: HTMLInputElement;
 	format?: string;						// 'yyyy-mm-dd'
 	placeholder?: string;					// default is the same as format
-	elevate?: boolean | string;				// if true, the datepicker will be elevated to the body
-	showOnFocus?: boolean | string;			// if true, the datepicker will be shown on focus
+	elevate?: boolean;						// if true, the datepicker will be elevated to the body
+	showOnFocus?: boolean;					// if true, the datepicker will be shown on focus
 	orientation?: string;					// '[left|right|auto] [top|bottom|auto]'
 	title?: string;
-	useNativeOnMobile?: boolean | string;	// if true, the native date input will be used on mobile devices
+	useNativeOnMobile?: boolean;	// if true, the native date input will be used on mobile devices
 	onchange?: (value: string) => void;
 	onkeydown?: (params: { event: KeyboardEvent, component: Datepicker }) => void;
 }
@@ -125,12 +125,12 @@ let {
 let picker;
 let isHiding = false;
 const errorMessageId = guid();
-const useNative = isMobile() && (useNativeOnMobile === true || useNativeOnMobile === 'true');
+const useNative = isMobile() && useNativeOnMobile;
 
 let open = $state(!!useNative);
 
 const _id = $derived(id || name || guid());
-const elevated = $derived(elevate === true || elevate === 'true');
+const elevated = $derived(elevate);
 
 
 onMount(initDatePicker);
@@ -151,7 +151,7 @@ function initDatePicker () {
 		todayBtnMode: 1,
 		orientation,
 		todayHighlight: true,
-		showOnFocus: (showOnFocus === 'true' || showOnFocus === true),
+		showOnFocus: showOnFocus,
 		prevArrow: getIcon('chevronLeft'),
 		nextArrow: getIcon('chevronRight'),
 		updateOnBlur: true,

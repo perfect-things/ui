@@ -11,7 +11,7 @@ export function normalizeItems (_items) {
 }
 
 
-export function groupData (items: any[]) {
+export function groupData (items: any[]): any {
 	if (!items || !items.length) return [];
 	const nogroup = [];
 	const _groups = {};

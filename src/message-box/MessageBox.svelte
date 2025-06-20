@@ -37,7 +37,7 @@ import { Icon } from '../icon';
 let { element = $bindable(undefined) } = $props();
 
 type Props = {
-	open: (openedBy?: any) => Promise<void>;
+	open: (openedBy?: HTMLElement) => Promise<void>;
 	close: () => Promise<void>
 };
 

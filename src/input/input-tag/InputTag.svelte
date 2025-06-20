@@ -87,9 +87,9 @@ interface Props {
 	label?: string;
 	error?: string;
 	info?: string;
-	labelOnTheLeft?: boolean | string;
+	labelOnTheLeft?: boolean;
 	name?: string;
-	title?: boolean | string;
+	title?: string;
 	tags?: string[];
 	element?: HTMLDivElement;
 	inputElement?: HTMLInputElement;
@@ -102,7 +102,7 @@ let {
 	class: className = '',
 	id = '',
 	name = '',
-	title = false,
+	title = '',
 	disabled = false,
 	value = $bindable(''),
 	label = '',
@@ -121,7 +121,7 @@ let {
 
 const errorMessageId = guid();
 let opened = false;
-let listPopover: any;
+let listPopover: Popover;
 
 let newTagName = $state('');
 let _tags = $state<TagItem[]>([]);
@@ -141,9 +141,13 @@ function hydrateTags (): void {
 }
 
 
-function open (): Promise<void> | undefined {
+function open (): Promise<void> {
 	if (opened) return;
-	return listPopover.open(boxElement).then(() => opened = listPopover.isOpened());
+	return listPopover
+		.open(boxElement)
+		.then(() => {
+			opened = listPopover.isOpened();
+		});
 }
 
 
@@ -157,7 +161,7 @@ function updatePosition (): void {
 }
 
 
-function onkeydown (e: KeyboardEvent): void {
+function onkeydown (e: KeyboardEvent): Promise<void> {
 	if (e.key === 'Enter') return open();
 	if (e.key === 'ArrowDown') {
 		e.preventDefault();
@@ -198,7 +202,6 @@ function addNewTag (e: Event): void {
 	const val = valueToArray(value);
 	const newTags = valueToArray(newTagName);
 	newTagName = '';
-	// requestAnimationFrame(() => setValue([...val, ...newTags]));
 	setValue([...val, ...newTags]);
 }
 

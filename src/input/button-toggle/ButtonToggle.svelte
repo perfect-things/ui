@@ -50,23 +50,24 @@ import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-
+type Item = { name: string, value: string, icon?: string } | string;
+type Value = Item | string;
 
 interface Props {
 	class?: string;
 	disabled?: boolean;
 	round?: boolean;
-	items?: Array<{ name: string, value: string, icon?: string } | string>;
+	items?: Item[];
 	id?: string;
 	name?: string;
-	value?: any;
+	value?: Value;
 	title?: string;
 	label?: string;
 	error?: string;
 	info?: string;
-	labelOnTheLeft?: boolean | string;
+	labelOnTheLeft?: boolean;
 	element?: HTMLDivElement;
-	onchange?: (value: any) => void;
+	onchange?: (value: Value) => void;
 }
 
 let {

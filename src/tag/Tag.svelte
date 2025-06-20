@@ -33,7 +33,7 @@ interface Props {
 	element?: HTMLElement;
 	disabled?: boolean;
 	clickable?: boolean;
-	onclick?: (event: { target: any, originalEvent: Event }) => void;
+	onclick?: (event: { target: HTMLElement, originalEvent: Event }) => void;
 	children?: Snippet;
 }
 

@@ -39,16 +39,21 @@ import './Button-link.css';
 interface ButtonProps {
 	class?: string;
 	title?: string;
+
+	// button types
 	info?: boolean;
 	success?: boolean;
 	warning?: boolean;
 	danger?: boolean;
-	error?: boolean;
+	error?: boolean;		// Indicates that button type = error
 	submit?: boolean;
+
+	// button styles
 	outline?: boolean;
 	link?: boolean;
 	text?: boolean;
 	round?: boolean;
+
 	icon?: string;
 	element?: HTMLButtonElement;
 	children?: Snippet;
