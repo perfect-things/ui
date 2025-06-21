@@ -35,6 +35,7 @@ function buildHtml (_props, _text, _tag) {
 	if (_text) _html = `<${_tag}${propsStr}>${_text}</${_tag}>`;
 	else _html = `<${_tag}${propsStr} />`;
 
+	// @ts-ignore
 	return window.Prism.highlight(_html, window.Prism.languages.svelte, 'svelte');
 }
 

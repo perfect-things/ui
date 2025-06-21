@@ -103,7 +103,7 @@ export function alignDropdown (listElement, inputElement, e?) {
 	requestAnimationFrame(() => {
 		alignItem({
 			element: listElement,
-			target: inputElement,
+			event: inputElement,
 			setMinWidthToTarget: true,
 			offsetH: -1
 		});

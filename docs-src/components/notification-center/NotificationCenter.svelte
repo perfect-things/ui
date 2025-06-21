@@ -36,10 +36,10 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 
 <h3>No auto-close</h3>
 <div class="docs-buttons-row">
-	<Button info onclick={() => showNotification('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', false)}>A very long message</Button>
-	<Button success onclick={() => showNotification('Hello', 'success', false)}>Show success</Button>
-	<Button warning onclick={() => showNotification('Hello', 'warning', false)}>Show warning</Button>
-	<Button danger onclick={() => showNotification('Hello', 'error', false)}>Show error</Button>
+	<Button info onclick={() => showNotification('This is a very long message in a toast, to show how the long text will wrap inside the toast message.', 'info', null)}>A very long message</Button>
+	<Button success onclick={() => showNotification('Hello', 'success', null)}>Show success</Button>
+	<Button warning onclick={() => showNotification('Hello', 'warning', null)}>Show warning</Button>
+	<Button danger onclick={() => showNotification('Hello', 'error', null)}>Show error</Button>
 </div>
 
 

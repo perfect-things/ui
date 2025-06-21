@@ -14,7 +14,7 @@ The perfect toggle component in Svelte:
 <Toggle bind:value={toggleValue} /> {toggleValue}
 <div class="toggle-box" class:visible={toggleValue}>
 	<Toggle /> hidden initially<br>
-	<Toggle value="true"/> hidden initially
+	<Toggle value={true}/> hidden initially
 </div>
 <br><br><br>
 
@@ -32,7 +32,7 @@ The perfect toggle component in Svelte:
 <Toggle label="Toggle the lights" error={error} onchange={onchange}/>
 
 <h3>Label on the left</h3>
-<Toggle label="Label is on the left" labelOnTheLeft="true"/>
+<Toggle label="Label is on the left" labelOnTheLeft/>
 
 
 <CodeExample html={exampleHtml} />

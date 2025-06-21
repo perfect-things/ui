@@ -26,10 +26,7 @@ test('Button', async () => {
 	});
 	const user = userEvent.setup();
 
-	const component = mount(Button, {
-		target: document.body, // `document` exists because of jsdom
-		props
-	});
+	const component = mount(Button, { target: document.body, props });
 
 	const btn = document.body.querySelector('#Button1');
 

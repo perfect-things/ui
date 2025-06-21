@@ -25,7 +25,7 @@
 
 
 <h3>Label on the left</h3>
-<Radio items={strings} label="Label is on the left" labelOnTheLeft="true"/>
+<Radio items={strings} label="Label is on the left" labelOnTheLeft/>
 
 
 
@@ -75,10 +75,10 @@ function onChange (e) {
 
 
 const items1 = [
-	{ name: 'One', value: 1, disabled: true },
-	{ name: 'Two', value: 2 },
-	{ name: 'Three', value: 3 },
-	{ name: 'Four', value: 4 },
+	{ name: 'One', value: '1', disabled: true },
+	{ name: 'Two', value: '2' },
+	{ name: 'Three', value: '3' },
+	{ name: 'Four', value: '4' },
 ];
 
 let val = $state(items1[1].value);

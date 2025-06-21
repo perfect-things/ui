@@ -4,15 +4,7 @@ import ButtonGroup from './helpers/ButtonGroup.svelte';
 
 
 test('ButtonGroup', async () => {
-	const props = $state({
-		class: 'test-class'
-	});
-
-	const component = mount(ButtonGroup, {
-		target: document.body, // `document` exists because of jsdom
-		// @ts-ignore
-		props
-	});
+	const component = mount(ButtonGroup, { target: document.body });
 
 	const btnGroup = document.body.querySelector('.test-class');
 

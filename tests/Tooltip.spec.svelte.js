@@ -11,7 +11,7 @@ test('Tooltip', async () => {
 
 	const props = $state({});
 
-	const component = mount(Tooltip, { target: document.body, props });
+	const component = await mount(Tooltip, { target: document.body, props });
 
 	const btn = document.body.querySelector('#box1');
 	await user.hover(btn);

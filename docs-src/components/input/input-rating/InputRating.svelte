@@ -12,7 +12,7 @@
 
 
 <h3>More stars</h3>
-<InputRating max="8" />
+<InputRating max={8} />
 
 
 <h3>Light (no background)</h3>
@@ -35,7 +35,7 @@
 
 
 <h3>Label on the left</h3>
-<InputRating label="Label is on the left" labelOnTheLeft="true"/>
+<InputRating label="Label is on the left" labelOnTheLeft/>
 
 
 

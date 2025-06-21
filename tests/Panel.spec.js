@@ -10,14 +10,14 @@ test('Panel', async () => {
 	const onclose = vi.fn();
 	vi.spyOn(utils, 'animate').mockResolvedValue();
 
-	const props = $state({
+	const props = {
 		title: 'Panel1',
 		class: 'test-class',
 		collapsible: true,
 		onopen,
 		onclose,
 		children: undefined
-	});
+	};
 	const component = await mount(Panel, { target: document.body, props });
 	const user = userEvent.setup();
 

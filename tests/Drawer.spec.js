@@ -8,13 +8,13 @@ import { Drawer } from '../src/drawer';
 test('Drawer', async () => {
 	const openMock = vi.fn();
 	const closeMock = vi.fn();
-	const props = $state({
+	const props = {
 		title: 'drawer1',
 		class: 'test-class',
 		onopen: openMock,
 		onclose: closeMock,
 		children: undefined
-	});
+	};
 
 	const component = mount(Drawer, { target: document.body, props });
 

@@ -10,7 +10,7 @@ test('Popover', async () => {
 	// @ts-ignore
 	vi.spyOn(window, 'setTimeout').mockImplementation(cb => cb());
 
-	const props = $state({});
+	const props = {};
 	const component = mount(Popover, { target: document.body, props });
 
 	let cmp = document.body.querySelector('.test-popover');

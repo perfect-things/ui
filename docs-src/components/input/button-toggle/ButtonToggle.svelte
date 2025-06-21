@@ -51,7 +51,7 @@
 
 
 <h3>Label on the left</h3>
-<ButtonToggle items={items} label="Label is on the left" labelOnTheLeft="true"/>
+<ButtonToggle items={items} label="Label is on the left" labelOnTheLeft/>
 
 
 
@@ -130,9 +130,9 @@ const items = [
 ];
 
 const icons = [
-	{ icon: 'info', value: '1' },
-	{ icon: 'check', value: '2' },
-	{ icon: 'alert', value: '3' },
+	{ name: 'info', icon: 'info', value: '1' },
+	{ name: 'check', icon: 'check', value: '2' },
+	{ name: 'alert', icon: 'alert', value: '3' },
 ];
 
 const strings = ['One', 'Two', 'Three'];

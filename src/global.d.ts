@@ -14,4 +14,13 @@ declare global {
 	}
 }
 
+
+declare global {
+	interface Window {
+		zxcvbn?: ZxcvbnLib;
+		UI_VERSION?: string;
+	}
+}
+
+
 export {};

@@ -6,14 +6,9 @@ import { Icon } from '../src/icon';
 
 test('Icon', async () => {
 	const props = $state({ name: 'alert' });
-
-	const component = mount(Icon, {
-		target: document.body,
-		props
-	});
+	const component = mount(Icon, { target: document.body, props });
 
 	const icon = document.body.querySelector('svg');
-
 	expect(icon).toBeInTheDocument();
 	expect(icon).toHaveClass('icon');
 	expect(icon.classList.toString()).toContain('alert');

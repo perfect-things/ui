@@ -18,7 +18,7 @@ const items = [
 
 test('Tree', async () => {
 	const onselect = vi.fn();
-	const props = $state({ items, class: 'test-class', onselect });
+	const props = { items, class: 'test-class', onselect };
 	const component = mount(Tree, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');

@@ -22,7 +22,7 @@
 
 
 <h3>Show on focus</h3>
-<Combobox showOnFocus="true" {items} bind:value={itemValue} />
+<Combobox showOnFocus {items} bind:value={itemValue} />
 
 <h3>Simpler data (no ID, just 'name')</h3>
 <Combobox items={dataSimpler} placeholder="Type to filter"
@@ -65,7 +65,6 @@
 <Combobox
 	items={dataSimple}
 	multiselect
-	clearOnEsc
 	bind:value={multiselectSimpleValue} />
 <h4>Selected value: </h4>
 <JsonBox value={multiselectSimpleValue} />

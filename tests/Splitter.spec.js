@@ -4,12 +4,9 @@ import Splitter from './helpers/Splitter.svelte';
 
 
 test('Splitter', async () => {
-	const props = $state({});
+	const props = {};
 
-	const component = mount(Splitter, {
-		target: document.body,
-		props
-	});
+	const component = mount(Splitter, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.split-wrap');
 	expect(cmp).toBeInTheDocument();

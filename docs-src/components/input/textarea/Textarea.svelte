@@ -24,7 +24,7 @@
 <Textarea label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>
 
 <h3>Label on the left</h3>
-<Textarea label="Label is on the left" labelOnTheLeft="true"/>
+<Textarea label="Label is on the left" labelOnTheLeft/>
 
 
 

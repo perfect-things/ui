@@ -9,7 +9,7 @@
 		multiselect
 		onselect={onclick}
 		onclick={onclick}
-		on:dblclick={onclick}/>
+		ondblclick={onclick}/>
 </div>
 
 <!--<div class="table-viewport">-->

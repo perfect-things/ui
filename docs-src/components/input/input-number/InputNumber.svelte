@@ -15,7 +15,7 @@
 <InputNumber label="Enter amount" separator="," />
 
 <h3>Label on the left</h3>
-<InputNumber label="Label is on the left" labelOnTheLeft="true"/>
+<InputNumber label="Label is on the left" labelOnTheLeft/>
 
 
 

@@ -14,7 +14,7 @@
 <InputMath label="Enter amount" info="You can add 2 numbers here" error="Number must be big!"/>
 
 <h3>Label on the left</h3>
-<InputMath label="Label is on the left" labelOnTheLeft="true"/>
+<InputMath label="Label is on the left" labelOnTheLeft/>
 
 
 <CodeExample html={exampleHtml} />

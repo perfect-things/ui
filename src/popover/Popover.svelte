@@ -23,7 +23,7 @@ import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils';
 
 interface Props {
 	class?: string;
-	offset?: number;
+	offset?: string | number;
 	element?: HTMLElement;
 	contentEl?: HTMLElement;
 	position?: 'top' | 'bottom' | 'left' | 'right';

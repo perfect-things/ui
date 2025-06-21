@@ -17,7 +17,7 @@
 
 
 <h3>Label on the left</h3>
-<InputTag label="Label is on the left" labelOnTheLeft="true"/>
+<InputTag label="Label is on the left" labelOnTheLeft/>
 
 
 

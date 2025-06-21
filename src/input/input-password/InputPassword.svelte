@@ -15,9 +15,11 @@
 			<input
 				id={_id}
 				autocomplete="off"
+				{name}
 				{type}
 				{value}
 				{disabled}
+				{placeholder}
 				{...rest}
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
@@ -63,6 +65,8 @@ interface Props {
 	disabled?: boolean;
 	value?: string;
 	strength?: boolean;
+	name?: string;
+	placeholder?: string;
 	label?: string;
 	error?: string;
 	info?: string;
@@ -70,6 +74,7 @@ interface Props {
 	element?: HTMLDivElement;
 	inputElement?: HTMLInputElement;
 	oninput?: (data: { event: Event; value: string }) => void;
+	[key: string]: any;
 }
 
 interface ZxcvbnResult {
@@ -84,11 +89,7 @@ interface ZxcvbnLib {
 	(password: string): ZxcvbnResult;
 }
 
-declare global {
-	interface Window {
-		zxcvbn?: ZxcvbnLib;
-	}
-}
+
 
 let {
 	class: className = '',
@@ -97,7 +98,9 @@ let {
 	disabled = undefined,
 	value = $bindable(''),
 	strength = false,
+	name = '',
 	label = '',
+	placeholder = '',
 	error = undefined,
 	info = undefined,
 	labelOnTheLeft = false,
@@ -129,7 +132,7 @@ let colorClass = $state('');
 
 
 const type = $derived(visible ? 'text' : 'password');
-const _id = $derived(id || rest.name || guid());
+const _id = $derived(id || name || guid());
 
 
 

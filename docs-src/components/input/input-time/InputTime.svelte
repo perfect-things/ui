@@ -15,11 +15,11 @@
 	label="Select Midnight"
 	error={error1}
 	value="00:01"
-	onchange={onchange} />
+	{onchange} />
 
 
 <h3>Label on the left</h3>
-<InputTime label="Label is on the left" labelOnTheLeft="true"/>
+<InputTime label="Label is on the left" labelOnTheLeft/>
 
 
 

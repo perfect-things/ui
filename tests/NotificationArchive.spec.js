@@ -18,7 +18,7 @@ beforeEach(() => {
 
 
 test('NotificationArchive renders with no notifications', async () => {
-	const props = $state({ show: true });
+	const props = { show: true };
 	const component = mount(NotificationArchive, { target: document.body, props });
 
 	const archive = document.body.querySelector('.notification-archive');
@@ -54,7 +54,7 @@ test('NotificationArchive displays archived notifications when expanded', async 
 	setArchivedNotifications(notifications);
 	flushSync();
 
-	const props = $state({ show: true, expanded: true });
+	const props = { show: true, expanded: true };
 	const component = await mount(NotificationArchive, { target: document.body, props });
 
 	expect(document.body.textContent).toMatch(/Recent notifications \(2\)/);
@@ -78,7 +78,7 @@ test('NotificationArchive toggling expanded state', async () => {
 
 	setArchivedNotifications(notifications);
 
-	const props = $state({ show: true, expanded: false });
+	const props = { show: true, expanded: false };
 	const component = await mount(NotificationArchive, { target: document.body, props });
 
 	expect(document.body.textContent).toMatch(/Recent notifications \(1\)/);
@@ -113,7 +113,7 @@ test('NotificationArchive clear all functionality', async () => {
 
 	setArchivedNotifications(notifications);
 
-	const props = $state({ show: true, expanded: true });
+	const props = { show: true, expanded: true };
 	const component = await mount(NotificationArchive, { target: document.body, props });
 	expect(document.body.textContent).toContain('Test notification 1');
 	expect(document.body.textContent).toContain('Test notification 2');
@@ -130,7 +130,7 @@ test('NotificationArchive clear all functionality', async () => {
 
 
 test('NotificationArchive close button hides archive', async () => {
-	const props = $state({ show: true });
+	const props = { show: true };
 	const component = mount(NotificationArchive, { target: document.body, props });
 
 	const closeBtn = document.querySelector('.btn-close');
@@ -161,7 +161,7 @@ test('NotificationArchive individual notification removal', async () => {
 
 	const { removeFromArchive } = await import('../src/notification-center/store.js');
 
-	const props = $state({ show: true, expanded: true });
+	const props = { show: true, expanded: true };
 	const component = await mount(NotificationArchive, { target: document.body, props });
 
 	expect(document.body.textContent).toContain('Test notification 1');
@@ -195,7 +195,7 @@ test('NotificationArchive keyboard interaction', async () => {
 
 	setArchivedNotifications(notifications);
 
-	const props = $state({ show: true, expanded: true });
+	const props = { show: true, expanded: true };
 	const component = await mount(NotificationArchive, { target: document.body, props });
 
 	expect(document.body.textContent).toContain('Test notification 1');

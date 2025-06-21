@@ -27,9 +27,9 @@ import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
 interface Props {
 	element?: HTMLElement;
 	target?: string;
-	delay?: number;
+	delay?: number | string;
 	position?: 'top' | 'bottom' | 'left' | 'right';
-	offset?: number;
+	offset?: number | string;
 	shortcut?: string;
 	class?: string;
 	info?: boolean;
@@ -111,8 +111,8 @@ function _show (e) {
 
 function align () {
 	_position = alignItem({
-		element, target:
-		targetEl,
+		element,
+		event: targetEl,
 		alignH: 'center',
 		alignV: position,
 		offsetV: +offset

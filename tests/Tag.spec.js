@@ -6,7 +6,7 @@ import Tag from './helpers/Tag.svelte';
 
 test('Tag', async () => {
 	const mock = vi.fn();
-	const props = $state({ onclick: mock, clickable: true });
+	const props = { onclick: mock, clickable: true };
 	// @ts-ignore
 	const component = mount(Tag, { target: document.body, props });
 

@@ -34,7 +34,7 @@
 
 
 <h3>Label on the left</h3>
-<InputText label="Label is on the left" labelOnTheLeft="true"/>
+<InputText label="Label is on the left" labelOnTheLeft/>
 
 
 

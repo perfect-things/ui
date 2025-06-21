@@ -8,8 +8,7 @@ test('Menu', async () => {
 	// @ts-ignore
 	vi.spyOn(window, 'setTimeout').mockImplementation(cb => cb());
 
-	const props = $state({});
-
+	const props = {};
 	const user = userEvent.setup();
 	const component = mount(Menu, { target: document.body, props });
 

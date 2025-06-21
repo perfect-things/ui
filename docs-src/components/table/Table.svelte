@@ -4,7 +4,7 @@
 	<Table round
 		rowSelector=".row-sel"
 		onkeydown={onKey}
-		on:dblclick={onSelect}
+		ondblclick={onSelect}
 		onselect={onSelect}>
 		<thead>
 			<tr><th>Year</th><th>Month</th><th>Price</th></tr>

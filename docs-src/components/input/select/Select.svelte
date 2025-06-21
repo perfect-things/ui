@@ -30,7 +30,7 @@
 <Select items={selectItems} label="Select label" error="You picked the wrong side!" />
 
 <h3>Label on the left</h3>
-<Select items={selectItems} label="Label is on the left" labelOnTheLeft="true"/>
+<Select items={selectItems} label="Label is on the left" labelOnTheLeft/>
 
 
 

@@ -53,6 +53,7 @@ interface Props {
 	labelOnTheLeft?: boolean;
 	element?: HTMLDivElement;
 	inputElement?: HTMLInputElement;
+	[key: string]: any;
 }
 
 let {

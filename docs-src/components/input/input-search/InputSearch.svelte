@@ -28,7 +28,7 @@
 
 
 <h3>Label on the left</h3>
-<InputSearch label="Label is on the left" labelOnTheLeft="true"/>
+<InputSearch label="Label is on the left" labelOnTheLeft/>
 
 
 

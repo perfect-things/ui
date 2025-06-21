@@ -7,7 +7,7 @@
 {item.datevalue || ''}
 
 <h3>Show on focus (when using keyboard)</h3>
-<InputDate showOnFocus="true" placeholder="Custom placeholder" />
+<InputDate showOnFocus placeholder="Custom placeholder" />
 
 
 <h3>Initial value</h3>
@@ -26,7 +26,7 @@
 	property must be set on the component.</p>
 <div class="docs-overflow-box">
 	<small>overflow: hidden</small>
-	<InputDate elevate="true" />
+	<InputDate elevate />
 </div>
 <p>This option should only be used when absolutely necessary (e.g. when InputDate
 	is used inside dialogs/popups), because it makes the component less accessible
@@ -47,7 +47,7 @@
 
 
 <h3>Label on the left</h3>
-<InputDate label="Label is on the left" labelOnTheLeft="true"/>
+<InputDate label="Label is on the left" labelOnTheLeft/>
 
 
 
@@ -61,7 +61,7 @@ import { InputDate } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 
-const item = $state({});
+const item = $state({ datevalue: '' });
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },

@@ -11,7 +11,7 @@
 <Range hideTicks />
 
 <h3>With different constraints</h3>
-<Range min="10" max="100" step="5" />
+<Range min={10} max={100} step={5} />
 
 <h3>With label</h3>
 <Range label="Slide to the right" />
@@ -20,13 +20,13 @@
 <Range label="Write some text" info="This is some info for you" />
 
 <h3>With label and error and live validation</h3>
-<Range label="Move the slider" {error} onchange={onChange} value="5" />
+<Range label="Move the slider" {error} onchange={onChange} value={5} />
 
 <h3>With label, info, and error</h3>
 <Range label="Move the slider" info="Don't make any mistakes!" error="You did not slide!" />
 
 <h3>Label on the left</h3>
-<Range label="Label is on the left" labelOnTheLeft="true"/>
+<Range label="Label is on the left" labelOnTheLeft/>
 
 
 

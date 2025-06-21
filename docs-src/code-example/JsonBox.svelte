@@ -1,13 +1,12 @@
 <pre class="language-json"><code class="language-json">{@html code}</code></pre>
 
-<script>
-/**
- * @typedef {Object} Props
- * @property {string} [value]
- */
+<script lang="ts">
 
-/** @type {Props} */
-const { value = '' } = $props();
+interface Props {
+	value?: string | object;
+}
+
+const { value = '' }: Props = $props();
 
 const valueString = $derived((typeof value !== 'string') ? stringify(value) : value);
 // @ts-expect-error this is correct

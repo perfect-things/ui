@@ -3,7 +3,6 @@ import { mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
 
 import { InputRating } from '../../src/input/input-rating';
-import { waitForTimeout } from '../helpers/utils';
 
 
 
@@ -39,7 +38,6 @@ test('InputRating', async () => {
 	document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: { star: '2' } }));
 	await fireEvent.mouseDown(star2);
 	await fireEvent.mouseUp(star2);
-	await waitForTimeout();
 
 	expect(star2).toHaveClass('active');
 	expect(props.onchange).toHaveBeenCalled();
@@ -51,7 +49,6 @@ test('InputRating', async () => {
 	document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: { star: '3' } }));
 	await fireEvent.mouseDown(star3);
 	await fireEvent.mouseUp(star3);
-	await waitForTimeout();
 	expect(star3).toHaveClass('active');
 
 	unmount(component);

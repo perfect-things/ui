@@ -33,6 +33,9 @@ interface Props {
 	disabled?: boolean;
 	element?: HTMLElement;
 	children?: Snippet;
+	// allow 'data-x' attributes
+	[key: `data-${string}`]: string | number | boolean | undefined;
+
 	onclick?: (e: MouseEvent) => any;
 	onmousedown?: (e: MouseEvent) => any;
 }

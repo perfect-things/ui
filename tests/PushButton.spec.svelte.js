@@ -19,11 +19,8 @@ test('PushButton', async () => {
 		link: undefined
 	});
 
-	const component = mount(PushButton, {
-		target: document.body,
-		// @ts-ignore
-		props
-	});
+	// @ts-ignore
+	const component = mount(PushButton, { target: document.body, props });
 
 	const btn = document.body.querySelector('#Button1');
 	expect(btn).toBeInTheDocument();

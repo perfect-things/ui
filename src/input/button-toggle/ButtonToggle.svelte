@@ -50,8 +50,8 @@ import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-type Item = { name: string, value: string, icon?: string } | string;
-type Value = Item | string;
+type Item = { name: string, value: string | boolean, icon?: string } | string;
+type Value = Item | string | boolean;
 
 interface Props {
 	class?: string;

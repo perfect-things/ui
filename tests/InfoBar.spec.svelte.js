@@ -45,19 +45,15 @@ test('InfoBar', async () => {
 
 
 test('InfoBar - Info', async () => {
-	const props = $state({
+	const props = {
 		id: 'test',
 		msg: 'test',
 		class: 'test',
-	});
+	};
 
-	const component = mount(Info, {
-		target: document.body,
-		props
-	});
+	const component = mount(Info, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.info-bar');
-
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('info-bar-info');
 	expect(cmp).toHaveClass('test');
@@ -71,19 +67,15 @@ test('InfoBar - Info', async () => {
 
 
 test('InfoBar - Warning', async () => {
-	const props = $state({
+	const props = {
 		id: 'test',
 		msg: 'test',
 		class: 'test',
-	});
+	};
 
-	const component = mount(Warning, {
-		target: document.body,
-		props
-	});
+	const component = mount(Warning, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.info-bar');
-
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('info-bar-warning');
 	expect(cmp).toHaveClass('test');
@@ -97,19 +89,15 @@ test('InfoBar - Warning', async () => {
 
 
 test('InfoBar - Error', async () => {
-	const props = $state({
+	const props = {
 		id: 'test',
 		msg: 'test',
 		class: 'test',
-	});
+	};
 
-	const component = mount(Error, {
-		target: document.body,
-		props
-	});
+	const component = mount(Error, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.info-bar');
-
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('info-bar-error');
 	expect(cmp).toHaveClass('test');
@@ -123,19 +111,15 @@ test('InfoBar - Error', async () => {
 
 
 test('InfoBar - Success', async () => {
-	const props = $state({
+	const props = {
 		id: 'test',
 		msg: 'test',
 		class: 'test',
-	});
+	};
 
-	const component = mount(Success, {
-		target: document.body,
-		props
-	});
+	const component = mount(Success, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.info-bar');
-
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('info-bar-success');
 	expect(cmp).toHaveClass('test');

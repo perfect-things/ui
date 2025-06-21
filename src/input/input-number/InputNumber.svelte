@@ -41,7 +41,7 @@ interface Props {
 	name?: string;
 	disabled?: boolean;
 	required?: boolean;
-	value?: string;
+	value?: string | number;
 	label?: string;
 	error?: string;
 	info?: string;
@@ -50,7 +50,8 @@ interface Props {
 	element?: HTMLElement;
 	inputElement?: HTMLInputElement;
 	onchange?: (data: { value: string }) => void;
-	onkeydown?: (data: { event: Event; value: string }) => void;
+	onkeydown?: (data: { event: Event; value: string | number }) => void;
+	[key: string]: any;
 }
 
 let {

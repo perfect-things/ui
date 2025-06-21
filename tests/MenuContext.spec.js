@@ -8,7 +8,7 @@ test('Context Menu', async () => {
 	// @ts-ignore
 	vi.spyOn(window, 'setTimeout').mockImplementation(cb => cb());
 
-	const props = $state({});
+	const props = {};
 	const component = mount(ContextMenu, { target: document.body, props });
 
 	let cmp = document.body.querySelector('.test-menu');

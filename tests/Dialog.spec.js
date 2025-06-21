@@ -7,14 +7,14 @@ import { Dialog } from '../src/dialog';
 test('Dialog', async () => {
 	const openMock = vi.fn();
 	const closeMock = vi.fn();
-	const props = $state({
+	const props = {
 		title: 'Dialog1',
 		class: 'test-class',
 		onopen: openMock,
 		onclose: closeMock,
 		children: undefined,
 		footer: undefined
-	});
+	};
 	// @ts-ignore
 	window.setTimeout = (cb) => { cb(); };
 	const user = userEvent.setup();
