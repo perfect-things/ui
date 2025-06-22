@@ -1,14 +1,20 @@
 <div
-	class="input input-search {className}"
-	class:has-error={error}
-	class:has-value={value !== ''}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'input',
+		'input-search',
+		className,
+		{
+			'has-error': !!error,
+			'has-value': value !== '',
+			'label-on-the-left': labelOnTheLeft
+		}
+	]}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
@@ -23,13 +29,16 @@
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				bind:value={value}
+				bind:value
 				{onkeydown}
 				{...restProps}>
 
 			<Button link
 				icon="close"
-				class="input-search-button {value !== '' && !disabled ? 'visible' : ''}"
+				class={[
+					'input-search-button',
+					{ visible: value !== '' && !disabled }
+				]}
 				onclick={clear}/>
 		</div>
 	</div>
@@ -37,6 +46,7 @@
 
 <script lang="ts">
 import './InputSearch.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Button } from '../../button';
 import { Icon } from '../../icon';
@@ -45,7 +55,7 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	required?: boolean;
 	disabled?: boolean;

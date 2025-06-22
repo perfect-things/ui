@@ -2,21 +2,26 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
 	{title}
-	class="input input-tag {className}"
-	class:has-error={error}
-	class:has-value={value !== ''}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'input',
+		'input-tag',
+		className,
+		{
+			'has-error': !!error,
+			'has-value': _value.length > 0,
+			'label-on-the-left': labelOnTheLeft
+		},
+	]}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
 	<div
-		class="input-inner"
-		class:disabled
-		inert={disabled}
+		class={['input-inner', { disabled }]}
 		tabindex="0"
-		onkeydown={onkeydown}
+		inert={disabled}
+		{onkeydown}
 		onclick={open}
 		bind:this={boxElement}>
 
@@ -28,12 +33,11 @@
 			{#each _value as tag}
 				<Tag icon="close" clickable onclick={() => removeTagFromValue(tag)}>{tag}</Tag>
 			{/each}
-
 			<input
+				type="hidden"
 				{name}
 				{disabled}
 				id={_id}
-				type="hidden"
 				{value}
 				bind:this={inputElement}/>
 		</div>
@@ -62,6 +66,7 @@
 
 <script lang="ts">
 import './InputTag.css';
+import type { ClassValue } from 'svelte/elements';
 import { InputText } from '../input-text';
 import { Button } from '../../button';
 import { Popover } from '../../popover';
@@ -80,7 +85,7 @@ interface TagItem {
 }
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	disabled?: boolean;
 	value?: string;

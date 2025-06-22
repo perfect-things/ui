@@ -1,9 +1,16 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-	class="table grid grid-sortable {className}"
-	class:round
-	class:interactive
 	bind:this={element}
+	class={[
+		'table',
+		'grid',
+		'grid-sortable',
+		className,
+		{
+			round,
+			interactive,
+		}
+	]}
 	onclick={_onclick}
 	onfocuscapture={_onfocus}
 	onkeydown={_onkeydown}
@@ -20,6 +27,7 @@
 
 <script lang="ts">
 import './Grid.css';
+import type { ClassValue } from 'svelte/elements';
 import { onMount } from 'svelte';
 import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';
 import { DataStore, type DataItem } from './DataStore.js';
@@ -27,7 +35,7 @@ import { GridHead, GridFoot, GridBody } from './parts';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	title?: string;
 	interactive?: boolean;
 	round?: boolean;

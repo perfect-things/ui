@@ -1,14 +1,20 @@
 <div
-	class="input input-time {className}"
-	class:has-error={error}
-	class:has-value={value !== ''}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'input',
+		'input-time',
+		className,
+		{
+			'has-error': !!error,
+			'has-value': value !== '',
+			'label-on-the-left': labelOnTheLeft
+		}
+	]}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
@@ -32,6 +38,7 @@
 
 <script lang="ts">
 import './InputTime.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
@@ -41,7 +48,7 @@ import { Label } from '../label';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	name?: string;
 	required?: boolean;

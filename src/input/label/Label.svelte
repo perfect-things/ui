@@ -1,17 +1,19 @@
 {#if label}
 	<label
-		class="label {className}"
-		class:disabled
+		class={['label', className, { disabled }]}
 		bind:this={element}
-		for={_for}>{label}</label>
+		for={_for}>
+			{label}
+	</label>
 {/if}
 
 <script lang="ts">
+import type { ClassValue } from 'svelte/elements';
 import './Label.css';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	for?: string;
 	label?: string;
 	disabled?: boolean;

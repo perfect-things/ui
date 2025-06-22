@@ -1,15 +1,21 @@
 <div
-	class="ui-tag {className} {colorClass}"
-	class:round
-	class:dark={color && isColorDark(color)}
-	class:light={color && !isColorDark(color)}
-	class:disabled
-	class:clickable
-	style="{color ? `background-color: ${color};` : ''}"
 	role="button"
-	tabindex={disabled || !clickable ? undefined : 0}
-	inert={disabled || !clickable}
 	bind:this={element}
+	tabindex={inert ? undefined : 0}
+	{inert}
+	class={[
+		'ui-tag',
+		className,
+		color,
+		{
+			round,
+			disabled,
+			clickable,
+			dark: color && isColorDark(color),
+			light: color && !isColorDark(color)
+		}
+	]}
+	style="{color ? `background-color: ${color};` : ''}"
 	onkeydown={_onkeydown}
 	onclick={_onclick}>
 	{#if icon}
@@ -19,17 +25,18 @@
 </div>
 
 <script lang="ts">
-import type { Snippet } from 'svelte';
 import './Tag.css';
+import type { ClassValue } from 'svelte/elements';
+import type { Snippet } from 'svelte';
 import { Icon } from '../icon';
 import { isColorDark } from '../utils';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	round?: boolean;
 	icon?: string;
-	color?: string;
+	color?: 'info' | 'warning' | 'danger' | 'success' | string;
 	element?: HTMLElement;
 	disabled?: boolean;
 	clickable?: boolean;
@@ -49,8 +56,7 @@ let {
 	children
 }: Props = $props();
 
-
-const colorClass = $derived(['info', 'warning', 'danger', 'success'].includes(color) ? color : '');
+const inert = $derived(disabled || !clickable);
 
 function _onclick (e) {
 	onclick({ target: element, originalEvent: e });

@@ -1,17 +1,23 @@
 <div
 	{title}
-	class="input input-date {className}"
-	class:open
-	class:native={useNative}
+	bind:this={element}
 	aria-expanded={open}
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
+	class={[
+		'input',
+		'input-date',
+		className,
+		{
+			open,
+			native: useNative,
+			'has-error': !!error,
+			'label-on-the-left': labelOnTheLeft,
+		},
+	]}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
@@ -62,6 +68,7 @@
 
 <script lang="ts">
 import './InputDate.css';
+import type { ClassValue } from 'svelte/elements';
 import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
@@ -73,7 +80,7 @@ import { Label } from '../label';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	name?: string;
 	disabled?: boolean;

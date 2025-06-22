@@ -4,8 +4,7 @@
 	<div class="combobox-list-header">Create new item</div>
 	<div
 		role="option"
-		class="combobox-list-item"
-		class:selected
+		class={['combobox-list-item', { selected }]}
 		aria-selected={selected}
 		{onclick}>
 			{name}

@@ -1,15 +1,19 @@
 <div
-	class="input input-text {className}"
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
-
+	bind:this={element}
+	class={[
+		'input',
+		'input-text',
+		className,
+		{
+			'has-error': !!error,
+			'label-on-the-left': labelOnTheLeft
+		}
+	]}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
-
 		<input
 			id={_id}
 			autocomplete="off"
@@ -26,6 +30,7 @@
 
 <script lang="ts">
 import './InputText.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -34,7 +39,7 @@ import { Label } from '../label';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	required?: boolean;
 	disabled?: boolean;

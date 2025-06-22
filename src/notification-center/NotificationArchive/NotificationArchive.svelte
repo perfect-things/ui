@@ -1,4 +1,13 @@
-<div class="notification-archive" bind:this={el} inert={!show} class:expanded class:inert={!show}>
+<div
+	bind:this={el}
+	inert={!show}
+	class={[
+		'notification-archive',
+		{
+			expanded,
+			inert: !show
+		}
+	]}>
 	<header>
 		{#if archived.length}
 			<h2><Button icon="chevronRight" text onclick={() => toggle()}> Recent notifications ({archived.length})</Button></h2>

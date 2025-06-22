@@ -1,13 +1,10 @@
 <div
 	{title}
-	class="check-and-radio checkbox {className}"
-	class:indeterminate
-	class:disabled
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
-
-	bind:this={element}>
-
+	bind:this={element}
+	class={[
+		'check-and-radio', 'checkbox', className,
+		{ indeterminate, disabled, 'has-error': !!error, 'label-on-the-left': labelOnTheLeft }
+	]}>
 	<Info msg={info} />
 	<InputError id={errorMessageId} msg={error} animOffset={8} />
 
@@ -32,6 +29,7 @@
 
 <script lang="ts">
 import './Checkbox.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -39,7 +37,7 @@ import { Label } from '../label';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	indeterminate?: boolean;
 	checked?: boolean;
 	disabled?: boolean;

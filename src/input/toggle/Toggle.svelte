@@ -1,12 +1,17 @@
 <div
-	class="toggle {className}"
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
+	class={[
+		'toggle',
+		className,
+		{
+			'label-on-the-left': labelOnTheLeft,
+			'has-error': !!error
+		}
+	]}
 	role="switch"
 	aria-checked={value}
 	tabindex={disabled ? undefined : 0}
 	bind:this={element}
-	onkeydown={onKey}
+	{onkeydown}
 	ontouchstart={dragStart}
 	onmousedown={dragStart}
 	oncontextmenu={e => e.preventDefault()}
@@ -41,6 +46,7 @@
 
 <script lang="ts">
 import './Toggle.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid, getMouseX } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';
 import { Info } from '../../info-bar';
@@ -48,7 +54,7 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	name?: string;
 	title?: string;
@@ -120,7 +126,7 @@ function setValue (v = false, force = false) {
 }
 
 
-function onKey (e) {
+function onkeydown (e) {
 	toggleTransitions(true);
 	if (e.key === 'Enter' || e.key === ' ') {
 		e.preventDefault();

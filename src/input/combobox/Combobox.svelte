@@ -1,11 +1,17 @@
 <div
-	class="input combobox {className}"
-	class:open={opened}
-	class:has-error={error}
-	class:label-on-the-left={!!labelOnTheLeft}
-	class:multiselect
 	{title}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'input',
+		'combobox',
+		className,
+		{
+			open: opened,
+			'has-error': !!error,
+			'label-on-the-left': !!labelOnTheLeft,
+			multiselect
+		},
+	]}>
 
 	<ComboboxInput
 		{id}

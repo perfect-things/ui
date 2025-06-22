@@ -1,23 +1,25 @@
 <button
+	{title}
 	type={submit ? 'submit' : 'button'}
 	bind:this={element}
-	{title}
-	class={{
-		button: true,
-		[className]: className,
-		'button-normal': !link && !text && !outline,
-		'button-outline': outline,
-		'button-link': link,
-		'button-text': text,
-		'button-has-text': children,
-		round: round,
-		info: info,
-		success: success,
-		warning: warning,
-		danger: danger,
-		error: error,
-		touching: touching
-	}}
+	class={[
+		'button',
+		className,
+		{
+			'button-normal': !link && !text && !outline,
+			'button-outline': outline,
+			'button-link': link,
+			'button-text': text,
+			'button-has-text': children,
+			round,
+			info,
+			success,
+			warning,
+			danger,
+			error,
+			touching,
+		}
+	]}
 	{...rest}
 	ontouchstart={() => touching = true}
 	ontouchend={() => touching = false}>
@@ -27,7 +29,8 @@
 
 
 <script lang="ts">
-import { type Snippet } from 'svelte';
+import type { ClassValue } from 'svelte/elements';
+import type { Snippet } from 'svelte';
 import { Icon } from '../icon';
 import './Button.css';
 import './Button-normal.css';
@@ -37,7 +40,7 @@ import './Button-link.css';
 
 
 interface ButtonProps {
-	class?: string;
+	class?: ClassValue;
 	title?: string;
 
 	// button types

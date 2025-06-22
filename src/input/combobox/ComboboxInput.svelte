@@ -1,7 +1,8 @@
 <Label {label} {disabled} for={_id}/>
 <Info msg={info} />
 
-<div class="input-inner" class:disabled>
+<div class={['input-inner', { disabled }]}>
+
 	<InputError id={errorMessageId} msg={error} />
 
 	<div class="input-row" title={value}>

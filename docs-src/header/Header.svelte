@@ -13,8 +13,8 @@ import { PREFERS_DARK } from '../../src/utils';
 import './Header.css';
 
 const themes = [
-	{ name: 'light', value: false, icon: 'sun' },
-	{ name: 'dark', value: true, icon: 'moon' },
+	{ value: false, icon: 'sun' },
+	{ value: true, icon: 'moon' },
 ];
 
 

@@ -1,13 +1,19 @@
  <div
-	class="input input-math {className}"
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'input',
+		'input-math',
+		className,
+		{
+			'has-error': !!error,
+			'label-on-the-left': labelOnTheLeft,
+		},
+	]}>
 
 	<Label {label} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
@@ -32,6 +38,7 @@
 </div>
 <script lang="ts">
 import './InputMath.css';
+import type { ClassValue } from 'svelte/elements';
 import { Icon } from '../../icon';
 import { roundAmount, guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -40,7 +47,7 @@ import { Label } from '../label';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	name?: string;
 	required?: boolean;

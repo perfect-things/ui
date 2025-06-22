@@ -1,12 +1,13 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
-	<menu tabindex="0" class="menu {className}" bind:this={element}>
+	<menu tabindex="0" class={['menu', className]} bind:this={element}>
 		{@render children?.()}
 	</menu>
 {/if}
 
 <script lang="ts">
 import './Menu.css';
+import type { ClassValue } from 'svelte/elements';
 import { onDestroy, onMount, setContext, type Snippet } from 'svelte';
 import { addArias, removeArias } from './utils';
 import initLongPressEvent from './longpress';
@@ -20,7 +21,7 @@ const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	type?: 'context' | undefined;
 	targetSelector?: string;
 	closeOnClick?: boolean;

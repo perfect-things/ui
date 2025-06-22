@@ -1,15 +1,20 @@
 <div
-	class="range {className}"
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
-	class:disabled
 	{title}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'range',
+		className,
+		{
+			'has-error': !!error,
+			'label-on-the-left': labelOnTheLeft,
+			disabled
+		}
+	]}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="range-inner" class:disabled>
+	<div class={['range-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		{#if !hideTicks}
@@ -33,7 +38,7 @@
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			bind:this={inputElement}
-			bind:value={value}
+			bind:value
 			{...restProps}>
 	</div>
 </div>
@@ -41,13 +46,14 @@
 
 <script lang="ts">
 import './Range.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	disabled?: boolean;
 	label?: string;

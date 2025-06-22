@@ -1,13 +1,12 @@
 {#if opened}
 	<div
-		class="popover-plate popover-{_position} tooltip-plate"
-		class:opened
-		class:info
-		class:success
-		class:warning
-		class:danger
-		bind:this={element}>
-
+		bind:this={element}
+		class={[
+			'popover-plate',
+			'popover-' + _position,
+			'tooltip-plate',
+			{ opened, info, success, warning, danger },
+		]}>
 		<div class="popover tooltip {className}" role="tooltip">
 			<div class="popover-content tooltip-content">
 				<div class="tooltip-text">
@@ -21,37 +20,38 @@
 
 <script lang="ts">
 import './Tooltip.css';
+import type { ClassValue } from 'svelte/elements';
 import { onDestroy, onMount, type Snippet } from 'svelte';
 import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
 
 interface Props {
+	class?: ClassValue;
 	element?: HTMLElement;
 	target?: string;
+	offset?: number | string;
 	delay?: number | string;
 	position?: 'top' | 'bottom' | 'left' | 'right';
-	offset?: number | string;
 	shortcut?: string;
-	class?: string;
+	danger?: boolean;
 	info?: boolean;
 	success?: boolean;
 	warning?: boolean;
-	danger?: boolean;
 	children?: Snippet;
 }
 
 
 let {
+	class: className = '',
 	element = $bindable(undefined),
 	target = '',
+	offset = 2,
 	delay = 0,
 	position = 'top',
-	offset = 2,
 	shortcut = '',
-	class: className = '',
+	danger = false,
 	info = false,
 	success = false,
 	warning = false,
-	danger = false,
 	children
 }: Props = $props();
 

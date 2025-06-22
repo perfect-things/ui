@@ -2,14 +2,16 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
 	role="option"
-	class="combobox-list-item"
-	class:in-group={!!item.group}
-
+	class={[
+		'combobox-list-item',
+		{
+			'in-group': !!item.group,
+			selected,
+			checked
+		}
+	]}
 	aria-selected={selected}
-	class:selected={selected}
-
 	aria-checked={!!checked}
-	class:checked={checked}
 
 	onclick={e => onclick(item, e)}
 	onmouseenter={() => highlightIndex = item.idx}

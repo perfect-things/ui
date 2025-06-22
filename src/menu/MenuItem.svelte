@@ -1,10 +1,15 @@
 <button
 	role="menuitem"
-	class="menu-item {className}"
-	class:disabled
-	class:success
-	class:warning
-	class:danger
+	class={[
+		'menu-item',
+		className,
+		{
+			success,
+			warning,
+			danger,
+			disabled,
+		}
+	]}
 	{...rest}
 	onmousedown={_onmousedown}
 	onclickcapture={_onclick}

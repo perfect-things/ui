@@ -1,4 +1,4 @@
-<pre class="language-json"><code class="language-json">{@html code}</code></pre>
+{#key code}<pre class="language-json"><code class="language-json">{@html code}</code></pre>{/key}
 
 <script lang="ts">
 
@@ -6,12 +6,14 @@ interface Props {
 	value?: string | object;
 }
 
-const { value = '' }: Props = $props();
+const {
+	value = ''
+}: Props = $props();
+
 
 const valueString = $derived((typeof value !== 'string') ? stringify(value) : value);
-// @ts-expect-error this is correct
+// @ts-ignore
 const code = $derived(window.Prism.highlight(valueString, window.Prism.languages.json, 'json'));
-
 
 
 function stringify (json) {

@@ -1,30 +1,31 @@
 {#if children}
 	<Button
-		class="push-button {className}"
 		aria-pressed={pressed}
 		bind:element
 		{onkeydown}
 		{onmousedown}
-		{...rest}>
+		{...rest}
+		class={['push-button', className]}>
 			{@render children?.()}
 	</Button>
 {:else}
 	<Button
-		class="push-button {className}"
 		aria-pressed={pressed}
 		bind:element
 		{onkeydown}
 		{onmousedown}
-		{...rest}/>
+		{...rest}
+		class={['push-button', className]} />
 {/if}
 
 <script lang="ts">
 import type { Snippet } from 'svelte';
+import type { ClassValue } from 'svelte/elements';
 import './PushButton.css';
 import { Button } from '../button';
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	pressed?: boolean;
 	element?: HTMLButtonElement;
 	onchange?: (e: { pressed: boolean }) => void;

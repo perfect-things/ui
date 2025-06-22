@@ -1,9 +1,16 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
 	<div
-		class="popover-plate popover-{_position} {className} {hideTip ? 'hide-tip' : ''}"
-		class:opening
-		bind:this={element}>
+		bind:this={element}
+		class={[
+			'popover-plate',
+			'popover-' + _position,
+			className,
+			{
+				opening,
+				'hide-tip': hideTip
+			}
+		]}>
 		<div class="popover">
 			<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 			<div class="popover-content" bind:this={contentEl}>
@@ -16,13 +23,14 @@
 
 
 <script lang="ts">
-import type { Snippet } from 'svelte';
 import './Popover.css';
+import type { Snippet } from 'svelte';
+import type { ClassValue } from 'svelte/elements';
 import { addArias, removeArias } from './utils';
 import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils';
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	offset?: string | number;
 	element?: HTMLElement;
 	contentEl?: HTMLElement;

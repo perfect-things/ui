@@ -1,14 +1,19 @@
 <div
-	class="textarea {className}"
-	class:autogrow
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'textarea',
+		className,
+		{
+			autogrow,
+			'label-on-the-left': labelOnTheLeft,
+			'has-error': !!error
+		}
+	]}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="textarea-inner" class:disabled>
+	<div class={['textarea-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<textarea
@@ -25,13 +30,14 @@
 </div>
 <script lang="ts">
 import './Textarea.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	name?: string;
 	value?: string;

@@ -1,13 +1,20 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="splitter {className}"
-	class:vertical={isVertical}
-	class:is-dragging={isDragging}
-	onmousedown={mousedown}
-	bind:this={element}></div>
+<div
+	bind:this={element}
+	{onmousedown}
+	class={[
+		'splitter',
+		className,
+		{
+			'vertical': isVertical,
+			'is-dragging': isDragging,
+		}
+	]}></div>
 
 
 <script lang="ts">
 import './Splitter.css';
+import type { ClassValue } from 'svelte/elements';
 import { onMount } from 'svelte';
 import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
 import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
@@ -20,7 +27,7 @@ type BoxType = {
 };
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	element?: HTMLElement;
 	onchange?: (box: BoxType) => void;
 	onchanged?: (box: BoxType) => void;
@@ -37,11 +44,12 @@ let {
 const size = 8, halfsize = size / 2;
 const Box: BoxType = {};
 
+let isDragging = $state(false);
 let isVertical = $state(false);
 let parentEl, targetEl;
 let initialTargetBox, startX, startY;
 let mousedownTargetBox;
-let isDragging = $state(false), bodyCursor;
+let bodyCursor;
 
 
 
@@ -134,7 +142,7 @@ function updateSize (box, withAnimation = false) {
 }
 
 
-function mousedown (e) {
+function onmousedown (e) {
 	if (isDragging) return;
 	isDragging = true;
 	e.preventDefault();

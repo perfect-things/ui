@@ -1,11 +1,12 @@
-<InfoBar class={className} {id} {msg} type="warning" bind:element/>
+<InfoBar {id} {msg} type="warning" bind:element class={className} />
 
 <script lang="ts">
+import type { ClassValue } from 'svelte/elements';
 import InfoBar from './InfoBar.svelte';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	element?: HTMLElement;
 	id?: string;
 	msg?: string;

@@ -1,13 +1,18 @@
 <div
-	class="input select {className}"
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
-
+	bind:this={element}
+	class={[
+		'input',
+		'select',
+		className,
+		{
+			'has-error': !!error,
+			'label-on-the-left': labelOnTheLeft
+		}
+	]}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
@@ -45,6 +50,7 @@
 
 <script lang="ts">
 import './Select.css';
+import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -54,7 +60,7 @@ import { Label } from '../label';
 
 interface Props {
 	id?: string;
-	class?: string;
+	class?: ClassValue;
 	disabled?: boolean;
 	required?: boolean;
 	value?: any;

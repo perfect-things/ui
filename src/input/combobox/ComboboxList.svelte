@@ -2,12 +2,17 @@
 {#if opened}
 	<div
 		id="{listId}"
-		class="combobox-list {opened ? '' : 'hidden'}"
-		class:multiselect
-		class:empty={!items.length && !shouldShowNewItem}
 		role="listbox"
-		{onmousedown}
-		bind:this={listElement}>
+		bind:this={listElement}
+		class={[
+			'combobox-list',
+			{
+				'hidden': !opened,
+				'empty': !items.length && !shouldShowNewItem,
+				multiselect
+			},
+		]}
+		{onmousedown}>
 
 		{#if items.length}
 			{#each groupedItems as group (group)}

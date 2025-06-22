@@ -3,7 +3,7 @@
 {/each}
 
 <script lang="ts">
-	import type { DataStoreType } from '../DataStore';
+import type { DataStoreType } from '../DataStore';
 import GridRow from './GridRow.svelte';
 
 interface Props {

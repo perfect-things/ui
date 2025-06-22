@@ -3,18 +3,19 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] fix json code bits live updating
-- [ ] upgrade all `class:` attrs to `{{}}` and maybe allow the full class={} fanciness in the components?
-- [ ] upgrade docs code to ts & svelte 5
-
-
 - [ ] make reusable core input component?
 - [ ] standardise event params (so that all events from components have the same structure)
 - [ ] define a core props interface for all components to extend
+
+
+- [ ] upgrade docs code to ts & svelte 5
 - [ ] fix docs for all components
+
 - [ ] explore options to use UI outside of svelte
 
 
+- [x] upgrade all `class:` attrs to `{{}}` and maybe allow the full class={} fanciness in the components? https://svelte.dev/docs/svelte/class#The-class:-directive
+- [x] fix json code bits live updating
 - [x] correct the event handlers that use `.detail`
 - [x] uncomment & fix InputNumber tests
 - [x] upgrade all components to `lang="ts"` and `/** @type {Props}` to interfaces

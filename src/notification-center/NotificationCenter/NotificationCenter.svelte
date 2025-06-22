@@ -1,9 +1,16 @@
 {#if !hideButton}
-	<PushButton icon="bell"
+	<PushButton
+		icon="bell"
 		{outline}
 		{round}
-		class="notification-center-button {hasNotifications} {hasArchivedNotifications}"
-		bind:pressed={$showArchive}/>
+		bind:pressed={$showArchive}
+		class={[
+			'notification-center-button',
+			{
+				'has-notifications': notifications.length || hasArchivedNotifications,
+				'has-archived-notifications': hasArchivedNotifications
+			}
+		]}/>
 {/if}
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -56,6 +63,7 @@
 
 <script lang="ts">
 import './NotificationCenter.css';
+import type { ClassValue } from 'svelte/elements';
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import { Icon } from '../../icon';
@@ -68,7 +76,7 @@ import { getNextNotification } from '../utils';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	round?: boolean;
 	outline?: boolean;
 	hideButton?: boolean;
@@ -93,8 +101,7 @@ let initial = $state(true);
 
 
 const duration = $derived($ANIMATION_SPEED);
-const hasArchivedNotifications = $derived(Object.keys($ArchivedNotifications).length ? 'has-archived-notifications' : '');
-const hasNotifications = $derived((notifications.length || hasArchivedNotifications) ? 'has-notifications' : '');
+const hasArchivedNotifications = $derived(Object.keys($ArchivedNotifications).length > 0);
 
 
 onMount(() => {

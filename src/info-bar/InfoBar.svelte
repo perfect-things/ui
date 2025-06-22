@@ -1,17 +1,24 @@
 {#if msg}
-	<div class="info-bar info-bar-{type} {className}" bind:this={element}>
-		<Icon name={type}/>
-		<p {id}>{@html msg}</p>
+	<div
+		bind:this={element}
+		class={[
+			'info-bar',
+			'info-bar-' + type,
+			className
+		]}>
+			<Icon name={type}/>
+			<p {id}>{@html msg}</p>
 	</div>
 {/if}
 
 <script lang="ts">
 import './InfoBar.css';
+import type { ClassValue } from 'svelte/elements';
 import { Icon } from '../icon';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	element?: HTMLElement;
 	id?: string;
 	msg?: string;

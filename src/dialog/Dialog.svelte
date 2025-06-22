@@ -5,9 +5,12 @@
 	role="dialog"
 	aria-modal="true"
 	aria-label={title}
-	class="dialog-backdrop {className}"
-	class:opened
 	bind:this={element}
+	class={[
+		'dialog-backdrop',
+		className,
+		{ opened }
+	]}
 	onmousedown={onBackdropMousedown}
 	onclick={onBackdropClick}>
 	<div class="dialog" class:no-title={!title} bind:this={dialogEl}>
@@ -21,12 +24,13 @@
 
 <script lang="ts">
 import './Dialog.css';
+import type { ClassValue } from 'svelte/elements';
 import { onMount, type Snippet } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	title?: string;
 	opened?: boolean;
 	skipFirstFocus?: boolean;

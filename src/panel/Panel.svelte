@@ -1,17 +1,12 @@
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
-	class="panel {className}"
-	class:collapsible
-	class:expanded
-	class:round
-	class:disabled
-	class:info
-	class:success
-	class:warning
-	class:danger
 	inert={disabled}
-	bind:this={element}>
-
+	bind:this={element}
+	class={[
+		'panel',
+		className,
+		{ collapsible, expanded, round, disabled, info, success, warning, danger }
+	]}>
 	{#if title}
 		<details {open} onkeydown={e => toggle(e)} onclick={e => toggle(e)}>
 			<summary class="panel-header" bind:this={headerEl} inert={!collapsible}>
@@ -29,13 +24,14 @@
 
 <script lang="ts">
 import './Panel.css';
+import type { ClassValue } from 'svelte/elements';
 import { onMount, type Snippet } from 'svelte';
 import { getIcon } from '../icon';
 import { animate } from '../utils';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	title?: string;
 	open?: boolean;
 	round?: boolean;
@@ -79,6 +75,7 @@ let expanded: boolean = $state(open || !title);
 
 
 onMount(calcHeights);
+
 
 function calcHeights () {
 	const wasOpen = open;

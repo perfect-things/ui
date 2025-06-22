@@ -1,9 +1,14 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-	class="table {className}"
-	class:round
-	class:selectable
 	bind:this={element}
+	class={[
+		'table',
+		className,
+		{
+			selectable,
+			round
+		}
+	]}
 	onclick={_onclick}
 	onfocuscapture={_onfocus}
 	onkeydown={_onkeydown}
@@ -14,11 +19,12 @@
 
 <script lang="ts">
 import './Table.css';
+import type { ClassValue } from 'svelte/elements';
 import { onDestroy, onMount, type Snippet } from 'svelte';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	selectable?: boolean;
 	round?: boolean;
 	scrollContainer?: string | HTMLElement;

@@ -1,14 +1,20 @@
 <div
-	class="input input-password {className}"
-	class:has-error={error}
-	class:visible
-	class:label-on-the-left={labelOnTheLeft}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'input',
+		'input-password',
+		className,
+		{
+			visible,
+			'has-error': !!error,
+			'label-on-the-left': labelOnTheLeft,
+		},
+	]}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row" class:visible>
@@ -48,6 +54,7 @@
 
 <script lang="ts">
 import './InputPassword.css';
+import type { ClassValue } from 'svelte/elements';
 import { onMount } from 'svelte';
 import { Button } from '../../button';
 import { guid } from '../../utils';
@@ -59,7 +66,7 @@ import { Label } from '../label';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	id?: string;
 	required?: boolean;
 	disabled?: boolean;

@@ -1,10 +1,13 @@
 {#if isVisible}
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<div
-		class="drawer {className}"
+		bind:this={element}
+		class={[
+			'drawer',
+			className,
+		]}
 		tabindex="-1"
 		use:docclick
-		bind:this={element}
 		in:fly="{{ x: 300, duration: $ANIMATION_SPEED }}"
 		out:fly="{{ x: 300, duration: $ANIMATION_SPEED ? $ANIMATION_SPEED + 100 : 0 }}"
 	>
@@ -19,13 +22,14 @@
 {/if}
 <script lang="ts">
 import './Drawer.css';
+import type { ClassValue } from 'svelte/elements';
 import type { Snippet } from 'svelte';
 import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 import { Button } from '../button';
 
 interface DrawerProps {
-	class?: string;
+	class?: ClassValue;
 	title?: string;
 	element?: HTMLElement;
 	onopen?: () => void;

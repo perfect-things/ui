@@ -1,7 +1,10 @@
 <Dialog
 	title={$config.title}
-	class="message-box message-{$config.type}"
-	bind:element={element}
+	class={[
+		'message-box',
+		'message-' + $config.type,
+	]}
+	bind:element
 	bind:this={dialog}
 	{onclose}>
 		<Icon name={$config.icon || $config.type}/>

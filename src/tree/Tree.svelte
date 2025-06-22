@@ -1,14 +1,16 @@
 <ul
-	class="tree {className}"
-	role="tree"
-	aria-label={title}
 	{title}
-	bind:this={element}
+	role="tree"
 	tabindex="0"
+	bind:this={element}
+	aria-label={title}
 	onfocus={selectFirst}
 	onclick={selectClicked}
-	onkeydown={_onkeydown}>
-
+	onkeydown={_onkeydown}
+	class={[
+		'tree',
+		className
+	]}>
 	{#each items as item (item)}
 		<TreeNode {item} />
 	{/each}
@@ -16,11 +18,12 @@
 
 <script lang="ts">
 import './Tree.css';
+import type { ClassValue } from 'svelte/elements';
 import TreeNode from './TreeNode.svelte';
 
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	items?: Array<any>;
 	title?: string;
 	element?: HTMLElement;

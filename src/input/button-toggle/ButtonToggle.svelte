@@ -1,26 +1,37 @@
 <div
-	class="input button-toggle {className}"
-	class:round
-	class:has-error={error}
-	class:label-on-the-left={labelOnTheLeft}
 	role="radiogroup"
 	aria-invalid={!!error}
 	aria-errormessage={error ? errorMessageId : undefined}
 	{title}
-	bind:this={element}>
+	bind:this={element}
+	class={[
+		'input',
+		'button-toggle',
+		className,
+		{
+			round,
+			disabled,
+			'label-on-the-left': labelOnTheLeft,
+			'has-error': error
+		},
+	]}>
+
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
+	<div class={['input-inner', { disabled }]}>
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-scroller">
 			<div class="input-row">
 				{#each _items as item, idx (item.value)}
 					<label
-						class="button button-normal"
-						class:button-has-text={item.name}
+						class={[
+							'button',
+							'button-normal',
+							{ 'button-has-text': item.name },
+						]}
 						{...({ disabled } as any)}
 						{onclick}>
 							{#if item.icon}
@@ -49,12 +60,13 @@ import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
+	import type { ClassValue } from 'svelte/elements';
 
-type Item = { name: string, value: string | boolean, icon?: string } | string;
+type Item = { name?: string, value: string | boolean, icon?: string } | string;
 type Value = Item | string | boolean;
 
 interface Props {
-	class?: string;
+	class?: ClassValue;
 	disabled?: boolean;
 	round?: boolean;
 	items?: Item[];

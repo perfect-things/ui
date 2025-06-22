@@ -1,7 +1,9 @@
 <li bind:this={element}>
 	<div
-		class="tree-node"
-		class:expanded
+		class={[
+			'tree-node',
+			{ expanded }
+		]}
 		role={item.items ? 'group' : 'treeitem'}
 		aria-selected="false"
 		aria-label={item.name}
