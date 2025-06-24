@@ -1,20 +1,11 @@
 <div
-	{title}
+	class={cls}
 	role="radiogroup"
 	aria-invalid={!!error}
 	aria-errormessage={error ? errorMessageId : undefined}
 	bind:this={element}
-	class={[
-		'input',
-		'button-toggle',
-		className,
-		{
-			round,
-			disabled,
-			'label-on-the-left': labelOnTheLeft,
-			'has-error': error
-		},
-	]}>
+	{...restProps}>
+
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -53,45 +44,48 @@
 
 <script lang="ts">
 import './ButtonToggle.css';
-import type { InputProps } from '../types';
+import type { ButtonToggleProps } from './types';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-type Item = { name?: string, value: string | boolean, icon?: string } | string;
-type Value = Item | string | boolean;
 
-interface Props extends InputProps {
-	round?: boolean;
-	items?: Item[];
-	value?: Value;
-	onchange?: (e: Event, value: Value) => void;
-}
 
 let {
+	id = undefined,
+	name = undefined,
 	class: className = '',
 	disabled = undefined,
 	round = undefined,
 	items = [],
-	id = '',
-	name = guid(),
 	value = $bindable(''),
-	title = undefined,
 	label = '',
 	error = undefined,
 	info = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	onchange = () => {},
-}: Props = $props();
+	...restProps
+}: ButtonToggleProps = $props();
 
 
 const errorMessageId = guid();
 
 
 const _id = $derived(id || name || guid());
+const cls = $derived([
+	'input',
+	'button-toggle',
+	className,
+	{
+		round,
+		disabled,
+		'label-on-the-left': labelOnTheLeft,
+		'has-error': error
+	},
+]);
 
 const _items = $derived(items.map(item => {
 	if (typeof item === 'string') {

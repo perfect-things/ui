@@ -13,7 +13,7 @@
 </th>
 
 <script lang="ts">
-import type { DataStoreType } from '../DataStore';
+import type { DataStoreType } from '../types';
 import { Icon } from '../../icon';
 
 interface Props {

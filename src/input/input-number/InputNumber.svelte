@@ -1,14 +1,7 @@
 <div
+	class={cls}
 	bind:this={element}
-	class={[
-		'input',
-		'input-number',
-		className,
-		{
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft
-		}
-	]}>
+	{...restProps}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
@@ -22,7 +15,10 @@
 			id={_id}
 			{name}
 			{disabled}
-			{...rest}
+			{placeholder}
+			{min}
+			{max}
+			{step}
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
@@ -31,41 +27,44 @@
 			onkeydown={_onkeydown}
 			onchange={_onchange}
 			{onpaste}
+			{onfocus}
+			{onblur}
 			{ondrop}>
 	</div>
 </div>
 
 <script lang="ts">
-import type { InputProps } from '../types';
+import type { InputNumberProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-interface Props extends InputProps {
-	separator?: string;
-	onchange?: (e: Event, value: string | number) => void;
-	onkeydown?: (e: Event, value: string | number) => void;
-}
 
 let {
 	class: className = '',
-	id = '',
-	name = guid(),
+	id = undefined,
+	name = undefined,
 	disabled = undefined,
 	required = undefined,
+	placeholder = undefined,
 	value = $bindable(''),
 	label = '',
 	error = undefined,
 	info = undefined,
 	separator = '.',
+	min = undefined,
+	max = undefined,
+	step = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	onchange = () => {},
 	onkeydown = () => {},
-	...rest
-}: Props = $props();
+	onfocus = () => {},
+	onblur = () => {},
+	...restProps
+}: InputNumberProps = $props();
 
 
 const errorMessageId = guid();
@@ -75,8 +74,17 @@ const allowedKeys = [
 	'Meta', 'Ctrl', 'Shift', 'Backspace', 'Delete', 'Tab', 'Enter', 'Escape'
 ];
 
-
 const _id = $derived(id || name || guid());
+const cls = $derived([
+	'input',
+	'input-number',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
+
 
 
 function _onkeydown (e: KeyboardEvent) {

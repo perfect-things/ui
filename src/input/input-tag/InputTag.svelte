@@ -1,19 +1,6 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-<div
-	{title}
-	bind:this={element}
-	class={[
-		'input',
-		'input-tag',
-		className,
-		{
-			'has-error': !!error,
-			'has-value': _value.length > 0,
-			'label-on-the-left': labelOnTheLeft
-		},
-	]}>
-
+<div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -38,6 +25,7 @@
 				type="hidden"
 				{name}
 				{disabled}
+				{placeholder}
 				{value}
 				bind:this={inputElement}/>
 		</div>
@@ -69,7 +57,7 @@
 
 <script lang="ts">
 import './InputTag.css';
-import type { InputProps } from '../types';
+import type { InputTagProps, TagItem } from './types';
 import { InputText } from '../input-text';
 import { Button } from '../../button';
 import { Popover } from '../../popover';
@@ -82,23 +70,12 @@ import { Label } from '../label';
 
 
 
-interface TagItem {
-	text: string;
-	disabled: boolean;
-}
-
-interface Props extends InputProps {
-	tags?: string[];
-	boxElement?: HTMLDivElement;
-	listElement?: HTMLDivElement;
-}
-
 let {
 	class: className = '',
 	id = '',
 	name = '',
-	title = '',
 	disabled = false,
+	placeholder = undefined,
 	value = $bindable(''),
 	label = '',
 	error = undefined,
@@ -110,7 +87,8 @@ let {
 	boxElement = $bindable(undefined),
 	listElement = $bindable(undefined),
 	onchange = () => {},
-}: Props = $props();
+	...restProps
+}: InputTagProps = $props();
 
 
 
@@ -123,6 +101,17 @@ let _tags = $state<TagItem[]>([]);
 
 const _id = $derived(id || name || guid());
 const _value = $derived(valueToArray(value));
+const cls = $derived([
+	'input',
+	'input-tag',
+	className,
+	{
+		'has-error': !!error,
+		'has-value': _value.length > 0,
+		'label-on-the-left': labelOnTheLeft
+	},
+]);
+
 
 
 $effect(hydrateTags);

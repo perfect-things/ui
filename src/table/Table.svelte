@@ -1,43 +1,20 @@
-<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
+	class={cls}
 	bind:this={element}
-	class={[
-		'table',
-		className,
-		{
-			selectable,
-			round
-		}
-	]}
 	onclick={_onclick}
 	onfocuscapture={_onfocus}
 	onkeydown={_onkeydown}
-	ondblclick={_ondblclick}>
+	ondblclick={_ondblclick}
+	{...restProps}>
 
 	<table>{@render children?.()}</table>
 </div>
 
 <script lang="ts">
 import './Table.css';
-import type { ClassValue } from 'svelte/elements';
-import { onDestroy, onMount, type Snippet } from 'svelte';
+import type { TableProps } from './types';
+import { onDestroy, onMount } from 'svelte';
 
-
-interface Props {
-	class?: ClassValue;
-	selectable?: boolean;
-	round?: boolean;
-	scrollContainer?: string | HTMLElement;
-	scrollCorrectionOffset?: number | string;
-	element?: HTMLElement;
-	rowSelector?: string;
-	data?: Record<string, any>;
-	onselect?: (e: { selectedItem: Element }) => void;
-	onclick?: (e: { event: Event, selectedItem: Element }) => void;
-	ondblclick?: (e: { event: Event, selectedItem: Element }) => void;
-	onkeydown?: (e: { event: KeyboardEvent, key: string, selectedItem: Element }) => void;
-	children?: Snippet;
-}
 
 
 let {
@@ -53,13 +30,21 @@ let {
 	onclick = () => {},
 	ondblclick = () => {},
 	onkeydown = () => {},
-	children
-}: Props = $props();
+	children,
+	...restProps
+}: TableProps = $props();
 
 let selectedIdx = -1;
 let headerHeight = 0;
 let clickTimer;
 let previousKey;
+
+
+const cls = $derived([
+	'table',
+	className,
+	{ selectable, round }
+]);
 
 
 
@@ -104,23 +89,23 @@ function makeRowsNotSelectable () {
 }
 
 
-function selectPrev (skipEvent = false) {
+function selectPrev (e, skipEvent = false) {
 	const rows = getSelectableItems();
 	if (selectedIdx <= 0) return;
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	if (!skipEvent) onselect({ selectedItem: rowEl });
+	if (!skipEvent) onselect(e, { selectedItem: rowEl });
 }
 
 
-function selectNext (skipEvent = false) {
+function selectNext (e, skipEvent = false) {
 	const rows = getSelectableItems();
 	if (selectedIdx >= rows.length - 1) return;
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	if (!skipEvent) onselect({ selectedItem: rowEl });
+	if (!skipEvent) onselect(e, { selectedItem: rowEl });
 }
 
 
@@ -134,7 +119,7 @@ function getScrollContainer () {
 }
 
 
-function selectClicked (skipEvent = false) {
+function selectClicked (e, skipEvent = false) {
 	const rows = getSelectableItems();
 	const rowEl = rows[selectedIdx];
 	if (!rowEl) return;
@@ -155,15 +140,15 @@ function selectClicked (skipEvent = false) {
 		if (scrlCont.scrollTop < top) scrlCont.scrollTo({ top: Math.round(top) });
 	}
 
-	if (!skipEvent) onselect({ selectedItem: rowEl });
+	if (!skipEvent) onselect(e, { selectedItem: rowEl });
 }
 
 
-function selectFocusedRow (rowEl) {
+function selectFocusedRow (e: Event, rowEl: HTMLElement) {
 	if (!rowEl) return;
 	const rows = getSelectableItems();
 	selectedIdx = rows.findIndex(item => item === rowEl);
-	selectClicked(true);
+	selectClicked(e, true);
 }
 
 
@@ -174,10 +159,10 @@ function _onfocus (e) {
 	if (e.target === document) return;
 	if (!e.target.matches(rowSelector)) return;
 
-	const rowEl = e.target.closest(rowSelector);
-	if (rowEl) {
-		selectFocusedRow(rowEl);
-		onclick({ event: e, selectedItem: rowEl });
+	const selectedItem = e.target.closest(rowSelector);
+	if (selectedItem) {
+		selectFocusedRow(e, selectedItem);
+		onclick(e, { selectedItem });
 	}
 }
 
@@ -188,13 +173,12 @@ function _onclick (e) {
 
 	// debounce, so to not duplicate events when dblclicking
 	if (clickTimer) clearTimeout(clickTimer);
-	const rowEl = e.target.closest(rowSelector);
-	e.selectedItem = rowEl;
-	clickTimer = setTimeout(() => onselect(e), 300);
+	const selectedItem = e.target.closest(rowSelector);
+	clickTimer = setTimeout(() => onselect(e, { selectedItem }), 300);
 
-	if (rowEl) {
-		selectFocusedRow(rowEl);
-		onclick({ event: e, selectedItem: rowEl });
+	if (selectedItem) {
+		selectFocusedRow(e, selectedItem);
+		onclick(e, { selectedItem });
 	}
 }
 
@@ -208,7 +192,7 @@ function _ondblclick (e) {
 	onclick(e);
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems()[selectedIdx];
-		ondblclick({ event: e, selectedItem });
+		ondblclick(e, { selectedItem });
 	});
 }
 
@@ -220,26 +204,26 @@ function _onkeydown (e) {
 
 	if (e.key === 'ArrowUp' || e.key === 'k') {
 		e.preventDefault();
-		selectPrev();
+		selectPrev(e);
 	}
 	if (e.key === 'ArrowDown' || e.key === 'j') {
 		e.preventDefault();
-		selectNext();
+		selectNext(e);
 	}
 	if (e.key === 'ArrowLeft' || (e.key === 'g' && previousKey === 'g')) {
 		e.preventDefault();
 		selectedIdx = -1;
-		selectNext();
+		selectNext(e);
 	}
 	if (e.key === 'ArrowRight' || e.key === 'G') {
 		e.preventDefault();
 		const rows = getSelectableItems();
 		selectedIdx = rows && rows.length - 2;
-		selectNext();
+		selectNext(e);
 	}
 	previousKey = e.key;
 	const selectedItem = getSelectableItems()[selectedIdx];
-	onkeydown({ event: e, key: e.key, selectedItem });
+	onkeydown(e, { selectedItem });
 }
 
 

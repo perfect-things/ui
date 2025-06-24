@@ -1,14 +1,4 @@
-<div
-	bind:this={element}
-	class={[
-		'input',
-		'select',
-		className,
-		{
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft
-		}
-	]}>
+<div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -50,17 +40,11 @@
 
 <script lang="ts">
 import './Select.css';
-import type { InputProps } from '../types';
+import type { SelectProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
-
-
-
-interface Props extends InputProps {
-	items?: any[];
-}
 
 
 let {
@@ -79,8 +63,9 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
-	onchange = () => {}
-}: Props = $props();
+	onchange = () => {},
+	...restProps
+}: SelectProps = $props();
 
 
 // let groups = $state([]);
@@ -88,6 +73,16 @@ const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
 const groups = $derived(groupItems(items));
+
+const cls = $derived([
+	'input',
+	'select',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
 
 
 function groupItems (_items) {

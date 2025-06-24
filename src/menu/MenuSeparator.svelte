@@ -1,12 +1,9 @@
 <li role="separator" class="menu-item menu-separator" bind:this={element}></li>
 
 <script lang="ts">
-
-interface Props {
-	element?: HTMLElement;
-}
+import type { MenuItemProps } from './types';
 
 let {
 	element = $bindable(undefined)
-}: Props = $props();
+}: MenuItemProps = $props();
 </script>

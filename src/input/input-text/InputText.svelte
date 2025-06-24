@@ -1,14 +1,4 @@
-<div
-	bind:this={element}
-	class={[
-		'input',
-		'input-text',
-		className,
-		{
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft
-		}
-	]}>
+<div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -16,16 +6,23 @@
 		<InputError id={errorMessageId} msg={error} />
 		<input
 			id={_id}
-			autocomplete="off"
+			{autocomplete}
 			type="text"
 			{name}
 			{disabled}
-			{...rest}
+			{placeholder}
+			{maxlength}
+			{minlength}
+			{pattern}
+			{tabindex}
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
 			bind:this={inputElement}
-			bind:value>
+			bind:value
+			{onfocus}
+			{onblur}
+			{onkeydown}>
 	</div>
 </div>
 
@@ -44,6 +41,12 @@ let {
 	name = '',
 	required = undefined,
 	disabled = false,
+	placeholder = undefined,
+	autocomplete = 'off',
+	maxlength = undefined,
+	minlength = undefined,
+	pattern = undefined,
+	tabindex = undefined,
 	value = $bindable(''),
 	label = '',
 	error = undefined,
@@ -51,11 +54,24 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
-	...rest
+	onfocus = () => {},
+	onblur = () => {},
+	onkeydown = () => {},
+	...restProps
 }: InputProps = $props();
 
 
 const _id = $derived(id || name || guid());
+const cls = $derived([
+	'input',
+	'input-text',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
+
 
 const errorMessageId = guid();
 

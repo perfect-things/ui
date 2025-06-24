@@ -107,7 +107,7 @@ export default ts.config(
 			// '@typescript-eslint/no-unused-vars': 'off', // Allow unused vars during migration
 			'@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
 			'@typescript-eslint/no-explicit-any': 'off', // Allow any types during migration
-			'@typescript-eslint/ban-ts-comment': 'off'
+			'@typescript-eslint/ban-ts-comment': 'off',
 		}
 	}
 );

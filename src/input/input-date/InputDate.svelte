@@ -1,18 +1,8 @@
 <div
-	{title}
+	class={cls}
 	bind:this={element}
 	aria-expanded={open}
-	class={[
-		'input',
-		'input-date',
-		className,
-		{
-			open,
-			native: useNative,
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft,
-		},
-	]}>
+	{...restProps}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
@@ -36,6 +26,7 @@
 					aria-invalid={!!error}
 					aria-errormessage={error ? errorMessageId : undefined}
 					aria-required={required}
+					{placeholder}
 					{name}
 					{disabled}
 					id={_id}
@@ -68,7 +59,7 @@
 
 <script lang="ts">
 import './InputDate.css';
-import type { InputProps } from '../types';
+import type { InputDateProps } from './types';
 import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
@@ -77,16 +68,6 @@ import { guid, isMobile } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
-
-
-interface Props extends InputProps {
-	format?: string;				// 'yyyy-mm-dd'
-	elevate?: boolean;				// if true, the datepicker will be elevated to the body
-	showOnFocus?: boolean;			// if true, the datepicker will be shown on focus
-	orientation?: string;			// '[left|right|auto] [top|bottom|auto]'
-	useNativeOnMobile?: boolean;	// if true, the native date input will be used on mobile devices
-	onkeydown?: (e: KeyboardEvent, component: Datepicker) => void;
-}
 
 
 let {
@@ -107,11 +88,11 @@ let {
 	elevate = false,
 	showOnFocus = false,
 	orientation = 'auto',	// '[left|right|auto] [top|bottom|auto]'
-	title = undefined,
 	useNativeOnMobile = false,
 	onchange = () => {},
 	onkeydown = () => {},
-}: Props = $props();
+	...restProps
+}: InputDateProps = $props();
 
 
 let picker;
@@ -122,7 +103,18 @@ const useNative = isMobile() && useNativeOnMobile;
 let open = $state(!!useNative);
 
 const _id = $derived(id || name || guid());
-const elevated = $derived(elevate);
+const cls = $derived([
+	'input',
+	'input-date',
+	className,
+	{
+		open,
+		native: useNative,
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+	},
+]);
+
 
 
 onMount(initDatePicker);
@@ -137,7 +129,7 @@ function initDatePicker () {
 	picker = new Datepicker(inputElement, {
 		autohide: true,
 		buttonClass: 'button button-text',
-		container: elevated ? document.body : undefined,
+		container: elevate ? document.body : undefined,
 		format,
 		todayBtn: true,
 		todayBtnMode: 1,

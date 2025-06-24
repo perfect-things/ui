@@ -1,18 +1,5 @@
-<div
-	{id}
-	{title}
-	bind:this={element}
-	class={[
-		'check-and-radio',
-		'radio',
-		className,
-		{
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft,
-		}
-	]}>
-
-	<Label {label} {disabled} for={_id}/>
+<div bind:this={element} class={cls} {...restProps}>
+	<Label {label} {disabled} for={_items[0].id}/>
 
 	<Info msg={info} />
 
@@ -44,7 +31,7 @@
 </div>
 <script lang="ts">
 import './Radio.css';
-import type { InputProps } from '../types';
+import type { RadioProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -52,16 +39,9 @@ import { Label } from '../label';
 
 
 
-
-interface Props extends InputProps {
-	items?: any;
-}
-
 let {
 	class: className = '',
-	id = '',
 	name = guid(),
-	title = undefined,
 	label = '',
 	disabled = false,
 	items = [],
@@ -71,12 +51,22 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	onchange = () => {},
-}: Props = $props();
+	...restProps
+}: RadioProps = $props();
 
 
 const errorMessageId = guid();
 
-const _id = $derived(id || name || guid());
+const cls = $derived([
+	'check-and-radio',
+	'radio',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+	}
+]);
+
 
 const _items = $derived(items.map((item: any) => {
 	if (typeof item === 'string') item = { name: item, value: item };

@@ -1,48 +1,25 @@
-<!-- svelte-ignore a11y_no_static_element_interactions -->
-<div
-	bind:this={element}
-	{onmousedown}
-	class={[
-		'splitter',
-		className,
-		{
-			'vertical': isVertical,
-			'is-dragging': isDragging,
-		}
-	]}></div>
+<div class={cls} bind:this={element} {onmousedown} {...restProps}></div>
 
 
 <script lang="ts">
 import './Splitter.css';
-import type { ClassValue } from 'svelte/elements';
+import type { SplitterProps, SplitterBox } from './types';
 import { onMount } from 'svelte';
 import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
 import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
 
-
-type BoxType = {
-	width?: number;
-	height?: number;
-	collapsed?: boolean;
-};
-
-interface Props {
-	class?: ClassValue;
-	element?: HTMLElement;
-	onchange?: (box: BoxType) => void;
-	onchanged?: (box: BoxType) => void;
-}
 
 let {
 	class: className = '',
 	element = $bindable(undefined),
 	onchange = () => {},
 	onchanged = () => {},
-}: Props = $props();
+	...restProps
+}: SplitterProps = $props();
 
 
 const size = 8, halfsize = size / 2;
-const Box: BoxType = {};
+const Box: SplitterBox = {};
 
 let isDragging = $state(false);
 let isVertical = $state(false);
@@ -50,6 +27,15 @@ let parentEl, targetEl;
 let initialTargetBox, startX, startY;
 let mousedownTargetBox;
 let bodyCursor;
+
+const cls = $derived([
+	'splitter',
+	className,
+	{
+		'vertical': isVertical,
+		'is-dragging': isDragging,
+	}
+]);
 
 
 
@@ -121,7 +107,7 @@ function updateSize (box, withAnimation = false) {
 		const collapsed = initialTargetBox.minHeight === box.height;
 		Box.height = box.height;
 		Box.collapsed = collapsed;
-		onchange(Box);
+		onchange(undefined, Box);
 	}
 	else {
 		targetEl.style.width = box.width + 'px';
@@ -129,14 +115,14 @@ function updateSize (box, withAnimation = false) {
 		const collapsed = initialTargetBox.minWidth === box.width;
 		Box.width = box.width;
 		Box.collapsed = collapsed;
-		onchange(Box);
+		onchange(undefined, Box);
 	}
 
 	if (withAnimation) {
 		setTimeout(() => {
 			targetEl.style.transition = originalTargetTransition;
 			element.style.transition = originalElTransition;
-			onchanged(Box);
+			onchanged(undefined, Box);
 		}, $ANIMATION_SPEED);
 	}
 }
@@ -159,7 +145,7 @@ function onmousedown (e) {
 }
 
 
-function mousemove (e) {
+function mousemove (e: MouseEvent) {
 	e.preventDefault();
 	e.stopPropagation();
 	if (isVertical) {
@@ -177,12 +163,12 @@ function mousemove (e) {
 }
 
 
-function mouseup () {
+function mouseup (e: MouseEvent) {
 	if (!isDragging) return;
 	isDragging = false;
 	document.removeEventListener('mouseup', mouseup);
 	document.removeEventListener('mousemove', mousemove);
 	document.body.style.cursor = bodyCursor;
-	onchanged(Box);
+	onchanged(e, Box);
 }
 </script>

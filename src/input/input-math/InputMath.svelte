@@ -1,14 +1,7 @@
  <div
 	bind:this={element}
-	class={[
-		'input',
-		'input-math',
-		className,
-		{
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft,
-		},
-	]}>
+	class={cls}
+	{...restProps}>
 
 	<Label {label} for={_id}/>
 	<Info msg={info} />
@@ -21,15 +14,15 @@
 			<input
 				type="text"
 				autocomplete="off"
-				{disabled}
 				id={_id}
 				name={name}
-				{...rest}
+				{disabled}
+				{placeholder}
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				bind:value={value}
+				bind:value
 				onchange={_onchange}
 				onkeydown={_onkeydown}
 				onpaste={_onpaste}>
@@ -52,6 +45,7 @@ let {
 	name = '',
 	required = undefined,
 	disabled = false,
+	placeholder = undefined,
 	value = $bindable(''),
 	label = '',
 	error = undefined,
@@ -61,7 +55,7 @@ let {
 	inputElement = $bindable(undefined),
 	onchange = () => {},
 	onkeydown = () => {},
-	...rest
+	...restProps
 }: InputProps = $props();
 
 
@@ -76,7 +70,15 @@ const allowedKeys = [
 
 
 const _id = $derived(id || name || guid());
-
+const cls = $derived([
+	'input',
+	'input-math',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+	},
+]);
 
 
 function _onkeydown (e) {

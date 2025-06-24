@@ -1,16 +1,4 @@
-<div
-	bind:this={element}
-	class={[
-		'input',
-		'input-password',
-		className,
-		{
-			visible,
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft,
-		},
-	]}>
-
+<div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -26,12 +14,11 @@
 				{value}
 				{disabled}
 				{placeholder}
-				{...rest}
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				oninput={e => _oninput(e)}>
+				oninput={_oninput}>
 			<Button link icon={visible ? 'eye' : 'eyeOff'} class="input-password-button" onclick={toggle}/>
 		</div>
 
@@ -54,33 +41,13 @@
 
 <script lang="ts">
 import './InputPassword.css';
-import type { InputProps } from '../types';
+import type { InputPasswordProps, ZxcvbnLib } from './types';
 import { onMount } from 'svelte';
 import { Button } from '../../button';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
-
-
-
-interface Props extends InputProps {
-	strength?: boolean;
-	oninput?: (event: Event, value: string) => void;
-}
-
-interface ZxcvbnResult {
-	score: number;
-	feedback: {
-		warning: string;
-		suggestions: string[];
-	};
-}
-
-interface ZxcvbnLib {
-	(password: string): ZxcvbnResult;
-}
-
 
 
 let {
@@ -99,8 +66,8 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	oninput = () => {},
-	...rest
-}: Props = $props();
+	...restProps
+}: InputPasswordProps = $props();
 
 
 
@@ -125,7 +92,16 @@ let colorClass = $state('');
 
 const type = $derived(visible ? 'text' : 'password');
 const _id = $derived(id || name || guid());
-
+const cls = $derived([
+	'input',
+	'input-password',
+	className,
+	{
+		visible,
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+	},
+]);
 
 
 onMount(() => {

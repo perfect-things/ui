@@ -2,15 +2,8 @@
 {#if opened}
 	<div
 		bind:this={element}
-		class={[
-			'popover-plate',
-			'popover-' + _position,
-			className,
-			{
-				opening,
-				'hide-tip': hideTip
-			}
-		]}>
+		class={cls}
+		{...restProps}>
 		<div class="popover">
 			<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 			<div class="popover-content" bind:this={contentEl}>
@@ -24,24 +17,9 @@
 
 <script lang="ts">
 import './Popover.css';
-import type { Snippet } from 'svelte';
-import type { ClassValue } from 'svelte/elements';
+import type { PopoverProps } from './types';
 import { addArias, removeArias } from './utils';
 import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils';
-
-interface Props {
-	class?: ClassValue;
-	offset?: string | number;
-	element?: HTMLElement;
-	contentEl?: HTMLElement;
-	position?: 'top' | 'bottom' | 'left' | 'right';
-	hideTip?: boolean;
-	dontHideOnTargetClick?: boolean;
-	setMinWidthToTarget?: boolean;
-	children?: Snippet;
-	onopen?: (event: { event: Event, target: EventTarget }) => void;
-	onclose?: (event: { target: EventTarget }) => void;
-}
 
 let {
 	class: className = '',
@@ -55,7 +33,8 @@ let {
 	children,
 	onopen = () => {},
 	onclose = () => {},
-}: Props = $props();
+	...restProps
+}: PopoverProps = $props();
 
 
 let opened = $state(false);
@@ -67,6 +46,12 @@ let eventsAdded = false;
 
 const observer = new MutationObserver(updatePosition);
 
+const cls = $derived([
+	'popover-plate',
+	'popover-' + _position,
+	className,
+	{ opening, 'hide-tip': hideTip }
+]);
 
 
 export function updatePosition () {

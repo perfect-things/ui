@@ -1,14 +1,9 @@
-{@html svg}
-
+{#if name}{@html svg}{/if}
 <script lang="ts">
+import type { IconProps } from './types';
+import { getIcon } from './icons';
 
-import { getIcon } from './icons.js';
-
-interface Props {
-	name?: string;
-}
-
-const { name = '' }: Props = $props();
+const { name = '' }: IconProps = $props();
 
 const svg = $derived(getIcon(name));
 </script>

@@ -24,11 +24,11 @@ test('InputMath', async () => {
 
 	const cmp = document.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
+	expect(cmp).toHaveAttribute('title', props.title);
 
 	// verify props
 	const input = cmp.querySelector('input');
 	expect(input).toHaveAttribute('id', props.id);
-	expect(input).toHaveAttribute('title', props.title);
 	expect(input).toHaveAttribute('name', props.name);
 	expect(input).toHaveAttribute('placeholder', props.placeholder);
 	expect(input).toHaveAttribute('aria-required');

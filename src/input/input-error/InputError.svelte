@@ -7,18 +7,11 @@
 
 <script lang="ts">
 import './InputError.css';
+import type { InputErrorProps } from './types';
 import { ANIMATION_SPEED } from '../../utils';
 import Error from '../../info-bar/Error.svelte';
 
 
-
-interface Props {
-	id?: string;
-	msg?: string;
-	element?: HTMLElement;
-	animOffset?: number;		// - used in checkbox, as there is a gap between input and error
-	animOpacity?: boolean;		// - so that the animation looks weird without the fadein/out
-}
 
 let {
 	id = undefined,
@@ -26,7 +19,8 @@ let {
 	element = $bindable(undefined),
 	animOffset = 0,
 	animOpacity = false
-}: Props = $props();
+}: InputErrorProps = $props();
+
 
 const _animOffset = $derived(parseInt(String(animOffset), 10) || 0);
 const _hasOffset = $derived(_animOffset > 0);

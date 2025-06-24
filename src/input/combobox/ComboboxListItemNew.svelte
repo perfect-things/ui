@@ -14,9 +14,9 @@
 <script lang="ts">
 
 interface Props {
-	selected?: boolean;
-	show?: boolean;
 	name?: string;
+	show?: boolean;
+	selected?: boolean;
 	onclick?: (e: Event) => void;
 }
 

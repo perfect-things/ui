@@ -1,12 +1,8 @@
 {#if opened}
 	<div
+		class={cls}
 		bind:this={element}
-		class={[
-			'popover-plate',
-			'popover-' + _position,
-			'tooltip-plate',
-			{ opened, info, success, warning, danger },
-		]}>
+		{...restProps}>
 		<div class="popover tooltip {className}" role="tooltip">
 			<div class="popover-content tooltip-content">
 				<div class="tooltip-text">
@@ -20,24 +16,10 @@
 
 <script lang="ts">
 import './Tooltip.css';
-import type { ClassValue } from 'svelte/elements';
-import { onDestroy, onMount, type Snippet } from 'svelte';
+import type { TooltipProps } from './types';
+import { onDestroy, onMount } from 'svelte';
 import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
 
-interface Props {
-	class?: ClassValue;
-	element?: HTMLElement;
-	target?: string;
-	offset?: number | string;
-	delay?: number | string;
-	position?: 'top' | 'bottom' | 'left' | 'right';
-	shortcut?: string;
-	danger?: boolean;
-	info?: boolean;
-	success?: boolean;
-	warning?: boolean;
-	children?: Snippet;
-}
 
 
 let {
@@ -52,18 +34,28 @@ let {
 	info = false,
 	success = false,
 	warning = false,
-	children
-}: Props = $props();
+	children,
+	...restProps
+}: TooltipProps = $props();
 
+
+let showTimer, hideTimer, shownEvent, noHide = false;
 
 let _position = $state(position);
 let opened = $state(false);
-let showTimer, hideTimer, shownEvent, noHide = false;
-let targetEl;
+let targetEl = $state(undefined);
+
+const cls = $derived([
+	'popover-plate',
+	'popover-' + _position,
+	'tooltip-plate',
+	{ opened, info, success, warning, danger },
+]);
+
 
 
 onMount(() => {
-	targetEl = target ? document.querySelector('#' + target) : document.body;
+	targetEl = target ? document.getElementById(target) : document.body;
 	addTargetEvents();
 });
 

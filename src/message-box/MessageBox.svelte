@@ -1,9 +1,6 @@
 <Dialog
 	title={$config.title}
-	class={[
-		'message-box',
-		'message-' + $config.type,
-	]}
+	class={['message-box', 'message-' + $config.type]}
 	bind:element
 	bind:this={dialog}
 	{onclose}>
@@ -31,6 +28,7 @@
 
 <script lang="ts">
 import './MessageBox.css';
+import type { DialogProps } from './types';
 import { onDestroy, onMount } from 'svelte';
 import { config } from './MessageBox.js';
 import { Dialog } from '../dialog';
@@ -39,12 +37,8 @@ import { Icon } from '../icon';
 
 let { element = $bindable(undefined) } = $props();
 
-type Props = {
-	open: (openedBy?: HTMLElement) => Promise<void>;
-	close: () => Promise<void>
-};
-
-let dialog: Props = $state(), sub;
+let dialog: DialogProps = $state();
+let sub;
 
 onMount(() => {
 	sub = config.subscribe(cfg => {

@@ -1,16 +1,7 @@
 <button
 	role="menuitem"
-	class={[
-		'menu-item',
-		className,
-		{
-			success,
-			warning,
-			danger,
-			disabled,
-		}
-	]}
-	{...rest}
+	class={cls}
+	{...restProps}
 	onmousedown={_onmousedown}
 	onclickcapture={_onclick}
 	bind:this={element}>
@@ -23,27 +14,11 @@
 </button>
 
 <script lang="ts">
-import { getContext, type Snippet } from 'svelte';
+import type { MenuItemProps } from './types';
+import { getContext } from 'svelte';
 import { Icon } from '../icon';
 import { blink, replaceKeySymbols } from '../utils';
 
-
-interface Props {
-	shortcut?: string;
-	icon?: string;
-	class?: string;
-	success?: boolean;
-	warning?: boolean;
-	danger?: boolean;
-	disabled?: boolean;
-	element?: HTMLElement;
-	children?: Snippet;
-	// allow 'data-x' attributes
-	[key: `data-${string}`]: string | number | boolean | undefined;
-
-	onclick?: (e: MouseEvent) => any;
-	onmousedown?: (e: MouseEvent) => any;
-}
 
 let {
 	shortcut = '',
@@ -57,12 +32,23 @@ let {
 	children,
 	onclick = () => {},
 	onmousedown = () => {},
-	...rest
-}: Props = $props();
+	...restProps
+}: MenuItemProps = $props();
 
 
 
 const { targetEl } = getContext('MenuContext') as any;
+
+const cls = $derived([
+	'menu-item',
+	className,
+	{
+		success,
+		warning,
+		danger,
+		disabled,
+	}
+]);
 
 
 function _onclick (e) {

@@ -43,40 +43,12 @@
 
 
 <script lang="ts">
+import type { ComboboxListGroup, ComboboxListProps } from './types';
 import ComboboxListItem from './ComboboxListItem.svelte';
 import ComboboxListItemNew from './ComboboxListItemNew.svelte';
 import ComboboxListHeader from './ComboboxListHeader.svelte';
 import { groupData } from './utils';
 
-type Item = {
-	id?: string;
-	name?: string;
-	highlightedName?: string;
-	idx?: number;
-	group?: boolean;
-};
-
-type Group = {
-	name: string;
-	items: Item[];
-};
-
-interface ComboboxListProps {
-	listId?: string;
-	allowNew?: boolean;
-	multiselect?: boolean;
-	items?: Item[];
-	selectedItems?: Item[];
-	opened?: boolean;
-	shouldShowNewItem?: boolean;
-	newItemName?: string;
-
-	highlightIndex?: number;
-	listElement?: HTMLDivElement;
-
-	onmousedown?: () => void;
-	onclick?: (event, item) => void;
-}
 
 let {
 	listId = '',
@@ -95,7 +67,7 @@ let {
 }: ComboboxListProps = $props();
 
 
-const groupedItems: Group[] = $derived(groupData(items));
+const groupedItems: ComboboxListGroup[] = $derived(groupData(items));
 
 
 function _onclick (e) {

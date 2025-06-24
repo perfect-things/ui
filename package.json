@@ -6,6 +6,83 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "UI",
+        "svelte",
+        "PerfectThings"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/perfect-things/ui.git"
+    },
+    "scripts": {
+        "prepare": "husky",
+        "dev": "vite",
+        "build": "npm run build:lib && npm run build:types",
+        "build:lib": "vite build --config vite.config.lib.js",
+        "build:types": "tsc --project tsconfig.build.json",
+        "build:docs": "vite build",
+        "preview": "vite preview",
+        "type-check": "svelte-check --tsconfig ./tsconfig.json",
+        "type-check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+        "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.html",
+        "lint": "npm run lint:js && npm run lint:css",
+        "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
+        "lint:js": "eslint \"src/**/*.{js,ts,svelte}\" \"docs-src/**/*.{js,ts,svelte}\" --format=pretty",
+        "lint:js:fix": "eslint \"src/**/*.{js,ts,svelte}\" \"docs-src/**/*.{js,ts,svelte}\" --fix --format=pretty",
+        "lint:css": "stylelint \"src/**/*.css\" \"docs-src/**/*.css\"",
+        "lint:css:fix": "stylelint \"src/**/*.css\" \"docs-src/**/*.css\" --fix",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:ui": "vitest --ui",
+        "test:coverage": "vitest run --coverage"
+    },
+
+    "dependencies": {
+        "vanilla-swipe": "^2.4.1",
+        "vanillajs-datepicker": "^1.3.4",
+        "zxcvbn": "^4.4.2"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.28.0",
+        "@stylistic/eslint-plugin": "^4.4.1",
+        "@sveltejs/vite-plugin-svelte": "^5.1.0",
+        "@testing-library/dom": "^10.4.0",
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/svelte": "^5.2.8",
+        "@testing-library/user-event": "^14.6.1",
+        "@tsconfig/svelte": "^5.0.4",
+        "@types/node": "^24.0.1",
+        "@vitest/coverage-v8": "^3.2.2",
+        "@vitest/ui": "^3.2.2",
+        "eslint": "^9.28.0",
+        "eslint-formatter-pretty": "^6.0.1",
+        "eslint-plugin-svelte": "^3.9.1",
+        "glob": "^11.0.3",
+        "globals": "^16.2.0",
+        "husky": "^9.1.7",
+        "jsdom": "^26.1.0",
+        "marked": "^15.0.12",
+        "prism-svelte": "^0.5.0",
+        "prismjs": "^1.30.0",
+        "rollup-plugin-copy": "^3.5.0",
+        "stylelint": "^16.20.0",
+        "stylelint-config-standard": "^38.0.0",
+        "stylelint-formatter-pretty": "^4.0.1",
+        "svelte": "^5.33.18",
+        "svelte-check": "^4.2.1",
+        "svelte-eslint-parser": "^1.2.0",
+        "svelte-jester": "^5.0.0",
+        "typescript": "^5.8.3",
+        "typescript-eslint": "^8.34.0",
+        "vite": "^6.3.5",
+        "vitest": "^3.2.2"
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
@@ -92,81 +169,5 @@
             "import": "./dist/utils/index.js"
         },
         "./styles": "./dist/ui.css"
-    },
-    "files": [
-        "dist",
-        "src"
-    ],
-    "license": "GPL-3.0-or-later",
-    "keywords": [
-        "UI",
-        "svelte",
-        "PerfectThings"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/perfect-things/ui.git"
-    },
-    "scripts": {
-        "prepare": "husky",
-        "dev": "vite",
-        "build": "npm run build:lib && npm run build:types",
-        "build:lib": "vite build --config vite.config.lib.js",
-        "build:types": "tsc --project tsconfig.build.json",
-        "build:docs": "vite build",
-        "preview": "vite preview",
-        "type-check": "svelte-check --tsconfig ./tsconfig.json",
-        "type-check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-        "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.html",
-        "lint": "npm run lint:js && npm run lint:css",
-        "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
-        "lint:js": "eslint \"src/**/*.{js,ts,svelte}\" \"docs-src/**/*.{js,ts,svelte}\" --format=pretty",
-        "lint:js:fix": "eslint \"src/**/*.{js,ts,svelte}\" \"docs-src/**/*.{js,ts,svelte}\" --fix --format=pretty",
-        "lint:css": "stylelint \"src/**/*.css\" \"docs-src/**/*.css\"",
-        "lint:css:fix": "stylelint \"src/**/*.css\" \"docs-src/**/*.css\" --fix",
-        "test": "vitest run",
-        "test:watch": "vitest",
-        "test:ui": "vitest --ui",
-        "test:coverage": "vitest run --coverage"
-    },
-    "dependencies": {
-        "vanilla-swipe": "^2.4.1",
-        "vanillajs-datepicker": "^1.3.4",
-        "zxcvbn": "^4.4.2"
-    },
-    "devDependencies": {
-        "@eslint/js": "^9.28.0",
-        "@stylistic/eslint-plugin": "^4.4.1",
-        "@sveltejs/vite-plugin-svelte": "^5.1.0",
-        "@testing-library/dom": "^10.4.0",
-        "@testing-library/jest-dom": "^6.6.3",
-        "@testing-library/svelte": "^5.2.8",
-        "@testing-library/user-event": "^14.6.1",
-        "@tsconfig/svelte": "^5.0.4",
-        "@types/node": "^24.0.1",
-        "@vitest/coverage-v8": "^3.2.2",
-        "@vitest/ui": "^3.2.2",
-        "eslint": "^9.28.0",
-        "eslint-formatter-pretty": "^6.0.1",
-        "eslint-plugin-svelte": "^3.9.1",
-        "glob": "^11.0.3",
-        "globals": "^16.2.0",
-        "husky": "^9.1.7",
-        "jsdom": "^26.1.0",
-        "marked": "^15.0.12",
-        "prism-svelte": "^0.5.0",
-        "prismjs": "^1.30.0",
-        "rollup-plugin-copy": "^3.5.0",
-        "stylelint": "^16.20.0",
-        "stylelint-config-standard": "^38.0.0",
-        "stylelint-formatter-pretty": "^4.0.1",
-        "svelte": "^5.33.18",
-        "svelte-check": "^4.2.1",
-        "svelte-eslint-parser": "^1.2.0",
-        "svelte-jester": "^5.0.0",
-        "typescript": "^5.8.3",
-        "typescript-eslint": "^8.34.0",
-        "vite": "^6.3.5",
-        "vitest": "^3.2.2"
     }
 }

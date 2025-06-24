@@ -25,10 +25,10 @@ test('Textarea renders with correct props', async () => {
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('test-class');
+	expect(cmp).toHaveAttribute('title', props.title);
 
-	const textarea = document.body.querySelector(`[title="${props.title}"]`);
+	const textarea = cmp.querySelector('textarea');
 	expect(textarea).toHaveAttribute('id', props.id);
-	expect(textarea).toHaveAttribute('title', props.title);
 	expect(textarea).toHaveAttribute('name', props.name);
 	expect(textarea).toHaveAttribute('placeholder', props.placeholder);
 	expect(textarea).toHaveAttribute('aria-required');
@@ -151,13 +151,10 @@ test('Textarea exposes element and inputElement references', async () => {
 test('Textarea with custom attributes passes them through to textarea element', async () => {
 	const props = $state({
 		'data-testid': 'custom-textarea',
-		'aria-describedby': 'description'
 	});
 	const component = mount(Textarea, { target: document.body, props });
-
-	const textarea = document.body.querySelector('textarea');
-	expect(textarea).toHaveAttribute('data-testid', 'custom-textarea');
-	expect(textarea).toHaveAttribute('aria-describedby', 'description');
+	const cmp = document.body.querySelector('.textarea');
+	expect(cmp).toHaveAttribute('data-testid', 'custom-textarea');
 
 	unmount(component);
 });

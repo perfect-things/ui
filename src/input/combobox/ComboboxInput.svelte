@@ -35,14 +35,12 @@
 			onclick={_onclick}
 			onmousedown={_onclick}
 			onkeydowncapture={onkeydown}
-			{onfocus}
-			{oninput}
-			{onblur}
 			{...restProps}>
 	</div>
 </div>
 
 <script lang="ts">
+import type { ComboboxInputProps } from './types';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 import { Info } from '../../info-bar';
@@ -51,28 +49,6 @@ import { guid, isMobile } from '../../utils';
 import { Button } from '../../button';
 
 
-interface Props {
-	id?: string;
-	listId?: string;
-	name?: string;
-	disabled?: boolean;
-	required?: boolean;
-	value?: any;
-	label?: string;
-	error?: string;
-	info?: string;
-	opened?: boolean;
-	placeholder?: string;
-	inputElement?: HTMLInputElement;
-	onclick?: (e: MouseEvent) => void;
-	oniconclick?: (e: MouseEvent) => void;
-	oniconmousedown?: (e: MouseEvent) => void;
-	onkeydown?: (e: KeyboardEvent) => void;
-	onfocus?: () => void;
-	oninput?: () => void;
-	onblur?: () => void;
-	[key: string]: any;
-}
 
 let {
 	id = '',
@@ -91,11 +67,8 @@ let {
 	oniconclick = () => {},
 	oniconmousedown = () => {},
 	onkeydown = () => {},
-	onfocus = () => {},
-	oninput = () => {},
-	onblur = () => {},
 	...restProps
-}: Props = $props();
+}: ComboboxInputProps = $props();
 
 
 const _id = $derived(id || name || guid());

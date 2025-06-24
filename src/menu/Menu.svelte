@@ -1,14 +1,18 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
-	<menu tabindex="0" class={['menu', className]} bind:this={element}>
+	<menu
+		tabindex="0"
+		class={['menu', className]}
+		bind:this={element}
+		{...restProps}>
 		{@render children?.()}
 	</menu>
 {/if}
 
 <script lang="ts">
 import './Menu.css';
-import type { ClassValue } from 'svelte/elements';
-import { onDestroy, onMount, setContext, type Snippet } from 'svelte';
+import type { MenuProps } from './types';
+import { onDestroy, onMount, setContext } from 'svelte';
 import { addArias, removeArias } from './utils';
 import initLongPressEvent from './longpress';
 import { alignItem, throttle, debounce, isMobile } from '../utils';
@@ -19,19 +23,6 @@ const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.
 // safari does not translate contextmenu to longpress
 const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
-
-interface Props {
-	class?: ClassValue;
-	type?: 'context' | undefined;
-	targetSelector?: string;
-	closeOnClick?: boolean;
-	align?: 'left' | 'right' | 'center' | undefined;
-	valign?: 'top' | 'bottom' | undefined;
-	element?: HTMLElement;
-	children?: Snippet;
-	onopen?: (e: { event: Event, target: Element }) => void;
-	onclose?: (e: { target: Element }) => void;
-}
 
 let {
 	class: className = '',
@@ -44,7 +35,8 @@ let {
 	children,
 	onopen = () => {},
 	onclose = () => {},
-}: Props = $props();
+	...restProps
+}: MenuProps = $props();
 
 
 const menuButtons = [];

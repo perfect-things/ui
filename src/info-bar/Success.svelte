@@ -1,22 +1,10 @@
-<InfoBar {id} {msg} type="success" bind:element class={className} />
+<InfoBar {...props} type="success" />
 
 <script lang="ts">
-import type { ClassValue } from 'svelte/elements';
+import type { InfoBarProps } from './types';
 import InfoBar from './InfoBar.svelte';
 
 
-interface Props {
-	class?: ClassValue;
-	element?: HTMLElement;
-	id?: string;
-	msg?: string;
-}
-
-let {
-	class: className = '',
-	element = $bindable(undefined),
-	id = undefined,
-	msg = ''
-}: Props = $props();
+const props: InfoBarProps = $props();
 
 </script>

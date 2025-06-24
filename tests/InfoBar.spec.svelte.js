@@ -26,9 +26,9 @@ test('InfoBar', async () => {
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('test');
 	expect(cmp).toHaveClass('info-bar-error');
+	expect(cmp).toHaveAttribute('id', 'test');
 
 	const msg = cmp.querySelector('p');
-	expect(msg).toHaveAttribute('id', 'test');
 	expect(msg).toHaveTextContent('test');
 
 	const icon = cmp.querySelector('svg');

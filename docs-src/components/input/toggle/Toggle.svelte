@@ -76,9 +76,8 @@ function onChange (e) {
 let error = $state('I can\'t see anything now!');
 let toggleValue = $state(false);
 
-function onchange (e) {
-	const val = e.detail;
+function onchange (e, val) {
 	error = val ? '' : 'I can\'t see anything now!';
-	console.log('onchange', e.detail);
+	console.log('onchange', e);
 }
 </script>

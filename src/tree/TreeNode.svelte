@@ -1,9 +1,6 @@
 <li bind:this={element}>
 	<div
-		class={[
-			'tree-node',
-			{ expanded }
-		]}
+		class={['tree-node', { expanded, selected }]}
 		role={item.items ? 'group' : 'treeitem'}
 		aria-selected="false"
 		aria-label={item.name}
@@ -15,16 +12,17 @@
 		onclick={item.items ? toggle : undefined}
 		{onkeydown}>
 
-		{#each indents as indent (indent)}
+		<!-- eslint-disable-next-line svelte/require-each-key -->
+		{#each indents as indent}
 			<div class="tree-indent indent-{indent}"></div>
 		{/each}
 		<div class="tree-icon tree-{nodeType}-icon"></div>
-		<div class="tree-label">{item.name}</div>
+		<div class="tree-label">{item.id} {item.name}</div>
 	</div>
 
 	{#if item.items && expanded}
 		<ul>
-			{#each item.items as subitem (subitem.id || subitem.name)}
+			{#each item.items as subitem (subitem.id)}
 				<TreeNode level={level + 1} item={subitem} />
 			{/each}
 		</ul>
@@ -34,34 +32,29 @@
 
 
 <script lang="ts">
+import type { TreeNodeProps } from './types';
 import TreeNode from './TreeNode.svelte';
-
-interface Props {
-	item?: any;
-	level?: number;
-	expanded?: boolean;
-	element?: HTMLElement;
-}
 
 let {
 	item = {},
 	level = 0,
 	expanded = $bindable(false),
 	element = $bindable(undefined),
-}: Props = $props();
+}: TreeNodeProps = $props();
 
 const nodeType = $derived(item.items ? 'folder' : 'file');
 const indents = $derived(new Array(level).fill(0));
-
+let selected = $derived(item.selected || false);
 
 function toggle () {
 	expanded = !expanded;
 }
 
 
-function onkeydown (e) {
-	const key = e && e.detail && e.detail.key;
-	if (key === 'right') expanded = true;
-	else if (key === 'left') expanded = false;
+function onkeydown (e: KeyboardEvent) {
+	e.stopPropagation();
+	selected = true;
+	if (e.key === 'ArrowRight') expanded = true;
+	else if (e.key === 'ArrowLeft') expanded = false;
 }
 </script>

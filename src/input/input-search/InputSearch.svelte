@@ -1,16 +1,4 @@
-<div
-	bind:this={element}
-	class={[
-		'input',
-		'input-search',
-		className,
-		{
-			'has-error': !!error,
-			'has-value': value !== '',
-			'label-on-the-left': labelOnTheLeft
-		}
-	]}>
-
+<div class={cls} bind:this={element} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -26,13 +14,13 @@
 				type="search"
 				{disabled}
 				{name}
+				{placeholder}
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
 				bind:value
-				{onkeydown}
-				{...restProps}>
+				{onkeydown}>
 
 			<Button link
 				icon="close"
@@ -58,9 +46,10 @@ import { Label } from '../label';
 
 let {
 	class: className = '',
-	id = '',
-	name = '',
+	id = undefined,
+	name = undefined,
 	required = undefined,
+	placeholder = undefined,
 	disabled = false,
 	value = $bindable(''),
 	label = '',
@@ -74,6 +63,19 @@ let {
 
 const _id: string = $derived(id || name || guid());
 const errorMessageId: string = guid();
+
+const cls = $derived([
+	'input',
+	'input-search',
+	className,
+	{
+		'has-error': !!error,
+		'has-value': value !== '',
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
+
+
 
 function clear (): void {
 	value = '';

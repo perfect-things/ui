@@ -93,23 +93,23 @@ const buttonIcons = [
 
 
 
-function onStyleChange (e) {
+function onStyleChange (e, val) {
 	props.outline = false;
 	props.text = false;
 	props.link = false;
-	setProp(e, true);
+	setProp(val, true);
 }
 
-function onTypeChange (e) {
+function onTypeChange (e, val) {
 	props.info = false;
 	props.success = false;
 	props.warning = false;
 	props.danger = false;
-	setProp(e, true);
+	setProp(val, true);
 }
 
-function onIconChange (e) {
-	setProp('icon', e);
+function onIconChange (e, val) {
+	setProp('icon', val);
 }
 
 function setProp (name, val) {

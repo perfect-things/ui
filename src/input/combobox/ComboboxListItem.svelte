@@ -2,14 +2,7 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
 	role="option"
-	class={[
-		'combobox-list-item',
-		{
-			'in-group': !!item.group,
-			selected,
-			checked
-		}
-	]}
+	class={cls}
 	aria-selected={selected}
 	aria-checked={!!checked}
 
@@ -30,22 +23,8 @@
 </div>
 
 <script lang="ts">
+import type { ComboboxListItemProps } from './types';
 
-interface Item {
-	id?: string;
-	name?: string;
-	highlightedName?: string;
-	idx?: number;
-	group?: boolean;
-}
-
-interface Props {
-	item?: Item;
-	multiselect?: boolean;
-	selectedItems?: Array<Item>;
-	highlightIndex?: number;
-	onclick?: (event: Event, item: Item) => void;
-}
 
 let {
 	item = {},
@@ -53,11 +32,19 @@ let {
 	selectedItems = [],
 	highlightIndex = $bindable(0),
 	onclick = () => {}
-}: Props = $props();
+}: ComboboxListItemProps = $props();
 
 
 const selected = $derived(item.idx === highlightIndex);
 const checked = $derived(isChecked(item, selectedItems));
+const cls = $derived([
+	'combobox-list-item',
+	{
+		'in-group': !!item.group,
+		selected,
+		checked
+	}
+]);
 
 
 function isChecked (_item, _selectedItems = selectedItems) {

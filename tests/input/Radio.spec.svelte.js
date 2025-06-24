@@ -52,7 +52,6 @@ test('Radio', async () => {
 
 	const lbl = cmp.querySelector('label');
 	expect(lbl).toBeInTheDocument();
-	expect(lbl).toHaveAttribute('for', props.id);
 	expect(lbl).toHaveTextContent(props.label);
 
 

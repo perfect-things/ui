@@ -1,6 +1,6 @@
 <h2>Tree</h2>
 
-<div style="display: inline-block; width: 200px;">
+<div class="tree-wrapper">
 	<Tree {items} onselect={onSelect}/>
 </div>
 
@@ -12,6 +12,8 @@
 import { Tree } from '../../../src';
 import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './Tree.css';
+
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },

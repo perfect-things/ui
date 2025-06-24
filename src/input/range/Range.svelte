@@ -1,15 +1,4 @@
-<div
-	{title}
-	bind:this={element}
-	class={[
-		'range',
-		className,
-		{
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft,
-			disabled
-		}
-	]}>
+<div bind:this={element} class={cls} {...restProps}>
 
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
@@ -31,6 +20,7 @@
 			id={_id}
 			{name}
 			{disabled}
+			{placeholder}
 			{min}
 			{max}
 			{step}
@@ -38,35 +28,28 @@
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			bind:this={inputElement}
-			bind:value
-			{...restProps}>
+			bind:value>
 	</div>
 </div>
 
 
 <script lang="ts">
 import './Range.css';
-import type { InputProps } from '../types';
+import type { RangeProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-interface Props extends InputProps {
-	min?: number;
-	max?: number;
-	step?: number;
-	hideTicks?: boolean;
-}
 
 let {
 	class: className = '',
 	id = '',
 	disabled = false,
 	label = '',
+	placeholder = '',
 	error = undefined,
 	info = undefined,
-	title = undefined,
 	name = undefined,
 	labelOnTheLeft = false,
 	min = 0,
@@ -78,13 +61,24 @@ let {
 	inputElement = $bindable(undefined),
 	onchange = () => {},
 	...restProps
-}: Props = $props();
+}: RangeProps = $props();
+
 
 const errorMessageId: string = guid();
 
 const _id: string = $derived(id || name || guid());
 const progress: number = $derived((value - min) / (max - min) * 100);
 const ticks: number[] = $derived(Array.from({ length: 6 }, (_, i) => +min + i * ((max - min) / 5)));
+
+const cls = $derived([
+	'range',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+		disabled
+	}
+]);
 
 function onTickClick (e: Event, tick: number): void {
 	if (tick === value || disabled) return;

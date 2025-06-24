@@ -1,16 +1,4 @@
-<div
-	bind:this={element}
-	class={[
-		'input',
-		'input-time',
-		className,
-		{
-			'has-error': !!error,
-			'has-value': value !== '',
-			'label-on-the-left': labelOnTheLeft
-		}
-	]}>
-
+<div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -26,12 +14,12 @@
 				type="time"
 				{name}
 				{disabled}
+				{placeholder}
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				bind:value={value}
-				{...rest}>
+				bind:value>
 		</div>
 	</div>
 </div>
@@ -53,6 +41,7 @@ let {
 	name = '',
 	required = undefined,
 	disabled = false,
+	placeholder = undefined,
 	label = '',
 	error = undefined,
 	info = undefined,
@@ -60,11 +49,22 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
-	...rest
+	...restProps
 }: InputProps = $props();
 
 
 const _id = $derived(id || name || guid());
+const cls = $derived([
+	'input',
+	'input-time',
+	className,
+	{
+		'has-error': !!error,
+		'has-value': value !== '',
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
+
 const errorMessageId = guid();
 
 </script>

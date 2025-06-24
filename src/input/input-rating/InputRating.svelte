@@ -1,21 +1,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_tabindex -->
-<div
-	{title}
-	bind:this={element}
-	class={[
-		'input',
-		'input-rating',
-		className,
-		{
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft,
-			light,
-		}
-	]}>
-
+<div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
-
 	<div
 		class="input-inner"
 		tabindex="0"
@@ -28,11 +14,11 @@
 		<div class="input-row">
 			{#each stars as star (star)}
 				<Button
+					class={{ active: value >= star }}
 					link
 					icon={icon}
 					tabindex="-1"
-					data-star={star}
-					class={value >= star ? 'active' : ''}/>
+					data-star={star}/>
 			{/each}
 
 			<Button link
@@ -50,8 +36,7 @@
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				bind:value
-				{...restProps}>
+				bind:value>
 		</div>
 	</div>
 </div>
@@ -60,19 +45,13 @@
 
 <script lang="ts">
 import './InputRating.css';
-import type { InputProps } from '../types';
+import type { InputRatingProps } from './types';
 import { Button } from '../../button';
 import { guid, getMouseY, getMouseX } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-
-interface Props extends InputProps {
-	max?: number;
-	icon?: string;
-	light?: any;
-}
 
 let {
 	class: className = '',
@@ -81,7 +60,6 @@ let {
 	disabled = undefined,
 	required = undefined,
 	value = $bindable(),
-	title = '',
 	label = '',
 	error = undefined,
 	info = undefined,
@@ -94,13 +72,25 @@ let {
 	onchange = () => {},
 	onkeydown = () => {},
 	...restProps
-}: Props = $props();
+}: InputRatingProps = $props();
 
 let mouseY = 0;
 const errorMessageId = guid();
 
 const _id = $derived(id || name || guid());
 const stars: number[] = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
+
+const cls = $derived([
+	'input',
+	'input-rating',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+		light,
+	}
+]);
+
 
 
 function _onkeydown (e) {

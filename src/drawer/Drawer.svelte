@@ -1,16 +1,14 @@
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if isVisible}
-	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<div
 		bind:this={element}
-		class={[
-			'drawer',
-			className,
-		]}
+		class={['drawer', className,]}
 		tabindex="-1"
 		use:docclick
 		in:fly="{{ x: 300, duration: $ANIMATION_SPEED }}"
 		out:fly="{{ x: 300, duration: $ANIMATION_SPEED ? $ANIMATION_SPEED + 100 : 0 }}"
-	>
+		{...restProps}>
+
 		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 		<header class="drawer-header" bind:this={headerEl} >
 			<h2>{title}</h2>
@@ -22,28 +20,20 @@
 {/if}
 <script lang="ts">
 import './Drawer.css';
-import type { ClassValue } from 'svelte/elements';
-import type { Snippet } from 'svelte';
+import type { DrawerProps } from './types';
 import { fly } from 'svelte/transition';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
 import { Button } from '../button';
 
-interface DrawerProps {
-	class?: ClassValue;
-	title?: string;
-	element?: HTMLElement;
-	onopen?: () => void;
-	onclose?: () => void;
-	children?: Snippet;
-}
 
 let {
 	class: className = '',
-	title = 'Drawer',
+	title = '',
 	element = $bindable(undefined),
 	onopen = () => {},
 	onclose = () => {},
-	children
+	children,
+	...restProps
 }: DrawerProps = $props();
 
 
@@ -52,7 +42,7 @@ let headerEl: HTMLElement = $state();
 let targetBtn: HTMLElement = $state();
 
 
-function docclick (_) {
+function docclick (_: any) {
 	requestAnimationFrame(() => document.addEventListener('click', onDocClick));
 	return {
 		destroy: () => document.removeEventListener('click', onDocClick)

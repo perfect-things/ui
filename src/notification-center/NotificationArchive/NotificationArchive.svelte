@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import './NotificationArchive.css';
+import type { NotificationArchiveProps } from '../types';
 import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
 import { ArchivedNotifications, removeFromArchive, receive, fly, slideUp, flip } from '../store';
@@ -53,15 +54,12 @@ import { ANIMATION_SPEED, timeAgo } from '../../utils';
 import { getNextNotification } from '../utils';
 
 
-interface Props {
-	show?: boolean;
-	expanded?: boolean;
-}
 
 let {
 	show = $bindable(false),
 	expanded = $bindable(false),
-}: Props = $props();
+}: NotificationArchiveProps = $props();
+
 
 const duration = $ANIMATION_SPEED;
 

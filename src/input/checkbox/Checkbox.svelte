@@ -1,22 +1,11 @@
-<div
-	{title}
-	bind:this={element}
-	class={[
-		'check-and-radio', 'checkbox', className,
-		{
-			indeterminate,
-			disabled,
-			'has-error': !!error,
-			'label-on-the-left': labelOnTheLeft
-		}
-	]}>
+<div bind:this={element} class={cls} {...restProps}>
 	<Info msg={info} />
 	<InputError id={errorMessageId} msg={error} animOffset={8} />
 
 	<div class="checkbox-row">
 		<input
-			type="checkbox"
 			id={_id}
+			type="checkbox"
 			{name}
 			{disabled}
 			{tabindex}
@@ -34,18 +23,12 @@
 
 <script lang="ts">
 import './Checkbox.css';
-import type { InputProps } from '../types';
+import type { CheckboxProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-
-interface Props extends InputProps {
-	checked?: boolean;
-	indeterminate?: boolean;
-	tabindex?: number;
-}
 
 let {
 	class: className = '',
@@ -56,7 +39,6 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
-	title = undefined,
 	tabindex = undefined,
 	name = '',
 	required = false,
@@ -64,11 +46,24 @@ let {
 
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
-	onchange = () => {}
-}: Props = $props();
+	onchange = () => {},
+	...restProps
+}: CheckboxProps = $props();
 
 
 const errorMessageId = guid();
 const _id = $derived(id || name || guid());
+const cls = $derived([
+	'check-and-radio',
+	'checkbox',
+	className,
+	{
+		indeterminate,
+		disabled,
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
+
 
 </script>

@@ -1,36 +1,17 @@
 <button
-	{title}
-	type={submit ? 'submit' : 'button'}
+	{type}
 	bind:this={element}
-	class={[
-		'button',
-		className,
-		{
-			'button-normal': !link && !text && !outline,
-			'button-outline': outline,
-			'button-link': link,
-			'button-text': text,
-			'button-has-text': children,
-			round,
-			info,
-			success,
-			warning,
-			danger,
-			error,
-			touching,
-		}
-	]}
-	{...rest}
+	class={cls}
 	ontouchstart={() => touching = true}
-	ontouchend={() => touching = false}>
-		{#if icon}<Icon name={icon}/>{/if}
+	ontouchend={() => touching = false}
+	{...restProps}>
+		<Icon name={icon}/>
 		{@render children?.()}
 </button>
 
 
 <script lang="ts">
-import type { ClassValue } from 'svelte/elements';
-import type { Snippet } from 'svelte';
+import type { ButtonProps } from './types';
 import { Icon } from '../icon';
 import './Button.css';
 import './Button-normal.css';
@@ -39,48 +20,47 @@ import './Button-text.css';
 import './Button-link.css';
 
 
-interface ButtonProps {
-	class?: ClassValue;
-	title?: string;
-
-	// button types
-	info?: boolean;
-	success?: boolean;
-	warning?: boolean;
-	danger?: boolean;
-	error?: boolean;		// Indicates that button type = error
-	submit?: boolean;
-
-	// button styles
-	outline?: boolean;
-	link?: boolean;
-	text?: boolean;
-	round?: boolean;
-
-	icon?: string;
-	element?: HTMLButtonElement;
-	children?: Snippet;
-	[key: string]: any;
-}
-
 let {
 	class: className = '',
-	title = undefined,
+
 	info = false,
 	success = false,
 	warning = false,
 	danger = false,
-	error = false,
 	submit = false,
+
 	outline = false,
 	link = false,
 	text = false,
-	icon = undefined,
 	round = undefined,
+
+	icon = undefined,
 	element = $bindable(undefined),
 	children,
-	...rest
+	...restProps
 }: ButtonProps = $props();
 
 let touching: boolean = $state(false);
+const type = $derived(submit ? 'submit' : 'button');
+
+const cls = $derived([
+	'button',
+	className,
+	{
+		'button-normal': !link && !text && !outline,
+		'button-outline': outline,
+		'button-link': link,
+		'button-text': text,
+		'button-has-text': children,
+		round,
+		info,
+		success,
+		warning,
+		danger,
+		touching,
+	}
+]);
+
+
+
 </script>

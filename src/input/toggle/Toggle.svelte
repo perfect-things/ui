@@ -1,12 +1,5 @@
 <div
-	class={[
-		'toggle',
-		className,
-		{
-			'label-on-the-left': labelOnTheLeft,
-			'has-error': !!error
-		}
-	]}
+	class={cls}
 	role="switch"
 	aria-checked={value}
 	tabindex={disabled ? undefined : 0}
@@ -15,7 +8,8 @@
 	ontouchstart={dragStart}
 	onmousedown={dragStart}
 	oncontextmenu={e => e.preventDefault()}
-	onclick={e => e.preventDefault()}>
+	onclick={e => e.preventDefault()}
+	{...restProps}>
 
 	<Label {label} {disabled} for={_id}/>
 
@@ -68,7 +62,9 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	onchange = () => {},
+	...restProps
 }: InputProps = $props();
+
 
 const _id: string = $derived(id || name || guid());
 
@@ -83,6 +79,16 @@ let handleStartX = $state<number>();
 let isClick = $state<boolean>(false);
 let isDragging = $state<boolean>(false);
 let oldValue = $state<boolean>();
+
+const cls = $derived([
+	'toggle',
+	className,
+	{
+		'label-on-the-left': labelOnTheLeft,
+		'has-error': !!error
+	}
+]);
+
 
 $effect(() => {
 	if (element) {

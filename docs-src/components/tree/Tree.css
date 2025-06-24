@@ -1,0 +1,9 @@
+.tree-wrapper {
+	display: inline-block;
+	width: 200px;
+}
+
+
+.tree-wrapper .tree-node {
+	scroll-margin-top: 4.2rem;
+}

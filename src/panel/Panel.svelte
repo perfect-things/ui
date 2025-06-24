@@ -1,14 +1,11 @@
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
 	inert={disabled}
+	class={cls}
 	bind:this={element}
-	class={[
-		'panel',
-		className,
-		{ collapsible, expanded, round, disabled, info, success, warning, danger }
-	]}>
+	{...restProps}>
 	{#if title}
-		<details {open} onkeydown={e => toggle(e)} onclick={e => toggle(e)}>
+		<details {open} onkeydown={toggle} onclick={toggle}>
 			<summary class="panel-header" bind:this={headerEl} inert={!collapsible}>
 				{title}
 				{#if collapsible}
@@ -24,46 +21,32 @@
 
 <script lang="ts">
 import './Panel.css';
-import type { ClassValue } from 'svelte/elements';
-import { onMount, type Snippet } from 'svelte';
+import type { PanelProps } from './types';
+import { onMount } from 'svelte';
 import { getIcon } from '../icon';
 import { animate } from '../utils';
-
-
-interface Props {
-	class?: ClassValue;
-	title?: string;
-	open?: boolean;
-	round?: boolean;
-	collapsible?: boolean;
-	disabled?: boolean;
-	info?: boolean;
-	success?: boolean;
-	warning?: boolean;
-	danger?: boolean;
-	element?: HTMLElement | undefined;
-	onopen?: () => void;
-	onclose?: () => void;
-	children?: Snippet;
-}
 
 
 let {
 	class: className = '',
 	title = '',
 	open = $bindable(false),
+
 	round = false,
 	collapsible = false,
 	disabled = false,
+
 	info = false,
 	success = false,
 	warning = false,
 	danger = false,
+
 	element = $bindable(undefined),
 	onopen = () => {},
 	onclose = () => {},
-	children
-}: Props = $props();
+	children,
+	...restProps
+}: PanelProps = $props();
 
 
 const expandedProps = { height: '0' };
@@ -71,6 +54,12 @@ const collapsedProps = { height: '0' };
 
 let headerEl: HTMLElement = $state();
 let expanded: boolean = $state(open || !title);
+
+const cls = $derived([
+	'panel',
+	className,
+	{ collapsible, expanded, round, disabled, info, success, warning, danger }
+]);
 
 
 

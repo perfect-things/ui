@@ -1,20 +1,12 @@
-<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	bind:this={element}
-	class={[
-		'table',
-		'grid',
-		'grid-sortable',
-		className,
-		{
-			round,
-			interactive,
-		}
-	]}
+	class={cls}
 	onclick={_onclick}
 	onfocuscapture={_onfocus}
 	onkeydown={_onkeydown}
-	ondblclick={_ondblclick}>
+	ondblclick={_ondblclick}
+	{...restProps}>
+
 	{#if title}
 		<h1 class="grid-title">{title}</h1>
 	{/if}
@@ -27,31 +19,12 @@
 
 <script lang="ts">
 import './Grid.css';
-import type { ClassValue } from 'svelte/elements';
+import type { GridProps } from './types';
 import { onMount } from 'svelte';
 import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';
-import { DataStore, type DataItem } from './DataStore.js';
+import { DataStore } from './DataStore.js';
 import { GridHead, GridFoot, GridBody } from './parts';
 
-
-interface Props {
-	class?: ClassValue;
-	title?: string;
-	interactive?: boolean;
-	round?: boolean;
-	scrollContainer?: string | HTMLElement;
-	scrollCorrectionOffset?: string;
-	columns?: Array<any>;
-	data?: DataItem[];
-	multiselect?: boolean;
-	dblClickDelay?: number;
-	element?: HTMLElement;
-	onselect?: (event: { event: Event, selectedItem: Element }) => void;
-	onfocus?: (event: { event: Event, selectedItem: Element }) => void;
-	onclick?: (event: { event: Event, selectedItem: Element }) => void;
-	ondblclick?: (event: { event: Event, selectedItem: Element }) => void;
-	onkeydown?: (event: { event: Event, key: string, selectedItem: Element }) => void;
-}
 
 let {
 	class: className = '',
@@ -70,19 +43,29 @@ let {
 	onclick = () => {},
 	ondblclick = () => {},
 	onkeydown = () => {},
-}: Props = $props();
+	...restProps
+}: GridProps = $props();
 
 
-
-
-let headerHeight = 0;
-const rowSelector = 'tbody';
+const cls = $derived([
+	'table',
+	'grid',
+	'grid-sortable',
+	className,
+	{
+		round,
+		interactive,
+	}
+]);
 
 const Data = DataStore();
 
+let headerHeight = 0;
+const rowSelector = 'tbody';
 let selectedIdx = -1;
 let clickTimer;
 let previousKey;
+
 
 
 onMount(() => {
@@ -157,7 +140,7 @@ function _onfocus (e) {
 	const rowEl = e.target.closest(rowSelector);
 	if (rowEl) {
 		selectRow(e, rowEl);
-		onfocus({ event: e, selectedItem: rowEl });
+		onfocus(e, { selectedItem: rowEl });
 	}
 }
 
@@ -177,7 +160,7 @@ function _onclick (e) {
 
 	// debounce, so to not duplicate events when dbl-clicking
 	if (clickTimer) clearTimeout(clickTimer);
-	clickTimer = setTimeout(() => onclick({ event: e, selectedItem: rowEl }), dblClickDelay);
+	clickTimer = setTimeout(() => onclick(e, { selectedItem: rowEl }), dblClickDelay);
 }
 
 
@@ -239,7 +222,7 @@ function _onkeydown (e) {
 
 	previousKey = e.key;
 	const selectedItem = getSelectableItems(element)[selectedIdx];
-	onkeydown({ event: e, key: e.key, selectedItem });
+	onkeydown(e, { selectedItem });
 }
 
 

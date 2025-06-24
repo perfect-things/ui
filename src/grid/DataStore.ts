@@ -1,26 +1,7 @@
 import { writable, get } from 'svelte/store';
 import { isset } from '../utils';
+import type { DataStoreType, DataItem } from './types';
 
-export type DataItem = {
-	id: number;
-	selected?: boolean;
-	field?: string;
-};
-
-export type DataStoreType = {
-	subscribe: (run: (value: DataItem[]) => void) => () => void;
-	set: (value: DataItem[]) => void;
-	get: () => DataItem[];
-	columns: any; // Define the type for columns if needed
-	allSelected: any; // Define the type for allSelected if needed
-	someSelected: any; // Define the type for someSelected if needed
-	sortField: any; // Define the type for sortField if needed
-	sortOrder: any; // Define the type for sortOrder if needed
-
-	toggleSelection: (item: DataItem, event?: MouseEvent, forceState?: boolean) => void;
-	toggleSelectAll: (forceState?: boolean) => void;
-	reset: () => void;
-};
 
 
 /**

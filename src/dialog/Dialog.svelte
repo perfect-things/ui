@@ -1,18 +1,13 @@
-<!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-<!-- svelte-ignore a11y_interactive_supports_focus -->
 <div
 	role="dialog"
 	aria-modal="true"
 	aria-label={title}
 	bind:this={element}
-	class={[
-		'dialog-backdrop',
-		className,
-		{ opened }
-	]}
+	class={cls}
 	onmousedown={onBackdropMousedown}
-	onclick={onBackdropClick}>
+	onclick={onBackdropClick}
+	{...restProps}>
 	<div class="dialog" class:no-title={!title} bind:this={dialogEl}>
 		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 		<h1 class="dialog-header">{title}</h1>
@@ -24,23 +19,9 @@
 
 <script lang="ts">
 import './Dialog.css';
-import type { ClassValue } from 'svelte/elements';
-import { onMount, type Snippet } from 'svelte';
+import type { DialogProps } from './types';
+import { onMount } from 'svelte';
 import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
-
-
-interface Props {
-	class?: ClassValue;
-	title?: string;
-	opened?: boolean;
-	skipFirstFocus?: boolean;
-	modal?: boolean;
-	element?: HTMLElement;
-	children?: Snippet;
-	footer?: Snippet;
-	onopen?: () => void;
-	onclose?: () => void;
-}
 
 
 let {
@@ -54,7 +35,8 @@ let {
 	footer,
 	onopen = () => {},
 	onclose = () => {},
-}: Props = $props();
+	...restProps
+}: DialogProps = $props();
 
 
 let dialogEl: HTMLElement = $state();
@@ -63,7 +45,11 @@ let footerEl: HTMLElement = $state();
 let triggerEl: HTMLElement = $state();
 let openTimer, closeTimer, scrollPos;
 
-
+const cls = $derived([
+	'dialog-backdrop',
+	className,
+	{ opened }
+]);
 
 onMount(() => {
 	document.body.appendChild(element);

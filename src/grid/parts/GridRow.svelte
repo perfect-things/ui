@@ -20,7 +20,7 @@
 </tbody>
 
 <script lang="ts">
-import type { DataStoreType } from '../DataStore';
+import type { DataStoreType } from '../types';
 import { Checkbox } from '../../input';
 
 interface Props {

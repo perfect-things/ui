@@ -1,24 +1,13 @@
 {#if label}
-	<label
-		class={['label', className, { disabled }]}
-		bind:this={element}
-		for={_for}>
-			{label}
+	<label class={['label', className, { disabled }]} bind:this={element} for={_for}>
+		{label}
 	</label>
 {/if}
 
 <script lang="ts">
-import type { ClassValue } from 'svelte/elements';
 import './Label.css';
+import type { LabelProps } from './types';
 
-
-interface Props {
-	class?: ClassValue;
-	for?: string;
-	label?: string;
-	disabled?: boolean;
-	element?: HTMLElement;
-}
 
 let {
 	class: className = '',
@@ -26,7 +15,7 @@ let {
 	label = '',
 	disabled = false,
 	element = $bindable(undefined)
-}: Props = $props();
+}: LabelProps = $props();
 
 
 </script>

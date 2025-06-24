@@ -9,7 +9,10 @@ PerfectThings/UI
 - [ ] make some rules as to where ...restProps is passed and handled
 - [ ] upgrade docs code to ts & svelte 5
 - [ ] fix docs for all components
+- [ ] enhance utils functions to use runes, etc.
+- [ ] reuse `use:docclick` from Drawer in other components
 
+- [ ] add readonly prop to inputs
 - [ ] explore options to use UI outside of svelte
 
 

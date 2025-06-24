@@ -20,7 +20,8 @@
 	class:show-archive={$showArchive}
 	class:archive-is-visible={archiveIsVisible}
 	class:has-active-notifications={hasActiveNotifications}
-	bind:this={el}>
+	bind:this={el}
+	{...restProps}>
 
 	{#each notifications as notification (notification.id)}
 		<div
@@ -63,31 +64,25 @@
 
 <script lang="ts">
 import './NotificationCenter.css';
-import type { ClassValue } from 'svelte/elements';
+import type { NotificationCenterProps } from '../types';
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import { Icon } from '../../icon';
 import { PushButton } from '../../push-button';
 import { Notifications, ArchivedNotifications, createTimer, timers, hideNotification, clearTimer,
-	send, flip, fly, slideDown } from '../store.js';
+	send, flip, fly, slideDown } from '../store';
 import { NotificationArchive } from '../NotificationArchive';
 import { ANIMATION_SPEED } from '../../utils';
 import { getNextNotification } from '../utils';
 
 
-interface Props {
-	class?: ClassValue;
-	round?: boolean;
-	outline?: boolean;
-	hideButton?: boolean;
-}
-
 const {
 	class: className = '',
 	round = false,
 	outline = false,
-	hideButton = false
-}: Props = $props();
+	hideButton = false,
+	...restProps
+}: NotificationCenterProps = $props();
 
 
 const showArchive = writable(false);

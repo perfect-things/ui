@@ -10,7 +10,7 @@
 </tfoot>
 
 <script lang="ts">
-import type { DataStoreType } from '../DataStore';
+import type { DataStoreType } from '../types';
 
 
 interface Props {

@@ -8,6 +8,7 @@
 
 
 <script>
+	import { onMount } from 'svelte';
 import { ButtonToggle } from '../../src';
 import { PREFERS_DARK } from '../../src/utils';
 import './Header.css';
@@ -18,7 +19,12 @@ const themes = [
 ];
 
 
-function switchColorMode (val) {
+onMount(() => {
+	switchColorMode(null, $PREFERS_DARK);
+});
+
+
+function switchColorMode (e, val) {
 	document.documentElement.className = val ? 'theme-dark' : 'theme-light';
 }
 

@@ -85,16 +85,20 @@ const aliases = {
 	warning: 'alert',
 };
 
-export const customIcons = {};
+type IconsType = {
+	[key: string]: string;
+};
+
+export const customIcons: IconsType = {};
 
 
-export function getIcon (name) {
+export function getIcon (name: string) {
 	if (name in aliases) name = aliases[name];
 	if (name in customIcons) return customIcons[name];
 	if (name in icons) return svgs + icons[name] + svge;
 	return `<svg width="20" height="20" title="${name}"></svg>`;
 }
 
-export function addIcon (name, svg) {
+export function addIcon (name: string, svg: string) {
 	if (!customIcons[name]) customIcons[name] = svg;
 }

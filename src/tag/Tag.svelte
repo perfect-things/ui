@@ -1,48 +1,23 @@
 <div
 	role="button"
 	bind:this={element}
-	tabindex={inert ? undefined : 0}
 	{inert}
-	class={[
-		'ui-tag',
-		className,
-		color,
-		{
-			round,
-			disabled,
-			clickable,
-			dark: color && isColorDark(color),
-			light: color && !isColorDark(color)
-		}
-	]}
-	style="{color ? `background-color: ${color};` : ''}"
+	{tabindex}
+	class={cls}
+	{style}
+	{onclick}
 	onkeydown={_onkeydown}
-	{onclick}>
-	{#if icon}
-		<Icon name={icon}/>
-	{/if}
+	{...restProps}>
+	<Icon name={icon}/>
 	<div class="ui-tag-label">{@render children?.()}</div>
 </div>
 
 <script lang="ts">
 import './Tag.css';
-import type { ClassValue } from 'svelte/elements';
-import type { Snippet } from 'svelte';
+import type { TagProps } from './types';
 import { Icon } from '../icon';
 import { isColorDark } from '../utils';
 
-
-interface Props {
-	class?: ClassValue;
-	round?: boolean;
-	icon?: string;
-	color?: 'info' | 'warning' | 'danger' | 'success' | string;
-	element?: HTMLElement;
-	disabled?: boolean;
-	clickable?: boolean;
-	onclick?: (event: Event) => void;
-	children?: Snippet;
-}
 
 let {
 	class: className = '',
@@ -53,11 +28,27 @@ let {
 	disabled = false,
 	clickable = false,
 	onclick = () => {},
-	children
-}: Props = $props();
+	children,
+	...restProps
+}: TagProps = $props();
+
+
+const cls = $derived([
+	'ui-tag',
+	className,
+	color,
+	{
+		round,
+		disabled,
+		clickable,
+		dark: color && isColorDark(color),
+		light: color && !isColorDark(color)
+	}
+]);
 
 const inert = $derived(disabled || !clickable);
-
+const style = $derived(color ? `background-color: ${color};` : '');
+const tabindex = $derived(inert ? undefined : 0);
 
 function _onkeydown (e) {
 	if (e.key === 'Enter' || e.key === ' ') onclick(e);

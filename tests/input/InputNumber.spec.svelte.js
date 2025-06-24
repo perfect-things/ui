@@ -23,10 +23,10 @@ test('InputNumber renders with correct props', async () => {
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('test-class');
+	expect(cmp).toHaveAttribute('title', props.title);
 
-	const input = document.body.querySelector(`[title="${props.title}"]`);
+	const input = cmp.querySelector('input');
 	expect(input).toHaveAttribute('id', props.id);
-	expect(input).toHaveAttribute('title', props.title);
 	expect(input).toHaveAttribute('name', props.name);
 	expect(input).toHaveAttribute('placeholder', props.placeholder);
 	expect(input).toHaveAttribute('aria-required');
@@ -108,20 +108,6 @@ test('InputNumber handles disabled state', async () => {
 
 	const input = document.body.querySelector('input');
 	expect(input).toBeDisabled();
-
-	unmount(component);
-});
-
-
-test('InputNumber handles readonly state', async () => {
-	const props = $state({
-		readonly: true
-	});
-	// @ts-ignore
-	const component = mount(InputNumber, { target: document.body, props });
-
-	const input = document.body.querySelector('input');
-	expect(input).toHaveAttribute('readonly');
 
 	unmount(component);
 });

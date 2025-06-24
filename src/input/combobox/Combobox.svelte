@@ -1,18 +1,4 @@
-<div
-	{title}
-	bind:this={element}
-	class={[
-		'input',
-		'combobox',
-		className,
-		{
-			open: opened,
-			'has-error': !!error,
-			'label-on-the-left': !!labelOnTheLeft,
-			multiselect
-		},
-	]}>
-
+<div bind:this={element} class={cls} {...restProps}>
 	<ComboboxInput
 		{id}
 		{listId}
@@ -30,8 +16,7 @@
 		onclick={onInputClick}
 		onkeydown={_onkeydown}
 		{onfocus}
-		{oninput}
-		{...restProps} />
+		{oninput}/>
 </div>
 
 <ComboboxList
@@ -49,7 +34,7 @@
 
 <script lang="ts">
 import './Combobox.css';
-import type { InputProps } from '../types';
+import type { ComboboxProps } from './types';
 import { emphasize, scrollToSelectedItem, findValueInSource, getInputValue,
 	alignDropdown, hasValueChanged, groupData, normalizeItems } from './utils';
 import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
@@ -57,19 +42,6 @@ import ComboboxInput from './ComboboxInput.svelte';
 import ComboboxList from './ComboboxList.svelte';
 
 
-interface Props extends InputProps {
-	items?: any[];
-	selectedItems?: any[];
-	multiselect?: boolean;
-	showOnFocus?: boolean;
-	allowNew?: boolean;
-	opened?: boolean;
-	listId?: string;
-	listElement?: HTMLDivElement;
-	oniconclick?: () => void;
-	onclick?: () => void;
-	onchange?: (e: Event, value: any, oldValue: any) => void;
-}
 
 let {
 	class: className = '',
@@ -77,7 +49,6 @@ let {
 	required = undefined,
 	id = '',
 	name = '',
-	title = '',
 	items = [],
 	value = $bindable(undefined),
 	allowNew = undefined,
@@ -96,7 +67,7 @@ let {
 	onchange = () => {},
 	onkeydown = () => {},
 	...restProps
-}: Props = $props();
+}: ComboboxProps = $props();
 
 
 const listId = `combobox-list-${guid()}`;
@@ -112,7 +83,17 @@ let inputValue = $derived(multiselect && opened ? '' : getInputValue(value, mult
 const normalizedItems = $derived(normalizeItems(items));
 const filteredItems = $derived(filter(normalizedItems, inputValue));
 const shouldShowNewItem = $derived(allowNew && inputValue && !filteredItems?.length);
-
+const cls = $derived([
+	'input',
+	'combobox',
+	className,
+	{
+		open: opened,
+		'has-error': !!error,
+		'label-on-the-left': !!labelOnTheLeft,
+		multiselect
+	},
+]);
 
 
 function filter (_items = normalizedItems, _inputValue = inputValue) {
