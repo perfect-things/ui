@@ -18,6 +18,7 @@
 			id={_id}
 			autocomplete="off"
 			type="text"
+			{name}
 			{disabled}
 			{...rest}
 			aria-invalid={!!error}
@@ -30,32 +31,17 @@
 
 <script lang="ts">
 import './InputText.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	required?: boolean;
-	disabled?: boolean;
-	value?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLElement;
-	inputElement?: HTMLInputElement;
-	[key: string]: any; // Allow additional properties
-}
-
 let {
 	class: className = '',
 	id = '',
+	name = '',
 	required = undefined,
 	disabled = false,
 	value = $bindable(''),
@@ -66,7 +52,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...rest
-}: Props = $props();
+}: InputProps = $props();
 
 
 const _id = $derived(id || name || guid());

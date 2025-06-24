@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import { expect, test } from 'vitest';
 import { flushSync, mount, unmount } from 'svelte';
 import { Range } from '../../src/input';
@@ -20,7 +20,7 @@ test('Range', async () => {
 	});
 
 	// @ts-ignore
-	const component = mount(Range, { target: document.body, props });
+	const component = await mount(Range, { target: document.body, props });
 
 	const cmp = document.body.querySelector('[title="Range1"]');
 	expect(cmp).toBeInTheDocument();
@@ -58,7 +58,8 @@ test('Range', async () => {
 	expect(lbl).toHaveAttribute('for', props.id);
 	expect(lbl).toHaveTextContent(props.label);
 
-	await fireEvent.change(input, { target: { value: '6' } });
+	const tick6 = cmp.querySelector('.range-ticks span:nth-child(6)');
+	await userEvent.click(tick6);
 	expect(changeEvent).toBeDefined();
 
 	unmount(component);

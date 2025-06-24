@@ -13,10 +13,10 @@
 	aria-selected={selected}
 	aria-checked={!!checked}
 
-	onclick={e => onclick(item, e)}
+	onclick={e => onclick(e, item)}
 	onmouseenter={() => highlightIndex = item.idx}
 	onmousedown={e => e.preventDefault()}
-	onmouseup={e => onclick(item, e)}
+	onmouseup={e => onclick(e, item)}
 	ontouchstart={touchStart}
 	ontouchend={touchEnd}
 	>
@@ -44,7 +44,7 @@ interface Props {
 	multiselect?: boolean;
 	selectedItems?: Array<Item>;
 	highlightIndex?: number;
-	onclick?: (item: Item, event: MouseEvent | TouchEvent) => void;
+	onclick?: (event: Event, item: Item) => void;
 }
 
 let {

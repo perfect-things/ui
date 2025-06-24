@@ -21,19 +21,19 @@
 			<div class="range-ticks">
 				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 				{#each ticks as tick (tick)}
-					<span onclick={() => onTickClick(tick)}>{tick}</span>
+					<span onclick={e => onTickClick(e, tick)}>{tick}</span>
 				{/each}
 			</div>
 		{/if}
 
 		<input
 			type="range"
+			id={_id}
 			{name}
 			{disabled}
 			{min}
 			{max}
 			{step}
-			id={_id}
 			style="background-size: {progress}% 100%;"
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
@@ -46,30 +46,17 @@
 
 <script lang="ts">
 import './Range.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	disabled?: boolean;
-	label?: string;
-	error?: string;
-	info?: string;
-	title?: string;
-	name?: string;
-	labelOnTheLeft?: boolean;
+interface Props extends InputProps {
 	min?: number;
 	max?: number;
 	step?: number;
-	value?: number;
 	hideTicks?: boolean;
-	element?: HTMLDivElement;
-	inputElement?: HTMLInputElement;
-	[key: string]: any;
 }
 
 let {
@@ -89,6 +76,7 @@ let {
 	hideTicks = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
+	onchange = () => {},
 	...restProps
 }: Props = $props();
 
@@ -98,11 +86,12 @@ const _id: string = $derived(id || name || guid());
 const progress: number = $derived((value - min) / (max - min) * 100);
 const ticks: number[] = $derived(Array.from({ length: 6 }, (_, i) => +min + i * ((max - min) / 5)));
 
-function onTickClick (tick: number): void {
+function onTickClick (e: Event, tick: number): void {
 	if (tick === value || disabled) return;
 	value = tick;
 	inputElement.value = String(tick);
 	inputElement.dispatchEvent(new Event('change'));
+	onchange(e, value);
 }
 
 </script>

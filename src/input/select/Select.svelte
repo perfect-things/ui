@@ -25,8 +25,8 @@
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
-				bind:value={value}
 				bind:this={inputElement}
+				bind:value
 				{onchange}>
 
 				{#if placeholder}
@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import './Select.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -58,23 +58,8 @@ import { Label } from '../label';
 
 
 
-interface Props {
-	id?: string;
-	class?: ClassValue;
-	disabled?: boolean;
-	required?: boolean;
-	value?: any;
-	placeholder?: string;
+interface Props extends InputProps {
 	items?: any[];
-	title?: string;
-	name?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLElement;
-	inputElement?: HTMLSelectElement;
-	onchange?: (e: Event) => void;
 }
 
 

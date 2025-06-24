@@ -22,9 +22,9 @@
 
 			<input
 				id={_id}
-				name={name}
 				autocomplete="off"
 				type="time"
+				{name}
 				{disabled}
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import './InputTime.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
@@ -46,22 +46,6 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	required?: boolean;
-	disabled?: boolean;
-	value?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLDivElement;
-	inputElement?: HTMLInputElement;
-	[key: string]: any;
-}
 
 let {
 	class: className = '',
@@ -77,7 +61,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...rest
-}: Props = $props();
+}: InputProps = $props();
 
 
 const _id = $derived(id || name || guid());

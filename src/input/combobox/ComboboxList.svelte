@@ -75,7 +75,7 @@ interface ComboboxListProps {
 	listElement?: HTMLDivElement;
 
 	onmousedown?: () => void;
-	onclick?: (item, event) => void;
+	onclick?: (event, item) => void;
 }
 
 let {
@@ -100,7 +100,7 @@ const groupedItems: Group[] = $derived(groupData(items));
 
 function _onclick (e) {
 	const item = { name: newItemName, idx: items.length };
-	onclick(item, e);
+	onclick(e, item);
 
 }
 

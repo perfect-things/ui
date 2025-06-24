@@ -54,7 +54,7 @@
 
 <script lang="ts">
 import './InputPassword.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { onMount } from 'svelte';
 import { Button } from '../../button';
 import { guid } from '../../utils';
@@ -64,24 +64,9 @@ import { Label } from '../label';
 
 
 
-
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	required?: boolean;
-	disabled?: boolean;
-	value?: string;
+interface Props extends InputProps {
 	strength?: boolean;
-	name?: string;
-	placeholder?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLDivElement;
-	inputElement?: HTMLInputElement;
-	oninput?: (data: { event: Event; value: string }) => void;
-	[key: string]: any;
+	oninput?: (event: Event, value: string) => void;
 }
 
 interface ZxcvbnResult {
@@ -161,7 +146,7 @@ $effect(() => {
 function _oninput (e: Event) {
 	const target = e.target as HTMLInputElement;
 	value = target.value;
-	oninput({ event: e, value });
+	oninput(e, value);
 }
 
 function checkLib (): void {

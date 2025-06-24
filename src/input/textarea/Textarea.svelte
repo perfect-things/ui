@@ -18,39 +18,26 @@
 
 		<textarea
 			id={_id}
-			name={name}
+			{name}
 			{disabled}
 			{...rest}
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
 			bind:this={inputElement}
-			bind:value={value}></textarea>
+			bind:value></textarea>
 	</div>
 </div>
 <script lang="ts">
 import './Textarea.css';
-import type { ClassValue } from 'svelte/elements';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
+	import type { InputProps } from '../types';
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	value?: string;
+interface Props extends InputProps {
 	autogrow?: boolean;
-	required?: boolean;
-	disabled?: boolean;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLDivElement;
-	inputElement?: HTMLTextAreaElement;
-	[key: string]: any;
 }
 
 let {

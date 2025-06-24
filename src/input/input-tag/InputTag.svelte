@@ -31,13 +31,13 @@
 			<Icon name="tag"/>
 			<!-- eslint-disable svelte/require-each-key -->
 			{#each _value as tag}
-				<Tag icon="close" clickable onclick={() => removeTagFromValue(tag)}>{tag}</Tag>
+				<Tag icon="close" clickable onclick={e => removeTagFromValue(e, tag)}>{tag}</Tag>
 			{/each}
 			<input
+				id={_id}
 				type="hidden"
 				{name}
 				{disabled}
-				id={_id}
 				{value}
 				bind:this={inputElement}/>
 		</div>
@@ -49,13 +49,16 @@
 	dontHideOnTargetClick
 	setMinWidthToTarget
 	class="input-tag-popover"
-	onclose={onclose}
+	{onclose}
 	bind:element={listElement}
 	bind:this={listPopover}>
 
 	<div class="input-tag-list-tags">
 		{#each _tags as tag (tag.text)}
-			<Tag clickable icon="add" disabled={tag.disabled} onclick={() => addTagToValue(tag.text)}>{tag.text}</Tag>
+			<Tag clickable
+				icon="add"
+				disabled={tag.disabled}
+				onclick={e => addTagToValue(e, tag.text)}>{tag.text}</Tag>
 		{/each}
 	</div>
 	<form class="input-tag-list-add-row" onsubmit={addNewTag}>
@@ -66,7 +69,7 @@
 
 <script lang="ts">
 import './InputTag.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { InputText } from '../input-text';
 import { Button } from '../../button';
 import { Popover } from '../../popover';
@@ -84,23 +87,10 @@ interface TagItem {
 	disabled: boolean;
 }
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	disabled?: boolean;
-	value?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	name?: string;
-	title?: string;
+interface Props extends InputProps {
 	tags?: string[];
-	element?: HTMLDivElement;
-	inputElement?: HTMLInputElement;
 	boxElement?: HTMLDivElement;
 	listElement?: HTMLDivElement;
-	onchange?: (data: { value: string }) => void;
 }
 
 let {
@@ -182,23 +172,23 @@ function valueToArray (val: string): string[] {
 }
 
 
-function setValue (arr: string[]): void {
+function setValue (e: Event, arr: string[]): void {
 	// unique list of tags
 	value = [...new Set(arr)].join(',');
 	updatePosition();
-	onchange({ value });
+	onchange(e, value);
 }
 
-function addTagToValue (tag: string): void {
+function addTagToValue (e: Event, tag: string): void {
 	const val = valueToArray(value);
 	val.push(tag);
-	setValue(val);
+	setValue(e, val);
 }
 
 
-function removeTagFromValue (tag: string): void {
+function removeTagFromValue (e: Event, tag: string): void {
 	const val = valueToArray(value).filter(t => t !== tag);
-	setValue(val);
+	setValue(e, val);
 }
 
 
@@ -207,7 +197,7 @@ function addNewTag (e: Event): void {
 	const val = valueToArray(value);
 	const newTags = valueToArray(newTagName);
 	newTagName = '';
-	setValue([...val, ...newTags]);
+	setValue(e, [...val, ...newTags]);
 }
 
 </script>

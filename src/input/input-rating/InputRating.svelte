@@ -33,8 +33,6 @@
 					tabindex="-1"
 					data-star={star}
 					class={value >= star ? 'active' : ''}/>
-					<!-- onmousedown={() => set(star)}
-					onmouseup={() => set(star)}/> -->
 			{/each}
 
 			<Button link
@@ -62,7 +60,7 @@
 
 <script lang="ts">
 import './InputRating.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { Button } from '../../button';
 import { guid, getMouseY, getMouseX } from '../../utils';
 import { Info } from '../../info-bar';
@@ -70,26 +68,10 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	disabled?: boolean;
-	required?: boolean;
-	value?: number;
-	title?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean | string;
+interface Props extends InputProps {
 	max?: number;
 	icon?: string;
 	light?: any;
-	element?: HTMLElement;
-	inputElement?: HTMLInputElement;
-	onchange?: (value: number) => void;
-	onkeydown?: (data: { event: Event; value: string }) => void;
-	[key: string]: any;
 }
 
 let {
@@ -124,11 +106,11 @@ const stars: number[] = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
 function _onkeydown (e) {
 	if (e.target.closest('.btn-reset')) return;
 	const key = e.key, v = parseInt(String(value), 10) || 0;
-	if (key === 'ArrowRight') set(Math.min(v + 1, max));
-	else if (key === 'ArrowLeft') set(Math.max(v - 1, 0));
-	else if (key === 'Escape') set();
+	if (key === 'ArrowRight') setValue(e, Math.min(v + 1, max));
+	else if (key === 'ArrowLeft') setValue(e, Math.max(v - 1, 0));
+	else if (key === 'Escape') setValue(e);
 
-	if (key) return onkeydown({ event: e, value: String(value) });
+	if (key) return onkeydown(e, String(value));
 	e.preventDefault();
 }
 
@@ -136,25 +118,25 @@ function _onkeydown (e) {
 function reset (e) {
 	e.preventDefault();
 	e.stopPropagation();
-	set();
+	setValue(e);
 }
 
 
-function set (v?) {
+function setValue (e: Event, v?) {
 	if (typeof v !== 'undefined' && v !== '') {
 		const num = parseFloat('' + v);
 		value = isNaN(num) ? undefined : num;
 	}
 	else value = undefined;
 	element.querySelector('.input-inner').focus();
-	onchange(value);
+	onchange(e, value);
 }
 
 
 function setStarFromCursor (e) {
 	const mouseX = getMouseX(e);
 	const target = document.elementFromPoint(mouseX, mouseY);
-	if (target && target.dataset) set(target.dataset.star);
+	if (target && target.dataset) setValue(e, target.dataset.star);
 }
 
 

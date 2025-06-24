@@ -49,6 +49,7 @@
 
 <script lang="ts">
 import './Combobox.css';
+import type { InputProps } from '../types';
 import { emphasize, scrollToSelectedItem, findValueInSource, getInputValue,
 	alignDropdown, hasValueChanged, groupData, normalizeItems } from './utils';
 import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
@@ -56,35 +57,18 @@ import ComboboxInput from './ComboboxInput.svelte';
 import ComboboxList from './ComboboxList.svelte';
 
 
-interface Props {
-	class?: string;
-	id?: string;
-	title?: string;
-	element?: HTMLElement;
-	inputElement?: HTMLInputElement;
-	listElement?: HTMLDivElement;
+interface Props extends InputProps {
 	items?: any[];
-	allowNew?: boolean;
-	showOnFocus?: boolean;
-	multiselect?: boolean;
 	selectedItems?: any[];
-	labelOnTheLeft?: boolean;
-	listId?: string;
-	name?: string;
-	disabled?: boolean;
-	required?: boolean;
-	label?: string;
-	error?: string;
-	info?: string;
+	multiselect?: boolean;
+	showOnFocus?: boolean;
+	allowNew?: boolean;
 	opened?: boolean;
-	placeholder?: string;
-	value?: any;
-	onchange?: (e: { value: any; oldValue: any }) => void;
+	listId?: string;
+	listElement?: HTMLDivElement;
 	oniconclick?: () => void;
 	onclick?: () => void;
-	onkeydown?: (e: KeyboardEvent) => void;
-	onfocus?: () => void;
-	oninput?: () => void;
+	onchange?: (e: Event, value: any, oldValue: any) => void;
 }
 
 let {
@@ -215,7 +199,7 @@ function close () {
 
 
 
-function selectSingle (item?) {
+function selectSingle (e: Event, item?) {
 	const oldValue = deepCopy(value);
 
 	if (!item) {
@@ -228,12 +212,14 @@ function selectSingle (item?) {
 		if (value && value.name && inputValue !== value.name) inputValue = item.name;
 	}
 
-	if (hasValueChanged(oldValue, value)) onchange({ value, oldValue });
+	if (hasValueChanged(oldValue, value)) {
+		onchange(e, value, oldValue);
+	}
 
 }
 
 
-function selectMultiselect (item) {
+function selectMultiselect (e: Event, item) {
 	const oldValue = deepCopy(value);
 	const _selectedItems = deepCopy(selectedItems || []);
 
@@ -245,7 +231,7 @@ function selectMultiselect (item) {
 	selectedItems = _selectedItems;
 	value = findValueInSource(selectedItems, items) || [];
 
-	if (hasValueChanged(oldValue, value, true)) onchange({ value, oldValue });
+	if (hasValueChanged(oldValue, value, true)) onchange(e, value, oldValue);
 	requestAnimationFrame(() => inputElement.select());
 }
 
@@ -330,14 +316,14 @@ function oninput () {
 }
 
 
-function onItemClick (item, e) {
+function onItemClick (e: Event, item) {
 	// click should only be handled on touch devices
 	if (isMobile() && e?.type !== 'click') return e.preventDefault();
 	if (!isMobile() && e?.type === 'click') return;
 
-	if (multiselect) selectMultiselect(item);
+	if (multiselect) selectMultiselect(e, item);
 	else {
-		selectSingle(item);
+		selectSingle(e, item);
 		closeAndSelect();
 	}
 }
@@ -360,10 +346,10 @@ function _onkeydown (e) {
 }
 
 
-function onEnter () {
+function onEnter (e) {
 	if (!opened) return open('navigating');
 	if (multiselect) revert();
-	else selectSingle();
+	else selectSingle(e);
 	closeAndSelect();
 }
 
@@ -371,7 +357,7 @@ function onEnter () {
 function onSpace (e) {
 	if (multiselect && opened) {
 		const item = filteredItems[highlightIndex];
-		onItemClick(item, e);
+		onItemClick(e, item);
 	}
 }
 

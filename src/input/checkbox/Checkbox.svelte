@@ -3,7 +3,12 @@
 	bind:this={element}
 	class={[
 		'check-and-radio', 'checkbox', className,
-		{ indeterminate, disabled, 'has-error': !!error, 'label-on-the-left': labelOnTheLeft }
+		{
+			indeterminate,
+			disabled,
+			'has-error': !!error,
+			'label-on-the-left': labelOnTheLeft
+		}
 	]}>
 	<Info msg={info} />
 	<InputError id={errorMessageId} msg={error} animOffset={8} />
@@ -11,17 +16,17 @@
 	<div class="checkbox-row">
 		<input
 			type="checkbox"
-			{name}
 			id={_id}
+			{name}
 			{disabled}
 			{tabindex}
+			bind:checked
+			bind:indeterminate
 			bind:this={inputElement}
-			bind:checked={checked}
-			bind:indeterminate={indeterminate}
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
-			onchange={_onchange}>
+			onchange={onchange}>
 
 		<Label {label} for={_id}/>
 	</div>
@@ -29,37 +34,23 @@
 
 <script lang="ts">
 import './Checkbox.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-interface Props {
-	class?: ClassValue;
-	indeterminate?: boolean;
+interface Props extends InputProps {
 	checked?: boolean;
-	disabled?: boolean;
-	id?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	title?: string;
+	indeterminate?: boolean;
 	tabindex?: number;
-	name?: string;
-	required?: boolean;
-	labelOnTheLeft?: boolean;
-
-	element?: HTMLDivElement; 			// bindable
-	inputElement?: HTMLInputElement;	// bindable
-	onchange?: (event: { event: Event, checked: boolean, indeterminate: boolean }) => void;
 }
 
 let {
 	class: className = '',
-	indeterminate = $bindable(),
 	checked = $bindable(),
+	indeterminate = $bindable(),
 	disabled = false,
 	id = '',
 	label = '',
@@ -78,13 +69,6 @@ let {
 
 
 const errorMessageId = guid();
-
 const _id = $derived(id || name || guid());
 
-
-function _onchange (event) {
-	checked = event.target.checked;
-	indeterminate = event.target.indeterminate;
-	onchange({ event, checked, indeterminate });
-}
 </script>

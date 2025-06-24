@@ -17,7 +17,7 @@
 	]}
 	style="{color ? `background-color: ${color};` : ''}"
 	onkeydown={_onkeydown}
-	onclick={_onclick}>
+	{onclick}>
 	{#if icon}
 		<Icon name={icon}/>
 	{/if}
@@ -40,7 +40,7 @@ interface Props {
 	element?: HTMLElement;
 	disabled?: boolean;
 	clickable?: boolean;
-	onclick?: (event: { target: HTMLElement, originalEvent: Event }) => void;
+	onclick?: (event: Event) => void;
 	children?: Snippet;
 }
 
@@ -58,11 +58,8 @@ let {
 
 const inert = $derived(disabled || !clickable);
 
-function _onclick (e) {
-	onclick({ target: element, originalEvent: e });
-}
 
 function _onkeydown (e) {
-	if (e.key === 'Enter' || e.key === ' ') _onclick(e);
+	if (e.key === 'Enter' || e.key === ' ') onclick(e);
 }
 </script>

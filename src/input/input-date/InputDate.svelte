@@ -41,7 +41,7 @@
 					id={_id}
 					onchange={_onchange}
 					bind:this={inputElement}
-					bind:value={value}>
+					bind:value>
 			{:else}
 				<input
 					type="text"
@@ -60,7 +60,7 @@
 					onchangeDate={_onchange}
 					onkeydowncapture={_onkeydown}
 					bind:this={inputElement}
-					bind:value={value}>
+					bind:value>
 			{/if}
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import './InputDate.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
@@ -79,28 +79,13 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	disabled?: boolean;
-	required?: boolean;
-	value?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLElement;
-	inputElement?: HTMLInputElement;
-	format?: string;						// 'yyyy-mm-dd'
-	placeholder?: string;					// default is the same as format
-	elevate?: boolean;						// if true, the datepicker will be elevated to the body
-	showOnFocus?: boolean;					// if true, the datepicker will be shown on focus
-	orientation?: string;					// '[left|right|auto] [top|bottom|auto]'
-	title?: string;
+interface Props extends InputProps {
+	format?: string;				// 'yyyy-mm-dd'
+	elevate?: boolean;				// if true, the datepicker will be elevated to the body
+	showOnFocus?: boolean;			// if true, the datepicker will be shown on focus
+	orientation?: string;			// '[left|right|auto] [top|bottom|auto]'
 	useNativeOnMobile?: boolean;	// if true, the native date input will be used on mobile devices
-	onchange?: (value: string) => void;
-	onkeydown?: (params: { event: KeyboardEvent, component: Datepicker }) => void;
+	onkeydown?: (e: KeyboardEvent, component: Datepicker) => void;
 }
 
 
@@ -168,24 +153,22 @@ function initDatePicker () {
 
 function _onkeydown (e) {
 	const isActive = picker.active;
-	const params = { event: e, component: picker };
 	if (e.key === 'Escape') {
 		if (isActive) e.stopPropagation();
-		else onkeydown(params);
+		else onkeydown(e, picker);
 		requestAnimationFrame(() => picker.hide());
 	}
 	else if (e.key === 'Enter') {
 		if (isActive) e.preventDefault();
-		else onkeydown(params);
+		else onkeydown(e, picker);
 		requestAnimationFrame(() => {
 			picker.hide();
 			if (!inputElement) return;
 			if (value !== inputElement.value) value = inputElement.value;	// set value first
-			onkeydown(params);									// trigger with new value
+			onkeydown(e, picker);									// trigger with new value
 		});
 	}
-
-	else onkeydown(params);
+	else onkeydown(e, picker);
 
 	// prevents picker's events in Safari
 	// if (e.key.includes('Arrow') && picker.active) {
@@ -206,10 +189,10 @@ function oninput () {
 	});
 }
 
-function _onchange () {
+function _onchange (e) {
 	if (picker) value = picker.getDate(format);
 	else value = inputElement.value;
-	onchange(value);
+	onchange(e, value);
 }
 
 // Datepicker publishes these 2 events (onshow, onhide) on the input element

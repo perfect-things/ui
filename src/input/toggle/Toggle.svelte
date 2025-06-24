@@ -46,29 +46,12 @@
 
 <script lang="ts">
 import './Toggle.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid, getMouseX } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
-
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	title?: string;
-	required?: boolean;
-	disabled?: boolean;
-	label?: string;
-	error?: string;
-	info?: string;
-	value?: boolean;
-	labelOnTheLeft?: boolean;
-	element?: HTMLDivElement;
-	inputElement?: HTMLInputElement;
-	onchange?: (value: boolean) => void;
-}
 
 let {
 	class: className = '',
@@ -85,7 +68,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	onchange = () => {},
-}: Props = $props();
+}: InputProps = $props();
 
 const _id: string = $derived(id || name || guid());
 
@@ -110,19 +93,23 @@ $effect(() => {
 
 $effect(() => {
 	if (typeof value !== 'boolean') value = !!value;
-	setValue(value);
+	setValue(undefined, value);
 });
 
 
 
-function setValue (v = false, force = false) {
+function setValue (e: Event, v = false, force = false) {
 	if (typeof v !== 'boolean') v = !!v;
-	if (v !== value) return value = v;
-	if (value === oldValue && !force) return;
-	startX = currentX = value ? scrollerEndX : scrollerStartX;
-	oldValue = value;
-	setKnobPosition();
-	onchange(value);
+	if (v !== value) {
+		value = v;
+	}
+	else {
+		if (value === oldValue && !force) return;
+		startX = currentX = value ? scrollerEndX : scrollerStartX;
+		oldValue = value;
+		setKnobPosition();
+	}
+	onchange(e, value);
 }
 
 
@@ -130,7 +117,7 @@ function onkeydown (e) {
 	toggleTransitions(true);
 	if (e.key === 'Enter' || e.key === ' ') {
 		e.preventDefault();
-		setValue(!value);
+		setValue(e, !value);
 	}
 }
 
@@ -157,17 +144,17 @@ function dragStart (e) {
 }
 
 
-function dragEnd () {
+function dragEnd (e: Event) {
 	document.removeEventListener('mouseup', dragEnd);
 	document.removeEventListener('mousemove', drag);
 	document.removeEventListener('touchend', dragEnd);
 	document.removeEventListener('touchmove', drag);
 	toggleTransitions(true);
 	isDragging = false;
-	if (isClick) setValue(!value);
+	if (isClick) setValue(e, !value);
 	else {
 		// drag-end left knob at over 50% of the toggle width
-		setValue(currentX - scrollerStartX >= (scrollerEndX - scrollerStartX) / 2, true);
+		setValue(e, currentX - scrollerStartX >= (scrollerEndX - scrollerStartX) / 2, true);
 	}
 }
 

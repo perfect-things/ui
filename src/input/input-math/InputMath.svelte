@@ -38,30 +38,12 @@
 </div>
 <script lang="ts">
 import './InputMath.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { Icon } from '../../icon';
 import { roundAmount, guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
-
-
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	required?: boolean;
-	disabled?: boolean;
-	value?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLElement;
-	inputElement?: HTMLInputElement;
-	onchange?: (e: Event) => void;
-	onkeydown?: (e: KeyboardEvent) => void;
-}
 
 
 let {
@@ -80,7 +62,7 @@ let {
 	onchange = () => {},
 	onkeydown = () => {},
 	...rest
-}: Props = $props();
+}: InputProps = $props();
 
 
 const errorMessageId = guid();

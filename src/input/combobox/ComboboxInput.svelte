@@ -71,7 +71,7 @@ interface Props {
 	onfocus?: () => void;
 	oninput?: () => void;
 	onblur?: () => void;
-	restProps?: Record<string, any>;
+	[key: string]: any;
 }
 
 let {

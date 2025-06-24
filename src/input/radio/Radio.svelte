@@ -31,7 +31,7 @@
 					<input
 						type="radio"
 						id={item.id}
-						name={name}
+						{name}
 						value={item.value}
 						checked={item.value === value}
 						disabled={disabled || item.disabled}
@@ -44,7 +44,7 @@
 </div>
 <script lang="ts">
 import './Radio.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -53,20 +53,8 @@ import { Label } from '../label';
 
 
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	title?: string;
-	label?: string;
-	disabled?: boolean;
+interface Props extends InputProps {
 	items?: any;
-	value?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLElement;
-	onchange?: (args: { event: Event; value: string; item: any }) => void;
 }
 
 let {
@@ -107,7 +95,7 @@ function onmousedown (e) {
 
 function _onchange (event: Event, item: any) {
 	value = item.value;
-	onchange({ event, value, item });
+	onchange(event, value, item);
 }
 
 </script>

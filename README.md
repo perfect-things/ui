@@ -3,17 +3,19 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] make reusable core input component?
 - [ ] standardise event params (so that all events from components have the same structure)
-- [ ] define a core props interface for all components to extend
+- [ ] split some components into smaller bits (especially inputs)
 
-
+- [ ] make some rules as to where ...restProps is passed and handled
 - [ ] upgrade docs code to ts & svelte 5
 - [ ] fix docs for all components
 
 - [ ] explore options to use UI outside of svelte
 
 
+- [x] define a core input props interface for all inputs to extend
+  - [x] update all inputs to use that
+- [-] make reusable core input component? - not possible
 - [x] upgrade all `class:` attrs to `{{}}` and maybe allow the full class={} fanciness in the components? https://svelte.dev/docs/svelte/class#The-class:-directive
 - [x] fix json code bits live updating
 - [x] correct the event handlers that use `.detail`

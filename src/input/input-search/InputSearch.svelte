@@ -25,6 +25,7 @@
 				autocomplete="off"
 				type="search"
 				{disabled}
+				{name}
 				aria-invalid={!!error}
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
@@ -46,7 +47,7 @@
 
 <script lang="ts">
 import './InputSearch.css';
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Button } from '../../button';
 import { Icon } from '../../icon';
@@ -54,24 +55,11 @@ import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	required?: boolean;
-	disabled?: boolean;
-	value?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLDivElement;
-	inputElement?: HTMLInputElement;
-	[key: string]: any;
-}
 
 let {
 	class: className = '',
 	id = '',
+	name = '',
 	required = undefined,
 	disabled = false,
 	value = $bindable(''),
@@ -82,7 +70,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	...restProps
-}: Props = $props();
+}: InputProps = $props();
 
 const _id: string = $derived(id || name || guid());
 const errorMessageId: string = guid();

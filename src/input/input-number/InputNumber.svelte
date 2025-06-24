@@ -36,29 +36,16 @@
 </div>
 
 <script lang="ts">
-import type { ClassValue } from 'svelte/elements';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-interface Props {
-	class?: ClassValue;
-	id?: string;
-	name?: string;
-	disabled?: boolean;
-	required?: boolean;
-	value?: string | number;
-	label?: string;
-	error?: string;
-	info?: string;
+interface Props extends InputProps {
 	separator?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLElement;
-	inputElement?: HTMLInputElement;
-	onchange?: (data: { value: string }) => void;
-	onkeydown?: (data: { event: Event; value: string | number }) => void;
-	[key: string]: any;
+	onchange?: (e: Event, value: string | number) => void;
+	onkeydown?: (e: Event, value: string | number) => void;
 }
 
 let {
@@ -92,38 +79,35 @@ const allowedKeys = [
 const _id = $derived(id || name || guid());
 
 
-function fireKeydown (event) {
-	onkeydown({ event, value });
-}
-
-
-function _onkeydown (e) {
+function _onkeydown (e: KeyboardEvent) {
 	const key = e.key;
-	const val = ('' + value);
 
-	if (allowedKeys.includes(key)) return fireKeydown(e);
-	if (key === 'v' && e.metaKey) return fireKeydown(e);
-	if (key === 'c' && e.metaKey) return fireKeydown(e);
-	if (key === 'x' && e.metaKey) return fireKeydown(e);
-	if (key === '-' && inputElement.selectionStart === 0 && !val.includes('-')) {
-		return fireKeydown(e);
-	}
-	if (key === separator && !val.includes(separator)) return fireKeydown(e);
+	if (allowedKeys.includes(key)) return onkeydown(e, value);
+	if (key === 'v' && e.metaKey) return onkeydown(e, value);
+	if (key === 'c' && e.metaKey) return onkeydown(e, value);
+	if (key === 'x' && e.metaKey) return onkeydown(e, value);
+
+	const hasMinus = ('' + value).includes('-');
+	const carretAtStart = inputElement.selectionStart === 0;
+	if (key === '-' && carretAtStart && !hasMinus) return onkeydown(e, value);
+
+	const hasSeparator = ('' + value).includes(separator);
+	if (key === separator && !hasSeparator) return onkeydown(e, value);
 
 	e.preventDefault();
 }
 
 
-function ondrop () {
-	requestAnimationFrame(_onchange);
+function ondrop (e: DragEvent) {
+	requestAnimationFrame(() => _onchange(e));
 }
 
-function onpaste () {
-	requestAnimationFrame(_onchange);
+function onpaste (e: ClipboardEvent) {
+	requestAnimationFrame(() => _onchange(e));
 }
 
 
-function _onchange () {
+function _onchange (e: Event) {
 	const nonNumeric = new RegExp(`[^0-9${separator}-]+`, 'g');
 
 	// escape regex special chars, as if separator='.' - it would remove any character
@@ -139,6 +123,6 @@ function _onchange () {
 	const v = value.replace(separator, '.');
 	const num = parseFloat(v);
 	if (isNaN(num)) value = '';
-	onchange({ value });
+	onchange(e, value);
 }
 </script>

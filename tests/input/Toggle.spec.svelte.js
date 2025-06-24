@@ -5,7 +5,7 @@ import { Toggle } from '../../src/input/toggle';
 
 
 test('Toggle', async () => {
-	const mock = vi.fn();
+	const onchange = vi.fn();
 	const props = $state({
 		id: 'Component1',
 		name: 'Component1',
@@ -15,7 +15,7 @@ test('Toggle', async () => {
 		error: 'error',
 		label: 'Component1',
 		info: undefined,
-		onchange: mock
+		onchange
 	});
 
 	// @ts-ignore
@@ -26,7 +26,7 @@ test('Toggle', async () => {
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).toHaveClass('toggle');
 
-	// verify props
+	// // verify props
 	const label = document.body.querySelector('[title="Component1"]');
 	expect(label).toBeInTheDocument();
 
@@ -36,10 +36,9 @@ test('Toggle', async () => {
 	expect(input).toHaveAttribute('aria-required');
 	expect(input).not.toBeChecked();
 
-	await user.click(label);
-
-	expect(mock).toHaveBeenCalledWith(true);
+	await user.click(input);
 	expect(input).toBeChecked();
+	expect(onchange).toHaveBeenCalledWith(expect.anything(), true);
 
 	let err = cmp.querySelector('.info-bar-error');
 	expect(err).toBeInTheDocument();

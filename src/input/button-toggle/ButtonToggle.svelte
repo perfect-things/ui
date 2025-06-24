@@ -1,8 +1,8 @@
 <div
+	{title}
 	role="radiogroup"
 	aria-invalid={!!error}
 	aria-errormessage={error ? errorMessageId : undefined}
-	{title}
 	bind:this={element}
 	class={[
 		'input',
@@ -15,8 +15,6 @@
 			'has-error': error
 		},
 	]}>
-
-
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
@@ -39,8 +37,8 @@
 							{/if}
 							{item.name || ''}
 							<input
-								{disabled}
 								{name}
+								{disabled}
 								id={idx === 0 ? _id : undefined}
 								type="radio"
 								checked={item.value === value}
@@ -55,31 +53,21 @@
 
 <script lang="ts">
 import './ButtonToggle.css';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
-	import type { ClassValue } from 'svelte/elements';
 
 type Item = { name?: string, value: string | boolean, icon?: string } | string;
 type Value = Item | string | boolean;
 
-interface Props {
-	class?: ClassValue;
-	disabled?: boolean;
+interface Props extends InputProps {
 	round?: boolean;
 	items?: Item[];
-	id?: string;
-	name?: string;
 	value?: Value;
-	title?: string;
-	label?: string;
-	error?: string;
-	info?: string;
-	labelOnTheLeft?: boolean;
-	element?: HTMLDivElement;
-	onchange?: (value: Value) => void;
+	onchange?: (e: Event, value: Value) => void;
 }
 
 let {
@@ -128,7 +116,7 @@ function _onchange (e, button) {
 	if (btnEl) btnEl.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 
 	value = button.value;
-	onchange(value);
+	onchange(e, value);
 }
 
 </script>
