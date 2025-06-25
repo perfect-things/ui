@@ -5,8 +5,8 @@
 		class={['drawer', className,]}
 		tabindex="-1"
 		use:docclick
-		in:fly="{{ x: 300, duration: $ANIMATION_SPEED }}"
-		out:fly="{{ x: 300, duration: $ANIMATION_SPEED ? $ANIMATION_SPEED + 100 : 0 }}"
+		in:fly="{{ x: 300, duration: UI.ANIMATION_SPEED }}"
+		out:fly="{{ x: 300, duration: UI.ANIMATION_SPEED ? UI.ANIMATION_SPEED + 100 : 0 }}"
 		{...restProps}>
 
 		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
@@ -22,7 +22,7 @@
 import './Drawer.css';
 import type { DrawerProps } from './types';
 import { fly } from 'svelte/transition';
-import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
+import { UI } from '../utils';
 import { Button } from '../button';
 
 
@@ -101,7 +101,7 @@ function focusLast () {
 
 
 function getFocusableElements () {
-	return Array.from(element.querySelectorAll(FOCUSABLE_SELECTOR));
+	return Array.from(element.querySelectorAll(UI.FOCUSABLE_SELECTOR));
 }
 
 

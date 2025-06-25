@@ -21,11 +21,6 @@
 		<SvelteComponent />
 		<br>
 	{/each}
-	<p>
-		<em>*</em> <a href="https://svelte.dev/docs/svelte-components#script-4-prefix-stores-with-$-to-access-their-values">
-		svelte store variables</a> - when reading the value, add <em>$</em> to the name, e.g.
-		<em>$ANIMATION_SPEED</em>.
-	</p>
 </div>
 
 <div class="sticky-block">

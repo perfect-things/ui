@@ -94,7 +94,7 @@ export function setValueAtPath (obj: any, path: string, value: any): boolean {
  * empty({}) // true
  * empty('hello') // false
  */
-export function empty (v: any): boolean {
+export function empty (v?: any): boolean {
 	if (v === null || typeof v === 'undefined') return true;
 	if (v === '') return true;
 	if (Array.isArray(v) && v.length === 0) return true;
@@ -114,7 +114,7 @@ export function empty (v: any): boolean {
  * isset(null) // false
  * isset(undefined) // false
  */
-export function isset (v: any): boolean {
+export function isset (v?: any): boolean {
 	return typeof v !== 'undefined' && v !== null;
 }
 

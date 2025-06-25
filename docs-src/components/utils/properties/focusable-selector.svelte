@@ -1,4 +1,4 @@
-<Util id="FocusableSelector" name="FOCUSABLE_SELECTOR" {example}>
+<Util id="FocusableSelector" name="UI.FOCUSABLE_SELECTOR" {example}>
 	<ul>
 		<li>Type: string</li>
 		<li>Returns a list of selectors that can be focused.</li>
@@ -10,9 +10,9 @@ import Util from '../Util.svelte';
 
 const example = `
 <script>
-	import { FOCUSABLE_SELECTOR } from '@perfectthings/ui';
+	import { UI } from '@perfectthings/ui';
 
-	const focusableElements = document.querySelectorAll(FOCUSABLE_SELECTOR);
+	const focusableElements = document.querySelectorAll(UI.FOCUSABLE_SELECTOR);
 	console.log(focusableElements);
 &lt;/script>
 `;

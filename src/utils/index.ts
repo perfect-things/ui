@@ -1,6 +1,6 @@
 export * from './alignItem';
 export * from './animations';
-export * from './constants';
+export * from './constants.svelte';
 export * from './date';
 export * from './dom';
 export * from './keys';

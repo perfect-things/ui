@@ -1,5 +1,4 @@
-import { get } from 'svelte/store';
-import { ANIMATION_SPEED } from './constants';
+import { UI } from './constants.svelte';
 
 
 /**
@@ -12,7 +11,7 @@ import { ANIMATION_SPEED } from './constants';
  */
 export function animate (el: HTMLElement, from: Keyframe, to: Keyframe, options: KeyframeAnimationOptions = {}): Promise<void> {
 	const dflt: KeyframeAnimationOptions = {
-		duration: get(ANIMATION_SPEED),
+		duration: UI.ANIMATION_SPEED,
 		easing: 'ease-out',
 		fill: 'forwards'
 	};

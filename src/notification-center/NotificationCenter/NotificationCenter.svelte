@@ -72,7 +72,7 @@ import { PushButton } from '../../push-button';
 import { Notifications, ArchivedNotifications, createTimer, timers, hideNotification, clearTimer,
 	send, flip, fly, slideDown } from '../store';
 import { NotificationArchive } from '../NotificationArchive';
-import { ANIMATION_SPEED } from '../../utils';
+import { UI } from '../../utils';
 import { getNextNotification } from '../utils';
 
 
@@ -95,7 +95,7 @@ let hasActiveNotifications = $state(false);
 let initial = $state(true);
 
 
-const duration = $derived($ANIMATION_SPEED);
+const duration = $derived(UI.ANIMATION_SPEED);
 const hasArchivedNotifications = $derived(Object.keys($ArchivedNotifications).length > 0);
 
 

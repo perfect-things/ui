@@ -21,7 +21,7 @@
 import './Dialog.css';
 import type { DialogProps } from './types';
 import { onMount } from 'svelte';
-import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
+import { UI } from '../utils';
 
 
 let {
@@ -82,8 +82,8 @@ function focusLast () {
 
 function getFocusableElements () {
 	if (!dialogEl || !contentEl || !footerEl) return [];
-	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
-	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
+	const contentElements = Array.from(contentEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
+	const footerElements = Array.from(footerEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
 	return [...contentElements, ...footerElements];
 }
 
@@ -171,7 +171,7 @@ export function open (openedBy) {
 			document.addEventListener('keydown', onDocKeydown);
 			onopen();
 			resolve();
-		}, $ANIMATION_SPEED / 2);
+		}, UI.ANIMATION_SPEED / 2);
 	});
 }
 
@@ -192,7 +192,7 @@ export function close () {
 			freezeBody(false);
 			onclose();
 			resolve();
-		}, $ANIMATION_SPEED);
+		}, UI.ANIMATION_SPEED);
 	});
 }
 

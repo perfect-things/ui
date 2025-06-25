@@ -8,7 +8,7 @@
 <script lang="ts">
 import './InputError.css';
 import type { InputErrorProps } from './types';
-import { ANIMATION_SPEED } from '../../utils';
+import { UI } from '../../utils';
 import Error from '../../info-bar/Error.svelte';
 
 
@@ -30,7 +30,7 @@ const _animOpacity = $derived(animOpacity || _hasOffset);
 function slideError (node) {
 	const o = node.getBoundingClientRect().height;
 	return {
-		duration: $ANIMATION_SPEED,
+		duration: UI.ANIMATION_SPEED,
 		css: (t) => {
 			return `height: ${t * o}px;` +
 				(_animOpacity ? `opacity: ${t};` : '') +

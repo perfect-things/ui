@@ -17,7 +17,7 @@ import './Popover.css';
 import type { AlignmentDirection } from '../types';
 import type { PopoverProps } from './types';
 import { addArias, removeArias } from './utils';
-import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils';
+import { alignItem, throttle, debounce, UI } from '../utils';
 
 let {
 	class: className = '',
@@ -140,7 +140,7 @@ function focusLast () {
 
 function getFocusableElements () {
 	if (!contentEl) return [];
-	return Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
+	return Array.from(contentEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
 }
 
 

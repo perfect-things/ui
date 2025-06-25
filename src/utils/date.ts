@@ -26,10 +26,10 @@ export function formatDate (date: Date): string {
  * timeAgo(new Date(Date.now() - 3600000)) // '1 hour ago'
  * timeAgo(new Date('2023-01-01')) // '2023-01-01 00:00' (if more than simple time ago)
  */
-export function timeAgo (date: Date, now?: number): string {
+export function timeAgo (date?: Date, now?: Date): string {
 	if (!date) return '';
-	now = now || new Date().getTime();
-	let seconds = (now - +date) / 1000;
+	now = (now || new Date());
+	let seconds = (+now - +date) / 1000;
 	const intervals = [
 		{ label: 'year', seconds: 31536000 },
 		{ label: 'month', seconds: 2592000 },

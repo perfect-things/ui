@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import { ANIMATION_SPEED, pluck, guid } from '../utils';
+import { UI, pluck, guid } from '../utils';
 import { fly as _fly, crossfade } from 'svelte/transition';
 import { flip as _flip } from 'svelte/animate';
 
@@ -7,7 +7,7 @@ export const Notifications = writable({});
 export const ArchivedNotifications = writable({});
 export const Progress = writable({});
 export const timers = {};
-const duration = get(ANIMATION_SPEED);
+const duration = UI.ANIMATION_SPEED;
 
 
 

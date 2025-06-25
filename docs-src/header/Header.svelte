@@ -2,15 +2,15 @@
 	class="dark-mode-switch"
 	title="Dark mode toggle"
 	items={themes}
-	value={$PREFERS_DARK}
+	value={UI.PREFERS_DARK}
 	onchange={switchColorMode}/>
 
 
 
 <script>
-	import { onMount } from 'svelte';
+import { onMount } from 'svelte';
 import { ButtonToggle } from '../../src';
-import { PREFERS_DARK } from '../../src/utils';
+import { UI } from '../../src/utils/index';
 import './Header.css';
 
 const themes = [
@@ -20,7 +20,7 @@ const themes = [
 
 
 onMount(() => {
-	switchColorMode(null, $PREFERS_DARK);
+	switchColorMode(null, UI.PREFERS_DARK);
 });
 
 

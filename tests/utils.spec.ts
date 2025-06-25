@@ -1,5 +1,5 @@
 import { expect, test, vi, describe, it, beforeEach, afterEach } from 'vitest';
-import { get } from 'svelte/store';
+// import { get } from 'svelte/store';
 
 import './helpers/utils';
 import * as utils from '../src/utils';
@@ -7,7 +7,7 @@ import * as utils from '../src/utils';
 
 
 test('utils - matchMedia', () => {
-	expect(get(utils.ANIMATION_SPEED)).toStrictEqual(0);
+	expect(utils.UI.ANIMATION_SPEED).toStrictEqual(0);
 });
 
 

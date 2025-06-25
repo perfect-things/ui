@@ -50,7 +50,7 @@ import type { NotificationArchiveProps } from '../types';
 import { onDestroy, onMount } from 'svelte';
 import { Button } from '../../button';
 import { ArchivedNotifications, removeFromArchive, receive, fly, slideUp, flip } from '../store';
-import { ANIMATION_SPEED, timeAgo } from '../../utils';
+import { UI, timeAgo } from '../../utils';
 import { getNextNotification } from '../utils';
 
 
@@ -61,7 +61,7 @@ let {
 }: NotificationArchiveProps = $props();
 
 
-const duration = $ANIMATION_SPEED;
+const duration = $derived(UI.ANIMATION_SPEED);
 
 let el: HTMLElement = $state();
 let archived = $state([]);

@@ -6,7 +6,7 @@ import './Splitter.css';
 import type { SplitterProps, SplitterBox } from './types';
 import { onMount } from 'svelte';
 import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
-import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
+import { getMouseX, getMouseY, UI } from '../utils';
 
 
 let {
@@ -97,7 +97,7 @@ function updateSize (box, withAnimation = false) {
 	if (withAnimation) {
 		originalTargetTransition = targetEl.style.transition;
 		originalElTransition = element.style.transition;
-		const anim = $ANIMATION_SPEED + 'ms ease-out';
+		const anim = UI.ANIMATION_SPEED + 'ms ease-out';
 		targetEl.style.transition = `width ${anim}, height ${anim}`;
 		element.style.transition = `left ${anim}, top ${anim}`;
 	}
@@ -123,7 +123,7 @@ function updateSize (box, withAnimation = false) {
 			targetEl.style.transition = originalTargetTransition;
 			element.style.transition = originalElTransition;
 			onchanged(undefined, Box);
-		}, $ANIMATION_SPEED);
+		}, UI.ANIMATION_SPEED);
 	}
 }
 
