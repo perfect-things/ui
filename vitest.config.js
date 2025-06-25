@@ -3,19 +3,19 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 export default defineConfig({
 	plugins: [
-		svelte({ hot: false, })],
+		svelte({ hot: false, })
+	],
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		setupFiles: ['./tests/_setup.js'],
+		setupFiles: ['./tests/_setup.ts'],
 		include: [
-			'tests/**/*.spec.js',
 			'tests/**/*.spec.ts',
-			'tests/**/*.spec.svelte.js'
+			'tests/**/*.spec.svelte.ts',
 		],
 		css: { modules: { classNameStrategy: 'non-scoped' } },
 		coverage: {
-			provider: 'v8', // or 'istanbul'
+			provider: 'v8',
 			reporter: ['text', 'text-summary', 'json', 'html'],
 			reportsDirectory: './coverage',
 			include: [

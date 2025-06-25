@@ -15,17 +15,16 @@
 		<div class="input-scroller">
 			<div class="input-row">
 				{#each _items as item, idx (item.value)}
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
+					<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 					<label
 						class={[
 							'button',
 							'button-normal',
-							{ 'button-has-text': item.name },
+							{ 'button-has-text': item.name, disabled },
 						]}
-						{...({ disabled } as any)}
 						{onclick}>
-							{#if item.icon}
-								<Icon name={item.icon}/>
-							{/if}
+							<Icon name={item.icon}/>
 							{item.name || ''}
 							<input
 								{name}
@@ -55,7 +54,7 @@ import { Label } from '../label';
 
 let {
 	id = undefined,
-	name = undefined,
+	name = guid(),
 	class: className = '',
 	disabled = undefined,
 	round = undefined,

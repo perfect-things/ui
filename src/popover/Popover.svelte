@@ -1,9 +1,6 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
-	<div
-		bind:this={element}
-		class={cls}
-		{...restProps}>
+	<div bind:this={element} class={cls} {...restProps}>
 		<div class="popover">
 			<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 			<div class="popover-content" bind:this={contentEl}>
@@ -17,6 +14,7 @@
 
 <script lang="ts">
 import './Popover.css';
+import type { AlignmentDirection } from '../types';
 import type { PopoverProps } from './types';
 import { addArias, removeArias } from './utils';
 import { alignItem, throttle, debounce, FOCUSABLE_SELECTOR } from '../utils';
@@ -40,7 +38,7 @@ let {
 let opened = $state(false);
 let opening = $state(false);
 let closing = $state(false);
-let _position = $state(position);
+let _position: AlignmentDirection = $state(position);
 let targetEl: EventTarget = $state();
 let eventsAdded = false;
 
@@ -69,13 +67,11 @@ export function updatePosition () {
 
 export const isOpened = () => opened;
 
-export function open (e) {
+export function open (e: Event | HTMLElement | undefined = undefined) {
 	if (closing) return Promise.resolve();
-	if (opened) return close();
+	if (opened) return close(e as Event);
 	opened = true;
 	opening = true;
-
-	if (e && e.detail && e.detail instanceof Event) e = e.detail;
 
 	if (e instanceof Event) targetEl = e && e.target;
 	if (e instanceof HTMLElement) targetEl = e;
@@ -93,7 +89,7 @@ export function open (e) {
 			updatePosition();
 			opening = false;
 		});
-		onopen({ event: e, target: targetEl });
+		onopen(e as Event, { target: targetEl });
 		resolve();
 	}));
 }
@@ -102,7 +98,7 @@ export function open (e) {
 /**
  * Highlights the clicked button and closes the menu (provided that the button's event handler did not call preventDefault())
  */
-export function close () {
+export function close (e: Event) {
 	if (!opened) return Promise.resolve();
 	if (targetEl) targetEl.focus();
 
@@ -113,7 +109,7 @@ export function close () {
 	return new Promise<void>(resolve => requestAnimationFrame(() => {
 		removeEventListeners();
 		resolve();
-		onclose({ target: targetEl });
+		onclose(e, { target: targetEl });
 		setTimeout(() => closing = false, 300);
 	}));
 }
@@ -153,7 +149,7 @@ function getFocusableElements () {
 const throttledResize = throttle(updatePosition, 50);
 const debouncedResize = debounce(updatePosition, 50);
 
-// throttle ensures that the popover is repositioned max once every 200ms (to not overload resize events)
+// throttle ensures that the popover is repositioned max once every 50ms (to not overload resize events)
 // but it doesn't ensure that the fn is called at the end of resizing. Debounce ensures that.
 function onResize () {
 	throttledResize();
@@ -166,7 +162,7 @@ function onDocumentClick (e) {
 	if (element.contains(e.target)) return;
 	if (dontHideOnTargetClick && targetEl &&
 		(targetEl === e.target || targetEl.contains(e.target))) return;
-	close();
+	close(e);
 }
 
 
@@ -179,7 +175,7 @@ function onKeydown (e) {
 	}
 	if (e.key === 'Escape') {
 		e.stopPropagation();
-		return close();
+		return close(e);
 	}
 }
 

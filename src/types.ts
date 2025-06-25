@@ -3,11 +3,16 @@ import type { ClassValue } from 'svelte/elements';
 
 export type EventHandler = (e: Event, ...rest: any) => void;
 
+export type AlignmentDirection = 'top' | 'bottom' | 'left' | 'right';
+
+
+
 export interface ComponentProps {
 	id?: string;
 	class?: ClassValue;
 	title?: string;
 	disabled?: boolean;
+	tabindex?: number;
 
 	element?: HTMLElement;
 	children?: Snippet;
@@ -20,27 +25,9 @@ export interface ComponentProps {
 	onmouseup?: EventHandler;
 	onclick?: EventHandler;
 	onchange?: EventHandler;
-}
 
-export interface InputProps extends ComponentProps {
-	name?: string;
-
-	required?: boolean;
-	readonly?: boolean;
-	autofocus?: boolean;
-	labelOnTheLeft?: boolean;
-
-	value?: any;
-	label?: string;
-	error?: string;
-	info?: string;
-	placeholder?: string;
-
-	element?: HTMLElement;
-	inputElement?: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-
-	onchange?: EventHandler;
-	oninput?: EventHandler;
+	// allow 'data-x' attributes
+	[key: `data-${string}`]: string | number | boolean | undefined;
 }
 
 // Utility types

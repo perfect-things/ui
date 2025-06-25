@@ -72,8 +72,8 @@ test('InputNumber handles numeric input', async () => {
 
 test('InputNumber handles min and max values', async () => {
 	const props = $state({
-		min: '0',
-		max: '100',
+		min: 0,
+		max: 100,
 		value: '50'
 	});
 	const component = mount(InputNumber, { target: document.body, props });
@@ -90,7 +90,7 @@ test('InputNumber handles min and max values', async () => {
 test('InputNumber handles decimal values', async () => {
 	const props = $state({
 		value: '3.14',
-		step: '0.01'
+		step: 0.01
 	});
 	const component = mount(InputNumber, { target: document.body, props });
 

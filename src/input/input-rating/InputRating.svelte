@@ -17,7 +17,7 @@
 					class={{ active: value >= star }}
 					link
 					icon={icon}
-					tabindex="-1"
+					tabindex={-1}
 					data-star={star}/>
 			{/each}
 

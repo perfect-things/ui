@@ -1,26 +1,27 @@
-import type { ClassValue } from 'svelte/elements';
+import type { FullAutoFill } from 'svelte/elements';
+import type { ComponentProps, EventHandler } from '../types';
 
 
-export interface InputProps {
-	class?: ClassValue;
-	id?: string;
+export interface InputProps extends ComponentProps {
 	name?: string;
 	required?: boolean;
-	disabled?: boolean;
 	value?: any;
+	readonly?: boolean;
+	autofocus?: boolean;
+	autocomplete?: FullAutoFill;
+	maxlength?: number;
+	minlength?: number;
+	pattern?: string;
+
 	label?: string;
 	error?: string;
 	info?: string;
-	title?: string;
+
 	labelOnTheLeft?: boolean;
-	tabindex?: number;
 	placeholder?: string;
-	element?: HTMLElement;
+
 	inputElement?: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-	onchange?: (e: Event, ...rest: any) => void;
-	onkeydown?: (e: KeyboardEvent, ...rest: any) => void;
-	onfocus?: (e: Event, ...rest: any) => void;
-	onblur?: (e: Event, ...rest: any) => void;
-	oninput?: (e: Event, ...rest: any) => void;
-	[key: string]: any;
+
+	onchange?: EventHandler;
+	oninput?: EventHandler;
 }

@@ -1,3 +1,5 @@
+import type { InputProps } from '../../src/input/types';
+
 import { fireEvent } from '@testing-library/svelte';
 import { flushSync, mount, unmount } from 'svelte';
 import { InputText } from '../../src/input';
@@ -186,11 +188,11 @@ test('InputText exposes element and inputElement references', async () => {
 
 
 test('InputText with custom attributes passes them through to input element', async () => {
-	const props = $state({
+	const props: InputProps = $state({
 		class: 'test-class',
 		autocomplete: 'name',
-		maxlength: '100',
-		minlength: '3',
+		maxlength: 100,
+		minlength: 3,
 		pattern: '[A-Za-z]+',
 		tabindex: 2,
 		'data-testid': 'custom-input',

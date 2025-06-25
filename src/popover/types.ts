@@ -1,13 +1,13 @@
-import type { ComponentProps } from '../types';
+import type { AlignmentDirection, ComponentProps, EventHandler } from '../types';
 
 
 export interface PopoverProps extends ComponentProps {
 	offset?: string | number;
 	contentEl?: HTMLElement;
-	position?: 'top' | 'bottom' | 'left' | 'right';
+	position?: AlignmentDirection;
 	hideTip?: boolean;
 	dontHideOnTargetClick?: boolean;
 	setMinWidthToTarget?: boolean;
-	onopen?: (event: { event: Event, target: EventTarget }) => void;
-	onclose?: (event: { target: EventTarget }) => void;
+	onopen?: EventHandler;
+	onclose?: EventHandler;
 }

@@ -3,19 +3,18 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] standardise event params (so that all events from components have the same structure)
-- [ ] split some components into smaller bits (especially inputs)
+- [ ] enhance utils functions to use runes
+- [ ] enhance datastores (notifications, messageboxes, etc.) to use runes
 
-- [ ] make some rules as to where ...restProps is passed and handled
 - [ ] upgrade docs code to ts & svelte 5
 - [ ] fix docs for all components
-- [ ] enhance utils functions to use runes, etc.
-- [ ] reuse `use:docclick` from Drawer in other components
 
-- [ ] add readonly prop to inputs
 - [ ] explore options to use UI outside of svelte
 
 
+- [x] make some rules as to where ...restProps is passed and handled
+- [-] split some components into smaller bits (especially inputs)
+- [x] standardise event params (so that all events from components have the same structure)
 - [x] define a core input props interface for all inputs to extend
   - [x] update all inputs to use that
 - [-] make reusable core input component? - not possible

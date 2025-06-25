@@ -1,10 +1,10 @@
-import type { ComponentProps } from '../types';
+import type { AlignmentDirection, ComponentProps } from '../types';
 
 export interface TooltipProps extends ComponentProps {
 	target?: string;
 	offset?: number | string;
 	delay?: number | string;
-	position?: 'top' | 'bottom' | 'left' | 'right';
+	position?: AlignmentDirection;
 	shortcut?: string;
 
 	info?: boolean;

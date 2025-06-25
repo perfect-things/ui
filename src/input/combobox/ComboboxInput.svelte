@@ -10,7 +10,7 @@
 			link
 			icon="dots"
 			class="combobox-button"
-			tabindex="-1"
+			tabindex={-1}
 			onmousedown={oniconmousedown}
 			onclick={oniconclick}/>
 

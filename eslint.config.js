@@ -9,7 +9,7 @@ import ts from 'typescript-eslint';
 export default ts.config(
 	js.configs.recommended,
 	ts.configs.recommended,
-	// @ts-expect-error this is correct
+	// @ts-ignore
 	...sveltePlugin.configs.recommended,
 	{
 		ignores: [
@@ -21,7 +21,7 @@ export default ts.config(
 	},
 	{ plugins: { '@stylistic': stylistic } },
 	{
-		files: ['**/*.svelte', '**/*.svelte.js', '**/*.svelte.ts'],
+		files: ['**/*.{svelte.js,svelte.ts,svelte}'],
 		languageOptions: {
 			parser: svelteParser,
 			parserOptions: {
@@ -35,7 +35,6 @@ export default ts.config(
 				...globals.browser,
 				...globals.vitest,
 				$state: 'readonly', // Svelte's $state shows undefined in test files
-				// ...sveltePlugin,
 			},
 		},
 		plugins: {
@@ -44,7 +43,7 @@ export default ts.config(
 		}
 	},
 	{
-		files: ['**/*.{js,.ts,mjs}'],
+		files: ['**/*.{js,ts,mjs}'],
 		languageOptions: {
 			parser: ts.parser,
 			parserOptions: {
@@ -62,7 +61,7 @@ export default ts.config(
 		}
 	},
 	{
-		files: ['vite.config.js', '*.config.js'],
+		files: ['*.js'],
 		languageOptions: {
 			globals: { ...globals.node, },
 			ecmaVersion: 'latest',
@@ -104,7 +103,6 @@ export default ts.config(
 
 			'svelte/no-at-html-tags': 0,
 
-			// '@typescript-eslint/no-unused-vars': 'off', // Allow unused vars during migration
 			'@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
 			'@typescript-eslint/no-explicit-any': 'off', // Allow any types during migration
 			'@typescript-eslint/ban-ts-comment': 'off',

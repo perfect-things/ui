@@ -2,7 +2,7 @@ import type { ComponentProps } from '../types';
 
 
 export interface MenuProps extends ComponentProps {
-	type: 'context' | undefined;
+	type?: 'context' | undefined;
 	targetSelector?: string;
 	closeOnClick?: boolean;
 	align?: 'left' | 'right' | 'center' | undefined;

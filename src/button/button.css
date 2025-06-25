@@ -38,6 +38,7 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 	outline: 1px solid transparent;
 }
 
+.button.disabled,
 .button[disabled] {
 	pointer-events: none;
 	opacity: 0.6;

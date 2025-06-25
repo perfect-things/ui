@@ -1,7 +1,6 @@
 <div
-	{id}
 	bind:this={element}
-	class={cls}
+	class={['button-group', className, { round }]}
 	{...restProps}>
 
 	<div class="button-group-scroller">
@@ -17,7 +16,6 @@ import './ButtonGroup.css';
 
 
 let {
-	id = undefined,
 	class: className = '',
 	round = undefined,
 	element = $bindable(undefined),
@@ -25,7 +23,5 @@ let {
 	...restProps
 }: ButtonGroupProps = $props();
 
-
-const cls = $derived(['button-group', className, { round }]);
 
 </script>

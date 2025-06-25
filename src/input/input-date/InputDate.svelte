@@ -15,7 +15,7 @@
 				link
 				icon="calendar"
 				class="input-date-button"
-				tabindex="-1"
+				tabindex={-1}
 				onmousedown={onIconMouseDown}
 				onclick={onIconClick}/>
 
