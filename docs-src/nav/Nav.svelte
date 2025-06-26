@@ -1,7 +1,6 @@
 <UIButton text round
 	icon="sidebarLeft"
-	class="nav-toggler {expanded ? 'expanded' : ''} {swiping ? 'swiping' : ''}"
-
+	class={['nav-toggler', { expanded, swiping }]}
 	bind:element={navTogglerBtn}
 	onclick={toggleNav}/>
 
@@ -74,6 +73,7 @@
 
 
 <script>
+import './Nav.css';
 import { onDestroy, onMount } from 'svelte';
 import { Button as UIButton, isInScrollable, debounce } from '../../src';
 import VanillaSwipe from 'vanilla-swipe';
@@ -81,7 +81,6 @@ import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
 import * as TestComponents from '../components';
-import './Nav.css';
 
 
 const components = { GetStarted, Changelog, ...TestComponents, };
@@ -89,13 +88,16 @@ const SIDEBAR_WIDTH = 220;
 const swipeSlowDownFactor = 2.5;
 const onScroll = debounce(checkScrollOffset);
 
-let [active, heading] = $state(getSection());
+
 let { component = $bindable() } = $props();
+
+let [active, heading] = $state(getSection());
 let showScrollTopBtn = $state(false);
 let expanded = $state(false);
 let wasExpanded = false;
 let swiping = $state(false);
-let sidebarEl = $state(), navTogglerBtn = $state();
+let sidebarEl = $state();
+let navTogglerBtn = $state();
 
 
 $effect(() => {
@@ -244,7 +246,7 @@ function waitForElementAndScroll (selector, count = 10) {
 
 
 function getSection () {
-	let [_section, _heading] = location.hash.substr(1).split('/');
+	let [_section, _heading] = location.hash.substring(1).split('/');
 	_section = _section || 'GetStarted';
 	_heading = _heading || 'top';
 	document.body.className = 'section-' + _section.toLocaleLowerCase();

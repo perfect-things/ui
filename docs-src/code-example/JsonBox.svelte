@@ -19,13 +19,13 @@ const code = $derived(window.Prism.highlight(valueString, window.Prism.languages
 function stringify (json) {
 	if (!json) return '';
 	let s = JSON.stringify(json);
-	s = s.replace(/([:,])/g, '$1 ');
-	if (s.match(/^{/)) s = s.replace(/{/g, '{ ');
-	else {
-		if (s.match(/}/)) s = s.replace(/\]/g, '\n]');
-		s = s.replace(/{/g, '\n    { ');
+	s = s.replace(/([:,])/g, '$1 ');						// add space after colon and comma
+	if (s.match(/^{/)) s = s.replace(/{/g, '{ ');			// value is an object - add space after opening brace
+	else {													// value is an array
+		if (s.match(/}/)) s = s.replace(/\]/g, '\n]');		// if array of objects - put closing bracket on new line
+		s = s.replace(/{/g, '\n    { ');					// indent opening brace
 	}
-	s = s.replace(/}/g, ' }');
+	s = s.replace(/}/g, ' }');								// space before closing brace
 	return s;
 }
 

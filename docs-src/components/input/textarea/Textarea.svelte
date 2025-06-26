@@ -18,7 +18,7 @@
 <Textarea label="Write some text" info="This is some extra info for you"></Textarea>
 
 <h3>With error and live validation</h3>
-<Textarea label="Write some text" {error} oninput={oninput}></Textarea>
+<Textarea label="Write some text" {error} {oninput}></Textarea>
 
 <h3>With info, error and autogrow</h3>
 <Textarea label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>

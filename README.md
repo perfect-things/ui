@@ -3,14 +3,14 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] enhance datastores (notifications, messageboxes, etc.) to use runes
 
-- [ ] upgrade docs code to ts & svelte 5
-- [ ] fix docs for all components
+- [ ] correct docs for all components
 
 - [ ] explore options to use UI outside of svelte
 
 
+- [x] upgrade docs code to ts & svelte 5
+- [-] enhance datastores to use runes - doesn't work as the `$effect` is not as predictable as `store.subscribe`, and timings of animations overlap and it's terrible.
 - [x] enhance utils functions to use runes
 - [x] make some rules as to where ...restProps is passed and handled
 - [-] split some components into smaller bits (especially inputs)

@@ -20,7 +20,7 @@
 <Range label="Write some text" info="This is some info for you" />
 
 <h3>With label and error and live validation</h3>
-<Range label="Move the slider" {error} onchange={onChange} value={5} />
+<Range label="Move the slider" {error} {onchange} value={5} />
 
 <h3>With label, info, and error</h3>
 <Range label="Move the slider" info="Don't make any mistakes!" error="You did not slide!" />
@@ -73,7 +73,7 @@ function onChange (e) {
 
 
 let error = $state('Move to 6.');
-function onChange (e) {
+function onchange (e) {
 	error = e.target.value === '6' ? '' : 'Move to 6.';
 }
 

@@ -8,10 +8,9 @@
 
 
 <script>
-import { onMount } from 'svelte';
-import { ButtonToggle } from '../../src';
-import { UI } from '../../src/utils/index';
 import './Header.css';
+import { onMount } from 'svelte';
+import { ButtonToggle, UI } from '../../src';
 
 const themes = [
 	{ value: false, icon: 'sun' },

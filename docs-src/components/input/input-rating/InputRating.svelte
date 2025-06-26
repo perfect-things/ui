@@ -3,8 +3,8 @@
 <br>
 
 <h3>Normal</h3>
-<InputRating onkeydown={onkey} bind:value={item.value}/>
-{item.value || ''}
+<InputRating {onkeydown} bind:value/>
+{value || ''}
 
 
 <h3>Different symbol</h3>
@@ -28,10 +28,7 @@
 
 
 <h3>Error</h3>
-<InputRating
-	label="Pick one"
-	error={error}
-	onchange={onchange}/>
+<InputRating label="Pick one" {error} {onchange}/>
 
 
 <h3>Label on the left</h3>
@@ -49,7 +46,7 @@ import { InputRating } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 
-const item = $state({ value: 2 });
+let value = $state(2);
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
@@ -95,7 +92,7 @@ function onchange (e) {
 }
 
 
-function onkey (e) {
+function onkeydown (e) {
 	console.log(e.detail.event.key);
 }
 </script>

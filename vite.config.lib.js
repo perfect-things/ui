@@ -28,6 +28,9 @@ export default defineConfig({
 		svelte({ compilerOptions: { dev: false } })
 	],
 	build: {
+		sourcemap: true,
+		emptyOutDir: true,
+
 		lib: {
 			entry: entries,
 			formats: ['es']
@@ -56,9 +59,7 @@ export default defineConfig({
 					if (id.includes('.css')) return 'styles';
 				}
 			}
-		},
-		sourcemap: true,
-		emptyOutDir: true
+		}
 	},
 	resolve: {
 		alias: {

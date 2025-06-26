@@ -12,26 +12,24 @@
 	{/if}
 </div>
 
-<script>
+<script lang="ts">
 import { CodeExample } from '../../code-example';
 import { API } from '../../api-table';
 
-/**
- * @typedef {Object} Props
- * @property {string} [id]
- * @property {string} [name]
- * @property {any} [example]
- * @property {any} [api]
- * @property {import('svelte').Snippet} [children]
- */
+interface Props {
+	id?: string;
+	name?: string;
+	example?: any;
+	api?: any;
+	children?: import('svelte').Snippet;
+}
 
-/** @type {Props} */
 const {
 	id = '',
 	name = '',
 	example = undefined,
 	api = undefined,
 	children
-} = $props();
+}: Props = $props();
 
 </script>

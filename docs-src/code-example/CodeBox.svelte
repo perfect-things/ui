@@ -1,16 +1,20 @@
 <pre><code class="language">{@html html}</code></pre>
 
 
-<script>
-/**
- * @typedef {Object} Props
- * @property {string} [tag]
- * @property {Object} [props]
- * @property {string} [text]
- */
+<script lang="ts">
 
-/** @type {Props} */
-const { tag = 'div', props = {}, text = '' } = $props();
+interface Props {
+	tag?: string;
+	props?: Record<string, any>;
+	text?: string;
+}
+
+const {
+	tag = 'div',
+	props = {},
+	text = ''
+}: Props = $props();
+
 
 const html = $derived(buildHtml(props, text, tag));
 

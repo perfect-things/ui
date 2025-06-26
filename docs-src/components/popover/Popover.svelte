@@ -88,7 +88,14 @@ import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 import './Popover.css';
 
-let popover1 = $state(), popover1top = $state(), popover1left = $state(), popover1right = $state(), popover2 = $state(), popover3 = $state(), popover4 = $state(), popover5 = $state();
+let popover1 = $state();
+let popover1top = $state();
+let popover1left = $state();
+let popover1right = $state();
+let popover2 = $state();
+let popover3 = $state();
+let popover4 = $state();
+let popover5 = $state();
 let content = $state('<h2>Context information</h2><p>Some text</p>');
 
 function updateContent () {

@@ -165,7 +165,12 @@ const exampleHtml = `
 `;
 
 
-let someMenu3 = $state(), thingsMenu = $state(), thingsMenu1 = $state(), thingsMenu2 = $state(), tabsMenu = $state(), windowsMenu = $state();
+let someMenu3 = $state();
+let thingsMenu = $state();
+let thingsMenu1 = $state();
+let thingsMenu2 = $state();
+let tabsMenu = $state();
+let windowsMenu = $state();
 let closeThingsText = $state('Close all things');
 let closeTabsText = $state('Close all tabs');
 let thingsMenuTimer, tabsMenutimer;

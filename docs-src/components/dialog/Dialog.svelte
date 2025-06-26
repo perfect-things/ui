@@ -115,6 +115,10 @@ const exampleHtml = `
 &lt;/script>
 `;
 
-let dialog1 = $state(), dialog2 = $state(), dialog3 = $state(), dialog4 = $state(), dialog5 = $state();
+let dialog1 = $state();
+let dialog2 = $state();
+let dialog3 = $state();
+let dialog4 = $state();
+let dialog5 = $state();
 
 </script>

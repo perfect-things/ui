@@ -8,19 +8,19 @@
 <br>
 
 <h3>Normal</h3>
-<InputText oninput={oninput} bind:value={val} />
-<p>Input value: {val}</p>
+<InputText {oninput} bind:value />
+<p>Input value: {value}</p>
 
 <h3>Disabled</h3>
-<InputText disabled value="disabled value" oninput={oninput} />
+<InputText disabled value="disabled value" {oninput} />
 
 
 <h3>With validation</h3>
 <InputText
 	label="Validate on change"
 	error={error1}
-	value={val}
-	onchange={onchange} />
+	{value}
+	{onchange} />
 
 <br>
 
@@ -29,8 +29,8 @@
 	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
 	required
 	error={error2}
-	value={val}
-	oninput={oninput} />
+	{value}
+	{oninput} />
 
 
 <h3>Label on the left</h3>
@@ -78,7 +78,7 @@ function onChange (e) {
 &lt;/script>
 `;
 
-let val = $state('Hi!');
+let value = $state('Hi!');
 let error1 = $state(''), error2 = $state('');
 
 const email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;

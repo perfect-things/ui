@@ -29,7 +29,7 @@ The perfect toggle component in Svelte:
 <Toggle label="Toggle the lights" info="This toggle switches the bathroom lights on/off" />
 
 <h3>Error</h3>
-<Toggle label="Toggle the lights" error={error} onchange={onchange}/>
+<Toggle label="Toggle the lights" {error} {onchange}/>
 
 <h3>Label on the left</h3>
 <Toggle label="Label is on the left" labelOnTheLeft/>

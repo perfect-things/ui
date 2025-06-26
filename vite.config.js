@@ -20,7 +20,7 @@ export default defineConfig(() => ({
 	base: './',
 	customLogger: {
 		hasWarned: false,
-		clearScreen: () => {},
+		clearScreen: () => { },
 		hasErrorLogged: () => false,
 		error: console.error,
 		info (msg) { console.info(msg); },
@@ -58,6 +58,7 @@ export default defineConfig(() => ({
 		cssCodeSplit: false,
 		emptyOutDir: true,
 		chunkSizeWarningLimit: 1000,
+		sourcemap: true,
 		rollupOptions: {
 			input: resolve(__dirname, 'docs-src/index.html'),
 			output: {
@@ -65,6 +66,6 @@ export default defineConfig(() => ({
 				chunkFileNames: '[name].[hash].js',
 				assetFileNames: '[name].[hash].[ext]'
 			}
-		}
+		},
 	},
 }));

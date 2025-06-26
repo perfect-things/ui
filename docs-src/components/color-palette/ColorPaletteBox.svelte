@@ -4,12 +4,12 @@
 </div>
 
 <script>
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [bg]
-	 * @property {string} [text]
-	 */
+/**
+ * @typedef {Object} Props
+ * @property {string} [bg]
+ * @property {string} [text]
+ */
 
-	/** @type {Props} */
-	const { bg = 'color-background', text = 'color-text' } = $props();
+/** @type {Props} */
+const { bg = 'color-background', text = 'color-text' } = $props();
 </script>

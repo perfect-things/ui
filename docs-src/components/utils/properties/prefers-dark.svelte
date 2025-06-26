@@ -1,6 +1,6 @@
 <Util id="PrefersDark" name="UI.PREFERS_DARK" {example}>
 	<ul>
-		<li>Svelte state variable<em>*</em></li>
+		<li>Svelte state variable</li>
 		<li>Type: boolean</li>
 		<li>Updates on system theme change.</li>
 		<li>Returns user preference for dark mode.</li>

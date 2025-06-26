@@ -1,6 +1,8 @@
 node_modules/
 coverage/
 dist/
-bun.lockb
+
+docs/*.sketch
+
 *.map
 .DS_Store

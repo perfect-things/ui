@@ -14,10 +14,10 @@
 <Select placeholder="Select something" items={[]} />
 
 <h3>With initial value</h3>
-<Select placeholder="Empty" items={selectItems} bind:value={val}/> Selected value: {val}
+<Select placeholder="Empty" items={selectItems} bind:value/> Selected value: {value}
 
 <h3>With array of strings for <em>items</em></h3>
-<Select placeholder="Please select..." items={stringItems} bind:value={val}/> Selected value: {val}
+<Select placeholder="Please select..." items={stringItems} bind:value/> Selected value: {value}
 
 
 <h3>Label</h3>
@@ -43,7 +43,7 @@
 import { Select } from '../../../../src';
 import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
-let val = $state('Beta');
+let value = $state('Beta');
 
 const apiProps = [
 	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
@@ -65,7 +65,7 @@ const apiProps = [
 ];
 
 const exampleHtml = `
-<Select items={items} onchange={onChange} />
+<Select items={items} {onchange} />
 
 <script>
 const items = [
@@ -73,9 +73,8 @@ const items = [
 	{ id: '2', name: 'Beta', group: 'Group 1' },
 	{ id: '3', name: 'Gamma', group: 'Group 1' },
 ];
-function onChange (e) {
-	const { value, oldValue } = e.detail;
-	console.log({ value, oldValue });
+function onchange (e) {
+	console.log(e.target.value);
 }
 &lt;/script>
 `;

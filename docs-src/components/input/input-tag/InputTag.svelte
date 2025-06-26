@@ -2,11 +2,11 @@
 
 
 <h3>Normal</h3>
-<InputTag bind:value={val} />
-<p>Input value: {val}</p>
+<InputTag bind:value />
+<p>Input value: {value}</p>
 
-<h3>With onChange callback</h3>
-<InputTag value="tag1, anotherOne, long-tag-name" {tags} onchange={onchange} />
+<h3>With onchange callback</h3>
+<InputTag value="tag1, anotherOne, long-tag-name" {tags} {onchange} />
 
 <h3>Long list of tags</h3>
 <InputTag value="tag1, anotherOne, long-tag-name" tags={tags2}/>
@@ -52,18 +52,18 @@ const apiProps = [
 
 
 const exampleHtml = `
-<InputTag label="Tags" value="tag1, tag2" onchange={onChange} />
+<InputTag label="Tags" value="tag1, tag2" {onchange} />
 
 <script>
-function onChange (e) {
-    console.log('tags', e.detail.value);
+function onchange (e, value) {
+    console.log('tags', value);
 }
 &lt;/script>
 `;
 
 
 
-let val = $state('tag1, tag2');
+let value = $state('tag1, tag2');
 const tags = [
 	'Tag1',
 	'AnotherOne',
@@ -73,7 +73,7 @@ const tags = [
 
 const tags2 = Array.from({ length: 40 }, (v, i) => 'Tag-' + i);
 
-function onchange (e) {
-	console.log('value', e.detail.value);
+function onchange (e, val) {
+	console.log('value:', val);
 }
 </script>

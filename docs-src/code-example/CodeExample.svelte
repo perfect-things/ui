@@ -2,22 +2,23 @@
 	{#if nohr === undefined}<hr>{/if}
 	<h3>Example</h3>
 {/if}
-<pre><code class="language-svelte">
-	{@html encode(html)}
-</code></pre>
 
-<script>
+<pre><code class="language-svelte">{@html encode(html)}</code></pre>
+
+<script lang="ts">
 import './CodeExample.css';
 
-/**
- * @typedef {Object} Props
- * @property {string} [html]
- * @property {boolean} [notitle]
- * @property {any} [nohr]
- */
+interface Props {
+	html?: string;
+	notitle?: boolean;
+	nohr?: boolean;
+}
+const {
+	html = '',
+	notitle = false,
+	nohr = undefined
+}: Props = $props();
 
-/** @type {Props} */
-const { html = '', notitle = false, nohr = undefined } = $props();
 
 function encode (s) {
 	return s

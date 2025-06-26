@@ -3,8 +3,8 @@
 
 
 <h3>Normal</h3>
-<InputTime bind:value={val} />
-<p>Input value: {val}</p>
+<InputTime bind:value />
+<p>Input value: {value}</p>
 
 <h3>Disabled</h3>
 <InputTime disabled value="00:00"/>
@@ -63,12 +63,12 @@ function onChange (e) {
 &lt;/script>
 `;
 
-let val = $state('00:00');
+let value = $state('00:00');
 let error1 = $state('Select midnight please.');
 
-function onchange (e) {
-	error1 = (e.target.value === '00:00' ? '' : 'Select midnight please.');
-	console.log(e.target.value);
+function onchange (e, val) {
+	error1 = (val === '00:00' ? '' : 'Select midnight please.');
+	console.log(val);
 }
 
 </script>
