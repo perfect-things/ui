@@ -60,5 +60,5 @@ test('PushButton', async () => {
 	props.link = false;
 	flushSync();
 
-	unmount(component);
+	await unmount(component);
 });

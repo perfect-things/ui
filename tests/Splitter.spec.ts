@@ -16,5 +16,5 @@ test('Splitter', async () => {
 
 	// add more test after Splitter rewrite
 
-	unmount(component);
+	await unmount(component);
 });

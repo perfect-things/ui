@@ -87,5 +87,5 @@ test('Radio', async () => {
 	expect(props.onchange).toHaveBeenCalled();
 	expect(inp1).toBeChecked();
 
-	unmount(component);
+	await unmount(component);
 });

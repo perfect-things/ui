@@ -35,5 +35,5 @@ test('Tree', async () => {
 	await userEvent.click(nodes[2]);
 	expect(onselect).toHaveBeenCalledTimes(3);
 
-	unmount(component);
+	await unmount(component);
 });

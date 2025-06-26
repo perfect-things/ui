@@ -31,7 +31,7 @@ test('utils - blink', async () => {
 });
 
 
-test('utils - debounce', async () => {
+test('utils - debounce', () => {
 	vi.useFakeTimers();
 	const fn = vi.fn();
 	const debounced = utils.debounce(fn, 100);

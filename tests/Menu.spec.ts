@@ -39,5 +39,5 @@ test('Menu', async () => {
 	cmp = document.body.querySelector('.test-menu');
 	expect(cmp).toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });

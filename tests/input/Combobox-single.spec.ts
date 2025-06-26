@@ -47,8 +47,8 @@ describe('Combobox single-select interactions', () => {
 		input = document.body.querySelector('.combobox input');
 	});
 
-	afterEach(() => {
-		unmount(component);
+	afterEach(async () => {
+		await unmount(component);
 	});
 
 

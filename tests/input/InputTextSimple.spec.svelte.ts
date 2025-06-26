@@ -11,5 +11,5 @@ test('InputText renders basic test', async () => {
 	expect(input).toBeInTheDocument();
 	expect(input).toHaveAttribute('id', 'test-id');
 
-	unmount(component);
+	await unmount(component);
 });

@@ -11,6 +11,7 @@ declare global {
 		focus(): void;
 		contains(element: Element): boolean;
 		closest: (selector: string) => Element | null;
+		tagName: string;
 	}
 }
 

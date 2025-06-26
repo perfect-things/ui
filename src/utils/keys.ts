@@ -17,14 +17,14 @@ export function isSymbol (txt: string): boolean {
 /**
  * Replaces keyboard key names with their corresponding symbols.
  * Converts text like "CMD+SHIFT+A" to "⌘⇧A".
- * @param {string | any} txt - The text containing key names to replace
+ * @param {string | undefined} txt - The text containing key names to replace
  * @returns {string} The text with key names replaced by symbols
  * @example
  * replaceKeySymbols('CMD+A') // '⌘A'
  * replaceKeySymbols('CTRL+SHIFT+DELETE') // '⌃⇧⌫'
  * replaceKeySymbols('ALT+ENTER') // '⌥⏎'
  */
-export function replaceKeySymbols (txt: string | any): string {
+export function replaceKeySymbols (txt: string | undefined): string {
 	return ('' + txt)
 		.trim()
 		.toUpperCase()

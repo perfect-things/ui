@@ -20,5 +20,5 @@ test('Tag', async () => {
 	await userEvent.click(tag);
 	expect(mock).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });

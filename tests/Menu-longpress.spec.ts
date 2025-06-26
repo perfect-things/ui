@@ -8,6 +8,7 @@ describe('Menu longpress functionality', () => {
 	let longpressCallback;
 
 	beforeEach(() => {
+		// eslint-disable-next-line @typescript-eslint/unbound-method
 		originalAddEventListener = document.addEventListener;
 
 		mockEventListener = vi.fn();

@@ -8,7 +8,7 @@ import ts from 'typescript-eslint';
 
 export default ts.config(
 	js.configs.recommended,
-	ts.configs.recommended,
+	...ts.configs.recommendedTypeChecked,
 	// @ts-ignore
 	...sveltePlugin.configs.recommended,
 	{
@@ -106,6 +106,15 @@ export default ts.config(
 			'@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
 			'@typescript-eslint/no-explicit-any': 'off', // Allow any types during migration
 			'@typescript-eslint/ban-ts-comment': 'off',
+
+			// disable some type-aware rules
+			'@typescript-eslint/no-unsafe-call': 'off',
+			'@typescript-eslint/no-unsafe-argument': 'off',
+			'@typescript-eslint/no-unsafe-assignment': 'off',
+			'@typescript-eslint/no-unsafe-member-access': 'off',
+			'@typescript-eslint/no-unsafe-return': 'off',
+			'@typescript-eslint/no-floating-promises': 'off',
+			'@typescript-eslint/no-misused-promises': 'off',
 		}
 	}
 );

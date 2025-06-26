@@ -115,6 +115,7 @@ function parseAmount (amount): number | string {
 	amount = ('' + amount).replace(/[\s,]/g, '').replace(/^-?0+(?=\d)/, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
 	if ((/[+\-\\*/.]+/i).test(amount)) {
+		// eslint-disable-next-line @typescript-eslint/no-implied-eval
 		try { amount = new Function(`return ${amount}`)(); }
 		catch { amount = 0; }
 	}

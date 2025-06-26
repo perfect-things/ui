@@ -117,5 +117,5 @@ test('InputMath', async () => {
 	await userEvent.keyboard('[Enter]');
 	expect(input).toHaveValue('1.00');
 
-	unmount(component);
+	await unmount(component);
 });

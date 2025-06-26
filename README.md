@@ -3,7 +3,6 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] enhance utils functions to use runes
 - [ ] enhance datastores (notifications, messageboxes, etc.) to use runes
 
 - [ ] upgrade docs code to ts & svelte 5
@@ -12,6 +11,7 @@ PerfectThings/UI
 - [ ] explore options to use UI outside of svelte
 
 
+- [x] enhance utils functions to use runes
 - [x] make some rules as to where ...restProps is passed and handled
 - [-] split some components into smaller bits (especially inputs)
 - [x] standardise event params (so that all events from components have the same structure)

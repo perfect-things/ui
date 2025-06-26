@@ -31,7 +31,7 @@ test('NotificationArchive renders with no notifications', async () => {
 	const closeBtn = [...document.body.querySelectorAll('*')].find(el => el.textContent?.includes('×'));
 	expect(closeBtn).toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -55,14 +55,15 @@ test('NotificationArchive displays archived notifications when expanded', async 
 	flushSync();
 
 	const props = { show: true, expanded: true };
-	const component = await mount(NotificationArchive, { target: document.body, props });
+	const component = mount(NotificationArchive, { target: document.body, props });
+	flushSync();
 
 	expect(document.body.textContent).toMatch(/Recent notifications \(2\)/);
 	expect(document.body.textContent).toContain('Test notification 1');
 	expect(document.body.textContent).toContain('Test notification 2');
 	expect(document.body.textContent).toContain('Clear all');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -79,7 +80,8 @@ test('NotificationArchive toggling expanded state', async () => {
 	setArchivedNotifications(notifications);
 
 	const props = { show: true, expanded: false };
-	const component = await mount(NotificationArchive, { target: document.body, props });
+	const component = mount(NotificationArchive, { target: document.body, props });
+	flushSync();
 
 	expect(document.body.textContent).toMatch(/Recent notifications \(1\)/);
 	expect(document.body.textContent).not.toContain('Test notification 1');
@@ -91,7 +93,7 @@ test('NotificationArchive toggling expanded state', async () => {
 	await userEvent.click(toggleBtn);
 	expect(document.body.textContent).toContain('Test notification 1');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -114,7 +116,9 @@ test('NotificationArchive clear all functionality', async () => {
 	setArchivedNotifications(notifications);
 
 	const props = { show: true, expanded: true };
-	const component = await mount(NotificationArchive, { target: document.body, props });
+	const component = mount(NotificationArchive, { target: document.body, props });
+	flushSync();
+
 	expect(document.body.textContent).toContain('Test notification 1');
 	expect(document.body.textContent).toContain('Test notification 2');
 
@@ -125,19 +129,20 @@ test('NotificationArchive clear all functionality', async () => {
 	expect(document.body.textContent).not.toContain('Test notification 1');
 	expect(document.body.textContent).not.toContain('Test notification 2');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
 test('NotificationArchive close button hides archive', async () => {
 	const props = { show: true };
 	const component = mount(NotificationArchive, { target: document.body, props });
+	flushSync();
 
 	const closeBtn = document.querySelector('.btn-close');
 	await userEvent.click(closeBtn);
 	expect(document.body.textContent).not.toContain('Recent notifications');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -162,7 +167,8 @@ test('NotificationArchive individual notification removal', async () => {
 	const { removeFromArchive } = await import('../src/notification-center/store.js');
 
 	const props = { show: true, expanded: true };
-	const component = await mount(NotificationArchive, { target: document.body, props });
+	const component = mount(NotificationArchive, { target: document.body, props });
+	flushSync();
 
 	expect(document.body.textContent).toContain('Test notification 1');
 	expect(document.body.textContent).toContain('Test notification 2');
@@ -170,7 +176,7 @@ test('NotificationArchive individual notification removal', async () => {
 	removeFromArchive('notif1');
 	flushSync();
 
-	let storeContents = {};
+	let storeContents = {} as any;
 	const unsubscribe = ArchivedNotifications.subscribe(value => {
 		storeContents = value;
 	});
@@ -179,7 +185,7 @@ test('NotificationArchive individual notification removal', async () => {
 	expect(storeContents?.notif2).toBeDefined();
 
 	unsubscribe();
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -196,7 +202,8 @@ test('NotificationArchive keyboard interaction', async () => {
 	setArchivedNotifications(notifications);
 
 	const props = { show: true, expanded: true };
-	const component = await mount(NotificationArchive, { target: document.body, props });
+	const component = mount(NotificationArchive, { target: document.body, props });
+	flushSync();
 
 	expect(document.body.textContent).toContain('Test notification 1');
 
@@ -206,5 +213,5 @@ test('NotificationArchive keyboard interaction', async () => {
 
 	expect(document.body.textContent).not.toContain('Test notification 1');
 
-	unmount(component);
+	await unmount(component);
 });

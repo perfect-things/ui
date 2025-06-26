@@ -53,7 +53,7 @@ export function scrollToSelectedItem (listEl) {
 }
 
 
-export function emphasize (str, q) {
+export function emphasize (str: string, q?: string): string {
 	if (!q) return str;
 	str = '' + str;
 	let idx = 0;

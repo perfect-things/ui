@@ -81,7 +81,7 @@ function calcHeights () {
 	});
 }
 
-export function toggle (e) {
+export function toggle (e?) {
 	if (!collapsible) {
 		if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') e.preventDefault();
 		return;

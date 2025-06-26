@@ -26,5 +26,5 @@ test('Table', async () => {
 	await userEvent.keyboard('[ArrowDown]');
 	expect(onselect).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });

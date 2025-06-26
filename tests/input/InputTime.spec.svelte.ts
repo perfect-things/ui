@@ -65,5 +65,5 @@ test('InputTime', async () => {
 	expect(lbl).toHaveAttribute('for', props.id);
 	expect(lbl).toHaveTextContent(props.label);
 
-	unmount(component);
+	await unmount(component);
 });

@@ -87,5 +87,5 @@ test('InputTag', async () => {
 	expect(props.onchange).toHaveBeenCalled();
 	expect(input).toHaveValue(originalValue);
 
-	unmount(component);
+	await unmount(component);
 });

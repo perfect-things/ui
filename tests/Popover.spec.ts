@@ -34,5 +34,5 @@ test('Popover', async () => {
 	cmp = document.body.querySelector('.test-popover');
 	expect(cmp).toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });

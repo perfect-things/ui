@@ -37,7 +37,7 @@ let {
 
 
 
-const { targetEl } = getContext('MenuContext') as any;
+const { targetEl } = getContext<{ targetEl: () => HTMLElement }>('MenuContext');
 
 const cls = $derived([
 	'menu-item',

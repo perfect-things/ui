@@ -57,5 +57,5 @@ test('Drawer', async () => {
 	cmp = document.body.querySelector('.test-class');
 	expect(cmp).not.toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });

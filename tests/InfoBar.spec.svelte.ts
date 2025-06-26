@@ -40,7 +40,7 @@ test('InfoBar', async () => {
 	cmp = document.body.querySelector('.info-bar');
 	expect(cmp).not.toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -62,7 +62,7 @@ test('InfoBar - Info', async () => {
 	const icon = cmp.querySelector('svg');
 	expect(icon).toHaveClass(tablerIcon.info);
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -84,7 +84,7 @@ test('InfoBar - Warning', async () => {
 	const icon = cmp.querySelector('svg');
 	expect(icon).toHaveClass(tablerIcon.warning);
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -106,7 +106,7 @@ test('InfoBar - Error', async () => {
 	const icon = cmp.querySelector('svg');
 	expect(icon).toHaveClass(tablerIcon.error);
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -128,5 +128,5 @@ test('InfoBar - Success', async () => {
 	const icon = cmp.querySelector('svg');
 	expect(icon).toHaveClass(tablerIcon.success);
 
-	unmount(component);
+	await unmount(component);
 });

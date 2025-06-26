@@ -150,7 +150,7 @@ function onkeydown (e: KeyboardEvent): Promise<void> {
 	if (e.key === 'ArrowDown') {
 		e.preventDefault();
 		return open()?.then(() => {
-			(listElement?.querySelector('.ui-tag') as HTMLElement)?.focus();
+			listElement?.querySelector('.ui-tag')?.focus();
 		});
 	}
 }

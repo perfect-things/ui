@@ -64,7 +64,7 @@ test('InputDate renders with correct basic props', async () => {
 	// await userEvent.click(btn);
 	// expect(dropdown).toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -75,7 +75,7 @@ test('InputDate handles disabled state', async () => {
 	const input = document.body.querySelector('input');
 	expect(input).toBeDisabled();
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -95,7 +95,7 @@ test('InputDate handles date selection', async () => {
 	await userEvent.keyboard('{Tab}');
 	expect(input.value).toBe(newDate);
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -111,7 +111,7 @@ test('InputDate with error shows validation styling', async () => {
 	expect(errorEl).toBeInTheDocument();
 	expect(errorEl.textContent.trim()).toBe('Invalid date');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -125,7 +125,7 @@ test('InputDate with error shows validation styling', async () => {
 // 	const input = document.body.querySelector('input');
 // 	expect(input).toBeInTheDocument();
 
-// 	unmount(component);
+// 	await unmount(component);
 // });
 
 
@@ -137,7 +137,7 @@ test('InputDate handles different date formats', async () => {
 	expect(input).toBeInTheDocument();
 	expect(input.value).toBe('25/12/2023');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -149,7 +149,7 @@ test('InputDate with label renders correctly', async () => {
 	expect(label).toBeInTheDocument();
 	expect(label.textContent.trim()).toBe('Date of Birth');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -162,5 +162,5 @@ test('InputDate handles keyboard navigation', async () => {
 	await userEvent.keyboard('{Tab}');
 	expect(input.value).toBe('2023-12-25');
 
-	unmount(component);
+	await unmount(component);
 });

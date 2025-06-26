@@ -54,7 +54,7 @@ test('Button', async () => {
 		props[type] = undefined;
 	}
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -67,5 +67,5 @@ test('Button - slot test', async () => {
 	});
 	expect(document.body.querySelector('button')).toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });

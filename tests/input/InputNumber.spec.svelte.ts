@@ -18,7 +18,7 @@ const defaultProps = {
 
 test('InputNumber renders with correct props', async () => {
 	const props = $state({ ...defaultProps, onchange: vi.fn() });
-	const component = await mount(InputNumber, { target: document.body, props });
+	const component = mount(InputNumber, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
@@ -47,7 +47,7 @@ test('InputNumber renders with correct props', async () => {
 	expect(info).toBeInTheDocument();
 	expect(info).toHaveTextContent('info');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -66,7 +66,7 @@ test('InputNumber handles numeric input', async () => {
 
 	expect(input.value).toBe('123');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -83,7 +83,7 @@ test('InputNumber handles min and max values', async () => {
 	expect(input).toHaveAttribute('max', '100');
 	expect(input.value).toBe('50');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -98,7 +98,7 @@ test('InputNumber handles decimal values', async () => {
 	expect(input.value).toBe('3.14');
 	expect(input).toHaveAttribute('step', '0.01');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -109,7 +109,7 @@ test('InputNumber handles disabled state', async () => {
 	const input = document.body.querySelector('input');
 	expect(input).toBeDisabled();
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -126,7 +126,7 @@ test('InputNumber validates numeric input', async () => {
 	await userEvent.type(input, 'abc');
 	expect(input.value).not.toBe('abc');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -142,7 +142,7 @@ test('InputNumber handles value binding', async () => {
 	flushSync();
 	expect(input.value).toBe('84');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -158,7 +158,7 @@ test('InputNumber handles negative values', async () => {
 	expect(input.value).toBe('-50');
 	expect(input).toHaveAttribute('min', '-100');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -178,7 +178,7 @@ test('InputNumber handles focus and blur events', async () => {
 	await userEvent.tab(); // Simulate blur by tabbing away
 	expect(props.onblur).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -193,5 +193,5 @@ test('InputNumber with error shows validation styling', async () => {
 	expect(errorEl).toBeInTheDocument();
 	expect(errorEl.textContent.trim()).toBe('Invalid number');
 
-	unmount(component);
+	await unmount(component);
 });

@@ -66,7 +66,7 @@ const duration = $derived(UI.ANIMATION_SPEED);
 let el: HTMLElement = $state();
 let archived = $state([]);
 let timer;
-let now = $state(new Date().getTime());
+let now = $state(new Date());
 
 
 
@@ -75,7 +75,7 @@ $effect(() => {
 });
 
 onMount(() => {
-	timer = setInterval(() => (now = new Date().getTime()), 10000);
+	timer = setInterval(() => (now = new Date()), 10000);
 
 	ArchivedNotifications.subscribe(val => {
 		archived = Object.values(val).reverse();

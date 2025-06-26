@@ -11,7 +11,7 @@ test('Tooltip', async () => {
 
 	const props = $state({});
 
-	const component = await mount(Tooltip, { target: document.body, props });
+	const component = mount(Tooltip, { target: document.body, props });
 
 	const btn = document.body.querySelector('#box1');
 	await user.hover(btn);
@@ -46,5 +46,5 @@ test('Tooltip', async () => {
 	await user.keyboard('[Escape]');
 	expect(tooltip).not.toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });

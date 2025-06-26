@@ -95,5 +95,5 @@ test('Combobox', async () => {
 	info = cmp.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });

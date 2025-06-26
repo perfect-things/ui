@@ -93,14 +93,14 @@ export function showNotification (msg, type = 'info', timeout = 5000, btn = unde
 }
 
 
-export function hideNotification (id) {
+export function hideNotification (id): Promise<void> {
 	return new Promise(resolve => {
 		Notifications.update(list => {
 			addToArchive(list[id]);
 			delete list[id];
 			return list;
 		});
-		requestAnimationFrame(resolve);
+		requestAnimationFrame(() => resolve());
 	});
 }
 

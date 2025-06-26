@@ -19,5 +19,5 @@ test('Icon', async () => {
 	const icon2 = document.body.querySelector('svg');
 	expect(icon2.classList.toString()).toContain('analytics');
 
-	unmount(component);
+	await unmount(component);
 });

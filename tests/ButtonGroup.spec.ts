@@ -14,5 +14,5 @@ test('ButtonGroup', async () => {
 	const buttons = document.body.querySelectorAll('button');
 	expect(buttons.length).toBe(3);
 
-	unmount(component);
+	await unmount(component);
 });

@@ -80,5 +80,5 @@ test('MessageBox', async () => {
 	expect(box).not.toHaveClass('opened');
 	expect(cb).toHaveBeenCalledWith(cfg.buttons[0].value);
 
-	unmount(component);
+	await unmount(component);
 });

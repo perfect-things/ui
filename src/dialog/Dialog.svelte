@@ -151,7 +151,7 @@ function freezeBody (freeze) {
 }
 
 
-export function open (openedBy) {
+export function open (openedBy?) {
 	if (opened) return;
 
 	if (openedBy instanceof Event) openedBy = openedBy.target;

@@ -66,7 +66,7 @@ export function toggle (target) {
 }
 
 
-export function open (target) {
+export function open (target?) {
 	targetBtn = target || document.activeElement;
 	isVisible = true;
 	requestAnimationFrame(() => {

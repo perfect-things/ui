@@ -51,5 +51,5 @@ test('InputRating', async () => {
 	await fireEvent.mouseUp(star3);
 	expect(star3).toHaveClass('active');
 
-	unmount(component);
+	await unmount(component);
 });

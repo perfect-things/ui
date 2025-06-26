@@ -28,5 +28,5 @@ test('InputSearch renders with correct props', async () => {
 	expect(input).toHaveAttribute('placeholder', props.placeholder);
 	expect(input).toHaveAttribute('aria-required');
 
-	unmount(component);
+	await unmount(component);
 });

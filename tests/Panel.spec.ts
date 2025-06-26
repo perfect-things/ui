@@ -18,7 +18,7 @@ test('Panel', async () => {
 		onclose,
 		children: undefined
 	};
-	const component = await mount(Panel, { target: document.body, props });
+	const component = mount(Panel, { target: document.body, props });
 	const user = userEvent.setup();
 
 	const cmp = document.body.querySelector('.test-class');
@@ -39,5 +39,5 @@ test('Panel', async () => {
 	expect(cmp).not.toHaveClass('expanded');
 	expect(onclose).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });

@@ -24,15 +24,19 @@
         "build:types": "tsc --project tsconfig.build.json",
         "build:docs": "vite build",
         "preview": "vite preview",
-        "type-check": "svelte-check --tsconfig ./tsconfig.json",
-        "type-check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+
         "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.html",
-        "lint": "npm run lint:js && npm run lint:css",
+
+        "lint": "npm run lint:js && npm run lint:css && npm run type-check",
+        "lint:ts": "npx tsc --noEmit",
         "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
         "lint:js": "eslint \"{src,docs-src,tests}/**/*.{js,ts,svelte}\" --format=pretty",
         "lint:js:fix": "eslint \"{src,docs-src,tests}**/*.{js,ts,svelte}\" --fix --format=pretty",
         "lint:css": "stylelint \"{src,docs-src}/**/*.css\"",
         "lint:css:fix": "stylelint \"{src,docs-src}/**/*.css\" --fix",
+        "type-check": "svelte-check --output human --tsconfig ./tsconfig.json",
+        "type-check:watch": "svelte-check --output human --tsconfig ./tsconfig.json --watch",
+
         "test": "vitest run",
         "test:watch": "vitest",
         "test:ui": "vitest --ui",

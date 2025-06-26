@@ -58,7 +58,7 @@ test('NotificationCenter', async () => {
 
 	const btn = document.body.querySelector(toastSelector + ' button');
 	expect(btn).toBeInTheDocument();
-	await fireEvent.click(btn);
+	fireEvent.click(btn);
 	expect(mock).toHaveBeenCalledWith(tstId);
 
 	hideNotification(tstId);
@@ -66,5 +66,5 @@ test('NotificationCenter', async () => {
 	flushSync();
 	expect(toast).not.toBeInTheDocument();
 
-	unmount(component);
-}, 5000);
+	await unmount(component);
+});

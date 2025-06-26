@@ -37,7 +37,7 @@ test('Textarea renders with correct props', async () => {
 	expect(err).toBeInTheDocument();
 	expect(err.textContent.trim()).toBe(props.error);
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea handles input events', async () => {
@@ -53,7 +53,7 @@ test('Textarea handles input events', async () => {
 	await fireEvent.input(textarea, { target: { value: 'test input' } });
 	expect(props.oninput).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea handles disabled state', async () => {
@@ -63,7 +63,7 @@ test('Textarea handles disabled state', async () => {
 	const textarea = document.body.querySelector('textarea');
 	expect(textarea).toBeDisabled();
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea binds value correctly', async () => {
@@ -77,7 +77,7 @@ test('Textarea binds value correctly', async () => {
 	flushSync();
 	expect(textarea.value).toBe('updated value');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea with error shows correct validation styling', async () => {
@@ -91,7 +91,7 @@ test('Textarea with error shows correct validation styling', async () => {
 	expect(errorEl).toBeInTheDocument();
 	expect(errorEl.textContent.trim()).toBe('Error message');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea with autogrow property has correct class and behavior', async () => {
@@ -101,7 +101,7 @@ test('Textarea with autogrow property has correct class and behavior', async () 
 	const cmp = document.body.querySelector('.textarea');
 	expect(cmp).toHaveClass('autogrow');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea with label renders label correctly', async () => {
@@ -112,7 +112,7 @@ test('Textarea with label renders label correctly', async () => {
 	expect(label).toBeInTheDocument();
 	expect(label.textContent.trim()).toBe('Test Label');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea with info shows info message', async () => {
@@ -123,7 +123,7 @@ test('Textarea with info shows info message', async () => {
 	expect(info).toBeInTheDocument();
 	expect(info.textContent.trim()).toBe('Info message');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea with labelOnTheLeft has correct class', async () => {
@@ -133,7 +133,7 @@ test('Textarea with labelOnTheLeft has correct class', async () => {
 	const cmp = document.body.querySelector('.textarea');
 	expect(cmp).toHaveClass('label-on-the-left');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea exposes element and inputElement references', async () => {
@@ -145,7 +145,7 @@ test('Textarea exposes element and inputElement references', async () => {
 	const textarea = document.body.querySelector('textarea');
 	expect(textarea).toBeDefined();
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea with custom attributes passes them through to textarea element', async () => {
@@ -156,7 +156,7 @@ test('Textarea with custom attributes passes them through to textarea element', 
 	const cmp = document.body.querySelector('.textarea');
 	expect(cmp).toHaveAttribute('data-testid', 'custom-textarea');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea handles focus and blur events', async () => {
@@ -174,7 +174,7 @@ test('Textarea handles focus and blur events', async () => {
 	await fireEvent.blur(textarea);
 	expect(props.onblur).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea maintains required flag when value changes', async () => {
@@ -188,7 +188,7 @@ test('Textarea maintains required flag when value changes', async () => {
 	flushSync();
 	expect(textarea).toHaveAttribute('aria-required');
 
-	unmount(component);
+	await unmount(component);
 });
 
 test('Textarea initializes with empty string when value is undefined', async () => {
@@ -198,5 +198,5 @@ test('Textarea initializes with empty string when value is undefined', async () 
 	const textarea = document.body.querySelector('textarea');
 	expect(textarea.value).toBe('');
 
-	unmount(component);
+	await unmount(component);
 });

@@ -102,5 +102,5 @@ test('InputPassword', async () => {
 	// @ts-ignore
 	expect(input.type).toBe('text');
 
-	unmount(component);
+	await unmount(component);
 });

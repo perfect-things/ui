@@ -52,7 +52,7 @@ test('Splitter-utils - getCSSvalueInPx', () => {
 });
 
 
-test('Splitter-utils - innerWidth, innerHeight', async () => {
+test('Splitter-utils - innerWidth, innerHeight', () => {
 	const w = 100;
 	const h = 100;
 	const style = `width: ${w}px; height: ${h}px; padding: 10px; border: 1px solid black;`;

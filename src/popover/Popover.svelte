@@ -98,7 +98,7 @@ export function open (e: Event | HTMLElement | undefined = undefined) {
 /**
  * Highlights the clicked button and closes the menu (provided that the button's event handler did not call preventDefault())
  */
-export function close (e: Event) {
+export function close (e: Event): Promise<void> {
 	if (!opened) return Promise.resolve();
 	if (targetEl) targetEl.focus();
 

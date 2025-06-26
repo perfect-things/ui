@@ -63,5 +63,5 @@ test('Checkbox', async () => {
 
 	expect(mock).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });

@@ -29,7 +29,7 @@ const groupedData = [
 
 let raf;
 
-test('Combobox-utils', async () => {
+test('Combobox-utils', () => {
 	expect(utils).toBeDefined();
 });
 

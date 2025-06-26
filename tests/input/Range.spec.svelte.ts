@@ -20,7 +20,7 @@ test('Range', async () => {
 	});
 
 	// @ts-ignore
-	const component = await mount(Range, { target: document.body, props });
+	const component = mount(Range, { target: document.body, props });
 
 	const cmp = document.body.querySelector('[title="Range1"]');
 	expect(cmp).toBeInTheDocument();
@@ -62,5 +62,5 @@ test('Range', async () => {
 	await userEvent.click(tick6);
 	expect(changeEvent).toBeDefined();
 
-	unmount(component);
+	await unmount(component);
 });

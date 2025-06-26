@@ -9,7 +9,7 @@ type BoxSize = {
 
 type ItemAlignmentOptions = {
 	element: HTMLElement;
-	event: Event | Element | any;
+	event?: any;
 	alignH?: 'left' | 'right' | 'center';
 	offsetH?: number;
 	alignV?: AlignmentDirection; // 'top' | 'bottom' | 'left' | 'right'

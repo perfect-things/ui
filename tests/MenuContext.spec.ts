@@ -34,5 +34,5 @@ test('Context Menu', async () => {
 	await userEvent.click(menuItem);
 	expect(cmp).not.toBeInTheDocument();
 
-	unmount(component);
+	await unmount(component);
 });

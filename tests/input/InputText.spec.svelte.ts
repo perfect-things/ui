@@ -22,7 +22,7 @@ const defaultProps = {
 
 test('InputText renders with correct props', async () => {
 	const props = $state({ ...defaultProps, onchange: vi.fn() });
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toBeInTheDocument();
@@ -60,13 +60,13 @@ test('InputText renders with correct props', async () => {
 	expect(lbl).toHaveAttribute('for', props.id);
 	expect(lbl).toHaveTextContent(props.label);
 
-	unmount(component);
+	await unmount(component);
 });
 
 
 test('InputText handles input events', async () => {
 	const props = $state({ value: '', onchange: vi.fn(), oninput: vi.fn() });
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 
@@ -78,13 +78,13 @@ test('InputText handles input events', async () => {
 	expect(props.onchange).toHaveBeenCalled();
 	expect(input.value).toBe('test change');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
 test('InputText handles disabled state', async () => {
 	const props = $state({ disabled: true });
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 	expect(input).toBeDisabled();
@@ -92,13 +92,13 @@ test('InputText handles disabled state', async () => {
 	const inputInner = document.body.querySelector('.input-inner');
 	expect(inputInner).toHaveClass('disabled');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
 test('InputText binds value correctly', async () => {
 	const props = $state({ value: 'initial value' });
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 	expect(input.value).toBe('initial value');
@@ -110,14 +110,14 @@ test('InputText binds value correctly', async () => {
 	await fireEvent.input(input, { target: { value: 'input value' } });
 	expect(input.value).toBe('input value');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
 test('InputText with error shows correct validation styling', async () => {
 	const errorMessage = 'This field has an error';
 	const props = $state({ error: errorMessage });
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const inputContainer = document.body.querySelector('.input');
 	expect(inputContainer).toHaveClass('has-error');
@@ -130,13 +130,13 @@ test('InputText with error shows correct validation styling', async () => {
 	expect(input).toHaveAttribute('aria-invalid', 'true');
 	expect(input).toHaveAttribute('aria-errormessage');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
-test('InputText with labelOnTheLeft has correct class', async () => {
+test('InputText with labelOnTheLeft has correct class', () => {
 	const props1 = $state({ labelOnTheLeft: true });
-	const component1 = await mount(InputText, { target: document.body, props: props1 });
+	const component1 = mount(InputText, { target: document.body, props: props1 });
 
 	const inputContainer = document.body.querySelector('.input');
 	expect(inputContainer).toHaveClass('label-on-the-left');
@@ -144,7 +144,7 @@ test('InputText with labelOnTheLeft has correct class', async () => {
 	unmount(component1);
 
 	const props2 = $state({ labelOnTheLeft: true }); // Changed from 'true' to true
-	const component2 = await mount(InputText, { target: document.body, props: props2 });
+	const component2 = mount(InputText, { target: document.body, props: props2 });
 	const inputContainer2 = document.body.querySelector('.input');
 	expect(inputContainer2).toHaveClass('label-on-the-left');
 
@@ -152,9 +152,9 @@ test('InputText with labelOnTheLeft has correct class', async () => {
 });
 
 
-test('InputText without id generates a unique id', async () => {
+test('InputText without id generates a unique id', () => {
 	const props1 = $state({ name: 'testName' });
-	const component1 = await mount(InputText, { target: document.body, props: props1 });
+	const component1 = mount(InputText, { target: document.body, props: props1 });
 
 	const input1 = document.body.querySelector('input');
 	expect(input1.id).toBeDefined();
@@ -162,7 +162,7 @@ test('InputText without id generates a unique id', async () => {
 	unmount(component1);
 
 	const props2 = $state({});
-	const component2 = await mount(InputText, { target: document.body, props: props2 });
+	const component2 = mount(InputText, { target: document.body, props: props2 });
 
 	const input2 = document.body.querySelector('input');
 	expect(input2.id).toBeTruthy();
@@ -174,7 +174,7 @@ test('InputText without id generates a unique id', async () => {
 
 test('InputText exposes element and inputElement references', async () => {
 	const props = $state({});
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const element = document.body.querySelector('.input');
 	expect(element.classList.contains('input')).toBe(true);
@@ -183,7 +183,7 @@ test('InputText exposes element and inputElement references', async () => {
 	const inputElement = document.body.querySelector('input');
 	expect(inputElement.tagName.toLowerCase()).toBe('input');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
@@ -198,7 +198,7 @@ test('InputText with custom attributes passes them through to input element', as
 		'data-testid': 'custom-input',
 	});
 
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 	const cmp = document.body.querySelector('.test-class');
 	expect(cmp).toHaveAttribute('data-testid', 'custom-input');
 
@@ -209,13 +209,13 @@ test('InputText with custom attributes passes them through to input element', as
 	expect(input).toHaveAttribute('pattern', '[A-Za-z]+');
 	expect(input).toHaveAttribute('tabindex', '2');
 
-	unmount(component);
+	await unmount(component);
 });
 
 
 test('InputText handles focus and blur events', async () => {
 	const props = $state({ class: 'test-input-1', onfocus: vi.fn(), onblur: vi.fn() });
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('.test-input-1 input');
 
@@ -225,20 +225,20 @@ test('InputText handles focus and blur events', async () => {
 	await fireEvent.blur(input);
 	expect(props.onblur).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });
 
 
-test('InputText initializes with correct default value', async () => {
+test('InputText initializes with correct default value', () => {
 	const props1 = $state({});
-	const component1 = await mount(InputText, { target: document.body, props: props1 });
+	const component1 = mount(InputText, { target: document.body, props: props1 });
 	const input1 = document.body.querySelector('input');
 	expect(input1.value).toBe('');
 
 	unmount(component1);
 
 	const props2 = $state({ value: 'test value' });
-	const component2 = await mount(InputText, { target: document.body, props: props2 });
+	const component2 = mount(InputText, { target: document.body, props: props2 });
 	const input2 = document.body.querySelector('input');
 	expect(input2.value).toBe('test value');
 
@@ -248,12 +248,12 @@ test('InputText initializes with correct default value', async () => {
 
 test('InputText supports keyboard events', async () => {
 	const props = $state({ onkeydown: vi.fn() });
-	const component = await mount(InputText, { target: document.body, props });
+	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 
 	await fireEvent.keyDown(input, { key: 'A', code: 'KeyA' });
 	expect(props.onkeydown).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });

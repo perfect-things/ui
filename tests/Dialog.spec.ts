@@ -55,5 +55,5 @@ test('Dialog', async () => {
 	expect(cmp).not.toHaveClass('opened');
 	expect(closeMock).toHaveBeenCalled();
 
-	unmount(component);
+	await unmount(component);
 });
