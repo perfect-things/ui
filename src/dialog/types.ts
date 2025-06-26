@@ -9,3 +9,9 @@ export interface DialogProps extends ComponentProps {
 	onopen?: () => void;
 	onclose?: () => void;
 }
+
+
+export interface DialogInstanceProps {
+	open: (openedBy?: HTMLElement) => Promise<void>;
+	close: () => Promise<void>
+}

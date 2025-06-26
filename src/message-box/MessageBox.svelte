@@ -1,6 +1,6 @@
 <Dialog
 	title={$config.title}
-	class={['message-box', 'message-' + $config.type]}
+	class={['message-box', $config.type && ('message-' + $config.type)]}
 	bind:element
 	bind:this={dialog}
 	{onclose}>
@@ -9,36 +9,35 @@
 			<div class="message-content">{@html $config.message}</div>
 		</div>
 		{#snippet footer()}
-		<div >
-				{#if $config.buttons}
-					{#each $config.buttons as button (button.value || button.label)}
-						<Button
-							info={button.type === 'info'}
-							warning={button.type === 'warning'}
-							danger={button.type === 'error' || button.type === 'danger'}
-							success={button.type === 'success'}
-							onclick={e => onclick(e, button)}>
-							{button.label}
-						</Button>
-					{/each}
-				{/if}
-			</div>
+			{#if $config.buttons}
+				{#each $config.buttons as button (button.value || button.label)}
+					<Button
+						info={button.type === 'info'}
+						warning={button.type === 'warning'}
+						danger={button.type === 'error' || button.type === 'danger'}
+						success={button.type === 'success'}
+						onclick={e => onclick(e, button)}>
+						{button.label}
+					</Button>
+				{/each}
+			{/if}
 	{/snippet}
 </Dialog>
 
 <script lang="ts">
 import './MessageBox.css';
-import type { DialogProps } from './types';
+import type { DialogInstanceProps } from '../dialog/types';
 import { onDestroy, onMount } from 'svelte';
-import { config } from './MessageBox.js';
+import { config, hideMessage } from './MessageBox';
 import { Dialog } from '../dialog';
 import { Button } from '../button';
 import { Icon } from '../icon';
 
 let { element = $bindable(undefined) } = $props();
 
-let dialog: DialogProps = $state();
+let dialog: DialogInstanceProps = $state();
 let sub;
+
 
 onMount(() => {
 	sub = config.subscribe(cfg => {
@@ -50,7 +49,7 @@ onMount(() => {
 
 onDestroy(() => {
 	sub();
-	config.set({});
+	hideMessage();
 });
 
 
@@ -66,6 +65,5 @@ function onclose () {
 	const target = $config.target || document.body;
 	requestAnimationFrame(() => target.focus());
 }
-
 
 </script>

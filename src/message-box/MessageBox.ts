@@ -1,18 +1,8 @@
+import type { MessageBox } from './types';
 import { writable } from 'svelte/store';
 
 
-type MessageBoxConfig = {
-	message?: string;
-	title?: string;
-	type?: string;
-	buttons?: Array<{ label: string; value: string; type?: string }>;
-	result?: string;
-	target?: HTMLElement;
-	icon?: string;
-	cb?: (value: string) => void;
-};
-
-export const config = writable<MessageBoxConfig>({});
+export const config = writable<MessageBox>({});
 
 export const MessageType = {
 	INFO: 'info',
