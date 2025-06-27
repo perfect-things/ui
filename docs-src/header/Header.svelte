@@ -24,7 +24,8 @@ onMount(() => {
 
 
 function switchColorMode (e, val) {
-	document.documentElement.className = val ? 'theme-dark' : 'theme-light';
+	document.documentElement.classList.remove('theme-dark', 'theme-light');
+	document.documentElement.classList.add(val ? 'theme-dark' : 'theme-light');
 }
 
 

@@ -46,7 +46,7 @@ menu a:hover { background-color: var(--ui-color-highlight-1); }
 menu a.active { background-color: var(--ui-color-highlight); }
 
 
-.nav-toggler {
+.button.nav-toggler {
 	--ui-button-size: 1.1em;
 	position: fixed;
 	left: 0;
@@ -56,7 +56,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	display: none;
 	transform: translateX(10px);
 }
-.nav-toggler:hover { color: var(--ui-color-text); background: none; }
+.button.nav-toggler:hover { color: var(--ui-color-text); background: none; }
 
 .btn-scroll-top {
 	position: fixed;
@@ -68,8 +68,8 @@ menu a.active { background-color: var(--ui-color-highlight); }
 
 
 @media (1px <= width <= 700px) {
-	.nav-toggler { display: flex; }
-	.nav-toggler.expanded { transform: translateX(calc(var(--sidebar-width) - 40px)); }
+	.button.nav-toggler { display: flex; }
+	.button.nav-toggler.expanded { transform: translateX(calc(var(--sidebar-width) - 40px)); }
 
 	aside {
 		box-shadow: 2px 1px 10px #0006;
@@ -84,6 +84,6 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	}
 	aside.expanded { transform: translateX(0); }
 
-	.nav-toggler:not(.swiping),
+	.button.nav-toggler:not(.swiping),
 	aside:not(.swiping) { transition: transform .3s cubic-bezier(.5, .2, .5, 1.2); }
 }
