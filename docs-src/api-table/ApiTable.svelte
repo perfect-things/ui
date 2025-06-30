@@ -7,7 +7,7 @@
 		<tr><th>Attribute</th><th>Type/Value</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		{#each props as prop (prop.name)}
+		{#each items as prop (prop.name)}
 			<tr>
 				<td>{prop.name}</td>
 				<td>{@html buildType(prop)}</td>
@@ -18,32 +18,23 @@
 </Table>
 
 <script lang="ts">
-import { Table } from '../../src';
 import './ApiTable.css';
+import type { ApiTableProps } from './types';
+import { Table } from '../../src';
 
-interface Props {
-	title?: string;
-	description?: string;
-	props?: any;
-}
-
-const _props = [
-	{
-		name: 'id',
-		type: 'string',
-		defalut: '',
-		required: true,
-		description: 'assign ID to the underlying component'
-	}
-];
 
 const {
 	title = 'API',
 	description = '',
-	props = _props
-}: Props = $props();
+	props = []
+}: ApiTableProps = $props();
+
+const items = $derived(props.sort(sortByName));
 
 
+function sortByName (a, b) {
+	return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+}
 
 function buildType (prop) {
 	const res = [];

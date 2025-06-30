@@ -38,26 +38,18 @@
 <API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
 import { Checkbox } from '../../../../src';
-import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 
-const apiProps = [
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.bindinputelement,
+
 	{ name: 'checked', type: ['true', 'false'], description: 'Make the checkbox checked or unchecked.' },
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
 	{ name: 'indeterminate', type: ['true', 'false'], description: 'If set to <i>true</i> it makes the checkbox show its 3rd state - indeterminate.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
-	{ name: 'label', type: 'string', description: 'Label for the input.' },
-	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the component.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `

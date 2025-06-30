@@ -55,7 +55,7 @@ let {
 	id = '',
 	required = undefined,
 	disabled = undefined,
-	value = $bindable(''),
+	value = $bindable(undefined),
 	strength = false,
 	name = '',
 	label = '',
@@ -91,7 +91,7 @@ let colorClass = $state('');
 
 
 const type = $derived(visible ? 'text' : 'password');
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const cls = $derived([
 	'input',
 	'input-password',

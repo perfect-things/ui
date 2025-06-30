@@ -201,7 +201,8 @@ test('Select with labelOnTheLeft has correct class', () => {
 test('Select without id generates a unique id', () => {
 	const props1 = $state({
 		items: data,
-		name: 'testName'
+		id: 'testName',
+		name: 'testName',
 	});
 	const component1 = mount(Select, { target: document.body, props: props1 });
 

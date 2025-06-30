@@ -77,7 +77,7 @@ let {
 let mouseY = 0;
 const errorMessageId = guid();
 
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const stars: number[] = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
 
 const cls = $derived([

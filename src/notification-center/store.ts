@@ -80,8 +80,8 @@ export function clearTimer (notification) {
 	clearInterval(timers[notification.id]);
 }
 
-
-export function showNotification (msg, type = 'info', timeout = 5000, btn = undefined, cb = () => {}) {
+type CB = (res: string) => void;
+export function showNotification (msg, type = 'info', timeout = 5000, btn = undefined, cb: CB = () => {}) {
 	const id = guid();
 	const showProgress = (typeof timeout === 'number');
 	const timestamp = new Date().getTime();

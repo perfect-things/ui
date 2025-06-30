@@ -86,25 +86,24 @@
 <API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
+
 import { Combobox, Button } from '../../../../src';
-import { API } from '../../../api-table';
 import { CodeExample, JsonBox } from '../../../code-example';
 
 
-const apiProps = [
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.placeholder,
+	PROPS.required,
+	PROPS.bindinputelement,
+
 	{ name: 'allowNew', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'clearOnEsc', description: 'If present - the combobox will be cleared when Escape is pressed.' },
-	{ name: 'disabled', description: 'Make the combobox disabled.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
 	{ name: 'hideOnResize', description: 'If present - resizing the window will close the popup.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'label', type: 'string', description: 'Label for the combobox.' },
-	{ name: 'labelOnTheLeft', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'multiselect', description: 'This changes the control to a multiselect. The following changes will apply:<ul>' +
 		'<li>dropdown items will receive checkboxes,' +
 		'<li>and the control will only allow to change the value by clicking on items (or check them using the `Space` key),' +
@@ -112,14 +111,8 @@ const apiProps = [
 		'<li>argument `allowNew` will have no effect.' +
 		'</ul>'
 	},
-	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
-	{ name: 'required', description: 'Mark the combobox as <i>aria-required</i>.' },
 	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. ' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
 	{ name: 'onkeydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 

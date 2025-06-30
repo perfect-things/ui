@@ -71,7 +71,7 @@ let {
 }: ComboboxInputProps = $props();
 
 
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const errorMessageId = guid();
 
 

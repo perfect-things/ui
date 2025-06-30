@@ -1,67 +1,54 @@
 <h2>Select</h2>
-<p>Select component is based on the native HTML select control.<br>
-	It provides some visual styling and also better data management,<br>
-	i.e. it accepts an array of strings or objects.
-</p>
+	<p>Select component is based on the native HTML select control.<br>
+		It provides some visual styling and also better data management,<br>
+		i.e. it accepts an array of strings or objects.
+	</p>
 
-<h3>Normal</h3>
-<Select placeholder="None" items={selectItems}/>
+	<h3>Normal</h3>
+		<Select placeholder="None" items={selectItems}/>
 
-<h3>Disabled</h3>
-<Select items={[{ name: 'Disabled' }]} disabled/>
+	<h3>Disabled</h3>
+		<Select items={[{ name: 'Disabled' }]} disabled/>
 
-<h3>With placeholder</h3>
-<Select placeholder="Select something" items={[]} />
+	<h3>With placeholder</h3>
+		<Select placeholder="Select something" items={[]} />
 
-<h3>With initial value</h3>
-<Select placeholder="Empty" items={selectItems} bind:value/> Selected value: {value}
+	<h3>With initial value</h3>
+		<Select placeholder="Empty" items={selectItems} bind:value/> Selected value: {value}
 
-<h3>With array of strings for <em>items</em></h3>
-<Select placeholder="Please select..." items={stringItems} bind:value/> Selected value: {value}
+	<h3>With array of strings for <em>items</em></h3>
+		<Select placeholder="Please select..." items={stringItems} bind:value/> Selected value: {value}
 
 
-<h3>Label</h3>
-<Select items={selectItems} label="Select label" />
+	<h3>Label</h3>
+		<Select items={selectItems} label="Select label" />
 
-<h3>Info</h3>
-<Select items={selectItems} label="Select label" info="Select something here" />
+	<h3>Info</h3>
+		<Select items={selectItems} label="Select label" info="Select something here" />
 
-<h3>Error</h3>
-<Select items={selectItems} label="Select label" error="You picked the wrong side!" />
+	<h3>Error</h3>
+		<Select items={selectItems} label="Select label" error="You picked the wrong side!" />
 
-<h3>Label on the left</h3>
-<Select items={selectItems} label="Label is on the left" labelOnTheLeft/>
-
+	<h3>Label on the left</h3>
+		<Select items={selectItems} label="Label is on the left" labelOnTheLeft/>
 
 
 <CodeExample html={exampleHtml} />
-
 <API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
 import { Select } from '../../../../src';
-import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 let value = $state('Beta');
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the select disabled.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying select.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the select.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the select.' },
-	{ name: 'label', type: 'string', description: 'Label for the select.' },
-	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.required,
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying select.' },
-	{ name: 'placeholder', type: 'string', description: 'Adds an item to the beginning of the options list.' },
-	{ name: 'required', description: 'Mark the select as <i>aria-required</i>.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying select.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the select.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. ' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying select.' },
-	{ name: 'onchange', type: 'function', description: 'Triggered when the value changes.' },
 ];
 
 const exampleHtml = `

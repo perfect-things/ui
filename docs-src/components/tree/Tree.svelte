@@ -1,29 +1,30 @@
 <h2>Tree</h2>
 
 <div class="tree-wrapper">
-	<Tree {items} onselect={onSelect}/>
+	<Tree {items} {onselect}/>
 </div>
 
 
 <CodeExample html={exampleHtml} />
 <API props={apiProps}/>
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
 import { Tree } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 import './Tree.css';
 
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'title', type: 'string', description: 'Title of the component.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+const apiProps = <ApiProp[]>[
+	PROPS.class,
+	PROPS.title,
+	PROPS.bindelement,
 	{ name: 'onselect', type: 'function', description: 'Triggered after an item was selected.' },
 ];
 
 const exampleHtml = `
-<Tree {items} onselect={onSelect}/>
+<Tree {items} {onselect}/>
 
 <script>
 const items = [
@@ -40,13 +41,13 @@ const items = [
 	{ id: 3, name: 'Three' },
 ];
 
-function onSelect (e) {
+function onselect (e) {
 	console.log(e.detail);
 }
 &lt;/script>
 `;
 
-function onSelect (e) {
+function onselect (e) {
 	console.log(e.detail);
 }
 

@@ -74,7 +74,7 @@ const allowedKeys = [
 	'Meta', 'Ctrl', 'Shift', 'Backspace', 'Delete', 'Tab', 'Enter', 'Escape'
 ];
 
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const cls = $derived([
 	'input',
 	'input-number',

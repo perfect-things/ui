@@ -49,22 +49,24 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 <API props={hideNotificationAPI} title="hideNotification function" description="A component exports a global <em>hideNotification</em> function with the following arguments:"/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+
 import { Button, NotificationCenter, showNotification, hideNotification, Toggle } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 import './NotificationCenter.css';
 
 let hideButton = $state(false);
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'hideButton', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> the button will be hidden.' },
+const apiProps = <ApiProp[]>[
+	PROPS.class,
+	PROPS.round,
+	{ name: 'hideButton', type: 'boolean', default: 'false', description: 'If <i>true</i> the button will be hidden.' },
 	{ name: 'outline', description: 'Notification center button style: outline' },
-	{ name: 'round', description: 'Makes the notification center button round' },
 ];
 
-const showNotificationAPI = [
+const showNotificationAPI = <ApiProp[]>[
 	{ name: '1. message', type: 'string', required: true, description: 'Message to show.' },
 	{ name: '2. type', type: ['info', 'success', 'warning', 'error'], default: 'info', description: 'Type of the message.' },
 	{ name: '3. timeout', type: ['number', 'false'], default: 5000, description: 'How long the toast should remain on screen (in milliseconds).<br>If the value is not a number (e.g. "false") - the toast will not auto-close.' },
@@ -72,7 +74,7 @@ const showNotificationAPI = [
 	{ name: '5. callback', type: 'function', description: 'Callback function triggered when the button is clicked.<br>The function receives 1 parameter, which is the ID of the toast.' },
 ];
 
-const hideNotificationAPI = [
+const hideNotificationAPI = <ApiProp[]>[
 	{ name: 'id', type: 'string', description: 'ID of the toast message that is returned by <em>showNotification</em> function.' },
 ];
 

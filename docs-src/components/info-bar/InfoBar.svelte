@@ -22,17 +22,19 @@
 <API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+
 import { InfoBar, Info, Error, Success, Warning } from '../../../src';
 import { CodeExample } from '../../code-example';
-import { API } from '../../api-table';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the message paragraph.' },
+const apiProps = <ApiProp[]>[
+	PROPS.id,
+	PROPS.class,
+	PROPS.bindelement,
 	{ name: 'msg', type: 'string', description: 'Message to display. It can use simple html for formatting (message is wrapped in <em>&lt;p&gt;</em> tag).' },
 	{ name: 'type', type: ['info', 'warning', 'error', 'success'], default: 'info', description: 'Type of the info-bar. This property only exists on the <em>&lt;InfoBar&gt;</em> component, not on the shortcut-components.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 ];
 
 

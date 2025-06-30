@@ -69,7 +69,7 @@ const allowedKeys = [
 ];
 
 
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const cls = $derived([
 	'input',
 	'input-math',

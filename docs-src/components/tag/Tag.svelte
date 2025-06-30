@@ -29,26 +29,29 @@
 <API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+
 import { Tag } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'clickable', description: 'When passed, the tag will be interactive.' },
+const apiProps = <ApiProp[]>[
+	PROPS.class,
+	PROPS.bindelement,
+	PROPS.onclick,
+	PROPS.icon,
+	PROPS.disabled,
+
 	{ name: 'color', type: 'string', description: 'Tag color. Standard variations are included (info, warning, danger, success). A color hash or name can also be provided.' },
-	{ name: 'disabled', description: 'Makes the tag <i>disabled</i>' },
-	{ name: 'icon', type: 'string', description: 'Icon name to display in the tag.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'onclick', type: 'function', description: 'Triggered when the tag is clicked.' },
+	{ name: 'clickable', description: 'When passed, the tag will be interactive.' },
 ];
 
 const exampleHtml = `
 <Tag icon="close">Closable tag</Tag>
 <Tag color="success">Success</Tag>
 <Tag color="#132231">Custom color</Tag>
-<Tag onclick={onclick}>Click me</Tag>
+<Tag {onclick}>Click me</Tag>
 
 <script>
 	function onclick () {

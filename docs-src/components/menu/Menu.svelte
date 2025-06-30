@@ -90,45 +90,46 @@
 <API props={itemApiProps} title="Item API"/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+
 import { Button, Menu, MenuItem, MenuSeparator } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 import './Menu.css';
 
-const apiProps = [
+const apiProps = <ApiProp[]>[
+	PROPS.class,
+	PROPS.bindelement,
+	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
+	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
+	{ name: 'closeOnClick', type: 'boolean', default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
+
 	{ name: 'align', type: ['left', 'right', 'center'], default: 'left', description: 'Align horizontally with the target.<br>' +
 		'Context menus will default to "center" on mobile.' },
 	{ name: 'valign', type: ['top', 'bottom'], default: 'bottom', description: 'Show the menu above or below the target.<br>' +
 		'Context menus will default to "top" on mobile.<br>' +
 		'This may be overridden to ensure that the menu remains within the visible screen area.' },
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
-	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
-	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'onclose', type: 'function', description: 'Triggered after the menu is closed.' },
 	{ name: 'onopen', type: 'function', description: 'Triggered after the menu is opened.' },
 ];
 
-const instanceApiProps = [
+const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the menu.' },
 	{ name: 'open', type: 'function', description: 'Opens the menu.' },
 ];
 
-const itemApiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the menu item.' },
-	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'data-', description: 'Dataset attribute allows to pass some data of a primitive type (string, number, boolean), which will be accessible in the <em>onclick</em> event listener, via button reference.' },
-	{ name: 'disabled', description: 'Makes the menu item (button) <i>disabled</i>' },
-	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
+const itemApiProps = <ApiProp[]>[
+	...PROPS.component,
+	PROPS.icon,
+	PROPS.dataset,
+
+	PROPS.danger,
+	PROPS.success,
+	PROPS.warning,
+	PROPS.onclick,
+
 	{ name: 'shortcut', type: 'string', description: 'A string representation of a keyboard shortcut. e.g. <em>cmd+alt+c</em>.<br>Keys should be separated by a <em>+</em> sign (which will be hidden in the rendered item).<br>Special keys (like cmd, alt, ctrl, shift, escape, enter, etc.) will be replaced by a corresponding symbol.<br>Keyboard handling must be done elsewhere.' },
-	{ name: 'success', description: 'Button type: success' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
-	{ name: 'warning', description: 'Button type: warning' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'onclick', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.<br><em>event.detail</em> will contain a <em>button</em> and <em>target</em> properties, that are references to the corresponding html elements.<br>It is possible to pass the data using <em>data-</em> attributes on the <em>target</em> element and on the <em>MenuItem</em>.' },
 ];
 
 const exampleHtml = `
@@ -165,12 +166,12 @@ const exampleHtml = `
 `;
 
 
-let someMenu3 = $state();
-let thingsMenu = $state();
-let thingsMenu1 = $state();
-let thingsMenu2 = $state();
-let tabsMenu = $state();
-let windowsMenu = $state();
+let someMenu3: Menu = $state();
+let thingsMenu: Menu = $state();
+let thingsMenu1: Menu = $state();
+let thingsMenu2: Menu = $state();
+let tabsMenu: Menu = $state();
+let windowsMenu: Menu = $state();
 let closeThingsText = $state('Close all things');
 let closeTabsText = $state('Close all tabs');
 let thingsMenuTimer, tabsMenutimer;

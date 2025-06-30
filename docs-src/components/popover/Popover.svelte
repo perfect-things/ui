@@ -82,38 +82,40 @@
 <API props={instanceApiProps} title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
 import { Popover, Button } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 import './Popover.css';
 
-let popover1 = $state();
-let popover1top = $state();
-let popover1left = $state();
-let popover1right = $state();
-let popover2 = $state();
-let popover3 = $state();
-let popover4 = $state();
-let popover5 = $state();
+let popover1: Popover = $state();
+let popover1top: Popover = $state();
+let popover1left: Popover = $state();
+let popover1right: Popover = $state();
+let popover2: Popover = $state();
+let popover3: Popover = $state();
+let popover4: Popover = $state();
+let popover5: Popover = $state();
 let content = $state('<h2>Context information</h2><p>Some text</p>');
 
 function updateContent () {
 	content = '<h2>Updated content</h2><p>Some text</p><p>Some more text</p>';
 }
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+const apiProps = <ApiProp[]>[
+	PROPS.class,
+	PROPS.bindelement,
+
 	{ name: 'dontHideOnTargetClick', description: 'When present, it will keep the popover open when the target is clicked again.' },
 	{ name: 'hideTip', description: 'Display just the container, without the tip (small triangle pointing at the target).' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize popover offset. Use negative number for smaller offset or positive for bigger' },
 	{ name: 'position', type: ['top', 'bottom', 'left', 'right'], default: 'bottom', description: 'Prefer the position of the popover to be above (top), below (bottom), left or right of the target element.' },
 	{ name: 'setMinWidthToTarget', description: 'When present, it will make the popover min-width the same as the target.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:contentElement', type: 'element', description: 'Exposes the HTML element of the content div.' },
 ];
 
-const instanceApiProps = [
+const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the popover.' },
 	{ name: 'open', type: 'function', description: 'Opens the popover.' },
 	{ name: 'isOpened', type: 'function', description: 'Returns the opened state.' },

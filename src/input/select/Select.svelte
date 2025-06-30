@@ -71,7 +71,7 @@ let {
 // let groups = $state([]);
 const errorMessageId = guid();
 
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const groups = $derived(groupItems(items));
 
 const cls = $derived([

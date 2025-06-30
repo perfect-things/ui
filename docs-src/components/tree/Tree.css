@@ -1,8 +1,13 @@
 .tree-wrapper {
 	display: inline-block;
 	width: 200px;
+	border: 1px dashed #800;
+	overflow-x: auto;
 }
 
+.tree-wrapper .tree {
+	min-width: max-content;
+}
 
 .tree-wrapper .tree-node {
 	scroll-margin-top: 4.2rem;

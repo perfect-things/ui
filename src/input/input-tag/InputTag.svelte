@@ -99,7 +99,7 @@ let listPopover: Popover;
 let newTagName = $state('');
 let _tags = $state<TagItem[]>([]);
 
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const _value = $derived(valueToArray(value));
 const cls = $derived([
 	'input',

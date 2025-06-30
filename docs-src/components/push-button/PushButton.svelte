@@ -82,35 +82,35 @@
 <API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
 import { PushButton } from '../../../src';
-import { API } from '../../api-table';
+import { API, PROPS } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
-	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
+
+	PROPS.info,
+	PROPS.success,
+	PROPS.warning,
+	PROPS.danger,
+	PROPS.round,
+
+	PROPS.icon,
+	PROPS.onchange,
+
+	{ name: 'submit', type: 'boolean', default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
 	{ name: 'outline', description: 'Button style: outline' },
-	{ name: 'pressed', type: ['true', 'false'], default: 'false', description: 'Initial <i>pressed</i> state of the button.' },
-	{ name: 'round', description: 'Makes the button round' },
-	{ name: 'submit', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
-	{ name: 'success', description: 'Button type: success' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
-	{ name: 'warning', description: 'Button type: warning' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'onclick', type: 'function', description: 'Triggered when the button is clicked.' }
+	{ name: 'pressed', type: 'boolean', default: 'false', description: 'Initial <i>pressed</i> state of the button.' },
 ];
 
 const exampleHtml = `
-<PushButton round icon="info" onchange={onChange}></PushButton>
+<PushButton round icon="info" {onchange}></PushButton>
 
 <script>
-function onChange (e) {
-    const { pressed } = e.detail;
-    console.log('is pressed:', pressed);
+function onchange (e, newValue) {
+    console.log('is pressed:', newValue);
 }
 &lt;/script>
 `;

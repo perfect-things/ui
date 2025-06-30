@@ -52,7 +52,7 @@ let {
 
 
 const errorMessageId = guid();
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const cls = $derived([
 	'check-and-radio',
 	'checkbox',

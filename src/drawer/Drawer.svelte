@@ -59,15 +59,15 @@ function onDocClick (e) {
 }
 
 
-export function toggle (target) {
+export function toggle (target?: HTMLElement) {
 	if (target) targetBtn = target;
 	if (isVisible) close();
 	else open(target);
 }
 
 
-export function open (target?) {
-	targetBtn = target || document.activeElement;
+export function open (target?: HTMLElement) {
+	targetBtn = target || document.activeElement as HTMLElement;
 	isVisible = true;
 	requestAnimationFrame(() => {
 		const btn = headerEl?.querySelector('.btn-close');

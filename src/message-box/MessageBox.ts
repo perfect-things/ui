@@ -12,8 +12,8 @@ export const MessageType = {
 	SUCCESS: 'success',
 };
 
-
-export function showMessage (message, type = '', title = '', btnLabel = 'OK', cb = () => {}) {
+type CB = (res: string) => void;
+export function showMessage (message, type = '', title = '', btnLabel = 'OK', cb: CB = () => {}) {
 	if (typeof message === 'object') return config.set(message);
 
 	const buttons = [{ label: btnLabel, value: btnLabel, type }];

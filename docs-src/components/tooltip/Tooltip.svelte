@@ -82,25 +82,29 @@
 <API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+
 import { Tooltip } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 import './Tooltip.css';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'danger', description: 'Tooltip type: danger' },
+const apiProps = <ApiProp[]>[
+	PROPS.class,
+	PROPS.bindelement,
+
+	PROPS.info,
+	PROPS.success,
+	PROPS.warning,
+	PROPS.danger,
+	PROPS.error,
+
 	{ name: 'delay', type: 'number', default: '0', description: 'Delay after which the tooltip should appear (in milliseconds).' },
-	{ name: 'error', description: 'Tooltip type: error' },
-	{ name: 'info', description: 'Tooltip type: info' },
 	{ name: 'offset', type: 'number', default: '2', description: 'Customize tooltip offset. Use negative number for smaller offset or positive for bigger' },
 	{ name: 'position', type: ['top', 'bottom', 'left', 'right'], default: 'top', description: 'Prefer the position of the tooltip to be above (top), below (bottom), left or right of the target element.' },
 	{ name: 'shortcut', type: 'string', description: 'Display a nicely formatted keyboard shortcut in the tooltip.' },
-	{ name: 'success', description: 'Tooltip type: success' },
 	{ name: 'target', required: true, type: 'string', description: 'ID of the target element.' },
-	{ name: 'warning', description: 'Tooltip type: warning' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 ];
 
 

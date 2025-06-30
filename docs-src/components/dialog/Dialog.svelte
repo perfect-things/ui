@@ -78,24 +78,24 @@
 
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
 import { Button, Dialog } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
-	{ name: 'opened', type: ['true' , 'false'], default: 'false', description: 'Set dialog\'s open state.' },
-	{ name: 'skipFirstFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
-	{ name: 'title', type: 'string', description: 'Set title for the dialog.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
+
+	{ name: 'opened', type: 'boolean', default: 'false', description: 'Set dialog\'s open state.' },
+	{ name: 'skipFirstFocus', type: 'boolean', default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
 	{ name: 'modal', description: 'If present - the dialog will not close when the user clicks outside of it or presses Escape.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:this', type: 'object', description: 'Exposes the component instance.' },
 	{ name: 'onclose', type: 'function', description: 'Triggered after the dialog is closed.' },
 	{ name: 'onopen', type: 'function', description: 'Triggered after the dialog is opened.' },
 ];
 
-const instanceApiProps = [
+const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the dialog.' },
 	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
 ];
@@ -111,14 +111,14 @@ const exampleHtml = `
 <Button onclick={e => dialog1.open(e)}>Show dialog</Button>
 
 <script>
-    let dialog1;
+    let dialog1: Dialog	= $state();
 &lt;/script>
 `;
 
-let dialog1 = $state();
-let dialog2 = $state();
-let dialog3 = $state();
-let dialog4 = $state();
-let dialog5 = $state();
+let dialog1: Dialog = $state();
+let dialog2: Dialog = $state();
+let dialog3: Dialog = $state();
+let dialog4: Dialog = $state();
+let dialog5: Dialog = $state();
 
 </script>

@@ -54,9 +54,11 @@
 	a config object or a list of arguments.  If it is a list of arguments - this is the API:"/>
 
 
-<script>
-import { Button, MessageBox, MessageType, showMessage } from '../../../src';
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
 import { API } from '../../api-table';
+
+import { Button, MessageBox, MessageType, showMessage } from '../../../src';
 import { CodeExample } from '../../code-example';
 
 const longMessage = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec euismod turpis. Aliquam aliquam varius dignissim. Sed sit amet leo tempor, dignissim ex euismod, volutpat ante. Etiam sed lacus pharetra, commodo lectus ac, bibendum purus. In vel aliquam arcu, nec aliquam tortor. Cras feugiat porta eros. Nulla eget quam mattis, laoreet elit et, volutpat lacus. Phasellus eget risus in lacus facilisis porta vitae vel nibh. Nam condimentum est risus, sed volutpat metus sodales non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus ac euismod arcu. Proin varius, ligula vel ullamcorper rutrum, tortor est imperdiet est, et accumsan nunc mi vitae risus.';
@@ -82,7 +84,7 @@ function showComplex (e) {
 	});
 }
 
-const apiProps = [
+const apiProps = <ApiProp[]>[
 	{ name: '1. message', type: 'string', description: 'A message to show.' },
 	{ name: '2. type', type: 'string', default: 'info', description: 'A message type (for icon and button styling).' },
 	{ name: '3. title', type: 'string', default: '', description: 'A title of the message box.' },

@@ -23,24 +23,25 @@
 <API props={getIconAPI} title="getIcon function" description="The component exports a global <em>getIcon</em> function that can be used to retrieve the icon's svg code (as string). The function accepts the following argument:"/>
 
 
-<script>
-import { Icon, icons, customIcons, addIcon, Button } from '../../../src';
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+<script lang="ts">
 import './Icon.css';
+import type { ApiProp } from '../../api-table/types';
+import { API } from '../../api-table';
+import { Icon, icons, customIcons, addIcon, Button } from '../../../src';
+import { CodeExample } from '../../code-example';
 
 addIcon('customIcon', '<[CUSTOM ICON]>');
 
-const apiProps = [
+const apiProps = <ApiProp[]>[
 	{ name: 'name', type: 'string', description: 'Name of the icon.' },
 ];
 
-const addIconAPI = [
+const addIconAPI = <ApiProp[]>[
 	{ name: 'name', type: 'string', description: 'Name of the custom icon.' },
 	{ name: 'svg', type: 'string', description: 'SVG code.' },
 ];
 
-const getIconAPI = [
+const getIconAPI = <ApiProp[]>[
 	{ name: 'name', type: 'string', description: 'Name of the icon.' },
 ];
 

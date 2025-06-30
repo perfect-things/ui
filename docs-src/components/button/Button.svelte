@@ -26,30 +26,28 @@
 <hr>
 <API props={apiProps}/>
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
 import { Button, ButtonToggle, Toggle, InputText } from '../../../src';
-import { API } from '../../api-table';
 import { CodeBox } from '../../code-example';
 import './Button.css';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'data-', description: 'Dataset attribute allows to pass some data of a primitive type (string, number, boolean), which will be accessible in the <em>onclick</em> event listener, via button reference.' },
-	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
-	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
-	{ name: 'info', description: 'Button type: info' },
-	{ name: 'link', description: 'Button style: link' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
+
+	PROPS.info,
+	PROPS.success,
+	PROPS.warning,
+	PROPS.danger,
+	PROPS.round,
+
+	PROPS.icon,
+
+	{ name: 'submit', type: 'boolean', default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
 	{ name: 'outline', description: 'Button style: outline' },
-	{ name: 'round', description: 'Makes the button round' },
-	{ name: 'submit', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
-	{ name: 'success', description: 'Button type: success' },
+	{ name: 'link', description: 'Button style: link' },
 	{ name: 'text', description: 'Button style: text' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
-	{ name: 'warning', description: 'Button type: warning' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'onclick', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 
 

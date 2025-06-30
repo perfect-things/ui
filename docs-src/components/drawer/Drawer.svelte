@@ -22,21 +22,20 @@
 
 <API props={instanceApiProps} title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
 import { Button, Drawer } from '../../../src';
-import { API } from '../../api-table';
+import { API, PROPS } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
-	{ name: 'title', type: 'string', description: 'Set title for the drawer.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
 	{ name: 'bind:this', type: 'object', description: 'Exposes the component instance.' },
 	{ name: 'onclose', type: 'function', description: 'Triggered after the drawer is closed.' },
 	{ name: 'onopen', type: 'function', description: 'Triggered after the drawer is opened.' },
 ];
 
-const instanceApiProps = [
+const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the drawer.' },
 	{ name: 'open', type: 'function', description: 'Opens the drawer.' },
 	{ name: 'toggle', type: 'function', description: 'Toggles the open state (opens when closed, closes when open).' },
@@ -56,6 +55,6 @@ const exampleHtml = `
 `;
 
 
-let drawer = $state();
+let drawer: Drawer = $state();
 
 </script>

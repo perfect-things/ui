@@ -102,7 +102,7 @@ const useNative = isMobile() && useNativeOnMobile;
 
 let open = $state(!!useNative);
 
-const _id = $derived(id || name || guid());
+const _id = $derived(id || guid());
 const cls = $derived([
 	'input',
 	'input-date',

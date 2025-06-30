@@ -21,14 +21,16 @@
 <API props={apiProps}/>
 
 
-<script>
-import { Grid } from '../../../src';
-import { API } from '../../api-table';
-import { CodeExample } from '../../code-example';
+<script lang="ts">
 import './Grid.css';
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+import { Grid } from '../../../src';
+import { CodeExample } from '../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
+
 	{ name: 'columns', type: 'array', description: 'Array of columns definition. Each objects defines and describes a column in the grid.' },
 	{ name: 'data', type: 'array', description: 'Array of items (each would constitute 1 row of the grid).' },
 	{ name: 'round', description: 'Adds rounded corners to the table.' },
@@ -37,9 +39,7 @@ const apiProps = [
 	{ name: 'scrollCorrectionOffset', type: 'number', default: '0', description: 'If an external <em>scrollContainer</em> is used - it is possible that it will have non-zero padding set, thus the table wrapper will be offset from the beginning of the container. This offset should be set here, so that the sticky headers work correctly.' },
 	{ name: 'interactive', type: ['true', 'false'], description: 'Makes table rows selectable with mouse and adds keyboard navigation.' },
 	{ name: 'multiselect', type: ['true', 'false'], description: 'If true - a column with checkboxes will be added to the grid.' },
-	{ name: 'title', type: 'string', description: 'Ads header with title on top of the grid.' },
 
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'onclick', type: 'function', description: 'Triggered after a row has been clicked.' },
 	{ name: 'ondblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
 	{ name: 'onkeydown', type: 'function', description: 'Triggered after key has been pressed.' },
