@@ -38,7 +38,7 @@ test('Toggle', async () => {
 
 	await user.click(input);
 	expect(input).toBeChecked();
-	expect(onchange).toHaveBeenCalledWith(expect.anything(), true);
+	expect(onchange).toHaveBeenCalledWith(expect.anything(), { value: true });
 
 	let err = cmp.querySelector('.info-bar-error');
 	expect(err).toBeInTheDocument();
