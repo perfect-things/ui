@@ -85,7 +85,7 @@ function onTickClick (e: Event, tick: number): void {
 	value = tick;
 	inputElement.value = String(tick);
 	inputElement.dispatchEvent(new Event('change'));
-	onchange(e, value);
+	onchange(e, { value });
 }
 
 </script>

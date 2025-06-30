@@ -165,7 +165,7 @@ function setValue (e: Event, arr: string[]): void {
 	// unique list of tags
 	value = [...new Set(arr)].join(',');
 	updatePosition();
-	onchange(e, value);
+	onchange(e, { value });
 }
 
 function addTagToValue (e: Event, tag: string): void {

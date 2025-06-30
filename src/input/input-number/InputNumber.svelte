@@ -131,6 +131,6 @@ function _onchange (e: Event) {
 	const v = value.replace(separator, '.');
 	const num = parseFloat(v);
 	if (isNaN(num)) value = '';
-	onchange(e, value);
+	onchange(e, { value });
 }
 </script>

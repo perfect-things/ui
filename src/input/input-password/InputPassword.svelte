@@ -18,8 +18,13 @@
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				oninput={_oninput}>
-			<Button link icon={visible ? 'eye' : 'eyeOff'} class="input-password-button" onclick={toggle}/>
+				oninput={_oninput}
+				onchange={_onchange}>
+			<Button link
+				{disabled}
+				icon={visible ? 'eye' : 'eyeOff'}
+				class="input-password-button"
+				onclick={toggle}/>
 		</div>
 
 		{#if strength && lib && value}
@@ -66,6 +71,7 @@ let {
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	oninput = () => {},
+	onchange = () => {},
 	...restProps
 }: InputPasswordProps = $props();
 
@@ -123,6 +129,12 @@ function _oninput (e: Event) {
 	const target = e.target as HTMLInputElement;
 	value = target.value;
 	oninput(e, value);
+}
+
+function _onchange (e: Event) {
+	const target = e.target as HTMLInputElement;
+	value = target.value;
+	onchange(e, { value });
 }
 
 function checkLib (): void {

@@ -115,7 +115,7 @@ function setValue (e: Event, v = false, force = false) {
 		oldValue = value;
 		setKnobPosition();
 	}
-	onchange(e, value);
+	onchange(e, { value });
 }
 
 

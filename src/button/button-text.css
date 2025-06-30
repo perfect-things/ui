@@ -1,9 +1,6 @@
 .button-text { background: transparent; border: none; box-shadow: none; }
 
-.button-text:not(.round) {
-	min-width: calc(var(--ui-button-size) * 4);
-	min-height: calc(var(--ui-button-size) * 2);
-}
+.button-text:not(.round) { min-width: calc(var(--ui-button-size) * 4); }
 
 .button-text:focus-visible,
 .button-text:hover { background-color: var(--ui-color-secondary); }

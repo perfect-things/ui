@@ -6,6 +6,9 @@
 <InputDate onkeydown={onkey} bind:value={item.datevalue}/>
 {item.datevalue || ''}
 
+<h3>Disabled</h3>
+<InputDate disabled onkeydown={onkey} bind:value={item.datevalue}/>
+
 <h3>Show on focus (when using keyboard)</h3>
 <InputDate showOnFocus placeholder="Custom placeholder" />
 
@@ -66,19 +69,15 @@ const item = $state({ datevalue: '' });
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
-	PROPS.placeholder,
 	PROPS.required,
+	PROPS.onkeydown,
 	PROPS.bindinputelement,
-	PROPS.onchange,
 
-	{ name: 'elevate', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
+	{ name: 'elevate', type: 'boolean', default: 'false', description: 'If <i>true</i> - the popup will be rendered into the <i>body</i>, to ensure it\'s not hidden under some elements (see example above).' },
 	{ name: 'format', type: 'string', default: 'yyyy-mm-dd', description: 'Date format (<a href="https://mymth.github.io/vanillajs-datepicker/#/date-string+format" target="_blank">docs</a>).' },
-	{ name: 'required', description: 'Mark the input as <i>required</i> for form submission and effectively shows it as invalid, until checked.' },
 	{ name: 'showOnFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the datepicker will be automatically open when the input gets focus (normally opens on click).' },
 	{ name: 'useNativeOnMobile', type: ['true', 'false'], default: 'false', description: 'Use native date picker on mobile devices.<br>In some cases this may provide prefered UX, but it has also some restrictions depending on the device/browser, like date format is enforced by device locale and placeholder text may not be available.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
-
-	{ name: 'onkeydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 const exampleHtml = `

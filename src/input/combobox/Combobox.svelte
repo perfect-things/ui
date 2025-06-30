@@ -194,7 +194,7 @@ function selectSingle (e: Event, item?) {
 	}
 
 	if (hasValueChanged(oldValue, value)) {
-		onchange(e, value, oldValue);
+		onchange(e, { value, oldValue });
 	}
 
 }
@@ -212,7 +212,7 @@ function selectMultiselect (e: Event, item) {
 	selectedItems = _selectedItems;
 	value = findValueInSource(selectedItems, items) || [];
 
-	if (hasValueChanged(oldValue, value, true)) onchange(e, value, oldValue);
+	if (hasValueChanged(oldValue, value, true)) onchange(e, { value, oldValue });
 	requestAnimationFrame(() => inputElement.select());
 }
 

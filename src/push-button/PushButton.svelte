@@ -39,12 +39,12 @@ function onkeydown (e) {
 	if (e.key === 'Enter' || e.key === ' ') {
 		e.preventDefault();
 		pressed = !pressed;
-		onchange(e, pressed);
+		onchange(e, { pressed });
 	}
 }
 
 function onmousedown (e) {
 	pressed = !pressed;
-	onchange(e, pressed);
+	onchange(e, { pressed });
 }
 </script>

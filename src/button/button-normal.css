@@ -5,10 +5,7 @@
 	box-shadow: var(--ui-shadow-button);
 }
 
-.button-normal:not(.round) {
-	min-width: calc(var(--ui-button-size) * 4);
-	min-height: calc(var(--ui-button-size) * 2);
-}
+.button-normal:not(.round) { min-width: calc(var(--ui-button-size) * 4); }
 
 .button-normal.info { background: var(--ui-color-info); }
 .button-normal.success { background: var(--ui-color-success); }

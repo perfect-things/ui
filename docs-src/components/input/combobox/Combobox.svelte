@@ -96,9 +96,9 @@ import { CodeExample, JsonBox } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
-	PROPS.placeholder,
 	PROPS.required,
 	PROPS.bindinputelement,
+	PROPS.onkeydown,
 
 	{ name: 'allowNew', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
 	{ name: 'clearOnEsc', description: 'If present - the combobox will be cleared when Escape is pressed.' },
@@ -113,7 +113,6 @@ const apiProps = <ApiProp[]>[
 	},
 	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
 	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. ' },
-	{ name: 'onkeydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 const exampleHtml = `

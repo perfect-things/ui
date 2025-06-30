@@ -106,7 +106,7 @@ function _onpaste (e) {
 function _onchange (e) {
 	const num = parseAmount(value);
 	value = String(num) || '';
-	onchange(e);
+	onchange(e, { value });
 }
 
 

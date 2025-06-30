@@ -1,40 +1,38 @@
 <h2>Checkbox</h2>
 
-<h3>Normal</h3>
-<Checkbox onchange={onchange} label="I do not wish to be excluded from the dont-send-newsletter list, not." />
+	<h3>Normal</h3>
+		<Checkbox {onchange} label="I do not wish to be excluded from the dont-send-newsletter list, not." />
 
-<h3>Disabled</h3>
-<Checkbox disabled label="I would like to receive all your spam, please."/><br>
-<Checkbox disabled checked label="You can't uncheck me!"/>
+	<h3>Disabled</h3>
+		<Checkbox disabled label="I would like to receive all your spam, please."/><br>
+		<Checkbox disabled checked label="You can't uncheck me!"/>
 
-<h3>Checked</h3>
-<Checkbox checked label="Check the checkbox to have the checkbox checked."/>
-
-
-<h3>Indeterminate</h3>
-<Checkbox indeterminate label="Check, mate!"/>
+	<h3>Checked</h3>
+		<Checkbox checked label="Check the checkbox to have the checkbox checked."/>
 
 
-<h3>With error and live validation</h3>
-<Checkbox {error} label="Please, check this by mistake." onchange={onchange}/>
-
-<h3>With info</h3>
-<Checkbox info="This checkbox is the most important box ever!" label="Please, check this by mistake."/>
-
-<h3>With error and info</h3>
-<Checkbox
-	info="This checkbox is the most important box ever!"
-	error="And you're wrong!"
-	label="Please, check this by mistake."/>
+	<h3>Indeterminate</h3>
+		<Checkbox indeterminate label="Check, mate!"/>
 
 
-<h3>Label on the left</h3>
-<Checkbox label="Label is on the left" labelOnTheLeft/>
+	<h3>With error and live validation</h3>
+		<Checkbox {error} label="Please, check this by mistake." {onchange}/>
 
+	<h3>With info</h3>
+		<Checkbox info="This checkbox is the most important box ever!" label="Please, check this by mistake."/>
+
+	<h3>With error and info</h3>
+		<Checkbox
+			info="This checkbox is the most important box ever!"
+			error="And you're wrong!"
+			label="Please, check this by mistake."/>
+
+
+	<h3>Label on the left</h3>
+		<Checkbox label="Label is on the left" labelOnTheLeft/>
 
 
 <CodeExample html={exampleHtml} />
-
 <API props={apiProps}/>
 
 
@@ -53,12 +51,12 @@ const apiProps = <ApiProp[]>[
 ];
 
 const exampleHtml = `
-<Checkbox onchange={onChange} label="I'm a little label" {error} />
+<Checkbox {onchange} label="I'm a little label" {error} />
 
 <script>
 let error = '';
 
-function onChange (e) {
+function onchange (e) {
 	const { checked, indeterminate } = e.detail;
 	error = checked ? '' : 'You must check me!'
 	console.log({ checked, indeterminate });
@@ -68,8 +66,8 @@ function onChange (e) {
 
 let error = $state('You must check me!');
 
-function onchange (e) {
-	const { checked, indeterminate } = e;
+function onchange (e, data) {
+	const { checked, indeterminate } = data;
 	error = checked ? '' : 'You must check me!';
 	console.log({ checked, indeterminate });
 }

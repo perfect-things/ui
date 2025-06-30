@@ -9,6 +9,7 @@
 		<Button
 			link
 			icon="dots"
+			{disabled}
 			class="combobox-button"
 			tabindex={-1}
 			onmousedown={oniconmousedown}

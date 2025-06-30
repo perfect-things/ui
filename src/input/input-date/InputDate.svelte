@@ -16,6 +16,7 @@
 				icon="calendar"
 				class="input-date-button"
 				tabindex={-1}
+				{disabled}
 				onmousedown={onIconMouseDown}
 				onclick={onIconClick}/>
 
@@ -184,7 +185,7 @@ function oninput () {
 function _onchange (e) {
 	if (picker) value = picker.getDate(format);
 	else value = inputElement.value;
-	onchange(e, value);
+	onchange(e, { value });
 }
 
 // Datepicker publishes these 2 events (onshow, onhide) on the input element

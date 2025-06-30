@@ -119,7 +119,7 @@ function setValue (e: Event, v?) {
 	}
 	else value = undefined;
 	element.querySelector('.input-inner').focus();
-	onchange(e, value);
+	onchange(e, { value });
 }
 
 

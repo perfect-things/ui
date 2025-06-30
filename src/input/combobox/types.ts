@@ -27,7 +27,6 @@ export interface ComboboxProps extends InputProps {
 	inputElement?: HTMLInputElement;
 	oniconclick?: () => void;
 	onclick?: () => void;
-	onchange?: (e: Event, value: any, oldValue: any) => void;
 }
 
 

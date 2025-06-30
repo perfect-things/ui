@@ -31,22 +31,19 @@ import { CodeExample } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
-	PROPS.placeholder,
 	PROPS.required,
 	PROPS.bindinputelement,
-	PROPS.onchange,
 
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 ];
 
 
 const exampleHtml = `
-<InputMath label="Enter amount" onchange={onChange} />
+<InputMath label="Enter amount" {onchange} />
 
 <script>
-function onChange (e) {
-    const { value, oldValue } = e.detail;
-    console.log({ value, oldValue });
+function onchange (e, { value }) {
+    console.log(value);
 }
 &lt;/script>
 `;

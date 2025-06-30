@@ -13,5 +13,4 @@ export interface ButtonToggleProps extends InputProps {
 	round?: boolean;
 	items?: ButtonToggleItem[];
 	value?: ButtonToggleValue;
-	onchange?: (e: Event, value: ButtonToggleValue) => void;
 }

@@ -109,7 +109,7 @@ function _onchange (e, button) {
 	if (btnEl) btnEl.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 
 	value = button.value;
-	onchange(e, value);
+	onchange(e, { value });
 }
 
 </script>

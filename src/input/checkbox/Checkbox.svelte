@@ -1,6 +1,6 @@
 <div bind:this={element} class={cls} {...restProps}>
 	<Info msg={info} />
-	<InputError id={errorMessageId} msg={error} animOffset={8} />
+	<InputError id={errorMessageId} msg={error} animOffset={24} />
 
 	<div class="checkbox-row">
 		<input
@@ -15,7 +15,7 @@
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
-			onchange={onchange}>
+			onchange={_onchange}>
 
 		<Label {label} for={_id}/>
 	</div>
@@ -65,5 +65,9 @@ const cls = $derived([
 	}
 ]);
 
+
+function _onchange (e: Event) {
+	onchange(e, { checked, indeterminate });
+}
 
 </script>

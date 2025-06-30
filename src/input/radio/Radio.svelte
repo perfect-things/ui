@@ -83,9 +83,9 @@ function onmousedown (e) {
 	}
 }
 
-function _onchange (event: Event, item: any) {
+function _onchange (e: Event, item: any) {
 	value = item.value;
-	onchange(event, value, item);
+	onchange(e, { value, item });
 }
 
 </script>
