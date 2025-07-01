@@ -82,6 +82,6 @@ function onchange (e, val, item) {
 
 let error4 = $state('You must select "Four"!');
 function validate4 (e, val) {
-	error4 = val === strings[3] ? '' : 'You must select "Four"!';
+	error4 = val.value === strings[3] ? '' : 'You must select "Four"!';
 }
 </script>

@@ -12,7 +12,7 @@
 			bind:checked
 			bind:indeterminate
 			bind:this={inputElement}
-			aria-invalid={!!error}
+			aria-invalid={error ? true : undefined}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
 			onchange={_onchange}>
@@ -40,8 +40,8 @@ let {
 	error = undefined,
 	info = undefined,
 	tabindex = undefined,
-	name = '',
-	required = false,
+	name = undefined,
+	required = undefined,
 	labelOnTheLeft = false,
 
 	element = $bindable(undefined),

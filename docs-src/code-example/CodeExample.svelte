@@ -3,7 +3,7 @@
 	<h3>Example</h3>
 {/if}
 
-<pre><code class="language-svelte">{@html encode(html)}</code></pre>
+<pre><code class="language-svelte">{@html _html}</code></pre>
 
 <script lang="ts">
 import './CodeExample.css';
@@ -13,11 +13,16 @@ interface Props {
 	notitle?: boolean;
 	nohr?: boolean;
 }
+
 const {
 	html = '',
 	notitle = false,
 	nohr = undefined
 }: Props = $props();
+
+
+const _html = $derived(encode(html));
+
 
 
 function encode (s) {

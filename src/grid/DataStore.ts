@@ -37,7 +37,6 @@ export function DataStore (): DataStoreType {
 
 		set($Data);
 		updateSelectedCounters();
-		// onSelectionChange();
 	}
 
 	function toggleSelectAll (forceState = undefined) {
@@ -52,7 +51,6 @@ export function DataStore (): DataStoreType {
 		const $Data = get(_this);
 		$Data.forEach(_item => _item.selected = isAll);
 		set($Data);
-		// onSelectionChange();
 	}
 
 	function selectRange (event) {
@@ -79,7 +77,6 @@ export function DataStore (): DataStoreType {
 
 		set($Data);
 		updateSelectedCounters();
-		// onSelectionChange();
 	}
 
 	function updateSelectedCounters () {

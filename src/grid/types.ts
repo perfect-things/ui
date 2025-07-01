@@ -1,4 +1,4 @@
-import type { ComponentProps } from '../types.js';
+import type { ComponentProps, EventHandler } from '../types.js';
 
 export type DataItem = {
 	id: number;
@@ -34,6 +34,6 @@ export interface GridProps extends ComponentProps {
 	data?: DataItem[];
 	multiselect?: boolean;
 	dblClickDelay?: number;
-	onselect?: (event: { event: Event, selectedItem: Element }) => void;
-	ondblclick?: (event: { event: Event, selectedItem: Element }) => void;
+	onselect?: EventHandler;
+	ondblclick?: EventHandler;
 }

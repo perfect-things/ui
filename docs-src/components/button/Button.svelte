@@ -95,7 +95,7 @@ function onStyleChange (e, val) {
 	props.outline = false;
 	props.text = false;
 	props.link = false;
-	setProp(val, true);
+	setProp(val.value, true);
 }
 
 function onTypeChange (e, val) {
@@ -103,11 +103,11 @@ function onTypeChange (e, val) {
 	props.success = false;
 	props.warning = false;
 	props.danger = false;
-	setProp(val, true);
+	setProp(val.value, true);
 }
 
 function onIconChange (e, val) {
-	setProp('icon', val);
+	setProp('icon', val.value);
 }
 
 function setProp (name, val) {

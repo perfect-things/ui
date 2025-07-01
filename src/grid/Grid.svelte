@@ -111,7 +111,7 @@ function selectRow (e, rowEl) {
 	const rows = getSelectableItems(element);
 	selectedIdx = rows.findIndex(item => item === rowEl);
 
-	if (oldIdx !== selectedIdx) onselect({ event: e, selectedItem: rowEl });
+	if (oldIdx !== selectedIdx) onselect(e, { selectedItem: rowEl });
 
 
 	const scrollEl = getScrollContainer(element, scrollContainer);
@@ -177,7 +177,7 @@ function _ondblclick (e) {
 
 	requestAnimationFrame(() => {
 		const selectedItem = getSelectableItems(element)[selectedIdx];
-		ondblclick({ event: e, selectedItem });
+		ondblclick(e, { selectedItem });
 	});
 }
 

@@ -1,4 +1,4 @@
-/* more styling defined in ../check-and-radio.css */
+/* more styling defined in ../input.css  .check-and-radio {} */
 
 .checkbox {
 	display: inline-flex;
@@ -16,19 +16,22 @@
 }
 
 
-.checkbox input:focus { border-color: var(--ui-color-accent); }
+.checkbox input:focus {
+	border-color: var(--ui-color-accent);
+}
+
 .checkbox input::after {
 	content: "✕";
 	font-family: Arial, Helvetica, sans-serif;
-	line-height: 1.1;
+	height: 1rem;
 }
 
 .checkbox.indeterminate input::after {
 	content: " ";
 	opacity: 1;
 	background: var(--ui-color-text-1);
-	width: 65%;
-	height: 65%;
+	width: 70%;
+	height: 70%;
 	border-radius: 0.2rem;
 }
 
@@ -37,11 +40,23 @@
 	opacity: 1;
 }
 
-.checkbox.disabled { opacity: 0.5; }
-.checkbox.disabled input { opacity: 1; }
+.checkbox.disabled {
+	opacity: 0.5;
+}
+
+.checkbox.disabled input {
+	opacity: 1;
+}
 
 
-.checkbox.has-error input { border-color: var(--ui-color-danger); }
-.checkbox.has-error input:focus { box-shadow: var(--ui-shadow-danger); }
+.checkbox.has-error input {
+	border-color: var(--ui-color-danger);
+}
 
-.checkbox.label-on-the-left .checkbox-row { flex-flow: row-reverse; }
+.checkbox.has-error input:focus {
+	box-shadow: var(--ui-shadow-danger);
+}
+
+.checkbox.label-on-the-left .checkbox-row {
+	flex-flow: row-reverse;
+}

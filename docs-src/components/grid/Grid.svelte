@@ -30,7 +30,6 @@ import { CodeExample } from '../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.component,
-
 	{ name: 'columns', type: 'array', description: 'Array of columns definition. Each objects defines and describes a column in the grid.' },
 	{ name: 'data', type: 'array', description: 'Array of items (each would constitute 1 row of the grid).' },
 	{ name: 'round', description: 'Adds rounded corners to the table.' },
@@ -91,7 +90,7 @@ const data = [
 
 
 function onclick (e) {
-	console.log(e.type);
+	console.log('grid event:',  e.type);
 }
 
 

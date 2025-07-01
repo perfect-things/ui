@@ -23,25 +23,64 @@
 	top: 0;
 	z-index: 2;
 }
-.grid-item { content-visibility: auto; }
 
-.grid .column-check { width: 3em; padding: 0 0.5em; }
-.grid .column-check .checkbox { pointer-events: none; }
-.grid .column-check .checkbox input { border-color: var(--ui-color-background-1); }
+.grid-item {
+	content-visibility: auto;
+}
 
-.grid .column-date { width: 110px; }
-.grid .column-number { width: 110px; }
+.grid .column-check {
+	width: 3em;
+	padding: 0 0.5em;
+}
+
+.grid .column-check .checkbox {
+	pointer-events: none;
+	display: flex;
+}
+
+.grid .column-check .checkbox input {
+	border-color: var(--ui-color-background-1);
+}
+
+.grid .column-date {
+	width: 110px;
+}
+
+.grid .column-number {
+	width: 110px;
+}
 
 
-.grid thead { top: -2px; }
-.grid thead th { padding-top: 0.75em; padding-bottom: 0.75em; }
+.grid thead {
+	top: -2px;
+}
 
-.grid tbody { background-color: var(--ui-color-background); }
-.grid tbody td { padding: 0.3rem 0.5rem;  }
+.grid thead th {
+	padding-top: 0.75em;
+	padding-bottom: 0.75em;
+}
 
-.grid tfoot { bottom: -2px; }
-.grid tfoot td { padding: 0.75rem 0.5rem;  }
-.grid tfoot .button { --button-size: 0.9em; font-size: 0.9em; margin: 0; }
+.grid tbody {
+	background-color: var(--ui-color-background);
+}
+
+.grid tbody td {
+	padding: 0.3rem 0.5rem;
+}
+
+.grid tfoot {
+	bottom: -2px;
+}
+
+.grid tfoot td {
+	padding: 0.75rem 0.5rem;
+}
+
+.grid tfoot .button {
+	--button-size: 0.9em;
+	font-size: 0.9em;
+	margin: 0;
+}
 
 
 .grid td:not(.column-check) {
@@ -60,19 +99,31 @@
 
 
 .grid .th-number,
-.grid .td-number { text-align: right; }
+.grid .td-number {
+	text-align: right;
+}
 
 
 /*** SORTABLE TABLE *******************************************************************************/
-.grid-sortable thead th { cursor: pointer; }
-.grid-sortable thead th span:hover { text-decoration: underline; }
-.grid-sortable thead th .cell-aligner { min-height: 20px; }
+.grid-sortable thead th {
+	cursor: pointer;
+}
+
+.grid-sortable thead th span:hover {
+	text-decoration: underline;
+}
+
+.grid-sortable thead th .cell-aligner {
+	min-height: 20px;
+}
+
 .grid-sortable thead th .cell-aligner span {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	flex: 1;
 }
+
 .grid-sortable thead th svg {
 	width: 20px;
 	height: 20px;

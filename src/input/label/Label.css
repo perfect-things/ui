@@ -1,6 +1,6 @@
 .label {
 	height: var(--ui-button-height);
-	line-height: 1.6;
+	line-height: 1;
 	padding: 0;
 	display: inline-flex;
 	align-items: center;
@@ -15,7 +15,9 @@
 }
 
 /* to offset input's border (visually) */
-.input .label { padding-inline: 1px; }
+.input .label {
+	padding-inline: 1px;
+}
 
 
 .label-on-the-left .label {
@@ -28,10 +30,16 @@
 
 .radio.label-on-the-left,
 .input-tag.label-on-the-left,
-.textarea.label-on-the-left { align-items: flex-start; }
+.textarea.label-on-the-left {
+	align-items: flex-start;
+}
 
 .radio.label-on-the-left>.label,
 .input-tag.label-on-the-left .label,
-.textarea.label-on-the-left .label { height: calc(var(--ui-button-height) + 2px); }
+.textarea.label-on-the-left .label {
+	height: calc(var(--ui-button-height) + 2px);
+}
 
-.radio.label-on-the-left>.label { margin-block: var(--ui-margin-s); }
+.radio.label-on-the-left>.label {
+	margin-block: var(--ui-margin-s);
+}
