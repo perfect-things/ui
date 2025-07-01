@@ -1,4 +1,3 @@
-import { screen } from '@testing-library/dom';
 import { expect, test } from 'vitest';
 
 import './helpers/utils';
@@ -58,7 +57,7 @@ test('Splitter-utils - innerWidth, innerHeight', () => {
 	const style = `width: ${w}px; height: ${h}px; padding: 10px; border: 1px solid black;`;
 	document.body.innerHTML = `<div title="test-div" style="${style}">Example</div>`;
 
-	const div = screen.getByTitle('test-div');
+	const div = document.querySelector('[title="test-div"]');
 	// @ts-ignore
 	div.getBoundingClientRect = () => ({ width: w, height: h, top: 0, left: 0, right: 0, bottom: 0, });
 

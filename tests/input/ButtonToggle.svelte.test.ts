@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { fireEvent } from '@testing-library/svelte';
 import { flushSync, mount, unmount } from 'svelte';
+import userEvent from '@testing-library/user-event';
 import { ButtonToggle } from '../../src/input/button-toggle';
 
 test('ButtonToggle', async () => {
@@ -22,6 +22,8 @@ test('ButtonToggle', async () => {
 		info: undefined
 	});
 
+	const user = userEvent.setup();
+
 	const component = mount(ButtonToggle, { target: document.body, props });
 
 	const btnGroup = document.body.querySelector('.test-class');
@@ -42,10 +44,10 @@ test('ButtonToggle', async () => {
 	expect(firstInput).toHaveAttribute('value', items[0].value);
 	expect(firstInput).not.toBeChecked();
 
-	await fireEvent.click(labelButtons[0]);
+	await user.click(labelButtons[0]);
 	expect(inputs[0]).toBeChecked();
 
-	await fireEvent.click(labelButtons[1]);
+	await user.click(labelButtons[1]);
 	expect(inputs[1]).toBeChecked();
 
 	let err = btnGroup.querySelector('.info-bar-error');

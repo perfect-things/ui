@@ -1,7 +1,6 @@
-import { fireEvent } from '@testing-library/svelte';
 import { flushSync, mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
-
+import userEvent from '@testing-library/user-event';
 import { Checkbox } from '../../src/input';
 
 
@@ -19,6 +18,8 @@ test('Checkbox', async () => {
 		info: undefined,
 		onchange: mock
 	});
+
+	const user = userEvent.setup();
 
 	// @ts-ignore
 	const component = mount(Checkbox, { target: document.body, props });
@@ -58,7 +59,7 @@ test('Checkbox', async () => {
 	expect(lbl).toHaveAttribute('for', props.id);
 	expect(lbl).toHaveTextContent(props.label);
 
-	await fireEvent.click(inp);
+	await user.click(inp);
 	expect(inp).not.toBeChecked();
 
 	expect(mock).toHaveBeenCalled();

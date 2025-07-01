@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import { flushSync, mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
 import { InputTag } from '../../src/input';
@@ -18,6 +18,8 @@ test('InputTag', async () => {
 		tags: ['newTag', 'anotherOne', 'long-tag-name'],
 		onchange: vi.fn(),
 	});
+
+	const user = userEvent.setup();
 
 	// @ts-ignore
 	const component = mount(InputTag, { target: document.body, props });
@@ -64,7 +66,7 @@ test('InputTag', async () => {
 	let list = document.body.querySelector('.input-tag-popover');
 	expect(list).not.toBeInTheDocument();
 
-	await fireEvent.click(box);
+	await user.click(box);
 
 	list = document.body.querySelector('.input-tag-popover');
 	expect(list).toBeInTheDocument();
@@ -73,7 +75,7 @@ test('InputTag', async () => {
 	let tags = list.querySelectorAll('.ui-tag');
 	expect(tags.length).toBe(props.tags.length);
 
-	await fireEvent.click(tags[0]);
+	await user.click(tags[0]);
 
 	expect(props.onchange).toHaveBeenCalledTimes(1);
 	expect(input).toHaveValue(originalValue + ',' + props.tags[0]);
@@ -82,7 +84,7 @@ test('InputTag', async () => {
 	tags = box.querySelectorAll('.ui-tag');
 	expect(tags.length).toBe(originalValue.split(',').length + 1);
 
-	await fireEvent.click(tags[tags.length - 1]);
+	await user.click(tags[tags.length - 1]);
 
 	expect(props.onchange).toHaveBeenCalled();
 	expect(input).toHaveValue(originalValue);

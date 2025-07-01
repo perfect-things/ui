@@ -13,6 +13,7 @@ export default ts.config(
 	...sveltePlugin.configs.recommended,
 	{
 		ignores: [
+			'assets/**',                    // Ignore assets
 			'docs/**',                      // Ignore compiled output
 			'dist/**',                      // Ignore compiled output
 			'**/node_modules/**',           // Ignore node_modules

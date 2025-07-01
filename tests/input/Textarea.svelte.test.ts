@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import { flushSync, mount, unmount } from 'svelte';
 import { beforeEach, expect, test, vi } from 'vitest';
 import { Textarea } from '../../src/input';
@@ -46,11 +46,13 @@ test('Textarea handles input events', async () => {
 		onchange: vi.fn(),
 		oninput: vi.fn()
 	});
+	const user = userEvent.setup();
+
 	const component = mount(Textarea, { target: document.body, props });
 
 	const textarea = document.body.querySelector('textarea');
 
-	await fireEvent.input(textarea, { target: { value: 'test input' } });
+	await user.type(textarea, 'test input');
 	expect(props.oninput).toHaveBeenCalled();
 
 	await unmount(component);
@@ -160,6 +162,8 @@ test('Textarea with custom attributes passes them through to textarea element', 
 });
 
 test('Textarea handles focus and blur events', async () => {
+	const user = userEvent.setup();
+
 	const props = $state({
 		onfocus: vi.fn(),
 		onblur: vi.fn()
@@ -168,10 +172,10 @@ test('Textarea handles focus and blur events', async () => {
 
 	const textarea = document.body.querySelector('textarea');
 
-	await fireEvent.focus(textarea);
+	await user.click(textarea);
 	expect(props.onfocus).toHaveBeenCalled();
 
-	await fireEvent.blur(textarea);
+	await user.click(document.body);
 	expect(props.onblur).toHaveBeenCalled();
 
 	await unmount(component);

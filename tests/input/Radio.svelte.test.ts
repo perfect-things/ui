@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import { expect, test, vi } from 'vitest';
 import { flushSync, mount, unmount } from 'svelte';
 import { Radio } from '../../src/input';
@@ -22,6 +22,8 @@ test('Radio', async () => {
 		items,
 		onchange: vi.fn()
 	});
+	const user = userEvent.setup();
+
 	const component = mount(Radio, { target: document.body, props });
 
 	const cmp = document.body.querySelector(`[title="${props.title}"]`);
@@ -78,12 +80,12 @@ test('Radio', async () => {
 	expect(lbl1.getAttribute('for')).toBe(inp1.id);
 
 
-	await fireEvent.click(lbl0);
+	await user.click(lbl0);
 	expect(props.onchange).not.toHaveBeenCalled();	// first input should be disabled
 	expect(inp0).not.toBeChecked();
 	expect(inp1).not.toBeChecked();
 
-	await fireEvent.click(lbl1);
+	await user.click(lbl1);
 	expect(props.onchange).toHaveBeenCalled();
 	expect(inp1).toBeChecked();
 

@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import { flushSync, mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
 import { Combobox } from '../../src/input/combobox';
@@ -28,6 +28,7 @@ test('Combobox', async () => {
 		value,
 		onchange: vi.fn(),
 	});
+	const user = userEvent.setup();
 
 	const component = mount(Combobox, { target: document.body, props });
 
@@ -47,7 +48,7 @@ test('Combobox', async () => {
 	expect(input).toHaveAttribute('aria-required');
 
 	// open list
-	await fireEvent.mouseDown(input);
+	await user.pointer({ keys: '[MouseLeft]', target: input });
 
 	// verify list
 	const comboboxList = document.body.querySelector('.combobox-list');
@@ -60,7 +61,7 @@ test('Combobox', async () => {
 	expect(item).toBeInTheDocument();
 
 	// click on list item
-	await fireEvent.mouseUp(item);
+	await user.pointer({ keys: '[MouseLeft]', target: item });
 
 	// verify that the item was selected
 	const comboboxListAfterClick = document.body.querySelector('.combobox-list');

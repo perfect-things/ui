@@ -10,8 +10,8 @@ export default defineConfig({
 		environment: 'jsdom',
 		setupFiles: ['./tests/_setup.ts'],
 		include: [
-			'tests/**/*.spec.ts',
-			'tests/**/*.spec.svelte.ts',
+			'tests/**/*.test.ts',
+			'tests/**/*.svelte.test.ts',
 		],
 		css: { modules: { classNameStrategy: 'non-scoped' } },
 		coverage: {

@@ -1,6 +1,5 @@
 import type { InputProps } from '../../src/input/types';
-
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import { flushSync, mount, unmount } from 'svelte';
 import { InputText } from '../../src/input';
 import { expect, test, vi } from 'vitest';
@@ -65,18 +64,19 @@ test('InputText renders with correct props', async () => {
 
 
 test('InputText handles input events', async () => {
+	const user = userEvent.setup();
 	const props = $state({ value: '', onchange: vi.fn(), oninput: vi.fn() });
 	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 
-	await fireEvent.input(input, { target: { value: 'test input' } });
+	await user.clear(input);
+	await user.type(input, 'test input');
 	expect(props.oninput).toHaveBeenCalled();
 	expect(input.value).toBe('test input');
 
-	await fireEvent.change(input, { target: { value: 'test change' } });
+	await user.click(document.body);
 	expect(props.onchange).toHaveBeenCalled();
-	expect(input.value).toBe('test change');
 
 	await unmount(component);
 });
@@ -97,6 +97,7 @@ test('InputText handles disabled state', async () => {
 
 
 test('InputText binds value correctly', async () => {
+	const user = userEvent.setup();
 	const props = $state({ value: 'initial value' });
 	const component = mount(InputText, { target: document.body, props });
 
@@ -107,7 +108,8 @@ test('InputText binds value correctly', async () => {
 	flushSync();
 	expect(input.value).toBe('updated value');
 
-	await fireEvent.input(input, { target: { value: 'input value' } });
+	await user.clear(input);
+	await user.type(input, 'input value');
 	expect(input.value).toBe('input value');
 
 	await unmount(component);
@@ -214,15 +216,16 @@ test('InputText with custom attributes passes them through to input element', as
 
 
 test('InputText handles focus and blur events', async () => {
+	const user = userEvent.setup();
 	const props = $state({ class: 'test-input-1', onfocus: vi.fn(), onblur: vi.fn() });
 	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('.test-input-1 input');
 
-	await fireEvent.focus(input);
+	await user.click(input);
 	expect(props.onfocus).toHaveBeenCalled();
 
-	await fireEvent.blur(input);
+	await user.click(document.body);
 	expect(props.onblur).toHaveBeenCalled();
 
 	await unmount(component);
@@ -247,12 +250,16 @@ test('InputText initializes with correct default value', () => {
 
 
 test('InputText supports keyboard events', async () => {
+	const user = userEvent.setup();
 	const props = $state({ onkeydown: vi.fn() });
 	const component = mount(InputText, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
 
-	await fireEvent.keyDown(input, { key: 'A', code: 'KeyA' });
+	await user.click(input);
+	await user.keyboard('A');
+
+
 	expect(props.onkeydown).toHaveBeenCalled();
 
 	await unmount(component);

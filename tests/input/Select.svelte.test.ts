@@ -1,7 +1,7 @@
 import { beforeEach, expect, test, vi } from 'vitest';
 import { flushSync, mount, unmount } from 'svelte';
 import { Select } from '../../src/input/select';
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 
 
 const data = [
@@ -42,6 +42,8 @@ beforeEach(() => {
 
 
 test('Select renders with correct props', async () => {
+	const user = userEvent.setup();
+
 	const props = $state({ ...defaultProps, onchange: vi.fn() });
 	const component = mount(Select, { target: document.body, props });
 
@@ -56,8 +58,7 @@ test('Select renders with correct props', async () => {
 	expect(select).toHaveAttribute('name', 'Component1');
 	expect(select).toHaveAttribute('aria-required');
 
-	await fireEvent.click(select);
-	await fireEvent.focus(select);
+	await user.click(select);
 
 	const opts = select.querySelectorAll('option');
 	expect(opts.length).toBe(data.length + 1); // +1 for placeholder

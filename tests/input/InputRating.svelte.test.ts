@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import { mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
 
@@ -15,6 +15,8 @@ test('InputRating', async () => {
 		class: 'test-class',
 		onchange: vi.fn(),
 	});
+
+	const user = userEvent.setup();
 
 	// @ts-ignore
 	window.setTimeout = (cb) => { cb(); };
@@ -36,8 +38,8 @@ test('InputRating', async () => {
 	expect(star2).not.toHaveClass('active');
 
 	document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: { star: '2' } }));
-	await fireEvent.mouseDown(star2);
-	await fireEvent.mouseUp(star2);
+	await user.pointer({ keys: '[MouseLeft>]', target: star2 });
+	await user.pointer({ keys: '[/MouseLeft]', target: star2 });
 
 	expect(star2).toHaveClass('active');
 	expect(props.onchange).toHaveBeenCalled();
@@ -47,8 +49,9 @@ test('InputRating', async () => {
 	expect(star3).not.toHaveClass('active');
 
 	document.elementFromPoint = vi.fn().mockImplementation(() => ({ dataset: { star: '3' } }));
-	await fireEvent.mouseDown(star3);
-	await fireEvent.mouseUp(star3);
+	await user.pointer({ keys: '[MouseLeft>]', target: star3 });
+	await user.pointer({ keys: '[/MouseLeft]', target: star3 });
+
 	expect(star3).toHaveClass('active');
 
 	await unmount(component);

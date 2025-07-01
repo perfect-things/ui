@@ -90,7 +90,7 @@ const data = [
 
 
 function onclick (e) {
-	console.log('grid event:',  e.type);
+	console.log('grid event:', e.type);
 }
 
 

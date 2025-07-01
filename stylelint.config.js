@@ -1,8 +1,10 @@
+/** @type {import('stylelint').Config} */
 export default {
 	extends: 'stylelint-config-standard',
 	ignoreFiles: [
-		'node_modules/**/*.*',
+		'dist/*.*',
 		'docs/*.*',
+		'node_modules/**/*.*',
 	],
 	rules: {
 		'alpha-value-notation': null,

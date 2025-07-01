@@ -1,7 +1,7 @@
 import { expect, test, vi } from 'vitest';
 import { flushSync, mount, unmount } from 'svelte';
 import { NotificationCenter, showNotification, hideNotification } from '../src/notification-center';
-import { fireEvent } from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
 
 
 test('NotificationCenter', async () => {
@@ -11,6 +11,10 @@ test('NotificationCenter', async () => {
 			fly: vi.fn(),
 			crossfade: vi.fn().mockReturnValue([])
 		};
+	});
+	const user = userEvent.setup({
+		delay: null,
+		advanceTimers: vi.advanceTimersByTime
 	});
 
 	const component = mount(NotificationCenter, { target: document.body });
@@ -58,7 +62,7 @@ test('NotificationCenter', async () => {
 
 	const btn = document.body.querySelector(toastSelector + ' button');
 	expect(btn).toBeInTheDocument();
-	fireEvent.click(btn);
+	await user.click(btn);
 	expect(mock).toHaveBeenCalledWith(tstId);
 
 	hideNotification(tstId);

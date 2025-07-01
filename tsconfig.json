@@ -39,6 +39,7 @@
         "src/**/*",
         "docs-src/**/*",
         "tests/**/*",
+        "*.ts",
         "*.js"
     ],
     "exclude": [
