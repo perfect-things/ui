@@ -28,7 +28,8 @@
 			aria-invalid={!!error}
 			aria-errormessage={error ? errorMessageId : undefined}
 			bind:this={inputElement}
-			bind:value>
+			bind:value
+			{oninput}>
 	</div>
 </div>
 
@@ -85,6 +86,11 @@ function onTickClick (e: Event, tick: number): void {
 	value = tick;
 	inputElement.value = String(tick);
 	inputElement.dispatchEvent(new Event('change'));
+	onchange(e, { value });
+}
+
+function oninput (e: Event): void {
+	if (disabled) return;
 	onchange(e, { value });
 }
 

@@ -3,17 +3,28 @@ Changelog
 
 
 ## v10.0.0 *(2025-07-01)*
-- Thousand thanks to Svelte team, for a long week of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time.
+Thousand thanks to Svelte team, for a long month of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time.
+
+- All components have been updated (rewritten!) to use the new Svelte v5 syntax and features.
+- All components now use TypeScript for better developer experience.
+- Setup, tests & build process have been updated to vite & vitest.
+
+### Features & fixes
 - Added new property: `shortcut` the `Tooltip` component.
+- Added `ArrowLeft` and `ArrowRight` to Toggle component, to allow toggling the value with the keyboard.
 
 
 ### Breaking changes
-- All v4 events (e.g. `on:change`) are now loosing the colon (e.g. `onchange`).
-- Context of event handlers may need to be "fixed" by wrapping them in arrow-functions, e.g.
-  - before: `<Button on:click={handleClick}></Button>`
-  - after: `<Button onclick={e => handleClick(e)}></Button>`
-
-
+- All Svelte v4 events (e.g. `on:change`) are now loosing the colon (e.g. `onchange`).
+- All events have been refactored, and all listeners/handlers have the same signature:
+  `function(event: Event, data?: any)`, where the first argument is always `event`,
+  and second argument (`data`) is specific to the event & component, e.g.
+    - for Inputs `onchange` event, `data` argument will contain the new value (`{ value: any }`)
+- Utils functions & constants have been updated to use the new reactive `$state`:
+  - `$ANIMATION_SPEED`   -> `UI.ANIMATION_SPEED` - (number) reactive constant
+  - `$PREFERS_DARK`      -> `UI.PREFERS_DARK` - (boolean) reactive constant
+  - `FOCUSABLE_SELECTOR` -> `UI.FOCUSABLE_SELECTOR` - (string) constant
+  - `isMobile()`         -> `UI.isMobile` - (boolean) constant
 ----
 
 

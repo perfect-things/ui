@@ -1,28 +1,28 @@
 <h2>Textarea</h2>
 
 	<h3>Default</h3>
-		<Textarea label="Write some text"></Textarea>
+		<Textarea {onchange} label="Write some text"></Textarea>
 
 	<h3>Disabled</h3>
-		<Textarea label="Write some text" disabled></Textarea>
+		<Textarea {onchange} label="Write some text" disabled></Textarea>
 
 	<h3>Placeholder</h3>
-		<Textarea label="Write some text" placeholder="Add some text"></Textarea>
+		<Textarea {onchange} label="Write some text" placeholder="Add some text"></Textarea>
 
 	<h3>Autogrow</h3>
-		<Textarea label="Write some text" autogrow></Textarea>
+		<Textarea {onchange} label="Write some text" autogrow></Textarea>
 
 	<h3>With info text</h3>
-		<Textarea label="Write some text" info="This is some extra info for you"></Textarea>
+		<Textarea {onchange} label="Write some text" info="This is some extra info for you"></Textarea>
 
 	<h3>With error and live validation</h3>
-		<Textarea label="Write some text" {error} {oninput}></Textarea>
+		<Textarea {onchange} label="Write some text" {error} {oninput}></Textarea>
 
 	<h3>With info, error and autogrow</h3>
-		<Textarea label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>
+		<Textarea {onchange} label="Write some text" info="Don't make any mistakes!" error="You have a typo somewhere in here" autogrow></Textarea>
 
 	<h3>Label on the left</h3>
-		<Textarea label="Label is on the left" labelOnTheLeft/>
+		<Textarea {onchange} label="Label is on the left" labelOnTheLeft/>
 
 
 <CodeExample html={exampleHtml} />
@@ -44,14 +44,19 @@ const apiProps = <ApiProp[]>[
 ];
 
 const exampleHtml = `
-<Textarea autogrow onchange={onChange} error="Invalid text" />
+<Textarea autogrow {onchange} error="Invalid text" />
 
 <script>
-function onChange (e) {
-    console.log('value', e.target.value);
+function onchange (e, { value}) {
+    console.log('value', value);
 }
 &lt;/script>
 `;
+
+
+function onchange (e) {
+	console.log('value', e.target.value);
+}
 
 
 let error = $state('Enter "hello" to pass.');

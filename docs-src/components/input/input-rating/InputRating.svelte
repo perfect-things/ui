@@ -18,6 +18,9 @@
 <h3>Light (no background)</h3>
 <InputRating light />
 
+<h3>Light & hideReset</h3>
+<InputRating light hideReset />
+
 
 <h3>Label</h3>
 <InputRating label="Pick one" />

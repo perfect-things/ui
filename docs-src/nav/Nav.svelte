@@ -4,7 +4,7 @@
 	bind:element={navTogglerBtn}
 	onclick={toggleNav}/>
 
-<aside class={{ expanded: expanded, swiping: swiping }} bind:this={sidebarEl}>
+<aside class={{ expanded, swiping }} bind:this={sidebarEl}>
 	<menu>
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
@@ -12,8 +12,8 @@
 
 		<h3>Buttons</h3>
 		<NavItem name="Button" {active} />
-		<NavItem name="Push Button" {active} />
 		<NavItem name="Button Group" {active} />
+		<NavItem name="Push Button" {active} />
 
 		<h3>Inputs</h3>
 		<NavItem name="Button Toggle" {active} />
@@ -37,8 +37,8 @@
 
 		<h3>Messaging</h3>
 		<NavItem name="InfoBar" {active} />
-		<NavItem name="Notification Center" {active} />
 		<NavItem name="MessageBox" {active} />
+		<NavItem name="Notification Center" {active} />
 		<NavItem name="Tooltip" {active} />
 
 
@@ -53,12 +53,12 @@
 
 
 		<h3>Generic</h3>
-		<NavItem name="Menu" {active} />
-		<NavItem name="Tag" {active} />
-		<NavItem name="Icon" {active} />
-		<NavItem name="Utils" {active} />
-		<NavItem name="Splitter" {active} />
 		<NavItem name="Color Palette" {active} />
+		<NavItem name="Icon" {active} />
+		<NavItem name="Menu" {active} />
+		<NavItem name="Splitter" {active} />
+		<NavItem name="Tag" {active} />
+		<NavItem name="Utils" {active} />
 	</menu>
 
 </aside>

@@ -42,17 +42,17 @@ const apiProps = <ApiProp[]>[
 	...PROPS.input,
 	PROPS.oninput,
 	{ name: 'hideTicks', description: 'If present, the ticks will not be shown.' },
-	{ name: 'max', type: ['number'], default: '10', description: 'Max value of the input.' },
-	{ name: 'min', type: ['number'], default: '0', description: 'Min value of the input.' },
-	{ name: 'step', type: ['number'], default: '1', description: 'Step value of the input.' },
+	{ name: 'max', type: 'number', default: '10', description: 'Max value of the input.' },
+	{ name: 'min', type: 'number', default: '0', description: 'Min value of the input.' },
+	{ name: 'step', type: 'number', default: '1', description: 'Step value of the input.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 ];
 
 const exampleHtml = `
-<Range onchange={onChange} error="Invalid text" />
+<Range {onchange} error="Invalid text" />
 
 <script>
-function onChange (e) {
+function onchange (e) {
     console.log('value', e.target.value);
 }
 &lt;/script>
@@ -60,8 +60,8 @@ function onChange (e) {
 
 
 let error = $state('Move to 6.');
-function onchange (e) {
-	error = e.target.value === '6' ? '' : 'Move to 6.';
+function onchange (e, { value }) {
+	error = value == '6' ? '' : 'Move to 6.';
 }
 
 </script>

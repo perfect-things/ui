@@ -25,7 +25,7 @@
 import './Grid.css';
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
-import { Grid } from '../../../src';
+import { Grid } from '../../../src/grid';
 import { CodeExample } from '../../code-example';
 
 const apiProps = <ApiProp[]>[

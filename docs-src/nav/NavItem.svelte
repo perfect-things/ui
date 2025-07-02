@@ -3,9 +3,9 @@
 <script lang="ts">
 
 interface Props {
-	active?: any;
+	active?: string;
 	name?: string;
-	hash?: any;
+	hash?: string;
 }
 
 const {

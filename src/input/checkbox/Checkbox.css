@@ -16,14 +16,14 @@
 }
 
 
-.checkbox input:focus {
+.checkbox input:focus-visible {
 	border-color: var(--ui-color-accent);
 }
 
 .checkbox input::after {
 	content: "✕";
+	height: calc(var(--ui-font-l));
 	font-family: Arial, Helvetica, sans-serif;
-	height: 1rem;
 }
 
 .checkbox.indeterminate input::after {
@@ -53,7 +53,7 @@
 	border-color: var(--ui-color-danger);
 }
 
-.checkbox.has-error input:focus {
+.checkbox.has-error input:focus-visible {
 	box-shadow: var(--ui-shadow-danger);
 }
 

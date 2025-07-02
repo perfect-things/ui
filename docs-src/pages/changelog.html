@@ -1,15 +1,30 @@
 <h1>Changelog</h1>
 <h2>v10.0.0 <em>(2025-07-01)</em></h2>
+<p>Thousand thanks to Svelte team, for a long month of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time.</p>
 <ul>
-<li>Thousand thanks to Svelte team, for a long week of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time.</li>
+<li>All components have been updated (rewritten!) to use the new Svelte v5 syntax and features.</li>
+<li>All components now use TypeScript for better developer experience.</li>
+<li>Setup, tests &amp; build process have been updated to vite &amp; vitest.</li>
+</ul>
+<h3>Features &amp; fixes</h3>
+<ul>
 <li>Added new property: <code>shortcut</code> the <code>Tooltip</code> component.</li>
+<li>Added <code>ArrowLeft</code> and <code>ArrowRight</code> to Toggle component, to allow toggling the value with the keyboard.</li>
 </ul>
 <h3>Breaking changes</h3>
 <ul>
-<li>All v4 events (e.g. <code>on:change</code>) are now loosing the colon (e.g. <code>onchange</code>).</li>
-<li>Context of event handlers may need to be &quot;fixed&quot; by wrapping them in arrow-functions, e.g.<ul>
-<li>before: <code>&lt;Button on:click={handleClick}&gt;&lt;/Button&gt;</code></li>
-<li>after: <code>&lt;Button onclick={e =&gt; handleClick(e)}&gt;&lt;/Button&gt;</code></li>
+<li>All Svelte v4 events (e.g. <code>on:change</code>) are now loosing the colon (e.g. <code>onchange</code>).</li>
+<li>All events have been refactored, and all listeners/handlers have the same signature:
+<code>function(event: Event, data?: any)</code>, where the first argument is always <code>event</code>,
+and second argument (<code>data</code>) is specific to the event &amp; component, e.g.<ul>
+<li>for Inputs <code>onchange</code> event, <code>data</code> argument will contain the new value (<code>{ value: any }</code>)</li>
+</ul>
+</li>
+<li>Utils functions &amp; constants have been updated to use the new reactive <code>$state</code>:<ul>
+<li><code>$ANIMATION_SPEED</code>   -&gt; <code>UI.ANIMATION_SPEED</code> - (number) reactive constant</li>
+<li><code>$PREFERS_DARK</code>      -&gt; <code>UI.PREFERS_DARK</code> - (boolean) reactive constant</li>
+<li><code>FOCUSABLE_SELECTOR</code> -&gt; <code>UI.FOCUSABLE_SELECTOR</code> - (string) constant</li>
+<li><code>isMobile()</code>         -&gt; <code>UI.isMobile</code> - (boolean) constant</li>
 </ul>
 </li>
 </ul>

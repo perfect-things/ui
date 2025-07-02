@@ -21,9 +21,11 @@
 					data-star={star}/>
 			{/each}
 
-			<Button link
-				icon="close"
+			<Button
 				class="btn-reset"
+				link
+				icon="close"
+				tabindex={-1}
 				disabled={!value}
 				onclick={reset}/>
 
@@ -66,7 +68,8 @@ let {
 	labelOnTheLeft = false,
 	max = 5,
 	icon = 'star',
-	light = undefined,
+	light = undefined,	// light version: no background, no border
+	hideReset = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
 	onchange = () => {},
@@ -87,6 +90,7 @@ const cls = $derived([
 	{
 		'has-error': !!error,
 		'label-on-the-left': labelOnTheLeft,
+		'hide-reset': hideReset,
 		light,
 	}
 ]);

@@ -5,4 +5,5 @@ export interface InputRatingProps extends InputProps {
 	max?: number;
 	icon?: string;
 	light?: any;
+	hideReset?: boolean;
 }

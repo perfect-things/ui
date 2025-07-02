@@ -202,8 +202,7 @@ let valueSimple = $state('Gamma');
 let multiselectSimpleValue = $state([dataSimple[0], dataSimple[1]]);
 
 
-function onChange (e) {
-	const { value, oldValue } = e;
+function onChange (e, { value, oldValue }) {
 	console.log({ value, oldValue });
 }
 

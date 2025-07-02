@@ -21,16 +21,23 @@
 	margin: 0;
 }
 
+
+.input-rating.hide-reset,
+.input-rating.hide-reset .input-row { width: min-content; }
+.input-rating.hide-reset .btn-reset { display: none; }
+
+
 .input-rating .button:focus-visible { box-shadow: none; }
 
-.input-rating .btn-reset { margin-left: auto; }
-.input-rating .btn-reset:focus-visible { color: var(--ui-color-accent); }
+.input-rating .input-row .btn-reset { margin-left: auto; }
+.input-rating .input-row .btn-reset:focus-visible { color: var(--ui-color-accent); }
 
 .input-rating .button.active svg { color: var(--ui-color-accent); fill: var(--ui-color-accent); }
 
 .input-rating .button.button-link,
 .input-rating .button.button-link:focus-visible,
 .input-rating .button.button-link:hover { text-decoration: none; }
+
 
 .input-rating.light:not(.has-error) .input-inner,
 .input-rating.light:not(.has-error) .input-row { background-color: transparent; border: none; }

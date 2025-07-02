@@ -3,10 +3,7 @@ PerfectThings/UI
 
 
 # TODO
-
-- [ ] explore options to use UI outside of svelte
-
-
+- [-] explore options to use UI outside of svelte
 - [x] correct docs for all components
 - [x] upgrade docs code to ts & svelte 5
 - [-] enhance datastores to use runes - doesn't work as the `$effect` is not as predictable as `store.subscribe`, and timings of animations overlap and it's terrible.

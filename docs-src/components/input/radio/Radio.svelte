@@ -46,8 +46,9 @@ const apiProps = <ApiProp[]>[
 ];
 
 const exampleHtml = `
-<Radio {items} name="my-radio" bind:value={value} label="Select option" />
+<Radio {items} name="my-radio" bind:value label="Select option" {onchange} />
 
+Value is: {value}
 
 <script>
 const items = [
@@ -57,8 +58,10 @@ const items = [
 	{ name: 'Four', value: 4 },
 ];
 
-function onChange (e) {
-    console.log('value', e.target.value);
+let value = $state(items[1].value);
+
+function onchange (e) {
+    console.log('value', e.target.value, value);
 }
 &lt;/script>
 `;

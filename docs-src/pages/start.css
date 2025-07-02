@@ -148,7 +148,7 @@ main>ul li code {
 }
 
 
-@media (1px <= width <= 700px) {
+@media (1px <= width <= 800px) {
 	main>h1,
 	main>h2,
 	.sticky-block>h1,

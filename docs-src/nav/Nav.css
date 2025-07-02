@@ -67,7 +67,7 @@ menu a.active { background-color: var(--ui-color-highlight); }
 .btn-scroll-top.hidden { display: none; }
 
 
-@media (1px <= width <= 700px) {
+@media (1px <= width <= 800px) {
 	.button.nav-toggler { display: flex; }
 	.button.nav-toggler.expanded { transform: translateX(calc(var(--sidebar-width) - 40px)); }
 

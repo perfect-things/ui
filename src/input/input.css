@@ -35,7 +35,13 @@ input::placeholder {
 	width: 25ch;
 }
 
-:where(input:focus) {
+:where(input:focus-visible:not([type=radio], [type=checkbox])) {
+	outline: 0;
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+
+:where(input:focus-visible:where([type=radio], [type=checkbox])) {
 	outline: 0;
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
@@ -138,8 +144,7 @@ input[type=color] {
 }
 
 
-.input-inner:focus-within,
-.input-inner:has(:active):not(.disabled) {
+.input-inner:focus-visible {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
@@ -155,7 +160,7 @@ input[type=color] {
 	color: var(--ui-color-text);
 }
 
-.input .input-inner:has(:disabled),
+.input .input-inner:has(input:disabled),
 .range .range-inner:has(:disabled),
 .textarea .textarea-inner:has(:disabled) {
 	opacity: 0.7;
@@ -194,7 +199,7 @@ input[type=color] {
 
 .input-row>.button {
 	color: var(--ui-color-text-1);
-	right: 2px;
+	right: 6px;
 }
 
 .input-row>.icon {

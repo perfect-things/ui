@@ -125,6 +125,14 @@ function onkeydown (e) {
 		e.preventDefault();
 		setValue(e, !value);
 	}
+	else if (e.key === 'ArrowLeft') {
+		e.preventDefault();
+		setValue(e, false);
+	}
+	else if (e.key === 'ArrowRight') {
+		e.preventDefault();
+		setValue(e, true);
+	}
 }
 
 
