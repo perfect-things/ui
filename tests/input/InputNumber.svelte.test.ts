@@ -151,7 +151,6 @@ test('InputNumber handles negative values', async () => {
 		value: -50,
 		min: -100
 	});
-	// @ts-ignore
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -167,7 +166,6 @@ test('InputNumber handles focus and blur events', async () => {
 		onfocus: vi.fn(),
 		onblur: vi.fn()
 	});
-	// @ts-ignore
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const input = document.body.querySelector('input');
@@ -192,6 +190,27 @@ test('InputNumber with error shows validation styling', async () => {
 	const errorEl = document.body.querySelector('.info-bar-error');
 	expect(errorEl).toBeInTheDocument();
 	expect(errorEl.textContent.trim()).toBe('Invalid number');
+
+	await unmount(component);
+});
+
+
+test('InputNumber handles step changes', async () => {
+	const props = $state({
+		value: '1',
+		step: 0.1,
+		onchange: vi.fn()
+	});
+	const component = mount(InputNumber, { target: document.body, props });
+	const input = document.body.querySelector('input');
+
+	await userEvent.type(input, '{arrowup}');
+	expect(input.value).toBe('1.1');
+	expect(props.onchange).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ value: '1.1' }));
+
+	await userEvent.type(input, '{arrowdown}');
+	expect(input.value).toBe('1');
+	expect(props.onchange).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ value: '1' }));
 
 	await unmount(component);
 });

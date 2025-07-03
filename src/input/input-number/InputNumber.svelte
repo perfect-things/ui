@@ -48,7 +48,7 @@ let {
 	disabled = undefined,
 	required = undefined,
 	placeholder = undefined,
-	value = $bindable(''),
+	value = $bindable(''),	// must be string to allow custom separators
 	label = '',
 	error = undefined,
 	info = undefined,
@@ -90,6 +90,8 @@ const cls = $derived([
 function _onkeydown (e: KeyboardEvent) {
 	const key = e.key;
 
+	if (key === 'ArrowUp') return creaseValue(e, true);
+	if (key === 'ArrowDown') return creaseValue(e, false);
 	if (allowedKeys.includes(key)) return onkeydown(e, value);
 	if (key === 'v' && e.metaKey) return onkeydown(e, value);
 	if (key === 'c' && e.metaKey) return onkeydown(e, value);
@@ -103,6 +105,25 @@ function _onkeydown (e: KeyboardEvent) {
 	if (key === separator && !hasSeparator) return onkeydown(e, value);
 
 	e.preventDefault();
+}
+
+/**
+ * Increases or decreases the value based on the step.
+ * @param up - if true, increases the value, otherwise decreases it.
+ */
+function creaseValue (e: Event, up: boolean) {
+	if (value === '') value = '0';
+	const _step = (step ? step : 1) * (up ? 1 : -1);
+	const num = parseFloat(('' + value).replace(separator, '.'));
+	let _value = (num + _step);
+
+	if (min !== undefined && _value < min) value = min;
+	else if (max !== undefined && _value > max) value = max;
+
+	_value = Math.round(_value * 1000) / 1000; // round to 3 decimal places
+	value = _value.toString().replace('.', separator);
+	e.preventDefault();
+	return onchange(e, { value });
 }
 
 

@@ -3,7 +3,7 @@ Changelog
 
 
 ## v10.0.0 *(2025-07-01)*
-Thousand thanks to Svelte team, for a long month of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time.
+Thousand thanks to Svelte team, for a long month of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time they decide to innovate.
 
 - All components have been updated (rewritten!) to use the new Svelte v5 syntax and features.
 - All components now use TypeScript for better developer experience.
@@ -11,7 +11,8 @@ Thousand thanks to Svelte team, for a long month of hard work, that was wasted o
 
 ### Features & fixes
 - Added new property: `shortcut` the `Tooltip` component.
-- Added `ArrowLeft` and `ArrowRight` to Toggle component, to allow toggling the value with the keyboard.
+- Added `ArrowLeft` and `ArrowRight` to `Toggle` component, to allow toggling the value with the keyboard.
+- Added `ArrowUp` and `ArrowDown` to `InputNumber` component, to allow incrementing/decrementing the value with the keyboard.
 
 
 ### Breaking changes
