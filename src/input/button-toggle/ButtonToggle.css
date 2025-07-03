@@ -23,14 +23,19 @@
 	scrollbar-width: none;
 }
 
-.button-toggle .input-scroller::-webkit-scrollbar { width: 0; height: 0; }
+.button-toggle .input-scroller::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
 
-.button-toggle .input-row  { min-width: 100%; width: min-content; }
+.button-toggle .input-row {
+	min-width: 100%;
+	width: min-content;
+}
 
 .button-toggle .input-row .button {
 	position: static;
 	color: var(--ui-color-text);
-	box-shadow: none;
 	min-height: calc(var(--ui-button-height) - 2px);
 	background: var(--ui-color-background-input);
 	border: none;
@@ -38,9 +43,13 @@
 	flex: 1;
 	border-left: 1px solid var(--ui-color-border);
 	min-width: min-content;
+	box-shadow: var(--ui-shadow-gradient);
 }
 
-.button-toggle .button:has(:checked) { background-color: var(--ui-color-highlight); }
+
+.button-toggle .button:has(:checked) {
+	background-color: var(--ui-color-highlight);
+}
 
 .button-toggle .input-row .button:first-child {
 	border-left: none;
@@ -63,9 +72,13 @@
 
 
 /* round buttons */
-.button-toggle.round { border-radius: var(--ui-border-radius-xl); }
+.button-toggle.round {
+	border-radius: var(--ui-border-radius-xl);
+}
 
-.button-toggle.round:not(.has-error) .input-inner { border-radius: var(--ui-border-radius-xl); }
+.button-toggle.round:not(.has-error) .input-inner {
+	border-radius: var(--ui-border-radius-xl);
+}
 
 .button-toggle.round .input-row .button:first-child {
 	border-top-left-radius: var(--ui-border-radius-xl);

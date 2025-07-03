@@ -1,4 +1,7 @@
-button { -ms-touch-action: manipulation; touch-action: manipulation; }
+button {
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
 
 .button {
 	--ui-button-size: 1rem;
@@ -31,10 +34,13 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 }
 
 
-.button:hover { text-decoration: none; }
+.button:hover {
+	text-decoration: none;
+}
+
 .button:focus-visible {
 	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
+	box-shadow: var(--ui-shadow-focus), var(--ui-shadow-gradient);
 	outline: 1px solid transparent;
 }
 
@@ -55,16 +61,26 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 }
 
 
-.button:not(.button-has-text) { padding: 0 var(--ui-margin-m); }
-.button:not(.button-has-text) svg { min-height: calc(var(--ui-button-size) * 1.4); }
+.button:not(.button-has-text) {
+	padding: 0 var(--ui-margin-m);
+}
+
+.button:not(.button-has-text) svg {
+	min-height: calc(var(--ui-button-size) * 1.4);
+}
 
 .button.round {
 	padding: var(--ui-margin);
 	border-radius: var(--ui-border-radius-xl);
 }
-.button.round:not(.button-has-text) { aspect-ratio: 1/1; }
 
-.button-has-text.round { padding-inline: var(--ui-margin-l); }
+.button.round:not(.button-has-text) {
+	aspect-ratio: 1/1;
+}
+
+.button-has-text.round {
+	padding-inline: var(--ui-margin-l);
+}
 
 
 .button.touching,
@@ -75,4 +91,6 @@ button { -ms-touch-action: manipulation; touch-action: manipulation; }
 }
 
 .button:not(.push-button):active,
-.button:not(.push-button).touching { box-shadow: none; }
+.button:not(.push-button).touching {
+	box-shadow: none;
+}

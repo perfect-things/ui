@@ -35,16 +35,8 @@ input::placeholder {
 	width: 25ch;
 }
 
-:where(input:focus-visible:not([type=radio], [type=checkbox])) {
+:where(input:focus) {
 	outline: 0;
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
-:where(input:focus-visible:where([type=radio], [type=checkbox])) {
-	outline: 0;
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
 }
 
 :where(input:invalid) {
@@ -144,7 +136,7 @@ input[type=color] {
 }
 
 
-.input-inner:focus-visible {
+.input-inner:focus-within {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }

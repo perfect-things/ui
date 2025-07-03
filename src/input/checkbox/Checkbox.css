@@ -18,6 +18,7 @@
 
 .checkbox input:focus-visible {
 	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
 }
 
 .checkbox input::after {

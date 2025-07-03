@@ -98,8 +98,6 @@ const exampleHtml = `
 <Grid {data} {columns} onclick={onclick}/>
 
 <script>
-import { Grid } from '@perfect-things/ui';
-
 const columns = [
 	{ field: 'name', label: 'Name', sortable: true },
 	{ field: 'date', label: 'Date', width: 200, sortable: true },

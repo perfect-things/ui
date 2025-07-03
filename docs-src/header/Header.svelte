@@ -19,13 +19,13 @@ const themes = [
 
 
 onMount(() => {
-	switchColorMode(null, UI.PREFERS_DARK);
+	switchColorMode(null, { value: UI.PREFERS_DARK });
 });
 
 
 function switchColorMode (e, val) {
 	document.documentElement.classList.remove('theme-dark', 'theme-light');
-	document.documentElement.classList.add(val ? 'theme-dark' : 'theme-light');
+	document.documentElement.classList.add(val.value ? 'theme-dark' : 'theme-light');
 }
 
 
