@@ -48,7 +48,7 @@
 	--ui-popup-background: var(--ui-color-background);
 
 	--ui-shadow-button: 0 1px 0 #000c;
-	--ui-shadow-tooltip: 0 0 0 1px #000, 0 0 5px #0006;
+	--ui-shadow-tooltip: 0 0 0 1px #000, 0 2px 10px #0008;
 
 	--ui-shadow-gradient: inset 0 -1rem 0.8rem #0004;
 }

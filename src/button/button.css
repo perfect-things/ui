@@ -87,7 +87,7 @@ button {
 .button:active {
 	outline: 1px solid transparent;
 	transform: translateY(1px);
-	filter: brightness(0.85);
+	filter: brightness(0.7);
 }
 
 .button:not(.push-button):active,

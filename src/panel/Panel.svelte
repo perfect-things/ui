@@ -108,8 +108,7 @@ export function toggle (e?) {
 
 	expanded = true;
 	open = true;
-	return animate(element, collapsedProps, expandedProps)
-		.then(() => onopen());
+	return animate(element, collapsedProps, expandedProps).then(onopen);
 }
 
 </script>

@@ -3,9 +3,9 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] https://github.com/perfect-things/ui/issues/209 animate to auto (Panels)
 
 
+- [-] https://github.com/perfect-things/ui/issues/209, https://www.youtube.com/watch?v=Vzj3jSUbMtI animate to auto (Panels)
 - [-] explore options to use UI outside of svelte
 - [x] correct docs for all components
 - [x] upgrade docs code to ts & svelte 5
