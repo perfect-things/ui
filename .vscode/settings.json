@@ -1,7 +1,0 @@
-{
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "[svelte]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-
-}
