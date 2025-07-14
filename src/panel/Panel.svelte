@@ -6,7 +6,7 @@
 	{...restProps}>
 	{#if title}
 		<details {open} onkeydown={toggle} onclick={toggle}>
-			<summary class="panel-header" bind:this={headerEl} inert={!collapsible}>
+			<summary class="panel-header" inert={!collapsible} {ontransitionend}>
 				{title}
 				{#if collapsible}
 					<div class="chevron">{@html getIcon('chevronRight')}</div>
@@ -22,9 +22,7 @@
 <script lang="ts">
 import './Panel.css';
 import type { PanelProps } from './types';
-import { onMount } from 'svelte';
 import { getIcon } from '../icon';
-import { animate } from '../utils';
 
 
 let {
@@ -49,11 +47,7 @@ let {
 }: PanelProps = $props();
 
 
-const expandedProps = { height: '0' };
-const collapsedProps = { height: '0' };
-
-let headerEl: HTMLElement = $state();
-let expanded: boolean = $state(open || !title);
+const expanded: boolean = $derived(open || !title);
 
 const cls = $derived([
 	'panel',
@@ -61,25 +55,6 @@ const cls = $derived([
 	{ collapsible, expanded, round, disabled, info, success, warning, danger }
 ]);
 
-
-
-onMount(calcHeights);
-
-
-function calcHeights () {
-	const wasOpen = open;
-	open = true;
-	requestAnimationFrame(() => {
-		if (!element) return;
-		const wrapCss = getComputedStyle(element);
-		const borderTop = parseInt(wrapCss.borderTopWidth || '0', 10);
-		const borderBottom = parseInt(wrapCss.borderTopWidth || '0', 10);
-		const headerH = headerEl ? headerEl.offsetHeight : 0;
-		expandedProps.height = element.getBoundingClientRect().height + 'px';
-		collapsedProps.height = (headerH + borderTop + borderBottom) + 'px';
-		open = wasOpen;
-	});
-}
 
 export function toggle (e?) {
 	if (!collapsible) {
@@ -97,18 +72,13 @@ export function toggle (e?) {
 	if (e.type === 'keydown' && e.key !== ' ') return;
 	e.preventDefault();
 
-	if (expanded) {
-		expanded = false;
-		return animate(element, expandedProps, collapsedProps)
-			.then(() => {
-				open = expanded;
-				onclose();
-			});
-	}
+	open = !open;
+}
 
-	expanded = true;
-	open = true;
-	return animate(element, collapsedProps, expandedProps).then(onopen);
+
+function ontransitionend () {
+	if (open) onopen();
+	else onclose();
 }
 
 </script>

@@ -2,13 +2,11 @@ import { expect, test, vi } from 'vitest';
 import { mount, unmount } from 'svelte';
 import { Panel } from '../src/panel';
 import userEvent from '@testing-library/user-event';
-import * as utils from '../src/utils';
 
 
 test('Panel', async () => {
 	const onopen = vi.fn();
 	const onclose = vi.fn();
-	vi.spyOn(utils, 'animate').mockResolvedValue();
 
 	const props = {
 		title: 'Panel1',
@@ -25,9 +23,12 @@ test('Panel', async () => {
 	expect(cmp).toBeInTheDocument();
 	expect(cmp).not.toHaveClass('expanded');
 
-	await component.toggle();
+	const header = cmp.querySelector('.panel-header');
 
+	await user.click(header);
 	expect(cmp).toHaveClass('expanded');
+
+	header.dispatchEvent(new Event('transitionend'));
 	expect(onopen).toHaveBeenCalled();
 
 	const PanelTitle = document.body.querySelector('.test-class .panel-header');
@@ -37,6 +38,7 @@ test('Panel', async () => {
 	await user.click(panel);
 
 	expect(cmp).not.toHaveClass('expanded');
+	header.dispatchEvent(new Event('transitionend'));
 	expect(onclose).toHaveBeenCalled();
 
 	await unmount(component);

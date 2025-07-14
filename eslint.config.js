@@ -13,11 +13,12 @@ export default ts.config(
 	...sveltePlugin.configs.recommended,
 	{
 		ignores: [
-			'assets/**',                    // Ignore assets
-			'docs/**',                      // Ignore compiled output
-			'dist/**',                      // Ignore compiled output
-			'**/node_modules/**',           // Ignore node_modules
-			'**/vanillajs-datepicker/**',   // Ignore third party modules
+			'assets',                 // Ignore assets
+			'coverage',               // Ignore compiled output
+			'docs',                   // Ignore compiled output
+			'dist',                   // Ignore compiled output
+			'node_modules',           // Ignore node_modules
+			'vanillajs-datepicker',   // Ignore third party modules
 		]
 	},
 	{ plugins: { '@stylistic': stylistic } },

@@ -2,9 +2,10 @@
 export default {
 	extends: 'stylelint-config-standard',
 	ignoreFiles: [
-		'dist/*.*',
-		'docs/*.*',
-		'node_modules/**/*.*',
+		'coverage/*',
+		'dist/*',
+		'docs/*',
+		'node_modules/*',
 	],
 	rules: {
 		'alpha-value-notation': null,
