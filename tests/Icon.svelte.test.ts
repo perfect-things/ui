@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { flushSync, mount, unmount } from 'svelte';
-import { Icon } from '../src/icon';
+import { Icon } from '../src';
 
 
 

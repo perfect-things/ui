@@ -39,9 +39,7 @@ const cls = $derived([
 
 
 
-onMount(() => {
-	requestAnimationFrame(init);
-});
+onMount(init);
 
 
 export function toggle () {
@@ -69,7 +67,12 @@ export function setSize (to, withAnimation = false) {
 }
 
 
-function init () {
+function init (count = 5) {
+	if (!element && count > 0) {
+		setTimeout(() => init(count - 1), 100);
+		return;
+	}
+
 	targetEl = element.previousElementSibling;
 	parentEl = element.parentElement;
 	isVertical = getFlexFlow(parentEl) === 'column';
@@ -93,6 +96,8 @@ function init () {
 
 
 function updateSize (box, withAnimation = false) {
+	if (!targetEl || !element) return;
+
 	let originalTargetTransition, originalElTransition;
 	if (withAnimation) {
 		originalTargetTransition = targetEl.style.transition;
@@ -129,7 +134,8 @@ function updateSize (box, withAnimation = false) {
 
 
 function onmousedown (e) {
-	if (isDragging) return;
+	if (isDragging || !targetEl) return;
+
 	isDragging = true;
 	e.preventDefault();
 	document.addEventListener('mouseup', mouseup);
@@ -148,6 +154,8 @@ function onmousedown (e) {
 function mousemove (e: MouseEvent) {
 	e.preventDefault();
 	e.stopPropagation();
+	if (!mousedownTargetBox || !initialTargetBox || !element || !targetEl) return;
+
 	if (isVertical) {
 		let height = mousedownTargetBox.height + getMouseY(e) - startY;
 		if (height < initialTargetBox.minHeight) height = initialTargetBox.minHeight;

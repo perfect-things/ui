@@ -2,7 +2,7 @@ import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { flushSync, mount, unmount } from 'svelte';
 
-import { Drawer } from '../src/drawer';
+import { Drawer } from '../src';
 
 
 test('Drawer', async () => {

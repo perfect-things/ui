@@ -1,7 +1,7 @@
 import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { mount, unmount } from 'svelte';
-import { Dialog } from '../src/dialog';
+import { Dialog } from '../src';
 
 
 test('Dialog', async () => {

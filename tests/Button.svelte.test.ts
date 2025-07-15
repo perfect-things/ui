@@ -2,7 +2,7 @@ import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
 import { flushSync, mount, unmount } from 'svelte';
-import { Button } from '../src/button';
+import { Button } from '../src';
 import SlotTest from './helpers/Button.svelte';
 
 test('Button', async () => {

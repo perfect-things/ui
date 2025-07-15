@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { flushSync, mount, unmount } from 'svelte';
-import { InfoBar, Info, Warning, Error, Success } from '../src/info-bar';
+import { InfoBar, Info, Warning, Error, Success } from '../src';
 
 
 const tablerIcon = {
