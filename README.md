@@ -3,6 +3,7 @@ PerfectThings/UI
 
 
 # TODO
+- [ ] handle ctrlKey (not metaKey) for windows for shortcuts in event handlers
 
 
 - [x] https://github.com/perfect-things/ui/issues/209 animate to auto (Panels)

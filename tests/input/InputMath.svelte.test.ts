@@ -14,6 +14,7 @@ const defaultProps = {
 	required: true,
 	error: 'error',
 	label: 'Component1',
+	info: '',
 };
 
 
@@ -43,7 +44,6 @@ test('InputMath', async () => {
 	expect(err).not.toBeInTheDocument();
 
 
-	// @ts-ignore
 	props.info = 'info';
 	flushSync();
 	let info = cmp.querySelector('.info-bar-info');
@@ -51,7 +51,6 @@ test('InputMath', async () => {
 	expect(info).toHaveTextContent('info');
 
 
-	// @ts-ignore
 	props.info = '';
 	flushSync();
 	info = cmp.querySelector('.info-bar-info');

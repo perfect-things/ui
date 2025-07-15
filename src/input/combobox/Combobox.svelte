@@ -135,7 +135,8 @@ function open (type) {
 	const tempValue = inputElement.value;
 
 	if (multiselect) {
-		if (type !== 'typing') inputValue = '';
+		// not needed?
+		// if (type !== 'typing') inputValue = '';
 	}
 	else {
 		const itemId = value?.id || value?.name || value;
@@ -204,8 +205,9 @@ function selectMultiselect (e: Event, item) {
 	const oldValue = deepCopy(value);
 	const _selectedItems = deepCopy(selectedItems || []);
 
-	const itemId = item.id || item.name || item;
+	const itemId = item?.id || item?.name || item;
 	const itemIndex = _selectedItems.findIndex(i => (i?.id || i?.name || i) === itemId);
+
 	if (itemIndex === -1) _selectedItems.push(item);
 	else _selectedItems.splice(itemIndex, 1);
 

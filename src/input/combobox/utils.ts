@@ -79,8 +79,8 @@ export function emphasize (str: string, q?: string): string {
 
 
 function findSourceItem (v, items) {
-	v = v.id || v.name || v;
-	const idx = items.findIndex(i => (i.id || i.name || i) === v);
+	v = v?.id || v?.name || v;
+	const idx = items.findIndex(i => (i?.id || i?.name || i) === v);
 	return items[idx];
 }
 
@@ -95,7 +95,7 @@ export function findValueInSource (val, items) {
 export function getInputValue (_val, isMultiselect = false) {
 	if (!isMultiselect) return _val?.name || _val || '';
 	if (!Array.isArray(_val)) _val = [_val];
-	return _val.map(i => i.name || i).join(', ');
+	return _val.map(i => i?.name || i).join(', ');
 }
 
 

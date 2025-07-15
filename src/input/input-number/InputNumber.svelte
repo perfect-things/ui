@@ -112,6 +112,8 @@ function _onkeydown (e: KeyboardEvent) {
  * @param up - if true, increases the value, otherwise decreases it.
  */
 function creaseValue (e: Event, up: boolean) {
+	e.preventDefault();
+
 	if (value === '') value = '0';
 	const _step = (step ? step : 1) * (up ? 1 : -1);
 	const num = parseFloat(('' + value).replace(separator, '.'));
@@ -122,7 +124,7 @@ function creaseValue (e: Event, up: boolean) {
 
 	_value = Math.round(_value * 1000) / 1000; // round to 3 decimal places
 	value = _value.toString().replace('.', separator);
-	e.preventDefault();
+
 	return onchange(e, { value });
 }
 

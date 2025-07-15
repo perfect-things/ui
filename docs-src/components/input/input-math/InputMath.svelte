@@ -5,13 +5,13 @@
 <hr>
 
 <h3>Normal</h3>
-<InputMath label="Enter amount" />
+<InputMath label="Enter amount" {onchange} />
 
 <h3>With info box</h3>
-<InputMath label="Enter amount" info="You can add 2 numbers here"/>
+<InputMath label="Enter amount" info="You can add 2 numbers here" {onchange}/>
 
 <h3>With info box and error.</h3>
-<InputMath label="Enter amount" info="You can add 2 numbers here" error="Number must be big!"/>
+<InputMath label="Enter amount" info="You can add 2 numbers here" {error} onchange={onchange2}/>
 
 <h3>Label on the left</h3>
 <InputMath label="Label is on the left" labelOnTheLeft/>
@@ -29,14 +29,29 @@ import { API, PROPS } from '../../../api-table';
 import { InputMath } from '../../../../src';
 import { CodeExample } from '../../../code-example';
 
+let error = 'Number must be big!';
+
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
 	PROPS.required,
 	PROPS.bindinputelement,
-
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 ];
 
+
+function onchange (e, { value }) {
+	console.log('onchange', value);
+}
+
+function onchange2 (e, { value }) {
+	if (value > 100) {
+		error = undefined;
+	}
+	else {
+		error = 'Number must be big!';
+	}
+
+}
 
 const exampleHtml = `
 <InputMath label="Enter amount" {onchange} />
