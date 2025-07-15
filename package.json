@@ -65,7 +65,7 @@
         "stylelint": "^16.21.1",
         "stylelint-config-standard": "^38.0.0",
         "stylelint-formatter-pretty": "^4.0.1",
-        "svelte": "5.35.7",
+        "svelte": "^5.36.1",
         "svelte-check": "^4.2.2",
         "svelte-eslint-parser": "^1.2.0",
         "typescript": "^5.8.3",
