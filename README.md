@@ -3,9 +3,8 @@ PerfectThings/UI
 
 
 # TODO
-- [ ] handle ctrlKey (not metaKey) for windows for shortcuts in event handlers
 
-
+- [x] handle ctrlKey (not metaKey) for windows for shortcuts in event handlers
 - [x] https://github.com/perfect-things/ui/issues/209 animate to auto (Panels)
 - [-] explore options to use UI outside of svelte
 - [x] correct docs for all components

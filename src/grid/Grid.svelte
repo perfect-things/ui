@@ -212,7 +212,7 @@ function _onkeydown (e) {
 		Data.toggleSelection({ id: +rowEl.dataset.id }, e);
 	}
 
-	else if (e.metaKey) {
+	else if (e.metaKey || e.ctrlKey) {
 		if (e.key === 'a') {
 			e.preventDefault();
 			Data.toggleSelectAll(true);

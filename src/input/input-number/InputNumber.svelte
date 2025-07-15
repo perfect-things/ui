@@ -93,10 +93,9 @@ function _onkeydown (e: KeyboardEvent) {
 	if (key === 'ArrowUp') return creaseValue(e, true);
 	if (key === 'ArrowDown') return creaseValue(e, false);
 	if (allowedKeys.includes(key)) return onkeydown(e, value);
-	if (key === 'v' && e.metaKey) return onkeydown(e, value);
-	if (key === 'c' && e.metaKey) return onkeydown(e, value);
-	if (key === 'x' && e.metaKey) return onkeydown(e, value);
-
+	if ((e.metaKey || e.ctrlKey) && 'vcx'.includes(key)) {
+		return onkeydown(e, value);
+	}
 	const hasMinus = ('' + value).includes('-');
 	const carretAtStart = inputElement.selectionStart === 0;
 	if (key === '-' && carretAtStart && !hasMinus) return onkeydown(e, value);

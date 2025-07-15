@@ -90,9 +90,6 @@ function _onkeydown (e) {
 	}
 	if (allowedKeys.includes(e.key)) return;
 	if (e.metaKey || e.ctrlKey) return;
-	if (e.key === 'v' && e.metaKey) return;
-	if (e.key === 'c' && e.metaKey) return;
-	if (e.key === 'x' && e.metaKey) return;
 	if (e.key === separator) return;
 	e.preventDefault();
 }
