@@ -1,53 +1,6 @@
 PerfectThings/UI
 ================
 
-
-# TODO
-- [ ] grid events are not passing original event correctly (onselect)
-- [ ] add longpress to `src/global.d.ts` so ts-ignore is not neededz
-- [ ] InputRating correct code sample.
-- [ ] correct API table types for common props
-- [ ] InputRating correct code sample.
-- [ ] correct API table types for common props
-
-- [x] handle ctrlKey (not metaKey) for windows for shortcuts in event handlers
-- [x] https://github.com/perfect-things/ui/issues/209 animate to auto (Panels)
-- [-] explore options to use UI outside of svelte
-- [x] correct docs for all components
-- [x] upgrade docs code to ts & svelte 5
-- [-] enhance datastores to use runes - doesn't work as the `$effect` is not as predictable as `store.subscribe`, and timings of animations overlap and it's terrible.
-- [x] enhance utils functions to use runes
-- [x] make some rules as to where ...restProps is passed and handled
-- [-] split some components into smaller bits (especially inputs)
-- [x] standardise event params (so that all events from components have the same structure)
-- [x] define a core input props interface for all inputs to extend
-  - [x] update all inputs to use that
-- [-] make reusable core input component? - not possible
-- [x] upgrade all `class:` attrs to `{{}}` and maybe allow the full class={} fanciness in the components? https://svelte.dev/docs/svelte/class#The-class:-directive
-- [x] fix json code bits live updating
-- [x] correct the event handlers that use `.detail`
-- [x] uncomment & fix InputNumber tests
-- [x] upgrade all components to `lang="ts"` and `/** @type {Props}` to interfaces
-- [x] ensure error, info and label are string types
-- [x] remove boolean | string types from all props
-- [x] clean all import('svelte').Snippet
-- [x] ensure that attributes without values (like `disabled`) are set correctly and working and have a boolean type
-- [x] ensure that `aria-invalid` produces the correct attribute & value
-- [x] ensure `aria-invalid` is `true`/`false` and not error message
-- [x] remove flushSync when not needed
-- [x] ensure there's no commented-put `// expect...` in the code. (only 1 left in InputDate)
-- [x] fix tests that fail due to animations not running (custom svelte transitions)
-- [x] bug: tooltip: when mouse enters target from the top - tooltip shows up and hides instantly
-- [x] fix comboboxes
-- [x] remove `bubble` code
-- [x] remove `createEventDispatcher` code
-- [x] ensure value, element, etc. are bindable `value = $bindable('')`
-
-
-
-
-
-
 A set of simple, but perfect, UI components, written in Svelte (the only front-end framework worth learning).
 
 

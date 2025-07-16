@@ -80,10 +80,11 @@ import VanillaSwipe from 'vanilla-swipe';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
+import ChangelogArchive from '../pages/changelog-archive.svelte';
 import * as TestComponents from '../components';
 
 
-const components = { GetStarted, Changelog, ...TestComponents, };
+const components = { GetStarted, Changelog, ChangelogArchive, ...TestComponents, };
 const SIDEBAR_WIDTH = 220;
 const swipeSlowDownFactor = 2.5;
 const onScroll = debounce(checkScrollOffset);
@@ -143,6 +144,7 @@ function onSwipeStart (e) {
 	wasExpanded = expanded;
 	swiping = true;
 }
+
 
 function onSwipe (e, data) {
 	if (window.innerWidth > 700) return;
@@ -221,7 +223,6 @@ function onTap (e) {
 }
 
 
-
 function toggleNav () {
 	expanded = !expanded;
 	wasExpanded = expanded;
@@ -236,6 +237,7 @@ function scrollToTop () {
 		location.hash = section;
 	}, 300);
 }
+
 
 function waitForElementAndScroll (selector, count = 10) {
 	if (count === 0) return;
@@ -253,6 +255,7 @@ function getSection () {
 	return [_section, _heading];
 }
 
+
 function onhashchange () {
 	const [newActive, newHeading] = getSection();
 	if (newActive !== active) {
@@ -265,10 +268,12 @@ function onhashchange () {
 	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
 }
 
+
 function onpopstate () {
 	expanded = false;
 	wasExpanded = expanded;
 }
+
 
 function checkScrollOffset () {
 	showScrollTopBtn = document.scrollingElement.scrollTop > 200;

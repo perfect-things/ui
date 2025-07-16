@@ -120,9 +120,7 @@ main>h2,
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-
-	-webkit-backdrop-filter: blur(15px);
-	backdrop-filter: blur(15px);
+	background-color: var(--ui-color-background);
 }
 
 

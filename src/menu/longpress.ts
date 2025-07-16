@@ -73,7 +73,6 @@ function mouseMoveHandler (e) {
 
 
 export default function init (delay = 500, eventName = 'longpress') {
-	// @ts-expect-error custom property
 	if (window.longPressEventInitialised) return;
 
 	DELAY = delay;
@@ -93,6 +92,5 @@ export default function init (delay = 500, eventName = 'longpress') {
 	document.addEventListener(mouseMove, mouseMoveHandler, true);
 	document.addEventListener(mouseUp, clearTimer, true);
 	document.addEventListener('scroll', clearTimer, true);
-	// @ts-expect-error custom property
 	window.longPressEventInitialised = true;
 }

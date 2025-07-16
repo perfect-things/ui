@@ -33,7 +33,6 @@ describe('Menu longpress functionality', () => {
 		vi.useRealTimers();
 		vi.clearAllMocks();
 		vi.resetModules();
-		// @ts-expect-error custom property
 		delete window.longPressEventInitialised;
 	});
 

@@ -20,6 +20,7 @@ declare global {
 	interface Window {
 		zxcvbn?: ZxcvbnLib;
 		UI_VERSION?: string;
+		longPressEventInitialised?: boolean;
 	}
 }
 

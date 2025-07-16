@@ -81,23 +81,23 @@ $effect.pre(() => {
 });
 
 
-function selectPrev () {
+function selectPrev (e?: MouseEvent | KeyboardEvent) {
 	const rows = getSelectableItems(element);
 	if (selectedIdx <= 0) return;
 	selectedIdx -= 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	onselect({ selectedItem: rowEl } as any);
+	onselect(e, { selectedItem: rowEl });
 }
 
 
-function selectNext () {
+function selectNext (e?: MouseEvent | KeyboardEvent) {
 	const rows = getSelectableItems(element);
 	if (selectedIdx >= rows.length - 1) return;
 	selectedIdx += 1;
 	const rowEl = rows[selectedIdx];
 	rowEl.focus();
-	onselect({ selectedItem: rowEl } as any);
+	onselect(e, { selectedItem: rowEl });
 }
 
 
@@ -188,22 +188,22 @@ function _onkeydown (e) {
 
 	if (e.key === 'ArrowUp' || e.key === 'k') {
 		e.preventDefault();
-		selectPrev();
+		selectPrev(e);
 	}
 	if (e.key === 'ArrowDown' || e.key === 'j') {
 		e.preventDefault();
-		selectNext();
+		selectNext(e);
 	}
 	if (e.key === 'ArrowLeft' || (e.key === 'g' && previousKey === 'g')) {
 		e.preventDefault();
 		selectedIdx = -1;
-		selectNext();
+		selectNext(e);
 	}
 	if (e.key === 'ArrowRight' || e.key === 'G') {
 		e.preventDefault();
 		const rows = getSelectableItems(element);
 		selectedIdx = rows && rows.length - 2;
-		selectNext();
+		selectNext(e);
 	}
 
 	const rowEl = e && e.target && e.target.closest(rowSelector);
