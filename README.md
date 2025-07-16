@@ -3,6 +3,8 @@ PerfectThings/UI
 
 
 # TODO
+- [ ] grid events are not passing original event correctly (onselect)
+- [ ] add longpress to `src/global.d.ts` so ts-ignore is not neededz
 
 - [x] handle ctrlKey (not metaKey) for windows for shortcuts in event handlers
 - [x] https://github.com/perfect-things/ui/issues/209 animate to auto (Panels)
