@@ -28,7 +28,7 @@ const label = { name: 'label', type: 'string', description: 'Label bound to the 
 const labelOnTheLeft = { name: 'labelOnTheLeft', type: 'boolean', default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' };
 const bindinputelement = { name: 'bind:inputElement', type: 'HTMLElement', description: 'Exposes the HTML element of the underlying input.' };
 const placeholder = { name: 'placeholder', type: 'string', description: 'Shows placeholder text.' };
-const required = { name: 'required', description: 'Mark the component as required with <i>aria-required</i>.' };
+const required = { name: 'required', type: 'boolean', default: 'false', description: 'Mark the component as required with <i>aria-required</i>.' };
 
 const onclick = { name: 'onclick', type: 'function(event, data)', description: 'Triggered when the component is clicked.' };
 const onfocus = { name: 'onfocus', type: 'function(event, data)', description: 'Triggered when the component focused.' };

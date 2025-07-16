@@ -3,9 +3,9 @@ Changelog
 
 
 ## v10.0.0 *(2025-07-01)*
-Thousand thanks to Svelte team, for a long month of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time they decide to innovate.
+Thousand thanks to the Svelte's team, for long months of hard work, that was wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time they decided to innovate 😉.
 
-- All components have been updated (rewritten!) to use the new Svelte v5 syntax and features.
+- All components have been rewritten to use the new Svelte v5 syntax and features.
 - All components now use TypeScript for better developer experience.
 - Setup, tests & build process have been updated to vite & vitest.
 

@@ -60,17 +60,16 @@ const apiProps = <ApiProp[]>[
 	PROPS.onkeydown,
 	{ name: 'max', type: 'number', description: 'How many stars to show.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
-	{ name: 'light', description: 'Disable background and border - for use cases other than in form context.<br>Light does not work when the input has error.' },
+	{ name: 'light', type: 'boolean', default: 'false', description: 'Disable background and border - for use cases other than in form context.<br>Light does not work when the input has error.' },
 ];
 
 const exampleHtml = `
-<InputRating onchange={ onChange } bind:value={value} />
+<InputRating {onchange} bind:value />
 
 <script>
 let value = 4;
-function onChange (e) {
-	const val = e.detail;
-    console.log(val);
+function onchange (e, { value }) {
+	console.log(value);
 }
 &lt;/script>
 
