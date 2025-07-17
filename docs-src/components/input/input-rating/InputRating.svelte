@@ -79,13 +79,12 @@ function onchange (e, { value }) {
 
 let error = $state('You picked wrong!');
 
-function onchange (e) {
-	const val = e.detail;
-	error = val === '1' ? '' : 'You picked wrong!';
+function onchange (e, data) {
+	error = data.value === '1' ? '' : 'You picked wrong!';
 }
 
 
 function onkeydown (e) {
-	console.log(e.detail.event.key);
+	console.log(e.key);
 }
 </script>

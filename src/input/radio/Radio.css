@@ -57,10 +57,10 @@
 }
 
 .radio .radio-item input::after {
-	background: var(--ui-color-text-1);
 	width: 70%;
 	height: 70%;
 	border-radius: inherit;
+	background: var(--ui-color-text-gradient);
 }
 
 
@@ -79,8 +79,8 @@
 
 
 
-.radio-inner:focus-within,
-.radio-inner:has(:active):not(.disabled) {
+.radio-inner:not(.disabled):focus-within,
+.radio-inner:not(.disabled):has(:active) {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }

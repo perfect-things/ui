@@ -1,27 +1,25 @@
 .button-normal {
-	background: var(--ui-color-secondary);
 	border: 0.5px solid #0006;
 	border-bottom-color: #000c;
-	box-shadow: var(--ui-shadow-button), var(--ui-shadow-gradient);
+	box-shadow: var(--ui-shadow-button);
+
+	/* background: var(--ui-color-secondary); */
+	background: var(--ui-color-secondary-gradient);
 }
 
-.button-normal:not(.round) {
-	min-width: calc(var(--ui-button-size) * 4);
-}
+.button-normal:not(.round) { min-width: calc(var(--ui-button-size) * 4); }
 
-.button-normal.info {
-	background: var(--ui-color-info);
-}
-
-.button-normal.success {
-	background: var(--ui-color-success);
-}
-
-.button-normal.warning {
-	background: var(--ui-color-warning);
-}
-
+/*
+.button-normal.info { background: var(--ui-color-info); }
+.button-normal.success { background: var(--ui-color-success); }
+.button-normal.warning { background: var(--ui-color-warning); }
 .button-normal.error,
-.button-normal.danger {
-	background: var(--ui-color-danger);
-}
+.button-normal.danger { background: var(--ui-color-danger); }
+*/
+
+
+.button-normal.info { background: var(--ui-color-info-gradient); }
+.button-normal.success { background: var(--ui-color-success-gradient); }
+.button-normal.warning { background: var(--ui-color-warning-gradient); }
+.button-normal.error,
+.button-normal.danger { background: var(--ui-color-danger-gradient); }

@@ -10,13 +10,13 @@
 <Button onclick={toggle}>Toggle</Button>
 <div class="split-wrap">
 	<div class="split-box min-w">Left</div>
-	<Splitter onchanged={onchange} bind:this={splitter1}/>
+	<Splitter {onchanged} bind:this={splitter1}/>
 	<div class="split-box">Right</div>
 </div>
 <br>
 <div class="split-wrap split-wrap-v">
 	<div class="split-box min-h">Top</div>
-	<Splitter onchanged={onchange} bind:this={splitter2}/>
+	<Splitter {onchanged} bind:this={splitter2}/>
 	<div class="split-box">Bottom</div>
 </div>
 
@@ -52,7 +52,7 @@ const exampleHtml = `
 <Button onclick={toggle}>Toggle</Button>
 <div style="flex-flow:row">
 	<div>Left</div>
-	<Splitter onchanged={onchanged} bind:this={splitter1} />
+	<Splitter {onchanged} bind:this={splitter1} />
 	<div>Right</div>
 </div>
 
@@ -63,9 +63,9 @@ function toggle () {
 	splitter1.toggle();
 }
 
-function onchanged (e) {
+function onchanged (e, { width, height, collapsed }) {
 	// logs current height/width in px and collapsed state
-	console.log(e.detail);
+	console.log(e, { width, height, collapsed });
 }
 &lt;/script>
 `;
@@ -73,8 +73,8 @@ function onchanged (e) {
 let splitter1: Splitter = $state();
 let splitter2: Splitter = $state();
 
-function onchange (e) {
-	console.log(e.detail);
+function onchanged (e, { width, height, collapsed }) {
+	console.log('is collapsed:', collapsed, 'width:', width, 'height:', height);
 }
 
 function toggle () {

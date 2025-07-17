@@ -25,5 +25,5 @@ export interface MenuItemProps extends ComponentProps {
 	// allow 'data-x' attributes
 	[key: `data-${string}`]: string | number | boolean | undefined;
 
-	onclick?: (e: MouseEvent) => void | boolean;
+	onclick?: (e: MouseEvent, data: any) => void | boolean;
 }

@@ -136,7 +136,8 @@ input[type=color] {
 }
 
 
-.input-inner:focus-within {
+.input-inner:focus-within,
+.input-inner:active:not(:disabled, .disabled) {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }

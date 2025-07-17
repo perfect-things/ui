@@ -1,5 +1,4 @@
 :root {
-
 	/* BORDERS */
 	--ui-border-radius: 0.375rem;	/* 6px */
 	--ui-border-radius-m: 0.6877rem;/* 11px */
@@ -52,19 +51,15 @@ body {
 }
 body * { box-sizing: inherit; }
 
-
+.flex-spacer { flex: 1; }
 .icon-tabler { width: 1.5rem; height: 1.5rem; }
 
-/* meatballs icon is misaligned */
-.icon-tabler-dots-vertical { margin-left: -1px; }
-
-.flex-spacer { flex: 1; }
-
 /* Icon visual alignment corrections */
+.icon-tabler-dots-vertical { margin-left: -1px; }
 .icon-tabler-alert-triangle { transform: translateY(1px); }
 .icon-tabler-logout { transform: translateX(3px); }
 
-/* adding this class to input elements will prevent scrolling on focus in mobile safari */
+/* adding this class to input elements will prevent auto-scrolling on focus in mobile safari */
 .mobile .prevent-scrolling-on-focus:focus { animation: prevent-scrolling-on-focus 10ms; }
 
 @keyframes prevent-scrolling-on-focus {

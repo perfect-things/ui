@@ -41,6 +41,10 @@
 	--ui-color-text-semi: #0006;
 	--ui-color-text-1: #222;
 	--ui-color-text-2: #666;
+	--ui-color-text-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-text), #fff 50%) 0%,
+		color-mix(in srgb, var(--ui-color-text), #000 10%) 100%
+	);
 
 
 	--ui-popup-border: 1px solid #ccc;
@@ -48,6 +52,4 @@
 
 	--ui-shadow-button: 0 1px 0 #000c;
 	--ui-shadow-tooltip: 0 0 1px #000, 0 2px 10px #0008;
-
-	--ui-shadow-gradient: inset 0 -1rem 0.8rem #0002;
 }

@@ -43,12 +43,11 @@
 	flex: 1;
 	border-left: 1px solid var(--ui-color-border);
 	min-width: min-content;
-	box-shadow: var(--ui-shadow-gradient);
 }
 
 
 .button-toggle .button:has(:checked) {
-	background-color: var(--ui-color-highlight);
+	background: var(--ui-color-highlight-gradient);
 }
 
 .button-toggle .input-row .button:first-child {

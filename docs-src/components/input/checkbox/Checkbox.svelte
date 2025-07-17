@@ -1,7 +1,7 @@
 <h2>Checkbox</h2>
 
 	<h3>Normal</h3>
-		<Checkbox {onchange} label="I do not wish to be excluded from the dont-send-newsletter list, not." />
+		<Checkbox label="I do not wish to be excluded from the dont-send-newsletter list, not." />
 
 	<h3>Disabled</h3>
 		<Checkbox disabled label="I would like to receive all your spam, please."/><br>
@@ -56,8 +56,7 @@ const exampleHtml = `
 <script>
 let error = '';
 
-function onchange (e) {
-	const { checked, indeterminate } = e.detail;
+function onchange (e, { checked, indeterminate }) {
 	error = checked ? '' : 'You must check me!'
 	console.log({ checked, indeterminate });
 }

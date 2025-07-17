@@ -32,7 +32,10 @@
 .input-rating .input-row .btn-reset { margin-left: auto; }
 .input-rating .input-row .btn-reset:focus-visible { color: var(--ui-color-accent); }
 
-.input-rating .button.active svg { color: var(--ui-color-accent); fill: var(--ui-color-accent); }
+.input-rating .button.active svg {
+	color: var(--ui-color-accent);
+	fill: var(--ui-color-accent);
+}
 
 .input-rating .button.button-link,
 .input-rating .button.button-link:focus-visible,

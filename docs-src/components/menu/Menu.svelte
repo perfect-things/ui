@@ -158,8 +158,7 @@ const exampleHtml = `
         e.preventDefault();   // prevents menu auto-closing
         menu1.close();       // manually close the menu
     }
-    function onMenuClick (e) {
-        const { target, button } = e.detail;
+    function onMenuClick (e, { target, button }) {
         console.log(target.dataset, button.dataset);
     }
 &lt;/script>
@@ -177,8 +176,7 @@ let closeTabsText = $state('Close all tabs');
 let thingsMenuTimer, tabsMenutimer;
 
 
-function onMenuClick (e) {
-	const { target, button } = e.detail;
+function onMenuClick (e, { target, button }) {
 	console.log(target.dataset, button.dataset);
 }
 

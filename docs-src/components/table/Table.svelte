@@ -3,9 +3,9 @@
 <div class="table-viewport">
 	<Table round
 		rowSelector=".row-sel"
-		onkeydown={onKey}
-		ondblclick={onSelect}
-		onselect={onSelect}>
+		{onkeydown}
+		{ondblclick}
+		{onselect}>
 		<thead>
 			<tr><th>Year</th><th>Month</th><th>Price</th></tr>
 		</thead>
@@ -179,14 +179,16 @@ const exampleHtml = `
 `;
 
 
-function onKey (e) {
-	const { event, selectedItem } = e.detail;
-	if (event.key === 'Enter') console.log(selectedItem);
+function onkeydown (e, { selectedItem }) {
+	if (e.key === 'Enter') console.log(selectedItem);
 }
 
-function onSelect (e) {
-	const { selectedItem } = e.detail;
-	console.log(e.type, selectedItem);
+function onselect (e, { selectedItem }) {
+	console.log('Select', selectedItem);
+}
+
+function ondblclick (e, { selectedItem }) {
+	console.log('dblclick', selectedItem);
 }
 
 </script>

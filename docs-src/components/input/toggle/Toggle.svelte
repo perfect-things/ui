@@ -53,8 +53,8 @@ const exampleHtml = `
 <Toggle value="true" label="Field label" onchange={onChange} />
 
 <script>
-function onChange (e) {
-    console.log('onchange', e.detail);
+function onChange (e, { value}) {
+    console.log('onchange', value);
 }
 &lt;/script>
 `;
@@ -63,8 +63,8 @@ function onChange (e) {
 let error = $state('I can\'t see anything now!');
 let toggleValue = $state(false);
 
-function onchange (e, val) {
-	error = val ? '' : 'I can\'t see anything now!';
+function onchange (e, { value }) {
+	error = value ? '' : 'I can\'t see anything now!';
 	console.log('onchange', e);
 }
 </script>

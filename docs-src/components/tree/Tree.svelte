@@ -41,14 +41,14 @@ const items = [
 	{ id: 3, name: 'Three' },
 ];
 
-function onselect (e) {
-	console.log(e.detail);
+function onselect (e, { selectedItem, item }) {
+	console.log('selected element:', selectedItem, 'item:', item);
 }
 &lt;/script>
 `;
 
-function onselect (e) {
-	console.log(e.detail);
+function onselect (e, { selectedItem, item }) {
+	console.log('selected element:', selectedItem, 'item:', item);
 }
 
 

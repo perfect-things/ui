@@ -41,7 +41,7 @@
 <script lang="ts">
 import './Toggle.css';
 import type { InputProps } from '../types';
-import { guid, getMouseX } from '../../utils';
+import { guid, getMouseX, UI } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
@@ -115,7 +115,9 @@ function setValue (e: Event, v = false, force = false) {
 		oldValue = value;
 		setKnobPosition();
 	}
-	onchange(e, { value });
+	setTimeout(() => {
+		onchange(e, { value });
+	}, UI.ANIMATION_SPEED);
 }
 
 

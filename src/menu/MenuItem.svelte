@@ -55,20 +55,7 @@ function _onclick (e) {
 	const btn = e.target.closest('.menu-item');
 	if (btn) btn.focus();
 	blink(btn, 200).then(() => {
-		// modify the event so that:
-		// target is the button that opens the menu
-		// button is the menuItem <button> that was clicked
-		// cancellable is true so that the menu can remain open if event is prevented
-		try {
-			Object.defineProperties(e, {
-				target: { value: targetEl(), writable: true, enumerable: true, configurable: true },
-				button: { value: btn, writable: true, enumerable: true, configurable: true },
-				cancellable: { value: true, writable: true, enumerable: true, configurable: true }
-			});
-		}
-		catch { /* ignore */ }
-
-		const res = onclick(e);
+		const res = onclick(e, { target: targetEl(), button: btn });
 		if (res === false) {
 			e.stopPropagation();
 			e.preventDefault();

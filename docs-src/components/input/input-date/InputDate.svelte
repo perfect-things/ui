@@ -84,8 +84,8 @@ const exampleHtml = `
 <InputDate onchange={ onChange } />
 
 <script>
-function onChange (e) {
-    console.log(e.detail.value);
+function onChange (e, { value }) {
+    console.log(value);
 }
 &lt;/script>
 
@@ -95,13 +95,12 @@ function onChange (e) {
 
 let error = $state('You picked wrong!');
 
-function onchange (e) {
-	const val = e.detail;
-	error = val === '1' ? '' : 'You picked wrong!';
+function onchange (e, { value }) {
+	error = value === '1' ? '' : 'You picked wrong!';
 }
 
 
 function onkey (e) {
-	console.log(1111, e.detail.event.key);
+	console.log(e.key);
 }
 </script>
