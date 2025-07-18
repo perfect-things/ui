@@ -1,42 +1,48 @@
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if isVisible}
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div
-		class="drawer {className}"
+		bind:this={element}
+		class={['drawer', className,]}
 		tabindex="-1"
 		use:docclick
-		bind:this="{element}"
-		in:fly="{{ x: 300, duration: $ANIMATION_SPEED }}"
-		out:fly="{{ x: 300, duration: $ANIMATION_SPEED ? $ANIMATION_SPEED + 100 : 0 }}"
-	>
-		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
-		<header class="drawer-header" bind:this="{headerEl}" >
+		in:fly="{{ x: 300, duration: UI.ANIMATION_SPEED }}"
+		out:fly="{{ x: 300, duration: UI.ANIMATION_SPEED ? UI.ANIMATION_SPEED + 100 : 0 }}"
+		{...restProps}>
+
+		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
+		<header class="drawer-header" bind:this={headerEl} >
 			<h2>{title}</h2>
-			<Button round text icon="close" class="btn-close" title="Close" on:click="{close}"/>
+			<Button round text icon="close" class="btn-close" title="Close" onclick={close}/>
 		</header>
-		<div class="drawer-content"><slot></slot></div>
-		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
+		<div class="drawer-content">{@render children?.()}</div>
+		<div tabindex="0" class="focus-trap focus-trap-bottom" onfocus={focusFirst}></div>
 	</div>
 {/if}
-<svelte:options accessors={true}/>
-
-<script>
-import { createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './Drawer.css';
+import type { DrawerProps } from './types';
 import { fly } from 'svelte/transition';
-import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
+import { UI } from '../utils';
 import { Button } from '../button';
 
-let className = '';
-export { className as class };
-export let title = 'Drawer';
-export let element = undefined;
+
+let {
+	class: className = '',
+	title = '',
+	element = $bindable(undefined),
+	onopen = () => {},
+	onclose = () => {},
+	children,
+	...restProps
+}: DrawerProps = $props();
 
 
-const dispatch = createEventDispatcher();
-let isVisible = false;
-let headerEl, targetBtn;
+let isVisible: boolean = $state(false);
+let headerEl: HTMLElement = $state();
+let targetBtn: HTMLElement = $state();
 
 
-function docclick () {
+function docclick (_: any) {
 	requestAnimationFrame(() => document.addEventListener('click', onDocClick));
 	return {
 		destroy: () => document.removeEventListener('click', onDocClick)
@@ -53,24 +59,28 @@ function onDocClick (e) {
 }
 
 
-export function toggle (target) {
+export function toggle (target?: HTMLElement) {
 	if (target) targetBtn = target;
-	isVisible ? close() : open(target);
+	if (isVisible) close();
+	else open(target);
 }
 
 
-export function open (target) {
-	targetBtn = target || document.activeElement;
+export function open (target?: HTMLElement) {
+	targetBtn = target || document.activeElement as HTMLElement;
 	isVisible = true;
-	requestAnimationFrame(() => headerEl.querySelector('.btn-close').focus());
-	dispatch('open');
+	requestAnimationFrame(() => {
+		const btn = headerEl?.querySelector('.btn-close');
+		if (btn) btn.focus();
+	});
+	onopen();
 }
 
 
 export function close () {
 	isVisible = false;
 	if (targetBtn) targetBtn.focus();
-	dispatch('close');
+	onclose();
 }
 
 
@@ -91,7 +101,13 @@ function focusLast () {
 
 
 function getFocusableElements () {
-	return Array.from(element.querySelectorAll(FOCUSABLE_SELECTOR));
+	return Array.from(element.querySelectorAll(UI.FOCUSABLE_SELECTOR));
 }
 
+
+export {
+	className,
+	title,
+	element,
+};
 </script>

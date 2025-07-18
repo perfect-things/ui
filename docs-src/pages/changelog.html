@@ -1,0 +1,45 @@
+<h1>Changelog</h1>
+<h2>v10.0.0 <em>(2025-08-01)</em></h2>
+<p>Thousand thanks to the Svelte&#39;s team, for the <a href="https://github.com/perfect-things/ui/pull/215">long months of hard work</a>, that we wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time they decided to innovate 😉.</p>
+<h3>Notable improvements</h3>
+<ul>
+<li>This is the first version of the library that is compatible with Svelte v5.</li>
+<li>All components have been rewritten to use the new Svelte v5 syntax and features.</li>
+<li>All components now use TypeScript for better developer experience.</li>
+<li>Setup, tests &amp; build process have been updated to vite &amp; vitest.</li>
+<li>Event handling has been standardized across all components (more details in the <em>Breaking Changes</em> section below).</li>
+</ul>
+<h3>Breaking changes</h3>
+<ul>
+<li>All Svelte v4 events are now loosing the colon (e.g. e.g. <code>on:change</code> -&gt; <code>onchange</code>).</li>
+<li>All events have been refactored, and all listeners/handlers have the same signature:
+<code>function(event: Event, data?: any)</code>, where the first argument is always <code>event</code>,
+and second argument (<code>data</code>) is specific to the event &amp; component, e.g.<ul>
+<li>for Inputs <code>onchange</code> event, <code>data</code> argument will contain the new value (<code>{ value: any }</code>)</li>
+</ul>
+</li>
+<li>Event listeners added to components&#39; events will receive the relevant data as the second argument of the callback. There is no <code>event.detail</code> anymore.</li>
+<li>Utils functions &amp; constants have been updated to use the new reactive <code>$state</code>:<ul>
+<li><code>$ANIMATION_SPEED</code>   -&gt; <code>UI.ANIMATION_SPEED</code> - (number) reactive constant</li>
+<li><code>$PREFERS_DARK</code>      -&gt; <code>UI.PREFERS_DARK</code> - (boolean) reactive constant</li>
+<li><code>FOCUSABLE_SELECTOR</code> -&gt; <code>UI.FOCUSABLE_SELECTOR</code> - (string) constant</li>
+<li><code>isMobile()</code>         -&gt; <code>UI.isMobile</code> - (boolean) constant</li>
+</ul>
+</li>
+<li>As per Svelte&#39;s best practices, attributes bound to variables will not use quotes anymore, so: <code>value=&quot;{value}&quot;</code> -&gt; <code>value={value}</code> or even better: <code>{value}</code>.</li>
+<li>Attributes are typed now, and are a bit more restrictive, so e.g. a <code>boolean</code> or a <code>number</code> attribute will not accept a string value.</li>
+<li>Like in HTML, <code>boolean</code> attributes default to <code>false</code> if not present, and <code>true</code> if passed without a value, so <code>&lt;Button disabled/&gt;</code> is enough to disable the button, and is the same as <code>&lt;Button disabled={true}/&gt;</code>.</li>
+</ul>
+<h3>Other changes</h3>
+<ul>
+<li>Added some gradients to the palette.</li>
+<li>Added <code>ArrowLeft</code> and <code>ArrowRight</code> to <code>Toggle</code> component, to allow toggling the value with the keyboard.</li>
+<li>Added <code>ArrowUp</code> and <code>ArrowDown</code> to <code>InputNumber</code> component, to allow incrementing/decrementing the value with the keyboard.</li>
+<li>Fixed <code>Tooltip</code>: when mouse entered target from the top - tooltip would show up and hide instantly.</li>
+<li>Handle <code>ctrlKey</code> for windows for shortcuts in event handlers</li>
+<li><code>Panel</code> - now uses better css-only animate to auto (#209)</li>
+<li>Upgrade all <code>class:</code> attributes to use all the fanciness from Svelte&#39;s <a href="https://svelte.dev/docs/svelte/class#The-class:-directive">class directive</a></li>
+<li>Fixed <code>aria-invalid</code> value: should be <code>true</code>/<code>false</code> and not a message.</li>
+<li>Test coverage has been improved significantly, with all components now having &gt;80% coverage.</li>
+<li>Tests speed and performance has been improved significantly by eliminating the animations&#39; delays, and by a better handling of the events in tests.</li>
+</ul>

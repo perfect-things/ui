@@ -1,111 +1,139 @@
 <div
-	class="toggle {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class={cls}
 	role="switch"
-	aria-checked="{value}"
-	tabindex="{disabled ? undefined : 0}"
-	bind:this="{element}"
-	on:keydown="{onKey}"
-	on:touchstart={dragStart}
-	on:mousedown={dragStart}
-	on:contextmenu|preventDefault
-	on:click|preventDefault>
+	aria-checked={value}
+	tabindex={disabled ? undefined : 0}
+	bind:this={element}
+	{onkeydown}
+	ontouchstart={dragStart}
+	onmousedown={dragStart}
+	oncontextmenu={e => e.preventDefault()}
+	onclick={e => e.preventDefault()}
+	{...restProps}>
 
-	<Label {label} {disabled} for="{_id}"/>
+	<Label {label} {disabled} for={_id}/>
 
-	<Info msg="{info}" />
-	<InputError id="{errorMessageId}" msg="{error}" animOpacity="true"/>
+	<Info msg={info} />
+	<InputError id={errorMessageId} msg={error} animOpacity={true}/>
 
 	<div class="toggle-inner">
 		<label class="toggle-label" {title}>
-			<div class="toggle-scroller" bind:this="{scroller}">
+			<div class="toggle-scroller" bind:this={scroller}>
 				<div class="toggle-option"></div>
-				<div class="toggle-handle" bind:this="{handle}"><div class="toggle-knob"></div></div>
+				<div class="toggle-handle" bind:this={handle}><div class="toggle-knob"></div></div>
 				<div class="toggle-option"></div>
 				<input
-					id="{_id}"
+					id={_id}
 					type="checkbox"
 					class="toggle-input"
 					{disabled}
 					{name}
-					aria-invalid="{error}"
-					aria-errormessage="{error ? errorMessageId : undefined}"
-					aria-required="{required}"
-					bind:this="{inputElement}"
-					bind:checked="{value}">
+					aria-invalid={!!error}
+					aria-errormessage={error ? errorMessageId : undefined}
+					aria-required={required}
+					bind:this={inputElement}
+					bind:checked={value}>
 			</div>
 		</label>
 	</div>
 </div>
 
-<script>
-import { onMount, afterUpdate , createEventDispatcher } from 'svelte';
-import { guid, getMouseX } from '../../utils';
+<script lang="ts">
+import './Toggle.css';
+import type { InputProps } from '../types';
+import { guid, getMouseX, UI } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
-
-const dispatch = createEventDispatcher();
-
-let className = '';
-export { className as class };
-export let id = '';
-export let name = guid();
-export let title = '';
-export let required = undefined;
-export let disabled = false;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let value = false;
-export let labelOnTheLeft = false;
-
-export let element = undefined;
-export let inputElement = undefined;
-
-
-$:_id = id || name || guid();
-
-const errorMessageId = guid();
-
-let scroller, handle, startX, currentX = 0;
-let scrollerStartX, scrollerEndX, handleStartX;
-let isClick = false, isDragging = false;
-let oldValue;
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	title = '',
+	required = undefined,
+	disabled = false,
+	label = '',
+	error = undefined,
+	info = undefined,
+	value = $bindable(false),
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onchange = () => {},
+	...restProps
+}: InputProps = $props();
 
 
-onMount(() => {
-	toggleTransitions(false);
-	({ scrollerStartX, scrollerEndX, handleStartX } = initialMeasure(element));
+const _id: string = $derived(id || name || guid());
+
+const errorMessageId: string = guid();
+let scroller = $state<HTMLDivElement>();
+let handle = $state<HTMLDivElement>();
+let startX = $state<number>();
+let currentX = $state<number>(0);
+let scrollerStartX = $state<number>();
+let scrollerEndX = $state<number>();
+let handleStartX = $state<number>();
+let isClick = $state<boolean>(false);
+let isDragging = $state<boolean>(false);
+let oldValue = $state<boolean>();
+
+const cls = $derived([
+	'toggle',
+	className,
+	{
+		'label-on-the-left': labelOnTheLeft,
+		'has-error': !!error
+	}
+]);
+
+
+$effect(() => {
+	if (element) {
+		toggleTransitions(false);
+		({ scrollerStartX, scrollerEndX, handleStartX } = initialMeasure(element));
+	}
 });
 
-
-afterUpdate(() => {
+$effect(() => {
 	if (typeof value !== 'boolean') value = !!value;
-	setValue(value);
+	setValue(undefined, value);
 });
 
 
 
-function setValue (v = false, force = false) {
+function setValue (e: Event, v = false, force = false) {
 	if (typeof v !== 'boolean') v = !!v;
-	if (v !== value) return value = v;
-	if (value === oldValue && !force) return;
-	startX = currentX = value ? scrollerEndX : scrollerStartX;
-	oldValue = value;
-	setKnobPosition();
-	dispatch('change', value);
+	if (v !== value) {
+		value = v;
+	}
+	else {
+		if (value === oldValue && !force) return;
+		startX = currentX = value ? scrollerEndX : scrollerStartX;
+		oldValue = value;
+		setKnobPosition();
+	}
+	setTimeout(() => {
+		onchange(e, { value });
+	}, UI.ANIMATION_SPEED);
 }
 
 
-function onKey (e) {
+function onkeydown (e) {
 	toggleTransitions(true);
 	if (e.key === 'Enter' || e.key === ' ') {
 		e.preventDefault();
-		setValue(!value);
+		setValue(e, !value);
+	}
+	else if (e.key === 'ArrowLeft') {
+		e.preventDefault();
+		setValue(e, false);
+	}
+	else if (e.key === 'ArrowRight') {
+		e.preventDefault();
+		setValue(e, true);
 	}
 }
 
@@ -132,17 +160,17 @@ function dragStart (e) {
 }
 
 
-function dragEnd () {
+function dragEnd (e: Event) {
 	document.removeEventListener('mouseup', dragEnd);
 	document.removeEventListener('mousemove', drag);
 	document.removeEventListener('touchend', dragEnd);
 	document.removeEventListener('touchmove', drag);
 	toggleTransitions(true);
 	isDragging = false;
-	if (isClick) setValue(!value);
+	if (isClick) setValue(e, !value);
 	else {
 		// drag-end left knob at over 50% of the toggle width
-		setValue(currentX - scrollerStartX >= (scrollerEndX - scrollerStartX) / 2, true);
+		setValue(e, currentX - scrollerStartX >= (scrollerEndX - scrollerStartX) / 2, true);
 	}
 }
 

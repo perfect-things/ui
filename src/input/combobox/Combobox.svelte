@@ -1,204 +1,105 @@
-<div
-	class="input combobox {className}"
-	class:open="{opened}"
-	class:has-error="{error}"
-	class:label-on-the-left="{!!labelOnTheLeft}"
-	class:multiselect
-	bind:this="{element}">
-
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
-
-	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
-
-		<div class="input-row" title="{inputValue}">
-			<Button
-				link
-				icon="dots"
-				class="combobox-button"
-				tabindex="-1"
-				on:mousedown="{onIconMouseDown}"
-				on:click="{onIconClick}"/>
-
-			<input
-				type="text"
-				role="combobox"
-				class="prevent-scrolling-on-focus"
-				aria-autocomplete="list"
-				aria-controls="combobox-list-{gui}"
-				aria-expanded="{opened}"
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-				autocomplete="off"
-				value="{inputValue}"
-
-				{disabled}
-				placeholder="{multiselect && opened ? 'Type to filter...' : placeholder}"
-				id="{_id}"
-				{...$$restProps}
-
-				bind:this="{inputElement}"
-				on:input="{oninput}"
-				on:focus="{onfocus}"
-				on:mousedown="{open}"
-				on:click="{open}"
-				on:blur="{onblur}"
-				on:keydown|capture="{onkeydown}">
-		</div>
-	</div>
+<div bind:this={element} class={cls} {...restProps}>
+	<ComboboxInput
+		{id}
+		{listId}
+		{name}
+		{disabled}
+		{required}
+		{label}
+		{error}
+		{info}
+		{opened}
+		{placeholder}
+		bind:value={inputValue}
+		bind:inputElement
+		oniconclick={onIconClick}
+		onclick={onInputClick}
+		onkeydown={_onkeydown}
+		{onfocus}
+		{oninput}/>
 </div>
 
+<ComboboxList
+	{listId}
+	{allowNew}
+	{multiselect}
+	items={filteredItems}
+	{selectedItems}
+	{opened}
+	{shouldShowNewItem}
+	newItemName={inputValue}
+	bind:highlightIndex
+	bind:listElement
+	onclick={onItemClick} />
 
-<!-- svelte-ignore a11y-interactive-supports-focus a11y-click-events-have-key-events -->
-{#if opened}
-	<div
-		id="combobox-list-{gui}"
-		class="combobox-list {opened ? '' : 'hidden'}"
-		class:multiselect
-		class:empty="{!filteredData.length && !shouldShowNewItem}"
-		role="listbox"
-		on:mousedown={onListMouseDown}
-		bind:this="{listElement}">
-		{#if filteredData.length}
-			{#each groupedData as group}
-				{#if group.name}
-					<div class="combobox-list-header">{group.name}</div>
-				{/if}
-				{#if group.items}
-					{#each group.items as item}
-						{@const isChecked = multiselect && selectedItems
-							.find(i => (i.id || i.name || i) === (item.id || item.name || item))
-						}
-						<div
-							role="option"
-							class="combobox-list-item"
-							class:in-group="{!!item.group}"
-
-							aria-selected="{item.idx === highlightIndex}"
-							class:selected="{item.idx === highlightIndex}"
-
-							aria-checked="{!!isChecked}"
-							class:checked="{isChecked}"
-
-							on:click="{e => onclick(item, e)}"
-							on:mouseenter="{() => highlightIndex = item.idx}"
-							on:mousedown|preventDefault
-							on:mouseup="{e => onclick(item, e)}"
-							on:touchstart="{touchStart}"
-							on:touchend="{touchEnd}"
-							>
-							{#if multiselect}
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-square-check">
-									<rect x="4" y="4" width="16" height="16" rx="3"></rect>
-									<path class="tick" d="M8 12l3 3l5.5 -5.5"></path>
-								</svg>
-							{/if}
-							<span>{@html item.highlightedName || item.name}</span>
-						</div>
-					{/each}
-				{/if}
-			{/each}
-		{:else if allowNew}
-			<div class="combobox-list-empty">No items found</div>
-		{/if}
-
-		{#if shouldShowNewItem}
-		<div class="combobox-list-header">Create new item</div>
-			<div
-				role="option"
-				class="combobox-list-item"
-				class:selected="{highlightIndex === filteredData.length}"
-				aria-selected="{highlightIndex === filteredData.length}"
-				on:click="{() => onclick({ name: newItemName, idx: filteredData.length })}">
-					{newItemName}
-			</div>
-		{/if}
-	</div>
-{/if}
-
-
-<script>
-import { afterUpdate, createEventDispatcher, onDestroy } from 'svelte';
-import { emphasize, scrollToSelectedItem, groupData, findValueInSource, getInputValue,
-	alignDropdown, hasValueChanged } from './utils';
+<script lang="ts">
+import './Combobox.css';
+import type { ComboboxProps } from './types';
+import { emphasize, scrollToSelectedItem, findValueInSource, getInputValue,
+	alignDropdown, hasValueChanged, groupData, normalizeItems } from './utils';
 import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
-import { Button } from '../../button';
-import { Info } from '../../info-bar';
-import { InputError } from '../input-error';
-import { Label } from '../label';
-
-
-let className = '';
-export { className as class };
-export let disabled = false;
-export let required = undefined;
-export let id = '';
-export let items = [];
-export let value = null;
-export let allowNew = undefined;
-export let clearOnEsc = undefined;
-export let showOnFocus = undefined;
-export let hideOnResize = undefined;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = undefined;
-export let placeholder = undefined;
-
-export let multiselect = undefined;
-export let selectedItems = [];
-
-export let element = undefined;
-export let inputElement = undefined;
-export let listElement = undefined;
-
-
-$:_id = id || name || guid();
-$:valueMatchesItem = (filteredData?.length && filteredData.find(i => i.name === inputElement.value));
-$:shouldShowNewItem = allowNew && inputElement?.value && !valueMatchesItem;
-
-const dispatch = createEventDispatcher();
-const gui = guid();
-const errorMessageId = guid();
-
-let inputValue = getInputValue(value, multiselect);
-let originalItems = null;
-let opened = false;
-let hasEdited = false;
-let highlightIndex = 0;
-let filteredData = [], groupedData = [];
-let originalText = '';
-let hasSetValue = true;
-let isSelecting = false;
-let isHiding = false;
-
-let newItemName = '';
-
-
-onDestroy(() => {
-	if (listElement) listElement.remove();
-});
-
-
-afterUpdate(() => {
-	if (!opened && items.length) {
-		originalItems = deepCopy(items);
-		if (items.length && typeof items[0] === 'string') {
-			items = items.map(item => ({ name: item }));
-		}
-		filter();
-		setInitialValue();
-	}
-});
+import ComboboxInput from './ComboboxInput.svelte';
+import ComboboxList from './ComboboxList.svelte';
 
 
 
-function filter () {
-	let filtered = deepCopy(items);
-	if (hasEdited && inputElement.value) {
-		const q = inputElement.value.toLowerCase().trim();
+let {
+	class: className = '',
+	disabled = false,
+	required = undefined,
+	id = '',
+	name = '',
+	items = [],
+	value = $bindable(undefined),
+	allowNew = undefined,
+	showOnFocus = undefined,
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = undefined,
+	placeholder = undefined,
+	multiselect = undefined,
+	selectedItems = [],
+
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	listElement = $bindable(undefined),
+	onchange = () => {},
+	onkeydown = () => {},
+	...restProps
+}: ComboboxProps = $props();
+
+
+const listId = `combobox-list-${guid()}`;
+
+let opened = $state(false);
+let highlightIndex = $state(0);
+let hasEdited = $state(false);
+let previousInputValue = $state('');
+let previousValue = $state(deepCopy(value));
+
+
+let inputValue = $derived(multiselect && opened ? '' : getInputValue(value, multiselect));
+const normalizedItems = $derived(normalizeItems(items));
+const filteredItems = $derived(filter(normalizedItems, inputValue));
+const shouldShowNewItem = $derived(allowNew && inputValue && !filteredItems?.length);
+const cls = $derived([
+	'input',
+	'combobox',
+	className,
+	{
+		open: opened,
+		'has-error': !!error,
+		'label-on-the-left': !!labelOnTheLeft,
+		multiselect
+	},
+]);
+
+
+function filter (_items = normalizedItems, _inputValue = inputValue) {
+	let filtered = deepCopy(_items);
+	if (hasEdited && _inputValue) {
+		const q = _inputValue.toLowerCase().trim();
 		filtered = filtered
 			.filter(item => fuzzy(item.name, q))
 			.map(item => {
@@ -212,41 +113,40 @@ function filter () {
 			})
 			.sort((a, b) => b.score - a.score);
 	}
-	groupedData = groupData(filtered);
-	const filteredAndSorted = [];
-	let idx = 0;
-	groupedData.forEach(g => {
-		g.items.forEach(i => {
-			i.idx = idx++;
-			filteredAndSorted.push(i);
-		});
-	});
-	filteredData = filteredAndSorted;
 
-	highlightIndex = 0;
-	scrollToSelectedItem(listElement);
-	alignDropdown(listElement, inputElement);
+	// add indexes
+	groupData(filtered);
+
+	requestAnimationFrame(() => alignDropdown(listElement, inputElement));
+
+	return filtered;
 }
 
 
-function open (e) {
-	const type = e?.type;
-	const clickOnMobile = isMobile() && type === 'click';
-	const mousedownOnDesktop = !isMobile() && type === 'mousedown';
-	const typing = type === 'typing';
-	const navigating = type === 'navigating';
-	if (!clickOnMobile && !mousedownOnDesktop && !typing && !navigating) return;
-	if (mousedownOnDesktop && opened) return close();
+function open (type) {
 	if (opened) return;
 
+	if (type !== 'typing' && type !== 'navigating') return;
 	opened = true;
 	hasEdited = false;
+
+	// inputValue is cleared in multiselect after open, via $derived
+	// if list opened via oninput - char needs to be preserved
+	const tempValue = inputElement.value;
+
 	if (multiselect) {
-		if (!typing) {
-			inputElement.value = '';
-			inputValue = '';
+		// not needed?
+		// if (type !== 'typing') inputValue = '';
+	}
+	else {
+		const itemId = value?.id || value?.name || value;
+		const item = itemId && filteredItems.find(i => (i.id || i.name || i) === itemId);
+		if (item) {
+			highlightIndex = item.idx;
+			requestAnimationFrame(() => {
+				scrollToSelectedItem(listElement);
+			});
 		}
-		filter();
 	}
 
 	requestAnimationFrame(() => {
@@ -254,7 +154,18 @@ function open (e) {
 			document.body.appendChild(listElement);
 		}
 		addEventListeners();
-		alignDropdown(listElement, inputElement, e);
+		alignDropdown(listElement, inputElement);
+		if (type === 'typing' && inputValue === '') {
+			inputValue = tempValue;
+		}
+	});
+}
+
+
+function closeAndSelect () {
+	requestAnimationFrame(() => {
+		close();
+		inputElement.select();
 	});
 }
 
@@ -263,105 +174,81 @@ function close () {
 	if (!opened) return;
 	removeEventListeners();
 	opened = false;
-	isSelecting = false;
-
-	const empty = !inputElement.value;
-	const notInList = !multiselect && !allowNew && inputElement.value !== inputValue;
-	const notInSelected = multiselect && inputElement.value !== inputValue;
-	if (empty || notInList || notInSelected) revert();
+	previousInputValue = inputValue;
+	previousValue = deepCopy(value);
 }
 
 
-function selectSingle (item) {
-	if (multiselect || hasSetValue) return;
+
+
+function selectSingle (e: Event, item?) {
 	const oldValue = deepCopy(value);
 
 	if (!item) {
-		if (filteredData[highlightIndex]) item = filteredData[highlightIndex];
-		else if (allowNew) item = { name: inputElement.value };
-		else if (value && value.name && inputElement.value !== value.name) inputValue = value.name;
+		if (filteredItems[highlightIndex]) item = filteredItems[highlightIndex];
+		else if (allowNew) item = { name: inputValue };
+		else if (value && value.name && inputValue !== value.name) inputValue = value.name;
 	}
 	if (item) {
-		value = findValueInSource(item, originalItems) || item;
-		if (value && value.name && inputElement.value !== value.name) inputValue = item.name;
+		value = findValueInSource(item, items) || item;
+		if (value && value.name && inputValue !== value.name) inputValue = item.name;
 	}
 
-	hasSetValue = true;
-	if (hasValueChanged(oldValue, value)) dispatch('change', { value, oldValue });
-	requestAnimationFrame(() => {
-		inputElement.select();
-		close();
-	});
+	if (hasValueChanged(oldValue, value)) {
+		onchange(e, { value, oldValue });
+	}
 
 }
 
-function selectMultiselect (item) {
+
+function selectMultiselect (e: Event, item) {
 	const oldValue = deepCopy(value);
-	selectedItems = selectedItems || [];
-	const itemId = item.id || item.name || item;
-	const itemIndex = selectedItems.findIndex(i => (i?.id || i?.name || i) === itemId);
-	if (itemIndex === -1) selectedItems.push(item);
-	else selectedItems.splice(itemIndex, 1);
+	const _selectedItems = deepCopy(selectedItems || []);
 
-	value = findValueInSource(selectedItems, originalItems) || [];
+	const itemId = item?.id || item?.name || item;
+	const itemIndex = _selectedItems.findIndex(i => (i?.id || i?.name || i) === itemId);
 
-	if (hasValueChanged(oldValue, value, true)) dispatch('change', { value, oldValue });
+	if (itemIndex === -1) _selectedItems.push(item);
+	else _selectedItems.splice(itemIndex, 1);
+
+	selectedItems = _selectedItems;
+	value = findValueInSource(selectedItems, items) || [];
+
+	if (hasValueChanged(oldValue, value, true)) onchange(e, { value, oldValue });
 	requestAnimationFrame(() => inputElement.select());
 }
 
 
-function setInitialValue () {
-	if (!filteredData || !filteredData.length) return;
-
-	if (multiselect) {
-		if (value === null || value === undefined) value = [];
-		if (!Array.isArray(value)) value = [value];
-
-		const selectedIds = value.map(i => i?.id || i?.name || i);
-		selectedItems = originalItems.filter(i => selectedIds.includes(i.id || i.name || i));
-
-		if (opened) inputValue = '';
-		else inputValue = getInputValue(selectedItems, multiselect);
-	}
-	else {
-		const itemId = value?.id || value?.name || value;
-		if (itemId) {
-			const item = filteredData.find(i => (i.id || i.name || i) === itemId);
-			if (item) {
-				highlightIndex = item.idx;
-				inputElement.value = filteredData[highlightIndex].name;
-			}
-			scrollToSelectedItem(listElement);
-		}
-		else inputElement.value = '';
-	}
-}
-
 
 function up () {
-	if (!opened) return open({ type: 'navigating' });
-	let idx = highlightIndex - 1;
-	while (idx > 0 && !filteredData[idx]) idx -= 1;
-	if (idx !== highlightIndex && filteredData[idx]) {
-		highlightIndex = filteredData[idx].idx;
+	if (!opened) return open('navigating');
+
+	let idx = highlightIndex || 0;
+	if (idx > 0) idx -= 1;
+
+	if (!filteredItems[idx]) {
+		while (idx > 0 && !filteredItems[idx]) idx -= 1;
+	}
+
+	if (filteredItems[idx] && idx !== highlightIndex) {
+		highlightIndex = idx;
 		scrollToSelectedItem(listElement);
 	}
 }
 
 
 function down () {
-	if (!opened) return open({ type: 'navigating' });
-	let idx = highlightIndex + 1;
-	while (idx < filteredData.length - 1 && !filteredData[idx]) idx += 1;
+	if (!opened) return open('navigating');
 
-	let item = filteredData[idx];
+	let idx = highlightIndex || 0;
+	if (idx < filteredItems.length - 1) idx += 1;
 
-	if (shouldShowNewItem && idx === filteredData.length) {
-		item = { idx: filteredData.length };
+	if (!filteredItems[idx]) {
+		while (idx < filteredItems.length - 1 && !filteredItems[idx]) idx += 1;
 	}
 
-	if (idx !== highlightIndex && item) {
-		highlightIndex = item.idx;
+	if ((filteredItems[idx] || shouldShowNewItem) && idx !== highlightIndex) {
+		highlightIndex = idx;
 		scrollToSelectedItem(listElement);
 	}
 }
@@ -369,74 +256,63 @@ function down () {
 
 function revert () {
 	if (multiselect) {
-		inputElement.value = inputValue = getInputValue(selectedItems, multiselect);
+		inputValue = getInputValue(selectedItems, multiselect);
 	}
-	else if (originalText && originalText !== inputElement.value) inputElement.value = originalText;
-	else if (value && value.name) inputElement.value = value.name;
-	else inputElement.value = '';
+	else if (previousInputValue && previousInputValue !== inputValue) {
+		inputValue = previousInputValue;
+		value = previousValue;
+	}
+	else if (value && value.name) {
+		inputValue = value.name;
+	}
+	else inputValue = '';
 }
 
 
 function clear () {
-	inputElement.value = '';
-	filter();
+	inputValue = '';
 	requestAnimationFrame(() => inputElement.select());
 }
 
 
 
+
 /*** EVENT LISTENERS ******************************************************************************/
 function onfocus () {
-	originalText = inputElement.value;
-	if (showOnFocus) open({ type: 'navigating' });
+	previousInputValue = inputValue;
+	previousValue = deepCopy(value);
+
+	if (multiselect && value && !selectedItems.length) {
+		if (Array.isArray(value)) selectedItems = deepCopy(value);
+		else if (value && value.name) selectedItems = [deepCopy(value)];
+		else selectedItems = [];
+	}
+
+	if (showOnFocus) open('navigating');
 }
 
 
 function oninput () {
-	open({ type: 'typing' });
-	requestAnimationFrame(filter);
+	open('typing');
+	highlightIndex = 0;
 	hasEdited = true;
-	hasSetValue = false;
-	newItemName = inputElement.value;
 }
 
 
-function onblur () {
-	if (!isSelecting) close();
-}
-
-
-function onListMouseDown () {
-	isSelecting = true;
-}
-
-
-function touchStart (e) {
-	const el = e.target.closest('.combobox-list-item');
-	el.classList.add('blinking');
-}
-
-
-function touchEnd (e) {
-	const el = e.target.closest('.combobox-list-item');
-	requestAnimationFrame(() => el.classList.remove('blinking'));
-}
-
-
-function onclick (item, e) {
+function onItemClick (e: Event, item) {
 	// click should only be handled on touch devices
 	if (isMobile() && e?.type !== 'click') return e.preventDefault();
 	if (!isMobile() && e?.type === 'click') return;
 
-	if (multiselect) selectMultiselect(item);
+	if (multiselect) selectMultiselect(e, item);
 	else {
-		hasSetValue = false;
-		selectSingle(item);
+		selectSingle(e, item);
+		closeAndSelect();
 	}
 }
 
 
-function onkeydown (e) {
+function _onkeydown (e) {
 	if (e.key === 'Tab') return close();
 
 	const fnmap = {
@@ -453,87 +329,73 @@ function onkeydown (e) {
 }
 
 
-function onEnter () {
-	if (!opened) return open({ type: 'navigating' });
-
-	if (multiselect) {
-		close();
-		inputElement.select();
-	}
-	else {
-		hasSetValue = false;
-		selectSingle();
-	}
+function onEnter (e) {
+	if (!opened) return open('navigating');
+	if (multiselect) revert();
+	else selectSingle(e);
+	closeAndSelect();
 }
 
+
 function onSpace (e) {
-	if (!multiselect || !opened) return;
-	const item = filteredData[highlightIndex];
-	onclick(item, e);
+	if (multiselect && opened) {
+		const item = filteredItems[highlightIndex];
+		onItemClick(e, item);
+	}
 }
 
 
 function onEsc (e) {
-	if (clearOnEsc && inputElement.value) {
-		e.stopPropagation();
-		return clear();
-	}
 	if (opened) {
 		e.stopPropagation();
+		if (inputValue && (multiselect || hasEdited)) return clear();
+
 		revert();
-		inputElement.select();
-		return close();
+		return closeAndSelect();
 	}
-	dispatch('keydown', e);
+	onkeydown(e);
 }
 
 
-function onIconMouseDown () {
-	isHiding = opened;
-}
-
-
-function onIconClick () {
-	if (isHiding) close();
-	else open({ type: 'navigating' });
-
-	isHiding = false;
+function onInputClick () {
+	if (opened) return;
+	open('navigating');
 	if (inputElement) inputElement.select();
 }
 
 
+function onIconClick () {
+	if (opened) return close();
+	open('navigating');
+	if (inputElement) inputElement.select();
+}
+
+
+
+
+
 function onResize () {
 	if (!opened) return;
-	if (hideOnResize) return;
 	inputElement.blur();
 	return close();
 }
 
 
-function onViewportResize () {
-	if (!opened) return;
-	alignDropdown(listElement, inputElement);
-}
-
-
 function onDocumentClick (e) {
-	const notEl = element && !element.contains(e.target);
-	const notList = listElement && !listElement.contains(e.target);
-	if (open && notEl && notList) close();
+	const clickedOutside = !e.target.closest('.combobox,.combobox-list');
+	if (opened && clickedOutside) close();
 }
 
 
 function addEventListeners () {
 	window.addEventListener('resize', onResize);
 	document.addEventListener('click', onDocumentClick, true);
-	window.visualViewport.addEventListener('resize', onViewportResize);
 }
 
 
 function removeEventListeners () {
 	window.removeEventListener('resize', onResize);
 	document.removeEventListener('click', onDocumentClick, true);
-	window.visualViewport.removeEventListener('resize', onViewportResize);
 }
 /*** EVENT LISTENERS ******************************************************************************/
 

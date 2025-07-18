@@ -20,7 +20,7 @@ if [ $v != none ]; then
 	npm version $v
 fi
 npm run changelog
-npm run dist
+npm run build
 git add --all
 git commit -am 'release' --no-verify
 git push

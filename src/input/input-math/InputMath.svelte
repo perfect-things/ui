@@ -1,39 +1,37 @@
-<div
-	class="input input-math {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+ <div
+	bind:this={element}
+	class={cls}
+	{...restProps}>
 
-	<Label {label} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} for={_id}/>
+	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+	<div class={['input-inner', { disabled }]}>
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			<Icon name="calculator"/>
 			<input
 				type="text"
 				autocomplete="off"
+				id={_id}
+				name={name}
 				{disabled}
-				id="{_id}"
-				{...$$restProps}
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-				bind:this="{inputElement}"
-				bind:value="{value}"
-				on:input
-				on:keydown="{onkeydown}"
-				on:change="{onchange}"
-				on:paste="{onpaste}"
-				on:focus
-				on:blur>
+				{placeholder}
+				aria-invalid={!!error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				bind:this={inputElement}
+				bind:value
+				onchange={_onchange}
+				onkeydown={_onkeydown}
+				onpaste={_onpaste}>
 		</div>
 	</div>
 </div>
-<script>
-import { createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './InputMath.css';
+import type { InputProps } from '../types';
 import { Icon } from '../../icon';
 import { roundAmount, guid } from '../../utils';
 import { Info } from '../../info-bar';
@@ -41,23 +39,27 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let required = undefined;
-export let disabled = false;
-export let value = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-
-export let element = undefined;
-export let inputElement = undefined;
+let {
+	class: className = '',
+	id = '',
+	name = '',
+	required = undefined,
+	disabled = false,
+	placeholder = undefined,
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onchange = () => {},
+	onkeydown = () => {},
+	...restProps
+}: InputProps = $props();
 
 
 const errorMessageId = guid();
-const dispatch = createEventDispatcher();
 const separator = '.';
 const allowedKeys = [
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -67,45 +69,51 @@ const allowedKeys = [
 ];
 
 
-$:_id = id || $$restProps.name || guid();
+const _id = $derived(id || guid());
+const cls = $derived([
+	'input',
+	'input-math',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+	},
+]);
 
 
-
-function onkeydown (e) {
-	dispatch('keydown', e);
+function _onkeydown (e) {
+	onkeydown(e);
 	if (e.key === 'Enter') {
 		const num = parseAmount(value);
-		value = isNaN(num) ? '' : num;
+		value = String(num) || '';
 		return;
 	}
 	if (allowedKeys.includes(e.key)) return;
 	if (e.metaKey || e.ctrlKey) return;
-	if (e.key === 'v' && e.metaKey) return;
-	if (e.key === 'c' && e.metaKey) return;
-	if (e.key === 'x' && e.metaKey) return;
 	if (e.key === separator) return;
 	e.preventDefault();
 }
 
 
-function onpaste (e) {
-	requestAnimationFrame(() => onchange(e));
+function _onpaste (e) {
+	requestAnimationFrame(() => _onchange(e));
 }
 
 
-function onchange (e) {
+function _onchange (e) {
 	const num = parseAmount(value);
-	value = isNaN(num) ? '' : num;
-	dispatch('change', e);
+	value = String(num) || '';
+	onchange(e, { value });
 }
 
 
-function parseAmount (amount) {
+function parseAmount (amount): number | string {
 	if (!amount) return '';
 	amount = ('' + amount).replace(/[\s,]/g, '').replace(/^-?0+(?=\d)/, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
 	if ((/[+\-\\*/.]+/i).test(amount)) {
-		try { amount = eval(amount); }
+		// eslint-disable-next-line @typescript-eslint/no-implied-eval
+		try { amount = new Function(`return ${amount}`)(); }
 		catch { amount = 0; }
 	}
 	const num = parseFloat(amount);

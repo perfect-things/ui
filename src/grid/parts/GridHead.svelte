@@ -1,28 +1,37 @@
 <thead>
 	<tr>
 		{#if multiselect}
-			<th class="column-check" on:click="{toggleSelectAll}">
-				<Checkbox indeterminate="{$indeterminate}" checked="{$checked}"/>
+			<th class="column-check" onclick={toggleSelectAll}>
+				<Checkbox indeterminate={$indeterminate} checked={$checked}/>
 			</th>
 		{/if}
 		{#if $columns}
-			{#each $columns as column}
+			{#each $columns as column (column.field)}
 				<HeadTh {column} {Data} />
 			{/each}
 		{/if}
 	</tr>
 </thead>
 
-<script>
+<script lang="ts">
+import type { DataStoreType } from '../types';
 import { Checkbox } from '../../input';
 import HeadTh from './GridHeadTh.svelte';
 
-export let multiselect = false;
-export let Data = [];
+interface Props {
+	multiselect?: boolean;
+	Data?: DataStoreType
+}
 
-$:columns = Data.columns;
-$:checked = Data.allSelected;
-$:indeterminate = Data.someSelected;
+const {
+	multiselect = false,
+	Data
+}: Props = $props();
+
+
+const columns = $derived(Data.columns);
+const checked = $derived(Data.allSelected);
+const indeterminate = $derived(Data.someSelected);
 
 
 function toggleSelectAll () {

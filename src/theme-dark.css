@@ -4,26 +4,54 @@
 
 	--ui-color-accent: #bb7a00;
 	--ui-color-accent-semi: #bb7a0066;
+	--ui-color-accent-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-accent), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-accent), #000 30%) 100%
+	);
 
 	--ui-color-highlight: #1859a3;
 	--ui-color-highlight-semi: #1859a366;
 	--ui-color-highlight-1: #1e4572;
+	--ui-color-highlight-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-highlight), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-highlight), #000 30%) 100%
+	);
 
 	--ui-color-secondary: #5a5956;
 	--ui-color-secondary-semi: #5a595666;
-
+	--ui-color-secondary-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-secondary), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-secondary), #000 30%) 100%
+	);
 
 	--ui-color-info: #30506a;
 	--ui-color-info-semi: #30506a99;
+	--ui-color-info-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-info), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-info), #000 30%) 100%
+	);
 
 	--ui-color-success: #33624d;
 	--ui-color-success-semi: #33624d99;
+	--ui-color-success-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-success), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-success), #000 30%) 100%
+	);
 
 	--ui-color-warning: #795001;
 	--ui-color-warning-semi: #79500199;
+	--ui-color-warning-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-warning), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-warning), #000 30%) 100%
+	);
 
 	--ui-color-danger: #943737;
 	--ui-color-danger-semi: #94373799;
+	--ui-color-danger-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-danger), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-danger), #000 30%) 100%
+	);
+
 
 	--ui-color-border: #1b1b1b;
 	--ui-color-border-1: #131313;
@@ -42,11 +70,15 @@
 	--ui-color-text-semi: #fff6;
 	--ui-color-text-1: #bbb;
 	--ui-color-text-2: #888;
+	--ui-color-text-gradient: linear-gradient(to bottom,
+		color-mix(in srgb, var(--ui-color-text), #fff 10%) 0%,
+		color-mix(in srgb, var(--ui-color-text), #000 50%) 100%
+	);
 
 
 	--ui-popup-border: 1px solid #fff3;
 	--ui-popup-background: var(--ui-color-background);
 
 	--ui-shadow-button: 0 1px 0 #000c;
-	--ui-shadow-tooltip: 0 0 0 1px #000, 0 0 5px #0006;
+	--ui-shadow-tooltip: 0 0 0 1px #000, 0 2px 10px #0008;
 }

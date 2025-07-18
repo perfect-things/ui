@@ -9,51 +9,63 @@
 	{/if}
 </div>
 
-<CodeBox tag="Button" text="{buttonText}" {props} />
+<CodeBox tag="Button" text={buttonText} {props} />
 
 <hr>
 
 <div class="button-demo-props">
-	<InputText label="Text" bind:value="{buttonText}"/>
-	<ButtonToggle label="Style" items="{buttonStyles}" value="" on:change="{onStyleChange}" />
-	<ButtonToggle label="Type" items="{buttonTypes}" value="" on:change="{onTypeChange}" />
-	<ButtonToggle label="Icon" items="{buttonIcons}" value="" on:change="{onIconChange}" />
-	<Toggle label="Round" bind:value="{props.round}"/>
-	<Toggle label="Disabled" bind:value="{props.disabled}"/>
+	<InputText label="Text" bind:value={buttonText}/>
+	<ButtonToggle label="Style" items={buttonStyles} value="" onchange={onStyleChange} />
+	<ButtonToggle label="Type" items={buttonTypes} value="" onchange={onTypeChange} />
+	<ButtonToggle label="Icon" items={buttonIcons} value="" onchange={onIconChange} />
+	<Toggle label="Round" bind:value={props.round}/>
+	<Toggle label="Disabled" bind:value={props.disabled}/>
 </div>
 
 
 <hr>
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
 import { Button, ButtonToggle, Toggle, InputText } from '../../../src';
-import { API } from '../../api-table';
 import { CodeBox } from '../../code-example';
+import './Button.css';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'data-', description: 'Dataset attribute allows to pass some data of a primitive type (string, number, boolean), which will be accessible in the <em>on:click</em> event listener, via button reference.' },
-	{ name: 'disabled', description: 'Makes the button <i>disabled</i>' },
-	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
-	{ name: 'info', description: 'Button type: info' },
-	{ name: 'link', description: 'Button style: link' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
+
+	PROPS.info,
+	PROPS.success,
+	PROPS.warning,
+	PROPS.danger,
+	PROPS.round,
+
+	PROPS.icon,
+
+	{ name: 'submit', type: 'boolean', default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
 	{ name: 'outline', description: 'Button style: outline' },
-	{ name: 'round', description: 'Makes the button round' },
-	{ name: 'submit', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> button type is set to <i>submit</i>, otherwise it\'s <i>button</i>' },
-	{ name: 'success', description: 'Button type: success' },
+	{ name: 'link', description: 'Button style: link' },
 	{ name: 'text', description: 'Button style: text' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
-	{ name: 'warning', description: 'Button type: warning' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered when the button is clicked.' }
 ];
 
 
-const props = {};
-let buttonText = 'Demo button';
+const props = $state({
+	round: false,
+	disabled: false,
+	outline: false,
+	text: false,
+	link: false,
+	icon: '',
+	info: false,
+	success: false,
+	warning: false,
+	danger: false,
+});
+
+let buttonText = $state('Demo button');
+
 const buttonStyles = [
 	{ name: 'Normal', value: '' },
 	{ name: 'Outline', value: 'outline' },
@@ -79,23 +91,23 @@ const buttonIcons = [
 
 
 
-function onStyleChange (e) {
+function onStyleChange (e, val) {
 	props.outline = false;
 	props.text = false;
 	props.link = false;
-	setProp(e.detail, true);
+	setProp(val.value, true);
 }
 
-function onTypeChange (e) {
+function onTypeChange (e, val) {
 	props.info = false;
 	props.success = false;
 	props.warning = false;
 	props.danger = false;
-	setProp(e.detail, true);
+	setProp(val.value, true);
 }
 
-function onIconChange (e) {
-	setProp('icon', e.detail);
+function onIconChange (e, val) {
+	setProp('icon', val.value);
 }
 
 function setProp (name, val) {

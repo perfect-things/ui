@@ -1,77 +1,62 @@
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
-	class="panel {className}"
-	class:collapsible
-	class:expanded
-	class:round
-	class:disabled
-	class:info
-	class:success
-	class:warning
-	class:danger
-	inert="{disabled}"
-	bind:this="{element}">
-
+	inert={disabled}
+	class={cls}
+	bind:this={element}
+	{...restProps}>
 	{#if title}
-		<details open="{open}" on:keydown={toggle} on:click={toggle}>
-			<summary class="panel-header" bind:this="{headerEl}" inert="{!collapsible}">
+		<details {open} onkeydown={toggle} onclick={toggle}>
+			<summary class="panel-header" inert={!collapsible} {ontransitionend}>
 				{title}
 				{#if collapsible}
 					<div class="chevron">{@html getIcon('chevronRight')}</div>
 				{/if}
 			</summary>
-			<div class="panel-content"><slot/></div>
+			<div class="panel-content">{@render children?.()}</div>
 		</details>
 	{:else}
-		<div class="panel-content"><slot/></div>
+		<div class="panel-content">{@render children?.()}</div>
 	{/if}
 </div>
 
-<script>
-import { createEventDispatcher , onMount } from 'svelte';
+<script lang="ts">
+import './Panel.css';
+import type { PanelProps } from './types';
 import { getIcon } from '../icon';
-import { animate } from '../utils';
-const dispatch = createEventDispatcher();
-
-let className = '';
-export { className as class };
-export let title = '';
-export let open = false;
-export let round = false;
-export let collapsible = false;
-export let disabled = false;
-export let info = false;
-export let success = false;
-export let warning = false;
-export let danger = false;
-
-export let element = undefined;
 
 
-let headerEl, expanded = open || !title;
-const expandedProps = { height: 0 };
-const collapsedProps = { height: 0 };
+let {
+	class: className = '',
+	title = '',
+	open = $bindable(false),
+
+	round = false,
+	collapsible = false,
+	disabled = false,
+
+	info = false,
+	success = false,
+	warning = false,
+	danger = false,
+
+	element = $bindable(undefined),
+	onopen = () => {},
+	onclose = () => {},
+	children,
+	...restProps
+}: PanelProps = $props();
 
 
+const expanded: boolean = $derived(open || !title);
 
-onMount(calcHeights);
+const cls = $derived([
+	'panel',
+	className,
+	{ collapsible, expanded, round, disabled, info, success, warning, danger }
+]);
 
-function calcHeights () {
-	const wasOpen = open;
-	open = true;
-	requestAnimationFrame(() => {
-		if (!element) return;
-		const wrapCss = getComputedStyle(element);
-		const borderTop = parseInt(wrapCss.borderTopWidth || 0, 10);
-		const borderBottom = parseInt(wrapCss.borderTopWidth || 0, 10);
-		const headerH = headerEl ? headerEl.offsetHeight : 0;
-		expandedProps.height = element.getBoundingClientRect().height + 'px';
-		collapsedProps.height = (headerH + borderTop + borderBottom) + 'px';
-		open = wasOpen;
-	});
-}
 
-export function toggle (e) {
+export function toggle (e?) {
 	if (!collapsible) {
 		if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') e.preventDefault();
 		return;
@@ -87,19 +72,13 @@ export function toggle (e) {
 	if (e.type === 'keydown' && e.key !== ' ') return;
 	e.preventDefault();
 
-	if (expanded) {
-		expanded = false;
-		animate(element, expandedProps, collapsedProps)
-			.then(() => {
-				open = expanded;
-				dispatch('close');
-			});
-	}
-	else {
-		expanded = true;
-		open = true;
-		animate(element, collapsedProps, expandedProps).then(() => dispatch('open'));
-	}
+	open = !open;
+}
+
+
+function ontransitionend () {
+	if (open) onopen();
+	else onclose();
 }
 
 </script>

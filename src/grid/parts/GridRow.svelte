@@ -1,17 +1,17 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <tbody
-	data-id="{id}"
+	data-id={id}
 	class="item item-{id}"
 	tabindex="0"
-	class:row-selected="{item.selected}"
+	class:row-selected={item.selected}
 >
 	<tr>
 		{#if multiselect}
 			<td class="column-check">
-				<Checkbox bind:checked="{item.selected}" tabindex="-1"/>
+				<Checkbox checked={item.selected} tabindex={-1}/>
 			</td>
 		{/if}
-		{#each $columns as column}
+		{#each $columns as column (column.field)}
 			<td class="td-{getType(column)}">
 				{@html cellRenderer(column, item)}
 			</td>
@@ -19,14 +19,39 @@
 	</tr>
 </tbody>
 
-<script>
+<script lang="ts">
+import { onMount, onDestroy } from 'svelte';
+import type { DataStoreType } from '../types';
 import { Checkbox } from '../../input';
-export let item = {};
-export let multiselect = false;
-export let Data = [];
 
-$:columns = Data.columns;
-$:id = item.id || item.field;
+interface Props {
+	item?: any;
+	multiselect?: boolean;
+	Data?: DataStoreType;
+}
+
+let {
+	item = $bindable({}),
+	multiselect = false,
+	Data
+}: Props = $props();
+
+const columns = $derived(Data.columns);
+const id = $derived(item.id || item.field);
+let sub;
+
+onMount(() => {
+	sub = Data.subscribe((data) => {
+		if (data && data.length > 0) {
+			item = data.find(i => i.id === id) || {};
+		}
+	});
+});
+
+onDestroy(() => {
+	sub();
+});
+
 
 function getType (column) {
 	return typeof $Data[0][column.field];

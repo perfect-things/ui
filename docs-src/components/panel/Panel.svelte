@@ -67,29 +67,35 @@
 </Panel>
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+
 import { Panel, Button } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './Panel.css';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'danger', description: 'Panel type: danger' },
-	{ name: 'disabled', description: 'Make the panel disabled.' },
-	{ name: 'collapsible', description: 'If present, the panel will expand/collapse on title click or Enter key or Space.' },
-	{ name: 'info', description: 'Panel type: info' },
-	{ name: 'open', description: 'Panel initial open state.' },
-	{ name: 'round', description: 'Adds rounded corners to the panel.' },
-	{ name: 'success', description: 'Panel type: success' },
-	{ name: 'title', type: 'string', description: 'Panel title.' },
-	{ name: 'warning', description: 'Panel type: warning' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:close', type: 'function', description: 'Triggered after the panel is closed.' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the panel is opened.' },
+const apiProps = <ApiProp[]>[
+
+	PROPS.class,
+	PROPS.disabled,
+	PROPS.bindelement,
+	PROPS.round,
+
+	PROPS.info,
+	PROPS.danger,
+	PROPS.success,
+	PROPS.warning,
+
+	{ name: 'title', type: 'string', description: 'Panel title' },
+	{ name: 'collapsible', description: 'If present, the panel will expand/collapse on title click or Enter key or Space' },
+	{ name: 'open', description: 'Panel initial open state' },
+	{ name: 'onclose', type: 'function', description: 'Triggered after the panel is closed' },
+	{ name: 'onopen', type: 'function', description: 'Triggered after the panel is opened' },
 ];
 
 const exampleHtml = `

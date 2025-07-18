@@ -92,20 +92,20 @@
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
 import { Button, ButtonGroup, PushButton } from '../../../src';
-import { API } from '../../api-table';
+import { API, PROPS } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'round', description: 'Makes the buttons, on both sides of the group, round.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
+	PROPS.round,
 ];
 
 
@@ -115,13 +115,6 @@ const exampleHtml = `
     <Button>Two</Button>
     <Button>Three</Button>
 </ButtonGroup>
-
-<script>
-function onChange (e) {
-    const { value, oldValue } = e.detail;
-    console.log({ value, oldValue });
-}
-&lt;/script>
 `;
 
 </script>

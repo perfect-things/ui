@@ -1,15 +1,27 @@
-<div class="button-group {className}" class:round bind:this="{element}">
+<div
+	bind:this={element}
+	class={['button-group', className, { round }]}
+	{...restProps}>
+
 	<div class="button-group-scroller">
 		<div class="button-group-inner" role="group">
-			<slot/>
+			{@render children?.()}
 		</div>
 	</div>
 </div>
 
-<script>
-let className = '';
-export { className as class };
-export let round = undefined;	// round button
-export let element = undefined;
+<script lang="ts">
+import type { ButtonGroupProps } from './types';
+import './ButtonGroup.css';
+
+
+let {
+	class: className = '',
+	round = undefined,
+	element = $bindable(undefined),
+	children,
+	...restProps
+}: ButtonGroupProps = $props();
+
 
 </script>

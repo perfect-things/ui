@@ -1,33 +1,46 @@
-<pre><code class="language-json">{@html code}</code></pre>
-
-<script>
-import { afterUpdate } from 'svelte';
-export let value ='';
-let code ='';
+{#key code}<pre class="language-json"><code class="language-json">{@html code}</code></pre>{/key}
 
 
-afterUpdate(() => {
-	requestAnimationFrame(update);
-});
+<script lang="ts">
+interface Props {
+	value?: string | object;
+}
+
+const { value = '' }: Props = $props();
+
+const code = $derived(highlight(value));
 
 
-function update () {
-	if (typeof value !== 'string') value = stringify(value);
-	code = window.Prism.highlight(value, window.Prism.languages.json, 'json');
+
+
+function highlight (json: string | object): string {
+	json = stringify(value);
+
+	// @ts-ignore
+	const prism = window.Prism;
+	if (!prism || !prism.highlight) {
+		console.warn('Prism.js is not loaded. Please include it in your project.');
+		return json;
+	}
+	return prism.highlight(json, prism.languages.json, 'json');
 }
 
 
 
-function stringify (json) {
+function stringify (json): string {
 	if (!json) return '';
-	let s = JSON.stringify(json);
-	s = s.replace(/([:,])/g, '$1 ');
-	if (s.match(/^{/)) s = s.replace(/{/g, '{ ');
-	else {
-		if (s.match(/}/)) s = s.replace(/\]/g, '\n]');
-		s = s.replace(/{/g, '\n    { ');
+	if (typeof json === 'string') return json;
+
+	let s = JSON.stringify(json) || '';
+	s = s.replace(/([:,])/g, '$1 ');						// add space after colon and comma
+	if (s.match(/^{/)) {
+		s = s.replace(/{/g, '{ ');							// value is an object - add space after opening brace
 	}
-	s = s.replace(/}/g, ' }');
+	else {													// value is an array
+		if (s.match(/}/)) s = s.replace(/\]/g, '\n]');		// if array of objects - put closing bracket on new line
+		s = s.replace(/{/g, '\n    { ');					// indent opening brace
+	}
+	s = s.replace(/}/g, ' }');								// space before closing brace
 	return s;
 }
 

@@ -1,10 +1,10 @@
 <UIButton text round
 	icon="sidebarLeft"
-	class="nav-toggler {expanded ? 'expanded' : ''} {swiping ? 'swiping' : ''}"
-	bind:element="{navTogglerBtn}"
-	on:click="{toggleNav}"/>
+	class={['nav-toggler', { expanded, swiping }]}
+	bind:element={navTogglerBtn}
+	onclick={toggleNav}/>
 
-<aside class:expanded class:swiping bind:this="{sidebarEl}">
+<aside class={{ expanded, swiping }} bind:this={sidebarEl}>
 	<menu>
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
@@ -12,8 +12,8 @@
 
 		<h3>Buttons</h3>
 		<NavItem name="Button" {active} />
-		<NavItem name="Push Button" {active} />
 		<NavItem name="Button Group" {active} />
+		<NavItem name="Push Button" {active} />
 
 		<h3>Inputs</h3>
 		<NavItem name="Button Toggle" {active} />
@@ -37,8 +37,8 @@
 
 		<h3>Messaging</h3>
 		<NavItem name="InfoBar" {active} />
-		<NavItem name="Notification Center" {active} />
 		<NavItem name="MessageBox" {active} />
+		<NavItem name="Notification Center" {active} />
 		<NavItem name="Tooltip" {active} />
 
 
@@ -53,12 +53,12 @@
 
 
 		<h3>Generic</h3>
-		<NavItem name="Menu" {active} />
-		<NavItem name="Tag" {active} />
-		<NavItem name="Icon" {active} />
-		<NavItem name="Utils" {active} />
-		<!-- <NavItem name="Splitter" {active} /> -->
 		<NavItem name="Color Palette" {active} />
+		<NavItem name="Icon" {active} />
+		<NavItem name="Menu" {active} />
+		<NavItem name="Splitter" {active} />
+		<NavItem name="Tag" {active} />
+		<NavItem name="Utils" {active} />
 	</menu>
 
 </aside>
@@ -67,39 +67,47 @@
 	icon="arrowNarrowUp"
 	class="btn-scroll-top {showScrollTopBtn ? '' : 'hidden'}"
 	title="Scroll to the top"
-	on:click="{scrollToTop}" />
+	onclick={scrollToTop} />
 
-<svelte:window on:hashchange="{onhashchange}" on:popstate="{onpopstate}" />
+<svelte:window {onhashchange} {onpopstate} />
 
 
 <script>
+import './Nav.css';
 import { onDestroy, onMount } from 'svelte';
 import { Button as UIButton, isInScrollable, debounce } from '../../src';
 import VanillaSwipe from 'vanilla-swipe';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
+import ChangelogArchive from '../pages/changelog-archive.svelte';
 import * as TestComponents from '../components';
 
-const components = { GetStarted, Changelog, ...TestComponents, };
 
-let [active, heading] = getSection();
-export let component = components[active];
-
+const components = { GetStarted, Changelog, ChangelogArchive, ...TestComponents, };
 const SIDEBAR_WIDTH = 220;
 const swipeSlowDownFactor = 2.5;
 const onScroll = debounce(checkScrollOffset);
 
-let showScrollTopBtn = false;
-let expanded = false;
+
+let { component = $bindable() } = $props();
+
+let [active, heading] = $state(getSection());
+let showScrollTopBtn = $state(false);
+let expanded = $state(false);
 let wasExpanded = false;
-let swiping = false;
-let sidebarEl, navTogglerBtn;
+let swiping = $state(false);
+let sidebarEl = $state();
+let navTogglerBtn = $state();
 
 
-$: {
+$effect(() => {
+	component = components[active] || components[component] || GetStarted;
+});
+
+$effect(() => {
 	waitForElementAndScroll(heading);
-}
+});
 
 
 onMount(() => {
@@ -136,6 +144,7 @@ function onSwipeStart (e) {
 	wasExpanded = expanded;
 	swiping = true;
 }
+
 
 function onSwipe (e, data) {
 	if (window.innerWidth > 700) return;
@@ -214,7 +223,6 @@ function onTap (e) {
 }
 
 
-
 function toggleNav () {
 	expanded = !expanded;
 	wasExpanded = expanded;
@@ -230,6 +238,7 @@ function scrollToTop () {
 	}, 300);
 }
 
+
 function waitForElementAndScroll (selector, count = 10) {
 	if (count === 0) return;
 	const el = document.getElementById(selector);
@@ -239,28 +248,35 @@ function waitForElementAndScroll (selector, count = 10) {
 
 
 function getSection () {
-	let [_section, _heading] = location.hash.substr(1).split('/');
+	let [_section, _heading] = location.hash.substring(1).split('/');
 	_section = _section || 'GetStarted';
 	_heading = _heading || 'top';
 	document.body.className = 'section-' + _section.toLocaleLowerCase();
 	return [_section, _heading];
 }
 
+
 function onhashchange () {
-	[active, heading] = getSection();
+	const [newActive, newHeading] = getSection();
+	if (newActive !== active) {
+		document.scrollingElement.scrollTop = 0;
+		active = newActive;
+	}
+	heading = newHeading;
 	component = components[active];
+	// @ts-ignore
 	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
-	document.scrollingElement.scrollTop = 0;
 }
+
 
 function onpopstate () {
 	expanded = false;
 	wasExpanded = expanded;
 }
 
+
 function checkScrollOffset () {
 	showScrollTopBtn = document.scrollingElement.scrollTop > 200;
 }
-
 
 </script>

@@ -1,39 +1,33 @@
-<!-- svelte-ignore a11y-no-static-element-interactions a11y-no-noninteractive-tabindex -->
-<div
-	{title}
-	class="input input-tag {className}"
-	class:has-error="{error}"
-	class:has-value="{value !== ''}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
-
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<div bind:this={element} class={cls} {...restProps}>
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
 	<div
-		class="input-inner"
-		class:disabled
-		inert="{disabled}"
+		class={['input-inner', { disabled }]}
 		tabindex="0"
-		on:keydown="{onkeydown}"
-		on:click="{open}"
-		bind:this="{boxElement}">
+		inert={disabled}
+		{onkeydown}
+		onclick={open}
+		bind:this={boxElement}>
 
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			<Icon name="tag"/>
+			<!-- eslint-disable svelte/require-each-key -->
 			{#each _value as tag}
-				<Tag icon="close" clickable on:click="{e => removeTagFromValue(tag, e)}">{tag}</Tag>
+				<Tag icon="close" clickable onclick={e => removeTagFromValue(e, tag)}>{tag}</Tag>
 			{/each}
-
 			<input
+				id={_id}
+				type="hidden"
 				{name}
 				{disabled}
-				id="{_id}"
-				type="hidden"
-				bind:value="{value}"
-				bind:this="{inputElement}"/>
+				{placeholder}
+				{value}
+				bind:this={inputElement}/>
 		</div>
 	</div>
 </div>
@@ -43,23 +37,27 @@
 	dontHideOnTargetClick
 	setMinWidthToTarget
 	class="input-tag-popover"
-	on:close="{onclose}"
-	bind:element="{listElement}"
-	bind:this="{listPopover}">
+	{onclose}
+	bind:element={listElement}
+	bind:this={listPopover}>
 
 	<div class="input-tag-list-tags">
-		{#each _tags as tag(tag.text)}
-			<Tag clickable icon="add" disabled="{tag.disabled}" on:click="{() => addTagToValue(tag.text)}">{tag.text}</Tag>
+		{#each _tags as tag (tag.text)}
+			<Tag clickable
+				icon="add"
+				disabled={tag.disabled}
+				onclick={e => addTagToValue(e, tag.text)}>{tag.text}</Tag>
 		{/each}
 	</div>
-	<form class="input-tag-list-add-row" on:submit|preventDefault="{addNewTag}">
-		<InputText bind:value="{newTagName}"/>
+	<form class="input-tag-list-add-row" onsubmit={addNewTag}>
+		<InputText bind:value={newTagName}/>
 		<Button submit link icon="add"/>
 	</form>
 </Popover>
 
-<script>
-import { beforeUpdate, createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './InputTag.css';
+import type { InputTagProps, TagItem } from './types';
 import { InputText } from '../input-text';
 import { Button } from '../../button';
 import { Popover } from '../../popover';
@@ -71,39 +69,55 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = '';
-export let disabled = false;
-export let title = false;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-export let value = '';
-export let tags = [];
 
-export let element = undefined;
-export let inputElement = undefined;
-export let boxElement = undefined;
-export let listElement = undefined;
+let {
+	class: className = '',
+	id = '',
+	name = '',
+	disabled = false,
+	placeholder = undefined,
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	tags = [],
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	boxElement = $bindable(undefined),
+	listElement = $bindable(undefined),
+	onchange = () => {},
+	...restProps
+}: InputTagProps = $props();
 
-const dispatch = createEventDispatcher();
+
+
 const errorMessageId = guid();
-let newTagName = '';
 let opened = false;
-let listPopover;
-let _tags = [];
+let listPopover: Popover;
 
-$:_id = id || name || guid();
-$:_value = valueToArray(value);
+let newTagName = $state('');
+let _tags = $state<TagItem[]>([]);
+
+const _id = $derived(id || guid());
+const _value = $derived(valueToArray(value));
+const cls = $derived([
+	'input',
+	'input-tag',
+	className,
+	{
+		'has-error': !!error,
+		'has-value': _value.length > 0,
+		'label-on-the-left': labelOnTheLeft
+	},
+]);
 
 
-beforeUpdate(hydrateTags);
+
+$effect(hydrateTags);
 
 
-function hydrateTags () {
+function hydrateTags (): void {
 	const val = valueToArray(value);
 	_tags = tags.map(tag => {
 		return { text: tag, disabled: val.includes(tag) };
@@ -111,68 +125,68 @@ function hydrateTags () {
 }
 
 
-function open () {
+function open (): Promise<void> {
 	if (opened) return;
-	return listPopover.open(boxElement).then(() => opened = listPopover.isOpened());
+	return listPopover
+		.open(boxElement)
+		.then(() => {
+			opened = listPopover.isOpened();
+		});
 }
 
 
-function onclose () {
+function onclose (): void {
 	opened = false;
 }
 
 
-function updatePosition () {
+function updatePosition (): void {
 	requestAnimationFrame(listPopover.updatePosition);
 }
 
 
-function onkeydown (e) {
+function onkeydown (e: KeyboardEvent): Promise<void> {
 	if (e.key === 'Enter') return open();
 	if (e.key === 'ArrowDown') {
 		e.preventDefault();
-		return open().then(() => {
-			listElement.querySelector('.ui-tag').focus();
+		return open()?.then(() => {
+			listElement?.querySelector('.ui-tag')?.focus();
 		});
 	}
 }
 
 
-function valueToArray (val) {
+function valueToArray (val: string): string[] {
 	return val.split(/[, ;]/).map(tag => tag.trim()).filter(tag => tag !== '');
 }
 
 
-function setValue (arr) {
+function setValue (e: Event, arr: string[]): void {
 	// unique list of tags
-	value = [...new Set(arr)].join(', ');
+	value = [...new Set(arr)].join(',');
 	updatePosition();
-	dispatch('change', { value });
+	onchange(e, { value });
 }
 
-function addTagToValue (tag) {
+function addTagToValue (e: Event, tag: string): void {
 	const val = valueToArray(value);
 	val.push(tag);
-	setValue(val);
+	setValue(e, val);
 }
 
 
-function removeTagFromValue (tag, e) {
-	if (e && e.detail && e.detail.originalEvent) e.detail.originalEvent.stopPropagation();
-
+function removeTagFromValue (e: Event, tag: string): void {
 	const val = valueToArray(value).filter(t => t !== tag);
-	// wait for docclick in popover to fire
-	// before removing the tag from the value
-	// so that the popover can check that the click was within the target and do nothing
-	requestAnimationFrame(() => setValue(val));
+	setValue(e, val);
 }
 
 
-function addNewTag () {
+function addNewTag (e: Event): void {
+	e.preventDefault();
 	const val = valueToArray(value);
 	const newTags = valueToArray(newTagName);
 	newTagName = '';
-	requestAnimationFrame(() => setValue([...val, ...newTags]));
+	setValue(e, [...val, ...newTags]);
 }
 
 </script>

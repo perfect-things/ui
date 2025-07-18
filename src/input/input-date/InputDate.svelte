@@ -1,69 +1,67 @@
 <div
-	class="input input-date {className}"
-	class:open
-	class:native="{useNative}"
-	aria-expanded="{open}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+	class={cls}
+	bind:this={element}
+	aria-expanded={open}
+	{...restProps}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+	<div class={['input-inner', { disabled }]}>
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			<Button
 				link
 				icon="calendar"
 				class="input-date-button"
-				tabindex="-1"
-				on:mousedown="{onIconMouseDown}"
-				on:click="{onIconClick}"/>
+				tabindex={-1}
+				{disabled}
+				onmousedown={onIconMouseDown}
+				onclick={onIconClick}/>
 
 			{#if useNative}
 				<input
 					type="date"
 					class="prevent-scrolling-on-focus"
-					aria-invalid="{error}"
-					aria-errormessage="{error ? errorMessageId : undefined}"
-					aria-required="{required}"
-					{title}
+					aria-invalid={!!error}
+					aria-errormessage={error ? errorMessageId : undefined}
+					aria-required={required}
+					{placeholder}
 					{name}
 					{disabled}
-					id="{_id}"
-					on:change="{onchange}"
-					bind:this="{inputElement}"
-					bind:value="{value}">
+					id={_id}
+					onchange={_onchange}
+					bind:this={inputElement}
+					bind:value>
 			{:else}
 				<input
 					type="text"
 					autocomplete="off"
 					class="prevent-scrolling-on-focus"
-					aria-invalid="{error}"
-					aria-errormessage="{error ? errorMessageId : undefined}"
-					aria-required="{required}"
+					aria-invalid={!!error}
+					aria-errormessage={error ? errorMessageId : undefined}
+					aria-required={required}
+					id={_id}
 					{placeholder}
-					{title}
 					{name}
 					{disabled}
-					id="{_id}"
-					on:changeDate="{onchange}"
-					on:input="{oninput}"
-					on:keydown|capture="{onkeydown}"
-					on:show="{onshow}"
-					on:hide="{onhide}"
-					on:blur={onblur}
-					bind:this="{inputElement}"
-					bind:value="{value}">
+					{oninput}
+					{onblur}
+					{...({ onshow, onhide } as any)}
+					onchangeDate={_onchange}
+					onkeydowncapture={_onkeydown}
+					bind:this={inputElement}
+					bind:value>
 			{/if}
 		</div>
 	</div>
 </div>
 
-<script>
-import { onMount, afterUpdate, createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './InputDate.css';
+import type { InputDateProps } from './types';
+import { onMount } from 'svelte';
 import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
 import { Button } from '../../button';
@@ -73,57 +71,72 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let format = 'yyyy-mm-dd';
-export let value = '';
-export let placeholder = format;
-export let elevate = false;
-export let showOnFocus = false;
-export let orientation = 'auto';	// '[left|right|auto] [top|bottom|auto]'
-export let disabled = false;
-export let required = undefined;
-export let id = '';
-export let label = '';
-export let title = undefined;
-export let name = undefined;
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-export let useNativeOnMobile = false;
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	disabled = undefined,
+	required = undefined,
+	value = $bindable(),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	format = 'yyyy-mm-dd',
+	placeholder = format,
+	elevate = false,
+	showOnFocus = false,
+	orientation = 'auto',	// '[left|right|auto] [top|bottom|auto]'
+	useNativeOnMobile = false,
+	onchange = () => {},
+	onkeydown = () => {},
+	...restProps
+}: InputDateProps = $props();
 
-export let element = undefined;
-export let inputElement = undefined;
-
-$:_id = id || name || guid();
-$:elevated = elevate === true || elevate === 'true';
-
-const errorMessageId = guid();
-const dispatch = createEventDispatcher();
-const useNative = isMobile() && (useNativeOnMobile === true || useNativeOnMobile === 'true');
 
 let picker;
-let open = !!useNative;
 let isHiding = false;
+const errorMessageId = guid();
+const useNative = isMobile() && useNativeOnMobile;
+
+let open = $state(!!useNative);
+
+const _id = $derived(id || guid());
+const cls = $derived([
+	'input',
+	'input-date',
+	className,
+	{
+		open,
+		native: useNative,
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+	},
+]);
+
 
 
 onMount(initDatePicker);
-afterUpdate(() => {
+
+$effect(() => {
 	if (value !== picker.getDate(format)) oninput();
 });
+
 
 function initDatePicker () {
 	if (useNative) return;
 	picker = new Datepicker(inputElement, {
 		autohide: true,
 		buttonClass: 'button button-text',
-		container: elevated ? document.body : undefined,
+		container: elevate ? document.body : undefined,
 		format,
 		todayBtn: true,
 		todayBtnMode: 1,
 		orientation,
 		todayHighlight: true,
-		showOnFocus: (showOnFocus === 'true' || showOnFocus === true),
+		showOnFocus: showOnFocus,
 		prevArrow: getIcon('chevronLeft'),
 		nextArrow: getIcon('chevronRight'),
 		updateOnBlur: true,
@@ -131,26 +144,24 @@ function initDatePicker () {
 	});
 }
 
-function onkeydown (e) {
+function _onkeydown (e) {
 	const isActive = picker.active;
-	const params = { event: e, component: picker };
 	if (e.key === 'Escape') {
 		if (isActive) e.stopPropagation();
-		else dispatch('keydown', params);
+		else onkeydown(e, picker);
 		requestAnimationFrame(() => picker.hide());
 	}
 	else if (e.key === 'Enter') {
 		if (isActive) e.preventDefault();
-		else dispatch('keydown', params);
+		else onkeydown(e, picker);
 		requestAnimationFrame(() => {
 			picker.hide();
 			if (!inputElement) return;
 			if (value !== inputElement.value) value = inputElement.value;	// set value first
-			dispatch('keydown', params);									// trigger with new value
+			onkeydown(e, picker);									// trigger with new value
 		});
 	}
-
-	else dispatch('keydown', params);
+	else onkeydown(e, picker);
 
 	// prevents picker's events in Safari
 	// if (e.key.includes('Arrow') && picker.active) {
@@ -171,12 +182,14 @@ function oninput () {
 	});
 }
 
-function onchange () {
+function _onchange (e) {
 	if (picker) value = picker.getDate(format);
 	else value = inputElement.value;
-	dispatch('change', value);
+	onchange(e, { value });
 }
 
+// Datepicker publishes these 2 events (onshow, onhide) on the input element
+// the weird syntax on <input> tag is used to ignore the lint errors on non-standard attributes
 function onshow () {
 	open = true;
 }

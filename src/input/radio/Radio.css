@@ -1,4 +1,4 @@
-/* more styling defined in ../check-and-radio.css */
+/* more styling defined in ../input.css .check-and-radio {} */
 
 .radio {
 	min-width: 26ch;
@@ -8,21 +8,6 @@
 	--ui-radio-padding: var(--ui-margin-s);
 }
 
-
-.radio input {
-	border-radius: 10rem;
-	width: 1.3rem;
-	height: 1.3rem;
-}
-.radio input:focus { box-shadow: none }
-.radio input::after {
-	background: var(--ui-color-text-1);
-	width: 65%;
-	height: 65%;
-	border-radius: inherit;
-}
-
-
 .radio-inner {
 	display: flex;
 	flex-flow: column;
@@ -30,7 +15,7 @@
 	justify-content: flex-start;
 	width: 100%;
 	padding: 0;
-	border: 1px solid  var(--ui-color-border);
+	border: 1px solid var(--ui-color-border);
 	border-radius: calc(var(--ui-border-radius) + var(--ui-radio-padding));
 	background-color: var(--ui-color-background-input);
 	overflow: hidden;
@@ -50,7 +35,7 @@
 }
 
 
-.radio-item {
+.radio .radio-item {
 	display: flex;
 	flex-flow: row;
 	align-items: center;
@@ -62,16 +47,40 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.radio-item.disabled { opacity: 0.5; }
-.radio-item.disabled input { opacity: 1; }
+.radio .radio-item input {
+	border-radius: 10rem;
+	margin: 0;
+}
+
+.radio .radio-item input:focus {
+	box-shadow: none
+}
+
+.radio .radio-item input::after {
+	width: 70%;
+	height: 70%;
+	border-radius: inherit;
+	background: var(--ui-color-text-gradient);
+}
+
+
+.radio .radio-item.disabled {
+	opacity: 0.5;
+}
+
+.radio .radio-item.disabled input {
+	opacity: 1;
+}
 
 .radio-item:not(.disabled):focus-within,
-.radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); }
+.radio-item:not(.disabled):hover {
+	background-color: var(--ui-color-highlight-1);
+}
 
 
 
-.radio-inner:focus-within,
-.radio-inner:has(:active):not(.disabled) {
+.radio-inner:not(.disabled):focus-within,
+.radio-inner:not(.disabled):has(:active) {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
@@ -80,7 +89,10 @@
 	border-color: var(--ui-color-danger);
 	background-color: var(--ui-color-danger-semi);
 }
-.radio.has-error .info-bar-error { background-color: transparent; }
+
+.radio.has-error .info-bar-error {
+	background-color: transparent;
+}
 
 
 .has-error .radio-inner:focus-within,

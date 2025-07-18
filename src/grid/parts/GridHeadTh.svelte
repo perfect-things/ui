@@ -1,28 +1,39 @@
 <th
-	title="{column.label}"
+	title={column.label}
 	class="th-sortable th-{type}"
 	tabindex="0"
-	on:keydown="{e => e.key === 'Enter' && sort()}"
-	on:click="{sort}">
+	onkeydown={e => e.key === 'Enter' && sort()}
+	onclick={sort}>
 		<div class="cell-aligner">
 			<span>{column.label || column.field}</span>
 			{#if column.field === $sortField}
-				<Icon name="{sortIcon}"/>
+				<Icon name={sortIcon}/>
 			{/if}
 		</div>
 </th>
 
-<script>
+<script lang="ts">
+import type { DataStoreType } from '../types';
 import { Icon } from '../../icon';
-export let column = {};
-export let Data = [];
+
+interface Props {
+	column?: {
+		field: string;
+		label?: string;
+	};
+	Data?: DataStoreType;
+}
+
+const {
+	column = { field: '' },
+	Data
+}: Props = $props();
 
 
-$:sortField = Data.sortField;
-$:sortOrder = Data.sortOrder;
-$:sortIcon = $sortOrder === 'ASC' ? 'arrowNarrowDown' : 'arrowNarrowUp';
-
-$:type = typeof $Data[0][column.field];	// used to e.g. align numbers to the right
+const sortField = $derived(Data.sortField);
+const sortOrder = $derived(Data.sortOrder);
+const sortIcon = $derived($sortOrder === 'ASC' ? 'arrowNarrowDown' : 'arrowNarrowUp');
+const type = $derived(typeof $Data[0][column.field]);	// used to e.g. align numbers to the right
 
 
 function sort () {

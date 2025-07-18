@@ -1,45 +1,55 @@
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
 	role="dialog"
 	aria-modal="true"
-	aria-label="{title}"
-	class="dialog-backdrop {className}"
-	class:opened
-	bind:this="{element}"
-	on:mousedown="{onBackdropMousedown}"
-	on:click="{onBackdropClick}">
-	<div class="dialog" class:no-title="{!title}" bind:this="{dialogEl}">
-		<div tabindex="0" class="focus-trap focus-trap-top" on:focus="{focusLast}"></div>
+	aria-label={title}
+	bind:this={element}
+	class={cls}
+	onmousedown={onBackdropMousedown}
+	onclick={onBackdropClick}
+	{...restProps}>
+	<div class="dialog" class:no-title={!title} bind:this={dialogEl}>
+		<div tabindex="0" class="focus-trap focus-trap-top" onfocus={focusLast}></div>
 		<h1 class="dialog-header">{title}</h1>
-		<div class="dialog-content" bind:this="{contentEl}"><slot/></div>
-		<div class="dialog-footer" bind:this="{footerEl}"><slot name="footer"/></div>
-		<div tabindex="0" class="focus-trap focus-trap-bottom" on:focus="{focusFirst}"></div>
+		<div class="dialog-content" bind:this={contentEl}>{@render children?.()}</div>
+		<div class="dialog-footer" bind:this={footerEl}>{@render footer?.()}</div>
+		<div tabindex="0" class="focus-trap focus-trap-bottom" onfocus={focusFirst}></div>
 	</div>
 </div>
-<svelte:options accessors={true}/>
+
+<script lang="ts">
+import './Dialog.css';
+import type { DialogProps } from './types';
+import { onMount } from 'svelte';
+import { UI } from '../utils';
 
 
-<script>
-import { createEventDispatcher, onMount } from 'svelte';
-import { ANIMATION_SPEED, FOCUSABLE_SELECTOR } from '../utils';
+let {
+	class: className = '',
+	title = '',
+	opened = $bindable(false),
+	skipFirstFocus = false,
+	modal = false,
+	element = $bindable(),
+	children,
+	footer,
+	onopen = () => {},
+	onclose = () => {},
+	...restProps
+}: DialogProps = $props();
 
 
-let className = '';
-export { className as class };
-export let title = '';
-export let opened = false;
-export let skipFirstFocus = false;
-export let modal = false;
+let dialogEl: HTMLElement = $state();
+let contentEl: HTMLElement = $state();
+let footerEl: HTMLElement = $state();
+let triggerEl: HTMLElement = $state();
+let openTimer, closeTimer, scrollPos;
 
-export let element;
-
-const dispatch = createEventDispatcher();
-let dialogEl, contentEl, footerEl, triggerEl, openTimer, closeTimer, scrollPos;
-
-
+const cls = $derived([
+	'dialog-backdrop',
+	className,
+	{ opened }
+]);
 
 onMount(() => {
 	document.body.appendChild(element);
@@ -49,8 +59,8 @@ onMount(() => {
 function focusFirst () {
 	let first = getFocusableElements().shift();
 	const last = getFocusableElements().pop();
-	if (!first && !last) {
-		contentEl.setAttribute('tabindex', 0);
+	if (!first && !last && contentEl) {
+		contentEl.setAttribute('tabindex', '0');
 		first = contentEl;
 	}
 	if (last) last.scrollIntoView({ block: 'end' });
@@ -62,7 +72,7 @@ function focusLast () {
 	const first = getFocusableElements().shift();
 	let last = getFocusableElements().pop();
 	if (!first && !last) {
-		contentEl.setAttribute('tabindex', 0);
+		contentEl.setAttribute('tabindex', '0');
 		last = contentEl;
 	}
 	if (first) first.scrollIntoView({ block: 'end' });
@@ -71,8 +81,9 @@ function focusLast () {
 
 
 function getFocusableElements () {
-	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
-	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
+	if (!dialogEl || !contentEl || !footerEl) return [];
+	const contentElements = Array.from(contentEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
+	const footerElements = Array.from(footerEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
 	return [...contentElements, ...footerElements];
 }
 
@@ -140,7 +151,7 @@ function freezeBody (freeze) {
 }
 
 
-export function open (openedBy) {
+export function open (openedBy?) {
 	if (opened) return;
 
 	if (openedBy instanceof Event) openedBy = openedBy.target;
@@ -150,17 +161,18 @@ export function open (openedBy) {
 		triggerEl.setAttribute('aria-haspopup', 'true');
 		triggerEl.setAttribute('aria-expanded', 'true');
 	}
-
-	element.style.display = 'flex';
-	if (openTimer) clearTimeout(openTimer);
-	openTimer = setTimeout(() => {
-		opened = true;
-		element.style.display = 'flex';
-		if (skipFirstFocus !== true && skipFirstFocus !== 'true') focusFirst();
-		document.addEventListener('keydown', onDocKeydown);
-		freezeBody(true);
-		dispatch('open');
-	}, 100);
+	if (element) element.style.display = 'flex';
+	return new Promise<void>(resolve => {
+		if (openTimer) clearTimeout(openTimer);
+		openTimer = setTimeout(() => {
+			freezeBody(true);
+			opened = true;
+			if (!skipFirstFocus) focusFirst();
+			document.addEventListener('keydown', onDocKeydown);
+			onopen();
+			resolve();
+		}, UI.ANIMATION_SPEED / 2);
+	});
 }
 
 
@@ -168,17 +180,20 @@ export function close () {
 	if (!opened) return;
 	opened = false;
 	if (triggerEl && triggerEl.focus) triggerEl.focus();
-	if (closeTimer) clearTimeout(closeTimer);
-	closeTimer = setTimeout(() => {
-		opened = false;
-		element.style.display = 'none';
-		document.removeEventListener('keydown', onDocKeydown);
-		if (triggerEl && triggerEl !== document.body) {
-			triggerEl.removeAttribute('aria-expanded');
-		}
-		freezeBody(false);
-		dispatch('close');
-	}, $ANIMATION_SPEED);
+	return new Promise<void>(resolve => {
+		if (closeTimer) clearTimeout(closeTimer);
+		closeTimer = setTimeout(() => {
+			opened = false;
+			element.style.display = 'none';
+			document.removeEventListener('keydown', onDocKeydown);
+			if (triggerEl && triggerEl !== document.body) {
+				triggerEl.removeAttribute('aria-expanded');
+			}
+			freezeBody(false);
+			onclose();
+			resolve();
+		}, UI.ANIMATION_SPEED);
+	});
 }
 
 </script>

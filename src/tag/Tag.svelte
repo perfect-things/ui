@@ -1,46 +1,56 @@
 <div
-	class="ui-tag {className} {colorClass}"
-	class:round
-	class:dark="{color && isColorDark(color)}"
-	class:light="{color && !isColorDark(color)}"
-	class:disabled
-	class:clickable
-	style="{color ? `background-color: ${color};` : ''}"
 	role="button"
-	tabindex="{disabled || !clickable ? undefined : 0}"
-	inert="{disabled || !clickable}"
-	bind:this="{element}"
-	on:keydown="{onkeydown}"
-	on:click="{onclick}">
-	{#if icon}
-		<Icon name="{icon}"/>
-	{/if}
-	<div class="ui-tag-label"><slot/></div>
+	bind:this={element}
+	{inert}
+	{tabindex}
+	class={cls}
+	{style}
+	{onclick}
+	onkeydown={_onkeydown}
+	{...restProps}>
+	<Icon name={icon}/>
+	<div class="ui-tag-label">{@render children?.()}</div>
 </div>
 
-<script>
-import { createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './Tag.css';
+import type { TagProps } from './types';
 import { Icon } from '../icon';
 import { isColorDark } from '../utils';
 
-const dispatch = createEventDispatcher();
 
-let className = '';
-export { className as class };
-export let round = false;
-export let icon = undefined;
-export let color = undefined;
-export let element = undefined;
-export let disabled = false;
-export let clickable = false;
+let {
+	class: className = '',
+	round = false,
+	icon = undefined,
+	color = undefined,
+	element = $bindable(undefined),
+	disabled = false,
+	clickable = false,
+	onclick = () => {},
+	children,
+	...restProps
+}: TagProps = $props();
 
-$: colorClass = (['info', 'warning', 'danger', 'success'].includes(color) ? color : '');
 
-function onclick (e) {
-	dispatch('click', { target: element, originalEvent: e });
-}
+const cls = $derived([
+	'ui-tag',
+	className,
+	color,
+	{
+		round,
+		disabled,
+		clickable,
+		dark: color && isColorDark(color),
+		light: color && !isColorDark(color)
+	}
+]);
 
-function onkeydown (e) {
+const inert = $derived(disabled || !clickable);
+const style = $derived(color ? `background-color: ${color};` : '');
+const tabindex = $derived(inert ? undefined : 0);
+
+function _onkeydown (e) {
 	if (e.key === 'Enter' || e.key === ' ') onclick(e);
 }
 </script>

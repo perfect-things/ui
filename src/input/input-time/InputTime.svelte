@@ -1,40 +1,32 @@
-<div
-	class="input input-time {className}"
-	class:has-error="{error}"
-	class:has-value="{value !== ''}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+<div bind:this={element} class={cls} {...restProps}>
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
-
-	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+	<div class={['input-inner', { disabled }]}>
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
 			<Icon name="clock"/>
 
 			<input
-				id="{_id}"
-				name="{name}"
+				id={_id}
 				autocomplete="off"
 				type="time"
+				{name}
 				{disabled}
-				{...$$restProps}
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-				bind:this="{inputElement}"
-				bind:value="{value}"
-				on:input
-				on:change
-				on:focus
-				on:blur>
+				{placeholder}
+				aria-invalid={!!error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				bind:this={inputElement}
+				bind:value>
 		</div>
 	</div>
 </div>
 
-<script>
+<script lang="ts">
+import './InputTime.css';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
@@ -42,23 +34,36 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = '';
-export let required = undefined;
-export let disabled = false;
-export let value = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
 
-export let element = undefined;
-export let inputElement = undefined;
+let {
+	class: className = '',
+	id = '',
+	name = '',
+	required = undefined,
+	disabled = false,
+	placeholder = undefined,
+	label = '',
+	error = undefined,
+	info = undefined,
+	value = $bindable(''),
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	...restProps
+}: InputProps = $props();
 
 
-$:_id = id || name || guid();
+const _id = $derived(id || guid());
+const cls = $derived([
+	'input',
+	'input-time',
+	className,
+	{
+		'has-error': !!error,
+		'has-value': value !== '',
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
 
 const errorMessageId = guid();
 

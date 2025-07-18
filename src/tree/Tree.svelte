@@ -1,33 +1,38 @@
 <ul
-	class="tree {className}"
-	role="tree"
-	aria-label="{title}"
 	{title}
+	role="tree"
 	tabindex="0"
-	bind:this="{element}"
-	on:focus="{selectFirst}"
-	on:click="{selectClicked}"
-	on:keydown="{onkeydown}">
+	class={['tree', className]}
+	aria-label={title}
+	onfocus={selectFirst}
+	onclick={selectClicked}
+	onkeydown={_onkeydown}
+	bind:this={element}
+	{...restProps}>
 
-	{#each items as item}
+	{#each items as item (item.id)}
 		<TreeNode {item} />
 	{/each}
 </ul>
 
-<script>
-import { createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './Tree.css';
+import type { TreeProps } from './types';
 import TreeNode from './TreeNode.svelte';
 
 
-let className = '';
-export { className as class };
-export let items = [];
-export let title = undefined;
-export let element;
+let {
+	class: className = '',
+	items = [],
+	title = undefined,
+	element = $bindable(),
+	onselect = () => {},
+	onkeydown = () => {},
+	...restProps
+}: TreeProps = $props();
 
 
-const dispatch = createEventDispatcher();
-let selectedItem;
+let selectedItem = $state(undefined);
 
 
 function getVisibleNodes () {
@@ -40,7 +45,7 @@ function unselectAll () {
 }
 
 
-function select (node) {
+function _select (e: Event, node) {
 	if (!node || selectedItem === node) return;
 	unselectAll();
 	selectedItem = node;
@@ -49,70 +54,74 @@ function select (node) {
 		selectedItem.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 	}
 	const item = tryToGetSelectedItem();
-	dispatch('select', { selectedItem, item });
+	onselect(e, { selectedItem, item });
 }
 
 
 function selectClicked (e) {
-	select(e.target.closest('.tree-node'));
+	_select(e, e.target.closest('.tree-node'));
 }
 
 
-function selectFirst () {
-	select(getVisibleNodes()[0]);
+function selectFirst (e: Event) {
+	_select(e, getVisibleNodes()[0]);
 }
 
-function selectFirstChild () {
+function selectFirstChild (e: Event) {
 	const children = selectedItem.nextElementSibling;
 	if (!children) return;
 	const firstChild = children.querySelector('.tree-node');
-	if (firstChild) select(firstChild);
+	if (firstChild) _select(e, firstChild);
 }
 
 
-function selectPrev () {
+function selectPrev (e: Event) {
 	const nodes = getVisibleNodes();
 	const idx = nodes.indexOf(selectedItem);
-	if (idx > 0) select(nodes[idx - 1]);
+	if (idx > 0) _select(e, nodes[idx - 1]);
 }
 
 
-function selectNext () {
+function selectNext (e: Event) {
 	const nodes = getVisibleNodes();
 	const idx = nodes.indexOf(selectedItem);
-	if (idx < nodes.length - 1) select(nodes[idx + 1]);
+	if (idx < nodes.length - 1) _select(e, nodes[idx + 1]);
 }
 
 
-function selectParent () {
+function selectParent (e: Event) {
 	const level = +selectedItem.dataset.level;
-	if (level === 0) return selectFirst();
-	select(selectedItem.parentElement.parentElement.previousElementSibling);
+	if (level === 0) return selectFirst(e);
+	const node = selectedItem?.parentElement?.parentElement?.previousElementSibling;
+	_select(e, node);
 }
 
 
-function sendKeyToNode (key) {
-	const event = new CustomEvent('key', { detail: { key } });
+function sendKeyToNode (e: KeyboardEvent) {
+	const event = new KeyboardEvent('keydown', {
+		key: e.key,
+		code: e.code,
+		bubbles: true,
+	});
 	selectedItem.dispatchEvent(event);
 }
 
-function goLeft () {
+function goLeft (e: KeyboardEvent) {
 	const isFolder = selectedItem.dataset.type === 'folder';
 	if (isFolder) {
 		const isExpanded = selectedItem.dataset.expanded === 'true';
-		if (isExpanded) sendKeyToNode('left');
-		else selectParent();
+		if (isExpanded) sendKeyToNode(e);
+		else selectParent(e);
 	}
-	else selectParent();
+	else selectParent(e);
 }
 
 
-function goRight () {
-	const isFolder = selectedItem.dataset.type === 'folder';
-	if (isFolder) {
-		const isExpanded = selectedItem.dataset.expanded === 'true';
-		if (isExpanded) selectFirstChild();
-		else sendKeyToNode('right');
+function goRight (e: KeyboardEvent) {
+	const { type, expanded } = selectedItem.dataset;
+	if (type === 'folder') {
+		if (expanded !== 'true') sendKeyToNode(e);
+		else selectFirstChild(e);
 	}
 }
 
@@ -122,7 +131,7 @@ function toggle () {
 }
 
 
-function onkeydown (e) {
+function _onkeydown (e: KeyboardEvent) {
 	const keyMap = {
 		ArrowUp: selectPrev,
 		ArrowDown: selectNext,
@@ -135,7 +144,7 @@ function onkeydown (e) {
 		keyMap[e.key](e);
 	}
 	const item = tryToGetSelectedItem();
-	dispatch('keydown', { event: e, selectedItem, item });
+	onkeydown(e, { selectedItem, item });
 }
 
 
@@ -145,8 +154,7 @@ function tryToGetSelectedItem () {
 }
 
 
-function findItem (id, nodes) {
-	if (!nodes) nodes = items;
+function findItem (id, nodes = items) {
 	for (let found, node, i = 0; node = nodes[i]; i++) {
 		// eqeq must stay here, because id can be a number
 		if (node.id == id) return node;

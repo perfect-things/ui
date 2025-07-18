@@ -1,19 +1,28 @@
 {#if msg}
-	<div class="info-bar info-bar-{type} {className}" bind:this="{element}">
-		<Icon name="{type}"/>
-		<p {id}>{@html msg}</p>
+	<div bind:this={element} class={cls} {...restProps}>
+		<Icon name={type}/>
+		<p>{@html msg}</p>
 	</div>
 {/if}
-<script>
+
+<script lang="ts">
+import './InfoBar.css';
+import type { InfoBarProps } from './types';
 import { Icon } from '../icon';
 
-let className = '';
-export { className as class };
+let {
+	class: className = '',
+	element = $bindable(undefined),
+	msg = '',
+	type = 'info',
+	...restProps
+}: InfoBarProps = $props();
 
-export let element = undefined;
-export let id = undefined;
-export let msg = '';
-export let type = 'info';
 
+const cls = $derived([
+	'info-bar',
+	'info-bar-' + type,
+	className
+]);
 
 </script>

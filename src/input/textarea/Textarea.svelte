@@ -1,58 +1,63 @@
-<div
-	class="textarea {className}"
-	class:autogrow
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+<div bind:this={element} class={cls} {...restProps}>
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
-
-	<div class="textarea-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+	<div class={['textarea-inner', { disabled }]}>
+		<InputError id={errorMessageId} msg={error} />
 
 		<textarea
-			id="{_id}"
-			name="{name}"
+			id={_id}
+			{name}
 			{disabled}
-			{...$$restProps}
-			aria-invalid="{error}"
-			aria-errormessage="{error ? errorMessageId : undefined}"
-			aria-required="{required}"
-			bind:this="{inputElement}"
-			bind:value="{value}"
-			on:change
-			on:input></textarea>
+			{placeholder}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value
+			{onfocus}
+			{onblur}></textarea>
 	</div>
 </div>
-<script>
+<script lang="ts">
+import './Textarea.css';
+import type { TextareaProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
+let {
+	class: className = '',
+	id = '',
+	name = '',
+	value = $bindable(''),
+	autogrow = false,
+	required = undefined,
+	disabled = false,
+	placeholder = undefined,
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onfocus = undefined,
+	onblur = undefined,
+	...restProps
+}: TextareaProps = $props();
 
-let className = '';
-export { className as class };
+const _id: string = $derived(id || name || guid());
+const errorMessageId: string = guid();
 
-export let id = '';
-export let name = '';
-export let value = '';
-export let autogrow = false;
-export let required = undefined;
-export let disabled = false;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-
-export let element = undefined;
-export let inputElement = undefined;
-
-
-$:_id = id || name || guid();
-
-const errorMessageId = guid();
-
+const cls = $derived([
+	'textarea',
+	className,
+	{
+		autogrow,
+		'label-on-the-left': labelOnTheLeft,
+		'has-error': !!error
+	}
+]);
 
 </script>

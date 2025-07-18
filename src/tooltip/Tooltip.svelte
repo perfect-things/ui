@@ -1,58 +1,72 @@
 {#if opened}
 	<div
-		class="popover-plate popover-{_position} tooltip-plate"
-		class:opened
-		class:info
-		class:success
-		class:warning
-		class:danger
-		bind:this="{element}">
-
+		class={cls}
+		bind:this={element}
+		{...restProps}>
 		<div class="popover tooltip {className}" role="tooltip">
 			<div class="popover-content tooltip-content">
-				<div class="tooltip-text"><slot/></div>
+				<div class="tooltip-text">
+					{@render children?.()}
+				</div>
 				{@html formatShortcut(shortcut)}
 			</div>
 		</div>
 	</div>
 {/if}
-<script>
-import { afterUpdate, onDestroy, onMount } from 'svelte';
-import { alignItem, isSymbol, replaceKeySymbols } from '../utils.js';
-export let target = '';
-export let delay = 0;
-export let position = 'top';
-export let offset = 2;
-export let shortcut = '';
+
+<script lang="ts">
+import './Tooltip.css';
+import type { TooltipProps } from './types';
+import { onDestroy, onMount } from 'svelte';
+import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
 
 
-let className = '';
-export { className as class };
-export let info = false;
-export let success = false;
-export let warning = false;
-export let danger = false;
-export let element = undefined;
+
+let {
+	class: className = '',
+	element = $bindable(undefined),
+	target = '',
+	offset = 2,
+	delay = 0,
+	position = 'top',
+	shortcut = '',
+	danger = false,
+	info = false,
+	success = false,
+	warning = false,
+	children,
+	...restProps
+}: TooltipProps = $props();
 
 
-let _position = position;
-let opened = false;
 let showTimer, hideTimer, shownEvent, noHide = false;
-let targetEl;
+
+let _position = $state(position);
+let opened = $state(false);
+let targetEl = $state(undefined);
+
+const cls = $derived([
+	'popover-plate',
+	'popover-' + _position,
+	'tooltip-plate',
+	{ opened, info, success, warning, danger },
+]);
+
 
 
 onMount(() => {
-	targetEl = target ? document.querySelector('#' + target) : document.body;
+	targetEl = target ? document.getElementById(target) : document.body;
 	addTargetEvents();
 });
 
 onDestroy(removeTargetEvents);
-afterUpdate(align);
+
+$effect(align);
 
 
-function formatShortcut () {
-	if (!shortcut) return '';
-	return replaceKeySymbols(shortcut)
+function formatShortcut (_shortcut = shortcut) {
+	if (!_shortcut) return '';
+	return replaceKeySymbols(_shortcut)
 		.replace(/\+/g, ' ')
 		.replace(/\s+/g, ' ')
 		.split(' ')
@@ -67,7 +81,7 @@ function show (e) {
 		hideTimer = null;
 	}
 	if (opened || showTimer) return;
-	showTimer = setTimeout(() => _show(e), parseFloat(delay) || 0);
+	showTimer = setTimeout(() => _show(e), parseFloat(String(delay)) || 0);
 }
 
 
@@ -77,20 +91,20 @@ function _show (e) {
 	showTimer = null;
 	shownEvent = e.type;
 	requestAnimationFrame(() => {
-		if (element.parentElement !== document.body) {
+		if (element?.parentElement !== document.body && element) {
 			document.body.appendChild(element);
 		}
-
-		addTooltipEvents();
 		align();
+		// prevents flickering on tooltip show
+		requestAnimationFrame(addTooltipEvents);
 	});
 }
 
 
 function align () {
 	_position = alignItem({
-		element, target:
-		targetEl,
+		element,
+		event: targetEl,
 		alignH: 'center',
 		alignV: position,
 		offsetV: +offset

@@ -1,43 +1,53 @@
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
-	<menu tabindex="0" class="menu {className}" bind:this="{element}">
-		<slot></slot>
+	<menu
+		tabindex="0"
+		class={['menu', className]}
+		bind:this={element}
+		{...restProps}>
+		{@render children?.()}
 	</menu>
 {/if}
 
-<svelte:options accessors={true}/>
+<script lang="ts">
+import './Menu.css';
+import type { MenuProps } from './types';
+import { onDestroy, onMount, setContext } from 'svelte';
+import { addArias, removeArias } from './utils';
+import initLongPressEvent from './longpress';
+import { alignItem, throttle, debounce, isMobile } from '../utils';
 
-<script>
-import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
-import { addArias, removeArias } from './utils.js';
-import initLongPressEvent from './longpress.js';
-import { alignItem, throttle, debounce, isMobile } from '../utils.js';
-
-const dispatch = createEventDispatcher();
 const isAnyMobile = isMobile();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
+
 // safari does not translate contextmenu to longpress
 const contextmenuEventName = isMobileSafari ? 'longpress' : 'contextmenu';
 
-let className = '';
-export { className as class };
-export let type = undefined;			// can be undefined or 'context'
-export let targetSelector = 'body';		// target element for context menu
-export let closeOnClick = true;
-export let align = undefined;			// can be 'left', 'right' or 'center'
-export let valign = undefined;			// can be 'top' or 'bottom' (preference only, as screen size/position decides ultimately)
 
-export let element = undefined;
+let {
+	class: className = '',
+	type = undefined,
+	targetSelector = 'body',
+	closeOnClick = true,
+	align = undefined,
+	valign = undefined,
+	element = $bindable(undefined),
+	children,
+	onopen = () => {},
+	onclose = () => {},
+	...restProps
+}: MenuProps = $props();
 
 
 const menuButtons = [];
 const buttonSelector = '.menu-item:not(.disabled,.menu-separator)';
 
-let targetEl, focusedEl, opened = false;
+let targetEl, focusedEl, opened = $state(false);
 let hovering = false;
 let closing = false;
 let eventsAdded = false;
-let typeQuery = '', typeTimer;
+let typeQuery = '';
+let typeTimer;
 let openEvent;	// needed for alignment of context menus
 
 
@@ -58,7 +68,7 @@ onDestroy(() => {
 		if (isAnyMobile) document.removeEventListener('touchend', onTouchend);
 		document.removeEventListener(contextmenuEventName, onContextMenu);
 	}
-	if (element) element.remove();
+	// if (element) element.remove();
 	removeEventListeners();
 });
 
@@ -83,14 +93,14 @@ export function open (e) {
 	openEvent = e;
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		if (element.parentElement !== document.body) {
-			document.body.appendChild(element);
+		if (element?.parentElement !== document.body) {
+			if (element) document.body.appendChild(element);
 		}
 		indexButtons();
 		// needs to finish rendering first
 		updatePosition();
 
-		dispatch('open', { event: e, target: targetEl });
+		onopen({ event: e, target: targetEl });
 		if (element) element.focus();
 		requestAnimationFrame(resolve);
 		if (!isAnyMobile || type !== 'context') addEventListeners();
@@ -101,14 +111,13 @@ export function open (e) {
 /**
  * Highlights the clicked button and closes the menu (provided that the button's event handler did not call preventDefault())
  */
-export function close (e) {
+export function close (e?: Event) {
 	if (!opened) return Promise.resolve();
 
-	if (e && e.detail && e.detail.target) e = e.detail;
 	if (e && e.target) e.target.focus();
 	// need to wait for the button to trigger click and check if it's not cancelled by consumers
 	// the timeout must be longer than the menu-item blink + some 20ms
-	return new Promise(resolve => {
+	return new Promise<void>(resolve => {
 		setTimeout(() => {
 			if (!e || !e.defaultPrevented) _close().then(() => resolve());
 			else resolve();
@@ -126,7 +135,7 @@ function _close () {
 	removeArias(targetEl);
 
 	return new Promise(resolve => requestAnimationFrame(() => {
-		dispatch('close', { target: targetEl });
+		onclose({ target: targetEl });
 		removeEventListeners();
 		focusTarget();
 		requestAnimationFrame(resolve);
@@ -141,7 +150,7 @@ function updatePosition () {
 	const alignH = align || (isContextMobile ? 'center' : 'left');
 	const alignV = valign || (isContextMobile ? 'top' : 'bottom');
 	const offsetV = isContextMobile ? 20 : 2;
-	alignItem({ element, target: openEvent, alignH, alignV, offsetV });
+	alignItem({ element, event: openEvent, alignH, alignV, offsetV });
 }
 
 
@@ -169,9 +178,8 @@ function onDocumentClick (e) {
 	if (!element) return;
 	if (!element.contains(e.target)) _close();
 	else {
-		const shouldClose = closeOnClick === true || closeOnClick === 'true';
 		const clickedOnItem = !!e.target.closest(buttonSelector);
-		if (shouldClose && clickedOnItem) close(e);
+		if (closeOnClick && clickedOnItem) close(e);
 	}
 }
 
@@ -282,7 +290,7 @@ function highlightElement (el) {
 		focusedEl.scrollIntoView({ block: 'nearest' });
 		focusedEl.focus();
 	}
-	else element && element.focus();
+	else element?.focus();
 }
 
 

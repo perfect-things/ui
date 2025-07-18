@@ -1,5 +1,9 @@
-<li role="separator" class="menu-item menu-separator" bind:this="{element}"></li>
+<li role="separator" class="menu-item menu-separator" bind:this={element}></li>
 
-<script>
-export let element = undefined;
+<script lang="ts">
+import type { MenuItemProps } from './types';
+
+let {
+	element = $bindable(undefined)
+}: MenuItemProps = $props();
 </script>

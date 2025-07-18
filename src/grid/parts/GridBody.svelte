@@ -1,11 +1,19 @@
-{#each $Data as item}
+{#each $Data as item (item.id || item.field)}
 	<GridRow {item} {multiselect} {Data}/>
 {/each}
 
-<script>
+<script lang="ts">
+import type { DataStoreType } from '../types';
 import GridRow from './GridRow.svelte';
 
-export let multiselect = false;
-export let Data = [];
+interface Props {
+	multiselect?: boolean;
+	Data?: DataStoreType;
+}
+
+const {
+	multiselect = false,
+	Data
+}: Props = $props();
 
 </script>

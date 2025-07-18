@@ -12,12 +12,12 @@
 	align-items: center;
 	justify-content: center;
 	z-index: calc(var(--ui-z-index-popup) - 1);
-	background-color: rgba(0 0 0 / 0);
+	background-color: rgb(0 0 0 / 0);
 	transition: all var(--ui-animation-speed) ease-out;
 	transform: translateZ(1px);
 }
 
-.dialog-backdrop.opened { background-color: rgba(0 0 0 / .6); }
+.dialog-backdrop.opened { background-color: rgb(0 0 0 / .6); }
 
 
 .dialog {
@@ -77,9 +77,6 @@
 	border-top: 0.5px solid var(--ui-color-border);
 	border-bottom-left-radius: var(--ui-dialog-inner-border-radius);
 	border-bottom-right-radius: var(--ui-dialog-inner-border-radius);
-}
-
-.dialog-footer [slot="footer"] {
 	width: 100%;
 	display: flex;
 	align-items: center;

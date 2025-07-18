@@ -1,40 +1,40 @@
 {#if msg}
-	<div class="error-wrap" bind:this="{element}" transition:slideError|local>
+	<div class="error-wrap" bind:this={element} transition:slideError|local>
 		<Error {id} {msg} />
 	</div>
 {/if}
 
 
-<script>
-import { ANIMATION_SPEED } from '../../utils';
+<script lang="ts">
+import './InputError.css';
+import type { InputErrorProps } from './types';
+import { UI } from '../../utils';
 import Error from '../../info-bar/Error.svelte';
 
-export let id = undefined;
-export let msg = '';
-export let element = undefined;
 
-// slides up content after error for additional offset in px
-// used in checkbox, as there is a gap between input and error
-export let animOffset = 0;
 
-// used in checkbox and toggle, as there is no plate around these inputs
-// so that the animation looks weird without the fadein/out
-export let animOpacity = false;
+let {
+	id = undefined,
+	msg = '',
+	element = $bindable(undefined),
+	animOffset = 0,
+	animOpacity = false
+}: InputErrorProps = $props();
 
-$:_animOffset = parseInt(animOffset, 10) || 0;
-$:_hasOffset = _animOffset > 0;
-$:_animOpacity = (animOpacity === 'true' || animOpacity === true) || _hasOffset;
+
+const _animOffset = $derived(parseInt(String(animOffset), 10) || 0);
+const _hasOffset = $derived(_animOffset > 0);
+const _animOpacity = $derived(animOpacity || _hasOffset);
 
 
 function slideError (node) {
 	const o = node.getBoundingClientRect().height;
 	return {
-		duration: $ANIMATION_SPEED,
+		duration: UI.ANIMATION_SPEED,
 		css: (t) => {
 			return `height: ${t * o}px;` +
 				(_animOpacity ? `opacity: ${t};` : '') +
 				(_hasOffset ? `margin-bottom: ${t * _animOffset - _animOffset}px;` : '');
-
 		},
 	};
 }

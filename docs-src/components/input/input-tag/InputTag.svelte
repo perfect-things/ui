@@ -1,69 +1,56 @@
 <h2>Input Tag</h2>
 
+	<h3>Normal</h3>
+		<InputTag bind:value />
+		<p>Input value: {value}</p>
 
-<h3>Normal</h3>
-<InputTag bind:value="{val}" />
-<p>Input value: {val}</p>
+	<h3>With onchange callback</h3>
+		<InputTag value="tag1, anotherOne, long-tag-name" {tags} {onchange} />
 
-<h3>With onChange callback</h3>
-<InputTag value="tag1, anotherOne, long-tag-name" {tags} on:change="{onchange}" />
+	<h3>Long list of tags</h3>
+		<InputTag value="tag1, anotherOne, long-tag-name" tags={tags2}/>
 
-<h3>Long list of tags</h3>
-<InputTag value="tag1, anotherOne, long-tag-name" tags="{tags2}"/>
+	<h3>Disabled</h3>
+		<InputTag disabled value="disabled" />
 
-
-<h3>Disabled</h3>
-<InputTag disabled value="disabled" />
-
-
-<h3>Label on the left</h3>
-<InputTag label="Label is on the left" labelOnTheLeft="true"/>
+	<h3>Label on the left</h3>
+		<InputTag label="Label is on the left" labelOnTheLeft/>
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
-<API props="{apiProps}"/>
 
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
 
-<script>
 import { InputTag } from '../../../../src';
 import { CodeExample } from '../../../code-example';
-import { API } from '../../../api-table';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'label', type: 'string', description: 'Label for the input.' },
-	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.bindinputelement,
 	{ name: 'tags', type: 'array', required: true, description: 'An array of strings (the list should contain unique values).' },
-	{ name: 'title', type: 'string', description: 'Assign title to the component' },
-	{ name: 'value', type: ['string'], description: 'Initial value of the input - a comma-separated string.' },
-
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'bind:listElement', type: 'element', description: 'Exposes the HTML element of the list.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when tag is added/removed from the input value.' },
+	{ name: 'value', type: 'string', description: 'Initial value of the input - a comma-separated string.' },
+	{ name: 'bind:listElement', type: 'HTMLElement', description: 'Exposes the HTML element of the list.' },
 ];
 
 
 const exampleHtml = `
-<InputTag label="Tags" value="tag1, tag2" on:change="{onChange}" />
+<InputTag label="Tags" value="tag1, tag2" {onchange} />
 
 <script>
-function onChange (e) {
-    console.log('tags', e.detail.value);
+function onchange (e, value) {
+    console.log('tags', value);
 }
 &lt;/script>
 `;
 
 
 
-let val = 'tag1, tag2';
+let value = $state('tag1, tag2');
 const tags = [
 	'Tag1',
 	'AnotherOne',
@@ -73,7 +60,7 @@ const tags = [
 
 const tags2 = Array.from({ length: 40 }, (v, i) => 'Tag-' + i);
 
-function onchange (e) {
-	console.log('value', e.detail.value);
+function onchange (e, val) {
+	console.log('value:', val);
 }
 </script>

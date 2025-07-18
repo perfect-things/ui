@@ -1,50 +1,61 @@
 <button
 	role="menuitem"
-	class="menu-item {className}"
-	class:disabled
-	class:success
-	class:warning
-	class:danger
-	{...$$restProps}
-	on:mousedown|preventDefault
-	on:click|capture="{onclick}"
-	bind:this="{element}">
+	class={cls}
+	{...restProps}
+	onmousedown={_onmousedown}
+	onclickcapture={_onclick}
+	bind:this={element}>
 
 	<span class="menu-item-content">
-		{#if icon}<Icon name="{icon}" />{/if}
-		<span class="menu-item-text"><slot /></span>
+		{#if icon}<Icon name={icon} />{/if}
+		<span class="menu-item-text">{@render children?.()}</span>
 	</span>
 	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
 </button>
 
-<script>
-import { createEventDispatcher, getContext } from 'svelte';
+<script lang="ts">
+import type { MenuItemProps } from './types';
+import { getContext } from 'svelte';
 import { Icon } from '../icon';
 import { blink, replaceKeySymbols } from '../utils';
 
-export let shortcut = '';
-export let icon = undefined;
-let className = '';
-export { className as class };
-export let success = false;
-export let warning = false;
-export let danger = false;
-export let disabled = false;
 
-export let element = undefined;
+let {
+	shortcut = '',
+	icon = undefined,
+	class: className = '',
+	success = false,
+	warning = false,
+	danger = false,
+	disabled = false,
+	element = $bindable(undefined),
+	children,
+	onclick = () => {},
+	onmousedown = () => {},
+	...restProps
+}: MenuItemProps = $props();
 
 
 
-const dispatch = createEventDispatcher();
-const { targetEl } = getContext('MenuContext');
+const { targetEl } = getContext<{ targetEl: () => HTMLElement }>('MenuContext');
+
+const cls = $derived([
+	'menu-item',
+	className,
+	{
+		success,
+		warning,
+		danger,
+		disabled,
+	}
+]);
 
 
-function onclick (e) {
+function _onclick (e) {
 	const btn = e.target.closest('.menu-item');
 	if (btn) btn.focus();
 	blink(btn, 200).then(() => {
-		const target = targetEl();
-		const res = dispatch('click', { event: e, target, button: btn }, { cancelable: true });
+		const res = onclick(e, { target: targetEl(), button: btn });
 		if (res === false) {
 			e.stopPropagation();
 			e.preventDefault();
@@ -52,4 +63,9 @@ function onclick (e) {
 	});
 }
 
+
+function _onmousedown (e) {
+	e.preventDefault();
+	onmousedown(e);
+}
 </script>

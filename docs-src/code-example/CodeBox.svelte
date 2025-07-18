@@ -1,39 +1,46 @@
-<pre><code class="language-">{@html html}</code></pre>
-
-<script>
-import { afterUpdate } from 'svelte';
-export let tag = 'div';
-export let props = {};
-export let text = '';
-let html ='';
+<pre><code class="language">{@html html}</code></pre>
 
 
-afterUpdate(() => {
-	requestAnimationFrame(update);
-});
+<script lang="ts">
 
-
-function update () {
-	html = window.Prism.highlight(buildHtml(), window.Prism.languages.svelte, 'svelte');
+interface Props {
+	tag?: string;
+	props?: Record<string, any>;
+	text?: string;
 }
 
-function buildHtml () {
-	const _props = {};
-	for (const prop in props) {
+const {
+	tag = 'div',
+	props = {},
+	text = ''
+}: Props = $props();
+
+
+const html = $derived(buildHtml(props, text, tag));
+
+
+function buildHtml (_props, _text, _tag) {
+	const _filteredProps = {};
+	for (const prop in _props) {
 		if (props[prop] === false) continue;
 		if (props[prop] === '') continue;
-		_props[prop] = props[prop];
+		_filteredProps[prop] = _props[prop];
 	}
-	let propsStr = JSON.stringify(_props)
+	let propsStr = JSON.stringify(_filteredProps)
 		.replace(/"([^"]+)":/g, '$1:')
 		.replace(/(:)/g, '=')
 		.replace(/,/g, ' ')
 		.replace(/({|}|=true|default)/g, '')
 		.trim();
+
 	if (propsStr) propsStr = ' ' + propsStr;
 
-	if (!text) return `<${tag}${propsStr}/>`;
-	return `<${tag}${propsStr}>${text}</${tag}>`;
+	let _html = '';
+	if (_text) _html = `<${_tag}${propsStr}>${_text}</${_tag}>`;
+	else _html = `<${_tag}${propsStr} />`;
+
+	// @ts-ignore
+	return window.Prism.highlight(_html, window.Prism.languages.svelte, 'svelte');
 }
 
 </script>

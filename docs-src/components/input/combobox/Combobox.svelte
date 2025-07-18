@@ -3,41 +3,41 @@
 <h3>Normal</h3>
 <Combobox
 	{items}
-	on:change="{onChange}"
-	bind:value="{itemValue}" />
+	onchange={onChange}
+	bind:value={itemValue} />
 
 <h4>Selected value: </h4>
-<JsonBox value="{itemValue}" />
-<Button on:click="{resetSingle}">Reset</Button>
+<JsonBox value={itemValue} />
+<Button onclick={resetSingle}>Reset</Button>
 
 <h3>Disabled</h3>
-<Combobox disabled {items} bind:value="{itemValue}" />
+<Combobox disabled {items} bind:value={itemValue} />
 
 <h3>Allow arbitrary values</h3>
 <Combobox
 	{items}
 	placeholder="Type to filter"
 	allowNew
-	bind:value="{itemValue}" />
+	bind:value={itemValue} />
 
 
 <h3>Show on focus</h3>
-<Combobox showOnFocus="true" {items} bind:value="{itemValue}" />
+<Combobox showOnFocus {items} bind:value={itemValue} />
 
 <h3>Simpler data (no ID, just 'name')</h3>
-<Combobox items="{dataSimpler}" placeholder="Type to filter"
-	bind:value="{valueSimpler}" />
+<Combobox items={dataSimpler} placeholder="Type to filter"
+	bind:value={valueSimpler} />
 
 <h4>Selected value: </h4>
-<JsonBox value="{valueSimpler}" />
+<JsonBox value={valueSimpler} />
 
 
 <h3>Simple data (just an array of strings)</h3>
-<Combobox items="{dataSimple}" placeholder="Type to filter"
-	bind:value="{valueSimple}" />
+<Combobox items={dataSimple} placeholder="Type to filter"
+	bind:value={valueSimple} />
 
 <h4>Selected value: </h4>
-<JsonBox value="{valueSimple}" />
+<JsonBox value={valueSimple} />
 
 
 <h3>Label</h3>
@@ -54,54 +54,56 @@
 
 
 
+<!-- ------------------------------------------------------------------------------------- -->
+
+
+
 <h2 id="Multiselect"><a href="#Combobox/Multiselect">Multiselect</a></h2>
 
 <p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
 <h3>Simple data</h3>
 <Combobox
-	items="{dataSimple}"
+	items={dataSimple}
 	multiselect
-	clearOnEsc
-	bind:value="{multiselectSimpleValue}" />
+	bind:value={multiselectSimpleValue} />
 <h4>Selected value: </h4>
-<JsonBox value="{multiselectSimpleValue}" />
-<Button on:click="{resetMulti}">Reset</Button>
+<JsonBox value={multiselectSimpleValue} />
+<Button onclick={resetMulti}>Reset</Button>
 
 <h3>Complex data</h3>
 <Combobox
 	{items}
 	multiselect
-	bind:value="{multiselectValue}" />
+	bind:value={multiselectValue} />
 <h4>Selected value: </h4>
-<JsonBox value="{multiselectValue}" />
+<JsonBox value={multiselectValue} />
 
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
 <hr>
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
+
 import { Combobox, Button } from '../../../../src';
-import { API } from '../../../api-table';
 import { CodeExample, JsonBox } from '../../../code-example';
 
 
-const apiProps = [
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.required,
+	PROPS.bindinputelement,
+	PROPS.onkeydown,
+
 	{ name: 'allowNew', description: 'Whether to allow arbitrary values (that don\'t exist in the list).' },
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
 	{ name: 'clearOnEsc', description: 'If present - the combobox will be cleared when Escape is pressed.' },
-	{ name: 'disabled', description: 'Make the combobox disabled.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the combobox.' },
 	{ name: 'hideOnResize', description: 'If present - resizing the window will close the popup.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the combobox.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'label', type: 'string', description: 'Label for the combobox.' },
-	{ name: 'labelOnTheLeft', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'multiselect', description: 'This changes the control to a multiselect. The following changes will apply:<ul>' +
 		'<li>dropdown items will receive checkboxes,' +
 		'<li>and the control will only allow to change the value by clicking on items (or check them using the `Space` key),' +
@@ -109,22 +111,15 @@ const apiProps = [
 		'<li>argument `allowNew` will have no effect.' +
 		'</ul>'
 	},
-	{ name: 'placeholder', type: 'string', description: 'Shows placeholder text.' },
-	{ name: 'required', description: 'Mark the combobox as <i>aria-required</i>.' },
 	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. ' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 const exampleHtml = `
 <Combobox
     {items}
-    on:change="{ onChange }"
-    bind:value="{ value }" />
+    onchange={ onChange }
+    bind:value={ value } />
 
 <script>
 const items = [
@@ -136,7 +131,7 @@ const items = [
 let value = data[1];
 
 function onChange (e) {
-    const { value, oldValue } = e.detail;
+    const { value, oldValue } = e;
     console.log({ value, oldValue });
 }
 &lt;/script>
@@ -165,8 +160,8 @@ const items = [
 	{ id: 16, name: 'Kappa', group: 'Group 3' },
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
-let itemValue = items[1];
-let multiselectValue = [items[0], items[1]];
+let itemValue = $state(items[1]);
+let multiselectValue = $state([items[0], items[1]]);
 
 const dataSimpler = [
 	{ name: 'Alpha', group: 'Group 1' },
@@ -188,7 +183,7 @@ const dataSimpler = [
 	{ name: 'Delta' },
 	{ name: 'Epsilon' },
 ];
-let valueSimpler = dataSimpler[3];
+let valueSimpler = $state(dataSimpler[3]);
 
 const dataSimple = [
 	'Alpha',
@@ -203,17 +198,16 @@ const dataSimple = [
 	'Kappa',
 	'Lambda is the last item in this list',
 ];
-let valueSimple = 'Gamma';
-let multiselectSimpleValue = [dataSimple[0], dataSimple[1]];
+let valueSimple = $state('Gamma');
+let multiselectSimpleValue = $state([dataSimple[0], dataSimple[1]]);
 
 
-function onChange (e) {
-	const { value, oldValue } = e.detail;
+function onChange (e, { value, oldValue }) {
 	console.log({ value, oldValue });
 }
 
 function resetSingle () {
-	itemValue = null;
+	itemValue = items[1];
 }
 
 function resetMulti () {

@@ -1,69 +1,53 @@
 <h2>Input Search</h2>
 
+	<h3>Normal</h3>
+		<InputSearch oninput={oninput} bind:value />
+		<p>Input value: {value}</p>
 
-<h3>Normal</h3>
-<InputSearch on:input="{oninput}" bind:value="{val}" />
-<p>Input value: {val}</p>
+	<h3>Disabled</h3>
+		<InputSearch disabled value="disabled value" {oninput} />
 
-<h3>Disabled</h3>
-<InputSearch disabled value="disabled value" on:input="{oninput}" />
+	<h3>With validation</h3>
+		<InputSearch
+			label="Validate on change"
+			error={error1}
+			{value}
+			{onchange} />
 
+		<br>
+		<InputSearch
+			label="Validate on input"
+			info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
+			required
+			error={error2}
+			{value}
+			{oninput} />
 
-<h3>With validation</h3>
-<InputSearch
-	label="Validate on change"
-	error="{error1}"
-	value="{val}"
-	on:change="{onchange}" />
-
-<br>
-
-<InputSearch
-	label="Validate on input"
-	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
-	required
-	error="{error2}"
-	value="{val}"
-	on:input="{oninput}" />
-
-
-<h3>Label on the left</h3>
-<InputSearch label="Label is on the left" labelOnTheLeft="true"/>
+	<h3>Label on the left</h3>
+		<InputSearch label="Label is on the left" labelOnTheLeft/>
 
 
-
-<CodeExample html="{exampleHtml}" />
-
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
+
 import { InputSearch } from '../../../../src';
 import { CodeExample } from '../../../code-example';
-import { API } from '../../../api-table';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'label', type: 'string', description: 'Label for the input.' },
-	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
-	{ name: 'required', description: 'Mark the input as <i>aria-required</i>. The actual validation must be done in the consumer.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.required,
+	PROPS.oninput,
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered after the value changes and the focus leaves the input.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered as soon as the input value changes.' },
 ];
 
 
 const exampleHtml = `
-<InputSearch label="Email" error="Invalid email" value="admin" on:change="{onChange}" />
+<InputSearch label="Email" error="Invalid email" value="admin" onchange={onChange} />
 
 <script>
 function onChange (e) {
@@ -72,8 +56,8 @@ function onChange (e) {
 &lt;/script>
 `;
 
-let val = 'Hi!';
-let error1 = '', error2 = '';
+let value = $state('Hi!');
+let error1 = $state(''), error2 = $state('');
 
 
 function validate (v) {

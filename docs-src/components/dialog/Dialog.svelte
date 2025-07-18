@@ -1,24 +1,24 @@
 <h2>Dialog</h2>
 
 <ul>
-	<li>simple, small, no dependencies
-	<li>accessible (full keyboard support, focus trap)
-	<li>configurable
+	<li>simple, small, no dependencies</li>
+	<li>accessible (full keyboard support, focus trap)</li>
+	<li>configurable</li>
 </ul>
 <hr>
 
 
 <h3>Typical use-cases</h3>
 <div class="docs-buttons-row">
-	<Button on:click="{dialog1.open}">Large dialog</Button>
-	<Button on:click="{dialog2.open}">No buttons</Button>
-	<Button on:click="{dialog3.open}">Confirmation</Button>
-	<Button on:click="{dialog4.open}">With title and buttons</Button>
-	<Button on:click="{dialog5.open}">Modal</Button>
+	<Button onclick={e => dialog1.open(e)}>Large dialog</Button>
+	<Button onclick={e => dialog2.open(e)}>No buttons</Button>
+	<Button onclick={e => dialog3.open(e)}>Confirmation</Button>
+	<Button onclick={e => dialog4.open(e)}>With title and buttons</Button>
+	<Button onclick={e => dialog5.open(e)}>Modal</Button>
 </div>
 
 
-<Dialog bind:this="{dialog1}" title="Hello">
+<Dialog bind:this={dialog1} title="Hello">
 	dialog contents<br>
 	Hello world!
 
@@ -28,93 +28,97 @@
 	<p>Suspendisse sollicitudin sed ligula nec tempus. Phasellus quis luctus sapien. Nullam nec sapien fringilla, sollicitudin dui sit amet, molestie arcu. Pellentesque id elit et sem pharetra gravida. Donec sed metus ut dui venenatis euismod varius ut libero. Duis ornare odio finibus eros rhoncus ullamcorper. Maecenas auctor lectus volutpat sem pretium volutpat. Mauris blandit quam diam, nec consequat arcu dignissim ut. Donec ac lacus pretium, sollicitudin nisi in, ullamcorper enim. Ut convallis nec eros nec scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris non odio a ipsum varius pretium non ut ex. Quisque euismod luctus risus, sit amet venenatis justo vehicula non. Aliquam erat volutpat. Phasellus eu leo ut odio cursus cursus. Pellentesque porta odio id arcu mattis, vitae aliquam risus efficitur.</p>
 	<p>Curabitur nec cursus purus. Nullam scelerisque et odio ut pretium. Donec gravida auctor enim, in venenatis mi viverra sit amet. Integer tincidunt lectus quis sagittis pellentesque. Morbi nec ipsum erat. Donec finibus sit amet lorem et dignissim. Praesent pretium consequat enim, quis rutrum nisl imperdiet ut. </p>
 
-	<div slot="footer">
-		<Button on:click="{() => dialog1.close()}">Close</Button>
-	</div>
+	{#snippet footer()}
+		<Button onclick={() => dialog1.close()}>Close</Button>
+	{/snippet}
 </Dialog>
 
-<Dialog bind:this="{dialog2}" title="Hello">
+<Dialog bind:this={dialog2} title="Hello">
 	Hello!
 </Dialog>
 
 
-<Dialog bind:this="{dialog3}">
+<Dialog bind:this={dialog3}>
 	Are you sure?
-	<div slot="footer">
-		<Button on:click="{() => dialog3.close()}">Yes</Button>
-		<Button on:click="{() => dialog3.close()}">No</Button>
-	</div>
+	{#snippet footer()}
+		<Button onclick={() => dialog3.close()}>Yes</Button>
+		<Button onclick={() => dialog3.close()}>No</Button>
+	{/snippet}
 </Dialog>
 
 
-<Dialog bind:this="{dialog4}" title="Edit something">
+<Dialog bind:this={dialog4} title="Edit something">
 	Form goes here...
-	<div slot="footer">
-		<Button success on:click="{() => dialog4.close()}">Yes</Button>
-		<Button on:click="{() => dialog4.close()}">No</Button>
+	{#snippet footer()}
+		<Button success onclick={() => dialog4.close()}>Yes</Button>
+		<Button onclick={() => dialog4.close()}>No</Button>
 		<div class="flex-spacer"></div>
-		<Button danger icon="trash" on:click="{() => dialog4.close()}"></Button>
-	</div>
+		<Button danger icon="trash" onclick={() => dialog4.close()}></Button>
+	{/snippet}
 </Dialog>
 
 
-<Dialog bind:this="{dialog5}" title="Modal dialog" modal>
+<Dialog bind:this={dialog5} title="Modal dialog" modal>
 	<p style="line-height: 2; margin: 0">This means that it will not close when clicking outside of it.<br>
 		This is useful for when an intentional action is required from the user.</p>
-	<div slot="footer">
-		<Button success on:click="{() => dialog5.close()}">Confirm</Button>
-		<Button text on:click="{() => dialog5.close()}">Cancel</Button>
-	</div>
+	{#snippet footer()}
+		<Button success onclick={() => dialog5.close()}>Confirm</Button>
+		<Button text onclick={() => dialog5.close()}>Cancel</Button>
+	{/snippet}
 </Dialog>
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
 
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
-<API props="{instanceApiProps}" title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<API props={instanceApiProps} title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
 import { Button, Dialog } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component container.' },
-	{ name: 'opened', type: ['true' , 'false'], default: 'false', description: 'Set dialog\'s open state.' },
-	{ name: 'skipFirstFocus', type: ['true', 'false'], default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
-	{ name: 'title', type: 'string', description: 'Set title for the dialog.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
+
+	{ name: 'opened', type: 'boolean', default: 'false', description: 'Set dialog\'s open state.' },
+	{ name: 'skipFirstFocus', type: 'boolean', default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
 	{ name: 'modal', description: 'If present - the dialog will not close when the user clicks outside of it or presses Escape.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
 	{ name: 'bind:this', type: 'object', description: 'Exposes the component instance.' },
-	{ name: 'on:close', type: 'function', description: 'Triggered after the dialog is closed.' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the dialog is opened.' },
+	{ name: 'onclose', type: 'function', description: 'Triggered after the dialog is closed.' },
+	{ name: 'onopen', type: 'function', description: 'Triggered after the dialog is opened.' },
 ];
 
-const instanceApiProps = [
+const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the dialog.' },
 	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
 ];
 
 const exampleHtml = `
-<Dialog bind:this="{dialog1}">
+<Dialog bind:this={dialog1}>
     Are you sure?
-    <div slot="footer">
-        <Button on:click="{() => dialog1.close()}">Close</Button>
-    </div>
+	{#snippet footer()}
+        <Button onclick={e => dialog1.close(e)}>Close</Button>
+	{/snippet}
 </Dialog>
 
-<Button on:click="{() => dialog1.open()}">Show dialog</Button>
+<Button onclick={e => dialog1.open(e)}>Show dialog</Button>
 
 <script>
-    let dialog1;
+    let dialog1: Dialog	= $state();
 &lt;/script>
 `;
 
-let dialog1, dialog2, dialog3, dialog4, dialog5;
+let dialog1: Dialog = $state();
+let dialog2: Dialog = $state();
+let dialog3: Dialog = $state();
+let dialog4: Dialog = $state();
+let dialog5: Dialog = $state();
 
 </script>

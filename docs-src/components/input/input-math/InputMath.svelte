@@ -5,55 +5,60 @@
 <hr>
 
 <h3>Normal</h3>
-<InputMath label="Enter amount" />
+<InputMath label="Enter amount" {onchange} />
 
 <h3>With info box</h3>
-<InputMath label="Enter amount" info="You can add 2 numbers here"/>
+<InputMath label="Enter amount" info="You can add 2 numbers here" {onchange}/>
 
 <h3>With info box and error.</h3>
-<InputMath label="Enter amount" info="You can add 2 numbers here" error="Number must be big!"/>
+<InputMath label="Enter amount" info="You can add 2 numbers here" {error} onchange={onchange2}/>
 
 <h3>Label on the left</h3>
-<InputMath label="Label is on the left" labelOnTheLeft="true"/>
+<InputMath label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
+
 import { InputMath } from '../../../../src';
-import { API } from '../../../api-table';
 import { CodeExample } from '../../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
-	{ name: 'label', type: 'string', description: 'Label for the input.' },
-	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
-	{ name: 'required', description: 'Mark the input as <i>aria-required</i>.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
+let error = 'Number must be big!';
+
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.required,
+	PROPS.bindinputelement,
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered when the value changes.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered when a key is down.' },
 ];
 
 
+function onchange (e, { value }) {
+	console.log('onchange', value);
+}
+
+function onchange2 (e, { value }) {
+	if (value > 100) {
+		error = undefined;
+	}
+	else {
+		error = 'Number must be big!';
+	}
+
+}
+
 const exampleHtml = `
-<InputMath label="Enter amount" on:change="{onChange}" />
+<InputMath label="Enter amount" {onchange} />
 
 <script>
-function onChange (e) {
-    const { value, oldValue } = e.detail;
-    console.log({ value, oldValue });
+function onchange (e, { value }) {
+    console.log(value);
 }
 &lt;/script>
 `;

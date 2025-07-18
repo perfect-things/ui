@@ -77,6 +77,6 @@ hr {
 
 
 
-@media (1px <= width <= 700px) {
+@media (1px <= width <= 800px) {
 	main { margin-left: 0; }
 }

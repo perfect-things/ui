@@ -1,42 +1,39 @@
 <div
-	class="input button-toggle {className}"
-	class:round
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
+	class={cls}
 	role="radiogroup"
-	aria-invalid="{error}"
-	aria-errormessage="{error ? errorMessageId : undefined}"
-	{title}
-	bind:this="{element}">
+	aria-invalid={!!error}
+	aria-errormessage={error ? errorMessageId : undefined}
+	bind:this={element}
+	{...restProps}>
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
-	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+	<div class={['input-inner', { disabled }]}>
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-scroller">
-			<div class="input-row" id="{_id}">
-				{#each _items as item}
-					<!-- svelte-ignore
-						a11y-no-noninteractive-element-interactions
-						a11y-click-events-have-key-events -->
+			<div class="input-row">
+				{#each _items as item, idx (item.value)}
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
+					<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 					<label
-						{disabled}
-						class="button button-normal"
-						class:button-has-text="{item.name}"
-						on:click="{onclick}">
-							{#if item.icon}
-								<Icon name="{item.icon}"/>
-							{/if}
+						class={[
+							'button',
+							'button-normal',
+							{ 'button-has-text': item.name, disabled },
+						]}
+						{onclick}>
+							<Icon name={item.icon}/>
 							{item.name || ''}
 							<input
-								{disabled}
 								{name}
+								{disabled}
+								id={idx === 0 ? _id : undefined}
 								type="radio"
-								checked="{item.value === value}"
-								value="{item.value}"
-								on:change="{e => onchange(e, item)}">
+								checked={item.value === value}
+								value={item.value}
+								onchange={e => _onchange(e, item)}>
 					</label>
 				{/each}
 			</div>
@@ -44,8 +41,9 @@
 	</div>
 </div>
 
-<script>
-import { createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './ButtonToggle.css';
+import type { ButtonToggleProps } from './types';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
 import { Info } from '../../info-bar';
@@ -53,35 +51,47 @@ import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let disabled = undefined;
-export let round = undefined;	// round button
-export let items = '';
-export let id = '';
-export let name = guid();
-export let value = '';
-export let title = undefined;
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
 
-export let element = undefined;
+let {
+	id = undefined,
+	name = guid(),
+	class: className = '',
+	disabled = undefined,
+	round = undefined,
+	items = [],
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	onchange = () => {},
+	...restProps
+}: ButtonToggleProps = $props();
 
 
 const errorMessageId = guid();
-const dispatch = createEventDispatcher();
 
 
-$:_id = id || name || guid();
+const _id = $derived(id || guid());
+const cls = $derived([
+	'input',
+	'button-toggle',
+	className,
+	{
+		round,
+		disabled,
+		'label-on-the-left': labelOnTheLeft,
+		'has-error': error
+	},
+]);
 
-$:_items = items.map(item => {
+const _items = $derived(items.map(item => {
 	if (typeof item === 'string') {
 		return { name: item, value: item };
 	}
 	return item;
-});
+}));
 
 
 function onclick (e) {
@@ -92,14 +102,14 @@ function onclick (e) {
 }
 
 
-function onchange (e, button) {
+function _onchange (e, button) {
 	if (button.value === value) return;
 
 	const btnEl = e.target && e.target.closest('label');
 	if (btnEl) btnEl.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 
 	value = button.value;
-	dispatch('change', value);
+	onchange(e, { value });
 }
 
 </script>

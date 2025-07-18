@@ -1,9 +1,6 @@
-.button-outline {
-	background: transparent;
-	border: 2px solid var(--ui-color-secondary);
-	min-width: calc(var(--ui-button-size) * 4);
-	min-height: calc(var(--ui-button-size) * 2);
-}
+.button-outline { background: transparent; border: 2px solid var(--ui-color-secondary); }
+
+.button-outline:not(.round) { min-width: calc(var(--ui-button-size) * 4); }
 
 .button-outline:focus-visible,
 .button-outline:hover { background-color: var(--ui-color-secondary-semi); }

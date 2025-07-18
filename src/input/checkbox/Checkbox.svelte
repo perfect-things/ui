@@ -1,71 +1,73 @@
-<div
-	{title}
-	class="check-and-radio checkbox {className}"
-	class:indeterminate
-	class:disabled
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-
-	bind:this="{element}">
-
-	<Info msg="{info}" />
-	<InputError id="{errorMessageId}" msg="{error}" animOffset="8" />
+<div bind:this={element} class={cls} {...restProps}>
+	<Info msg={info} />
+	<InputError id={errorMessageId} msg={error} animOffset={24} />
 
 	<div class="checkbox-row">
 		<input
+			id={_id}
 			type="checkbox"
 			{name}
-			id="{_id}"
 			{disabled}
 			{tabindex}
-			bind:this="{inputElement}"
-			bind:checked="{checked}"
-			bind:indeterminate="{indeterminate}"
-			aria-invalid="{error}"
-			aria-errormessage="{error ? errorMessageId : undefined}"
-			aria-required="{required}"
-			on:change="{onchange}">
+			bind:checked
+			bind:indeterminate
+			bind:this={inputElement}
+			aria-invalid={error ? true : undefined}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			onchange={_onchange}>
 
-		<Label {label} for="{_id}"/>
+		<Label {label} for={_id}/>
 	</div>
 </div>
 
-<script>
-import { createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './Checkbox.css';
+import type { CheckboxProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let indeterminate = false;
-export let checked = false;
-export let disabled = false;
-export let id = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let title = undefined;
-export let tabindex = undefined;
-export let name = '';
-export let required = undefined;
-export let labelOnTheLeft = false;
+let {
+	class: className = '',
+	checked = $bindable(),
+	indeterminate = $bindable(),
+	disabled = false,
+	id = '',
+	label = '',
+	error = undefined,
+	info = undefined,
+	tabindex = undefined,
+	name = undefined,
+	required = undefined,
+	labelOnTheLeft = false,
 
-export let element = undefined;
-export let inputElement = undefined;
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onchange = () => {},
+	...restProps
+}: CheckboxProps = $props();
 
 
 const errorMessageId = guid();
-const dispatch = createEventDispatcher();
+const _id = $derived(id || guid());
+const cls = $derived([
+	'check-and-radio',
+	'checkbox',
+	className,
+	{
+		indeterminate,
+		disabled,
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
 
-$:_id = id || name || guid();
 
-
-function onchange (event) {
-	checked = event.target.checked;
-	indeterminate = event.target.indeterminate;
-	dispatch('change', { event, checked, indeterminate });
+function _onchange (e: Event) {
+	onchange(e, { checked, indeterminate });
 }
+
 </script>

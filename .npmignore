@@ -1,33 +1,21 @@
 assets/
 
 docs/CNAME
-docs/bg.png
-docs/docs.css
-docs/docs.js
-docs/favicon.svg
-docs/github-dark.min.css
-docs/highlight-svelte.min.js
-docs/highlight.min.js
-docs/index.html
-docs/*logo*
-docs/prism-tomorrow.min.css
-docs/zxcvbn.js.map
+docs/*.sketch
+docs/*.svg
+docs/*.html
+docs/*.png
+docs/*.css
+docs/index*.js
 docs/*.woff*
+# keep only docs/zxcvbn.js
 
 docs-src/
-
-src/**/*.css
-
 coverage/
 tests/
 .*
-babel.config.json
 CHANGELOG.md
-jest.config.js
-jsconfig.json
-gulpfile.js
 release.sh
 screen.png
-
-eslint.config.js
-stylelint.config.js
+*.js
+*config*.*

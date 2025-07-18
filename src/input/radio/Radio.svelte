@@ -1,77 +1,81 @@
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
-	{id}
-	{title}
-	class="check-and-radio radio {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+<div bind:this={element} class={cls} {...restProps}>
+	<Label {label} {disabled} for={_items[0].id}/>
 
-	<Label {label} {disabled} for="{_id}"/>
+	<Info msg={info} />
 
-	<Info msg="{info}" />
-
-	<div class="radio-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
+	<div class={['radio-inner', { disabled }]}>
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="radio-items">
 			{#each _items as item (item.id)}
 				<div
-					class="radio-item"
-					class:disabled="{disabled || item.disabled}"
-					on:touchstart|capture="{onmousedown}"
-					on:mousedown|capture="{onmousedown}">
+					ontouchstartcapture={onmousedown}
+					onmousedowncapture={onmousedown}
+					class={[
+						'radio-item',
+						{ disabled: disabled || item.disabled }
+					]}>
 					<input
 						type="radio"
-						id="{item.id}"
-						name="{name}"
-						value="{item.value}"
-						checked="{item.value === value}"
-						disabled="{disabled || item.disabled}"
-						on:change="{e => onchange(e, item)}">
-					<Label disabled="{disabled || item.disabled}" for="{item.id}" label="{item.name}"/>
+						id={item.id}
+						{name}
+						value={item.value}
+						checked={item.value === value}
+						disabled={disabled || item.disabled}
+						onchange={e => _onchange(e, item)}>
+					<Label disabled={disabled || item.disabled} for={item.id} label={item.name}/>
 				</div>
 			{/each}
 		</div>
 	</div>
 </div>
-<script>
-import { createEventDispatcher } from 'svelte';
+<script lang="ts">
+import './Radio.css';
+import type { RadioProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = guid();
-export let title = undefined;
-export let label = '';
-export let disabled = false;
-export let items = [];
-export let value = '';
-export let error = '';
-export let info = '';
-export let labelOnTheLeft = false;
 
-export let element = undefined;
+let {
+	class: className = '',
+	name = guid(),
+	label = '',
+	disabled = false,
+	items = [],
+	value = $bindable(''),
+	error = '',
+	info = '',
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	onchange = () => {},
+	...restProps
+}: RadioProps = $props();
 
-const dispatch = createEventDispatcher();
+
 const errorMessageId = guid();
 
-$:_id = id || name || guid();
+const cls = $derived([
+	'check-and-radio',
+	'radio',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+	}
+]);
 
-$: _items = items.map(item => {
+
+const _items = $derived(items.map((item: any) => {
 	if (typeof item === 'string') item = { name: item, value: item };
-	item.id = item.id || guid();
-	return item;
-});
+	return { ...item, id: item.id || guid() };
+}));
 
 
 function onmousedown (e) {
-	const inp = e.target.closest('.radio-item').querySelector('input');
+	const inp = e.target?.closest('.radio-item')?.querySelector('input');
 	if (inp && !inp.disabled) {
 		e.preventDefault();
 		inp.click();
@@ -79,9 +83,9 @@ function onmousedown (e) {
 	}
 }
 
-function onchange (event, item) {
+function _onchange (e: Event, item: any) {
 	value = item.value;
-	dispatch('change', { event, value, item });
+	onchange(e, { value, item });
 }
 
 </script>

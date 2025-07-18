@@ -1,43 +1,51 @@
 {#if !hideButton}
-	<PushButton icon="bell"
+	<PushButton
+		icon="bell"
 		{outline}
 		{round}
-		class="notification-center-button {hasNotifications} {hasArchivedNotifications}"
-		bind:pressed={$showArchive}/>
+		bind:pressed={$showArchive}
+		class={[
+			'notification-center-button',
+			{
+				'has-notifications': notifications.length || hasArchivedNotifications,
+				'has-archived-notifications': hasArchivedNotifications
+			}
+		]}/>
 {/if}
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	class="notification-center {className}"
-	class:show-archive="{$showArchive}"
-	class:archive-is-visible="{archiveIsVisible}"
-	class:has-active-notifications="{hasActiveNotifications}"
-	bind:this="{el}">
+	class:show-archive={$showArchive}
+	class:archive-is-visible={archiveIsVisible}
+	class:has-active-notifications={hasActiveNotifications}
+	bind:this={el}
+	{...restProps}>
 
 	{#each notifications as notification (notification.id)}
 		<div
 			class="notification notification-{notification.type}"
-			data-id="{notification.id}"
+			data-id={notification.id}
 			tabindex="0"
-			on:mouseover="{() => clearTimer(notification)}"
-			on:focus="{() => clearTimer(notification)}"
-			on:mouseleave="{e => createTimer(notification, e.target)}"
-			on:blur="{e => createTimer(notification, e.target)}"
-			on:keydown="{e => onKeydown(e, notification)}"
+			onmouseover={() => clearTimer(notification)}
+			onfocus={() => clearTimer(notification)}
+			onmouseleave={e => createTimer(notification, e.target)}
+			onblur={e => createTimer(notification, e.target)}
+			onkeydown={e => onKeydown(e, notification)}
 			out:_send="{{ key: notification.id }}"
 			in:fly="{{ duration }}"
 			animate:flip>
 
-			<div class="notification-icon"><Icon name="{notification.type}"/></div>
-			<div class="notification-msg" role="{notification.type === 'info' ? 'status' : 'alert'}">{@html notification.msg}</div>
+			<div class="notification-icon"><Icon name={notification.type}/></div>
+			<div class="notification-msg" role={notification.type === 'info' ? 'status' : 'alert'}>{@html notification.msg}</div>
 
 			<div class="notification-buttons">
 				{#if notification.btn}
-					<button on:click|preventDefault="{() => notification.cb(notification.id)}">{notification.btn}</button>
+					<button class="notification-button" onclick={e => onToastClick(e, notification)}>{notification.btn}</button>
 				{/if}
 
-				<button class="notification-close" on:click|stopPropagation="{() => hideNotification(notification.id)}">&times;</button>
+				<button class="notification-close" onclick={e => onToastCloseClick(e, notification)}>&times;</button>
 			</div>
 
 			{#if notification.showProgress}
@@ -48,42 +56,47 @@
 		</div>
 	{/each}
 
-	{#if !hideButton}<NotificationArchive bind:show="{$showArchive}" bind:expanded="{archiveIsExpanded}"/>{/if}
+	{#if !hideButton}<NotificationArchive bind:show={$showArchive} bind:expanded={archiveIsExpanded}/>{/if}
 
 </div>
 
 
 
-<script>
-import { onDestroy, onMount } from 'svelte';
+<script lang="ts">
+import './NotificationCenter.css';
+import type { NotificationCenterProps } from '../types';
+import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import { Icon } from '../../icon';
 import { PushButton } from '../../push-button';
 import { Notifications, ArchivedNotifications, createTimer, timers, hideNotification, clearTimer,
-	send, flip, fly, slideDown } from '../store.js';
+	send, flip, fly, slideDown } from '../store';
 import { NotificationArchive } from '../NotificationArchive';
-import { ANIMATION_SPEED } from '../../utils.js';
-import { getNextNotification } from '../utils.js';
+import { UI } from '../../utils';
+import { getNextNotification } from '../utils';
 
-let className = '';
-export { className as class };
-export let round = false;
-export let outline = false;
-export let hideButton = false;
+
+const {
+	class: className = '',
+	round = false,
+	outline = false,
+	hideButton = false,
+	...restProps
+}: NotificationCenterProps = $props();
+
 
 const showArchive = writable(false);
-let archiveIsVisible = false;
-let archiveIsExpanded = false;
+let archiveIsVisible = $state(false);
+let archiveIsExpanded = $state(false);
 
-let el;
-let notifications = [];
-let initial = true;
-let hasActiveNotifications = false;
+let el: HTMLElement = $state();
+let notifications = $state([]);
+let hasActiveNotifications = $state(false);
+let initial = $state(true);
 
 
-$:duration = $ANIMATION_SPEED;
-$:hasArchivedNotifications = Object.keys($ArchivedNotifications).length ? 'has-archived-notifications' : '';
-$:hasNotifications = (notifications.length || hasArchivedNotifications) ? 'has-notifications' : '';
+const duration = $derived(UI.ANIMATION_SPEED);
+const hasArchivedNotifications = $derived(Object.keys($ArchivedNotifications).length > 0);
 
 
 onMount(() => {
@@ -110,9 +123,16 @@ onMount(() => {
 });
 
 
-onDestroy(() => {
-	if (el) el.remove();
-});
+function onToastClick (e, notification) {
+	e.preventDefault();
+	notification.cb(notification.id);
+}
+
+function onToastCloseClick (e, notification) {
+	e.stopPropagation();
+	hideNotification(notification.id);
+}
+
 
 
 function addEvents () {
@@ -139,7 +159,7 @@ function onDocClick (e) {
 
 function _send (node, params) {
 	params = { ...params, duration };
-	if (!$showArchive) return fly(node);						// dismissing with archive hidden
+	if (!$showArchive) return fly(node, {});						// dismissing with archive hidden
 	if (!archiveIsExpanded) return slideDown(node, params);		// dismissing with archive visible but collapsed
 	return send(node, params);
 }

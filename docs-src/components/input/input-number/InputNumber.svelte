@@ -6,7 +6,7 @@
 <InputNumber label="Enter amount" />
 
 <h3>With validation error</h3>
-<InputNumber label="Enter amount" {error} bind:value="{value}" on:input="{validator}" />
+<InputNumber label="Enter amount" {error} bind:value={value} oninput={validator} />
 
 <h3>With info box</h3>
 <InputNumber label="Enter amount" info="Additional information." />
@@ -15,40 +15,31 @@
 <InputNumber label="Enter amount" separator="," />
 
 <h3>Label on the left</h3>
-<InputNumber label="Label is on the left" labelOnTheLeft="true"/>
+<InputNumber label="Label is on the left" labelOnTheLeft/>
 
 
 
-<CodeExample html="{exampleHtml}" />
-<API props="{apiProps}"/>
+<CodeExample html={exampleHtml} />
+<API props={apiProps}/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
+
 import { InputNumber } from '../../../../src';
 import { CodeExample } from '../../../code-example';
-import { API } from '../../../api-table';
 
-let error = 'Number must be <100';
-let value = 123;
+let error = $state('Number must be <100');
+let value = $state(123);
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'disabled', description: 'Make the input disabled.' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying input.' },
-	{ name: 'info', type: 'string', description: 'Show info message above the input.' },
-	{ name: 'error', type: 'string', description: 'Error message to show above the input.' },
-	{ name: 'label', type: 'string', description: 'Label for the input.' },
-	{ name: 'labelOnTheLeft', type: ['true', 'false'], default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' },
-	{ name: 'name', type: 'string', description: 'Assign title to the underlying input.' },
-	{ name: 'placeholder', type: 'string', description: 'Assign placeholder to the underlying input.' },
-	{ name: 'required', description: 'Mark the input as <i>aria-required</i>. The actual validation must be done in the consumer.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.required,
+	PROPS.bindinputelement,
+	PROPS.oninput,
 	{ name: 'separator', type: 'string', default: '.', description: 'Custom decimal separator.' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying input.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'bind:inputElement', type: 'element', description: 'Exposes the HTML element of the underlying input.' },
-	{ name: 'on:change', type: 'function', description: 'Triggered after the value changes and the focus leaves the input.' },
-	{ name: 'on:input', type: 'function', description: 'Triggered as soon as the input value changes.' },
 ];
 
 

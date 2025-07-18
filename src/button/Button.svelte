@@ -1,58 +1,66 @@
-<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <button
-	type="{submit ? 'submit' : 'button'}"
-	bind:this="{element}"
-
-	class="button {className}"
-	class:button-normal="{!link && !text && !outline}"
-	class:button-outline="{outline}"
-	class:button-link="{link}"
-	class:button-text="{text}"
-	class:button-has-text="{$$slots.default}"
-	class:round
-	class:info
-	class:success
-	class:warning
-	class:danger
-	class:error
-	class:touching
-	{...$$restProps}
-
-	on:focus
-	on:keydown
-	on:mousedown
-	on:mouseup
-	on:mouseover
-	on:mouseout
-	on:mousemove
-	on:touchstart="{() => touching = true}"
-	on:touchend="{() => touching = false}"
-	on:click>
-
-	{#if icon}<Icon name="{icon}"/>{/if}
-	<slot></slot>
+	{type}
+	bind:this={element}
+	class={cls}
+	ontouchstart={() => touching = true}
+	ontouchend={() => touching = false}
+	{...restProps}>
+		<Icon name={icon}/>
+		{@render children?.()}
 </button>
-<script>
+
+
+<script lang="ts">
+import type { ButtonProps } from './types';
 import { Icon } from '../icon';
+import './Button.css';
+import './Button-normal.css';
+import './Button-outline.css';
+import './Button-text.css';
+import './Button-link.css';
 
-export let element = undefined;
 
-export let info = false;
-export let success = false;
-export let warning = false;
-export let danger = false;
-export let error = false;
-export let submit = false;
+let {
+	class: className = '',
 
-export let outline = false;		// button without background, but with border
-export let link = false;		// looks like a link, gets colored underline on hover
-export let text = false;		// looks like normal text, but like a button on hover
-export let icon = undefined;	// name of the icon
-export let round = undefined;	// round button
+	info = false,
+	success = false,
+	warning = false,
+	danger = false,
+	submit = false,
 
-let className = '';
-export { className as class };
+	outline = false,
+	link = false,
+	text = false,
+	round = undefined,
 
-let touching = false;
+	icon = undefined,
+	element = $bindable(undefined),
+	children,
+	...restProps
+}: ButtonProps = $props();
+
+let touching: boolean = $state(false);
+const type = $derived(submit ? 'submit' : 'button');
+
+const cls = $derived([
+	'button',
+	className,
+	{
+		'button-normal': !link && !text && !outline,
+		'button-outline': outline,
+		'button-link': link,
+		'button-text': text,
+		'button-has-text': children,
+		round,
+		info,
+		success,
+		warning,
+		danger,
+		touching,
+	}
+]);
+
+
 
 </script>

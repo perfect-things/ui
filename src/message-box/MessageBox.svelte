@@ -1,39 +1,43 @@
 <Dialog
-	title="{$config.title}"
-	class="message-box message-{$config.type}"
-	bind:element="{element}"
-	bind:this="{dialog}"
-	on:close="{onclose}">
-		<Icon name="{$config.icon || $config.type}"/>
+	title={$config.title}
+	class={['message-box', $config.type && ('message-' + $config.type)]}
+	bind:element
+	bind:this={dialog}
+	{onclose}>
+		<Icon name={$config.icon || $config.type}/>
 		<div class="message">
 			<div class="message-content">{@html $config.message}</div>
 		</div>
-		<div slot="footer">
+		{#snippet footer()}
 			{#if $config.buttons}
-				{#each $config.buttons as button}
+				{#each $config.buttons as button (button.value || button.label)}
 					<Button
-						info="{button.type === 'info'}"
-						warning="{button.type === 'warning'}"
-						danger="{button.type === 'error' || button.type === 'danger'}"
-						success="{button.type === 'success'}"
-						on:click="{e => onclick(e, button)}">
+						info={button.type === 'info'}
+						warning={button.type === 'warning'}
+						danger={button.type === 'error' || button.type === 'danger'}
+						success={button.type === 'success'}
+						onclick={e => onclick(e, button)}>
 						{button.label}
 					</Button>
 				{/each}
 			{/if}
-		</div>
+	{/snippet}
 </Dialog>
 
-<script>
+<script lang="ts">
+import './MessageBox.css';
+import type { DialogInstanceProps } from '../dialog/types';
 import { onDestroy, onMount } from 'svelte';
-import { config } from './MessageBox.js';
+import { config, hideMessage } from './MessageBox';
 import { Dialog } from '../dialog';
 import { Button } from '../button';
 import { Icon } from '../icon';
 
-export let element = undefined;
+let { element = $bindable(undefined) } = $props();
 
-let dialog, sub;
+let dialog: DialogInstanceProps = $state();
+let sub;
+
 
 onMount(() => {
 	sub = config.subscribe(cfg => {
@@ -45,7 +49,7 @@ onMount(() => {
 
 onDestroy(() => {
 	sub();
-	config.set({});
+	hideMessage();
 });
 
 
@@ -61,6 +65,5 @@ function onclose () {
 	const target = $config.target || document.body;
 	requestAnimationFrame(() => target.focus());
 }
-
 
 </script>

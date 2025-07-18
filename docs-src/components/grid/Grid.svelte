@@ -7,27 +7,29 @@
 		{columns}
 		{data}
 		multiselect
-		on:select={onclick}
-		on:click={onclick}
-		on:dblclick={onclick}/>
+		onselect={onclick}
+		onclick={onclick}
+		ondblclick={onclick}/>
 </div>
 
 <!--<div class="table-viewport">-->
 <!--	<Grid round title="Grid with data" {columns} data={data2} multiselect />-->
 <!--</div>-->
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
+<API props={apiProps}/>
 
 
-<script>
-import { Grid } from '../../../src';
-import { API } from '../../api-table';
+<script lang="ts">
+import './Grid.css';
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+import { Grid } from '../../../src/grid';
 import { CodeExample } from '../../code-example';
 
-const apiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
+const apiProps = <ApiProp[]>[
+	...PROPS.component,
 	{ name: 'columns', type: 'array', description: 'Array of columns definition. Each objects defines and describes a column in the grid.' },
 	{ name: 'data', type: 'array', description: 'Array of items (each would constitute 1 row of the grid).' },
 	{ name: 'round', description: 'Adds rounded corners to the table.' },
@@ -36,13 +38,11 @@ const apiProps = [
 	{ name: 'scrollCorrectionOffset', type: 'number', default: '0', description: 'If an external <em>scrollContainer</em> is used - it is possible that it will have non-zero padding set, thus the table wrapper will be offset from the beginning of the container. This offset should be set here, so that the sticky headers work correctly.' },
 	{ name: 'interactive', type: ['true', 'false'], description: 'Makes table rows selectable with mouse and adds keyboard navigation.' },
 	{ name: 'multiselect', type: ['true', 'false'], description: 'If true - a column with checkboxes will be added to the grid.' },
-	{ name: 'title', type: 'string', description: 'Ads header with title on top of the grid.' },
 
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered after a row has been clicked.' },
-	{ name: 'on:dblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
-	{ name: 'on:keydown', type: 'function', description: 'Triggered after key has been pressed.' },
-	{ name: 'on:select', type: 'function', description: 'Triggered after a row selection has changed.' },
+	{ name: 'onclick', type: 'function', description: 'Triggered after a row has been clicked.' },
+	{ name: 'ondblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },
+	{ name: 'onkeydown', type: 'function', description: 'Triggered after key has been pressed.' },
+	{ name: 'onselect', type: 'function', description: 'Triggered after a row selection has changed.' },
 ];
 
 
@@ -90,16 +90,14 @@ const data = [
 
 
 function onclick (e) {
-	console.log(e.type);
+	console.log('grid event:', e.type);
 }
 
 
 const exampleHtml = `
-<Grid {data} {columns} on:click="{onclick}"/>
+<Grid {data} {columns} onclick={onclick}/>
 
 <script>
-import { Grid } from '@perfect-things/ui';
-
 const columns = [
 	{ field: 'name', label: 'Name', sortable: true },
 	{ field: 'date', label: 'Date', width: 200, sortable: true },

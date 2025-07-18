@@ -1,111 +1,110 @@
-<!-- svelte-ignore a11y-no-static-element-interactions a11y-no-noninteractive-tabindex -->
-<div
-	{title}
-	class="input input-rating {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	class:light
-	bind:this="{element}">
-
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
-
+<!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_tabindex -->
+<div bind:this={element} class={cls} {...restProps}>
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 	<div
 		class="input-inner"
 		tabindex="0"
-		on:touchstart="{onMouseDown}"
-		on:mousedown={onMouseDown}
-		on:keydown="{onKey}"
-		bind:this="{innerBox}">
+		{onmousedown}
+		ontouchstart={onmousedown}
+		onkeydown={_onkeydown}>
 
-		<InputError id="{errorMessageId}" msg="{error}" />
+		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
-			{#each stars as star}
+			{#each stars as star (star)}
 				<Button
+					class={{ active: value >= star }}
 					link
-					icon="{icon}"
-					tabindex="-1"
-					data-star="{star}"
-					class="{value >= star ? 'active' : ''}"/>
-					<!-- on:mousedown="{() => set(star)}"
-					on:mouseup="{() => set(star)}"/> -->
+					icon={icon}
+					tabindex={-1}
+					data-star={star}/>
 			{/each}
 
-			<Button link
-				icon="close"
+			<Button
 				class="btn-reset"
-				disabled="{value === ''}"
-				on:click="{reset}"/>
+				link
+				icon="close"
+				tabindex={-1}
+				disabled={!value}
+				onclick={reset}/>
 
 			<input
 				type="hidden"
 				{name}
 				{disabled}
-				id="{_id}"
-				aria-invalid="{error}"
-				aria-errormessage="{error ? errorMessageId : undefined}"
-				aria-required="{required}"
-				bind:this="{inputElement}"
-				bind:value="{value}"
-				on:input
-				on:focus
-				on:blur>
+				id={_id}
+				aria-invalid={!!error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				bind:this={inputElement}
+				bind:value>
 		</div>
 	</div>
 </div>
 
 
 
-<script>
+<script lang="ts">
+import './InputRating.css';
+import type { InputRatingProps } from './types';
 import { Button } from '../../button';
-import { createEventDispatcher } from 'svelte';
 import { guid, getMouseY, getMouseX } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let name = guid();
-export let disabled = undefined;
-export let required = undefined;
-export let value = '';
-export let title = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
-export let max = 5;
-export let icon = 'star';
-export let light = undefined;
+let {
+	class: className = '',
+	id = '',
+	name = guid(),
+	disabled = undefined,
+	required = undefined,
+	value = $bindable(),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	max = 5,
+	icon = 'star',
+	light = undefined,	// light version: no background, no border
+	hideReset = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onchange = () => {},
+	onkeydown = () => {},
+	...restProps
+}: InputRatingProps = $props();
 
-export let element = undefined;
-export let inputElement = undefined;
-let innerBox = undefined;
 let mouseY = 0;
-
-$:stars = new Array(+max).fill(0).map((_, i) => i + 1);
-
-const dispatch = createEventDispatcher();
 const errorMessageId = guid();
 
-$:_id = id || name || guid();
+const _id = $derived(id || guid());
+const stars: number[] = $derived(new Array(+max).fill(0).map((_, i) => i + 1));
+
+const cls = $derived([
+	'input',
+	'input-rating',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft,
+		'hide-reset': hideReset,
+		light,
+	}
+]);
 
 
-function fireKeydown (event) { dispatch('keydown', { event, value }); }
 
-
-function onKey (e) {
+function _onkeydown (e) {
 	if (e.target.closest('.btn-reset')) return;
-	const key = e.key, v = parseInt(value, 10) || 0;
-	if (key === 'ArrowRight') set(Math.min(v + 1, max));
-	else if (key === 'ArrowLeft') set(Math.max(v - 1, 0));
-	else if (key === 'Escape') set();
+	const key = e.key, v = parseInt(String(value), 10) || 0;
+	if (key === 'ArrowRight') setValue(e, Math.min(v + 1, max));
+	else if (key === 'ArrowLeft') setValue(e, Math.max(v - 1, 0));
+	else if (key === 'Escape') setValue(e);
 
-	if (key) return fireKeydown(e);
+	if (key) return onkeydown(e, String(value));
 	e.preventDefault();
 }
 
@@ -113,29 +112,29 @@ function onKey (e) {
 function reset (e) {
 	e.preventDefault();
 	e.stopPropagation();
-	set();
+	setValue(e);
 }
 
 
-function set (v) {
+function setValue (e: Event, v?) {
 	if (typeof v !== 'undefined' && v !== '') {
 		const num = parseFloat('' + v);
-		value = isNaN(num) ? '' : ('' + num);
+		value = isNaN(num) ? undefined : num;
 	}
-	else value = '';
+	else value = undefined;
 	element.querySelector('.input-inner').focus();
-	dispatch('change', value);
+	onchange(e, { value });
 }
 
 
 function setStarFromCursor (e) {
 	const mouseX = getMouseX(e);
 	const target = document.elementFromPoint(mouseX, mouseY);
-	if (target && target.dataset) set(target.dataset.star);
+	if (target && target.dataset) setValue(e, target.dataset.star);
 }
 
 
-function onMouseDown (e) {
+function onmousedown (e) {
 	e.preventDefault();
 	mouseY = getMouseY(e);
 	addEventListeners();

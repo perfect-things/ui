@@ -1,57 +1,77 @@
-<div
-	class="input input-text {className}"
-	class:has-error="{error}"
-	class:label-on-the-left="{labelOnTheLeft === true || labelOnTheLeft === 'true'}"
-	bind:this="{element}">
+<div bind:this={element} class={cls} {...restProps}>
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
 
-	<Label {label} {disabled} for="{_id}"/>
-	<Info msg="{info}" />
-
-	<div class="input-inner" class:disabled>
-		<InputError id="{errorMessageId}" msg="{error}" />
-
+	<div class={['input-inner', { disabled }]}>
+		<InputError id={errorMessageId} msg={error} />
 		<input
-			id="{_id}"
-			autocomplete="off"
+			id={_id}
+			{autocomplete}
 			type="text"
+			{name}
 			{disabled}
-			{...$$restProps}
-			aria-invalid="{error}"
-			aria-errormessage="{error ? errorMessageId : undefined}"
-			aria-required="{required}"
-			bind:this="{inputElement}"
-			bind:value="{value}"
-			on:input
-			on:keydown
-			on:change
-			on:focus
-			on:blur>
+			{placeholder}
+			{maxlength}
+			{minlength}
+			{pattern}
+			{tabindex}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value
+			{onfocus}
+			{onblur}
+			{onkeydown}>
 	</div>
 </div>
 
-<script>
+<script lang="ts">
+import './InputText.css';
+import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
 
-let className = '';
-export { className as class };
-export let id = '';
-export let required = undefined;
-export let disabled = false;
-export let value = '';
-export let label = '';
-export let error = undefined;
-export let info = undefined;
-export let labelOnTheLeft = false;
+let {
+	class: className = '',
+	id = '',
+	name = '',
+	required = undefined,
+	disabled = false,
+	placeholder = undefined,
+	autocomplete = 'off',
+	maxlength = undefined,
+	minlength = undefined,
+	pattern = undefined,
+	tabindex = undefined,
+	value = $bindable(''),
+	label = '',
+	error = undefined,
+	info = undefined,
+	labelOnTheLeft = false,
+	element = $bindable(undefined),
+	inputElement = $bindable(undefined),
+	onfocus = () => {},
+	onblur = () => {},
+	onkeydown = () => {},
+	...restProps
+}: InputProps = $props();
 
-export let element = undefined;
-export let inputElement = undefined;
 
+const _id = $derived(id || guid());
+const cls = $derived([
+	'input',
+	'input-text',
+	className,
+	{
+		'has-error': !!error,
+		'label-on-the-left': labelOnTheLeft
+	}
+]);
 
-$:_id = id || name || guid();
 
 const errorMessageId = guid();
 

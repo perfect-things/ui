@@ -2,13 +2,13 @@
 
 <h3>Normal menu</h3>
 <div class="docs-buttons-row">
-	<Button data-name="show-menu-button" on:click="{thingsMenu.open}">Show menu</Button>
-	<Button data-name="show-menu-button" on:click="{thingsMenu1.open}">Show menu aligned to the center of the button</Button>
-	<Button data-name="show-menu-button" on:click="{thingsMenu2.open}">Show menu aligned to the right side of the button</Button>
+	<Button data-name="show-menu-button" onclick={e => thingsMenu.open(e)}>Show menu</Button>
+	<Button data-name="show-menu-button" onclick={e => thingsMenu1.open(e)}>Show menu aligned to the center of the button</Button>
+	<Button data-name="show-menu-button" onclick={e => thingsMenu2.open(e)}>Show menu aligned to the right side of the button</Button>
 </div>
 
-<Menu bind:this="{thingsMenu}">
-	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
+<Menu bind:this={thingsMenu}>
+	<MenuItem success icon="plus" data-value="add-something" onclick={onMenuClick}>Add a thing (success)</MenuItem>
 	<MenuItem>Add another one</MenuItem>
 	<MenuSeparator />
 	<MenuItem shortcut="cmd+shift+c">Third option</MenuItem>
@@ -21,23 +21,23 @@
 	<MenuItem>Tenth, and it should be focused</MenuItem>
 	<MenuItem disabled>A disabled option too</MenuItem>
 	<MenuSeparator />
-	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
+	<MenuItem danger icon="close" onclick={menuCloseThings}>{closeThingsText} (danger)</MenuItem>
 </Menu>
 
 
-<Menu align="center" bind:this="{thingsMenu1}">
-	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
+<Menu align="center" bind:this={thingsMenu1}>
+	<MenuItem success icon="plus" data-value="add-something" onclick={onMenuClick}>Add a thing (success)</MenuItem>
 	<MenuItem>Add another one</MenuItem>
 	<MenuSeparator />
-	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
+	<MenuItem danger icon="close" onclick={menuCloseThings}>{closeThingsText} (danger)</MenuItem>
 </Menu>
 
 
-<Menu align="right" bind:this="{thingsMenu2}">
-	<MenuItem success icon="plus" data-value="add-something" on:click="{onMenuClick}">Add a thing (success)</MenuItem>
+<Menu align="right" bind:this={thingsMenu2}>
+	<MenuItem success icon="plus" data-value="add-something" onclick={onMenuClick}>Add a thing (success)</MenuItem>
 	<MenuItem>Add another one</MenuItem>
 	<MenuSeparator />
-	<MenuItem danger icon="close" on:click="{menuCloseThings}">{closeThingsText} (danger)</MenuItem>
+	<MenuItem danger icon="close" onclick={menuCloseThings}>{closeThingsText} (danger)</MenuItem>
 </Menu>
 
 
@@ -45,10 +45,10 @@
 
 <h3>Close to the edge of the screen</h3>
 <div class="docs-menu-align-right">
-	<Button on:click="{someMenu3.open}">Right edge</Button>
+	<Button onclick={e => someMenu3.open(e)}>Right edge</Button>
 </div>
 
-<Menu bind:this="{someMenu3}">
+<Menu bind:this={someMenu3}>
 	<MenuItem icon="plus">A very long text</MenuItem>
 	<MenuItem>Another very long text</MenuItem>
 	<MenuSeparator />
@@ -61,93 +61,95 @@
 <h3>Context menu</h3>
 <p>To open the context menu:</p>
 <ul>
-	<li>Desktop: right-click on the boxes below
-	<li>Mobile: long-press on them
+	<li>Desktop: right-click on the boxes below</li>
+	<li>Mobile: long-press on them</li>
 </ul>
 
 <div class="div div1">Tab</div>
 <div class="div div2">Window</div>
 
-<Menu type="context" targetSelector=".div1" bind:this="{tabsMenu}" on:close="{onTabsMenuClose}">
-	<MenuItem shortcut="cmd+t" on:click="{newTab}" icon="plus">New Tab</MenuItem>
-	<MenuItem shortcut="cmd+shift+t" on:click="{newPrivateTab}">New Private Tab</MenuItem>
+<Menu type="context" targetSelector=".div1" bind:this={tabsMenu} onclose={onTabsMenuClose}>
+	<MenuItem shortcut="cmd+t" onclick={newTab} icon="plus">New Tab</MenuItem>
+	<MenuItem shortcut="cmd+shift+t" onclick={newPrivateTab}>New Private Tab</MenuItem>
 	<MenuSeparator />
-	<MenuItem shortcut="cmd+shift+w" icon="close" on:click="{closeTabs}">{closeTabsText}</MenuItem>
+	<MenuItem shortcut="cmd+shift+w" icon="close" onclick={closeTabs}>{closeTabsText}</MenuItem>
 </Menu>
 
-<Menu type="context" targetSelector=".div2" bind:this="{windowsMenu}">
-	<MenuItem shortcut="cmd+n" on:click="{newWindow}">New window</MenuItem>
-	<MenuItem shortcut="cmd+shift+n" on:click="{newPrivateWindow}">New private window</MenuItem>
+<Menu type="context" targetSelector=".div2" bind:this={windowsMenu}>
+	<MenuItem shortcut="cmd+n" onclick={newWindow}>New window</MenuItem>
+	<MenuItem shortcut="cmd+shift+n" onclick={newPrivateWindow}>New private window</MenuItem>
 	<MenuSeparator />
-	<MenuItem shortcut="cmd+shift+q" on:click="{closeWindows}">Close All Windows</MenuItem>
+	<MenuItem shortcut="cmd+shift+q" onclick={closeWindows}>Close All Windows</MenuItem>
 </Menu>
 
 
-<CodeExample html="{exampleHtml}" />
+<CodeExample html={exampleHtml} />
 
-<API props="{apiProps}"/>
-<API props="{instanceApiProps}" title="Menu Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
-<API props="{itemApiProps}" title="Item API"/>
+<API props={apiProps}/>
+<API props={instanceApiProps} title="Menu Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
+<API props={itemApiProps} title="Item API"/>
 
 
-<script>
+<script lang="ts">
+import type { ApiProp } from '../../api-table/types';
+import { API, PROPS } from '../../api-table';
+
 import { Button, Menu, MenuItem, MenuSeparator } from '../../../src';
-import { API } from '../../api-table';
 import { CodeExample } from '../../code-example';
+import './Menu.css';
 
-const apiProps = [
+const apiProps = <ApiProp[]>[
+	PROPS.class,
+	PROPS.bindelement,
+	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
+	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
+	{ name: 'closeOnClick', type: 'boolean', default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
+
 	{ name: 'align', type: ['left', 'right', 'center'], default: 'left', description: 'Align horizontally with the target.<br>' +
 		'Context menus will default to "center" on mobile.' },
 	{ name: 'valign', type: ['top', 'bottom'], default: 'bottom', description: 'Show the menu above or below the target.<br>' +
 		'Context menus will default to "top" on mobile.<br>' +
 		'This may be overridden to ensure that the menu remains within the visible screen area.' },
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the component.' },
-	{ name: 'closeOnClick', type: ['true', 'false'], default: 'true', description: 'By default - menu will close when an item is clicked. Setting this property false will disable auto-closing.' },
-	{ name: 'targetSelector', type: 'string', required: true, description: 'This is only required when menu type is <em>context</em>.<br>It provides a selector to an element, in which the menu will appear (on mouse right-click).' },
-	{ name: 'type', type: 'context', description: 'If type is set to <em>context</em> the menu will behave as context-menu.' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:close', type: 'function', description: 'Triggered after the menu is closed.' },
-	{ name: 'on:open', type: 'function', description: 'Triggered after the menu is opened.' },
+	{ name: 'onclose', type: 'function', description: 'Triggered after the menu is closed.' },
+	{ name: 'onopen', type: 'function', description: 'Triggered after the menu is opened.' },
 ];
 
-const instanceApiProps = [
+const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the menu.' },
 	{ name: 'open', type: 'function', description: 'Opens the menu.' },
 ];
 
-const itemApiProps = [
-	{ name: 'class', type: 'string', description: 'Additional css class name to be added to the menu item.' },
-	{ name: 'danger', description: 'Button type: danger' },
-	{ name: 'data-', description: 'Dataset attribute allows to pass some data of a primitive type (string, number, boolean), which will be accessible in the <em>on:click</em> event listener, via button reference.' },
-	{ name: 'disabled', description: 'Makes the menu item (button) <i>disabled</i>' },
-	{ name: 'icon', type: 'string', description: 'Adds an icon, with this name, to the button (see <a href="#Icon">icons</a> section for icon names)' },
-	{ name: 'id', type: 'string', description: 'Assign ID to the underlying button' },
+const itemApiProps = <ApiProp[]>[
+	...PROPS.component,
+	PROPS.icon,
+	PROPS.dataset,
+
+	PROPS.danger,
+	PROPS.success,
+	PROPS.warning,
+	PROPS.onclick,
+
 	{ name: 'shortcut', type: 'string', description: 'A string representation of a keyboard shortcut. e.g. <em>cmd+alt+c</em>.<br>Keys should be separated by a <em>+</em> sign (which will be hidden in the rendered item).<br>Special keys (like cmd, alt, ctrl, shift, escape, enter, etc.) will be replaced by a corresponding symbol.<br>Keyboard handling must be done elsewhere.' },
-	{ name: 'success', description: 'Button type: success' },
-	{ name: 'title', type: 'string', description: 'Assign title to the underlying button' },
-	{ name: 'warning', description: 'Button type: warning' },
-	{ name: 'bind:element', type: 'element', description: 'Exposes the HTML element of the component.' },
-	{ name: 'on:click', type: 'function', description: 'Triggered when the menu item was clicked.<br>The event handler function receives 1 argument - the click event.<br>By calling <em>event.preventDefault();</em> it is possible to prevent menu from auto closing when the item was clicked.<br><em>event.detail</em> will contain a <em>button</em> and <em>target</em> properties, that are references to the corresponding html elements.<br>It is possible to pass the data using <em>data-</em> attributes on the <em>target</em> element and on the <em>MenuItem</em>.' },
 ];
 
 const exampleHtml = `
 <!-- Regular menu -->
-<Menu bind:this="{menu1}">
+<Menu bind:this={menu1}>
     <MenuItem data-value="add-something"><Icon name="plus"/> Add some</MenuItem>
     <MenuItem>Add some more</MenuItem>
     <MenuSeparator />
-    <MenuItem on:click="{closeSomething}"><Icon name="close"/> Close something</MenuItem>
+    <MenuItem onclick={closeSomething}><Icon name="close"/> Close something</MenuItem>
 </Menu>
 
-<Button data-name="button-with-menu" on:click="{menu1.open}">Show menu</Button>
+<Button data-name="button-with-menu" onclick={menu1.open}>Show menu</Button>
 
 <!-- Context menu -->
 <div class="div1">Tab</div>
-<Menu type="context" targetSelector=".div1" bind:this="{menu2}">
-    <MenuItem shortcut="cmd+n" on:click="{action1}">New window</MenuItem>
-    <MenuItem shortcut="cmd+shift+n" on:click="{action2}">New private window</MenuItem>
+<Menu type="context" targetSelector=".div1" bind:this={menu2}>
+    <MenuItem shortcut="cmd+n" onclick={action1}>New window</MenuItem>
+    <MenuItem shortcut="cmd+shift+n" onclick={action2}>New private window</MenuItem>
     <MenuSeparator />
-    <MenuItem shortcut="cmd+shift+q" on:click="{action3}">Close All Windows</MenuItem>
+    <MenuItem shortcut="cmd+shift+q" onclick={action3}>Close All Windows</MenuItem>
 </Menu>
 
 <script>
@@ -156,22 +158,25 @@ const exampleHtml = `
         e.preventDefault();   // prevents menu auto-closing
         menu1.close();       // manually close the menu
     }
-    function onMenuClick (e) {
-        const { target, button } = e.detail;
+    function onMenuClick (e, { target, button }) {
         console.log(target.dataset, button.dataset);
     }
 &lt;/script>
 `;
 
 
-let someMenu3, thingsMenu, thingsMenu1, thingsMenu2, tabsMenu, windowsMenu;
-let closeThingsText = 'Close all things';
-let closeTabsText = 'Close all tabs';
+let someMenu3: Menu = $state();
+let thingsMenu: Menu = $state();
+let thingsMenu1: Menu = $state();
+let thingsMenu2: Menu = $state();
+let tabsMenu: Menu = $state();
+let windowsMenu: Menu = $state();
+let closeThingsText = $state('Close all things');
+let closeTabsText = $state('Close all tabs');
 let thingsMenuTimer, tabsMenutimer;
 
 
-function onMenuClick (e) {
-	const { target, button } = e.detail;
+function onMenuClick (e, { target, button }) {
 	console.log(target.dataset, button.dataset);
 }
 

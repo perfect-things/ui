@@ -1,11 +1,19 @@
-input, select, textarea, label {
+input,
+select,
+textarea,
+label {
 	-ms-touch-action: manipulation;
 	touch-action: manipulation;
 }
 
 
-.theme-dark input { color-scheme: dark; }
-.theme-light input { color-scheme: light; }
+.theme-dark input {
+	color-scheme: dark;
+}
+
+.theme-light input {
+	color-scheme: light;
+}
 
 
 textarea::placeholder,
@@ -15,7 +23,7 @@ input::placeholder {
 }
 
 
-:where(input:not([type=radio],[type=checkbox])) {
+:where(input:not([type=radio], [type=checkbox])) {
 	font: inherit;
 	height: calc(var(--ui-button-height) - 2px);
 	border: 1px solid transparent;
@@ -29,8 +37,6 @@ input::placeholder {
 
 :where(input:focus) {
 	outline: 0;
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
 }
 
 :where(input:invalid) {
@@ -50,15 +56,18 @@ input[type=color] {
 }
 
 
-:where(input:disabled) { opacity: 0.75; cursor: default; }
+:where(input:disabled) {
+	opacity: 0.75;
+	cursor: default;
+}
 
 
 
 
 .check-and-radio input {
 	appearance: none;
-	width: 1.4rem;
-	height: 1.4rem;
+	width: 1.375rem;
+	height: 1.375rem;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -66,7 +75,8 @@ input[type=color] {
 	background: var(--ui-color-background-input);
 	border: 1px solid var(--ui-color-text-2);
 	color: var(--ui-color-text-1);
-	font: inherit;   /* required for proper sizing */
+	font: inherit;
+	/* required for proper sizing */
 	flex-shrink: 0;
 	-ms-touch-action: manipulation;
 	touch-action: manipulation;
@@ -76,7 +86,7 @@ input[type=color] {
 	content: " ";
 	display: block;
 	opacity: 0;
-	font-size: var(--ui-font-m);
+	font-size: var(--ui-font-l);
 	line-height: 1;
 	align-self: center;
 	color: inherit;
@@ -84,11 +94,17 @@ input[type=color] {
 	transition: opacity calc(var(--ui-animation-speed) / 2) ease-out;
 }
 
-.check-and-radio input:checked::after { opacity: 1; }
+.check-and-radio input:checked::after {
+	opacity: 1;
+}
 
 
 
-.input { width: 25ch; vertical-align: middle; }
+.input {
+	width: 25ch;
+	vertical-align: middle;
+}
+
 .input .input-inner {
 	display: flex;
 	flex-flow: column;
@@ -96,11 +112,11 @@ input[type=color] {
 	justify-content: stretch;
 	border-radius: var(--ui-border-radius);
 	background: var(--ui-color-background-input);
-	border: 1px solid  var(--ui-color-border);
+	border: 1px solid var(--ui-color-border);
 }
 
 
- /* label on the left */
+/* label on the left */
 .radio.label-on-the-left,
 .button-toggle.input.label-on-the-left,
 .textarea.label-on-the-left,
@@ -113,12 +129,15 @@ input[type=color] {
 	width: 100%;
 	gap: 1rem;
 }
+
 .label-on-the-left .range-inner,
-.label-on-the-left .input-inner { flex: 1; }
+.label-on-the-left .input-inner {
+	flex: 1;
+}
 
 
 .input-inner:focus-within,
-.input-inner:has(:active):not(.disabled) {
+.input-inner:active:not(:disabled, .disabled) {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
@@ -129,15 +148,27 @@ input[type=color] {
 .textarea textarea:disabled,
 .range input:disabled,
 .input select:disabled,
-.input input:disabled { opacity: 1; color: var(--ui-color-text); }
+.input input:disabled {
+	opacity: 1;
+	color: var(--ui-color-text);
+}
 
-.input .input-inner:has(:disabled),
+.input .input-inner:has(input:disabled),
 .range .range-inner:has(:disabled),
-.textarea .textarea-inner:has(:disabled) { opacity: 0.7; }
+.textarea .textarea-inner:has(:disabled) {
+	opacity: 0.7;
+}
 
-.input input:not([type=radio]) { width: 100%; border: none; }
+.input input:not([type=radio]) {
+	width: 100%;
+	border: none;
+}
+
 .input input:not([type=radio]):focus,
-.input input:not([type=radio]):invalid { box-shadow: none; border: none; }
+.input input:not([type=radio]):invalid {
+	box-shadow: none;
+	border: none;
+}
 
 
 
@@ -152,10 +183,17 @@ input[type=color] {
 	border-radius: inherit;
 }
 
-.input-row > .button,
-.input-row > .icon { position: absolute; height: 100%; z-index: 1; }
+.input-row>.button,
+.input-row>.icon {
+	position: absolute;
+	height: 100%;
+	z-index: 1;
+}
 
-.input-row > .button { color: var(--ui-color-text-1); right: 2px; }
+.input-row>.button {
+	color: var(--ui-color-text-1);
+	right: 6px;
+}
 
 .input-row>.icon {
 	color: var(--ui-color-text-2);

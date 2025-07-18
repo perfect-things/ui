@@ -1,38 +1,45 @@
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="splitter {className}"
-	class:vertical="{isVertical}"
-	class:is-dragging="{isDragging}"
-	on:mousedown="{mousedown}"
-	bind:this="{element}"></div>
+<div class={cls} bind:this={element} {onmousedown} {...restProps}></div>
 
-<script>
-import { onMount, createEventDispatcher } from 'svelte';
+
+<script lang="ts">
+import './Splitter.css';
+import type { SplitterProps, SplitterBox } from './types';
+import { onMount } from 'svelte';
 import { innerWidth, innerHeight, minHeight, minWidth, maxWidth, maxHeight, getFlexFlow } from './utils';
-import { getMouseX, getMouseY, ANIMATION_SPEED } from '../utils';
+import { getMouseX, getMouseY, UI } from '../utils';
 
 
-let className = '';
-export { className as class };
-export let element = undefined;
+let {
+	class: className = '',
+	element = $bindable(undefined),
+	onchange = () => {},
+	onchanged = () => {},
+	...restProps
+}: SplitterProps = $props();
 
 
-const dispatch = createEventDispatcher();
 const size = 8, halfsize = size / 2;
-const Box = {};
+const Box: SplitterBox = {};
 
-
-let isVertical = false;
+let isDragging = $state(false);
+let isVertical = $state(false);
 let parentEl, targetEl;
 let initialTargetBox, startX, startY;
 let mousedownTargetBox;
-let isDragging = false, bodyCursor;
+let bodyCursor;
+
+const cls = $derived([
+	'splitter',
+	className,
+	{
+		'vertical': isVertical,
+		'is-dragging': isDragging,
+	}
+]);
 
 
 
-
-onMount(() => {
-	requestAnimationFrame(init);
-});
+onMount(init);
 
 
 export function toggle () {
@@ -60,35 +67,42 @@ export function setSize (to, withAnimation = false) {
 }
 
 
-function init () {
+function init (count = 5) {
+	if (!element && count > 0) {
+		setTimeout(() => init(count - 1), 100);
+		return;
+	}
+
 	targetEl = element.previousElementSibling;
 	parentEl = element.parentElement;
 	isVertical = getFlexFlow(parentEl) === 'column';
 	initialTargetBox = targetEl.getBoundingClientRect();
 	if (isVertical) {
 		initialTargetBox.minHeight = minHeight(targetEl);
-		initialTargetBox.maxHeight = Math.min(innerHeight(element.parentElement), maxHeight(targetEl));
+		initialTargetBox.maxHeight = Math.min(innerHeight(parentEl), maxHeight(targetEl));
 	}
 	else {
 		initialTargetBox.minWidth = minWidth(targetEl);
-		initialTargetBox.maxWidth = Math.min(innerWidth(element.parentElement), maxWidth(targetEl));
+		initialTargetBox.maxWidth = Math.min(innerWidth(parentEl), maxWidth(targetEl));
 	}
 	updateSize(initialTargetBox);
 
 	targetEl.style.flex = 'unset';
 	targetEl.style.overflow = 'auto';
 	if (isVertical) element.style.height = size + 'px';
-	else element.style.width = size + 'px';
+	else if (element) element.style.width = size + 'px';
 	if (element && element.nextElementSibling) element.nextElementSibling.style.overflow = 'auto';
 }
 
 
 function updateSize (box, withAnimation = false) {
+	if (!targetEl || !element) return;
+
 	let originalTargetTransition, originalElTransition;
 	if (withAnimation) {
 		originalTargetTransition = targetEl.style.transition;
 		originalElTransition = element.style.transition;
-		const anim = ANIMATION_SPEED + 'ms ease-out';
+		const anim = UI.ANIMATION_SPEED + 'ms ease-out';
 		targetEl.style.transition = `width ${anim}, height ${anim}`;
 		element.style.transition = `left ${anim}, top ${anim}`;
 	}
@@ -98,7 +112,7 @@ function updateSize (box, withAnimation = false) {
 		const collapsed = initialTargetBox.minHeight === box.height;
 		Box.height = box.height;
 		Box.collapsed = collapsed;
-		dispatch('change', Box);
+		onchange(undefined, Box);
 	}
 	else {
 		targetEl.style.width = box.width + 'px';
@@ -106,21 +120,22 @@ function updateSize (box, withAnimation = false) {
 		const collapsed = initialTargetBox.minWidth === box.width;
 		Box.width = box.width;
 		Box.collapsed = collapsed;
-		dispatch('change', Box);
+		onchange(undefined, Box);
 	}
 
 	if (withAnimation) {
 		setTimeout(() => {
 			targetEl.style.transition = originalTargetTransition;
 			element.style.transition = originalElTransition;
-			dispatch('changed', Box);
-		}, ANIMATION_SPEED);
+			onchanged(undefined, Box);
+		}, UI.ANIMATION_SPEED);
 	}
 }
 
 
-function mousedown (e) {
-	if (isDragging) return;
+function onmousedown (e) {
+	if (isDragging || !targetEl) return;
+
 	isDragging = true;
 	e.preventDefault();
 	document.addEventListener('mouseup', mouseup);
@@ -136,9 +151,11 @@ function mousedown (e) {
 }
 
 
-function mousemove (e) {
+function mousemove (e: MouseEvent) {
 	e.preventDefault();
 	e.stopPropagation();
+	if (!mousedownTargetBox || !initialTargetBox || !element || !targetEl) return;
+
 	if (isVertical) {
 		let height = mousedownTargetBox.height + getMouseY(e) - startY;
 		if (height < initialTargetBox.minHeight) height = initialTargetBox.minHeight;
@@ -154,12 +171,12 @@ function mousemove (e) {
 }
 
 
-function mouseup () {
+function mouseup (e: MouseEvent) {
 	if (!isDragging) return;
 	isDragging = false;
 	document.removeEventListener('mouseup', mouseup);
 	document.removeEventListener('mousemove', mousemove);
 	document.body.style.cursor = bodyCursor;
-	dispatch('changed', Box);
+	onchanged(e, Box);
 }
 </script>

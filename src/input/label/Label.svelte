@@ -1,22 +1,21 @@
 {#if label}
-	<label
-		class="label {className}"
-		class:disabled
-		bind:this="{element}"
-		for="{_for}">{label}</label>
+	<label class={['label', className, { disabled }]} bind:this={element} for={_for}>
+		{label}
+	</label>
 {/if}
 
-<script>
+<script lang="ts">
+import './Label.css';
+import type { LabelProps } from './types';
 
-let className = '';
-export { className as class };
 
-let _for = '';
-export { _for as for };
-
-export let label = '';
-export let disabled = false;
-export let element = undefined;
+let {
+	class: className = '',
+	for: _for = '',
+	label = '',
+	disabled = false,
+	element = $bindable(undefined)
+}: LabelProps = $props();
 
 
 </script>
