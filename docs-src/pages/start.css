@@ -19,8 +19,8 @@
 .logo {
 	width: clamp(42px, 10vw, 160px);
 	height: clamp(42px, 10vw, 160px);
-	opacity: 0.9;
-	filter: drop-shadow(0 1px 1px #000);
+	opacity: 0.2;
+	filter: drop-shadow(0 15px 5px #000);
 }
 
 
@@ -35,6 +35,7 @@
 	white-space: nowrap;
 	line-height: 1;
 	width: auto;
+	text-shadow: 0 15px 5px #0009;
 }
 
 .logotype em { font-weight: 500; }
