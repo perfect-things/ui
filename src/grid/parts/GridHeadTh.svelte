@@ -33,7 +33,7 @@ const {
 const sortField = $derived(Data.sortField);
 const sortOrder = $derived(Data.sortOrder);
 const sortIcon = $derived($sortOrder === 'ASC' ? 'arrowNarrowDown' : 'arrowNarrowUp');
-const type = $derived(typeof $Data[0][column.field]);	// used to e.g. align numbers to the right
+const type = $derived(typeof $Data?.[0]?.[column.field]);	// used to e.g. align numbers to the right
 
 
 function sort () {

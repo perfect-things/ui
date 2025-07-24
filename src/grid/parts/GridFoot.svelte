@@ -34,7 +34,7 @@ function sumColumn (column) {
 
 
 function getType (column) {
-	return typeof $Data[0][column.field];
+	return typeof $Data?.[0]?.[column.field];
 }
 
 function renderer (column) {
