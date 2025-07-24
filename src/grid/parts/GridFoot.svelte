@@ -4,7 +4,9 @@
 			<td></td>
 		{/if}
 		{#each $columns as column (column.field)}
-			<td class="td-{getType(column)}">{column.total ? sumColumn(column) : ''}</td>
+			<td class="td-{getType(column)}">
+				{@html renderer(column)}
+			</td>
 		{/each}
 	</tr>
 </tfoot>
@@ -35,4 +37,11 @@ function getType (column) {
 	return typeof $Data[0][column.field];
 }
 
+function renderer (column) {
+	if (column.total && column.renderer) {
+		const sum = sumColumn(column);
+		return column.renderer(sum);
+	}
+	return '';
+}
 </script>

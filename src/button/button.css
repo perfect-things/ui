@@ -40,7 +40,7 @@ button {
 
 .button:focus-visible {
 	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus), var(--ui-shadow-gradient);
+	box-shadow: var(--ui-shadow-focus);
 	outline: 1px solid transparent;
 }
 
