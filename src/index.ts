@@ -1,3 +1,11 @@
+import { UI } from './utils';
+import './root.css';
+import './theme-dark.css';
+import './theme-light.css';
+
+document.documentElement.classList.add(UI.isMobile ? 'mobile' : 'desktop');
+
+
 export * from './button';
 export * from './button-group';
 export * from './dialog';
@@ -18,11 +26,4 @@ export * from './tag';
 export * from './tooltip';
 export * from './tree';
 export * from './utils';
-import { UI } from './utils';
-
-import './root.css';
-import './theme-dark.css';
-import './theme-light.css';
-
-
-document.documentElement.classList.add(UI.isMobile ? 'mobile' : 'desktop');
+export * from './types';

@@ -1,7 +1,7 @@
 {
     "name": "@perfectthings/ui",
     "description": "Perfect UI components",
-    "version": "10.0.1-beta.1",
+    "version": "10.0.1-beta.2",
     "type": "module",
     "license": "GPL-3.0-or-later",
     "keywords": [
@@ -78,93 +78,13 @@
         "dist",
         "src"
     ],
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "main": "./src/index.ts",
+    "module": "./src/index.ts",
+    "types": "./src/index.d.ts",
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js"
-        },
-        "./button": {
-            "types": "./dist/button/index.d.ts",
-            "import": "./dist/button/index.js"
-        },
-        "./button-group": {
-            "types": "./dist/button-group/index.d.ts",
-            "import": "./dist/button-group/index.js"
-        },
-        "./dialog": {
-            "types": "./dist/dialog/index.d.ts",
-            "import": "./dist/dialog/index.js"
-        },
-        "./drawer": {
-            "types": "./dist/drawer/index.d.ts",
-            "import": "./dist/drawer/index.js"
-        },
-        "./grid": {
-            "types": "./dist/grid/index.d.ts",
-            "import": "./dist/grid/index.js"
-        },
-        "./icon": {
-            "types": "./dist/icon/index.d.ts",
-            "import": "./dist/icon/index.js"
-        },
-        "./info-bar": {
-            "types": "./dist/info-bar/index.d.ts",
-            "import": "./dist/info-bar/index.js"
-        },
-        "./input": {
-            "types": "./dist/input/index.d.ts",
-            "import": "./dist/input/index.js"
-        },
-        "./menu": {
-            "types": "./dist/menu/index.d.ts",
-            "import": "./dist/menu/index.js"
-        },
-        "./message-box": {
-            "types": "./dist/message-box/index.d.ts",
-            "import": "./dist/message-box/index.js"
-        },
-        "./notification-center": {
-            "types": "./dist/notification-center/index.d.ts",
-            "import": "./dist/notification-center/index.js"
-        },
-        "./panel": {
-            "types": "./dist/panel/index.d.ts",
-            "import": "./dist/panel/index.js"
-        },
-        "./popover": {
-            "types": "./dist/popover/index.d.ts",
-            "import": "./dist/popover/index.js"
-        },
-        "./push-button": {
-            "types": "./dist/push-button/index.d.ts",
-            "import": "./dist/push-button/index.js"
-        },
-        "./splitter": {
-            "types": "./dist/splitter/index.d.ts",
-            "import": "./dist/splitter/index.js"
-        },
-        "./table": {
-            "types": "./dist/table/index.d.ts",
-            "import": "./dist/table/index.js"
-        },
-        "./tag": {
-            "types": "./dist/tag/index.d.ts",
-            "import": "./dist/tag/index.js"
-        },
-        "./tooltip": {
-            "types": "./dist/tooltip/index.d.ts",
-            "import": "./dist/tooltip/index.js"
-        },
-        "./tree": {
-            "types": "./dist/tree/index.d.ts",
-            "import": "./dist/tree/index.js"
-        },
-        "./utils": {
-            "types": "./dist/utils.d.ts",
-            "import": "./dist/utils/index.js"
+            "types": "./src/index.d.ts",
+            "import": "./src/index.ts"
         },
         "./styles": "./dist/ui.css"
     }

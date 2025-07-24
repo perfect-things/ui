@@ -1,3 +1,5 @@
+import './input.css';
+
 export * from './combobox';
 export * from './button-toggle';
 export * from './checkbox';
@@ -17,4 +19,4 @@ export * from './range';
 export * from './select';
 export * from './textarea';
 export * from './toggle';
-import './input.css';
+export * from './types';
