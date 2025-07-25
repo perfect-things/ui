@@ -16,7 +16,7 @@ test('Drawer', async () => {
 		children: undefined
 	};
 
-	const component = mount(Drawer, { target: document.body, props }) as typeof Drawer;
+	const component = mount(Drawer, { target: document.body, props });
 
 	let cmp = document.body.querySelector('.test-class');
 	expect(cmp).not.toBeInTheDocument();
