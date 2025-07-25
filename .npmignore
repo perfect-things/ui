@@ -1,4 +1,9 @@
+.svelte-kit/
 assets/
+docs-src/
+coverage/
+scripts/
+tests/
 
 docs/CNAME
 docs/*.sketch
@@ -10,12 +15,9 @@ docs/index*.js
 docs/*.woff*
 # keep only docs/zxcvbn.js
 
-docs-src/
-coverage/
-tests/
 .*
 CHANGELOG.md
-release.sh
+CHANGELOG-archive.md
 screen.png
 *.js
 *config*.*
