@@ -1,3 +1,18 @@
+<!--
+@component ## PushButton
+
+A toggle button component that maintains a pressed/unpressed state.
+- Built on top of the Button component with toggle functionality
+
+@example
+```svelte
+<PushButton bind:pressed={isToggled} icon="star">
+  {isToggled ? 'Liked' : 'Like'}
+</PushButton>
+```
+@see {@link https://ui.perfectthings.dev/#PushButton Push Button Docs} for more info.
+-->
+
 {#if children}
 	<Button
 		class={['push-button', className]}

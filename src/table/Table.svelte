@@ -1,3 +1,26 @@
+<!--
+@component ## Table
+
+An enhanced table component with keyboard navigation and row selection.
+- Supports keyboard navigation with arrow keys
+- Row selection with visual feedback
+- Configurable row selectors
+
+@example
+```svelte
+<Table rowSelector=".row" onselect={handleSelect} ondblclick={handleDoubleClick}>
+  <thead>
+    <tr><th>Name</th><th>Age</th><th>Email</th></tr>
+  </thead>
+  <tbody>
+    <tr class="row"><td>John</td><td>30</td><td>john@example.com</td></tr>
+    <tr class="row"><td>Jane</td><td>25</td><td>jane@example.com</td></tr>
+  </tbody>
+</Table>
+```
+@see {@link https://ui.perfectthings.dev/#Table Table Docs} for more info.
+-->
+
 <div
 	class={cls}
 	bind:this={element}

@@ -1,3 +1,21 @@
+<!--
+@component ## Dialog
+
+A modal dialog component with accessibility features and focus management.
+
+@example
+```svelte
+<Dialog bind:this={dialog} title="Confirmation">
+  Are you sure you want to proceed?
+  {#snippet footer()}
+    <Button onclick={() => dialog.close()}>Cancel</Button>
+    <Button success onclick={() => handleConfirm()}>Confirm</Button>
+  {/snippet}
+</Dialog>
+```
+@see {@link https://ui.perfectthings.dev/#Dialog Dialog Docs} for more info.
+-->
+
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
 	role="dialog"

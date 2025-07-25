@@ -1,3 +1,20 @@
+<!--
+@component ## Textarea
+
+A multi-line text input component with auto-grow option.
+
+@example
+```svelte
+<Textarea
+  label="Comments"
+  placeholder="Enter your comments here..."
+  bind:value={comments}
+  autogrow
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Textarea Textarea Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />

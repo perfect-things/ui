@@ -1,3 +1,24 @@
+<!--
+@component ## NotificationCenter
+
+A comprehensive notification system with live notifications and an archive.
+- Displays a bell button that shows count of archived (past) notifications
+- Live notifications appear on screen and then move to archive when dismissed
+- Supports different notification types (info, success, warning, error)
+- Can be used as a regular toaster by hiding the button
+
+@example
+```svelte
+<NotificationCenter />
+<Button onclick={() => showNotification('Hello')}>Show info</Button>
+
+<script>
+import { NotificationCenter, Button, showNotification } from '@perfectthings/ui';
+</script>
+```
+@see {@link https://ui.perfectthings.dev/#NotificationCenter Notification Center Docs} for more info.
+-->
+
 {#if !hideButton}
 	<PushButton
 		icon="bell"
@@ -57,9 +78,7 @@
 	{/each}
 
 	{#if !hideButton}<NotificationArchive bind:show={$showArchive} bind:expanded={archiveIsExpanded}/>{/if}
-
 </div>
-
 
 
 <script lang="ts">

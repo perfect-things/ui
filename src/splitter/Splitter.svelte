@@ -1,3 +1,30 @@
+<!--
+@component ## Splitter
+
+A resizable splitter component for creating adjustable layouts.
+- Smart horizontal and vertical splitting based on parent flex direction
+- Uses [min|max]-[width|height] properties to determine resize limits
+- Provides programmatic control via instance methods (collapse, expand, setSize, toggle)
+- Smooth animations when resizing programmatically
+- Mouse and touch support for interactive resizing
+
+@example
+```svelte
+<div style="display: flex; height: 300px;">
+  <div style="min-width: 100px; max-width: 400px;">Left Panel</div>
+  <Splitter bind:this={splitter} onchanged={() => console.log('Resized')}/>
+  <div>Right Panel</div>
+</div>
+
+<div style="display: flex; flex-direction: column; height: 300px;">
+  <div style="min-height: 50px;">Top Panel</div>
+  <Splitter/>
+  <div>Bottom Panel</div>
+</div>
+```
+@see {@link https://ui.perfectthings.dev/#Splitter Splitter Docs} for more info.
+-->
+
 <div class={cls} bind:this={element} {onmousedown} {...restProps}></div>
 
 

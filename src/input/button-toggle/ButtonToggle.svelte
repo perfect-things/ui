@@ -1,3 +1,26 @@
+<!--
+@component ## ButtonToggle
+
+A radio button group component styled as connected toggle buttons.
+- Visual button styling on top of radio button functionality
+- Supports icons, text, or icon-only buttons
+- Horizontal scrolling for many options
+
+@example
+```svelte
+<ButtonToggle
+  label="View mode"
+  items={[
+    { name: 'List', value: 'list', icon: 'list' },
+    { name: 'Grid', value: 'grid', icon: 'grid' },
+    { name: 'Card', value: 'card', icon: 'card' }
+  ]}
+  bind:value={viewMode}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#ButtonToggle Button Toggle Docs} for more info.
+-->
+
 <div
 	class={cls}
 	role="radiogroup"

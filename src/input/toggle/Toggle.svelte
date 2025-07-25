@@ -1,3 +1,33 @@
+<!--
+@component ## Toggle
+
+A perfect toggle/switch component with drag and click support.
+- Allows both click and drag to toggle state
+- Full keyboard support (Enter or Space to toggle)
+- Accessible implementation based on checkbox input
+
+@example
+```svelte
+<Toggle
+  label="Enable notifications"
+  bind:value={notificationsEnabled}
+/>
+
+<Toggle
+  label="Dark mode"
+  info="Switch between light and dark themes"
+  bind:value={darkMode}
+/>
+
+<Toggle
+  label="Auto-save"
+  bind:value={autoSave}
+  disabled={!hasPermission}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Toggle Toggle Docs} for more info.
+-->
+
 <div
 	class={cls}
 	role="switch"

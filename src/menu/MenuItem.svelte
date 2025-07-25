@@ -1,4 +1,19 @@
-<!-- @component MenuItem component. -->
+<!--
+@component ## MenuItem
+
+ A component that renders a menu item.
+ It can be used to display a single action or option.
+
+ @example
+  ```svelte
+ <Menu>
+    <MenuItem icon="cog" shortcut="cmd+," onclick={() => console.log('Settings')}>
+        Settings
+    </MenuItem>
+ </Menu>
+ ```
+ @see {@link https://ui.perfectthings.dev/#Menu Menu Docs} for more info.
+-->
 
 <button
 	role="menuitem"

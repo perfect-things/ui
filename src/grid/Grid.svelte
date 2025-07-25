@@ -1,3 +1,31 @@
+<!--
+@component ## Grid
+
+An advanced data grid component built on top of table functionality (alpha version).
+- Enhanced table with column definitions and data binding
+- Supports multi-select with checkbox column
+- Keyboard navigation and row selection
+- Configurable columns with custom rendering
+- Sticky headers and scroll container support
+
+@example
+```svelte
+<Grid
+  title="User Data"
+  columns={[
+    { field: 'name', title: 'Name' },
+    { field: 'email', title: 'Email' },
+    { field: 'age', title: 'Age', type: 'number' }
+  ]}
+  data={userData}
+  multiselect
+  round
+  onselect={handleSelection}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Grid Grid Docs} for more info.
+-->
+
 <div
 	bind:this={element}
 	class={cls}

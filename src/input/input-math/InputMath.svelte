@@ -1,4 +1,31 @@
- <div
+<!--
+@component ## InputMath
+
+A mathematical expression input component with evaluation capabilities.
+- Supports basic arithmetic operations (+, -, *, /)
+- Calculates the value, and updates the input on change (on `blur` or Enter key)
+- Calculator icon for visual indication
+- Error handling for invalid expressions
+- Integrated label, info, and error message support
+
+@example
+```svelte
+<InputMath
+  label="Calculate total"
+  placeholder="Enter math expression"
+  bind:value={calculation}
+/>
+
+<InputMath
+  label="Budget calculation"
+  info="Use +, -, *, / for calculations"
+  bind:value={budget}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#InputMath Input Math Docs} for more info.
+-->
+
+<div
 	bind:this={element}
 	class={cls}
 	{...restProps}>

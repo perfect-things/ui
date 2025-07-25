@@ -1,3 +1,26 @@
+<!--
+@component ## ButtonGroup
+
+A container component that groups multiple buttons together with consistent styling.
+- Supports horizontal scrolling for long button lists
+
+@example
+```svelte
+<ButtonGroup>
+  <Button>First</Button>
+  <Button disabled>Disabled</Button>
+  <Button>Third</Button>
+</ButtonGroup>
+
+<ButtonGroup round>
+  <Button info>Info</Button>
+  <Button success>Success</Button>
+  <Button warning>Warning</Button>
+</ButtonGroup>
+```
+@see {@link https://ui.perfectthings.dev/#ButtonGroup Button Group Docs} for more info.
+-->
+
 <div
 	bind:this={element}
 	class={['button-group', className, { round }]}

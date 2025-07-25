@@ -1,3 +1,24 @@
+<!--
+@component ## InputRating
+
+A star rating input component for collecting user ratings.
+- Interactive star rating with hover and click support
+- Configurable number of stars (default 5)
+- Custom icon support (default star)
+- Keyboard navigation support
+
+@example
+```svelte
+<InputRating
+  label="Service quality"
+  icon="heart"
+  bind:value={serviceRating}
+  info="Rate from 1 to 5 hearts"
+/>
+```
+@see {@link https://ui.perfectthings.dev/#InputRating Input Rating Docs} for more info.
+-->
+
 <!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_tabindex -->
 <div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>

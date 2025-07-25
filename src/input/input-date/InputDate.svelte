@@ -1,3 +1,32 @@
+<!--
+@component ## InputDate
+
+A date input component with calendar picker and native date input fallback.
+- Custom calendar picker for enhanced user experience
+- Fallback to native date input on mobile devices
+- Date formatting and validation
+- Keyboard navigation support
+- Integrated label, info, and error message support
+- Configurable date format and locale support
+
+@example
+```svelte
+<InputDate
+  label="Birth Date"
+  bind:value={birthDate}
+  required
+/>
+
+<InputDate
+  label="Event Date"
+  placeholder="Select a date"
+  bind:value={eventDate}
+  info="Choose a future date"
+/>
+```
+@see {@link https://ui.perfectthings.dev/#InputDate Input Date Docs} for more info.
+-->
+
 <div
 	class={cls}
 	bind:this={element}

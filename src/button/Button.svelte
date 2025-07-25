@@ -1,3 +1,22 @@
+<!--
+@component ## Button
+
+A versatile button component with multiple styles and states.
+- Supports different styles: normal, outline, text, and link
+- Includes semantic color variants: info, success, warning, danger
+- Can display icons and be configured as round
+- Supports disabled state and custom click handlers
+
+@example
+```svelte
+<Button>Default Button</Button>
+<Button success>Success Button</Button>
+<Button outline icon="check">Outline with Icon</Button>
+<Button round danger onclick={() => console.log('clicked')}>Round Danger</Button>
+```
+@see {@link https://ui.perfectthings.dev/#Button Button Docs} for more info.
+-->
+
 <button
 	{type}
 	bind:this={element}

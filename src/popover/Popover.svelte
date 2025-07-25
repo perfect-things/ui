@@ -1,3 +1,27 @@
+<!--
+@component ## Popover
+
+A container that can be opened like a dialog but attaches to a target element like a tooltip.
+- Combines the functionality of dialogs and tooltips
+- Focus trap keeps keyboard focus within the popover when opened
+- Positioning relative to target element (top, bottom, left, right)
+- Can be closed with Escape key or clicking outside
+- Can contain interactive components like buttons
+- Tries to remain visible within the viewport
+
+@example
+```svelte
+<Button onclick={(e) => popover.open(e)}>Open Popover</Button>
+
+<Popover bind:this={popover} position="bottom">
+  <h2>Additional Information</h2>
+  <p>Some contextual content here.</p>
+  <Button onclick={popover.close}>Close</Button>
+</Popover>
+```
+@see {@link https://ui.perfectthings.dev/#Popover Popover Docs} for more info.
+-->
+
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
 	<div bind:this={element} class={cls} {...restProps}>

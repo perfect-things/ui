@@ -1,4 +1,3 @@
-<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <!--
 @component ## Menu
 
@@ -19,6 +18,7 @@
  @see {@link https://ui.perfectthings.dev/#Menu Menu Docs} for more info.
 -->
 
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if opened}
 	<menu
 		tabindex="0"

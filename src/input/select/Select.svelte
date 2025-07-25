@@ -1,3 +1,22 @@
+<!--
+@component ## Select
+
+A select dropdown component based on native HTML select with enhanced data management.
+- Accepts array of strings or objects as items
+- Supports option groups for categorized selections
+
+@example
+```svelte
+<Select
+  label="Choose a country"
+  placeholder="Select a country"
+  items={countries}
+  bind:value={selectedCountry}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Select Select Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />

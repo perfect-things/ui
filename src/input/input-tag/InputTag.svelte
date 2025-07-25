@@ -1,3 +1,23 @@
+<!--
+@component ## InputTag
+
+A tag input component for managing multiple tags/labels.
+
+@example
+```svelte
+<InputTag label="Tags" value="tag1, tag2" {onchange} />
+
+<script>
+function onchange (e, value) {
+    console.log('tags', value);
+}
+</script>
+/>
+
+```
+@see {@link https://ui.perfectthings.dev/#InputTag Input Tag Docs} for more info.
+-->
+
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div bind:this={element} class={cls} {...restProps}>

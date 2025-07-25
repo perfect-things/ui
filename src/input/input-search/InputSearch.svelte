@@ -1,3 +1,20 @@
+<!--
+@component ## InputSearch
+
+A search input component with search icon and clear functionality.
+- Search icon for visual indication
+- Clear button that appears when text is entered
+- Built on native search input type
+- Auto-complete disabled for privacy
+- Keyboard event handling for search operations
+
+@example
+```svelte
+<InputSearch label="Search products" placeholder="Type to search..." bind:value={searchQuery} />
+```
+@see {@link https://ui.perfectthings.dev/#InputSearch Input Search Docs} for more info.
+-->
+
 <div class={cls} bind:this={element} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />

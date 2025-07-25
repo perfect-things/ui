@@ -1,3 +1,30 @@
+<!--
+@component ## Tree
+
+A hierarchical tree component for displaying nested data structures.
+- Keyboard navigation with arrow keys, Enter, and Space
+- Supports nested tree structures of arbitrary depth
+
+@example
+```svelte
+<Tree
+  items={[
+    {
+      id: '1',
+      label: 'Documents',
+      children: [
+        { id: '1.1', label: 'Resume.pdf' },
+        { id: '1.2', label: 'Cover Letter.docx' }
+      ]
+    },
+    { id: '2', label: 'Images' }
+  ]}
+  onselect={handleSelection}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Tree Tree Docs} for more info.
+-->
+
 <ul
 	{title}
 	role="tree"

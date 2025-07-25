@@ -1,3 +1,27 @@
+<!--
+@component ## InputText
+
+A text input component with built-in label, validation, and accessibility features.
+
+@example
+```svelte
+<InputText
+  label="Full Name"
+  placeholder="Enter your name"
+  bind:value={name}
+  error={nameError}
+  required
+/>
+
+<InputText
+  label="Email"
+  info="We'll never share your email"
+  bind:value={email}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#InputText Input Text Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />

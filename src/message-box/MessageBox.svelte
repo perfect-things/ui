@@ -1,3 +1,20 @@
+<!--
+@component ## MessageBox
+
+A global message display component.
+- Supports different message types (info, warning, danger, success)
+
+@example
+```svelte
+<MessageBox />
+<script>
+	import { MessageBox, MessageType, showMessage } from '@perfectthings/ui';
+	showMessage('Some info with the OK button');
+</script>
+```
+@see {@link https://ui.perfectthings.dev/#MessageBox MessageBox Docs} for more info.
+-->
+
 <Dialog
 	title={$config.title}
 	class={['message-box', $config.type && ('message-' + $config.type)]}

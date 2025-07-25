@@ -1,3 +1,27 @@
+<!--
+@component ## Panel
+
+A collapsible container component with optional header and various styling options.
+- Supports collapsible functionality with expand/collapse animations
+- Multiple semantic variants (info, success, warning, danger)
+
+@example
+```svelte
+<Panel title="Settings" collapsible>
+  <p>Panel content goes here</p>
+</Panel>
+
+<Panel title="Error Information" danger round open>
+  <p>Important error details</p>
+</Panel>
+
+<Panel>
+  <p>Panel without title</p>
+</Panel>
+```
+@see {@link https://ui.perfectthings.dev/#Panel Panel Docs} for more info.
+-->
+
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
 	inert={disabled}

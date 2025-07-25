@@ -1,3 +1,16 @@
+<!--
+@component ## InputError
+
+A component for displaying error messages.
+
+@example
+```svelte
+<InputError id="username-error" msg={usernameError} />
+<InputError msg={validationError} animOffset={24} animOpacity />
+```
+@see {@link https://ui.perfectthings.dev/#InputError Input Error Docs} for more info.
+-->
+
 {#if msg}
 	<div class="error-wrap" bind:this={element} transition:slideError|local>
 		<Error {id} {msg} />

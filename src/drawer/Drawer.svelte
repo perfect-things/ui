@@ -1,3 +1,22 @@
+<!--
+@component ## Drawer
+
+A sliding panel component that appears from the side of the screen.
+- Slides in from the right with smooth animation
+- Focus trap keeps focus within the drawer when open
+
+@example
+```svelte
+<Button onclick={() => drawer.toggle()}>Open Drawer</Button>
+
+<Drawer bind:this={drawer} title="Settings">
+  <p>Drawer content goes here</p>
+  <Button onclick={() => drawer.close()}>Close</Button>
+</Drawer>
+```
+@see {@link https://ui.perfectthings.dev/#Drawer Drawer Docs} for more info.
+-->
+
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 {#if isVisible}
 	<div

@@ -1,3 +1,25 @@
+<!--
+@component ## Tooltip
+
+A lightweight tooltip component that displays contextual information on hover or focus.
+- Automatically positions relative to target element (top, bottom, left, right)
+- Color variants for different message types (info, success, warning, danger)
+
+@example
+```svelte
+<div id="target-element">Hover me</div>
+<Tooltip target="target-element">
+  This is a helpful tooltip message
+</Tooltip>
+
+<button id="save-btn">Save</button>
+<Tooltip target="save-btn" success shortcut="Cmd+S">
+  Save the current document
+</Tooltip>
+```
+@see {@link https://ui.perfectthings.dev/#Tooltip Tooltip Docs} for more info.
+-->
+
 {#if opened}
 	<div
 		class={cls}

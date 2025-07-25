@@ -1,3 +1,33 @@
+<!--
+@component ## Combobox
+
+An advanced select component with search, filtering, and multi-selection capabilities.
+- Search and filter items by typing
+- Single or multi-selection modes
+- Option to create new items (in single mode)
+- Keyboard navigation support
+- Flexible item rendering with grouping
+
+@example
+```svelte
+<Combobox
+  label="Select fruits"
+  items={fruits}
+  bind:value={selectedFruits}
+  multiselect
+/>
+
+<Combobox
+  label="Choose country"
+  items={countries}
+  bind:value={selectedCountry}
+  placeholder="Search countries..."
+  allowNew
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Combobox Combobox Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 	<ComboboxInput
 		{id}

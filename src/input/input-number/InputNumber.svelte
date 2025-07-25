@@ -1,3 +1,32 @@
+<!--
+@component ## InputNumber
+
+A specialized number input component with validation and formatting.
+- Restricts input to numeric values only
+- Supports min, max, and step validation
+- Keyboard navigation with arrow keys for increment/decrement
+
+@example
+```svelte
+<InputNumber
+  label="Age"
+  min={0}
+  max={120}
+  bind:value={age}
+  required
+/>
+
+<InputNumber
+  label="Price"
+  min={0}
+  step={0.01}
+  placeholder="0.00"
+  bind:value={price}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#InputNumber Input Number Docs} for more info.
+-->
+
 <div
 	class={cls}
 	bind:this={element}

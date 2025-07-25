@@ -1,3 +1,17 @@
+<!--
+@component ## InputTime
+
+A time input component with clock icon and native time picker.
+- Uses native HTML time input for consistent behavior
+- Clock icon for visual indication
+
+@example
+```svelte
+<InputTime label="Meeting time" bind:value={meetingTime} required />
+```
+@see {@link https://ui.perfectthings.dev/#InputTime Input Time Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />

@@ -1,3 +1,24 @@
+<!--
+@component ## Range
+
+A range slider input component with customizable ticks and visual feedback.
+- Based on native HTML range input with enhanced styling
+- Visual progress indication on slider track
+- Click on ticks to jump to specific values
+
+@example
+```svelte
+<Range
+  label="Volume"
+  min={0}
+  max={100}
+  step={5}
+  bind:value={volume}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Range Range Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 
 	<Label {label} {disabled} for={_id}/>

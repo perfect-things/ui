@@ -1,3 +1,32 @@
+<!--
+@component ## InputPassword
+
+A password input component with visibility toggle and optional strength indicator.
+- Toggle visibility between password and text modes
+- Optional password strength indicator with visual feedback
+- Uses zxcvbn library for strength calculation (if available)
+- Accessibility compliant with proper ARIA attributes
+- Secure autocomplete handling
+
+@example
+```svelte
+<InputPassword
+  label="Password"
+  placeholder="Enter your password"
+  bind:value={password}
+  required
+/>
+
+<InputPassword
+  label="New Password"
+  strength
+  bind:value={newPassword}
+  info="Password should be at least 8 characters"
+/>
+```
+@see {@link https://ui.perfectthings.dev/#InputPassword Input Password Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />

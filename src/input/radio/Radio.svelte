@@ -1,3 +1,32 @@
+<!--
+@component ## Radio
+
+A radio button group component for single selection from multiple options.
+- Single selection from a list of options
+- Supports string array or object array for items
+- Individual item disable functionality
+
+@example
+```svelte
+<Radio
+  label="Choose your plan"
+  items={[
+    { name: 'Basic', value: 'basic' },
+    { name: 'Premium', value: 'premium' },
+    { name: 'Enterprise', value: 'enterprise' }
+  ]}
+  bind:value={selectedPlan}
+/>
+
+<Radio
+  label="Size"
+  items={['Small', 'Medium', 'Large']}
+  bind:value={selectedSize}
+/>
+```
+@see {@link https://ui.perfectthings.dev/#Radio Radio Docs} for more info.
+-->
+
 <div bind:this={element} class={cls} {...restProps}>
 	<Label {label} {disabled} for={_items[0].id}/>
 
