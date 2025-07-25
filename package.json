@@ -85,12 +85,12 @@
         "dist",
         "src"
     ],
-    "main": "./dist/index.ts",
-    "module": "./dist/index.ts",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "default": "./dist/index.ts",
+            "default": "./dist/index.js",
             "svelte": "./dist/index.ts",
             "types": "./dist/index.d.ts"
         },
