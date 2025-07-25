@@ -11,6 +11,9 @@
 
 
 <script lang="ts">
+/**
+ * Button component for Svelte
+*/
 import type { ButtonProps } from './types';
 import { Icon } from '../icon';
 import './Button.css';
