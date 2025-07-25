@@ -4,6 +4,7 @@ docs-src/
 coverage/
 scripts/
 tests/
+src/
 
 docs/CNAME
 docs/*.sketch
