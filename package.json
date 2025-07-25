@@ -35,7 +35,9 @@
         "test:watch": "vitest",
         "test:ui": "vitest --ui",
         "test:coverage": "vitest run --coverage",
-        "pack": "svelte-package -i ./src"
+        "pack": "svelte-package -i ./src",
+        "release": "./scripts/release.sh",
+        "prerelease": "./scripts/prerelease.sh"
     },
     "peerDependencies": {
         "svelte": "^5"
