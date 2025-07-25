@@ -12,8 +12,7 @@ case $ans in
     *  ) echo "What's that?" && exit ;;
 esac
 
-exit
-
+version=$(cat package.json | grep '"version"' | cut -d '"' -f 4)
 npm run changelog
 npm run build
 npm run pack
