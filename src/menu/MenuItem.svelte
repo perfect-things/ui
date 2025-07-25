@@ -1,3 +1,5 @@
+<!-- @component MenuItem component. -->
+
 <button
 	role="menuitem"
 	class={cls}

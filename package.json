@@ -4,22 +4,28 @@
     "version": "10.0.1-beta.3",
     "type": "module",
     "license": "GPL-3.0-or-later",
-    "keywords": [
-        "UI",
-        "svelte",
-        "PerfectThings"
-    ],
+    "keywords": [ "UI", "svelte", "PerfectThings" ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/perfect-things/ui.git"
     },
+    "files": [ "dist" ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "svelte": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
     "scripts": {
         "prepare": "husky",
         "dev": "vite",
-        "build": "npm run build:lib && npm run build:types && npm run build:docs",
-        "build:lib": "vite build --config vite.config.lib.ts",
-        "build:types": "tsc --project tsconfig.build.json",
+        "build": "npm run build:docs && npm run build:lib",
         "build:docs": "vite build",
+        "build:lib": "svelte-package -i ./src",
         "preview": "vite preview",
         "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.html",
         "lint": "npm run lint:js && npm run lint:css && npm run type-check",
@@ -35,7 +41,6 @@
         "test:watch": "vitest",
         "test:ui": "vitest --ui",
         "test:coverage": "vitest run --coverage",
-        "pack": "svelte-package -i ./src",
         "release": "./scripts/release.sh",
         "prerelease": "./scripts/prerelease.sh"
     },
@@ -78,21 +83,6 @@
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.37.0",
         "vite": "^7.0.5",
-        "vite-plugin-dts": "^4.5.4",
         "vitest": "^3.2.4"
-    },
-    "files": [
-        "dist"
-    ],
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "svelte": "./dist/index.ts",
-            "default": "./dist/index.js"
-        },
-        "./styles": "./dist/ui.css"
     }
 }
