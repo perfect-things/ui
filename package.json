@@ -89,9 +89,9 @@
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts",
             "svelte": "./dist/index.ts",
-            "types": "./dist/index.d.ts"
+            "default": "./dist/index.js"
         },
         "./styles": "./dist/ui.css"
     }
