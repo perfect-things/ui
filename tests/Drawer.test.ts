@@ -16,12 +16,12 @@ test('Drawer', async () => {
 		children: undefined
 	};
 
-	const component = mount(Drawer, { target: document.body, props });
+	const component = mount(Drawer, { target: document.body, props }) as typeof Drawer;
 
 	let cmp = document.body.querySelector('.test-class');
 	expect(cmp).not.toBeInTheDocument();
 
-	component.open();
+	(component as any).open();
 	flushSync();
 
 	cmp = document.body.querySelector('.test-class');
@@ -46,7 +46,7 @@ test('Drawer', async () => {
 	cmp = document.body.querySelector('.test-class');
 	expect(cmp).not.toBeInTheDocument();
 
-	component.open();
+	(component as any).open();
 	flushSync();
 
 	cmp = document.body.querySelector('.test-class');

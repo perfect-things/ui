@@ -13,7 +13,7 @@ export interface MenuProps extends ComponentProps {
 
 
 
-export interface MenuItemProps extends ComponentProps {
+export interface MenuItemProps extends Omit<ComponentProps, 'onclick'> {
 	shortcut?: string;
 	icon?: string;
 
