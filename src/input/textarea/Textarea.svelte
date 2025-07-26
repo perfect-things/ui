@@ -33,7 +33,8 @@ A multi-line text input component with auto-grow option.
 			bind:this={inputElement}
 			bind:value
 			{onfocus}
-			{onblur}></textarea>
+			{onblur}
+			oninput={handleInput}></textarea>
 	</div>
 </div>
 <script lang="ts">
@@ -61,6 +62,7 @@ let {
 	inputElement = $bindable(undefined),
 	onfocus = undefined,
 	onblur = undefined,
+	oninput = undefined,
 	...restProps
 }: TextareaProps = $props();
 
@@ -76,5 +78,38 @@ const cls = $derived([
 		'has-error': !!error
 	}
 ]);
+
+// Handle autogrow functionality with JavaScript for better mobile compatibility
+function adjustTextareaHeight() {
+	if (!autogrow || !inputElement) return;
+	
+	// Reset height to get proper scrollHeight
+	inputElement.style.height = 'auto';
+	
+	// Set height to scrollHeight to fit content
+	const scrollHeight = inputElement.scrollHeight;
+	inputElement.style.height = `${scrollHeight}px`;
+}
+
+// Reactive effect to handle autogrow when value or autogrow changes
+$effect(() => {
+	if (autogrow && inputElement) {
+		// Use requestAnimationFrame to ensure DOM is updated
+		requestAnimationFrame(() => {
+			adjustTextareaHeight();
+		});
+	}
+});
+
+// Handle input events for real-time autogrow
+function handleInput(event: Event) {
+	if (autogrow) {
+		adjustTextareaHeight();
+	}
+	// Call original oninput handler if provided
+	if (oninput) {
+		oninput(event);
+	}
+}
 
 </script>

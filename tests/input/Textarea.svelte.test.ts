@@ -204,3 +204,42 @@ test('Textarea initializes with empty string when value is undefined', async () 
 
 	await unmount(component);
 });
+
+test('Textarea autogrow functionality adjusts height based on content', async () => {
+	const props = $state({ autogrow: true, value: '' });
+	const component = mount(Textarea, { target: document.body, props });
+
+	const textarea = document.body.querySelector('textarea');
+	const initialHeight = textarea.style.height;
+
+	// Set multiline content programmatically to trigger autogrow
+	props.value = 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5';
+	
+	// Wait for reactive effect to run
+	await new Promise(resolve => setTimeout(resolve, 10));
+
+	// Height should be auto-adjusted based on content
+	expect(textarea.style.height).not.toBe(initialHeight);
+	expect(textarea.style.height).toBeTruthy();
+
+	await unmount(component);
+});
+
+test('Textarea without autogrow does not adjust height', async () => {
+	const props = $state({ autogrow: false, value: '' });
+	const component = mount(Textarea, { target: document.body, props });
+
+	const textarea = document.body.querySelector('textarea');
+	const initialHeight = textarea.style.height;
+
+	// Set multiline content
+	props.value = 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5';
+	
+	// Wait for any effects
+	await new Promise(resolve => setTimeout(resolve, 10));
+
+	// Height should not be changed when autogrow is false
+	expect(textarea.style.height).toBe(initialHeight);
+
+	await unmount(component);
+});
