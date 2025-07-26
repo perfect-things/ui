@@ -30,7 +30,10 @@ A collapsible container component with optional header and various styling optio
 	{...restProps}>
 	{#if title}
 		<details {open} onkeydown={toggle} onclick={toggle}>
-			<summary class="panel-header" inert={!collapsible} {ontransitionend}>
+			<summary
+				class="panel-header"
+				inert={!collapsible}
+				bind:this={headerEl}>
 				{title}
 				{#if collapsible}
 					<div class="chevron">{@html getIcon('chevronRight')}</div>
@@ -47,6 +50,8 @@ A collapsible container component with optional header and various styling optio
 import './Panel.css';
 import type { PanelProps } from './types';
 import { getIcon } from '../icon';
+import { onMount } from 'svelte';
+import { animate } from '../utils';
 
 
 let {
@@ -70,8 +75,8 @@ let {
 	...restProps
 }: PanelProps = $props();
 
-
-const expanded: boolean = $derived(open || !title);
+let headerEl = $state<HTMLElement | null>(null);
+let expanded = $state(open || !title);
 
 const cls = $derived([
 	'panel',
@@ -79,10 +84,37 @@ const cls = $derived([
 	{ collapsible, expanded, round, disabled, info, success, warning, danger }
 ]);
 
+const expandedProps = { height: '0' };
+const collapsedProps = { height: '0' };
+
+
+
+onMount(calcHeights);
+
+
+
+function calcHeights () {
+	const wasOpen = open;
+	open = true;
+	requestAnimationFrame(() => {
+		if (!element) return;
+		const wrapCss = getComputedStyle(element);
+		const borderTop = parseInt(wrapCss.borderTopWidth || '0', 10);
+		const borderBottom = parseInt(wrapCss.borderBottomWidth || '0', 10);
+		const headerH = headerEl ? headerEl.offsetHeight : 0;
+		expandedProps.height = element.getBoundingClientRect().height + 'px';
+		collapsedProps.height = (headerH + borderTop + borderBottom) + 'px';
+		open = wasOpen;
+	});
+}
+
+function isEnterOrSpace (e: KeyboardEvent) {
+	return e.key === 'Enter' || e.key === ' ';
+}
 
 export function toggle (e?) {
 	if (!collapsible) {
-		if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') e.preventDefault();
+		if (e.type === 'click' || isEnterOrSpace(e)) e.preventDefault();
 		return;
 	}
 
@@ -96,13 +128,20 @@ export function toggle (e?) {
 	if (e.type === 'keydown' && e.key !== ' ') return;
 	e.preventDefault();
 
-	open = !open;
+	if (expanded) {
+		expanded = false;
+		animate(element, expandedProps, collapsedProps)
+			.then(() => {
+				open = expanded;
+				onclose();
+			});
+	}
+	else {
+		expanded = true;
+		open = true;
+		animate(element, collapsedProps, expandedProps).then(() => onopen());
+	}
 }
 
-
-function ontransitionend () {
-	if (open) onopen();
-	else onclose();
-}
 
 </script>

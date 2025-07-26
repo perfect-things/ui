@@ -3,6 +3,10 @@ import { mount, unmount } from 'svelte';
 import { Panel } from '../src/panel';
 import userEvent from '@testing-library/user-event';
 
+vi.mock('../src/utils', () => ({
+	animate: vi.fn(() => Promise.resolve())
+}));
+
 
 test('Panel', async () => {
 	const onopen = vi.fn();
@@ -27,8 +31,6 @@ test('Panel', async () => {
 
 	await user.click(header);
 	expect(cmp).toHaveClass('expanded');
-
-	header.dispatchEvent(new Event('transitionend'));
 	expect(onopen).toHaveBeenCalled();
 
 	const PanelTitle = document.body.querySelector('.test-class .panel-header');
@@ -38,7 +40,6 @@ test('Panel', async () => {
 	await user.click(panel);
 
 	expect(cmp).not.toHaveClass('expanded');
-	header.dispatchEvent(new Event('transitionend'));
 	expect(onclose).toHaveBeenCalled();
 
 	await unmount(component);

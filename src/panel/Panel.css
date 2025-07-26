@@ -5,19 +5,10 @@
 	border: 2px solid var(--ui-color-border);
 	background: var(--ui-color-background-2);
 	margin-bottom: 1rem;
-	 interpolate-size: allow-keywords;
 }
 
 
 .panel details { margin: 1px; }
-.panel details::details-content {
-	block-size: 0;
-	transition: block-size var(--ui-animation-speed), content-visibility var(--ui-animation-speed);
-	transition-behavior: allow-discrete;
-}
-
-.panel details:open::details-content { block-size: auto; }
-
 
 .panel-header {
 	color: var(--ui-color-text);
@@ -40,12 +31,12 @@
 .panel-header::-webkit-details-marker { display: none; }
 
 .panel-header:focus { outline: none; }
+
 .panel:has(.panel-header:focus-visible) {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 	z-index: 2;
 }
-
 
 
 .panel-content { background: var(--ui-color-background); padding: 1rem; }
