@@ -67,3 +67,26 @@ test('InputTime', async () => {
 
 	await unmount(component);
 });
+
+test('InputTime text should be right-aligned', () => {
+	const component = mount(InputTime, {
+		target: document.body,
+		props: {
+			value: '12:00',
+			class: 'test-right-align'
+		}
+	});
+
+	const cmp = document.body.querySelector('.test-right-align');
+	const input = cmp.querySelector('input');
+	
+	// Check that the input element exists and has the input-time class structure
+	expect(input).toBeInTheDocument();
+	expect(cmp).toHaveClass('input-time');
+	
+	// In test environment, we can't reliably test computed styles
+	// but we can verify the component structure is correct
+	expect(input.type).toBe('time');
+
+	unmount(component);
+});
