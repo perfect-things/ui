@@ -71,7 +71,7 @@ input[type=color] {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 0.3em;
+	border-radius: 0.375em;
 	background: var(--ui-color-background-input);
 	border: 1px solid var(--ui-color-text-2);
 	color: var(--ui-color-text-1);
@@ -84,13 +84,12 @@ input[type=color] {
 
 .check-and-radio input::after {
 	content: " ";
-	display: block;
 	opacity: 0;
 	font-size: var(--ui-font-l);
 	line-height: 1;
-	align-self: center;
+
+	text-box: trim-both cap alphabetic;
 	color: inherit;
-	margin: 0;
 	transition: opacity calc(var(--ui-animation-speed) / 2) ease-out;
 }
 
