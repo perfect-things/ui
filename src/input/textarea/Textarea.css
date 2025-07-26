@@ -10,9 +10,9 @@
 	resize: vertical;
 	color: var(--ui-color-text);
 	border-radius: var(--ui-border-radius);
-	border: none;
 	min-height: 2.6rem;
 	background-color: var(--ui-color-background-input);
+	border: none;
 }
 
 .textarea .textarea-inner {
@@ -22,11 +22,6 @@
 	background-color: var(--ui-color-background-input);
 	border-radius: var(--ui-border-radius);
 	border: 1px solid  var(--ui-color-border);
-}
-
-.textarea.autogrow textarea {
-	resize: none;
-	field-sizing: content;
 }
 
 .textarea .textarea-inner:focus-within {
@@ -41,3 +36,27 @@
 
 .textarea.has-error .textarea-inner  { border-color: var(--ui-color-danger); }
 .textarea.has-error .textarea-inner:focus-within { box-shadow: var(--ui-shadow-danger); }
+
+
+
+/* field-sizing has poor browser support */
+/* .textarea.autogrow textarea { resize: none; field-sizing: content; } */
+
+.textarea.autogrow .textarea-inner::after {
+	content: attr(data-value) " ";
+	visibility: hidden;
+	white-space: pre-wrap;
+	min-width: 1rem;
+	resize: none;
+	background: none;
+	appearance: none;
+	font: inherit;
+	line-height: 1.3;
+	margin: 0;
+	width: 100%;
+	padding: var(--ui-margin-m);
+	grid-area: 2 / 1 / 2 / 2;
+	border: 1px solid transparent;
+}
+
+.textarea.autogrow textarea { resize: none; }

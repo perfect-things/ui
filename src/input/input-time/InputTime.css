@@ -3,4 +3,7 @@
 	background: var(--ui-color-background-input);
 }
 
-.input-time input { margin-left: calc(2rem - 2px); }
+.input-time input {
+	margin-left: calc(2rem - 2px);
+	text-align: right;
+}

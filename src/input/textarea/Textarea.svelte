@@ -19,7 +19,7 @@ A multi-line text input component with auto-grow option.
 	<Label {label} {disabled} for={_id}/>
 	<Info msg={info} />
 
-	<div class={['textarea-inner', { disabled }]}>
+	<div class={['textarea-inner', { disabled }]} data-value="{autogrow ? value : undefined}">
 		<InputError id={errorMessageId} msg={error} />
 
 		<textarea
