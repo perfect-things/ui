@@ -24,6 +24,10 @@
 }
 
 
+.theme-light .logo {
+	filter: invert(1) drop-shadow(0 15px 6px #000b)
+}
+
 .logotype {
 	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: clamp(28px, 6vw, 90px);
@@ -36,6 +40,11 @@
 	line-height: 1;
 	width: auto;
 	text-shadow: 0 15px 5px #0009;
+	position: relative;
+}
+
+.theme-light .logotype {
+	text-shadow: 0 15px 9px #0005;
 }
 
 .logotype em { font-weight: 500; }
@@ -43,9 +52,9 @@
 	font-size: var(--ui-font-m);
 	font-weight: 300;
 	color: var(--ui-color-text-semi);
-	margin: -1rem 0 0 -63px;
-	width: 60px;
-	text-align: right;
+	position: absolute;
+	right: 0;
+	top: -1rem;
 }
 
 
