@@ -20,7 +20,7 @@ A time input component with clock icon and native time picker.
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
-			<Icon name="clock"/>
+			<Icon name={ICON.CLOCK}/>
 
 			<input
 				id={_id}
@@ -42,7 +42,7 @@ A time input component with clock icon and native time picker.
 import './InputTime.css';
 import type { InputProps } from '../types';
 import { guid } from '../../utils';
-import { Icon } from '../../icon';
+import { ICON, Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';

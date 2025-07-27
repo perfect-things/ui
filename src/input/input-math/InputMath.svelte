@@ -37,7 +37,7 @@ A mathematical expression input component with evaluation capabilities.
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
-			<Icon name="calculator"/>
+			<Icon name={ICON.CALCULATOR}/>
 			<input
 				type="text"
 				autocomplete="off"
@@ -59,7 +59,7 @@ A mathematical expression input component with evaluation capabilities.
 <script lang="ts">
 import './InputMath.css';
 import type { InputProps } from '../types';
-import { Icon } from '../../icon';
+import { Icon, ICON } from '../../icon';
 import { roundAmount, guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';

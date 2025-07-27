@@ -35,7 +35,7 @@ function onchange (e, value) {
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
-			<Icon name="tag"/>
+			<Icon name={ICON.TAG}/>
 			<!-- eslint-disable svelte/require-each-key -->
 			{#each _value as tag}
 				<Tag icon="close" clickable onclick={e => removeTagFromValue(e, tag)}>{tag}</Tag>
@@ -83,7 +83,7 @@ import { Button } from '../../button';
 import { Popover } from '../../popover';
 import { Tag } from '../../tag';
 import { guid } from '../../utils';
-import { Icon } from '../../icon';
+import { ICON, Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';

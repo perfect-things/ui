@@ -8,8 +8,8 @@ export const icons = {
 	apps: 'apps"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/><line x1="14" y1="7" x2="20" y2="7"/><line x1="17" y1="4" x2="17" y2="10"',
 	archive: 'archive"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10"/><line x1="10" y1="12" x2="14" y2="12"',
 	arrowLeft: 'arrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="12" x2="11" y2="18"/><line x1="5" y1="12" x2="11" y2="6"',
-	arrowNarrowDown: 'arrow-narrow-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19"/><line x1="16" y1="15" x2="12" y2="19"/><line x1="8" y1="15" x2="12" y2="19"',
-	arrowNarrowUp: 'arrow-narrow-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19"/><line x1="16" y1="9" x2="12" y2="5"/><line x1="8" y1="9" x2="12" y2="5"',
+	arrowDown: 'arrow-narrow-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19"/><line x1="16" y1="15" x2="12" y2="19"/><line x1="8" y1="15" x2="12" y2="19"',
+	arrowUp: 'arrow-narrow-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19"/><line x1="16" y1="9" x2="12" y2="5"/><line x1="8" y1="9" x2="12" y2="5"',
 	arrowRight: 'arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="13" y1="18" x2="19" y2="12"/><line x1="13" y1="6" x2="19" y2="12"',
 	bank: 'building-bank"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 6 12 3 19 6"/><line x1="4" y1="10" x2="4" y2="21"/><line x1="20" y1="10" x2="20" y2="21"/><line x1="8" y1="14" x2="8" y2="17"/><line x1="12" y1="14" x2="12" y2="17"/><line x1="16" y1="14" x2="16" y2="17"',
 	basket: 'basket"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="7 10 12 4 17 10" /><path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z" /><circle cx="12" cy="15" r="2" ',
@@ -76,14 +76,15 @@ export const icons = {
 	undo: 'corner-up-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 18v-6a3 3 0 0 0 -3 -3h-10l4 -4m0 8l-4 -4" ',
 	user: 'user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"',
 	users: 'users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"',
-};
+} as const;
 
-const aliases = {
+export const aliases = {
 	add: 'plus',
 	report: 'reportAnalytics',
 	success: 'checkCircle',
 	warning: 'alert',
-};
+	settings: 'cog',
+} as const;
 
 type IconsType = {
 	[key: string]: string;
@@ -91,7 +92,26 @@ type IconsType = {
 
 export const customIcons: IconsType = {};
 
+// Create a type that automatically generates all possible icon names
+type IconKeys = keyof typeof icons;
+type AliasKeys = keyof typeof aliases;
+type AllIconNames = IconKeys | AliasKeys;
 
+// Create the ICON type with uppercase keys
+type UppercaseIconNames = {
+	[K in AllIconNames as Uppercase<string & K>]: K
+};
+
+export const ICON: UppercaseIconNames = makeIconsArray();
+
+
+
+
+/**
+ * Retrieves the SVG representation of an icon by its name.
+ * @param name - The name of the icon to retrieve.
+ * @returns The SVG representation of the icon, or a default SVG if not found.
+ */
 export function getIcon (name: string) {
 	if (name in aliases) name = aliases[name];
 	if (name in customIcons) return customIcons[name];
@@ -99,6 +119,35 @@ export function getIcon (name: string) {
 	return `<svg width="20" height="20" title="${name}"></svg>`;
 }
 
+
+/**
+ * Adds a custom icon to the collection.
+ * If the icon name already exists, it will not be added again.
+ * @param name - The name of the icon to be added, should be unique.
+ * @param svg - The SVG representation of the icon.
+ */
 export function addIcon (name: string, svg: string) {
 	if (!customIcons[name]) customIcons[name] = svg;
+}
+
+
+
+
+/**
+ * Converts the icons and aliases objects into a single object
+ * where keys are icon names in uppercase and values are the original names.
+ * @returns { [key: string]: string } - An object mapping icon names to their original names
+ */
+function makeIconsArray (): UppercaseIconNames {
+	// { icon: '<svg...>'}   ->   [[ icon, 'icon' ], ...]
+	const iconsArray = Object.keys(icons).map(icn => ([icn, icn]));
+	// { icon2: 'icon1' }    ->   [[ icon2, 'icon1' ], ...]
+	const aliasesArray = Object.entries(aliases);
+
+	// [[ icon, 'icon' ], ...]  ->  [[ ICON, 'icon' ], ...]
+	const all = [...iconsArray, ...aliasesArray]
+		.map(([key, value]) => ([key.toUpperCase(), value]));
+
+	// [[ ICON, 'icon' ], ...]  ->  { ICON: 'icon', ... }
+	return Object.fromEntries(all) as UppercaseIconNames;
 }

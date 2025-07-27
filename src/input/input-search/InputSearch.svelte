@@ -23,7 +23,7 @@ A search input component with search icon and clear functionality.
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
-			<Icon name="search"/>
+			<Icon name={ICON.SEARCH}/>
 
 			<input
 				id={_id}
@@ -55,7 +55,7 @@ import './InputSearch.css';
 import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Button } from '../../button';
-import { Icon } from '../../icon';
+import { ICON, Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';

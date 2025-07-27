@@ -7,10 +7,10 @@ A component for rendering SVG icons by name.
 
 @example
 ```svelte
-<Icon name="alert"/>
-<Icon name="check"/>
-<Icon name="customIcon"/>
+<Icon name={ICON.ALERT}/>
+<Icon name={ICON.CHECK}/>
 ```
+
 @see {@link https://ui.perfectthings.dev/#Icon Icon Docs} for more info.
 -->
 

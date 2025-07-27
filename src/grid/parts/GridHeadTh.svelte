@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import type { DataStoreType } from '../types';
-import { Icon } from '../../icon';
+import { Icon, ICON } from '../../icon';
 
 interface Props {
 	column?: {
@@ -32,7 +32,7 @@ const {
 
 const sortField = $derived(Data.sortField);
 const sortOrder = $derived(Data.sortOrder);
-const sortIcon = $derived($sortOrder === 'ASC' ? 'arrowNarrowDown' : 'arrowNarrowUp');
+const sortIcon = $derived($sortOrder === 'ASC' ? ICON.ARROWDOWN : ICON.ARROWUP);
 const type = $derived(typeof $Data?.[0]?.[column.field]);	// used to e.g. align numbers to the right
 
 
