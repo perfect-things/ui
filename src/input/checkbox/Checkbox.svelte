@@ -34,7 +34,11 @@ A checkbox input component with label, validation, and accessibility features.
 	<Info msg={info} />
 	<InputError id={errorMessageId} msg={error} animOffset={24} />
 
-	<div class="checkbox-row">
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class={['checkbox-row', { pressing }]}
+		onmousedown={() => pressing = true}
+		onmouseup={() => pressing = false}
+		onmouseleave={() => pressing = false}>
 		<input
 			id={_id}
 			type="checkbox"
@@ -47,6 +51,8 @@ A checkbox input component with label, validation, and accessibility features.
 			aria-invalid={error ? true : undefined}
 			aria-errormessage={error ? errorMessageId : undefined}
 			aria-required={required}
+			onkeydown={(e) => { if (e.key === ' ') pressing = true; }}
+			onkeyup={() => pressing = false}
 			onchange={_onchange}>
 
 		<Label {label} for={_id}/>
@@ -97,6 +103,7 @@ const cls = $derived([
 	}
 ]);
 
+let pressing = $state(false);
 
 function _onchange (e: Event) {
 	onchange(e, { checked, indeterminate });

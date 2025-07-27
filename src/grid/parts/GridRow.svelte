@@ -1,13 +1,16 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <tbody
-	data-id={id}
-	class="item item-{id}"
-	tabindex="0"
-	class:row-selected={item.selected}
+data-id={id}
+class={['item', `item-${id}`]}
+tabindex="0"
+class:row-selected={item.selected}
 >
-	<tr>
-		{#if multiselect}
-			<td class="column-check">
+<tr>
+	{#if multiselect}
+		<td class={['column-check', { pressing }]}
+			onmousedown={() => pressing = true}
+			onmouseup={() => pressing = false}
+			onmouseleave={() => pressing = false}>
 				<Checkbox checked={item.selected} tabindex={-1}/>
 			</td>
 		{/if}
@@ -38,6 +41,7 @@ let {
 
 const columns = $derived(Data.columns);
 const id = $derived(item.id || item.field);
+let pressing = $state(false);
 let sub;
 
 onMount(() => {
