@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import { UI, pluck, guid } from '../utils';
+import { UI, guid } from '../utils';
 import { fly as _fly, crossfade } from 'svelte/transition';
 import { flip as _flip } from 'svelte/animate';
 
@@ -107,9 +107,14 @@ export function hideNotification (id): Promise<void> {
 
 function addToArchive (notification) {
 	if (!notification) return;
-	notification = pluck(notification, ['type', 'msg', 'id', 'timestamp']);
+	const archived = {
+		id: notification.id,
+		type: notification.type,
+		msg: notification.msg,
+		timestamp: notification.timestamp
+	};
 	ArchivedNotifications.update(list => {
-		list[notification.id] = notification;
+		list[archived.id] = archived;
 		return list;
 	});
 }

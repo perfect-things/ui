@@ -5,6 +5,20 @@ export type EventHandler = (e: Event, ...rest: any) => void;
 
 export type AlignmentDirection = 'top' | 'bottom' | 'left' | 'right';
 
+export type BoxSize = Partial<DOMRect> & Required<Pick<DOMRect, 'width' | 'height'>>;
+
+
+export type AlignItemOptions = {
+	element: HTMLElement;
+	event?: any;
+	alignH?: 'left' | 'right' | 'center';
+	offsetH?: number;
+	alignV?: AlignmentDirection; // 'top' | 'bottom' | 'left' | 'right'
+	offsetV?: number;
+	viewportPadding?: number;
+	setMinWidthToTarget?: boolean;
+};
+
 
 
 export interface ComponentProps {

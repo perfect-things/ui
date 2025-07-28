@@ -72,7 +72,7 @@ const cls = $derived([
 	'popover-plate',
 	'popover-' + _position,
 	className,
-	{ opening, 'hide-tip': hideTip }
+	{ opening, 'no-tip': hideTip, 'has-tip': !hideTip }
 ]);
 
 

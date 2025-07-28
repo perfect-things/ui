@@ -1,10 +1,9 @@
 import js from '@eslint/js';
+import ts from 'typescript-eslint';
 import globals from 'globals';
 import stylistic from '@stylistic/eslint-plugin';
 import sveltePlugin from 'eslint-plugin-svelte';
 import svelteParser from 'svelte-eslint-parser';
-import ts from 'typescript-eslint';
-
 
 export default ts.config(
 	js.configs.recommended,
@@ -17,6 +16,7 @@ export default ts.config(
 			'coverage',               // Ignore compiled output
 			'docs',                   // Ignore compiled output
 			'dist',                   // Ignore compiled output
+			'.svelte-kit',            // Ignore compiled output
 			'node_modules',           // Ignore node_modules
 			'vanillajs-datepicker',   // Ignore third party modules
 		]
@@ -25,12 +25,12 @@ export default ts.config(
 	{
 		files: ['**/*.{svelte.js,svelte.ts,svelte}'],
 		languageOptions: {
-			parser: svelteParser,
 			parserOptions: {
 				parser: ts.parser, // Use TypeScript parser for <script> blocks
 				project: './tsconfig.json',
 				extraFileExtensions: ['.svelte']
 			},
+			parser: svelteParser,
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 			globals: {

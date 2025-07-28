@@ -1,27 +1,9 @@
-import type { AlignmentDirection } from '../types';
-
-type BoxSize = {
-	top: number;
-	left: number;
-	height: number;
-	width: number;
-};
-
-type ItemAlignmentOptions = {
-	element: HTMLElement;
-	event?: any;
-	alignH?: 'left' | 'right' | 'center';
-	offsetH?: number;
-	alignV?: AlignmentDirection; // 'top' | 'bottom' | 'left' | 'right'
-	offsetV?: number;
-	viewportPadding?: number;
-	setMinWidthToTarget?: boolean;
-};
+import type { AlignItemOptions, AlignmentDirection, BoxSize } from '../types';
 
 
 /**
  * Aligns an element based on the position of a target element or event (for tooltips, popovers, dropdowns).
- * @param {ItemAlignmentOptions} options - An object containing parameters for alignment.
+ * @param {AlignItemOptions} options - An object containing parameters for alignment.
  * @returns {string} - Returns 'left', 'right', 'top', or 'bottom' based on the alignment.
  */
 export function alignItem ({
@@ -33,7 +15,7 @@ export function alignItem ({
 	offsetV = 2,
 	viewportPadding = 10,
 	setMinWidthToTarget = false,
-}: ItemAlignmentOptions): AlignmentDirection {
+}: AlignItemOptions): AlignmentDirection {
 	if (!element || !event) return 'top'; // default to top if no element or event is provided
 	const winH = window.visualViewport?.height || window.innerHeight;
 	const winW = window.visualViewport?.width || window.innerWidth;

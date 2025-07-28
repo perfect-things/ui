@@ -20,8 +20,7 @@ export function groupData (items: any[]): any {
 		_groups[item.group] = _groups[item.group] || { name: item.group, items: [] };
 		_groups[item.group].items.push(item);
 	});
-	const groups = Object.values(_groups)
-		.filter((g: any) => !!g.items.length);
+	const groups = Object.values(_groups).filter((g: any) => !!g.items.length);
 
 	if (nogroup.length) groups.unshift({ items: nogroup });
 

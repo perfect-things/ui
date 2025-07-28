@@ -1,5 +1,4 @@
 import { writable, get } from 'svelte/store';
-import { isset } from '../utils';
 import type { DataStoreType, DataItem } from './types';
 
 
@@ -30,8 +29,8 @@ export function DataStore (): DataStoreType {
 
 		const $Data = get(_this);
 		const _item = getById(item.id);
-		if (!isset(forceState)) _item.selected = !_item.selected;
-		else _item.selected = forceState;
+		if (typeof forceState === 'boolean') _item.selected = forceState;
+		else _item.selected = !_item.selected;
 
 		if (_item.selected) lastSelectedItemId = _item.id;
 

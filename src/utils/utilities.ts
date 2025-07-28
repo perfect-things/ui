@@ -1,4 +1,39 @@
 /**
+ * Creates a deep copy of an object, handling various JavaScript types including
+ * arrays, dates, regular expressions, maps, sets, and nested objects.
+ * @param {any} o - The object to copy
+ * @returns {any} A deep copy of the input object
+ * @example
+ * const original = { a: 1, b: { c: 2 } };
+ * const copy = deepCopy(original);
+ * copy.b.c = 3; // original.b.c remains 2
+ */
+export function deepCopy (o: any): any {
+	if (!o || typeof o !== 'object') return o;
+	if (Array.isArray(o)) {
+		const newO = [];
+		for (let i = 0; i < o.length; i += 1) {
+			const val = !o[i] || typeof o[i] !== 'object' ? o[i] : deepCopy(o[i]);
+			newO[i] = val === undefined ? null : val;
+		}
+		return newO;
+	}
+	if (o instanceof Date) return new Date(o);
+	if (o instanceof RegExp) return new RegExp(o);
+	if (o instanceof Map) return new Map([...o]);
+	if (o instanceof Set) return new Set([...o]);
+
+	const newO = {};
+	for (const i of Object.keys(o)) {
+		const val = !o[i] || typeof o[i] !== 'object' ? o[i] : deepCopy(o[i]);
+		if (val === undefined) continue;
+		newO[i] = val;
+	}
+	return newO;
+}
+
+
+/**
  * Debounce a function to ensure it is not called more than once every `timeout` milliseconds.
  * @param func - The function to debounce.
  * @param timeout - The time in milliseconds to wait before calling the function again. Default is 300ms.

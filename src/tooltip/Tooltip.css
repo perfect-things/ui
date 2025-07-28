@@ -6,6 +6,7 @@
 .tooltip { border-radius: 5px; max-width: 75vw; }
 .tooltip-content { padding: 0.5rem 0.7rem; }
 
+
 /* COLOR VARIATIONS */
 .info    .tooltip { --popover-color: var(--ui-color-info); }
 .success .tooltip { --popover-color: var(--ui-color-success); }
@@ -20,10 +21,8 @@
 	gap: 0.2rem;
 }
 
-.tooltip .tooltip-content .tooltip-text {
-	padding: 0.2rem 0.4rem;
+.tooltip .tooltip-content .tooltip-text { padding: 0.2rem 0.4rem; }
 
-}
 
 .tooltip kbd {
 	display: flex;
