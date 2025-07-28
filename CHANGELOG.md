@@ -30,12 +30,13 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
 - As per Svelte's best practices, attributes bound to variables will not use quotes anymore, so: `value="{value}"` -> `value={value}` or even better: `{value}`.
 - Attributes are typed now, and are a bit more restrictive, so e.g. a `boolean` or a `number` attribute will not accept a string value.
 - Like in HTML, `boolean` attributes default to `false` if not present, and `true` if passed without a value, so `<Button disabled/>` is enough to disable the button, and is the same as `<Button disabled={true}/>`.
-- Utils functions removed (please use 3rd party libraries like [es-toolkit](https://es-toolkit.dev/)):
+- Utils functions removed (please use 3rd party libraries like [es-toolkit](https://es-toolkit.dev/) or implement your own):
   - `getValueAtPath()`
   - `setValueAtPath()`
   - `empty()`
   - `isset()`
   - `pluck()`
+  - `roundAmount()`
 
 
 ### Other changes

@@ -7,6 +7,9 @@
 <h3>Normal</h3>
 <InputMath label="Enter amount" {onchange} />
 
+<h3>High precision</h3>
+<InputMath label="Enter amount" precision={6} value={123.4567890} {onchange} />
+
 <h3>With info box</h3>
 <InputMath label="Enter amount" info="You can add 2 numbers here" {onchange}/>
 
@@ -35,6 +38,7 @@ const apiProps = <ApiProp[]>[
 	...PROPS.input,
 	PROPS.required,
 	PROPS.bindinputelement,
+	{ name: 'precision', type: 'number', default: 2, description: 'How many decimal places to round to.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 ];
 

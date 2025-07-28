@@ -64,15 +64,6 @@ test('utils - guid', () => {
 
 
 
-test('utils - roundAmount', () => {
-	const amount = 123.456;
-	const rounded = utils.roundAmount(amount);
-	expect(rounded).toBe('123.46');
-});
-
-
-
-
 describe('isColorDark', () => {
 	it('returns true for dark colors', () => {
 		expect(utils.isColorDark('#333333')).toBe(true);

@@ -29,12 +29,13 @@ and second argument (<code>data</code>) is specific to the event &amp; component
 <li>As per Svelte&#39;s best practices, attributes bound to variables will not use quotes anymore, so: <code>value=&quot;{value}&quot;</code> -&gt; <code>value={value}</code> or even better: <code>{value}</code>.</li>
 <li>Attributes are typed now, and are a bit more restrictive, so e.g. a <code>boolean</code> or a <code>number</code> attribute will not accept a string value.</li>
 <li>Like in HTML, <code>boolean</code> attributes default to <code>false</code> if not present, and <code>true</code> if passed without a value, so <code>&lt;Button disabled/&gt;</code> is enough to disable the button, and is the same as <code>&lt;Button disabled={true}/&gt;</code>.</li>
-<li>Utils functions removed (please use 3rd party libraries like <a href="https://es-toolkit.dev/">es-toolkit</a>):<ul>
+<li>Utils functions removed (please use 3rd party libraries like <a href="https://es-toolkit.dev/">es-toolkit</a> or implement your own):<ul>
 <li><code>getValueAtPath()</code></li>
 <li><code>setValueAtPath()</code></li>
 <li><code>empty()</code></li>
 <li><code>isset()</code></li>
 <li><code>pluck()</code></li>
+<li><code>roundAmount()</code></li>
 </ul>
 </li>
 </ul>

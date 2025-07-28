@@ -12,6 +12,5 @@ export { default as guid } from './guid.svelte';
 export { default as isInScrollable } from './is-in-scrollable.svelte';
 export { default as isMobile } from './is-mobile.svelte';
 export { default as isColorDark } from './is-color-dark.svelte';
-export { default as roundAmount } from './round-amount.svelte';
 export { default as throttle } from './throttle.svelte';
 export { default as timeAgo } from './time-ago.svelte';

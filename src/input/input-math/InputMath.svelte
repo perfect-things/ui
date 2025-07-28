@@ -58,12 +58,13 @@ A mathematical expression input component with evaluation capabilities.
 </div>
 <script lang="ts">
 import './InputMath.css';
-import type { InputProps } from '../types';
+import type { InputMathProps } from './types';
 import { Icon, ICON } from '../../icon';
-import { roundAmount, guid } from '../../utils';
+import { guid } from '../../utils';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
+import { parseAmount, roundAmount } from './utils';
 
 
 let {
@@ -80,10 +81,11 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
+	precision = 2,
 	onchange = () => {},
 	onkeydown = () => {},
 	...restProps
-}: InputProps = $props();
+}: InputMathProps = $props();
 
 
 const errorMessageId = guid();
@@ -108,13 +110,14 @@ const cls = $derived([
 ]);
 
 
+function updateValue () {
+	const num = parseAmount(value) || 0;
+	value = value ? roundAmount(num, precision) : '';
+}
+
 function _onkeydown (e) {
 	onkeydown(e);
-	if (e.key === 'Enter') {
-		const num = parseAmount(value);
-		value = String(num) || '';
-		return;
-	}
+	if (e.key === 'Enter') return updateValue();
 	if (allowedKeys.includes(e.key)) return;
 	if (e.metaKey || e.ctrlKey) return;
 	if (e.key === separator) return;
@@ -128,22 +131,8 @@ function _onpaste (e) {
 
 
 function _onchange (e) {
-	const num = parseAmount(value);
-	value = String(num) || '';
+	updateValue();
 	onchange(e, { value });
 }
 
-
-function parseAmount (amount): number | string {
-	if (!amount) return '';
-	amount = ('' + amount).replace(/[\s,]/g, '').replace(/^-?0+(?=\d)/, '');
-	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
-	if ((/[+\-\\*/.]+/i).test(amount)) {
-		// eslint-disable-next-line @typescript-eslint/no-implied-eval
-		try { amount = new Function(`return ${amount}`)(); }
-		catch { amount = 0; }
-	}
-	const num = parseFloat(amount);
-	return (num === Infinity || isNaN(num)) ? 0 : roundAmount(num);
-}
 </script>
