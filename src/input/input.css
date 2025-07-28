@@ -6,21 +6,12 @@ label {
 	touch-action: manipulation;
 }
 
-
-.theme-dark input {
-	color-scheme: dark;
-}
-
-.theme-light input {
-	color-scheme: light;
-}
+.theme-dark input { color-scheme: dark; }
+.theme-light input { color-scheme: light; }
 
 
 textarea::placeholder,
-input::placeholder {
-	color: var(--ui-color-text-1);
-	font-style: italic;
-}
+input::placeholder { color: var(--ui-color-text-1); font-style: italic; }
 
 
 :where(input:not([type=radio], [type=checkbox])) {
@@ -35,9 +26,7 @@ input::placeholder {
 	width: 25ch;
 }
 
-:where(input:focus) {
-	outline: 0;
-}
+:where(input:focus) { outline: 0; }
 
 :where(input:invalid) {
 	border-color: var(--ui-color-danger);
@@ -55,11 +44,7 @@ input[type=color] {
 	cursor: pointer;
 }
 
-
-:where(input:disabled) {
-	opacity: 0.75;
-	cursor: default;
-}
+:where(input:disabled) { opacity: 0.75; cursor: default; }
 
 
 
@@ -87,22 +72,16 @@ input[type=color] {
 	opacity: 0;
 	font-size: var(--ui-font-l);
 	line-height: 1;
-
 	text-box: trim-both cap alphabetic;
 	color: inherit;
 	transition: opacity calc(var(--ui-animation-speed) / 2) ease-out;
 }
 
-.check-and-radio input:checked::after {
-	opacity: 1;
-}
+.check-and-radio input:checked::after { opacity: 1; }
 
+.check-and-radio label { user-select: none; }
 
-
-.input {
-	width: 25ch;
-	vertical-align: middle;
-}
+.input { width: 25ch; vertical-align: middle; }
 
 .input .input-inner {
 	display: flex;
@@ -130,9 +109,7 @@ input[type=color] {
 }
 
 .label-on-the-left .range-inner,
-.label-on-the-left .input-inner {
-	flex: 1;
-}
+.label-on-the-left .input-inner { flex: 1; }
 
 
 .input-inner:focus-within,
@@ -147,27 +124,16 @@ input[type=color] {
 .textarea textarea:disabled,
 .range input:disabled,
 .input select:disabled,
-.input input:disabled {
-	opacity: 1;
-	color: var(--ui-color-text);
-}
+.input input:disabled { opacity: 1; color: var(--ui-color-text); }
 
 .input .input-inner:has(input:disabled),
 .range .range-inner:has(:disabled),
-.textarea .textarea-inner:has(:disabled) {
-	opacity: 0.7;
-}
+.textarea .textarea-inner:has(:disabled) { opacity: 0.7; }
 
-.input input:not([type=radio]) {
-	width: 100%;
-	border: none;
-}
+.input input:not([type=radio]) { width: 100%; border: none; }
 
 .input input:not([type=radio]):focus,
-.input input:not([type=radio]):invalid {
-	box-shadow: none;
-	border: none;
-}
+.input input:not([type=radio]):invalid { box-shadow: none; border: none; }
 
 
 
@@ -183,16 +149,9 @@ input[type=color] {
 }
 
 .input-row>.button,
-.input-row>.icon {
-	position: absolute;
-	height: 100%;
-	z-index: 1;
-}
+.input-row>.icon { position: absolute; height: 100%; z-index: 1; }
 
-.input-row>.button {
-	color: var(--ui-color-text-1);
-	right: 6px;
-}
+.input-row>.button { color: var(--ui-color-text-1); right: 6px; }
 
 .input-row>.icon {
 	color: var(--ui-color-text-2);

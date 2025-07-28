@@ -64,7 +64,7 @@
 </aside>
 
 <UIButton round info
-	icon="arrowNarrowUp"
+	icon={ICON.ARROWUP}
 	class="btn-scroll-top {showScrollTopBtn ? '' : 'hidden'}"
 	title="Scroll to the top"
 	onclick={scrollToTop} />
@@ -75,7 +75,7 @@
 <script>
 import './Nav.css';
 import { onDestroy, onMount } from 'svelte';
-import { Button as UIButton, isInScrollable, debounce } from '../../src';
+import { Button as UIButton, isInScrollable, debounce, ICON } from '../../src';
 import VanillaSwipe from 'vanilla-swipe';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
