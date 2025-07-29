@@ -22,18 +22,6 @@ https://ui.perfectthings.dev
 npm i -D @perfectthings/ui
 ```
 
-### Importing the CSS
-You need to import the `docs/ui.css` into your bundle.
-There are many ways to do that. I specifically didn't use any css-to-js imports as these restrict the tools & the setup you may want to have.
-
-The easiest way is probably to add a `postinstall` script into your `package.json` that will just copy the file into your `dist` folder:
-```sh
-...
-"postinstall": "cp node_modules/@perfectthings/ui/docs/ui.css ./dist/ui.css"
-...
-```
-From there - you can just add it directly to the `index.html`.
-
 ### Svelte components
 Just `import` them from the module, as normal:
 ```js
@@ -45,23 +33,14 @@ import { Button } from '@perfectthings/ui';
 
 Available from **v6.4.0.**.
 
-### 1. Configs
+### Config
 Because this is a purely front-end framework and requires browser to work, it will not work with SSR so you need to disable it. Create a file: `src/routes/+layout.js` and add this:
 ```js
 export const ssr = false;
 ```
 
 
-### 2. CSS
-If you're using SvelteKit, you need to add the `ui.css` file to the `static` folder, and then either import it into your `global.css` file or add it to the `head` section of your `app.html` file:
-```html
-<head>
-	...
-	<link rel="stylesheet" href="%sveltekit.assets%/ui.css" />
-</head>
-```
-
-### 3. Svelte components
+### 2. Svelte components
 Once that's done, you can import the components as normal.
 
 

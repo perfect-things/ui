@@ -21,22 +21,7 @@
 	</code></pre>
 
 
-	<h3>2. Import the CSS file</h3>
-	<p>You need to import the <em>docs/ui.css</em> into your bundle or add it as a script to the <em>index.html</em>.<br>
-	There are many ways to do that. We specifically didn't use any css-to-js imports as these restrict the tools & the setup you may want to have.<br>
-	The easiest way is to add a <em>postinstall</em> script into your <em>package.json</em> that will just copy the file into your <em>dist</em> folder:
-	</p>
-
-	<pre><code class="language-json">
-	"scripts": &lbrace;
-		"postinstall": "cp node_modules/@perfectthings/ui/docs/ui.css ./dist/ui.css"
-	&rbrace;
-	</code></pre>
-
-	<p><i>Note:</i> you need to run <em>npm install</em> after adding this line to your <em>package.json</em></p>
-
-
-	<h3>3. Svelte components</h3>
+	<h3>2. Svelte components</h3>
 	<p>Just <i>import</i> them from the module, as normal:</p>
 
 	<pre><code class="language-js">
@@ -48,7 +33,7 @@
 	<h2>SvelteKit</h2>
 	<p>This framework works with SvelteKit from version <em>6.4.0</em>.</p>
 
-	<h3>1. Config</h3>
+	<h3>Config</h3>
 	<p>
 		Because this is a purely front-end framework and requires a browser to work, it will not work with <em>SSR</em>, so it needs to be disabled.<br>
 		Create a file: <em>src/routes/+layout.js</em> and add this:
@@ -56,18 +41,6 @@
 
 	<pre><code class="language-js">
 	export const ssr = false;
-	</code></pre>
-
-
-	<h3>2. CSS</h3>
-	<p>If you're using SvelteKit, you need to add the <em>ui.css</em> file to the <em>static</em> folder,<br>
-	and then either import it into your <em>global.css</em> file or add it to the <em>head</em> section of your <em>app.html</em> file:</p>
-
-	<pre><code class="language-html">
-	&lt;head&gt;
-		...
-		&lt;link rel="stylesheet" href="%sveltekit.assets%/ui.css" /&gt;
-	&lt;/head&gt;
 	</code></pre>
 
 	<p>Once that's done, you can import the components as normal.</p>
