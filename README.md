@@ -33,14 +33,11 @@ import { Button } from '@perfectthings/ui';
 
 Available from **v6.4.0.**.
 
-### Config
 Because this is a purely front-end framework and requires browser to work, it will not work with SSR so you need to disable it. Create a file: `src/routes/+layout.js` and add this:
 ```js
 export const ssr = false;
 ```
 
-
-### 2. Svelte components
 Once that's done, you can import the components as normal.
 
 
