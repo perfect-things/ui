@@ -1,6 +1,5 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
-import copy from 'rollup-plugin-copy';
 
 import { resolve } from 'path';
 import { fileURLToPath, URL } from 'node:url';
@@ -18,33 +17,9 @@ function injectScripts (html) {
 // https://vite.dev/config/
 export default defineConfig(() => ({
 	base: './',
-	customLogger: {
-		hasWarned: false,
-		clearScreen: () => { },
-		hasErrorLogged: () => false,
-		error: console.error,
-		info (msg) { console.info(msg); },
-		warn (msg) {
-			if (msg.includes('zxcvbn.js')) return;
-			console.warn(msg);
-		},
-		warnOnce (msg) {
-			if (msg.includes('prime_light-webfont')) return;
-			console.warn(msg);
-		}
-	},
 	plugins: [
 		svelte({
-			// compilerOptions: { hmr: false }
-		}),
-		copy({
-			copyOnce: true,
-			verbose: true,
-			copySync: false,
-			hook: 'buildStart',
-			targets: [
-				{ src: 'node_modules/zxcvbn/dist/zxcvbn.js', dest: 'assets' },
-			],
+			configFile: resolve(__dirname, 'svelte.config.js')
 		}),
 		{
 			name: 'inject-analytics',
@@ -68,4 +43,4 @@ export default defineConfig(() => ({
 			}
 		},
 	},
-}));
+} as UserConfig));

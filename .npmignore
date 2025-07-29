@@ -5,16 +5,7 @@ coverage/
 scripts/
 tests/
 src/
-
-docs/CNAME
-docs/*.sketch
-docs/*.svg
-docs/*.html
-docs/*.png
-docs/*.css
-docs/index*.js
-docs/*.woff*
-# keep only docs/zxcvbn.js
+docs/
 
 .*
 CHANGELOG.md

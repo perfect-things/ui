@@ -1,14 +1,11 @@
 import { flushSync, mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import zxcvbn from 'zxcvbn';
 
 import { InputPassword } from '../../src/input';
 
 
 test('InputPassword', async () => {
-	// @ts-ignore
-	window.zxcvbn = zxcvbn;
 
 	const props = $state({
 		id: 'Component1',

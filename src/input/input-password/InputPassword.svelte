@@ -4,7 +4,7 @@
 A password input component with visibility toggle and optional strength indicator.
 - Toggle visibility between password and text modes
 - Optional password strength indicator with visual feedback
-- Uses zxcvbn library for strength calculation (if available)
+- Uses zxcvbn library for strength calculation
 - Accessibility compliant with proper ARIA attributes
 - Secure autocomplete handling
 
@@ -83,6 +83,7 @@ import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
+const CDNURL = 'https://cdn.jsdelivr.net/npm/zxcvbn/+esm';
 
 let {
 	class: className = '',
@@ -139,9 +140,7 @@ const cls = $derived([
 ]);
 
 
-onMount(() => {
-	requestAnimationFrame(checkLib);
-});
+onMount(checkLib);
 
 
 $effect(() => {
@@ -167,13 +166,24 @@ function _onchange (e: Event) {
 }
 
 function checkLib (): void {
-	lib = window.zxcvbn;
+	if (!strength) return;
+	if (window.zxcvbn) lib = window.zxcvbn;
+	else loadLib();
+}
+
+function loadLib (): void {
+	// @ts-ignore
+	import(/* @vite-ignore */CDNURL)
+		.then((mod: any) => {
+			lib = mod.default;
+			window.zxcvbn = lib; // make it globally available
+		})
+		.catch(() => {});
 }
 
 
 function measure (pass: string): { score: number; text: string } {
-	if (strength && !lib) checkLib(); // try again, just in case
-	if (!lib || !pass || !strength) return { score: 0, text: '' };
+	if ((strength && !lib) || !pass || !strength) return { score: 0, text: '' };
 
 	const res = lib(pass);
 	const warning = res.feedback.warning;

@@ -1,8 +1,7 @@
-node_modules/
+.svelte-kit/
 coverage/
 dist/
-.svelte-kit/
-
+node_modules/
 docs/*.sketch
 
 *.map

@@ -40,6 +40,7 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
 
 
 ### Other changes
+- Removed the need for consumers to provide & load the `zxcvbn` library. The library will now be automatically loaded from the CDN when it's needed. If it was already loaded and is available (`window.zxcvbn`), the local instance will be used instead.
 - Added some gradients to the palette.
 - Added `ArrowLeft` and `ArrowRight` to `Toggle` component, to allow toggling the value with the keyboard.
 - Added `ArrowUp` and `ArrowDown` to `InputNumber` component, to allow incrementing/decrementing the value with the keyboard.

@@ -1,8 +1,7 @@
 <h2>Input Password</h2>
 	<p>Enhanced input password field with password strength indicator.</p>
-	<p>To be able to use the password strength indicator, <a href="https://github.com/dropbox/zxcvbn">zxcvbn</a> lib must be available on the global scope (<em>window.zxcvbn</em>).<br>
-		This script file is available in this npm package <em>node_modules/@perfectthings/ui/docs/zxcvbn.js</em>, from where it can be copied and loaded,<br>
-		e.g. in a <em>&lt;script&gt;</em> tag.
+	<p>To be able to use the password strength indicator, <a href="https://github.com/dropbox/zxcvbn">zxcvbn</a> lib is used.<br>
+		If it's not already loaded, it will be loaded from the CDN (<a href="https://cdn.jsdelivr.net/npm/zxcvbn/+esm">jsdelivr.net</a>).
 	</p>
 
 
@@ -12,7 +11,7 @@
 	<p>Your secret password is: {val}</p>
 
 	<h3>Disabled</h3>
-		<InputPassword label="Current password" name="password" disabled bind:value={val}/><br>
+		<InputPassword label="Current password" name="password" disabled /><br>
 
 	<h3>With password strength indicator</h3>
 		<InputPassword strength />
@@ -39,7 +38,7 @@
 
 
 <script lang="ts">
-import type { ApiProp } from '../../../api-table/types';
+import type { ApiProp } from '../../../api-table';
 import { API, PROPS } from '../../../api-table';
 import { InputPassword } from '../../../../src';
 import { CodeExample } from '../../../code-example';
@@ -50,15 +49,15 @@ const apiProps = <ApiProp[]>[
 	PROPS.required,
 	PROPS.onkeydown,
 	PROPS.bindinputelement,
-	{ name: 'strength', description: 'Provide the password strength UI (zxcvbn lib must be loaded).' },
+	{ name: 'strength', description: 'Provide the password strength UI.' },
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 ];
 
 const exampleHtml = `
-<InputPassword strength label="Current password" onchange={onChange} />
+<InputPassword strength label="Current password" {onchange} />
 
 <script>
-function onChange (e) {
+function onchange (e) {
     console.log('value', e.target.value);
 }
 &lt;/script>
