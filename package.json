@@ -1,7 +1,7 @@
 {
     "name": "@perfectthings/ui",
     "description": "Perfect UI components",
-    "version": "10.0.1-beta.6",
+    "version": "10.0.1-beta.7",
     "type": "module",
     "license": "GPL-3.0-or-later",
     "keywords": [
@@ -33,7 +33,6 @@
         "dev": "vite",
         "preview": "vite preview",
         "changelog": "marked --gfm -i CHANGELOG.md -o docs-src/pages/changelog.html",
-
         "lint:css:fix": "stylelint \"**/*.css\" --fix",
         "lint:css": "stylelint \"**/*.css\"",
         "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
@@ -43,11 +42,9 @@
         "lint": "npm run lint:js && npm run lint:css && npm run type-check",
         "type-check:watch": "svelte-check --output human --tsconfig ./tsconfig.json --watch",
         "type-check": "svelte-check --output human --tsconfig ./tsconfig.json",
-
         "prepare": "husky",
         "prerelease": "./scripts/prerelease.sh",
         "release": "./scripts/release.sh",
-
         "test:coverage": "vitest run --coverage",
         "test:ui": "vitest --ui",
         "test:watch": "vitest",
