@@ -3,15 +3,20 @@ aside {
 	overflow-y: auto;
 	background: var(--ui-color-background);
 	position: fixed;
-	width: var(--sidebar-width);
 
 	left: 0;
 	top: 0;
 	height: 100lvh;
+	width: var(--sidebar-width);
 	padding: 0 1rem calc(100lvh - 100svh);
 
 	overscroll-behavior: contain;
+	transform: translateX(calc(var(--sidebar-width) * -1));
+	transition: transform .3s cubic-bezier(.5, .2, .5, 1.2);
 }
+
+
+
 
 menu {
 	width: 100%;
@@ -46,17 +51,20 @@ menu a:hover { background-color: var(--ui-color-highlight-1); }
 menu a.active { background-color: var(--ui-color-highlight); }
 
 
-.button.nav-toggler {
+.button.nav-toggler,
+.button.nav-toggler:active {
 	--ui-button-size: 1.1em;
 	position: fixed;
 	left: 0;
-	top: 0.4rem;
+	top: 0.28rem;
 	z-index: 65;
 	color: var(--ui-color-text-1);
-	display: none;
+	display: flex;
 	transform: translateX(10px);
+	transition: transform .3s cubic-bezier(.5, .2, .5, 1.2);
 }
 .button.nav-toggler:hover { color: var(--ui-color-text); background: none; }
+
 
 .btn-scroll-top {
 	position: fixed;
@@ -67,23 +75,6 @@ menu a.active { background-color: var(--ui-color-highlight); }
 .btn-scroll-top.hidden { display: none; }
 
 
-@media (1px <= width <= 800px) {
-	.button.nav-toggler { display: flex; }
-	.button.nav-toggler.expanded { transform: translateX(calc(var(--sidebar-width) - 40px)); }
 
-	aside {
-		box-shadow: 2px 1px 10px #0006;
-		transform: translateX(calc(var(--sidebar-width) * -1));
-		z-index: 60;
-
-		--sidebar-elastic-padding: 80px;
-		width: calc(var(--sidebar-width) + var(--sidebar-elastic-padding));
-		left: calc(var(--sidebar-elastic-padding) * -1);
-		padding-left: calc(var(--sidebar-elastic-padding) + 1rem);
-
-	}
-	aside.expanded { transform: translateX(0); }
-
-	.button.nav-toggler:not(.swiping),
-	aside:not(.swiping) { transition: transform .3s cubic-bezier(.5, .2, .5, 1.2); }
-}
+.sidebar-expanded .button.nav-toggler { transform: translateX(calc(var(--sidebar-width) - 40px)); }
+.sidebar-expanded aside { transform: translateX(0); }

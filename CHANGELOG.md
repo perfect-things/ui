@@ -6,6 +6,7 @@ Changelog
 Thousand thanks to the Svelte's team, for the [long months of hard work](https://github.com/perfect-things/ui/pull/215), that we wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time they decided to innovate 😉.
 
 
+
 ### Notable improvements
 - This is the first version of the library that is compatible with Svelte v5.
 - All components have been rewritten to use the new Svelte v5 syntax and features.
@@ -37,6 +38,7 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
   - `isset()`
   - `pluck()`
   - `roundAmount()`
+  - `isInScrollable()`
 
 
 ### Other changes

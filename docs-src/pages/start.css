@@ -105,10 +105,10 @@
 	padding: 0;
 }
 
-main>h1,
-main>h2,
-.sticky-block>h1,
-.sticky-block>h2 {
+main > h1,
+main > h2,
+.sticky-block > h1,
+.sticky-block > h2 {
 	font-family: 'Prime Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	margin: 2rem -2rem 1rem;
 	padding: 0.5rem 100px 0.5rem 2rem;
@@ -119,8 +119,8 @@ main>h2,
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-main>h2,
-.sticky-block>h2 {
+main > h2,
+.sticky-block > h2 {
 	font-size: 1.8rem;
 	width: auto;
 	border-bottom: 1px solid var(--ui-color-border-2);
@@ -131,12 +131,18 @@ main>h2,
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background-color: var(--ui-color-background);
+
+	transition: padding .3s cubic-bezier(.5, .2, .5, 1.2);
+	padding-left: 4rem;
 }
+
+.sidebar-expanded main > h2,
+.sidebar-expanded .sticky-block > h2 { padding-left: 2rem; }
 
 
 
 /* stylelint-disable-next-line no-descending-specificity */
-main>h2 em {
+main > h2 em {
 	color: var(--ui-color-text-semi);
 	font-size: 1.2rem;
 	line-height: 1.8rem;
@@ -144,8 +150,8 @@ main>h2 em {
 	vertical-align: text-top;
 }
 
-main>p code,
-main>ul li code {
+main > p code,
+main > ul li code {
 	display: inline;
 	padding: 0;
 	margin: 0;
@@ -157,8 +163,8 @@ main>ul li code {
 
 
 @media (1px <= width <= 800px) {
-	main>h1,
-	main>h2,
-	.sticky-block>h1,
-	.sticky-block>h2 { padding-left: 54px; }
+	main > h1,
+	main > h2,
+	.sticky-block > h1,
+	.sticky-block > h2 { padding-left: 54px; }
 }

@@ -3,7 +3,6 @@ body {
 	margin: 0;
 	background-color: var(--ui-color-background);
 	color: var(--ui-color-text);
-
 	--sidebar-width: 220px;
 }
 
@@ -26,8 +25,12 @@ a:hover {
 
 main {
 	padding: 0 2rem 8rem;
-	margin-left: var(--sidebar-width);
+	margin-left: 0;
+	transition: margin .3s cubic-bezier(.5, .2, .5, 1.2);
 }
+
+.sidebar-expanded main { margin-left: var(--sidebar-width); }
+
 
 h1,
 h2,
@@ -73,10 +76,4 @@ hr {
 	justify-content: flex-start;
 	gap: 0.5rem;
 	flex-shrink: 0;
-}
-
-
-
-@media (1px <= width <= 800px) {
-	main { margin-left: 0; }
 }

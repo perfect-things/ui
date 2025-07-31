@@ -1,10 +1,6 @@
-<UIButton text round
-	icon="sidebarLeft"
-	class={['nav-toggler', { expanded, swiping }]}
-	bind:element={navTogglerBtn}
-	onclick={toggleNav}/>
+<UIButton text round class="nav-toggler" icon={ICON.SIDEBARLEFT} onclick={toggleNav}/>
 
-<aside class={{ expanded, swiping }} bind:this={sidebarEl}>
+<aside>
 	<menu>
 		<h3>Intro</h3>
 		<NavItem name="Get Started" {active} />
@@ -71,12 +67,10 @@
 
 <svelte:window {onhashchange} {onpopstate} />
 
-
 <script>
 import './Nav.css';
 import { onDestroy, onMount } from 'svelte';
-import { Button as UIButton, isInScrollable, debounce, ICON } from '../../src';
-import VanillaSwipe from 'vanilla-swipe';
+import { Button as UIButton, debounce, ICON } from '../../src';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
@@ -85,8 +79,6 @@ import * as TestComponents from '../components';
 
 
 const components = { GetStarted, Changelog, ChangelogArchive, ...TestComponents, };
-const SIDEBAR_WIDTH = 220;
-const swipeSlowDownFactor = 2.5;
 const onScroll = debounce(checkScrollOffset);
 
 
@@ -94,11 +86,7 @@ let { component = $bindable() } = $props();
 
 let [active, heading] = $state(getSection());
 let showScrollTopBtn = $state(false);
-let expanded = $state(false);
-let wasExpanded = false;
-let swiping = $state(false);
-let sidebarEl = $state();
-let navTogglerBtn = $state();
+let expanded = $state(true);
 
 
 $effect(() => {
@@ -111,20 +99,9 @@ $effect(() => {
 
 
 onMount(() => {
-	const swiper = new VanillaSwipe({
-		element: document.body,
-		delta: 3,
-		mouseTrackingEnabled: true,
-		preventTrackingOnMouseleave: true,
-		onSwipeStart: onSwipeStart,
-		onSwiping: onSwipe,
-		onSwiped: onSwipeEnd,
-		onTap: onTap,
-	});
-	swiper.init();
 	[active, heading] = getSection();
-
 	window.addEventListener('scroll', onScroll);
+	document.body.classList.toggle('sidebar-expanded', expanded);
 });
 
 
@@ -133,99 +110,10 @@ onDestroy(() => {
 });
 
 
-function onSwipeStart (e) {
-	if (window.innerWidth > 700) return;
-
-	if (isInScrollable(e.target)) return false;
-	const untouchables = 'input, button, .toggle, .dialog-backdrop, .notification, .popover, [aria-haspopup="true"]';
-	if (e.target.closest(untouchables)) return;
-
-
-	wasExpanded = expanded;
-	swiping = true;
-}
-
-
-function onSwipe (e, data) {
-	if (window.innerWidth > 700) return;
-	if (!swiping) return;
-
-	if (Math.abs(data.deltaY) > Math.abs(data.deltaX)) {
-		sidebarEl.style.transform = '';
-		navTogglerBtn.style.transform = '';
-		return;
-	}
-
-	e.preventDefault();
-
-	let sidebarX = 0;
-
-	if (wasExpanded) {
-		sidebarX = 0;
-		if (data.deltaX > 0) sidebarX += data.deltaX * Math.exp(-swipeSlowDownFactor);
-		else sidebarX += data.deltaX;
-
-	}
-	else {
-		sidebarX = -SIDEBAR_WIDTH;
-		if (data.deltaX > 0) {
-			if (data.deltaX < SIDEBAR_WIDTH) sidebarX += data.deltaX;
-			else sidebarX = (sidebarX + data.deltaX) * Math.exp(-swipeSlowDownFactor);
-		}
-	}
-	sidebarEl.style.transform = `translateX(${sidebarX}px)`;
-
-	let btnX = sidebarX + 180;
-	btnX = Math.max(10, btnX);
-	navTogglerBtn.style.transform = `translateX(${btnX}px)`;
-}
-
-
-function onSwipeEnd (e, data) {
-	if (window.innerWidth > 700) return;
-	if (!swiping) return;
-	swiping = false;
-
-	if (Math.abs(data.deltaY) > Math.abs(data.deltaX)) {
-		sidebarEl.style.transform = '';
-		navTogglerBtn.style.transform = '';
-		expanded = wasExpanded;
-		return;
-	}
-	if (data.directionX === 'LEFT' && !wasExpanded) {
-		sidebarEl.style.transform = '';
-		navTogglerBtn.style.transform = '';
-		expanded = wasExpanded;
-		return;
-	}
-	if (data.directionX === 'RIGHT' && wasExpanded) {
-		sidebarEl.style.transform = '';
-		navTogglerBtn.style.transform = '';
-		expanded = wasExpanded;
-		return;
-	}
-
-	const delta = Math.abs(data.deltaX) + data.velocity * 50;
-	const half = SIDEBAR_WIDTH / 2;
-	if (delta > half) expanded = !wasExpanded;
-
-	wasExpanded = expanded;
-	sidebarEl.style.transform = '';
-	navTogglerBtn.style.transform = '';
-	requestAnimationFrame(() => document.body.focus());
-}
-
-function onTap (e) {
-	if (window.innerWidth > 700) return;
-	if (e.target.closest('aside,.nav-toggler')) return;
-	if (wasExpanded) expanded = false;
-	wasExpanded = expanded;
-}
-
 
 function toggleNav () {
 	expanded = !expanded;
-	wasExpanded = expanded;
+	document.body.classList.toggle('sidebar-expanded', expanded);
 }
 
 
@@ -270,8 +158,7 @@ function onhashchange () {
 
 
 function onpopstate () {
-	expanded = false;
-	wasExpanded = expanded;
+	expanded = true;
 }
 
 
