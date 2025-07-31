@@ -56,7 +56,6 @@
 		<NavItem name="Tag" {active} />
 		<NavItem name="Utils" {active} />
 	</menu>
-
 </aside>
 
 <UIButton round info
@@ -65,7 +64,7 @@
 	title="Scroll to the top"
 	onclick={scrollToTop} />
 
-<svelte:window {onhashchange} {onpopstate} />
+<svelte:window {onhashchange} />
 
 <script>
 import './Nav.css';
@@ -139,7 +138,11 @@ function getSection () {
 	let [_section, _heading] = location.hash.substring(1).split('/');
 	_section = _section || 'GetStarted';
 	_heading = _heading || 'top';
-	document.body.className = 'section-' + _section.toLocaleLowerCase();
+
+	const sectionClasses = Array.from(document.body.classList).filter(c => c.startsWith('section-'));
+	document.body.classList.remove(...sectionClasses);
+	document.body.classList.add('section-' + _section.toLocaleLowerCase());
+
 	return [_section, _heading];
 }
 
@@ -154,11 +157,6 @@ function onhashchange () {
 	component = components[active];
 	// @ts-ignore
 	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
-}
-
-
-function onpopstate () {
-	expanded = true;
 }
 
 
