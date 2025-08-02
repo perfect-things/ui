@@ -1,4 +1,4 @@
-import { describe, expect, it, test, vi } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
 
 import * as utils from '../../src/utils';
 import '../helpers/utils';
@@ -8,34 +8,6 @@ import '../helpers/utils';
 test('utils - matchMedia', () => {
 	expect(utils.UI.ANIMATION_SPEED).toStrictEqual(0);
 });
-
-
-
-test('utils - debounce', () => {
-	vi.useFakeTimers();
-	const fn = vi.fn();
-	const debounced = utils.debounce(fn, 100);
-	debounced();
-	debounced();
-	debounced();
-	expect(fn).toHaveBeenCalledTimes(0);
-	vi.advanceTimersByTime(300);
-	expect(fn).toHaveBeenCalledTimes(1);
-	vi.useRealTimers();
-});
-
-
-test('utils - throttle', async () => {
-	const fn = vi.fn();
-	const throttled = utils.throttle(fn, 100);
-	throttled();
-	throttled();
-	throttled();
-	expect(fn).toHaveBeenCalledTimes(1);
-	await new Promise(resolve => setTimeout(resolve, 200));
-	expect(fn).toHaveBeenCalledTimes(1);
-});
-
 
 
 

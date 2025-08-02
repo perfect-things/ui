@@ -1,8 +1,6 @@
 export { default as alignItem } from './align-item.svelte';
 export { default as animate } from './animate.svelte';
 export { default as blink } from './blink.svelte';
-export { default as debounce } from './debounce.svelte';
-export { default as deepCopy } from './deep-copy.svelte';
 export { default as formatDate } from './format-date.svelte';
 export { default as fuzzy } from './fuzzy.svelte';
 export { default as getMouseX } from './get-mouse-x.svelte';
@@ -11,5 +9,4 @@ export { default as getMouseY } from './get-mouse-y.svelte';
 export { default as guid } from './guid.svelte';
 export { default as isMobile } from './is-mobile.svelte';
 export { default as isColorDark } from './is-color-dark.svelte';
-export { default as throttle } from './throttle.svelte';
 export { default as timeAgo } from './time-ago.svelte';
