@@ -7,7 +7,6 @@
 	justify-content: flex-start;
 }
 
-.checkbox .error-wrap,
 .radio .error-wrap { overflow: hidden; }
 
 
@@ -21,7 +20,7 @@
 	border-bottom-right-radius: 0;
 }
 
-.checkbox .info-bar { margin: 0; }
+.checkbox .info-bar { margin: 0; overflow: hidden; }
 
 .textarea .info-bar-error { grid-area: 1 / 1 / 2 / 2; }
 

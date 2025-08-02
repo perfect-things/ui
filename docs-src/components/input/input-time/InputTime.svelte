@@ -38,10 +38,10 @@ const apiProps = <ApiProp[]>[
 
 
 const exampleHtml = `
-<InputTime label="Email" error="Invalid email" value="00:00" onchange={onChange} />
+<InputTime label="Email" error="Invalid email" value="00:00" {onchange} />
 
 <script>
-function onChange (e) {
+function onchange (e) {
     console.log('value', e.target.value);
 }
 &lt;/script>
@@ -51,8 +51,8 @@ let value = $state('00:00');
 let error1 = $state('Select midnight please.');
 
 function onchange (e, val) {
-	error1 = (val === '00:00' ? '' : 'Select midnight please.');
 	console.log(val);
+	error1 = (val === '00:00' ? '' : 'Select midnight please.');
 }
 
 </script>

@@ -33,7 +33,8 @@ A time input component with clock icon and native time picker.
 				aria-errormessage={error ? errorMessageId : undefined}
 				aria-required={required}
 				bind:this={inputElement}
-				bind:value>
+				bind:value
+				onchange={_onchange}>
 		</div>
 	</div>
 </div>
@@ -63,6 +64,7 @@ let {
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
+	onchange = undefined,
 	...restProps
 }: InputProps = $props();
 
@@ -81,4 +83,10 @@ const cls = $derived([
 
 const errorMessageId = guid();
 
+function _onchange (event: Event) {
+	const target = event.target as HTMLInputElement;
+	if (onchange) {
+		onchange(event, target.value);
+	}
+}
 </script>

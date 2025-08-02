@@ -5,6 +5,8 @@
 	--range-size: calc(var(--ui-button-height) / 3 * 2);
 }
 
+
+
 .range .range-inner {
 	display: flex;
 	flex-flow: column;
@@ -52,6 +54,7 @@
     transform: translateY(calc(-50% + 0.25rem - 1px));
 	transform-origin: center 25%;
 	background: var(--ui-color-text-gradient);
+	/* border: 1px solid var(--ui-color-border); */
 }
 
 
@@ -69,6 +72,7 @@
 	width: var(--range-size);
 	border-radius: 5rem;
 	box-shadow: 0 1px 3px #000c;
+	/* border: 1px solid var(--ui-color-border); */
 }
 
 
@@ -81,7 +85,15 @@
 .range:not(.disabled) input::-moz-slider-thumb:active { scale: 0.9; }
 
 
+.range:not(.disabled) input:focus-visible {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+.range:not(.disabled) input:focus-visible::-webkit-slider-thumb { box-shadow: var(--ui-shadow-focus); }
+.range:not(.disabled) input:focus-visible::-moz-range-thumb { box-shadow: var(--ui-shadow-focus); }
 
+
+/*** RANGE TICKS ***************************/
 .range-ticks {
 	display: flex;
 	justify-content: space-between;

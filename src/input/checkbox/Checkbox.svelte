@@ -32,7 +32,7 @@ A checkbox input component with label, validation, and accessibility features.
 
 <div bind:this={element} class={cls} {...restProps}>
 	<Info msg={info} />
-	<InputError id={errorMessageId} msg={error} animOffset={24} />
+	<InputError id={errorMessageId} msg={error} animOffset={5} />
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class={['checkbox-row', { pressing }]}
