@@ -69,7 +69,8 @@
 <script>
 import './Nav.css';
 import { onDestroy, onMount } from 'svelte';
-import { Button as UIButton, debounce, ICON } from '../../src';
+import { debounce } from 'es-toolkit';
+import { Button as UIButton, ICON } from '../../src';
 import NavItem from './NavItem.svelte';
 import GetStarted from '../pages/start.svelte';
 import Changelog from '../pages/changelog.svelte';
@@ -78,7 +79,7 @@ import * as TestComponents from '../components';
 
 
 const components = { GetStarted, Changelog, ChangelogArchive, ...TestComponents, };
-const onScroll = debounce(checkScrollOffset);
+const onScroll = debounce(checkScrollOffset, 300);
 
 
 let { component = $bindable() } = $props();

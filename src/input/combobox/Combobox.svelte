@@ -67,7 +67,8 @@ import './Combobox.css';
 import type { ComboboxProps } from './types';
 import { emphasize, scrollToSelectedItem, findValueInSource, getInputValue,
 	alignDropdown, hasValueChanged, groupData, normalizeItems } from './utils';
-import { deepCopy, fuzzy, guid, isMobile } from '../../utils';
+import { fuzzy, guid, isMobile } from '../../utils';
+import { cloneDeep } from 'es-toolkit';
 import ComboboxInput from './ComboboxInput.svelte';
 import ComboboxList from './ComboboxList.svelte';
 
@@ -106,7 +107,7 @@ let opened = $state(false);
 let highlightIndex = $state(0);
 let hasEdited = $state(false);
 let previousInputValue = $state('');
-let previousValue = $state(deepCopy(value));
+let previousValue = $state(cloneDeep(value));
 
 
 let inputValue = $derived(multiselect && opened ? '' : getInputValue(value, multiselect));
@@ -127,7 +128,7 @@ const cls = $derived([
 
 
 function filter (_items = normalizedItems, _inputValue = inputValue) {
-	let filtered = deepCopy(_items);
+	let filtered = cloneDeep(_items);
 	if (hasEdited && _inputValue) {
 		const q = _inputValue.toLowerCase().trim();
 		filtered = filtered
@@ -205,14 +206,14 @@ function close () {
 	removeEventListeners();
 	opened = false;
 	previousInputValue = inputValue;
-	previousValue = deepCopy(value);
+	previousValue = cloneDeep(value);
 }
 
 
 
 
 function selectSingle (e: Event, item?) {
-	const oldValue = deepCopy(value);
+	const oldValue = cloneDeep(value);
 
 	if (!item) {
 		if (filteredItems[highlightIndex]) item = filteredItems[highlightIndex];
@@ -232,8 +233,8 @@ function selectSingle (e: Event, item?) {
 
 
 function selectMultiselect (e: Event, item) {
-	const oldValue = deepCopy(value);
-	const _selectedItems = deepCopy(selectedItems || []);
+	const oldValue = cloneDeep(value);
+	const _selectedItems = cloneDeep(selectedItems || []);
 
 	const itemId = item?.id || item?.name || item;
 	const itemIndex = _selectedItems.findIndex(i => (i?.id || i?.name || i) === itemId);
@@ -310,11 +311,11 @@ function clear () {
 /*** EVENT LISTENERS ******************************************************************************/
 function onfocus () {
 	previousInputValue = inputValue;
-	previousValue = deepCopy(value);
+	previousValue = cloneDeep(value);
 
 	if (multiselect && value && !selectedItems.length) {
-		if (Array.isArray(value)) selectedItems = deepCopy(value);
-		else if (value && value.name) selectedItems = [deepCopy(value)];
+		if (Array.isArray(value)) selectedItems = cloneDeep(value);
+		else if (value && value.name) selectedItems = [cloneDeep(value)];
 		else selectedItems = [];
 	}
 

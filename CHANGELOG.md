@@ -39,6 +39,9 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
   - `pluck()`
   - `roundAmount()`
   - `isInScrollable()`
+  - `throttle()`
+  - `debounce()`
+  - `deepCopy()`
 
 
 ### Other changes

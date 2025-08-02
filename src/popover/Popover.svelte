@@ -41,7 +41,8 @@ import './Popover.css';
 import type { AlignmentDirection } from '../types';
 import type { PopoverProps } from './types';
 import { addArias, removeArias } from './utils';
-import { alignItem, throttle, debounce, UI } from '../utils';
+import { alignItem, UI } from '../utils';
+import { throttle } from 'es-toolkit';
 
 let {
 	class: className = '',
@@ -170,17 +171,6 @@ function getFocusableElements () {
 
 
 /*** EVENTS & LISTENERS ***************************************************************************/
-const throttledResize = throttle(updatePosition, 50);
-const debouncedResize = debounce(updatePosition, 50);
-
-// throttle ensures that the popover is repositioned max once every 50ms (to not overload resize events)
-// but it doesn't ensure that the fn is called at the end of resizing. Debounce ensures that.
-function onResize () {
-	throttledResize();
-	debouncedResize();
-}
-
-
 function onDocumentClick (e) {
 	if (!element) return;
 	if (element.contains(e.target)) return;
@@ -203,6 +193,7 @@ function onKeydown (e) {
 	}
 }
 
+const onResize = throttle(updatePosition, 50);
 
 function addEventListeners () {
 	if (eventsAdded) return;

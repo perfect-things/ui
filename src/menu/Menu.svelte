@@ -35,7 +35,8 @@ import type { MenuProps } from './types';
 import { onDestroy, onMount, setContext } from 'svelte';
 import { addArias, removeArias } from './utils';
 import initLongPressEvent from './longpress';
-import { alignItem, throttle, debounce, isMobile } from '../utils';
+import { alignItem, isMobile } from '../utils';
+import { throttle } from 'es-toolkit';
 
 const isAnyMobile = isMobile();
 const isMobileSafari = navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i) && navigator.maxTouchPoints;
@@ -167,7 +168,6 @@ function _close () {
 }
 
 
-
 function updatePosition () {
 	const isContextMobile = type === 'context' && isAnyMobile;
 	const alignH = align || (isContextMobile ? 'center' : 'left');
@@ -259,17 +259,7 @@ function matchQuery (buttons, key) {
 }
 
 
-const throttledResize = throttle(updatePosition, 50);
-const debouncedResize = debounce(updatePosition, 50);
-
-// throttle ensures that the popover is repositioned max once every 200ms (to not overload resize events)
-// but it doesn't ensure that the fn is called at the end of resizing. Debounce ensures that.
-function onResize () {
-	throttledResize();
-	debouncedResize();
-}
-
-
+const onResize = throttle(updatePosition, 50);
 
 function addEventListeners () {
 	if (eventsAdded) return;
