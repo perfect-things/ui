@@ -1,10 +1,8 @@
 import { flushSync, mount, unmount } from 'svelte';
-import { expect, test, vi } from 'vitest';
+import { expect, test, vi, describe } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
 import { InputPassword } from '../../src/input';
-import { describe } from 'node:test';
-
 
 
 describe('InputPassword', () => {

@@ -1,35 +1,45 @@
+import { NotificationType, type NotificationCallback } from './types';
+
 import { writable, get } from 'svelte/store';
-import { UI, guid } from '../utils';
-import { fly as _fly, crossfade } from 'svelte/transition';
-import { flip as _flip } from 'svelte/animate';
+import { guid } from '../utils';
+import { fly as _fly } from 'svelte/transition';
+export { flip } from 'svelte/animate';
 
 export const Notifications = writable({});
-export const ArchivedNotifications = writable({});
 export const Progress = writable({});
 export const timers = {};
-const duration = UI.ANIMATION_SPEED;
 
 
+export const fly = (node, params) => _fly(node, { x: 500, opacity: 1, ...params });
+// export const slideUp = (node, params) => _fly(node, { y: -50, ...params });
+// export const slideDown = (node, params) => _fly(node, { y: 50, ...params });
 
-export const fly = (node, params) => _fly(node, { duration, x: 500, opacity: 1, ...params });
-export const slideUp = (node, params) => _fly(node, { duration, y: -50, ...params });
-export const slideDown = (node, params) => _fly(node, { duration, y: 50, ...params });
 
-export const flip = (node, animations, params = {}) => _flip(node, animations, { duration, ...params });
+export function showNotification (msg, type = 'info', timeout = 5000, btn = undefined, cb: NotificationCallback = () => {}) {
+	const id = guid();
+	const showProgress = (typeof timeout === 'number');
+	const timestamp = new Date().getTime();
+	const role = type === NotificationType.INFO ? 'status' : 'alert';
+	const notification = { id, type, role, msg, timeout, cb, showProgress, btn, timestamp };
+	Notifications.update(list => {
+		list[id] = notification;
+		return list;
+	});
+	createTimer(notification);
+	return id;
+}
 
-export const [send, receive] = crossfade({
-	duration: d => d,
 
-	fallback (node, params) {
-		const style = getComputedStyle(node);
-		const transform = style.transform === 'none' ? '' : style.transform;
-		const fallbackDuration = typeof params.duration === 'function' ? params.duration(0) : (params.duration || duration);
-		return {
-			duration: fallbackDuration,
-			css: t => `transform: ${transform} scale(${t}); opacity: ${t}`
-		};
-	}
-});
+export function hideNotification (id): Promise<void> {
+	clearInterval(timers[id]);
+	return new Promise(resolve => {
+		Notifications.update(list => {
+			delete list[id];
+			return list;
+		});
+		requestAnimationFrame(() => resolve());
+	});
+}
 
 
 
@@ -46,11 +56,17 @@ export function createTimer (notification, targetEl?) {
 		setProgress(id, progress);
 		applyProgress(id, progress);
 		if (progress >= 110) {
-			clearInterval(timers[id]);
 			hideNotification(id);
 		}
 	}, Math.round(notification.timeout / 100));
 }
+
+
+
+export function clearTimer (notification) {
+	clearInterval(timers[notification.id]);
+}
+
 
 
 function setProgress (id, val) {
@@ -73,59 +89,4 @@ function getProgress (id) {
 function applyProgress (id, progress) {
 	const el = document?.querySelector(`[data-id="${id}"] .notification-progress`);
 	if (el) el.style.width = `${progress}%`;
-}
-
-
-export function clearTimer (notification) {
-	clearInterval(timers[notification.id]);
-}
-
-type CB = (res: string) => void;
-export function showNotification (msg, type = 'info', timeout = 5000, btn = undefined, cb: CB = () => {}) {
-	const id = guid();
-	const showProgress = (typeof timeout === 'number');
-	const timestamp = new Date().getTime();
-	Notifications.update(list => {
-		list[id] = { type, msg, id, timeout, cb, showProgress, btn, timestamp };
-		return list;
-	});
-	return id;
-}
-
-
-export function hideNotification (id): Promise<void> {
-	return new Promise(resolve => {
-		Notifications.update(list => {
-			addToArchive(list[id]);
-			delete list[id];
-			return list;
-		});
-		requestAnimationFrame(() => resolve());
-	});
-}
-
-
-function addToArchive (notification) {
-	if (!notification) return;
-	const archived = {
-		id: notification.id,
-		type: notification.type,
-		msg: notification.msg,
-		timestamp: notification.timestamp
-	};
-	ArchivedNotifications.update(list => {
-		list[archived.id] = archived;
-		return list;
-	});
-}
-
-
-export function removeFromArchive (id) {
-	return new Promise(resolve => {
-		ArchivedNotifications.update(list => {
-			delete list[id];
-			return list;
-		});
-		requestAnimationFrame(resolve);
-	});
 }

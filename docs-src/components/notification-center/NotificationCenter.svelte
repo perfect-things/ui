@@ -1,37 +1,15 @@
 <h2>Notification Center</h2>
 
-<p>With the aim of improving accessibility and usability, the <b>Toaster</b> component has been redesigned into a <b>NotificationCenter</b>.</p>
+<p>Shows toast-like notifications which can be dismissed manually or auto-closed.</p>
 
-<p>This component renders a bell button that shows a list of "archived" notifications when clicked.<br>
-Button can be hidden using the <em>hideButton="true"</em> property, in which case the <b>NotificationCenter</b> will work as a regular <b>Toaster</b> component.</p>
-
-<p>A notification first shows normally on screen, then, when it's dismissed or auto-closed, it's moved to the "archive" and available in the <b>NotificationCenter</b>.<br>
-Notifications remain in the archive as long as the user remains on the page. When the user navigates away from the page, or reloads it, the archive is cleared.</p>
-
-<p>The goal of the <b>NotificationCenter</b> is to allow the user to read the notifications that they may have missed.</p>
-
-<hr>
-
-<h3>Notification button</h3>
-
-<div class="prop-row">
-	<!-- svelte-ignore a11y_label_has_associated_control -->
-	<label>Toggle notification center: </label>
-	<NotificationCenter outline round {hideButton} />
-</div>
-<div class="prop-row">
-	<label for="button-toggle">Hide button: </label>
-	<Toggle id="button-toggle" bind:value={hideButton} />
-</div>
-
-
+<NotificationCenter />
 
 <h3>Notifications</h3>
 <div class="docs-buttons-row">
 	<Button info onclick={() => showNotification('Hello')}>Show info</Button>
 	<Button success onclick={() => showNotification('Hello', 'success')}>Show success</Button>
 	<Button warning onclick={() => showNotification('Hello', 'warning')}>Show warning</Button>
-	<Button danger onclick={() => showNotification('Hello', 'error', 10000, 'Undo', cb)}>Show error for 10s</Button>
+	<Button danger onclick={() => showNotification('Hello', 'error', 10000)}>Show error for 10s</Button>
 </div>
 
 <h3>No auto-close</h3>
@@ -42,9 +20,15 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 	<Button danger onclick={() => showNotification('Hello', 'error', null)}>Show error</Button>
 </div>
 
+<h3>With button & callback</h3>
+<div class="docs-buttons-row">
+	<Button success onclick={() => showNotification('Operation Successful', 'success', 6000, 'Undo', cb)}>Show success</Button>
+	<Button warning onclick={() => showNotification('Operation Unsuccessful', 'warning', null, 'Retry', cb)}>Show warning</Button>
+</div>
+
 
 <Code>{`
-<NotificationCenter outline round/>
+<NotificationCenter />
 
 <Button onclick={() => showNotification('Hello')}>Show info</Button>
 <Button success onclick={() => showNotification('Hello', 'success')}>Show success</Button>
@@ -71,17 +55,12 @@ function cb (id) {
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
-import { Button, NotificationCenter, showNotification, hideNotification, Toggle } from '../../../src';
+import { Button, NotificationCenter, showNotification, hideNotification } from '../../../src';
 import { Code } from '../../code-example';
 import './NotificationCenter.css';
 
-let hideButton = $state(false);
-
 const apiProps = <ApiProp[]>[
 	PROPS.class,
-	PROPS.round,
-	{ name: 'hideButton', type: 'boolean', default: 'false', description: 'If <i>true</i> the button will be hidden.' },
-	{ name: 'outline', description: 'Notification center button style: outline' },
 ];
 
 const showNotificationAPI = <ApiProp[]>[
@@ -98,7 +77,7 @@ const hideNotificationAPI = <ApiProp[]>[
 
 
 function cb (id) {
-	console.log(id);
+	alert('Undone!');
 	hideNotification(id);
 }
 

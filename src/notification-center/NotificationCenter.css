@@ -9,17 +9,19 @@
 	flex-flow: column;
 	align-items: stretch;
 	justify-content: flex-start;
+	gap: var(--ui-notification-gap);
 	width: calc(var(--ui-notification-width) + var(--ui-notification-gap) * 2);
 	top: 0;
 	right: 0;
 	z-index: -1;
+	padding: var(--ui-notification-gap);
+	height: fit-content;
 	max-height: 100vh;
 	overflow: hidden auto;
 	overscroll-behavior: contain;
 }
 
-.notification-center.archive-is-visible,
-.notification-center.has-active-notifications { z-index: var(--ui-z-index-popup); }
+.notification-center:not(:empty) { z-index: var(--ui-z-index-popup); }
 
 
 .notification {
@@ -31,15 +33,23 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	min-height: 2rem;
+	min-height: 3rem;
 	border: none;
-	margin: var(--ui-notification-gap) var(--ui-notification-gap) 0;
+	margin: 0;
+	gap: 1rem;;
 	box-shadow: var(--ui-shadow-fancy);
 	border-radius: var(--ui-notification-border-radius);
 	z-index: var(--ui-z-index-popup);
 }
 
-.notification:last-child { margin-bottom: calc(var(--ui-notification-gap) + 10px); }
+.notification .notification-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: var(--ui-margin-m);
+	padding-right: var(--ui-margin-m);
+}
+
 
 .notification button {
 	background: none;
@@ -48,11 +58,11 @@
 	min-width: 1.6rem;
 	font-size: inherit;
 	padding: 0 var(--ui-margin-m);
-	margin: 0 var(--ui-margin-m) 0 0;
+	margin: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: var(--ui-border-radius);
+	border-radius: var(--ui-border-radius-l);
 	border: 1px solid transparent;
 }
 
@@ -68,19 +78,16 @@
 .notification .notification-close {
 	font-size: 1.4rem;
 	font-weight: 200;
-	position: relative;
-	padding-bottom: 0.15rem;
 }
 
 
-.notification-buttons,
 .notification-icon {
 	min-height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	width: var(--ui-button-height);
 }
-.notification-icon { width: var(--ui-button-height); }
 
 
 .notification-msg {
@@ -118,11 +125,6 @@
 	outline: none;
 }
 
-
-
-.notification-center-button svg { stroke: var(--ui-color-secondary); }
-.notification-center-button.has-notifications svg { stroke: var(--ui-color-text); }
-.notification-center-button.has-notifications svg>path:nth-child(2) { fill: var(--ui-color-text); }
 
 
 @media (1px <= width <= 700px) {

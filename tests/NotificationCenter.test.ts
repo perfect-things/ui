@@ -1,74 +1,103 @@
-import { expect, test, vi } from 'vitest';
-import { flushSync, mount, unmount } from 'svelte';
-import { NotificationCenter, showNotification, hideNotification } from '../src/notification-center';
 import userEvent from '@testing-library/user-event';
+import { expect, test, vi, describe, beforeEach, afterEach } from 'vitest';
+import { flushSync, mount, unmount } from 'svelte';
+import { NotificationCenter, showNotification, hideNotification, clearTimer, createTimer } from '../src/notification-center';
 
 
-test('NotificationCenter', async () => {
-	vi.useFakeTimers();
-	vi.mock('svelte/transition', () => {
-		return {
-			fly: vi.fn(),
-			crossfade: vi.fn().mockReturnValue([])
-		};
-	});
-	const user = userEvent.setup({
-		delay: null,
-		advanceTimers: vi.advanceTimersByTime
-	});
+vi.mock('svelte/transition', () => {
+	return { fly: vi.fn(), };
+});
 
-	const component = mount(NotificationCenter, { target: document.body });
+
+describe('NotificationCenter', () => {
 	const toastSelector = '.notification-center .notification';
+	let component;
+
+	beforeEach(() => {
+		vi.useFakeTimers();
+		component = mount(NotificationCenter, { target: document.body });
+	});
+
+	afterEach(async () => {
+		vi.useRealTimers();
+		await unmount(component);
+		document.body.innerHTML = '';
+	});
 
 
-	const cmp = document.body.querySelector('.notification-center');
-	expect(cmp).toBeInTheDocument();
+	test('NotificationCenter - basics', () => {
+		const cmp = document.body.querySelector('.notification-center');
+		expect(cmp).toBeInTheDocument();
 
-	const bellBtn = document.body.querySelector('.notification-center-button');
-	expect(bellBtn).toBeInTheDocument();
-	expect(bellBtn).not.toHaveClass('has-notifications');
+		showNotification('Info', 'info', 200);
+		flushSync();
+		let toast = document.body.querySelector(toastSelector);
+		expect(toast).toBeInTheDocument();
+		expect(toast).toHaveClass('notification-info');
+		expect(toast).toHaveTextContent('Info');
 
-	showNotification('Info', 'info', 200);
-	flushSync();
-	let toast = document.body.querySelector(toastSelector);
-	expect(toast).toBeInTheDocument();
-	expect(toast).toHaveClass('notification-info');
-	expect(toast).toHaveTextContent('Info');
-	expect(bellBtn).toHaveClass('has-notifications');
+		vi.advanceTimersByTime(500);
+		flushSync();
+		toast = document.body.querySelector(toastSelector);
+		expect(toast).not.toBeInTheDocument();
 
-	vi.advanceTimersByTime(500);
-	flushSync();
-	toast = document.body.querySelector(toastSelector);
-	expect(toast).not.toBeInTheDocument();
-	expect(bellBtn).toHaveClass('has-archived-notifications');
+		const tstId = showNotification('Warning', 'warning', null);
+		flushSync();
+		toast = document.body.querySelector(toastSelector);
+		expect(toast).toBeInTheDocument();
+		expect(toast).toHaveClass('notification-warning');
+		expect(toast).toHaveTextContent('Warning');
 
-	let tstId = showNotification('Warning', 'warning', 5000);
-	flushSync();
-	toast = document.body.querySelector(toastSelector);
-	expect(toast).toBeInTheDocument();
-	expect(toast).toHaveClass('notification-warning');
-	expect(toast).toHaveTextContent('Warning');
+		hideNotification(tstId);
+	});
 
-	hideNotification(tstId);
-	vi.advanceTimersByTime(6000);
 
-	const mock = vi.fn();
-	tstId = showNotification('Error', 'error', 10000, 'Undo', mock);
-	flushSync();
-	toast = document.body.querySelector(toastSelector);
-	expect(toast).toBeInTheDocument();
-	expect(toast).toHaveClass('notification-error');
-	expect(toast).toHaveTextContent('Error');
+	test('NotificationCenter - progress and undo', () => {
+		const tstId = showNotification('Info', 'info', 1000);
+		flushSync();
+		const toast = document.body.querySelector(toastSelector);
+		expect(toast).toBeInTheDocument();
+		expect(toast).toHaveClass('notification-info');
+		expect(toast).toHaveTextContent('Info');
+		clearTimer({ id: tstId });
+		vi.advanceTimersByTime(2000);
+		expect(toast).toBeInTheDocument();
 
-	const btn = document.body.querySelector(toastSelector + ' button');
-	expect(btn).toBeInTheDocument();
-	await user.click(btn);
-	expect(mock).toHaveBeenCalledWith(tstId);
+		createTimer({ id: tstId, showProgress: true, timeout: 1000 }, document.activeElement);
+		flushSync();
+		vi.advanceTimersByTime(2000);
+		expect(toast).toBeInTheDocument();
 
-	hideNotification(tstId);
-	vi.advanceTimersByTime(20000);
-	flushSync();
-	expect(toast).not.toBeInTheDocument();
+		createTimer({ id: tstId, showProgress: true, timeout: 1000 });
+		flushSync();
+		vi.advanceTimersByTime(2000);
+		flushSync();
+		expect(toast).not.toBeInTheDocument();
+	});
 
-	await unmount(component);
+
+	test('NotificationCenter - undo action', async () => {
+		const user = userEvent.setup({
+			delay: null,
+			advanceTimers: vi.advanceTimersByTime
+		});
+
+		const mock = vi.fn();
+		const tstId = showNotification('Error', 'error', 10000, 'Undo', mock);
+		flushSync();
+		const toast = document.body.querySelector(toastSelector);
+		expect(toast).toBeInTheDocument();
+		expect(toast).toHaveClass('notification-error');
+		expect(toast).toHaveTextContent('Error');
+
+		const btn = document.body.querySelector(toastSelector + ' button');
+		expect(btn).toBeInTheDocument();
+		await user.click(btn);
+		expect(mock).toHaveBeenCalledWith(tstId);
+
+		hideNotification(tstId);
+		vi.advanceTimersByTime(20000);
+		flushSync();
+		expect(toast).not.toBeInTheDocument();
+	});
 });
