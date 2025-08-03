@@ -61,6 +61,7 @@ so you can either use <i>string</i> for both - like in the example, or <i>number
 <CodeExample notitle html={exampleHtml2}></CodeExample>
 
 <API props={apiProps}/>
+<API title="ButtonToggleItem" props={itemProps}/>
 
 
 <script lang="ts">
@@ -74,9 +75,19 @@ const apiProps = <ApiProp[]>[
 	...PROPS.input,
 
 	PROPS.round,
-	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, icon?: string &rbrace;</code>' },
+	{ name: 'items', type: 'ButtonToggleItem[]', required: true, description: 'An array of strings or objects' },
 	{ name: 'value', type: ['string', 'number'], description: 'Assign initial value to the component' },
 ];
+
+const itemProps = <ApiProp[]>[
+	PROPS.name,
+	PROPS.title,
+	PROPS.icon,
+	{ name: 'value', type: ['string', 'number'], description: 'The value of the item' },
+];
+
+
+
 
 const exampleHtml = `
 <ButtonToggle items={buttons} value="2" />

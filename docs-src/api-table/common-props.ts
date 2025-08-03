@@ -44,6 +44,7 @@ export const PROPS = {
 	dataset,
 	id,
 	title,
+	name,
 	disabled,
 	bindelement,
 	icon,

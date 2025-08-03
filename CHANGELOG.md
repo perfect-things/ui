@@ -13,7 +13,7 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
 - All components now use TypeScript for better developer experience.
 - Setup, tests & build process have been updated to vite & vitest.
 - Event handling has been standardized across all components (more details in the *Breaking Changes* section below).
-
+- Added `ThemeSwitcher` component.
 
 
 ### Breaking changes

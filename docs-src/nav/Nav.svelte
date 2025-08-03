@@ -54,6 +54,7 @@
 		<NavItem name="Menu" {active} />
 		<NavItem name="Splitter" {active} />
 		<NavItem name="Tag" {active} />
+		<NavItem name="ThemeSwitcher" {active} />
 		<NavItem name="Utils" {active} />
 	</menu>
 </aside>

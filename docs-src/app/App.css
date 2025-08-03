@@ -77,3 +77,11 @@ hr {
 	gap: 0.5rem;
 	flex-shrink: 0;
 }
+
+.docs-theme-switcher {
+	min-width: 10rem;
+	position: fixed;
+	top: 0.5rem;
+	right: 0.6rem;
+	z-index: 55;
+}

@@ -23,6 +23,7 @@ export * from './push-button';
 export * from './splitter';
 export * from './table';
 export * from './tag';
+export * from './theme-switcher';
 export * from './tooltip';
 export * from './tree';
 export * from './utils';

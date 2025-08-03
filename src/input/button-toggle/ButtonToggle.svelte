@@ -46,6 +46,7 @@ A radio button group component styled as connected toggle buttons.
 							'button-normal',
 							{ 'button-has-text': item.name, disabled },
 						]}
+						title={item.title || item.name || ''}
 						{onclick}>
 							<Icon name={item.icon}/>
 							{item.name || ''}

@@ -20,6 +20,7 @@ export { Tree } from './tree';
 export { Menu } from './menu';
 export { Icon } from './icon';
 export { Tag } from './tag';
+export { ThemeSwitcher } from './theme-switcher';
 export { Utils } from './utils';
 export { Splitter } from './splitter';
 export { ColorPalette } from './color-palette';

@@ -43,7 +43,3 @@ export interface ComponentProps {
 	// allow 'data-x' attributes
 	[key: `data-${string}`]: string | number | boolean | undefined;
 }
-
-// Utility types
-// export type AnyFunction = (...a: any[]) => any;
-// export type AnyObject = Record<string, any>;
