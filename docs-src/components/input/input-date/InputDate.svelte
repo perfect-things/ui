@@ -55,10 +55,10 @@
 
 
 <Code>{`
-<InputDate onchange={ onChange } />
+<InputDate {onchange} />
 
 <script&gt;
-function onChange (e, { value }) {
+function onchange (e, { value }) {
     console.log(value);
 }
 </script>

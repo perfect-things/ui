@@ -7,7 +7,6 @@ export * from './input-number';
 export * from './input-password';
 export * from './input-rating';
 export * from './input-search';
-export * from './input-tag';
 export * from './input-time';
 export * from './input-text';
 export * from './radio';

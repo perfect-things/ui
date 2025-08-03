@@ -39,8 +39,8 @@
 let error = '';
 
 function onchange (e, { checked, indeterminate }) {
-	error = checked ? '' : 'You must check me!'
-	console.log({ checked, indeterminate });
+    error = checked ? '' : 'You must check me!'
+    console.log({ checked, indeterminate });
 }
 </script>
 `}</Code>

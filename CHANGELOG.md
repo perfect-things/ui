@@ -17,7 +17,7 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
 
 
 ### Breaking changes
-- All Svelte v4 events are now loosing the colon (e.g. e.g. `on:change` -> `onchange`).
+- All Svelte v4 events are now loosing the colon (e.g. `on:change` -> `onchange`).
 - All events have been refactored, and all listeners/handlers have the same signature:
   `function(event: Event, data?: any)`, where the first argument is always `event`,
   and second argument (`data`) is specific to the event & component, e.g.
@@ -31,6 +31,8 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
 - As per Svelte's best practices, attributes bound to variables will not use quotes anymore, so: `value="{value}"` -> `value={value}` or even better: `{value}`.
 - Attributes are typed now, and are a bit more restrictive, so e.g. a `boolean` or a `number` attribute will not accept a string value.
 - Like in HTML, `boolean` attributes default to `false` if not present, and `true` if passed without a value, so `<Button disabled/>` is enough to disable the button, and is the same as `<Button disabled={true}/>`.
+- Removed components:
+  - `InputTag` - the UX is too complex, and unintuitive. Please use a `Combobox` with `multiselect` option or a 3rd party library like.
 - Utils functions removed (please use 3rd party libraries like [es-toolkit](https://es-toolkit.dev/) or implement your own):
   - `getValueAtPath()`
   - `setValueAtPath()`

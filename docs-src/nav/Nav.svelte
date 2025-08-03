@@ -21,7 +21,6 @@
 		<NavItem name="Input Password" {active} />
 		<NavItem name="Input Rating" {active} />
 		<NavItem name="Input Search" {active} />
-		<NavItem name="Input Tag" {active} />
 		<NavItem name="Input Text" {active} />
 		<NavItem name="Input Time" {active} />
 		<NavItem name="Radio" {active} />
