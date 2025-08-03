@@ -1,19 +1,14 @@
-<pre><code class="language">{@html html}</code></pre>
-
+<Code nohr notitle>{html}</Code>
 
 <script lang="ts">
-
-interface Props {
-	tag?: string;
-	props?: Record<string, any>;
-	text?: string;
-}
+import type { CodeBoxProps } from './types';
+import Code from './Code.svelte';
 
 const {
 	tag = 'div',
 	props = {},
 	text = ''
-}: Props = $props();
+}: CodeBoxProps = $props();
 
 
 const html = $derived(buildHtml(props, text, tag));
@@ -39,8 +34,7 @@ function buildHtml (_props, _text, _tag) {
 	if (_text) _html = `<${_tag}${propsStr}>${_text}</${_tag}>`;
 	else _html = `<${_tag}${propsStr} />`;
 
-	// @ts-ignore
-	return window.Prism.highlight(_html, window.Prism.languages.svelte, 'svelte');
+	return _html;
 }
 
 </script>

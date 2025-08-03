@@ -43,7 +43,25 @@ Notifications remain in the archive as long as the user remains on the page. Whe
 </div>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<NotificationCenter outline round/>
+
+<Button onclick={() => showNotification('Hello')}>Show info</Button>
+<Button success onclick={() => showNotification('Hello', 'success')}>Show success</Button>
+<Button warning onclick={() => showNotification('Hello', 'warning')}>Show warning</Button>
+<Button danger onclick={() => showNotification('Hello', 'error', 10000, 'Undo', cb)}>Show error</Button>
+<Button danger onclick={() => showNotification('Hello', 'error', false)}>No auto-close</Button>
+
+<script&gt;
+import { NotificationCenter, showNotification, hideNotification, Button } from '@perfectthings/ui';
+
+function cb (id) {
+    console.log('do something');
+    hideNotification(id);
+}
+</script>
+`}</Code>
+
 <API props={apiProps}/>
 <API props={showNotificationAPI} title="showNotification function" description="A component exports a global <em>showNotification</em> function with the following arguments:"/>
 <API props={hideNotificationAPI} title="hideNotification function" description="A component exports a global <em>hideNotification</em> function with the following arguments:"/>
@@ -54,7 +72,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
 import { Button, NotificationCenter, showNotification, hideNotification, Toggle } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './NotificationCenter.css';
 
 let hideButton = $state(false);
@@ -77,25 +95,6 @@ const showNotificationAPI = <ApiProp[]>[
 const hideNotificationAPI = <ApiProp[]>[
 	{ name: 'id', type: 'string', description: 'ID of the toast message that is returned by <em>showNotification</em> function.' },
 ];
-
-const exampleHtml = `
-<NotificationCenter outline round/>
-
-<Button onclick={() => showNotification('Hello')}>Show info</Button>
-<Button success onclick={() => showNotification('Hello', 'success')}>Show success</Button>
-<Button warning onclick={() => showNotification('Hello', 'warning')}>Show warning</Button>
-<Button danger onclick={() => showNotification('Hello', 'error', 10000, 'Undo', cb)}>Show error</Button>
-<Button danger onclick={() => showNotification('Hello', 'error', false)}>No auto-close</Button>
-
-<script>
-import { NotificationCenter, showNotification, hideNotification, Button } from '@perfectthings/ui';
-
-function cb (id) {
-	console.log('do something');
-	hideNotification(id);
-}
-&lt;/script>
-`;
 
 
 function cb (id) {

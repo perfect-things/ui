@@ -17,7 +17,15 @@
 <Success msg="Some success text" />
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InfoBar id="msg001" msg="This is a comprehensive explanation of a thing." type="info" />
+
+<!-- Using shortcuts -->
+<Info msg="Some info text" />
+<Warning msg="Some warning text" />
+<Error msg="Some error text" />
+<Success msg="Some success text" />
+`}</Code>
 
 <API props={apiProps}/>
 
@@ -27,7 +35,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
 import { InfoBar, Info, Error, Success, Warning } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 const apiProps = <ApiProp[]>[
 	PROPS.id,
@@ -36,17 +44,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'msg', type: 'string', description: 'Message to display. It can use simple html for formatting (message is wrapped in <em>&lt;p&gt;</em> tag).' },
 	{ name: 'type', type: ['info', 'warning', 'error', 'success'], default: 'info', description: 'Type of the info-bar. This property only exists on the <em>&lt;InfoBar&gt;</em> component, not on the shortcut-components.' },
 ];
-
-
-const exampleHtml = `
-<InfoBar id="msg001" msg="This is a comprehensive explanation of a thing." type="info" />
-
-<!-- Using shortcuts -->
-<Info msg="Some info text" />
-<Warning msg="Some warning text" />
-<Error msg="Some error text" />
-<Success msg="Some success text" />
-`;
 
 
 </script>

@@ -11,9 +11,9 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	import { UI } from '@perfectthings/ui';
-	console.log(UI.ANIMATION_SPEED);
-&lt;/script>
+<script&gt;
+    import { UI } from '@perfectthings/ui';
+    console.log(UI.ANIMATION_SPEED);
+</script&gt;
 `;
 </script>

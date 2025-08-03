@@ -107,7 +107,46 @@
 	</Table>
 </div>
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Table rowSelector=".row-sel" round data={{ id: 'table-id-1' }}>
+    <thead>
+        <tr><th>Year</th><th>Month</th><th>Price</th></tr>
+    </thead>
+    <thead>
+        <tr><th colspan="3">Year: 2021</th></tr>
+    </thead>
+    <tbody>
+        <tr class="row-sel"><td>2021</td><td>January</td><td>$100</td></tr>
+        <tr class="row-sel"><td>2021</td><td>February</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>March</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>April</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>May</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>June</td><td>$80</td></tr>
+    </tbody>
+    <tbody class="row-sel row-group">
+        <tr><td>2021</td><td>April 1</td><td>$80</td></tr>
+        <tr><td>2021</td><td>April 2</td><td>$80</td></tr>
+    </tbody>
+    <tbody>
+        <tr class="row-sel"><td>2021</td><td>May</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>July</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>August</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>September</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>October</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>November</td><td>$80</td></tr>
+        <tr class="row-sel"><td>2021</td><td>December</td><td>$80</td></tr>
+    </tbody>
+    <thead>
+        <tr><th colspan="3">Year: 2020</th></tr>
+    </thead>
+    <tbody>
+        ...
+    </tbody>
+    <tfoot>
+        <tr><td colspan="2">Sum</td><td>$180</td></tr>
+    </tfoot>
+</Table>
+`}</Code>
 
 <API props={apiProps}/>
 
@@ -116,7 +155,7 @@
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 import { Table } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './Table.css';
 
 const apiProps = <ApiProp[]>[
@@ -136,47 +175,6 @@ const apiProps = <ApiProp[]>[
 ];
 
 
-
-const exampleHtml = `
-<Table rowSelector=".row-sel" round data={{ id: 'table-id-1' }}>
-		<thead>
-			<tr><th>Year</th><th>Month</th><th>Price</th></tr>
-		</thead>
-		<thead>
-			<tr><th colspan="3">Year: 2021</th></tr>
-		</thead>
-		<tbody>
-			<tr class="row-sel"><td>2021</td><td>January</td><td>$100</td></tr>
-			<tr class="row-sel"><td>2021</td><td>February</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>March</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>April</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>May</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>June</td><td>$80</td></tr>
-		</tbody>
-		<tbody class="row-sel row-group">
-			<tr><td>2021</td><td>April 1</td><td>$80</td></tr>
-			<tr><td>2021</td><td>April 2</td><td>$80</td></tr>
-		</tbody>
-		<tbody>
-			<tr class="row-sel"><td>2021</td><td>May</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>July</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>August</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>September</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>October</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>November</td><td>$80</td></tr>
-			<tr class="row-sel"><td>2021</td><td>December</td><td>$80</td></tr>
-		</tbody>
-		<thead>
-			<tr><th colspan="3">Year: 2020</th></tr>
-		</thead>
-		<tbody>
-			...
-		</tbody>
-		<tfoot>
-			<tr><td colspan="2">Sum</td><td>$180</td></tr>
-		</tfoot>
-	</Table>
-`;
 
 
 function onkeydown (e, { selectedItem }) {

@@ -54,7 +54,15 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InputDate onchange={ onChange } />
+
+<script&gt;
+function onChange (e, { value }) {
+    console.log(value);
+}
+</script>
+`}</Code>
 
 <API props={apiProps}/>
 
@@ -63,7 +71,7 @@
 import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 import { InputDate } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 const item = $state({ datevalue: '' });
 
@@ -79,18 +87,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'useNativeOnMobile', type: ['true', 'false'], default: 'false', description: 'Use native date picker on mobile devices.<br>In some cases this may provide prefered UX, but it has also some restrictions depending on the device/browser, like date format is enforced by device locale and placeholder text may not be available.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 ];
-
-const exampleHtml = `
-<InputDate onchange={ onChange } />
-
-<script>
-function onChange (e, { value }) {
-    console.log(value);
-}
-&lt;/script>
-
-`;
-
 
 
 let error = $state('You picked wrong!');

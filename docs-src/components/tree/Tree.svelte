@@ -5,14 +5,38 @@
 </div>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Tree {items} {onselect}/>
+
+<script&gt;
+const items = [
+    { id: 1, name: 'One' },
+    { id: 2, name: 'Two', items: [
+        { id: 21, name: 'One' },
+        { id: 22, name: 'Two' },
+        { id: 23, name: 'Three', items: [
+            { id: 231, name: 'One' },
+            { id: 232, name: 'Two' },
+        ] },
+        { id: 24, name: 'Four' },
+    ] },
+    { id: 3, name: 'Three' },
+];
+
+function onselect (e, { selectedItem, item }) {
+    console.log('selected element:', selectedItem, 'item:', item);
+}
+</script>
+`}</Code>
+
+
 <API props={apiProps}/>
 
 <script lang="ts">
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 import { Tree } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './Tree.css';
 
 
@@ -23,29 +47,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'onselect', type: 'function', description: 'Triggered after an item was selected.' },
 ];
 
-const exampleHtml = `
-<Tree {items} {onselect}/>
-
-<script>
-const items = [
-	{ id: 1, name: 'One' },
-	{ id: 2, name: 'Two', items: [
-		{ id: 21, name: 'One' },
-		{ id: 22, name: 'Two' },
-		{ id: 23, name: 'Three', items: [
-			{ id: 231, name: 'One' },
-			{ id: 232, name: 'Two' },
-		] },
-		{ id: 24, name: 'Four' },
-	] },
-	{ id: 3, name: 'Three' },
-];
-
-function onselect (e, { selectedItem, item }) {
-	console.log('selected element:', selectedItem, 'item:', item);
-}
-&lt;/script>
-`;
 
 function onselect (e, { selectedItem, item }) {
 	console.log('selected element:', selectedItem, 'item:', item);

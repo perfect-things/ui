@@ -20,7 +20,15 @@
 <InputMath label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InputMath label="Enter amount" {onchange} />
+
+<script&gt;
+function onchange (e, { value }) {
+    console.log(value);
+}
+</script>
+`}</Code>
 
 <API props={apiProps}/>
 
@@ -30,7 +38,7 @@ import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 
 import { InputMath } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 let error = 'Number must be big!';
 
@@ -56,15 +64,5 @@ function onchange2 (e, { value }) {
 	}
 
 }
-
-const exampleHtml = `
-<InputMath label="Enter amount" {onchange} />
-
-<script>
-function onchange (e, { value }) {
-    console.log(value);
-}
-&lt;/script>
-`;
 
 </script>

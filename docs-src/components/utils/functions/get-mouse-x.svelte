@@ -7,12 +7,12 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	document.addEventListener('mousedown', e => {
-		const x = getMouseX(e);
-		console.log(x);
-	});
-&lt;/script>
+<script&gt;
+    document.addEventListener('mousedown', e => {
+        const x = getMouseX(e);
+        console.log(x);
+    });
+</script&gt;
 `;
 
 </script>

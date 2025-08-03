@@ -27,30 +27,12 @@
 		<Radio items={strings} label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html={exampleHtml} />
-<API props={apiProps}/>
-
-
-<script lang="ts">
-import type { ApiProp } from '../../../api-table/types';
-import { API, PROPS } from '../../../api-table';
-import { Radio } from '../../../../src';
-import { CodeExample } from '../../../code-example';
-
-
-const apiProps = <ApiProp[]>[
-	...PROPS.input,
-	PROPS.required,
-	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, id?: string | number, disabled?: boolean &rbrace;</code>(if <i>id</i> is present - it should be unique).' },
-	{ name: 'value', type: ['string', 'number'], description: 'Value of the component (=value of the checked item).' },
-];
-
-const exampleHtml = `
+<Code>{`
 <Radio {items} name="my-radio" bind:value label="Select option" {onchange} />
 
 Value is: {value}
 
-<script>
+<script&gt;
 const items = [
 	{ name: 'One', value: 1, disabled: true },
 	{ name: 'Two', value: 2 },
@@ -63,8 +45,26 @@ let value = $state(items[1].value);
 function onchange (e) {
     console.log('value', e.target.value, value);
 }
-&lt;/script>
-`;
+</script>
+`}</Code>
+
+
+<API props={apiProps}/>
+
+
+<script lang="ts">
+import type { ApiProp } from '../../../api-table/types';
+import { API, PROPS } from '../../../api-table';
+import { Radio } from '../../../../src';
+import { Code } from '../../../code-example';
+
+
+const apiProps = <ApiProp[]>[
+	...PROPS.input,
+	PROPS.required,
+	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, value: string | number, id?: string | number, disabled?: boolean &rbrace;</code>(if <i>id</i> is present - it should be unique).' },
+	{ name: 'value', type: ['string', 'number'], description: 'Value of the component (=value of the checked item).' },
+];
 
 
 const items1 = [

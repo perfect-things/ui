@@ -7,12 +7,12 @@
 import Util from '../Util.svelte';
 
 const example = `
-	<script>
-		const el = document.querySelector('.some-div');
-		animate(el, { opacity: 0 }, { opacity: 1 }, { duration: 1000 })
-			.then(() => console.log('animation finished'));
-	&lt;/script>
-	`;
+<script&gt;
+    const el = document.querySelector('.some-div');
+    animate(el, { opacity: 0 }, { opacity: 1 }, { duration: 1000 })
+        .then(() => console.log('animation finished'));
+</script&gt;
+`;
 
 const api = [
 	{ name: 'element', type: 'HTMLElement', description: 'An element that will be animated.' },

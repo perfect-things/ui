@@ -33,7 +33,22 @@
 		<Select items={selectItems} label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Select items={items} {onchange} />
+
+<script&gt;
+const items = [
+	{ id: '1', name: 'Alpha', group: 'Group 1' },
+	{ id: '2', name: 'Beta', group: 'Group 1' },
+	{ id: '3', name: 'Gamma', group: 'Group 1' },
+];
+function onchange (e) {
+	console.log(e.target.value);
+}
+</script>
+`}</Code>
+
+
 <API props={apiProps}/>
 
 
@@ -41,7 +56,7 @@
 import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 import { Select } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 let value = $state('Beta');
 
 const apiProps = <ApiProp[]>[
@@ -51,20 +66,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the select.<br>If the list is an array of strings - it would match the item,<br>if the list is an array of objects - it should match the id of the item. ' },
 ];
 
-const exampleHtml = `
-<Select items={items} {onchange} />
-
-<script>
-const items = [
-	{ id: '1', name: 'Alpha', group: 'Group 1' },
-	{ id: '2', name: 'Beta', group: 'Group 1' },
-	{ id: '3', name: 'Gamma', group: 'Group 1' },
-];
-function onchange (e) {
-	console.log(e.target.value);
-}
-&lt;/script>
-`;
 
 const selectItems = [
 	{ id: 'Alpha', name: 'Alpha', group: 'Group 1' },

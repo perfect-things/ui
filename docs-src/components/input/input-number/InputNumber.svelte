@@ -19,7 +19,10 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InputNumber label="Enter amount"/>
+`}</Code>
+
 <API props={apiProps}/>
 
 
@@ -28,7 +31,7 @@ import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 
 import { InputNumber } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 let error = $state('Number must be <100');
 let value = $state(123);
@@ -42,10 +45,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 ];
 
-
-const exampleHtml = `
-<InputNumber label="Enter amount"/>
-`;
 
 function validator (e) {
 	const num = parseFloat('' + e.target.value) || 0;

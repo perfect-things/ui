@@ -78,7 +78,15 @@
 </div>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<PushButton round icon="info" {onchange}></PushButton>
+
+<script&gt;
+function onchange (e, { pressed }) {
+    console.log(\`original event: $\{e.type}, is pressed:\`, pressed);
+}
+</script>
+`}</Code>
 <API props={apiProps}/>
 
 
@@ -86,7 +94,7 @@
 import type { ApiProp } from '../../api-table/types';
 import { PushButton } from '../../../src';
 import { API, PROPS } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 function onchange (e: Event, { pressed }: { pressed: boolean }) {
 	console.log(`original event: ${e.type}, is pressed:`, pressed);
@@ -110,13 +118,4 @@ const apiProps = <ApiProp[]>[
 	{ name: 'pressed', type: 'boolean', default: 'false', description: 'Initial <i>pressed</i> state of the button.' },
 ];
 
-const exampleHtml = `
-<PushButton round icon="info" {onchange}></PushButton>
-
-<script>
-function onchange (e, { pressed }) {
-	console.log(\`original event: $\{e.type}, is pressed:\`, pressed);
-}
-&lt;/script>
-`;
 </script>

@@ -20,7 +20,27 @@
 	<div class="split-box">Bottom</div>
 </div>
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Button onclick={toggle}>Toggle</Button>
+<div style="flex-flow:row">
+    <div>Left</div>
+    <Splitter {onchanged} bind:this={splitter1} />
+    <div>Right</div>
+</div>
+
+<script&gt;
+let splitter1;
+
+function toggle () {
+    splitter1.toggle();
+}
+
+function onchanged (e, { width, height, collapsed }) {
+    // logs current height/width in px and collapsed state
+    console.log(e, { width, height, collapsed });
+}
+</script>
+`}</Code>
 
 <API props={apiProps}/>
 <API props={instanceApiProps} title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
@@ -30,7 +50,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
 import { Splitter, Button } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './Splitter.css';
 
 const apiProps = <ApiProp[]>[
@@ -48,27 +68,6 @@ const instanceApiProps = <ApiProp[]>[
 ];
 
 
-const exampleHtml = `
-<Button onclick={toggle}>Toggle</Button>
-<div style="flex-flow:row">
-	<div>Left</div>
-	<Splitter {onchanged} bind:this={splitter1} />
-	<div>Right</div>
-</div>
-
-<script>
-let splitter1;
-
-function toggle () {
-	splitter1.toggle();
-}
-
-function onchanged (e, { width, height, collapsed }) {
-	// logs current height/width in px and collapsed state
-	console.log(e, { width, height, collapsed });
-}
-&lt;/script>
-`;
 
 let splitter1: Splitter = $state();
 let splitter2: Splitter = $state();

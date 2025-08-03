@@ -8,12 +8,12 @@
 	{/if}
 
 	{#if example}
-		<CodeExample nohr html={example} />
+		<Code nohr>{example}</Code>
 	{/if}
 </div>
 
 <script lang="ts">
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import { API } from '../../api-table';
 
 interface Props {

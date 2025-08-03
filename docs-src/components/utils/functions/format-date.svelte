@@ -6,9 +6,9 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	formatDate(new Date()); // 2020-01-01 12:00
-&lt;/script>
+<script&gt;
+    formatDate(new Date()); // 2020-01-01 12:00
+</script&gt;
 `;
 
 </script>

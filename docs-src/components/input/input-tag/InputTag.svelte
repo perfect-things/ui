@@ -18,7 +18,16 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InputTag label="Tags" value="tag1, tag2" {onchange} />
+
+<script&gt;
+function onchange (e, value) {
+    console.log('tags', value);
+}
+</script>
+`}</Code>
+
 <API props={apiProps}/>
 
 
@@ -27,7 +36,7 @@ import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 
 import { InputTag } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
@@ -36,17 +45,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'value', type: 'string', description: 'Initial value of the input - a comma-separated string.' },
 	{ name: 'bind:listElement', type: 'HTMLElement', description: 'Exposes the HTML element of the list.' },
 ];
-
-
-const exampleHtml = `
-<InputTag label="Tags" value="tag1, tag2" {onchange} />
-
-<script>
-function onchange (e, value) {
-    console.log('tags', value);
-}
-&lt;/script>
-`;
 
 
 

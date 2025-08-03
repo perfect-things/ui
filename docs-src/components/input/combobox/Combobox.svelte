@@ -8,6 +8,8 @@
 
 <h4>Selected value: </h4>
 <JsonBox value={itemValue} />
+
+
 <Button onclick={resetSingle}>Reset</Button>
 
 <h3>Disabled</h3>
@@ -80,7 +82,27 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Combobox
+    {items}
+    onchange={ onChange }
+    bind:value={ value } />
+
+<script&gt;
+const items = [
+    { id: 1, name: 'Alpha', group: 'Group 1' },
+    { id: 2, name: 'Beta', group: 'Group 1' },
+    { id: 3, name: 'Gamma', group: 'Group 2' },
+    { id: 4, name: 'Delta', group: 'Group 2' },
+];
+let value = data[1];
+
+function onChange (e) {
+    const { value, oldValue } = e;
+    console.log({ value, oldValue });
+}
+</script>
+`}</Code>
 
 <hr>
 <API props={apiProps}/>
@@ -91,7 +113,7 @@ import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 
 import { Combobox, Button } from '../../../../src';
-import { CodeExample, JsonBox } from '../../../code-example';
+import { Code, JsonBox } from '../../../code-example';
 
 
 const apiProps = <ApiProp[]>[
@@ -114,29 +136,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
 	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. ' },
 ];
-
-const exampleHtml = `
-<Combobox
-    {items}
-    onchange={ onChange }
-    bind:value={ value } />
-
-<script>
-const items = [
-    { id: 1, name: 'Alpha', group: 'Group 1' },
-    { id: 2, name: 'Beta', group: 'Group 1' },
-    { id: 3, name: 'Gamma', group: 'Group 2' },
-    { id: 4, name: 'Delta', group: 'Group 2' },
-];
-let value = data[1];
-
-function onChange (e) {
-    const { value, oldValue } = e;
-    console.log({ value, oldValue });
-}
-&lt;/script>
-`;
-
 
 
 const items = [

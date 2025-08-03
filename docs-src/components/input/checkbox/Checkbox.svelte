@@ -32,7 +32,19 @@
 		<Checkbox label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Checkbox {onchange} label="I'm a little label" {error} />
+
+<script&gt;
+let error = '';
+
+function onchange (e, { checked, indeterminate }) {
+	error = checked ? '' : 'You must check me!'
+	console.log({ checked, indeterminate });
+}
+</script>
+`}</Code>
+
 <API props={apiProps}/>
 
 
@@ -40,7 +52,7 @@
 import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 import { Checkbox } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
@@ -49,19 +61,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'checked', type: ['true', 'false'], description: 'Make the checkbox checked or unchecked.' },
 	{ name: 'indeterminate', type: ['true', 'false'], description: 'If set to <i>true</i> it makes the checkbox show its 3rd state - indeterminate.' },
 ];
-
-const exampleHtml = `
-<Checkbox {onchange} label="I'm a little label" {error} />
-
-<script>
-let error = '';
-
-function onchange (e, { checked, indeterminate }) {
-	error = checked ? '' : 'You must check me!'
-	console.log({ checked, indeterminate });
-}
-&lt;/script>
-`;
 
 let error = $state('You must check me!');
 

@@ -71,6 +71,7 @@ const cls = $derived([
 	'popover-plate',
 	'popover-' + _position,
 	'tooltip-plate',
+	'has-tip',
 	{ opened, info, success, warning, danger },
 ]);
 

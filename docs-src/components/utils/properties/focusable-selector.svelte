@@ -9,11 +9,11 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	import { UI } from '@perfectthings/ui';
+<script&gt;
+    import { UI } from '@perfectthings/ui';
 
-	const focusableElements = document.querySelectorAll(UI.FOCUSABLE_SELECTOR);
-	console.log(focusableElements);
-&lt;/script>
+    const focusableElements = document.querySelectorAll(UI.FOCUSABLE_SELECTOR);
+    console.log(focusableElements);
+</script&gt;
 `;
 </script>

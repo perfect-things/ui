@@ -25,7 +25,18 @@
 <Tag clickable onclick={onclick}>Click me</Tag>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Tag icon="close">Closable tag</Tag>
+<Tag color="success">Success</Tag>
+<Tag color="#132231">Custom color</Tag>
+<Tag {onclick}>Click me</Tag>
+
+<script&gt;
+function onclick () {
+    alert('Clicked!');
+}
+</script>
+`}</Code>
 <API props={apiProps}/>
 
 
@@ -34,7 +45,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
 import { Tag } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 const apiProps = <ApiProp[]>[
 	PROPS.class,
@@ -46,19 +57,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'color', type: 'string', description: 'Tag color. Standard variations are included (info, warning, danger, success). A color hash or name can also be provided.' },
 	{ name: 'clickable', description: 'When passed, the tag will be interactive.' },
 ];
-
-const exampleHtml = `
-<Tag icon="close">Closable tag</Tag>
-<Tag color="success">Success</Tag>
-<Tag color="#132231">Custom color</Tag>
-<Tag {onclick}>Click me</Tag>
-
-<script>
-	function onclick () {
-		alert('Clicked!');
-	}
-&lt;/script>
-`;
 
 
 function onclick () {

@@ -45,10 +45,33 @@
 <MessageBox />
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<MessageBox />
+
+<script&gt;
+import { MessageBox, MessageType, showMessage } from '@perfectthings/ui';
+
+showMessage('Some info with the OK button');
+showMessage('Some warning with the OK button', MessageType.WARNING);
+showMessage('Some error with the OK button and title', MessageType.ERROR, 'Error', 'Close');
+
+showMessage({
+    message: 'Are you sure you want to delete this item?',
+    title: 'Confirm',
+    type: MessageType.DANGER,
+    icon: 'help',
+    buttons: [
+        { label: 'OK', value: 'ok', type: 'danger' },
+        { label: 'Cancel' }
+    ],
+    target: buttonElement,  // to be focused on close
+    cb: (res) => {}
+});
+</script>
+`}</Code>
 
 <API
-	props={apiProps}
+    props={apiProps}
 	title="Function API - arguments"
 	description="A component exports a <em>showMessage</em> function which accepts either
 	a config object or a list of arguments.  If it is a list of arguments - this is the API:"/>
@@ -59,7 +82,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API } from '../../api-table';
 
 import { Button, MessageBox, MessageType, showMessage } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 const longMessage = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec euismod turpis. Aliquam aliquam varius dignissim. Sed sit amet leo tempor, dignissim ex euismod, volutpat ante. Etiam sed lacus pharetra, commodo lectus ac, bibendum purus. In vel aliquam arcu, nec aliquam tortor. Cras feugiat porta eros. Nulla eget quam mattis, laoreet elit et, volutpat lacus. Phasellus eget risus in lacus facilisis porta vitae vel nibh. Nam condimentum est risus, sed volutpat metus sodales non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus ac euismod arcu. Proin varius, ligula vel ullamcorper rutrum, tortor est imperdiet est, et accumsan nunc mi vitae risus.';
 
@@ -91,33 +114,5 @@ const apiProps = <ApiProp[]>[
 	{ name: '4. label', type: 'string', default: 'OK', description: 'A label for the button.' },
 	{ name: '5. cb', type: 'function', description: 'A callback function that will be called on close. A value of the clicked button will be passed to the function.' },
 ];
-
-
-const exampleHtml = `
-<MessageBox />
-
-<script>
-	import { MessageBox, MessageType, showMessage } from '@perfectthings/ui';
-
-    showMessage('Some info with the OK button');
-
-    showMessage('Some warning with the OK button', MessageType.WARNING);
-    showMessage('Some error with the OK button and title', MessageType.ERROR, 'Error', 'Close');
-
-    showMessage({
-        message: 'Are you sure you want to delete this item?',
-        title: 'Confirm',
-        type: MessageType.DANGER,
-		icon: 'help',
-        buttons: [
-            { label: 'OK', value: 'ok', type: 'danger' },
-            { label: 'Cancel' }
-        ],
-		target: buttonElement,  // to be focused on close
-        cb: (res) => {}
-    });
-
-&lt;/script>
-`;
 
 </script>

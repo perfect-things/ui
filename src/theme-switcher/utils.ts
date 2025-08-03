@@ -7,9 +7,9 @@ import { UI } from '../utils';
 
 let initialised = false;
 let stored: Theme = THEMES.AUTO;
-let prefersDark: boolean = (UI.PREFERS_DARK);
+let prefersDark: boolean = UI.PREFERS_DARK;
 let effectiveTheme: Theme;
-
+export const themeObserver = new EventTarget();
 
 
 /**
@@ -36,6 +36,17 @@ export function initThemes () {
  */
 export function getCurrentTheme (): Theme {
 	return stored;
+}
+
+/**
+ * Gets the effective theme based on the stored theme and the user's preference.
+ * If the stored theme is 'auto', it will return 'dark' or 'light'
+ * based on the user's system preference.
+ * @returns The effective theme.
+ */
+export function getEffectiveTheme (): Theme {
+	if (stored !== THEMES.AUTO) return stored;
+	return prefersDark ? THEMES.DARK : THEMES.LIGHT;
 }
 
 
@@ -80,10 +91,9 @@ function resolveTheme () {
 
 	effectiveTheme = getEffectiveTheme();
 	document.documentElement.classList.add('theme-' + effectiveTheme);
-}
 
+	themeObserver.dispatchEvent(new CustomEvent('change', {
+		detail: { theme: stored, effectiveTheme }
+	}));
 
-function getEffectiveTheme (): Theme {
-	if (stored !== THEMES.AUTO) return stored;
-	return prefersDark ? THEMES.DARK : THEMES.LIGHT;
 }

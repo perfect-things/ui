@@ -55,10 +55,32 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<ButtonToggle items={buttons} value="2" />
+
+<script&gt;
+const buttons = [
+    { name: 'One', value: '1' },
+    { name: 'Two', value: '2' },
+    { name: 'Three', value: '3' },
+];
+</script>
+`}</Code>
+
 <em>Note:</em> the component <i>value</i> type and the item's <i>value</i> type must match,
 so you can either use <i>string</i> for both - like in the example, or <i>number</i>, like so:
-<CodeExample notitle html={exampleHtml2}></CodeExample>
+
+<Code notitle>{`
+<ButtonToggle items={buttons} value={2} />
+
+<script&gt;
+const buttons = [
+    { name: 'One', value: 1 },
+    { name: 'Two', value: 2 },
+    { name: 'Three', value: 3 },
+];
+</script>
+`}</Code>
 
 <API props={apiProps}/>
 <API title="ButtonToggleItem" props={itemProps}/>
@@ -68,7 +90,7 @@ so you can either use <i>string</i> for both - like in the example, or <i>number
 import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 import { ButtonToggle } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 
 const apiProps = <ApiProp[]>[
@@ -85,33 +107,6 @@ const itemProps = <ApiProp[]>[
 	PROPS.icon,
 	{ name: 'value', type: ['string', 'number'], description: 'The value of the item' },
 ];
-
-
-
-
-const exampleHtml = `
-<ButtonToggle items={buttons} value="2" />
-
-<script>
-const buttons = [
-    { name: 'One', value: '1' },
-    { name: 'Two', value: '2' },
-    { name: 'Three', value: '3' },
-];
-&lt;/script>
-`;
-
-const exampleHtml2 = `
-<ButtonToggle items={buttons} value={2} />
-
-<script>
-const buttons = [
-    { name: 'One', value: 1 },
-    { name: 'Two', value: 2 },
-    { name: 'Three', value: 3 },
-];
-&lt;/script>
-`;
 
 
 

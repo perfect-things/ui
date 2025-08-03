@@ -7,10 +7,10 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	const mob = isMobile();
-	console.log(mob);  // false
-&lt;/script>
+<script&gt;
+    const mob = isMobile();
+    console.log(mob);  // false
+</script&gt;
 `;
 
 </script>

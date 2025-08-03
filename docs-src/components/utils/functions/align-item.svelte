@@ -11,19 +11,19 @@
 <script>
 import Util from '../Util.svelte';
 const example = `
-<script>
-	const button = document.querySelector('.button1');
-	const popup = document.querySelector('.popup1');
-	const pos = alignItem({
-		element: popup,
-		target: button,
-		alignH: 'left',
-		alignV: 'bottom',
-	});
-	// it may happen that there is not enough space to align the popup as requested
-	// in this case, the popup will be aligned to the opposite side
-	console.log('position:', pos); // 'top'
-&lt;/script>
+<script&gt;
+    const button = document.querySelector('.button1');
+    const popup = document.querySelector('.popup1');
+    const pos = alignItem({
+        element: popup,
+        target: button,
+        alignH: 'left',
+        alignV: 'bottom',
+    });
+    // it may happen that there is not enough space to align the popup as requested
+    // in this case, the popup will be aligned to the opposite side
+    console.log('position:', pos); // 'top'
+</script&gt;
 `;
 
 const api = [
