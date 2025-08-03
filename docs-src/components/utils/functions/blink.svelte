@@ -12,10 +12,10 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	const el = document.querySelector('.some-div');
-	blink(el).then(() => console.log('animation finished'));
-&lt;/script>
+<script&gt;
+    const el = document.querySelector('.some-div');
+    blink(el).then(() => console.log('animation finished'));
+</script&gt;
 `;
 
 </script>

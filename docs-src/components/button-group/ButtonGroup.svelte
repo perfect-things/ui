@@ -90,9 +90,13 @@
 	<Button icon="alert"></Button>
 </ButtonGroup>
 
-
-
-<CodeExample html={exampleHtml} />
+<Code>{`
+<ButtonGroup>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+</ButtonGroup>
+`}</Code>
 
 <API props={apiProps}/>
 
@@ -100,21 +104,12 @@
 import type { ApiProp } from '../../api-table/types';
 import { Button, ButtonGroup, PushButton } from '../../../src';
 import { API, PROPS } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 
 const apiProps = <ApiProp[]>[
 	...PROPS.component,
 	PROPS.round,
 ];
-
-
-const exampleHtml = `
-<ButtonGroup>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-</ButtonGroup>
-`;
 
 </script>

@@ -1,30 +1,12 @@
-{#key code}<pre class="language-json"><code class="language-json">{@html code}</code></pre>{/key}
-
+<Code notitle lang="json">{code}</Code>
 
 <script lang="ts">
-interface Props {
-	value?: string | object;
-}
+import type { JsonBoxProps } from './types';
+import Code from './Code.svelte';
 
-const { value = '' }: Props = $props();
+const { value = '' }: JsonBoxProps = $props();
 
-const code = $derived(highlight(value));
-
-
-
-
-function highlight (json: string | object): string {
-	json = stringify(value);
-
-	// @ts-ignore
-	const prism = window.Prism;
-	if (!prism || !prism.highlight) {
-		console.warn('Prism.js is not loaded. Please include it in your project.');
-		return json;
-	}
-	return prism.highlight(json, prism.languages.json, 'json');
-}
-
+const code = $derived(stringify(value));
 
 
 function stringify (json): string {

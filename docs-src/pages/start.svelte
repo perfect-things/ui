@@ -16,17 +16,17 @@
 
 	<h3>1. Install as a dev dependency</h3>
 
-	<pre><code class="language-bash">
+	<Code notitle lang="bash">
 		npm i -D @perfectthings/ui
-	</code></pre>
+	</Code>
 
 
 	<h3>2. Svelte components</h3>
 	<p>Just <i>import</i> them from the module, as normal:</p>
 
-	<pre><code class="language-js">
+	<Code notitle lang="js">
 		import &lbrace; Button &rbrace; from '@perfectthings/ui';
-	</code></pre>
+	</Code>
 </div>
 
 <div class="sticky-block">
@@ -39,9 +39,7 @@
 		Create a file: <em>src/routes/+layout.js</em> and add this:
 	</p>
 
-	<pre><code class="language-js">
-	export const ssr = false;
-	</code></pre>
+	<Code notitle lang="js">export const ssr = false;</Code>
 
 	<p>Once that's done, you can import the components as normal.</p>
 </div>
@@ -53,11 +51,11 @@
 
 	<p>You need node & npm (obviously). Then, run these:</p>
 
-	<pre><code class="language-bash">
-	git clone git@github.com:perfect-things/ui.git perfectthings-ui
-	cd perfectthings-ui
-	npm i && npm start
-	</code></pre>
+	<Code notitle lang="bash">
+git clone git@github.com:perfect-things/ui.git perfectthings-ui
+cd perfectthings-ui
+npm i && npm start
+	</Code>
 
 	<p>A browser window should open with the demo of the components.</p>
 </div>
@@ -97,5 +95,6 @@
 </div>
 
 <script>
+	import Code from '../code-example/Code.svelte';
 import './start.css';
 </script>

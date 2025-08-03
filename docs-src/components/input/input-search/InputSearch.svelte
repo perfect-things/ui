@@ -27,7 +27,15 @@
 		<InputSearch label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InputSearch label="Email" error="Invalid email" value="admin" onchange={onChange} />
+
+<script&gt;
+function onChange (e) {
+    console.log('value', e.target.value);
+}
+</script>
+`}</Code>
 <API props={apiProps}/>
 
 
@@ -36,7 +44,7 @@ import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 
 import { InputSearch } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
@@ -46,15 +54,6 @@ const apiProps = <ApiProp[]>[
 ];
 
 
-const exampleHtml = `
-<InputSearch label="Email" error="Invalid email" value="admin" onchange={onChange} />
-
-<script>
-function onChange (e) {
-    console.log('value', e.target.value);
-}
-&lt;/script>
-`;
 
 let value = $state('Hi!');
 let error1 = $state(''), error2 = $state('');

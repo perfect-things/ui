@@ -33,7 +33,17 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InputPassword strength label="Current password" {onchange} />
+
+<script&gt;
+function onchange (e) {
+    console.log('value', e.target.value);
+}
+</script>
+`}</Code>
+
+
 <API props={apiProps}/>
 
 
@@ -41,7 +51,7 @@
 import type { ApiProp } from '../../../api-table';
 import { API, PROPS } from '../../../api-table';
 import { InputPassword } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 let val = $state();
 
 const apiProps = <ApiProp[]>[
@@ -53,13 +63,4 @@ const apiProps = <ApiProp[]>[
 	{ name: 'value', type: ['string', 'number'], description: 'Initial value of the input.' },
 ];
 
-const exampleHtml = `
-<InputPassword strength label="Current password" {onchange} />
-
-<script>
-function onchange (e) {
-    console.log('value', e.target.value);
-}
-&lt;/script>
-`;
 </script>

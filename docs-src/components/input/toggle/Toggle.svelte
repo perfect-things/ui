@@ -33,7 +33,17 @@
 		<Toggle label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Toggle value="true" label="Field label" onchange={onChange} />
+
+<script&gt;
+function onChange (e, { value}) {
+    console.log('onchange', value);
+}
+</script>
+`}</Code>
+
+
 <API props={apiProps}/>
 
 
@@ -41,23 +51,13 @@
 import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 import { Toggle } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
 	PROPS.required,
 	{ name: 'value', type: ['true', 'false'], description: 'Initial value of the toggle.' },
 ];
-
-const exampleHtml = `
-<Toggle value="true" label="Field label" onchange={onChange} />
-
-<script>
-function onChange (e, { value}) {
-    console.log('onchange', value);
-}
-&lt;/script>
-`;
 
 
 let error = $state('I can\'t see anything now!');

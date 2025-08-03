@@ -10,10 +10,10 @@
 <script>
 import Util from '../Util.svelte';
 const example = `
-<script>
-	import { UI } from '@perfectthings/ui';
+<script&gt;
+    import { UI } from '@perfectthings/ui';
 
-	console.log(UI.PREFERS_DARK ? 'dark mode' : 'light mode');
-&lt;/script>
+    console.log(UI.PREFERS_DARK ? 'dark mode' : 'light mode');
+</script&gt;
 `;
 </script>

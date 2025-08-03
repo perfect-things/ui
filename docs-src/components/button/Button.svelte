@@ -10,7 +10,6 @@
 </div>
 
 <CodeBox tag="Button" text={buttonText} {props} />
-
 <hr>
 
 <div class="button-demo-props">

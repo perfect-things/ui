@@ -157,8 +157,6 @@ function onhashchange () {
 	}
 	heading = newHeading;
 	component = components[active];
-	// @ts-ignore
-	if (window.Prism) requestAnimationFrame(() => window.Prism.highlightAll());
 }
 
 

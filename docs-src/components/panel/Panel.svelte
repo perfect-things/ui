@@ -67,7 +67,14 @@
 </Panel>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Panel title="Hello" round collapsible>
+    <p>This is panel contents</p>
+    <p>Hello world!</p>
+    <p>This is panel contents</p>
+    <Button>Action</Button>
+</Panel>
+`}</Code>
 <API props={apiProps}/>
 
 
@@ -76,7 +83,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
 import { Panel, Button } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './Panel.css';
 
 const apiProps = <ApiProp[]>[
@@ -97,15 +104,5 @@ const apiProps = <ApiProp[]>[
 	{ name: 'onclose', type: 'function', description: 'Triggered after the panel is closed' },
 	{ name: 'onopen', type: 'function', description: 'Triggered after the panel is opened' },
 ];
-
-const exampleHtml = `
-<Panel title="Hello" round collapsible>
-	<p>This is panel contents</p>
-	<p>Hello world!</p>
-	<p>This is panel contents</p>
-	<Button>Action</Button>
-</Panel>
-`;
-
 
 </script>

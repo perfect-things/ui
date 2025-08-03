@@ -78,7 +78,14 @@
 <Tooltip target="box5" delay="700">Showing with a delay</Tooltip>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<div id="box1"></div>
+<Tooltip position="bottom" target="box1" offset="5" shortcut="cmd c">
+    Some tooltip text
+</Tooltip>
+`}</Code>
+
+
 <API props={apiProps}/>
 
 
@@ -87,7 +94,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
 import { Tooltip } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './Tooltip.css';
 
 const apiProps = <ApiProp[]>[
@@ -106,12 +113,5 @@ const apiProps = <ApiProp[]>[
 	{ name: 'shortcut', type: 'string', description: 'Display a nicely formatted keyboard shortcut in the tooltip.' },
 	{ name: 'target', required: true, type: 'string', description: 'ID of the target element.' },
 ];
-
-
-
-const exampleHtml = `
-<div id="box1"></div>
-<Tooltip position="bottom" target="box1" offset="5" shortcut="cmd c">Some tooltip text</Tooltip>
-`;
 
 </script>

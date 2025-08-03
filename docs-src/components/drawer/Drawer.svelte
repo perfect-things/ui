@@ -16,7 +16,19 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Drawer bind:this={drawer1} title="Drawer">
+    Hello world!
+    <Button onclick={() => drawer1.close()}>Close</Button>
+</Drawer>
+
+<Button onclick={() => drawer1.toggle()}>Show dialog</Button>
+
+<script&gt;
+    let drawer1;
+</script>
+`}</Code>
+
 
 <API props={apiProps}/>
 
@@ -26,7 +38,7 @@
 import type { ApiProp } from '../../api-table/types';
 import { Button, Drawer } from '../../../src';
 import { API, PROPS } from '../../api-table';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.component,
@@ -40,19 +52,6 @@ const instanceApiProps = <ApiProp[]>[
 	{ name: 'open', type: 'function', description: 'Opens the drawer.' },
 	{ name: 'toggle', type: 'function', description: 'Toggles the open state (opens when closed, closes when open).' },
 ];
-
-const exampleHtml = `
-<Drawer bind:this={drawer1} title="Drawer">
-    Hello world!
-    <Button onclick={() => drawer1.close()}>Close</Button>
-</Drawer>
-
-<Button onclick={() => drawer1.toggle()}>Show dialog</Button>
-
-<script>
-    let drawer1;
-&lt;/script>
-`;
 
 
 let drawer: Drawer = $state();

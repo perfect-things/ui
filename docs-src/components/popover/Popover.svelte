@@ -77,7 +77,18 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Button onclick={e => popover1.open(e)}>Open popover</Button>
+<Popover bind:this={popover1}>
+    <h2>Context information</h2>
+    <p>Some text</p>
+    <Button onclick={popover1.close}>Click me</Button>
+</Popover>
+
+<script&gt;
+    let popover1;
+</script>
+`}</Code>
 <API props={apiProps}/>
 <API props={instanceApiProps} title="Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
 
@@ -86,7 +97,7 @@
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 import { Popover, Button } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './Popover.css';
 
 let popover1: Popover = $state();
@@ -122,18 +133,5 @@ const instanceApiProps = <ApiProp[]>[
 	{ name: 'updatePosition', type: 'function', description: 'Recalculates the position of the popover.' },
 ];
 
-
-const exampleHtml = `
-<Button onclick={e => popover1.open(e)}>Open popover</Button>
-<Popover bind:this={popover1}>
-	<h2>Context information</h2>
-	<p>Some text</p>
-	<Button onclick={popover1.close}>Click me</Button>
-</Popover>
-
-<script>
-	let popover1;
-&lt;/script>
-`;
 
 </script>

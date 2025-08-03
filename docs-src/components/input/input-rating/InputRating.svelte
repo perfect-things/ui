@@ -39,7 +39,16 @@
 
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<InputRating {onchange} bind:value />
+
+<script&gt;
+let value = 4;
+function onchange (e, { value }) {
+	console.log(value);
+}
+</script>
+`}</Code>
 
 <API props={apiProps}/>
 
@@ -49,7 +58,7 @@ import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 
 import { InputRating } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 let value = $state(2);
 
@@ -62,18 +71,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'value', type: 'string', description: 'Initial value of the input.' },
 	{ name: 'light', type: 'boolean', default: 'false', description: 'Disable background and border - for use cases other than in form context.<br>Light does not work when the input has error.' },
 ];
-
-const exampleHtml = `
-<InputRating {onchange} bind:value />
-
-<script>
-let value = 4;
-function onchange (e, { value }) {
-	console.log(value);
-}
-&lt;/script>
-
-`;
 
 
 

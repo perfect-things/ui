@@ -83,7 +83,37 @@
 </Menu>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<!-- Regular menu -->
+<Menu bind:this={menu1}>
+    <MenuItem data-value="add-something"><Icon name="plus"/> Add some</MenuItem>
+    <MenuItem>Add some more</MenuItem>
+    <MenuSeparator />
+    <MenuItem onclick={closeSomething}><Icon name="close"/> Close something</MenuItem>
+</Menu>
+
+<Button data-name="button-with-menu" onclick={menu1.open}>Show menu</Button>
+
+<!-- Context menu -->
+<div class="div1">Tab</div>
+<Menu type="context" targetSelector=".div1" bind:this={menu2}>
+    <MenuItem shortcut="cmd+n" onclick={action1}>New window</MenuItem>
+    <MenuItem shortcut="cmd+shift+n" onclick={action2}>New private window</MenuItem>
+    <MenuSeparator />
+    <MenuItem shortcut="cmd+shift+q" onclick={action3}>Close All Windows</MenuItem>
+</Menu>
+
+<script&gt;
+    let menu1, menu2;
+    function closeSomething (e) {
+        e.preventDefault();   // prevents menu auto-closing
+        menu1.close();       // manually close the menu
+    }
+    function onMenuClick (e, { target, button }) {
+        console.log(target.dataset, button.dataset);
+    }
+</script>
+`}</Code>
 
 <API props={apiProps}/>
 <API props={instanceApiProps} title="Menu Instance API" description="The component exposes <em>this</em> property, to which a variable can be bound, creating an instance of the component, with the following API"/>
@@ -95,7 +125,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
 import { Button, Menu, MenuItem, MenuSeparator } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 import './Menu.css';
 
 const apiProps = <ApiProp[]>[
@@ -131,38 +161,6 @@ const itemApiProps = <ApiProp[]>[
 
 	{ name: 'shortcut', type: 'string', description: 'A string representation of a keyboard shortcut. e.g. <em>cmd+alt+c</em>.<br>Keys should be separated by a <em>+</em> sign (which will be hidden in the rendered item).<br>Special keys (like cmd, alt, ctrl, shift, escape, enter, etc.) will be replaced by a corresponding symbol.<br>Keyboard handling must be done elsewhere.' },
 ];
-
-const exampleHtml = `
-<!-- Regular menu -->
-<Menu bind:this={menu1}>
-    <MenuItem data-value="add-something"><Icon name="plus"/> Add some</MenuItem>
-    <MenuItem>Add some more</MenuItem>
-    <MenuSeparator />
-    <MenuItem onclick={closeSomething}><Icon name="close"/> Close something</MenuItem>
-</Menu>
-
-<Button data-name="button-with-menu" onclick={menu1.open}>Show menu</Button>
-
-<!-- Context menu -->
-<div class="div1">Tab</div>
-<Menu type="context" targetSelector=".div1" bind:this={menu2}>
-    <MenuItem shortcut="cmd+n" onclick={action1}>New window</MenuItem>
-    <MenuItem shortcut="cmd+shift+n" onclick={action2}>New private window</MenuItem>
-    <MenuSeparator />
-    <MenuItem shortcut="cmd+shift+q" onclick={action3}>Close All Windows</MenuItem>
-</Menu>
-
-<script>
-    let menu1, menu2;
-    function closeSomething (e) {
-        e.preventDefault();   // prevents menu auto-closing
-        menu1.close();       // manually close the menu
-    }
-    function onMenuClick (e, { target, button }) {
-        console.log(target.dataset, button.dataset);
-    }
-&lt;/script>
-`;
 
 
 let someMenu3: Menu = $state();

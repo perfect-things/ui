@@ -12,12 +12,32 @@
 		ondblclick={onclick}/>
 </div>
 
-<!--<div class="table-viewport">-->
-<!--	<Grid round title="Grid with data" {columns} data={data2} multiselect />-->
-<!--</div>-->
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Grid {data} {columns} onclick={onclick}/>
 
+<script&gt;
+const columns = [
+    { field: 'name', label: 'Name', sortable: true },
+    { field: 'date', label: 'Date', width: 200, sortable: true },
+    { field: 'price', label: 'Price', width: 200, sortable: true, total: true,
+        renderer: (item) => \`€$\{item.price}\`
+    }
+];
+const data = [
+    { id: 1, name: 'John Doe', date: '2020-01-01', price: 100 },
+    { id: 2, name: 'Jane Doe', date: '2020-01-02', price: 200 },
+    { id: 3, name: 'Jim Doe', date: '2020-01-03', price: 300 },
+    { id: 4, name: 'Jill Doe', date: '2020-01-04', price: 400 },
+    { id: 5, name: 'Jack Doe', date: '2020-01-05', price: 500 }
+];
+
+function onclick (e) {
+    console.log(e.type);
+}
+
+</script>
+`}</Code>
 <API props={apiProps}/>
 
 
@@ -26,7 +46,7 @@ import './Grid.css';
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 import { Grid } from '../../../src/grid';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.component,
@@ -92,34 +112,6 @@ const data = [
 function onclick (e) {
 	console.log('grid event:', e.type);
 }
-
-
-const exampleHtml = `
-<Grid {data} {columns} onclick={onclick}/>
-
-<script>
-const columns = [
-	{ field: 'name', label: 'Name', sortable: true },
-	{ field: 'date', label: 'Date', width: 200, sortable: true },
-	{ field: 'price', label: 'Price', width: 200, sortable: true, total: true,
-		renderer: (item) => \`€$\{item.price}\`
-	}
-];
-const data = [
-	{ id: 1, name: 'John Doe', date: '2020-01-01', price: 100 },
-	{ id: 2, name: 'Jane Doe', date: '2020-01-02', price: 200 },
-	{ id: 3, name: 'Jim Doe', date: '2020-01-03', price: 300 },
-	{ id: 4, name: 'Jill Doe', date: '2020-01-04', price: 400 },
-	{ id: 5, name: 'Jack Doe', date: '2020-01-05', price: 500 }
-];
-
-function onclick (e) {
-	console.log(e.type);
-}
-
-&lt;/script>
-`;
-
 
 
 </script>

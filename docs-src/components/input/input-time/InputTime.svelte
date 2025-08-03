@@ -19,7 +19,18 @@
 	<h3>Label on the left</h3>
 		<InputTime label="Label is on the left" labelOnTheLeft/>
 
-<CodeExample html={exampleHtml} />
+
+<Code>{`
+<InputTime label="Email" error="Invalid email" value="00:00" {onchange} />
+
+<script&gt;
+function onchange (e) {
+    console.log('value', e.target.value);
+}
+</script>
+`}</Code>
+
+
 <API props={apiProps}/>
 
 
@@ -27,7 +38,7 @@
 import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 import { InputTime } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
@@ -37,15 +48,6 @@ const apiProps = <ApiProp[]>[
 ];
 
 
-const exampleHtml = `
-<InputTime label="Email" error="Invalid email" value="00:00" {onchange} />
-
-<script>
-function onchange (e) {
-    console.log('value', e.target.value);
-}
-&lt;/script>
-`;
 
 let value = $state('00:00');
 let error1 = $state('Select midnight please.');

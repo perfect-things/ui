@@ -68,8 +68,20 @@
 </Dialog>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Dialog bind:this={dialog1}>
+    Are you sure?
+    {#snippet footer()}
+        <Button onclick={e => dialog1.close(e)}>Close</Button>
+    {/snippet}
+</Dialog>
 
+<Button onclick={e => dialog1.open(e)}>Show dialog</Button>
+
+<script&gt;
+    let dialog1: Dialog	= $state();
+</script>
+`}</Code>
 
 
 <API props={apiProps}/>
@@ -82,7 +94,7 @@
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 import { Button, Dialog } from '../../../src';
-import { CodeExample } from '../../code-example';
+import { Code } from '../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.component,
@@ -99,21 +111,6 @@ const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the dialog.' },
 	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
 ];
-
-const exampleHtml = `
-<Dialog bind:this={dialog1}>
-    Are you sure?
-	{#snippet footer()}
-        <Button onclick={e => dialog1.close(e)}>Close</Button>
-	{/snippet}
-</Dialog>
-
-<Button onclick={e => dialog1.open(e)}>Show dialog</Button>
-
-<script>
-    let dialog1: Dialog	= $state();
-&lt;/script>
-`;
 
 let dialog1: Dialog = $state();
 let dialog2: Dialog = $state();

@@ -13,12 +13,12 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	fuzzy('hello world', 'hell');    // true
-	fuzzy('hello world', 'helloo');  // true
-	fuzzy('hello world', 'helll');   // true
-	fuzzy('hello world', 'hellooo'); // false
-&lt;/script>
+<script&gt;
+    fuzzy('hello world', 'hell');    // true
+    fuzzy('hello world', 'helloo');  // true
+    fuzzy('hello world', 'helll');   // true
+    fuzzy('hello world', 'hellooo'); // false
+</script&gt;
 `;
 
 </script>

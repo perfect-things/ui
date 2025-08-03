@@ -6,10 +6,10 @@
 import Util from '../Util.svelte';
 
 const example = `
-<script>
-	isColorDark('#fff'); // false
-	isColorDark('#000'); // true
-&lt;/script>
+<script&gt;
+    isColorDark('#fff'); // false
+    isColorDark('#000'); // true
+</script&gt;
 `;
 
 </script>

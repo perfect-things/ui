@@ -25,7 +25,17 @@
 		<Textarea {onchange} label="Label is on the left" labelOnTheLeft/>
 
 
-<CodeExample html={exampleHtml} />
+<Code>{`
+<Textarea autogrow {onchange} error="Invalid text" />
+
+<script&gt;
+function onchange (e, { value}) {
+    console.log('value', value);
+}
+</script>
+`}</Code>
+
+
 <API props={apiProps}/>
 
 
@@ -33,7 +43,7 @@
 import type { ApiProp } from '../../../api-table/types';
 import { API, PROPS } from '../../../api-table';
 import { Textarea } from '../../../../src';
-import { CodeExample } from '../../../code-example';
+import { Code } from '../../../code-example';
 
 const apiProps = <ApiProp[]>[
 	...PROPS.input,
@@ -42,16 +52,6 @@ const apiProps = <ApiProp[]>[
 	{ name: 'autogrow', description: 'If present - the textarea will grow in height to match the text and avoid scrollbar.' },
 	{ name: 'value', type: 'string', description: 'Initial value of the textarea.' },
 ];
-
-const exampleHtml = `
-<Textarea autogrow {onchange} error="Invalid text" />
-
-<script>
-function onchange (e, { value}) {
-    console.log('value', value);
-}
-&lt;/script>
-`;
 
 
 function onchange (e) {
