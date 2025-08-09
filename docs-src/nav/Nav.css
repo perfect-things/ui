@@ -13,6 +13,7 @@ aside {
 	overscroll-behavior: contain;
 	transform: translateX(calc(var(--sidebar-width) * -1));
 	transition: transform .3s cubic-bezier(.5, .2, .5, 1.2);
+	z-index: 99;
 }
 
 
@@ -57,11 +58,11 @@ menu a.active { background-color: var(--ui-color-highlight); }
 	position: fixed;
 	left: 0;
 	top: 0.28rem;
-	z-index: 65;
 	color: var(--ui-color-text-1);
 	display: flex;
 	transform: translateX(10px);
 	transition: transform .3s cubic-bezier(.5, .2, .5, 1.2);
+	z-index: 100;
 }
 .button.nav-toggler:hover { color: var(--ui-color-text); background: none; }
 

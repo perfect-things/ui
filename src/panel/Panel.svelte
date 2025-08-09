@@ -49,8 +49,9 @@ A collapsible container component with optional header and various styling optio
 <script lang="ts">
 import './Panel.css';
 import type { PanelProps } from './types';
-import { getIcon } from '../icon';
+
 import { onMount } from 'svelte';
+import { getIcon } from '../icon';
 import { animate } from '../utils';
 
 
