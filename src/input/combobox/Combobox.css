@@ -60,7 +60,6 @@
 	color: var(--ui-color-text);
 	cursor: pointer;
 	border-radius: var(--ui-border-radius);
-	-ms-touch-action: manipulation;
 	touch-action: manipulation;
 }
 

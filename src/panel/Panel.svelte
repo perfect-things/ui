@@ -89,8 +89,8 @@ const expandedProps = { height: '0' };
 const collapsedProps = { height: '0' };
 
 
-
-onMount(calcHeights);
+// cannot be abbreviated to `onMount(calcHeights)` as it breaks on mobile Safari!
+onMount(() => calcHeights());
 
 
 

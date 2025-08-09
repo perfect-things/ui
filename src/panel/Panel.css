@@ -24,6 +24,7 @@
 	line-height: 1;
 	-webkit-user-select: none;
 	user-select: none;
+	touch-action: manipulation;
 }
 
 .collapsible .panel-header { cursor: pointer; }

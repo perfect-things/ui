@@ -15,7 +15,6 @@
 	right: unset;
 	cursor: default;
 	user-select: none;
-	-ms-touch-action: manipulation;
 	touch-action: manipulation;
 	font-size: 1.2rem;
 	margin: 0;

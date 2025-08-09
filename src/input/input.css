@@ -2,7 +2,6 @@ input,
 select,
 textarea,
 label {
-	-ms-touch-action: manipulation;
 	touch-action: manipulation;
 }
 
@@ -63,7 +62,6 @@ input[type=color] {
 	font: inherit;
 	/* required for proper sizing */
 	flex-shrink: 0;
-	-ms-touch-action: manipulation;
 	touch-action: manipulation;
 }
 
