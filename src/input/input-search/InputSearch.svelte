@@ -95,6 +95,7 @@ const cls = $derived([
 
 
 function clear (): void {
+	if (inputElement) (inputElement as HTMLInputElement).select();
 	value = '';
 }
 

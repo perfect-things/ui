@@ -150,7 +150,7 @@ const cls = $derived([
 onMount(initDatePicker);
 
 $effect(() => {
-	if (value !== picker.getDate(format)) oninput();
+	if (picker && value !== picker.getDate(format)) oninput();
 });
 
 
@@ -228,6 +228,7 @@ function onhide () {
 }
 
 function onblur () {
+	if (!picker) return;
 	picker.hide();
 }
 
@@ -237,8 +238,10 @@ function onIconMouseDown () {
 }
 
 function onIconClick () {
-	if (isHiding) picker.hide();
-	else picker.show();
+	if (picker) {
+		if (isHiding) picker.hide();
+		else picker.show();
+	}
 
 	isHiding = false;
 	if (inputElement) inputElement.focus();
