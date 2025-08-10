@@ -44,7 +44,7 @@
 	width: calc(100% - calc(var(--ui-radio-padding) * 2));
 	margin: 0 var(--ui-radio-padding);
 	padding: 0.1rem var(--ui-margin);
-	border-radius: var(--ui-border-radius);
+	border-radius: var(--ui-border-radius-s);
 }
 
 .radio .radio-item input { border-radius: 10rem; margin: 0; }
@@ -66,27 +66,20 @@
 .radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-semi); }
 .radio-item:not(.disabled):focus-within { background-color: var(--ui-color-highlight-1); }
 
-/* .radio-item:not(.disabled):focus-within,
-.radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-1); } */
 
 
-
-.radio-inner:not(.disabled):focus-within,
-.radio-inner:not(.disabled):has(:active) {
+.radio-inner:not(.disabled):focus-within {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
 
+
+.radio.has-error .info-bar-error { background-color: transparent; }
 .radio.has-error .radio-inner {
 	border-color: var(--ui-color-danger);
 	background-color: var(--ui-color-danger-semi);
 }
-
-.radio.has-error .info-bar-error { background-color: transparent; }
-
-
-.has-error .radio-inner:focus-within,
-.has-error .radio-inner:has(:active):not(.disabled) {
+.radio.has-error .radio-inner:not(.disabled):focus-within {
 	box-shadow: var(--ui-shadow-danger);
 	border-color: var(--ui-color-danger);
 }

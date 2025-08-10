@@ -1,28 +1,29 @@
 :root {
 	/* BORDERS */
-	--ui-border-radius: 0.375rem;	/* 6px */
-	--ui-border-radius-m: 0.6877rem;/* 11px */
-	--ui-border-radius-l: 1rem;		/* 16px */
-	--ui-border-radius-xl: 5rem;	/* 80px */
+	--ui-border-radius: 0.375rem;	   /* 6px */
+	--ui-border-radius-s: 0.4375rem;   /* 7px */
+	--ui-border-radius-m: 0.6877rem;   /* 11px */
+	--ui-border-radius-l: 1rem;		   /* 16px */
+	--ui-border-radius-xl: 5rem;	   /* 80px */
 
 	/* MARGIN & PADDING */
-	--ui-margin: 0.375rem;			/* 6px */
-	--ui-margin-xs: 0.125rem;		/* 2px */
-	--ui-margin-s: 0.25rem;			/* 4px */
-	--ui-margin-m: 0.5rem;			/* 8px */
-	--ui-margin-l: 1rem;			/* 16px */
+	--ui-margin: 0.375rem;			   /* 6px */
+	--ui-margin-xs: 0.125rem;		   /* 2px */
+	--ui-margin-s: 0.25rem;			   /* 4px */
+	--ui-margin-m: 0.5rem;			   /* 8px */
+	--ui-margin-l: 1rem;			   /* 16px */
 
 
 	--ui-animation-speed: .25s;
-	--ui-button-height: 2.25rem;    /* 36px */
+	--ui-button-height: 2.25rem;       /* 36px */
 
 	/* FONTS */
 	--ui-font-system: system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-	--ui-font-xs: 0.875rem;         /* 14px */
-	--ui-font-s: 0.9375rem;         /* 15px */
-	--ui-font-m: 1rem;              /* 16px */
-	--ui-font-l: 1.0625rem;         /* 17px */
-	--ui-font-xl: 1.375rem;         /* 22px */
+	--ui-font-xs: 0.875rem;            /* 14px */
+	--ui-font-s: 0.9375rem;            /* 15px */
+	--ui-font-m: 1rem;                 /* 16px */
+	--ui-font-l: 1.0625rem;            /* 17px */
+	--ui-font-xl: 1.375rem;            /* 22px */
 
 
 	/* SHADOWS */

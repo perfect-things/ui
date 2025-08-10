@@ -77,8 +77,6 @@ input[type=color] {
 
 .check-and-radio input:checked::after { opacity: 1; }
 
-.check-and-radio label { user-select: none; }
-
 .input { width: 25ch; vertical-align: middle; }
 
 .input .input-inner {

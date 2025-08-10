@@ -39,8 +39,8 @@
 .checkbox input:checked::after { content: "✕"; opacity: 1; }
 
 
-.checkbox .pressing input::after,
-.pressing .checkbox input::after { content: "✕"; opacity: 0.5; }
+.checkbox:not(.disabled) .pressing input::after,
+.pressing .checkbox:not(.disabled) input::after { content: "✕"; opacity: 0.5; }
 
 .checkbox.disabled { opacity: 0.5; }
 .checkbox.disabled input { opacity: 1; }
