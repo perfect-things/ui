@@ -14,6 +14,12 @@
 	border-radius: calc(var(--ui-border-radius) + 1px);
 }
 
+.mobile .button-toggle .input-inner,
+.button-toggle .input-inner:active {
+	box-shadow: none;
+	border: 1px solid var(--ui-color-border);
+}
+
 .button-toggle .input-scroller {
 	width: 100%;
 	border-radius: var(--ui-border-radius);
@@ -31,6 +37,7 @@
 .button-toggle .input-row {
 	min-width: 100%;
 	width: min-content;
+	overflow: clip;
 }
 
 .button-toggle .input-row .button {

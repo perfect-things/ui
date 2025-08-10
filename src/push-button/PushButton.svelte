@@ -15,21 +15,25 @@ A toggle button component that maintains a pressed/unpressed state.
 
 {#if children}
 	<Button
-		class={['push-button', className]}
+		class={['push-button', className, { touching }]}
 		aria-pressed={pressed}
 		bind:element
 		{onkeydown}
 		{onmousedown}
+		{ontouchstart}
+		{ontouchend}
 		{...restProps}>
 			{@render children?.()}
 	</Button>
 {:else}
 	<Button
-		class={['push-button', className]}
+		class={['push-button', className, { touching }]}
 		aria-pressed={pressed}
 		bind:element
 		{onkeydown}
 		{onmousedown}
+		{ontouchstart}
+		{ontouchend}
 		{...restProps} />
 {/if}
 
@@ -49,6 +53,7 @@ let {
 }: PushButtonProps = $props();
 
 
+let touching = $state(false);
 
 function onkeydown (e) {
 	if (e.key === 'Enter' || e.key === ' ') {
@@ -61,5 +66,17 @@ function onkeydown (e) {
 function onmousedown (e) {
 	pressed = !pressed;
 	onchange(e, { pressed });
+}
+
+function ontouchstart (e) {
+	touching = true;
+	e.preventDefault();
+	pressed = !pressed;
+	onchange(e, { pressed });
+}
+
+function ontouchend (e) {
+	touching = false;
+	e.preventDefault();
 }
 </script>

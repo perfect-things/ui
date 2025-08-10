@@ -15,8 +15,11 @@ A form label component with proper accessibility associations.
 -->
 
 {#if label}
-	<label class={['label', className, { disabled }]} bind:this={element} for={_for}>
-		{label}
+	<label
+		class={['label', className, { disabled }]}
+		bind:this={element}
+		for={_for}>
+			{label}
 	</label>
 {/if}
 

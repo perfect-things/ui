@@ -5,18 +5,15 @@
 	display: inline-flex;
 	align-items: center;
 	touch-action: manipulation;
-}
 
-.label.disabled {
-	pointer-events: none;
 	-webkit-user-select: none;
 	user-select: none;
 }
 
+.label.disabled { pointer-events: none; }
+
 /* to offset input's border (visually) */
-.input .label {
-	padding-inline: 1px;
-}
+.input .label { padding-inline: 1px; }
 
 
 .label-on-the-left .label {

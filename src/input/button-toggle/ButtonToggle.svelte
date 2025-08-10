@@ -38,7 +38,6 @@ A radio button group component styled as connected toggle buttons.
 		<div class="input-scroller">
 			<div class="input-row">
 				{#each _items as item, idx (item.value)}
-					<!-- svelte-ignore a11y_click_events_have_key_events -->
 					<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 					<label
 						class={[
@@ -47,7 +46,8 @@ A radio button group component styled as connected toggle buttons.
 							{ 'button-has-text': item.name, disabled },
 						]}
 						title={item.title || item.name || ''}
-						{onclick}>
+						ontouchstart={onclick}
+						onmousedown={onclick}>
 							<Icon name={item.icon}/>
 							{item.name || ''}
 							<input

@@ -38,7 +38,12 @@ A checkbox input component with label, validation, and accessibility features.
 	<div class={['checkbox-row', { pressing }]}
 		onmousedown={() => pressing = true}
 		onmouseup={() => pressing = false}
-		onmouseleave={() => pressing = false}>
+		onmouseleave={() => pressing = false}
+
+		ontouchstart={() => pressing = true}
+		ontouchend={() => pressing = false}
+		ontouchcancel={() => pressing = false}
+		>
 		<input
 			id={_id}
 			type="checkbox"
