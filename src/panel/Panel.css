@@ -5,10 +5,9 @@
 	border: 2px solid var(--ui-color-border);
 	background: var(--ui-color-background-2);
 	margin-bottom: 1rem;
+	transition: height var(--ui-animation-speed) ease-out;
 }
 
-
-.panel details { margin: 1px; }
 
 .panel-header {
 	color: var(--ui-color-text);

@@ -39,7 +39,8 @@
 </Panel>
 
 <Panel title="danger round collapsible open" danger round collapsible open>
-	<p>This is panel contents</p>
+	<p>This is panel contents. This is panel contents. This is panel contents. This is panel contents. This is panel contents. This is panel contents.
+		This is panel contents. This is panel contents. This is panel contents. This is panel contents. This is panel contents. This is panel contents.</p>
 </Panel>
 
 

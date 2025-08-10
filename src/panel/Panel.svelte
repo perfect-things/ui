@@ -52,7 +52,6 @@ import type { PanelProps } from './types';
 
 import { onMount } from 'svelte';
 import { getIcon } from '../icon';
-import { animate } from '../utils';
 
 
 let {
@@ -89,23 +88,30 @@ const expandedProps = { height: '0' };
 const collapsedProps = { height: '0' };
 
 
-// cannot be abbreviated to `onMount(calcHeights)` as it breaks on mobile Safari!
-onMount(() => calcHeights());
+onMount(() => {
+	calcHeights();
+	if (element) element.addEventListener('transitionend', onTransitionEnd);
+});
 
 
 
-function calcHeights () {
-	const wasOpen = open;
-	open = true;
-	requestAnimationFrame(() => {
-		if (!element) return;
-		const wrapCss = getComputedStyle(element);
-		const borderTop = parseInt(wrapCss.borderTopWidth || '0', 10);
-		const borderBottom = parseInt(wrapCss.borderBottomWidth || '0', 10);
-		const headerH = headerEl ? headerEl.offsetHeight : 0;
-		expandedProps.height = element.getBoundingClientRect().height + 'px';
-		collapsedProps.height = (headerH + borderTop + borderBottom) + 'px';
-		open = wasOpen;
+function calcHeights (): Promise<void> {
+	return new Promise((resolve) => {
+		if (!element) return resolve();
+
+		const wasOpen = open;
+		open = true;
+		requestAnimationFrame(() => {
+			const wrapCss = getComputedStyle(element);
+			const borderTop = parseInt(wrapCss.borderTopWidth || '0', 10);
+			const borderBottom = parseInt(wrapCss.borderBottomWidth || '0', 10);
+			const headerH = headerEl ? headerEl.offsetHeight : 0;
+			expandedProps.height = element.getBoundingClientRect().height + 'px';
+			collapsedProps.height = (headerH + borderTop + borderBottom) + 'px';
+			open = wasOpen;
+			resolve();
+		});
+
 	});
 }
 
@@ -113,7 +119,7 @@ function isEnterOrSpace (e: KeyboardEvent) {
 	return e.key === 'Enter' || e.key === ' ';
 }
 
-export function toggle (e?) {
+export async function toggle (e?): Promise<void> {
 	if (!collapsible) {
 		if (e.type === 'click' || isEnterOrSpace(e)) e.preventDefault();
 		return;
@@ -129,20 +135,31 @@ export function toggle (e?) {
 	if (e.type === 'keydown' && e.key !== ' ') return;
 	e.preventDefault();
 
+	await calcHeights();
+
 	if (expanded) {
 		expanded = false;
-		animate(element, expandedProps, collapsedProps)
-			.then(() => {
-				open = expanded;
-				onclose();
-			});
+		element.style.height = expandedProps.height;
+		requestAnimationFrame(() => element.style.height = collapsedProps.height);
 	}
 	else {
 		expanded = true;
 		open = true;
-		animate(element, collapsedProps, expandedProps).then(() => onopen());
+		element.style.height = collapsedProps.height;
+		requestAnimationFrame(() => element.style.height = expandedProps.height);
 	}
 }
 
+
+function onTransitionEnd (e: TransitionEvent) {
+	if (e.propertyName !== 'height') return;
+	element.style.height = 'auto';
+
+	if (expanded) onopen();
+	else {
+		open = false;
+		onclose();
+	}
+}
 
 </script>
