@@ -1,10 +1,7 @@
 <h2>Combobox</h2>
 
 <h3>Normal</h3>
-<Combobox
-	{items}
-	onchange={onChange}
-	bind:value={itemValue} />
+<Combobox {items} {onchange} bind:value={itemValue} />
 
 <h4>Selected value: </h4>
 <JsonBox value={itemValue} />
@@ -62,30 +59,28 @@
 
 <h2 id="Multiselect"><a href="#Combobox/Multiselect">Multiselect</a></h2>
 
+
 <p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
 <h3>Simple data</h3>
-<Combobox
-	items={dataSimple}
-	multiselect
-	bind:value={multiselectSimpleValue} />
+<Combobox items={dataSimple} multiselect bind:value={multiselectSimpleValue} />
 <h4>Selected value: </h4>
 <JsonBox value={multiselectSimpleValue} />
 <Button onclick={resetMulti}>Reset</Button>
 
+
+
 <h3>Complex data</h3>
-<Combobox
-	{items}
-	multiselect
-	bind:value={multiselectValue} />
+<Combobox {items} multiselect bind:value={multiselectValue} />
 <h4>Selected value: </h4>
 <JsonBox value={multiselectValue} />
+
 
 
 
 <Code>{`
 <Combobox
     {items}
-    onchange={ onChange }
+    {onchange}
     bind:value={ value } />
 
 <script&gt;
@@ -97,7 +92,7 @@ const items = [
 ];
 let value = data[1];
 
-function onChange (e) {
+function onchange (e) {
     const { value, oldValue } = e;
     console.log({ value, oldValue });
 }
@@ -201,7 +196,7 @@ let valueSimple = $state('Gamma');
 let multiselectSimpleValue = $state([dataSimple[0], dataSimple[1]]);
 
 
-function onChange (e, { value, oldValue }) {
+function onchange (e, { value, oldValue }) {
 	console.log({ value, oldValue });
 }
 

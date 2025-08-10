@@ -67,7 +67,7 @@ import './Combobox.css';
 import type { ComboboxProps } from './types';
 import { emphasize, scrollToSelectedItem, findValueInSource, getInputValue,
 	alignDropdown, hasValueChanged, groupData, normalizeItems } from './utils';
-import { fuzzy, guid, isMobile } from '../../utils';
+import { fuzzy, guid, UI } from '../../utils';
 import { cloneDeep } from 'es-toolkit';
 import ComboboxInput from './ComboboxInput.svelte';
 import ComboboxList from './ComboboxList.svelte';
@@ -196,7 +196,7 @@ function open (type) {
 function closeAndSelect () {
 	requestAnimationFrame(() => {
 		close();
-		inputElement.select();
+		selectInputText();
 	});
 }
 
@@ -246,7 +246,7 @@ function selectMultiselect (e: Event, item) {
 	value = findValueInSource(selectedItems, items) || [];
 
 	if (hasValueChanged(oldValue, value, true)) onchange(e, { value, oldValue });
-	requestAnimationFrame(() => inputElement.select());
+	selectInputText();
 }
 
 
@@ -302,10 +302,15 @@ function revert () {
 
 function clear () {
 	inputValue = '';
-	requestAnimationFrame(() => inputElement.select());
+	selectInputText();
 }
 
 
+function selectInputText () {
+	if (inputElement && !UI.isMobile) {
+		requestAnimationFrame(() => inputElement.select());
+	}
+}
 
 
 /*** EVENT LISTENERS ******************************************************************************/
@@ -313,7 +318,8 @@ function onfocus () {
 	previousInputValue = inputValue;
 	previousValue = cloneDeep(value);
 
-	if (multiselect && value && !selectedItems.length) {
+	// if (multiselect && value && !selectedItems.length) {
+	if (multiselect && value) {
 		if (Array.isArray(value)) selectedItems = cloneDeep(value);
 		else if (value && value.name) selectedItems = [cloneDeep(value)];
 		else selectedItems = [];
@@ -332,8 +338,10 @@ function oninput () {
 
 function onItemClick (e: Event, item) {
 	// click should only be handled on touch devices
-	if (isMobile() && e?.type !== 'click') return e.preventDefault();
-	if (!isMobile() && e?.type === 'click') return;
+	// as device needs to decide whether the user is scrolling or clicking
+	// on desktop, click is triggered by mouseup
+	if (!UI.isMobile && e?.type === 'click') return;
+	if (UI.isMobile && e?.type !== 'click') return e.preventDefault();
 
 	if (multiselect) selectMultiselect(e, item);
 	else {
@@ -391,14 +399,14 @@ function onEsc (e) {
 function onInputClick () {
 	if (opened) return;
 	open('navigating');
-	if (inputElement) inputElement.select();
+	selectInputText();
 }
 
 
 function onIconClick () {
 	if (opened) return close();
 	open('navigating');
-	if (inputElement) inputElement.select();
+	selectInputText();
 }
 
 

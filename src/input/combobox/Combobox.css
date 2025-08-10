@@ -72,13 +72,18 @@
 
 .mobile .combobox-list-item { transition: background-color 0.3s ease-out; }
 .mobile .combobox-list-item.blinking {
-	transition: background-color 0.1s;
+	transition: background-color 0.2s;
 	background-color: var(--ui-color-highlight-1);
 }
 
-.desktop .combobox-list-item.checked { background-color: var(--ui-color-highlight-semi); }
-.desktop .combobox-list-item.selected { background-color: var(--ui-color-highlight-1); }
+.combobox-list-item.checked { background-color: var(--ui-color-highlight-semi); }
 .desktop .combobox-list-item:hover { background-color: var(--ui-color-highlight); }
+
+.combobox-list-item.selected { background-color: var(--ui-color-highlight-1); }
+
+.mobile .multiselect .combobox-list-item.selected:not(.checked) { background-color: unset; }
+
+
 
 .combobox-list-item b { color: var(--ui-color-accent); }
 

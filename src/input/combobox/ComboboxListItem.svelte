@@ -12,6 +12,7 @@
 	onmouseup={e => onclick(e, item)}
 	ontouchstart={touchStart}
 	ontouchend={touchEnd}
+	bind:this={element}
 	>
 	{#if multiselect}
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-square-check">
@@ -34,7 +35,7 @@ let {
 	onclick = () => {}
 }: ComboboxListItemProps = $props();
 
-
+let element: HTMLElement = $state();
 const selected = $derived(item.idx === highlightIndex);
 const checked = $derived(isChecked(item, selectedItems));
 const cls = $derived([
@@ -56,15 +57,15 @@ function isChecked (_item, _selectedItems = selectedItems) {
 }
 
 
-function touchStart (e) {
-	const el = e.target.closest('.combobox-list-item');
-	el.classList.add('blinking');
+function touchStart () {
+	element?.classList.add('blinking');
 }
 
 
-function touchEnd (e) {
-	const el = e.target.closest('.combobox-list-item');
-	requestAnimationFrame(() => el.classList.remove('blinking'));
+function touchEnd () {
+	requestAnimationFrame(() => {
+		element?.classList.remove('blinking');
+	});
 }
 
 </script>
