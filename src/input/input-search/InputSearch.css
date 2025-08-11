@@ -2,7 +2,6 @@
 	padding-left: calc(2rem + 6px);
 	padding-right: 2rem;
 	appearance: none;
-	-webkit-appearance: none;
 }
 ::-webkit-search-cancel-button { display: none; }
 

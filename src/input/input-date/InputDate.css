@@ -22,9 +22,11 @@
 	display: inline-block;
 	overflow: hidden;
 	border-radius: 0.4em;
-	background-color: var(--ui-color-background);
 	border: var(--ui-popup-border);
 	box-shadow: var(--ui-shadow-fancy);
+
+	background-color: var(--ui-color-background-semi);
+	backdrop-filter: blur(30px);
 }
 
 
@@ -134,13 +136,3 @@
 .datepicker-cell.range:not(.disabled,.focused,.today):hover { background-color: #d5d5d5; }
 .datepicker-cell.range.disabled { color: #c2c2c2; }
 .datepicker-cell.range.focused { background-color: #cfcfcf; }
-
-
-
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	.datepicker-picker {
-		background-color: var(--ui-color-background-semi);
-		-webkit-backdrop-filter: blur(30px);
-		backdrop-filter: blur(30px);
-	}
-}

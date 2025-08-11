@@ -40,7 +40,14 @@
 	box-shadow: var(--ui-shadow-fancy);
 	border-radius: var(--ui-notification-border-radius);
 	z-index: var(--ui-z-index-popup);
+	backdrop-filter: blur(15px);
 }
+
+.notification-info    { background-color: var(--ui-color-info-semi); }
+.notification-success { background-color: var(--ui-color-success-semi); }
+.notification-warning { background-color: var(--ui-color-warning-semi); }
+.notification-error   { background-color: var(--ui-color-danger-semi); }
+
 
 .notification .notification-buttons {
 	display: flex;
@@ -127,17 +134,4 @@
 	.notification-center {
 		--ui-notification-width: calc(100vw - var(--ui-notification-gap) * 2);
 	}
-}
-
-
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	.notification {
-		-webkit-backdrop-filter: blur(15px);
-		backdrop-filter: blur(15px);
-	}
-
-	.notification-info    { background-color: var(--ui-color-info-semi); }
-	.notification-success { background-color: var(--ui-color-success-semi); }
-	.notification-warning { background-color: var(--ui-color-warning-semi); }
-	.notification-error   { background-color: var(--ui-color-danger-semi); }
 }

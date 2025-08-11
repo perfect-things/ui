@@ -20,9 +20,12 @@
 	color: var(--ui-color-text);
 	border: var(--ui-popup-border);
 	border-radius: calc(var(--ui-border-radius) + 0.2rem);
-	background: var(--ui-popup-background);
 	box-shadow: var(--ui-shadow-fancy);
+
+	background: var(--ui-popup-background-semi);
+	backdrop-filter: blur(30px);
 }
+
 
 .combobox-list.empty { padding: 0; box-shadow: none; border: none; }
 .combobox-list:not(.empty) { min-height: 2rem; }
@@ -96,13 +99,4 @@
 .combobox-list-item.checked:has(+ .combobox-list-item.checked) {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-}
-
-
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	.combobox-list {
-		background-color: var(--ui-color-background-semi);
-		-webkit-backdrop-filter: blur(30px);
-		backdrop-filter: blur(30px);
-	}
 }

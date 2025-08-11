@@ -57,9 +57,16 @@
 .popover-plate.has-tip .popover-content::before { background-color: inherit; z-index: -1; }
 
 
+
 .popover-plate:focus,
 .popover-plate .popover:focus,
 .popover-content:focus { outline: none; }
+
+.popover-plate.no-tip .popover-content {
+	background-color: var(--ui-color-background-semi);
+	backdrop-filter: blur(30px);
+}
+
 
 
 /*** ABOVE TARGET *********************************************************************************/
@@ -105,11 +112,3 @@
 
 /* THEME LIGHT  */
 .theme-light .popover-plate { --popover-color: #fff; }
-
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	.popover-plate.no-tip .popover-content {
-		background-color: var(--ui-color-background-semi);
-		-webkit-backdrop-filter: blur(30px);
-		backdrop-filter: blur(30px);
-	}
-}

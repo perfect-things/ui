@@ -17,7 +17,10 @@
 	transform: translateZ(1px);
 }
 
-.dialog-backdrop.opened { background-color: rgb(0 0 0 / .6); }
+.dialog-backdrop.opened {
+	background-color: rgb(0 0 0 / .6);
+	backdrop-filter: contrast(0.8) grayscale(0.5) brightness(0.8) blur(2px);
+}
 
 
 .dialog {
@@ -103,11 +106,4 @@
 	max-height: 100%;
 	max-width: 100%;
 	box-shadow: none;
-}
-
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	.dialog-backdrop.opened {
-		-webkit-backdrop-filter: contrast(0.8) grayscale(0.5) brightness(0.5) blur(1px);
-		backdrop-filter: contrast(0.8) grayscale(0.5) brightness(0.5) blur(1px);
-	}
 }

@@ -34,8 +34,6 @@ input::placeholder { color: var(--ui-color-text-1); font-style: italic; }
 
 
 input[type=color] {
-	-moz-appearance: none;
-	-webkit-appearance: none;
 	appearance: none;
 	background: none;
 	border: none;
