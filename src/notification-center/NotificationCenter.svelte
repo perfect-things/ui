@@ -43,7 +43,12 @@ import { NotificationCenter, Button, showNotification } from '@perfectthings/ui'
 					<button class="notification-button" onclick={e => onToastClick(e, notification)}>{notification.btn}</button>
 				{/if}
 
-				<button class="notification-close" onclick={e => onToastCloseClick(e, notification)}>&times;</button>
+				<Button
+					class="notification-close"
+					icon="close"
+					round
+					text
+					onclick={e => onToastCloseClick(e, notification)}/>
 			</div>
 
 			{#if notification.showProgress}
@@ -66,6 +71,7 @@ import { Icon } from '../icon';
 import { UI } from '../utils';
 import { Notifications, createTimer, hideNotification, clearTimer, flip, fly } from './store';
 import { getNextNotification } from './utils';
+	import { Button } from '../button';
 
 
 const duration = $derived(UI.ANIMATION_SPEED);
