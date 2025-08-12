@@ -336,8 +336,12 @@ function oninput () {
 
 
 function onItemClick (e: Event, item) {
-	if (UI.isMobile && e?.type !== 'touchend') return;
-	if (!UI.isMobile && e?.type !== 'mouseup') return;
+	if (UI.isMobile) {
+		if (e?.type !== 'touchend') return;
+	}
+	else {
+		if (e?.type !== 'mouseup' && e?.type !== 'keydown') return;
+	}
 
 	if (multiselect) selectMultiselect(e, item);
 	else {
