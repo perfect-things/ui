@@ -1,18 +1,17 @@
 <!-- svelte-ignore a11y_interactive_supports_focus -->
-<!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
 	role="option"
 	class={cls}
 	aria-selected={selected}
 	aria-checked={!!checked}
 
-	onclick={e => onclick(e, item)}
 	onmouseenter={() => highlightIndex = item.idx}
 	onmousedown={e => e.preventDefault()}
 	onmouseup={e => onclick(e, item)}
-	ontouchstart={touchStart}
-	ontouchend={touchEnd}
-	bind:this={element}
+
+	{ontouchstart}
+	{ontouchend}
+	{ontouchmove}
 	>
 	{#if multiselect}
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-square-check">
@@ -26,7 +25,6 @@
 <script lang="ts">
 import type { ComboboxListItemProps } from './types';
 
-
 let {
 	item = {},
 	multiselect = undefined,
@@ -35,7 +33,8 @@ let {
 	onclick = () => {}
 }: ComboboxListItemProps = $props();
 
-let element: HTMLElement = $state();
+let touching = $state(false);
+
 const selected = $derived(item.idx === highlightIndex);
 const checked = $derived(isChecked(item, selectedItems));
 const cls = $derived([
@@ -43,29 +42,34 @@ const cls = $derived([
 	{
 		'in-group': !!item.group,
 		selected,
-		checked
+		checked,
+		touching
 	}
 ]);
 
 
-function isChecked (_item, _selectedItems = selectedItems) {
+function isChecked (_item, _selectedItems) {
 	if (!multiselect || !_selectedItems?.length) return false;
-
-	return _selectedItems.some(s => {
-		return (s.id || s.name || s) === (_item.id || _item.name || _item);
-	});
+	const _id = _item.id || _item.name || _item;
+	return _selectedItems.some(s => (s.id || s.name || s) === _id);
 }
 
 
-function touchStart () {
-	element?.classList.add('blinking');
+function ontouchstart () {
+	touching = true;
 }
 
 
-function touchEnd () {
-	requestAnimationFrame(() => {
-		element?.classList.remove('blinking');
-	});
+function ontouchend (e) {
+	e.preventDefault();
+	setTimeout(() => {
+		if (touching) onclick(e, item);
+		touching = false;
+	}, multiselect ? 0 : 200);
+}
+
+function ontouchmove () {
+	touching = false;
 }
 
 </script>

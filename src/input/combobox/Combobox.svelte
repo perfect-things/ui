@@ -318,7 +318,6 @@ function onfocus () {
 	previousInputValue = inputValue;
 	previousValue = cloneDeep(value);
 
-	// if (multiselect && value && !selectedItems.length) {
 	if (multiselect && value) {
 		if (Array.isArray(value)) selectedItems = cloneDeep(value);
 		else if (value && value.name) selectedItems = [cloneDeep(value)];
@@ -337,11 +336,8 @@ function oninput () {
 
 
 function onItemClick (e: Event, item) {
-	// click should only be handled on touch devices
-	// as device needs to decide whether the user is scrolling or clicking
-	// on desktop, click is triggered by mouseup
-	if (!UI.isMobile && e?.type === 'click') return;
-	if (UI.isMobile && e?.type !== 'click') return e.preventDefault();
+	if (UI.isMobile && e?.type !== 'touchend') return;
+	if (!UI.isMobile && e?.type !== 'mouseup') return;
 
 	if (multiselect) selectMultiselect(e, item);
 	else {
