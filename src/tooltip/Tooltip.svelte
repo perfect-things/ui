@@ -30,7 +30,7 @@ A lightweight tooltip component that displays contextual information on hover or
 				<div class="tooltip-text">
 					{@render children?.()}
 				</div>
-				{@html formatShortcut(shortcut)}
+				<Shortcut keys={shortcut} />
 			</div>
 		</div>
 	</div>
@@ -40,7 +40,8 @@ A lightweight tooltip component that displays contextual information on hover or
 import './Tooltip.css';
 import type { TooltipProps } from './types';
 import { onDestroy, onMount } from 'svelte';
-import { alignItem, isSymbol, replaceKeySymbols } from '../utils';
+import { alignItem } from '../utils';
+import { Shortcut } from '../shortcut';
 
 
 
@@ -86,16 +87,6 @@ onDestroy(removeTargetEvents);
 
 $effect(align);
 
-
-function formatShortcut (_shortcut = shortcut) {
-	if (!_shortcut) return '';
-	return replaceKeySymbols(_shortcut)
-		.replace(/\+/g, ' ')
-		.replace(/\s+/g, ' ')
-		.split(' ')
-		.map(key => `<kbd ${isSymbol(key) ? 'class="symbol"' : ''}>${key}</kbd>`)
-		.join(' ');
-}
 
 
 function show (e) {

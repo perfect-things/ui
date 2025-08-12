@@ -51,6 +51,7 @@
 		<NavItem name="Color Palette" {active} />
 		<NavItem name="Icon" {active} />
 		<NavItem name="Menu" {active} />
+		<NavItem name="Shortcut" {active} />
 		<NavItem name="Splitter" {active} />
 		<NavItem name="Tag" {active} />
 		<NavItem name="ThemeSwitcher" {active} />

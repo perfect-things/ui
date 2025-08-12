@@ -20,6 +20,7 @@ export * from './notification-center';
 export * from './panel';
 export * from './popover';
 export * from './push-button';
+export * from './shortcut';
 export * from './splitter';
 export * from './table';
 export * from './tag';

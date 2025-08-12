@@ -27,14 +27,17 @@
 		{#if icon}<Icon name={icon} />{/if}
 		<span class="menu-item-text">{@render children?.()}</span>
 	</span>
-	<span class="menu-item-shortcut">{replaceKeySymbols(shortcut)}</span>
+	<Shortcut keys={shortcut} />
 </button>
 
 <script lang="ts">
+import './MenuItem.css';
 import type { MenuItemProps } from './types';
+
 import { getContext } from 'svelte';
 import { Icon } from '../icon';
-import { blink, replaceKeySymbols } from '../utils';
+import { blink } from '../utils';
+import { Shortcut } from '../shortcut';
 
 
 let {
