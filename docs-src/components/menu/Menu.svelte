@@ -92,15 +92,15 @@
     <MenuItem onclick={closeSomething}><Icon name="close"/> Close something</MenuItem>
 </Menu>
 
-<Button data-name="button-with-menu" onclick={menu1.open}>Show menu</Button>
+<Button data-name="button-with-menu" onclick={e => menu1.open(e)}>Show menu</Button>
 
 <!-- Context menu -->
 <div class="div1">Tab</div>
 <Menu type="context" targetSelector=".div1" bind:this={menu2}>
-    <MenuItem shortcut="cmd+n" onclick={action1}>New window</MenuItem>
-    <MenuItem shortcut="cmd+shift+n" onclick={action2}>New private window</MenuItem>
+    <MenuItem shortcut="cmd+n" onclick={onMenuClick}>New window</MenuItem>
+    <MenuItem shortcut="cmd+shift+n" onclick={onMenuClick}>New private window</MenuItem>
     <MenuSeparator />
-    <MenuItem shortcut="cmd+shift+q" onclick={action3}>Close All Windows</MenuItem>
+    <MenuItem shortcut="cmd+shift+q" onclick={onMenuClick}>Close All Windows</MenuItem>
 </Menu>
 
 <script&gt;
