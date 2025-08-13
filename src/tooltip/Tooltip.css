@@ -4,7 +4,6 @@
 }
 
 .tooltip { border-radius: 5px; max-width: 75vw; }
-.tooltip-content { padding: 0.5rem 0.7rem; }
 
 
 /* COLOR VARIATIONS */
@@ -15,6 +14,7 @@
 
 
 .tooltip .tooltip-content {
+	padding: 0.5rem 0.7rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;

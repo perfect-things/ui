@@ -19,6 +19,7 @@
 
 	/* FONTS */
 	--ui-font-system: system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	--ui-font-xxs: 0.8125rem;          /* 13px */
 	--ui-font-xs: 0.875rem;            /* 14px */
 	--ui-font-s: 0.9375rem;            /* 15px */
 	--ui-font-m: 1rem;                 /* 16px */

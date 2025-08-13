@@ -62,8 +62,7 @@
 
 .menu-item .shortcut kbd {
 	width: auto;
-	text-shadow: none;
+	font-size: inherit;
 	background: none;
-	border: 0;
 	box-shadow: none;
 }

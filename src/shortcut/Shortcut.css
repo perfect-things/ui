@@ -12,17 +12,15 @@
 	justify-content: center;
 
 	font: inherit;
-	font-size: var(--ui-font-s);
-	font-weight: 500;
-	text-shadow: 0 1px 0 #fff;
+	font-size: var(--ui-font-xxs);
+	font-weight: 400;
 
 	cursor: default;
 	padding: 1px 0;
 	border-radius: 5px;
-	height: 1.5rem;
-	width: 1.5rem;
-	color: var(--ui-color-text-2);
-	background-color: var(--ui-color-background-1);
-	border: 0.5px solid var(--ui-color-text-2);
-	box-shadow: 0 1px 1px var(--ui-color-background-2);
+	height: 1.2rem;
+	width: 1.2rem;
+	color: var(--ui-color-text-1);
+	background-color: var(--ui-color-background-2);
+	box-shadow: 0 1px 1px #0009;
 }
