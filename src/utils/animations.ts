@@ -1,4 +1,4 @@
-import { UI } from './constants.svelte';
+import { UI } from './ui.svelte';
 
 
 /**

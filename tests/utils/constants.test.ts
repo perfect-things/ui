@@ -1,7 +1,6 @@
 import { expect, test, vi, afterEach, describe } from 'vitest';
 
 import * as utils from '../../src/utils';
-import { isMobile } from '../../src/utils/constants.svelte';
 import '../helpers/utils';
 
 describe('constants', () => {
@@ -33,59 +32,59 @@ describe('constants', () => {
 
 	describe('isMobile function', () => {
 		test('should detect mobile user agents (debug test)', () => {
-			expect(() => isMobile()).not.toThrow();
-			expect(typeof isMobile()).toBe('boolean');
+			expect(() => utils.isMobile()).not.toThrow();
+			expect(typeof utils.isMobile()).toBe('boolean');
 		});
 
 		test('should detect mobile user agents (Android)', () => {
 			vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (Linux; Android 9; SM-G973F) AppleWebKit/537.36 Mobile Safari/537.36' });
-			expect(isMobile()).toBe(true);
+			expect(utils.isMobile()).toBe(true);
 		});
 
 		test('should detect mobile user agents (iPhone)', () => {
 			vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) Mobile/15E148 Safari/604.1' });
-			expect(isMobile()).toBe(true);
+			expect(utils.isMobile()).toBe(true);
 		});
 
 		test('should detect mobile user agents (BlackBerry)', () => {
 			vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ Mobile Safari/534.11+' });
-			expect(isMobile()).toBe(true);
+			expect(utils.isMobile()).toBe(true);
 		});
 
 		test('should detect mobile from first 4 characters of user agent', () => {
 			vi.stubGlobal('navigator', { userAgent: '1207/some-mobile-device' });
-			expect(isMobile()).toBe(true);
+			expect(utils.isMobile()).toBe(true);
 
 			vi.stubGlobal('navigator', { userAgent: '6310/mobile-device' });
-			expect(isMobile()).toBe(true);
+			expect(utils.isMobile()).toBe(true);
 
 			// Test mobile firefox pattern
 			vi.stubGlobal('navigator', { userAgent: 'mobile firefox some-device' });
-			expect(isMobile()).toBe(true);
+			expect(utils.isMobile()).toBe(true);
 		});
 
 		test('should not detect desktop user agents as mobile', () => {
 			// Test desktop Chrome
 			vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' });
-			expect(isMobile()).toBe(false);
+			expect(utils.isMobile()).toBe(false);
 
 			// Test desktop Firefox
 			vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0' });
-			expect(isMobile()).toBe(false);
+			expect(utils.isMobile()).toBe(false);
 
 			// Test macOS Safari
 			vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15' });
-			expect(isMobile()).toBe(false);
+			expect(utils.isMobile()).toBe(false);
 		});
 
 		test('should handle edge cases', () => {
 			// Test empty user agent
 			vi.stubGlobal('navigator', { userAgent: '' });
-			expect(isMobile()).toBe(false);
+			expect(utils.isMobile()).toBe(false);
 
 			// Test very short user agent that doesn't match
 			vi.stubGlobal('navigator', { userAgent: 'xyz' });
-			expect(isMobile()).toBe(false);
+			expect(utils.isMobile()).toBe(false);
 		});
 	});
 

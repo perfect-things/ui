@@ -1,10 +1,9 @@
-import { UI } from './utils';
+import { initUI } from './utils';
 import './root.css';
 import './theme-dark.css';
 import './theme-light.css';
 
-document.documentElement.classList.add(UI.isMobile ? 'mobile' : 'desktop');
-
+initUI();
 
 export * from './button';
 export * from './button-group';

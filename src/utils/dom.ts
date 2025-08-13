@@ -33,3 +33,20 @@ export function getMouseY (e: any): number {
 export function getMouseXY (e: any): [number, number] {
 	return [getMouseX(e), getMouseY(e)];
 }
+
+
+
+export function initKeyboardTracking (cls: string) {
+	const keys = ['Escape', 'Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'Enter'];
+
+	const setKeyboardMode = () => document.documentElement.classList.add(cls);
+	const unsetKeyboardMode = () => document.documentElement.classList.remove(cls);
+	const isKey = (key) => keys.includes(key);
+
+	const onkeydown = (e) => { if (isKey(e.key)) setKeyboardMode(); };
+
+	window.addEventListener('keydown', onkeydown, { passive: true, capture: true });
+	window.addEventListener('mousedown', unsetKeyboardMode, { passive: true, capture: true });
+	window.addEventListener('pointerdown', unsetKeyboardMode, { passive: true, capture: true });
+	window.addEventListener('touchstart', unsetKeyboardMode, { passive: true, capture: true });
+}
