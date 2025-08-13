@@ -58,10 +58,6 @@
 
 
 
-.popover-plate:focus,
-.popover-plate .popover:focus,
-.popover-content:focus { outline: none; }
-
 .popover-plate.no-tip .popover-content {
 	background-color: var(--ui-color-background-semi);
 	backdrop-filter: blur(30px);

@@ -70,11 +70,7 @@
 	min-height: 3rem;
 }
 
-.dialog-content:focus { outline: none; }
-.dialog-content:focus-visible {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus) inset;
-}
+.dialog-content:focus { z-index: 1; }
 
 .dialog-footer {
 	border-top: 0.5px solid var(--ui-color-border);

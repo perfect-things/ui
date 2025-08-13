@@ -73,14 +73,11 @@
 	border: 1px solid transparent;
 }
 
-.notification button:focus-visible {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-	outline: none;
-}
 
-.notification button:hover { color: var(--ui-color-text-2); background: #2228; }
-.notification button:active { color: var(--ui-color-text-1); background: #0008; }
+.notification button:active { background: #0008;  color: var(--ui-color-text-1);}
+
+.notification button:hover,
+.ui-keyboard .notification button:focus { background: #2228; }
 
 
 
@@ -121,12 +118,6 @@
 	transition: width .2s;
 }
 
-
-.notification:focus {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-	outline: none;
-}
 
 
 

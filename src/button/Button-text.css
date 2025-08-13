@@ -2,19 +2,19 @@
 
 .button-text:not(.round) { min-width: calc(var(--ui-button-size) * 4); }
 
-.button-text:focus-visible,
-.button-text:hover { background-color: var(--ui-color-secondary); }
+.button-text:hover,
+.ui-keyboard .button-text:focus { background-color: var(--ui-color-secondary); }
 
-.button-text.info:focus-visible,
-.button-text.info:hover { background-color: var(--ui-color-info); }
+.button-text.info:hover,
+.ui-keyboard .button-text.info:focus { background-color: var(--ui-color-info); }
 
-.button-text.success:focus-visible,
-.button-text.success:hover { background-color: var(--ui-color-success); }
+.button-text.success:hover,
+.ui-keyboard .button-text.success:focus { background-color: var(--ui-color-success); }
 
-.button-text.warning:focus-visible,
-.button-text.warning:hover { background-color: var(--ui-color-warning); }
+.button-text.warning:hover,
+.ui-keyboard .button-text.warning:focus { background-color: var(--ui-color-warning); }
 
-.button-text.error:focus-visible,
 .button-text.error:hover,
-.button-text.danger:focus-visible,
-.button-text.danger:hover { background-color: var(--ui-color-danger); }
+.ui-keyboard .button-text.error:focus,
+.button-text.danger:hover,
+.ui-keyboard .button-text.danger:focus  { background-color: var(--ui-color-danger); }

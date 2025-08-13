@@ -51,7 +51,6 @@ A text input component with built-in label, validation, and accessibility featur
 </div>
 
 <script lang="ts">
-import './InputText.css';
 import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';

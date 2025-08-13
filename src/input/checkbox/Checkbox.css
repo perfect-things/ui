@@ -16,16 +16,12 @@
 }
 
 
-.checkbox input:focus-visible {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
 .checkbox input::after {
 	content: "✕";
 	height: 1cap;
-	font-family: Arial, Helvetica, sans-serif;
+	font-size: var(--ui-font-xl);
 }
+
 
 .checkbox.indeterminate input::after {
 	content: " ";
@@ -47,6 +43,8 @@
 
 
 .checkbox.has-error input { border-color: var(--ui-color-danger); }
-.checkbox.has-error input:focus-visible { box-shadow: var(--ui-shadow-danger); }
+.ui-keyboard .checkbox.has-error input:focus {
+	box-shadow: var(--ui-shadow-danger);
+}
 
 .checkbox.label-on-the-left .checkbox-row { flex-flow: row-reverse; }

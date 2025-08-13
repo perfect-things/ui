@@ -16,8 +16,6 @@
 	transform: translateZ(1px);
 }
 
-.drawer:focus { outline: none; }
-
 .drawer-header {
 	position: sticky;
 	background-color: inherit;

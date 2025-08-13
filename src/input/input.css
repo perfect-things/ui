@@ -25,8 +25,6 @@ input::placeholder { color: var(--ui-color-text-1); font-style: italic; }
 	width: 25ch;
 }
 
-:where(input:focus) { outline: 0; }
-
 :where(input:invalid) {
 	border-color: var(--ui-color-danger);
 	box-shadow: var(--ui-shadow-danger);
@@ -55,7 +53,6 @@ input[type=color] {
 	justify-content: center;
 	border-radius: 0.375em;
 	background: var(--ui-color-background-input);
-	border: 1px solid var(--ui-color-text-2);
 	color: var(--ui-color-text-1);
 	font: inherit;
 	/* required for proper sizing */
@@ -63,10 +60,15 @@ input[type=color] {
 	touch-action: manipulation;
 }
 
+.check-and-radio input,
+.radio input:focus {
+	border: 1px solid var(--ui-color-text-2);
+}
+
+
 .check-and-radio input::after {
 	content: " ";
 	opacity: 0;
-	font-size: var(--ui-font-l);
 	line-height: 1;
 	text-box: trim-both cap alphabetic;
 	color: inherit;
@@ -74,6 +76,8 @@ input[type=color] {
 }
 
 .check-and-radio input:checked::after { opacity: 1; }
+
+
 
 .input { width: 25ch; vertical-align: middle; }
 
@@ -106,8 +110,7 @@ input[type=color] {
 .label-on-the-left .input-inner { flex: 1; }
 
 
-.input-inner:focus-within,
-.input-inner:active:not(:disabled, .disabled) {
+.input-inner:focus-within {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
 }
@@ -126,8 +129,8 @@ input[type=color] {
 
 .input input:not([type=radio]) { width: 100%; border: none; }
 
-.input input:not([type=radio]):focus,
-.input input:not([type=radio]):invalid { box-shadow: none; border: none; }
+.input input:focus,
+.input input:invalid { box-shadow: none; border: none; }
 
 
 
@@ -152,4 +155,14 @@ input[type=color] {
 	left: 0.3rem;
 	width: 1.5rem;
 	pointer-events: none;
+}
+
+
+
+/* adding this class to input elements will prevent auto-scrolling on focus in mobile safari */
+.mobile .prevent-scrolling-on-focus:focus { animation: prevent-scrolling-on-focus 10ms; }
+
+@keyframes prevent-scrolling-on-focus {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
 }

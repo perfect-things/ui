@@ -27,12 +27,10 @@
 .textarea .textarea-inner:focus-within {
 	border-color: var(--ui-color-accent);
 	box-shadow: var(--ui-shadow-focus);
-	outline: 0;
 }
 
-.textarea textarea:focus { outline: none; box-shadow: none; border: none; }
-.textarea textarea:invalid { border: none; box-shadow: none; }
-.textarea textarea:disabled { opacity: 0.5; }
+.textarea textarea:focus,
+.textarea textarea:invalid { box-shadow: none; }
 
 .textarea.has-error .textarea-inner  { border-color: var(--ui-color-danger); }
 .textarea.has-error .textarea-inner:focus-within { box-shadow: var(--ui-shadow-danger); }

@@ -37,11 +37,6 @@ button {
 	text-decoration: none;
 }
 
-.button:focus-visible {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-	outline: 1px solid transparent;
-}
 
 .button.disabled,
 .button[disabled] {

@@ -31,8 +31,8 @@
 .table tr:focus,
 .table tbody:focus,
 .table tbody:focus tr {
-	outline: 1px solid transparent;
 	background-color: var(--ui-color-highlight-1);
+	box-shadow: none;
 }
 
 .table tbody td {

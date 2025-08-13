@@ -30,14 +30,6 @@
 
 .panel-header::-webkit-details-marker { display: none; }
 
-.panel-header:focus { outline: none; }
-
-.panel:has(.panel-header:focus-visible) {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-	z-index: 2;
-}
-
 
 .panel-content { background: var(--ui-color-background); padding: 1rem; }
 .panel-content > * { opacity: 0; transition: opacity var(--ui-animation-speed) ease-out; }
@@ -62,7 +54,6 @@
 
 
 
-
 .panel.info {
 	border-color: var(--ui-color-info);
 	background: var(--ui-color-info-semi);
@@ -78,4 +69,17 @@
 .panel.danger {
 	border-color: var(--ui-color-danger);
 	background: var(--ui-color-danger-semi);
+}
+
+
+
+.ui-keyboard .panel:has(.panel-header:focus) {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+	z-index: 2;
+}
+
+.ui-keyboard .panel.danger:has(.panel-header:focus) {
+	border-color: var(--ui-color-danger);
+	box-shadow: var(--ui-shadow-danger);
 }

@@ -1,7 +1,5 @@
 .input-rating { min-width: fit-content; }
 
-.input-rating .input-inner,
-.input-rating .input-inner:focus { outline: none; }
 
 .input-rating .input-row {
 	align-items: stretch;
@@ -42,4 +40,13 @@
 
 
 .input-rating.light:not(.has-error) .input-inner,
-.input-rating.light:not(.has-error) .input-row { background-color: transparent; border: none; }
+.input-rating.light:not(.has-error) .input-row {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+.ui-keyboard .input-rating.light:not(.has-error) .input-inner:focus-within {
+	border-color: var(--ui-color-accent);
+    box-shadow: var(--ui-shadow-focus);
+}

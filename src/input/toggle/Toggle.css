@@ -30,18 +30,14 @@
 	opacity: 0.6;
 }
 
-.toggle:focus {
-	outline: none;
-}
+.toggle:focus { border: none; box-shadow: none; }
 
-.toggle:focus-visible .toggle-inner {
+.ui-keyboard .toggle:focus-within .toggle-inner {
 	box-shadow: var(--ui-shadow-focus);
 	border-color: var(--ui-color-accent);
 }
 
-.toggle-input {
-	display: none;
-}
+.toggle-input { display: none; }
 
 .toggle-label {
 	width: var(--toggle-width);

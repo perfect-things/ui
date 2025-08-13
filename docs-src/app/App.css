@@ -59,6 +59,8 @@ hr {
 	margin: 3em 0 2em;
 }
 
+.flex-spacer { flex: 1; }
+
 
 .docs-overflow-box {
 	border: 2px dotted var(--ui-color-accent);

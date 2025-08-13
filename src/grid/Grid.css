@@ -130,9 +130,12 @@
 	color: var(--ui-color-text-2);
 }
 
-.grid-sortable .th-sortable:focus-visible {
+.ui-keyboard .grid-sortable .th-sortable:focus {
 	outline: 1px solid var(--ui-color-accent);
 	outline-offset: -1px;
+	z-index: 9;
+	position: relative;
+	border-radius: 4px;
 }
 
 /*** SORTABLE TABLE *******************************************************************************/

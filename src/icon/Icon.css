@@ -1,0 +1,6 @@
+.icon-tabler { width: 1.5rem; height: 1.5rem; }
+
+/* Icon visual alignment corrections */
+.icon-tabler-dots-vertical { margin-left: -1px; }
+.icon-tabler-alert-triangle { transform: translateY(1px); }
+.icon-tabler-logout { transform: translateX(3px); }

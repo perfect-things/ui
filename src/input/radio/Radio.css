@@ -48,10 +48,10 @@
 }
 
 .radio .radio-item input { border-radius: 10rem; margin: 0; }
-
-.radio .radio-item input:focus { box-shadow: none }
+.radio .radio-item input:focus { box-shadow: none; }
 
 .radio .radio-item input::after {
+	font-size: var(--ui-font-l);
 	width: 70%;
 	height: 70%;
 	border-radius: inherit;
@@ -66,20 +66,19 @@
 .radio-item:not(.disabled):hover { background-color: var(--ui-color-highlight-semi); }
 .radio-item:not(.disabled):focus-within { background-color: var(--ui-color-highlight-1); }
 
-
-
-.radio-inner:not(.disabled):focus-within {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
-
-
-.radio.has-error .info-bar-error { background-color: transparent; }
 .radio.has-error .radio-inner {
 	border-color: var(--ui-color-danger);
 	background-color: var(--ui-color-danger-semi);
 }
-.radio.has-error .radio-inner:not(.disabled):focus-within {
-	box-shadow: var(--ui-shadow-danger);
-	border-color: var(--ui-color-danger);
+
+.ui-keyboard .radio-inner:not(.disabled):focus-within {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
 }
+.ui-keyboard .radio.has-error .radio-inner:not(.disabled):focus-within {
+	border-color: var(--ui-color-danger);
+	box-shadow: var(--ui-shadow-danger);
+}
+
+
+.radio.has-error .info-bar-error { background-color: transparent; }

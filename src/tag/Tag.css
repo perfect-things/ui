@@ -32,11 +32,6 @@
 	transform: translateZ(1px);
 }
 
-.ui-tag:focus-visible {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-	outline: 1px solid transparent;
-}
 .ui-tag .ui-tag-label { padding-bottom: 2px; }
 
 .ui-tag.dark { color: #fff; }

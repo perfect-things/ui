@@ -2,25 +2,25 @@
 
 .button-outline:not(.round) { min-width: calc(var(--ui-button-size) * 4); }
 
-.button-outline:focus-visible,
-.button-outline:hover { background-color: var(--ui-color-secondary-semi); }
+.button-outline:hover,
+.ui-keyboard .button-outline:focus { background-color: var(--ui-color-secondary-semi); }
 
 .button-outline.info { border-color: var(--ui-color-info); }
-.button-outline.info:focus-visible,
-.button-outline.info:hover { background-color: var(--ui-color-info-semi); }
+.button-outline.info:hover,
+.ui-keyboard .button-outline.info:focus { background-color: var(--ui-color-info-semi); }
 
 .button-outline.success { border-color: var(--ui-color-success); }
-.button-outline.success:focus-visible,
-.button-outline.success:hover { background-color: var(--ui-color-success-semi); }
+.button-outline.success:hover,
+.ui-keyboard .button-outline.success:focus { background-color: var(--ui-color-success-semi); }
 
 .button-outline.warning { border-color: var(--ui-color-warning); }
-.button-outline.warning:focus-visible,
-.button-outline.warning:hover { background-color: var(--ui-color-warning-semi); }
+.button-outline.warning:hover,
+.ui-keyboard .button-outline.warning:focus { background-color: var(--ui-color-warning-semi); }
 
 .button-outline.error,
 .button-outline.danger { border-color: var(--ui-color-danger); }
 
-.button-outline.error:focus-visible,
 .button-outline.error:hover,
-.button-outline.danger:focus-visible,
-.button-outline.danger:hover { background-color: var(--ui-color-danger-semi); }
+.ui-keyboard .button-outline.error:focus,
+.button-outline.danger:hover,
+.ui-keyboard .button-outline.danger:focus { background-color: var(--ui-color-danger-semi); }

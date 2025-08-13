@@ -22,13 +22,17 @@
 
 .menu-item.disabled { pointer-events: none; opacity: 0.6; }
 
-.menu-item:focus { background-color: var(--ui-color-highlight); outline: 1px solid transparent; }
+.menu-item:focus {
+	background-color: var(--ui-color-highlight);
+	box-shadow: none;
+}
 
 .menu-item:focus.success { background-color: var(--ui-color-success); }
 .menu-item:focus.warning { background-color: var(--ui-color-warning); }
 .menu-item:focus.danger { background-color: var(--ui-color-danger); }
 
 .menu-item:focus .menu-item-shortcut { opacity: 1; }
+
 
 .menu-item svg { width: 1.1rem; height: 1.1rem; margin: 0 0.5rem 0 0; }
 

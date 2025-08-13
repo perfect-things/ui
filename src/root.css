@@ -18,13 +18,14 @@
 	--ui-button-height: 2.25rem;       /* 36px */
 
 	/* FONTS */
-	--ui-font-system: system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	--ui-font-system: system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 	--ui-font-xxs: 0.8125rem;          /* 13px */
 	--ui-font-xs: 0.875rem;            /* 14px */
 	--ui-font-s: 0.9375rem;            /* 15px */
 	--ui-font-m: 1rem;                 /* 16px */
 	--ui-font-l: 1.0625rem;            /* 17px */
-	--ui-font-xl: 1.375rem;            /* 22px */
+	--ui-font-xl: 1.125rem;            /* 18px */
+	--ui-font-xxl: 1.375rem;           /* 22px */
 
 
 	/* SHADOWS */
@@ -48,23 +49,17 @@
 body {
 	font-weight: 300;
 	font-size: 100%;
-	font-family: var(--ui-font-system), sans-serif;
+	font-family: var(--ui-font-system);
 	box-sizing: border-box;
 }
 body * { box-sizing: inherit; }
 
-.flex-spacer { flex: 1; }
-.icon-tabler { width: 1.5rem; height: 1.5rem; }
+:focus,
+:focus-visible {
+	outline: none;
+}
 
-/* Icon visual alignment corrections */
-.icon-tabler-dots-vertical { margin-left: -1px; }
-.icon-tabler-alert-triangle { transform: translateY(1px); }
-.icon-tabler-logout { transform: translateX(3px); }
-
-/* adding this class to input elements will prevent auto-scrolling on focus in mobile safari */
-.mobile .prevent-scrolling-on-focus:focus { animation: prevent-scrolling-on-focus 10ms; }
-
-@keyframes prevent-scrolling-on-focus {
-	0% { opacity: 0; }
-	100% { opacity: 1; }
+.ui-keyboard :focus {
+	box-shadow: var(--ui-shadow-focus);
+	border-color: var(--ui-color-accent);
 }

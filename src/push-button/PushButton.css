@@ -11,7 +11,7 @@
 	filter: brightness(0.7) contrast(1.1);
 }
 
-.push-button[aria-pressed="true"]:focus-visible {
+.ui-keyboard .push-button[aria-pressed="true"]:focus {
 	box-shadow: 0 1px 0 rgb(0 0 0/0.8) inset, var(--ui-shadow-focus);
 }
 

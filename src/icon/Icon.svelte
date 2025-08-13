@@ -17,6 +17,7 @@ A component for rendering SVG icons by name.
 {#if name}{@html svg}{/if}
 <script lang="ts">
 import type { IconProps } from './types';
+import './Icon.css';
 import { getIcon } from './icons';
 
 const { name = '' }: IconProps = $props();

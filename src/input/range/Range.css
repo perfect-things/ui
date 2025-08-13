@@ -2,7 +2,9 @@
 	position: relative;
 	width: 25ch;
 	vertical-align: top;
-	--range-size: calc(var(--ui-button-height) / 3 * 2);
+	/* --range-size: calc(var(--ui-button-height) * 0.9); */
+	--range-size: calc(var(--ui-button-height) / 1.125);
+	--ticks-pad: calc(var(--range-size) / 16);
 }
 
 
@@ -79,14 +81,10 @@
 
 
 /* Cannot be merged, as it won't work in safari */
-.range:not(.disabled) input::-webkit-slider-thumb:active { scale: 0.9; }
+.range:not(.disabled) input::-webkit-slider-thumb:active { scale: 0.9; box-shadow: 0 0 1px #000c; }
 .range:not(.disabled) input::-moz-slider-thumb:active { scale: 0.9; }
 
 
-.range:not(.disabled) input:focus-visible {
-	border-color: var(--ui-color-accent);
-	box-shadow: var(--ui-shadow-focus);
-}
 .range:not(.disabled) input:focus-visible::-webkit-slider-thumb { box-shadow: var(--ui-shadow-focus); }
 .range:not(.disabled) input:focus-visible::-moz-range-thumb { box-shadow: var(--ui-shadow-focus); }
 
@@ -95,7 +93,7 @@
 .range-ticks {
 	display: flex;
 	justify-content: space-between;
-	margin: 0 -0.1rem 0.4rem;
+	margin: 0 var(--ticks-pad) calc(var(--ticks-pad) * 6);
 	cursor: default;
 }
 .range-ticks span { width: 3ch; text-align: center; }

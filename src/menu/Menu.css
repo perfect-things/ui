@@ -16,12 +16,14 @@
 	overscroll-behavior-y: contain;
 
 	color: var(--ui-color-text);
-	border: var(--ui-popup-border);
 	border-radius: calc(var(--ui-border-radius) + 2px);
-	box-shadow: var(--ui-shadow-fancy);
 	transform: translateZ(1px);
 	background: var(--ui-popup-background-semi);
 	backdrop-filter: blur(30px);
 }
 
-.menu:focus { outline: none; }
+.menu,
+.menu:focus {
+	box-shadow: var(--ui-shadow-fancy);
+	border: var(--ui-popup-border);
+}

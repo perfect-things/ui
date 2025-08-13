@@ -17,8 +17,6 @@
 	border-radius: var(--ui-border-radius);
 }
 
-.select select:focus { outline: 0; }
-
 .select optgroup { font-weight: 500; }
 
 .select .input-row::after {

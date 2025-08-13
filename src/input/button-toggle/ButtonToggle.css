@@ -76,6 +76,16 @@
 }
 
 
+.button-toggle .input-inner:focus-within {
+	border-color: var(--ui-color-border);
+	box-shadow: none;
+}
+.ui-keyboard .button-toggle .input-inner:focus-within {
+	border-color: var(--ui-color-accent);
+	box-shadow: var(--ui-shadow-focus);
+}
+
+
 
 /* round buttons */
 .button-toggle.round {

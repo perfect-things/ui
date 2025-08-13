@@ -3,8 +3,6 @@
 .combobox input { padding-right: 36px; }
 .multiselect input { text-overflow: ellipsis; }
 
-.combobox-button:focus { box-shadow: none; }
-
 .combobox-list {
 	position: absolute;
 	z-index: var(--ui-z-index-popup);

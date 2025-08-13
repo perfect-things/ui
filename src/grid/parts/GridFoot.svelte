@@ -40,7 +40,7 @@ function getType (column) {
 function renderer (column) {
 	if (column.total && column.renderer) {
 		const sum = sumColumn(column);
-		return column.renderer(sum);
+		return column.renderer({ [column.field]: sum });
 	}
 	return '';
 }
