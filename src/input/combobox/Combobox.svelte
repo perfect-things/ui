@@ -307,7 +307,7 @@ function clear () {
 
 
 function selectInputText () {
-	if (inputElement && !UI.isMobile) {
+	if (inputElement && !UI.IS_MOBILE) {
 		requestAnimationFrame(() => inputElement.select());
 	}
 }
@@ -336,7 +336,7 @@ function oninput () {
 
 
 function onItemClick (e: Event, item) {
-	if (UI.isMobile) {
+	if (UI.IS_MOBILE) {
 		if (e?.type !== 'touchend') return;
 	}
 	else {

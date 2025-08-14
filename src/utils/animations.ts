@@ -1,4 +1,4 @@
-import { UI } from './ui.svelte';
+import { UI } from './ui';
 
 
 /**

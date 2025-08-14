@@ -20,10 +20,9 @@ and second argument (<code>data</code>) is specific to the event &amp; component
 </ul>
 </li>
 <li>Event listeners added to components&#39; events will receive the relevant data as the second argument of the callback. There is no <code>event.detail</code> anymore.</li>
-<li>Utils functions &amp; constants have been updated to use the new reactive <code>$state</code>:<ul>
+<li>Utils functions &amp; constants have been updated to use a new reactive state object <code>UI</code>, which is now exported from <code>src/utils</code>:<ul>
 <li><code>$ANIMATION_SPEED</code>   -&gt; <code>UI.ANIMATION_SPEED</code> - (number) reactive constant</li>
 <li><code>$PREFERS_DARK</code>      -&gt; <code>UI.PREFERS_DARK</code> - (boolean) reactive constant</li>
-<li><code>FOCUSABLE_SELECTOR</code> -&gt; <code>UI.FOCUSABLE_SELECTOR</code> - (string) constant</li>
 <li><code>isMobile()</code>         -&gt; <code>UI.isMobile</code> - (boolean) constant</li>
 </ul>
 </li>

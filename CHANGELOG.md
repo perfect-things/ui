@@ -23,10 +23,9 @@ Thousand thanks to the Svelte's team, for the [long months of hard work](https:/
   and second argument (`data`) is specific to the event & component, e.g.
     - for Inputs `onchange` event, `data` argument will contain the new value (`{ value: any }`)
 - Event listeners added to components' events will receive the relevant data as the second argument of the callback. There is no `event.detail` anymore.
-- Utils functions & constants have been updated to use the new reactive `$state`:
+- Utils functions & constants have been updated to use a new reactive state object `UI`, which is now exported from `src/utils`:
   - `$ANIMATION_SPEED`   -> `UI.ANIMATION_SPEED` - (number) reactive constant
   - `$PREFERS_DARK`      -> `UI.PREFERS_DARK` - (boolean) reactive constant
-  - `FOCUSABLE_SELECTOR` -> `UI.FOCUSABLE_SELECTOR` - (string) constant
   - `isMobile()`         -> `UI.isMobile` - (boolean) constant
 - As per Svelte's best practices, attributes bound to variables will not use quotes anymore, so: `value="{value}"` -> `value={value}` or even better: `{value}`.
 - Attributes are typed now, and are a bit more restrictive, so e.g. a `boolean` or a `number` attribute will not accept a string value.
