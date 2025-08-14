@@ -1,38 +1,40 @@
 import { describe, expect, test, vi } from 'vitest';
-
 import * as utils from '../../src/utils';
-import '../helpers/utils';
 
 
-describe('utils - formatDate', () => {
 
-	test('animate is called', async () => {
-		const div = document.createElement('div');
-		document.body.appendChild(div);
+describe('animations', () => {
 
-		const spy = vi.spyOn(div, 'animate');
-		await utils.animate(div, {}, {});
-		expect(spy).toHaveBeenCalled();
+	describe('animate', () => {
+		test('runs and calls the callbacks', async () => {
+			const div = document.createElement('div');
+			document.body.appendChild(div);
+
+			const spy = vi.spyOn(div, 'animate');
+			await utils.animate(div, {}, {});
+			expect(spy).toHaveBeenCalled();
+		});
+
+
+		test('resolves when element does not exist', async () => {
+			const res = await utils.animate(undefined, {}, {});
+			expect(res).toBeUndefined();
+		});
 	});
 
 
-	test('resolves when element does not exist', async () => {
-		const res = await utils.animate(undefined, {}, {});
-		expect(res).toBeUndefined();
-	});
-});
 
+	describe('blink', () => {
 
+		test('runs and calls the callbacks', async () => {
+			const div = document.createElement('div');
+			document.body.appendChild(div);
 
-describe('utils - blink', () => {
+			const spy = vi.spyOn(div, 'animate');
+			await utils.blink(div);
+			expect(spy).toHaveBeenCalled();
+		});
 
-	test('utils - blink', async () => {
-		const div = document.createElement('div');
-		document.body.appendChild(div);
-
-		const spy = vi.spyOn(div, 'animate');
-		await utils.blink(div);
-		expect(spy).toHaveBeenCalled();
 	});
 
 });

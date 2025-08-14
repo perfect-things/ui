@@ -1,10 +1,3 @@
-import { initUI } from './utils';
-import './root.css';
-import './theme-dark.css';
-import './theme-light.css';
-
-initUI();
-
 export * from './button';
 export * from './button-group';
 export * from './dialog';
@@ -28,3 +21,10 @@ export * from './tooltip';
 export * from './tree';
 export * from './utils';
 export * from './types';
+
+import { UI } from './utils';
+import './root.css';
+import './theme-dark.css';
+import './theme-light.css';
+
+UI.init();

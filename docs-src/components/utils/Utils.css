@@ -1,9 +1,10 @@
 .section-utils {
 	--nav-sidebar-width: 240px;
 }
-.section-utils .dark-mode-switch { right: calc(var(--nav-sidebar-width) + 20px); }
 
 .section-utils .sticky-block { padding-bottom: 3rem; margin-right: var(--nav-sidebar-width); }
+
+.section-utils .docs-theme-switcher { right: calc(var(--nav-sidebar-width) + 0.6rem); }
 
 
 .section-utils .sticky-block .utility h3 {
@@ -39,7 +40,7 @@
 
 
 @media (1px <= width <= 900px) {
-	.section-utils .dark-mode-switch { right: 0.6rem; }
+	.section-utils .docs-theme-switcher { right: 0.6rem; }
 	.section-utils .btn-scroll-top { right: 1rem; }
 	.section-utils .sticky-block { margin-right: 0; }
 	.section-utils .utilities-nav {
@@ -50,5 +51,4 @@
 		margin-top: 2rem;
 		background-color: unset;
 	}
-
 }

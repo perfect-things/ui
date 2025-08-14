@@ -41,7 +41,7 @@ A sliding panel component that appears from the side of the screen.
 import './Drawer.css';
 import type { DrawerProps } from './types';
 import { fly } from 'svelte/transition';
-import { UI } from '../utils';
+import { FOCUSABLE_SELECTOR, UI } from '../utils';
 import { Button } from '../button';
 
 
@@ -120,7 +120,7 @@ function focusLast () {
 
 
 function getFocusableElements () {
-	return Array.from(element.querySelectorAll(UI.FOCUSABLE_SELECTOR));
+	return Array.from(element.querySelectorAll(FOCUSABLE_SELECTOR));
 }
 
 

@@ -39,7 +39,7 @@ A modal dialog component with accessibility features and focus management.
 import './Dialog.css';
 import type { DialogProps } from './types';
 import { onMount } from 'svelte';
-import { UI } from '../utils';
+import { FOCUSABLE_SELECTOR, UI } from '../utils';
 
 
 let {
@@ -100,8 +100,8 @@ function focusLast () {
 
 function getFocusableElements () {
 	if (!dialogEl || !contentEl || !footerEl) return [];
-	const contentElements = Array.from(contentEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
-	const footerElements = Array.from(footerEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
+	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
+	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	return [...contentElements, ...footerElements];
 }
 

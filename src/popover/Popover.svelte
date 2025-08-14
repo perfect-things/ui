@@ -41,7 +41,7 @@ import './Popover.css';
 import type { AlignmentDirection } from '../types';
 import type { PopoverProps } from './types';
 import { addArias, removeArias } from './utils';
-import { alignItem, UI } from '../utils';
+import { alignItem, FOCUSABLE_SELECTOR } from '../utils';
 import { throttle } from 'es-toolkit';
 
 let {
@@ -165,7 +165,7 @@ function focusLast () {
 
 function getFocusableElements () {
 	if (!contentEl) return [];
-	return Array.from(contentEl.querySelectorAll(UI.FOCUSABLE_SELECTOR));
+	return Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 }
 
 
