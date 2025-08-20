@@ -1,8 +1,8 @@
 <thead>
 	<tr>
 		{#if multiselect}
-			<th class="column-check" onclick={toggleSelectAll}>
-				<Checkbox indeterminate={$indeterminate} checked={$checked}/>
+			<th class="column-check" tabindex={0} {onclick} {onkeydown}>
+				<Checkbox indeterminate={$indeterminate} checked={$checked} tabindex={-1}/>
 			</th>
 		{/if}
 		{#if $columns}
@@ -34,7 +34,14 @@ const checked = $derived(Data.allSelected);
 const indeterminate = $derived(Data.someSelected);
 
 
-function toggleSelectAll () {
+function onclick () {
 	Data.toggleSelectAll(!$checked && !$indeterminate);
+}
+
+function onkeydown (e: KeyboardEvent) {
+	if (e.key === 'Enter' || e.key === ' ') {
+		onclick();
+		e.preventDefault();
+	}
 }
 </script>

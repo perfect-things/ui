@@ -64,7 +64,7 @@ let {
 	columns = [],
 	data = [],
 	multiselect = false,
-	dblClickDelay = 500,
+	dblClickDelay = 400,
 	element = undefined,
 	onselect = () => {},
 	onfocus = () => {},
@@ -109,13 +109,21 @@ $effect.pre(() => {
 });
 
 
+function getEventArgs (row) {
+	let item;
+	const itemId = row && row.dataset && row.dataset.id;
+	if (itemId) item = Data.getById(+itemId);
+	return { row, item };
+}
+
+
 function selectPrev (e?: MouseEvent | KeyboardEvent) {
 	const rows = getSelectableItems(element);
 	if (selectedIdx <= 0) return;
 	selectedIdx -= 1;
-	const rowEl = rows[selectedIdx];
-	rowEl.focus();
-	onselect(e, { selectedItem: rowEl });
+	const row = rows[selectedIdx];
+	row.focus();
+	onselect(e, getEventArgs(row));
 }
 
 
@@ -123,23 +131,23 @@ function selectNext (e?: MouseEvent | KeyboardEvent) {
 	const rows = getSelectableItems(element);
 	if (selectedIdx >= rows.length - 1) return;
 	selectedIdx += 1;
-	const rowEl = rows[selectedIdx];
-	rowEl.focus();
-	onselect(e, { selectedItem: rowEl });
+	const row = rows[selectedIdx];
+	row.focus();
+	onselect(e, getEventArgs(row));
 }
 
 
 
-function selectRow (e, rowEl) {
-	if (!rowEl) return;
+function selectRow (e, row) {
+	if (!row) return;
 
-	if (rowEl !== document.activeElement) rowEl.focus();
+	if (row !== document.activeElement) row.focus();
 
 	const oldIdx = selectedIdx;
 	const rows = getSelectableItems(element);
-	selectedIdx = rows.findIndex(item => item === rowEl);
+	selectedIdx = rows.findIndex(item => item === row);
 
-	if (oldIdx !== selectedIdx) onselect(e, { selectedItem: rowEl });
+	if (oldIdx !== selectedIdx) onselect(e, getEventArgs(row));
 
 
 	const scrollEl = getScrollContainer(element, scrollContainer);
@@ -149,11 +157,11 @@ function selectRow (e, rowEl) {
 	const scrollCorrection = parseFloat(scrollCorrectionOffset);
 	const paddingTop = 10;
 	const paddingBottom = 2;
-	let top = rowEl.offsetTop + topMargin + scrollCorrection + paddingTop;
+	let top = row.offsetTop + topMargin + scrollCorrection + paddingTop;
 
 	if (scrollEl.scrollTop > top) scrollEl.scrollTo({ top: Math.round(top) });
 	else {
-		top = rowEl.offsetTop + rowEl.offsetHeight - scrollEl.offsetHeight +
+		top = row.offsetTop + row.offsetHeight - scrollEl.offsetHeight +
 			headerHeight + topMargin + scrollCorrection + paddingBottom;
 		if (scrollEl.scrollTop < top) scrollEl.scrollTo({ top: Math.round(top) });
 	}
@@ -165,10 +173,10 @@ function _onfocus (e) {
 	const notRowFocus = !e.target.matches(rowSelector);
 	if (notRowFocus || !interactive) return;
 
-	const rowEl = e.target.closest(rowSelector);
-	if (rowEl) {
-		selectRow(e, rowEl);
-		onfocus(e, { selectedItem: rowEl });
+	const row = e.target.closest(rowSelector);
+	if (row) {
+		selectRow(e, row);
+		onfocus(e, getEventArgs(row));
 	}
 }
 
@@ -176,19 +184,19 @@ function _onfocus (e) {
 function _onclick (e) {
 	if (shouldSkipNav(e, element)) return;
 
-	const rowEl = e.target.closest(rowSelector);
-	if (!rowEl) return;
+	const row = e.target.closest(rowSelector);
+	if (!row) return;
 
 	if (e.target.closest('.column-check')) {
-		const item = { id: +rowEl.dataset.id };
+		const item = { id: +row.dataset.id };
 		Data.toggleSelection(item, e);
 	}
 
-	selectRow(e, rowEl);
+	selectRow(e, row);
 
 	// debounce, so to not duplicate events when dbl-clicking
 	if (clickTimer) clearTimeout(clickTimer);
-	clickTimer = setTimeout(() => onclick(e, { selectedItem: rowEl }), dblClickDelay);
+	clickTimer = setTimeout(() => onclick(e, getEventArgs(row)), dblClickDelay);
 }
 
 
@@ -204,8 +212,8 @@ function _ondblclick (e) {
 	Data.toggleSelection(item, e, false);
 
 	requestAnimationFrame(() => {
-		const selectedItem = getSelectableItems(element)[selectedIdx];
-		ondblclick(e, { selectedItem });
+		const row = getSelectableItems(element)[selectedIdx];
+		ondblclick(e, getEventArgs(row));
 	});
 }
 
@@ -249,8 +257,8 @@ function _onkeydown (e) {
 	}
 
 	previousKey = e.key;
-	const selectedItem = getSelectableItems(element)[selectedIdx];
-	onkeydown(e, { selectedItem });
+	const row = getSelectableItems(element)[selectedIdx];
+	onkeydown(e, getEventArgs(row));
 }
 
 

@@ -3,12 +3,11 @@
 <div class="grid-viewport">
 	<Grid
 		round
+		multiselect
 		title="Grid with data"
 		{columns}
 		{data}
-		multiselect
-		onselect={onclick}
-		onclick={onclick}
+		onkeydown={onclick}
 		ondblclick={onclick}/>
 </div>
 
@@ -109,8 +108,8 @@ const data = [
 // ];
 
 
-function onclick (e) {
-	console.log('grid event:', e.type);
+function onclick (e, args) {
+	console.log('grid event:', e.type, args);
 }
 
 

@@ -98,6 +98,7 @@ export function DataStore (): DataStoreType {
 		subscribe,
 		set,
 		get: () => get(_this),
+		getById,
 
 		columns,
 		allSelected,

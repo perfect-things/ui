@@ -11,6 +11,7 @@ export type DataStoreType = {
 	subscribe: (run: (value: DataItem[]) => void) => () => void;
 	set: (value: DataItem[]) => void;
 	get: () => DataItem[];
+	getById: (id: number) => DataItem | undefined;
 	columns: any;
 	allSelected: any;
 	someSelected: any;

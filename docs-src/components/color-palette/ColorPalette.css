@@ -3,7 +3,7 @@
 	padding: 6px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-	grid-gap: 6px;
+	gap: 6px;
 	border-radius: var(--ui-border-radius-m);
 }
 

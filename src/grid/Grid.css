@@ -130,6 +130,7 @@
 	color: var(--ui-color-text-2);
 }
 
+.ui-keyboard .grid-sortable th.column-check:focus,
 .ui-keyboard .grid-sortable .th-sortable:focus {
 	outline: 1px solid var(--ui-color-accent);
 	outline-offset: -1px;
