@@ -20,8 +20,6 @@ A time input component with clock icon and native time picker.
 		<InputError id={errorMessageId} msg={error} />
 
 		<div class="input-row">
-			<Icon name={ICON.CLOCK}/>
-
 			<input
 				id={_id}
 				autocomplete="off"
@@ -40,10 +38,8 @@ A time input component with clock icon and native time picker.
 </div>
 
 <script lang="ts">
-import './InputTime.css';
 import type { InputProps } from '../types';
 import { guid } from '../../utils';
-import { ICON, Icon } from '../../icon';
 import { Info } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
