@@ -82,12 +82,14 @@
 	margin: 0;
 }
 
-
 .grid td:not(.column-check) {
 	white-space: nowrap;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
 }
+
+.grid table td:empty { padding: 0; }
+
 
 .grid .cell-aligner {
 	width: 100%;
