@@ -16,16 +16,14 @@ const defaultProps = {
 };
 
 vi.mock('vanillajs-datepicker', () => {
-	const mockDatepicker = {
-		active: true,
-		hide: vi.fn(),
-		show: vi.fn(),
-		setDate: vi.fn(),
-		getDate: vi.fn(),
-		destroy: vi.fn(),
-	};
-
-	const MockDatepicker = vi.fn().mockImplementation(() => mockDatepicker);
+	const MockDatepicker = vi.fn().mockImplementation(function () {
+		this.active = true;
+		this.hide = vi.fn();
+		this.show = vi.fn();
+		this.setDate = vi.fn();
+		this.getDate = vi.fn();
+		this.destroy = vi.fn();
+	});
 	// @ts-ignore
 	MockDatepicker.parseDate = vi.fn().mockImplementation(() => new Date(2020, 0, 1));
 	// @ts-ignore
