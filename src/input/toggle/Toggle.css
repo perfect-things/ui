@@ -14,6 +14,7 @@
 	user-select: none;
 
 	border-radius: var(--border-radius);
+	margin-block: 3px;
 }
 
 .toggle-inner {
@@ -22,7 +23,6 @@
 	border-radius: inherit;
 	background-color: var(--ui-color-background-2);
 	position: relative;
-	margin-block: 3px;
 }
 
 .toggle:has(:disabled) {
@@ -30,7 +30,8 @@
 	opacity: 0.6;
 }
 
-.toggle:focus { border: none; box-shadow: none; }
+.toggle:focus
+.ui-keyboard .toggle:focus { border: none; box-shadow: none; }
 
 .ui-keyboard .toggle:focus-within .toggle-inner {
 	box-shadow: var(--ui-shadow-focus);
