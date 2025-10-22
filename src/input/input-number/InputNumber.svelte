@@ -63,6 +63,7 @@ A specialized number input component with validation and formatting.
 </div>
 
 <script lang="ts">
+import './InputNumber.css';
 import type { InputNumberProps } from './types';
 import { guid } from '../../utils';
 import { Info } from '../../info-bar';
