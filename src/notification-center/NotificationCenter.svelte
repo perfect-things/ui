@@ -27,9 +27,9 @@ import { NotificationCenter, Button, showNotification } from '@perfectthings/ui'
 			tabindex="0"
 			role="alertdialog"
 			onmouseover={() => clearTimer(notification)}
+			onblur={e => createTimer(notification, e.target)}
 			onfocus={() => clearTimer(notification)}
 			onmouseleave={e => createTimer(notification, e.target)}
-			onblur={e => createTimer(notification, e.target)}
 			onkeydown={e => onKeydown(e, notification)}
 			out:fly={{ duration, key: notification.id }}
 			in:fly={{ duration, key: notification.id }}
@@ -48,6 +48,8 @@ import { NotificationCenter, Button, showNotification } from '@perfectthings/ui'
 					icon="close"
 					round
 					text
+					onfocus={() => clearTimer(notification)}
+					onblur={e => createTimer(notification, e.target)}
 					onclick={e => onToastCloseClick(e, notification)}/>
 			</div>
 
@@ -71,7 +73,7 @@ import { Icon } from '../icon';
 import { UI } from '../utils';
 import { Notifications, createTimer, hideNotification, clearTimer, flip, fly } from './store';
 import { getNextNotification } from './utils';
-	import { Button } from '../button';
+import { Button } from '../button';
 
 
 const duration = $derived(UI.ANIMATION_SPEED);

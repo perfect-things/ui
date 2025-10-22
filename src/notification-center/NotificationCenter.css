@@ -43,6 +43,12 @@
 	backdrop-filter: blur(15px);
 }
 
+.notification:focus {
+	box-shadow: var(--ui-shadow-focus);
+	outline: 1px solid var(--ui-color-accent);
+	outline-offset: -1px;
+}
+
 .notification-info    { background-color: var(--ui-color-info-semi); }
 .notification-success { background-color: var(--ui-color-success-semi); }
 .notification-warning { background-color: var(--ui-color-warning-semi); }
