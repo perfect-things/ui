@@ -1,4 +1,9 @@
 {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
+    },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "[css]": {
         "editor.defaultFormatter": "stylelint.vscode-stylelint"
@@ -9,4 +14,7 @@
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
 }
