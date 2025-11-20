@@ -4,6 +4,6 @@ import type { InputProps } from '../types';
 export interface InputRatingProps extends InputProps {
 	max?: number;
 	icon?: string;
-	light?: any;
+	light?: boolean;
 	hideReset?: boolean;
 }

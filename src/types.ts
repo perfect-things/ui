@@ -13,7 +13,7 @@ export type AlignItemOptions = {
 	event?: any;
 	alignH?: 'left' | 'right' | 'center';
 	offsetH?: number;
-	alignV?: AlignmentDirection; // 'top' | 'bottom' | 'left' | 'right'
+	alignV?: AlignmentDirection;
 	offsetV?: number;
 	viewportPadding?: number;
 	setMinWidthToTarget?: boolean;
