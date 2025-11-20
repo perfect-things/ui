@@ -20,16 +20,16 @@ A component to switch between light, dark and system themes.
 
 
 <script lang="ts">
-import type { ThemeSwitcherProps } from './types';
+import type { Theme, ThemeSwitcherProps } from './types';
 import { onMount } from 'svelte';
 import { ButtonToggle } from '../input/button-toggle';
-import { THEME_STORAGE_KEY, THEMES } from './types';
+import { THEME_STORAGE_KEY } from './types';
 import { getCurrentTheme, initThemes, setCurrentTheme } from './utils';
 
 const items = [
-	{ value: THEMES.LIGHT, title: 'Switch theme to Light', icon: 'sun' },
-	{ value: THEMES.AUTO, title: 'Switch theme to Auto', icon: 'circle' },
-	{ value: THEMES.DARK, title: 'Switch theme to Dark', icon: 'moon' },
+	{ value: 'light', title: 'Switch theme to Light', icon: 'sun' },
+	{ value: 'auto', title: 'Switch theme to Auto', icon: 'circle' },
+	{ value: 'dark', title: 'Switch theme to Dark', icon: 'moon' },
 ];
 
 
@@ -37,7 +37,7 @@ let {
 	class: className = '',
 	round = false,
 	title = 'Theme',
-	value = $bindable(THEMES.AUTO),
+	value = $bindable('auto'),
 }: ThemeSwitcherProps = $props();
 
 
@@ -51,7 +51,7 @@ onMount(() => {
 
 function onStorageChange (e: StorageEvent) {
 	if (e.key === THEME_STORAGE_KEY) {
-		value = e.newValue;
+		value = e.newValue as Theme || 'auto';
 	}
 }
 

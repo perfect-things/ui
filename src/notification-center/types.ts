@@ -1,5 +1,10 @@
 import type { ClassValue } from 'svelte/elements';
+import type { RoleType } from '../types';
 
+
+export type NotificationCallback = (id: string) => void;
+
+export type NotificationType = RoleType | 'loading';
 
 export interface NotificationCenterProps {
 	class?: ClassValue;
@@ -9,21 +14,11 @@ export interface NotificationCenterProps {
 }
 
 
-export type NotificationCallback = (id: string) => void;
-
-export const NotificationType = {
-	INFO: 'info',
-	SUCCESS: 'success',
-	WARNING: 'warning',
-	ERROR: 'error',
-	LOADING: 'loading'
-};
-
 
 //  id, type, msg, timeout, cb, showProgress, btn, timestamp
 export interface Notification {
 	id: string;
-	type: keyof typeof NotificationType;
+	type: NotificationType;
 	role?: 'status' | 'alert';
 	msg: string;
 	timeout: number;

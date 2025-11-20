@@ -1,15 +1,11 @@
 import type { ClassValue } from 'svelte/elements';
 
-export const THEMES = {
-	AUTO: 'auto',
-	LIGHT: 'light',
-	DARK: 'dark'
-};
 
 export const THEME_STORAGE_KEY = 'ui-theme';
 
 
-export type Theme = typeof THEMES[keyof typeof THEMES];
+export type Theme = 'auto' | 'light' | 'dark';
+
 
 export interface ThemeSwitcherProps {
 	class?: ClassValue;

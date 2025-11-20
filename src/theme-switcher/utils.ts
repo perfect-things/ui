@@ -1,12 +1,12 @@
 import type { Theme } from './types';
 
-import { THEMES, THEME_STORAGE_KEY } from './types';
+import { THEME_STORAGE_KEY } from './types';
 import { UI } from '../utils';
 
 
 
 let initialised = false;
-let stored: Theme = THEMES.AUTO;
+let stored: Theme = 'auto';
 let prefersDark: boolean = UI.PREFERS_DARK;
 let effectiveTheme: Theme;
 export const themeObserver = new EventTarget();
@@ -19,7 +19,7 @@ export const themeObserver = new EventTarget();
  */
 export function initThemes () {
 	if (initialised) return;
-	stored = localStorage.getItem(THEME_STORAGE_KEY) || THEMES.AUTO;
+	stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme || 'auto';
 	// storage event is only picked up if triggered in another tab
 	window.addEventListener('storage', onStorageChange);
 
@@ -45,8 +45,8 @@ export function getCurrentTheme (): Theme {
  * @returns The effective theme.
  */
 export function getEffectiveTheme (): Theme {
-	if (stored !== THEMES.AUTO) return stored;
-	return prefersDark ? THEMES.DARK : THEMES.LIGHT;
+	if (stored !== 'auto') return stored;
+	return prefersDark ? 'dark' : 'light';
 }
 
 
@@ -56,7 +56,7 @@ export function getEffectiveTheme (): Theme {
  */
 export function setCurrentTheme (theme: Theme) {
 	if (theme === stored) return;
-	const newValue = theme || THEMES.AUTO;
+	const newValue = theme || 'auto';
 	localStorage.setItem(THEME_STORAGE_KEY, newValue);
 
 	// storage event is only picked up by other tabs, so we need to
@@ -71,7 +71,7 @@ export function setCurrentTheme (theme: Theme) {
 
 function onStorageChange (e: StorageEvent) {
 	if (e.key === THEME_STORAGE_KEY) {
-		stored = e.newValue || THEMES.AUTO;
+		stored = e.newValue as Theme || 'auto';
 		resolveTheme();
 	}
 }
@@ -84,10 +84,8 @@ function onPrefsChange (query: MediaQueryListEvent) {
 
 
 function resolveTheme () {
-	const themesClassNames = Object.values(THEMES)
-		.filter(v => v !== THEMES.AUTO)
-		.map(theme => 'theme-' + theme);
-	document.documentElement.classList.remove(...themesClassNames);
+	const themeClassNames = document.documentElement.className.split(' ').filter(cn => cn.startsWith('theme-'));
+	if (themeClassNames.length) document.documentElement.classList.remove(...themeClassNames);
 
 	effectiveTheme = getEffectiveTheme();
 	document.documentElement.classList.add('theme-' + effectiveTheme);

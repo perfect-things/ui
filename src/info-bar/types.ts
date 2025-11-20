@@ -1,7 +1,7 @@
-import type { ComponentProps } from '../types';
+import type { ComponentProps, RoleType } from '../types';
 
 
 export interface InfoBarProps extends ComponentProps {
 	msg: string;
-	type?: 'info' | 'warning' | 'error' | 'success';
+	type?: RoleType;
 }

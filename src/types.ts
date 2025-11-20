@@ -20,6 +20,8 @@ export type AlignItemOptions = {
 };
 
 
+export type RoleType = 'info' | 'warning' | 'error' | 'danger' | 'success';
+
 
 export interface ComponentProps {
 	id?: string;

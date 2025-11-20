@@ -1,6 +1,6 @@
-import type { ComponentProps } from '../types';
+import type { ComponentProps, RoleType } from '../types';
 
-export type TagColor = 'info' | 'warning' | 'danger' | 'success' | (string & {});
+export type TagColor = RoleType | (string & {});
 
 export interface TagProps extends ComponentProps {
 	round?: boolean;

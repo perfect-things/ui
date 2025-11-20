@@ -2,13 +2,13 @@
 @component ## MessageBox
 
 A global message display component.
-- Supports different message types (info, warning, danger, success)
+- Supports different message types (info, warning, error, success)
 
 @example
 ```svelte
 <MessageBox />
 <script>
-	import { MessageBox, MessageType, showMessage } from '@perfectthings/ui';
+	import { MessageBox, showMessage } from '@perfectthings/ui';
 	showMessage('Some info with the OK button');
 </script>
 ```

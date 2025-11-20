@@ -1,8 +1,8 @@
-import { NotificationType, type NotificationCallback } from './types';
+import type { NotificationCallback, NotificationType } from './types';
 
-import { writable, get } from 'svelte/store';
-import { guid } from '../utils';
+import { get, writable } from 'svelte/store';
 import { fly as _fly } from 'svelte/transition';
+import { guid } from '../utils';
 export { flip } from 'svelte/animate';
 
 export const Notifications = writable({});
@@ -15,11 +15,11 @@ export const fly = (node, params) => _fly(node, { x: 500, opacity: 1, ...params 
 // export const slideDown = (node, params) => _fly(node, { y: 50, ...params });
 
 
-export function showNotification (msg, type = 'info', timeout = 5000, btn = undefined, cb: NotificationCallback = () => {}) {
+export function showNotification (msg, type: NotificationType = 'info', timeout = 5000, btn = undefined, cb: NotificationCallback = () => {}) {
 	const id = guid();
 	const showProgress = (typeof timeout === 'number');
 	const timestamp = new Date().getTime();
-	const role = type === NotificationType.INFO ? 'status' : 'alert';
+	const role = type === 'info' ? 'status' : 'alert';
 	const notification = { id, type, role, msg, timeout, cb, showProgress, btn, timestamp };
 	Notifications.update(list => {
 		list[id] = notification;
@@ -76,16 +76,13 @@ function setProgress (id, val) {
 	});
 }
 
+
 function getProgress (id) {
 	const progress = get(Progress) || {};
 	return progress[id] || 0;
 }
 
 
-/**
- * This updates the css of the progressbar.
- * If this is done using svelte's props & store, the flip animation will be jagged (as the notification is re-rendered).
- */
 function applyProgress (id, progress) {
 	const el = document?.querySelector(`[data-id="${id}"] .notification-progress`);
 	if (el) el.style.width = `${progress}%`;

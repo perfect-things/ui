@@ -52,9 +52,10 @@ describe('ThemeSwitcher - utils', () => {
 
 
 	test('ThemeSwitcher - setCurrentTheme', () => {
-		const spyRm = vi.spyOn(document.documentElement.classList, 'remove').mockImplementation(() => {});
-		const spyAdd = vi.spyOn(document.documentElement.classList, 'add').mockImplementation(() => {});
+		const spyRm = vi.spyOn(document.documentElement.classList, 'remove');
+		const spyAdd = vi.spyOn(document.documentElement.classList, 'add');
 
+		document.documentElement.className = 'theme-light theme-dark';
 		utils.setCurrentTheme('light');
 		expect(localStorageMock.setItem).toHaveBeenCalledWith(THEME_STORAGE_KEY, 'light');
 		expect(window.dispatchEvent).toHaveBeenCalled();

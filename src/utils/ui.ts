@@ -8,11 +8,8 @@ const DESKTOP_CLASS = 'desktop';
 const KEYBOARD_CLASS = 'ui-keyboard';
 const keys = ['Escape', 'Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'Enter'];
 
-const UI_EVENT = {
-	CHANGE: 'change'
-};
 
-type UIEventName = typeof UI_EVENT[keyof typeof UI_EVENT];
+type UIEventName = 'change';
 type Callback = (property: string, value: any) => void;
 
 type UIState = {
@@ -24,10 +21,10 @@ type UIState = {
 	destroy: () => void;
 	on: (topic: UIEventName, callback: Callback) => void;
 	off: (topic: UIEventName, callback: Callback) => void;
-	// fire: (topic: UIEventName, ...args: any[]) => void;
+	// fire: (topic: UIEventName, ...args: any[]) => void;   // internal use only
 };
 
-const _listeners: Record<UIEventName, Callback[]> = { CHANGE: [] };
+const _listeners: Record<UIEventName, Callback[]> = { change: [] };
 
 
 export const UI: UIState = {} as UIState;
@@ -126,6 +123,7 @@ Object.defineProperties(UI, {
 		enumerable: false,
 		configurable: false
 	},
+
 	on: {
 		writable: false,
 		enumerable: true,
@@ -190,13 +188,13 @@ function removePlatformClass () {
 function setReducedMotion (query) {
 	(UI as any)._ANIMATION_SPEED = (!query || query.matches) ? 0 : DEFAULT_ANIMATION_SPEED;
 	// fire is not enumerable
-	(UI as any).fire(UI_EVENT.CHANGE, 'ANIMATION_SPEED', UI.ANIMATION_SPEED);
+	(UI as any).fire('change', 'ANIMATION_SPEED', UI.ANIMATION_SPEED);
 }
 
 function setPrefersDark (query) {
 	(UI as any)._PREFERS_DARK = query && query.matches;
 	// fire is not enumerable
-	(UI as any).fire(UI_EVENT.CHANGE, 'PREFERS_DARK', UI.PREFERS_DARK);
+	(UI as any).fire('change', 'PREFERS_DARK', UI.PREFERS_DARK);
 }
 
 function initMediaQueries () {

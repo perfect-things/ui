@@ -1,7 +1,7 @@
 import { expect, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { flushSync, mount, unmount } from 'svelte';
-import { MessageBox, MessageType, showMessage } from '../src/message-box';
+import { MessageBox, showMessage } from '../src/message-box';
 
 
 test('MessageBox', async () => {
@@ -27,7 +27,7 @@ test('MessageBox', async () => {
 
 
 	// second message box
-	showMessage('test2', MessageType.WARNING, 'Warning');
+	showMessage('test2', 'warning', 'Warning');
 	flushSync();
 
 	msg = document.body.querySelector('.message');
@@ -50,7 +50,7 @@ test('MessageBox', async () => {
 	const cb = vi.fn();
 	const cfg = {
 		message: 'Are you sure you want to delete this thing?',
-		type: MessageType.DANGER,
+		type: 'error',
 		title: 'Confirm',
 		buttons: [
 			{ label: 'Yes', value: 'yes', type: 'danger' },
