@@ -1,12 +1,21 @@
 {
     "name": "@perfectthings/ui",
     "description": "Perfect UI components",
-    "version": "10.0.1-beta.16",
+    "version": "10.0.1-beta.17",
     "type": "module",
     "license": "GPL-3.0-or-later",
-    "keywords": [ "UI", "svelte", "PerfectThings" ],
-    "repository": { "type": "git", "url": "git+https://github.com/perfect-things/ui.git" },
-    "files": [ "dist" ],
+    "keywords": [
+        "UI",
+        "svelte",
+        "PerfectThings"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/perfect-things/ui.git"
+    },
+    "files": [
+        "dist"
+    ],
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
