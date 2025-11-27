@@ -24,7 +24,5 @@ export * from './types';
 
 import { UI } from './utils';
 import './root.css';
-import './theme-dark.css';
-import './theme-light.css';
 
 UI.init();

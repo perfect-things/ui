@@ -1,3 +1,7 @@
+@import url('./theme-dark.css');
+@import url('./theme-light.css');
+@import url('./input/input.css');
+
 :root {
 	/* BORDERS */
 	--ui-border-radius: 0.375rem;	   /* 6px */
