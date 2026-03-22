@@ -67,6 +67,7 @@ A radio button group component styled as connected toggle buttons.
 
 <script lang="ts">
 import './ButtonToggle.css';
+import '../../button/Button.css';
 import type { ButtonToggleProps } from './types';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';

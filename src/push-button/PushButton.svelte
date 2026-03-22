@@ -38,8 +38,9 @@ A toggle button component that maintains a pressed/unpressed state.
 {/if}
 
 <script lang="ts">
-import type { PushButtonProps } from './types';
 import './PushButton.css';
+import '../button/Button.css';
+import type { PushButtonProps } from './types';
 import { Button } from '../button';
 
 

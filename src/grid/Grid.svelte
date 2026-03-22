@@ -47,6 +47,7 @@ An advanced data grid component built on top of table functionality (alpha versi
 
 <script lang="ts">
 import './Grid.css';
+import '../table/Table.css';
 import type { GridProps } from './types';
 import { onMount } from 'svelte';
 import { shouldSkipNav, getSelectableItems, getScrollContainer, getHeaderHeight } from './utils.js';

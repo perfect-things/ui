@@ -38,6 +38,7 @@ A lightweight tooltip component that displays contextual information on hover or
 
 <script lang="ts">
 import './Tooltip.css';
+import '../popover/Popover.css';
 import type { TooltipProps } from './types';
 import { onDestroy, onMount } from 'svelte';
 import { alignItem } from '../utils';
