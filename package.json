@@ -19,13 +19,17 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "sideEffects": false,
+    "sideEffects": [
+        "**/*.css",
+        "./dist/index.js"
+    ],
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
             "svelte": "./dist/index.js",
             "default": "./dist/index.js"
-        }
+        },
+        "./dist/*.css": "./dist/*.css"
     },
     "scripts": {
         "build:docs": "vite build",
