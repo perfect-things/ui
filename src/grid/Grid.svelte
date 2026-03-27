@@ -113,7 +113,7 @@ $effect.pre(() => {
 function getEventArgs (row) {
 	let item;
 	const itemId = row && row.dataset && row.dataset.id;
-	if (itemId) item = Data.getById(+itemId);
+	if (itemId) item = Data.getById(itemId);
 	return { row, item };
 }
 
@@ -189,7 +189,7 @@ function _onclick (e) {
 	if (!row) return;
 
 	if (e.target.closest('.column-check')) {
-		const item = { id: +row.dataset.id };
+		const item = { id: row.dataset.id };
 		Data.toggleSelection(item, e);
 	}
 
@@ -209,7 +209,7 @@ function _ondblclick (e) {
 
 	const rowEl = e.target.closest(rowSelector);
 	if (!rowEl) return;
-	const item = { id: +rowEl.dataset.id };
+	const item = { id: rowEl.dataset.id };
 	Data.toggleSelection(item, e, false);
 
 	requestAnimationFrame(() => {
@@ -246,7 +246,7 @@ function _onkeydown (e) {
 	const rowEl = e && e.target && e.target.closest(rowSelector);
 	if (rowEl && e.key === ' ') {
 		e.preventDefault();
-		Data.toggleSelection({ id: +rowEl.dataset.id }, e);
+		Data.toggleSelection({ id: rowEl.dataset.id }, e);
 	}
 
 	else if (e.metaKey || e.ctrlKey) {

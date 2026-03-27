@@ -21,7 +21,7 @@ export function DataStore (): DataStoreType {
 
 
 	function getById (id) {
-		return get(_this).find(i => i.id === id);
+		return get(_this).find(i => i.id == id);
 	}
 
 	function toggleSelection (item, event , forceState = undefined) {
@@ -71,7 +71,7 @@ export function DataStore (): DataStoreType {
 			if (start) rowsToSelect.push(rows[i]);
 		}
 		rowsToSelect.forEach(id => {
-			getById(+id.dataset.id).selected = true;
+			getById(id.dataset.id).selected = true;
 		});
 
 		set($Data);
