@@ -45,7 +45,6 @@ import { FOCUSABLE_SELECTOR, UI } from '../utils';
 let {
 	class: className = '',
 	title = '',
-	opened = $bindable(false),
 	skipFirstFocus = false,
 	modal = false,
 	element = $bindable(),
@@ -56,7 +55,7 @@ let {
 	...restProps
 }: DialogProps = $props();
 
-
+let opened: boolean = $state(false);
 let dialogEl: HTMLElement = $state();
 let contentEl: HTMLElement = $state();
 let footerEl: HTMLElement = $state();
@@ -102,7 +101,8 @@ function getFocusableElements () {
 	if (!dialogEl || !contentEl || !footerEl) return [];
 	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
-	return [...contentElements, ...footerElements];
+	return [...contentElements, ...footerElements].filter(el => el.checkVisibility());
+	;
 }
 
 
@@ -168,17 +168,23 @@ function freezeBody (freeze) {
 	}
 }
 
+export function isOpen () {
+	return opened;
+}
 
 export function open (openedBy?) {
-	if (opened) return;
+	if (closeTimer) clearTimeout(closeTimer);
 
-	if (openedBy instanceof Event) openedBy = openedBy.target;
-
-	triggerEl = openedBy || document.activeElement;
+	// set the triggerEl even if dialog is already open
+	if (openedBy) triggerEl = (openedBy instanceof Event) ? openedBy.target : openedBy;
+	if (!triggerEl) triggerEl = document.activeElement as HTMLElement;
 	if (triggerEl && triggerEl !== document.body) {
 		triggerEl.setAttribute('aria-haspopup', 'true');
 		triggerEl.setAttribute('aria-expanded', 'true');
 	}
+
+	if (opened) return Promise.resolve();
+
 	if (element) element.style.display = 'flex';
 	return new Promise<void>(resolve => {
 		if (openTimer) clearTimeout(openTimer);
@@ -195,13 +201,12 @@ export function open (openedBy?) {
 
 
 export function close () {
-	if (!opened) return;
+	if (!opened) return Promise.resolve();
 	opened = false;
 	if (triggerEl && triggerEl.focus) triggerEl.focus();
 	return new Promise<void>(resolve => {
 		if (closeTimer) clearTimeout(closeTimer);
 		closeTimer = setTimeout(() => {
-			opened = false;
 			element.style.display = 'none';
 			document.removeEventListener('keydown', onDocKeydown);
 			if (triggerEl && triggerEl !== document.body) {

@@ -1,10 +1,8 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <tbody
 data-id={id}
-class={['item', `item-${id}`]}
-tabindex="0"
-class:row-selected={item.selected}
->
+class={['item', `item-${idSlug}`, { 'row-selected': item.selected }]}
+tabindex="0">
 <tr>
 	{#if multiselect}
 		<td class={['column-check', { pressing }]}
@@ -41,6 +39,7 @@ let {
 
 const columns = $derived(Data.columns);
 const id = $derived(item.id || item.field);
+const idSlug = $derived(slugify(id));
 let pressing = $state(false);
 let sub;
 
@@ -56,6 +55,14 @@ onDestroy(() => {
 	sub();
 });
 
+
+function slugify (str) {
+	return String(str).toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/\s+/g, '-')
+		.replace(/-+/g, '-')
+		.replace(/^-+|-+$/g, '');
+}
 
 function getType (column) {
 	return typeof $Data[0][column.field];

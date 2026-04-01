@@ -99,7 +99,6 @@ import { Code } from '../../code-example';
 const apiProps = <ApiProp[]>[
 	...PROPS.component,
 
-	{ name: 'opened', type: 'boolean', default: 'false', description: 'Set dialog\'s open state.' },
 	{ name: 'skipFirstFocus', type: 'boolean', default: 'false', description: 'If <i>true</i> - the dialog will not set focus to the first focusable element in the dialog.<br>This is useful if another element in the dialog should be focused first.' },
 	{ name: 'modal', description: 'If present - the dialog will not close when the user clicks outside of it or presses Escape.' },
 	{ name: 'bind:this', type: 'object', description: 'Exposes the component instance.' },
@@ -109,6 +108,7 @@ const apiProps = <ApiProp[]>[
 
 const instanceApiProps = <ApiProp[]>[
 	{ name: 'close', type: 'function', description: 'Closes the dialog.' },
+	{ name: 'isOpen', type: 'function', description: 'Returns whether the dialog is open.' },
 	{ name: 'open', type: 'function', description: 'Opens the dialog.' },
 ];
 

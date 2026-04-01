@@ -30,7 +30,9 @@
 .table tr:focus-within,
 .table tr:focus,
 .table tbody:focus,
-.table tbody:focus tr {
+.table tbody:focus tr,
+.table tr[aria-haspopup="true"][aria-expanded="true"],
+.table tbody[aria-haspopup="true"][aria-expanded="true"] {
 	background-color: var(--ui-color-highlight-1);
 	box-shadow: none;
 }
