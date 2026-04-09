@@ -101,7 +101,7 @@ function getFocusableElements () {
 	if (!dialogEl || !contentEl || !footerEl) return [];
 	const contentElements = Array.from(contentEl.querySelectorAll(FOCUSABLE_SELECTOR));
 	const footerElements = Array.from(footerEl.querySelectorAll(FOCUSABLE_SELECTOR));
-	return [...contentElements, ...footerElements].filter(el => el.checkVisibility());
+	return [...contentElements, ...footerElements].filter(el => el.checkVisibility?.() || true);
 	;
 }
 
