@@ -66,6 +66,8 @@ let {
 	data = [],
 	multiselect = false,
 	dblClickDelay = 400,
+	sortby = '',
+	sortdir = 'ASC',
 	element = undefined,
 	onselect = () => {},
 	onfocus = () => {},
@@ -104,9 +106,15 @@ onMount(() => {
 });
 
 
+let sortInitialized = false;
 $effect.pre(() => {
 	if (data) Data.set(data);
 	if (columns) Data.columns.set(columns);
+	if (!sortInitialized && sortby) {
+		sortInitialized = true;
+		Data.sortOrder.set(sortdir);
+		Data.sortField.set(sortby);
+	}
 });
 
 

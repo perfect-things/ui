@@ -5,6 +5,8 @@
 		round
 		multiselect
 		title="Grid with data"
+		sortby="name"
+		sortdir="ASC"
 		{columns}
 		{data}
 		onkeydown={onclick}
@@ -13,7 +15,7 @@
 
 
 <Code>{`
-<Grid {data} {columns} onclick={onclick}/>
+<Grid {data} {columns} sortby="name" sortdir="ASC" onclick={onclick}/>
 
 <script&gt;
 const columns = [
@@ -57,6 +59,8 @@ const apiProps = <ApiProp[]>[
 	{ name: 'scrollCorrectionOffset', type: 'number', default: '0', description: 'If an external <em>scrollContainer</em> is used - it is possible that it will have non-zero padding set, thus the table wrapper will be offset from the beginning of the container. This offset should be set here, so that the sticky headers work correctly.' },
 	{ name: 'interactive', type: 'boolean', description: 'Makes table rows selectable with mouse and adds keyboard navigation.' },
 	{ name: 'multiselect', type: 'boolean', description: 'If true - a column with checkboxes will be added to the grid.' },
+	{ name: 'sortby', type: 'string', description: 'Field name to sort by on initial render.' },
+	{ name: 'sortdir', type: 'string', default: '<em>ASC</em>', description: 'Initial sort direction. One of <em>ASC</em> or <em>DESC</em>.' },
 
 	{ name: 'onclick', type: 'function', description: 'Triggered after a row has been clicked.' },
 	{ name: 'ondblclick', type: 'function', description: 'Triggered after a row has been double-clicked.' },

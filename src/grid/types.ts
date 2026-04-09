@@ -35,6 +35,8 @@ export interface GridProps extends ComponentProps {
 	data?: DataItem[];
 	multiselect?: boolean;
 	dblClickDelay?: number;
+	sortby?: string;
+	sortdir?: 'ASC' | 'DESC';
 	onselect?: EventHandler;
 	ondblclick?: EventHandler;
 }
