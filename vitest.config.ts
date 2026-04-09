@@ -9,6 +9,7 @@ export default defineConfig({
 		globals: true,
 		environment: 'jsdom',
 		setupFiles: ['./tests/_setup.ts'],
+		execArgv: ['--no-warnings'],
 		include: [
 			'tests/**/*.test.ts',
 			'tests/**/*.svelte.test.ts',
