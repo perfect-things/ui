@@ -19,6 +19,9 @@ export function DataStore (): DataStoreType {
 
 	let lastSelectedItemId = null;
 
+	function _set (data) {
+		set(sortData(data, get(sortField), get(sortOrder)));
+	}
 
 	function getById (id) {
 		return get(_this).find(i => i.id == id);
@@ -96,7 +99,7 @@ export function DataStore (): DataStoreType {
 
 	return {
 		subscribe,
-		set,
+		set: _set,
 		get: () => get(_this),
 		getById,
 

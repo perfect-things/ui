@@ -108,11 +108,9 @@ onMount(() => {
 
 $effect.pre(() => {
 	if (columns) Data.columns.set(columns);
+	if (sortby) Data.sortField.set(sortby);
+	if (sortdir) Data.sortOrder.set(sortdir);
 	if (data) Data.set(data);
-	if (data?.length && sortby) {
-		Data.sortField.set(sortby);
-		if (sortdir) Data.sortOrder.set(sortdir);
-	}
 });
 
 
