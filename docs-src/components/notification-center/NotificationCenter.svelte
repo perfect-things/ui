@@ -2,7 +2,6 @@
 
 <p>Shows toast-like notifications which can be dismissed manually or auto-closed.</p>
 
-<NotificationCenter />
 
 <h3>Notifications</h3>
 <div class="docs-buttons-row">
@@ -28,6 +27,8 @@
 
 
 <Code>{`
+<!-- place this component once in your app, preferably near the root -->
+<!-- this way SPA navigation won't interfere with notifications -->
 <NotificationCenter />
 
 <Button onclick={() => showNotification('Hello')}>Show info</Button>
@@ -55,7 +56,7 @@ function cb (id) {
 import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 
-import { Button, NotificationCenter, showNotification, hideNotification } from '../../../src';
+import { Button, showNotification, hideNotification } from '../../../src';
 import { Code } from '../../code-example';
 import './NotificationCenter.css';
 

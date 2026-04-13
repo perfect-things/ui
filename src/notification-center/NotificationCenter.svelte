@@ -32,8 +32,7 @@ import { NotificationCenter, Button, showNotification } from '@perfectthings/ui'
 			onmouseleave={e => createTimer(notification, e.target)}
 			onkeydown={e => onKeydown(e, notification)}
 			out:fly={{ duration, key: notification.id }}
-			in:fly={{ duration, key: notification.id }}
-			animate:flip={{ duration }}>
+			in:fly={{ duration, key: notification.id }}>
 
 			<div class="notification-icon"><Icon name={notification.type}/></div>
 			<div class="notification-msg" role={notification.role}>{@html notification.msg}</div>
@@ -60,7 +59,6 @@ import { NotificationCenter, Button, showNotification } from '@perfectthings/ui'
 			{/if}
 		</div>
 	{/each}
-
 </div>
 
 
@@ -71,9 +69,9 @@ import type { Notification, NotificationCenterProps } from './types';
 import { onMount } from 'svelte';
 import { Icon } from '../icon';
 import { UI } from '../utils';
-import { Notifications, createTimer, hideNotification, clearTimer, flip, fly } from './store';
-import { getNextNotification } from './utils';
 import { Button } from '../button';
+import { Notifications, createTimer, hideNotification, clearTimer, fly } from './store';
+import { getNextNotification } from './utils';
 
 
 const duration = $derived(UI.ANIMATION_SPEED);
@@ -84,9 +82,10 @@ let notifications = $state<Notification[]>([]);
 
 let totalHeight = $state(0);
 
-
 onMount(() => {
 	document.body.appendChild(el);
+	window.addEventListener('blur', onWindowBlur);
+	window.addEventListener('focus', onWindowFocus);
 
 	Notifications.subscribe((val: Notification[]) => {
 		const newNotifications = Object.values(val).reverse();
@@ -101,8 +100,21 @@ onMount(() => {
 		// still-animating notification would be cut off
 		else setTimeout(updateTotalHeight, duration + 100);
 	});
+	return () => {
+		window.removeEventListener('blur', onWindowBlur);
+		window.removeEventListener('focus', onWindowFocus);
+		if (el?.children?.length) document.body.removeChild(el);
+	};
 
 });
+
+
+function onWindowBlur () {
+	notifications.forEach(n => clearTimer(n));
+}
+function onWindowFocus () {
+	notifications.forEach(n => createTimer(n));
+}
 
 
 function updateTotalHeight () {

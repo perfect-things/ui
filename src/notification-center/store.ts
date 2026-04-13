@@ -3,7 +3,6 @@ import type { NotificationCallback, NotificationType } from './types';
 import { get, writable } from 'svelte/store';
 import { fly as _fly } from 'svelte/transition';
 import { guid } from '../utils';
-export { flip } from 'svelte/animate';
 
 export const Notifications = writable({});
 export const Progress = writable({});
@@ -11,8 +10,6 @@ export const timers = {};
 
 
 export const fly = (node, params) => _fly(node, { x: 500, opacity: 1, ...params });
-// export const slideUp = (node, params) => _fly(node, { y: -50, ...params });
-// export const slideDown = (node, params) => _fly(node, { y: 50, ...params });
 
 
 export function showNotification (msg, type: NotificationType = 'info', timeout = 5000, btn = undefined, cb: NotificationCallback = () => {}) {
