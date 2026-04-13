@@ -29,16 +29,16 @@ export default defineConfig(() => ({
 			transformIndexHtml: { order: 'pre', handler: injectScripts }
 		}
 	],
-	root: 'docs-src',
+	root: 'docs',
 	publicDir: '../assets',
 	build: {
-		outDir: '../docs',
+		outDir: '../public',
 		cssCodeSplit: false,
 		emptyOutDir: true,
 		chunkSizeWarningLimit: 1000,
 		sourcemap: true,
 		rollupOptions: {
-			input: resolve(__dirname, 'docs-src/index.html'),
+			input: resolve(__dirname, 'docs/index.html'),
 			output: {
 				entryFileNames: '[name].[hash].js',
 				chunkFileNames: '[name].[hash].js',

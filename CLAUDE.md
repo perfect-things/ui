@@ -29,7 +29,7 @@ src/              # Component source (one directory per component)
   root.css        # Global styles
 tests/            # Vitest tests (mirrors src structure)
   _setup.ts       # Global test setup — jsdom mocks live here
-docs-src/         # Documentation site source
+docs/             # Documentation site source
   components/     # docs & demos for each component (mirrors src structure)
 dist/             # Built library output (published to npm)
 ```
@@ -47,5 +47,5 @@ Set `(UI as any)._ANIMATION_SPEED = 0` in tests to skip animation delays.
 ```bash
 npm run prerelease   # Interactive: bump beta version, build, push, publish --tag beta
 npm run release      # Full release
-npm run changelog    # Regenerate docs-src/pages/changelog.html from CHANGELOG.md
+npm run changelog    # Regenerate docs/pages/changelog.html from CHANGELOG.md
 ```

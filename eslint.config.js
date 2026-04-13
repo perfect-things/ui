@@ -14,7 +14,7 @@ export default ts.config(
 		ignores: [
 			'assets',                 // Ignore assets
 			'coverage',               // Ignore compiled output
-			'docs',                   // Ignore compiled output
+			'public',                 // Ignore compiled output
 			'dist',                   // Ignore compiled output
 			'.svelte-kit',            // Ignore compiled output
 			'node_modules',           // Ignore node_modules

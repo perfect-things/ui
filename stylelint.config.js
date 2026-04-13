@@ -3,8 +3,8 @@ export default {
 	extends: 'stylelint-config-standard',
 	ignoreFiles: [
 		'coverage/*',
+		'public/*',
 		'dist/*',
-		'docs/*',
 		'node_modules/*',
 	],
 	rules: {

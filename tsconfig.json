@@ -37,14 +37,14 @@
     },
     "include": [
         "src/**/*",
-        "docs-src/**/*",
+        "docs/**/*",
         "tests/**/*",
         "*.ts",
         "*.js"
     ],
     "exclude": [
         "node_modules/",
-        "docs/",
+        "public/",
         "dist/",
     ]
 }

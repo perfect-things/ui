@@ -2,16 +2,16 @@
 .husky/
 .svelte-kit/
 assets/
-docs-src/
 coverage/
-scripts/
-tests/
-src/
 docs/
+public/
+scripts/
+src/
+tests/
 
-.*
 CHANGELOG.md
 CHANGELOG-archive.md
 screen.png
+.*
 *.js
 *config*.*

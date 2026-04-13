@@ -1,6 +1,7 @@
 .claude/
 .svelte-kit/
 coverage/
+public/
 dist/
 node_modules/
 docs/*.sketch
