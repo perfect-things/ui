@@ -3,6 +3,7 @@ name: GitHub Pages
 on:
   push:
     branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -12,9 +13,9 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '22.x'
           cache: 'npm'
