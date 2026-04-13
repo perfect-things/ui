@@ -1,6 +1,7 @@
 export * from './button-toggle';
 export * from './checkbox';
 export * from './combobox';
+export * from './combobox-multiselect';
 export * from './input-date';
 export * from './input-math';
 export * from './input-number';

@@ -52,31 +52,6 @@
 <Combobox {items} label="Label is on the left" labelOnTheLeft/>
 
 
-
-<!-- ------------------------------------------------------------------------------------- -->
-
-
-
-<h2 id="Multiselect"><a href="#Combobox/Multiselect">Multiselect</a></h2>
-
-
-<p>This adds checkboxes to the list items, but it disables the auto-lookup functionality,<br>as the input value string becomes a comma-separated list of selected items' names.</p>
-<h3>Simple data</h3>
-<Combobox items={dataSimple} multiselect bind:value={multiselectSimpleValue} />
-<h4>Selected value: </h4>
-<JsonBox value={multiselectSimpleValue} />
-<Button onclick={resetMulti}>Reset</Button>
-
-
-
-<h3>Complex data</h3>
-<Combobox {items} multiselect bind:value={multiselectValue} />
-<h4>Selected value: </h4>
-<JsonBox value={multiselectValue} />
-
-
-
-
 <Code>{`
 <Combobox
     {items}
@@ -121,15 +96,8 @@ const apiProps = <ApiProp[]>[
 	{ name: 'clearOnEsc', description: 'If present - the combobox will be cleared when Escape is pressed.' },
 	{ name: 'hideOnResize', description: 'If present - resizing the window will close the popup.' },
 	{ name: 'items', type: 'array', required: true, description: 'An array of strings or objects in the following format: <code>&lbrace; name: string, id?: string | number, group?: string &rbrace;</code>(<i>name</i> should be unique, or - if <i>id</i> is present - <i>id</i> should be unique).' },
-	{ name: 'multiselect', description: 'This changes the control to a multiselect. The following changes will apply:<ul>' +
-		'<li>dropdown items will receive checkboxes,' +
-		'<li>and the control will only allow to change the value by clicking on items (or check them using the `Space` key),' +
-		'<li>the value will become an array,' +
-		'<li>argument `allowNew` will have no effect.' +
-		'</ul>'
-	},
 	{ name: 'showOnFocus', description: 'If present - the popup will be automatically open when the combobox gets focus (as opposed to, when the user starts typing).' },
-	{ name: 'value', type: ['string', 'number', 'object', 'array'], description: 'Value of the combobox.<br>If combobox is <em>multiselect</em>, the value will be an array of strings or objects. ' },
+	{ name: 'value', type: ['string', 'number', 'object'], description: 'Value of the combobox.' },
 ];
 
 
@@ -155,7 +123,6 @@ const items = [
 	{ id: 17, name: 'Lambda', group: 'Group 3' },
 ];
 let itemValue = $state(items[1]);
-let multiselectValue = $state([items[0], items[1]]);
 
 const dataSimpler = [
 	{ name: 'Alpha', group: 'Group 1' },
@@ -193,7 +160,6 @@ const dataSimple = [
 	'Lambda is the last item in this list',
 ];
 let valueSimple = $state('Gamma');
-let multiselectSimpleValue = $state([dataSimple[0], dataSimple[1]]);
 
 
 function onchange (e, { value, oldValue }) {
@@ -202,10 +168,6 @@ function onchange (e, { value, oldValue }) {
 
 function resetSingle () {
 	itemValue = items[1];
-}
-
-function resetMulti () {
-	multiselectSimpleValue = [];
 }
 
 </script>

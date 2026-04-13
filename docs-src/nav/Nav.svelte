@@ -15,6 +15,7 @@
 		<NavItem name="Button Toggle" {active} />
 		<NavItem name="Checkbox" {active} />
 		<NavItem name="Combobox" {active} />
+		<NavItem name="Combobox Multiselect" {active} />
 		<NavItem name="Input Date" {active} />
 		<NavItem name="Input Math" {active} />
 		<NavItem name="Input Number" {active} />
