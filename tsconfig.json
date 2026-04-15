@@ -9,21 +9,14 @@
             "DOM",
             "DOM.Iterable"
         ],
-        // Allow gradual migration
         "allowJs": true,
         "checkJs": true,
         "strict": false,
         "noImplicitAny": false,
         "noImplicitReturns": false,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        // Build output
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "./dist",
-        "rootDir": "./",
         // Module resolution
+        "rootDir": "./",
+        "outDir": "./dist",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
@@ -33,12 +26,17 @@
         "verbatimModuleSyntax": true,
         // Emit
         "noEmit": false,
-        "emitDeclarationOnly": false
+        "declaration": true,
+        "declarationMap": true,
+        "emitDeclarationOnly": false,
+        "sourceMap": true,
+
     },
     "include": [
         "src/**/*",
         "docs/**/*",
         "tests/**/*",
+        "scripts/**/*",
         "*.ts",
         "*.js"
     ],

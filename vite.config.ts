@@ -1,7 +1,7 @@
 import { defineConfig, type UserConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
@@ -22,7 +22,7 @@ export default defineConfig(() => ({
 	base: './',
 	plugins: [
 		svelte({
-			configFile: resolve(__dirname, 'svelte.config.js')
+			configFile: resolve(__dirname, 'svelte.config.ts')
 		}),
 		{
 			name: 'inject-analytics',
@@ -42,7 +42,7 @@ export default defineConfig(() => ({
 			output: {
 				entryFileNames: '[name].[hash].js',
 				chunkFileNames: '[name].[hash].js',
-				assetFileNames: '[name].[hash].[ext]'
+				assetFileNames: '[name].[ext]'
 			}
 		},
 	},

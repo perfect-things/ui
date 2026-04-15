@@ -4,12 +4,12 @@ import globals from 'globals';
 import stylistic from '@stylistic/eslint-plugin';
 import sveltePlugin from 'eslint-plugin-svelte';
 import svelteParser from 'svelte-eslint-parser';
+import { defineConfig } from 'eslint/config';
 
-export default ts.config(
+export default defineConfig(
 	js.configs.recommended,
-	...ts.configs.recommendedTypeChecked,
-	// @ts-ignore
-	...sveltePlugin.configs.recommended,
+	ts.configs.recommendedTypeChecked,
+	sveltePlugin.configs.recommended,
 	{
 		ignores: [
 			'assets',                 // Ignore assets
@@ -63,14 +63,6 @@ export default ts.config(
 		},
 		plugins: {
 			'@typescript-eslint': ts.plugin,
-		}
-	},
-	{
-		files: ['*.js'],
-		languageOptions: {
-			globals: { ...globals.node, },
-			ecmaVersion: 'latest',
-			sourceType: 'module'
 		}
 	},
 	{

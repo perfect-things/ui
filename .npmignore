@@ -1,6 +1,7 @@
 .claude/
 .husky/
 .svelte-kit/
+.vscode/
 assets/
 coverage/
 docs/

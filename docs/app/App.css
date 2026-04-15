@@ -9,8 +9,8 @@ body {
 
 @font-face {
 	font-family: 'Prime Light';
-	src: url('prime_light-webfont.woff2') format('woff2'),
-		url('prime_light-webfont.woff') format('woff');
+	src: url('../../assets/prime_light-webfont.woff2') format('woff2'),
+		url('../../assets/prime_light-webfont.woff') format('woff');
 	font-weight: 200;
 	font-style: normal;
 }
