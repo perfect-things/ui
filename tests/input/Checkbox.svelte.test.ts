@@ -48,6 +48,17 @@ test('Checkbox', async () => {
 	info = chbox.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
 
+	props.warning = 'watch out';
+	flushSync();
+	let warn = chbox.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	warn = chbox.querySelector('.info-bar-warning');
+	expect(warn).not.toBeInTheDocument();
+
 	const inp = chbox.querySelector('input');
 	expect(inp).toBeChecked();
 	expect(inp).toHaveAttribute('id', props.id);
