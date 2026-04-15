@@ -38,6 +38,7 @@ An advanced select component with search, filtering, and multi-selection capabil
 		{label}
 		{error}
 		{info}
+		{warning}
 		{labelOnTheLeft}
 		{opened}
 		{placeholder}
@@ -88,6 +89,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = undefined,
 	placeholder = undefined,
 	multiselect = undefined,
