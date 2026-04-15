@@ -48,5 +48,5 @@
 
 .ui-keyboard .input-rating.light:not(.has-error) .input-inner:focus-within {
 	border-color: var(--ui-color-accent);
-    box-shadow: var(--ui-shadow-focus);
+	box-shadow: var(--ui-shadow-focus);
 }

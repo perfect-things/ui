@@ -18,7 +18,7 @@
 }
 
 .dialog-backdrop.opened {
-	background-color: rgb(0 0 0 / .6);
+	background-color: rgb(0 0 0 / 0.6);
 	backdrop-filter: contrast(0.8) grayscale(0.5) brightness(0.8) blur(2px);
 }
 
@@ -29,8 +29,7 @@
 
 	opacity: 0;
 	transform: scale(0.8);
-	transition:
-		opacity var(--ui-animation-speed) ease-out,
+	transition: opacity var(--ui-animation-speed) ease-out,
 		transform var(--ui-animation-speed) ease-out;
 	max-height: 90vh;
 	min-width: 15rem;

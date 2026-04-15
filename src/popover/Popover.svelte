@@ -63,6 +63,7 @@ let {
 let opened = $state(false);
 let opening = $state(false);
 let closing = $state(false);
+// svelte-ignore state_referenced_locally
 let _position: AlignmentDirection = $state(position);
 let targetEl: EventTarget = $state();
 let eventsAdded = false;

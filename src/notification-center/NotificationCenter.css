@@ -49,10 +49,10 @@
 	outline-offset: -1px;
 }
 
-.notification-info    { background-color: var(--ui-color-info-semi); }
+.notification-info { background-color: var(--ui-color-info-semi); }
 .notification-success { background-color: var(--ui-color-success-semi); }
 .notification-warning { background-color: var(--ui-color-warning-semi); }
-.notification-error   { background-color: var(--ui-color-danger-semi); }
+.notification-error { background-color: var(--ui-color-danger-semi); }
 
 
 .notification .notification-buttons {
@@ -80,7 +80,7 @@
 }
 
 
-.notification button:active { background: #0008;  color: var(--ui-color-text-1);}
+.notification button:active { background: #0008;  color: var(--ui-color-text-1); }
 
 .notification button:hover,
 .ui-keyboard .notification button:focus { background: #2228; }
@@ -121,7 +121,7 @@
 	border: 1px solid #ffffff25;
 	margin: 0;
 	width: 0;
-	transition: width .2s;
+	transition: width 0.2s;
 }
 
 

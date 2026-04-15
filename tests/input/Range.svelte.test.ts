@@ -38,6 +38,7 @@ test('Range', async () => {
 	props.error = '';
 	flushSync();
 	err = cmp.querySelector('.info-bar-error');
+	expect(err).not.toBeInTheDocument();
 	// Note: Error element behavior might differ in Svelte 5
 
 	// @ts-ignore

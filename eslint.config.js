@@ -42,6 +42,9 @@ export default ts.config(
 		plugins: {
 			svelte: sveltePlugin,
 			'@typescript-eslint': ts.plugin,
+		},
+		rules: {
+			'no-useless-assignment': 'off', // $derived values used only in templates are falsely flagged
 		}
 	},
 	{

@@ -83,7 +83,6 @@ describe('Combobox multi-select interactions', () => {
 		expect(comboboxListItems.length).toBe(items.length);
 	});
 
-
 	test('filter list and select', async () => {
 		const itemToSelect = items[2].name;
 		const firstLetters = itemToSelect.slice(0, 3);
@@ -103,6 +102,7 @@ describe('Combobox multi-select interactions', () => {
 		expect(input.value).toBe(expectedValue);
 		expect(onchange).toHaveBeenCalled();
 	});
+
 
 
 	test('reopen list with ArrowDown and click', async () => {

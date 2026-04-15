@@ -2,6 +2,7 @@
 {#if name}
 	<div
 		class="combobox-list-header"
+		role="presentation"
 		{ontouchend}
 		>{name}</div>
 {/if}

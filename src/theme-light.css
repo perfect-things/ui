@@ -42,9 +42,9 @@
 	--ui-color-text-1: #222;
 	--ui-color-text-2: #666;
 	--ui-color-text-gradient: linear-gradient(to bottom,
-		color-mix(in srgb, var(--ui-color-text), #fff 50%) 0%,
-		color-mix(in srgb, var(--ui-color-text), #000 10%) 100%
-	);
+	color-mix(in srgb, var(--ui-color-text), #fff 50%) 0%,
+	color-mix(in srgb, var(--ui-color-text), #000 10%) 100%
+);
 
 
 	--ui-popup-border: 1px solid #ccc;

@@ -1,6 +1,10 @@
 /** @type {import('stylelint').Config} */
+
 export default {
 	extends: 'stylelint-config-standard',
+	plugins: [
+		'@stylistic/stylelint-plugin'
+	],
 	ignoreFiles: [
 		'coverage/*',
 		'public/*',
@@ -51,6 +55,23 @@ export default {
 		'string-no-newline': true,
 		'unit-no-unknown': true,
 		'value-keyword-case': 'lower',
-		'value-no-vendor-prefix': null
+		'value-no-vendor-prefix': null,
+		'color-function-notation': 'modern',
+
+		// stylistic rules from @stylistic/stylelint-plugin:
+		'@stylistic/indentation': 'tab',
+
+		'@stylistic/block-closing-brace-empty-line-before': 'never',
+		'@stylistic/block-closing-brace-newline-after': 'always',
+		'@stylistic/block-closing-brace-newline-before': 'always-multi-line',
+		'@stylistic/block-closing-brace-space-before': 'always-single-line',
+		'@stylistic/block-opening-brace-newline-after': 'always-multi-line',
+		'@stylistic/block-opening-brace-space-after': 'always-single-line',
+		'@stylistic/block-opening-brace-space-before': 'always',
+
+		'@stylistic/color-hex-case': 'lower',
+		'@stylistic/number-leading-zero': 'always',
+		'@stylistic/unit-case': 'lower',
+		'@stylistic/declaration-colon-space-after': 'always'
 	}
 };

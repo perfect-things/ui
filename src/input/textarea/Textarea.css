@@ -32,7 +32,7 @@
 .textarea textarea:focus,
 .textarea textarea:invalid { box-shadow: none; }
 
-.textarea.has-error .textarea-inner  { border-color: var(--ui-color-danger); }
+.textarea.has-error .textarea-inner { border-color: var(--ui-color-danger); }
 .textarea.has-error .textarea-inner:focus-within { box-shadow: var(--ui-shadow-danger); }
 
 

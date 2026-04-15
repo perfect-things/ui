@@ -8,7 +8,7 @@ export function parseAmount (amount: string): number {
 	amount = ('' + amount).replace(/[\s,]/g, '').replace(/^-?0+(?=\d)/, '');
 	if (!(/^[+\-\\*/()\d.]+$/i).test(amount)) return 0;
 	if ((/[+\-\\*/.]+/i).test(amount)) {
-		let res: number = 0;
+		let res: number;
 		// eslint-disable-next-line @typescript-eslint/no-implied-eval
 		try { res = new Function(`return ${amount}`)(); }
 		catch { res = 0; }

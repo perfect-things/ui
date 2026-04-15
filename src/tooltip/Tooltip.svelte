@@ -65,6 +65,7 @@ let {
 
 let showTimer, hideTimer, shownEvent, noHide = false;
 
+// svelte-ignore state_referenced_locally
 let _position = $state(position);
 let opened = $state(false);
 let targetEl = $state(undefined);

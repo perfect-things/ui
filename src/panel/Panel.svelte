@@ -76,6 +76,7 @@ let {
 }: PanelProps = $props();
 
 let headerEl = $state<HTMLElement | null>(null);
+// svelte-ignore state_referenced_locally
 let expanded = $state(open || !title);
 
 const cls = $derived([

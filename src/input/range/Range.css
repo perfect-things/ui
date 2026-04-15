@@ -50,7 +50,7 @@
 	width: var(--range-size);
 	border-radius: 5rem;
 	box-shadow: 0 1px 3px #000c;
-    transform: translateY(calc(-50% + 0.25rem - 1px));
+	transform: translateY(calc(-50% + 0.25rem - 1px));
 	transform-origin: center 25%;
 	background: var(--ui-color-text-gradient);
 	/* border: 1px solid var(--ui-color-border); */

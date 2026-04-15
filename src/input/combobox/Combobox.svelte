@@ -207,9 +207,12 @@ function closeAndSelect () {
 function close () {
 	if (!opened) return;
 	removeEventListeners();
-	opened = false;
 	previousInputValue = inputValue;
 	previousValue = cloneDeep(value);
+	// update inputValue before closing so derived values in list children
+	// don't recalculate during teardown (which causes derived_inert warning)
+	inputValue = getInputValue(value, multiselect);
+	opened = false;
 }
 
 

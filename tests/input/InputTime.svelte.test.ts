@@ -46,6 +46,7 @@ test('InputTime', async () => {
 	props.error = '';
 	flushSync();
 	err = cmp.querySelector('.info-bar-error');
+	expect(err).not.toBeInTheDocument();
 
 	// @ts-ignore
 	props.info = 'info';

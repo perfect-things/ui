@@ -8,3 +8,4 @@ docs/*.sketch
 
 *.map
 .DS_Store
+.npmrc

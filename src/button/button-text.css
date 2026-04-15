@@ -17,4 +17,4 @@
 .button-text.error:hover,
 .ui-keyboard .button-text.error:focus,
 .button-text.danger:hover,
-.ui-keyboard .button-text.danger:focus  { background-color: var(--ui-color-danger); }
+.ui-keyboard .button-text.danger:focus { background-color: var(--ui-color-danger); }

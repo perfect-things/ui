@@ -142,6 +142,7 @@ let {
 let picker;
 let isHiding = false;
 const errorMessageId = guid();
+// svelte-ignore state_referenced_locally
 const useNative = isMobile() && useNativeOnMobile;
 
 let open = $state(!!useNative);

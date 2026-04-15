@@ -200,9 +200,9 @@ function measure (pass: string): { score: number; text: string } {
 	if ((strength && !lib) || !pass || !strength) return { score: 0, text: '' };
 
 	const res = lib(pass);
-	const warning = res.feedback.warning;
+	const warn = res.feedback.warning;
 	const suggestion = res.feedback.suggestions;
-	const text = [warning, ...suggestion].filter(i => i.length).join('.<br>');
+	const text = [warn, ...suggestion].filter(i => i.length).join('.<br>');
 	return { score: res.score, text };
 }
 
