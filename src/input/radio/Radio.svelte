@@ -58,6 +58,7 @@ A radio button group component for single selection from multiple options.
 <div bind:this={element} class={cls} {...restProps}>
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_items[0]?.id}/>
 			{@render inner()}
@@ -65,6 +66,7 @@ A radio button group component for single selection from multiple options.
 	{:else}
 		<Label {label} {disabled} for={_items[0].id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -72,7 +74,7 @@ A radio button group component for single selection from multiple options.
 import './Radio.css';
 import type { RadioProps } from './types';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -87,6 +89,7 @@ let {
 	value = $bindable(''),
 	error = '',
 	info = '',
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	onchange = () => {},

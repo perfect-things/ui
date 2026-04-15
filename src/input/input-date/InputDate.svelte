@@ -87,6 +87,7 @@ A date input component with calendar picker and native date input fallback.
 
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
 			{@render inner()}
@@ -94,6 +95,7 @@ A date input component with calendar picker and native date input fallback.
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -106,7 +108,7 @@ import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
 import { Button } from '../../button';
 import { guid, isMobile } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -121,6 +123,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),

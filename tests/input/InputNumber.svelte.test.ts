@@ -47,6 +47,17 @@ test('InputNumber renders with correct props', async () => {
 	expect(info).toBeInTheDocument();
 	expect(info).toHaveTextContent('info');
 
+	props.warning = 'watch out';
+	flushSync();
+	let warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).not.toBeInTheDocument();
+
 	await unmount(component);
 });
 

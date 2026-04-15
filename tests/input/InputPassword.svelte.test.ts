@@ -61,6 +61,17 @@ describe('InputPassword', () => {
 		info = cmp.querySelector('.info-bar-info');
 		expect(info).not.toBeInTheDocument();
 
+		props.warning = 'watch out';
+		flushSync();
+		let warn = cmp.querySelector('.info-bar-warning');
+		expect(warn).toBeInTheDocument();
+		expect(warn).toHaveTextContent('watch out');
+
+		props.warning = '';
+		flushSync();
+		warn = cmp.querySelector('.info-bar-warning');
+		expect(warn).not.toBeInTheDocument();
+
 		// test "show password" button
 		expect(input.type).toBe('password');
 		const showPasswordBtn = document.body.querySelector('.input-password-button');

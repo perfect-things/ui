@@ -53,6 +53,7 @@ A range slider input component with customizable ticks and visual feedback.
 <div bind:this={element} class={cls} {...restProps}>
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
 			{@render inner()}
@@ -60,6 +61,7 @@ A range slider input component with customizable ticks and visual feedback.
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -69,7 +71,7 @@ A range slider input component with customizable ticks and visual feedback.
 import './Range.css';
 import type { RangeProps } from './types';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -82,6 +84,7 @@ let {
 	placeholder = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	name = undefined,
 	labelOnTheLeft = false,
 	min = 0,

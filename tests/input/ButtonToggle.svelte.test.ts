@@ -71,6 +71,17 @@ test('ButtonToggle', async () => {
 	info = btnGroup.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
 
+	props.warning = 'watch out';
+	flushSync();
+	let warn = btnGroup.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	warn = btnGroup.querySelector('.info-bar-warning');
+	expect(warn).not.toBeInTheDocument();
+
 	const lbl = btnGroup.querySelector('label');
 	expect(lbl).toBeInTheDocument();
 	expect(lbl).toHaveAttribute('for', props.id);

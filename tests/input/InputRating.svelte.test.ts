@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { mount, unmount } from 'svelte';
+import { flushSync, mount, unmount } from 'svelte';
 import { expect, test, vi } from 'vitest';
 
 import { InputRating } from '../../src/input/input-rating';
@@ -53,6 +53,21 @@ test('InputRating', async () => {
 	await user.pointer({ keys: '[/MouseLeft]', target: star3 });
 
 	expect(star3).toHaveClass('active');
+
+	await unmount(component);
+});
+
+test('InputRating with warning shows warning message', async () => {
+	const props = $state({ warning: 'watch out' });
+	const component = mount(InputRating, { target: document.body, props });
+
+	const warn = document.body.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	expect(document.body.querySelector('.info-bar-warning')).not.toBeInTheDocument();
 
 	await unmount(component);
 });

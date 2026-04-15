@@ -53,6 +53,19 @@ test('Range', async () => {
 	info = cmp.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
 
+	// @ts-ignore
+	props.warning = 'watch out';
+	flushSync();
+	let warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	// @ts-ignore
+	props.warning = '';
+	flushSync();
+	warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).not.toBeInTheDocument();
+
 	const lbl = cmp.querySelector('label');
 	expect(lbl).toBeInTheDocument();
 	expect(lbl).toHaveAttribute('for', props.id);

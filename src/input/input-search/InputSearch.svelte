@@ -50,6 +50,7 @@ A search input component with search icon and clear functionality.
 <div class={cls} bind:this={element} {...restProps}>
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
 			{@render inner()}
@@ -57,6 +58,7 @@ A search input component with search icon and clear functionality.
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -67,7 +69,7 @@ import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Button } from '../../button';
 import { ICON, Icon } from '../../icon';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -83,6 +85,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),

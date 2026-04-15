@@ -65,6 +65,7 @@ A star rating input component for collecting user ratings.
 <div bind:this={element} class={cls} {...restProps}>
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
 			{@render inner()}
@@ -72,6 +73,7 @@ A star rating input component for collecting user ratings.
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -83,7 +85,7 @@ import './InputRating.css';
 import type { InputRatingProps } from './types';
 import { Button } from '../../button';
 import { guid, getMouseY, getMouseX } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -98,6 +100,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	max = 5,
 	icon = 'star',

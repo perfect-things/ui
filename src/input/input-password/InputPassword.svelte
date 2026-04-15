@@ -73,6 +73,7 @@ A password input component with visibility toggle and optional strength indicato
 <div bind:this={element} class={cls} {...restProps}>
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
 			{@render inner()}
@@ -80,6 +81,7 @@ A password input component with visibility toggle and optional strength indicato
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -90,7 +92,7 @@ import type { InputPasswordProps, ZxcvbnLib } from './types';
 import { onMount } from 'svelte';
 import { Button } from '../../button';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -108,6 +110,7 @@ let {
 	placeholder = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),

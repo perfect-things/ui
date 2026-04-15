@@ -57,6 +57,7 @@ A mathematical expression input component with evaluation capabilities.
 
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} for={_id}/>
 			{@render inner()}
@@ -64,6 +65,7 @@ A mathematical expression input component with evaluation capabilities.
 	{:else}
 		<Label {label} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -72,7 +74,7 @@ import './InputMath.css';
 import type { InputMathProps } from './types';
 import { Icon, ICON } from '../../icon';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 import { parseAmount, roundAmount } from './utils';
@@ -89,6 +91,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),

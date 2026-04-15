@@ -66,6 +66,7 @@ A perfect toggle/switch component with drag and click support.
 
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<InputError id={errorMessageId} msg={error} animOpacity={true}/>
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
@@ -74,6 +75,7 @@ A perfect toggle/switch component with drag and click support.
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<InputError id={errorMessageId} msg={error} animOpacity={true}/>
 		{@render inner()}
 	{/if}
@@ -84,7 +86,7 @@ import './Toggle.css';
 import type { InputProps } from '../types';
 import { guid, getMouseX, UI } from '../../utils';
 import { isTouchDevice, initialMeasure } from './utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -98,6 +100,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	value = $bindable(false),
 	labelOnTheLeft = false,
 	element = $bindable(undefined),

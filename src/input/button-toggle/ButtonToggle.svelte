@@ -65,6 +65,7 @@ A radio button group component styled as connected toggle buttons.
 
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
 			{@render inner()}
@@ -72,6 +73,7 @@ A radio button group component styled as connected toggle buttons.
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -82,7 +84,7 @@ import '../../button/Button.css';
 import type { ButtonToggleProps } from './types';
 import { guid } from '../../utils';
 import { Icon } from '../../icon';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -99,6 +101,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	onchange = () => {},
