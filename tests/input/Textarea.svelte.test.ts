@@ -128,6 +128,17 @@ test('Textarea with info shows info message', async () => {
 	await unmount(component);
 });
 
+test('Textarea with warning shows warning message', async () => {
+	const props = $state({ warning: 'Warning message' });
+	const component = mount(Textarea, { target: document.body, props });
+
+	const warn = document.body.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn.textContent.trim()).toBe('Warning message');
+
+	await unmount(component);
+});
+
 test('Textarea with labelOnTheLeft has correct class', async () => {
 	const props = $state({ label: 'Test Label', labelOnTheLeft: true });
 	const component = mount(Textarea, { target: document.body, props });
