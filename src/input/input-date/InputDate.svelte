@@ -27,64 +27,77 @@ A date input component with calendar picker and native date input fallback.
 @see {@link https://ui.perfectthings.dev/#InputDate Input Date Docs} for more info.
 -->
 
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
+
+	<div class="input-row">
+		<Button
+			link
+			icon="calendar"
+			class="input-date-button"
+			tabindex={-1}
+			{disabled}
+			onmousedown={onIconMouseDown}
+			onclick={onIconClick}/>
+
+		{#if useNative}
+			<input
+				type="date"
+				class="prevent-scrolling-on-focus"
+				aria-invalid={!!error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				{placeholder}
+				{name}
+				{disabled}
+				id={_id}
+				onchange={_onchange}
+				bind:this={inputElement}
+				bind:value>
+		{:else}
+			<input
+				type="text"
+				autocomplete="off"
+				class="prevent-scrolling-on-focus"
+				aria-invalid={!!error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				id={_id}
+				{placeholder}
+				{name}
+				{disabled}
+				{oninput}
+				{onblur}
+				{...({ onshow, onhide } as any)}
+				onchangeDate={_onchange}
+				onkeydowncapture={_onkeydown}
+				bind:this={inputElement}
+				bind:value>
+		{/if}
+	</div>
+</div>
+{/snippet}
+
 <div
 	class={cls}
 	bind:this={element}
 	aria-expanded={open}
 	{...restProps}>
 
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
-
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
-
-		<div class="input-row">
-			<Button
-				link
-				icon="calendar"
-				class="input-date-button"
-				tabindex={-1}
-				{disabled}
-				onmousedown={onIconMouseDown}
-				onclick={onIconClick}/>
-
-			{#if useNative}
-				<input
-					type="date"
-					class="prevent-scrolling-on-focus"
-					aria-invalid={!!error}
-					aria-errormessage={error ? errorMessageId : undefined}
-					aria-required={required}
-					{placeholder}
-					{name}
-					{disabled}
-					id={_id}
-					onchange={_onchange}
-					bind:this={inputElement}
-					bind:value>
-			{:else}
-				<input
-					type="text"
-					autocomplete="off"
-					class="prevent-scrolling-on-focus"
-					aria-invalid={!!error}
-					aria-errormessage={error ? errorMessageId : undefined}
-					aria-required={required}
-					id={_id}
-					{placeholder}
-					{name}
-					{disabled}
-					{oninput}
-					{onblur}
-					{...({ onshow, onhide } as any)}
-					onchangeDate={_onchange}
-					onkeydowncapture={_onkeydown}
-					bind:this={inputElement}
-					bind:value>
-			{/if}
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<Warning msg={warning} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
 		</div>
-	</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		<Warning msg={warning} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">
@@ -95,7 +108,7 @@ import { Datepicker } from 'vanillajs-datepicker';
 import { getIcon } from '../../icon';
 import { Button } from '../../button';
 import { guid, isMobile } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -110,6 +123,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),

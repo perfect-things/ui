@@ -58,3 +58,5 @@
 }
 
 .textarea.autogrow textarea { resize: none; }
+
+.textarea.label-on-the-left .input-label-row { align-items: start; }

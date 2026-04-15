@@ -3,7 +3,7 @@ body {
 	margin: 0;
 	background-color: var(--ui-color-background);
 	color: var(--ui-color-text);
-	--sidebar-width: 220px;
+	--sidebar-width: 240px;
 }
 
 

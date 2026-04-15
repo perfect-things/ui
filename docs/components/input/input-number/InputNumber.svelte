@@ -8,8 +8,8 @@
 <h3>With validation error</h3>
 <InputNumber label="Enter amount" {error} bind:value={value} oninput={validator} />
 
-<h3>With info box</h3>
-<InputNumber label="Enter amount" info="Additional information." />
+<h3>With info & warning</h3>
+<InputNumber label="Enter amount" info="Additional information." warning="This is a warning message." />
 
 <h3>With comma as the decimal separator</h3>
 <InputNumber label="Enter amount" separator="," />
@@ -17,6 +17,8 @@
 <h3>Label on the left</h3>
 <InputNumber label="Label is on the left" labelOnTheLeft/>
 
+<h3>Label on the left and info & warning text</h3>
+<InputNumber label="Label is on the left" labelOnTheLeft info="Additional information." warning="This is a warning message."/>
 
 
 <Code>{`

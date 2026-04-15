@@ -16,8 +16,8 @@
 	<h3>With label</h3>
 		<Range label="Slide to the right" />
 
-	<h3>With label and info text</h3>
-		<Range label="Write some text" info="This is some info for you" />
+	<h3>With label, info & warning text</h3>
+		<Range label="Write some text" info="This is some info for you" warning="This is a warning message." />
 
 	<h3>With label and error and live validation</h3>
 		<Range label="Move the slider" {error} {onchange} value={5} />
@@ -27,6 +27,9 @@
 
 	<h3>Label on the left</h3>
 		<Range label="Label is on the left" labelOnTheLeft/>
+
+	<h3>Label on the left and info & warning text</h3>
+		<Range label="Label is on the left" labelOnTheLeft info="This is some info for you" warning="This is a warning message."/>
 
 <Code>{`
 <Range {onchange} error="Invalid text" />

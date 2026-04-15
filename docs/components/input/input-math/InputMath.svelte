@@ -10,14 +10,17 @@
 <h3>High precision</h3>
 <InputMath label="Enter amount" precision={6} value={123.4567890} {onchange} />
 
-<h3>With info box</h3>
-<InputMath label="Enter amount" info="You can add 2 numbers here" {onchange}/>
+<h3>With info & warning</h3>
+<InputMath label="Enter amount" info="You can add 2 numbers here" warning="This is a warning message." {onchange}/>
 
 <h3>With info box and error.</h3>
 <InputMath label="Enter amount" info="You can add 2 numbers here" {error} onchange={onchange2}/>
 
 <h3>Label on the left</h3>
 <InputMath label="Label is on the left" labelOnTheLeft/>
+
+<h3>Label on the left and info & warning text</h3>
+<InputMath label="Label is on the left" labelOnTheLeft info="You can add 2 numbers here" warning="This is a warning message."/>
 
 
 <Code>{`

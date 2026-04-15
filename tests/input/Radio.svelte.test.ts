@@ -19,6 +19,7 @@ test('Radio', async () => {
 		class: 'test-class',
 		error: 'error',
 		info: '',
+		warning: undefined,
 		items,
 		onchange: vi.fn()
 	});
@@ -51,6 +52,17 @@ test('Radio', async () => {
 	flushSync();
 	info = cmp.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
+
+	props.warning = 'watch out';
+	flushSync();
+	let warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).not.toBeInTheDocument();
 
 	const lbl = cmp.querySelector('label');
 	expect(lbl).toBeInTheDocument();

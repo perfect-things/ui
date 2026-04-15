@@ -100,14 +100,26 @@ input[type=color] {
 .range.label-on-the-left,
 .input.label-on-the-left {
 	display: inline-flex;
+	flex-flow: column;
+	align-items: stretch;
+	width: 100%;
+	gap: 0.5rem;
+}
+
+.label-on-the-left .range-inner,
+.label-on-the-left .textarea-inner,
+.label-on-the-left .radio-inner,
+.label-on-the-left .input-inner { flex: 1; }
+
+.label-on-the-left .info-bar { margin-bottom: 0; }
+
+.label-on-the-left .input-label-row {
+	display: flex;
 	flex-flow: row;
 	align-items: center;
 	width: 100%;
 	gap: 1rem;
 }
-
-.label-on-the-left .range-inner,
-.label-on-the-left .input-inner { flex: 1; }
 
 
 .input-inner:focus-within {

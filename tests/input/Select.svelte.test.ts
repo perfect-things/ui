@@ -31,6 +31,7 @@ const defaultProps = {
 	label: 'Component1',
 	error: 'error',
 	info: '',
+	warning: undefined,
 	items: data,
 	value
 };
@@ -89,6 +90,17 @@ test('Select renders with correct props', async () => {
 	flushSync();
 	info = cmp.querySelector('.info-bar-info');
 	expect(info).not.toBeInTheDocument();
+
+	props.warning = 'watch out';
+	flushSync();
+	let warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).not.toBeInTheDocument();
 
 	await unmount(component);
 });

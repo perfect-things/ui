@@ -47,4 +47,7 @@
 	box-shadow: var(--ui-shadow-danger);
 }
 
-.checkbox.label-on-the-left .checkbox-row { flex-flow: row-reverse; }
+.checkbox.label-on-the-left .checkbox-row {
+	flex-flow: row-reverse;
+	justify-content: flex-end;
+}

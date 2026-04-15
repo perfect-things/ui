@@ -20,7 +20,7 @@
 .toggle-inner {
 	border: 1px solid var(--ui-color-text-2);
 	padding: var(--toggle-padding);
-	border-radius: inherit;
+	border-radius: var(--border-radius);
 	background-color: var(--ui-color-background-2);
 	position: relative;
 }

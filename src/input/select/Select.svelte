@@ -17,51 +17,64 @@ A select dropdown component based on native HTML select with enhanced data manag
 @see {@link https://ui.perfectthings.dev/#Select Select Docs} for more info.
 -->
 
-<div bind:this={element} class={cls} {...restProps}>
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
 
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
+	<div class="input-row">
+		<select
+			id={_id}
+			{title}
+			{name}
+			{disabled}
 
-		<div class="input-row">
-			<select
-				id={_id}
-				{title}
-				{name}
-				{disabled}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value
+			{onchange}>
 
-				aria-invalid={!!error}
-				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required}
-				bind:this={inputElement}
-				bind:value
-				{onchange}>
-
-				{#if placeholder}
-					<option value="">{placeholder}</option>
+			{#if placeholder}
+				<option value="">{placeholder}</option>
+			{/if}
+			{#each groups as group (group.id || group.name)}
+				{#if group.items}
+					<optgroup label={group.name}>
+						{#each group.items as item (item.id || item.name)}
+							<option value={item.id}>{item.name}</option>
+						{/each}
+					</optgroup>
+				{:else}
+					<option value={group.id}>{group.name}</option>
 				{/if}
-				{#each groups as group (group.id || group.name)}
-					{#if group.items}
-						<optgroup label={group.name}>
-							{#each group.items as item (item.id || item.name)}
-								<option value={item.id}>{item.name}</option>
-							{/each}
-						</optgroup>
-					{:else}
-						<option value={group.id}>{group.name}</option>
-					{/if}
-				{/each}
-			</select>
-		</div>
+			{/each}
+		</select>
 	</div>
+</div>
+{/snippet}
+
+<div bind:this={element} class={cls} {...restProps}>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<Warning msg={warning} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		<Warning msg={warning} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">
 import './Select.css';
 import type { SelectProps } from './types';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -79,6 +92,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
@@ -87,7 +101,6 @@ let {
 }: SelectProps = $props();
 
 
-// let groups = $state([]);
 const errorMessageId = guid();
 
 const _id = $derived(id || guid());

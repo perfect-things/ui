@@ -25,43 +25,56 @@ A mathematical expression input component with evaluation capabilities.
 @see {@link https://ui.perfectthings.dev/#InputMath Input Math Docs} for more info.
 -->
 
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
+
+	<div class="input-row">
+		<Icon name={ICON.CALCULATOR}/>
+		<input
+			type="text"
+			autocomplete="off"
+			id={_id}
+			name={name}
+			{disabled}
+			{placeholder}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value
+			onchange={_onchange}
+			onkeydown={_onkeydown}
+			onpaste={_onpaste}>
+	</div>
+</div>
+{/snippet}
+
 <div
 	bind:this={element}
 	class={cls}
 	{...restProps}>
 
-	<Label {label} for={_id}/>
-	<Info msg={info} />
-
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
-
-		<div class="input-row">
-			<Icon name={ICON.CALCULATOR}/>
-			<input
-				type="text"
-				autocomplete="off"
-				id={_id}
-				name={name}
-				{disabled}
-				{placeholder}
-				aria-invalid={!!error}
-				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required}
-				bind:this={inputElement}
-				bind:value
-				onchange={_onchange}
-				onkeydown={_onkeydown}
-				onpaste={_onpaste}>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<Warning msg={warning} />
+		<div class="input-label-row">
+			<Label {label} for={_id}/>
+			{@render inner()}
 		</div>
-	</div>
+	{:else}
+		<Label {label} for={_id}/>
+		<Info msg={info} />
+		<Warning msg={warning} />
+		{@render inner()}
+	{/if}
 </div>
 <script lang="ts">
 import './InputMath.css';
 import type { InputMathProps } from './types';
 import { Icon, ICON } from '../../icon';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 import { parseAmount, roundAmount } from './utils';
@@ -78,6 +91,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),

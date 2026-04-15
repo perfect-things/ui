@@ -32,11 +32,10 @@ A checkbox input component with label, validation, and accessibility features.
 
 <div bind:this={element} class={cls} {...restProps}>
 	<Info msg={info} />
+	<Warning msg={warning} />
 	<InputError id={errorMessageId} msg={error} animOffset={5} />
 
-	<div class={['checkbox-row']}
-
-		>
+	<div class={['checkbox-row']}>
 		<input
 			id={_id}
 			type="checkbox"
@@ -59,7 +58,7 @@ A checkbox input component with label, validation, and accessibility features.
 import './Checkbox.css';
 import type { CheckboxProps } from './types';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -73,6 +72,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	tabindex = undefined,
 	name = undefined,
 	required = undefined,

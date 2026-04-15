@@ -18,8 +18,8 @@
 	<h3>With error and live validation</h3>
 		<Checkbox {error} label="Please, check this by mistake." {onchange}/>
 
-	<h3>With info</h3>
-		<Checkbox info="This checkbox is the most important box ever!" label="Please, check this by mistake."/>
+	<h3>With info & warning</h3>
+		<Checkbox info="This checkbox is the most important box ever!" warning="This is a warning message." label="Please, check this by mistake."/>
 
 	<h3>With error and info</h3>
 		<Checkbox
@@ -30,6 +30,9 @@
 
 	<h3>Label on the left</h3>
 		<Checkbox label="Label is on the left" labelOnTheLeft/>
+
+	<h3>Label on the left and info & warning text</h3>
+		<Checkbox label="Label is on the left" labelOnTheLeft info="This checkbox is the most important box ever!" warning="This is a warning message."/>
 
 
 <Code>{`

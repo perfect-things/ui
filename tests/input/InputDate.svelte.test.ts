@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { mount, unmount } from 'svelte';
+import { flushSync, mount, unmount } from 'svelte';
 import { beforeEach, expect, test, vi } from 'vitest';
 
 import { InputDate } from '../../src/input/input-date';
@@ -162,3 +162,19 @@ test('InputDate handles keyboard navigation', async () => {
 
 	await unmount(component);
 });
+
+test('InputDate with warning shows warning message', async () => {
+	const props = $state({ warning: 'watch out' });
+	const component = mount(InputDate, { target: document.body, props });
+
+	const warn = document.body.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	expect(document.body.querySelector('.info-bar-warning')).not.toBeInTheDocument();
+
+	await unmount(component);
+});
+

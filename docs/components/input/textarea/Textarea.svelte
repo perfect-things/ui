@@ -12,8 +12,8 @@
 	<h3>Autogrow</h3>
 		<Textarea {onchange} label="Write some text" autogrow></Textarea>
 
-	<h3>With info text</h3>
-		<Textarea {onchange} label="Write some text" info="This is some extra info for you"></Textarea>
+	<h3>With info & warning text</h3>
+		<Textarea {onchange} label="Write some text" info="This is some extra info for you" warning="This is a warning message."></Textarea>
 
 	<h3>With error and live validation</h3>
 		<Textarea {onchange} label="Write some text" {error} {oninput}></Textarea>
@@ -23,6 +23,9 @@
 
 	<h3>Label on the left</h3>
 		<Textarea {onchange} label="Label is on the left" labelOnTheLeft/>
+
+	<h3>Label on the left and info & warning text</h3>
+		<Textarea label="Label is on the left" labelOnTheLeft info="This is some extra info for you" warning="This is a warning message."/>
 
 
 <Code>{`

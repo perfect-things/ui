@@ -39,8 +39,8 @@
 <h3>Label</h3>
 <InputDate label="Pick one" />
 
-<h3>Info</h3>
-<InputDate label="Pick one" info="Pick your pick" />
+<h3>Info & Warning</h3>
+<InputDate label="Pick one" info="Pick your pick" warning="This is a warning message." />
 
 <h3>Error</h3>
 <InputDate
@@ -52,6 +52,8 @@
 <h3>Label on the left</h3>
 <InputDate label="Label is on the left" labelOnTheLeft/>
 
+<h3>Label on the left and info & warning text</h3>
+<InputDate label="Label is on the left" labelOnTheLeft info="Pick your pick" warning="This is a warning message."/>
 
 
 <Code>{`

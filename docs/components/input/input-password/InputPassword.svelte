@@ -19,8 +19,8 @@
 	<h3>With password strength indicator and label</h3>
 		<InputPassword strength label="New password"/>
 
-	<h3>With password strength indicator, label, and info box</h3>
-		<InputPassword strength label="New password" info="Password rules"/>
+	<h3>With password strength indicator, label, info box & warning</h3>
+		<InputPassword strength label="New password" info="Password rules" warning="This is a warning message."/>
 
 	<h3>With password strength indicator, label, info box, and error</h3>
 		<InputPassword strength label="New password" info="Password rules" error="Your password is weak!"/>
@@ -28,8 +28,14 @@
 	<h3>Label on the left</h3>
 		<InputPassword label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info & warning text</h3>
+		<InputPassword label="Label is on the left" labelOnTheLeft info="Password rules" warning="This is a warning message."/>
+
 	<h3>With password strength and label on the left</h3>
 		<InputPassword strength labelOnTheLeft label="New password"/>
+
+	<h3>With password strength, label on the left, and info text</h3>
+		<InputPassword strength label="Label is on the left" labelOnTheLeft info="Password rules"/>
 
 
 

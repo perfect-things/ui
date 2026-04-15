@@ -17,7 +17,7 @@ const defaultProps = {
 
 
 test('InputNumber renders with correct props', async () => {
-	const props = $state({ ...defaultProps, onchange: vi.fn() });
+	const props = $state({ ...defaultProps, warning: undefined, onchange: vi.fn() });
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');
@@ -46,6 +46,17 @@ test('InputNumber renders with correct props', async () => {
 	const info = cmp.querySelector('.info-bar-info');
 	expect(info).toBeInTheDocument();
 	expect(info).toHaveTextContent('info');
+
+	props.warning = 'watch out';
+	flushSync();
+	let warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).toBeInTheDocument();
+	expect(warn).toHaveTextContent('watch out');
+
+	props.warning = '';
+	flushSync();
+	warn = cmp.querySelector('.info-bar-warning');
+	expect(warn).not.toBeInTheDocument();
 
 	await unmount(component);
 });

@@ -23,14 +23,17 @@
 	<h3>Label</h3>
 		<Toggle label="Toggle the lights" />
 
-	<h3>Info</h3>
-		<Toggle label="Toggle the lights" info="This toggle switches the bathroom lights on/off" />
+	<h3>Info & Warning</h3>
+		<Toggle label="Toggle the lights" info="This toggle switches the bathroom lights on/off" warning="This is a warning message." />
 
 	<h3>Error</h3>
 		<Toggle label="Toggle the lights" {error} {onchange}/>
 
 	<h3>Label on the left</h3>
 		<Toggle label="Label is on the left" labelOnTheLeft/>
+
+	<h3>Label on the left and info & warning text</h3>
+		<Toggle label="Label is on the left" labelOnTheLeft info="This toggle switches the bathroom lights on/off" warning="This is a warning message."/>
 
 
 <Code>{`

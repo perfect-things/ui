@@ -15,39 +15,52 @@ A search input component with search icon and clear functionality.
 @see {@link https://ui.perfectthings.dev/#InputSearch Input Search Docs} for more info.
 -->
 
-<div class={cls} bind:this={element} {...restProps}>
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
 
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
+	<div class="input-row">
+		<Icon name={ICON.SEARCH}/>
 
-		<div class="input-row">
-			<Icon name={ICON.SEARCH}/>
+		<input
+			id={_id}
+			autocomplete="off"
+			type="search"
+			{disabled}
+			{name}
+			{placeholder}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value
+			{onkeydown}>
 
-			<input
-				id={_id}
-				autocomplete="off"
-				type="search"
-				{disabled}
-				{name}
-				{placeholder}
-				aria-invalid={!!error}
-				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required}
-				bind:this={inputElement}
-				bind:value
-				{onkeydown}>
-
-			<Button link
-				icon="close"
-				class={[
-					'input-search-button',
-					{ visible: value !== '' && !disabled }
-				]}
-				onclick={clear}/>
-		</div>
+		<Button link
+			icon="close"
+			class={[
+				'input-search-button',
+				{ visible: value !== '' && !disabled }
+			]}
+			onclick={clear}/>
 	</div>
+</div>
+{/snippet}
+
+<div class={cls} bind:this={element} {...restProps}>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<Warning msg={warning} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		<Warning msg={warning} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">
@@ -56,7 +69,7 @@ import type { InputProps } from '../types';
 import { guid } from '../../utils';
 import { Button } from '../../button';
 import { ICON, Icon } from '../../icon';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -72,6 +85,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),

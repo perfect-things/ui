@@ -25,8 +25,8 @@
     ],
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
             "svelte": "./dist/index.js",
+            "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
         },
         "./dist/*.css": "./dist/*.css"
@@ -54,7 +54,7 @@
         "test:coverage": "vitest run --coverage",
         "test:ui": "vitest --ui",
         "test:watch": "vitest",
-        "test": "vitest run"
+        "test": "vitest run --coverage"
     },
     "peerDependencies": {
         "svelte": "^5"

@@ -16,6 +16,7 @@ export interface InputProps extends ComponentProps {
 	label?: string;
 	error?: string;
 	info?: string;
+	warning?: string;
 
 	labelOnTheLeft?: boolean;
 	placeholder?: string;

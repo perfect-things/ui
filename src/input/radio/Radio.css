@@ -47,6 +47,7 @@
 	border-radius: var(--ui-border-radius-s);
 }
 
+.radio .radio-item .label { padding: 0; }
 .radio .radio-item input { border-radius: 10rem; margin: 0; }
 .radio .radio-item input:focus { box-shadow: none; }
 
@@ -82,3 +83,9 @@
 
 
 .radio.has-error .info-bar-error { background-color: transparent; }
+
+
+.radio.label-on-the-left .input-label-row { align-items: start; }
+.radio.label-on-the-left .input-label-row>.label {
+	padding-top: calc(1rem - var(--ui-radio-padding));
+}

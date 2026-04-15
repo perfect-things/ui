@@ -27,42 +27,54 @@ A radio button group component for single selection from multiple options.
 @see {@link https://ui.perfectthings.dev/#Radio Radio Docs} for more info.
 -->
 
-<div bind:this={element} class={cls} {...restProps}>
-	<Label {label} {disabled} for={_items[0].id}/>
+{#snippet inner()}
+<div class={['radio-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
 
-	<Info msg={info} />
-
-	<div class={['radio-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
-
-		<div class="radio-items">
-			{#each _items as item (item.id)}
-				<div
-					ontouchstartcapture={onmousedown}
-					onmousedowncapture={onmousedown}
-					class={[
-						'radio-item',
-						{ disabled: disabled || item.disabled }
-					]}>
-					<input
-						type="radio"
-						id={item.id}
-						{name}
-						value={item.value}
-						checked={item.value === value}
-						disabled={disabled || item.disabled}
-						onchange={e => _onchange(e, item)}>
-					<Label disabled={disabled || item.disabled} for={item.id} label={item.name}/>
-				</div>
-			{/each}
-		</div>
+	<div class="radio-items">
+		{#each _items as item (item.id)}
+			<div
+				ontouchstartcapture={onmousedown}
+				onmousedowncapture={onmousedown}
+				class={[
+					'radio-item',
+					{ disabled: disabled || item.disabled }
+				]}>
+				<input
+					type="radio"
+					id={item.id}
+					{name}
+					value={item.value}
+					checked={item.value === value}
+					disabled={disabled || item.disabled}
+					onchange={e => _onchange(e, item)}>
+				<Label disabled={disabled || item.disabled} for={item.id} label={item.name}/>
+			</div>
+		{/each}
 	</div>
+</div>
+{/snippet}
+
+<div bind:this={element} class={cls} {...restProps}>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<Warning msg={warning} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_items[0]?.id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_items[0].id}/>
+		<Info msg={info} />
+		<Warning msg={warning} />
+		{@render inner()}
+	{/if}
 </div>
 <script lang="ts">
 import './Radio.css';
 import type { RadioProps } from './types';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -77,6 +89,7 @@ let {
 	value = $bindable(''),
 	error = '',
 	info = '',
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	onchange = () => {},

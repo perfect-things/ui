@@ -23,14 +23,17 @@
 	<h3>Label</h3>
 		<Select items={selectItems} label="Select label" />
 
-	<h3>Info</h3>
-		<Select items={selectItems} label="Select label" info="Select something here" />
+	<h3>Info & Warning</h3>
+		<Select items={selectItems} label="Select label" info="Select something here" warning="Select with care" />
 
 	<h3>Error</h3>
 		<Select items={selectItems} label="Select label" error="You picked the wrong side!" />
 
 	<h3>Label on the left</h3>
 		<Select items={selectItems} label="Label is on the left" labelOnTheLeft/>
+
+	<h3>Label on the left and info & warning text</h3>
+		<Select items={selectItems} label="Label is on the left" labelOnTheLeft info="Select something here" warning="Select with care"/>
 
 
 <Code>{`

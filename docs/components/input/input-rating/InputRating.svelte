@@ -26,8 +26,8 @@
 <InputRating label="Pick one" />
 
 
-<h3>Info</h3>
-<InputRating label="Pick one" info="Pick your pick" />
+<h3>Info & Warning</h3>
+<InputRating label="Pick one" info="Pick your pick" warning="This is a warning message." />
 
 
 <h3>Error</h3>
@@ -36,6 +36,15 @@
 
 <h3>Label on the left</h3>
 <InputRating label="Label is on the left" labelOnTheLeft/>
+
+<h3>Label on the left and info & warning text</h3>
+<InputRating
+	labelOnTheLeft
+	label="Label is on the left"
+	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
+	warning="This is a warning message."
+	/>
+
 
 
 
