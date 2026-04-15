@@ -31,6 +31,9 @@
 	<h3>Label on the left</h3>
 		<Checkbox label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info text</h3>
+		<Checkbox label="Label is on the left" labelOnTheLeft info="This checkbox is the most important box ever!"/>
+
 
 <Code>{`
 <Checkbox {onchange} label="I'm a little label" {error} />

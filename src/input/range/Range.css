@@ -2,7 +2,6 @@
 	position: relative;
 	width: 25ch;
 	vertical-align: top;
-	/* --range-size: calc(var(--ui-button-height) * 0.9); */
 	--range-size: calc(var(--ui-button-height) / 1.125);
 	--ticks-pad: calc(var(--range-size) / 16);
 }
@@ -93,7 +92,7 @@
 .range-ticks {
 	display: flex;
 	justify-content: space-between;
-	margin: 0 var(--ticks-pad) calc(var(--ticks-pad) * 6);
+	margin: 0 calc(var(--ticks-pad) * 2) calc(var(--ticks-pad) * 6) calc(var(--ticks-pad) / 2);
 	cursor: default;
 }
 .range-ticks span { width: 3ch; text-align: center; }

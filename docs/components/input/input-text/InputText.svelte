@@ -1,35 +1,42 @@
 <h2>Input</h2>
 
-	<p>The basic inputs are styled with css.<br>
-	Enhanced components provide additional functionality and better DX.</p>
+<p>The basic inputs are styled with css.<br>
+Enhanced components provide additional functionality and better DX.</p>
 
-	<br>
-	<h3>Normal</h3>
-		<InputText {oninput} bind:value />
-		<p>Input value: {value}</p>
+<br>
+<h3>Normal</h3>
+<InputText {oninput} bind:value />
+<p>Input value: {value}</p>
 
-	<h3>Disabled</h3>
-		<InputText disabled value="disabled value" {oninput} />
+<h3>Disabled</h3>
+<InputText disabled value="disabled value" {oninput} />
 
-	<h3>With validation</h3>
-		<InputText
-			label="Validate on change"
-			error={error1}
-			{value}
-			{onchange} />
+<h3>With validation</h3>
+<InputText
+	label="Validate on change"
+	error={error1}
+	{value}
+	{onchange} />
 
-		<br>
+<br>
 
-		<InputText
-			label="Validate on input"
-			info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
-			required
-			error={error2}
-			{value}
-			{oninput} />
+<InputText
+	label="Validate on input"
+	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
+	required
+	error={error2}
+	{value}
+	{oninput} />
 
-	<h3>Label on the left</h3>
-		<InputText label="Label is on the left" labelOnTheLeft/>
+<h3>Label on the left</h3>
+<InputText label="Label is on the left" labelOnTheLeft/>
+
+<h3>Label on the left and info text</h3>
+<InputText
+	labelOnTheLeft
+	label="Label is on the left"
+	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
+	/>
 
 <Code>{`
 <InputText label="Email" error="Invalid email" value="admin" onchange={onChange} />

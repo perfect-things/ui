@@ -27,39 +27,50 @@ A specialized number input component with validation and formatting.
 @see {@link https://ui.perfectthings.dev/#InputNumber Input Number Docs} for more info.
 -->
 
+{#snippet inner()}
+<div class="input-inner">
+	<InputError id={errorMessageId} msg={error} />
+
+	<input
+		type="text"
+		autocomplete="off"
+		id={_id}
+		{name}
+		{disabled}
+		{placeholder}
+		{min}
+		{max}
+		{step}
+		aria-invalid={!!error}
+		aria-errormessage={error ? errorMessageId : undefined}
+		aria-required={required}
+		bind:this={inputElement}
+		bind:value
+		onkeydown={_onkeydown}
+		onchange={_onchange}
+		{onpaste}
+		{onfocus}
+		{onblur}
+		{ondrop}>
+</div>
+{/snippet}
+
 <div
 	class={cls}
 	bind:this={element}
 	{...restProps}>
 
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
-
-	<div class="input-inner">
-		<InputError id={errorMessageId} msg={error} />
-
-		<input
-			type="text"
-			autocomplete="off"
-			id={_id}
-			{name}
-			{disabled}
-			{placeholder}
-			{min}
-			{max}
-			{step}
-			aria-invalid={!!error}
-			aria-errormessage={error ? errorMessageId : undefined}
-			aria-required={required}
-			bind:this={inputElement}
-			bind:value
-			onkeydown={_onkeydown}
-			onchange={_onchange}
-			{onpaste}
-			{onfocus}
-			{onblur}
-			{ondrop}>
-	</div>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">

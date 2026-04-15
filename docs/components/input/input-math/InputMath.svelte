@@ -19,6 +19,9 @@
 <h3>Label on the left</h3>
 <InputMath label="Label is on the left" labelOnTheLeft/>
 
+<h3>Label on the left and info text</h3>
+<InputMath label="Label is on the left" labelOnTheLeft info="You can add 2 numbers here"/>
+
 
 <Code>{`
 <InputMath label="Enter amount" {onchange} />

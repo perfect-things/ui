@@ -51,6 +51,9 @@
 <h3>Label on the left</h3>
 <Combobox {items} label="Label is on the left" labelOnTheLeft/>
 
+<h3>Label on the left and info text</h3>
+<Combobox {items} label="Label is on the left" labelOnTheLeft info="Select something here"/>
+
 
 <Code>{`
 <Combobox

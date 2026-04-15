@@ -19,39 +19,49 @@ A range slider input component with customizable ticks and visual feedback.
 @see {@link https://ui.perfectthings.dev/#Range Range Docs} for more info.
 -->
 
+{#snippet inner()}
+<div class={['range-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} animOpacity/>
+
+	{#if !hideTicks}
+		<div class="range-ticks">
+			<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+			{#each ticks as tick (tick)}
+				<span onclick={e => onTickClick(e, tick)}>{tick}</span>
+			{/each}
+		</div>
+	{/if}
+
+	<input
+		type="range"
+		id={_id}
+		{name}
+		{disabled}
+		{placeholder}
+		{min}
+		{max}
+		{step}
+		style="background-size: {progress}% 100%;"
+		aria-invalid={!!error}
+		aria-errormessage={error ? errorMessageId : undefined}
+		bind:this={inputElement}
+		bind:value
+		onchange={_onchange}>
+</div>
+{/snippet}
+
 <div bind:this={element} class={cls} {...restProps}>
-
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
-
-	<div class={['range-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} animOpacity/>
-
-		{#if !hideTicks}
-			<div class="range-ticks">
-				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-				{#each ticks as tick (tick)}
-					<span onclick={e => onTickClick(e, tick)}>{tick}</span>
-				{/each}
-			</div>
-		{/if}
-
-		<input
-			type="range"
-			id={_id}
-			{name}
-			{disabled}
-			{placeholder}
-			{min}
-			{max}
-			{step}
-			style="background-size: {progress}% 100%;"
-			aria-invalid={!!error}
-			aria-errormessage={error ? errorMessageId : undefined}
-			bind:this={inputElement}
-			bind:value
-			onchange={_onchange}>
-	</div>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 
 

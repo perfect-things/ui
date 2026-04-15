@@ -19,6 +19,9 @@
 	<h3>Label on the left</h3>
 		<InputTime label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info text</h3>
+		<InputTime label="Label is on the left" labelOnTheLeft info="Pick the right time"/>
+
 
 <Code>{`
 <InputTime label="Email" error="Invalid email" value="00:00" {onchange} />

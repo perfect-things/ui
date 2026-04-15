@@ -34,9 +34,7 @@ A checkbox input component with label, validation, and accessibility features.
 	<Info msg={info} />
 	<InputError id={errorMessageId} msg={error} animOffset={5} />
 
-	<div class={['checkbox-row']}
-
-		>
+	<div class={['checkbox-row']}>
 		<input
 			id={_id}
 			type="checkbox"

@@ -32,6 +32,9 @@
 	<h3>Label on the left</h3>
 		<Toggle label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info text</h3>
+		<Toggle label="Label is on the left" labelOnTheLeft info="This toggle switches the bathroom lights on/off"/>
+
 
 <Code>{`
 <Toggle value="true" label="Field label" onchange={onChange} />

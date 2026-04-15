@@ -17,6 +17,8 @@
 <h3>Label on the left</h3>
 <InputNumber label="Label is on the left" labelOnTheLeft/>
 
+<h3>Label on the left and info text</h3>
+<InputNumber label="Label is on the left" labelOnTheLeft info="Additional information."/>
 
 
 <Code>{`

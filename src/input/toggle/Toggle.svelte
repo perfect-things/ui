@@ -28,6 +28,29 @@ A perfect toggle/switch component with drag and click support.
 @see {@link https://ui.perfectthings.dev/#Toggle Toggle Docs} for more info.
 -->
 
+{#snippet inner()}
+<div class="toggle-inner">
+	<label class="toggle-label" {title}>
+		<div class="toggle-scroller" bind:this={scroller}>
+			<div class="toggle-option"></div>
+			<div class="toggle-handle" bind:this={handle}><div class="toggle-knob"></div></div>
+			<div class="toggle-option"></div>
+			<input
+				id={_id}
+				type="checkbox"
+				class="toggle-input"
+				{disabled}
+				{name}
+				aria-invalid={!!error}
+				aria-errormessage={error ? errorMessageId : undefined}
+				aria-required={required}
+				bind:this={inputElement}
+				bind:checked={value}>
+		</div>
+	</label>
+</div>
+{/snippet}
+
 <div
 	class={cls}
 	role="switch"
@@ -41,31 +64,19 @@ A perfect toggle/switch component with drag and click support.
 	onclick={e => e.preventDefault()}
 	{...restProps}>
 
-	<Label {label} {disabled} for={_id}/>
-
-	<Info msg={info} />
-	<InputError id={errorMessageId} msg={error} animOpacity={true}/>
-
-	<div class="toggle-inner">
-		<label class="toggle-label" {title}>
-			<div class="toggle-scroller" bind:this={scroller}>
-				<div class="toggle-option"></div>
-				<div class="toggle-handle" bind:this={handle}><div class="toggle-knob"></div></div>
-				<div class="toggle-option"></div>
-				<input
-					id={_id}
-					type="checkbox"
-					class="toggle-input"
-					{disabled}
-					{name}
-					aria-invalid={!!error}
-					aria-errormessage={error ? errorMessageId : undefined}
-					aria-required={required}
-					bind:this={inputElement}
-					bind:checked={value}>
-			</div>
-		</label>
-	</div>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<InputError id={errorMessageId} msg={error} animOpacity={true}/>
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		<InputError id={errorMessageId} msg={error} animOpacity={true}/>
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">

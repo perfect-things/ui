@@ -12,29 +12,40 @@ A time input component with clock icon and native time picker.
 @see {@link https://ui.perfectthings.dev/#InputTime Input Time Docs} for more info.
 -->
 
-<div bind:this={element} class={cls} {...restProps}>
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
 
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
-
-		<div class="input-row">
-			<input
-				id={_id}
-				autocomplete="off"
-				type="time"
-				{name}
-				{disabled}
-				{placeholder}
-				aria-invalid={!!error}
-				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required}
-				bind:this={inputElement}
-				bind:value
-				onchange={_onchange}>
-		</div>
+	<div class="input-row">
+		<input
+			id={_id}
+			autocomplete="off"
+			type="time"
+			{name}
+			{disabled}
+			{placeholder}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value
+			onchange={_onchange}>
 	</div>
+</div>
+{/snippet}
+
+<div bind:this={element} class={cls} {...restProps}>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">

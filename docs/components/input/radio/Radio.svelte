@@ -26,6 +26,9 @@
 	<h3>Label on the left</h3>
 		<Radio items={strings} label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info text</h3>
+		<Radio items={strings} label="Label is on the left" labelOnTheLeft info="Here be info message."/>
+
 
 <Code>{`
 <Radio {items} name="my-radio" bind:value label="Select option" {onchange} />

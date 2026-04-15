@@ -26,6 +26,9 @@
 	<h3>Label on the left</h3>
 		<InputSearch label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info text</h3>
+		<InputSearch label="Label is on the left" labelOnTheLeft info="This should be avoided in most cases. Validating input as user is typing is a bad UX."/>
+
 
 <Code>{`
 <InputSearch label="Email" error="Invalid email" value="admin" onchange={onChange} />

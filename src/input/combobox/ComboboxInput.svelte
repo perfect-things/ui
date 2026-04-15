@@ -1,6 +1,4 @@
-<Label {label} {disabled} for={_id}/>
-<Info msg={info} />
-
+{#snippet inner()}
 <div class={['input-inner', { disabled }]}>
 
 	<InputError id={errorMessageId} msg={error} />
@@ -39,6 +37,19 @@
 			{...restProps}>
 	</div>
 </div>
+{/snippet}
+
+{#if labelOnTheLeft}
+	<Info msg={info} />
+	<div class="input-label-row">
+		<Label {label} {disabled} for={_id}/>
+		{@render inner()}
+	</div>
+{:else}
+	<Label {label} {disabled} for={_id}/>
+	<Info msg={info} />
+	{@render inner()}
+{/if}
 
 <script lang="ts">
 import type { ComboboxInputProps } from './types';
@@ -60,6 +71,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	labelOnTheLeft = false,
 	opened = false,
 	placeholder = 'Type to filter...',
 	value = $bindable(''),

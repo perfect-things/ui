@@ -38,6 +38,7 @@ An advanced select component with search, filtering, and multi-selection capabil
 		{label}
 		{error}
 		{info}
+		{labelOnTheLeft}
 		{opened}
 		{placeholder}
 		bind:value={inputValue}

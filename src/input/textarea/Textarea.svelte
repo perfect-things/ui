@@ -15,26 +15,37 @@ A multi-line text input component with auto-grow option.
 @see {@link https://ui.perfectthings.dev/#Textarea Textarea Docs} for more info.
 -->
 
+{#snippet inner()}
+<div class={['textarea-inner', { disabled }]} data-value="{autogrow ? value : undefined}">
+	<InputError id={errorMessageId} msg={error} />
+
+	<textarea
+		id={_id}
+		{name}
+		{disabled}
+		{placeholder}
+		aria-invalid={!!error}
+		aria-errormessage={error ? errorMessageId : undefined}
+		aria-required={required}
+		bind:this={inputElement}
+		bind:value
+		{onfocus}
+		{onblur}></textarea>
+</div>
+{/snippet}
+
 <div bind:this={element} class={cls} {...restProps}>
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
-
-	<div class={['textarea-inner', { disabled }]} data-value="{autogrow ? value : undefined}">
-		<InputError id={errorMessageId} msg={error} />
-
-		<textarea
-			id={_id}
-			{name}
-			{disabled}
-			{placeholder}
-			aria-invalid={!!error}
-			aria-errormessage={error ? errorMessageId : undefined}
-			aria-required={required}
-			bind:this={inputElement}
-			bind:value
-			{onfocus}
-			{onblur}></textarea>
-	</div>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 <script lang="ts">
 import './Textarea.css';

@@ -27,50 +27,61 @@ A password input component with visibility toggle and optional strength indicato
 @see {@link https://ui.perfectthings.dev/#InputPassword Input Password Docs} for more info.
 -->
 
-<div bind:this={element} class={cls} {...restProps}>
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
 
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
-
-		<div class="input-row" class:visible>
-			<input
-				id={_id}
-				autocomplete="off"
-				{name}
-				{type}
-				{value}
-				{disabled}
-				{placeholder}
-				aria-invalid={!!error}
-				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required}
-				bind:this={inputElement}
-				oninput={_oninput}
-				onchange={_onchange}>
-			<Button link
-				{disabled}
-				icon={visible ? 'eye' : 'eyeOff'}
-				class="input-password-button"
-				onclick={toggle}/>
-		</div>
-
-		{#if strength && lib && value}
-			<div class="input-row">
-				<div class="password-strength" title={quality}>
-					<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
-				</div>
-			</div>
-			<div class="input-row">
-				<div class="password-strength-info {colorClass}">
-					<h2>{quality}</h2>
-					<small>{@html strengthInfoText}</small>
-				</div>
-			</div>
-		{/if}
-
+	<div class="input-row" class:visible>
+		<input
+			id={_id}
+			autocomplete="off"
+			{name}
+			{type}
+			{value}
+			{disabled}
+			{placeholder}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			oninput={_oninput}
+			onchange={_onchange}>
+		<Button link
+			{disabled}
+			icon={visible ? 'eye' : 'eyeOff'}
+			class="input-password-button"
+			onclick={toggle}/>
 	</div>
+
+	{#if strength && lib && value}
+		<div class="input-row">
+			<div class="password-strength" title={quality}>
+				<div class="password-strength-progress {colorClass}" style="width: {percent}%"></div>
+			</div>
+		</div>
+		<div class="input-row">
+			<div class="password-strength-info {colorClass}">
+				<h2>{quality}</h2>
+				<small>{@html strengthInfoText}</small>
+			</div>
+		</div>
+	{/if}
+
+</div>
+{/snippet}
+
+<div bind:this={element} class={cls} {...restProps}>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">

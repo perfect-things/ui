@@ -28,8 +28,14 @@
 	<h3>Label on the left</h3>
 		<InputPassword label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info text</h3>
+		<InputPassword label="Label is on the left" labelOnTheLeft info="Password rules"/>
+
 	<h3>With password strength and label on the left</h3>
 		<InputPassword strength labelOnTheLeft label="New password"/>
+
+	<h3>With password strength, label on the left, and info text</h3>
+		<InputPassword strength label="Label is on the left" labelOnTheLeft info="Password rules"/>
 
 
 

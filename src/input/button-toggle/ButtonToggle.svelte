@@ -21,6 +21,40 @@ A radio button group component styled as connected toggle buttons.
 @see {@link https://ui.perfectthings.dev/#ButtonToggle Button Toggle Docs} for more info.
 -->
 
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
+
+	<div class="input-scroller">
+		<div class="input-row">
+			{#each _items as item, idx (item.value)}
+				<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+				<label
+					class={[
+						'button',
+						'button-normal',
+						{ 'button-has-text': item.name, disabled },
+					]}
+					title={item.title || item.name || ''}
+					ontouchstart={onclick}
+					onmousedown={onclick}>
+						<Icon name={item.icon}/>
+						{item.name || ''}
+						<input
+							{name}
+							{disabled}
+							id={idx === 0 ? _id : undefined}
+							type="radio"
+							checked={item.value === value}
+							value={item.value}
+							onchange={e => _onchange(e, item)}>
+				</label>
+			{/each}
+		</div>
+	</div>
+</div>
+{/snippet}
+
 <div
 	class={cls}
 	role="radiogroup"
@@ -29,40 +63,17 @@ A radio button group component styled as connected toggle buttons.
 	bind:this={element}
 	{...restProps}>
 
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
-
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
-
-		<div class="input-scroller">
-			<div class="input-row">
-				{#each _items as item, idx (item.value)}
-					<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-					<label
-						class={[
-							'button',
-							'button-normal',
-							{ 'button-has-text': item.name, disabled },
-						]}
-						title={item.title || item.name || ''}
-						ontouchstart={onclick}
-						onmousedown={onclick}>
-							<Icon name={item.icon}/>
-							{item.name || ''}
-							<input
-								{name}
-								{disabled}
-								id={idx === 0 ? _id : undefined}
-								type="radio"
-								checked={item.value === value}
-								value={item.value}
-								onchange={e => _onchange(e, item)}>
-					</label>
-				{/each}
-			</div>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
 		</div>
-	</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">

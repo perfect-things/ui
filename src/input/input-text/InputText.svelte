@@ -21,33 +21,44 @@ A text input component with built-in label, validation, and accessibility featur
 ```
 @see {@link https://ui.perfectthings.dev/#InputText Input Text Docs} for more info.
 -->
+{#snippet inner()}
+<div class={['input-inner', { disabled }]}>
+	<InputError id={errorMessageId} msg={error} />
+	<input
+		id={_id}
+		{autocomplete}
+		type="text"
+		{name}
+		{disabled}
+		{placeholder}
+		{maxlength}
+		{minlength}
+		{pattern}
+		{tabindex}
+		aria-invalid={!!error}
+		aria-errormessage={error ? errorMessageId : undefined}
+		aria-required={required}
+		bind:this={inputElement}
+		bind:value
+		{onfocus}
+		{onblur}
+		{onkeydown}>
+</div>
+{/snippet}
+
 
 <div bind:this={element} class={cls} {...restProps}>
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
-
-	<div class={['input-inner', { disabled }]}>
-		<InputError id={errorMessageId} msg={error} />
-		<input
-			id={_id}
-			{autocomplete}
-			type="text"
-			{name}
-			{disabled}
-			{placeholder}
-			{maxlength}
-			{minlength}
-			{pattern}
-			{tabindex}
-			aria-invalid={!!error}
-			aria-errormessage={error ? errorMessageId : undefined}
-			aria-required={required}
-			bind:this={inputElement}
-			bind:value
-			{onfocus}
-			{onblur}
-			{onkeydown}>
-	</div>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 
 <script lang="ts">

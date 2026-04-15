@@ -19,49 +19,61 @@ A star rating input component for collecting user ratings.
 @see {@link https://ui.perfectthings.dev/#InputRating Input Rating Docs} for more info.
 -->
 
+{#snippet inner()}
 <!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_tabindex -->
-<div bind:this={element} class={cls} {...restProps}>
-	<Label {label} {disabled} for={_id}/>
-	<Info msg={info} />
-	<div
-		class="input-inner"
-		tabindex="0"
-		{onmousedown}
-		ontouchstart={onmousedown}
-		onkeydown={_onkeydown}>
+<div
+	class="input-inner"
+	tabindex="0"
+	{onmousedown}
+	ontouchstart={onmousedown}
+	onkeydown={_onkeydown}>
 
-		<InputError id={errorMessageId} msg={error} />
+	<InputError id={errorMessageId} msg={error} />
 
-		<div class="input-row">
-			{#each stars as star (star)}
-				<Button
-					class={{ active: value >= star }}
-					link
-					icon={icon}
-					tabindex={-1}
-					data-star={star}/>
-			{/each}
-
+	<div class="input-row">
+		{#each stars as star (star)}
 			<Button
-				class="btn-reset"
+				class={{ active: value >= star }}
 				link
-				icon="close"
+				icon={icon}
 				tabindex={-1}
-				disabled={!value}
-				onclick={reset}/>
+				data-star={star}/>
+		{/each}
 
-			<input
-				type="hidden"
-				{name}
-				{disabled}
-				id={_id}
-				aria-invalid={!!error}
-				aria-errormessage={error ? errorMessageId : undefined}
-				aria-required={required}
-				bind:this={inputElement}
-				bind:value>
-		</div>
+		<Button
+			class="btn-reset"
+			link
+			icon="close"
+			tabindex={-1}
+			disabled={!value}
+			onclick={reset}/>
+
+		<input
+			type="hidden"
+			{name}
+			{disabled}
+			id={_id}
+			aria-invalid={!!error}
+			aria-errormessage={error ? errorMessageId : undefined}
+			aria-required={required}
+			bind:this={inputElement}
+			bind:value>
 	</div>
+</div>
+{/snippet}
+
+<div bind:this={element} class={cls} {...restProps}>
+	{#if labelOnTheLeft}
+		<Info msg={info} />
+		<div class="input-label-row">
+			<Label {label} {disabled} for={_id}/>
+			{@render inner()}
+		</div>
+	{:else}
+		<Label {label} {disabled} for={_id}/>
+		<Info msg={info} />
+		{@render inner()}
+	{/if}
 </div>
 
 

@@ -24,6 +24,9 @@
 	<h3>Label on the left</h3>
 		<Textarea {onchange} label="Label is on the left" labelOnTheLeft/>
 
+	<h3>Label on the left and info text</h3>
+		<Textarea label="Label is on the left" labelOnTheLeft info="This is some extra info for you"/>
+
 
 <Code>{`
 <Textarea autogrow {onchange} error="Invalid text" />

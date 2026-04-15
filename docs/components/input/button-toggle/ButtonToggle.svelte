@@ -53,6 +53,8 @@
 <h3>Label on the left</h3>
 <ButtonToggle items={items} label="Label is on the left" labelOnTheLeft/>
 
+<h3>Label on the left and info text</h3>
+<ButtonToggle items={items} label="Label is on the left" labelOnTheLeft info="Pick your pick"/>
 
 
 <Code>{`
