@@ -57,6 +57,7 @@ A select dropdown component based on native HTML select with enhanced data manag
 <div bind:this={element} class={cls} {...restProps}>
 	{#if labelOnTheLeft}
 		<Info msg={info} />
+		<Warning msg={warning} />
 		<div class="input-label-row">
 			<Label {label} {disabled} for={_id}/>
 			{@render inner()}
@@ -64,6 +65,7 @@ A select dropdown component based on native HTML select with enhanced data manag
 	{:else}
 		<Label {label} {disabled} for={_id}/>
 		<Info msg={info} />
+		<Warning msg={warning} />
 		{@render inner()}
 	{/if}
 </div>
@@ -72,7 +74,7 @@ A select dropdown component based on native HTML select with enhanced data manag
 import './Select.css';
 import type { SelectProps } from './types';
 import { guid } from '../../utils';
-import { Info } from '../../info-bar';
+import { Info, Warning } from '../../info-bar';
 import { InputError } from '../input-error';
 import { Label } from '../label';
 
@@ -90,6 +92,7 @@ let {
 	label = '',
 	error = undefined,
 	info = undefined,
+	warning = undefined,
 	labelOnTheLeft = false,
 	element = $bindable(undefined),
 	inputElement = $bindable(undefined),
