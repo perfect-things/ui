@@ -14,6 +14,7 @@ const defaultProps = {
 	required: true,
 	error: 'error',
 	info: '',
+	warning: undefined,
 	label: 'Component1',
 };
 

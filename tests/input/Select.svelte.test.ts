@@ -31,6 +31,7 @@ const defaultProps = {
 	label: 'Component1',
 	error: 'error',
 	info: '',
+	warning: undefined,
 	items: data,
 	value
 };

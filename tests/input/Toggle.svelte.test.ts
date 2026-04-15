@@ -15,6 +15,7 @@ test('Toggle', async () => {
 		error: 'error',
 		label: 'Component1',
 		info: undefined,
+		warning: undefined,
 		onchange
 	});
 

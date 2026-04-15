@@ -17,7 +17,7 @@ const defaultProps = {
 
 
 test('InputNumber renders with correct props', async () => {
-	const props = $state({ ...defaultProps, onchange: vi.fn() });
+	const props = $state({ ...defaultProps, warning: undefined, onchange: vi.fn() });
 	const component = mount(InputNumber, { target: document.body, props });
 
 	const cmp = document.body.querySelector('.test-class');

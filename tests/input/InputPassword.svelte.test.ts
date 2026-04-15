@@ -19,6 +19,7 @@ describe('InputPassword', () => {
 			error: 'error',
 			strength: false,
 			info: '',
+			warning: undefined,
 			onchange: vi.fn(),
 		});
 
@@ -100,6 +101,7 @@ describe('InputPassword', () => {
 			error: 'error',
 			strength: true,
 			info: '',
+			warning: undefined,
 			onchange: vi.fn(),
 		});
 

@@ -24,6 +24,7 @@ test('Combobox', async () => {
 		label: 'Component1',
 		error: 'error',
 		info: '',
+		warning: undefined,
 		items,
 		value,
 		onchange: vi.fn(),

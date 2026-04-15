@@ -16,6 +16,7 @@ test('Checkbox', async () => {
 		class: 'test-class',
 		error: 'error',
 		info: undefined,
+		warning: undefined,
 		onchange: mock
 	});
 

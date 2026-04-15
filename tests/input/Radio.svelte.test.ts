@@ -19,6 +19,7 @@ test('Radio', async () => {
 		class: 'test-class',
 		error: 'error',
 		info: '',
+		warning: undefined,
 		items,
 		onchange: vi.fn()
 	});

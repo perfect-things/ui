@@ -19,7 +19,8 @@ test('ButtonToggle', async () => {
 		error: 'error',
 		label: 'Component1',
 		round: undefined,
-		info: undefined
+		info: undefined,
+		warning: undefined
 	});
 
 	const user = userEvent.setup();
