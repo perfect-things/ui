@@ -40,8 +40,8 @@
 <h3>Label</h3>
 <ButtonToggle items={items} label="Pick one" />
 
-<h3>Info</h3>
-<ButtonToggle items={items} label="Pick one" info="Pick your pick" />
+<h3>Info & Warning</h3>
+<ButtonToggle items={items} label="Pick one" info="Pick your pick" warning="This is a warning message." />
 
 <h3>Error</h3>
 <ButtonToggle items={items}
@@ -53,8 +53,8 @@
 <h3>Label on the left</h3>
 <ButtonToggle items={items} label="Label is on the left" labelOnTheLeft/>
 
-<h3>Label on the left and info text</h3>
-<ButtonToggle items={items} label="Label is on the left" labelOnTheLeft info="Pick your pick"/>
+<h3>Label on the left and info & warning text</h3>
+<ButtonToggle items={items} label="Label is on the left" labelOnTheLeft info="Pick your pick" warning="This is a warning message."/>
 
 
 <Code>{`

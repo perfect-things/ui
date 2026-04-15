@@ -18,6 +18,7 @@
 		<InputSearch
 			label="Validate on input"
 			info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
+			warning="This is a warning message."
 			required
 			error={error2}
 			{value}
@@ -26,8 +27,8 @@
 	<h3>Label on the left</h3>
 		<InputSearch label="Label is on the left" labelOnTheLeft/>
 
-	<h3>Label on the left and info text</h3>
-		<InputSearch label="Label is on the left" labelOnTheLeft info="This should be avoided in most cases. Validating input as user is typing is a bad UX."/>
+	<h3>Label on the left and info & warning text</h3>
+		<InputSearch label="Label is on the left" labelOnTheLeft info="This should be avoided in most cases. Validating input as user is typing is a bad UX." warning="This is a warning message."/>
 
 
 <Code>{`

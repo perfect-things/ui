@@ -42,8 +42,8 @@
 <h3>Label</h3>
 <Combobox {items} label="Combobox label" />
 
-<h3>Info</h3>
-<Combobox {items} label="Combobox label" info="Select something here" />
+<h3>Info & Warning</h3>
+<Combobox {items} label="Combobox label" info="Select something here" warning="Select with care" />
 
 <h3>Error</h3>
 <Combobox {items} label="Combobox label" error="You picked the wrong side!" />
@@ -51,8 +51,8 @@
 <h3>Label on the left</h3>
 <Combobox {items} label="Label is on the left" labelOnTheLeft/>
 
-<h3>Label on the left and info text</h3>
-<Combobox {items} label="Label is on the left" labelOnTheLeft info="Select something here"/>
+<h3>Label on the left and info & warning text</h3>
+<Combobox {items} label="Label is on the left" labelOnTheLeft info="Select something here" warning="Select with care"/>
 
 
 <Code>{`

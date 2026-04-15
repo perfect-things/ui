@@ -12,8 +12,8 @@
 	<h3>With error and live validation</h3>
 		<Radio items={strings} name="my-radio4" label="Select option 4" error={error4} onchange={validate4} />
 
-	<h3>With info</h3>
-		<Radio items={strings} name="my-radio5" label="Select option 5" info="Here be info message." />
+	<h3>With info & warning</h3>
+		<Radio items={strings} name="my-radio5" label="Select option 5" info="Here be info message." warning="This is a warning message." />
 
 	<h3>With info and error</h3>
 		<Radio
@@ -26,8 +26,8 @@
 	<h3>Label on the left</h3>
 		<Radio items={strings} label="Label is on the left" labelOnTheLeft/>
 
-	<h3>Label on the left and info text</h3>
-		<Radio items={strings} label="Label is on the left" labelOnTheLeft info="Here be info message."/>
+	<h3>Label on the left and info & warning text</h3>
+		<Radio items={strings} label="Label is on the left" labelOnTheLeft info="Here be info message." warning="This is a warning message."/>
 
 
 <Code>{`
