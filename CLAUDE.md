@@ -45,7 +45,7 @@ Set `(UI as any)._ANIMATION_SPEED = 0` in tests to skip animation delays.
 ## Release
 
 ```bash
-npm run prerelease   # Interactive: bump beta version, build, push, publish --tag beta
+npm run betarelease  # Interactive: bump beta version, build, push, publish --tag beta
 npm run release      # Full release
 npm run changelog    # Regenerate docs/pages/changelog.html from CHANGELOG.md
 ```
