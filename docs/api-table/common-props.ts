@@ -23,6 +23,7 @@ const bindelement = { name: 'bind:element', type: 'HTMLElement', description: 'E
 
 const name = { name: 'name', type: 'string', description: 'Assign name to the underlying input element.' };
 const inputInfo = { name: 'info', type: 'string', description: 'Show info message above the component.' };
+const inputWarning = { name: 'warning', type: 'string', description: 'Show warning message above the component.' };
 const inputError = { name: 'error', type: 'string', description: 'Error message to show above the component.' };
 const label = { name: 'label', type: 'string', description: 'Label bound to the input.' };
 const labelOnTheLeft = { name: 'labelOnTheLeft', type: 'boolean', default: 'false', description: 'Put label to the left of the input (instead of at the top). Usually in longer forms, to align labels and inputs, hence input also gets <em>width: 100%</em>, as it will be constraint by the form container.' };
@@ -86,6 +87,7 @@ export const PROPS = {
 		disabled,
 		bindelement,
 		inputInfo,
+		inputWarning,
 		inputError,
 		label,
 		labelOnTheLeft,
