@@ -22,7 +22,8 @@ export default defineConfig({
 			include: ['src/**/*.{js,ts,svelte}'],
 			exclude: [
 				'**/*types.ts',
-				'**/*.d.ts'
+				'**/*.d.ts',
+				'**/index.{ts,js}',
 			],
 			thresholds: {
 				global: {
