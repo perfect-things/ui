@@ -16,9 +16,8 @@ function injectScripts (html) {
 
 // https://vite.dev/config/
 export default defineConfig(() => ({
-	server: {
-		host: '0.0.0.0'
-	},
+	server: { host: 'localhost' },
+	css: { devSourcemap: true },
 	base: './',
 	plugins: [
 		svelte({

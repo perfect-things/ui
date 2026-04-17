@@ -204,10 +204,18 @@ function addTargetEvents () {
 
 
 function removeTargetEvents () {
+	cleanupIfTooltipTagRemovedBeforeHide(element);
 	if (!targetEl) return;
 	targetEl.removeEventListener('focus', show);
 	targetEl.removeEventListener('blur', hide);
 	targetEl.removeEventListener('mouseover', show);
 	targetEl.removeEventListener('mouseout', hide);
+}
+
+function cleanupIfTooltipTagRemovedBeforeHide (elem: HTMLElement | null) {
+	const el = elem;
+	requestAnimationFrame(() => {
+		if (el?.isConnected) el.remove();
+	});
 }
 </script>
