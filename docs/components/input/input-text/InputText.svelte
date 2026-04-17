@@ -32,13 +32,13 @@ Enhanced components provide additional functionality and better DX.</p>
 <h3>Label on the left</h3>
 <InputText label="Label is on the left" labelOnTheLeft/>
 
-<h3>Label on the left and info & warning text</h3>
+<h3>Label on the left, info, warning, and error</h3>
 <InputText
 	labelOnTheLeft
 	label="Label is on the left"
 	info="This should be avoided in most cases. Validating input as user is typing is a bad UX."
 	warning="This is a warning message."
-	/>
+	error="This is an error message." />
 
 <Code>{`
 <InputText label="Email" error="Invalid email" value="admin" onchange={onChange} />

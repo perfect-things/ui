@@ -111,7 +111,8 @@ input[type=color] {
 .label-on-the-left .radio-inner,
 .label-on-the-left .input-inner { flex: 1; }
 
-.label-on-the-left .info-bar { margin-bottom: 0; }
+.label-on-the-left .info-bar-info,
+.label-on-the-left .info-bar-warning { margin-bottom: 0; }
 
 .label-on-the-left .input-label-row {
 	display: flex;
