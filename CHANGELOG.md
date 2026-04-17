@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+## v10.1.2 *(2026-03-18)*
+- fix dev source maps
+- fix tooltip edge case, where tooltip would not hide if the tag was removed from the DOM while the tooltip was visible.
+- fix input error padding.
+
+
 ## v10.0.0 *(2025-08-01)*
 Thousand thanks to the Svelte's team, for the [long months of hard work](https://github.com/perfect-things/ui/pull/215), that we wasted on rewriting this library, to make it compatible with Svelte v5. Hopefully this is the last time they decided to innovate 😉.
 
