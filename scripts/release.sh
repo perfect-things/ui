@@ -25,8 +25,6 @@ case $ans in
 esac
 
 version=$(cat package.json | grep '"version"' | cut -d '"' -f 4)
-npm run changelog
-npm run build
 git add --all
 git commit -am "release $version" --no-verify
 git push
