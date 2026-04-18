@@ -1,29 +1,48 @@
 import type { ComponentProps, EventHandler } from '../types.js';
 
-export type DataItem = {
-	id: number;
-	selected?: boolean;
-	field?: string;
+interface SvelteStore<T> {
+	subscribe: (run: (value: T) => void) => () => void;
+	set: (value: T) => void;
+	update?: (updater: (value: T) => T) => void;
 };
 
+export type GridDataItem = {
+	id: number;
+	[key: string]: any;
+};
 
-export type DataStoreType = {
-	subscribe: (run: (value: DataItem[]) => void) => () => void;
-	set: (value: DataItem[]) => void;
-	get: () => DataItem[];
-	getById: (id: number) => DataItem | undefined;
-	columns: any;
+export interface GridColumn {
+	field: string;
+	label?: string;
+	width?: number | string;
+	sortable?: boolean;
+	total?: boolean;
+	align?: 'left' | 'center' | 'right';
+	renderer?: (value: any, item: GridDataItem) => string | HTMLElement;
+}
+
+
+
+export interface GridData extends SvelteStore<GridDataItem[]> {
+	get: () => GridDataItem[];
+	getById: (id: number) => GridDataItem | undefined;
+	columns: SvelteStore<GridColumn[]>;
 	allSelected: any;
 	someSelected: any;
 	sortField: any;
 	sortOrder: any;
 
-	toggleSelection: (item: DataItem, event?: MouseEvent, forceState?: boolean) => void;
+	toggleSelection: (item: GridDataItem, event?: MouseEvent, forceState?: boolean) => void;
 	toggleSelectAll: (forceState?: boolean) => void;
 	reset: () => void;
 };
 
 
+
+export interface GridPartProps {
+	multiselect?: boolean;
+	Data?: GridData
+}
 
 
 export interface GridProps extends ComponentProps {
@@ -31,8 +50,8 @@ export interface GridProps extends ComponentProps {
 	round?: boolean;
 	scrollContainer?: string | HTMLElement;
 	scrollCorrectionOffset?: string;
-	columns?: Array<any>;
-	data?: DataItem[];
+	columns?: GridColumn[];
+	data?: GridDataItem[];
 	multiselect?: boolean;
 	dblClickDelay?: number;
 	sortby?: string;

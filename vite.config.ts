@@ -15,7 +15,7 @@ function injectScripts (html) {
 
 
 // https://vite.dev/config/
-export default defineConfig(() => ({
+export default defineConfig(({ command }) => ({
 	server: { host: 'localhost' },
 	css: { devSourcemap: true },
 	base: './',
@@ -23,7 +23,7 @@ export default defineConfig(() => ({
 		svelte({
 			configFile: resolve(__dirname, 'svelte.config.ts')
 		}),
-		{
+		command === 'build' && {
 			name: 'inject-analytics',
 			transformIndexHtml: { order: 'pre', handler: injectScripts }
 		}

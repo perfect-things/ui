@@ -2,7 +2,9 @@ Changelog
 =========
 
 
-## v10.1.2 *(2026-03-18)*
+## v10.1.3, v10.1.2 *(2026-03-18)*
+- Grid no longer tries to guess the columns' types to auto-set column widths and alignment. There are now new properties for the Column: `width` and `align` for that purpose.
+- fix grid row derived double subscription which caused a svelte warning in the console.
 - fix dev source maps
 - fix tooltip edge case, where tooltip would not hide if the tag was removed from the DOM while the tooltip was visible.
 - fix input error padding.

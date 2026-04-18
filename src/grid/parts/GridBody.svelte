@@ -3,17 +3,13 @@
 {/each}
 
 <script lang="ts">
-import type { DataStoreType } from '../types';
+import type { GridPartProps } from '../types';
 import GridRow from './GridRow.svelte';
 
-interface Props {
-	multiselect?: boolean;
-	Data?: DataStoreType;
-}
 
 const {
 	multiselect = false,
 	Data
-}: Props = $props();
+}: GridPartProps = $props();
 
 </script>

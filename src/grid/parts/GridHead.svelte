@@ -7,26 +7,22 @@
 		{/if}
 		{#if $columns}
 			{#each $columns as column (column.field)}
-				<HeadTh {column} {Data} />
+				<GridTh {column} {Data} />
 			{/each}
 		{/if}
 	</tr>
 </thead>
 
 <script lang="ts">
-import type { DataStoreType } from '../types';
+import type { GridPartProps } from '../types';
 import { Checkbox } from '../../input';
-import HeadTh from './GridHeadTh.svelte';
+import GridTh from './GridHeadTh.svelte';
 
-interface Props {
-	multiselect?: boolean;
-	Data?: DataStoreType
-}
 
 const {
 	multiselect = false,
 	Data
-}: Props = $props();
+}: GridPartProps = $props();
 
 
 const columns = $derived(Data.columns);

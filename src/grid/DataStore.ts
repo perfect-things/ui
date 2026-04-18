@@ -1,5 +1,6 @@
 import { writable, get } from 'svelte/store';
-import type { DataStoreType, DataItem } from './types';
+import type { GridData, GridDataItem } from './types';
+import { sortData } from './utils';
 
 
 
@@ -7,9 +8,9 @@ import type { DataStoreType, DataItem } from './types';
  * DataStore
  * @description Store for all grid data
  */
-export function DataStore (): DataStoreType {
-	const _this = writable<DataItem[]>([]);
-	const { subscribe, set } = _this;
+export function DataStore (): GridData {
+	const _this = writable<GridDataItem[]>([]);
+	const { subscribe, set, update } = _this;
 
 	const columns = writable([]);
 	const allSelected = writable(false);
@@ -100,6 +101,7 @@ export function DataStore (): DataStoreType {
 	return {
 		subscribe,
 		set: _set,
+		update,
 		get: () => get(_this),
 		getById,
 
@@ -113,29 +115,4 @@ export function DataStore (): DataStoreType {
 		toggleSelectAll,
 		reset: () => set([])
 	};
-}
-
-
-
-function sortData (items, field, order) {
-	if (!items || !items.length) return [];
-	if (field === '') return items.sort(numberSort('id', order));
-
-	if (typeof items[0][field] === 'number') {
-		return items.sort(numberSort(field, order));
-	}
-
-	return items.sort(stringSort(field, order));
-}
-
-
-function numberSort (field, order = 'ASC') {
-	if (order === 'ASC') return (a, b) => Math.abs(a[field]) - Math.abs(b[field]);
-	return (a, b) => Math.abs(b[field]) - Math.abs(a[field]);
-}
-
-
-function stringSort (field, order = 'ASC') {
-	if (order === 'ASC') return (a, b) => ('' + a[field]).localeCompare('' + b[field]);
-	return (a, b) => ('' + b[field]).localeCompare('' + a[field]);
 }

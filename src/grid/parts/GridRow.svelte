@@ -13,7 +13,7 @@ tabindex="0">
 			</td>
 		{/if}
 		{#each $columns as column (column.field)}
-			<td class="td-{getType(column)}">
+			<td class="cell-align-{column.align || 'left'}">
 				{@html cellRenderer(column, item)}
 			</td>
 		{/each}
@@ -21,18 +21,15 @@ tabindex="0">
 </tbody>
 
 <script lang="ts">
-import { onMount, onDestroy } from 'svelte';
-import type { DataStoreType } from '../types';
+import type { GridPartProps, GridDataItem } from '../types';
 import { Checkbox } from '../../input';
 
-interface Props {
-	item?: any;
-	multiselect?: boolean;
-	Data?: DataStoreType;
+interface Props extends GridPartProps {
+	item?: GridDataItem;
 }
 
 let {
-	item = $bindable({}),
+	item = $bindable({} as GridDataItem),
 	multiselect = false,
 	Data
 }: Props = $props();
@@ -41,19 +38,6 @@ const columns = $derived(Data.columns);
 const id = $derived(item.id || item.field);
 const idSlug = $derived(slugify(id));
 let pressing = $state(false);
-let sub;
-
-onMount(() => {
-	sub = Data.subscribe((data) => {
-		if (data && data.length > 0) {
-			item = data.find(i => i.id === id) || {};
-		}
-	});
-});
-
-onDestroy(() => {
-	sub();
-});
 
 
 function slugify (str) {
@@ -63,11 +47,6 @@ function slugify (str) {
 		.replace(/-+/g, '-')
 		.replace(/^-+|-+$/g, '');
 }
-
-function getType (column) {
-	return typeof $Data[0][column.field];
-}
-
 
 function cellRenderer (column, _item) {
 	if (column.renderer) return column.renderer(_item);

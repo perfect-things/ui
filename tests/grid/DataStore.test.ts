@@ -1,4 +1,4 @@
-import type { DataItem } from '../../src/grid/types';
+import type { GridDataItem } from '../../src/grid/types';
 
 import { describe, expect, test, beforeEach, vi } from 'vitest';
 import { get } from 'svelte/store';
@@ -7,7 +7,7 @@ import { DataStore } from '../../src/grid/DataStore';
 
 describe('DataStore', () => {
 	let store: ReturnType<typeof DataStore>;
-	let mockData: DataItem[];
+	let mockData: GridDataItem[];
 
 	beforeEach(() => {
 		store = DataStore();
@@ -290,7 +290,7 @@ describe('DataStore', () => {
 		});
 
 		test('should sort by numeric field in ascending order', () => {
-			const numericData: (DataItem & { value: number })[] = [
+			const numericData: (GridDataItem & { value: number })[] = [
 				{ id: 30, value: 30, selected: false },
 				{ id: 10, value: 10, selected: false },
 				{ id: 20, value: 20, selected: false }
@@ -305,7 +305,7 @@ describe('DataStore', () => {
 		});
 
 		test('should sort by numeric field in descending order', () => {
-			const numericData: (DataItem & { value: number })[] = [
+			const numericData: (GridDataItem & { value: number })[] = [
 				{ id: 30, value: 30, selected: false },
 				{ id: 10, value: 10, selected: false },
 				{ id: 20, value: 20, selected: false }
@@ -333,7 +333,7 @@ describe('DataStore', () => {
 		});
 
 		test('should handle negative numbers in numeric sort', () => {
-			const numericData: (DataItem & { value: number })[] = [
+			const numericData: (GridDataItem & { value: number })[] = [
 				{ id: 1, value: -30, selected: false },
 				{ id: 2, value: 10, selected: false },
 				{ id: 3, value: -20, selected: false }

@@ -60,3 +60,28 @@ export function getHeaderHeight (element) {
 	const headHeight = head ? head.offsetHeight : 0;
 	return headHeight + titleHeight;
 }
+
+
+
+export function sortData (items, field, order) {
+	if (!items || !items.length) return [];
+	if (field === '') return items.sort(numberSort('id', order));
+
+	if (typeof items[0][field] === 'number') {
+		return items.sort(numberSort(field, order));
+	}
+
+	return items.sort(stringSort(field, order));
+}
+
+
+export function numberSort (field, order = 'ASC') {
+	if (order === 'ASC') return (a, b) => Math.abs(a[field]) - Math.abs(b[field]);
+	return (a, b) => Math.abs(b[field]) - Math.abs(a[field]);
+}
+
+
+export function stringSort (field, order = 'ASC') {
+	if (order === 'ASC') return (a, b) => ('' + a[field]).localeCompare('' + b[field]);
+	return (a, b) => ('' + b[field]).localeCompare('' + a[field]);
+}

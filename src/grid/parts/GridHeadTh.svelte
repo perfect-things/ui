@@ -1,6 +1,7 @@
 <th
 	title={column.label}
-	class="th-sortable th-{type}"
+	class="th-sortable cell-align-{column.align || 'left'}"
+	style:width={column.width ? column.width + 'px' : null}
 	tabindex="0"
 	onkeydown={e => e.key === 'Enter' && sort()}
 	onclick={sort}>
@@ -13,16 +14,13 @@
 </th>
 
 <script lang="ts">
-import type { DataStoreType } from '../types';
+import type { GridPartProps, GridColumn } from '../types';
 import { Icon, ICON } from '../../icon';
 
-interface Props {
-	column?: {
-		field: string;
-		label?: string;
-	};
-	Data?: DataStoreType;
+interface Props extends GridPartProps {
+	column?: GridColumn;
 }
+
 
 const {
 	column = { field: '' },
@@ -33,7 +31,6 @@ const {
 const sortField = $derived(Data.sortField);
 const sortOrder = $derived(Data.sortOrder);
 const sortIcon = $derived($sortOrder === 'ASC' ? ICON.ARROWDOWN : ICON.ARROWUP);
-const type = $derived(typeof $Data?.[0]?.[column.field]);	// used to e.g. align numbers to the right
 
 
 function sort () {
