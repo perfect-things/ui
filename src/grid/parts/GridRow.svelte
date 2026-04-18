@@ -14,7 +14,13 @@ tabindex="0">
 		{/if}
 		{#each $columns as column (column.field)}
 			<td class="cell-align-{column.align || 'left'}">
-				{@html cellRenderer(column, item)}
+				{#if column.snippet}
+					{@render column.snippet(item)}
+				{:else if column.renderer}
+					{@html cellRenderer(column, item)}
+				{:else}
+					{@html item[column.field] || ''}
+				{/if}
 			</td>
 		{/each}
 	</tr>

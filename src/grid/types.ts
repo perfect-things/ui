@@ -1,3 +1,4 @@
+import type { Snippet } from 'svelte';
 import type { ComponentProps, EventHandler } from '../types.js';
 
 interface SvelteStore<T> {
@@ -18,7 +19,10 @@ export interface GridColumn {
 	sortable?: boolean;
 	total?: boolean;
 	align?: 'left' | 'center' | 'right';
-	renderer?: (value: any, item: GridDataItem) => string | HTMLElement;
+	/** Legacy cell renderer. Returns an HTML string; output is injected via {@html}. */
+	renderer?: (item: GridDataItem) => string;
+	// Svelte 5 snippet rendering the cell. Takes precedence over `renderer` when both are set.
+	snippet?: Snippet<[GridDataItem]>;
 }
 
 

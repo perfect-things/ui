@@ -1,3 +1,7 @@
+{#snippet nameCell(item)}
+	<a href="#Grid/{item.id}"><strong>{item.name}</strong></a>
+{/snippet}
+
 <h2>Grid [alpha version]</h2>
 <p>Grid component is basically a table on steroids. </p>
 <div class="grid-viewport">
@@ -76,15 +80,14 @@ const columnProps = <ApiProp[]>[
 	{ name: 'align', type: ['left', 'center', 'right'], description: 'The alignment of the column.' },
 	{ name: 'sortable', type: 'boolean', description: 'Whether the column is sortable.' },
 	{ name: 'total', type: 'boolean', description: 'Whether the column should display a total.' },
-	{ name: 'renderer', type: 'function', description: 'A function to render the column content.' },
+	{ name: 'renderer', type: 'function', description: 'A function <em>(item) =&gt; string</em> to format the cell content. Output is injected via <em>{@html}</em>.' },
+	{ name: 'snippet', type: 'Snippet', description: 'A Svelte 5 snippet <em>(item) =&gt; ...</em> that renders the cell. Takes precedence over <em>renderer</em> when both are set.' },
 ];
 
 
 
 const columns: GridColumn[] = [
-	{ field: 'name', label: 'Name', sortable: true,
-		renderer: (item) => `<a href="#Grid/${item.id}">${item.name}</a>`
-	},
+	{ field: 'name', label: 'Name', sortable: true, snippet: nameCell },
 	{ field: 'date', label: 'Date', width: 110, sortable: true },
 	{ field: 'price', label: 'Price', width: 110, align: 'right', sortable: true, total: true,
 		renderer: (item) => `€${item.price}`
