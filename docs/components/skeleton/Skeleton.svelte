@@ -1,9 +1,7 @@
 <h2>Skeleton</h2>
 
-<p>Animated SVG placeholder for loading states. The component is responsive and fills its
-container — give the wrapper a width and height and the skeleton stretches to match.
-Six built-in templates cover common cases; drop down to <code>template="custom"</code> with
-the primitive and template components for anything bespoke.</p>
+<p>Animated placeholder for loading states.</p>
+
 
 <h3>Skeleton Shapes</h3>
 
