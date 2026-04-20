@@ -8,16 +8,16 @@ the primitive and template components for anything bespoke.</p>
 <h3>Skeleton Shapes</h3>
 
 <h4>Rectangle</h4>
-<SkeletonRectProps width={200} height={100} />
+<SkeletonRect width={200} height={100} />
 
 <h4>Circle</h4>
-<SkeletonCircleProps size={60} />
+<SkeletonCircle size={60} />
 
 <h4>Text</h4>
-<SkeletonTextProps size={3} />
+<SkeletonText size={3} />
 
 <h4>Image</h4>
-<SkeletonImageProps />
+<SkeletonImage />
 
 
 
@@ -25,32 +25,32 @@ the primitive and template components for anything bespoke.</p>
 
 <h4>SkeletonHStack</h4>
 <SkeletonHStack>
-	<SkeletonCircleProps />
-	<SkeletonCircleProps />
-	<SkeletonCircleProps />
-	<SkeletonCircleProps />
+	<SkeletonCircle />
+	<SkeletonCircle />
+	<SkeletonCircle />
+	<SkeletonCircle />
 </SkeletonHStack>
 
 
 <h4>SkeletonVStack</h4>
 <SkeletonVStack>
-	<SkeletonCircleProps />
-	<SkeletonCircleProps />
-	<SkeletonCircleProps />
+	<SkeletonCircle />
+	<SkeletonCircle />
+	<SkeletonCircle />
 </SkeletonVStack>
 
 
 <h4>SkeletonGrid</h4>
-<SkeletonGridProps size={120}>
-	<SkeletonRectProps height={100} />
-	<SkeletonRectProps height={100} />
-	<SkeletonRectProps height={100} />
-	<SkeletonRectProps height={100} />
-	<SkeletonRectProps height={100} />
-	<SkeletonRectProps height={100} />
-	<SkeletonRectProps height={100} />
-	<SkeletonRectProps height={100} />
-</SkeletonGridProps>
+<SkeletonGrid size={120}>
+	<SkeletonRect height={100} />
+	<SkeletonRect height={100} />
+	<SkeletonRect height={100} />
+	<SkeletonRect height={100} />
+	<SkeletonRect height={100} />
+	<SkeletonRect height={100} />
+	<SkeletonRect height={100} />
+	<SkeletonRect height={100} />
+</SkeletonGrid>
 
 
 <h3>Custom build</h3>
@@ -58,12 +58,12 @@ the primitive and template components for anything bespoke.</p>
 <h4>Cards list</h4>
 <SkeletonVStack class="skeleton-cards">
 	<SkeletonHStack>
-		<SkeletonCircleProps />
-		<SkeletonTextProps size={3} />
+		<SkeletonCircle />
+		<SkeletonText size={3} />
 	</SkeletonHStack>
 	<SkeletonHStack>
-		<SkeletonCircleProps />
-		<SkeletonTextProps size={3} />
+		<SkeletonCircle />
+		<SkeletonText size={3} />
 	</SkeletonHStack>
 </SkeletonVStack>
 
@@ -72,21 +72,21 @@ the primitive and template components for anything bespoke.</p>
 {#snippet card()}
 	<SkeletonVStack>
 		<SkeletonHStack>
-			<SkeletonImageProps width="3.9em" height="3.9em" />
-			<SkeletonTextProps size={3} />
+			<SkeletonImage width="3.9em" height="3.9em" />
+			<SkeletonText size={3} />
 		</SkeletonHStack>
-		<SkeletonTextProps size={3} />
+		<SkeletonText size={3} />
 	</SkeletonVStack>
 {/snippet}
 
-<SkeletonGridProps class="skeleton-cards">
+<SkeletonGrid class="skeleton-cards">
 	{@render card()}
 	{@render card()}
 	{@render card()}
 	{@render card()}
 	{@render card()}
 	{@render card()}
-</SkeletonGridProps>
+</SkeletonGrid>
 
 
 
@@ -127,7 +127,7 @@ import type { ApiProp } from '../../api-table/types';
 import { API, PROPS } from '../../api-table';
 import { Code } from '../../code-example';
 
-import { SkeletonRectProps, SkeletonCircleProps, SkeletonTextProps, SkeletonImageProps, SkeletonHStack, SkeletonVStack, SkeletonGridProps } from '../../../src';
+import { SkeletonRect, SkeletonCircle, SkeletonText, SkeletonImage, SkeletonHStack, SkeletonVStack, SkeletonGrid } from '../../../src';
 
 
 const shapeProps = <ApiProp[]>[
