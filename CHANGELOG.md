@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## v10.1.5 *(2026-03-21)*
+- New: skeleton loader components.
+- New: icon `photo`.
+
+
 ## v10.1.4 *(2026-03-19)*
 - Grid column cell renderer now accepts svelte snippets.
 

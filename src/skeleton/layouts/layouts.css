@@ -1,0 +1,7 @@
+.skeleton-hstack,
+.skeleton-vstack { display: flex; gap: 0.7em; flex: 1; }
+
+.skeleton-hstack { flex-flow: row nowrap; }
+.skeleton-vstack { flex-flow: column nowrap; }
+
+.skeleton-grid { display: grid; gap: 0.7em; }
