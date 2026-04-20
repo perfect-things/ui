@@ -13,6 +13,7 @@ export * from './panel';
 export * from './popover';
 export * from './push-button';
 export * from './shortcut';
+export * from './skeleton';
 export * from './splitter';
 export * from './table';
 export * from './tag';

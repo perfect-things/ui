@@ -21,6 +21,7 @@ export { ColorPalette } from './color-palette';
 export { Icon } from './icon';
 export { Menu } from './menu';
 export { Shortcut } from './shortcut';
+export { Skeleton } from './skeleton';
 export { Splitter } from './splitter';
 export { Tag } from './tag';
 export { ThemeSwitcher } from './theme-switcher';
