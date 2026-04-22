@@ -1,6 +1,5 @@
 import { defineConfig, type UserConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
-
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -32,8 +31,8 @@ export default defineConfig(({ command }) => ({
 	publicDir: '../assets',
 	build: {
 		outDir: '../public',
-		cssCodeSplit: false,
 		emptyOutDir: true,
+		cssCodeSplit: false,
 		chunkSizeWarningLimit: 1000,
 		sourcemap: true,
 		rollupOptions: {
