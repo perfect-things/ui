@@ -31,6 +31,4 @@ git push
 npm run build
 if npm publish --access public; then
     echo "Release $version published successfully."
-else
-    echo "Error: failed to publish release $version." >&2
 fi
