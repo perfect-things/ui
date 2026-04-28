@@ -29,5 +29,8 @@ git add --all
 git commit -am "release $version" --no-verify
 git push
 npm run build
-npm publish --access public
-echo "Release $version published successfully."
+if npm publish --access public; then
+    echo "Release $version published successfully."
+else
+    echo "Error: failed to publish release $version." >&2
+fi
