@@ -24,5 +24,6 @@ version=$(cat package.json | grep '"version"' | cut -d '"' -f 4)
 git add --all
 git commit -am "pre-release $version" --no-verify
 git push
+npm run build
 npm publish --tag beta
 echo "Pre-release $version published successfully."

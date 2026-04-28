@@ -28,5 +28,6 @@ version=$(cat package.json | grep '"version"' | cut -d '"' -f 4)
 git add --all
 git commit -am "release $version" --no-verify
 git push
+npm run build
 npm publish --access public
 echo "Release $version published successfully."

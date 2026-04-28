@@ -2,16 +2,20 @@ Changelog
 =========
 
 
-## v10.1.5 *(2026-03-21)*
+## v10.1.6 *(2026-04-28)*
+- Rebuild before `npm publish`.
+
+
+## v10.1.5 *(2026-04-21)*
 - New: skeleton loader components.
 - New: icon `photo`.
 
 
-## v10.1.4 *(2026-03-19)*
+## v10.1.4 *(2026-04-19)*
 - Grid column cell renderer now accepts svelte snippets.
 
 
-## v10.1.3, v10.1.2 *(2026-03-18)*
+## v10.1.3, v10.1.2 *(2026-04-18)*
 - Grid no longer tries to guess the columns' types to auto-set column widths and alignment. There are now new properties for the Column: `width` and `align` for that purpose.
 - fix grid row derived double subscription which caused a svelte warning in the console.
 - fix dev source maps
