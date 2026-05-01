@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+## v10.1.7 *(2026-05-01)*
+- Fix skeleton shimmer animation.
+- Fix safari checkbox mark alignment.
+- Fix combobox highlighting.
+
+
 ## v10.1.6 *(2026-04-28)*
 - Rebuild before `npm publish`.
 
