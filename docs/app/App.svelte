@@ -10,10 +10,15 @@
 <script>
 import { Nav } from '../nav';
 import './App.css';
-import { NotificationCenter, ThemeSwitcher } from '../../src';
+import { onMount } from 'svelte';
+import { NotificationCenter, ThemeSwitcher, UI } from '../../src';
 
 let component = $state();
 const pageName = $derived((component?.name ?? '').toLowerCase());
 
 const SvelteComponent = $derived(component);
+
+onMount(() => {
+	UI.init();
+});
 </script>
