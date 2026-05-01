@@ -90,7 +90,7 @@ Object.defineProperties(UI, {
 
 	init: {
 		writable: false,
-		enumerable: false,
+		enumerable: true,
 		configurable: false,
 		value () {
 			if (this._INITIALISED) return;
@@ -103,7 +103,7 @@ Object.defineProperties(UI, {
 
 	destroy: {
 		writable: false,
-		enumerable: false,
+		enumerable: true,
 		configurable: false,
 		value () {
 			if (!this._INITIALISED) return;

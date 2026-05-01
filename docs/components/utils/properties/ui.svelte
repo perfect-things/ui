@@ -7,7 +7,7 @@
 		<li><em>UI.VERSION</em> - the current version of the framework.</li>
 		<li><em>UI.init()</em> - initializes the UI module and sets up some event listeners.</li>
 		<li><em>UI.destroy()</em> - cleans up the UI module and removes the event listeners.</li>
-		<li><em>UI.on(eventName: string, callback: Function)</em> - adds an event listener for the specified event.</li>
+		<li><em>UI.on(eventName: string, callback: Function)</em> - adds an event listener for the specified event (currently only <em>change</em> is supported).</li>
 		<li><em>UI.off(eventName: string, callback: Function)</em> - removes the event listener for the specified event.</li>
 	</ul>
 	<h3>Events:</h3>

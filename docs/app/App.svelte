@@ -10,8 +10,7 @@
 <script>
 import { Nav } from '../nav';
 import './App.css';
-import { ThemeSwitcher } from '../../src/theme-switcher';
-import { NotificationCenter } from '../../src/notification-center';
+import { NotificationCenter, ThemeSwitcher } from '../../src';
 
 let component = $state();
 const pageName = $derived((component?.name ?? '').toLowerCase());
