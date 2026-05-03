@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## v10.1.8 *(2026-05-03)*
+- Fix multiselect checkbox on narrow screens.
+
+
 ## v10.1.7 *(2026-05-01)*
 - Fix skeleton shimmer animation.
 - Fix safari checkbox mark alignment.
