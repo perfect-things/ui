@@ -65,7 +65,8 @@
 	touch-action: manipulation;
 }
 
-.combobox-list-item svg { margin-right: 0.5rem; }
+.combobox-list-item svg { margin-right: 0.5rem; flex-shrink: 0; }
+.combobox-list-item span { overflow: hidden; text-overflow: ellipsis; }
 .combobox-list-item .tick { display: none; }
 .combobox-list-item.checked .tick { display: block; }
 
