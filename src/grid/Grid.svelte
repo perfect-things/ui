@@ -106,10 +106,21 @@ onMount(() => {
 });
 
 
+// each prop syncs in its own effect, so that e.g. a data change
+// does not re-apply the initial sortby/sortdir and reset the user's sort
 $effect.pre(() => {
 	if (columns) Data.columns.set(columns);
+});
+
+$effect.pre(() => {
 	if (sortby) Data.sortField.set(sortby);
+});
+
+$effect.pre(() => {
 	if (sortdir) Data.sortOrder.set(sortdir);
+});
+
+$effect.pre(() => {
 	if (data) Data.set(data);
 });
 
