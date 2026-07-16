@@ -80,14 +80,24 @@ export default defineConfig(
 			'@stylistic/no-multi-spaces': ['error', { 'ignoreEOLComments': true }],
 			'@stylistic/no-trailing-spaces': 'error',
 			'@stylistic/object-curly-spacing': ['error', 'always'],
+
 			'@stylistic/quotes': ['error', 'single', { 'avoidEscape': true }],
 			'@stylistic/semi': ['error', 'always'],
+			'@stylistic/block-spacing': ['error', 'always'],
+
 			'@stylistic/space-before-blocks': ['error', 'always'],
 			'@stylistic/space-before-function-paren': ['error', 'always'],
 			'@stylistic/space-in-parens': ['error', 'never'],
 			'@stylistic/template-curly-spacing': ['error', 'never'],
 
+			'@stylistic/keyword-spacing': ['error', { 'before': true, 'after': true }],
+			'@stylistic/semi-spacing': ['error', { 'before': false, 'after': true }],
+			'@stylistic/space-infix-ops': 'error',
+			'@stylistic/comma-spacing': ['error', { 'before': false, 'after': true }],
+			'@stylistic/arrow-spacing': ['error', { 'before': true, 'after': true }],
+
 			'curly': ['error', 'multi-line'],
+
 			'dot-notation': 'error',
 			'no-cond-assign': 0,
 			'no-else-return': 'error',
